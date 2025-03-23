@@ -1,0 +1,150 @@
+#include "lit_detail_base_basic"
+#include "flag_motion_base"
+
+Sampler( "colorSampler00" )
+{
+	tile = <texTile00>
+	filter = <filterColor00>
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Fray Sampler"
+		sortindex = "22"
+	}
+}
+
+Texture( "colorMap00" )
+{
+	image = Image( <colorMap00, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Fray Map"
+		sortindex = "20"
+	}
+}
+
+Texture( "flagRippleDetailMap" )
+{
+	image = Image( <colorMap01, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Wind Detail"
+		title	  = "Ripple Normal"
+		sortindex = "10"
+	}
+}
+
+Texture( "tintMask" )
+{
+	image = Image()
+	{
+		map = <colorMap02, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "30"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "colorTint1" )
+{
+	value = "srgb_to_linear( <colorTint1> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Fray Tint"
+		sortindex = "40"
+		color = true
+	}
+}
+
+float2( "colorDetailScale" )
+{
+	x = <colorDetailScaleX>
+	y = <colorDetailScaleY>
+	tweak = Tweak()
+	{
+		category  = "Detail Color Modifiers"
+		title     = "Detail Scale (X, Y)"
+		sortindex = "20"
+	}
+}
+
+float2( "rippleDetailScroll1" )
+{
+	x = <flagRipple1ScrollU>
+	y = <flagRipple1ScrollV>
+	tweak = Tweak()
+	{
+		category  = "Wind Detail"
+		title	  = "Scroll Speed1 (U, V)"
+		sortindex = "20"
+	}
+}
+float2( "rippleDetailScroll2" )
+{
+	x = <flagRipple2ScrollU>
+	y = <flagRipple2ScrollV>
+	tweak = Tweak()
+	{
+		category  = "Wind Detail"
+		title	  = "Scroll Speed2 (U, V)"
+		sortindex = "30"
+	}
+}
+float1( "flagRippleScale" )
+{
+	x = <flagRippleScale>
+	tweak = Tweak()
+	{
+		category  = "Wind Detail"
+		title	  = "Ripple Scale"
+		sortindex = "40"
+	}
+}
+float1( "flagRippleHeight" )
+{
+	x = <flagRippleHeight>
+	tweak = Tweak()
+	{
+		category  = "Wind Detail"
+		title	  = "Ripple Height"
+		sortindex = "50"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+TechniqueTemplate( "flag build shadowmap depth" )
+{
+	state = "buildShadowmap + nocull"
+	defines = "USE_ALPHA_TEST", "USE_FLAG"
+	source = "vertexMotion_buildShadowmap.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+TechniqueTemplate( "flag build shadowmap depth planes" )
+{
+	state = "buildShadowmap + nocull"
+	defines = "USE_ALPHA_TEST", "USE_FLAG"
+	defines += "BUILD_SHADOWMAP_EXTRA_PLANES 1" 
+	source = "vertexMotion_buildShadowmap.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+#endif
+
+TechniqueTemplate( "flag build shadowmap depth layered" ) : "flag build shadowmap depth"
+{
+	defines += "BUILD_SHADOWMAP_LAYERED"
+}

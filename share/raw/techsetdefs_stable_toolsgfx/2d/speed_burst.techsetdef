@@ -1,0 +1,132 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+
+Texture( "irisTexture" )
+{
+	image = Image( <colorMap, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		title     = "Iris Map"
+		sortindex = "0"
+	}
+}
+
+Texture( "maskTexture" )
+{
+	image = Image( <alphaRevealMap, $half_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		title     = "Mask Map"
+		sortindex = "10"
+	}
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "blurRadius" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		title     = "MAX Blur Amount"
+		sortindex = "20"
+		default   = "8.0"
+		range     = "0.0", "1e+009", "0.01"
+	}
+}
+
+float1( "irisGlowAmount" )
+{
+	x     = <cg00_z>
+	tweak = Tweak()
+	{
+		title     = "Iris Glow Amount"
+		sortindex = "30"
+		default   = "8"
+		range     = "1", "128000", "1.0"
+	}
+}
+
+float3( "irisGlowColor" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	z     = <cg01_z>
+	tweak = Tweak()
+	{
+		title     = "Iris Glow Color"
+		sortindex = "40"
+		default   = "1.0"
+		range     = "0.0", "1.0", "0.01"
+		color     = true
+	}
+}
+
+float1( "revealEdgeSoftness" )
+{
+	x     = <cg00_w>
+	tweak = Tweak()
+	{
+		title     = "Iris Glow Reveal Softness"
+		sortindex = "50"
+		default   = "0.2"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+float1( "revealRamp" )
+{
+	x     = <cg00_y>
+	tweak = Tweak()
+	{
+		title     = "Iris Glow Reveal Ramp"
+		sortindex = "60"
+		default   = "1.0"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+float1( "desaturationPercent" )
+{
+	x     = <cg01_w>
+	tweak = Tweak()
+	{
+		title     = "MAX Desaturation"
+		sortindex = "70"
+		default   = "1.0"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+		source = "postFX/speed_burst.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "postFX/speed_burst.hlsl"
+		frameBuffer = CodeTexture( "resolvedScene" )
+	}
+}

@@ -1,0 +1,93 @@
+#include "lit_flag_base_basic"
+#include "emissive_base"
+#include "camo_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit forward opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "flagZ" ).tweak = ""
+
+Texture( "detailMap" ).tweak = ""
+float1( "detailScaleHeight" ).tweak = ""
+float2( "detailScale" ).tweak = ""
+
+Sampler( "colorSampler00" ).tweak = ""
+Texture( "colorMap00" ).tweak = ""
+Texture( "flagRippleDetailMap" ).tweak = ""
+Texture( "tintMask" ).tweak = ""
+Color( "colorTint1" ).tweak = ""
+float2( "colorDetailScale" ).tweak = ""
+float2( "rippleDetailScroll1" ).tweak = ""
+float2( "rippleDetailScroll2" ).tweak = ""
+float1( "flagRippleScale" ).tweak = ""
+float1( "flagRippleHeight" ).tweak = ""
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "layerDepth" )
+{
+	x = <waterRoughness>
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Depth"
+		sortindex = "30"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	defines = "DEPTH_PREPASS"
+	source = "specialty/lit_emissive_wobble.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "build shadowmap depth" ) :  "flag build shadowmap depth"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "flag build shadowmap depth planes"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) : "flag build shadowmap depth layered"
+{}
+
+Technique( "unlit" )
+{
+	state = "forward opaque"
+	defines = "USE_COLOR_TINT", "USE_TINT_MASK", "USE_FLAG"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque"
+	defines = "BASE_TEXTURES", "USE_COLOR_TINT", "NO_VERT_COLOR"
+	source = "specialty/lit_emissive_wobble.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

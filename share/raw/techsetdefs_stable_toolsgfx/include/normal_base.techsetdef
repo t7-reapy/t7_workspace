@@ -1,0 +1,36 @@
+Sampler( "normalSampler" )
+{
+	tile = <tileNormal>
+	filter = <filterNormal>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		sortindex = "28"
+	}
+}
+
+Texture( "normalMap" )
+{
+	image = Image( <normalMap, $identitynormalmap> )
+	semantic = "normalMap"
+	usage = "normal map"
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Normal Map"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "baseNormalHeight" )
+{
+	x = <normalHeightScale>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Height Scale"
+		sortindex = "45"
+	}
+}

@@ -1,0 +1,114 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{0CE6F10D-57F9-489F-81DB-F806B1AF015A}"
+"classname" "worldspawn"
+"_color" "0.607843 0.615686 0.658824"
+"ambient" "0.35"
+"diffusefraction" "0.45"
+"evmax" "31"
+"evmin" "-32"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"suncolor" "0.615686 0.807843 0.815686"
+"sundiffusecolor" "0.3098 0.2745 0.3058"
+"sundirection" "-153 -54 0"
+"sunisprimarylight" "1"
+"sunlight" "0.6"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{B7DD1EB8-6C6F-11E4-B4C7-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 4 -4 0 ) ( 4 -4 152 ) ( 4 4 152 ) t7_metal_wall_panel_old 152 152 -500 0 0 0 lightmap_gray 16383.965 16384 -583.99487 -56 0 0
+ ( 4 4 0 ) ( 4 4 152 ) ( 0 6 152 ) t7_metal_wall_panel_old 135.95296 -152 -454.79153 0 180 0 lightmap_gray 16384.158 16384 -68.007568 -56 0 0
+ ( 0 -94 48 ) ( 0 -246 48 ) ( 0 -246 0 ) caulk 16 16 -518 -56 0 0 lightmap_gray 16384 16384 -584 -56 0 0
+ ( -107 -246 152 ) ( -107 -240 152 ) ( -75 -246 152 ) caulk 16 16 -132 518 0 0 lightmap_gray 16384 16383.955 96 583.9978 0 0
+ ( 4 -3 152 ) ( 4 -3 0 ) ( 0 -5 0 ) t7_metal_wall_panel_old 135.95296 152 -439.63602 0 0 0 lightmap_gray 16384 16384 -128 -56 0 0
+ ( 0 6 148 ) ( 8 6 148 ) ( 0 38 148 ) caulk 16 16 -136 508 0 0 lightmap_gray 16384 16384 -136 508 0 0
+}
+// brush 1
+{
+ guid "{EFD1EB05-6C76-11E4-B4C7-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 4 -4 0 ) ( 4 -4 152 ) ( 4 4 152 ) t7_metal_wall_panel_old 152 152 802 -452 90 0 lightmap_gray 16383.965 16384 -583.99487 -56 0 0
+ ( 4 4 0 ) ( 4 4 152 ) ( 0 6 152 ) t7_metal_wall_panel_old 152 -135.95296 802 411.85904 90 0 lightmap_gray 16384.158 16384 -68.007568 -56 0 0
+ ( 0 -94 48 ) ( 0 -246 48 ) ( 0 -246 0 ) caulk 16 16 -518 -56 0 0 lightmap_gray 16384 16384 -584 -56 0 0
+ ( 4 -3 152 ) ( 4 -3 0 ) ( 0 -5 0 ) t7_metal_wall_panel_old 152 135.95296 56 -136 90 0 lightmap_gray 16384 16384 -128 -56 0 0
+ ( 8 6 148 ) ( 0 6 148 ) ( 0 38 148 ) caulk 16 16 -136 508 0 0 lightmap_gray 16384 16384 -136 508 0 0
+ ( 1 181 116.5 ) ( 2.5 181 116.5 ) ( 1 213 116.5 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 2
+ {
+  guid "{03391642-54B1-11E4-A265-2C27D7F029C0}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_metal_wall_panel_old
+   lightmap_gray
+   2 2 0 8
+   (
+	v 0 6 101 t 3415.2571 56.966743 4.250432 4
+	v 4 4 101 t 3385.1289 56.966743 4.5004296 4
+   )
+   (
+	v 0 6 116.5 t 3415.2571 -53.382748 4.250432 3
+	v 4 4 116.5 t 3385.1289 -53.382748 4.5004296 3
+   )
+  }
+ }
+// brush 3
+ {
+  guid "{761741DE-B4C1-11E4-B4F5-2C27D7F029C0}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_metal_wall_panel_old
+   lightmap_gray
+   2 2 0 8
+   (
+	v 4 4 101 t 3385.1289 56.966743 4.5004296 4
+	v 4 -3 101 t 3331.2334 56.966743 36.24976 4
+   )
+   (
+	v 4 4 116.5 t 3385.1289 -53.382748 4.5004296 3
+	v 4 -3 116.5 t 3331.2334 -53.382748 36.24976 3
+   )
+  }
+ }
+// brush 4
+ {
+  guid "{761741E8-B4C1-11E4-B4F5-2C27D7F029C0}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_metal_wall_panel_old
+   lightmap_gray
+   2 2 0 8
+   (
+	v 4 -3 101 t 3331.2334 56.966743 36.24976 4
+	v 0 -5 101 t 3304.1772 56.966743 8 4
+   )
+   (
+	v 4 -3 116.5 t 3331.2334 -53.382748 36.24976 3
+	v 0 -5 116.5 t 3304.1772 -53.382748 8 3
+   )
+  }
+ }
+}

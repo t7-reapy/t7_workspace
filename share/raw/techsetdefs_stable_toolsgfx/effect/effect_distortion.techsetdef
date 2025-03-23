@@ -1,0 +1,158 @@
+
+#include "state"
+#include "renderFlags"
+#include "usage"
+
+Globals()
+{
+	category = "Effect"
+	renderFlags = "distortion fx"
+	availablePrefixes = "mc/ mcs/ wc/ ei/ el/"
+}
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+}
+
+Texture( "colorMap" )
+{
+	image = Image( <colorMap, $white> )
+	usage = "effect map"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Color Map"
+		sortindex = "0"
+	}
+}
+
+float1( "distortionScaleX" )
+{
+	x = <distortionScaleX>
+	tweak = Tweak()
+	{
+		category  = "Distortion Settings"
+		title     = "X Scale"
+		sortindex = "30"
+	}
+}
+
+float1( "distortionScaleY" )
+{
+	x = <distortionScaleY>
+	tweak = Tweak()
+	{
+		category  = "Distortion Settings"
+		title     = "Y Scale"
+		sortindex = "30"
+	}
+}
+
+float4( "distortionScale" )
+{
+	x = <distortionScaleX>
+	y = <distortionScaleY>
+	z = 0
+	w = 0
+}
+
+//----------------------------------------------------------------------------
+// default shaders
+//----------------------------------------------------------------------------
+
+LocalShader( "ls_default" )
+{
+#if TOOLSGFX == "1"
+	#if EFFECT_INSTANCED_VERTEX_FORMAT == "1"
+	vertexDecl = "particle_sprite"
+	#else
+	vertexDecl = "generic"
+	#endif
+#endif
+	source = "effect_distortion.hlsl"
+	primitiveType = "patch"
+}
+
+HullShader( "hs_default" )
+{
+	source = "effect_distortion.hlsl"
+}
+
+DomainShader( "ds_default" )
+{
+	source = "effect_distortion.hlsl"
+}
+
+VertexShader( "vs_default" )
+{
+#if TOOLSGFX == "1"
+	#if EFFECT_INSTANCED_VERTEX_FORMAT == "1"
+	vertexDecl = "particle_sprite"
+	#else
+	vertexDecl = "generic"
+	#endif
+#endif
+	source = "effect_distortion.hlsl"
+}
+
+PixelShader( "ps_default" )
+{
+	source = "effect_distortion.hlsl"
+	floatZSampler = CodeTexture( "floatZ" )
+}
+
+#if TOOLSGFX == "1"
+GeometryShader( "gs_wireframe" )
+{
+	source = "effect_distortion.hlsl"
+}
+#endif
+
+#include "effect_shaders_tess.inc"
+#include "effect_shaders.inc"
+
+//----------------------------------------------------------------------------------------------
+
+#if TOOLSGFX == "1"
+Technique( "wireframe" )
+{
+	state = "premul + depth"
+	defines += "USE_WIREFRAME 1"
+	vs = VertexShader() : "vs_lit" { }
+	gs = GeometryShader() : "gs_wireframe" { }
+	ps = PixelShader() : "ps_lit" { }
+}
+#endif
+
+#if TOOLSGFX == "1"
+Technique( "browser" )
+{
+	state = "blend"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/simple.hlsl"
+	}
+}
+#endif
+
+Technique( "unlit" )
+{
+	state = "add + depth"
+	vs = VertexShader() : "vs_unlit" { }
+	ps = PixelShader() : "ps_unlit" { }
+}
+
+Technique( "lit" )
+{
+	state = "blend + depth"
+	vs = VertexShader() : "vs_emissive" { }
+	ps = PixelShader() : "ps_emissive_blend" { }
+}
+

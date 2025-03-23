@@ -1,0 +1,52 @@
+#include "lit_base_mid"
+#include "lit_decal_base.inc"
+#include "reveal_base"
+#include "scroll_base"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "reveal decal renderflags"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "tintMask" )
+{
+	image = Image()
+	{
+		map = <colorMap00, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines += "USE_REVEAL_MAP"
+}
+
+Technique( "gbuffer" ) : "base lit decal gbuffer"
+{
+	source = "gbuffer_decal_scroll.hlsl"
+	defines += "USE_REVEAL_MAP", "BASE_SPEC", "USE_COLOR_TINT", "USE_TINT_MASK", "USE_SCROLL_ROTATE_UVS"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader()
+	{
+		defines = "DEBUG_COLOR_TEXELS", "USE_REVEAL_MAP"
+	}
+}

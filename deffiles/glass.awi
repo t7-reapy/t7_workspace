@@ -1,0 +1,50 @@
+
+void GenerateUI( asset Asset )
+{
+	// Hidden
+	
+	Asset.AddEntry_String( "configstringFileType", "GLASS" ).Show( false );	
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Materials
+	
+	Asset.BeginCategory( "Materials" );
+	{
+		Asset.AddEntry_AssetCombo( "baseMaterial", "material" ).SetTitle( "Base Material" ).SetToolTip( "Material name of the prestine glass (recompile BSP after changing this field)" );
+		Asset.AddEntry_AssetCombo( "crackedMaterial", "material" ).SetTitle( "Cracked Material" ).SetToolTip( "Material name of the cracked glass (recompile BSP after changing this field)" );
+		Asset.AddEntry_AssetCombo( "shardMaterial", "material" ).SetTitle( "Shard Material" ).SetToolTip( "Material name of the glass shard peices" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	Asset.BeginCategory( "Settings" );
+	{
+		Asset.AddEntry_Int( "maxHealth", 150, 0, 10000 ).SetStep( 10 ).SetTitle( "Max Health" ).SetToolTip( "Maximum health of glass" );
+		Asset.AddEntry_Float( "thickness", 1, 0, 10 ).SetStep( 0.01 ).SetTitle( "Shard thickness" ).SetToolTip( "Thickness of 0.0 will use the thickness of the brush" );
+		Asset.AddEntry_Int( "minShardSize", 50, 25, 1000 ).SetStep( 10 ).SetTitle( "Min shard size" );
+		Asset.AddEntry_Int( "maxShardSize", 250, 100, 2000 ).SetStep( 10 ).SetTitle( "Max shard size" );
+		Asset.AddEntry_Float( "shardLifeProbablility", 0.75, 0, 1 ).SetStep( 0.01 ).SetTitle( "Shard life probability" ).SetToolTip( "Probability of the shard to live after it hit the ground (0: no shards are left on the ground 1: all shards are left)" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Sounds
+	
+	Asset.BeginCategory( "Sounds" );
+	{
+		Asset.AddEntry_String( "crackSound", "" ).SetTitle( "Cracked Sound" ).SetToolTip( "Sound to play when the glass cracks" );
+		Asset.AddEntry_String( "shatterShound", "" ).SetTitle( "Shatter Sound" ).SetToolTip( "Sound to play when the glass shatters" );
+		Asset.AddEntry_String( "autoShatterShound", "" ).SetTitle( "Auto Shatter Sound" ).SetToolTip( "Sound to play when the glass spontaneously shatters after being cracked" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Effects
+	
+	Asset.BeginCategory( "Effects" );
+	{
+		Asset.AddEntry_Path( "crackEffect", "" ).SetTitle( "Center Shatter Effect" ).SetToolTip( "Effect to play at the center of the glass when the glass shatters" ).SetRelativePath( "share/raw/fx/" );
+		Asset.AddEntry_Path( "shatterEffect", "" ).SetTitle( "Frame Shatter Effect" ).SetToolTip( "Effect to play on the glass edges when the glass shatters" ).SetRelativePath( "share/raw/fx/" );
+	}
+}

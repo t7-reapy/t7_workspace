@@ -1,0 +1,23 @@
+Sampler( "aoSampler" )
+{
+	tile = <tileOcc>
+	filter = <filterOcc>
+	tweak = Tweak()
+	{
+		category = "Occlusion"
+		sortindex = "20"
+	}
+}
+
+Texture( "aoMap" )
+{
+	image = Image( <occMap, $white_ao> )
+	semantic = "occlusionMap"
+	usage = "ao map"
+	tweak = Tweak()
+	{
+		category  = "Occlusion"
+		title     = "Ambient Occlusion Map"
+		sortindex = "15"
+	}
+}

@@ -1,0 +1,123 @@
+#include "lit_base_shaders"
+#include "shadowmap_technique_base"
+#include "flipbook_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit forward opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "colorMap00" )
+{
+	ref = true
+	image = Image( <colorMap00, $white> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Emissive Map"
+		sortindex = "10"
+	}
+}
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Color"
+		sortindex = "18" // leave some indices to have other color maps (need 2 indices - tile + filter)
+	}
+}
+
+Texture( "colorMap" ) : "colorMap00" {}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "colorTint" )
+{
+	value = "srgb_to_linear( <colorTint> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint"
+		sortindex = "20"
+		color = true
+	}
+}
+
+Bool( "enableFlipbook" )
+{
+	value = <gCheckBox00>
+	tweak = Tweak( "UV Flipbook", "Enable", "9" )
+}
+
+float2( "uvScale" )
+{
+	x = <uScale>
+	y = <vScale>
+	tweak = Tweak( "UV Flipbook", "UV Scale", "35" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "hdrScale" )
+{
+	x = <scaleRGB>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		title     = "HDR Scale"
+		sortindex = "30"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque"
+	defines = "USE_FLIPBOOK_UVS"
+	source = "specialty/hacked.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+//Technique( "oit" ) : "lit"
+//{
+//	state = "fallback + depth + rez"
+//	defines += "USE_OIT"
+//}

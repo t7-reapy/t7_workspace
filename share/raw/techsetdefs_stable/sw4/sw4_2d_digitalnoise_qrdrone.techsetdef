@@ -1,0 +1,264 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isOpaque            = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Replace
+		colorBlendFunc = add
+		colorBlendSrc  = One
+		colorBlendDst  = Zero
+		alphaBlendFunc = add
+		alphaBlendSrc  = One
+		alphaBlendDst  = Zero
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+Sampler( "GridTexture_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "GridTexture" )
+{
+	image    = Image( "bw_grid" )
+	semantic = "diffuseMap"
+}
+#if TOOLSGFX == "1"
+Texture( "floatZSampler_C63_P0" )
+{
+	image = Image( < sw_codetexture_00 > )
+	tweak = Tweak()
+	{
+		default = "sw4\\textures\\colin\\rts_holoview\\2_depth_bufferlow.jpg"
+	}
+}
+#endif
+Sampler( "floatZSampler_C63_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+Sampler( "BlockNoise_Sampler" )
+{
+	tile   = "tile both"
+	filter = "nomip nearest"
+}
+Texture( "BlockNoise" )
+{
+	image    = Image( "sam_block_noise" )
+	semantic = "diffuseMap"
+}
+Sampler( "Lookup2_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "Lookup2" )
+{
+	image    = Image( "tv_lookup" )
+	semantic = "diffuseMap"
+}
+#if TOOLSGFX == "1"
+Texture( "resolvedPostSun_C11_P0" )
+{
+	image = Image( < sw_codetexture_01 > )
+	tweak = Tweak()
+	{
+		default = "sw4\\textures\\colin\\rts_holoview\\1_base_background.jpg"
+	}
+}
+#endif
+Sampler( "resolvedPostSun_C11_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+float1( "MinResolution" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		title     = "MinResolution"
+		sortindex = "0"
+		default   = "16.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "MaxResolution" )
+{
+	x     = <cg02_x>
+	tweak = Tweak()
+	{
+		title     = "MaxResolution"
+		sortindex = "0"
+		default   = "360.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "MinVelocityFraction" )
+{
+	x     = <cg07_x>
+	tweak = Tweak()
+	{
+		title     = "MinVelocityFraction"
+		sortindex = "0"
+		default   = "0.010000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "AngularVelocityScale" )
+{
+	x     = <cg06_x>
+	tweak = Tweak()
+	{
+		title     = "AngularVelocityScale"
+		sortindex = "0"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "VelocityScale" )
+{
+	x     = <cg12_x>
+	tweak = Tweak()
+	{
+		title     = "VelocityScale"
+		sortindex = "0"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "NoisePower" )
+{
+	x     = <cg03_x>
+	tweak = Tweak()
+	{
+		title     = "NoisePower"
+		sortindex = "0"
+		default   = "0.421000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "FPS" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		title     = "FPS"
+		sortindex = "0"
+		default   = "4.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float4( "Color" )
+{
+	x     = <cg05_x>
+	y     = <cg05_y>
+	z     = <cg05_z>
+	w     = <cg05_w>
+	tweak = Tweak()
+	{
+		title     = "Color"
+		sortindex = "0"
+		default   = "1.000000", "1.000000", "1.000000", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "ColorAmount" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		title     = "ColorAmount"
+		sortindex = "0"
+		default   = "0.500000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "DarkenAmount" )
+{
+	x     = <cg09_x>
+	tweak = Tweak()
+	{
+		title     = "DarkenAmount"
+		sortindex = "0"
+		default   = "0.170000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "DarkenPower" )
+{
+	x     = <cg10_x>
+	tweak = Tweak()
+	{
+		title     = "DarkenPower"
+		sortindex = "0"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "GradientMax" )
+{
+	x     = <cg11_x>
+	tweak = Tweak()
+	{
+		title     = "GradientMax"
+		sortindex = "0"
+		default   = "3.626901"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "GradientMin" )
+{
+	x     = <cg08_x>
+	tweak = Tweak()
+	{
+		title     = "GradientMin"
+		sortindex = "0"
+		default   = "-0.940000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_digitalnoise_qrdrone.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_REPLACE"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		floatZSampler_C63_P0   = CodeTexture( "floatZSampler" )
+		resolvedPostSun_C11_P0 = CodeTexture( "resolvedPostSun" )
+	}
+}

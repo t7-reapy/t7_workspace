@@ -1,0 +1,105 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Blend
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = invSrcAlpha
+		writeChannels  = "rgba"
+	}
+	cull = "None"
+}
+Sampler( "DayMap_Sampler" )
+{
+	tile   = "tile both"
+	filter = "nomip bilinear"
+}
+Texture( "DayMap" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\globe_map.tif"
+	}
+}
+Sampler( "Mesh_Sampler" )
+{
+	tile   = "tile both"
+	filter = "nomip bilinear"
+}
+Texture( "Mesh" )
+{
+	image    = Image( <colorMap01> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\globe_map_mesh.tif"
+	}
+}
+#if TOOLSGFX == "1"
+Texture( "heatmapSampler_C9_P0" )
+{
+	image = Image( < sw_codetexture_00 > )
+	tweak = Tweak()
+	{
+		default = "sw4\\textures\\noise_2d.tif"
+	}
+}
+#endif
+Sampler( "heatmapSampler_C9_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+float4( "HeatmapColor" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	z     = <cg02_z>
+	w     = <cg02_w>
+	tweak = Tweak()
+	{
+		title     = "HeatmapColor"
+		sortindex = "0"
+		default   = "1.000000", "0.468750", "0.000000", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_globe.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_BLEND"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		heatmapSampler_C9_P0 = CodeTexture( "heatmapSampler" )
+	}
+}

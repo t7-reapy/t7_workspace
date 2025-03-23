@@ -1,0 +1,33 @@
+#include "state"
+#include "renderFlags"
+
+#if TOOLSGFX != "1"
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "emissive transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+Sampler( "colorSampler" )
+{
+	tile = "tile both"
+	filter = "nomip bilinear"
+}
+
+Technique( "lit" )
+{
+	state = "blend + depth"
+	vs = VertexShader()
+	{
+		source = "techsetdef_sonar.hlsl"
+	}
+	ps = PixelShader()
+	{
+	   	source = "techsetdef_sonar.hlsl"
+	   	defines = "MTL_BLEND_MODE_BLEND"
+	  	sonarTexture = CodeTexture( "sonarColorSampler" )
+ 	   	sonarSampler = Sampler( "no tile", "nomip bilinear" )
+	}
+}
+#endif

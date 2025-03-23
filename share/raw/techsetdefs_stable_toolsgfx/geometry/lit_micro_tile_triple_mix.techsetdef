@@ -1,0 +1,166 @@
+#include "lit_base_basic"
+#include "ao_base"
+#include "micro_tile_mix_multi_base"
+
+Globals()
+{
+	category = "Geometry"
+
+	renderFlags = "lit deferred opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "aoSampler" ).tweak = Tweak()
+{
+	category = "Base Maps"
+	sortindex = "15"
+}
+Texture( "aoMap" ).tweak = Tweak()
+{
+	category  = "Base Maps"
+	title     = "Ambient Occlusion Map"
+	sortindex = "10"
+}
+
+Texture( "detailMap3" )
+{
+	image = Image( <colorMap04, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps3"
+		title     = "Normal Map"
+		sortindex = "20"
+	}
+}
+Texture( "colorMapDetail3" )
+{
+	image = Image( <colorMap05, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps3"
+		title     = "Color Map"
+		sortindex = "0"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "colorTint2" )
+{
+	value = "srgb_to_linear( <colorTint2> )"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps3"
+		title     = "Albedo Tint"
+		sortindex = "10"
+		color = true
+	}
+}
+
+float1( "detailScaleHeight3" )
+{
+	x = <detailScaleHeight2>
+	tweak = Tweak()
+	{
+		category  = "Detail Maps3"
+		title     = "Detail Normal Height"
+		sortindex = "50"
+	}
+}
+float2( "detailScale3" )
+{
+	x = <detail2ScaleX>
+	y = <detail2ScaleY>
+	tweak = Tweak()
+	{
+		category  = "Detail Maps3"
+		title     = "Detail Scale (X, Y)"
+		sortindex = "60"
+	}
+}
+float2( "glossRange3" )
+{
+	x = <glossRangeMin3>
+	y = <glossRangeMax3>
+	tweak = Tweak()
+	{
+		category  = "Detail Maps3"
+		title     = "Gloss Range"
+		sortindex = "70"
+	}
+}
+float1( "rotateUVs3" )
+{
+	x = "radians( <uvRotationRate2> )"
+	tweak = Tweak()
+	{
+		category	= "Detail Maps3"
+		title		= "UV Rotation"
+		sortindex	= "80"
+	}
+}
+Bool( "useUVOffsets3" )
+{
+	value = <useWorldOffsets3>
+	tweak = Tweak()
+	{
+		category	= "Detail Maps3"
+		title		= "Use world space UV offsets."
+		sortindex	= "90"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT", "USE_MICRO_BLEND"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque"
+	defines = "BASE_TEXTURES", "USE_WORLD_TILE_OFFSET", "USE_TRIPLE_MIX"
+	source = "gbuffer_micro_tile_blend.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/debug_texeldensity.hlsl"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/debug_texeldensity.hlsl"
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

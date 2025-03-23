@@ -1,0 +1,247 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+
+Sampler( "bilinearClampler" )
+{
+	tile   = "no tile"
+	filter = "linear (mip none)"
+}
+
+Sampler( "pointSampler" )
+{
+	tile   = "no tile"
+	filter = "nearest (mip none)"
+}
+
+Texture( "pulseTexture" )
+{
+	image    = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Pulse"
+		title		= "Pulse Map"
+		sortindex	= "20"
+	}
+}
+
+Texture( "irisTexture" )
+{
+	image    = Image( <colorMap, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Iris"
+		title		= "Iris Map"
+		sortindex	= "20"
+	}
+}
+
+Texture( "distortionMask" )
+{
+	image    = Image( <colorMap00, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Heat"
+		title		= "Mask Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "distortionMap" )
+{
+	image    = Image( <normalMap, $normal> )
+	semantic = "normalMap"
+	tweak    = Tweak()
+	{
+		category	= "Heat"
+		title		= "Distortion Map"
+		sortindex	= "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "pulseScroll" )
+{
+	x     = <cg00_x>
+	y     = <cg00_y>
+	tweak = Tweak()
+	{
+		category  = "Pulse"
+		title     = "Pulse Scroll (U, V)"
+		sortindex = "40"
+		default   = "0.0"
+		range     = "-1024.0", "1024.0", "0.01"
+	}
+}
+
+float2( "pulseTiling" )
+{
+	x     = <cg00_z>
+	y     = <cg00_w>
+	tweak = Tweak()
+	{
+		category  = "Pulse"
+		title     = "Pulse Scale (U, V)"
+		sortindex = "50"
+		default   = "1.0"
+		range     = "0.01", "1024.0", "0.01"
+	}
+}
+
+float1( "pulseWidth" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		category  = "Pulse"
+		title     = "Pulse Width"
+		sortindex = "60"
+		default   = "0.1"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+Color( "pulseColor" )
+{
+	value	= "srgb_to_linear( <colorTint> )"
+	tweak	= Tweak()
+	{
+		category  = "Pulse"
+		title     = "Color Tint"
+		color	  = true
+		sortindex = "70"
+	}
+}
+
+float1( "glowBoost" )
+{
+	x     = <cg03_w>
+	tweak = Tweak()
+	{
+		category  = "Pulse"
+		title     = "Color Boost"
+		sortindex = "75"
+		default   = "1.0"
+		range     = "1.0", "1024.0", "0.01"
+	}
+}
+
+float1( "pulseCurvature" )
+{
+	x     = <cg05_z>
+	tweak = Tweak()
+	{
+		category  = "Pulse"
+		title     = "Curvature"
+		sortindex = "80"
+		default   = "0.0"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+float1( "alphaRevealSoftEdge" )
+{
+	x     = <alphaRevealSoftEdge>
+	tweak = Tweak()
+	{
+		category  = "Iris"
+		title     = "Soft Edge"
+		sortindex = "100"
+	}
+}
+
+float1( "alphaRevealRamp" )
+{
+	x     = <alphaRevealRamp>
+	tweak = Tweak()
+	{
+		category  = "Iris"
+		title     = "Ramp"
+		sortindex = "110"
+	}
+}
+
+float2( "distortionScroll" )
+{
+	x     = <cg04_x>
+	y     = <cg04_y>
+	tweak = Tweak()
+	{
+		category  = "Heat"
+		title     = "Distortion Scroll (U, V)"
+		sortindex = "100"
+		default   = "0.0"
+		range     = "-1024.0", "1024.0", "0.01"
+	}
+}
+
+float2( "distortionScale" )
+{
+	x     = <cg05_x>
+	y     = <cg05_y>
+	tweak = Tweak()
+	{
+		category  = "Heat"
+		title     = "Distortion Scale (U, V)"
+		sortindex = "100"
+		default   = "1.0"
+		range     = "1.0", "1024.0", "0.01"
+	}
+}
+
+float1( "distortionAmt" )
+{
+	x     = <cg04_z>
+	tweak = Tweak()
+	{
+		category  = "Heat"
+		title     = "Distortion Amount"
+		sortindex = "110"
+		default   = "0.0"
+		range     = "0.0", "1024.0", "1.0"
+	}
+}
+
+float1( "blurAmt" )
+{
+	x     = <cg04_w>
+	tweak = Tweak()
+	{
+		category  = "Heat"
+		title     = "Blur Amount"
+		sortindex = "120"
+		default   = "0.0"
+		range     = "0.0", "1024.0", "1.0"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/heat_pulse.hlsl"
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		floatzTexture = CodeTexture( "floatZSampler" )
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

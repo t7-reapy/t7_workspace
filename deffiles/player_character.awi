@@ -1,0 +1,43 @@
+
+void GenerateUI( asset Asset )
+{
+	// Misc 
+
+	Asset.BeginCategory( "General" );
+	{
+		Asset.AddEntry_String( "displayName", "" ).SetTitle( "Display Name" ).SetHints( "NOWARNINGS" ).SetToolTip( "Localization alias for character name displayed on HUD in game." );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Models 
+	
+	Asset.BeginCategory( "Loadout, gadgets and traits" );
+	{
+		Asset.AddEntry_String( "primaryWeapon", "" ).SetTitle( "Primary Weapon" ).SetToolTip( "Name of primary weapon." );
+		Asset.AddEntry_String( "secondaryWeapon", "" ).SetTitle( "Secondary Weapon" ).SetToolTip( "Name of secondary weapon." );
+		Asset.AddEntry_String( "grenadeWeapon", "" ).SetTitle( "Lethal Grenade" ).SetToolTip( "Name of lethal grenade weapon." );
+		Asset.AddEntry_String( "meleeWeapon", "" ).SetTitle( "Melee Weapon" ).SetToolTip( "Name of melee weapon." );
+		Asset.AddEntry_String( "specialWeapon", "" ).SetTitle( "Special Weapon" ).SetToolTip( "Name of special weapon." );
+		Asset.AddEntry_String( "gadgetName", "" ).SetTitle( "Gadget Name" ).SetToolTip( "Name of player gadget." );
+		Asset.AddEntry_String( "traitName", "" ).SetTitle( "Trait Name" ).SetToolTip( "Name of player trait." );
+		Asset.AddEntry_String( "placeholder1", "" ).SetTitle( "Placeholder1" ).SetToolTip( "For future use." );
+		Asset.AddEntry_String( "placeholder2", "" ).SetTitle( "Placeholder2" ).SetToolTip( "For future use." );
+		Asset.AddEntry_String( "placeholder3", "" ).SetTitle( "Placeholder3" ).SetToolTip( "For future use." );
+		Asset.AddEntry_String( "placeholder4", "" ).SetTitle( "Placeholder4" ).SetToolTip( "For future use." );
+		Asset.AddEntry_String( "placeholder5", "" ).SetTitle( "Placeholder5" ).SetToolTip( "For future use." );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Models 
+	
+	Asset.BeginCategory( "Models" );
+	{
+		Asset.AddEntry_AssetCombo( "viewmodel", "xmodel" ).SetTitle( "View Arms Model:" );
+		Asset.AddEntry_AssetCombo( "body", "xmodel" ).SetTitle( "Body Model:" );
+		Asset.AddEntry_AssetCombo( "bodyAlias", "xmodelalias" ).SetTitle( "Body Model Alias:" );
+		Asset.AddEntry_Combo( "skeleton", "base | scaled80 | prop80" ).SetTitle( "Skeleton" ).SetToolTip( "Specify what skeleton this character uses" );
+	}
+	
+}

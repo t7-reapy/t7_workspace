@@ -1,0 +1,86 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Blend
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = invSrcAlpha
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+Sampler( "Mask_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip (1x bilinear)"
+}
+Texture( "Mask" )
+{
+	image    = Image( <colorMap02> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\softvignette.tif"
+	}
+}
+Sampler( "BlockNoise_Sampler" )
+{
+	tile   = "tile both"
+	filter = "nomip nearest"
+}
+Texture( "BlockNoise" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\emp_block_noise.tif"
+	}
+}
+float1( "Scale" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		title     = "Scale"
+		sortindex = "0"
+		default   = "1.500000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_emp.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_BLEND"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

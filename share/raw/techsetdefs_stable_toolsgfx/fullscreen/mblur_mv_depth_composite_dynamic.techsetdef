@@ -1,0 +1,39 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+StencilState( "not match ref" )
+{
+	enable	= true
+	func	= NotEqual
+	opFail	= Keep
+	opPass	= Keep
+	opZFail	= Keep
+}
+
+State( "mblur dynamic" ) : "disable"
+{
+	stencilFront = "not match ref"
+	stencilBack = "not match ref"
+	stencilRef = 0
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "mblur dynamic"
+
+	vs = VertexShader()
+	{
+		source = "postfx/mblur_mv_depth_composite.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/mblur_mv_depth_composite.hlsl"
+		motionVectorsAA = CodeTexture( "codeTexture0" )
+		sceneDepth = CodeTexture( "codeTexture1" )
+	}
+}

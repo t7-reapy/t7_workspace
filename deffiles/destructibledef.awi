@@ -1,0 +1,234 @@
+void RemoveButtonClicked(asset Asset, const string& ID)
+{
+	if (MessageBox("Are you sure you want to remove Piece " + ID + "?", "YESNO") == "NO")
+		return;
+
+	for (int i = ID.ToInt(); i < 63; i++)
+	{
+		Asset.GetEntryVariable("piece" + i).SetValue(Asset.GetEntryValue("piece" + (i + 1)));
+		Asset.GetEntryVariable("piece" + i + "Health").SetValue(Asset.GetEntryValue("piece" + (i + 1) + "Health"));
+		Asset.GetEntryVariable("parentPiece" + i).SetValue(Asset.GetEntryValue("parentPiece" + (i + 1)));
+		Asset.GetEntryVariable("parentDamage" + i).SetValue(Asset.GetEntryValue("parentDamage" + (i + 1)));
+		Asset.GetEntryVariable("bulletDamageScale" + i).SetValue(Asset.GetEntryValue("bulletDamageScale" + (i + 1)));
+		Asset.GetEntryVariable("damageEntity" + i).SetValue(Asset.GetEntryValue("damageEntity" + (i + 1)));
+		Asset.GetEntryVariable("physConstraint" + i).SetValue(Asset.GetEntryValue("physConstraint" + (i + 1)));
+		Asset.GetEntryVariable("damageSound" + i).SetValue(Asset.GetEntryValue("damageSound" + (i + 1)));
+		Asset.GetEntryVariable("burnEffect" + i).SetValue(Asset.GetEntryValue("burnEffect" + (i + 1)));
+		Asset.GetEntryVariable("burnSound" + i).SetValue(Asset.GetEntryValue("burnSound" + (i + 1)));
+	}
+}
+
+void ParentButtonClicked(asset Asset, const string& ID)
+{
+	int ParentIndex = Asset.GetEntryInt("parentPiece" + ID);
+
+	if (ParentIndex == -1)
+	{
+		MessageBox("Piece has no parent.", "OK");
+		return;
+	}
+
+	Asset.ScrollToEntry("piece" + ParentIndex);
+}
+
+void CopyButtonClicked(asset Asset, const string& ID)
+{
+	string Data;
+	array<string> Keys = 
+	{
+		"piece" + ID,
+		"piece" + ID + "Health",
+		"parentPiece" + ID,
+		"parentDamage" + ID,
+		"bulletDamageScale" + ID,
+		"damageEntity" + ID,
+		"physConstraint" + ID,
+		"damageSound" + ID,
+		"burnEffect" + ID,
+		"burnSound" + ID
+	};
+
+	for (uint i = 0; i < Keys.length(); i++)
+		Data += Asset.GetEntryValue(Keys[i]) + ",";
+
+	SetClipboardData("application/vnd.treyarch.ape-destructibledef", Data);
+}
+
+void PasteButtonClicked(asset Asset, const string& ID)
+{
+	string Data = GetClipboardData("application/vnd.treyarch.ape-destructibledef");
+	array<string> Keys = 
+	{
+		"piece" + ID,
+		"piece" + ID + "Health",
+		"parentPiece" + ID,
+		"parentDamage" + ID,
+		"bulletDamageScale" + ID,
+		"damageEntity" + ID,
+		"physConstraint" + ID,
+		"damageSound" + ID,
+		"burnEffect" + ID,
+		"burnSound" + ID
+	};
+
+	if (Data.Length() == 0)
+	{
+		MessageBox("Nothing to paste.", "OK");
+		return;
+	}
+
+	array<string> Values = Data.Split(",");
+
+	for (uint i = 0; i < Keys.length(); i ++)
+		Asset.GetEntryVariable(Keys[i]).SetValue(Values[i]);
+}
+
+
+void LiveUpdateResetButtonClicked( asset Asset, const string& index )
+{
+	if( Asset.GetEntryBool( "liveupdatereset" ) )
+	{
+		Asset.GetEntryVariable( "liveupdatereset" ).SetBool( false );
+	}
+	else
+	{
+		Asset.GetEntryVariable( "liveupdatereset" ).SetBool( true );
+	}
+}
+
+
+void GenerateUI( asset Asset )
+{
+	Asset.SetGraphColor(0.475, 0.286, 0.0, 1.0);
+
+	// Hidden or unused 
+	
+	Asset.AddEntry_CheckBox( "liveupdatereset", false ).Show( false ).SetSave( false );
+	Asset.AddEntry_ButtonGroup("liveUpdate").SetTitle( "Live Update" ).AddButton("Reset", "", "void LiveUpdateResetButtonClicked(asset Asset, const string& ID)", "" );
+
+	Asset.AddEntry_String( "configstringFileType", "DESTRUCTIBLEDEF" ).Show( false );
+	for ( int i = 0; i <= 63; i++ )
+		Asset.AddEntry_String( "pieceLabel" + i, "" ).Show( false );
+				
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	
+	Asset.BeginCategory( "Xmodels",0.9, 0.5, 0.0, "Icon_asset_xmodel.png"  );
+	{
+		Asset.AddEntry_AssetCombo( "model", "xmodel" ).SetTitle( "Model" );
+		Asset.AddEntry_AssetCombo( "radiantModel", "xmodel" ).SetTitle( "Radiant Model" );
+	}
+		Asset.BeginCategory( "Attributes",0.9, 0.5, 0.0, "Icon_NoWarnings.png"  );
+	{
+		Asset.AddEntry_CheckBox( "clientOnly", false ).SetTitle( "Client Only" ).SetToolTip( "This should only be checked if nothing on the server needs access to this destructible and collision can be baked into the BSP" );
+		Asset.AddEntry_CheckBox( "syncBaseHealthWithEntity", false ).SetTitle( "Sync Base Piece Health With Entity" ).SetToolTip( "If set it will make sure the entity health matches the base piece health" );
+	}	
+	
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	bool Visible = Asset.AddEntry_CheckBox( "advancedEditing", false ).SetTitle( "Advanced Settings" ).UpdateOnChange( true ).GetBool();	
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	Asset.BeginCategory( "Pieces", 0.9, 0.5, 0.0, "Icon_asset_destructiblepiece.png" );
+	{		
+	
+		float prev_r = 0.3;
+		float prev_g = 0.3;
+		float prev_b = 1.0;
+		
+		for ( int i = 0; i <= 63; i++ )
+		{
+			bool show = true;
+			
+			int seed = i * 2;
+			float r;
+			float g;
+			float b;
+			
+			seed = seed % 30;
+			if( seed < 3 )
+			{
+				r = 0.3;
+				g = 0.3;
+				b = 1.0;
+			}
+			else if( seed < 10 )
+			{
+				r = 0.3;
+				g = 1.0;
+				b = 0.3;
+			}
+			else if( seed < 20 )
+			{
+				r = 0.7;
+				g = 0.7;
+				b = 0.3;
+			}
+			else
+			{
+				r = 1.0;
+				g = 0.3;
+				b = 0.3;
+			}
+			
+			float lerp_rate = 0.6;
+			r = prev_r + (r - prev_r) * lerp_rate;
+			g = prev_g + (g - prev_g) * lerp_rate;
+			b = prev_b + (b - prev_b) * lerp_rate;
+			
+			prev_r = r;
+			prev_g = g;
+			prev_b = b;
+			string BaseTitle = "";
+			
+			if( i == 0 )
+			{
+				BaseTitle = "Base ";
+				Asset.BeginCategory( "Pieces." + BaseTitle +"Piece #" + i, 0.7, 0.0, 0.0, "Icon_asset_destructibledef.png" );
+			}
+			else
+			{
+				Asset.BeginCategory( "Pieces.Piece #" + i, 0.0, 0.4, 0.6, "Icon_asset_destructiblepiece.png" );
+				
+				show = Asset.GetEntryValue( "piece" + (i-1) ) != "";
+
+				if (show)
+					Asset.AddEntry_ButtonGroup("buttonGroup" + (i-1)).SetTitle(" ").AddButton("Remove", "", "void RemoveButtonClicked(asset Asset, const string& ID)", "" + i)
+					                                                                  .AddButton("Copy", "", "void CopyButtonClicked(asset Asset, const string& ID)", "" + i)
+					                                                                  .AddButton("Paste", "", "void PasteButtonClicked(asset Asset, const string& ID)", "" + i)
+					                                                                  .AddButton("Show Parent", "", "void ParentButtonClicked(asset Asset, const string& ID)", "" + i);
+			}
+			
+			{
+				Asset.AddEntry_AssetCombo( "piece" + i, "destructiblepiece" ).SetTitle( BaseTitle + " Destructible Piece" ).Show( show ).UpdateOnChange( true );
+				Asset.BeginCategory(  "Pieces." + BaseTitle +"Piece #" + i + ".Health", 0.9, 0.3, 0.3, "Icon_health.png" );
+				{
+					Asset.AddEntry_Int( "piece" + i + "Health", 200, 0, 32000 ).SetStep( 10 ).SetTitle( BaseTitle + "Health" ).Show( show );
+					Asset.AddEntry_Vector4( "bulletDamageScale" + i, "explosiveDamageScale" + i, "meleeDamageScale" + i, "impactDamageScale" + i, 1, 1, 1, 1, 0, 10 ).SetTitle( "Damage Multiplier" ).SetLabels( "Bullet", "Explo", "Melee", "Impact" ).SetToolTip( "Increase or Decrease damage done by specific weapons to this piece, Default=1 times" ).Show( show && Visible );
+					Asset.BeginCategory(  "Pieces." + BaseTitle +"Piece #" + i + ".Health.Parent Damage Transfer", 0.9, 0.3, 0.3, "Icon_health.png" );
+					{		
+				
+						Asset.AddEntry_Int( "parentPiece" + i, -1, -1, 63 ).SetTitle( "Parent Piece" ).SetToolTip( "Specify Parent Destructible Piece #, Set to 0 if you want Parent to be Base Piece, Set to -1 if you don't want any parenting damage transferred. Default=-1" ).Show( show && Visible );
+						Asset.AddEntry_Int( "parentDamage" + i, 0, 0, 100 ).SetStep( 2 ).SetTitle( "Parent Damage %" ).SetToolTip( "If parent piece takes damage then this piece will take this percentage of damage also" ).Show( show && Visible );
+						Asset.AddEntry_Int( "damageEntity" + i, 100, 0, 100 ).SetStep( 2 ).SetTitle( "Ent Dmg Transfr %" ).SetToolTip( "Damage done to this piece will damage the entity the specified %, If 'Sync Base Health With Entity' is checked, Base Piece will also receive damage." ).Show( show && Visible );
+					}
+				}
+				Asset.BeginCategory( "Pieces." + BaseTitle +"Piece #" + i + ".Physics Constraints", 0.3, 0.3, 0.9, "Icon_asset_physpreset.png" );
+				{	
+					Asset.AddEntry_AssetCombo( "physConstraint" + i, "physconstraints" ).SetTitle( BaseTitle + "Physics Action" ).SetToolTip( "Apply physics contraints to this destructible piece" ).Show( show && Visible );
+				}
+				Asset.BeginCategory( "Pieces." + BaseTitle +"Piece #" + i + ".Effects", 0.7, 0.6, 0.1, "Icon_FX.png" );
+				{	
+					Asset.AddEntry_Path( "burnEffect" + i, "" ).SetRelativePath( "share/raw/fx/" ).SetTitle( "Burn Effect" ).SetToolTip( "Effect to play when piece dies" ).Show( show && Visible );
+				}
+				Asset.BeginCategory( "Pieces." + BaseTitle +"Piece #" + i + ".Sound", 0.0, 0.5, 0.2, "Icon_Sound.png" );
+				{	
+					Asset.AddEntry_String( "damageSound" + i, "" ).SetTitle( "Damage Sound" ).SetToolTip( "Sound to play when damage occurs" ).Show( show && Visible );
+					Asset.AddEntry_String( "burnSound" + i, "" ).SetTitle( "Burn Sound" ).SetToolTip( "Sound to play when when piece dies" ).Show( show && Visible );	
+				}
+			}
+		}
+	}
+}

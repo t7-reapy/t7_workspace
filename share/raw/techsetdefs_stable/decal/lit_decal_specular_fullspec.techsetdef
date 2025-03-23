@@ -1,0 +1,56 @@
+#include "lit_base_shaders"
+#include "lit_decal_base.inc"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "base decal renderflags"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" )
+{
+	tile = <tileSpecular>
+	filter = <filterSpecular>
+	tweak = Tweak()
+	{
+		category  = "Specular"
+		sortindex = "20"
+	}
+}
+
+Texture( "colorMap" )
+{
+	image = Image( <specColorMap, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Specular"
+		title     = "Specular Map"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines = ""
+}
+
+Technique( "gbuffer" ) : "base lit decal gbuffer specular" 
+{
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

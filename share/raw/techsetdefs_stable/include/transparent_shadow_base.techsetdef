@@ -1,0 +1,20 @@
+float1( "translucentShadowOpacity" )
+{
+	x = <translucentShadowOpacity>
+	tweak = Tweak()
+	{
+		category  = "Lighting"
+		title     = "ShadowTransparency"
+		sortindex = "10"
+	}
+}
+
+TechniqueTemplate( "build shadowmap depth transparent" ) :  "build shadowmap depth base"
+{
+	defines += "USE_TRANSLUCENT_SHADOW"
+}
+
+TechniqueTemplate( "build shadowmap depth layered transparent" ) :  "build shadowmap depth layered base"
+{
+	defines += "USE_TRANSLUCENT_SHADOW"
+}

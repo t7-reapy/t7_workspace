@@ -1,0 +1,47 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{0C5A2DFC-325F-11E5-B6CE-E839353060C0}"
+"classname" "worldspawn"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{42A23C7D-C6C5-11E4-A2C6-2C27D7F03380}"
+  contents detail;
+ ( 9 8 0 ) ( -9 8 0 ) ( -9 -8 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -10 -8 48 ) ( -10 8 48 ) ( 8 8 48 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -9 -8 50 ) ( 9 -8 50 ) ( 9 -8 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 -144 0 0
+ ( 9 -8 50 ) ( 9 8 50 ) ( 9 8 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 -144 0 0
+ ( 9 8 50 ) ( -9 8 50 ) ( -9 8 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 -144 0 0
+ ( -9 8 50 ) ( -9 -8 50 ) ( -9 -8 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 -144 0 0
+}
+}
+// entity 1
+{
+guid "{0C5A2DFD-325F-11E5-B6CE-E839353060C0}"
+"classname" "dyn_model"
+"USE_PHYSICS" "0"
+"destroyEfx" "/destruct/fx_dest_water_cooler_digital_body.efx"
+"destroySound" "dst_water_splash"
+"destroyedModel" "p7_water_cooler_digital_body_dmg"
+"model" "p7_water_cooler_digital_body"
+"damping_angular" "1"
+"damping_linear" "1"
+"health" "50"
+"mass" "10"
+"modelscale" "1"
+}

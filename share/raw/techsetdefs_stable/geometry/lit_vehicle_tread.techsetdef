@@ -1,0 +1,114 @@
+#include "lit_base_mid"
+#include "scroll_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit deferred opaque animating"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "treadHeightMap" )
+{
+	image = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Tread"
+		title     = "Height Map"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "rotateUVs" ).tweak = ""
+float2( "scaleUVs" ).tweak = ""
+float2( "offsetUVs" ).tweak = ""
+float1( "layerDepth" ).tweak = ""
+Bool( "clampU" ).tweak = ""
+Bool( "clampV" ).tweak = ""
+
+float1( "treadDepth" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Tread"
+		title		= "Max Depth"
+		default		= "2.0"
+		range		= "0.0", "1024", "0.1"
+		color		= false
+		sortindex 	= "20"
+	}
+}
+
+float1( "reverseTread" )
+{
+	x = <cg01_x>
+	tweak = Tweak()
+	{
+		category  = "Tread"
+		title     = "Reversible"
+     	range	  = "0.0", "1.0", "0.0"
+		sortindex = "30"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) : "build shadowmap depth base"
+{
+	defines += "USE_TEXCOORDS"
+	source = "vehicleTread_buildShadowmap.hlsl"
+}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{
+	defines += "USE_TEXCOORDS"
+	source = "vehicleTread_buildShadowmap.hlsl"
+}
+#endif
+
+Technique( "build shadowmap depth layered" ) : "build shadowmap depth layered base"
+{
+	defines += "USE_TEXCOORDS"
+	source = "vehicleTread_buildShadowmap.hlsl"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	defines = "BASE_SPEC", "USE_COLOR_TINT", "USE_SCROLL_ROTATE_UVS"
+	state = "gbuffer opaque"
+	source = "gbuffer_vehicle_tread.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

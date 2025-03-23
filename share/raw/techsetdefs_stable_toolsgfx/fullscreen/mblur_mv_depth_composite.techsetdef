@@ -1,0 +1,23 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "postfx/mblur_mv_depth_composite.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/mblur_mv_depth_composite.hlsl"
+		motionVectorsAA = CodeTexture( "codeTexture0" )
+		sceneDepth = CodeTexture( "codeTexture1" )
+	}
+}

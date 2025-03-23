@@ -1,0 +1,45 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Texture( "fireMap" )
+{
+	ref = true
+	image = Image( <colorMap14, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Fire"
+		sortindex = "0"
+	}
+}
+
+
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "postfx/postfx_radioactive.hlsl"
+		defines = "USE_VERTCOL 0"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/postfx_radioactive.hlsl"
+		defines = "USE_VERTCOL 0"
+		
+// textures
+		fireTexture = "fireMap"
+	      	pixelTexture  = CodeTexture( "codeTexture0" )
+		blurTexture   = CodeTexture( "codeTexture1" )
+// samplers
+ 		bilinearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

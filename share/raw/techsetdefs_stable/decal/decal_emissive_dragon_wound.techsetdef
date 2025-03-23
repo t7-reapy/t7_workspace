@@ -1,0 +1,137 @@
+#include "lit_base_shaders"
+#include "lit_decal_base.inc"
+#include "emissive_base"
+#include "scroll_base"
+#include "flipbook_base"
+#include "flicker_base"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "emissive decal"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		sortindex = "18" // leave some indices to have other color maps (need 2 indices - tile + filter)
+	}
+}
+
+// FOR THE OTHER PASSES
+Texture( "colorMap" ) : "emissiveMap"
+{ }
+Color( "colorTint" ) : "emissiveTint1"
+{ }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "emissiveTint1" ).tweak = Tweak( "Emissive", "Tint State1", "10" )
+float1( "hdrScale" ).tweak = Tweak( "Emissive", "HDR Scale", "50" )
+float1( "emissiveFalloffPower" ).tweak = Tweak( "Emissive", "Falloff", "60" )
+
+Color( "tint1" )
+{
+	value = "srgb_to_linear( <colorTint2> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint State 2"
+		sortindex = "20"
+		color = true
+	}
+}
+Color( "tint2" )
+{
+	value = "srgb_to_linear( <colorTint3> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint State 3"
+		sortindex = "30"
+		color = true
+	}
+}
+Color( "tint3" )
+{
+	value = "srgb_to_linear( <colorTint4> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint State 4"
+		sortindex = "40"
+		color = true
+	}
+}
+
+float2( "scriptControl" )
+{
+	x = <cg01_x>
+	y = <cg01_y>
+	tweak = Tweak()
+	{
+		category	= "Script Preview"
+		title		= "Tint (Brightness, State)"
+		sortindex	= "80"
+		default		= "1.0"
+		range		= "0.0", "4.0", "0.01"
+	}
+}
+
+float1( "scriptSelector" )
+{
+	x = <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Script Vector"
+		title		= "Offset"
+		sortindex	= "10"
+		default		= "0.0"
+		range		= "0.0", "3.0", "1.0"
+	}
+}
+
+float1( "uvMotionToggle" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "UV Motion Toggle"
+		title		= "Scroll (0.0), Flipbook (1.0)"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines = "USE_COLOR_TINT"
+}
+
+Technique( "lit" )
+{
+	state = "add + depth + decal"
+	source = "specialty/decal_emissive_dragon_wound.hlsl"
+	defines = "USE_COLOR_TINT", "USE_SCROLL_ROTATE_UVS", "USE_FLIPBOOK_UVS", "USE_EMISSIVE_FLICKER", "USE_SCRIPT_CONTROLS", "ADDITIVE_EMISSIVE"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

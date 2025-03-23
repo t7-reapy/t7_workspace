@@ -1,0 +1,30 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	state  = "blend"
+	source = "DOF/dof_final_blend.hlsl"
+
+	vs = VertexShader()
+	{
+		defines = "UPSAMPLE_HI"
+		codeTexture1 = CodeTexture( "codeTexture1" )
+	}
+	ps = PixelShader()
+	{
+		defines = "UPSAMPLE_HI"
+
+		// textures
+		codeTexture0 = CodeTexture( "codeTexture0" )
+		codeTexture1 = CodeTexture( "codeTexture1" )
+
+		// samplers
+		bilinearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

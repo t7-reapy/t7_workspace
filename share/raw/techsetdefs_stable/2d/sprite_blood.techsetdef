@@ -1,0 +1,97 @@
+#include "state"
+#include "renderFlags"
+#include "2d_sprite_base"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+
+Texture( "maskMap" )
+{
+	image    = Image( <colorMap03, $white_reveal> )
+	semantic = "revealMap"
+	ref      = true
+	tweak    = Tweak()
+	{
+		category  = "Textures"
+		title	  = "Mask Map"
+		sortindex = "2"
+	}
+}
+
+Texture( "colorMap" )
+{
+	image    = Image( <colorMap01, $gray_color> )
+	semantic = "diffuseMap"
+	ref      = true
+	tweak    = Tweak()
+	{
+		category  = "Textures"
+		title	  = "Color Map"
+		sortindex = "1"
+	}
+}
+
+Texture( "normalMap" )
+{
+	image    = Image( <normalMap, $normal> )
+	semantic = "normalMap"
+	ref      = true
+	tweak    = Tweak()
+	{
+		category  = "Textures"
+		title	  = "Normal Map"
+		sortindex = "0"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "falseElapsedTime" )
+{
+	x = <cg00_y>
+	tweak = Tweak()
+	{
+		category	= "Sprite Motion"
+		title		= "Time Override"
+		sortindex	= "80"
+		default		= "0.0"
+		range		= "0.0", "1024.0", "0.01"
+	}
+}
+
+Bool( "useOverride" )
+{
+	value = <gCheckBox00>
+	tweak = Tweak()
+	{
+		category	= "Sprite Motion"
+		title		= "Use static time override."
+		sortindex	= "90"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state  = "multiply + nocull"
+	source = "postfx\sprite_blood.hlsl"
+	defines += "SPRITE_EFFECT_SHADER", "USE_TIME_OVERRIDE"
+	vs = VertexShader()
+	{ }
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

@@ -1,0 +1,87 @@
+#include "skin_base"
+#include "transition_base"
+
+Globals()
+{
+	category = "Transition"
+	renderFlags = "lit forward sss"
+	availablePrefixes = "mc/ mcs/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "meltRevealMap" )
+{
+	image = Image( <colorMap13, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Melting"
+		title     = "Reveal Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "meltNormalMap" )
+{
+	image = Image( <colorMap14, $identitynormalmap> )
+	semantic = "normalMap"
+	usage = "normal map"
+	tweak = Tweak()
+	{
+		category  = "Melting"
+		title     = "Normal Map"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Bool( "debugBentNormal" )
+{
+	value = <gCheckBox00>
+	tweak = Tweak()
+	{
+	category  = "Debug Tools"
+	title     = "Debug bent normal: Black/White means Weak/Strong bent effect."
+	sortindex = "80"
+	}
+}
+
+float1( "scriptReplacement1" )
+{
+	x = <cg00_y>
+	tweak = Tweak()
+	{
+		category  = "Transition"
+		title     = "Melt Reveal (Tools Only)"
+		sortindex = "60"
+		default   = "0.0"
+		range     = "0", "1", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "lit_skin_advanced.hlsl"
+	defines = "USE_DEPTH_PREPASS"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque sss"
+	source = "lit_skin_advanced.hlsl"
+	defines = "BASE_SPEC", "USE_DETAIL_MAP", "USE_COLOR_TINT", "USE_TRANSITION_MATERIAL", "USE_FACE_MELTING", "NO_VERTEX_ALPHA"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}

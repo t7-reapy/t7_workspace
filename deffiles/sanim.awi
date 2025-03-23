@@ -1,0 +1,221 @@
+
+void ValidateRotationCompression(asset Asset, const string &assetId)
+{
+	float rotationCompression = Asset.GetEntryFloat( "rotationCompression" );
+	Asset.GetEntryVariable( "rotationCompressionLabel" ).SetValue( "" + rotationCompression + " deg");
+}
+
+void ValidateTranslationCompression(asset Asset, const string &assetId)
+{
+	float translationCompression = Asset.GetEntryFloat( "translationCompression" );
+	Asset.GetEntryVariable( "translationCompressionLabel" ).SetValue( "" + translationCompression + "\", " + (translationCompression * 25.4) + "mm");
+}
+
+void GenerateUI( asset Asset )
+{
+	Asset.BeginCategory( "Source Files" );
+	{
+		Asset.AddEntry_Path( "animationFile", "xanim_export/" ).SetTitle( "Anim File" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Misc
+	
+	Asset.BeginCategory( "Xmodel" );
+	{
+		Asset.AddEntry_AssetCombo( "boneLayout", "sanim|xmodel" ).SetTitle( "Xmodel Name" ).ShowJumpTo(true).SetToolTip("Similar to a basepose, can be a sanim or xmodel").UpdateOnChange( true );
+		string baseposeFilename = Asset.GetEntryValue( "boneLayout" );
+		Asset.AddEntry_Label("siegeModel","This model is not a siege model, you can not use it with sanims, you should use xanims.").SetTitle(" ").SetIcon( "Icon_ImageMismatch.png").Show(baseposeFilename != "" && !IsXModelSiege( baseposeFilename ) ).SetSave( false );
+	}
+
+	bool compression = Asset.GetEntryInt( "compression" ) != 0;
+
+	Asset.BeginCategory( "Settings" );
+	{
+		Asset.AddEntry_CheckBox( "loop", true ).SetTitle( "Looping" );
+
+		Asset.AddEntry_CheckBox( "stream", false ).SetTitle( "Streaming" );
+		
+		Asset.AddEntry_Combo( "compression", "off{0} | on{1}" ).SetTitle( "Compression" ).UpdateOnChange( true ).SetToolTip( "Enable compression" );
+
+		Asset.AddEntry_Combo( "precision", "default | high" ).SetTitle( "Precision" ).SetToolTip( "High uses 33% more memory" ).Show( !compression );
+	}
+
+	Asset.BeginCategory( "Compression" );
+	{
+
+		float rotComp = Asset.GetEntryFloat( "rotationCompressionCombo" );
+		Asset.AddEntry_Combo( "rotationCompressionCombo", "high quality{0.01} | normal{0.1} | low quality{1} | custom{-1}" ).Show(compression).SetTitle( "Rotation compression" ).UpdateOnChange( true ).SetToolTip("Lower quality gives better compression and smaller data size").SetSave(true);
+		Asset.AddEntry_Float( "rotationCompression", 0.01, 0.01, 10.01 ).SetTitle( "Custom rotation compression" ).Show(compression && rotComp == -1).SetValidateCallback("void ValidateRotationCompression(asset Asset, const string &id)");
+		Asset.AddEntry_Label( "rotationCompressionLabel", "" ).SetTitle( " " ).Show( compression );
+		if(rotComp != -1)
+		{
+			Asset.GetEntryVariable( "rotationCompression" ).SetFloat( rotComp );
+		}
+		ValidateRotationCompression(Asset, "");
+
+		float transComp = Asset.GetEntryFloat( "translationCompressionCombo" );
+		Asset.AddEntry_Combo( "translationCompressionCombo", "high quality{0.01} | normal{0.1} | low quality{1} | custom{-1}" ).Show(compression).SetTitle( "Translation compression" ).UpdateOnChange( true ).SetToolTip("Lower quality gives better compression and smaller data size").SetSave(true);
+		Asset.AddEntry_Float( "translationCompression", 0.01, 0.01, 10.01 ).SetTitle( "Custom translation compression" ).Show(compression && transComp == -1).SetValidateCallback("void ValidateTranslationCompression(asset Asset, const string &id)");
+		Asset.AddEntry_Label( "translationCompressionLabel", "" ).SetTitle( " " ).Show(compression);
+		if(transComp != -1)
+		{
+			Asset.GetEntryVariable( "translationCompression" ).SetFloat( transComp );
+		}
+		ValidateTranslationCompression(Asset, "");
+	}
+	
+
+	string filename = Asset.GetEntryValue( "animationFile" );
+
+	string noteDropDownList = "";
+	string noteDropDownListFrames = "";
+	string siegeBoneList = "None | " + GetSiegeBoneNames( filename );
+
+	Asset.BeginCategory( "Exported Notetracks" );
+	{
+		array<string> info = GetSiegeAnimInfo( filename ).Split("|");
+		string totalFrames = "0";
+		if(info.length() == 2)
+		{
+			totalFrames = info[0];
+			Asset.AddEntry_Label( "totalFrames", info[0] + ", " + info[0].ToInt()/30.0 + " sec" ).SetTitle( "totalFrames" ).SetSave(false);
+			Asset.AddEntry_Label( "numBones", info[1] ).SetTitle( "numBones" ).SetSave(false);
+		}
+		else
+		{
+			Asset.AddEntry_Label( "totalFrames", "Not a valid animation." ).SetTitle(" ").SetIcon( "Icon_ImageMismatch.png").SetSave( false );
+			Asset.AddEntry_Label( "numBones", "" ).SetTitle( "numBones" ).Show(false).SetSave(false);
+		}
+		
+		
+		int numNotes = 64;
+		noteDropDownList = "Start";
+		noteDropDownListFrames = "0";
+		for( int i = 0; i < numNotes; i++ )
+		{
+			
+			Asset.BeginCategory( "Exported Notetracks.Note " + (i+1) );			
+
+			array<string> notetrack = GetSiegeNotetrack( filename, i ).Split("|");
+			string id = "note" + i;
+
+			bool show = false;
+			
+			if( notetrack.length() == 6 )
+			{
+				show = true;
+			}
+			else
+			{
+				array<string> dummy = {"","","","0","0","0"};
+				notetrack = dummy;
+			}
+
+			Asset.AddEntry_Label( id + "_frame", notetrack[0] ).SetTitle( "Frame" ).Show( show ).SetSave(false);
+			Asset.AddEntry_Label( id + "_trigger", notetrack[1] ).SetTitle( "Trigger" ).Show( show ).SetSave(false);
+			Asset.AddEntry_Label( id + "_node", notetrack[2] ).SetTitle( "Bone" ).Show( show ).SetSave(false);
+			Asset.AddEntry_Label( id + "_pos", notetrack[3]+  " " + notetrack[4] + " " + notetrack[5] ).SetTitle( "Pos" ).Show( show ).SetSave(false);
+			
+			if( show )
+			{
+				noteDropDownList += " | " + notetrack[1];
+				noteDropDownListFrames += " | " + notetrack[0];
+			}
+		}
+		noteDropDownList += " | End | Startup | Shutdown";
+		noteDropDownListFrames += " | " + totalFrames + " | -1 | -1";
+	}
+
+	int MAX_GDT_NOTETRACKS = 50;			// Needs to match xanim converter
+
+	AddNoteTrackCategory( Asset, "Note", "customnote", MAX_GDT_NOTETRACKS, noteDropDownList, noteDropDownListFrames, siegeBoneList );
+}
+
+void AddNoteTrackCategory( asset Asset, string category, string prefix, int maxNotes, string dropDownNoteList, string dropDownNoteListFrames, string siegeBoneList )
+{
+	bool showNext = true;
+	for( int i = 0; i < maxNotes; i++ )
+	{
+		Asset.BeginCategory( "Notetracks." + category + " " + (i+1) );
+			
+		string id = prefix + i;
+			
+		string act = Asset.GetEntryValue( id + "action" );
+
+		bool showCur = showNext && act != "None" && act != "";
+
+		AddNoteTrackAction( Asset, id, showNext || showCur, dropDownNoteList, dropDownNoteListFrames, siegeBoneList );
+			
+		// Set up the 'show' for the next item
+		showNext = act != "None" && act != "";
+	}
+}
+
+void ValidateFrame(asset Asset, const string &assetId)
+{
+	int numberIdx = assetId.Find("offset",0);
+	string id = assetId.Left(numberIdx);
+	int whenFrame = Asset.GetEntryInt( id + "when_label");
+	int offset = Asset.GetEntryInt(id + "offset");
+	int offsettedFrame = whenFrame + offset;
+	Asset.GetEntryVariable( id + "offset_label" ).SetValue(""+offsettedFrame+", "+offsettedFrame/30.0+" sec");
+}
+
+void AddNoteTrackAction( asset Asset, string id, bool parentShow,string dropDownNoteList, string dropDownNoteListFrames, string siegeBoneList )
+{
+	bool show = parentShow;
+	Asset.AddEntry_Combo( id + "action", "None | Notify | Sound | Start looping sound | Stop looping sound | Play Exploder | Stop Exploder | Kill Exploder | Rumble" ).SetTitle( "Action" ).Show( show ).UpdateOnChange( true ).SetSave( show );
+	string actionType = Asset.GetEntryValue( id + "action" );
+	
+	array<string> noteList = dropDownNoteList.Split("|");
+	array<string> noteListFrames = dropDownNoteListFrames.Split("|");
+
+	string whenStr = Asset.GetEntryValue(id + "when");
+	int whenIdx = 0;
+	int whenFrame = 0;
+	if(noteList.length() > 0)
+	{
+		whenIdx = noteList.find(whenStr);
+	}
+	if(whenIdx >= 0 && uint(whenIdx) < noteListFrames.length() )
+	{
+		whenFrame = noteListFrames[whenIdx].ToInt();
+	}
+	int offsettedFrame = whenFrame + Asset.GetEntryInt(id + "offset");
+
+	Asset.AddEntry_Combo( id + "when", dropDownNoteList ).SetTitle( "When" ).Show( show && actionType != "None" ).SetSave( show ).UpdateOnChange( true );
+	Asset.AddEntry_Label( id + "when_label", "" ).SetTitle( "When frame" ).Show( show && whenFrame != -1 && actionType != "None" ).SetSave( false );
+	Asset.GetEntryVariable( id + "when_label").SetValue(""+whenFrame);
+	Asset.AddEntry_Int( id + "offset", 0, -5000, 5000 ).SetTitle( "Offset").Show( show && whenFrame != -1 && actionType != "None" ).SetSave( show ).SetStep( 1 ).SetValidateCallback("void ValidateFrame(asset Asset, const string &id)");
+	Asset.AddEntry_Label( id + "offset_label", "" ).SetTitle( "Acctual frame and time" ).Show( show && whenFrame != -1 && actionType != "None" ).SetSave( false );
+
+	ValidateFrame(Asset, id + "offset");
+	bool hideBone = false;
+	if(actionType == "Play Exploder" || actionType == "Stop Exploder" || actionType == "Kill Exploder")
+	{
+		hideBone = true;
+	}
+
+	Asset.AddEntry_Combo( id + "bone", siegeBoneList, true ).SetTitle( "Bone" ).Show( !hideBone && whenFrame != -1 && actionType != "None" && show ).SetSave( show );
+	Asset.AddEntry_String( id + "trigger", "" ).SetTitle( "Trigger to send" ).Show( actionType == "Notify" && show ).SetSave( show ).UpdateOnChange( true );
+	
+	if( actionType == "Sound" || actionType == "Start looping sound" || actionType == "Stop looping sound" )
+	{
+		Asset.AddEntry_String( id + "param", "" ).SetTitle( "Sound Alias" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Rumble" )
+	{
+		Asset.AddEntry_AssetCombo( id + "param", "" ).SetTitle( "Rumble" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Play Exploder" || actionType == "Stop Exploder" || actionType == "Kill Exploder" )
+	{
+		Asset.AddEntry_AssetCombo( id + "param", "" ).SetTitle( "Exploder ID" ).Show( show ).SetSave( show );
+	}
+	else // Notify
+	{
+		Asset.AddEntry_String( id + "param", "" ).SetTitle( "Param" ).Show( false ).SetSave( show );
+	}
+
+}

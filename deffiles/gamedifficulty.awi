@@ -1,0 +1,129 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+void GenerateUI( asset Asset )
+{
+
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	Asset.AddEntry_Combo( "type", "gamedifficulty" ).Show( false );
+	
+	Asset.AddEntry_Combo( "vmType", "Server" ).Show( false );
+	
+	// Difficulty Values
+
+	Asset.BeginCategory( "XP Scale" );
+	{
+		Asset.AddEntry_Float( "difficulty_xp_multiplier", 1, 0.1, 10 ).SetTitle( "Multiplier for earning XP on this difficulty" ).SetToolTip( "XP earned by the player on this difficulty will be multiplied by this amount." );
+	}
+
+	Asset.BeginCategory( "Player Death Invulnerability" );
+	{
+		Asset.AddEntry_Float( "player_deathInvulnerableTime", 1, 0, 10 ).SetTitle( "Player Death Invulnerability Duration (s)" ).SetToolTip( "During this time, the player cannot be killed by enemy bullets, but still can be killed by projectiles and explosives.  This timer starts when a shot would kill a player, and can become active again once the player reaches max health again." );
+		Asset.AddEntry_Float( "one_player_deathInvulnerableTimeModifier" , 1 , 0, 10 ).SetTitle ( "One Player Death Invulnerability Modifier" ).SetToolTip( "Multiplier to Player Death Invulnerability Duration in Coop with only one player." );
+		Asset.AddEntry_Float( "two_player_deathInvulnerableTimeModifier" , 1 , 0, 10 ).SetTitle ( "Two Player Death Invulnerability Modifier" ).SetToolTip( "Multiplier to Player Death Invulnerability Duration in Coop with two players connected." );
+		Asset.AddEntry_Float( "three_player_deathInvulnerableTimeModifier" , 1 , 0, 10 ).SetTitle ( "Three Player Death Invulnerability Modifier" ).SetToolTip( "Multiplier to Player Death Invulnerability Duration in Coop with three players connected." );
+		Asset.AddEntry_Float( "four_player_deathInvulnerableTimeModifier" , 1 , 0, 10 ).SetTitle ( "Four Player Death Invulnerability Modifier" ).SetToolTip( "Multiplier to Player Death Invulnerability Duration in Coop with four players connected." );
+	}
+	
+	Asset.BeginCategory( "Player Hit Invulnerability" );
+	{
+		Asset.AddEntry_Float( "playerHitInvulnTime" , 0.35 , 0 , 10 ).SetTitle( "Player Hit Invulnerability Time" ).SetToolTip( "Length of time after a player has recieved a worthy hit that the accuracy for any AI attacking him goes to 0.  Does not affect projectiles or melee attacks" );
+		Asset.AddEntry_Float( "worthyDamageRatio" , 0.1 , 0 , 1).SetTitle( "Worthy Damage Ratio" ).SetToolTip( "Fraction of the player's health that a hit must do to trigger Hit Invulnerability Time" );
+		Asset.AddEntry_Float( "one_player_hit_invulnerability_modifier" , 1 , 0, 10 ).SetTitle ( "One Player Hit Invulnerability Modifier" ).SetToolTip( "Multiplier to Player Hit Invulnerability Time in Coop with only one player." );
+		Asset.AddEntry_Float( "two_player_hit_invulnerability_modifier" , 1 , 0, 10 ).SetTitle ( "Two Player Hit Invulnerability Modifier" ).SetToolTip( "Multiplier to Player Hit Invulnerability Time in Coop with two players." );
+		Asset.AddEntry_Float( "three_player_hit_invulnerability_modifier" , 1 , 0, 10 ).SetTitle ( "Three Player Hit Invulnerability Modifier" ).SetToolTip( "Multiplier Player Hit Invulnerability Time in Coop with three players." );
+		Asset.AddEntry_Float( "four_player_hit_invulnerability_modifier" , 1 , 0, 10 ).SetTitle ( "Four Player Hit Invulnerability Modifier" ).SetToolTip( "Multiplier to Player Hit Invulnerability Time in Coop with cour players." );
+	}
+	
+	Asset.BeginCategory( "Targeting Factors" );
+	{
+		Asset.AddEntry_Int( "threatbias" , 200 , 0 , 100000 ).SetTitle( "Player Threat Bias" ).SetToolTip( "The higher the value, the more AI will target the player over friendly AI" );
+		Asset.AddEntry_Float( "one_player_coopFriendlyThreatBiasScalar" , 1 , 0, 50 ).SetTitle( "One Player Threat Bias Modifier" ).SetToolTip( "Multiplier to Threat Bias in Coop with only one player." ); 
+		Asset.AddEntry_Float( "two_player_coopFriendlyThreatBiasScalar" , 1 , 0, 50 ).SetTitle( "Two Player Threat Bias Modifier" ).SetToolTip( "Multiplier to Threat Bias in Coop with two players connected." ); 
+		Asset.AddEntry_Float( "three_player_coopFriendlyThreatBiasScalar" , 1 , 0, 50 ).SetTitle( "Three Player Threat Bias Modifier" ).SetToolTip( "Multiplier to Threat Bias in Coop with three players connected." ); 
+		Asset.AddEntry_Float( "four_player_coopFriendlyThreatBiasScalar" , 1 , 0, 50 ).SetTitle( "Four Player Threat Bias Modifier" ).SetToolTip( "Multiplier to Threat Bias in Coop with four players connected." ); 		
+	}
+	
+	Asset.BeginCategory( "Accuracy" );
+	{
+		Asset.AddEntry_Label( "behind_player_angleLabel", "Angle between the enemy and player to consider the enemy \"behind\". [0, 180]\n\"0\" indicates the player is facing the enemy, \"180\" indicates the player's back is facing the enemy." ).SetTitle( " " );
+		Asset.AddEntry_Int( "behind_player_angle" , 90, 0, 180 ).SetTitle( "Behind Player Angle" ).SetToolTip( "" );
+		Asset.AddEntry_Label( "behind_player_accuracyScalarLabel", "Modifier applied before the AI shoots." ).SetTitle( " " );
+		Asset.AddEntry_Float( "behind_player_accuracyScalar" , 1 , 0, 10 ).SetTitle( "Shooting From Behind Accuracy Modifier" ).SetToolTip( "" );
+	
+		Asset.AddEntry_Float( "base_enemy_accuracy" , 1 , 0, 10 ).SetTitle( "Enemy Accuracy Modifier" ).SetToolTip( "Multiplies enemy accuracy by this value.  1 has no effect on enemy accuracy.  Lower means enemies are less accurate" );
+		Asset.AddEntry_Float( "one_player_coopEnemyAccuracyScalar" , 1 , 0, 10 ).SetTitle( "One Player Enemy Accuracy Modifier" ).SetToolTip( "Multiplier to Enemy Accuracy Modifier in Coop with only one player." ); 		
+		Asset.AddEntry_Float( "two_player_coopEnemyAccuracyScalar" , 1.3 , 0, 10 ).SetTitle( "Two Player Enemy Accuracy Modifier" ).SetToolTip( "Multiplier to Enemy Accuracy Modifier in Coop with two players connected." );
+		Asset.AddEntry_Float( "three_player_coopEnemyAccuracyScalar" , 1.6 , 0, 10 ).SetTitle( "Three Player Enemy Accuracy Modifier" ).SetToolTip( "Multiplier to Enemy Accuracy Modifier in Coop with three players connected." );
+		Asset.AddEntry_Float( "four_player_coopEnemyAccuracyScalar" , 2 , 0, 10 ).SetTitle( "Four Player Enemy Accuracy Modifier" ).SetToolTip( "Multiplier to Enemy Accuracy Modifier in Coop with four players connected." );
+		
+		Asset.AddEntry_Float( "one_player_coopFriendlyAccuracyScalar" , 1 , 0, 10 ).SetTitle( "One Player Friendly Accuracy Modifier" ).SetToolTip( "Multiplier to Friendly AI Accuracy in Coop with only one player." ); 		
+		Asset.AddEntry_Float( "two_player_coopFriendlyAccuracyScalar" , 0.8 , 0, 10 ).SetTitle( "Two Player Friendly Accuracy Modifier" ).SetToolTip( "Multiplier to Friendly AI Accuracy in Coop with two players connected." );
+		Asset.AddEntry_Float( "three_player_coopFriendlyAccuracyScalar" , 0.7 , 0, 10 ).SetTitle( "Three Player Friendly Accuracy Modifier" ).SetToolTip( "Multiplier to Friendly AI Accuracy in Coop with three players connected." );
+		Asset.AddEntry_Float( "four_player_coopFriendlyAccuracyScalar" , 0.6 , 0, 10 ).SetTitle( "Four Player Friendly Accuracy Modifier" ).SetToolTip( "Multiplier to Friendly AI Accuracy in Coop with four players connected." );
+	}
+	
+	Asset.BeginCategory( "Enemy Miss Time", 1, 0.5, 0.3, "" );
+	{
+		Asset.AddEntry_Float( "missTimeConstant" , 0.05 , 0 , 10 ).SetTitle( "Miss Time Constant" ).SetToolTip( "Constant added to Distance Factor/1000 * distance to determine the total time an AI should miss when it first starts shooting" );
+		Asset.AddEntry_Float( "missTimeDistanceFactor" , 0.1 , 0 , 10 ).SetTitle( "Miss time Distance Factor" ).SetToolTip( "Adds to the miss time based upon how far away the enemy is.  Distance Factor/1000 * Distance" );
+		Asset.AddEntry_Int( "missTimeResetDelay" , 3000 , 0 , 10000 ).SetTitle( "<i>DEPRECATED</i> - Miss Time Reset Delay (ms)" ).SetToolTip( "Length of time the AI must stop firing before they enter Miss Time again" );
+		
+		Asset.BeginCategory( "Enemy Miss Time" + ".Miss Time Reset Delay (ms)", 1, 0.5, 0.3, "" );
+		{
+			const string missTimeInfo = "Length of time the AI must stop firing before they enter \"Miss Time\" again.";
+		
+			Asset.AddEntry_Label( "coopMissTimeResetDelayLabel", missTimeInfo ).SetTitle( " " );
+			Asset.AddEntry_Int( "one_player_coopMissTimeResetDelay" , 3000 , 0 , 10000 ).SetTitle( "One Player" ).SetToolTip( missTimeInfo );
+			Asset.AddEntry_Int( "two_player_coopMissTimeResetDelay" , 3000 , 0 , 10000 ).SetTitle( "Two Player" ).SetToolTip( missTimeInfo );
+			Asset.AddEntry_Int( "three_player_coopMissTimeResetDelay" , 3000 , 0 , 10000 ).SetTitle( "Three Player" ).SetToolTip( missTimeInfo );
+			Asset.AddEntry_Int( "four_player_coopMissTimeResetDelay" , 3000 , 0 , 10000 ).SetTitle( "Four Player" ).SetToolTip( missTimeInfo );
+		}
+	}
+	
+	Asset.BeginCategory( "Player Health" );
+	{
+		Asset.AddEntry_Int( "playerDifficultyHealth" , 100 , 0 , 1000 ).SetTitle( "Player Health" ).SetToolTip( "Multiplies enemy damage by 100/Player Health to effectively raise or lower the player's health.  Essentially the player has this value in health." );
+		Asset.AddEntry_Float( "one_player_coopPlayerDifficultyHealth" , 1 , 0, 10 ).SetTitle( "One Player Health Modifier" ).SetToolTip( "Multiplier to Player Health in Coop with only one player." ); 
+		Asset.AddEntry_Float( "two_player_coopPlayerDifficultyHealth" , 1 , 0, 10 ).SetTitle( "Two Player Health Modifier" ).SetToolTip( "Multiplier to Player Health in Coop with two players connected." ); 
+		Asset.AddEntry_Float( "three_player_coopPlayerDifficultyHealth" , 1 , 0, 10 ).SetTitle( "Three Player Health Modifier" ).SetToolTip( "Multiplier to Player Health in Coop with three players connected." ); 
+		Asset.AddEntry_Float( "four_player_coopPlayerDifficultyHealth" , 1 , 0, 10 ).SetTitle( "Four Player Health Modifier" ).SetToolTip( "Multiplier to Player Health in Coop with four players connected." ); 			
+	}
+	
+	Asset.BeginCategory( "Player Regeneration" );
+	{
+
+		Asset.AddEntry_Int( "playerHealth_RegularRegenDelay" , 2400 , 0 , 10000 ).SetTitle( "Regular Regen Delay (ms)" ).SetToolTip( "Default length of time the player must avoid damage to start regenerating" );
+		Asset.AddEntry_Int( "longRegenTime" , 5000 , 0 , 10000 ).SetTitle( "Long Regen Delay (ms)" ).SetToolTip( "Length of time the player must avoid damage to start regenerating after becoming very hurt" );
+		Asset.AddEntry_Float( "healthOverlayCutoff" , 0.2 , 0 , 1 ).SetTitle( "Very Hurt Threshold" ).SetToolTip( "When below this fraction of total health, the player will use Long Regen Time instead of Regular Regen Delay to determine how long he must avoid damage before he can start regenerating" );
+	}
+	
+	Asset.BeginCategory( "Player Revival" );
+	{
+		Asset.AddEntry_Int( "playerReviveChances" , 3, -1, 10 ).SetTitle( "Player Revive Chances" ).SetToolTip( "Number of times a player can be revived during a checkpoint.  If set to -1, revives are infinite");
+		Asset.AddEntry_Int( "playerReviveHealthPool" , 100 , 0 , 1000 ).SetTitle ("Player Revive Health Pool" ).SetToolTip( "Health pool used by a player who is bleeding out.  The higher this value, the longer the time and more actions that can be performed before bleeding out" );	
+	}
+	
+	Asset.BeginCategory( "Player Aiming" );
+	{
+		Asset.AddEntry_Float( "autoAimRegionWidth" , 160, 0, 640 ).SetTitle( "Autoaim Width" ).SetToolTip( "Width of player aim box that interacts with AI boxes");
+		Asset.AddEntry_Float( "autoAimRegionHeight" , 120, 0, 480 ).SetTitle( "Autoaim height" ).SetToolTip( "Height of player aim box that interacts with AI boxes");
+	}
+
+	Asset.BeginCategory( "Dog Parameters" );
+	{
+		Asset.AddEntry_Float( "dog_health" , 0.75 , 0 , 10 ).SetTitle( "Dog Health Modifier" ).SetToolTip( "Multiplier that affects the total health of a dog" );
+		Asset.AddEntry_Int( "dog_presstime" , 375 , 0 , 10000 ).SetTitle( "Dog Press Time (ms)" ).SetToolTip( "Time player has after the button prompt is shown to snap the dog's neck" );
+		Asset.AddEntry_Int( "dog_hits_before_kill" , 1 , 0 , 10 ).SetTitle( "Dog Hits Before Kill" ).SetToolTip( "Number of dog attacks a player can live through, one more than this will kill the player" );
+	}
+	
+	Asset.BeginCategory( "Enemy Pain Protection" );
+	{
+		Asset.AddEntry_Float( "enemyPainChance" , 1 , 0 , 1).SetTitle( "Enemy Pain Chance" ).SetToolTip( "Chance that an enemy will play a pain animation if hit right after another enemy AI was hit and took damage.  1 is a 100% chance" );
+		Asset.AddEntry_Float( "one_player_enemy_pain_chance_modifier" , 1 , 0, 10 ).SetTitle( "One Player Enemy Pain Chance Modifier" ).SetToolTip( "Multiplier to Enemy Pain Chance in Coop with only one player." ); 
+		Asset.AddEntry_Float( "two_player_enemy_pain_chance_modifier" , 1 , 0, 10 ).SetTitle( "Two Player Enemy Pain Chance Modifier" ).SetToolTip( "Multiplier to Enemy Pain Chance in Coop with two players connected." ); 
+		Asset.AddEntry_Float( "three_player_enemy_pain_chance_modifier" , 1 , 0, 10 ).SetTitle( "Three Player Enemy Pain Chance Modifier" ).SetToolTip( "Multiplier to Enemy Pain Chance in Coop with three players connected." ); 
+		Asset.AddEntry_Float( "four_player_enemy_pain_chance_modifier" , 1 , 0, 10 ).SetTitle( "Four Player Enemy Pain Chance Modifier" ).SetToolTip( "Multiplier to Enemy Pain Chance in Coop with four players connected." ); 
+	}
+
+}

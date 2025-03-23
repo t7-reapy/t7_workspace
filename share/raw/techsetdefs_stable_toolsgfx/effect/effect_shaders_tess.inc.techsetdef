@@ -1,0 +1,37 @@
+//----------------------------------------------------------------------------
+// domain shader perms
+//----------------------------------------------------------------------------
+DomainShader( "ds_unlit" ) : "ds_default" { }
+
+DomainShader( "ds_lit" ) : "ds_default"
+{
+	defines += "USE_LIT", "USE_VERTEX_LIGHTING"
+
+#if TOOLSGFX == "1"
+#else
+	samplerLinear = Sampler( "tile both", "mip (1x trilinear)", true )
+	samplerLinearClamp = Sampler( "no tile", "mip (1x trilinear)", true )
+	shadowmapReadSampler = Sampler( "tile both", "nomip bilinear", true )
+#endif
+}
+
+DomainShader( "ds_emissive" ) : "ds_unlit"
+{
+	defines += "USE_EMISSIVE"
+}
+
+DomainShader( "ds_emissive_oit" ) : "ds_emissive"
+{
+#if TOOLSGFX == "1"
+#else
+	defines += "USE_OIT"
+#endif
+}
+
+DomainShader( "ds_lit_oit" ) : "ds_lit"
+{
+#if TOOLSGFX == "1"
+#else
+	defines += "USE_OIT"
+#endif
+}

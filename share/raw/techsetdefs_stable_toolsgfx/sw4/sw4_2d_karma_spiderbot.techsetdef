@@ -1,0 +1,205 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isOpaque            = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Replace
+		colorBlendFunc = add
+		colorBlendSrc  = One
+		colorBlendDst  = Zero
+		alphaBlendFunc = add
+		alphaBlendSrc  = One
+		alphaBlendDst  = Zero
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+Sampler( "OverlayMap_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "OverlayMap" )
+{
+	image    = Image( <colorMap09> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category  = "Maps"
+		sortindex = "1"
+		default   = "sw4\\textures\\karma_spiderbot_overlay.tif"
+	}
+}
+Sampler( "VignetteMap_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "VignetteMap" )
+{
+	image    = Image( <colorMap13> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category  = "Vignette"
+		sortindex = "8"
+		default   = "sw4\\textures\\vignette_spiderbot.tif"
+	}
+}
+Sampler( "WarpMap_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "WarpMap" )
+{
+	image    = Image( <colorMap10> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category  = "Warp"
+		sortindex = "5"
+		default   = "sw4\\textures\\bulge_mask.tif"
+	}
+}
+Sampler( "LineMap_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip most expensive (4x trilinear)"
+}
+Texture( "LineMap" )
+{
+	image    = Image( <colorMap11> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category  = "Line"
+		sortindex = "0"
+		default   = "sw4\\textures\\static_pattern_alpha.tif"
+	}
+}
+#if TOOLSGFX == "1"
+Texture( "resolvedScene_C2_P0" )
+{
+	image = Image( < sw_codetexture_00 > )
+	tweak = Tweak()
+	{
+		default = "sw4\\textures\\helpers\\mw2.tif"
+	}
+}
+#endif
+Sampler( "resolvedScene_C2_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+Sampler( "NoiseMap_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "NoiseMap" )
+{
+	image    = Image( <colorMap12> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category  = "Noise"
+		sortindex = "0"
+		default   = "sw4\\textures\\spiderbot_noise.tif"
+	}
+}
+float1( "WarpScale" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		title     = "WarpScale"
+		category  = "Warp"
+		sortindex = "6"
+		default   = "0.750000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "LineIntensity" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		title     = "LineIntensity"
+		category  = "Line"
+		sortindex = "3"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "LineSpeed" )
+{
+	x     = <cg16_x>
+	tweak = Tweak()
+	{
+		title     = "LineSpeed"
+		category  = "Line"
+		sortindex = "2"
+		default   = "-0.300000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "LineScale" )
+{
+	x     = <cg15_x>
+	tweak = Tweak()
+	{
+		title     = "LineScale"
+		category  = "Line"
+		sortindex = "1"
+		default   = "2.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float2( "NoiseScale" )
+{
+	x     = <cg00_x>
+	y     = <cg00_y>
+	tweak = Tweak()
+	{
+		title     = "NoiseScale"
+		category  = "Noise"
+		sortindex = "11"
+		default   = "2.000000", "2.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_karma_spiderbot.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_REPLACE"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		resolvedScene_C2_P0 = CodeTexture( "resolvedScene" )
+	}
+}

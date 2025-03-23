@@ -1,0 +1,180 @@
+#include "lit_base_shaders"
+#include "lit_decal_base.inc"
+#include "normal_base"
+#include "gloss_base"
+#include "reveal_base"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "reveal decal renderflags"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Bool( "scaleReveal" )
+{
+	value = <zFeatherComputeSprites>
+	tweak = Tweak()
+	{
+		category	= "Reveal"
+		title		= "Scale reveal map with normal map."
+		sortindex	= "60"
+	}
+}
+
+float2( "normalTiling" )
+{
+	x = <gNormalScale00>
+	y = <gNormalScale01>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Scale (U, V)"
+		sortindex = "45"
+	}
+}
+
+float2( "layer1Scroll" )
+{
+	x = <gUVScroll02_Angle>
+	y = <gUVScroll03_Angle>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Layer1 Scroll (U, V)"
+		sortindex = "55"
+	}
+}
+
+float2( "layer2Scroll" )
+{
+	x = <gUVScroll00_Angle>
+	y = <gUVScroll01_Angle>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Layer2 Scroll (U, V)"
+		sortindex = "65"
+	}
+}
+
+float4( "normalScrolling" )
+{
+	x = <gUVScroll02_Angle>
+	y = <gUVScroll03_Angle>
+	z = <gUVScroll00_Angle>
+	w = <gUVScroll01_Angle>
+}
+
+float1( "normalLayer1Height" )
+{
+	x = <cloudLayer1Blend0>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Layer1 Height"
+		sortindex = "75"
+	}
+}
+
+float1( "normalLayer2Height" )
+{
+	x = <cloudLayer1Blend1>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Layer2 Height"
+		sortindex = "85"
+	}
+}
+
+float2( "glossRange" )
+{
+	x = <glossRangeMin>
+	y = <glossRangeMax>
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Gloss Range"
+		sortindex = "45"
+	}
+}
+
+float2( "normalHeights" )
+{
+	x = <cloudLayer1Blend0>
+	y = <cloudLayer1Blend1>
+}
+
+Color( "specColorTint" )
+{
+	value = "srgb_to_linear( <specColorTint> )"
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Spec Color"
+		sortindex = "30"
+		color = true
+	}
+}
+
+float1( "specFadePower" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Spec Fade Power"
+		sortindex = "40"
+	}
+}
+
+// NOT USED, JUST TO KEEP THE UNLIT PASS HAPPY
+Sampler( "colorSampler" ) : "normalSampler"
+{
+}
+Texture( "colorMap" ) : "normalMap"
+{
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+State( "gbuffer sparkle" ) : "base gbuffer decal state"
+{
+	blendState0 = "gbuffer disable"
+	blendState1 = "gbuffer normal gloss blend"
+	blendState2 = "gbuffer reflectance blend"
+}
+
+TechniqueTemplate( "base lit decal gbuffer sparkle" ) : "base lit decal gbuffer"
+{
+	state = "gbuffer sparkle"
+	defines += "GBUFFER_DECAL_DISABLE_MRT0"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines = "USE_REVEAL_MAP"
+}
+
+Technique( "gbuffer" ) : "base lit decal gbuffer sparkle"
+{
+	source = "gbuffer_decal_sparkle_reveal.hlsl"
+	defines += "USE_REVEAL_MAP", "BASE_SPEC"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}
+

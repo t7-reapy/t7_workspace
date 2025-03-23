@@ -1,0 +1,264 @@
+#include "state"
+#include "renderFlags"
+#include "usage"
+
+//----------------------------------------------------------------------------
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Color"
+		sortindex = "18" // leave some indices to have other color maps (need 2 indices - tile + filter)
+	}
+}
+
+Texture( "colorMap" )
+{
+	image = Image( <colorMap, $white_effect> )
+	semantic = "effectMap"
+	usage = "effect map"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Color Map"
+		sortindex = "0"
+	}
+}
+
+//----------------------------------------------------------------------------
+
+float1( "textureAtlasColumnCount" )
+{
+	x = <textureAtlasColumnCount>
+	tweak = Tweak()
+	{
+		category  = "Texture Atlas Settings"
+		title     = "Column Count"
+		sortindex = "30"
+	}
+}
+
+float1( "textureAtlasRowCount" )
+{
+	x = <textureAtlasRowCount>
+	tweak = Tweak()
+	{
+		category  = "Texture Atlas Settings"
+		title     = "Row Count"
+		sortindex = "30"
+	}
+}
+
+float2( "textureAtlasSettings" )
+{
+	x = <textureAtlasRowCount>
+	y = <textureAtlasColumnCount>
+}
+
+
+float2( "rawFalloffParms" )
+{
+	x = <falloffBeginAngle>
+	y = <falloffEndAngle>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		title	  = "Falloff (Begin, End)"
+		sortindex = "40"
+	}
+}
+
+float2( "falloffParms" )
+{
+	x = "<falloffBeginAngle>"
+	y = "<falloffEndAngle>"
+}
+
+Bool( "zFeatherComputeSprites" )
+{
+	value = <zFeatherComputeSprites>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		title	  = "Make compute sprites zfeather against this particle."
+		sortindex = "41"
+	}
+}
+
+
+float2( "levelsInputs" )
+{
+	x = <levelsInputMin>
+	y = <levelsInputMax>
+	tweak = Tweak()
+	{
+		category  = "Image Processing"
+		title     = "Levels Input (Shadow, Highlight)"
+		sortindex = "10"
+	}
+}
+float2( "levelsOutputs" )
+{
+	x = <levelsOutputMin>
+	y = <levelsOutputMax>
+	tweak = Tweak()
+	{
+		category  = "Image Processing"
+		title     = "Levels Output (Shadow, Highlight)"
+		sortindex = "20"
+	}
+}
+
+float1( "desaturationAmount" )
+{
+	x = <desaturationAmount>
+	tweak = Tweak()
+	{
+		category  = "Image Processing"
+		title     = "Desaturation"
+		sortindex = "30"
+	}
+}
+
+float4( "levelsControls" )
+{
+	x = "srgb_to_linear( <levelsInputMin> / 255.0 )"
+	y = "srgb_to_linear( <levelsInputMax> / 255.0 )"
+	z = "<levelsOutputMin> / 255.0" //"srgb_to_linear( <levelsOutputMin> / 255.0 )"
+	w = "<levelsOutputMax> / 255.0" //"srgb_to_linear( <levelsOutputMax> / 255.0 )"
+}
+
+float1( "translucentShadowOpacity" )
+{
+	x = "sqrt( <translucentShadowOpacity> )"
+	tweak = Tweak()
+	{
+		category  = "Lighting"
+		title     = "ShadowTransparency"
+		sortindex = "10"
+	}
+}
+
+// shaders
+//----------------------------------------------------------------------------
+LocalShader( "ls_default" )
+{
+#if TOOLSGFX == "1"
+	#if EFFECT_INSTANCED_VERTEX_FORMAT == "1"
+	vertexDecl = "particle_sprite"
+	#else
+	vertexDecl = "generic"
+	#endif
+#endif
+	source = "effect_simple.hlsl"
+	primitiveType = "patch"
+}
+
+HullShader( "hs_default" )
+{
+	source = "effect_simple.hlsl"
+}
+
+DomainShader( "ds_default" )
+{
+	source = "effect_simple.hlsl"
+}
+
+VertexShader( "vs_default" )
+{
+#if TOOLSGFX == "1"
+	#if EFFECT_INSTANCED_VERTEX_FORMAT == "1"
+	vertexDecl = "particle_sprite"
+	#else
+	vertexDecl = "generic"
+	#endif
+#endif
+	source = "effect_simple.hlsl"
+}
+
+PixelShader( "ps_default" )
+{
+	source = "effect_simple.hlsl"
+	floatZSampler = CodeTexture( "floatZ" )
+}
+
+#if TOOLSGFX == "1"
+GeometryShader( "gs_wireframe" )
+{
+	source = "effect_simple.hlsl"
+}
+#endif
+
+#include "effect_shaders_tess.inc"
+#include "effect_shaders.inc"
+
+//----------------------------------------------------------------------------
+// techniques
+//----------------------------------------------------------------------------
+
+#if TOOLSGFX == "1"
+Technique( "browser" )
+{
+	state = "blend"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/simple.hlsl"
+	}
+}
+#endif
+
+#if TOOLSGFX == "1"
+#else
+TechniqueTemplate( "fx shadowmap" )
+{
+	state = State() : "multiply + depth"
+	{}
+
+	defines += "BUILD_TRANSLUCENT_SHADOW", "USE_LMAP 0", "USE_VERTEX_LIGHTING 0", "USE_TRANSLUCENT_SHADOWMAP 0"
+
+#if 0
+	ls = LocalShader() : "ls_default" {}
+	hs = HullShader() : "hs_default" {}
+	ds = DomainShader() : "ds_unlit" { }
+#else
+	vs = VertexShader() : "vs_unlit" { }
+#endif
+	ps = PixelShader()
+	{
+		source = "effect_simple.hlsl"
+	}
+}
+
+TechniqueTemplate( "fx shadowmap depth" )
+{
+	state = State()
+	{
+		blendState = BlendState() : "disable"
+		{
+			writeChannels = ""
+		}
+		depthTest      = lessEqual
+		depthWrite     = true
+	}
+	defines += "BUILD_TRANSLUCENT_SHADOW_DEPTH", "USE_LMAP 0", "USE_VERTEX_LIGHTING 0", "USE_TRANSLUCENT_SHADOWMAP 0"
+#if 0
+	ls = LocalShader() : "ls_default" {}
+	hs = HullShader() : "hs_default" {}
+	ds = DomainShader() : "ds_unlit" { }
+#else
+	vs = VertexShader() : "vs_unlit" { }
+#endif
+	ps = PixelShader()
+	{
+		source = "effect_simple.hlsl"
+	}
+}
+#endif

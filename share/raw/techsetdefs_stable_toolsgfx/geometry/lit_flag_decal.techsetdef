@@ -1,0 +1,160 @@
+#include "lit_flag_base_basic"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit deferred semi opaque nocull animating"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "decalMap" )
+{
+	image = Image( <colorMap05, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Decal"
+		title     = "Decal Map"
+		sortindex = "0"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "decalTint" )
+{
+	value = "srgb_to_linear( <colorTint2> )"
+	tweak = Tweak()
+	{
+		category  = "Decal"
+		title     = "Decal Tint"
+		sortindex = "05"
+		color = true
+	}
+}
+
+float2( "rotateUVs" )
+{
+	x = <uvScrollAngle>
+	y = <uvRotationRate>
+	tweak = Tweak()
+	{
+		category	= "Decal"
+		title		= "Rotation, Spin Rate"
+		sortindex	= "10"
+	}
+}
+
+float2( "scaleUVs" )
+{
+	x = <specDetailScaleX>
+	y = <specDetailScaleY>
+	tweak = Tweak()
+	{
+		category	= "Decal"
+		title		= "Scale"
+		sortindex	= "30"
+	}
+}
+
+float2( "offsetUVs" )
+{
+	x = <uScroll>
+	y = <vScroll>
+	tweak = Tweak()
+	{
+		category	= "Decal"
+		title		= "Offset"
+		sortindex	= "40"
+	}
+}
+
+Bool( "clampU" )
+{
+	value = <clampU>
+	tweak = Tweak()
+	{
+		category	= "Decal"
+		title		= "Clamp U"
+		sortindex	= "80"
+	}
+}
+
+Bool( "clampV" )
+{
+	value = <clampV>
+	tweak = Tweak()
+	{
+		category	= "Decal"
+		title		= "Clamp V"
+		sortindex	= "90"
+	}
+}
+
+float2( "scrollUVs" )
+{
+	x = 0
+	y = 0
+}
+float2( "zoomUVs" )
+{
+	x = 1
+	y = 1
+}
+float1( "zoomRate" )
+{
+	x = 1
+}
+float1( "layerDepth" )
+{
+	x = 0
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) :  "flag build shadowmap depth"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "flag build shadowmap depth planes"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) : "flag build shadowmap depth layered"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth + nocull"
+	defines = "USE_COLOR_TINT", "USE_TINT_MASK", "USE_FLAG"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	defines = "USE_DETAIL_MAP", "BASE_TEXTURES", "USE_COLOR_TINT", "USE_TINT_MASK", "USE_FLAG_DECAL", "USE_SCROLL_ROTATE_UVS"
+	state = "gbuffer opaque + nocull"
+	source = "gbuffer_flag.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

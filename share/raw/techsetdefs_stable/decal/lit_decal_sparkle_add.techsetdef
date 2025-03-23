@@ -1,0 +1,153 @@
+#include "lit_base_shaders"
+#include "normal_base"
+#include "shadowmap_technique_base"
+#include "thermal_base"
+#include "lit_decal_base.inc"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "emissive decal"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "sparkleDataMap" )
+{
+	image = Image( <colorMap00, snow_sparkle_m> )
+	semantic = "multipleMask"
+	tweak = Tweak()
+	{
+		category  = "Sparkles"
+		title     = "Sparkles Map (Intensity, ID)"
+		sortindex = "0"
+	}
+}
+
+Sampler( "sparkleDataSampler" )
+{
+	tile = "tile both*"
+	filter = "nearest (mip none)"
+}
+
+Texture( "maskMap" )
+{
+	image = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Mask"
+		title     = "Mask Map"
+		sortindex = "0"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Bool( "noReceiveShadow" )
+{
+	value = <noReceiveDynamicShadow>
+}
+
+Bool( "useUVOffsets" )
+{
+	value = <useWorldOffsets1>
+	tweak = Tweak()
+	{
+		category	= "Parameters"
+		title		= "Use world space UV offsets."
+		sortindex	= "10"
+	}
+}
+
+float2( "sparkleTile" )
+{
+	x = <cg00_x>
+	y = <cg00_y>
+	tweak = Tweak()
+	{
+		category  = "Sparkles"
+		title     = "Sparkle Scale (U, V)"
+		sortindex = "10"
+		default   = "8.0"
+		range     = "0.001", "1024", "0.01"
+	}
+}
+
+Color( "specColorTint" )
+{
+	value = "srgb_to_linear( <specColorTint> )"
+	tweak = Tweak()
+	{
+		category  = "Sparkles"
+		title     = "Spec Color"
+		sortindex = "30"
+		color = true
+	}
+}
+
+float2( "glossRange" )
+{
+	x = <glossRangeMin>
+	y = <glossRangeMax>
+	tweak = Tweak()
+	{
+		category  = "Sparkles"
+		title     = "Gloss Range"
+		sortindex = "45"
+	}
+}
+
+float2( "normalTile" )
+{
+	x = <cg00_z>
+	y = <cg00_w>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Normal Scale (U, V)"
+		sortindex = "100"
+		default   = "8.0"
+		range     = "0.001", "1024", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+// for unlit shader....
+Texture( "colorMap" ) : "sparkleDataMap"
+{}
+
+Sampler( "colorSampler" ) : "sparkleDataSampler"
+{}
+
+Color( "colorTint" ) : "specColorTint"
+{}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines = "USE_COLOR_TINT"
+}
+
+Technique( "lit" )
+{
+	state = "add + depth + decal"
+	defines = "BASE_SPEC", "USE_COLOR_TINT"
+	source = "lit_decal_sparkle.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

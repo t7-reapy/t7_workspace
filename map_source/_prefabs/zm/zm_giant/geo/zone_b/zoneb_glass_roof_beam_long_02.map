@@ -1,0 +1,35 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"000_Global/Ceilings" flags 
+"000_Global/Ceilings/Glass Ceiling" flags 
+"000_Global/Ceilings/Glass Ceiling/glass_framework" flags 
+"The Map" flags expanded 
+// entity 0
+{
+guid "{67AB8B6D-BF91-43AE-99FC-46F72C7E7D54}"
+"classname" "worldspawn"
+"suncolor" "0.854902 0.854902 0.854902"
+"sundirection" "313  133 0"
+"sunlight" "0.1"
+"fsi" "default"
+"gravity" "800"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{C24D58D1-146A-47B3-BCD0-417DE43AEAC9}"
+layer "000_Global/Ceilings/Glass Ceiling/glass_framework"
+  contents nonColliding;
+ ( 1 220 -1.5 ) ( -1 220 -1.5 ) ( -1 -222 -1.5 ) t7_metal_aged_trim_beam_01 11.05 2 222 -537 -90 0 lightmap_gray 16384 16384 -76 34 0 0
+ ( -1 -222 1.5 ) ( -1 220 1.5 ) ( 1 220 1.5 ) t7_metal_aged_trim_beam_01 11.05 2 222 -537 -90 0 lightmap_gray 16384 16384 -76 34 0 0
+ ( 1 -421.5 1.5 ) ( 1 20.5 1.5 ) ( 1 20.5 -1.5 ) t7_metal_aged_trim_beam_01 11.05 -3 222 -562.5 -180 0 lightmap_gray 16384 16384 -34 560.5 0 0
+ ( -1 294 1.5 ) ( -1 -148 1.5 ) ( -1 -148 -1.5 ) t7_metal_aged_trim_beam_01 11.05 -3 222 -562.5 180 0 lightmap_gray 16384 16384 -34 560.5 0 0
+ ( 2 -222 1.5 ) ( -1 -222 1.5 ) ( -1 -222 33.5 ) t7_metal_aged_trim_beam_01 0.40000001 -3 -537 -562.5 180 0 lightmap_gray 16384.73 16384 94 560.5 0 0
+ ( 107 -97 1.5 ) ( 111 -97 1.5 ) ( 107 -97 33.5 ) t7_metal_aged_trim_beam_01 0.40000001 -3 -537 -562.5 180 0 lightmap_gray 16384 16384 537 560.5 0 0
+}
+}

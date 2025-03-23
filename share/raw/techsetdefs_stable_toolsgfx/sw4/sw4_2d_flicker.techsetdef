@@ -1,0 +1,139 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Blend
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = invSrcAlpha
+		writeChannels  = "rgba"
+	}
+	cull = "None"
+}
+Sampler( "Noise_Texture_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "Noise_Texture" )
+{
+	image    = Image( <colorMap04> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\noise2.tif"
+	}
+}
+Sampler( "Lookup_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "Lookup" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\tv_lookup.tif"
+	}
+}
+float1( "Coarseness" )
+{
+	x     = <cg05_x>
+	tweak = Tweak()
+	{
+		title     = "Coarseness"
+		sortindex = "0"
+		default   = "1.500560"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "Power" )
+{
+	x     = <cg02_x>
+	tweak = Tweak()
+	{
+		title     = "Power"
+		sortindex = "0"
+		default   = "2.620320"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float4( "MaxFlickerColor" )
+{
+	x     = <cg03_x>
+	y     = <cg03_y>
+	z     = <cg03_z>
+	w     = <cg03_w>
+	tweak = Tweak()
+	{
+		title     = "MaxFlickerColor"
+		sortindex = "0"
+		default   = "1.000000", "1.000000", "1.000000", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float4( "MinFlickerColor" )
+{
+	x     = <cg06_x>
+	y     = <cg06_y>
+	z     = <cg06_z>
+	w     = <cg06_w>
+	tweak = Tweak()
+	{
+		title     = "MinFlickerColor"
+		sortindex = "0"
+		default   = "0.000000", "0.000000", "0.000000", "0.190000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "Speed" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		title     = "Speed"
+		sortindex = "0"
+		default   = "0.970800"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_flicker.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_BLEND"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

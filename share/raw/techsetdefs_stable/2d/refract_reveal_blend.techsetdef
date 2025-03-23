@@ -1,0 +1,113 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "linear (mip none)"
+}
+
+Texture( "colorMap" )
+{
+	image    = Image( <colorMap, $white> )
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "normalMap" )
+{
+	image    = Image( <normalMap, $identitynormal> )
+	tweak    = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Normal Map"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "alphaRevealSoftEdge" )
+{
+	x     = <alphaRevealSoftEdge>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Reveal Soft Edge"
+		sortindex	= "20"
+	}
+}
+
+float1( "alphaRevealRamp" )
+{
+	x     = <alphaRevealRamp>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Reveal Ramp"
+		sortindex	= "30"
+	}
+}
+
+float1( "refractionAmount" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Amount"
+		sortindex	= "20"
+	}
+}
+
+float2( "normalScroll" )
+{
+	x     = <cg00_y>
+	y     = <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Scroll"
+		sortindex	= "30"
+	}
+}
+
+float2( "normalTile" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	tweak = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Tiling"
+		sortindex	= "30"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+		source = "postfx/refract_reveal_blend.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/refract_reveal_blend.hlsl"
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

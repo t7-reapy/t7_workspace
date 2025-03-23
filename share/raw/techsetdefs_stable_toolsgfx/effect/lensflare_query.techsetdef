@@ -1,0 +1,37 @@
+#include "effect_base"
+
+Globals()
+{
+	category = "Effect"
+	renderFlags = "none"
+
+}
+
+//Technique( "lit", "unlit" )
+Technique( "unlit" )
+{
+	state = State()
+	{
+		blendState = "nocolor"
+		depthTest  = lessEqual
+	}
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "techsetdef_lensflare_query.hlsl"
+		defines = "USE_VERTCOL"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "techsetdef_lensflare_query.hlsl"
+		defines = "USE_VERTCOL"
+#endif
+	}
+}

@@ -1,0 +1,59 @@
+#include "lit_flag_base_mid"
+#include "transparent_shadow_base"
+#include "transparent_base"
+
+Globals()
+{
+	category = "Geometry Plus"
+
+	renderFlags = "lit semi transparent animating"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+//----------------------------------------------------------------------------------------------
+
+Technique( "build shadowmap depth" ) :  "flag build shadowmap depth"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "flag build shadowmap depth planes"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) : "flag build shadowmap depth layered"
+{}
+
+Technique( "unlit" )
+{
+	state = "blend + depth + nocull"
+	defines = "USE_COLOR_TINT", "USE_TINT_MASK", "USE_FLAG"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "blend + depth + nocull"
+	defines = "USE_DETAIL_MAP", "BASE_SPEC", "USE_COLOR_TINT", "USE_TINT_MASK"
+	source = "lit_flag.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez + nocull"
+	defines += "USE_OIT"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + nocull"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

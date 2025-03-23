@@ -1,0 +1,97 @@
+#include "lit_base_basic"
+#include "transparent_base"
+
+Globals()
+{
+	displayName = "lit_backlit_alphatest"
+	category = "Geometry"
+	renderFlags = "lit deferred semi opaque nocull"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "thicknessMap" )
+{
+	image = Image( <alphaRevealMap, $thickness> )
+	semantic = "thicknessMap"
+	tweak = Tweak()
+	{
+		category  = "Backlight"
+		title     = "Thickness Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "tintMask" )
+{
+	image = Image( <colorMap00, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Albedo Tint Mask"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "backlightScatterColor" )
+{
+	value = "srgb_to_linear( <backlightScatterColor> )"
+	tweak = Tweak()
+	{
+		category  = "Backlight"
+		title     = "Tint"
+		sortindex = "20"
+		color = true
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) : "build shadowmap depth alphatest backlit"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes alphatest backlit"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) : "build shadowmap depth layered alphatest backlit"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth + nocull"
+	defines = "USE_ALPHA_TEST", "USE_COLOR_TINT", "USE_TINT_MASK"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque + nocull"
+	defines = "USE_COLOR_TINT", "USE_TINT_MASK", "BASE_TEXTURES", "USE_ALPHA_TEST"
+	source = "gbuffer_backlit.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth + nocull"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

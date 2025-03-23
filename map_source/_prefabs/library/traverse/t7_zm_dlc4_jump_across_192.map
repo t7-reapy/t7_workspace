@@ -1,0 +1,69 @@
+iwmap 4
+// entity 0
+{
+guid "{E9001484-EFBE-11E5-B51C-2C27D7F05ED2}"
+"classname" "worldspawn"
+// brush 0
+{
+ guid "{6CF2E83A-EFBE-11E5-B51C-2C27D7F05ED2}"
+ ( 32 256 -8 ) ( -7 256 -8 ) ( -7 184 -8 ) traverse 32 32 10 -58 0 0 lightmap_gray 16384 16384 10 -58 0 0
+ ( -7 184 0 ) ( -7 256 0 ) ( 32 256 0 ) traverse 32 32 10 -58 0 0 lightmap_gray 16384 16384 10 -58 0 0
+ ( -6.5 192 0 ) ( 32.5 192 0 ) ( 32.5 192 -8 ) traverse 32 32 10 0 0 0 lightmap_gray 16384 16384 10 0 0 0
+ ( 32 184 0 ) ( 32 256 0 ) ( 32 256 -8 ) traverse 32 32 58 0 0 0 lightmap_gray 16384 16384 58 0 0 0
+ ( 36 225 6 ) ( -3 225 6 ) ( -3 225 -2 ) traverse 32 32 10 -6 0 0 lightmap_gray 16384 16384 10 -6 0 0
+ ( 0 256 0 ) ( 0 184 0 ) ( 0 184 -8 ) traverse 32 32 58 0 0 0 lightmap_gray 16384 16384 58 0 0 0
+}
+// brush 1
+{
+ guid "{6CF2E837-EFBE-11E5-B51C-2C27D7F05ED2}"
+ ( 32 -111 -8 ) ( 32 0 -8 ) ( 0 0 -8 ) traverse 64 64 -200 44 90 0 lightmap_gray 16383.986 16384 -188 16 90 0
+ ( 0 -111 0 ) ( 0 0 0 ) ( 32 0 0 ) traverse 64 64 -200 44 90 0 lightmap_gray 16384 16384 -188 16 90 0
+ ( 32 -111 -8 ) ( 32 -111 0 ) ( 32 0 0 ) traverse 64 64 -200 82 0 0 lightmap_gray 16384.016 16384 -188 26 0 0
+ ( 32 0 -8 ) ( 32 0 0 ) ( 0 0 0 ) traverse 64 -64 -44 -82 180 0 lightmap_gray 16384 -16384 -16 -26 180 0
+ ( 0 0 -8 ) ( 0 0 0 ) ( 0 -111 0 ) traverse 64 64 -200 82 0 0 lightmap_gray 16383.969 16384 -188 26 0 0
+ ( 0 -33 -9 ) ( 0 -33 -1 ) ( 32 -33 -1 ) traverse 64 -64 -44 -83 180 0 lightmap_gray 16384 -16384 -16 -27 180 0
+}
+// brush 2
+{
+ guid "{6CF2E838-EFBE-11E5-B51C-2C27D7F05ED2}"
+ ( 32 200 -64 ) ( 0 200 -64 ) ( 0 192 -64 ) traverse 32 32 16 -64 0 0 lightmap_gray 16384 16384 16 -64 0 0
+ ( 0 192 -8 ) ( 0 200 -8 ) ( 32 200 -8 ) traverse 32 32 16 -64 0 0 lightmap_gray 16384 16384 16 -64 0 0
+ ( 0 192 -48 ) ( 32 192 -48 ) ( 32 192 -64 ) traverse 32 32 16 0 0 0 lightmap_gray 16384 16384 16 0 0 0
+ ( 32 192 -8 ) ( 32 200 -8 ) ( 32 200 -24 ) traverse 32 32 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+ ( 32 200 -8 ) ( 0 200 -8 ) ( 0 200 -24 ) traverse 32 32 16 0 0 0 lightmap_gray 16384 16384 16 0 0 0
+ ( 0 200 -8 ) ( 0 192 -8 ) ( 0 192 -24 ) traverse 32 32 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+}
+// brush 3
+{
+ guid "{6CF2E839-EFBE-11E5-B51C-2C27D7F05ED2}"
+ ( 32 0 -64 ) ( 0 0 -64 ) ( 0 -8 -64 ) traverse 32 32 16 0 0 0 lightmap_gray 16384 16384 16 0 0 0
+ ( 0 -8 -8 ) ( 0 0 -8 ) ( 32 0 -8 ) traverse 32 32 16 0 0 0 lightmap_gray 16384 16384 16 0 0 0
+ ( 0 -8 -8 ) ( 32 -8 -8 ) ( 32 -8 -64 ) traverse 32 32 16 0 0 0 lightmap_gray 16384 16384 16 0 0 0
+ ( 32 -8 -8 ) ( 32 0 -8 ) ( 32 0 -64 ) traverse 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 0 0 ) ( 0 0 0 ) ( 0 0 -56 ) traverse 32 32 16 0 0 0 lightmap_gray 16384 16384 16 0 0 0
+ ( 0 0 -8 ) ( 0 -8 -8 ) ( 0 -8 -64 ) traverse 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 1
+{
+guid "{6CF2E83D-EFBE-11E5-B51C-2C27D7F05ED2}"
+"classname" "node_negotiation_end"
+"angles" "0 270 0"
+"animscript" "jump_across_192"
+"origin" "16 208 16"
+"previewanim1" "ai_zm_dlc4_zombie_jump_across_192"
+"previewmdl1" "c_gen_soldier_1_fb"
+"targetname" "auto2108"
+}
+// entity 2
+{
+guid "{6CF2E840-EFBE-11E5-B51C-2C27D7F05ED2}"
+"classname" "node_negotiation_begin"
+"angles" "0 90 0"
+"animscript" "jump_across_192"
+"movementtype_ignore" "civilian"
+"origin" "16 -16 16"
+"previewanim1" "ai_zm_dlc4_zombie_jump_across_192"
+"previewmdl1" "c_gen_soldier_1_fb"
+"target" "auto2108"
+}

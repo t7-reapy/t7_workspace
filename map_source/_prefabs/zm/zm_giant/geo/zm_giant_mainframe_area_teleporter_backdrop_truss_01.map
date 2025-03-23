@@ -1,0 +1,159 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{092BAB37-197A-40BA-9F5E-F111FD1C223C}"
+"classname" "worldspawn"
+"_color" "0.556863 0.54902 0.72549"
+"ambient" "0.30"
+"diffusefraction" "0.45"
+"evmax" "31"
+"evmin" "-32"
+"spawnflags" "512"
+"suncolor" "0.6352 0.7137 0.8"
+"sundiffusecolor" "0.3098 0.2745 0.3058"
+"sundirection" "-153 -54 0"
+"sunisprimarylight" "1"
+"sunlight" "0.6"
+"vertexbake" "1.0"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{AFE41AE8-B69A-47D6-B924-661125FB0FB4}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{71FE56C1-800F-4181-A3AE-894B8A9624BE}"
+  contents weaponClip;
+ ( 860 1724 1400 ) ( 860 1712 1400 ) ( 952 1712 1400 ) caulk 16 16 396 760 90 0 lightmap_gray 16384.053 16382.848 -942.83258 1657 -180 0
+ ( 1154 1716 1402 ) ( 1154 1716 1412 ) ( 1246 1716 1412 ) t7_metal_trim_rivets_02 102 12 740 -1124 0 0 lightmap_gray 16384 -16386.502 -942.99756 1012.9482 -180 0
+ ( 860 1712 1412 ) ( 860 1724 1412 ) ( 952 1724 1412 ) caulk 16 16 412 716 90 0 lightmap_gray 16384.061 16384.318 -942.89526 1656.9895 -180 0
+ ( 1483 1720 1412 ) ( 1483 1720 1402 ) ( 1575 1720 1402 ) t7_metal_trim_rivets_02 102 12 740 -1124 0 0 lightmap_gray 16384.418 -16385 -942.875 1012.9854 180 -7.3206713e-005
+ ( 686 1998 1412.5 ) ( 686 1998 1412 ) ( 686 2030 1412.5 ) caulk 16 16 412 -1128 0 0 lightmap_gray 16384 16384 412 -1128 0 0
+ ( 752 1724 1411 ) ( 752 1724 1412 ) ( 752 1756 1412 ) caulk 16 16 396 -1128 0 0 lightmap_gray 16384 16384 412 -1128 0 0
+}
+// brush 1
+{
+ guid "{D2772A71-E997-49B3-84E0-BFE045C5E7BA}"
+  contents weaponClip;
+ ( 610.5 1712 1399 ) ( 816 1712 1399 ) ( 816 1724 1399 ) t7_metal_trim_rivets_01 205.5 12 -610.5 416 180 0 lightmap_gray 16384 16381.633 -943.39294 1657.0067 180 0
+ ( 546.5 1724 1400 ) ( 752 1724 1400 ) ( 752 1712 1400 ) caulk 12 -205.5 -404 -816 -90 0 lightmap_gray 16384 16384.926 -942.5788 1657 180 0
+ ( 686 1724 1399 ) ( 686 1724 1400 ) ( 686 1712 1400 ) caulk 12 -1 -404 1128 180 0 lightmap_gray 16384 16384 412 -1128 0 0
+ ( 832 1724 1399 ) ( 832 1724 1400 ) ( 626.5 1724 1400 ) t7_metal_trim_rivets_01 205.5 1 816 -1128 0 0 lightmap_gray 16384 -16384 -760 1128 -180 0
+ ( 626.5 1712 1399 ) ( 626.5 1712 1400 ) ( 832 1712 1400 ) t7_metal_trim_rivets_01 205.5 1 816 -1128 0 0 lightmap_gray 16384 -16384 -760 1128 180 0
+ ( 752 1712 1399 ) ( 752 1712 1400 ) ( 752 1724 1400 ) caulk 12 -1 -404 1128 180 0 lightmap_gray 16384 16384 412 -1128 0 0
+}
+// brush 2
+ {
+  guid "{EC4301AA-45CC-11E4-B9DE-2C27D7EF3DFA}"
+  mesh
+  {
+  toolFlags;
+   t7_snow_powder_03_blend
+   lightmap_gray
+   3 3 0 8
+   (
+	v 752 1716 1412 c 255 255 255 0 t 0 -0 11.937347 -24.936932 f 1
+	v 752 1716 1406 t 0 -96 11.937347 -24.561989 f 1
+	v 752 1716 1400 t 0 -192 11.937347 -24.187046
+   )
+   (
+	v 719 1716 1412 c 255 255 255 110 t 528 -0 13.999847 -24.936932
+	v 719 1716 1406 c 255 255 255 0 t 528 -96 13.999847 -24.561989
+	v 719 1716 1400 t 528 -192 13.999847 -24.187046
+   )
+   (
+	v 686 1716 1412 c 255 255 255 0 t 1056 -0 16.062347 -24.936932
+	v 686 1716 1406 t 1056 -96 16.062347 -24.561989
+	v 686 1716 1400 t 1056 -192 16.062347 -24.187046
+   )
+   decalLayerSort "Snow"
+   decalEditorSort -1
+  }
+ }
+}
+// entity 2
+{
+guid "{58B2742C-5185-42D3-93A2-5A397CCB1FA2}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{F157F113-1388-43D5-B41D-7A21D2C0530E}"
+  contents weaponClip;
+ ( 546.5 1712 1412 ) ( 752 1712 1412 ) ( 752 1724 1412 ) t7_metal_trim_rivets_01 205.5 12 -610.5 416 -180 0 lightmap_gray 16384 16383.443 -942.75482 1657 -180 0
+ ( 610.5 1724 1413 ) ( 816 1724 1413 ) ( 816 1712 1413 ) caulk 12 -205.5 -404 -816 -90 0 lightmap_gray 16384 16384.322 -943.39886 1656.9938 180 0
+ ( 686 1724 1412 ) ( 686 1724 1413 ) ( 686 1712 1413 ) caulk 12 -1 -404 1128 180 0 lightmap_gray 16384 16384 412 -1128 0 0
+ ( 832 1724 1412 ) ( 832 1724 1413 ) ( 626.5 1724 1413 ) t7_metal_trim_rivets_01 205.5 1 816 -1128 0 0 lightmap_gray 16384 -16384 -760.25 1128 180 0
+ ( 626.5 1712 1412 ) ( 626.5 1712 1413 ) ( 832 1712 1413 ) t7_metal_trim_rivets_01 205.5 1 816 -1128 0 0 lightmap_gray 16384 -16384 -760.25 1128 180 0
+ ( 752 1712 1412 ) ( 752 1712 1413 ) ( 752 1724 1413 ) caulk 12 -1 -404 1128 -180 0 lightmap_gray 16384 16384 412 -1128 0 0
+}
+}
+// entity 3
+{
+guid "{89474A02-0608-4D79-90D5-98861EB5AAE3}"
+"classname" "misc_model"
+"angles" "90 333.435 -26.565"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"origin" "684 1718 1413"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 4
+{
+guid "{8A5FA60C-956B-4976-9F72-5E16C9A76F05}"
+"classname" "misc_model"
+"angles" "270 135 45"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"origin" "684 1718 1399"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 5
+{
+guid "{E48E91DD-6AC2-4A19-9FED-E18C972209AB}"
+"classname" "misc_model"
+"angles" "270 315 45"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"origin" "752 1718 1399"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 6
+{
+guid "{BD7CABB2-48F1-4C06-A87F-D0506C4D937C}"
+"classname" "misc_model"
+"angles" "90 275.509 95.5093"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"origin" "752 1718 1413"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}

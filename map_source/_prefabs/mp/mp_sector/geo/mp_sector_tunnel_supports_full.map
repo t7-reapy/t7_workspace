@@ -1,0 +1,257 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{1D2D59BC-4A2B-4971-8557-52977FAFBC97}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"newsun" "1"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"evmax" "31"
+"evmin" "-32"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{F6A64928-529E-11E4-8595-2C27D7F024B0}"
+ ( -796 1164 96 ) ( -816 1164 96 ) ( -816 1148 96 ) clip 16 16 -388 -120 0 0 lightmap_gray 16384 16384 -4 0 0 0
+ ( -816 1148 272 ) ( -816 1164 272 ) ( -796 1164 272 ) clip 16 16 -388 -120 0 0 lightmap_gray 16384 16384 -4 0 0 0
+ ( -816 1148 272 ) ( -796 1148 272 ) ( -796 1148 96 ) clip 16 16 -388 -120 0 0 lightmap_gray 16384 16384 -4 0 0 0
+ ( -788 1148 272 ) ( -788 1164 272 ) ( -788 1164 96 ) clip 16 16 -384 -120 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -836 1180 272 ) ( -836 1180 96 ) ( -784 1180 96 ) clip 16 16 -388 -120 0 0 lightmap_gray 16384 16384 -4 0 0 0
+ ( -840 1200 96 ) ( -840 1200 272 ) ( -820 1148 272 ) clip 16 16 -384 -120 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 1
+{
+guid "{4F63AB41-8231-4CDC-A086-18F4D65D5F7B}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{E274D742-525D-11E4-8595-2C27D7F024B0}"
+  mesh
+  {
+  toolFlags;
+   t7_decal_signage_caution_stripes_yellow
+   lightmap_gray
+   2 2 0 8
+   (
+	v -600 1174 224 c 255 255 255 158 t 13047.935 10703.847 68.625 -14.125
+	v -600 1040 224 c 255 255 255 158 t 11856.764 9115.6182 77 -14.125
+   )
+   (
+	v -600 1174 256 c 255 255 255 158 t 13427.213 10419.388 68.625 -16.125
+	v -600 1040 256 c 255 255 255 158 t 12236.042 8831.1592 77 -16.125
+   )
+   decalLayerSort "Signage - Old"
+   decalEditorSort -1
+  }
+ }
+// brush 1
+{
+ guid "{BC4B3FA9-50C9-11E4-8595-2C27D7F024B0}"
+ ( -688 1160 224 ) ( -688 1056 224 ) ( -600 1040 224 ) t7_concrete_interior_ceiling 64 64 0 0 0 0 lightmap_gray 16384 16384 1590 2272 -180 0
+ ( -600 1176 256 ) ( -600 1040 256 ) ( -688 1056 256 ) t7_concrete_block_barrier_01 64 -64 -72 340 -90 0 lightmap_gray 16384 16384 1590 2272 180 0
+ ( -600 1174 222 ) ( -600 1174 264 ) ( -688 1158 264 ) caulk 64 64 4 2 0 0 lightmap_gray 16384 -16384 1590 -2 180 0
+ ( -688 1056 214 ) ( -688 1056 254 ) ( -600 1040 254 ) caulk 64 -64 1546 -2 180 0 lightmap_gray 16384 -16384 1590 -2 180 0
+ ( -600 1174 256 ) ( -600 1174 214 ) ( -600 1040 214 ) t7_concrete_block_barrier_01 64 64 52 4 0 0 lightmap_gray 16384 -16384 -2272 -2 180 0
+ ( -688 1158 222 ) ( -688 1158 262 ) ( -688 1056 262 ) caulk 16 16 104 2 0 0 lightmap_gray 16384 16384 104 2 0 0
+}
+}
+// entity 2
+{
+guid "{0980DA45-7B6A-4074-864B-753AD7E62FF3}"
+"classname" "misc_prefab"
+"angles" "0 270 0"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_tunnel_support_beam.map"
+"origin" "-1753 266 0"
+}
+// entity 3
+{
+guid "{5C8D92B8-2066-4CBE-8EA0-BE7AA9077A04}"
+"classname" "misc_prefab"
+"angles" "0 270 0"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_tunnel_support_beam.map"
+"origin" "-1753 368 0"
+}
+// entity 4
+{
+guid "{4A0BFDE8-9946-46D3-AE75-C56198F7E874}"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_support_full.map"
+"origin" "0 -3 0"
+}
+// entity 5
+{
+guid "{D2CFFE79-DF02-4F2E-9926-8D2EFCE0E991}"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_tunnel_beam_horizontal_thick.map"
+"origin" "0 2 0"
+}
+// entity 6
+{
+guid "{BC8FA9DA-5F72-49AB-B98B-54C679A22EAF}"
+"classname" "misc_prefab"
+"angles" "0 180 0"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_tunnel_beam_horizontal_thick_long.map"
+"origin" "-1389 2228.5 0"
+}
+// entity 7
+{
+guid "{B5A47704-9D79-4C73-B5DC-C9F2905A367F}"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_support_full.map"
+"origin" "0 99 0"
+}
+// entity 8
+{
+guid "{1E385A41-43B4-4C4D-8351-09E52BA57417}"
+"classname" "misc_prefab"
+"angles" "0 12.2 0"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_support_full.map"
+"origin" "396.026 306.917 0"
+}
+// entity 9
+{
+guid "{AF7B7647-9948-406B-B792-76D7EF85B070}"
+"classname" "misc_prefab"
+"angles" "0 350.4 0"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_support_full.map"
+"origin" "2.33728 -135.561 0"
+}
+// entity 10
+{
+guid "{1EC95DD1-52B7-415D-A226-8CBE1DC702AB}"
+"classname" "misc_prefab"
+"angles" "0 13.9999 0"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_support_top.map"
+"origin" "446.72 242.488 -12"
+}
+// entity 11
+{
+guid "{C416FA73-5FD3-4568-9F37-0BE779F52E7E}"
+"classname" "misc_prefab"
+"angles" "0 350.8 0"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_support_top.map"
+"origin" "-5.32349 -228.889 -19"
+}
+// entity 12
+{
+guid "{69D82564-765A-4750-A69B-0FCBD72B1E52}"
+"classname" "func_group"
+"type" "patchCapped"
+// brush 0
+ {
+  guid "{8C71A000-5263-11E4-8595-2C27D7F024B0}"
+  mesh
+  {
+  toolFlags;
+   t7_metal_beam_painted_01
+   lightmap_gray
+   2 2 0 8
+   (
+	v -696.5 1082.5 217.5 c 47 213 225 255 t 2451.061 -130164.5 -49.46875 -13.781239
+	v -696 1082.5 217.5 c 47 213 225 255 t 2455.8008 -130164.5 -49.4375 -13.781239
+   )
+   (
+	v -696.5 1075.5 217.5 c 47 213 225 255 t 2451.061 -129106.7 -49.46875 -13.781239
+	v -696 1075.5 217.5 c 47 213 225 255 t 2455.8008 -129106.7 -49.4375 -13.781239
+   )
+  }
+ }
+}
+// entity 13
+{
+guid "{8CCD6F29-9D68-431A-99C2-EF5B709D3FE1}"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_support_top.map"
+}
+// entity 14
+{
+guid "{7663943B-FFA0-4826-A842-6DF405A5A74E}"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_tunnel_beam_horizontal_thin_long.map"
+}
+// entity 15
+{
+guid "{24C098B5-09FC-4179-A8F6-AF52A9FDB94C}"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_tunnel_support_basel.map"
+"origin" "0 -2 0"
+}
+// entity 16
+{
+guid "{4BF86E8D-CC0C-481F-AEA5-36091F6A913A}"
+"classname" "misc_prefab"
+"angles" "0 180 0"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_tunnel_support_basel.map"
+"origin" "-1388 2216 0"
+}
+// entity 17
+{
+guid "{D0248C9E-0F10-40C5-8081-036A442067B3}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_cai_tunnel_support_01_horiz_middle"
+"origin" "-694.5 1107 220"
+"modelscale" "1"
+}
+// entity 18
+{
+guid "{874E0349-3A44-44C0-B89D-AA3935F5464B}"
+"classname" "misc_model"
+"model" "p7_cai_tunnel_support_01_top_left_01"
+"origin" "-743.5 1157 220"
+"modelscale" "1"
+}
+// entity 19
+{
+guid "{528B6641-A63A-4F99-9192-3E5EAAE50A00}"
+"classname" "misc_model"
+"model" "p7_cai_tunnel_support_01_top_right_01"
+"origin" "-743.5 1058 220"
+"modelscale" "1"
+}
+// entity 20
+{
+guid "{2CD52674-F0C8-43F9-A8E6-D3DFAE15675D}"
+"classname" "misc_model"
+"model" "p7_cai_tunnel_support_01_top_right_02"
+"origin" "-693.5 1060 220"
+"modelscale" "1"
+}
+// entity 21
+{
+guid "{C5B9B235-C778-4AE8-A69C-87366ABBA49B}"
+"classname" "misc_model"
+"model" "p7_cai_tunnel_support_01_top_left_02"
+"origin" "-688 1156 220"
+"modelscale" "1"
+}
+// entity 22
+{
+guid "{65009D4E-F3ED-483F-85FA-0DCBF161C213}"
+"classname" "misc_prefab"
+"angles" "0 359.3 0"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_tunnel_beam_horizontal_thin_long.map"
+"origin" "-204.576 -15.236 1.5"
+}
+// entity 23
+{
+guid "{9103B9F2-43E5-46FC-979E-B533E20BBA0B}"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/mp_sector/geo/mp_sector_support_top.map"
+"origin" "0 -102 -10.5"
+}

@@ -1,0 +1,22 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "depth write"
+
+	vs = VertexShader()
+	{
+		source = "downsample_z.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "downsample_z.hlsl"
+	}
+}

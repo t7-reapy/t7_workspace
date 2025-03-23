@@ -1,0 +1,214 @@
+#include "lit_base_mid"
+#include "transparent_shadow_base"
+#include "scroll_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit transparent distortion"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "emissiveMap" )
+{
+	ref = true
+	image = Image( <colorMap00, $white> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Emissive Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "tintMask" )
+{
+	image = Image( <colorMap01, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "20"
+	}
+}
+
+Texture( "alphaMask" )
+{
+	image = Image( <colorMap02, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Alpha Mask"
+		sortindex = "30"
+	}
+}
+
+Texture( "edgeColorMap" )
+{
+	ref = true
+	image = Image( <colorMap03, $white> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Intersection Fritz"
+		title     = "Color Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "edgeEmissiveMap" )
+{
+	ref = true
+	image = Image( <colorMap04, $white> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Intersection Fritz"
+		title     = "Emissive Map"
+		sortindex = "20" 
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "hdrScale" )
+{
+	x = <scaleRGB>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		title     = "HDR Scale"
+		sortindex = "10"
+	}
+}
+
+float1( "emissiveFalloffScale" )
+{
+	x = <cg01_x>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		title     = "Falloff Scale"
+		sortindex = "20"
+		default   = "0.0"
+		range     = "0", "20", "0.01"
+	}
+}
+
+float1( "emissiveFalloffPow" )
+{
+	x = <cg01_y>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		title     = "Falloff Harshness"
+		sortindex = "30"
+		default   = "0.0"
+		range     = "0", "20", "0.01"
+	}
+}
+
+float1( "emissiveFalloffDir" )
+{
+	x = <cg02_x>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		title     = "Falloff Direction"
+		sortindex = "40"
+		default   = "0"
+		range     = "0", "1", "1"
+	}
+}
+
+float1( "shieldOpacity" )
+{
+	x = <cg01_z>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		title     = "Max Opacity"
+		sortindex = "50"
+		default   = "0.0"
+		range     = "0", "1", "0.01"
+	}
+}
+
+float1( "zFeather" )
+{
+	x = <cg01_w>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		title     = "Z Feather"
+		sortindex = "60"
+		default   = "0.0"
+		range     = "0", "10000", "0.01"
+	}
+}
+
+float1( "distortionAmount" )
+{
+	x = <cg02_y>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		title     = "Distortion Pixels"
+		sortindex = "70"
+		default   = "16"
+		range     = "0", "1024", "1"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float3( "scriptTint" )
+{
+	x = "<cg30_x> / 255.0"
+	y = "<cg30_y> / 255.0"
+	z = "<cg30_z> / 255.0"
+	tweak = Tweak()
+	{
+		category  = "Script Test (Tools Only)"
+		title     = "Tint Color"
+		sortindex = "10"
+		default   = "255"
+		range     = "0", "255", "1"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	defines = "USE_COLOR_TINT", "USE_TINT_MASK", "USE_SCROLL_ROTATE_UVS"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state	= "blend + depth"
+	defines = "BASE_SPEC", "USE_COLOR_TINT", "USE_TINT_MASK", "USE_SCROLL_ROTATE_UVS", "SCRIPT_TINT"
+	source	= "specialty/shock_field.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+	#if TOOLSGFX != "1"
+		resolvedPostSun = CodeTexture( "resolvedPostSun" )
+	#endif
+	}
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}

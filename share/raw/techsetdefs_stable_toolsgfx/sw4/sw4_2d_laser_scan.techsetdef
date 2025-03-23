@@ -1,0 +1,89 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Add
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = one
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = one
+		writeChannels  = "rgba"
+	}
+	cull = "None"
+}
+Sampler( "Noise_Sampler" )
+{
+	tile   = "tile both"
+	filter = "nomip bilinear"
+}
+Texture( "Noise" )
+{
+	image    = Image( <colorMap02> )
+	semantic = "2d"
+	tweak    = Tweak()
+	{
+		sortindex = "-100"
+		default   = "sw4\\textures\\noise_2d.tif"
+	}
+}
+Sampler( "Wireframe_Sampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+Texture( "Wireframe" )
+{
+	image    = Image( <colorMap01> )
+	semantic = "2d"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "texture_assets\\icons\\cod9\\f35_wireframe.tif"
+	}
+}
+Sampler( "Image_Sampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+Texture( "Image" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "2d"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "texture_assets\\icons\\cod9\\ks_lobby_icons\\ks_menu_a10_256.tif"
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_laser_scan.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_ADD"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

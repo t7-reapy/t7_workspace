@@ -1,0 +1,158 @@
+#include "state"
+#include "renderFlags"
+#include "usage"
+
+//----------------------------------------------------------------------------
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+
+	tweak = Tweak( "Color", "Color Map", "10" )
+}
+
+Texture( "colorMap" )
+{
+	image = Image( <colorMap, $white> )
+	usage = "effect map"
+
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Color Map"
+		sortindex = "0"
+	}
+}
+
+//----------------------------------------------------------------------------
+
+float1( "zFeatherDepth" )
+{
+	x = "<zFeatherDepth>"
+	tweak = Tweak()
+	{
+		category  = "Z Feathering"
+		title     = "Z Feather Depth"
+		sortindex = "30"
+	}
+}
+
+float2( "featherParms" )
+{
+	x = "1.0 / max( <zFeatherDepth>, 0.1)"
+	y = "<zFeatherDepth>"
+}
+
+//----------------------------------------------------------------------------
+
+float1( "alphaDissolve" )
+{
+	x = "255.0 / max( <alphaDissolveInt>, 1.0 )"
+	tweak = Tweak()
+	{
+		category  = "Alpha Dissolve"
+		title     = "Alpha Dissolve Amount"
+		sortindex = "30"
+	}
+}
+
+//----------------------------------------------------------------------------
+
+float1( "textureAtlasColumnCount" )
+{
+	x = <textureAtlasColumnCount>
+	tweak = Tweak()
+	{
+		category  = "Texture Atlas Settings"
+		title     = "Column Count"
+		sortindex = "30"
+	}
+}
+
+float1( "textureAtlasRowCount" )
+{
+	x = <textureAtlasRowCount>
+	tweak = Tweak()
+	{
+		category  = "Texture Atlas Settings"
+		title     = "Row Count"
+		sortindex = "30"
+	}
+}
+
+float2( "textureAtlasSettings" )
+{
+	x = <textureAtlasRowCount>
+	y = <textureAtlasColumnCount>
+}
+
+//----------------------------------------------------------------------------
+// default shaders
+//----------------------------------------------------------------------------
+
+VertexShader( "vs_default" )
+{
+	defines += "USE_TRANSMITTANCE"
+#if TOOLSGFX == "1"
+	source = "ToolsGfx/effect_cloud_simple.hlsl"
+	vertexDecl = "particle_cloud"
+#else
+#if PLAT_ORBIS == "1" || PLAT_DURANGO == "1"
+	defines += "FX_PROCESS_CLOUDS"
+#endif
+	source = "effect_cloud_simple.hlsl"
+	fx_randomTable = CodeBuffer("fx_randomTable")
+#if PLAT_ORBIS == "1"
+	primitiveType = "quadlist"
+#else
+	primitiveType = "trilist"
+#endif
+#endif
+}
+
+PixelShader( "ps_default" )
+{
+	defines += "USE_TRANSMITTANCE"
+#if TOOLSGFX == "1"
+	source = "ToolsGfx/effect_cloud_simple.hlsl"
+#else
+#if PLAT_ORBIS == "1" || PLAT_DURANGO == "1"
+	defines += "FX_PROCESS_CLOUDS"
+#endif
+	source = "effect_cloud_simple.hlsl"
+	floatZSampler = CodeTexture( "floatZ" )
+#endif
+}
+
+#include "effect_shaders.inc"
+						  
+//----------------------------------------------------------------------------
+// techniques
+//----------------------------------------------------------------------------
+
+#if TOOLSGFX == "1"
+Technique( "browser" )
+{
+	state = "blend"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/simple.hlsl"
+	}
+}
+
+Technique( "wireframe" )
+{
+	state = "wireframe + nocull"
+	vs = VertexShader() : "vs_unlit" { }
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/wireframe.hlsl"
+	}
+}
+#endif

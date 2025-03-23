@@ -1,0 +1,29 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Sampler( "shadowoverlaySampler" )
+{
+	tile = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	defines = "CUBE_ARRAY"
+	vs = VertexShader()
+	{
+		source = "techsetdef_shadowoverlay.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "techsetdef_shadowoverlay.hlsl"
+		floatCubeArraySampler = CodeTexture( "feedback" )
+	}
+}

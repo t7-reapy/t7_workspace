@@ -1,0 +1,30 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+	source = "postfx/mblur.hlsl"
+	defines = "PRESET 1"
+
+	vs = VertexShader()	
+	{
+	}
+	ps = PixelShader()
+	{
+		// textures
+		colorMapSampler = CodeTexture( "codeTexture7" )
+		sceneVelocitySampler = CodeTexture( "codeTexture0" )
+		sceneVelocityTile1Sampler = CodeTexture( "codeTexture1" )
+
+		// samplers
+		pointClamp = Sampler("no tile", "nomip nearest")
+		linearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

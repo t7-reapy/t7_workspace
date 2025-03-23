@@ -1,0 +1,793 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{46BF2846-6188-11E5-94BD-645106422D48}"
+"classname" "worldspawn"
+"_color" "0.988235 1 0.733333"
+"ambient" "0.2"
+"diffusefraction" "0.35"
+"evmax" "31"
+"evmin" "-32"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"spawnflags" "1.5"
+"suncolor" "0.854902 0.854902 0.854902"
+"sundiffusecolor" "0.843137 0.886275 1"
+"sundirection" "313  133 0"
+"sunlight" "0.1"
+"vertexbake" "1.0"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{48A48834-A624-416C-BC1C-68B944B51180}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{0F86402A-E8C9-4044-A911-75AA26419AAA}"
+  contents weaponClip detail umbraTarget;
+ ( 101.5 -164 15 ) ( 101.5 -176 15 ) ( 9.5 -176 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 134 -90 0
+ ( 101.5 -176 3 ) ( 101.5 -164 3 ) ( 9.5 -164 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 134 -90 0
+ ( -523 -168 3 ) ( -523 -168 13 ) ( -615 -168 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 134 -90 0
+ ( -248 -167.5 3.5 ) ( -248 -166 3.5 ) ( -248 -166 -28.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1950 -561 -180 0
+ ( -364 -175 3.5 ) ( -364 -163 3.5 ) ( -364 -163 13.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -580 180 0
+ ( 114 -172 15 ) ( 114 -172 5 ) ( 22 -172 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 -134 90 0
+}
+// brush 1
+{
+ guid "{EC04E7E0-322E-43A3-8CD1-806BE32C5D94}"
+  contents detail;
+ ( -264 -164 3 ) ( -264 -176 3 ) ( -618 -176 3 ) t7_metal_trim_rivets_01 -109 11 -33.5 10.5 0 0 lightmap_gray 16384 16384 -1776 134 -90 0
+ ( 250 -176 2 ) ( 250 -164 2 ) ( -104 -164 2 ) t7_metal_trim_rivets_01 -109 11 -33.5 10.5 0 0 lightmap_gray 16384 16384 -1776 134 -90 0
+ ( -635 -164.5 3 ) ( -635 -164.5 2.5 ) ( -603 -164.5 2.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 134 -90 0
+ ( -251.5 -167.5 3 ) ( -251.5 -166 3 ) ( -251.5 -166 -29 ) caulk 16 -16 736 -376 180 0 lightmap_gray 16384 16384 -1950 -561 180 0
+ ( -360.5 -176 2 ) ( -360.5 -164 2 ) ( -360.5 -164 3 ) caulk 16 -16 736 -376 180 0 lightmap_gray 16384 16384 -1776 -580 180 0
+ ( -448 -175.5 2 ) ( -448 -175.5 3 ) ( -416 -175.5 2 ) t7_metal_trim_rivets_02 104.5 -12 0 -10 180 0 lightmap_gray 16384 -16384 579 -134 90 0
+}
+// brush 2
+{
+ guid "{FFC686D2-69D2-40B7-B34F-46C7C658F045}"
+  contents weaponClip detail umbraTarget;
+ ( 250 -164 16 ) ( 250 -176 16 ) ( -104 -176 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 134 -90 0
+ ( 375.5 -176 15 ) ( 375.5 -164 15 ) ( 21.5 -164 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 134 -90 0
+ ( 200 -164.5 16 ) ( 200 -164.5 15 ) ( 232 -164.5 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 134 -90 0
+ ( -251.5 -167.5 3 ) ( -251.5 -166 3 ) ( -251.5 -166 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1950 -561 180 0
+ ( -360.5 -176 15 ) ( -360.5 -164 15 ) ( -360.5 -164 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -580 180 0
+ ( 13 -175.5 15 ) ( 13 -175.5 15.5 ) ( 45 -175.5 15.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 -134 90 0
+}
+}
+// entity 2
+{
+guid "{92265A92-FD85-4059-A08C-55EE3EBDC0F9}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE038EC-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 213.5 -164 15 ) ( 213.5 -176 15 ) ( 121.5 -176 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 14 -90 0
+ ( 213.5 -176 3 ) ( 213.5 -164 3 ) ( 121.5 -164 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 14 -90 0
+ ( -403 -168 3 ) ( -403 -168 13 ) ( -495 -168 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 14 -90 0
+ ( -136 -167.5 3.5 ) ( -136 -166 3.5 ) ( -136 -166 -28.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1950 -561 -180 0
+ ( -244 -175 3.5 ) ( -244 -163 3.5 ) ( -244 -163 13.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -580 180 0
+ ( 234 -172 15 ) ( 234 -172 5 ) ( 142 -172 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 -14 90 0
+}
+// brush 1
+{
+ guid "{7DE038ED-4A92-11E4-9FB2-2C27D7F03380}"
+  contents detail;
+ ( -152 -164 3 ) ( -152 -176 3 ) ( -506 -176 3 ) t7_metal_trim_rivets_01 -101 11 -38.5 10.5 0 0 lightmap_gray 16384 16384 -1776 14 -90 0
+ ( 370 -176 2 ) ( 370 -164 2 ) ( 16 -164 2 ) t7_metal_trim_rivets_01 -101 11 -38.5 10.5 0 0 lightmap_gray 16384 16384 -1776 14 -90 0
+ ( -515 -164.5 3 ) ( -515 -164.5 2.5 ) ( -483 -164.5 2.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 14 -90 0
+ ( -139.5 -167.5 3 ) ( -139.5 -166 3 ) ( -139.5 -166 -29 ) caulk 16 -16 736 -376 180 0 lightmap_gray 16384 16384 -1950 -561 180 0
+ ( -240.5 -176 2 ) ( -240.5 -164 2 ) ( -240.5 -164 3 ) caulk 16 -16 736 -376 180 0 lightmap_gray 16384 16384 -1776 -580 180 0
+ ( -328 -175.5 2 ) ( -328 -175.5 3 ) ( -296 -175.5 2 ) t7_metal_trim_rivets_02 104.5 -12 0 -10 180 0 lightmap_gray 16384 -16384 579 -14 90 0
+}
+// brush 2
+{
+ guid "{7DE038EE-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 370 -164 16 ) ( 370 -176 16 ) ( 16 -176 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 14 -90 0
+ ( 487.5 -176 15 ) ( 487.5 -164 15 ) ( 133.5 -164 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 14 -90 0
+ ( 320 -164.5 16 ) ( 320 -164.5 15 ) ( 352 -164.5 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 14 -90 0
+ ( -139.5 -167.5 3 ) ( -139.5 -166 3 ) ( -139.5 -166 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1950 -561 180 0
+ ( -240.5 -176 15 ) ( -240.5 -164 15 ) ( -240.5 -164 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -580 180 0
+ ( 133 -175.5 15 ) ( 133 -175.5 15.5 ) ( 165 -175.5 15.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 -14 90 0
+}
+}
+// entity 3
+{
+guid "{F0C4B478-AD24-480B-93C8-1CF3EDD62AFC}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE038EF-4A92-11E4-9FB2-2C27D7F03380}"
+  contents detail;
+ ( -152 -36 3 ) ( -152 -48 3 ) ( -506 -48 3 ) t7_metal_trim_rivets_01 -108 11 -36 3.5 0 0 lightmap_gray 16384 16384 -1904 14 -90 0
+ ( 370 -48 2 ) ( 370 -36 2 ) ( 16 -36 2 ) t7_metal_trim_rivets_01 -108 11 -36 3.5 0 0 lightmap_gray 16384 16384 -1904 14 -90 0
+ ( -515 -36.5 3 ) ( -515 -36.5 2.5 ) ( -483 -36.5 2.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 14 -90 0
+ ( -140 -39.5 3 ) ( -140 -38 3 ) ( -140 -38 -29 ) caulk 16 -16 608 -376 180 0 lightmap_gray 16384 16384 -2078 -561 -180 0
+ ( -240 -48 2 ) ( -240 -36 2 ) ( -240 -36 3 ) caulk 16 -16 608 -376 180 0 lightmap_gray 16384 16384 -1904 -580 180 0
+ ( -328 -47.5 2 ) ( -328 -47.5 3 ) ( -296 -47.5 2 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 -16384 579 -14 90 0
+}
+// brush 1
+{
+ guid "{7DE038F0-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 213.5 -36 15 ) ( 213.5 -48 15 ) ( 121.5 -48 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 14 -90 0
+ ( 213.5 -48 3 ) ( 213.5 -36 3 ) ( 121.5 -36 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 14 -90 0
+ ( -403 -40 3 ) ( -403 -40 13 ) ( -495 -40 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 14 -90 0
+ ( -136 -39.5 3.5 ) ( -136 -38 3.5 ) ( -136 -38 -28.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2078 -561 -180 0
+ ( -244 -47 3.5 ) ( -244 -35 3.5 ) ( -244 -35 13.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -580 180 0
+ ( 234 -44 15 ) ( 234 -44 5 ) ( 142 -44 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 -14 90 0
+}
+// brush 2
+{
+ guid "{7DE038F1-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 370 -36 16 ) ( 370 -48 16 ) ( 16 -48 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 14 -90 0
+ ( 487.5 -48 15 ) ( 487.5 -36 15 ) ( 133.5 -36 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 14 -90 0
+ ( 320 -36.5 16 ) ( 320 -36.5 15 ) ( 352 -36.5 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 14 -90 0
+ ( -140 -39.5 3 ) ( -140 -38 3 ) ( -140 -38 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2078 -561 -180 0
+ ( -240 -48 15 ) ( -240 -36 15 ) ( -240 -36 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -580 -180 0
+ ( 133 -47.5 15 ) ( 133 -47.5 15.5 ) ( 165 -47.5 15.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 -14 90 0
+}
+}
+// entity 4
+{
+guid "{CD34601C-D872-4E93-9A95-5E10D6614E01}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE038F2-4A92-11E4-9FB2-2C27D7F03380}"
+  contents detail;
+ ( -152 300 3 ) ( -152 288 3 ) ( -506 288 3 ) t7_metal_trim_rivets_01 -101 11 -38.5 8.5 0 0 lightmap_gray 16384 16384 -2240 14 -90 0
+ ( 370 288 2 ) ( 370 300 2 ) ( 16 300 2 ) t7_metal_trim_rivets_01 -101 11 -38.5 8.5 0 0 lightmap_gray 16384 16384 -2240 14 -90 0
+ ( -515 299.5 3 ) ( -515 299.5 2.5 ) ( -483 299.5 2.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 14 -90 0
+ ( -139.5 296.5 3 ) ( -139.5 298 3 ) ( -139.5 298 -29 ) caulk 16 -16 272 -376 180 0 lightmap_gray 16384 16384 -2414 -561 -180 0
+ ( -240.5 288 2 ) ( -240.5 300 2 ) ( -240.5 300 3 ) caulk 16 -16 272 -376 -180 0 lightmap_gray 16384 16384 -2240 -580 180 0
+ ( -328 288.5 2 ) ( -328 288.5 3 ) ( -296 288.5 2 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 -16384 579 -14 90 0
+}
+// brush 1
+{
+ guid "{7DE038F3-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 213.5 300 15 ) ( 213.5 288 15 ) ( 121.5 288 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 14 -90 0
+ ( 213.5 288 3 ) ( 213.5 300 3 ) ( 121.5 300 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 14 -90 0
+ ( -403 296 3 ) ( -403 296 13 ) ( -495 296 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 14 -90 0
+ ( -136 296.5 3.5 ) ( -136 298 3.5 ) ( -136 298 -28.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2414 -561 -180 0
+ ( -244 289 3.5 ) ( -244 301 3.5 ) ( -244 301 13.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -580 180 0
+ ( 234 292 15 ) ( 234 292 5 ) ( 142 292 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 -14 90 0
+}
+// brush 2
+{
+ guid "{7DE038F4-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 370 300 16 ) ( 370 288 16 ) ( 16 288 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 14 -90 0
+ ( 487.5 288 15 ) ( 487.5 300 15 ) ( 133.5 300 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 14 -90 0
+ ( 320 299.5 16 ) ( 320 299.5 15 ) ( 352 299.5 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 14 -90 0
+ ( -139.5 296.5 3 ) ( -139.5 298 3 ) ( -139.5 298 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2414 -561 -180 0
+ ( -240.5 288 15 ) ( -240.5 300 15 ) ( -240.5 300 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -580 180 0
+ ( 133 288.5 15 ) ( 133 288.5 15.5 ) ( 165 288.5 15.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 -14 90 0
+}
+}
+// entity 5
+{
+guid "{05BBFE3C-746C-4A60-ADA2-1EC27F1F8365}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE038F5-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 107 -402 15 ) ( 107 -414 15 ) ( 15 -414 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1538 147 -90 0
+ ( 107 -414 3 ) ( 107 -402 3 ) ( 15 -402 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1538 147 -90 0
+ ( 102.5 -406 3 ) ( 102.5 -406 13 ) ( 10.5 -406 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 147 -90 0
+ ( 345.5 -406.5 3 ) ( 345.5 -405 3 ) ( 345.5 -405 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1712 -561 180 0
+ ( -364 -413 3 ) ( -364 -401 3 ) ( -364 -401 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1538 -580 180 0
+ ( 101 -410 15 ) ( 101 -410 5 ) ( 9 -410 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 -147 90 0
+}
+// brush 1
+{
+ guid "{7DE038F6-4A92-11E4-9FB2-2C27D7F03380}"
+  contents detail;
+ ( 389 -402 3 ) ( 389 -414 3 ) ( 35 -414 3 ) t7_metal_trim_rivets_01 -140.5 11 -360.5 6.5 0 0 lightmap_gray 16384 16384 -1538 147 -90 0
+ ( 237 -414 2 ) ( 237 -402 2 ) ( -117 -402 2 ) t7_metal_trim_rivets_01 -140.5 11 -360.5 6.5 0 0 lightmap_gray 16384 16384 -1538 147 -90 0
+ ( 0 -402.5 3 ) ( 0 -402.5 2.5 ) ( 32 -402.5 2.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 147 -90 0
+ ( 342 -405.5 3 ) ( 342 -404 3 ) ( 342 -404 -29 ) caulk 16 -16 974 -376 180 0 lightmap_gray 16384 16384 -1712 -561 180 0
+ ( -360.5 -414 2 ) ( -360.5 -402 2 ) ( -360.5 -402 3 ) caulk 16 -16 974 -376 180 0 lightmap_gray 16384 16384 -1538 -580 180 0
+ ( 187 -413.5 2 ) ( 187 -413.5 3 ) ( 219 -413.5 2 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 -16384 579 -147 90 0
+}
+// brush 2
+{
+ guid "{7DE038F7-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 237 -402 16 ) ( 237 -414 16 ) ( -117 -414 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1538 147 -90 0
+ ( 381 -414 15 ) ( 381 -402 15 ) ( 27 -402 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1538 147 -90 0
+ ( 187 -402.5 16 ) ( 187 -402.5 15 ) ( 219 -402.5 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 147 -90 0
+ ( 342 -405.5 3 ) ( 342 -404 3 ) ( 342 -404 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1712 -561 180 0
+ ( -360.5 -414 15 ) ( -360.5 -402 15 ) ( -360.5 -402 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1538 -580 180 0
+ ( 0 -413.5 15 ) ( 0 -413.5 15.5 ) ( 32 -413.5 15.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 -147 90 0
+}
+}
+// entity 6
+{
+guid "{6F6C0A35-0751-4D2B-9AF3-DE1DA4ABE854}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE038F8-4A92-11E4-9FB2-2C27D7F03380}"
+  contents detail;
+ ( 232 -164 3 ) ( 232 -176 3 ) ( -122 -176 3 ) t7_metal_trim_rivets_01 -85 11 -26.5 10.5 0 0 lightmap_gray 16384 16384 -1776 -370 -90 0
+ ( 754 -176 2 ) ( 754 -164 2 ) ( 400 -164 2 ) t7_metal_trim_rivets_01 -85 11 -26.5 10.5 0 0 lightmap_gray 16384 16384 -1776 -370 -90 0
+ ( -131 -164.5 3 ) ( -131 -164.5 2.5 ) ( -99 -164.5 2.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 -370 -90 0
+ ( 228.5 -168 3 ) ( 228.5 -166.5 3 ) ( 228.5 -166.5 -29 ) caulk 16 -16 736 -376 -180 0 lightmap_gray 16384 16384 -1950 -561 180 0
+ ( 143.5 -176 2 ) ( 143.5 -164 2 ) ( 143.5 -164 3 ) caulk 16 -16 736 -376 180 0 lightmap_gray 16384 16384 -1776 -580 180 0
+ ( 56 -175.5 2 ) ( 56 -175.5 3 ) ( 88 -175.5 2 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 -16384 579 370 90 0
+}
+// brush 1
+{
+ guid "{7DE038F9-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 597.5 -164 15 ) ( 597.5 -176 15 ) ( 505.5 -176 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -370 -90 0
+ ( 597.5 -176 3 ) ( 597.5 -164 3 ) ( 505.5 -164 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -370 -90 0
+ ( -19 -168 3 ) ( -19 -168 13 ) ( -111 -168 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 -370 -90 0
+ ( 232 -167.5 3.5 ) ( 232 -166 3.5 ) ( 232 -166 -28.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1950 -561 -180 0
+ ( 140 -175 3.5 ) ( 140 -163 3.5 ) ( 140 -163 13.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -580 180 0
+ ( 618 -172 15 ) ( 618 -172 5 ) ( 526 -172 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 370 90 0
+}
+// brush 2
+{
+ guid "{7DE038FA-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 754 -164 16 ) ( 754 -176 16 ) ( 400 -176 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -370 -90 0
+ ( 871.5 -176 15 ) ( 871.5 -164 15 ) ( 517.5 -164 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -370 -90 0
+ ( 704 -164.5 16 ) ( 704 -164.5 15 ) ( 736 -164.5 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 -370 -90 0
+ ( 228.5 -168 3 ) ( 228.5 -166.5 3 ) ( 228.5 -166.5 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1950 -561 180 0
+ ( 143.5 -176 15 ) ( 143.5 -164 15 ) ( 143.5 -164 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -580 180 0
+ ( 517 -175.5 15 ) ( 517 -175.5 15.5 ) ( 549 -175.5 15.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 370 90 0
+}
+}
+// entity 7
+{
+guid "{0DA59A6B-1979-4D81-BC07-5C54103D9BCE}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE038FB-4A92-11E4-9FB2-2C27D7F03380}"
+  contents detail;
+ ( 328 -164 3 ) ( 328 -176 3 ) ( -26 -176 3 ) t7_metal_trim_rivets_01 -85 11 -26.5 10.5 0 0 lightmap_gray 16384 16384 -1776 -466 -90 0
+ ( 850 -176 2 ) ( 850 -164 2 ) ( 496 -164 2 ) t7_metal_trim_rivets_01 -109 11 -33.5 10.5 0 0 lightmap_gray 16384 16384 -1776 -466 -90 0
+ ( -35 -164.5 3 ) ( -35 -164.5 2.5 ) ( -3 -164.5 2.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 -466 -90 0
+ ( 342 -167.5 3 ) ( 342 -166 3 ) ( 342 -166 -29 ) t7_metal_trim_rivets_01 -85 11 -26.5 10.5 0 0 lightmap_gray 16384 16384 -1950 -561 180 0
+ ( 239.5 -176 2 ) ( 239.5 -164 2 ) ( 239.5 -164 3 ) t7_metal_trim_rivets_01 -85 11 -26.5 10.5 0 0 lightmap_gray 16384 16384 -1776 -580 180 0
+ ( 152 -175.5 2 ) ( 152 -175.5 3 ) ( 184 -175.5 2 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 -16384 579 466 90 0
+}
+// brush 1
+{
+ guid "{7DE038FC-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 693.5 -164 15 ) ( 693.5 -176 15 ) ( 601.5 -176 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -466 -90 0
+ ( 693.5 -176 3 ) ( 693.5 -164 3 ) ( 601.5 -164 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -466 -90 0
+ ( 77 -168 3 ) ( 77 -168 13 ) ( -15 -168 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 -466 -90 0
+ ( 345.5 -167.5 3.5 ) ( 345.5 -166 3.5 ) ( 345.5 -166 -28.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1950 -561 -180 0
+ ( 236 -175 3.5 ) ( 236 -163 3.5 ) ( 236 -163 13.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -580 180 0
+ ( 714 -172 15 ) ( 714 -172 5 ) ( 622 -172 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 466 90 0
+}
+// brush 2
+{
+ guid "{7DE038FD-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 850 -164 16 ) ( 850 -176 16 ) ( 496 -176 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -466 -90 0
+ ( 967.5 -176 15 ) ( 967.5 -164 15 ) ( 613.5 -164 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -466 -90 0
+ ( 800 -164.5 16 ) ( 800 -164.5 15 ) ( 832 -164.5 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 -466 -90 0
+ ( 342 -167.5 3 ) ( 342 -166 3 ) ( 342 -166 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1950 -561 180 0
+ ( 239.5 -176 15 ) ( 239.5 -164 15 ) ( 239.5 -164 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -580 180 0
+ ( 613 -175.5 15 ) ( 613 -175.5 15.5 ) ( 645 -175.5 15.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 466 90 0
+}
+}
+// entity 8
+{
+guid "{A08FCF1F-A017-4864-B5C8-4280D1775D13}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE038FE-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 325.5 -36 15 ) ( 325.5 -48 15 ) ( 233.5 -48 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -98 -90 0
+ ( 325.5 -48 3 ) ( 325.5 -36 3 ) ( 233.5 -36 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -98 -90 0
+ ( -299 -40 3 ) ( -299 -40 13 ) ( -391 -40 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 -98 -90 0
+ ( 136 -31.5 3.5 ) ( 136 -30 3.5 ) ( 136 -30 -28.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2078 -561 -180 0
+ ( -132 -47 3.5 ) ( -132 -35 3.5 ) ( -132 -35 13.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -580 180 0
+ ( 346 -44 15 ) ( 346 -44 5 ) ( 254 -44 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 98 90 0
+}
+// brush 1
+{
+ guid "{7DE038FF-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 482 -36 16 ) ( 482 -48 16 ) ( 128 -48 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -98 -90 0
+ ( 599.5 -48 15 ) ( 599.5 -36 15 ) ( 245.5 -36 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -98 -90 0
+ ( 424 -36.5 16 ) ( 424 -36.5 15 ) ( 456 -36.5 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 -98 -90 0
+ ( 132 -31.5 3 ) ( 132 -30 3 ) ( 132 -30 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2078 -561 -180 0
+ ( -128 -48 15 ) ( -128 -36 15 ) ( -128 -36 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -580 -180 0
+ ( 245 -47.5 15 ) ( 245 -47.5 15.5 ) ( 277 -47.5 15.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 98 90 0
+}
+}
+// entity 9
+{
+guid "{B0AD1AB7-9A2D-48CB-BEA7-2193D9DC6B1C}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE03900-4A92-11E4-9FB2-2C27D7F03380}"
+  contents detail;
+ ( -272 300 3 ) ( -272 288 3 ) ( -626 288 3 ) t7_metal_trim_rivets_01 -109 11 -33.5 8.5 0 0 lightmap_gray 16384 16384 -2240 134 -90 0
+ ( 250 288 2 ) ( 250 300 2 ) ( -104 300 2 ) t7_metal_trim_rivets_01 -109 11 -33.5 8.5 0 0 lightmap_gray 16384 16384 -2240 134 -90 0
+ ( -635 299.5 3 ) ( -635 299.5 2.5 ) ( -603 299.5 2.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 134 -90 0
+ ( -251.5 296.5 3 ) ( -251.5 298 3 ) ( -251.5 298 -29 ) caulk 16 -16 272 -376 180 0 lightmap_gray 16384 16384 -2414 -561 -180 0
+ ( -360.5 288 2 ) ( -360.5 300 2 ) ( -360.5 300 3 ) caulk 16 -16 272 -376 -180 0 lightmap_gray 16384 16384 -2240 -580 180 0
+ ( -448 288.5 2 ) ( -448 288.5 3 ) ( -416 288.5 2 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 -16384 579 -134 90 0
+}
+// brush 1
+{
+ guid "{7DE03901-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 93.5 300 15 ) ( 93.5 288 15 ) ( 1.5 288 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 134 -90 0
+ ( 93.5 288 3 ) ( 93.5 300 3 ) ( 1.5 300 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 134 -90 0
+ ( -523 296 3 ) ( -523 296 13 ) ( -615 296 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 134 -90 0
+ ( -248 296.5 3.5 ) ( -248 298 3.5 ) ( -248 298 -28.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2414 -561 -180 0
+ ( -364 289 3.5 ) ( -364 301 3.5 ) ( -364 301 13.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -580 180 0
+ ( 114 292 15 ) ( 114 292 5 ) ( 22 292 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 -134 90 0
+}
+// brush 2
+{
+ guid "{7DE03902-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 250 300 16 ) ( 250 288 16 ) ( -104 288 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 134 -90 0
+ ( 367.5 288 15 ) ( 367.5 300 15 ) ( 13.5 300 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 134 -90 0
+ ( 200 299.5 16 ) ( 200 299.5 15 ) ( 232 299.5 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 134 -90 0
+ ( -251.5 296.5 3 ) ( -251.5 298 3 ) ( -251.5 298 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2414 -561 -180 0
+ ( -360.5 288 15 ) ( -360.5 300 15 ) ( -360.5 300 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -580 180 0
+ ( 13 288.5 15 ) ( 13 288.5 15.5 ) ( 45 288.5 15.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 -134 90 0
+}
+}
+// entity 10
+{
+guid "{EC45F74B-C620-4091-A34D-E900C918A77F}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE03903-4A92-11E4-9FB2-2C27D7F03380}"
+  contents detail;
+ ( -40 300 3 ) ( -40 288 3 ) ( -394 288 3 ) t7_metal_trim_rivets_01 -130.5 11 -128.5 8.5 0 0 lightmap_gray 16384 16384 -2240 -98 -90 0
+ ( 482 288 2 ) ( 482 300 2 ) ( 128 300 2 ) t7_metal_trim_rivets_01 -130.5 11 -128.5 8.5 0 0 lightmap_gray 16384 16384 -2240 -98 -90 0
+ ( -403 299.5 3 ) ( -403 299.5 2.5 ) ( -371 299.5 2.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 -98 -90 0
+ ( 132.5 296.5 3 ) ( 132.5 298 3 ) ( 132.5 298 -29 ) caulk 16 -16 272 -376 180 0 lightmap_gray 16384 16384 -2414 -561 -180 0
+ ( -128.5 288 2 ) ( -128.5 300 2 ) ( -128.5 300 3 ) caulk 16 -16 272 -376 -180 0 lightmap_gray 16384 16384 -2240 -580 180 0
+ ( -216 288.5 2 ) ( -216 288.5 3 ) ( -184 288.5 2 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 -16384 579 98 90 0
+}
+// brush 1
+{
+ guid "{7DE03904-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 325.5 300 15 ) ( 325.5 288 15 ) ( 233.5 288 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -98 -90 0
+ ( 325.5 288 3 ) ( 325.5 300 3 ) ( 233.5 300 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -98 -90 0
+ ( -291 296 3 ) ( -291 296 13 ) ( -383 296 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 -98 -90 0
+ ( 136 296.5 3.5 ) ( 136 298 3.5 ) ( 136 298 -28.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2414 -561 -180 0
+ ( -132 289 3.5 ) ( -132 301 3.5 ) ( -132 301 13.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -580 180 0
+ ( 346 292 15 ) ( 346 292 5 ) ( 254 292 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 98 90 0
+}
+// brush 2
+{
+ guid "{7DE03905-4A92-11E4-9FB2-2C27D7F03380}"
+  contents detail;
+ ( 482 300 16 ) ( 482 288 16 ) ( 128 288 16 ) t7_metal_trim_rivets_01 -130.5 11 -128.5 8.5 0 0 lightmap_gray 16384 16384 -2240 -98 -90 0
+ ( 599.5 288 15 ) ( 599.5 300 15 ) ( 245.5 300 15 ) t7_metal_trim_rivets_01 -130.5 11 -128.5 8.5 0 0 lightmap_gray 16384 16384 -2240 -98 -90 0
+ ( 432 299.5 16 ) ( 432 299.5 15 ) ( 464 299.5 16 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 -98 -90 0
+ ( 132.5 296.5 3 ) ( 132.5 298 3 ) ( 132.5 298 -29 ) caulk 16 -16 272 -376 180 0 lightmap_gray 16384 16384 -2414 -561 -180 0
+ ( -128.5 288 15 ) ( -128.5 300 15 ) ( -128.5 300 16 ) caulk 16 -16 272 -376 -180 0 lightmap_gray 16384 16384 -2240 -580 180 0
+ ( 245 288.5 15 ) ( 245 288.5 15.5 ) ( 277 288.5 15.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 -16384 579 98 90 0
+}
+}
+// entity 11
+{
+guid "{F64A1200-34C2-44D8-B923-48E150A20B46}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE03906-4A92-11E4-9FB2-2C27D7F03380}"
+  contents detail;
+ ( 232 300 3 ) ( 232 288 3 ) ( -122 288 3 ) t7_metal_trim_rivets_01 -85 11 -26.5 8.5 0 0 lightmap_gray 16384 16384 -2240 -370 -90 0
+ ( 754 288 2 ) ( 754 300 2 ) ( 400 300 2 ) t7_metal_trim_rivets_01 -85 11 -26.5 8.5 0 0 lightmap_gray 16384 16384 -2240 -370 -90 0
+ ( -131 299.5 3 ) ( -131 299.5 2.5 ) ( -99 299.5 2.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 -370 -90 0
+ ( 228.5 296.5 3 ) ( 228.5 298 3 ) ( 228.5 298 -29 ) caulk 16 -16 272 -376 180 0 lightmap_gray 16384 16384 -2414 -561 -180 0
+ ( 143.5 288 2 ) ( 143.5 300 2 ) ( 143.5 300 3 ) caulk 16 -16 272 -376 -180 0 lightmap_gray 16384 16384 -2240 -580 180 0
+ ( 56 288.5 2 ) ( 56 288.5 3 ) ( 88 288.5 2 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 -16384 579 370 90 0
+}
+// brush 1
+{
+ guid "{7DE03907-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 597.5 300 15 ) ( 597.5 288 15 ) ( 505.5 288 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -370 -90 0
+ ( 597.5 288 3 ) ( 597.5 300 3 ) ( 505.5 300 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -370 -90 0
+ ( -19 296 3 ) ( -19 296 13 ) ( -111 296 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 -370 -90 0
+ ( 232 296.5 3.5 ) ( 232 298 3.5 ) ( 232 298 -28.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2414 -561 -180 0
+ ( 140 289 3.5 ) ( 140 301 3.5 ) ( 140 301 13.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -580 180 0
+ ( 618 292 15 ) ( 618 292 5 ) ( 526 292 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 370 90 0
+}
+// brush 2
+{
+ guid "{7DE03908-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 754 300 16 ) ( 754 288 16 ) ( 400 288 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -370 -90 0
+ ( 871.5 288 15 ) ( 871.5 300 15 ) ( 517.5 300 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -370 -90 0
+ ( 704 299.5 16 ) ( 704 299.5 15 ) ( 736 299.5 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 -370 -90 0
+ ( 228.5 296.5 3 ) ( 228.5 298 3 ) ( 228.5 298 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2414 -561 -180 0
+ ( 143.5 288 15 ) ( 143.5 300 15 ) ( 143.5 300 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -580 180 0
+ ( 517 288.5 15 ) ( 517 288.5 15.5 ) ( 549 288.5 15.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 370 90 0
+}
+}
+// entity 12
+{
+guid "{9B9B5492-B90B-485B-8D71-3BFC5D138E19}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE03909-4A92-11E4-9FB2-2C27D7F03380}"
+  contents detail;
+ ( 328 300 3 ) ( 328 288 3 ) ( -26 288 3 ) t7_metal_trim_rivets_01 -102.5 11 -68 8.5 0 0 lightmap_gray 16384 16384 -2240 -466 -90 0
+ ( 850 288 2 ) ( 850 300 2 ) ( 496 300 2 ) t7_metal_trim_rivets_01 -102.5 11 -68 8.5 0 0 lightmap_gray 16384 16384 -2240 -466 -90 0
+ ( -35 299.5 3 ) ( -35 299.5 2.5 ) ( -3 299.5 2.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 -466 -90 0
+ ( 342 296 3 ) ( 342 297.5 3 ) ( 342 297.5 -29 ) caulk 16 -16 272 -376 -180 0 lightmap_gray 16384 16384 -2414 -561 180 0
+ ( 239.5 288 2 ) ( 239.5 300 2 ) ( 239.5 300 3 ) caulk 16 -16 272 -376 -180 0 lightmap_gray 16384 16384 -2240 -580 180 0
+ ( 152 288.5 2 ) ( 152 288.5 3 ) ( 184 288.5 2 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 -16384 579 466 90 0
+}
+// brush 1
+{
+ guid "{7DE0390A-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 693.5 300 15 ) ( 693.5 288 15 ) ( 601.5 288 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -466 -90 0
+ ( 693.5 288 3 ) ( 693.5 300 3 ) ( 601.5 300 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -466 -90 0
+ ( 77 296 3 ) ( 77 296 13 ) ( -15 296 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 -466 -90 0
+ ( 345.5 296 3.5 ) ( 345.5 297.5 3.5 ) ( 345.5 297.5 -28.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2414 -561 180 0
+ ( 236 289 3.5 ) ( 236 301 3.5 ) ( 236 301 13.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -580 180 0
+ ( 714 292 15 ) ( 714 292 5 ) ( 622 292 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 466 90 0
+}
+// brush 2
+{
+ guid "{7DE0390B-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 850 300 16 ) ( 850 288 16 ) ( 496 288 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -466 -90 0
+ ( 967.5 288 15 ) ( 967.5 300 15 ) ( 613.5 300 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -466 -90 0
+ ( 800 299.5 16 ) ( 800 299.5 15 ) ( 832 299.5 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 -466 -90 0
+ ( 342 296.5 3 ) ( 342 298 3 ) ( 342 298 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2414 -561 -180 0
+ ( 239.5 288 15 ) ( 239.5 300 15 ) ( 239.5 300 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2240 -580 180 0
+ ( 613 288.5 15 ) ( 613 288.5 15.5 ) ( 645 288.5 15.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 466 90 0
+}
+}
+// entity 13
+{
+guid "{1B5740B2-C6D1-46C5-B6B9-47C51F3304BE}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE0390C-4A92-11E4-9FB2-2C27D7F03380}"
+  contents detail;
+ ( 232 -36 3 ) ( 232 -48 3 ) ( -122 -48 3 ) t7_metal_trim_rivets_01 -108 11 -36 3.5 0 0 lightmap_gray 16384 16384 -1904 -370 -90 0
+ ( 754 -48 2 ) ( 754 -36 2 ) ( 400 -36 2 ) t7_metal_trim_rivets_01 -108 11 -36 3.5 0 0 lightmap_gray 16384 16384 -1904 -370 -90 0
+ ( -131 -36.5 3 ) ( -131 -36.5 2.5 ) ( -99 -36.5 2.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 -370 -90 0
+ ( 228 -40 3 ) ( 228 -38.5 3 ) ( 228 -38.5 -29 ) caulk 16 -16 608 -376 -180 0 lightmap_gray 16384 16384 -2078 -561 180 0
+ ( 144 -48 2 ) ( 144 -36 2 ) ( 144 -36 3 ) caulk 16 -16 608 -376 180 0 lightmap_gray 16384 16384 -1904 -580 180 0
+ ( 56 -47.5 2 ) ( 56 -47.5 3 ) ( 88 -47.5 2 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 -16384 579 370 90 0
+}
+// brush 1
+{
+ guid "{7DE0390D-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 597.5 -36 15 ) ( 597.5 -48 15 ) ( 505.5 -48 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -370 -90 0
+ ( 597.5 -48 3 ) ( 597.5 -36 3 ) ( 505.5 -36 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -370 -90 0
+ ( -19 -40 3 ) ( -19 -40 13 ) ( -111 -40 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 -370 -90 0
+ ( 232 -39.5 3.5 ) ( 232 -38 3.5 ) ( 232 -38 -28.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2078 -561 -180 0
+ ( 140 -47 3.5 ) ( 140 -35 3.5 ) ( 140 -35 13.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -580 180 0
+ ( 618 -44 15 ) ( 618 -44 5 ) ( 526 -44 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 370 90 0
+}
+// brush 2
+{
+ guid "{7DE0390E-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 754 -36 16 ) ( 754 -48 16 ) ( 400 -48 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -370 -90 0
+ ( 871.5 -48 15 ) ( 871.5 -36 15 ) ( 517.5 -36 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -370 -90 0
+ ( 704 -36.5 16 ) ( 704 -36.5 15 ) ( 736 -36.5 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 -370 -90 0
+ ( 228 -40 3 ) ( 228 -38.5 3 ) ( 228 -38.5 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2078 -561 180 0
+ ( 144 -48 15 ) ( 144 -36 15 ) ( 144 -36 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -580 -180 0
+ ( 517 -47.5 15 ) ( 517 -47.5 15.5 ) ( 549 -47.5 15.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 370 90 0
+}
+}
+// entity 14
+{
+guid "{609FE841-197F-4C36-AA07-A475F41AFD5D}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE0390F-4A92-11E4-9FB2-2C27D7F03380}"
+  contents detail;
+ ( 328 -36 3 ) ( 328 -48 3 ) ( -26 -48 3 ) t7_metal_trim_rivets_01 -108 11 -36 3.5 0 0 lightmap_gray 16384 16384 -1904 -466 -90 0
+ ( 850 -48 2 ) ( 850 -36 2 ) ( 496 -36 2 ) t7_metal_trim_rivets_01 -108 11 -36 3.5 0 0 lightmap_gray 16384 16384 -1904 -466 -90 0
+ ( -35 -36.5 3 ) ( -35 -36.5 2.5 ) ( -3 -36.5 2.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 -466 -90 0
+ ( 341.5 -39.5 3 ) ( 341.5 -38 3 ) ( 341.5 -38 -29 ) caulk 16 -16 608 -376 180 0 lightmap_gray 16384 16384 -2078 -561 -180 0
+ ( 240 -48 2 ) ( 240 -36 2 ) ( 240 -36 3 ) caulk 16 -16 608 -376 180 0 lightmap_gray 16384 16384 -1904 -580 180 0
+ ( 152 -47.5 2 ) ( 152 -47.5 3 ) ( 184 -47.5 2 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 -16384 579 466 90 0
+}
+// brush 1
+{
+ guid "{7DE03910-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 693.5 -36 15 ) ( 693.5 -48 15 ) ( 601.5 -48 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -466 -90 0
+ ( 693.5 -48 3 ) ( 693.5 -36 3 ) ( 601.5 -36 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -466 -90 0
+ ( 77 -40 3 ) ( 77 -40 13 ) ( -15 -40 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 -466 -90 0
+ ( 345.5 -39.5 3.5 ) ( 345.5 -38 3.5 ) ( 345.5 -38 -28.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2078 -561 -180 0
+ ( 236 -47 3.5 ) ( 236 -35 3.5 ) ( 236 -35 13.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -580 180 0
+ ( 714 -44 15 ) ( 714 -44 5 ) ( 622 -44 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 466 90 0
+}
+// brush 2
+{
+ guid "{7DE03911-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 850 -36 16 ) ( 850 -48 16 ) ( 496 -48 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -466 -90 0
+ ( 967.5 -48 15 ) ( 967.5 -36 15 ) ( 613.5 -36 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -466 -90 0
+ ( 800 -36.5 16 ) ( 800 -36.5 15 ) ( 832 -36.5 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 -466 -90 0
+ ( 341.5 -39.5 3 ) ( 341.5 -38 3 ) ( 341.5 -38 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2078 -561 -180 0
+ ( 240 -48 15 ) ( 240 -36 15 ) ( 240 -36 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -580 -180 0
+ ( 613 -47.5 15 ) ( 613 -47.5 15.5 ) ( 645 -47.5 15.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 466 90 0
+}
+}
+// entity 15
+{
+guid "{DA650D5A-0A68-4480-921A-585B9F9B5D23}"
+"classname" "misc_model"
+"angles" "360 180 90"
+"model" "p7_cai_sign_billboard_02_bolt_plate"
+"modelscale" "0.5"
+"origin" "-365 -405.5 -1.25"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 16
+{
+guid "{F147C9B1-8682-4553-92F7-7E5AE471AC41}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE03912-4A92-11E4-9FB2-2C27D7F03380}"
+  contents detail;
+ ( 136 -164 3 ) ( 136 -176 3 ) ( -218 -176 3 ) t7_metal_trim_rivets_01 -130.5 11 -128.5 10.5 0 0 lightmap_gray 16384 16384 -1776 -274 -90 0
+ ( 658 -176 2 ) ( 658 -164 2 ) ( 304 -164 2 ) t7_metal_trim_rivets_01 -130.5 11 -128.5 10.5 0 0 lightmap_gray 16384 16384 -1776 -274 -90 0
+ ( -227 -164.5 3 ) ( -227 -164.5 2.5 ) ( -195 -164.5 2.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 -274 -90 0
+ ( 132.5 -168 3 ) ( 132.5 -166.5 3 ) ( 132.5 -166.5 -29 ) caulk 16 -16 736 -376 -180 0 lightmap_gray 16384 16384 -1950 -561 180 0
+ ( -128.5 -192 2 ) ( -128.5 -180 2 ) ( -128.5 -180 3 ) caulk 16 -16 736 -376 180 0 lightmap_gray 16384 16384 -1776 -580 -180 0
+ ( -40 -175.5 2 ) ( -40 -175.5 3 ) ( -8 -175.5 2 ) t7_metal_trim_rivets_02 104.5 -12 0 -10 180 0 lightmap_gray 16384 -16384 579 274 90 0
+}
+// brush 1
+{
+ guid "{7DE03913-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 501.5 -164 15 ) ( 501.5 -176 15 ) ( 409.5 -176 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -274 -90 0
+ ( 501.5 -176 3 ) ( 501.5 -164 3 ) ( 409.5 -164 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -274 -90 0
+ ( -115 -168 3 ) ( -115 -168 13 ) ( -207 -168 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 -274 -90 0
+ ( 136 -167.5 3.5 ) ( 136 -166 3.5 ) ( 136 -166 -28.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1950 -561 -180 0
+ ( -132 -191 3.5 ) ( -132 -179 3.5 ) ( -132 -179 13.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -580 180 0
+ ( 522 -172 15 ) ( 522 -172 5 ) ( 430 -172 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 274 90 0
+}
+// brush 2
+{
+ guid "{7DE03914-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 658 -164 16 ) ( 658 -176 16 ) ( 304 -176 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -274 -90 0
+ ( 775.5 -176 15 ) ( 775.5 -164 15 ) ( 421.5 -164 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -274 -90 0
+ ( 608 -164.5 16 ) ( 608 -164.5 15 ) ( 640 -164.5 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 -274 -90 0
+ ( 132.5 -168 3 ) ( 132.5 -166.5 3 ) ( 132.5 -166.5 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1950 -561 180 0
+ ( -128.5 -192 15 ) ( -128.5 -180 15 ) ( -128.5 -180 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1776 -580 180 0
+ ( 421 -175.5 15 ) ( 421 -175.5 15.5 ) ( 453 -175.5 15.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 274 90 0
+}
+}
+// entity 17
+{
+guid "{4AB4B8DD-ED19-4374-A021-B877547017B0}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE03915-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( -264 -36 3 ) ( -264 -48 3 ) ( -618 -48 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 134 -90 0
+ ( 250 -48 2 ) ( 250 -36 2 ) ( -104 -36 2 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 134 -90 0
+ ( -635 -36.5 3 ) ( -635 -36.5 2.5 ) ( -603 -36.5 2.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 134 -90 0
+ ( -252 -39.5 3 ) ( -252 -38 3 ) ( -252 -38 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2078 -561 -180 0
+ ( -360 -48 2 ) ( -360 -36 2 ) ( -360 -36 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -580 180 0
+ ( -448 -47.5 2 ) ( -448 -47.5 3 ) ( -416 -47.5 2 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 -134 90 0
+}
+// brush 1
+{
+ guid "{7DE03916-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 101.5 -36 15 ) ( 101.5 -48 15 ) ( 9.5 -48 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 134 -90 0
+ ( 101.5 -48 3 ) ( 101.5 -36 3 ) ( 9.5 -36 3 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 134 -90 0
+ ( -523 -40 3 ) ( -523 -40 13 ) ( -615 -40 13 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 580 134 -90 0
+ ( -248 -39.5 3.5 ) ( -248 -38 3.5 ) ( -248 -38 -28.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2078 -561 -180 0
+ ( -364 -47 3.5 ) ( -364 -35 3.5 ) ( -364 -35 13.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -580 180 0
+ ( 114 -44 15 ) ( 114 -44 5 ) ( 22 -44 5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 598 -134 90 0
+}
+// brush 2
+{
+ guid "{7DE03917-4A92-11E4-9FB2-2C27D7F03380}"
+  contents weaponClip detail umbraTarget;
+ ( 250 -36 16 ) ( 250 -48 16 ) ( -104 -48 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 134 -90 0
+ ( 375.5 -48 15 ) ( 375.5 -36 15 ) ( 21.5 -36 15 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 134 -90 0
+ ( 200 -36.5 16 ) ( 200 -36.5 15 ) ( 232 -36.5 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 561 134 -90 0
+ ( -252 -39.5 3 ) ( -252 -38 3 ) ( -252 -38 -29 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -2078 -561 -180 0
+ ( -360 -48 15 ) ( -360 -36 15 ) ( -360 -36 16 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 -1904 -580 -180 0
+ ( 13 -47.5 15 ) ( 13 -47.5 15.5 ) ( 45 -47.5 15.5 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 579 -134 90 0
+}
+}
+// entity 18
+{
+guid "{D9643622-8B74-4574-A31D-F64BFC865238}"
+"classname" "misc_model"
+"angles" "360 180 90"
+"model" "p7_cai_sign_billboard_02_bolt_plate"
+"modelscale" "0.5"
+"origin" "349 -404.5 -1.25"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 19
+{
+guid "{1D781BD4-76E5-4664-B62F-E5D02681E80B}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zone_b/zm_giant_zone_b_girder_end_left.map"
+"origin" "-1672 226 -269"
+}
+// entity 20
+{
+guid "{22FC941E-9C0D-4C12-AEAC-8474C93CE457}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zone_b/zm_giant_zone_b_girder.map"
+"origin" "-1552 226 -269"
+}
+// entity 21
+{
+guid "{A4E44A75-4AE0-439B-B9D9-EA77AFACE37D}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zone_b/zm_giant_zone_b_girder.map"
+"origin" "-1440 226 -269"
+}
+// entity 22
+{
+guid "{42486FC5-39BF-48C7-9502-BEC7344970EC}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zone_b/zm_giant_zone_b_girder.map"
+"origin" "-1168 226 -269"
+}
+// entity 23
+{
+guid "{59146075-FD14-480A-9040-0CFE2DBFD767}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zone_b/zm_giant_zone_b_girder.map"
+"origin" "-1072 226 -269"
+}
+// entity 24
+{
+guid "{22250734-98F8-4495-9B38-20C38907A759}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zone_b/zm_giant_zone_b_girder_end_right.map"
+"origin" "-958.5 226 -269"
+}
+// entity 25
+{
+guid "{A56C3915-5874-41B4-80F7-FD36D4E85C88}"
+"classname" "func_cullgroup"
+// brush 0
+{
+ guid "{7DE03918-4A92-11E4-9FB2-2C27D7F03380}"
+  contents detail;
+ ( -73 -36 3 ) ( -73 -48 3 ) ( -427 -48 3 ) t7_metal_trim_rivets_01 -108 11 -36 3.5 0 0 lightmap_gray 16384 16384 -1904 -65 -90 0
+ ( 449 -48 2 ) ( 449 -36 2 ) ( 95 -36 2 ) t7_metal_trim_rivets_01 -108 11 -36 3.5 0 0 lightmap_gray 16384 16384 -1904 -65 -90 0
+ ( -436 -36.5 3 ) ( -436 -36.5 2.5 ) ( -404 -36.5 2.5 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 16384 561 -65 -90 0
+ ( 132 -39.5 3 ) ( 132 -38 3 ) ( 132 -38 -29 ) caulk 16 -16 608 -376 180 0 lightmap_gray 16384 16384 -2078 -561 -180 0
+ ( -128 -49.5 2 ) ( -128 -37.5 2 ) ( -128 -37.5 3 ) caulk 16 -16 608 -376 180 0 lightmap_gray 16384 16384 -1904 -580 180 0
+ ( -249 -47.5 2 ) ( -249 -47.5 3 ) ( -217 -47.5 2 ) t7_metal_trim_rivets_02 49 -7 0 -5 -180 0 lightmap_gray 16384 -16384 579 65 90 0
+}
+}
+// entity 26
+{
+guid "{D0640E33-1453-4A10-8D28-D3BDC91F3433}"
+"classname" "misc_prefab"
+"angles" "0 90 0"
+"model" "_prefabs/zm/zm_giant/geo/zone_b/zm_giant_support_column_gg_zoneb_end.map"
+"origin" "-935 -2529 -374"
+}
+// entity 27
+{
+guid "{C92323B7-0665-4028-AD68-C3FC6D4D7388}"
+"classname" "misc_prefab"
+"angles" "0 90 0"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_support_column_gg_zoneb.map"
+"origin" "-935 -1826 -374"
+}
+// entity 28
+{
+guid "{2D8DC034-A4D4-4259-8904-7C6D5D97B525}"
+"classname" "misc_prefab"
+"angles" "0 90 0"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_support_column_gg_zoneb.map"
+"origin" "-935 -2162 -374"
+}
+// entity 29
+{
+guid "{C68AEA15-62E9-4B9E-80C3-ED222EDEDEE3}"
+"classname" "misc_prefab"
+"angles" "0 90 0"
+"model" "_prefabs/zm/zm_giant/geo/zone_b/zm_giant_support_column_gg_zoneb_end.map"
+"origin" "-221 -2528 -374"
+}
+// entity 30
+{
+guid "{0608258E-46B9-4BDC-93AC-A08E6DAB6E09}"
+"classname" "misc_prefab"
+"angles" "0 90 0"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_support_column_gg_zoneb.map"
+"origin" "-221 -2162 -374"
+}
+// entity 31
+{
+guid "{D716D046-8362-4CA3-B74F-E9DF4C087488}"
+"classname" "misc_prefab"
+"angles" "0 90 0"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_support_column_gg_zoneb.map"
+"origin" "-222.5 -1826 -374"
+}
+// entity 32
+{
+guid "{45A0CE63-5551-4601-839E-6AE3CD822FC2}"
+"classname" "misc_model"
+"angles" "270 93.902 86.0983"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"origin" "-358 -409 2"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 33
+{
+guid "{82D1F9B3-4FB1-441C-AACB-1FFDD26E9A7C}"
+"classname" "misc_model"
+"angles" "270 273.902 86.0983"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"origin" "342 -408 2"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}

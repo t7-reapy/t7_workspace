@@ -1,0 +1,35 @@
+#include "glass_base"
+#include "transparent_base"
+
+RenderFlags( "lit transparent shard" ) : "lit transparent"
+{
+	glassShard = true
+}
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit transparent shard"
+	availablePrefixes = "mc/ mcs/ wc/"
+	displayName = "glass_transparent_shard"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "lit" )
+{
+	state = "premul + depth"
+	defines = "BASE_SPEC", "BASE_AO", "USE_COLOR_TINT", "USE_TINT_MASK", "USE_PREMUL_BLEND"
+#if TOOLSGFX != "1"
+	defines += "GLASS_SHARD"
+#endif
+	source = "lit_glass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}

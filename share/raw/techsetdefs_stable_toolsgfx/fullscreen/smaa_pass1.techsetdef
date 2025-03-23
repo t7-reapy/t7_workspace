@@ -1,0 +1,52 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+State( "smaa pass1 state" )
+{
+	depthTest      = disable
+	depthWrite     = false
+
+
+	stencilFront = StencilState()
+	{
+		enable	= true
+		func	= Always
+		opFail	= Keep
+		opPass	= Replace
+		opZFail	= Keep
+	}
+
+	blendState = BlendState()
+	{
+		colorBlendFunc = disable
+		colorBlendSrc  = one
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = disable
+		alphaBlendSrc  = zero
+		alphaBlendDst  = one
+		writeChannels  = "rgba"
+	}
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "smaa pass1 state"
+	source = "smaa_pass1.hlsl"
+
+	vs = VertexShader() 
+	{
+	}
+	ps = PixelShader()
+	{
+		lumaTex = CodeTexture( "codeTexture0" )
+		colorTex = CodeTexture( "codeTexture1" )
+
+		bilinearSampler = Sampler("no tile", "nomip bilinear")
+	}
+}

@@ -1,0 +1,57 @@
+										
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+	renderFlags = "none"
+}
+
+State( "volumetric light state" )
+{
+	blendState = BlendState()
+	{
+		colorBlendFunc = add
+		colorBlendSrc  = One
+		colorBlendDst  = One
+		alphaBlendFunc = add
+		alphaBlendSrc  = One
+		alphaBlendDst  = One
+	}
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "volumetric light state"
+	source = "volumetric_light_skip_samples.hlsl"
+
+	vs = VertexShader()
+	{
+	}
+
+	ps = PixelShader()
+	{
+		depthSampler = CodeTexture( "floatZ" )
+		downsampledDepth = CodeTexture( "postEffect1" )
+		samplerLinear = Sampler( "tile both", "nomip bilinear", true )
+		samplerLinearClamp = Sampler( "no tile", "nomip bilinear", true )
+
+		gLitFogVolumes = CodeBuffer( "litFogVolumeBuffer" )
+		volLightTexture = CodeTexture( "postEffectSrc" )
+
+		visibleVolumetricSpotLights = CodeTexture( "codeTexture0" )
+		visibleVolumetricOmniLights = CodeTexture( "codeTexture1" )
+
+		downsampledAlphaDepth = CodeTexture( "codeTexture2" )
+
+		adaptiveTransparencyDepth = CodeTexture( "codeTexture3" )
+		adaptiveTransparencyTrans = CodeTexture( "codeTexture4" )
+		downSampledDepthUV = CodeTexture( "codeTexture5" )
+		oitPixelAlpha = CodeTexture( "codeTexture6" )
+
+		gTrilinearClampSampler = Sampler( "no tile", "mip (1x trilinear)", true )
+
+	}
+}

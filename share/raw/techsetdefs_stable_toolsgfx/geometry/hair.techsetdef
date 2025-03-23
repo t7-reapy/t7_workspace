@@ -1,0 +1,92 @@
+#include "lit_base_mid"
+#include "transparent_shadow_base"
+#include "effects_alpha_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "PointSampler" )
+{
+	tile = "no tile"
+	filter = "nomip nearest"
+	nobias = true
+}
+Sampler( "LinearSampler" )
+{
+	tile = "no tile"
+	filter = "nomip bilinear"
+	nobias = true
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "anisotropy" )
+{
+	x = <waterRefractionAmount>
+	tweak = Tweak()
+	{
+		category  = "Aniso Control"
+		title     = "Aniso Amount"
+		sortindex = "35"
+	}
+}
+
+Color( "specColorTint" )
+{
+	value = "srgb_to_linear( <specColorTint> )"
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Spec Color"
+		sortindex = "30"
+		color = true
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "thermal" ).defines = "THERMAL_ALPHA_TEST"
+Technique( "thermal" ).state = "thermal nocull"
+Sampler( "normalSampler" ).nobias = true
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "blend + depth + nocull"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "blend + depth + nocull"
+	defines = "BASE_SPEC", "USE_ADVANCED_ALPHA", "NO_VERTEX_ALPHA"
+	source = "lit_hair.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez + nocull"
+	defines += "USE_OIT"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + nocull"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

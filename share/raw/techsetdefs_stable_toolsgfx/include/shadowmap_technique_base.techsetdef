@@ -1,0 +1,145 @@
+TechniqueTemplate( "build shadowmap depth base" )
+{
+	state = "buildShadowmap"
+	source = "techsetdef_buildShadowmap.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+TechniqueTemplate( "build shadowmap depth alphatest" ) : "build shadowmap depth base"
+{
+	defines += "USE_ALPHA_TEST"
+}
+
+TechniqueTemplate( "build shadowmap depth reveal" ) : "build shadowmap depth alphatest"
+{
+	defines += "USE_REVEAL_MAP"
+}
+
+TechniqueTemplate( "build shadowmap depth alphatest micromix" ) : "build shadowmap depth alphatest"
+{
+	defines += "USE_MICRO_BLEND"
+}
+
+TechniqueTemplate( "build shadowmap depth backlit" ) : "build shadowmap depth base"
+{
+	state = "buildShadowmap + nocull"
+	defines += "USE_BACKLIT"
+}
+
+TechniqueTemplate( "build shadowmap depth nocull" ) : "build shadowmap depth base"
+{
+	state = "buildShadowmap + nocull"
+}
+
+TechniqueTemplate( "build shadowmap depth alphatest nocull" ) : "build shadowmap depth nocull"
+{
+	defines += "USE_ALPHA_TEST"
+}
+
+TechniqueTemplate( "build shadowmap depth micromix alphatest nocull" ) : "build shadowmap depth alphatest nocull"
+{
+	defines += "USE_MICRO_BLEND"
+}
+
+TechniqueTemplate( "build shadowmap depth alphatest backlit" ) : "build shadowmap depth backlit"
+{
+	defines += "USE_ALPHA_TEST"
+}
+
+TechniqueTemplate( "build shadowmap depth layered base" ) : "build shadowmap depth base"
+{
+	defines += "BUILD_SHADOWMAP_LAYERED"
+}
+
+TechniqueTemplate( "build shadowmap depth layered alphatest" ) : "build shadowmap depth alphatest"
+{
+	defines += "BUILD_SHADOWMAP_LAYERED"
+}
+
+TechniqueTemplate( "build shadowmap depth layered reveal" ) : "build shadowmap depth reveal"
+{
+	defines += "BUILD_SHADOWMAP_LAYERED"
+}
+
+TechniqueTemplate( "build shadowmap depth layered alphatest micromix" ) : "build shadowmap depth alphatest micromix"
+{
+	defines += "BUILD_SHADOWMAP_LAYERED"
+}
+
+TechniqueTemplate( "build shadowmap depth layered backlit" ) : "build shadowmap depth backlit"
+{
+	defines += "BUILD_SHADOWMAP_LAYERED"
+}
+
+TechniqueTemplate( "build shadowmap depth layered nocull" ) : "build shadowmap depth nocull"
+{
+	defines += "BUILD_SHADOWMAP_LAYERED"
+}
+
+TechniqueTemplate( "build shadowmap depth layered alphatest nocull" ) : "build shadowmap depth alphatest nocull"
+{
+	defines += "BUILD_SHADOWMAP_LAYERED"
+}
+
+TechniqueTemplate( "build shadowmap depth layered micromix alphatest nocull" ) : "build shadowmap depth micromix alphatest nocull"
+{
+	defines += "BUILD_SHADOWMAP_LAYERED"
+}
+
+TechniqueTemplate( "build shadowmap depth layered alphatest backlit" ) : "build shadowmap depth alphatest backlit"
+{
+	defines += "BUILD_SHADOWMAP_LAYERED"
+}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+TechniqueTemplate( "build shadowmap depth planes base" )
+{
+	state = "buildShadowmap"
+	source = "techsetdef_buildShadowmap.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+	defines += "BUILD_SHADOWMAP_EXTRA_PLANES 1"
+}
+
+TechniqueTemplate( "build shadowmap depth planes alphatest" ) : "build shadowmap depth planes base"
+{
+	defines += "USE_ALPHA_TEST"
+}
+
+TechniqueTemplate( "build shadowmap depth planes reveal" ) : "build shadowmap depth planes alphatest"
+{
+	defines += "USE_REVEAL_MAP"
+}
+
+TechniqueTemplate( "build shadowmap depth planes alphatest micromix" ) : "build shadowmap depth planes alphatest"
+{
+	defines += "USE_MICRO_BLEND"
+}
+
+TechniqueTemplate( "build shadowmap depth planes backlit" ) : "build shadowmap depth planes base"
+{
+	state = "buildShadowmap + nocull"
+	defines += "USE_BACKLIT"
+}
+
+TechniqueTemplate( "build shadowmap depth planes nocull" ) : "build shadowmap depth planes base"
+{
+	state = "buildShadowmap + nocull"
+}
+
+TechniqueTemplate( "build shadowmap depth planes alphatest nocull" ) : "build shadowmap depth planes nocull"
+{
+	defines += "USE_ALPHA_TEST"
+}
+
+TechniqueTemplate( "build shadowmap depth planes alphatest micromix nocull" ) : "build shadowmap depth planes alphatest nocull"
+{
+	defines += "USE_MICRO_BLEND"
+}
+
+TechniqueTemplate( "build shadowmap depth planes alphatest backlit" ) : "build shadowmap depth planes backlit"
+{
+	defines += "USE_ALPHA_TEST"
+}
+#endif

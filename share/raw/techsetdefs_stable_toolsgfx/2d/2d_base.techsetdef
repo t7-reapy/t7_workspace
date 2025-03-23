@@ -1,0 +1,25 @@
+#include "state"
+#include "renderFlags"
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Color"
+		sortindex = "10"
+	}
+}
+
+Texture( "colorMap" )
+{
+	image = Image( <colorMap> )
+
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Color Map"
+		sortindex = "0"
+	}
+}

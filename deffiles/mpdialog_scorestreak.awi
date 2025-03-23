@@ -1,0 +1,69 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	
+	Asset.AddEntry_Combo( "type", "mpdialog_scorestreak" ).Show( false );
+	Asset.AddEntry_Combo( "vmType", "Both" ).SetTitle( "Script Type" ).Show( false ).SetValue("Both");
+
+	Asset.BeginCategory( "Scorestreak MP Dialog" );
+	{
+		Asset.AddEntry_String( "voicePrefix", "" ).SetTitle( "Voice Prefix" );
+	}
+	
+	Asset.BeginCategory( "Scorestreak Status" );
+	{
+		Asset.AddEntry_String( "arrive", "" ).SetTitle( "Arrive" );
+		Asset.AddEntry_String( "damaged", "" ).SetTitle( "Damaged" );
+		Asset.AddEntry_String( "destroyed", "" ).SetTitle( "Destroyed" );
+		Asset.AddEntry_String( "hacked", "" ).SetTitle( "Hacked" );
+		Asset.AddEntry_String( "beingHacked", "" ).SetTitle( "Being Hacked" );
+		Asset.AddEntry_String( "firewallBeingHacked", "" ).SetTitle( "Firewall Being Hacked" );
+		Asset.AddEntry_String( "firewallHacked", "" ).SetTitle( "Firewall Hacked" ); 
+		Asset.AddEntry_String( "timecheck", "" ).SetTitle( "Timecheck" );
+		Asset.AddEntry_String( "timeout", "" ).SetTitle( "Timeout" );
+		Asset.AddEntry_String( "timeoutConfirmed0", "" ).SetTitle( "Timeout Confirmed Pilot 0" );
+		Asset.AddEntry_String( "timeoutConfirmed1", "" ).SetTitle( "Timeout Confirmed Pilot 1" );
+		Asset.AddEntry_String( "timeoutConfirmed2", "" ).SetTitle( "Timeout Confirmed Pilot 2" );
+		Asset.AddEntry_String( "timeoutConfirmed3", "" ).SetTitle( "Timeout Confirmed Pilot 3" );
+		Asset.AddEntry_String( "ready", "" ).SetTitle( "Ready" );
+		Asset.AddEntry_String( "weaponDestroyed", "" ).SetTitle( "Weapon Destroyed" );
+	}
+	
+	Asset.BeginCategory( "Attacks" );
+	{
+		Asset.AddEntry_String( "waveStart", "" ).SetTitle( "Wave Start" );
+		Asset.AddEntry_String( "waveStartFinal", "" ).SetTitle( "Final Wave Start" );	
+	}
+	
+	Asset.BeginCategory( "Counter Measures" );
+	{
+		Asset.AddEntry_String( "activateCounter", "" ).SetTitle( "Activate CounterMeasure");
+	}
+	
+	Asset.BeginCategory( "Kills" );
+	{
+		Asset.AddEntry_String( "kill", "" ).SetTitle( "Killed Enemy" );
+		Asset.AddEntry_String( "kill1", "" ).SetTitle( "Kill 1 Enemy" );
+		Asset.AddEntry_String( "kill2", "" ).SetTitle( "Kill 2 Enemies" );
+		Asset.AddEntry_String( "kill3", "" ).SetTitle( "Kill 3 Enemies" );
+		Asset.AddEntry_String( "killConfirmedGeneric", "" ).SetTitle( "Kill Confirmed" );
+		Asset.AddEntry_String( "killConfirmed0", "" ).SetTitle( "Kill Confirmed Pilot 0" );
+		Asset.AddEntry_String( "killConfirmed1", "" ).SetTitle( "Kill Confirmed Pilot 1" );
+		Asset.AddEntry_String( "killConfirmed2", "" ).SetTitle( "Kill Confirmed Pilot 2" );
+		Asset.AddEntry_String( "killConfirmed3", "" ).SetTitle( "Kill Confirmed Pilot 3" );
+		Asset.AddEntry_String( "killMultiple", "" ).SetTitle( "Kill Multiple Enemies" );
+		Asset.AddEntry_String( "killNone", "" ).SetTitle( "Kill No Enemies" );
+	}
+	
+	Asset.BeginCategory( "Remote Operator" );
+	{
+		Asset.AddEntry_String( "remoteOperatorAdd", "" ).SetTitle( "Remote Operator Added" );
+		Asset.AddEntry_String( "remoteOperatorRemoved", "" ).SetTitle( "Remote Operator Removed" );
+	}
+
+}
+
+		

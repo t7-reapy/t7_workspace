@@ -1,0 +1,45 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Texture( "vignetteMap" )
+{
+	ref = true
+	image = Image( <colorMap14, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Vignette"
+		sortindex = "0"
+	}
+}
+
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "postfx/postfx_catseye.hlsl"
+		defines = "USE_VERTCOL 0"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/postfx_catseye.hlsl"
+		defines = "USE_VERTCOL 0"
+		
+		colorMapSampler  = CodeTexture( "feedback" )
+	        codeTexture0  = CodeTexture( "codeTexture0" )
+
+		lensFilter = "vignetteMap"
+
+	        // samplers
+ 		bilinearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

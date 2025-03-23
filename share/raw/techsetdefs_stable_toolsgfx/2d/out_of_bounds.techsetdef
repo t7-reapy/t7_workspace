@@ -1,0 +1,177 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+
+Texture( "staticTexture" )
+{
+	image = Image( <colorMap, asd_screen_static> )
+	tweak = Tweak()
+	{
+		title     = "Static Map"
+		sortindex = "0"
+	}
+}
+
+Texture( "lookupTexture" )
+{
+	image    = Image( <colorMap00, tv_lookup> )
+	tweak    = Tweak()
+	{
+		title		= "Lookup Map"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "warp" )
+{
+	x     = <cg04_z>
+	tweak = Tweak()
+	{
+		title     = "Warp Amount"
+		sortindex = "20"
+		default   = "0.1"
+		range     = "-1e+009", "1e+009", "0.01"
+	}
+}
+
+float1( "speed" )
+{
+	x     = <cg04_w>
+	tweak = Tweak()
+	{
+		title     = "Static Speed"
+		sortindex = "30"
+		default   = "0.3"
+		range     = "0.0", "1e+009", "0.01"
+	}
+}
+
+float1( "staticTile" )
+{
+	x     = <cg05_x>
+	tweak = Tweak()
+	{
+		title     = "Static Tiling"
+		sortindex = "40"
+		default   = "8.0"
+		range     = "1", "1e+009", "1"
+	}
+}
+
+float1( "staticAmount" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		title     = "Static Amount"
+		sortindex = "50"
+		default   = "0.8"
+		range     = "0.0", "1e+009", "0.01"
+	}
+}
+
+float1( "lookupSpeed" )
+{
+	x     = <cg04_y>
+	tweak = Tweak()
+	{
+		title     = "Lookup Scroll Speed"
+		sortindex = "60"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+
+float1( "lookupMaxX" )
+{
+	x     = <cg05_y>
+	tweak = Tweak()
+	{
+		title     = "Lookup Max Offset"
+		sortindex = "70"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+
+float1( "lookupMinX" )
+{
+	x     = <cg05_z>
+	tweak = Tweak()
+	{
+		title     = "Lookup Min Offset"
+		sortindex = "80"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+
+float1( "contrast" )
+{
+	x     = <cg05_w>
+	tweak = Tweak()
+	{
+		title     = "Contrast"
+		sortindex = "90"
+		default   = "10"
+		range     = "0.0", "1e+009", "0.01"
+	}
+}
+
+float1( "brightness" )
+{
+	x     = <cg06_x>
+	tweak = Tweak()
+	{
+		title     = "Brightness"
+		sortindex = "100"
+		default   = "0.8"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+float1( "opacity" )
+{
+	x     = <cg06_y>
+	tweak = Tweak()
+	{
+		title     = "Opacity"
+		sortindex = "110"
+		default   = "0.8"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+		source = "postFX/2d_out_of_bounds.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "postFX/2d_out_of_bounds.hlsl"
+		frameBuffer = CodeTexture( "resolvedScene" )
+	}
+}

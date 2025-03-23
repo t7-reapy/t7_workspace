@@ -1,0 +1,97 @@
+#include "lit_base"
+#include "micro_tile_mix_advanced_base"
+
+Globals()
+{
+	category = "Geometry Advanced"
+	renderFlags = "lit deferred opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "mixMap" ).tweak = Tweak()
+{
+	category  = "Base Maps"
+	title     = "Mix Reveal Map"
+	sortindex = "20"
+}
+Texture( "revealMap" ) : mixMap {}
+Sampler( "revealSampler" ) : "mixSampler" {}
+
+float2( "mixScale" ).tweak = Tweak()
+{
+	category  = "Base Maps"
+	title     = "Mix Reveal Scale (X, Y)"
+	sortindex = "100"
+}
+float2( "revealScale" ) : "mixScale" {}
+
+float1( "alphaRevealSoftEdge" )
+{
+	x = <alphaRevealSoftEdge>
+	tweak = Tweak()
+	{
+		category  = "Base Maps"
+		title     = "Mix Reveal Soft Edge"
+		sortindex = "125"
+	}
+}
+
+float1( "alphaRevealRamp" )
+{
+	x = <alphaRevealRamp>
+	tweak = Tweak()
+	{
+		category  = "Base Maps"
+		title     = "Mix Reveal Ramp"
+		sortindex = "135"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT", "USE_MICRO_BLEND"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque"
+	defines = "USE_WORLD_TILE_OFFSET", "USE_REVEAL_MIX", "USE_VERTEX_COLOR"
+	source = "gbuffer_micro_tile_blend.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

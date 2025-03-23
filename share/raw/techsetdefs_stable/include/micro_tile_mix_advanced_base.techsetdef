@@ -1,0 +1,38 @@
+#include "micro_tile_mix_plus_base"
+
+Texture( "specColorMap" ).tweak = Tweak()
+{
+	category  = "Detail Maps1"
+	title     = "Specular Map"
+	sortindex = "40"
+}
+Texture( "specularMapDetail2" )
+{
+	image = Image( <colorMap03, $white_specular> )
+	semantic = "specularMask"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps2"
+		title     = "Specular Map"
+		sortindex = "40"
+	}
+}
+
+Color( "specColorTint" ).tweak = Tweak()
+{
+	category  = "Detail Maps1"
+	title     = "Spec Color"
+	sortindex = "50"
+	color = true
+}
+Color( "specColorTint1" )
+{
+	value = "srgb_to_linear( <specColorTint1> )"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps2"
+		title     = "Spec Color"
+		sortindex = "50"
+		color = true
+	}
+}

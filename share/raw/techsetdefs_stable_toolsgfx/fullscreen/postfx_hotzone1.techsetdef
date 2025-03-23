@@ -1,0 +1,97 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+
+Texture( "gridTextureA" )
+{
+	ref = true
+	image = Image( <colorMap11, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Grid Texture A"
+		sortindex = "1"
+	}
+}
+
+Texture( "gridTextureB" )
+{
+	ref = true
+	image = Image( <colorMap10, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Grid Texture B"
+		sortindex = "2"
+	}
+}
+
+Texture( "gridTextureC" )
+{
+	ref = true
+	image = Image( <colorMap09, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Grid Texture C"
+		sortindex = "3"
+	}
+}
+
+Texture( "gridTextureD" )
+{
+	ref = true
+	image = Image( <colorMap08, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Grid Texture D"
+		sortindex = "4"
+	}
+}
+
+
+
+Texture( "revealTexture" )
+{
+	ref = true
+	image = Image( <colorMap12, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Reveal Texture"
+		sortindex = "5"
+	}
+}
+
+
+
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "postfx/postfx_hotzone1.hlsl"
+		defines = "USE_VERTCOL 0"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/postfx_hotzone1.hlsl"
+		defines = "USE_VERTCOL 0"
+		// textures
+   	     	colorMapSampler  = CodeTexture( "feedback" )
+   		codeTexture0  = CodeTexture( "codeTexture0" )
+	        codeTexture1  = CodeTexture( "codeTexture1" )
+		codeTexture2  = CodeTexture( "codeTexture2" )
+  		// samplers
+ 		samplerBilinearWrap = Sampler( "tile both", "mip (1x trilinear)" )
+	}
+}

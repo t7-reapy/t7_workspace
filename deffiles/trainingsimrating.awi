@@ -1,0 +1,13 @@
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	Asset.AddEntry_String( "type", "trainingsimrating" ).Show( false ).SetValue( "trainingsimrating" );
+	Asset.AddEntry_Combo( "vmType", "Both | Server | Client" ).Show( true );
+	
+	Asset.AddEntry_String("xstring_ratingName", "").SetTitle( "Rating Name" );
+	Asset.AddEntry_String("int_requiredScore", "").SetTitle("Score Required");
+	Asset.AddEntry_String("int_tokensAwarded", "").SetTitle("Tokens Awarded");
+	Asset.AddEntry_String("int_xpAwarded", "").SetTitle("XP Awarded");
+
+	Asset.AddEntry_AssetCombo("image_ratingImage", "image").SetTitle("Rating Image");
+}

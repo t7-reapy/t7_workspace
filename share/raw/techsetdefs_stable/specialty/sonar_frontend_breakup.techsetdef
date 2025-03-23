@@ -1,0 +1,157 @@
+#include "lit_base_shaders"
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = false
+		forFX               = false
+		isEmissive          = true
+		isOpaque            = true
+	}
+	category          = "Specialty"
+	availablePrefixes = "mc/ mcs/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "noiseTexture" )
+{
+	image    = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Noise"
+		title		= "Break Up Map"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "diffuseAlbedo" )
+{
+	value = "srgb_to_linear( <colorTint1> )"
+	tweak = Tweak()
+	{
+		category  = "Lighting"
+		title     = "Albedo"
+		sortindex = "10"
+		color = true
+	}
+}
+
+float4( "scanlineConsts" )
+{
+	x	= <cg00_x>
+	y	= <cg00_y>
+	z	= <cg00_z>
+	w	= <cg00_w>
+	tweak = Tweak()
+	{
+		category	= "Emissive"
+		title		= "V Scanline (Sharpness, Contrast, Speed, Width )"
+		sortindex	= "100"
+		default		= "1.0", "1.0", "0.17", "100"
+		range		= "-128.0", "1024.0", "0.01"
+	}
+}
+
+float4( "scanlineConsts1" )
+{
+	x	= <cg03_x>
+	y	= <cg03_y>
+	z	= <cg03_z>
+	w	= <cg03_w>
+	tweak = Tweak()
+	{
+		category	= "Emissive"
+		title		= "U Scanline (Sharpness, Contrast, Speed, Width )"
+		sortindex	= "110"
+		default		= "1.0", "1.0", "0.17", "100"
+		range		= "-128.0", "1024.0", "0.01"
+	}
+}
+
+float1( "minScanlineEffect" )
+{
+	x = <cg04_x>
+	tweak = Tweak()
+	{
+		category	= "Emissive"
+		title		= "Min Scanline Appearance"
+		sortindex	= "120"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.01"
+	}
+}
+
+float2( "falloffParms" )
+{
+	x = <cg01_x>
+	y = <cg01_y>
+	tweak = Tweak()
+	{
+		category	= "Emissive"
+		title		= "Falloff (Harshness, Boost)"
+		sortindex	= "130"
+		default		= "1.0"
+		range		= "0.0", "1024.0", "0.1"
+	}
+}
+
+float1( "hdrScale" )
+{
+	x = <cg02_z>
+	tweak = Tweak()
+	{
+		category	= "Emissive"
+		title		= "Brightness"
+		sortindex	= "150"
+		default		= "0.0"
+		range		= "0.0", "1024.0", "0.01"
+	}
+}
+
+float2( "noiseScroll" )
+{
+	x = <cg01_z>
+	y = <cg01_w>
+	tweak = Tweak()
+	{
+		category	= "Noise"
+		title		= "Scroll (U, V)"
+		sortindex	= "110"
+		default		= "0.0"
+		range		= "-1024.0", "1024.0", "0.1"
+	}
+}
+
+float2( "noiseScale" )
+{
+	x = <cg02_x>
+	y = <cg02_y>
+	tweak = Tweak()
+	{
+		category	= "Noise"
+		title		= "Scale (U, V)"
+		sortindex	= "120"
+		default		= "1.0"
+		range		= "0.001", "1024.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "lit" )
+{
+	state   = "replace + depth"
+	source  = "specialty\sonar_normal.hlsl"
+	vs      = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		bilinearSampler = Sampler( "tile both*", "nomip bilinear" )
+	}
+}

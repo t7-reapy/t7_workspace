@@ -1,0 +1,36 @@
+
+//
+// REFLECTION PROBES
+//
+ComputeShader("reflectionprobe_compute_cube")
+{
+	source = "reflectionprobe_compute_cube_internal.hlsl"
+	defines = "REFLECTION_PROBE_DEBUG 0"
+}
+
+ComputeShader("reflectionprobe_compute_cube_debug1")
+{
+	source = "reflectionprobe_compute_cube_internal.hlsl"
+	defines = "REFLECTION_PROBE_DEBUG 1"
+}
+
+ComputeShader("reflectionprobe_compute_cube_debug2")
+{
+	source = "reflectionprobe_compute_cube_internal.hlsl"
+	defines = "REFLECTION_PROBE_DEBUG 2"
+}
+
+ComputeShader("reflectionprobe_compute")
+{
+	source = "reflectionprobe_compute.hlsl"
+}
+
+ComputeShader("diffuseprobe_compute")
+{
+	source = "diffuseprobe_compute.hlsl"
+}
+
+ComputeShader("show_probe_blends")
+{
+	source = "show_probe_blends.hlsl"
+}

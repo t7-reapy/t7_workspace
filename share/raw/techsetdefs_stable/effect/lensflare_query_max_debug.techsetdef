@@ -1,0 +1,48 @@
+#include "effect_base"
+
+Globals()
+{
+	category = "Effect"
+	renderFlags = "none"
+
+}
+
+Technique("unlit" )
+{
+	state = State()
+	{
+		blendState  = BlendState()
+		{
+			// Replace
+			colorBlendFunc = add
+			colorBlendSrc  = One
+			colorBlendDst  = Zero
+			alphaBlendFunc = add
+			alphaBlendSrc  = One
+			alphaBlendDst  = Zero
+			writeChannels  = "rb"
+		}
+		depthTest      = always
+		depthWrite     = true
+		stencilFront   = "write stencil"
+	}
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "techsetdef_lensflare_query.hlsl"
+		defines = "USE_VERTCOL"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "techsetdef_lensflare_query.hlsl"
+		defines = "USE_VERTCOL"
+#endif
+	}
+}

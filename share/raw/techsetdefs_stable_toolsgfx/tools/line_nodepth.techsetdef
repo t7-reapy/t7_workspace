@@ -1,0 +1,46 @@
+#include "state"
+#include "renderFlags"
+
+#if TOOLSGFX == "1"
+#else
+Sampler( "colorSampler" )
+{
+	tile = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+
+Texture( "colorMap" )
+{
+	image = Image( "$white" )
+}
+#endif
+
+Globals()
+{
+	category = "Tools"
+	renderFlags = "none"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + decal"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "line.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "techsetdef_2d.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "line.hlsl"
+#else
+		source = "techsetdef_2d.hlsl"
+		colorMapSampler = "colorMap"
+#endif
+	}
+}
+

@@ -1,0 +1,239 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{EFF4468B-F6D1-418F-AFA6-0AC4757F0030}"
+"classname" "worldspawn"
+"_color" "0.90 0.90 1"
+"ambient" "0"
+"bouncefraction" ".2"
+"contrastgain" "0.35"
+"diffusefraction" "0.15"
+"radiosityscale" "1"
+"skyboxmodel" "skybox_ber3"
+"spawnflags" "512"
+"suncolor" "0.9 0.98 1"
+"sundiffusecolor" "09 0.92 1"
+"sundirection" "-50 -215 0"
+"sunlight" "1.2"
+"sunradiosity" "1.5"
+"evmax" "31"
+"evmin" "-32"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{9B3FC136-0877-4B9E-83CE-9D25D9597249}"
+ ( 65 122 -1 ) ( 8 122 -1 ) ( 8 -28 -1 ) dirt_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 1197 0 0
+ ( -83 -28 51 ) ( -83 122 51 ) ( 65 122 51 ) dirt_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 1197 0 0
+ ( 8 -28 51 ) ( 65 -28 51 ) ( 65 -28 -2 ) dirt_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 65 -28 51 ) ( 65 122 51 ) ( 65 122 -2 ) dirt_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 -1197 0 0 0
+ ( 65 28 51 ) ( 8 28 51 ) ( 8 28 -2 ) dirt_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -83 122 51 ) ( -83 -28 51 ) ( -66 -28 -1 ) dirt_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 -1197 0 0 0
+}
+// brush 1
+ {
+  guid "{E7046476-4A77-11E4-9FB2-2C27D7F03380}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_concrete_trowelled
+   lightmap_gray
+   4 4 16 8
+   (
+	v -79 -28 43 t -1264 448 -4.9375 1.75
+	v -79 -8.333334 42 t -1264 133.33334 -4.9375 0.52083337
+	v -79 8.3333321 43 t -1264 -133.33331 -4.9375 -0.52083325
+	v -79 25.999998 43 t -1264 -416 -4.9375 -1.625
+   )
+   (
+	v -33.666664 -28 46 t -538.66663 448 -2.1041665 1.75
+	v -34.666664 -8.333334 48 t -554.66663 133.33334 -2.1666665 0.52083337
+	v -33.666664 8.3333321 46 t -538.66663 -133.33331 -2.1041665 -0.52083325
+	v -34.666664 25.999998 48 t -554.66663 -416 -2.1666665 -1.625
+   )
+   (
+	v 15.666672 -28 45 t 250.66675 448 0.97916698 1.75
+	v 15.666672 -8.333334 41 t 250.66675 133.33334 0.97916698 0.52083337
+	v 15.666672 8.3333321 42 t 250.66675 -133.33331 0.97916698 -0.52083325
+	v 15.666672 25.999998 43 t 250.66675 -416 0.97916698 -1.625
+   )
+   (
+	v 65.000008 -28 43 t 1040 448 4.0625 1.75
+	v 65.000008 -8.333334 43 t 1040 133.33334 4.0625 0.52083337
+	v 65.000008 8.3333321 43 t 1040 -133.33331 4.0625 -0.52083325
+	v 65.000008 25.999998 43 t 1040 -416 4.0625 -1.625
+   )
+  }
+ }
+// brush 2
+{
+ guid "{727FBC9B-6BBE-11E4-B4C7-2C27D7F0337A}"
+ ( 68 24 0 ) ( -44 24 0 ) ( -44 -24 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -44 -24 52 ) ( -44 24 52 ) ( 68 24 52 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -44 -32 52 ) ( 68 -32 52 ) ( 68 -32 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 68 -24 52 ) ( 68 24 52 ) ( 68 24 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 68 28 52 ) ( -44 28 52 ) ( -44 28 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -84 24 52 ) ( -84 -24 52 ) ( -84 -24 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 3
+ {
+  guid "{26107270-1255-44BF-9366-2C785DEAE8BB}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_rubble_concrete_lg_blend
+   lightmap_gray
+   4 4 16 8
+   (
+	v -79 -28 43 t -632 224 -4.9375 1.75
+	v -79 -8.333334 42 t -632 66.666672 -4.9375 0.52083337
+	v -79 8.3333321 43 t -632 -66.666656 -4.9375 -0.52083325
+	v -79 25.999998 43 t -632 -208 -4.9375 -1.625
+   )
+   (
+	v -33.666664 -28 46 t -269.33331 224 -2.1041665 1.75
+	v -34.666664 -8.333334 48 t -277.33331 66.666672 -2.1666665 0.52083337
+	v -33.666664 8.3333321 46 t -269.33331 -66.666656 -2.1041665 -0.52083325
+	v -34.666664 25.999998 48 t -277.33331 -208 -2.1666665 -1.625
+   )
+   (
+	v 15.666672 -28 45 t 125.33337 224 0.97916698 1.75
+	v 15.666672 -8.333334 41 c 255 255 255 198 t 125.33337 66.666672 0.97916698 0.52083337
+	v 15.666672 8.3333321 42 c 255 255 255 198 t 125.33337 -66.666656 0.97916698 -0.52083325
+	v 15.666672 25.999998 43 t 125.33337 -208 0.97916698 -1.625
+   )
+   (
+	v 65.000008 -28 43 t 520 224 4.0625 1.75
+	v 65.000008 -8.333334 43 t 520 66.666672 4.0625 0.52083337
+	v 65.000008 8.3333321 43 t 520 -66.666656 4.0625 -0.52083325
+	v 65.000008 25.999998 43 t 520 -208 4.0625 -1.625
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort 1
+  }
+ }
+// brush 4
+ {
+  guid "{3D4DC4B1-6BBF-11E4-B4C7-2C27D7F0337A}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_snow_powder_03_blend
+   lightmap_gray
+   4 4 16 8
+   (
+	v -79 -28 43 c 255 255 255 137 t -632 224 -4.9375 1.75
+	v -79 -8.333334 42 c 255 255 255 137 t -632 66.666672 -4.9375 0.52083337
+	v -79 8.3333321 43 c 255 255 255 137 t -632 -66.666656 -4.9375 -0.52083325
+	v -79 25.999998 43 c 255 255 255 137 t -632 -208 -4.9375 -1.625
+   )
+   (
+	v -33.666664 -28 46 c 255 255 255 137 t -269.33331 224 -2.1041665 1.75
+	v -34.666664 -8.333334 48 c 255 255 255 137 t -277.33331 66.666672 -2.1666665 0.52083337
+	v -33.666664 8.3333321 46 c 255 255 255 137 t -269.33331 -66.666656 -2.1041665 -0.52083325
+	v -34.666664 25.999998 48 c 255 255 255 137 t -277.33331 -208 -2.1666665 -1.625
+   )
+   (
+	v 15.666672 -28 45 c 255 255 255 137 t 125.33337 224 0.97916698 1.75
+	v 15.666672 -8.333334 41 c 255 255 255 137 t 125.33337 66.666672 0.97916698 0.52083337
+	v 15.666672 8.3333321 42 c 255 255 255 137 t 125.33337 -66.666656 0.97916698 -0.52083325
+	v 15.666672 25.999998 43 c 255 255 255 137 t 125.33337 -208 0.97916698 -1.625
+   )
+   (
+	v 65.000008 -28 43 c 255 255 255 137 t 520 224 4.0625 1.75
+	v 65.000008 -8.333334 43 c 255 255 255 137 t 520 66.666672 4.0625 0.52083337
+	v 65.000008 8.3333321 43 c 255 255 255 137 t 520 -66.666656 4.0625 -0.52083325
+	v 65.000008 25.999998 43 c 255 255 255 137 t 520 -208 4.0625 -1.625
+   )
+   decalLayerSort "Snow"
+   decalEditorSort 0
+  }
+ }
+}
+// entity 1
+{
+guid "{51D1E12A-6BBE-11E4-B4C7-2C27D7F0337A}"
+"classname" "misc_model"
+"model" "p7_zm_der_dumpster_metal_large"
+"origin" "1 -1 0"
+"modelscale" "1"
+}
+// entity 2
+{
+guid "{8EF5780E-6BBE-11E4-B4C7-2C27D7F0337A}"
+"classname" "misc_model"
+"model" "p7_debris_rockychunks_small_09"
+"origin" "-60 -2 44"
+"modelscale" "1"
+}
+// entity 3
+{
+guid "{95D3EA47-6BBE-11E4-B4C7-2C27D7F0337A}"
+"classname" "misc_model"
+"angles" "0 54.9995 0"
+"model" "p7_debris_rockychunks_small_09"
+"origin" "-50.2048 -16.1066 44"
+"modelscale" "1"
+}
+// entity 4
+{
+guid "{95D3EA57-6BBE-11E4-B4C7-2C27D7F0337A}"
+"classname" "misc_model"
+"angles" "0 324.999 0"
+"model" "p7_debris_rockychunks_small_09"
+"origin" "43.8934 -19.7952 44"
+"modelscale" "1"
+}
+// entity 5
+{
+guid "{9CD9BB97-6BBE-11E4-B4C7-2C27D7F0337A}"
+"classname" "misc_model"
+"angles" "0 234.999 0"
+"model" "p7_debris_rockychunks_small_09"
+"origin" "52.2048 10.1066 44"
+"modelscale" "1"
+}
+// entity 6
+{
+guid "{9CD9BBA9-6BBE-11E4-B4C7-2C27D7F0337A}"
+"classname" "misc_model"
+"angles" "0 54.9989 0"
+"model" "p7_debris_rockychunks_small_08"
+"origin" "-0.2048 -22.1066 44"
+"modelscale" "1"
+}
+// entity 7
+{
+guid "{9CD9BBAC-6BBE-11E4-B4C7-2C27D7F0337A}"
+"classname" "misc_model"
+"angles" "0 144.999 0"
+"model" "p7_debris_rockychunks_small_08"
+"origin" "54.1066 -10.2048 44"
+"modelscale" "1"
+}
+// entity 8
+{
+guid "{C0FB025A-6BBE-11E4-B4C7-2C27D7F0337A}"
+"classname" "misc_model"
+"angles" "314.801 90 180"
+"model" "p7_debris_rockychunks_small_09"
+"origin" "-72 -17 44"
+"modelscale" "1"
+}

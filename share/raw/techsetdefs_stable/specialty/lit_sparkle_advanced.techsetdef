@@ -1,0 +1,146 @@
+#include "lit_base_mid"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit forward opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "sparkleDataMap" )
+{
+	image = Image( <colorMap00, snow_sparkle_m> )
+	semantic = "multipleMask"
+	tweak = Tweak()
+	{
+		category  = "Sparkles"
+		title     = "Sparkles Map (Intensity, ID)"
+		sortindex = "0"
+	}
+}
+
+Sampler( "sparkleDataSampler" )
+{
+	tile = "tile both*"
+	filter = "nearest (mip none)"
+}
+
+Texture( "thicknessMap" )
+{
+	image = Image( <alphaRevealMap, $thickness> )
+	semantic = "thicknessMap"
+	tweak = Tweak()
+	{
+		category  = "Backlight"
+		title     = "Thickness Map"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "backlightScatterColor" )
+{
+	value = "srgb_to_linear( <backlightScatterColor> )"
+	tweak = Tweak()
+	{
+		category  = "Backlight"
+		title     = "Tint"
+		sortindex = "20"
+		color = true
+	}
+}
+
+Bool( "useUVOffsets" )
+{
+	value = <useWorldOffsets1>
+	tweak = Tweak()
+	{
+		category	= "Parameters"
+		title		= "Use world space UV offsets."
+		sortindex	= "10"
+	}
+}
+
+float2( "sparkleTile" )
+{
+	x = <cg00_x>
+	y = <cg00_y>
+	tweak = Tweak()
+	{
+		category  = "Sparkles"
+		title     = "Sparkle Scale (U, V)"
+		sortindex = "10"
+		default   = "8.0"
+		range     = "0.001", "1024", "0.01"
+	}
+}
+
+Color( "specColorTint" )
+{
+	value = "srgb_to_linear( <specColorTint> )"
+	tweak = Tweak()
+	{
+		category  = "Sparkles"
+		title     = "Spec Color"
+		sortindex = "30"
+		color = true
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque"
+	defines = "BASE_SPEC", "USE_COLOR_TINT"
+	source = "specialty/lit_sparkle.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

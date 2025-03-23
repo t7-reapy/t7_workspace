@@ -1,0 +1,64 @@
+#include "lit_base_basic"
+#include "lit_decal_base.inc"
+
+Globals()
+{
+	category = "Decal"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+	renderFlags = "base decal renderflags"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "tintMask" )
+{
+	image = Image()
+	{
+		map = <colorMap00, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "vertexColorScale" )
+{
+	x	= <sway_x>
+	y	= <sway_y>
+	tweak = Tweak()
+	{
+		category	= "Vertex Color"
+		title		= "Scale (R, G)"
+		sortindex	= "10"
+		default		= "1.0", "1.0"
+		range		= "0.0", "1.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+}
+
+Technique( "gbuffer" ) : "base lit decal gbuffer"
+{
+	defines += "BASE_TEXTURES", "USE_COLOR_TINT", "USE_TINT_MASK", "USE_FXANIM", "NO_VERT_COLOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

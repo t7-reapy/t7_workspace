@@ -1,0 +1,159 @@
+Sampler( "normalSamplerTweak" ) : "normalSampler"
+{
+	tweak = Tweak(){ category = "Normal" }
+}
+
+Texture( "detailNormal1" )
+{
+	image = Image( <detailMap, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Detail"
+		title     = "Normal1 (Mask Red)"
+		sortindex = "10"
+	}
+}
+Texture( "detailNormal2" )
+{
+	image = Image( <colorMap01, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Detail"
+		title     = "Normal2 (Mask Green)"
+		sortindex = "40"
+	}
+}
+Texture( "detailNormal3" )
+{
+	image = Image( <colorMap02, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Detail"
+		title     = "Normal3  (Mask Blue)"
+		sortindex = "70"
+	}
+}
+Texture( "detailNormal4" )
+{
+	image = Image( <colorMap03, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Detail"
+		title     = "Normal4 (Mask Alpha)"
+		sortindex = "100"
+	}
+}
+
+Sampler( "detailMaskSampler" )
+{
+	tile = <texTile04>
+	filter = <filterColor04>
+	tweak = Tweak()
+	{
+		category  = "Detail"
+		title     = "Mask"
+		sortindex = "132"
+	}
+}
+
+Texture( "detailNormalMask" )
+{
+	image = Image( <colorMap04, $black_multimask> )
+	semantic = "multipleMask"
+	tweak = Tweak()
+	{
+		category  = "Detail"
+		title     = "Mask"
+		sortindex = "130"
+	}
+}
+
+float1( "detailScaleHeight" )
+{
+	x = <detailScaleHeight>
+	tweak = Tweak()
+	{
+		category  = "Detail"
+		title     = "Normal4 Height"
+		sortindex = "110"
+	}
+}
+float1( "detailScaleHeight1" )
+{
+	x = <detailScaleHeight1>
+	tweak = Tweak()
+	{
+		category  = "Detail"
+		title     = "Normal3 Height"
+		sortindex = "80"
+	}
+}
+float1( "detailScaleHeight2" )
+{
+	x = <detailScaleHeight2>
+	tweak = Tweak()
+	{
+		category  = "Detail"
+		title     = "Normal2 Height"
+		sortindex = "50"
+	}
+}
+float1( "detailScaleHeight3" )
+{
+	x = <detailScaleHeight3>
+	tweak = Tweak()
+	{
+		category  = "Detail"
+		title     = "Normal1 Height"
+		sortindex = "20"
+	}
+}
+
+float2( "detailScale" )
+{
+	x = <detailScaleX>
+	y = <detailScaleY>
+	tweak = Tweak()
+	{
+		category  = "Detail"
+		title     = "Normal4 Scale (X, Y)"
+		sortindex = "120"
+	}
+}
+float2( "detailScale1" )
+{
+	x = <detail1ScaleX>
+	y = <detail1ScaleY>
+	tweak = Tweak()
+	{
+		category  = "Detail"
+		title     = "Normal3 Scale (X, Y)"
+		sortindex = "90"
+	}
+}
+float2( "detailScale2" )
+{
+	x = <detail2ScaleX>
+	y = <detail2ScaleY>
+	tweak = Tweak()
+	{
+		category  = "Detail"
+		title     = "Normal2 Scale (X, Y)"
+		sortindex = "60"
+	}
+}
+float2( "detailScale3" )
+{
+	x = <detail3ScaleX>
+	y = <detail3ScaleY>
+	tweak = Tweak()
+	{
+		category  = "Detail"
+		title     = "Normal1 Scale (X, Y)"
+		sortindex = "30"
+	}
+}

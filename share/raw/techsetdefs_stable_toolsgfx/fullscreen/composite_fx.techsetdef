@@ -1,0 +1,29 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "replace"
+	source = "compositefx.hlsl"
+
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+		colorMap = CodeTexture( "feedback" )
+		normalMap = Texture()
+		{
+			image = Image( <colorMap> )
+			tweak = Tweak( "Normal", "Normal Map", "0" )
+		}
+
+		clampSamplerState = Sampler( "no tile", "nomip bilinear" )
+	}
+}

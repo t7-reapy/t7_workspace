@@ -1,0 +1,38 @@
+#include "lit_base_shaders"
+#include "lit_decal_base.inc"
+#include "ao_base"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "base decal renderflags"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" ) : "aoSampler"
+{ }
+
+Texture( "colorMap" ) : "aoMap"
+{ }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{ defines = "" }
+
+Technique( "gbuffer" ) : "base lit decal gbuffer ao"
+{ }
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}
+

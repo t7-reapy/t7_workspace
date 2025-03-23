@@ -1,0 +1,61 @@
+#include "uie_base"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Sampler( "tileMipBilinearSampler" )
+{
+	tile = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+
+Texture( "colorMapSampler1" )
+{
+	image = Image( <colorMap00, $white> )
+	tweak = Tweak()
+	{
+		category  = "Maps"
+		title     = "Shadow Mask"
+		sortindex = "0"
+	}
+}
+
+Texture( "colorMapSampler2" )
+{
+	image = Image( <colorMap01, $white> )
+	tweak = Tweak()
+	{
+		category  = "Maps"
+		title     = "Color Gradiant"
+		sortindex = "1"
+	}
+}
+
+Technique( "unlit" )
+{
+	state = "blend + nocull"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "uie/uie_extracam_base.hlsl"
+		defines = "USE_VERTCOL"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "uie/uie_extracam_base.hlsl"
+		extraCamSampler = CodeTexture( "extracamTexture4" )
+		tileMipBilinearSampler = "tileMipBilinearSampler"
+		defines = "USE_VERTCOL"
+#endif
+	}
+}

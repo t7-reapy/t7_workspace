@@ -1,0 +1,13 @@
+#include "extracam_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "emissive opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+Technique( "lit" ) : "extracam lit"
+{
+	state = "replace + depth"
+}

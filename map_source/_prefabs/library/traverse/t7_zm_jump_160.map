@@ -1,0 +1,59 @@
+iwmap 4
+// entity 0
+{
+guid "{8BF80DD5-8C9D-11E5-B0A6-001F29042758}"
+"classname" "worldspawn"
+// brush 0
+{
+ guid "{13236B41-64C9-42DA-BAAC-AEE3B720008F}"
+ ( -16 8 152 ) ( 16 8 152 ) ( 16 40 152 ) traverse 32 32 0 -48 180 0 lightmap_gray 16384 16384 0 -48 180 0
+ ( 16 40 160 ) ( 16 8 160 ) ( -16 8 160 ) traverse 32 32 0 -48 180 0 lightmap_gray 16384 16384 0 -48 180 0
+ ( 12 16 160 ) ( -20 16 160 ) ( -20 16 152 ) traverse 32 -32 0 -8 180 0 lightmap_gray 16384 -16384 0 -8 180 0
+ ( -16 40 160 ) ( -16 8 160 ) ( -16 8 152 ) traverse 32 -32 48 -8 180 0 lightmap_gray 16384 -16384 48 -8 180 0
+ ( -16 0 160 ) ( 16 0 160 ) ( 16 0 152 ) traverse 32 -32 0 -8 180 0 lightmap_gray 16384 -16384 0 -8 180 0
+ ( 16 8 160 ) ( 16 40 160 ) ( 16 40 152 ) traverse 32 -32 48 -8 -180 0 lightmap_gray 16384 -16384 48 -8 -180 0
+}
+// brush 1
+{
+ guid "{AAA239D0-2AA6-4A72-8BBD-5C5C895FB4FD}"
+ ( -16 -32 -8 ) ( 16 -32 -8 ) ( 16 0 -8 ) traverse 32 32 0 -40 180 0 lightmap_gray 16384 16384 0 -40 180 0
+ ( 16 0 0 ) ( 16 -32 0 ) ( -16 -32 0 ) traverse 32 32 0 -40 180 0 lightmap_gray 16384 16384 0 -40 180 0
+ ( 16 0 0 ) ( -16 0 0 ) ( -16 0 -8 ) traverse 32 -32 0 0 180 0 lightmap_gray 16384 -16384 0 0 180 0
+ ( -16 0 0 ) ( -16 -32 0 ) ( -16 -32 -8 ) traverse 32 -32 40 0 180 0 lightmap_gray 16384 -16384 40 0 180 0
+ ( -16 -47 0 ) ( 16 -47 0 ) ( 16 -47 -8 ) traverse 32 -32 0 0 180 0 lightmap_gray 16384 -16384 0 0 180 0
+ ( 16 -79 0 ) ( 16 -47 0 ) ( 16 -47 -8 ) traverse 32 -32 40 0 180 0 lightmap_gray 16384 -16384 40 0 180 0
+}
+// brush 2
+{
+ guid "{67398237-D679-4C80-952B-80FF4FDA7E1D}"
+ ( -38 33 -8 ) ( -38 21 -8 ) ( 36 21 -8 ) traverse 64 64 -18 28 -90 0 lightmap_gray 16384 16384 -8 0 -90 0
+ ( -38 0 152 ) ( -38 12 152 ) ( 36 12 152 ) traverse 64 64 -18 28 -90 0 lightmap_gray 16384 16384 -8 0 -90 0
+ ( -16 0 108 ) ( -16 12 108 ) ( -16 12 148 ) traverse 64 -64 -18 52 180 0 lightmap_gray 16384 -16384 -8 100 180 0
+ ( 36 0 108 ) ( -38 0 108 ) ( -38 0 148 ) traverse 64 64 -28 -52 0 0 lightmap_gray 16384 16384 0 -100 0 0
+ ( 16 12 108 ) ( 16 0 108 ) ( 16 0 148 ) traverse 64 -64 -18 52 180 0 lightmap_gray 16384 -16384 -8 100 -180 0
+ ( -38 8 108 ) ( 36 8 108 ) ( 36 8 148 ) traverse 64 64 -28 -52 0 0 lightmap_gray 16384 16384 0 -100 0 0
+}
+}
+// entity 1
+{
+guid "{F2E65091-2C19-11E5-A3F7-2C27D7F0E804}"
+"classname" "node_negotiation_end"
+"angles" "0 270 0"
+"animscript" "jump_down_160"
+"origin" "-3.76837e-005 16 176"
+"previewanim1" "ai_base_rifle_trv_jump_down_160"
+"previewmdl1" "c_gen_soldier_1_fb"
+"targetname" "auto2108"
+}
+// entity 2
+{
+guid "{F2E65092-2C19-11E5-A3F7-2C27D7F0E804}"
+"classname" "node_negotiation_begin"
+"angles" "0 89.9999 0"
+"animscript" "jump_up_160"
+"movementtype_ignore" "civilian,riotshield,zombie_dog"
+"origin" "-3.8147e-005 -47 16"
+"previewanim1" "ai_base_rifle_trv_jump_up_160"
+"previewmdl1" "c_gen_soldier_1_fb"
+"target" "auto2108"
+}

@@ -1,0 +1,58 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Tools"
+	renderFlags = "none"
+	radiantOnly = true
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+State( "blend + depth + decal + nocull") : "blend + depth + decal"
+{
+	cull = None
+}
+
+State( "blend + depth + decal + cullfront") : "blend + depth + decal"
+{
+	cull = Front
+}
+
+#if TOOLSGFX == "1"
+Technique( "unlit" )
+{
+	state = "blend + depth + decal + nocull"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/wireframe.hlsl"
+		vertexDecl = "generic"
+	}
+	gs = GeometryShader()
+	{
+		source = "ToolsGfx/wireframe.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/wireframe.hlsl"
+	}
+}
+
+Technique( "wireframe" )
+{
+	state = "blend + depth + decal + cullfront"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/wireframe.hlsl"
+		vertexDecl = "generic"
+	}
+	gs = GeometryShader()
+	{
+		source = "ToolsGfx/wireframe.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/wireframe.hlsl"
+	}
+}
+#endif

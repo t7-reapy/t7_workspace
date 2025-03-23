@@ -1,0 +1,67 @@
+Sampler( "revealSampler" )
+{
+	tile = <tileReveal>
+	filter = <filterReveal>
+	tweak = Tweak()
+	{
+		category  = "Reveal"
+		sortindex = "20"
+	}
+}
+
+Texture( "revealMap" )
+{
+	image = Image()
+	{
+		map = <alphaRevealMap, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Reveal"
+		title     = "Reveal Map"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "revealScale" )
+{
+	x = <revealScaleX>
+	y = <revealScaleY>
+	tweak = Tweak()
+	{
+		category  = "Reveal"
+		title     = "Scale (U, V)"
+		sortindex = "45"
+	}
+}
+
+float1( "alphaRevealSoftEdge" )
+{
+	x = <alphaRevealSoftEdge>
+	tweak = Tweak()
+	{
+		category  = "Reveal"
+		title     = "Soft Edge"
+		sortindex = "25"
+	}
+}
+
+float1( "alphaRevealRamp" )
+{
+	x = <alphaRevealRamp>
+	tweak = Tweak()
+	{
+		category  = "Reveal"
+		title     = "Ramp"
+		sortindex = "35"
+	}
+}
+
+float2( "alphaRevealParms" )
+{
+	x = <alphaRevealSoftEdge>
+	y = <alphaRevealRamp>
+}

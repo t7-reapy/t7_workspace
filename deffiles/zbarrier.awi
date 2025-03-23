@@ -1,0 +1,65 @@
+
+void GenerateUI( asset Asset )
+{
+	// Effect table
+	
+	Asset.BeginCategory( "Barrier" );
+	{
+		Asset.AddEntry_String( "generalRepairSound0", "").SetTitle("General repair sound");
+		Asset.AddEntry_String( "generalRepairSound1", "").SetTitle("2nd General repair sound");
+		Asset.AddEntry_String( "upgradedGeneralRepairSound0", "").SetTitle("Upgraded General repair sound");
+		Asset.AddEntry_String( "upgradedGeneralRepairSound1", "").SetTitle("2nd Upgraded General repair sound");
+		Asset.AddEntry_CheckBox( "useDelayBetweenGeneralRepSounds", false).SetTitle( "Delay between general rep sounds." );
+		Asset.AddEntry_Float( "delayBetweenGeneralRepSounds", 0, 0, 90 ).SetTitle( "Delay between general rep sounds" ).SetStep( 0.01 );
+	
+		Asset.AddEntry_CheckBox( "earthquakeOnRepair", true).SetTitle( "Earthquake on Repair" );
+		Asset.AddEntry_Float( "earthquakeMinScale", 0.3,0,5.0).SetTitle("Earthquake Min Scale.");
+		Asset.AddEntry_Float( "earthquakeMaxScale", 0.4,0,5.0).SetTitle("Earthquake Max Scale.");
+		Asset.AddEntry_Float( "earthquakeMinDuration", 0.2,0,5.0).SetTitle("Earthquake Min Duration.");
+		Asset.AddEntry_Float( "earthquakeMaxDuration", 0.4,0,5.0).SetTitle("Earthquake Max Duration.");
+
+		Asset.AddEntry_Float( "earthquakeRadius", 150,0,1000).SetTitle("Earthquake Radius.");
+		Asset.AddEntry_CheckBox( "autoHideOpenPieces", false).SetTitle( "Auto hide open pieces." );
+		Asset.AddEntry_CheckBox( "taunts", true).SetTitle( "Zombies Taunt." );
+		Asset.AddEntry_CheckBox( "reachThroughAttacks", true).SetTitle( "Zombies reach through." );
+		
+		Asset.AddEntry_String( "zombieTauntAnimState", "" ).SetTitle("Zombie taunt animstate name");
+		Asset.AddEntry_String( "zombieReachThroughAnimState", "").SetTitle("Zombie reach through animstate name");		
+		
+		Asset.AddEntry_Int( "numAttackSlots", 3, 1, 10).SetTitle("Number of attack slots");
+		Asset.AddEntry_Float( "attackSpotHorzOffset", 0, -255.0, 255.0).SetTitle("Attack slot horizontal offset.");
+
+		Asset.AddEntry_AssetCombo( "collisionModel", "xmodel" ).SetTitle( "Collision Model" ).SetHints( "Animated piece collision model" );		
+	}
+	
+	Asset.BeginCategory( "Pieces" );
+	{
+		for(int i = 1; i < 7; i ++)
+		{
+			Asset.BeginCategory( "Piece " + (i - 1) );
+			{
+				Asset.AddEntry_AssetCombo( "boardModel" + i, "xmodel" ).SetTitle( "Piece Model:" ).SetHints( "Principle piece model" );		
+				Asset.AddEntry_AssetCombo( "upgradedBoardModel" + i, "xmodel" ).SetTitle( "Upgraded Piece Model:" ).SetHints( "Used when reboarded by pro-boarder." );		
+				Asset.AddEntry_AssetCombo( "alternateBoardModel" + i, "xmodel" ).SetTitle( "Alternate Piece Model:" ).SetHints( "Used for custom barriers, e.g. pristine states." );		
+	
+				Asset.AddEntry_AssetCombo( "boardAnim" + i, "xanim" ).SetTitle( "Closing Anim" ).SetHints( "Piece anim used when 'closing' piece (or boarding up/repairing a board)" );
+				Asset.AddEntry_AssetCombo( "tearAnim" + i, "xanim" ).SetTitle( "Opening Anim" ).SetHints( "Piece anim used when 'opening' piece (or tearing down a board) (frame 0 is start position of piece)." );
+	
+				Asset.AddEntry_Path( "repairFx" + i + "0", "").SetRelativePath( "share/raw/fx/" ).SetTitle("1st closing effect").SetToolTip( "1st played closing effect");
+				Asset.AddEntry_Vector3( "OffsetRepairFxX" + i + "0", "OffsetRepairFxY" + i + "0", "OffsetRepairFxZ" + i + "0", 0, 0, 0, -10000, 10000 ).SetTitle( "1st closing FX offset" ).SetStep( 1 );
+				Asset.AddEntry_Path( "repairFx" + i + "1", "").SetRelativePath( "share/raw/fx/" ).SetTitle("2nd closing effect").SetToolTip( "2nd played closing effect");
+				Asset.AddEntry_Vector3( "OffsetRepairFxX" + i + "1", "OffsetRepairFxY" + i + "1", "OffsetRepairFxZ" + i + "1", 0, 0, 0, -10000, 10000 ).SetTitle( "2nd closing FX offset" ).SetStep( 1 );
+				Asset.AddEntry_String( "boardRepairSound" + i, "").SetTitle("Board closing sound");
+				Asset.AddEntry_String( "boardRepairHoverSound" + i, "").SetTitle("Board closing hover sound");
+				Asset.AddEntry_CheckBox( "pauseAndRepeatBoardRepairSound" + i, true).SetTitle( "Pause and repeat board closing sound" );
+				Asset.AddEntry_Float( "pauseBetweenRepSoundsMin" + i, 0.3,0,3).SetTitle("Min pause between closing FX and sounds.");
+				Asset.AddEntry_Float( "pauseBetweenRepSoundsMax" + i, 0.6,0,3).SetTitle("Max pause between closing FX and sounds.");
+	
+				Asset.AddEntry_Int( "proBoardNumRepsToTear" + i, 3, 1, 10).SetTitle("Num reps of loop anim to tear down pro board.");
+				
+				Asset.AddEntry_String( "zombieBoardTearAnimState" + i, "" ).SetTitle("Zombie animstate name");
+				Asset.AddEntry_String( "zombieBoardTearAnimSubState" + i, "").SetTitle("Zombie anim sub state name");
+			}
+		}		
+	}
+}

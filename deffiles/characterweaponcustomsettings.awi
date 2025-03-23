@@ -1,0 +1,36 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	
+	// Local
+	string weapontype = Asset.GetEntryValue( "weapontype" );
+	bool isReplayGun = weapontype == "replay_gun";
+	
+	// Global variables
+	Asset.AddEntry_Combo( "type", "characterweaponcustomsettings" ).Show( false );	
+	Asset.AddEntry_Combo( "weapontype", "replay_gun | freeze_gun" ).SetToolTip( "Type of weapon" ).Show( true ).UpdateOnChange( true );	// for future use
+	
+	// VM
+	string vm_type = "Server | Client | Both";	
+	Asset.AddEntry_Combo( "vmType", vm_type ).SetToolTip( "Spawn this object in server script or client script?" );
+	
+	// Replay Gun
+	Asset.AddEntry_Int( "lockOnMinRange", 300, 10, 10000 ).SetToolTip( "Min range for locking on" ).Show( isReplayGun );
+	Asset.AddEntry_Int( "lockOnMaxRange", 3000, 10, 10000 ).SetToolTip( "Max range for locking on" ).Show( isReplayGun );
+	//Asset.AddEntry_Int( "lockOnCrosshairRadius", 20, 5, 150 ).SetToolTip( "Crosshair radius to start locking on" ).Show( isReplayGun );
+	//Asset.AddEntry_Int( "pivotBoxSideLength", 5, 1, 100 ).SetToolTip( "Max distance required between target origin and cover to place a valid pivot point" ).Show( isReplayGun );
+	//Asset.AddEntry_Int( "lockingTetherDistance", 400, 100, 1000 ).SetToolTip( "Max distance between pivot and target while locking on" ).Show( isReplayGun );
+	//Asset.AddEntry_Int( "lockedTetherDistance", 500, 100, 1000 ).SetToolTip( "Max distance between pivot and target when locked on" ).Show( isReplayGun );
+	Asset.AddEntry_Float( "lockOnTimeMultInCover", 1, 1, 10 ).SetToolTip( "Lock on time multiplier while target is in cover" ).Show( isReplayGun );
+	Asset.AddEntry_Int( "lockOnLostSightPivotTimeout", 2000, 0, 10000 ).SetToolTip( "If the player loses sight of the Pivot Point for this long, the Lock-On is lost" ).Show( isReplayGun );
+
+	Asset.AddEntry_Float( "pivotTargetAttractMin", 0, 0, 1 ).SetToolTip( "Minimum attraction of pivot point to target" ).Show( isReplayGun );
+	Asset.AddEntry_Float( "pivotTargetAttractMax", 0.65, 0, 1 ).SetToolTip( "Maximum attraction of pivot point to target" ).Show( isReplayGun );
+	Asset.AddEntry_Float( "pivotTargetAttractMinAng", 0, 0, 180 ).SetToolTip( "Screen angle at which minimum attraction of pivot point to target is applied" ).Show( isReplayGun );
+	Asset.AddEntry_Float( "pivotTargetAttractMaxAng", 15, 0, 180 ).SetToolTip( "Screen angle at which maximum attraction of pivot point to target is applied" ).Show( isReplayGun );
+	Asset.AddEntry_Float( "targetTetherMaxAng", 20, 0, 180 ).SetToolTip( "Screen angle at which target lock is lost" ).Show( isReplayGun );
+
+}

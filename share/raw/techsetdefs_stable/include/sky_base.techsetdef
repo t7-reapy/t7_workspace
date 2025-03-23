@@ -1,0 +1,60 @@
+#include "state"
+#include "renderFlags"
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "skyStops" )
+{
+	x = <skyStops>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		sortindex = "30"
+	}
+}
+
+float1( "skyScale" )
+{
+	x = "pow( 2, <skyStops> )"
+}
+
+float1( "skyRotation" )
+{
+	x = <skyRotation>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		sortindex = "30"
+	}
+}
+
+float1( "skySize" )
+{
+	x = <skySize>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		sortindex = "30"
+	}
+}
+
+float1( "skyHalfSpace" )
+{
+	x = <skyHalfSpace>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		sortindex = "30"
+	}
+}
+
+VertexShader( "vs_sky" )
+{
+#if TOOLSGFX == "1"
+	vertexDecl = "generic"
+#endif
+}
+
+PixelShader( "ps_sky" )
+{
+}

@@ -1,0 +1,157 @@
+#include "state.techsetdef"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+Texture( "noDamage" )
+{
+	image    = Image( <colorMap05, sam_damage_low> )
+	semantic = "2d"
+	tweak    = Tweak()
+	{
+		title		= "No Damage Map"
+		sortindex	= "10"
+	}
+}
+Texture( "lightDamage" )
+{
+	image    = Image( <colorMap04, asd_screen_static> )
+	semantic = "2d"
+	tweak    = Tweak()
+	{
+		title		= "Damage Map"
+		sortindex	= "20"
+	}
+}
+Texture( "blockNoise" )
+{
+	image    = Image( <colorMap06, sam_block_noise> )
+	tweak    = Tweak()
+	{
+		title		= "Block Noise Map"
+		sortindex	= "30"
+	}
+}
+Texture( "lookup2" )
+{
+	image    = Image( <colorMap10, tv_lookup> )
+	tweak    = Tweak()
+	{
+		title		= "Lookup Map"
+		sortindex	= "40"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "Amount" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		title     = "Effect Amount"
+		sortindex = "50"
+		default   = "1.000000"
+		range     = "0.0", "1.0", "0.01"
+		color     = false
+	}
+}
+float1( "Scale" )
+{
+	x     = <cg01_y>
+	tweak = Tweak()
+	{
+		title     = "Damage Texture Scale"
+		sortindex = "60"
+		default   = "1.000000"
+		range     = "1", "256", "1"
+		color     = false
+	}
+}
+float1( "Speed" )
+{
+	x     = <cg01_z>
+	tweak = Tweak()
+	{
+		title     = "Damage Texture Scroll"
+		sortindex = "70"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "DispersionAmount" )
+{
+	x     = <cg01_w>
+	tweak = Tweak()
+	{
+		title     = "Dispersion Amount"
+		sortindex = "80"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "LookupSpeed" )
+{
+	x     = <cg02_x>
+	tweak = Tweak()
+	{
+		title     = "Lookup Scroll"
+		sortindex = "90"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "LookupMaxX" )
+{
+	x     = <cg02_y>
+	tweak = Tweak()
+	{
+		title     = "Lookup Max Offset"
+		sortindex = "100"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "LookupMinX" )
+{
+	x     = <cg02_z>
+	tweak = Tweak()
+	{
+		title     = "Lookup Min Offset"
+		sortindex = "110"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state   = "replace + nocull"
+	source  = "postFX/2d_tactical_damage.hlsl"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		resolvedPostSun = CodeTexture( "resolvedScene" )
+	}
+}

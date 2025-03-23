@@ -1,0 +1,54 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{1D2D59BC-4A2B-4971-8557-52977FAFBC97}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"newsun" "1"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"evmax" "31"
+"evmin" "-32"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{BE19310D-4285-11E4-B1BF-2C27D7F0333E}"
+  contents detail;
+ ( 8 11 -19 ) ( -8 11 -19 ) ( -8 0 -19 ) metal_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 0 19 ) ( -8 11 19 ) ( 8 11 19 ) metal_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 0 19 ) ( 8 0 19 ) ( 8 0 -19 ) metal_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 8 0 19 ) ( 8 11 19 ) ( 8 11 -19 ) metal_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 8 11 19 ) ( -8 11 19 ) ( -8 11 -19 ) metal_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 11 19 ) ( -8 0 19 ) ( -8 0 -19 ) metal_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 1
+{
+guid "{B9A928AC-E282-42CE-9D5E-755D69A89EFD}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_fire_extinguisher_case"
+"modelscale" "1"
+}
+// entity 2
+{
+guid "{5BD7650F-909E-4620-81D7-E8B6DDC50E39}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_fire_extinguisher_digital"
+"origin" "0 5 -11"
+"modelscale" "1"
+}

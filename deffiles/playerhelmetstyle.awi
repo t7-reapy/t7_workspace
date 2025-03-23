@@ -1,0 +1,39 @@
+const int MAX_HELMET_ACCENT_COLORS = 1;
+const int MAX_HELMET_ACCENT_COLOR_OPTIONS = 6;
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "displayName", "" ).SetTitle( "Display Name" );
+	Asset.AddEntry_AssetCombo( "iconImage", "image" ).SetTitle( "Icon" );
+	Asset.AddEntry_AssetCombo( "xmodel", "xmodel" ).SetTitle( "Model" );
+	Asset.AddEntry_CheckBox( "hideHead", false ).SetTitle( "Hide Head" ).SetToolTip( "When set, this helmet will hide the underlying head model on the character" );
+	
+	Asset.AddEntry_Text( "hideTags", "" ).SetTitle( "Hide Tags " ).Enable(false).SetHints( "NOWARNINGS" ).SetToolTip( "(not yet implemented) name of tags to hide on this model. one per line" );
+
+	Asset.BeginCategory( "FX" );
+	{
+		Asset.AddEntry_Combo( "impactType", "flesh | zombie | armor light | armor heavy | robot light | robot heavy | power armor | skeleton | flesh corpse" ).SetTitle( "Impact Type" ).SetToolTip( "Type of impact effects to use on the helmet." );
+		Asset.AddEntry_Combo( "impactTypeCorpse", "flesh | zombie | armor light | armor heavy | robot light | robot heavy | power armor | skeleton | flesh corpse" ).SetTitle( "Impact Type Corpse" ).SetToolTip( "Type of impact effects to use on the body." );
+	}
+	
+	Asset.BeginCategory( "Variants" );
+	{
+		// keeping this as an array in case we bring back color options
+		Asset.AddEntry_Int("accentColorCount", 0, 0 , MAX_HELMET_ACCENT_COLORS).SetTitle ("Num Variant Sets").UpdateOnChange(true);
+		int colorsCount = Asset.GetEntryInt("accentColorCount");
+	
+		for ( int j = 1; j <= MAX_HELMET_ACCENT_COLORS; j++ )
+		{
+			Asset.BeginCategory( "Variants.Variant Set " + j );
+			{
+				Asset.AddEntry_Int("accentColor"+j+"OptionsCount", 3, 1, MAX_HELMET_ACCENT_COLOR_OPTIONS).Show(colorsCount >= j).SetTitle ("Variant Set "+j+" Count").UpdateOnChange(true);
+				int optionsCount = Asset.GetEntryInt("accentColor"+j+"OptionsCount");
+	
+				for ( int k = 1; k <= MAX_HELMET_ACCENT_COLOR_OPTIONS; k++ )
+				{
+					Asset.AddEntry_AssetCombo( "color_"+j+"_"+k, "customizationcolor" ).SetTitle( "Variant Set "+j+" Option "+k ).Show(colorsCount >= j && optionsCount >= k);
+				}
+			}
+		}
+	}
+}

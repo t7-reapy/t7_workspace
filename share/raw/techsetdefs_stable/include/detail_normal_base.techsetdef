@@ -1,0 +1,35 @@
+Texture( "detailMap" )
+{
+	image = Image( <detailMap, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Details"
+		title     = "Detail Normal Map"
+		sortindex = "10"
+	}
+}
+
+float1( "detailScaleHeight" )
+{
+	x = <detailScaleHeight>
+	tweak = Tweak()
+	{
+		category  = "Details"
+		title     = "Detail Height"
+		sortindex = "110"
+	}
+}
+
+float2( "detailScale" )
+{
+	x = <detailScaleX>
+	y = <detailScaleY>
+	tweak = Tweak()
+	{
+		category  = "Details"
+		title     = "Detail Scale (X, Y)"
+		sortindex = "120"
+	}
+}
+

@@ -1,0 +1,22 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "techsetdef_resolve.hlsl"
+	defines = "RESOLVE_COLOR 1"
+
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		colorMapSampler = CodeTexture( "feedback" )
+		pointClamp = Sampler( "no tile", "nomip nearest" )
+	}
+}

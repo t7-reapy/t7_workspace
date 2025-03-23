@@ -1,0 +1,133 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearClampler" )
+{
+	tile   = "no tile"
+	filter = "linear (mip none)"
+}
+
+Texture( "hexagonMap" )
+{
+	image    = Image( <colorMap, $white_color> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Hexagons"
+		title		= "Pattern Map (Alpha Reveal)"
+		sortindex	= "20"
+	}
+}
+
+Texture( "irisMap" )
+{
+	image    = Image( <colorMap00, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Iris"
+		title		= "Iris Mask"
+		sortindex	= "10"
+	}
+}
+
+Texture( "lensFlareMap" )
+{
+	image    = Image( <colorMap02, $white_color> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Lens Flare"
+		title		= "Flare Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "blurMaskMap" )
+{
+	image    = Image( <colorMap01, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Frame"
+		title		= "Blur Mask Map"
+		sortindex	= "10"
+	}
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "alphaRevealSoftEdge" )
+{
+	x     = <alphaRevealSoftEdge>
+	tweak = Tweak()
+	{
+		category	= "Hexagons"
+		title		= "Reveal Soft Edge"
+		sortindex	= "40"
+	}
+}
+
+float1( "alphaRevealRamp" )
+{
+	x     = <alphaRevealRamp>
+	tweak = Tweak()
+	{
+		category	= "Hexagons"
+		title		= "Reveal Ramp"
+		sortindex	= "50"
+	}
+}
+
+Color( "hexTint" )
+{
+	value = "srgb_to_linear( <colorTint> )"
+	tweak = Tweak()
+	{
+		category	= "Hexagons"
+		title		= "Tint"
+		sortindex	= "50"
+	}
+}
+
+float1( "blurPixels" )
+{
+	x     = <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Frame"
+		title		= "Frame Blur"
+		sortindex	= "50"
+	}
+}
+
+float1( "warpPixels" )
+{
+	x     = <cg00_w>
+	tweak = Tweak()
+	{
+		category	= "Frame"
+		title		= "Warp"
+		sortindex	= "60"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/frame_transition.hlsl"
+
+	vs = VertexShader() { }
+	ps = PixelShader() { }
+}

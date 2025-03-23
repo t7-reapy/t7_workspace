@@ -1,0 +1,192 @@
+#include "lit_base_basic"
+#include "emissive_base"
+#include "scroll_base"
+#include "flipbook_base"
+#include "flicker_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit forward opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "emissiveMap1" ) : "emissiveMap"
+{ }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "uvMotionToggle1" )
+{
+	x = <uvMotionToggle1>
+	tweak = Tweak()
+	{
+		category	= "UV Toggles (Fipbook - 1, Scroll/Rotate - 0)"
+		title		= "Layer1"
+		sortindex	= "10"
+	}
+}
+
+float2( "rotateUVs" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "UV Rotation, Spin Rate"
+	sortindex	= "50"
+}
+float2( "scrollUVs" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Scroll (U, V)"
+	sortindex	= "40"
+}
+float2( "scaleUVs" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Scale (U, V)"
+	sortindex	= "60"
+}
+float2( "offsetUVs" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Offset (U, V)"
+	sortindex	= "70"
+}
+float1( "layerDepth" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Depth"
+	sortindex	= "30"
+}
+float2( "zoomUVs" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Zoom (Min, Max)"
+	sortindex	= "80"
+}
+float1( "zoomRate" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Zoom Rate"
+	sortindex	= "90"
+}
+Bool( "clampU" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Clamp U"
+	sortindex	= "91"
+}
+Bool( "clampV" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Clamp V"
+	sortindex	= "92"
+}
+
+float1( "rowCount" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Flipbook Row Count"
+	sortindex	= "100"
+}
+float1( "columnCount" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Flipbook Column Count"
+	sortindex	= "110"
+}
+float1( "imageTime" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Flipbook Image Time"
+	sortindex	= "120"
+}
+
+float2( "flickerSeed" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Flicker Seed (Style, Time)"
+	sortindex	= "130"
+}
+float1( "flickerSpeed" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Flicker Speed"
+	sortindex	= "140"
+}
+float2( "flickerRange" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Flicker Range (Min, Max)"
+	sortindex	= "150"
+}
+float1( "flickerPower" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Flicker Harshness"
+	sortindex	= "160"
+}
+
+float1( "scriptControl" )
+{
+	x	= <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Script Simulation (Tools Only)"
+		title		= "Elapsed Time (ms, scriptVector0.x)"
+		sortindex	= "10"
+		default		= "0.0"
+		range		= "0.0", "1e+009", "1.0"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque"
+	defines = "BASE_TEXTURES", "USE_COLOR_TINT", "USE_SCROLL_ROTATE_UVS", "USE_FLIPBOOK_UVS", "USE_EMISSIVE_FLICKER", "USE_SCRIPT_CONTROLS"
+	source = "lit_emissive_layers.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

@@ -1,0 +1,49 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{BF62255E-5831-4443-B529-52BDC8055802}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{C1756394-F635-4B56-8534-D03124661710}"
+"classname" "script_model"
+"model" "p7_mp_flag_neutral"
+"script_gameobjectname" "dom onslaught"
+"script_index" "1"
+"script_label" "_b"
+"target" "flag_trigger_b"
+"targetname" "flag_primary"
+"client_server" "ServerSide"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 2
+{
+guid "{BB80AC82-A0D5-4F1E-B3B3-6F3234D8DA80}"
+"classname" "script_origin"
+"origin" "0 0 96"
+"script_gameobjectname" "dom onslaught"
+"script_linkname" "flag2"
+"script_linkto" "flag1 flag3"
+"targetname" "flag_descriptor"
+"client_server" "ClientSide"
+}

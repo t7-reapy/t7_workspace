@@ -1,0 +1,39 @@
+#include "lit_water_sim_base"
+
+Globals()
+{
+	category = "Geometry"
+#if TOOLSGFX == "1"
+	renderFlags = "lit transparent distortion"
+#else
+	renderFlags = RenderFlags()
+	{
+		isOpaque = true
+		isWater = true
+		castsShadows = false
+		requiresPrepass = true
+		isOccluder = false
+		needOpaqueResolve   = true
+		needOpaqueDepthResolve = true
+	}
+#endif
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+#if TOOLSGFX != "1"
+Technique( "depth prepass" ) : "depth prepass base" {}
+Technique( "depth prepass motion vector" ) : "depth prepass motion vector base" {} 
+Technique( "build shadowmap depth" ) : "build shadowmap depth base" {}
+#endif
+
+Technique( "unlit" ) : "unlit base" {}
+
+Technique( "lit" ) : "lit base" {}
+
+#if TOOLSGFX == "1"
+Technique( "oit" ) : "lit"
+{
+	state = "nocolor + depth + rez"
+	defines += "USE_OIT"
+}
+#endif

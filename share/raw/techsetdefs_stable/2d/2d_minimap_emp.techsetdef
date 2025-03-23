@@ -1,0 +1,60 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Sampler( "colorSampler" )
+{
+	tile = "no tile"
+	filter = "nomip bilinear"
+}
+
+Texture( "minimapMask" )
+{
+	image = Image( <colorMap> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Minimap Mask"
+		sortindex = "0"
+	}
+}
+
+Texture( "colorMapSampler1" )
+{
+	image = Image( <colorMap00, $white> )
+	tweak = Tweak()
+	{
+		category  = "Maps"
+		title     = "Noise"
+		sortindex = "0"
+	}
+}
+
+Technique( "unlit" )
+{
+	state = "blend + nocull"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "techsetdef_2d_minimap.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "techsetdef_2d_minimap_emp.hlsl"
+		colorMapSampler = CodeTexture( "codeTexture0" )
+		minimapMask = "minimapMask"
+#endif
+	}
+}

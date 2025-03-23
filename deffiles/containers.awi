@@ -1,0 +1,40 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	 
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Global variables 
+
+	bool bXmodelUI = true;
+
+	Asset.AddEntry_Combo( "type", "containers" ).Show( false );
+
+	// MODEL: The model field is shared by multiple Script Bundle Types
+	//		   - Set the Bool bXmodelUI to include this UI element
+	Asset.AddEntry_AssetCombo( "model", "xmodel" ).SetTitle( "XModel" ).SetToolTip( "The XModel, will be visible in Radiant.  NOTE: Xmodel needs a collmap for Collision" ).Show( bXmodelUI ).SetSave( bXmodelUI ).UpdateOnChange( true );
+	
+	GenerateContainersObject( Asset );
+}
+
+
+void GenerateContainersObject( asset Asset )
+{
+	Asset.AddEntry_AssetCombo( "TheEffectBundle", "scriptbundle" ).SetTitle( "FxAnim - ScriptBundle" ).SetToolTip( "FxAnim used to open the container." ).Show( true ).SetSave( true ).Enable( true );
+	
+	Asset.BeginCategory( "Opening Container" );
+	{
+		Asset.AddEntry_Float( "trigger_radius", 80, 20, 10000 ).SetToolTip( "Open Container Trigger Radius" ).Show( true ).SetTitle( "Trigger Radius" ).SetSave( true );
+		Asset.AddEntry_Combo( "open_method", "Use Button | Locked Use Button" ).SetTitle( "Container Open Method" ).SetToolTip( "How does the Container Open?" ).Show( true ).SetSave( true ).UpdateOnChange( true );
+		Asset.AddEntry_String( "open_notify", "opened" ).SetTitle( "Open Notify" ).SetToolTip( "This notify is played on the container entity when opened." ).Show( true ).SetSave( true );
+	}
+
+	Asset.BeginCategory( "Container Loot" );
+	{
+		Asset.AddEntry_Vector3( "loot_offset_x", "loot_offset_y", "loot_offset_z", 0, 0, 0, -1000, 1000 ).SetTitle( "Loot Spawn Offset" ).SetToolTip( "Offset used when spawning the containers Loot" ).Show( true ).SetLabels( "side", "forward", "up", "" ).SetSave( true );
+	}
+}
+

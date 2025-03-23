@@ -1,0 +1,22 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+		source = "techsetdef_stenciloverlay.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "techsetdef_stenciloverlay.hlsl"
+		uint2DArraySampler = CodeTexture( "feedback" )
+	}
+}

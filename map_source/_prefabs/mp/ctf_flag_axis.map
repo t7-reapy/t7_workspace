@@ -1,0 +1,121 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{7B06B602-4932-4F0E-BDD7-B4AB25B8FADB}"
+"classname" "worldspawn"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{9727CA12-05AB-4A3E-8612-1969CB9433FF}"
+"classname" "trigger_multiple"
+"script_gameobjectname" "ctf"
+"script_team" "axis"
+"target" "ctf_flag_axis"
+"targetname" "ctf_flag_pickup_trig"
+"_color" "1 0.3 0.1"
+// brush 0
+{
+ guid "{1687ADD2-E78E-4585-A1E5-EA537C520CA6}"
+ ( 32 32 -4 ) ( -32 32 -4 ) ( -32 -32 -4 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -32 -32 104 ) ( -32 32 104 ) ( 32 32 104 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -32 -32 32 ) ( 32 -32 32 ) ( 32 -32 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 -32 104 ) ( 32 32 104 ) ( 32 32 72 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 32 32 ) ( -32 32 32 ) ( -32 32 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -32 32 32 ) ( -32 -32 32 ) ( -32 -32 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 12 32 32 ) ( 32 12 32 ) ( 12 32 64 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 -12 32 ) ( 12 -32 32 ) ( 32 -12 64 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -12 -32 32 ) ( -32 -12 32 ) ( -12 -32 64 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -32 12 32 ) ( -12 32 32 ) ( -32 12 64 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{F07B3474-792E-40D5-8CFD-B4A853E02235}"
+ ( 8 8 -8 ) ( -8 8 -8 ) ( -8 -8 -8 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 -8 8 ) ( -8 8 8 ) ( 8 8 8 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 -8 28 ) ( 8 -8 28 ) ( 8 -8 -8 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 8 -8 28 ) ( 8 8 28 ) ( 8 8 -8 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 8 8 28 ) ( -8 8 28 ) ( -8 8 -8 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 8 28 ) ( -8 -8 28 ) ( -8 -8 -8 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 2
+{
+guid "{44039506-A7EF-4A6A-A803-926A5C046106}"
+"classname" "trigger_multiple"
+"script_gameobjectname" "ctf"
+"script_team" "axis"
+"targetname" "ctf_flag_zone_trig"
+"_color" "1 0.3 0.1"
+// brush 0
+{
+ guid "{A85328A6-63BD-40E7-B774-F5BD9009E34B}"
+ ( 32 32 -4 ) ( -32 32 -4 ) ( -32 -32 -4 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -32 -32 104 ) ( -32 32 104 ) ( 32 32 104 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -32 -32 32 ) ( 32 -32 32 ) ( 32 -32 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 -32 104 ) ( 32 32 104 ) ( 32 32 72 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 32 32 ) ( -32 32 32 ) ( -32 32 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -32 32 32 ) ( -32 -32 32 ) ( -32 -32 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 12 32 32 ) ( 32 12 32 ) ( 12 32 64 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 -12 32 ) ( 12 -32 32 ) ( 32 -12 64 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -12 -32 32 ) ( -32 -12 32 ) ( -12 -32 64 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -32 12 32 ) ( -12 32 32 ) ( -32 12 64 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{5F32BE06-D262-4894-A85A-2663FD427FE3}"
+ ( 8 8 -8 ) ( -8 8 -8 ) ( -8 -8 -8 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 -8 8 ) ( -8 8 8 ) ( 8 8 8 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 -8 28 ) ( 8 -8 28 ) ( 8 -8 -8 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 8 -8 28 ) ( 8 8 28 ) ( 8 8 -8 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 8 8 28 ) ( -8 8 28 ) ( -8 8 -8 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 8 28 ) ( -8 -8 28 ) ( -8 -8 -8 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 3
+{
+guid "{114E055B-67C2-496B-A075-79DC6C3C8383}"
+"classname" "script_model"
+"model" "p7_mp_flag_neutral"
+"script_gameobjectname" "ctf"
+"script_team" "axis"
+"targetname" "ctf_flag_axis"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 4
+{
+guid "{0BDEB83B-0E49-11E5-8A85-40A8F0C95194}"
+"classname" "script_model"
+"model" "p7_mp_flag_base"
+"script_gameobjectname" "ctf"
+"script_team" "allies"
+"targetname" "ctf_flag_axis_base"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}

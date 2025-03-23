@@ -1,0 +1,119 @@
+//----------------------------------------------------------------------------
+// vertex shader perms
+//----------------------------------------------------------------------------
+VertexShader( "vs_unlit" ) : "vs_default" { }
+
+VertexShader( "vs_lit" ) : "vs_default"
+{
+	defines += "USE_LIT", "USE_VERTEX_LIGHTING"
+	samplerLinear = Sampler( "tile both", "mip (1x trilinear)", true )
+	samplerLinearClamp = Sampler( "no tile", "mip (1x trilinear)", true )
+	shadowmapReadSampler = Sampler( "tile both", "nomip bilinear", true )
+}
+
+VertexShader( "vs_lit_spec" ) : "vs_default"
+{
+	defines += "FX_GLOBAL_PROBE"
+	samplerLinear = Sampler( "tile both", "mip (1x trilinear)", true )
+	samplerLinearClamp = Sampler( "no tile", "mip (1x trilinear)", true )
+	shadowmapReadSampler = Sampler( "tile both", "nomip bilinear", true )
+}
+
+VertexShader( "vs_emissive" ) : "vs_unlit"
+{
+	defines += "USE_EMISSIVE"
+}
+
+VertexShader( "vs_emissive_oit" ) : "vs_emissive"
+{
+	defines += "USE_OIT"
+}
+
+VertexShader( "vs_lit_oit" ) : "vs_lit"
+{
+	defines += "USE_OIT"
+}
+
+VertexShader( "vs_lit_spec_oit" ) : "vs_lit_spec"
+{
+	defines += "USE_OIT"
+}
+
+//----------------------------------------------------------------------------
+// pixel shader perms
+//----------------------------------------------------------------------------
+
+PixelShader( "ps_unlit" ) : "ps_default" { }
+
+PixelShader( "ps_lit" ) : "ps_default"
+{
+	defines += "USE_LIT", "USE_VERTEX_LIGHTING"
+}
+
+PixelShader( "ps_lit_spec" ) : "ps_default"
+{
+	defines += "USE_LIT", "FX_GLOBAL_PROBE"
+	samplerLinear = Sampler( "tile both", "mip (1x trilinear)", true )
+	samplerLinearClamp = Sampler( "no tile", "mip (1x trilinear)", true )
+	shadowmapReadSampler = Sampler( "tile both", "nomip bilinear", true )
+}
+
+PixelShader( "ps_unlit_add" ) : "ps_unlit"
+{
+	defines += "USE_ADD_BLEND"
+}
+
+PixelShader( "ps_emissive" ) : "ps_unlit"
+{
+	defines += "USE_EMISSIVE"
+}
+
+PixelShader( "ps_emissive_blend" ) : "ps_emissive"
+{
+	defines += "USE_PREMUL_BLEND"
+}
+
+PixelShader( "ps_emissive_add" ) : "ps_emissive"
+{
+	defines += "USE_ADD_BLEND"
+}
+
+PixelShader( "ps_emissive_blend_oit" ) : "ps_emissive_blend"
+{
+	defines += "USE_OIT"
+}
+
+PixelShader( "ps_emissive_add_oit" ) : "ps_emissive_add"
+{
+	defines += "USE_OIT"
+}
+
+PixelShader( "ps_lit_blend" ) : "ps_lit"
+{
+	defines += "USE_PREMUL_BLEND"
+}
+
+PixelShader( "ps_lit_spec_blend" ) : "ps_lit_spec"
+{
+	defines += "USE_PREMUL_BLEND"
+}
+
+PixelShader( "ps_lit_oit" ) : "ps_lit"
+{
+	defines += "USE_OIT"
+}
+
+PixelShader( "ps_lit_spec_oit" ) : "ps_lit_spec"
+{
+	defines += "USE_OIT"
+}
+
+PixelShader( "ps_lit_blend_oit" ) : "ps_lit_blend"
+{
+	defines += "USE_OIT"
+}
+
+PixelShader( "ps_lit_spec_blend_oit" ) : "ps_lit_spec_blend"
+{
+	defines += "USE_OIT"
+}

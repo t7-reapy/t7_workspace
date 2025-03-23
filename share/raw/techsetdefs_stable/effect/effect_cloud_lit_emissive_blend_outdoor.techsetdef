@@ -1,0 +1,77 @@
+
+#include "effect_cloud_base"
+
+Globals()
+{
+	category = "Effect"
+	renderFlags = "lit transparent fx"
+	availablePrefixes = "ec/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "emissiveMap" )
+{
+	image = Image()
+	{
+		map = <alphaRevealMap, $white_reveal>
+	}
+	semantic = "revealMap"
+	usage = "reveal map"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Emissive Mask"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "hdrScale" )
+{
+	x = <scaleRGB>
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Intensity"
+		sortindex = "30"
+	}
+}
+
+Bool( "useOldHDRScale" )
+{
+	value = <useOldHDRScale>
+	tweak = Tweak()
+	{
+		category	= "Emissive"
+		title		= "Physically Based Emissive behavior."
+		sortindex	= "40"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	vs = VertexShader() : "vs_unlit" { }
+	ps = PixelShader() : "ps_unlit" { }
+}
+
+Technique( "lit" )
+{
+	state = "premul + depth"
+	defines += "USE_EMISSIVE_MAP", "USE_OUTDOOR"
+
+	vs = VertexShader() : "vs_lit" { }
+	ps = PixelShader() : "ps_lit_blend" { }
+}
+
+Technique( "oit" )
+{
+	state = "fallback + depth + rez"
+	defines += "USE_EMISSIVE_MAP", "USE_OUTDOOR"
+	vs = VertexShader() : "vs_lit_oit" { }
+	ps = PixelShader() : "ps_lit_blend_oit" { }
+}

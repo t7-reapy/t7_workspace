@@ -1,0 +1,242 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	Asset.AddEntry_Combo( "type", "killstreak" ).Show( false ).SetValue( "killstreak" );
+	Asset.AddEntry_Combo( "vmType", "Both" ).Show( false ).SetValue( "Both" );
+	
+	string type = Asset.AddEntry_Combo( "ksType", "Core | AutoTurret | AITank | CombatRobot | CounterUAV | Dart | EMP | HelicopterComlink | MicrowaveTurret | Mothership |  Raps | RCBomb | Satellite | Sentinel | SupplyDrop | UAV | RemoteMissile | EscortRobot | Quadtank" ).SetTitle( "Killstreak Package" ).UpdateOnChange( true ).GetValue();
+
+	bool isCore = ( type == "Core" );
+	bool isAutoTurret = ( type == "AutoTurret" );
+	bool isAITank = ( type == "AITank");
+	bool isCombatRobot = ( type == "CombatRobot" );
+	bool isEscortRobot = ( type == "EscortRobot" );
+	bool isCounterUAV = ( type == "CounterUAV" );
+	bool isDart = ( type == "Dart" );
+	bool isEMP = ( type == "EMP" );
+	bool isHelicopterComlink = ( type == "HelicopterComlink" );
+	bool isMicrowaveTurret = ( type == "MicrowaveTurret" );
+	bool isMothership = ( type == "Mothership" );
+	bool isRaps = ( type == "Raps" );
+	bool isRCBomb = ( type == "RCBomb" );
+	bool isSentinel = ( type == "Sentinel" );
+	bool isSupplyDrop = ( type == "SupplyDrop" );
+	bool isUAV = ( type == "UAV" );
+	bool isSatellite = ( type == "Satellite" );
+	bool isRemoteMissile = ( type == "RemoteMissile" );
+	bool isQuadtank = ( type == "Quadtank" ); // aka siegebot
+	
+
+	bool isPlaceable = ( isAutoTurret || isMicrowaveTurret || isEMP );
+	bool hasTimeoutBeep = ( isRCBomb || isDart || isSentinel || isAITank );
+
+	bool hackingParams = !isEscortRobot && !isQuadtank;
+	
+	Asset.BeginCategory( "Health" );
+	{
+		Asset.AddEntry_Int( "ksHealth", 100, 1, 50000 ).SetTitle( "Health" ).SetToolTip( "Start health of killstreak" );
+		Asset.AddEntry_Int( "ksLowHealth", 50, 1, 50000 ).SetTitle( "Low Health" ).SetToolTip( "When the killsterak reaches this health level a low health callback will be called if defined" );
+		Asset.AddEntry_Path( "fxLowHealth", "" ).SetTitle( "Low Health FX" ).SetToolTip( "FX to play when low health value is hit" ).SetRelativePath( "share/raw/fx" );
+		Asset.AddEntry_Int( "ksHackedHealth", 20, 1, 50000 ).SetTitle( "Hacked Health" ).SetToolTip( "If the killstreak is hacked its health will be capped at this amount" ).Show( hackingParams );
+	}
+	
+	Asset.BeginCategory( "Damage" );
+	{
+		Asset.AddEntry_Int( "ksClipsToKill", 0, -1, 100 ).SetTitle( "Clips To Kill" ).SetToolTip( "How many clips does it take to destroy killstreak; use 0 for no override, use -1 for immunity" );
+		Asset.AddEntry_Int( "ksClipsToKillFMJ", 0, -1, 100 ).SetTitle( "Clips To Kill FMJ" ).SetToolTip( "How many clips does it take to destroy killstreak with the FMJ attachment; use 0 for no override, use -1 for immunity" );
+		Asset.AddEntry_Int( "ksRocketsToKill", 0, -1, 50000 ).SetTitle( "Rockets To Kill" ).SetToolTip( "How many rockets it takes to kill the streak; use 0 for no override, use -1 for immunity" );
+		Asset.AddEntry_Int( "ksShotgunEnergyToKill", 0, -1, 50000 ).SetTitle( "Shotgun Energy To Kill" ).SetToolTip( "How many energy shots from the shotgun energy weapon to kill the streak; use 0 for no override, use -1 for immunity" );
+		Asset.AddEntry_Int( "ksEmpGrenadesToKill", 0, -1, 50000 ).SetTitle( "EMP Grenades To Kill" ).SetToolTip( "How many emp grenades it takes to kill the streak; use 0 for no override, use -1 for immunity" );
+		Asset.AddEntry_Float( "ksGrenadeDamageMultiplier", 0, -1, 999999 ).SetTitle( "Grenade Damage Multiplier" ).SetToolTip( "0 = no override, -1 = immunity, any positive number is a damage multiplier for grenades. This value is not used by EMP grenades." );
+		Asset.AddEntry_Float( "ksProjectileSpashMultiplier", 0, -1, 999999 ).SetTitle( "Projectile Splash Damage Multiplier" ).SetToolTip( "0 = no override, -1 = immunity, any positive number is a damage multiplier for projectile splash." );
+		Asset.AddEntry_Float( "ksMeleeDamageMultiplier", 0, -1, 999999 ).SetTitle( "Melee Damage Multiplier" ).SetToolTip( "0 = no override, -1 = immunity, any positive number is a damage multiplier for melee damage types." );
+		Asset.AddEntry_Float( "ksShotgunMultiplier", 2, -1, 999999 ).SetTitle( "Shotgun Damage Multiplier" ).SetToolTip( "0 = no override, -1 = immunity, any positive number is a damage multiplier for shotgun damage types." );
+		Asset.AddEntry_Int( "ksRemote_missile_missile", 1, 0, 50000 ).SetTitle( "Hellstorm Missile hits" ).SetToolTip( "How many remote missile missile to destroy killstreak; use 0 for no override, use -1 for immunity" );
+		Asset.AddEntry_Int( "ksHero_annihilator", 0, -1, 50000 ).SetTitle( "Anniliator hits" ).SetToolTip( "How many anniliator hits to destroy killstreak; use 0 for no override, use -1 for immunity" );
+		Asset.AddEntry_Int( "ksHero_armblade", 0, -1, 50000 ).SetTitle( "Armblade hits" ).SetToolTip( "How many armblade strikes to destroy killstreak; use 0 for no override, use -1 for immunity" );
+		Asset.AddEntry_Int( "ksHero_bowlauncher", -1, 0, 50000 ).SetTitle( "Bow Launcher hits" ).SetToolTip( "How many bow launcher hits to destroy killstreak; use 0 for no override, use -1 for immunity" );
+		Asset.AddEntry_Int( "ksHero_gravityspikes", -1, 0, 50000 ).SetTitle( "Gravity spike hits" ).SetToolTip( "How many gravity spike hits to destroy killstreak; use 0 for no override, use -1 for immunity" );
+		Asset.AddEntry_Int( "ksHero_firefly_swarm", -1, 0, 50000 ).SetTitle( "Hive Gun hits" ).SetToolTip( "How many hive pod attacks to destroy killstreak; use 0 for no override, use -1 for immunity" );
+		Asset.AddEntry_Int( "ksHero_lightninggun", -1, 0, 50000 ).SetTitle( "Lightning Gun hits" ).SetToolTip( "How many lightning gun hits to destroy killstreak; use 0 for no override, use -1 for immunity" );
+		Asset.AddEntry_Int( "ksHero_minigun", 0, -1, 50000 ).SetTitle( "Minigun hits" ).SetToolTip( "How many minigun hits to destroy killstreak; use 0 for no override, use -1 for immunity" );
+		Asset.AddEntry_Int( "ksHero_pineapplegun", -1, 0, 50000 ).SetTitle( "Pineapple Gun hits" ).SetToolTip( "How many pineapple gun hits to destroy killstreak; use 0 for no override, use -1 for immunity" );
+		Asset.AddEntry_Int( "ksHero_heatwave", 0, -1, 50000 ).SetTitle( "Heat Wave hits" ).SetToolTip( "How many heat way hits to destroy killstreak; use 0 for no override, use -1 for immunity" );
+		Asset.AddEntry_Int( "ksDartsToKill", 1, -1, 50000 ).SetTitle( "Dart hits" ).SetToolTip( "How many dart hits to destroy killstreak; use 0 for no override, use -1 for immunity" );
+	}
+	
+	Asset.BeginCategory( "Hacking" );
+	{
+		Asset.AddEntry_Int( "ksHackTimeout", 20, 0, 36000 ).SetTitle( "Hacked timeout Sec" ).SetToolTip( "After being hacked the killstreak will take this many seconds to timeout" ).Show( hackingParams );
+		Asset.AddEntry_Int( "ksHackToolInnerTime", 4000, 1, 20000 ).SetTitle( "Hack Tool Inner Time MSec" ).SetToolTip( "How long it takes the hacker tool to hack the killstreak when inside the inner radius" ).Show( hackingParams );
+		Asset.AddEntry_Int( "ksHackToolOuterTime", 10000, 1, 99999 ).SetTitle( "Hack Tool Outer Time MSec" ).SetToolTip( "How long it takes the hacker tool to hack the killstreak when just inside the outer radius" ).Show( hackingParams );
+		Asset.AddEntry_Int( "ksHackToolInnerRadius", 50, 1, 10000 ).SetTitle( "Hack Tool Inner Radius" ).SetToolTip( "How far the hack tool can be off the center and still be able to hack at the inner hack rate" ).Show( hackingParams );
+		Asset.AddEntry_Int( "ksHackToolOuterRadius", 100, 1, 10000 ).SetTitle( "Hack Tool Outer Radius" ).SetToolTip( "How far the hack tool can be off the center and still be able to hack, at the edge it will be hacking at the outer hack rate" ).Show( hackingParams ).Show( hackingParams );
+		Asset.AddEntry_Int( "ksHackToolNoLineOfSightTime", 3000, 0, 20000 ).SetTitle( "Hacked no line of sight time MSec" ).SetToolTip( "How long it takes for the hack rate to go from 100 percent to 0 percent if you do not have line of sight" ).Show( hackingParams );
+		Asset.AddEntry_Int( "ksHackToolLostLineOfSightLimitMs", 1000, 1, 10000 ).SetTitle( "Hack Tool Lost Line of Sight Limit Msec" ).SetToolTip( "If you lose line of sight on the killstreak for more than this amount of time, your progress will be lost" ).Show( hackingParams );
+		Asset.AddEntry_CheckBox( "ksHackProtection", false ).SetTitle( "Firewall Protection" ).SetToolTip( "When enabled it requires an extra hack to remove the firewall protection" ).Show( hackingParams );
+		Asset.AddEntry_Path( "ksHackFX", "" ).SetTitle( "FX on hack" ).SetRelativePath( "share/raw/fx" ).Show( hackingParams );
+		Asset.AddEntry_Path( "ksHackLoopFX", "" ).SetTitle( "FX loop on hack" ).SetRelativePath( "share/raw/fx" ).Show( hackingParams );
+		Asset.AddEntry_String( "ksHackScoreEvent", "" ).SetTitle( "Score event on hack" ).SetToolTip( "Generates this scoreevent when the player hacks a killstreak.  Scoreinfo.csv." ).Show( hackingParams );
+	}
+	
+	Asset.BeginCategory( "Drop Marker" );	
+	{
+		Asset.AddEntry_Float( "ksMinAirdropTargetRange", 100, 0, 100000 ).SetStep( 1 ).SetTitle( "Min Airdrop Target Range" ).SetToolTip( "Min airdrop target range" ).Show( isCore );
+		Asset.AddEntry_Float( "ksMaxAirdropTargetRange", 4000, 0, 100000 ).SetStep( 1 ).SetTitle( "Max Airdrop Target Range" ).SetToolTip( "Max airdrop target range" ).Show( isCore );
+
+		Asset.AddEntry_Float( "ksAirdropSupplydropRadius", 20, 0, 200 ).SetStep( 1 ).SetTitle( "Airdrop Supply Drop Radius" ).SetToolTip( "Airdrop target radius" ).Show( isCore );
+		Asset.AddEntry_Float( "ksAirdropAITankRadius", 20, 0, 200 ).SetStep( 1 ).SetTitle( "Airdrop AITank Radius" ).SetToolTip( "Airdrop AI tank radius" ).Show( isCore );
+		Asset.AddEntry_Float( "ksAirdropRobotRadius", 20, 0, 200 ).SetStep( 1 ).SetTitle( "Airdrop Robot Radius" ).SetToolTip( "Airdrop robot radius" ).Show( isCore );
+
+		Asset.AddEntry_Path( "fxValidLocation", "" ).SetTitle( "FX for valid location" ).SetRelativePath( "share/raw/fx" ).Show( isCore );
+		Asset.AddEntry_Path( "fxInvalidLocation", "" ).SetTitle( "FX for invalid location" ).SetRelativePath( "share/raw/fx" ).Show( isCore );
+		Asset.AddEntry_Path( "fxMarkedLocation", "" ).SetTitle( "FX for marked location" ).SetRelativePath( "share/raw/fx" ).Show( isCore );
+
+		Asset.AddEntry_String( "ksInvalidLocationSound", "" ).SetTitle( "Invalid Location Sound" ).SetToolTip( "Sound to play when the player attempts to mark invalid location" ).Show( isCore );
+		Asset.AddEntry_String( "ksInvalidLocationString", "" ).SetTitle( "Invalid Location String" ).SetToolTip( "String to display when the player attempts to mark invalid location" ).Show( isCore );
+
+		Asset.AddEntry_String( "ksValidAITankLocationSound", "" ).SetTitle( "Valid AI Tank Location Sound" ).SetToolTip( "Sound to play when the player marks a valid location for ai tank" ).Show( isCore );
+		Asset.AddEntry_String( "ksValidCarepackageLocationSound", "" ).SetTitle( "Valid Carepackage Location Sound" ).SetToolTip( "Sound to play when the player marks a valid location for carepackage" ).Show( isCore );
+		Asset.AddEntry_String( "ksValidCombatRobotLocationSound", "" ).SetTitle( "Valid Combat Robot Location Sound" ).SetToolTip( "Sound to play when the player marks a valid location for combat robot" ).Show( isCore );
+	}
+
+	Asset.BeginCategory( "Mothership" );	
+	{
+		Asset.AddEntry_String( "ksName", "" ).SetTitle( "Killstreak Name" ).SetToolTip( "Specifiy the killstreak name" ).Show( isMothership );
+		Asset.AddEntry_AssetCombo( "ksWeapon", "grenadeweapon" ).SetTitle( "Killstreak Weapon" ).SetToolTip( "Select the weapon to use for activation" ).Show( isMothership );
+		Asset.AddEntry_AssetCombo( "ksVehicle", "vehicle" ).SetTitle( "Killstreak Vehicle" ).SetToolTip( "Select the vehicle to use" ).Show( isMothership );
+	}
+	
+	Asset.BeginCategory( "Placeable" );
+	{
+		Asset.AddEntry_String( "ksPlaceableHint", "" ).SetTitle( "Placeable Hint" ).SetToolTip( "Hint String to on how to place this placeable" ).Show( isPlaceable );
+		Asset.AddEntry_String( "ksPlaceableInvalidLocationHint", "" ).SetTitle( "Invalid Location Hint" ).SetToolTip( "Hint String to indicate the current location is invalid for this placeable" ).Show( isPlaceable );
+	}
+	
+	Asset.BeginCategory( "AI Think" );
+	{
+		Asset.AddEntry_Vector2( "ksThinkWaitMin", "ksThinkWaitMax", 0.5, 1.5, 0, 20 ).SetTitle( "Think Wait" ).SetStep( 0.1f ).SetToolTip( "Wait time random range from min to max. Wait before thinking" ).Show( isAITank ).SetLabels( "Min", "Max", "", "" );
+		Asset.AddEntry_Vector2( "ksEngageTargetReactionTimeMin", "ksEngageTargetReactionTimeMax", 0.4, 0.8, 0, 20 ).SetTitle( "Engage Target Reaction Time" ).SetStep( 0.1f ).SetToolTip( "Wait time random range from min to max. Wait before engaging target" ).Show( isAITank ).SetLabels( "Min", "Max", "", "" );
+	}
+
+	Asset.BeginCategory( "Turret Recoil" );
+	{
+		Asset.AddEntry_Float( "ksMainTurretRecoilForce", -5, -100, 100 ).SetTitle( "Main Turret Recoil").SetToolTip( "The amount of recoil the main turret exhibits when fired." ).Show( isAITank );
+		Asset.AddEntry_Float( "ksMainTurretRecoilForceControlled", -1, -100, 100 ).SetTitle( "Main Turret Recoil (Controlled)").SetToolTip( "The amount of recoil the main turret exhibits when fired while controlled." ).Show( isAITank );
+		Asset.AddEntry_Float( "ksMainTurretRecoilForceZOffset", 0, -1000, 1000 ).SetTitle( "Main Turret Recoil Force Offset" ).SetStep( 0.1f ).SetToolTip( "Z Offset where to apply force for main turret recoil." ).Show( isAITank );
+	}
+	
+	Asset.BeginCategory( "Main Weapon" );
+	{
+		Asset.AddEntry_Float( "ksWeaponReloadTime", 1.0, 0.0, 20.0 ).SetTitle( "Weapon Reload Time" ).SetToolTip( "The reload time for the main weapon." ).Show( isAITank || isQuadtank ); 
+	}
+
+	// DART
+	Asset.BeginCategory( "General" );
+	{
+		Asset.AddEntry_AssetCombo( "ksDartVehicle", "vehicle" ).SetTitle( "Killstreak Vehicle" ).SetToolTip( "Select the vehicle to use" ).Show( isDart );
+		Asset.AddEntry_String( "ksBladeWeapon", "" ).SetTitle( "Blade Weapon" ).SetToolTip( "Select the weapon to use for the dart blades" ).Show( isDart );
+
+		Asset.AddEntry_Int( "ksDartShotCount", 2, 0, 100 ).SetTitle( "Dart number of shots" ).SetToolTip( "How many shots can the dart do" ).Show( isDart );
+		Asset.AddEntry_Float( "ksDartWaitTimeAfterLastShot", 1.5, 0, 100 ).SetStep( 0.5 ).SetTitle( "Active time after last shot" ).SetToolTip( "How much time in seconds the dart will be active after the last shot." ).Show( isDart );
+		Asset.AddEntry_Float( "ksDartCameraWatchDuration", 2, 0, 100 ).SetStep( 0.5 ).SetTitle( "Camera watch duration" ).SetToolTip( "Time in seconds to watch the death of the dart" ).Show( isDart );
+		Asset.AddEntry_Int( "ksDartCameraWatchDistance", 350, 0, 2000 ).SetTitle( "Camera watch distance" ).SetToolTip( "Camera distance behind the dart death explosion" ).Show( isDart );
+		Asset.AddEntry_Float( "ksDartEnterDelay", 0.5, 0, 100 ).SetStep( 0.5 ).SetTitle( "Dart enter delay" ).SetToolTip( "Delay before entering the dart after deploying" ).Show( isDart );
+		Asset.AddEntry_Float( "ksDartInitialSpeed", 35, 0, 500 ).SetStep( 1 ).SetTitle( "Dart initial speed" ).SetToolTip( "The initial throw speed of the dart" ).Show( isDart );
+		Asset.AddEntry_Float( "ksDartAcceleration", 35, 0, 500 ).SetStep( 1 ).SetTitle( "Dart acceleration" ).SetToolTip( "The acceleration for the dart vehicle" ).Show( isDart );
+	}
+
+	Asset.BeginCategory( "Drop Deploy" );
+	{
+		Asset.AddEntry_AssetCombo( "ksDropDeployLandSurfaceFxTable", "surfacefxtable" ).SetTitle( "Land FX Table" ).SetToolTip( "Use this to specify the surfacefxtable asset for the Drop Deploy Land." ).Show( isRaps );	
+		Asset.AddEntry_String( "ksDropDeployLandFX", "" ).SetTitle( "Land FX" ).SetToolTip( "Effect to play on landing after being drop deployed." ).Show( isRaps );		
+	}
+
+	Asset.BeginCategory( "Explosion Params" );
+	{
+		Asset.AddEntry_Int( "ksExplosionOuterRadius", 200, 0, 2000 ).SetTitle( "Explosion outer radius" ).SetToolTip( "Outer radius of the damage" ).Show( isDart || isCombatRobot );
+		Asset.AddEntry_Int( "ksExplosionInnerRadius", 1, 0, 2000 ).SetTitle( "Explosion inner radius" ).SetToolTip( "Inner radius of the damage" ).Show( isDart || isCombatRobot );
+		Asset.AddEntry_Int( "ksExplosionOuterDamage", 25, 0, 2000 ).SetTitle(  "Explosion outer damage" ).SetToolTip( "Damage at the outer radius value" ).Show( isDart || isCombatRobot );
+		Asset.AddEntry_Int( "ksExplosionInnerDamage", 350, 0, 2000 ).SetTitle( "Explosion inner damage" ).SetToolTip( "Damage at the inner radius value" ).Show( isDart || isCombatRobot );
+		Asset.AddEntry_Int( "ksExplosionMagnitude", 1, 0, 1000 ).SetTitle( "Explosion magnitute" ).SetToolTip( "Magnitute of the explosion" ).Show( isDart || isCombatRobot );
+
+		Asset.AddEntry_String( "ksExplosionRumble", "" ).SetTitle( "Explosion rumble" ).SetToolTip( "The rumbe that will be played on explosion" ).Show( isDart || isCombatRobot );
+
+		Asset.AddEntry_String( "ksExplosionFX", "" ).SetTitle( "Explosion FX" ).SetToolTip( "Effect to play on final explosion" ).Show( !isEscortRobot );
+	}
+
+	Asset.BeginCategory( "Dart Blade Params" );
+	{
+		Asset.AddEntry_Int( "ksDartBladeCount", 6, 0, 20 ).SetTitle( "Number of blades to shoot" ).SetToolTip( "Number of blades to shoot per trigger press" ).Show( isDart );
+		Asset.AddEntry_Float( "ksBladeStartDistance", 0, -100000, 100000 ).SetStep( 10 ).SetTitle( "Blade start offset" ).SetToolTip( "Offset from the dart origin where the blades will be spawn from" ).Show( isDart );
+		Asset.AddEntry_Float( "ksBladeEndDistance", 10000, -100000, 100000 ).SetStep( 10 ).SetTitle( "Blade end offset" ).SetToolTip( "Offset from the dart origin where the blades will be targeted to" ).Show( isDart );
+		Asset.AddEntry_Float( "ksBladeStartSpreadRadius", 50, -1000, 1000 ).SetStep( 1 ).SetTitle( "Blade start spread radius" ).SetToolTip( "Blade start spread radius" ).Show( isDart );
+		Asset.AddEntry_Float( "ksBladeEndSpreadRadius", 1, -1000, 1000 ).SetStep( 1 ).SetTitle( "Blade end spread radius" ).SetToolTip( "Blade end spread radius" ).Show( isDart );
+	}
+
+	Asset.BeginCategory( "Timeout Beep" );
+	{
+		Asset.AddEntry_String( "ksTimeoutBeepAlias", "" ).SetTitle( "Sound" ).SetToolTip( "Sound Alias to play for beep" ).Show( hasTimeoutBeep );
+		Asset.AddEntry_Float( "ksTimeoutBeepDuration", 0, 0, 60 ).SetStep( 0.1 ).SetTitle( "Duration" ).SetToolTip( "Total number of seconds to play beep timeout beep warning" ).Show( hasTimeoutBeep );
+		Asset.AddEntry_Float( "ksTimeoutFastBeepDuration", 0, 0, 60 ).SetStep( 0.1 ).SetTitle( "Fast Duration" ).SetToolTip( "Number of seconds to play beeps faster before the final timeout" ).Show( hasTimeoutBeep );
+	}
+
+	Asset.BeginCategory( "Out of bounds params" );
+	{
+		Asset.AddEntry_Float( "ksOOBRadius", 2000, 0, 100000 ).SetStep( 5 ).SetTitle( "Out of bounds radius addon" ).SetToolTip( "The dart will be considered out of bounds if the distance from the map center is more than this value + the radius of the bounding box around all spawn points." ).Show( isDart || isSentinel );
+		Asset.AddEntry_Float( "ksOOBTimeout", 3, 0, 1000 ).SetStep( 0.1 ).SetTitle( "Out of bounds timeout" ).SetToolTip( "The dart will explode if it is out of bounds for more than this value /in sec/." ).Show( isDart || isSentinel );
+		Asset.AddEntry_Float( "ksOOBZTimeout", 1, 0, 1000 ).SetStep( 0.1 ).SetTitle( "Out of bounds on Z timeout" ).SetToolTip( "The dart will explode if it is under the min Z defined by <vehicle_oob_minz> struct for more than this value /in sec/." ).Show( isDart || isSentinel );
+	}
+
+	// CARE PACKAGE
+	Asset.BeginCategory( "Drop parameters" );	
+	{
+		//Asset.AddEntry_Float( "ksThrustersOnHeight", 400, 0, 100000 ).SetStep( 1 ).SetTitle( "Thrusters engage height" ).SetToolTip( "The thrusters will engage at this height" ).Show( isSupplyDrop || isAITank );
+		Asset.AddEntry_Float( "ksThrustersOffHeight", 100, 0, 100000 ).SetStep( 1 ).SetTitle( "Thrusters disengage height" ).SetToolTip( "The thrusters will disengage at this height" ).Show( isSupplyDrop || isAITank );
+		//Asset.AddEntry_Float( "ksInitialDropVelocity", 350, 0, 100000 ).SetStep( 1 ).SetTitle( "Initial Drop velocity" ).SetToolTip( "The initial velocity of the care package. This value is just the Z towards the ground." ).Show( isSupplyDrop || isAITank );
+		//Asset.AddEntry_Float( "ksAcceleration", 385, 0, 100000 ).SetStep( 1 ).SetTitle( "Acceleration" ).SetToolTip( "This is the intial accelaration of the carepacakge. Usually gravity value" ).Show( isSupplyDrop || isAITank );
+		//Asset.AddEntry_Float( "ksDeceleration", -350, -100000, 100000 ).SetStep( 1 ).SetTitle( "Deceleration" ).SetToolTip( "This is the deceleration applied after the thrusters go on" ).Show( isSupplyDrop || isAITank );
+		//Asset.AddEntry_Float( "ksLandingVelocity", 100, -100000, 100000 ).SetStep( 1 ).SetTitle( "Landing Velocity" ).SetToolTip( "This is the landing velocty. We do not decelerate under this value" ).Show( isSupplyDrop || isAITank );
+		Asset.AddEntry_Float( "ksTotalDropTime", 4, 0, 100000 ).SetStep( 0.1 ).SetTitle( "Total drop time" ).SetToolTip( "The amount of time in seconds it will take to drop the care package" ).Show( isSupplyDrop || isAITank );
+		Asset.AddEntry_Float( "ksAccelTimePercentage", 0.65, 0, 1 ).SetStep( 0.05 ).SetTitle( "Percentage of time accelerating" ).SetToolTip( "How much of the total time we will spend accelerating. The slowdown thrusters will engage after that to slowdown the movement." ).Show( isSupplyDrop || isAITank );
+		Asset.AddEntry_Path( "ksThrusterFX", "" ).SetTitle( "Thruster FX" ).SetRelativePath( "share/raw/fx" ).SetToolTip( "The effect to play when thrusters are on" ).Show( isSupplyDrop || isAITank );
+		Asset.AddEntry_Float( "ksStartCrateKillHeightFromGround", 0, 0, 1000 ).SetStep( 1 ).SetTitle( "Crate Start Kill Height" ).SetToolTip( "The crate will start trying to kill players and clones from this height off the ground. 0 defaults to 200." ).Show( isSupplyDrop || isAITank );
+	}
+	Asset.BeginCategory( "Friendly Fire" );
+	{
+		Asset.AddEntry_Float( "ksRicochetDistance", 0, 0, 5000 ).SetStep( 1 ).SetTitle( "Ricochet Distance" ).SetToolTip( "The distance the owner is from the care package or drop point for ricochet protection against friendly-fire exploits. 0 = disabled." ).Show( isSupplyDrop );
+		Asset.AddEntry_Int( "ksRicochetPostLandDuration", 0, 0, 120 ).SetStep( 1 ).SetTitle( "Ricochet Post Land Duration" ).SetToolTip( "The duration in seconds the owner has ricochet protection after a care package has dropped. Only used when ricochet distance is non-zero." ).Show( isSupplyDrop );
+	}
+	
+	//SENTINEL
+	Asset.BeginCategory( "General parameters" );
+	{
+		Asset.AddEntry_AssetCombo( "ksVehicle", "vehicle" ).SetTitle( "Killstreak Vehicle" ).SetToolTip( "Select the vehicle to use" ).Show( isSentinel );
+	}
+
+	Asset.BeginCategory( "Underwater parameters" );
+	{
+		Asset.AddEntry_Path( "ksSentinelWaterStunFX", "" ).SetTitle( "FX to play when in water" ).SetRelativePath( "share/raw/fx" ).Show( isSentinel );
+		Asset.AddEntry_Float( "ksSentinelWaterStunDelay", 2, 0, 1000 ).SetStep( 0.1 ).SetTitle( "Time in water before blowup" ).SetToolTip( "Time in water before blowup /in seconds/" ).Show( isSentinel );
+	}
+
+	//REMOTE MISSILE
+	Asset.BeginCategory( "Audio" );
+	{
+		Asset.AddEntry_String( "ksMissileBrakeSoundPLR", "" ).SetTitle( "Airbrake Sound First Person" ).SetToolTip( "First person sound to play when the player engages the airbrake." ).Show( isRemoteMissile );
+		Asset.AddEntry_String( "ksMissileBrakeSoundNPC", "" ).SetTitle( "Airbrake Sound Third Person" ).SetToolTip( "Third person sound to play when the player engages the airbrake." ).Show( isRemoteMissile );
+	}
+
+	//COMBAT ROBOT
+	Asset.BeginCategory( "General parameters" );
+	{
+		Asset.AddEntry_String( "ksCombatRobotPatrolFX", "" ).SetTitle( "Patrol FX Marker" ).SetToolTip( "Effect to show when patrol location is selected." ).Show( isCombatRobot );		
+	}
+
+}
+
+
+		

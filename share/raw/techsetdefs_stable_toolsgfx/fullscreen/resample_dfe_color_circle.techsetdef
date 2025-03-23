@@ -1,0 +1,26 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "resample_dfe_color_circle.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "resample_dfe_color_circle.hlsl"
+		// textures
+		codeTexture0 = CodeTexture( "codeTexture0" )
+		// samplers
+		bilinearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

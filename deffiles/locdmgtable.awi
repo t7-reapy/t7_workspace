@@ -1,0 +1,33 @@
+
+void GenerateUI( asset Asset )
+{
+	// Hidden
+	
+	Asset.AddEntry_Combo( "configstringFileType", "LOCDMGTABLE" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Misc
+	
+	Asset.AddEntry_Float( "none", 1, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "helmet", 4, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "head", 4, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "neck", 5, 0, 10 ).SetStep( 0.1 );;
+	Asset.AddEntry_Float( "torso_upper", 1, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "torso_mid", 0.9, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "torso_lower", 0.9, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "right_arm_upper", 0.8, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "right_arm_lower", 0.6, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "right_hand", 0.4, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "left_arm_upper", 0.8, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "left_arm_lower", 0.6, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "left_hand", 0.4, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "right_leg_upper", 0.8, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "right_leg_lower", 0.6, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "right_foot", 0.4, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "left_leg_upper", 0.8, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "left_leg_lower", 0.6, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "left_foot", 0.4, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "gun", 0, 0, 10 ).SetStep( 0.1 );
+	Asset.AddEntry_Float( "shield", 0, 0, 10 ).SetStep( 0.1 );
+}

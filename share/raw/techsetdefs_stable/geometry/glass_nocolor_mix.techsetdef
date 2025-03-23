@@ -1,0 +1,168 @@
+#include "lit_base_basic"
+#include "gloss_base"
+#include "transparent_base"
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+	displayName = "glass_transparent_nocolor_mix"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" ).tweak = ""
+Texture( "colorMap" ).tweak = ""
+Color( "colorTint" ).tweak = ""
+
+Sampler( "normalSampler" ).tweak = Tweak()
+{
+	category  = "Base Maps"
+	sortindex = "28"
+}
+Texture( "normalMap" ).tweak = Tweak()
+{
+	category  = "Base Maps"
+	title     = "Normal Map"
+	sortindex = "20"
+}
+float1( "baseNormalHeight" ).tweak = Tweak()
+{
+	category  = "Base Maps"
+	title     = "Normal Height Scale"
+	sortindex = "45"
+}
+
+Texture( "glossMap" ).tweak = Tweak()
+{
+	category  = "Specular and Gloss"
+	title     = "Gloss Map1"
+	sortindex = "30"
+}
+Texture( "glossMap2" )
+{
+	image = Image( <colorMap02, $white_gloss> )
+	semantic = "glossMap"
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Gloss Map2"
+		sortindex = "40"
+	}
+}
+
+float2( "glossRange" ).tweak = Tweak()
+{
+	category  = "Specular and Gloss"
+	title     = "Gloss Range1"
+	sortindex = "80"
+}
+float2( "glossRange2" )
+{
+	x = <glossRangeMin2>
+	y = <glossRangeMax2>
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Gloss Range2"
+		sortindex = "90"
+	}
+}
+
+float2( "glossScale1" )
+{
+	x = <cg00_x>
+	y = <cg00_y>
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Gloss Scale1 (U, V)"
+		sortindex = "110"
+	}
+}
+
+float2( "glossScale2" )
+{
+	x = <cg00_z>
+	y = <cg00_w>
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Gloss Scale2 (U, V)"
+		sortindex = "120"
+	}
+}
+
+Sampler( "mixSampler" )
+{
+	tile = <tileReveal>
+	filter = <filterReveal>
+	tweak = Tweak()
+	{
+		category  = "Base Maps"
+		sortindex = "60"
+	}
+}
+Texture( "mixMap" )
+{
+	image = Image( <alphaRevealMap, $black_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Base Maps"
+		title     = "Mix Map"
+		sortindex = "50"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "tintAmount" )
+{
+	x = <specAmount>
+	tweak = Tweak()
+	{
+		category  = "Tint"
+		title     = "Tint Amount"
+		sortindex = "15"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "premul + depth"
+	defines = "BASE_DIFFUSE", "BASE_SPEC", "BASE_AO", "USE_PREMUL_BLEND", "USE_MIX_MAP"
+	source = "lit_glass_nocolor.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

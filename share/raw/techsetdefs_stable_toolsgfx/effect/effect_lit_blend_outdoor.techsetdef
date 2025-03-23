@@ -1,0 +1,82 @@
+#include "effect_base"
+
+Globals()
+{
+	category = "Effect"
+	renderFlags = "lit transparent fx"
+	availablePrefixes = "ei/ el/"
+}
+
+Technique( "wireframe" )
+{
+	state = "premul + depth"
+	defines += "USE_WIREFRAME 1", "USE_OUTDOOR"
+	vs = VertexShader() : "vs_lit" { }
+#if TOOLSGFX == "1"
+	gs = GeometryShader() : "gs_wireframe" { }
+#endif
+	ps = PixelShader() : "ps_lit" { }
+}
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	defines += "USE_OUTDOOR"
+#if 0
+	ls = LocalShader() : "ls_default" {}
+	hs = HullShader() : "hs_default" {}
+	ds = DomainShader() : "ds_unlit" {}
+#else
+	vs = VertexShader() : "vs_unlit" { }
+#endif
+	ps = PixelShader() : "ps_unlit" { }
+}
+
+Technique( "lit" )
+{
+	state = "premul + depth"
+	#if EFFECT_INSTANCED_VERTEX_FORMAT == "1"
+	defines += "USE_TRANSMITTANCE", "USE_FALLOFF", "USE_TRANSLUCENT_SHADOWMAP 0", "USE_OUTDOOR"
+	#else
+	defines += "USE_TRANSMITTANCE", "USE_FALLOFF", "USE_LMAP 0", "USE_TRANSLUCENT_SHADOWMAP 0", "USE_OUTDOOR"
+	#endif
+#if 0
+	ls = LocalShader() : "ls_default" {}
+	hs = HullShader() : "hs_default" {}
+	ds = DomainShader() : "ds_lit" {}
+#else
+	vs = VertexShader() : "vs_lit" { }
+#endif
+	ps = PixelShader() : "ps_lit_blend"	{ }
+}
+
+Technique( "oit" )
+{
+	state = "fallback + depth + rez"
+	#if EFFECT_INSTANCED_VERTEX_FORMAT == "1"
+	defines += "USE_TRANSMITTANCE", "USE_FALLOFF", "USE_TRANSLUCENT_SHADOWMAP 0", "USE_OUTDOOR"
+	#else
+	defines += "USE_TRANSMITTANCE", "USE_FALLOFF", "USE_LMAP 0", "USE_TRANSLUCENT_SHADOWMAP 0", "USE_OUTDOOR"
+	#endif
+#if 0
+	ls = LocalShader() : "ls_default" {}
+	hs = HullShader() : "hs_default" {}
+	ds = DomainShader() : "ds_lit_oit" {}
+#else
+	vs = VertexShader() : "vs_lit_oit" { }
+#endif
+	ps = PixelShader() : "ps_lit_blend_oit" { }
+}
+
+#if TOOLSGFX == "1"
+#else
+Technique( "build shadowmap depth" ) : "fx shadowmap"
+{
+	defines += "USE_FALLOFF", "USE_OUTDOOR"
+}
+
+Technique( "depth prepass" ) : "fx shadowmap depth"
+{
+	defines += "USE_FALLOFF", "USE_OUTDOOR"
+}
+#endif

@@ -1,0 +1,73 @@
+#include "lit_base_basic"
+#include "lit_decal_base.inc"
+#include "reveal_base"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "reveal decal renderflags"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "transitionDiffuse" )
+{
+	image = Image( <colorMap00, $white> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Transition Material"
+		title     = "Diffuse Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "transitionNormal" )
+{
+	image = Image( <colorMap01, $normal> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Transition Material"
+		title     = "Normal Map"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "scriptProxy" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Script (Tools Simulation)"
+		title		= "Reveal Threshold"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines = "USE_REVEAL_MAP"
+}
+
+Technique( "gbuffer" ) : "base lit decal gbuffer"
+{
+	defines += "BASE_TEXTURES"
+	source = "gbuffer_decal_reveal_script.hlsl"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader()
+	{
+		defines = "DEBUG_COLOR_TEXELS", "USE_REVEAL_MAP"
+	}
+}

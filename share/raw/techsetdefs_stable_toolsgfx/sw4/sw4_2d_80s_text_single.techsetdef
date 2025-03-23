@@ -1,0 +1,185 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Blend
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = invSrcAlpha
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+Sampler( "FutureMap_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip most expensive (4x trilinear)"
+}
+Texture( "FutureMap" )
+{
+	image    = Image( "futuretext_map" )
+	semantic = "diffuseMap"
+}
+#if TOOLSGFX == "1"
+Texture( "ui3dSampler_C1_P0" )
+{
+	image = Image( < sw_codetexture_00 > )
+	tweak = Tweak()
+	{
+		default = "sw4\\textures\\helpers\\titlecard_ui3d_test.tif"
+	}
+}
+#endif
+Sampler( "ui3dSampler_C1_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+float1( "BlurScale" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		title     = "BlurScale"
+		category  = "Misc"
+		sortindex = "33"
+		default   = "1.400000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "DebugTime" )
+{
+	x     = <cg12_x>
+	tweak = Tweak()
+	{
+		title     = "DebugTime"
+		category  = "Debug"
+		sortindex = "-10"
+		default   = "-1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float4( "Background" )
+{
+	x     = <cg06_x>
+	y     = <cg06_y>
+	z     = <cg06_z>
+	w     = <cg06_w>
+	tweak = Tweak()
+	{
+		title     = "Background"
+		category  = "Debug"
+		sortindex = "-9"
+		default   = "0.321429", "0.321429", "0.321429", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = true
+	}
+}
+float1( "Indent" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		title     = "Indent"
+		category  = "Misc"
+		sortindex = "33"
+		default   = "0.050000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float4( "LightDisolveColor" )
+{
+	x     = <cg14_x>
+	y     = <cg14_y>
+	z     = <cg14_z>
+	w     = <cg14_w>
+	tweak = Tweak()
+	{
+		title     = "LightDisolveColor"
+		category  = "Light"
+		sortindex = "15"
+		default   = "1.500000", "2.500000", "3.000000", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = true
+	}
+}
+float4( "LightRevealColor" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	z     = <cg02_z>
+	w     = <cg02_w>
+	tweak = Tweak()
+	{
+		title     = "LightRevealColor"
+		category  = "Light"
+		sortindex = "14"
+		default   = "0.613725", "1.909368", "1.068951", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = true
+	}
+}
+float4( "LightTextColor" )
+{
+	x     = <cg00_x>
+	y     = <cg00_y>
+	z     = <cg00_z>
+	w     = <cg00_w>
+	tweak = Tweak()
+	{
+		title     = "LightTextColor"
+		category  = "Light"
+		sortindex = "10"
+		default   = "0.588214", "1.070000", "0.846699", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = true
+	}
+}
+float1( "LightOutlinePower" )
+{
+	x     = <cg13_x>
+	tweak = Tweak()
+	{
+		title     = "LightOutlinePower"
+		category  = "Light"
+		sortindex = "16"
+		default   = "0.233639"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_80s_text_single.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_BLEND"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		ui3dSampler_C1_P0 = CodeTexture( "ui3dSampler" )
+	}
+}

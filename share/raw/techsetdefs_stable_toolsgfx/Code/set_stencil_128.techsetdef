@@ -1,0 +1,40 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Code"
+	gameOnly = true
+	renderFlags = "lit transparent noduplicate"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+Texture( "colorMap" )
+{
+	ref = true
+	image = Image( "$white" )
+}
+
+Sampler( "colorSampler" )
+{
+}
+
+Technique( "unlit", "lit" )
+{
+	state = State() : "nocolor + depthTestOnly"
+	{
+		stencilFront = StencilState()
+		{
+			enable	= true
+			func	= Always
+			opFail	= Keep
+			opPass	= Replace
+			opZFail	= Keep
+		}
+		stencilRef = 128
+	}
+
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = VertexShader() { }
+	ps = PixelShader() { }
+}

@@ -1,0 +1,12 @@
+
+void GenerateUI( asset Asset )
+{
+	// Sounds table
+	
+	Asset.BeginCategory( "Impact Sounds table" );
+	{
+		Asset.AddEntry_AssetCombo( "surfaceSoundTable", "surfacesounddef" ).SetTitle( "Surface Sounds" ).SetToolTip( "Use this to specify the surfacesounddef asset for the Surface Sounds." );
+		Asset.AddEntry_AssetCombo( "entitySoundImpacts", "entitysoundimpacts").SetTitle( "Entity Sound Impacts" ).SetToolTip( "Use this to specify the entitySoundImpacts asset for the Entity Sound Impacts." );
+		Asset.AddEntry_AssetCombo( "victimSoundImpacts", "entitysoundimpacts").SetTitle( "Victim Sound Impacts" ).SetToolTip( "Use this to specify the entitySoundImpacts asset for the Victim Sound Impacts." );
+	}
+}

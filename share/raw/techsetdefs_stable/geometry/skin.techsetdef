@@ -1,0 +1,33 @@
+#include "skin_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit forward sss"
+	availablePrefixes = "mc/ mcs/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "lit_skin_advanced.hlsl"
+	defines = "USE_DEPTH_PREPASS"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque sss"
+	source = "lit_skin_advanced.hlsl"
+	defines = "BASE_SPEC", "USE_DETAIL_MAP", "USE_COLOR_TINT", "NO_VERTEX_ALPHA"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}

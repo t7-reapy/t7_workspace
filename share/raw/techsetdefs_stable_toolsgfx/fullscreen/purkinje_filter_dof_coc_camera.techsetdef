@@ -1,0 +1,42 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Texture( "colorMap" )
+{
+	ref = true
+	image = Image( <colorMap14, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Color Map"
+		sortindex = "0"
+	}
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "purkinje_filter_dof_coc_camera.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "purkinje_filter_dof_coc_camera.hlsl"
+
+		// textures
+		codeTexture0 = CodeTexture( "codeTexture0" )
+		codeTexture1 = CodeTexture( "codeTexture1" )
+		lensFilter = "colorMap"
+
+
+		// samplers
+		bilinearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

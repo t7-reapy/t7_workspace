@@ -1,0 +1,454 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isOpaque            = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Replace
+		colorBlendFunc = add
+		colorBlendSrc  = One
+		colorBlendDst  = Zero
+		alphaBlendFunc = add
+		alphaBlendSrc  = One
+		alphaBlendDst  = Zero
+		writeChannels  = "rgba"
+	}
+	cull = "None"
+}
+Sampler( "MaskMap_Sampler" )
+{
+	tile   = "no tile"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "MaskMap" )
+{
+	image    = Image( <colorMap03> )
+	semantic = "diffuseMap"
+	ref      = true
+	tweak    = Tweak()
+	{
+		category  = "Textures"
+		sortindex = "2"
+		default   = "sw4\\textures\\rain_mask.tif"
+	}
+}
+Sampler( "WarpMap_Sampler" )
+{
+	tile   = "no tile"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "WarpMap" )
+{
+	image    = Image( <colorMap01> )
+	semantic = "diffuseMap"
+	ref      = true
+	tweak    = Tweak()
+	{
+		category  = "Textures"
+		sortindex = "1"
+		default   = "sw4\\textures\\warpblur.tif"
+	}
+}
+Sampler( "NormalMap_Sampler" )
+{
+	tile   = "no tile"
+	filter = "mip most expensive (4x trilinear)"
+}
+Texture( "NormalMap" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "normalMap"
+	ref      = true
+	tweak    = Tweak()
+	{
+		category  = "Textures"
+		sortindex = "0"
+		default   = "sw4\\textures\\raindrops5.tif"
+	}
+}
+#if TOOLSGFX == "1"
+Texture( "resolvedPostSun_C34_P0" )
+{
+	image = Image( < sw_codetexture_00 > )
+	tweak = Tweak()
+	{
+		default = "sw4\\textures\\iw2_blood_reveal.tif"
+	}
+}
+#endif
+Sampler( "resolvedPostSun_C34_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+float1( "JitterMax" )
+{
+	x     = <cg14_x>
+	tweak = Tweak()
+	{
+		title     = "JitterMax"
+		category  = "Jitter"
+		sortindex = "28"
+		default   = "0.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "JitterMin" )
+{
+	x     = <cg13_x>
+	tweak = Tweak()
+	{
+		title     = "JitterMin"
+		category  = "Jitter"
+		sortindex = "27"
+		default   = "0.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "WarpMax" )
+{
+	x     = <cg12_x>
+	tweak = Tweak()
+	{
+		title     = "WarpMax"
+		category  = "Warp"
+		sortindex = "26"
+		default   = "0.075000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "WarpMin" )
+{
+	x     = <cg11_x>
+	tweak = Tweak()
+	{
+		title     = "WarpMin"
+		category  = "Warp"
+		sortindex = "25"
+		default   = "0.050000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "HeightMax" )
+{
+	x     = <cg10_x>
+	tweak = Tweak()
+	{
+		title     = "HeightMax"
+		category  = "Height"
+		sortindex = "24"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "HeightMin" )
+{
+	x     = <cg09_x>
+	tweak = Tweak()
+	{
+		title     = "HeightMin"
+		category  = "Height"
+		sortindex = "23"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "SlideMax" )
+{
+	x     = <cg08_x>
+	tweak = Tweak()
+	{
+		title     = "SlideMax"
+		category  = "Slide"
+		sortindex = "22"
+		default   = "0.500000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "SlideMin" )
+{
+	x     = <cg07_x>
+	tweak = Tweak()
+	{
+		title     = "SlideMin"
+		category  = "Slide"
+		sortindex = "21"
+		default   = "0.200000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "StretchMax" )
+{
+	x     = <cg06_x>
+	tweak = Tweak()
+	{
+		title     = "StretchMax"
+		category  = "Stretch"
+		sortindex = "20"
+		default   = "12.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "StretchMin" )
+{
+	x     = <cg05_x>
+	tweak = Tweak()
+	{
+		title     = "StretchMin"
+		category  = "Stretch"
+		sortindex = "19"
+		default   = "2.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "PauseMax" )
+{
+	x     = <cg16_x>
+	tweak = Tweak()
+	{
+		title     = "PauseMax"
+		category  = "Pause"
+		sortindex = "18"
+		default   = "6.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "PauseMin" )
+{
+	x     = <cg15_x>
+	tweak = Tweak()
+	{
+		title     = "PauseMin"
+		category  = "Pause"
+		sortindex = "17"
+		default   = "4.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "FadeOutMax" )
+{
+	x     = <cg24_x>
+	tweak = Tweak()
+	{
+		title     = "FadeOutMax"
+		category  = "Fade"
+		sortindex = "16"
+		default   = "2.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "FadeOutMin" )
+{
+	x     = <cg23_x>
+	tweak = Tweak()
+	{
+		title     = "FadeOutMin"
+		category  = "Fade"
+		sortindex = "15"
+		default   = "2.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "FadeInMax" )
+{
+	x     = <cg25_x>
+	tweak = Tweak()
+	{
+		title     = "FadeInMax"
+		category  = "Fade"
+		sortindex = "14"
+		default   = "5.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "FadeInMin" )
+{
+	x     = <cg29_x>
+	tweak = Tweak()
+	{
+		title     = "FadeInMin"
+		category  = "Fade"
+		sortindex = "13"
+		default   = "4.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "LifeMax" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		title     = "LifeMax"
+		category  = "Life"
+		sortindex = "12"
+		default   = "20.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "LifeMin" )
+{
+	x     = <cg03_x>
+	tweak = Tweak()
+	{
+		title     = "LifeMin"
+		category  = "Life"
+		sortindex = "11"
+		default   = "20.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float2( "ScaleMax" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	tweak = Tweak()
+	{
+		title     = "ScaleMax"
+		category  = "Scale"
+		sortindex = "10"
+		default   = "0.060000", "0.060000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float2( "ScaleMin" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	tweak = Tweak()
+	{
+		title     = "ScaleMin"
+		category  = "Scale"
+		sortindex = "9"
+		default   = "0.030000", "0.030000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "Seed" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		title     = "Seed"
+		category  = "Misc"
+		sortindex = "8"
+		default   = "1.740000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "RaindropCount" )
+{
+	x     = <cg31_x>
+	tweak = Tweak()
+	{
+		title     = "RaindropCount"
+		category  = "Misc"
+		sortindex = "7"
+		default   = "300.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "LensWarp" )
+{
+	x     = <cg26_x>
+	tweak = Tweak()
+	{
+		title     = "LensWarp"
+		category  = "Misc"
+		sortindex = "4"
+		default   = "0.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float2( "Source" )
+{
+	x     = <cg27_x>
+	y     = <cg27_y>
+	tweak = Tweak()
+	{
+		title     = "Source"
+		category  = "Misc"
+		sortindex = "5"
+		default   = "0.000000", "-100.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float2( "Sprites" )
+{
+	x     = <cg28_x>
+	y     = <cg28_y>
+	tweak = Tweak()
+	{
+		title     = "Sprites"
+		category  = "Misc"
+		sortindex = "6"
+		default   = "2.000000", "2.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float3( "ColorDispersion" )
+{
+	x     = <cg30_x>
+	y     = <cg30_y>
+	z     = <cg30_z>
+	tweak = Tweak()
+	{
+		title     = "ColorDispersion"
+		category  = "Misc"
+		sortindex = "3"
+		default   = "0.200000", "0.000000", "-0.200000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_sprite_raindrops.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_REPLACE"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		resolvedPostSun_C34_P0 = CodeTexture( "resolvedPostSun" )
+	}
+}

@@ -1,0 +1,64 @@
+#include "lit_flag_base"
+
+Globals()
+{
+	category = "Geometry Advanced"
+	renderFlags = "lit forward semi opaque animating"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+//----------------------------------------------------------------------------------------------
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass + nocull"
+	defines = "USE_ALPHA_TEST", "USE_FLAG"
+	source = "vertexMotion_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "build shadowmap depth" ) :  "flag build shadowmap depth"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "flag build shadowmap depth planes"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) : "flag build shadowmap depth layered"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth + nocull"
+	defines = "USE_COLOR_TINT", "USE_TINT_MASK", "USE_FLAG"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque + nocull"
+	defines = "USE_DETAIL_MAP", "USE_COLOR_TINT", "USE_TINT_MASK"
+	source = "lit_flag.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

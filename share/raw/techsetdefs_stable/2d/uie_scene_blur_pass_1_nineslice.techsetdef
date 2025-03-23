@@ -1,0 +1,38 @@
+#include "uie_base"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Sampler( "clampMipBilinearSampler" )
+{
+	tile = "no tile"
+	filter = "mip standard (2x bilinear)"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "uie/uie_scene_blur_pass_1_nineslice.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "uie/uie_scene_blur_pass_1_nineslice.hlsl"
+		colorMapSampler = CodeTexture( "codeTexture0" )
+		colorMapSampler1 = CodeTexture( "resolvedScene" )
+		clampMipBilinearSampler = "clampMipBilinearSampler"
+#endif
+	}
+}

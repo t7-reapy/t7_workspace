@@ -1,0 +1,46 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Texture( "gridTexture" )
+{
+	ref = true
+	image = Image( <colorMap13, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Grid Texture"
+		sortindex = "0"
+	}
+}
+
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "postfx/postfx_weakpoint.hlsl"
+		defines = "USE_VERTCOL 0"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/postfx_weakpoint.hlsl"
+		defines = "USE_VERTCOL 0"
+
+		// textures
+		codeTexture0  = CodeTexture( "codeTexture0" )
+	    codeTexture1  = CodeTexture( "codeTexture1" )
+		codeTexture2  = CodeTexture( "codeTexture2" )
+
+	    // samplers
+ 		bilinearClamp = Sampler("no tile", "nomip bilinear")
+ 		samplerBilinearWrap = Sampler( "tile both", "mip (1x trilinear)" )
+	}
+}

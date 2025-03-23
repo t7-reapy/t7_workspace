@@ -1,0 +1,166 @@
+
+void GenerateUI( asset Asset )
+{
+	// Hidden
+	
+	Asset.AddEntry_Combo( "configstringFileType", "BEAM" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Misc 
+
+	Asset.BeginCategory( "Material Settings" );
+	{
+		Asset.AddEntry_AssetCombo( "material", "material" ).SetTitle( "Base Material" ).SetToolTip( "Base material used by the beam." ).ShowJumpTo (true);
+		Asset.AddEntry_Int( "msecAnimLoopTime", 1000, 0, 1000000 ).SetTitle( "Anim Loop Time (msec)" ).SetToolTip( "Texture atlas loop time in msec" );
+		Asset.AddEntry_Float( "textureRepeatLength", 0, 0, 100000 ).SetTitle( "Texture Repeat Length" ).SetToolTip( "The length over which UVs will repeat" );
+		Asset.AddEntry_Combo( "uvMode", "horizontal | repeating horizontal | vertical | repeating vertical" ).SetTitle("UV Mode").SetToolTip( "How UVs are applied to the beam" );
+		Asset.AddEntry_Color( "startColor", 1, 1, 1, 1 ).SetTitle( "Start Color" ).SetToolTip( "Beam's starting color" ).SetShowAlpha( true );
+		Asset.AddEntry_Color( "endColor", 1, 1, 1, 1 ).SetTitle( "End Color" ).SetToolTip( "Beam's ending color" ).SetShowAlpha( true );
+	}
+
+	Asset.BeginCategory( "Beam Settings" );
+	{
+		Asset.AddEntry_Float( "maxLength", 500.0, 0.0, 100000.0 ).SetTitle( "Maximum Length" ).SetToolTip( "Maximum node-to-node length of the beam" );
+		Asset.AddEntry_CheckBox( "dieIfTooLong", true ).SetTitle( "Die if too long" ).SetToolTip( "If checked, beam will die if it exceeds maximum length; otherwise, the end will remain detached but still try to follow target" );
+		Asset.AddEntry_CheckBox( "useVirtualTarget", false ).SetTitle( "Use Virtual Target" ).SetToolTip( "If checked, a target entity/tag need not be specified for the beam.  It will connect to a 'virtual' target specified below" );
+		Asset.AddEntry_Float( "virtualTargetDistance", 100.0, 0.0, 3000.0 ).SetTitle( "Virtual Target Distance" ).SetToolTip( "Distance virtual target is from start of beam.  Only used if 'Use Virtual Target' is checked and no target entity/tag is specified" );
+		Asset.AddEntry_Float( "virtualTargetMass", 0.0, 0.0, 10000.0 ).SetTitle( "Virtual Target Mass" ).SetToolTip( "How much virtual target resists movement." );
+		Asset.AddEntry_CheckBox( "beamAffectedByGravity", false ).SetTitle( "Beam Affected By Gravity" ).SetToolTip( "Whether the beam is affected by gravity; only for unattached beams." );
+		Asset.AddEntry_Float( "beamInitialSpeed", 0.0, 0.0, 5000.0 ).SetTitle( "Beam Initial Speed" ).SetToolTip( "Initial speed of beam 'particles' acting under gravity; only for unattached beams with 'Use Gravity' enabled." );
+		Asset.AddEntry_Float( "beamGravity", 800.0, -3000.0, 3000.0 ).SetTitle( "Beam Gravity" ).SetToolTip( "Acceleration due to gravity for this beam" );
+		Asset.AddEntry_Float( "startWidth", 0.5, 0.0, 1000.0 ).SetTitle( "Start Width" ).SetToolTip( "Beam's starting width" );
+		Asset.AddEntry_Float( "endWidth", 0.5, 0.0, 1000.0 ).SetTitle( "End Width" ).SetToolTip( "Beam's end width when at maximum length" );	
+		Asset.AddEntry_Int( "numSegments", 1, 1, 100 ).SetTitle( "Num curve segments" ).SetToolTip( "Number of curve segments; more segments implies smoother curve, fewer implies more straight lines" );
+		Asset.AddEntry_Combo( "collisionMode", "none | nodes | verts" ).SetTitle( "Collision Mode" ).SetToolTip( "None means no collision detection; nodes uses the curve's (up to 4) nodes for collision, which may or may not be fine grained enough; verts checks every vert of the curve for collision, which might be expensive" );
+		Asset.AddEntry_Combo( "collisionMask", "shot | shot and water | shot and not body | all | solid | player solid | dead solid | water | opaque | can shoot | client effects | ground trace | cross hair trace | dynent client | missile shot | vehicle " ).SetTitle("Collision Mask").SetToolTip( "What this beam collides against" );
+		Asset.AddEntry_CheckBox( "dieIfBlocked", false ).SetTitle( "Die if blocked" ).SetToolTip( "If checked and collisionMode is not 'none', beam will die and retract if an obstacle blocks it; otherwise, it will just impact obstacle until unblocked" );
+		Asset.AddEntry_Combo( "curveType", "bspline | smooth | rounded" ).SetTitle( "Curve type" ).SetToolTip( "Curve type" );
+		Asset.AddEntry_Combo( "beamShape", "cross | star | ribbon | triangle | square | pentagon | hexagon | heptagon | octagon" ).SetTitle( "Beam Shape" ).SetToolTip( "Shape of the beam" );
+		Asset.AddEntry_Float( "beamShapeRotation", 0.0, -360.0, 360.0 ).SetTitle( "Shape Rotation" ).SetToolTip( "Rotate shape about Y axis this many degrees" );
+		Asset.AddEntry_Float( "beamShapeHorizontalScale", 1.0, 0.0, 100.0 ).SetTitle( "Shape Width Horizontal Scale" ).SetToolTip( "Scale shape horizontally. Does not apply to ribbon" );
+		Asset.AddEntry_Float( "beamShapeVerticalScale", 1.0, 0.0, 100.0 ).SetTitle( "Shape Width Vertical Scale" ).SetToolTip( "Scale shape vertically. Does not apply to ribbon" );
+		Asset.AddEntry_Path( "beamEffect", "" ).SetTitle( "Beam Effect" ).SetToolTip( "Play this effect every beamEffectDistance units along length of beam." ).SetRelativePath( "share/raw/fx" );
+		Asset.AddEntry_Float( "beamEffectDistance", 0.0, 0.0, 100000.0 ).SetTitle( "Beam Effect Distance" ).SetToolTip( "Play Beam Effect every x units along length of beam." );
+		Asset.AddEntry_Float( "beamEffectSpeed", 0.0, -100000, 100000.0 ).SetTitle( "Beam Effect Speed" ).SetToolTip( "Move Beam Effect x units / sec along length of beam." );
+	}
+
+	Asset.BeginCategory( "Wave Settings" );
+	{
+		Asset.BeginCategory( "Wave Settings.Sine" );
+		{
+			Asset.AddEntry_Vector2( "sineAmplitudeX", "sineAmplitudeY", 0, 0, -200, 200 ).SetTitle( "Amplitude X/Y" ).SetToolTip( "Base amplitude in X/Y axis" );
+			Asset.AddEntry_Vector4( "sineAmplitudeGradientStart", "sineAmplitudeGradientP1", "sineAmplitudeGradientP2", "sineAmplitudeGradientEnd", 0, 0.333, 0.666, 1, 0, 1 ).SetTitle( "Amplitude Gradient Position" ).SetToolTip( "Amplitude gradient start, first point (P1), second point (P2), end: 0 = beginning, 1 = end" );
+			Asset.AddEntry_Vector4( "sineAmplitudeGradientStartValue", "sineAmplitudeGradientP1Value", "sineAmplitudeGradientP2Value", "sineAmplitudeGradientEndValue", 1, 1, 1, 1, -200, 200 ).SetTitle( "Amplitude Gradient Value" ).SetToolTip( "Amplitude gradient start, first point (P1), second point (P2) and end values" );
+			Asset.AddEntry_Float( "sineAmplitudeGradientPower", 1, -10, 10 ).SetTitle( "Amplitude Gradient Power" ).SetToolTip( "Amplitude gradient power" );
+
+			Asset.AddEntry_Vector2( "sineFrequencyX", "sineFrequencyY", 1, 1, -100, 100 ).SetTitle( "Frequency X/Y" ).SetToolTip( "Base frequency in X/Y axis" );
+			Asset.AddEntry_Vector4( "sineFrequencyGradientStart", "sineFrequencyGradientP1", "sineFrequencyGradientP2", "sineFrequencyGradientEnd", 0, 0.333, 0.666, 1, 0, 1 ).SetTitle( "Frequency Gradient Position" ).SetToolTip( "Frequency gradient start, first point (P1), second point (P2), end: 0 = beginning, 1 = end" );
+			Asset.AddEntry_Vector4( "sineFrequencyGradientStartValue", "sineFrequencyGradientP1Value", "sineFrequencyGradientP2Value", "sineFrequencyGradientEndValue", 1, 1, 1, 1, -200, 200 ).SetTitle( "Frequency Gradient Value" ).SetToolTip( "Frequency gradient start, first point (P1), second point (P2) and end values" );
+			Asset.AddEntry_Float( "sineFrequencyGradientPower", 1, -10, 10 ).SetTitle( "Frequency Gradient Power" ).SetToolTip( "Frequency gradient power" );
+
+			Asset.AddEntry_Vector2( "sineSpeedX", "sineSpeedY", 0, 0, -100, 100 ).SetTitle( "Peak Speed X/Y" ).SetToolTip( "Speed of the peak in X/Y axis" );
+		}
+
+		Asset.BeginCategory( "Wave Settings.Sawtooth" );
+		{
+			Asset.AddEntry_Vector2( "sawtoothAmplitudeX", "sawtoothAmplitudeY", 0, 0, -200, 200 ).SetTitle( "Amplitude X/Y" ).SetToolTip( "Base amplitude in X/Y axis" );
+			Asset.AddEntry_Vector4( "sawtoothAmplitudeGradientStart", "sawtoothAmplitudeGradientP1", "sawtoothAmplitudeGradientP2", "sawtoothAmplitudeGradientEnd", 0, 0.333, 0.666, 1, 0, 1 ).SetTitle( "Amplitude Gradient Position" ).SetToolTip( "Amplitude gradient start, first point (P1), second point (P2), end: 0 = beginning, 1 = end" );
+			Asset.AddEntry_Vector4( "sawtoothAmplitudeGradientStartValue", "sawtoothAmplitudeGradientP1Value", "sawtoothAmplitudeGradientP2Value", "sawtoothAmplitudeGradientEndValue", 1, 1, 1, 1, -200, 200 ).SetTitle( "Amplitude Gradient Value" ).SetToolTip( "Amplitude gradient start, first point (P1), second point (P2) and end values" );
+			Asset.AddEntry_Float( "sawtoothAmplitudeGradientPower", 1, -10, 10 ).SetTitle( "Amplitude Gradient Power" ).SetToolTip( "Amplitude gradient power" );
+
+			Asset.AddEntry_Vector2( "sawtoothFrequencyX", "sawtoothFrequencyY", 1, 1, -100, 100 ).SetTitle( "Frequency X/Y" ).SetToolTip( "Base frequency in X/Y axis" );
+			Asset.AddEntry_Vector4( "sawtoothFrequencyGradientStart", "sawtoothFrequencyGradientP1", "sawtoothFrequencyGradientP2", "sawtoothFrequencyGradientEnd", 0, 0.333, 0.666, 1, 0, 1 ).SetTitle( "Frequency Gradient Position" ).SetToolTip( "Frequency gradient start, first point (P1), second point (P2), end: 0 = beginning, 1 = end" );
+			Asset.AddEntry_Vector4( "sawtoothFrequencyGradientStartValue", "sawtoothFrequencyGradientP1Value", "sawtoothFrequencyGradientP2Value", "sawtoothFrequencyGradientEndValue", 1, 1, 1, 1, -200, 200 ).SetTitle( "Frequency Gradient Value" ).SetToolTip( "Frequency gradient start, first point (P1), second point (P2) and end values" );
+			Asset.AddEntry_Float( "sawtoothFrequencyGradientPower", 1, -10, 10 ).SetTitle( "Frequency Gradient Power" ).SetToolTip( "Frequency gradient power" );
+
+			Asset.AddEntry_Int( "sawtoothHarmonics", 0, 0, 5 ).SetTitle( "Number of Harmonics" ).SetToolTip( "Number of harmonics, 0 = infinity" );
+			Asset.AddEntry_Vector2( "sawtoothSpeedX", "sawtoothSpeedY", 0, 0, -100, 100 ).SetTitle( "Peak Speed X/Y" ).SetToolTip( "Speed of the peak in X/Y axis" );
+		}
+
+		Asset.BeginCategory( "Wave Settings.Square" );
+		{
+			Asset.AddEntry_Vector2( "squareAmplitudeX", "squareAmplitudeY", 0, 0, -200, 200 ).SetTitle( "Amplitude X/Y" ).SetToolTip( "Base amplitude in X/Y axis" );
+			Asset.AddEntry_Vector4( "squareAmplitudeGradientStart", "squareAmplitudeGradientP1", "squareAmplitudeGradientP2", "squareAmplitudeGradientEnd", 0, 0.333, 0.666, 1, 0, 1 ).SetTitle( "Amplitude Gradient Position" ).SetToolTip( "Amplitude gradient start, first point (P1), second point (P2), end: 0 = beginning, 1 = end" );
+			Asset.AddEntry_Vector4( "squareAmplitudeGradientStartValue", "squareAmplitudeGradientP1Value", "squareAmplitudeGradientP2Value", "squareAmplitudeGradientEndValue", 1, 1, 1, 1, -200, 200 ).SetTitle( "Amplitude Gradient Value" ).SetToolTip( "Amplitude gradient start, first point (P1), second point (P2) and end values" );
+			Asset.AddEntry_Float( "squareAmplitudeGradientPower", 1, -10, 10 ).SetTitle( "Amplitude Gradient Power" ).SetToolTip( "Amplitude gradient power" );
+
+			Asset.AddEntry_Vector2( "squareFrequencyX", "squareFrequencyY", 1, 1, -100, 100 ).SetTitle( "Frequency X/Y" ).SetToolTip( "Base frequency in X/Y axis" );
+			Asset.AddEntry_Vector4( "squareFrequencyGradientStart", "squareFrequencyGradientP1", "squareFrequencyGradientP2", "squareFrequencyGradientEnd", 0, 0.333, 0.666, 1, 0, 1 ).SetTitle( "Frequency Gradient Position" ).SetToolTip( "Frequency gradient start, first point (P1), second point (P2), end: 0 = beginning, 1 = end" );
+			Asset.AddEntry_Vector4( "squareFrequencyGradientStartValue", "squareFrequencyGradientP1Value", "squareFrequencyGradientP2Value", "squareFrequencyGradientEndValue", 1, 1, 1, 1, -200, 200 ).SetTitle( "Frequency Gradient Value" ).SetToolTip( "Frequency gradient start, first point (P1), second point (P2) and end values" );
+			Asset.AddEntry_Float( "squareFrequencyGradientPower", 1, -10, 10 ).SetTitle( "Frequency Gradient Power" ).SetToolTip( "Frequency gradient power" );
+
+			Asset.AddEntry_Int( "squareHarmonics", 0, 0, 5 ).SetTitle( "Number of Harmonics" ).SetToolTip( "Number of harmonics, 0 = infinity" );
+			Asset.AddEntry_Vector2( "squareSpeedX", "squareSpeedY", 0, 0, -100, 100 ).SetTitle( "Peak Speed X/Y" ).SetToolTip( "Speed of the peak in X/Y axis" );
+		}
+
+		Asset.BeginCategory( "Wave Settings.Triangle" );
+		{
+			Asset.AddEntry_Vector2( "triangleAmplitudeX", "triangleAmplitudeY", 0, 0, -200, 200 ).SetTitle( "Amplitude X/Y" ).SetToolTip( "Base amplitude in X/Y axis" );
+			Asset.AddEntry_Vector4( "triangleAmplitudeGradientStart", "triangleAmplitudeGradientP1", "triangleAmplitudeGradientP2", "triangleAmplitudeGradientEnd", 0, 0.333, 0.666, 1, 0, 1 ).SetTitle( "Amplitude Gradient Position" ).SetToolTip( "Amplitude gradient start, first point (P1), second point (P2), end: 0 = beginning, 1 = end" );
+			Asset.AddEntry_Vector4( "triangleAmplitudeGradientStartValue", "triangleAmplitudeGradientP1Value", "triangleAmplitudeGradientP2Value", "triangleAmplitudeGradientEndValue", 1, 1, 1, 1, -200, 200 ).SetTitle( "Amplitude Gradient Value" ).SetToolTip( "Amplitude gradient start, first point (P1), second point (P2) and end values" );
+			Asset.AddEntry_Float( "triangleAmplitudeGradientPower", 1, -10, 10 ).SetTitle( "Amplitude Gradient Power" ).SetToolTip( "Amplitude gradient power" );
+
+			Asset.AddEntry_Vector2( "triangleFrequencyX", "triangleFrequencyY", 1, 1, -100, 100 ).SetTitle( "Frequency X/Y" ).SetToolTip( "Base frequency in X/Y axis" );
+			Asset.AddEntry_Vector4( "triangleFrequencyGradientStart", "triangleFrequencyGradientP1", "triangleFrequencyGradientP2", "triangleFrequencyGradientEnd", 0, 0.333, 0.666, 1, 0, 1 ).SetTitle( "Frequency Gradient Position" ).SetToolTip( "Frequency gradient start, first point (P1), second point (P2), end: 0 = beginning, 1 = end" );
+			Asset.AddEntry_Vector4( "triangleFrequencyGradientStartValue", "triangleFrequencyGradientP1Value", "triangleFrequencyGradientP2Value", "triangleFrequencyGradientEndValue", 1, 1, 1, 1, -200, 200 ).SetTitle( "Frequency Gradient Value" ).SetToolTip( "Frequency gradient start, first point (P1), second point (P2) and end values" );
+			Asset.AddEntry_Float( "triangleFrequencyGradientPower", 1, -10, 10 ).SetTitle( "Frequency Gradient Power" ).SetToolTip( "Frequency gradient power" );
+
+			Asset.AddEntry_Int( "triangleHarmonics", 0, 0, 5 ).SetTitle( "Number of Harmonics" ).SetToolTip( "Number of harmonics, 0 = infinity" );
+			Asset.AddEntry_Vector2( "triangleSpeedX", "triangleSpeedY", 0, 0, -100, 100 ).SetTitle( "Peak Speed X/Y" ).SetToolTip( "Speed of the peak in X/Y axis" );
+		}
+
+		Asset.BeginCategory( "Wave Settings.Wave Weights" );
+		{
+			Asset.AddEntry_Vector3( "sineWeightStart", "sineWeightMid", "sineWeightEnd", 1, 1, 1, 0, 10 ).SetTitle( "Sine Wave Weights Start/Mid/End" ).SetToolTip( "How to weight sine wave contributions at start/mid-point/end" );
+			Asset.AddEntry_Vector3( "sawtoothWeightStart", "sawtoothWeightMid", "sawtoothWeightEnd", 1, 1, 1, 0, 10 ).SetTitle( "Sawtooth Wave Weights Start/Mid/End" ).SetToolTip( "How to weight sine wave contributions at start/mid-point/end" );
+			Asset.AddEntry_Vector3( "squareWeightStart", "squareWeightMid", "squareWeightEnd", 1, 1, 1, 0, 10 ).SetTitle( "Square Wave Weights Start/Mid/End" ).SetToolTip( "How to weight sine wave contributions at start/mid-point/end" );
+			Asset.AddEntry_Vector3( "triangleWeightStart", "triangleWeightMid", "triangleWeightEnd", 1, 1, 1, 0, 10 ).SetTitle( "Triangle Wave Weights Start/Mid/End" ).SetToolTip( "How to weight sine wave contributions at start/mid-point/end" );
+		}
+
+		Asset.BeginCategory( "Wave Settings.Slack" );
+		{
+			Asset.AddEntry_Float( "slackStartTimeMsec", 0, 0, 10000 ).SetTitle( "Start Time (msec)" ).SetToolTip( "Number of milliseconds from beam launch when slack begins" );
+			Asset.AddEntry_Float( "slackEaseInTimeMsec", 0, 0, 10000 ).SetTitle( "Ease In Time (msec)" ).SetToolTip( "Number of milliseconds to become fully slack" );
+			Asset.AddEntry_Float( "slackDurationMsec", 0, 0, 10000 ).SetTitle( "Duration (msec)" ).SetToolTip( "Number of milliseconds to stay slack: if loop type is Keep Slack this is ignored" );
+			Asset.AddEntry_Float( "slackEaseOutTimeMsec", 0, 0, 10000 ).SetTitle( "Ease Out Time (msec)" ).SetToolTip( "Number of milliseconds to become taught again: if loop type is Keep Slack this is ignored" );
+			Asset.AddEntry_Combo( "slackLoopMode", "Loop Slack | Keep Slack | One Slack Cycle Only | Stay Slack Until Attached" ).SetTitle( "Slack Loop Type" ).SetToolTip( "How to handle the slack cycle" );
+			Asset.AddEntry_Float( "slackMinSlack", 0, 0, 1 ).SetTitle( "Minimum Slack" ).SetToolTip( "Minimum allowed slack: 0 = fully taught and 1 = fully slack" );
+		}
+	}
+		
+
+	Asset.BeginCategory( "Perpendicular Cards" );
+	{
+		Asset.AddEntry_CheckBox( "drawPerpendicularCard", false ).SetTitle( "Draw Perpendicular Card" ).SetToolTip( "Check to draw a perpendicular card at beam start. " );
+		Asset.AddEntry_AssetCombo( "perpendicularMaterial", "material" ).SetTitle( "Perpendicular Material" ).SetToolTip( "Material used by perpendicular cards." ).ShowJumpTo (true);
+	}
+
+	Asset.BeginCategory( "Launch/Origin Settings" );
+	{
+		Asset.AddEntry_Path( "originEffect", "" ).SetTitle( "Origin Effect" ).SetToolTip( "This effect will be played at the origin of the beam." ).SetRelativePath( "share/raw/fx" );
+		Asset.AddEntry_Float( "launchSpeed", 0.0, 0.0, 10000.0 ).SetTitle( "Launch Speed" ).SetToolTip( "Speed at which beams launches and attaches to target. 0 means attach instantly." );
+		Asset.AddEntry_Float( "leadoutDistance", 10.0, 0.0, 10000.0 ).SetTitle( "Leadout Distance" ).SetToolTip( "Distance beam projects out in the facing direction of the origin before curving." );
+		Asset.AddEntry_Float( "breakAngle", 360.0, 0.0, 180.0 ).SetTitle( "Break Angle" ).SetToolTip( "Kill beam if angle between orign's facing direction and target is greater than this." );
+	}
+
+	Asset.BeginCategory( "Attachment/Target Settings" );
+	{
+		Asset.AddEntry_Path( "targetEffect", "" ).SetTitle( "Target Effect" ).SetToolTip( "This effect will be played when it hits target." ).SetRelativePath( "share/raw/fx" );
+		Asset.AddEntry_Float( "leadinDistance", 0.0, 0.0, 10000.0 ).SetTitle( "Leadin Distance" ).SetToolTip( "Distance will lead in to target's facing direction from this far away" );
+	}
+
+	Asset.BeginCategory( "Blocked Settings" );
+	{
+		Asset.AddEntry_Path( "blockedEffect", "" ).SetTitle( "Blocked Effect" ).SetToolTip( "This effect will be played when beam is blocked." ).SetRelativePath( "share/raw/fx" );
+		Asset.AddEntry_String( "blockedEffectSound", "").SetTitle( "Blocked Effect Sound (Looping)" ).SetToolTip( "This sound effect will be played when the beam is blocked." );
+		Asset.AddEntry_String( "unblockedEffectSound", "").SetTitle( "Unblocked Effect Sound (One shot)" ).SetToolTip( "This sound effect will be played when the beam goes from blocked to unblocked state." );
+	}
+
+	Asset.BeginCategory( "Retraction/Death Settings" );
+	{
+		Asset.AddEntry_CheckBox( "reverseRetract", false ).SetTitle( "Reverse Retract" ).SetToolTip( "Retract towards target instead of origin." );
+		Asset.AddEntry_Float( "retractSpeed", 0.0, 0.0, 10000.0 ).SetTitle( "Retract Speed" ).SetToolTip( "Speed at which beams retracts from target upon termination. 0 means disappear instantly." );
+		Asset.AddEntry_Path( "deathEffect", "" ).SetTitle( "Death Effect" ).SetToolTip( "This effect will be played at origin when beam fully retracts." ).SetRelativePath( "share/raw/fx" );
+	}
+}

@@ -1,0 +1,167 @@
+#include "water_shore_base.techsetdef"
+#include "water_shore_scroll_base.techsetdef"
+
+float4( "waveFrequency" )
+{
+	//	physical frequency (radians/s) of water in deep water approximation is
+	//	sqrt(g * k)
+	//	we allow an additional dimensionless multiplier
+	x = "sqrt(386.22 * 6.2831853 / <waterVertexGerstnerWaveWavelength0>) * <waterVertexGerstnerWaveSpeed0>"
+	y = "sqrt(386.22 * 6.2831853 / <waterVertexGerstnerWaveWavelength1>) * <waterVertexGerstnerWaveSpeed1>"
+	z = "sqrt(386.22 * 6.2831853 / <waterVertexGerstnerWaveWavelength2>) * <waterVertexGerstnerWaveSpeed2>"
+	w = "sqrt(386.22 * 6.2831853 / <waterVertexGerstnerWaveWavelength3>) * <waterVertexGerstnerWaveSpeed3>"
+}
+
+float4( "foamNoiseScroll" )
+{
+	x =	"sin(radians(<gFoamUVNoiseAngle0>)) * <gFoamUVNoiseSpeed0>"
+	y =	"cos(radians(<gFoamUVNoiseAngle0>)) * <gFoamUVNoiseSpeed0>"
+	z =	"sin(radians(<gFoamUVNoiseAngle1>)) * <gFoamUVNoiseSpeed1>"
+	w =	"cos(radians(<gFoamUVNoiseAngle1>)) * <gFoamUVNoiseSpeed1>"
+}
+
+float4( "foamMaskScroll01" )
+{
+	x =	"-cos(radians(<gFoamScrollAngle0>)) * <gFoamScrollSpeed0> / <gFoamUVScale0>"
+	y =	" sin(radians(<gFoamScrollAngle0>)) * <gFoamScrollSpeed0> / <gFoamUVScale0>"
+	z =	"-cos(radians(<gFoamScrollAngle1>)) * <gFoamScrollSpeed1> / <gFoamUVScale1>"
+	w =	" sin(radians(<gFoamScrollAngle1>)) * <gFoamScrollSpeed1> / <gFoamUVScale1>"
+}
+
+float4( "foamMaskScroll23" )
+{
+	x =	"-cos(radians(<gFoamScrollAngle2>)) * <gFoamScrollSpeed2> / <gFoamUVScale2>"
+	y =	" sin(radians(<gFoamScrollAngle2>)) * <gFoamScrollSpeed2> / <gFoamUVScale2>"
+	z =	"-cos(radians(<gFoamScrollAngle3>)) * <gFoamScrollSpeed3> / <gFoamUVScale3>"
+	w =	" sin(radians(<gFoamScrollAngle3>)) * <gFoamScrollSpeed3> / <gFoamUVScale3>"
+}
+
+float4("wave3AngleAmplitude")
+{
+	x = <waterVertexGerstnerWaveAngle3>
+	y = <waterVertexGerstnerWaveAmplitude3>
+	tweak = Tweak()
+	{
+		category  = "Wave"
+		title     =  "Wave 3 (angle, amplitude)"
+		sortindex = "76"
+	}
+}
+
+float4("wave3SpeedSteepnessWavelength")
+{
+	x = <waterVertexGerstnerWaveSpeed3>
+	y = <waterVertexGerstnerWaveSteepness3>
+	z = <waterVertexGerstnerWaveWavelength3>
+	tweak = Tweak()
+	{
+		category  = "Wave"
+		title     =  "Wave 3 (speed, steepness, wavelength)"
+		sortindex = "77"
+	}
+}
+
+float4( "wave3K" )
+{
+	x = "cos(radians(<waterVertexGerstnerWaveAngle3>)) * 6.2831853 / <waterVertexGerstnerWaveWavelength3>"
+	y = "sin(radians(<waterVertexGerstnerWaveAngle3>)) * 6.2831853 / <waterVertexGerstnerWaveWavelength3>"
+	z = "cos(radians(<waterVertexGerstnerWaveAngle3>))"
+	w = "sin(radians(<waterVertexGerstnerWaveAngle3>))"
+}
+
+float1( "maxRayDepth" )
+{
+	x = "<maxRayDepth>"
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "SSR maximum ray depth"
+		default		= "1000"
+		range		= "1", "10000", "10"
+		sortindex	= 50
+	}
+}
+
+float1( "SSRLevel" )
+{
+	x = "<cg20_x>"
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Scale for SSR effect"
+		default		= "1"
+		range		= ".001", "100", "1"
+		sortindex	= 51
+	}
+}
+
+Bool( "useSSR" )
+{
+  value = <useScreenspaceReflection>
+  tweak = Tweak()
+  {
+    category  = "Control"
+    title     = "Use Screenspace Reflection"
+    sortindex = "40"
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = RenderFlags()
+	{
+		isOpaque = true
+		castsShadows = false
+		requiresPrepass = true
+		isOccluder = false
+		needOpaqueResolve   = true
+		needOpaqueDepthResolve = true
+	}
+
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "UNLIT_PASS", "IGC 1"
+	source = "water_shore.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+#if TOOLSGFX == "1"
+	state	= "replace + depth"
+#else
+	state = "replace + depth + nocull + clear stencil"
+#endif
+	source = "water_shore.hlsl"
+	defines = "IGC 1", "SHADOW_TAP_COUNT 4"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+	#if TOOLSGFX != "1"
+		ifloatZScene = CodeTexture( "floatZSampler" )
+		iResolveScene = CodeTexture( "resolvedPostSun" )
+	#endif
+	}
+}
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	defines = "USE_PREPASS","IGC 1"
+	source = "water_shore.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}

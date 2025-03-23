@@ -1,0 +1,1521 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags 
+"Jump_Traversals" flags 
+"Steering_Traversals" flags  active
+"The Map" flags expanded 
+"Vehicle_Traversals" flags 
+// entity 0
+{
+guid "{AF455F60-77B9-11E5-8F13-2C27D7F03340}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lightingquality" "1024"
+"newsun" "1"
+"samplescale" "1"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{AA6BA729-C82B-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+ ( 467.5 356 290 ) ( 467.5 -48 290 ) ( 469.5 -48 290 ) clip_ai_wallrun_nomesh 64 64 -501.99231 -141.49655 -90 -1.7898141e-005 lightmap_gray 16384 16384.25 -501.99231 -142.49512 -90 -1.7885191e-005
+ ( 468.5 356 401 ) ( 470.5 356 401 ) ( 470.5 297 401 ) clip_ai_wallrun_nomesh 64 64 -501.9855 -141.49239 -90 -2.9689996e-005 lightmap_gray 16384.01 16384.252 -501.98575 -142.49469 -90 -2.9784067e-005
+ ( 467.5 -50 271 ) ( 467.5 354 271 ) ( 468.5 354 421 ) clip_ai_wallrun 64 -64 -502 122 -180 0 lightmap_gray 16384 -16384 -502 122 -180 0
+ ( 467.5 -354.5 390.5 ) ( 469.5 -354.5 390.5 ) ( 469.5 -354.5 214.5 ) clip_ai_wallrun_nomesh 64 64 141.49489 -122 0 0 lightmap_gray 16384.25 16384 142.49509 -122 0 0
+ ( 471.5 295 414 ) ( 471.5 354 414 ) ( 471.5 354 238 ) clip_ai_wallrun_nomesh 64 -64 -502 122 180 0 lightmap_gray 16384.01 -16384 -502 122 180 0
+ ( 470.5 347.5 414 ) ( 468.5 347.5 414 ) ( 468.5 347.5 238 ) clip_ai_wallrun_nomesh 64 64 141.49495 -122 0 0 lightmap_gray 16383.75 16384 142.50508 -122 0 0
+}
+// brush 1
+{
+ guid "{38413A86-C847-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+ ( 773 -31 160.5 ) ( 369 -31 160.5 ) ( 369 -33 160.5 ) clip_ai_wallrun_nomesh 64 64 -919.06586 295.07761 180 2.8398668e-005 lightmap_gray 16384 16384.262 -919.06586 294.06854 -180 2.8405e-005
+ ( 773 -32 271.5 ) ( 773 -34 271.5 ) ( 714 -34 271.5 ) clip_ai_wallrun_nomesh 64 64.004829 -919.05231 295.10037 -180 -7.498292e-005 lightmap_gray 16384.088 16385.766 -919.05634 294.09906 180 -7.4883406e-005
+ ( 367 -31 141.5 ) ( 771 -31 141.5 ) ( 771 -32 291.5 ) clip_ai_wallrun 64 -64 -919.06354 -7.5 180 0 lightmap_gray 16384 -16384 -919.06354 -7.5 180 0
+ ( 559 -31 335.5 ) ( 559 -33 335.5 ) ( 559 -33 159.5 ) clip_ai_wallrun_nomesh 64.004395 -64 -295.08807 -7.5 180 0 lightmap_gray 16385.125 -16384 -294.08594 -7.5 180 0
+ ( 712 -35 284.5 ) ( 771 -35 284.5 ) ( 771 -35 108.5 ) clip_ai_wallrun_nomesh 64 -64 -919.06506 -7.5 180 0 lightmap_gray 16384.012 -16384 -919.06287 -7.5 180 0
+ ( 950.5 -34 290.5 ) ( 950.5 -32 290.5 ) ( 950.5 -32 114.5 ) clip_ai_wallrun_nomesh 64 -64 -295.07104 -7.5 180 0 lightmap_gray 16383.875 -16384 -294.06042 -7.5 180 0
+}
+// brush 2
+{
+ guid "{751109F3-C847-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+ ( 497 386 160.5 ) ( 497 382 160.5 ) ( 950.5 382 160.5 ) clip_ai_wallrun_nomesh 64 63.99408 528.49261 -55.813995 0 -0.00015233198 lightmap_gray 16384 16383.293 528.49261 -56.824219 0 -0.00015240388
+ ( 497 382.75 271.5 ) ( 497 386 271.5 ) ( 950.5 386 271.5 ) clip_ai_wallrun_nomesh 64 64.007851 528.48737 -55.757507 0 -0.0001053517 lightmap_gray 16384.17 16386.535 528.48169 -56.758865 0 -0.00010534739
+ ( 497 382 160.5 ) ( 497 382.75 271.5 ) ( 950.5 382.75 271.5 ) clip_ai_wallrun 64 64 528.43604 7.5 0 0 lightmap_gray 16384.014 16384 528.43622 7.5 0 0
+ ( 950.5 381.75 338.5 ) ( 950.5 383.75 338.5 ) ( 950.5 383.75 162.5 ) clip_ai_wallrun_nomesh 64.002441 64 55.794632 7.5 0 0 lightmap_gray 16384.625 16384 56.7976 7.5 0 0
+ ( 497 386 271.5 ) ( 497 386 160.5 ) ( 950.5 386 160.5 ) clip_ai_wallrun_nomesh 64 64 528.43719 7.5 0 0 lightmap_gray 16383.971 16384 528.43738 7.5 0 0
+ ( 559 384.75 294.5 ) ( 559 382.75 294.5 ) ( 559 382.75 118.5 ) clip_ai_wallrun_nomesh 64.006813 64 55.76746 7.5 0 0 lightmap_gray 16385.627 16384 56.77689 7.5 0 0
+}
+// brush 3
+{
+ guid "{953DA429-C847-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+ ( 1124.75 642.75 182.5 ) ( 1120.75 642.75 182.5 ) ( 1120.75 189.25 182.5 ) clip_ai_wallrun_nomesh 64 63.998024 -611.12915 -794.54419 -90 -0.00016674928 lightmap_gray 16384 16384.307 -611.12903 -795.55457 -90 -0.00016707994
+ ( 1121.5 642.75 293.5 ) ( 1124.75 642.75 293.5 ) ( 1124.75 189.25 293.5 ) clip_ai_wallrun_nomesh 64 64.012642 -611.1424 -794.48529 -90 -0.00014305531 lightmap_gray 16384.191 16387.764 -611.14832 -795.48389 -90 -0.00014294032
+ ( 1120.75 642.75 182.5 ) ( 1121.5 642.75 293.5 ) ( 1121.5 189.25 293.5 ) clip_ai_wallrun 64 -64 -611.31415 14.5 180 0 lightmap_gray 16384.018 -16384 -611.31445 14.5 -180 0
+ ( 1120.5 -232.75 358.5 ) ( 1122.5 -232.75 358.5 ) ( 1122.5 -232.75 182.5 ) clip_ai_wallrun_nomesh 63.998535 64 794.5647 -14.5 0 0 lightmap_gray 16383.625 16384 795.56757 -14.5 0 0
+ ( 1124.75 642.75 293.5 ) ( 1124.75 642.75 182.5 ) ( 1124.75 189.25 182.5 ) clip_ai_wallrun_nomesh 64 -64 -611.31165 14.5 180 0 lightmap_gray 16383.982 -16384 -611.31183 14.5 -180 0
+ ( 1123.5 596.75 306.5 ) ( 1121.5 596.75 306.5 ) ( 1121.5 596.75 130.5 ) clip_ai_wallrun_nomesh 64.006821 64 794.51776 -14.5 0 0 lightmap_gray 16385.631 16384 795.52686 -14.5 0 0
+}
+// brush 4
+{
+ guid "{491566A9-C848-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+ ( -339 105 188.5 ) ( -743 105 188.5 ) ( -743 103 188.5 ) clip_ai_wallrun_nomesh 64 64 192.93806 431.07761 180 2.8398668e-005 lightmap_gray 16384 16384.262 192.93806 430.06857 -180 2.840524e-005
+ ( -339 104 299.5 ) ( -339 102 299.5 ) ( -398 102 299.5 ) clip_ai_wallrun_nomesh 64 64.004829 192.9375 431.1001 180 -7.4982643e-005 lightmap_gray 16384.088 16385.766 192.93353 430.09863 180 -7.4883406e-005
+ ( -745 105 169.5 ) ( -341 105 169.5 ) ( -341 104 319.5 ) clip_ai_wallrun 64 -64 192.93646 20.5 180 0 lightmap_gray 16384 -16384 192.93646 20.5 180 0
+ ( -753 105 366.5 ) ( -753 103 366.5 ) ( -753 103 190.5 ) clip_ai_wallrun_nomesh 64.004395 -64 -431.08807 20.5 180 0 lightmap_gray 16385.125 -16384 -430.08597 20.5 180 0
+ ( -400 101 312.5 ) ( -341 101 312.5 ) ( -341 101 136.5 ) clip_ai_wallrun_nomesh 64 -64 192.93494 20.5 -180 0 lightmap_gray 16384.012 -16384 192.93736 20.5 -180 0
+ ( -433.5 102 342.5 ) ( -433.5 104 342.5 ) ( -433.5 104 166.5 ) clip_ai_wallrun_nomesh 64 -64 -431.07104 20.5 180 0 lightmap_gray 16383.875 -16384 -430.06052 20.5 180 0
+}
+// brush 5
+{
+ guid "{824C1944-C848-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+ ( -1263.5 -159.25 188.5 ) ( -978 126.25 188.5 ) ( -979.25 127.75 188.5 ) clip_ai_wallrun_nomesh 64 63.99704 -1152.1226 -454.75366 45 -9.3809031e-005 lightmap_gray 16384 16383.33 -1152.1228 -455.78741 45 -9.3631243e-005
+ ( -1264.25 -158.5 299.5 ) ( -1265.75 -157.25 299.5 ) ( -1224 -115.5 299.5 ) clip_ai_wallrun_nomesh 64 64.009399 -1152.1957 -454.71078 45 0 lightmap_gray 16384.066 16386.934 -1152.2006 -455.71271 45 0
+ ( -976.5 127.75 169.5 ) ( -1262.25 -158 169.5 ) ( -1262.75 -157.25 319.5 ) clip_ai_wallrun 45.254978 64 -1372.0564 -20.5 0 -0.0066679674 lightmap_gray 11585.274 16384 -1372.0564 -20.5 0 -0.0066679674
+ ( -970.75 133.5 366.5 ) ( -972.25 134.75 366.5 ) ( -972.25 134.75 190.5 ) clip_ai_wallrun_nomesh 45.260574 -64 740.23181 20.5 180 0 lightmap_gray 11586.797 -16384 740.94513 20.5 180 0
+ ( -1223.25 -113.25 312.5 ) ( -1265 -155 312.5 ) ( -1265 -155 136.5 ) clip_ai_wallrun_nomesh 45.254906 64 -1375.6855 -20.5 0 0 lightmap_gray 11585.227 16384 -1375.6816 -20.5 0 0
+ ( -1198.75 -90.25 342.5 ) ( -1197.5 -91.75 342.5 ) ( -1197.5 -91.75 166.5 ) clip_ai_wallrun_nomesh 45.25 64 -323.02533 -20.5 0 0 lightmap_gray 11583.91 16384 -322.31003 -20.5 0 0
+}
+// brush 6
+{
+ guid "{4160B20E-C84C-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+ ( -801.25 670 188.5 ) ( -801.25 266 188.5 ) ( -799.25 266 188.5 ) clip_ai_wallrun_nomesh 64 64.00135 -816.19958 1127.2994 -90 -6.8924986e-005 lightmap_gray 16384 16384.92 -816.20056 1126.2699 -90 -6.8909845e-005
+ ( -800.25 670 299.5 ) ( -798.25 670 299.5 ) ( -798.25 611 299.5 ) clip_ai_wallrun_nomesh 64 64.021469 -816.27893 1127.375 -90 -0.00020493318 lightmap_gray 16384.135 16390.021 -816.28534 1126.3726 -90 -0.0002049421
+ ( -801.25 264 169.5 ) ( -801.25 668 169.5 ) ( -800.25 668 319.5 ) clip_ai_wallrun 64 -64 -816.12744 20.5 180 0 lightmap_gray 16384 -16384 -816.12744 20.5 180 0
+ ( -801.25 258 376.5 ) ( -799.25 258 376.5 ) ( -799.25 258 200.5 ) clip_ai_wallrun_nomesh 64.002464 64 -1127.2686 -20.5 0 0 lightmap_gray 16384.631 16384 -1126.2668 -20.5 0 0
+ ( -797.25 609 312.5 ) ( -797.25 668 312.5 ) ( -797.25 668 136.5 ) clip_ai_wallrun_nomesh 64 -64 -816.13055 20.5 180 0 lightmap_gray 16383.959 -16384 -816.125 20.5 180 0
+ ( -798.25 443.5 338.5 ) ( -800.25 443.5 338.5 ) ( -800.25 443.5 162.5 ) clip_ai_wallrun_nomesh 63.991699 64 -1127.218 -20.5 0 0 lightmap_gray 16381.75 16384 -1126.2068 -20.5 0 0
+}
+// brush 7
+{
+ guid "{1F9D4DA9-C84C-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+ ( -801.25 178 188.5 ) ( -801.25 -226 188.5 ) ( -799.25 -226 188.5 ) clip_ai_wallrun_nomesh 64 64.00135 -324.19962 1127.2994 -90 -6.8924979e-005 lightmap_gray 16384 16384.92 -324.20059 1126.2699 -90 -6.8909838e-005
+ ( -800.25 178 299.5 ) ( -798.25 178 299.5 ) ( -798.25 119 299.5 ) clip_ai_wallrun_nomesh 64 64.021469 -324.27859 1127.375 -90 -0.00020493315 lightmap_gray 16384.143 16390.021 -324.28522 1126.3726 -90 -0.0002049412
+ ( -801.25 -228 169.5 ) ( -801.25 176 169.5 ) ( -800.25 176 319.5 ) clip_ai_wallrun 64 -64 -324.12744 20.5 180 0 lightmap_gray 16384 -16384 -324.12744 20.5 180 0
+ ( -801.25 -212 364.5 ) ( -799.25 -212 364.5 ) ( -799.25 -212 188.5 ) clip_ai_wallrun_nomesh 64.002464 64 -1127.2686 -20.5 0 0 lightmap_gray 16384.631 16384 -1126.2668 -20.5 0 0
+ ( -797.25 117 312.5 ) ( -797.25 176 312.5 ) ( -797.25 176 136.5 ) clip_ai_wallrun_nomesh 64 -64 -324.13019 20.5 -180 0 lightmap_gray 16383.969 -16384 -324.125 20.5 180 0
+ ( -798.25 83.5 342.5 ) ( -800.25 83.5 342.5 ) ( -800.25 83.5 166.5 ) clip_ai_wallrun_nomesh 63.991699 64 -1127.218 -20.5 0 0 lightmap_gray 16381.75 16384 -1126.2068 -20.5 0 0
+}
+// brush 8
+{
+ guid "{9FD2132B-C848-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+ ( -1220.5 448.5 188.5 ) ( -994.75 222.5 188.5 ) ( -992 225.25 188.5 ) clip_ai_wallrun_nomesh 64 64 620.24036 -215.84174 135 -0.00013557078 lightmap_gray 16384 16383.783 620.24237 -216.86519 135 -0.00013529896
+ ( -925.75 158 299.5 ) ( -927.25 156.5 299.5 ) ( -968.75 198.25 299.5 ) clip_ai_wallrun_nomesh 64 64.0084 620.04749 -215.80244 135 0.00021910458 lightmap_gray 16383.98 16386.676 620.04437 -216.80551 135 0.00021938693
+ ( -1212 445.75 169.5 ) ( -926.5 160 169.5 ) ( -927.25 159.25 319.5 ) clip_ai_wallrun 45.255154 64 56.128239 -20.5 0 -0.0066659669 lightmap_gray 11585.314 16384 56.128971 -20.5 0 -0.0066659707
+ ( -1220.5 448.5 299.5 ) ( -1220.5 448.5 188.5 ) ( -1217.75 451.25 188.5 ) clip_ai_wallrun_nomesh 45.265465 -64 -681.98041 20.5 -180 0 lightmap_gray 11588.05 -16384 -681.2663 20.5 180 0
+ ( -971 199 312.5 ) ( -929.25 157.25 312.5 ) ( -929.25 157.25 136.5 ) clip_ai_wallrun_nomesh 45.254951 64 52.502895 -20.5 0 0 lightmap_gray 11585.228 16384 52.504101 -20.5 0 0
+ ( -994.75 222.5 188.5 ) ( -994.75 222.5 299.5 ) ( -992.5 224.75 299.5 ) clip_ai_wallrun_nomesh 45.254879 -64 -456.0032 20.5 180 0 lightmap_gray 11585.158 -16384 -455.28793 20.5 180 0
+}
+// brush 9
+{
+ guid "{653AB619-C848-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+ ( -847.5 232.75 188.5 ) ( -443.5 232.75 188.5 ) ( -443.5 234.75 188.5 ) clip_ai_wallrun_nomesh 64 64.002052 -993.57086 93.225853 0 0 lightmap_gray 16384 16384.4 -993.57092 92.196602 0 0
+ ( -847.5 233.75 299.5 ) ( -847.5 235.75 299.5 ) ( -788.5 235.75 299.5 ) clip_ai_wallrun_nomesh 64 64.011681 -993.54431 93.261284 0 -4.6170404e-005 lightmap_gray 16384.07 16387.521 -993.54816 92.259926 0 -4.6051042e-005
+ ( -441.5 232.75 169.5 ) ( -845.5 232.75 169.5 ) ( -845.5 233.75 319.5 ) clip_ai_wallrun 64 64 -993.56409 -20.5 0 0 lightmap_gray 16384 16384 -993.56409 -20.5 0 0
+ ( -433.5 232.75 366.5 ) ( -433.5 234.75 366.5 ) ( -433.5 234.75 190.5 ) clip_ai_wallrun_nomesh 64.008308 64 -93.234856 -20.5 0 0 lightmap_gray 16386.127 16384 -92.232857 -20.5 0 0
+ ( -786.5 236.75 312.5 ) ( -845.5 236.75 312.5 ) ( -845.5 236.75 136.5 ) clip_ai_wallrun_nomesh 64 64 -993.56586 -20.5 0 0 lightmap_gray 16383.977 16384 -993.5611 -20.5 0 0
+ ( -753 235.75 342.5 ) ( -753 233.75 342.5 ) ( -753 233.75 166.5 ) clip_ai_wallrun_nomesh 63.993652 64 -93.16555 -20.5 0 0 lightmap_gray 16382.25 16384 -92.154617 -20.5 0 0
+}
+}
+// entity 1
+{
+guid "{CAA2CB83-C3A3-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 180 0"
+"movementtype_require" "bot,robot"
+"origin" "371 436 312"
+"target" "auto1"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 2
+{
+guid "{1DDB4355-C3A4-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0327785 360 -0.8026"
+"origin" "291 436 172.882"
+"targetname" "auto1"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 3
+{
+guid "{3CFFDCA8-C3A4-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 270 0"
+"movementtype_require" "bot,robot"
+"origin" "403 409 312"
+"target" "auto2"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 4
+{
+guid "{14AF09E4-C3A5-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 89.9997 -0.802645"
+"origin" "403 318 164.882"
+"targetname" "auto2"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 5
+{
+guid "{5F4E82E1-C3A5-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 236.999 0"
+"movementtype_require" "bot,robot"
+"origin" "393.936 428.188 312"
+"target" "auto3"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 6
+{
+guid "{5F4E82E4-C3A5-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 56.9987 -0.802645"
+"origin" "290.572 288.458 172.882"
+"targetname" "auto3"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 7
+{
+guid "{89774C0E-C3AB-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 89.9996 0"
+"movementtype_require" "bot,robot"
+"origin" "411 -410 296"
+"target" "auto4"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 8
+{
+guid "{89774C11-C3AB-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 270 -0.802646"
+"origin" "411 -330 172.882"
+"targetname" "auto4"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 9
+{
+guid "{89774C17-C3AB-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 359.999 -0.802646"
+"origin" "267 -458 172.882"
+"targetname" "auto5"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 10
+{
+guid "{F8E2DB3C-C3AB-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 179.999 0"
+"movementtype_require" "bot,robot"
+"origin" "-37 166 200"
+"target" "auto7"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 11
+{
+guid "{F8E2DB3F-C3AB-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 360 -0.802645"
+"origin" "-133 166 132.882"
+"targetname" "auto7"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 12
+{
+guid "{89774C1D-C3AB-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 311.799 -0.802645"
+"origin" "265.56 -283.727 172.882"
+"targetname" "auto6"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 13
+{
+guid "{68AE64CC-C3AC-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 179.999 0"
+"movementtype_require" "bot,robot"
+"origin" "-37 338 200"
+"target" "auto8"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 14
+{
+guid "{68AE64CF-C3AC-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 360 -0.802645"
+"origin" "-133 338 166.882"
+"targetname" "auto8"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 15
+{
+guid "{773DA87C-C3AC-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 179.999 0"
+"movementtype_require" "bot,robot"
+"origin" "-37 35 200"
+"target" "auto9"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 16
+{
+guid "{773DA87F-C3AC-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 360 -0.802645"
+"origin" "-133 35 158.882"
+"targetname" "auto9"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 17
+{
+guid "{8F8D90CC-C3AC-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 29.9944 0"
+"movementtype_require" "bot,robot"
+"origin" "112.038 5.0003 192"
+"target" "auto10"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 18
+{
+guid "{8F8D90CF-C3AC-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 209.997 -0.802646"
+"origin" "255.962 89 134.882"
+"targetname" "auto10"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 19
+{
+guid "{0C6B208F-C82D-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0.0326586 89.9997 -0.802645"
+"origin" "470 307 305.382"
+"targetname" "auto11"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 20
+{
+guid "{7DBDBF61-C82D-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 270 0"
+"movementtype_require" "robot"
+"origin" "402.5 431 312"
+"target" "auto11"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 21
+{
+guid "{89774C14-C3AB-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 180 0"
+"movementtype_require" "bot,robot"
+"origin" "363 -458 296"
+"target" "auto5"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 22
+{
+guid "{84D909C8-C843-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0.0326586 89.9997 -0.802645"
+"origin" "470 -282 305.382"
+"targetname" "auto12"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 23
+{
+guid "{92239530-C843-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 270 0"
+"movementtype_require" "robot"
+"origin" "410.5 -419 296.5"
+"target" "auto12"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 24
+{
+guid "{A465D874-C843-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0.0326586 89.9997 -0.802645"
+"origin" "470 -69 305.382"
+"targetname" "auto13"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 25
+{
+guid "{89774C1A-C3AB-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 131.799 0"
+"movementtype_require" "bot,robot"
+"origin" "368.592 -418.241 296"
+"target" "auto6"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 26
+{
+guid "{AAFCEBEF-C843-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 89.9996 0"
+"movementtype_require" "robot"
+"origin" "411 57.5 170.5"
+"target" "auto13"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 27
+{
+guid "{C1431F40-C843-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0.0326586 89.9997 -0.802645"
+"origin" "470 -160 305.382"
+"targetname" "auto14"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 28
+{
+guid "{C1431F4F-C843-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 89.9996 0"
+"movementtype_require" "robot"
+"origin" "411 -292.5 170.5"
+"target" "auto14"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 29
+{
+guid "{B60EBFF5-C847-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"movementtype_require" "robot"
+"origin" "870 730 172"
+"target" "auto15"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 30
+{
+guid "{BFC59221-C847-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"origin" "1118 538 206"
+"targetname" "auto15"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 31
+{
+guid "{DE1C9D07-C847-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"movementtype_require" "robot"
+"origin" "870 -376 184"
+"target" "auto16"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 32
+{
+guid "{DE1C9D0A-C847-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"origin" "1118 -178 206"
+"targetname" "auto16"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 33
+{
+guid "{FA818F21-C847-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"origin" "1118 138 206"
+"targetname" "auto26"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 34
+{
+guid "{FA818F30-C847-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"movementtype_require" "robot"
+"origin" "876 -34 184"
+"target" "auto26"
+"targetname" "auto17"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "3072"
+}
+// entity 35
+{
+guid "{1A1763C5-C848-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"movementtype_require" "robot"
+"origin" "876 386 184"
+"target" "auto25"
+"targetname" "auto18"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "3072"
+}
+// entity 36
+{
+guid "{1A1763C2-C848-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"origin" "1118 218 206"
+"targetname" "auto25"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 37
+{
+guid "{E616A100-C848-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"cost_modifier" "0.25"
+"movementtype_require" "robot"
+"origin" "-694 104 206"
+"target" "auto31"
+"targetname" "auto19"
+"_color" "0.5 0.6 0.5"
+"spawnflags" "3072"
+}
+// entity 38
+{
+guid "{DDCD71F4-C848-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0 45 0"
+"origin" "-1038 265 214"
+"targetname" "auto31"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 39
+{
+guid "{15E8E959-C849-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"cost_modifier" "0.25"
+"movementtype_require" "robot"
+"origin" "-1198 528 154"
+"target" "auto29"
+"targetname" "auto20"
+"_color" "0.5 0.6 0.5"
+"spawnflags" "1024"
+}
+// entity 40
+{
+guid "{15E8E95C-C849-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0 45 0"
+"origin" "-1162 385 214"
+"targetname" "auto29"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 41
+{
+guid "{D43183F4-C849-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"cost_modifier" "0.25"
+"movementtype_require" "robot"
+"origin" "-694 236 206"
+"target" "auto30"
+"targetname" "auto21"
+"_color" "0.5 0.6 0.5"
+"spawnflags" "3072"
+}
+// entity 42
+{
+guid "{D43183F7-C849-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0 45 0"
+"origin" "-1038 77 214"
+"targetname" "auto30"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 43
+{
+guid "{EB89746C-C849-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"cost_modifier" "0.25"
+"movementtype_require" "robot"
+"origin" "-1134 -212 154"
+"target" "auto32"
+"targetname" "auto22"
+"_color" "0.5 0.6 0.5"
+"spawnflags" "1024"
+}
+// entity 44
+{
+guid "{EB89746F-C849-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0 45 0"
+"origin" "-1118 -7 214"
+"targetname" "auto32"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 45
+{
+guid "{0B20F6C1-C84A-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"cost_modifier" "0.25"
+"movementtype_require" "robot"
+"origin" "-318 156 134"
+"target" "auto27"
+"targetname" "auto23"
+"_color" "0.5 0.6 0.5"
+"spawnflags" "1024"
+}
+// entity 46
+{
+guid "{0B20F6C4-C84A-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0 89.9995 0"
+"origin" "-502 101 206"
+"targetname" "auto27"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 47
+{
+guid "{26371930-C84A-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"cost_modifier" "0.25"
+"movementtype_require" "robot"
+"origin" "-318 188 134"
+"target" "auto28"
+"targetname" "auto24"
+"_color" "0.5 0.6 0.5"
+"spawnflags" "1024"
+}
+// entity 48
+{
+guid "{26371933-C84A-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0 89.9995 0"
+"origin" "-502 233 206"
+"targetname" "auto28"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 49
+{
+guid "{E0CEA185-C84A-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"movementtype_require" "robot"
+"origin" "644 386 184"
+"target" "auto33"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "3072"
+}
+// entity 50
+{
+guid "{E0CEA188-C84A-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"origin" "482 283 168"
+"targetname" "auto33"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 51
+{
+guid "{F9ED2CCB-C84A-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"movementtype_require" "robot"
+"origin" "644 -34 184"
+"target" "auto34"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "3072"
+}
+// entity 52
+{
+guid "{F9ED2CCE-C84A-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"origin" "486 82 184"
+"targetname" "auto34"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 53
+{
+guid "{7424FC2A-C84C-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"cost_modifier" "0.25"
+"movementtype_require" "robot"
+"origin" "-874 -354 154"
+"target" "auto35"
+"_color" "0.5 0.6 0.5"
+"spawnflags" "1024"
+}
+// entity 54
+{
+guid "{7424FC2D-C84C-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0 179.999 0"
+"origin" "-804 -163 214"
+"targetname" "auto35"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 55
+{
+guid "{893E838A-C84C-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"cost_modifier" "0.25"
+"movementtype_require" "robot"
+"origin" "-870 138 138"
+"target" "auto36"
+"_color" "0.5 0.6 0.5"
+"spawnflags" "1024"
+}
+// entity 56
+{
+guid "{893E838D-C84C-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0 179.999 0"
+"origin" "-804 5 214"
+"targetname" "auto36"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 57
+{
+guid "{96D54A46-C84C-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"cost_modifier" "0.25"
+"movementtype_require" "robot"
+"origin" "-870 178 138"
+"target" "auto37"
+"_color" "0.5 0.6 0.5"
+"spawnflags" "1024"
+}
+// entity 58
+{
+guid "{96D54A49-C84C-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0 179.999 0"
+"origin" "-804 285 214"
+"targetname" "auto37"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 59
+{
+guid "{A3468FF6-C84C-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"cost_modifier" "0.25"
+"movementtype_require" "robot"
+"origin" "-902 470 150"
+"target" "auto38"
+"_color" "0.5 0.6 0.5"
+"spawnflags" "1024"
+}
+// entity 60
+{
+guid "{A3468FF9-C84C-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0 179.999 0"
+"origin" "-804 385 214"
+"targetname" "auto38"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 61
+{
+guid "{BD137B5B-C84C-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"cost_modifier" "0.25"
+"movementtype_require" "robot"
+"origin" "-906 140 138"
+"target" "auto39"
+"_color" "0.5 0.6 0.5"
+"spawnflags" "1024"
+}
+// entity 62
+{
+guid "{BD137B5E-C84C-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0 45 0"
+"origin" "-1006 105 214"
+"targetname" "auto39"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 63
+{
+guid "{D1DC5FC7-C84C-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"cost_modifier" "0.25"
+"movementtype_require" "robot"
+"origin" "-906 180 138"
+"target" "auto40"
+"_color" "0.5 0.6 0.5"
+"spawnflags" "1024"
+}
+// entity 64
+{
+guid "{D1DC5FCA-C84C-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0 45 0"
+"origin" "-1014 241 214"
+"targetname" "auto40"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 65
+{
+guid "{F97681EB-C84D-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"cost_modifier" "0.25"
+"movementtype_require" "robot"
+"origin" "-900 83 138"
+"target" "auto41"
+"_color" "0.5 0.6 0.5"
+"spawnflags" "1024"
+}
+// entity 66
+{
+guid "{F97681EE-C84D-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0 179.999 0"
+"origin" "-728 236 206"
+"targetname" "auto41"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 67
+{
+guid "{02231E83-C84E-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"cost_modifier" "0.25"
+"movementtype_require" "robot"
+"origin" "-904 269 138"
+"target" "auto42"
+"_color" "0.5 0.6 0.5"
+"spawnflags" "1024"
+}
+// entity 68
+{
+guid "{02231E86-C84E-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"WALLRUN" "1"
+"angles" "0 179.999 0"
+"origin" "-728 104 206"
+"targetname" "auto42"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "3072"
+}
+// entity 69
+{
+guid "{8701D8F2-CCFF-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 359.999 -0.802646"
+"origin" "43 -1386 212.882"
+"targetname" "auto43"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 70
+{
+guid "{8701D8F5-CCFF-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 180 0"
+"movementtype_require" "bot,robot"
+"origin" "115 -1482 336"
+"target" "auto43"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 71
+{
+guid "{A448CC6C-CCFF-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 359.999 -0.802646"
+"origin" "227 -1346 212.882"
+"targetname" "auto44"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 72
+{
+guid "{A448CC6F-CCFF-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 180 0"
+"movementtype_require" "bot,robot"
+"origin" "275 -1474 336"
+"target" "auto44"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 73
+{
+guid "{ACC0D4DB-CCFF-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 359.999 -0.802646"
+"origin" "363 -1242 212.882"
+"targetname" "auto45"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 74
+{
+guid "{ACC0D4DE-CCFF-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 225 0"
+"movementtype_require" "bot,robot"
+"origin" "421 -1360 336"
+"target" "auto45"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 75
+{
+guid "{CCB93E5B-CCFF-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 209.999 -0.802646"
+"origin" "513.785 -1461.43 188.882"
+"targetname" "auto46"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 76
+{
+guid "{CCB93E5E-CCFF-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 44.9996 0"
+"movementtype_require" "bot,robot"
+"origin" "392.236 -1382.58 336"
+"target" "auto46"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 77
+{
+guid "{00169962-CD00-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 179.999 -0.802646"
+"origin" "131.534 -1639.86 188.882"
+"targetname" "auto47"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 78
+{
+guid "{00169965-CD00-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 360 0"
+"movementtype_require" "bot,robot"
+"origin" "156.466 -1484.14 336"
+"target" "auto47"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 79
+{
+guid "{2C660C8F-CD00-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 89.9985 -0.802646"
+"origin" "141.339 -1924.38 188.882"
+"targetname" "auto48"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 80
+{
+guid "{2C660C92-CD00-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 270 0"
+"movementtype_require" "bot,robot"
+"origin" "264.661 -1923.62 270"
+"target" "auto48"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 81
+{
+guid "{420EE272-CD00-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 359.997 -0.802645"
+"origin" "400.104 -1830.29 188.882"
+"targetname" "auto49"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 82
+{
+guid "{420EE275-CD00-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 179.999 0"
+"movementtype_require" "bot,robot"
+"origin" "327.897 -1923.71 270"
+"target" "auto49"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 83
+{
+guid "{5D0769F6-CD00-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 94.9986 -0.802646"
+"origin" "165.35 -2056.37 188.882"
+"targetname" "auto50"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 84
+{
+guid "{5D0769F9-CD00-11E4-84EA-40A8F0C961A1}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 270 0"
+"movementtype_require" "bot,robot"
+"origin" "264.661 -1959.62 270"
+"target" "auto50"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 85
+{
+guid "{BC10F7ED-DF0B-11E4-B9A7-2C27D7F029A2}"
+layer "Vehicle_Traversals"
+"classname" "script_brushmodel"
+"moving_platform_enabled" "1"
+"shadow_casting" "0"
+"targetname" "under_bridge_mesh"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+// brush 0
+{
+ guid "{BC10F7EC-DF0B-11E4-B9A7-2C27D7F029A2}"
+layer "Vehicle_Traversals"
+ ( 327 172 73 ) ( 249 172 73 ) ( 249 94 73 ) clip_ai 64 64 0 0 0 0 lightmap_gray 16384 16384 159 -178 0 0
+ ( 237 173 104 ) ( 237 251 104 ) ( 315 251 104 ) clip_ai 64 64 0 0 0 0 lightmap_gray 16384 16384 159 -178 0 0
+ ( 224 121 101 ) ( 302 121 101 ) ( 302 121 69 ) clip_ai 64 64 0 0 0 0 lightmap_gray 16384 16384 159 23 0 0
+ ( 188 116 105 ) ( 188 194 105 ) ( 188 194 73 ) clip_ai 64 64 0 0 0 0 lightmap_gray 16384 16384 178 23 0 0
+ ( 315 234 102 ) ( 237 234 102 ) ( 237 234 70 ) clip_ai 64 64 0 0 0 0 lightmap_gray 16384 16384 159 23 0 0
+ ( -77 180 105 ) ( -77 102 105 ) ( -77 102 73 ) clip_ai 64 64 0 0 0 0 lightmap_gray 16384 16384 178 23 0 0
+}
+}
+// entity 86
+{
+guid "{93AF00CF-DFD9-11E4-A6A5-2C27D7F029A2}"
+layer "Vehicle_Traversals"
+"classname" "node_negotiation_end"
+"CAN_PARENT" "1"
+"angles" "0 180 0"
+"origin" "-40.994 176.76 118.5"
+"script_linkName" "under_bridge_mesh"
+"targetname" "auto51"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "256"
+}
+// entity 87
+{
+guid "{93AF00D2-DFD9-11E4-A6A5-2C27D7F029A2}"
+layer "Vehicle_Traversals"
+"classname" "node_negotiation_begin"
+"CAN_PARENT" "1"
+"movementtype_require" "vehicle"
+"origin" "-128.006 177.24 117.5"
+"script_linkName" "under_bridge_mesh"
+"target" "auto51"
+"targetname" "under_bridge"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "256"
+}
+// entity 88
+{
+guid "{33174067-DF11-11E4-B9A7-2C27D7F029A2}"
+layer "Vehicle_Traversals"
+"classname" "node_negotiation_end"
+"CAN_PARENT" "1"
+"origin" "146.006 176.76 119.5"
+"script_linkName" "under_bridge_mesh"
+"targetname" "auto52"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "256"
+}
+// entity 89
+{
+guid "{33174064-DF11-11E4-B9A7-2C27D7F029A2}"
+layer "Vehicle_Traversals"
+"classname" "node_negotiation_begin"
+"CAN_PARENT" "1"
+"angles" "0 180 0"
+"movementtype_require" "vehicle"
+"origin" "238.994 175.24 118.5"
+"script_linkName" "under_bridge_mesh"
+"target" "auto52"
+"targetname" "under_bridge"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "256"
+}
+// entity 90
+{
+guid "{8F76A08C-380C-11E5-A55D-40A8F0C961A1}"
+layer "Steering_Traversals"
+"classname" "node_negotiation_end"
+"angles" "0.0326586 319.998 -0.802645"
+"origin" "115.167 -1777.07 188.882"
+"targetname" "auto53"
+"_color" "0.6 0.5 0.5"
+}
+// entity 91
+{
+guid "{8F76A08F-380C-11E5-A55D-40A8F0C961A1}"
+layer "Steering_Traversals"
+"classname" "node_negotiation_begin"
+"STEERING_TRAVERSAL" "1"
+"angles" "0 144.999 0"
+"movementtype_require" "human,vehicle"
+"origin" "254.826 -1876.93 270"
+"target" "auto53"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "134217728"
+}
+// entity 92
+{
+guid "{1BB62F2E-3811-11E5-A55D-40A8F0C961A1}"
+layer "Steering_Traversals"
+"classname" "node_negotiation_end"
+"angles" "0.0326586 90.0949 -0.802646"
+"origin" "206.47 -1664.62 188.882"
+"targetname" "auto55"
+"_color" "0.6 0.5 0.5"
+}
+// entity 93
+{
+guid "{1BB62F31-3811-11E5-A55D-40A8F0C961A1}"
+layer "Steering_Traversals"
+"classname" "node_negotiation_begin"
+"STEERING_TRAVERSAL" "1"
+"angles" "0 269.997 0"
+"movementtype_require" "human,vehicle"
+"origin" "207.545 -1477.39 334"
+"target" "auto55"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "134217728"
+}
+// entity 94
+{
+guid "{4C161518-3811-11E5-A55D-40A8F0C961A1}"
+layer "Steering_Traversals"
+"classname" "node_negotiation_end"
+"angles" "0.0326585 135.094 -0.802646"
+"origin" "496.824 -1541.57 188.882"
+"targetname" "auto56"
+"_color" "0.6 0.5 0.5"
+}
+// entity 95
+{
+guid "{4C16151B-3811-11E5-A55D-40A8F0C961A1}"
+layer "Steering_Traversals"
+"classname" "node_negotiation_begin"
+"STEERING_TRAVERSAL" "1"
+"angles" "0 314.996 0"
+"movementtype_require" "human,vehicle"
+"origin" "365.193 -1408.42 334"
+"target" "auto56"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "134217728"
+}
+// entity 96
+{
+guid "{5B3A81ED-3811-11E5-A55D-40A8F0C961A1}"
+layer "Steering_Traversals"
+"classname" "node_negotiation_end"
+"angles" "0.0326586 315.093 -0.802646"
+"origin" "205.176 -1300.43 204.882"
+"targetname" "auto57"
+"_color" "0.6 0.5 0.5"
+}
+// entity 97
+{
+guid "{5B3A81F0-3811-11E5-A55D-40A8F0C961A1}"
+layer "Steering_Traversals"
+"classname" "node_negotiation_begin"
+"STEERING_TRAVERSAL" "1"
+"angles" "0 134.996 0"
+"movementtype_require" "human,vehicle"
+"origin" "336.807 -1433.58 334"
+"target" "auto57"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "134217728"
+}
+// entity 98
+{
+guid "{EBBBD53F-3812-11E5-A55D-40A8F0C961A1}"
+layer "Steering_Traversals"
+"classname" "node_negotiation_end"
+"angles" "0.0326586 304.998 -0.802646"
+"origin" "239.152 -249.046 172.882"
+"targetname" "auto58"
+"_color" "0.6 0.5 0.5"
+}
+// entity 99
+{
+guid "{EBBBD542-3812-11E5-A55D-40A8F0C961A1}"
+layer "Steering_Traversals"
+"classname" "node_negotiation_begin"
+"STEERING_TRAVERSAL" "1"
+"angles" "0 129.998 0"
+"movementtype_require" "human,vehicle"
+"origin" "374.842 -424.952 298"
+"target" "auto58"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "134217728"
+}
+// entity 100
+{
+guid "{2187A81F-3813-11E5-A55D-40A8F0C961A1}"
+layer "Steering_Traversals"
+"classname" "node_negotiation_end"
+"angles" "0.0326586 94.9973 -0.802646"
+"origin" "400.255 238.082 172.882"
+"targetname" "auto59"
+"_color" "0.6 0.5 0.5"
+}
+// entity 101
+{
+guid "{2187A822-3813-11E5-A55D-40A8F0C961A1}"
+layer "Steering_Traversals"
+"classname" "node_negotiation_begin"
+"STEERING_TRAVERSAL" "1"
+"angles" "0 269.997 0"
+"movementtype_require" "human,vehicle"
+"origin" "389.518 417.337 318"
+"target" "auto59"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "134217728"
+}
+// entity 102
+{
+guid "{414773A5-77B6-11E5-8F13-2C27D7F03340}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 179.999 0"
+"movementtype_require" "bot,robot"
+"origin" "416.065 -154.03 284.894"
+"target" "auto60"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 103
+{
+guid "{414773A8-77B6-11E5-8F13-2C27D7F03340}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0.0326586 360 -0.802645"
+"origin" "320.039 -125.407 171.993"
+"targetname" "auto60"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 104
+{
+guid "{AF455F69-77B9-11E5-8F13-2C27D7F03340}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_begin"
+"STEERING_TRAVERSAL" "1"
+"angles" "0 179.999 0"
+"movementtype_require" "human,vehicle"
+"origin" "416.065 -146.94 284.894"
+"target" "auto61"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "134217728"
+}
+// entity 105
+{
+guid "{AF455F6C-77B9-11E5-8F13-2C27D7F03340}"
+layer "Jump_Traversals"
+"classname" "node_negotiation_end"
+"angles" "0.0326586 360 -0.802645"
+"origin" "320.039 -118.317 171.993"
+"targetname" "auto61"
+"_color" "0.6 0.5 0.5"
+}

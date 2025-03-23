@@ -1,0 +1,425 @@
+﻿// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+const int MAX_SCRIPTBUNDLE_OBJECTS = 25;
+
+uint gValidObjectCount = 0;
+
+array<string> gObjectKeys;
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	 
+	Asset.AddEntry_Combo( "vmType", "Both" ).SetTitle( "Script Type" ).Show( false ).SetValue("Both");
+	Asset.AddEntry_Combo( "type", "vehicleriders" ).Show( false );
+
+	FillVehicleRidersKeys();
+
+	Asset.AddEntry_XModel( "model", "" ).SetTitle( "Vehicle Model File" ).SetRelativePath( "model_export/" ).SetToolTip( "The vehicle model file. Won't be used in game, but used in this GDT to load bone/tag information (.XMODEL_BIN)" ).UpdateOnChange( true );
+	Asset.AddEntry_Float( "LowExitHeight", 32, 0, 9999 ).SetTitle( "Low Exit Height" ).SetToolTip( "The height at which the 'low' exit animations will be used.  Anything higher than this will use 'high' exits." ).Show( true ).SetSave( true );
+	Asset.AddEntry_Float( "HighExitLandHeight", 32, 0, 9999 ).SetStep( 0.001 ).SetTitle( "High Exit Land Height" ).SetToolTip( "The height at which the 'high' exit landing animations will be used." ).Show( true ).SetSave( true );
+	Asset.AddEntry_Float( "DropSpeed", 250, 0, 9999 ).SetStep( 1 ).SetTitle( "Drop Speed" ).SetToolTip( "the speed of the drop anim." ).Show( true ).SetSave( true );
+
+	for ( int i = 1; i <= MAX_SCRIPTBUNDLE_OBJECTS; i++ )
+	{
+		UpdateVehicleRider( Asset, i );
+	}
+	
+	string position = "";
+	array<string> positions = {
+			"driver",
+			"passenger1",
+			"passenger2",
+			"passenger3",
+			"passenger4",
+			"passenger5",
+			"passenger6",
+			"passenger7",
+			"passenger8",
+			"passenger9",
+			"crew1",
+			"crew2",
+			"crew3",
+			"crew4",
+			"crew5",
+			"crew6",
+			"crew7",
+			"crew8",
+			"crew9",
+			"gunner1",
+			"gunner2",
+			"gunner3",
+			"gunner4",
+			"gunner5",
+			"gunner6",
+			"gunner7",
+			"gunner8",
+			"gunner9"
+		};
+	
+	
+	for ( int i = 1; i <= MAX_SCRIPTBUNDLE_OBJECTS; i++ )
+	{
+		GenerateVehicleRider( Asset, i, positions );
+		position = Asset.GetEntryValue( "object" + i + "_Position" );
+		if ( position != "" )
+		{
+			positions = ArrayRemoveValue(positions, position);
+		}
+	}
+	
+	GenerateVehicleRider( Asset, MAX_SCRIPTBUNDLE_OBJECTS + 1, positions ); // add one more hidden object that's needed for editing
+}
+
+void FillVehicleRidersKeys()
+{
+	// Fill global scene keys array for use in copy/move functions so we can manage these in one place
+
+	array<string> sceneKeys = {
+
+					"Position",
+					"AlignTag",
+					"DropUnderVehicleOrigin",
+
+					"Valid",
+
+					/* Enter */
+
+					"EnterAnim",
+					"EnterDeathAnim",
+
+					"VehicleExitAnim",
+
+					/* Ride */
+
+					"RideAnim",
+					"RideDeathAnim",
+
+					/* Exit Ground */
+
+					"ExitGroundAnim",
+					"ExitGroundDeathAnim",
+
+					"VehicleExitAnim",
+					
+					/* Exit Low */
+
+					"ExitLowAnim",
+					"ExitLowDeathAnim",
+
+					/* Exit High */
+					
+					"ExitHighAnim",
+					"ExitHighLoopAnim",
+					"ExitHighLandAnim",
+
+					"ExitHighDeathAnim",
+					"ExitHighLoopDeathAnim",
+					"ExitHighLandDeathAnim"
+					
+				};
+
+	gObjectKeys = sceneKeys;
+}
+
+void AddVehicleRider( asset Asset, const string& index )
+{
+	string prefix = "object" + index + "_";
+	
+	Asset.GetEntryVariable( prefix + "Valid" ).SetBool( true );
+}
+
+void UpdateVehicleRider( asset Asset, int index )
+{
+	//string prefix = "object" + index + "_";
+}
+
+array<string> ArrayRemoveValue( array<string> a, string val )
+{
+	bool found = false;
+	for ( int i = 0; i < a.length; i++ )
+	{
+		if ( !found )
+		{
+			if ( a[i] == val )
+			{
+				found = true;
+			}
+		}
+		
+		if ( found && i < a.length-1 )
+		{
+			a[i] = a[i+1];
+		}
+	}
+	
+	if ( found )
+	{
+		a.resize(a.length-1);
+	}
+	
+	return a;
+}
+
+void GenerateVehicleRider( asset Asset, int index, array<string> available_positions )
+{
+	// "objectX_" translates directly to a script struct without the "objectX_" part of the key
+	string prefix = "object" + index + "_";
+	string prefixPrev = "object" + ( index - 1 ) + "_";
+	string prefixNext = "object" + ( index + 1 ) + "_";
+	
+	bool firstObject = ( index == 1 );
+	bool lastObject = ( index == MAX_SCRIPTBUNDLE_OBJECTS );
+	bool hiddenObject = ( index == ( MAX_SCRIPTBUNDLE_OBJECTS + 1 ) );	
+	
+	string namePrev = "";
+	string nameNext = "";
+	
+	if ( !firstObject )
+	{	
+		namePrev = Asset.GetEntryValue( prefixPrev + "Position" );
+	}
+	
+	nameNext = Asset.GetEntryValue( prefixNext + "Position" );
+	
+	string name = Asset.GetEntryValue( prefix + "Position" );
+	
+	float r = 0.3;
+	float g = 0.3;
+	float b = 0.3;
+	
+	int color = index % 4;
+	if ( color == 0 )
+	{
+		g = 1.0;
+	}
+	else if ( color == 1 )
+	{
+		b = 1;
+	}
+	else if ( color == 2 )
+	{
+		r = 1.0;
+	}
+	else if ( color == 3 )
+	{
+		r = 1.0;
+		g = 1.0;
+	}
+	
+	bool isValid = ( ( name != "" ) || ( Asset.GetEntryBool( prefix + "Valid" ) ) );
+	bool isValidPrev = ( namePrev != "" );
+	bool isValidNext = ( nameNext != "" );
+
+	if ( isValid )
+	{
+		gValidObjectCount = index;
+	}
+	
+	bool showCat = ( isValid && !hiddenObject );
+	
+	string objectName = ( name != "" ? name : "New Rider" );
+	
+	Asset.BeginCategory( objectName, r, g, b, "" );
+	{
+		// Add Button Group
+
+		if ( !hiddenObject && ( isValid || firstObject || isValidPrev ) )
+		{
+			Asset.AddEntry_ButtonGroup( "buttonGroup" + index ).SetTitle( "Edit" );
+			
+			if ( !isValid && ( isValidPrev || firstObject ) )
+			{
+				// Add Object
+
+				Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Add Rider", "", "void AddVehicleRider( asset Asset, const string& ID )", "" + index );
+			}
+			else if ( isValid )
+			{
+				if ( !firstObject )	// Move Up
+				{
+					Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Move Up", "", "void MoveObjectUp( asset Asset, const string& ID )", "" + index );
+				}
+				
+				if ( isValidNext )	// Move Down
+				{
+					Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Move Down", "", "void MoveObjectDown( asset Asset, const string& ID )", "" + index );
+				}
+
+				// Copy Object
+
+				Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Copy", "", "void CopyObject( asset Asset, const string& ID )", "" + index );
+
+				// Delete Object
+
+				Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Delete", "", "void DeleteObject( asset Asset, const string& ID )", "" + index );
+			}
+		}
+		
+		string str_position = "";
+		for ( int i = 0; i < available_positions.length; i++ )
+		{
+			str_position = str_position + " | " + available_positions[i];
+		}
+		
+		Asset.AddEntry_Combo( prefix + "Position", str_position ).SetTitle( "Position" ).SetToolTip( "The position of this rider" ).Show( showCat ).SetSave( showCat ).UpdateOnChange( true );
+		Asset.AddEntry_BoneCombo( prefix + "AlignTag", "model" ).SetTitle( "Align Tag" ).SetToolTip( "The tag of the object or entity to align this entity to" ).Show( showCat ).SetSave( showCat );		
+		Asset.AddEntry_CheckBox( prefix + "DropUnderVehicleOrigin", false ).SetTitle( "Drop Under the Vehicle Origin" ).SetToolTip( "Use the X and Y of the vehicle origin as final target for this entity." ).Show( showCat ).SetSave( showCat );		
+
+		Asset.AddEntry_CheckBox( prefix + "Valid", false ).Show( false ).SetSave( false );
+
+		Asset.BeginCategory( objectName + ".Enter" );
+		{
+			Asset.AddEntry_AssetCombo( prefix + "EnterAnim", "xanim" ).SetTitle( "Enter" ).SetToolTip( "The animation to play when entering the vehicle." ).Show( showCat ).SetSave( showCat );
+			Asset.AddEntry_AssetCombo( prefix + "EnterDeathAnim", "xanim" ).SetTitle( "Enter Death" ).SetToolTip( "The animation to play when dying while entering the vehicle." ).Show( showCat ).SetSave( showCat );
+			Asset.AddEntry_AssetCombo( prefix + "VehicleEnterAnim", "xanim" ).SetTitle( "Vehicle Enter" ).SetToolTip( "The animation to play on the vehicle when entering the vehicle." ).Show( showCat ).SetSave( showCat );
+		}
+
+		Asset.BeginCategory( objectName + ".Ride" );
+		{
+			Asset.AddEntry_AssetCombo( prefix + "RideAnim", "xanim" ).SetTitle( "Ride" ).SetToolTip( "The animation to play when riding the vehicle." ).Show( showCat ).SetSave( showCat );
+			Asset.AddEntry_AssetCombo( prefix + "RideDeathAnim", "xanim" ).SetTitle( "Ride Death" ).SetToolTip( "The animation to play when dying while riding the vehicle." ).Show( showCat ).SetSave( showCat );
+			Asset.AddEntry_AssetCombo( prefix + "VehicleRiderDeathAnim", "xanim" ).SetTitle( "Vehicle Ride Death" ).SetToolTip( "The animation to play on the vehicle when dying while riding the vehicle." ).Show( showCat ).SetSave( showCat );
+		}
+
+		Asset.BeginCategory( objectName + ".Exit Ground" );
+		{
+			Asset.AddEntry_AssetCombo( prefix + "ExitGroundAnim", "xanim" ).SetTitle( "Exit Ground" ).SetToolTip( "The animation to play when exiting the vehicle on the gound." ).Show( showCat ).SetSave( showCat );
+			Asset.AddEntry_AssetCombo( prefix + "ExitGroundDeathAnim", "xanim" ).SetTitle( "Exit Ground Death" ).SetToolTip( "The animation to play when dying while exiting the vehicle on the gound." ).Show( showCat ).SetSave( showCat );
+			Asset.AddEntry_AssetCombo( prefix + "VehicleExitAnim", "xanim" ).SetTitle( "Vehicle Exit" ).SetToolTip( "The animation to play on the vehicle when exiting the vehicle." ).Show( showCat ).SetSave( showCat );
+		}
+
+		Asset.BeginCategory( objectName + ".Exit Low" );
+		{
+			Asset.AddEntry_AssetCombo( prefix + "ExitLowAnim", "xanim" ).SetTitle( "Exit Low" ).SetToolTip( "The animation to play when exiting the vehicle low to the gound." ).Show( showCat ).SetSave( showCat );
+			Asset.AddEntry_AssetCombo( prefix + "ExitLowDeathAnim", "xanim" ).SetTitle( "Exit Low Death" ).SetToolTip( "The animation to play when dying while exiting the vehicle low to the gound." ).Show( showCat ).SetSave( showCat );
+		}
+
+		Asset.BeginCategory( objectName + ".Exit High (Variable)" );
+		{
+			Asset.AddEntry_AssetCombo( prefix + "ExitHighAnim", "xanim" ).SetTitle( "Exit High" ).SetToolTip( "The animation to play when exiting the vehicle at a variable height above the gound." ).Show( showCat ).SetSave( showCat );
+			Asset.AddEntry_AssetCombo( prefix + "ExitHighDeathAnim", "xanim" ).SetTitle( "Exit High Death" ).SetToolTip( "The animation to play when dying while exiting the vehicle at a variable height above the gound." ).Show( showCat ).SetSave( showCat );
+
+			Asset.AddEntry_AssetCombo( prefix + "ExitHighLoopAnim", "xanim" ).SetTitle( "Exit High Loop" ).SetToolTip( "The animation to play when exiting the vehicle at a variable height above the gound." ).Show( showCat ).SetSave( showCat );
+			Asset.AddEntry_AssetCombo( prefix + "ExitHighLoopDeathAnim", "xanim" ).SetTitle( "Exit High Loop Death" ).SetToolTip( "The animation to play when dying while exiting the vehicle at a variable height above the gound." ).Show( showCat ).SetSave( showCat );
+
+			Asset.AddEntry_AssetCombo( prefix + "ExitHighLandAnim", "xanim" ).SetTitle( "Exit High Land" ).SetToolTip( "The animation to play when exiting the vehicle at a variable height above the gound." ).Show( showCat ).SetSave( showCat );
+			Asset.AddEntry_AssetCombo( prefix + "ExitHighLandDeathAnim", "xanim" ).SetTitle( "Exit High Land Death" ).SetToolTip( "The animation to play when dying while exiting the vehicle at a variable height above the gound." ).Show( showCat ).SetSave( showCat );
+		}
+	}
+}
+
+//  ▄         ▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄▄▄  ▄            ▄▄▄▄▄▄▄▄▄▄▄ 
+// ▐░▌       ▐░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░▌          ▐░░░░░░░░░░░▌
+// ▐░▌       ▐░▌ ▀▀▀▀█░█▀▀▀▀  ▀▀▀▀█░█▀▀▀▀ ▐░▌          ▐░█▀▀▀▀▀▀▀▀▀ 
+// ▐░▌       ▐░▌     ▐░▌          ▐░▌     ▐░▌          ▐░▌          
+// ▐░▌       ▐░▌     ▐░▌          ▐░▌     ▐░▌          ▐░█▄▄▄▄▄▄▄▄▄ 
+// ▐░▌       ▐░▌     ▐░▌          ▐░▌     ▐░▌          ▐░░░░░░░░░░░▌
+// ▐░▌       ▐░▌     ▐░▌          ▐░▌     ▐░▌           ▀▀▀▀▀▀▀▀▀█░▌
+// ▐░▌       ▐░▌     ▐░▌          ▐░▌     ▐░▌                    ▐░▌
+// ▐░█▄▄▄▄▄▄▄█░▌     ▐░▌      ▄▄▄▄█░█▄▄▄▄ ▐░█▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄▄▄▄▄█░▌
+// ▐░░░░░░░░░░░▌     ▐░▌     ▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌▐░░░░░░░░░░░▌
+//  ▀▀▀▀▀▀▀▀▀▀▀       ▀       ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀  ▀▀▀▀▀▀▀▀▀▀▀ 
+
+void CopySingleObject( asset Asset, string fromObjectPrefix, string toObjectPrefix )
+{
+	for ( uint i = 0; i < gObjectKeys.length(); i++ )
+	{
+		Asset.GetEntryVariable( toObjectPrefix + gObjectKeys[i] ).SetValue( Asset.GetEntryValue( fromObjectPrefix + gObjectKeys[i] ) );
+	}
+}
+
+void SwapObjects( asset Asset, string objectAPrefix, string objectBPrefix )
+{
+	array<string> values_temp;
+	for ( uint i = 0; i < gObjectKeys.length(); i++ )
+	{
+		values_temp.insertLast( Asset.GetEntryValue( objectAPrefix + gObjectKeys[i] ) );
+	}
+
+	CopySingleObject( Asset, objectBPrefix, objectAPrefix );
+
+	for ( uint i = 0; i < values_temp.length(); i++ )
+	{
+		Asset.GetEntryVariable( objectBPrefix + gObjectKeys[i] ).SetValue( values_temp[i] );
+	}
+}
+
+void MoveObjectUp( asset Asset, const string& index )
+{
+	int n_index = index.ToInt();
+
+	string prefix = "object" + index + "_";
+	string prefixPrev = "object" + ( n_index - 1 ) + "_";
+	
+	bool firstObject = ( n_index == 1 );
+	
+	if ( !firstObject )
+	{
+		SwapObjects( Asset, prefixPrev, prefix );
+	}
+}
+
+void MoveObjectDown( asset Asset, const string& index )
+{
+	int n_index = index.ToInt();
+
+	string prefix = "object" + index + "_";
+	string prefixNext = "object" + ( n_index + 1 ) + "_";
+	
+	bool lastObject = ( n_index == MAX_SCRIPTBUNDLE_OBJECTS );
+	
+	if ( !lastObject )
+	{
+		SwapObjects( Asset, prefix, prefixNext );
+	}
+}
+
+void CopyObject( asset Asset, const string& index )
+{
+	int n_index = index.ToInt();
+
+	string prefix = "object" + index + "_";
+	string prefixNext = "object" + ( n_index + 1 ) + "_";
+	
+	// error if there are MAX objects already
+	if ( gValidObjectCount != MAX_SCRIPTBUNDLE_OBJECTS )
+	{
+		// start at end and shift everything down
+		for ( int i = MAX_SCRIPTBUNDLE_OBJECTS - 1; i > n_index; i-- )
+		{
+			string copyFromPrefix = "object" + i + "_";
+			string copyToPrefix = "object" + ( i + 1 ) + "_";
+
+			CopySingleObject( Asset, copyFromPrefix, copyToPrefix );
+		}
+
+		// copy the object we are copying down to the next object
+		CopySingleObject( Asset, prefix, prefixNext );
+
+		Asset.GetEntryVariable( prefixNext + "Position" ).SetValue( Asset.GetEntryValue( prefix + "Position" ) + "(copy)");
+	}
+	else
+	{
+		MessageBox( "Cannot copy object, already at max object count!", "OK" );
+	}
+}
+
+void DeleteObject( asset Asset, const string& index )
+{
+	string prefix = "object" + index + "_";
+	string objectName = "Object " + index;
+	
+	if ( MessageBox( "Are you sure you want to remove " + objectName + "?", "YESNO" ) == "YES" )
+	{
+		int n_index = index.ToInt();
+		for ( uint i = n_index; i <= MAX_SCRIPTBUNDLE_OBJECTS; i++ )
+		{
+			string copyFromPrefix = "object" + (i+1) + "_";
+			string copyToPrefix = "object" + i + "_";
+			
+			CopySingleObject( Asset, copyFromPrefix, copyToPrefix );
+		}
+	}
+}

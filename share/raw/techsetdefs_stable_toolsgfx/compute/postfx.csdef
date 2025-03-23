@@ -1,0 +1,160 @@
+//
+//
+//
+
+ComputeShader("vbloom_downsample_compute")
+{
+	source = "vbloom_downsample_compute.hlsl"
+}
+
+ComputeShader("create_lut2dv_compute")
+{
+	defines = "USE_ALT 0"
+	source = "create_lut2dv_cs.hlsl"
+}
+
+ComputeShader("create_lut2dv_compute_alt")
+{
+	defines = "USE_ALT 1"
+	source = "create_lut2dv_cs.hlsl"
+}
+
+ComputeShader("exposure_compute")
+{
+	source = "exposure_compute.hlsl"
+}
+
+ComputeShader("fxaa_hemi_aa_pass1_compute")
+{
+	source = "fxaa_hemi_aa_pass1_compute.hlsl"
+}
+
+ComputeShader("fxaa_hemi_aa_resolve_work_queue_compute")
+{
+	source = "fxaa_hemi_aa_resolve_work_queue_compute.hlsl"
+}
+
+ComputeShader("fxaa_hemi_aa_pass2h_compute")
+{
+	source = "fxaa_hemi_aa_pass2_compute.hlsl"
+}
+
+ComputeShader("fxaa_hemi_aa_pass2v_compute")
+{
+	defines = "VERTICAL_ORIENTATION"
+	source = "fxaa_hemi_aa_pass2_compute.hlsl"
+}
+
+ComputeShader("fxaa_hemi_aa_pass2h_debug_compute")
+{
+	defines = "DEBUG_OUTPUT"
+	source = "fxaa_hemi_aa_pass2_compute.hlsl"
+}
+
+ComputeShader("fxaa_hemi_aa_pass2v_debug_compute")
+{
+	defines = "VERTICAL_ORIENTATION", "DEBUG_OUTPUT"
+	source = "fxaa_hemi_aa_pass2_compute.hlsl"
+}
+
+#if PLAT_DURANGO == "1"
+
+ComputeShader("fxaa_fast_hemi_aa_pass1_compute")
+{
+	defines = "FXAA_FAST"
+	source = "fxaa_hemi_aa_pass1_compute.hlsl"
+}
+
+ComputeShader("fxaa_fast_hemi_aa_resolve_work_queue_compute")
+{
+	defines = "FXAA_FAST"
+	source = "fxaa_hemi_aa_resolve_work_queue_compute.hlsl"
+}
+
+ComputeShader("fxaa_fast_hemi_aa_pass2h_compute")
+{
+	defines = "FXAA_FAST"
+	source = "fxaa_hemi_aa_pass2_compute.hlsl"
+}
+
+ComputeShader("fxaa_fast_hemi_aa_pass2v_compute")
+{
+	defines = "FXAA_FAST", "VERTICAL_ORIENTATION"
+	source = "fxaa_hemi_aa_pass2_compute.hlsl"
+}
+
+ComputeShader("fxaa_fast_hemi_aa_pass2h_debug_compute")
+{
+	defines = "FXAA_FAST", "DEBUG_OUTPUT"
+	source = "fxaa_hemi_aa_pass2_compute.hlsl"
+}
+
+ComputeShader("fxaa_fast_hemi_aa_pass2v_debug_compute")
+{
+	defines = "FXAA_FAST", "VERTICAL_ORIENTATION", "DEBUG_OUTPUT"
+	source = "fxaa_hemi_aa_pass2_compute.hlsl"
+}
+
+ComputeShader("resample_compute")
+{
+	source = "resample_compute.hlsl"
+}
+
+#endif
+
+ComputeShader("smaa_pass1_compute")
+{
+	defines = "SMAA_VARIABLE_SPATIAL_QUALITY 1"
+	source = "smaa_pass1_compute.hlsl"
+}
+
+ComputeShader("smaa_pass1_compute_hq")
+{
+	source = "smaa_pass1_compute.hlsl"
+}
+
+// NOT USED
+ComputeShader("smaa_pass2_compute")
+{
+	source = "smaa_pass2_compute.hlsl"
+}
+
+ComputeShader("smaa_pass2v_compute")
+{
+	defines = "SMAA_MORPHOLOGICAL_COMPUTE_PASS 1"
+	source = "smaa_pass2_compute.hlsl"
+}
+
+ComputeShader("smaa_pass2h_compute")
+{
+	defines = "SMAA_MORPHOLOGICAL_COMPUTE_PASS 2"
+	source = "smaa_pass2_compute.hlsl"
+}
+
+ComputeShader("smaa_pass4_compute")
+{
+	source = "smaa_pass4_compute.hlsl"
+}
+
+ComputeShader("smaa_resolve_morphological_work_queue_compute")
+{
+	defines = "MORPHOLOGICAL_WORK_QUEUE"
+	source = "smaa_resolve_work_queue_compute.hlsl"
+}
+
+ComputeShader("smaa_resolve_filmic_work_queue_compute")
+{
+	defines = "FILMIC_WORK_QUEUE"
+	source = "smaa_resolve_work_queue_compute.hlsl"
+}
+
+ComputeShader("motion_vector_static_compute")
+{
+	source = "motion_vector_static_compute.hlsl"
+}
+
+ComputeShader("motion_vector_static_with_mb_compute")
+{
+	defines = "WITH_MOTION_BLUR"
+	source = "motion_vector_static_compute.hlsl"
+}

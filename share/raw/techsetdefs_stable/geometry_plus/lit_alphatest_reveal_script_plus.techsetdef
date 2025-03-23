@@ -1,0 +1,81 @@
+#include "lit_base_mid"
+#include "reveal_base"
+
+Globals()
+{
+	category = "Geometry Plus"
+	renderFlags = "lit deferred semi opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "scriptReplacement" )
+{
+	x = <cg01_x>
+	tweak = Tweak()
+	{
+		category  = "Script Vector Simulator"
+		title     = "Reveal"
+		sortindex = "10"
+		default   = "0.0"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "thermal" ).defines = "THERMAL_ALPHA_TEST"
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth alphatest"
+{
+	defines += "USE_ALPHA_TEST", "USE_REVEAL_MAP", "USE_SCRIPT_CONTROLS"
+}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes alphatest"
+{
+	defines += "USE_ALPHA_TEST", "USE_REVEAL_MAP", "USE_SCRIPT_CONTROLS"
+}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered alphatest"
+{
+	defines += "USE_ALPHA_TEST", "USE_REVEAL_MAP", "USE_SCRIPT_CONTROLS"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT", "USE_REVEAL_MAP", "USE_ALPHA_TEST"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque"
+	defines = "BASE_SPEC", "USE_COLOR_TINT", "USE_REVEAL_MAP", "USE_SCRIPT_VECTORS", "USE_ALPHA_TEST"
+	source = "gbuffer_lit.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS", "USE_REVEAL_MAP", "USE_ALPHA_TEST"
+	}
+}

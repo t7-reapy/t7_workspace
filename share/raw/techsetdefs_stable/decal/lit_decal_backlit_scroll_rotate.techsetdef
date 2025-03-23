@@ -1,0 +1,135 @@
+#include "lit_base_shaders"
+#include "lit_decal_base.inc"
+#include "scroll_base"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "base decal renderflags"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Signage"
+		sortindex = "50"
+	}
+}
+
+Texture( "colorMap" )
+{
+	image = Image( <specColorMap, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Signage"
+		title     = "Image"
+		sortindex = "20"
+	}
+}
+
+Texture( "thicknessMap" )
+{
+	image = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "thicknessMap"
+	tweak = Tweak()
+	{
+		category  = "Signage"
+		title     = "Thickness Map"
+		sortindex = "30"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "rotateUVs" ).tweak = Tweak()
+{
+	category	= "Signage"
+	title		= "UV Rotation, Spin Rate"
+	sortindex	= "60"
+}
+
+float2( "scrollUVs" ).tweak = Tweak()
+{
+	category	= "Signage"
+	title		= "UV Scroll Rate"
+	sortindex	= "70"
+}
+
+float2( "scaleUVs" ).tweak = Tweak()
+{
+	category	= "Signage"
+	title		= "UV Scale"
+	sortindex	= "80"
+}
+
+float2( "offsetUVs" ).tweak = Tweak()
+{
+	category	= "Signage"
+	title		= "UV Offset"
+	sortindex	= "90"
+}
+
+float2( "zoomUVs" ).tweak = Tweak()
+{
+	category	= "Signage"
+	title		= "Zoom (Min, Max)"
+	sortindex	= "100"
+}
+
+float1( "zoomRate" ).tweak = Tweak()
+{
+	category	= "Signage"
+	title		= "Zoom Rate"
+	sortindex	= "110"
+}
+
+float1( "layerDepth" ).tweak = Tweak()
+{
+	category	= "Signage"
+	title		= "Perceived Depth"
+	sortindex	= "120"
+}
+
+Bool( "clampU" ).tweak = Tweak()
+{
+	category	= "Signage"
+	title		= "Clamp U"
+	sortindex	= "130"
+}
+
+Bool( "clampV" ).tweak = Tweak()
+{
+	category	= "Signage"
+	title		= "Clamp V"
+	sortindex	= "140"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines = ""
+}
+
+Technique( "gbuffer" ) : "base lit decal gbuffer specular"
+{
+	defines += "USE_SCROLL_ROTATE_UVS"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

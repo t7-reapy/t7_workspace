@@ -1,0 +1,157 @@
+Texture( "normalMapHi" )
+{
+	image = Image( <detailMap, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Detail Normal Map (used twice)"
+		sortindex = 12
+	}
+}
+
+float4( "normalScaleLoHi" )
+{
+	x = " 4.0 * <gNormalScale00>"
+	y = "-2.0 * <gNormalScale00>"
+	z = " 4.0 * <gNormalScale01>"
+	w = "-2.0 * <gNormalScale01>"
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     =  "Normal scale (Lo, Hi)"
+		sortindex = 13
+	}
+}
+
+float3( "normalUVScrollSpeed" )
+{
+	x = <gUVScroll00_Speed>
+	y = <gUVScroll01_Speed>
+	z = <gUVScroll02_Speed>
+
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Scroll speed (Lo, Hi 0, Hi 1)"
+		sortindex = 14
+	}
+}
+
+float1( "normalUVLoTile" )
+{
+	x = <cg10_x>
+	tweak = Tweak()
+	{
+		category	= "Normal"
+		title		= "Normal Low Tile"
+		default		= "500.0"
+		range		= "0", "4096", "0.1"
+		sortindex	= 15
+	}
+}
+
+float1( "normalUVLoAngle" )
+{
+	x = <cg10_y>
+	tweak = Tweak()
+	{
+		category	= "Normal"
+		title		= "Normal Low Angle"
+		default		= "0.0"
+		range		= "-360.0", "360.0", "1"
+		sortindex	= 16
+	}
+}
+
+float1( "normalUVHi0Tile" )
+{
+	x = <cg11_x>
+	tweak = Tweak()
+	{
+		category	= "Normal"
+		title		= "Normal Hi 0 Tile"
+		default		= "500.0"
+		range		= "0", "4096", "0.1"
+		sortindex	= 17
+	}
+}
+
+float1( "normalUVHi0Angle" )
+{
+	x = <cg11_y>
+	tweak = Tweak()
+	{
+		category	= "Normal"
+		title		= "Normal Hi 0 Angle"
+		default		= "0.0"
+		range		= "-360.0", "360.0", "1"
+		sortindex	= 18
+	}
+}
+
+float1( "normalUVHi1Tile" )
+{
+	x = <cg12_x>
+	tweak = Tweak()
+	{
+		category	= "Normal"
+		title		= "Normal Hi 1 Tile"
+		default		= "500.0"
+		range		= "0", "4096", "0.1"
+		sortindex	= 19
+	}
+}
+
+float1( "normalUVHi1Angle" )
+{
+	x = <cg12_y>
+	tweak = Tweak()
+	{
+		category	= "Normal"
+		title		= "Normal Hi 1 Angle"
+		default		= "0.0"
+		range		= "-360.0", "360.0", "1"
+		sortindex	= 20
+	}
+}
+
+float4( "normalUVLo" )
+{
+	x = "1.0 / <cg10_x>"
+	y = "-1.0 / <cg10_x>"
+	z = "-cos(radians(<cg10_y>))"
+	w = "sin(radians(<cg10_y>))"
+}
+
+float4( "normalUVHi0" )
+{
+	x = "1.0 / <cg11_x>"
+	y = "-1.0 / <cg11_x>"
+	z = "-cos(radians(<cg11_y>))"
+	w = "sin(radians(<cg11_y>))"
+}
+
+float4( "normalUVHi1" )
+{
+	x = "1.0 / <cg12_x>"
+	y = "-1.0 / <cg12_x>"
+	z = "-cos(radians(<cg12_y>))"
+	w = "sin(radians(<cg12_y>))"
+}
+
+//	if we are using the flow version we already have a noise map in flow_base, but we still
+//	need it for scroll
+Texture( "noiseMap" )
+{
+	image = Image( <colorMap03,$white> )
+	semantic = "multipleMask"
+	tweak = Tweak()
+	{
+		category  = "Foam"
+		title     = "Foam Noise Map"
+		sortindex = 51
+	}
+}
+
+

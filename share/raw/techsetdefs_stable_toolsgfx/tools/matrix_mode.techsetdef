@@ -1,0 +1,29 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Tools"
+	renderFlags = "none"
+	radiantOnly = true
+}
+
+#if TOOLSGFX == "1"
+Technique( "unlit" )
+{
+	state = "add + depth"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/matrix_mode.hlsl"
+		vertexDecl = "generic"
+	}
+	gs = GeometryShader()
+	{
+		source = "ToolsGfx/matrix_mode.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/matrix_mode.hlsl"
+	}
+}
+#endif

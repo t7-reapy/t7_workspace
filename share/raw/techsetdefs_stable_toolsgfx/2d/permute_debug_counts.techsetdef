@@ -1,0 +1,22 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+		source = "deferred_permute_debug_counts.hlsl"
+		codeBuffer0 = CodeBuffer( "codeBuffer0" )
+	}
+	ps = PixelShader()
+	{
+		source = "deferred_permute_debug_counts.hlsl"
+	}
+}

@@ -1,0 +1,358 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	
+	Asset.AddEntry_Combo( "type", "mpdialog_player" ).Show( false );
+	Asset.AddEntry_Combo( "vmType", "Both" ).SetTitle( "Script Type" ).Show( false ).SetValue("Both");
+
+	Asset.BeginCategory( "Specialist MP Dialog" );
+	{
+		Asset.AddEntry_String( "voicePrefix", "" ).SetTitle( "Voice Prefix" );
+		Asset.AddEntry_String( "characterSelect", "" ).SetTitle( "Character Select" );
+		Asset.AddEntry_String( "promotionReaction", "" ).SetTitle( "Promotion Reaction"  );
+	}
+
+	Asset.BeginCategory( "Exerts" );
+	{
+		Asset.AddEntry_String( "exertBreatheBetter", "" ).SetTitle( "Breathe Better" );
+		Asset.AddEntry_String( "exertBreatheHurt", "" ).SetTitle( "Breathe Hurt" );
+		Asset.AddEntry_String( "exertGasCough", "" ).SetTitle( "Gas Cough" );
+		Asset.AddEntry_String( "exertGasGag", "" ).SetTitle( "Gas Gag" );
+		Asset.AddEntry_String( "exertGasGasp", "" ).SetTitle( "Gas Gasp" );
+		Asset.AddEntry_String( "exertPain", "" ).SetTitle( "Pain" );
+		Asset.AddEntry_String( "exertPainFalling", "" ).SetTitle( "Falling Pain" );
+		Asset.AddEntry_String( "exertPainUnderwater", "" ).SetTitle( "Underwater Pain" );
+		Asset.AddEntry_String( "exertPainDrowning", "" ).SetTitle( "Drowning Pain" );
+		Asset.AddEntry_String( "exertEmergeBreath", "" ).SetTitle( "Underwater Emerge Breath" );
+		Asset.AddEntry_String( "exertEmergeGasp", "" ).SetTitle( "Underwater Emerge Gasp" );	
+		Asset.AddEntry_String( "exertSniperExhale", "" ).SetTitle( "Sniper Exhale" );
+		Asset.AddEntry_String( "exertSniperGasp", "" ).SetTitle( "Sniper Gasp" );
+		Asset.AddEntry_String( "exertSniperHold", "" ).SetTitle( "Sniper Hold" );
+		Asset.AddEntry_String( "exertAxeThrow", "" ).SetTitle( "Axe Throw" );
+	}
+	
+	Asset.BeginCategory( "Death Exerts" );
+	{
+		Asset.AddEntry_String( "exertDeath", "" ).SetTitle( "Death" );
+		Asset.AddEntry_String( "exertDeathStabbed", "" ).SetTitle( "Stabbed" );
+		Asset.AddEntry_String( "exertDeathBurned", "" ).SetTitle( "Burned" );
+		Asset.AddEntry_String( "exertDeathElectrocuted", "" ).SetTitle( "Electrocuted" );
+		Asset.AddEntry_String( "exertDeathDrowned", "" ).SetTitle( "Drowned" );
+	}
+	
+	Asset.BeginCategory( "Boosts" );
+	{
+		Asset.AddEntry_String( "boostStart0", "" ).SetTitle( "Start 0" );
+		Asset.AddEntry_String( "boostStart1", "" ).SetTitle( "Start 1" );
+		Asset.AddEntry_String( "boostStart2", "" ).SetTitle( "Start 2" );
+		Asset.AddEntry_String( "boostStart3", "" ).SetTitle( "Start 3" );
+		Asset.AddEntry_String( "boostLoss", "" ).SetTitle( "Loss" );
+		Asset.AddEntry_String( "boostDraw", "" ).SetTitle( "Draw" );
+		Asset.AddEntry_String( "boostWin", "" ).SetTitle( "Win" );
+		
+		Asset.BeginCategory( "Boosts.Start Responses" );
+		{
+			Asset.AddEntry_String( "boostStartRespEnforcer0", "" ).SetTitle( "Seraph 0" );
+			Asset.AddEntry_String( "boostStartRespEnforcer1", "" ).SetTitle( "Seraph 1" );
+			Asset.AddEntry_String( "boostStartRespEnforcer2", "" ).SetTitle( "Seraph 2" );
+			Asset.AddEntry_String( "boostStartRespEnforcer3", "" ).SetTitle( "Seraph 3" );
+		
+			Asset.AddEntry_String( "boostStartRespFirebreak0", "" ).SetTitle( "Pyro 0" );
+			Asset.AddEntry_String( "boostStartRespFirebreak1", "" ).SetTitle( "Pyro 1" );
+			Asset.AddEntry_String( "boostStartRespFirebreak2", "" ).SetTitle( "Pyro 2" );
+			Asset.AddEntry_String( "boostStartRespFirebreak3", "" ).SetTitle( "Pyro 3" );
+		
+			Asset.AddEntry_String( "boostStartRespGrenadier0", "" ).SetTitle( "Grenadier 0" );
+			Asset.AddEntry_String( "boostStartRespGrenadier1", "" ).SetTitle( "Grenadier 1" );
+			Asset.AddEntry_String( "boostStartRespGrenadier2", "" ).SetTitle( "Grenadier 2" );
+			Asset.AddEntry_String( "boostStartRespGrenadier3", "" ).SetTitle( "Grenadier 3" );
+		
+			Asset.AddEntry_String( "boostStartRespMercenary0", "" ).SetTitle( "Ruin 0" );
+			Asset.AddEntry_String( "boostStartRespMercenary1", "" ).SetTitle( "Ruin 1" );
+			Asset.AddEntry_String( "boostStartRespMercenary2", "" ).SetTitle( "Ruin 2" );
+			Asset.AddEntry_String( "boostStartRespMercenary3", "" ).SetTitle( "Ruin 3" );
+		
+			Asset.AddEntry_String( "boostStartRespOutrider0", "" ).SetTitle( "Outrider 0" );
+			Asset.AddEntry_String( "boostStartRespOutrider1", "" ).SetTitle( "Outrider 1" );
+			Asset.AddEntry_String( "boostStartRespOutrider2", "" ).SetTitle( "Outrider 2" );
+			Asset.AddEntry_String( "boostStartRespOutrider3", "" ).SetTitle( "Outrider 3" );
+		
+			Asset.AddEntry_String( "boostStartRespReaper0", "" ).SetTitle( "Reaper 0" );
+			Asset.AddEntry_String( "boostStartRespReaper1", "" ).SetTitle( "Reaper 1" );
+			Asset.AddEntry_String( "boostStartRespReaper2", "" ).SetTitle( "Reaper 2" );
+			Asset.AddEntry_String( "boostStartRespReaper3", "" ).SetTitle( "Reaper 3" );
+		
+			Asset.AddEntry_String( "boostStartRespSpectre0", "" ).SetTitle( "Spectre 0" );
+			Asset.AddEntry_String( "boostStartRespSpectre1", "" ).SetTitle( "Spectre 1" );
+			Asset.AddEntry_String( "boostStartRespSpectre2", "" ).SetTitle( "Spectre 2" );
+			Asset.AddEntry_String( "boostStartRespSpectre3", "" ).SetTitle( "Spectre 3" );
+		
+			Asset.AddEntry_String( "boostStartRespTechnomancer0", "" ).SetTitle( "Prophet 0" );
+			Asset.AddEntry_String( "boostStartRespTechnomancer1", "" ).SetTitle( "Prophet 1" );
+			Asset.AddEntry_String( "boostStartRespTechnomancer2", "" ).SetTitle( "Prophet 2" );
+			Asset.AddEntry_String( "boostStartRespTechnomancer3", "" ).SetTitle( "Prophet 3" );
+			
+			Asset.AddEntry_String( "boostStartRespTrapper0", "" ).SetTitle( "Trapper 0" );
+			Asset.AddEntry_String( "boostStartRespTrapper1", "" ).SetTitle( "Trapper 1" );
+			Asset.AddEntry_String( "boostStartRespTrapper2", "" ).SetTitle( "Trapper 2" );
+			Asset.AddEntry_String( "boostStartRespTrapper3", "" ).SetTitle( "Trapper 3" );
+
+			Asset.AddEntry_String( "boostStartRespBlackjack0", "" ).SetTitle( "Blackjack 0" );
+			Asset.AddEntry_String( "boostStartRespBlackjack1", "" ).SetTitle( "Blackjack 1" );
+			Asset.AddEntry_String( "boostStartRespBlackjack2", "" ).SetTitle( "Blackjack 2" );
+			Asset.AddEntry_String( "boostStartRespBlackjack3", "" ).SetTitle( "Blackjack 3" );
+		}
+	}
+	
+	Asset.BeginCategory( "Threats" );
+	{
+		Asset.AddEntry_String( "threatRpg", "" ).SetTitle( "RPG" );
+		Asset.AddEntry_String( "threatInfantry", "" ).SetTitle( "Infantry" );
+		Asset.AddEntry_String( "threatSniper", "" ).SetTitle( "Sniper" );
+	}
+	
+	Asset.BeginCategory( "Taunts" );
+	{
+		Asset.AddEntry_String( "tauntBoast", "" ).SetTitle( "Boast" );
+		Asset.AddEntry_String( "tauntGeneric", "" ).SetTitle( "Taunt" );
+		Asset.AddEntry_String( "tauntGoodGame", "" ).SetTitle( "Good Game" );
+		Asset.AddEntry_String( "tauntThreaten", "" ).SetTitle( "Threaten" );
+	}
+	
+	Asset.BeginCategory( "Hero Gadgets" );
+	{
+		Asset.AddEntry_String( "heroAbilityReady", "" ).SetTitle( "Hero Ability Ready" );
+		Asset.AddEntry_String( "heroAbilitySuccess0", "" ).SetTitle( "Hero Ability Success 0" );
+		Asset.AddEntry_String( "heroAbilityUse", "" ).SetTitle( "Hero Ability Use" );
+		Asset.AddEntry_String( "heroWeaponReady", "" ).SetTitle( "Hero Weapon Ready" );
+		Asset.AddEntry_String( "heroWeaponSuccess0", "" ).SetTitle( "Hero Weapon Success 0" );
+		Asset.AddEntry_String( "heroWeaponUse", "" ).SetTitle( "Hero Weapon Use" );
+		Asset.AddEntry_String( "heroWeaponSuccessReaction", "" ).SetTitle( "Hero Weapon Success Reaction" );
+	}
+	
+	Asset.BeginCategory( "Hero Gadgets Unique" );
+	{
+		Asset.BeginCategory( "Hero Gadgets Unique.Ruin" );
+		{
+			Asset.AddEntry_String( "overdriveAbilityReady", "" ).SetTitle( "Overdrive Ability Ready" );
+			Asset.AddEntry_String( "overdriveAbilitySuccess0", "" ).SetTitle( "Overdrive Ability Success 0" );
+			Asset.AddEntry_String( "overdriveAbilityUse", "" ).SetTitle( "Overdrive Ability Use" );
+			Asset.AddEntry_String( "gravspikesWeaponReady", "" ).SetTitle( "Grav Spikes Weapon Ready" );
+			Asset.AddEntry_String( "gravspikesWeaponSuccess0", "" ).SetTitle( "Grav Spikes Weapon Success 0" );
+			Asset.AddEntry_String( "gravspikesWeaponUse", "" ).SetTitle( "Grav Spikes Weapon Use" );
+		}
+		
+		Asset.BeginCategory( "Hero Gadgets Unique.Outrider" );
+		{
+			Asset.AddEntry_String( "visionpulseAbilityReady", "" ).SetTitle( "Vision Pulse Ability Ready" );
+			Asset.AddEntry_String( "visionpulseAbilitySuccess0", "" ).SetTitle( "Vision Pulse Ability Success 0" );
+			Asset.AddEntry_String( "visionpulseAbilityUse", "" ).SetTitle( "Vision Pulse Ability Use" );
+			Asset.AddEntry_String( "sparrowWeaponReady", "" ).SetTitle( "Sparrow Weapon Ready" );
+			Asset.AddEntry_String( "sparrowWeaponSuccess0", "" ).SetTitle( "Sparrow Weapon Success 0" );
+			Asset.AddEntry_String( "sparrowWeaponUse", "" ).SetTitle( "Sparrow Weapon Use" );
+		}
+		
+		Asset.BeginCategory( "Hero Gadgets Unique.Prophet" );
+		{
+			Asset.AddEntry_String( "glitchAbilityReady", "" ).SetTitle( "Glitch Ability Ready" );
+			Asset.AddEntry_String( "glitchAbilitySuccess0", "" ).SetTitle( "Glitch Ability Success 0" );
+			Asset.AddEntry_String( "glitchAbilityUse", "" ).SetTitle( "Glitch Ability Use" );
+			Asset.AddEntry_String( "tempestWeaponReady", "" ).SetTitle( "Tempest Weapon Ready" );
+			Asset.AddEntry_String( "tempestWeaponSuccess0", "" ).SetTitle( "Tempest Weapon Success 0" );
+			Asset.AddEntry_String( "tempestWeaponUse", "" ).SetTitle( "Tempest Weapon Use" );
+		}
+		
+		Asset.BeginCategory( "Hero Gadgets Unique.Battery" );
+		{
+			Asset.AddEntry_String( "kineticarmorAbilityReady", "" ).SetTitle( "Kinetic Armor Ability Ready" );
+			Asset.AddEntry_String( "kineticarmorAbilitySuccess0", "" ).SetTitle( "Kinetic Armor Ability Success 0" );
+			Asset.AddEntry_String( "kineticarmorAbilityUse", "" ).SetTitle( "Kinetic Armor Ability Use" );
+			Asset.AddEntry_String( "warmachineWeaponReady", "" ).SetTitle( "War Machine Weapon Ready" );
+			Asset.AddEntry_String( "warmachineWeaponSuccess0", "" ).SetTitle( "War Machine Weapon Success 0" );
+			Asset.AddEntry_String( "warmachineWeaponUse", "" ).SetTitle( "War Machine Weapon Use" );
+		}
+		
+		Asset.BeginCategory( "Hero Gadgets Unique.Seraph" );
+		{
+			Asset.AddEntry_String( "combatfocusAbilityReady", "" ).SetTitle( "Combat Focus Ability Ready" );
+			Asset.AddEntry_String( "combatfocusAbilitySuccess0", "" ).SetTitle( "Combat Focus Ability Success 0" );
+			Asset.AddEntry_String( "combatfocusAbilityUse", "" ).SetTitle( "Combat Focus Ability Use" );
+			Asset.AddEntry_String( "annihilatorWeaponReady", "" ).SetTitle( "Annihilator Weapon Ready" );
+			Asset.AddEntry_String( "annihilatorWeaponSuccess0", "" ).SetTitle( "Annihilator Weapon Success 0" );
+			Asset.AddEntry_String( "annihilatorWeaponUse", "" ).SetTitle( "Annihilator Weapon Use" );
+		}
+		
+		Asset.BeginCategory( "Hero Gadgets Unique.Nomad" );
+		{
+			Asset.AddEntry_String( "rejackAbilityReady", "" ).SetTitle( "Rejack Ability Ready" );
+			Asset.AddEntry_String( "rejackAbilitySuccess0", "" ).SetTitle( "Rejack Ability Success 0" );
+			Asset.AddEntry_String( "rejackAbilityUse", "" ).SetTitle( "Rejack Ability Use" );
+			Asset.AddEntry_String( "hiveWeaponReady", "" ).SetTitle( "Hive Weapon Ready" );
+			Asset.AddEntry_String( "hiveWeaponSuccess0", "" ).SetTitle( "Hive Weapon Success 0" );
+			Asset.AddEntry_String( "hiveWeaponUse", "" ).SetTitle( "Hive Weapon Use" );
+		}
+		
+		Asset.BeginCategory( "Hero Gadgets Unique.Reaper" );
+		{
+			Asset.AddEntry_String( "psychosisAbilityReady", "" ).SetTitle( "Psychosis Ability Ready" );
+			Asset.AddEntry_String( "psychosisAbilitySuccess0", "" ).SetTitle( "Psychosis Ability Success 0" );
+			Asset.AddEntry_String( "psychosisAbilityUse", "" ).SetTitle( "Psychosis Ability Use" );
+			Asset.AddEntry_String( "scytheWeaponReady", "" ).SetTitle( "Scythe Weapon Ready" );
+			Asset.AddEntry_String( "scytheWeaponSuccess0", "" ).SetTitle( "Scythe Weapon Success 0" );
+			Asset.AddEntry_String( "scytheWeaponUse", "" ).SetTitle( "Scythe Weapon Use" );
+		}
+		
+		Asset.BeginCategory( "Hero Gadgets Unique.Spectre" );
+		{
+			Asset.AddEntry_String( "activecamoAbilityReady", "" ).SetTitle( "Active Camo Ability Ready" );
+			Asset.AddEntry_String( "activecamoAbilitySuccess0", "" ).SetTitle( "Active Camo Ability Success 0" );
+			Asset.AddEntry_String( "activecamoAbilityUse", "" ).SetTitle( "Active Camo Ability Use" );
+			Asset.AddEntry_String( "ripperWeaponReady", "" ).SetTitle( "Ripper Weapon Ready" );
+			Asset.AddEntry_String( "ripperWeaponSuccess0", "" ).SetTitle( "Ripper Weapon Success 0" );
+			Asset.AddEntry_String( "ripperWeaponUse", "" ).SetTitle( "Ripper Weapon Use" );
+		}
+		
+		Asset.BeginCategory( "Hero Gadgets Unique.Firebreak" );
+		{
+			Asset.AddEntry_String( "heatwaveAbilityReady", "" ).SetTitle( "Heat Wave Ability Ready" );
+			Asset.AddEntry_String( "heatwaveAbilitySuccess0", "" ).SetTitle( "Heat Wave Ability Success 0" );
+			Asset.AddEntry_String( "heatwaveAbilityUse", "" ).SetTitle( "Heat Wave Ability Use" );
+			Asset.AddEntry_String( "purifierWeaponReady", "" ).SetTitle( "Purifier Weapon Ready" );
+			Asset.AddEntry_String( "purifierWeaponSuccess0", "" ).SetTitle( "Purifier Weapon Success 0" );
+			Asset.AddEntry_String( "purifierWeaponUse", "" ).SetTitle( "Purifier Weapon Use" );
+		}
+		
+		Asset.BeginCategory( "Hero Gadgets Unique.Blackjack" );
+		{
+			Asset.AddEntry_String( "rouletteAbilityReady", "" ).SetTitle( "Gambler Ability Ready" );
+			Asset.AddEntry_String( "rouletteAbilityRepeat", "" ).SetTitle( "Gambler Ability Repeat" );
+			Asset.AddEntry_String( "thiefWeaponReady", "" ).SetTitle( "Rogue Weapon Ready" );
+			Asset.AddEntry_String( "thiefWeaponRepeat", "" ).SetTitle( "Rogue Weapon Repeat" );
+		}
+	}
+	
+	Asset.BeginCategory( "Equipment" );
+	{
+		Asset.AddEntry_String( "blackhatSuccess", "" ).SetTitle( "Blackhat Hack Success" );
+		Asset.AddEntry_String( "deployBetty", "" ).SetTitle( "Deploy Bouncing Betty" );
+		Asset.AddEntry_String( "deployC4", "" ).SetTitle( "Deploy C4" );
+		Asset.AddEntry_String( "deployConcussion", "" ).SetTitle( "Deploy Concussion" );
+		Asset.AddEntry_String( "deploySmoke", "" ).SetTitle( "Deploy Smoke" );
+		Asset.AddEntry_String( "deployEmpGrenade", "" ).SetTitle( "Deploy EMP" );
+		Asset.AddEntry_String( "deployAxe", "" ).SetTitle( "Deploy Axe" );
+		Asset.AddEntry_String( "deployFlash", "" ).SetTitle( "Deploy Flash" );
+		Asset.AddEntry_String( "deployFrag", "" ).SetTitle( "Deploy Frag" );
+		Asset.AddEntry_String( "incomingFrag", "" ).SetTitle( "Incoming Frag" );
+		Asset.AddEntry_String( "deployIncendiary", "" ).SetTitle( "Deploy Incendiary" );
+		Asset.AddEntry_String( "incomingIncendiary", "" ).SetTitle( "Incoming Incendiary" );
+		Asset.AddEntry_String( "deploySemtex", "" ).SetTitle( "Deploy Semtex" );
+		Asset.AddEntry_String( "incomingSemtex", "" ).SetTitle( "Incoming Semtex" );
+		Asset.AddEntry_String( "stuckSticky", "" ).SetTitle( "Struck With Semtex" );
+		Asset.AddEntry_String( "deployShockcharge", "" ).SetTitle( "Deploy Shock Charge" );
+	}
+	
+	Asset.BeginCategory( "Kills" );
+	{
+		Asset.AddEntry_String( "killGeneric0", "" ).SetTitle( "Generic 0" );
+		Asset.AddEntry_String( "killGeneric1", "" ).SetTitle( "Generic 1" );
+		Asset.AddEntry_String( "killGeneric2", "" ).SetTitle( "Generic 2" );
+		Asset.AddEntry_String( "killGeneric3", "" ).SetTitle( "Generic 3" );
+		Asset.AddEntry_String( "killGeneric4", "" ).SetTitle( "Generic 4" );
+		Asset.AddEntry_String( "killGeneric5", "" ).SetTitle( "Generic 5" );
+		Asset.AddEntry_String( "killGeneric6", "" ).SetTitle( "Generic 6" );
+		Asset.AddEntry_String( "killGeneric7", "" ).SetTitle( "Generic 7" );
+		Asset.AddEntry_String( "killGeneric8", "" ).SetTitle( "Generic 8" );
+		Asset.AddEntry_String( "killGeneric9", "" ).SetTitle( "Generic 9" );
+		Asset.AddEntry_String( "killGeneric10", "" ).SetTitle( "Generic 10" );
+		Asset.AddEntry_String( "killGeneric11", "" ).SetTitle( "Generic 11" );
+		Asset.AddEntry_String( "killSniper0", "" ).SetTitle( "Sniper 0" );
+		Asset.AddEntry_String( "killSniper1", "" ).SetTitle( "Sniper 1" );
+		Asset.AddEntry_String( "killEnforcer0", "" ).SetTitle( "Seraph 0" );
+		Asset.AddEntry_String( "killEnforcer1", "" ).SetTitle( "Seraph 1" );
+		Asset.AddEntry_String( "killEnforcer2", "" ).SetTitle( "Seraph 2" );
+		Asset.AddEntry_String( "killEnforcer3", "" ).SetTitle( "Seraph 3" );
+		Asset.AddEntry_String( "killFirebreak0", "" ).SetTitle( "Pyro 0" );
+		Asset.AddEntry_String( "killFirebreak1", "" ).SetTitle( "Pyro 1" );
+		Asset.AddEntry_String( "killFirebreak2", "" ).SetTitle( "Pyro 2" );
+		Asset.AddEntry_String( "killFirebreak3", "" ).SetTitle( "Pyro 3" );
+		Asset.AddEntry_String( "killGrenadier0", "" ).SetTitle( "Grenadier 0" );
+		Asset.AddEntry_String( "killGrenadier1", "" ).SetTitle( "Grenadier 1" );
+		Asset.AddEntry_String( "killGrenadier2", "" ).SetTitle( "Grenadier 2" );
+		Asset.AddEntry_String( "killGrenadier3", "" ).SetTitle( "Grenadier 3" );
+		Asset.AddEntry_String( "killMercenary0", "" ).SetTitle( "Ruin 0" );
+		Asset.AddEntry_String( "killMercenary1", "" ).SetTitle( "Ruin 1" );
+		Asset.AddEntry_String( "killMercenary2", "" ).SetTitle( "Ruin 2" );
+		Asset.AddEntry_String( "killMercenary3", "" ).SetTitle( "Ruin 3" );
+		Asset.AddEntry_String( "killOutrider0", "" ).SetTitle( "Outrider 0" );
+		Asset.AddEntry_String( "killOutrider1", "" ).SetTitle( "Outrider 1" );
+		Asset.AddEntry_String( "killOutrider2", "" ).SetTitle( "Outrider 2" );
+		Asset.AddEntry_String( "killOutrider3", "" ).SetTitle( "Outrider 3" );
+		Asset.AddEntry_String( "killReaper0", "" ).SetTitle( "Reaper 0" );
+		Asset.AddEntry_String( "killReaper1", "" ).SetTitle( "Reaper 1" );
+		Asset.AddEntry_String( "killReaper2", "" ).SetTitle( "Reaper 2" );
+		Asset.AddEntry_String( "killReaper3", "" ).SetTitle( "Reaper 3" );
+		Asset.AddEntry_String( "killSpectre0", "" ).SetTitle( "Spectre 0" );
+		Asset.AddEntry_String( "killSpectre1", "" ).SetTitle( "Spectre 1" );
+		Asset.AddEntry_String( "killSpectre2", "" ).SetTitle( "Spectre 2" );
+		Asset.AddEntry_String( "killSpectre3", "" ).SetTitle( "Spectre 3" );
+		Asset.AddEntry_String( "killTechnomancer0", "" ).SetTitle( "Prophet 0" );
+		Asset.AddEntry_String( "killTechnomancer1", "" ).SetTitle( "Prophet 1" );
+		Asset.AddEntry_String( "killTechnomancer2", "" ).SetTitle( "Prophet 2" );
+		Asset.AddEntry_String( "killTechnomancer3", "" ).SetTitle( "Prophet 3" );
+		Asset.AddEntry_String( "killTrapper0", "" ).SetTitle( "Trapper 0" );
+		Asset.AddEntry_String( "killTrapper1", "" ).SetTitle( "Trapper 1" );
+		Asset.AddEntry_String( "killTrapper2", "" ).SetTitle( "Trapper 2" );
+		Asset.AddEntry_String( "killTrapper3", "" ).SetTitle( "Trapper 3" );
+		Asset.AddEntry_String( "killBlackjack0", "" ).SetTitle( "Blackjack 0" );
+		Asset.AddEntry_String( "killBlackjack1", "" ).SetTitle( "Blackjack 1" );
+		Asset.AddEntry_String( "killBlackjack2", "" ).SetTitle( "Blackjack 2" );
+		Asset.AddEntry_String( "killBlackjack3", "" ).SetTitle( "Blackjack 3" );
+	}
+	
+	Asset.BeginCategory( "Scorestreaks.Requests" );
+	{	
+		Asset.AddEntry_String( "requestAiTank", "" ).SetTitle( "AGR" );
+		Asset.AddEntry_String( "requestSupplyDrop", "" ).SetTitle( "Care Package" );
+		Asset.AddEntry_String( "requestCombatRobot", "" ).SetTitle( "Combat Robot" );
+		Asset.AddEntry_String( "requestCounterUav", "" ).SetTitle( "Counter UAV" );
+		Asset.AddEntry_String( "requestDart", "" ).SetTitle( "Dart" );
+		Asset.AddEntry_String( "requestEmp", "" ).SetTitle( "EMP Core" );
+		Asset.AddEntry_String( "requestSentinel", "" ).SetTitle( "Escort Drone"  );
+		Asset.AddEntry_String( "requestMicrowaveTurret", "" ).SetTitle( "Guardian" );
+		Asset.AddEntry_String( "requestRemoteMissile", "" ).SetTitle( "Hellstorm" );
+		Asset.AddEntry_String( "requestRcBomb", "" ).SetTitle( "Hover RC-XD" );
+		Asset.AddEntry_String( "requestPlaneMortar", "" ).SetTitle( "LightningStrike" );
+		Asset.AddEntry_String( "requestHelicopterGunner", "" ).SetTitle( "Mothership" );
+		Asset.AddEntry_String( "requestRaps", "" ).SetTitle( "RAPS" );
+		Asset.AddEntry_String( "requestDroneStrike", "" ).SetTitle( "Rolling Thunder" );
+		Asset.AddEntry_String( "requestTurret", "" ).SetTitle( "Sentry Gun" );
+		Asset.AddEntry_String( "requestHelicopter", "" ).SetTitle( "Stealth Drone" );
+		Asset.AddEntry_String( "requestUav", "" ).SetTitle( "UAV" );
+		Asset.AddEntry_String( "requestSatellite", "" ).SetTitle( "VSAT" );
+	}
+	
+	Asset.BeginCategory( "Scorestreaks.Threat Spotted" );
+	{
+		Asset.AddEntry_String( "threatAiTank", "" ).SetTitle( "AGR" );
+		Asset.AddEntry_String( "threatSupplyDrop", "" ).SetTitle( "Care Package" );
+		Asset.AddEntry_String( "threatCombatRobot", "" ).SetTitle( "Combat Robot" );
+		Asset.AddEntry_String( "threatCounterUav", "" ).SetTitle( "Counter UAV" );
+		Asset.AddEntry_String( "threatDart", "" ).SetTitle( "Dart" );
+		Asset.AddEntry_String( "threatEmp", "" ).SetTitle( "EMP Core" );
+		Asset.AddEntry_String( "threatSentinel", "" ).SetTitle( "Escort Drone"  );
+		Asset.AddEntry_String( "threatMicrowaveTurret", "" ).SetTitle( "Guardian" );
+		Asset.AddEntry_String( "threatRemoteMissile", "" ).SetTitle( "Hellstorm" );
+		Asset.AddEntry_String( "threatRcBomb", "" ).SetTitle( "Hover RC-XD" );
+		Asset.AddEntry_String( "threatPlaneMortar", "" ).SetTitle( "LightningStrike" );
+		Asset.AddEntry_String( "threatHelicopterGunner", "" ).SetTitle( "Mothership" );
+		Asset.AddEntry_String( "threatRaps", "" ).SetTitle( "RAPS" );
+		Asset.AddEntry_String( "threatDroneStrike", "" ).SetTitle( "Rolling Thunder" );
+		Asset.AddEntry_String( "threatTurret", "" ).SetTitle( "Sentry Gun" );
+		Asset.AddEntry_String( "threatHelicopter", "" ).SetTitle( "Stealth Drone" );
+		Asset.AddEntry_String( "threatUav", "" ).SetTitle( "UAV" );
+		Asset.AddEntry_String( "threatSatellite", "" ).SetTitle( "VSAT" );
+	}
+}

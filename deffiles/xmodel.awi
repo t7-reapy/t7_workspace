@@ -1,0 +1,436 @@
+void ValidateLODs(asset Asset, const string& ID)
+{
+	array<string> ModelNames = { "filename", "mediumLod", "lowLod", "lowestLod", "lod4File", "lod5File", "lod6File", "lod7File" };
+	array<string> DistNames = { "highLodDist", "mediumLodDist", "lowLodDist", "lowestLodDist", "lod4Dist", "lod5Dist", "lod6Dist", "lod7Dist" };
+	array<string> AutogenNames = { "", "autogenMediumLod", "autogenLowLod", "autogenLowestLod", "autogenLod4", "autogenLod5", "autogenLod6", "autogenLod7" };
+	array<float> Distances;
+
+	for (int EntryIdx = 0; EntryIdx < 8; EntryIdx++)
+		Distances.insertLast(Asset.GetEntryFloat(DistNames[EntryIdx]));
+
+	for (int EntryIdx = 1; EntryIdx < 8; EntryIdx++)
+	{
+		bool Enabled = Asset.GetEntryBool(AutogenNames[EntryIdx]) || Asset.GetEntryValue(ModelNames[EntryIdx]).Length() != 0;
+		Asset.GetEntryControl(DistNames[EntryIdx]).SetValid(!Enabled || Distances[EntryIdx - 1] < Distances[EntryIdx] || Distances[EntryIdx] == 0);
+	}
+}
+
+int GetNumLODs(asset Asset)
+{
+	array<string> ModelNames = { "filename", "mediumLod", "lowLod", "lowestLod", "lod4File", "lod5File", "lod6File", "lod7File" };
+	array<string> AutogenNames = { "", "autogenMediumLod", "autogenLowLod", "autogenLowestLod", "autogenLod4", "autogenLod5", "autogenLod6", "autogenLod7" };
+	
+	int Levels = -1;
+	
+	if ( Asset.GetEntryValue( "filename" ) == "" )
+	{
+		Levels = 8;
+		return Levels;
+	}
+	
+
+	Levels = 1;
+	
+	for (int EntryIdx = 1; EntryIdx < 8; EntryIdx++)
+	{
+		if (Asset.GetEntryBool(AutogenNames[EntryIdx]) || Asset.GetEntryValue(ModelNames[EntryIdx]).Length() != 0)
+			Levels = EntryIdx + 1;
+	}
+
+
+	return Levels;
+}
+
+float GetDetailBias( string Preset, string Mode )
+{
+	float Bias = 1.0;
+	if ( Preset == "far detail" && Mode == "far" )
+	{
+		Bias = 4.0;
+	}
+	
+	if ( Preset == "near detail" && Mode == "near" )
+	{
+		Bias = 1.2;
+	}
+	
+	if ( Preset == "mid detail" && Mode == "mid" )
+	{
+		Bias = 1.25;
+	}
+	
+	return Bias;
+}
+
+void ShowLODControls(asset Asset, int Levels, bool ChangeSettings)
+{
+	Asset.GetEntryControl("highLodDist").Show(false);
+	
+	bool Unlocked = false;
+	if ( Asset.GetEntryValue("lodPresets") == "custom" )
+	{
+		Unlocked = true;
+	}
+	
+	float farDetail = 1.0;
+	float nearDetail = 1.0;
+	float midDetail = 1.0; //not implemented
+	float LOD_Seed = 50.0;
+	
+	if (ChangeSettings)
+	{
+		string LOD_Bias = Asset.GetEntryValue( "lodPresets" );
+		nearDetail = GetDetailBias( LOD_Bias, "near" );
+		farDetail = GetDetailBias( LOD_Bias, "far" );
+	}
+	
+	Asset.BeginCategory("LODs.LOD 1");
+	Asset.GetEntryControl("mediumLod").Show(Levels > 1);
+	Asset.GetEntryControl("mediumLodDist").Show(false);
+	Asset.GetEntryControl("forceMediumLodRigid").Show(Levels > 1);
+	Asset.GetEntryControl("autogenMediumLod").Show(Levels > 1);
+	Asset.GetEntryControl("autogenMediumLodPercent").Show(Levels > 1 && Asset.GetEntryBool("autogenMediumLod")).Enable( Unlocked );
+
+	if (ChangeSettings)
+	{
+		if (Levels < 2)
+		{
+			Asset.GetEntryControl("mediumLod").SetValue("");
+			Asset.GetEntryControl("autogenMediumLod").SetBool(false);
+		}
+		else if (Asset.GetEntryValue("mediumLod").Length() == 0)
+		{
+			Asset.GetEntryControl("autogenMediumLod").SetBool(true);
+			Asset.GetEntryControl("autogenMediumLodPercent").SetInt( int( LOD_Seed * nearDetail ) );
+		}
+	}
+
+	Asset.BeginCategory("LODs.LOD 2");
+	Asset.GetEntryControl("lowLod").Show(Levels > 2);
+	Asset.GetEntryControl("lowLodDist").Show(false);
+	Asset.GetEntryControl("forceLowLodRigid").Show(Levels > 2);
+	Asset.GetEntryControl("autogenLowLod").Show(Levels > 2);
+	Asset.GetEntryControl("autogenLowLodPercent").Show(Levels > 2 && Asset.GetEntryBool("autogenLowLod")).Enable( Unlocked );
+
+	if (ChangeSettings)
+	{
+		if (Levels < 3)
+		{
+			Asset.GetEntryControl("lowLod").SetValue("");
+			Asset.GetEntryControl("autogenLowLod").SetBool(false);
+		}
+		else if (Asset.GetEntryValue("lowLod").Length() == 0)
+		{
+			Asset.GetEntryControl("autogenLowLod").SetBool(true);
+			Asset.GetEntryControl("autogenLowLodPercent").SetInt( int( LOD_Seed / 2 * nearDetail ) );
+		}
+	}
+
+	Asset.BeginCategory("LODs.LOD 3");
+	Asset.GetEntryControl("lowestLod").Show( Levels > 3 );
+	Asset.GetEntryControl("lowestLodDist").Show(false);
+	Asset.GetEntryControl("forceLowestLodRigid").Show(Levels > 3);
+	Asset.GetEntryControl("autogenLowestLod").Show(Levels > 3);
+	Asset.GetEntryControl("autogenLowestLodPercent").Show(Levels > 3 && Asset.GetEntryBool("autogenLowestLod")).Enable( Unlocked );
+
+	if (ChangeSettings)
+	{
+		if (Levels < 4)
+		{
+			Asset.GetEntryControl("lowestLod").SetValue("");
+			Asset.GetEntryControl("autogenLowestLod").SetBool(false);
+		}
+		else if (Asset.GetEntryValue("lowestLod").Length() == 0)
+		{
+			Asset.GetEntryControl("autogenLowestLod").SetBool(true);
+			Asset.GetEntryControl("autogenLowestLodPercent").SetInt( int( ( LOD_Seed / 4 * nearDetail ) + ( LOD_Seed / 4 * ( midDetail - 1.0 ) ) ) );
+		}
+	}
+
+	int lodPercent = int( LOD_Seed / 8 );
+
+	for (int lodIndex = 4; lodIndex < 8; lodIndex++)
+	{
+		Asset.BeginCategory("LODs.LOD " + lodIndex);
+		Asset.GetEntryControl("lod" + lodIndex + "File").Show(Levels > lodIndex);
+		Asset.GetEntryControl("lod" + lodIndex + "Dist").Show(false);
+		Asset.GetEntryControl("forceLod" + lodIndex + "Rigid").Show(Levels > lodIndex);
+		Asset.GetEntryControl("autogenLod" + lodIndex).Show(Levels > lodIndex);
+		Asset.GetEntryControl("autogenLod" + lodIndex + "Percent").Show(Levels > lodIndex && Asset.GetEntryBool("autogenLod" + lodIndex )).Enable( Unlocked );
+
+		if (ChangeSettings)
+		{
+			if (Levels <= lodIndex)
+			{
+				Asset.GetEntryControl("lod" + lodIndex + "File").SetValue("");
+				Asset.GetEntryControl("autogenLod" + lodIndex).SetBool(false);
+			}
+			else if (Asset.GetEntryValue("lod" + lodIndex + "File").Length() == 0)
+			{
+				Asset.GetEntryControl("autogenLod" + lodIndex).SetBool(true);
+				Asset.GetEntryControl("autogenLod" + lodIndex + "Percent").SetInt( int( ( lodPercent + farDetail ) + ( lodPercent * ( midDetail - 1.0 ) ) ) );
+			}
+			lodPercent = lodPercent / 2;
+		}
+	}
+}
+
+void NumLODsClicked(asset Asset, const string& ID)
+{
+	if (ID == "info")
+	{
+		ShowXModelInfo(Asset.GetName());
+		return;
+	}
+
+	int Levels = ID.ToInt();
+	Asset.GetEntryControl("numLods").SetInt(Levels);
+	ShowLODControls(Asset, Levels, true);
+}
+
+void PresetChanged(asset Asset, const string& ID)
+{
+	int NumLODs;
+	if (Asset.GetEntryValue("numLods") == "")
+		NumLODs = GetNumLODs(Asset);
+	else
+		NumLODs = Asset.GetEntryInt("numLods");
+		
+	string Preset = Asset.GetEntryValue( "lodPresets" );
+	
+	if ( Preset == "custom" )
+	{
+		ShowLODControls( Asset, NumLODs, false );
+		return;
+	}
+	else
+	{
+		ShowLODControls(Asset, NumLODs, true);
+	}
+}
+
+void GenerateUI( asset Asset )
+{
+
+	int NumLODs;
+	if (Asset.GetEntryValue("numLods") == "")
+		NumLODs = GetNumLODs(Asset);
+	else
+		NumLODs = Asset.GetEntryInt("numLods");
+		
+	Asset.SetGraphColor(0.388, 0.251, 0.412, 1.0);
+	bool isSiege = IsXModelSiege( Asset.GetEntryValue( "filename" ) );
+
+	Asset.AddEntry_Combo( "type", "rigid | animated | multiplayer body | viewhands" ).SetTitle( "Type" ).UpdateOnChange( true ).SetToolTip( "Rigid is for non-animated objects, animated is for objects that must animate." );
+	if( isSiege && Asset.GetEntryValue( "type" ) != "rigid" )
+	{
+		Asset.AddEntry_Label("siegeModel","This is a siege model, it has to be 'rigid'.").SetTitle(" ").SetIcon( "Icon_ImageMismatch.png");
+	}
+	Asset.AddEntry_CheckBox( "doNotUse", false ).SetTitle( "DO NOT USE" ).SetToolTip( "This asset should not be used in the game. Radiant will display an X over this asset." );
+	Asset.AddEntry_CheckBox( "notInEditor", false ).SetTitle( "Not In Editor" ).SetToolTip( "This asset should not appear in Radiant." );
+	Asset.AddEntry_CheckBox( "heroAsset", false ).SetTitle( "Hero Asset" ) .SetToolTip( "This asset has been generated for a specialized purpose." );	
+	Asset.AddEntry_CheckBox( "germanUnsafe", false ).SetTitle( "German Unsafe" ) .SetToolTip( "This asset cannot be used for the German SKU." );	
+	Asset.AddEntry_CheckBox( "japaneseUnsafe", false ).SetTitle( "Japanese Unsafe" ) .SetToolTip( "This asset cannot be used for the Japanese SKU." );
+	Asset.AddEntry_CheckBox( "arabicUnsafe", false ).SetTitle( "Arabic Unsafe" ) .SetToolTip( "This asset cannot be used for the Arabic SKU." );
+	Asset.AddEntry_CheckBox( "forceResident", false ).SetTitle( "Force Resident" ).Show( true );
+	Asset.AddEntry_CheckBox( "preserveOriginalUVs", false ).SetTitle( "Preserve Original UVs" ).Show( true );
+	
+	Asset.BeginCategory("LODs");
+	Asset.AddEntry_Combo( "lodPresets", "performance | far detail | near detail | custom" ).SetTitle( "Auto LOD Preset" ).UpdateOnChange( true ).SetToolTip( "Sets default autogenerated LOD values." ).SetValidateCallback("void PresetChanged(asset Asset, const string& ID)");
+	
+	string dropLodString = "Let Streamer Pick{Auto} | LOD0{High}";
+		if ( NumLODs > 1 )  dropLodString += "| LOD1{Medium}";
+		if ( NumLODs > 2 )  dropLodString += "| LOD2{Low}";
+		if ( NumLODs > 3 )  dropLodString += "| LOD3{Lowest}";
+
+		if ( NumLODs > 4 )  dropLodString += "| LOD4";
+		if ( NumLODs > 5 )  dropLodString += "| LOD5";
+		if ( NumLODs > 6 )  dropLodString += "| LOD6";
+		if ( NumLODs > 7 )  dropLodString += "| LOD7";
+
+	Asset.AddEntry_Combo( "dropLOD", dropLodString ).SetTitle( "Max Rendered LOD" ).UpdateOnChange( true ).SetToolTip( "Sets which LOD will be streamed in as the highest LOD." );
+	
+	//Asset.AddEntry_Float( "cullOutDiameter", 0, 0, 10000.0 ).SetStep(0.25).SetTitle( "Cull Out Diameter " ).SetToolTip( "Stop drawing this model if its on-screen pixel diamter is less than this value." ).Show( true ).Enable( true );
+	//Asset.AddEntry_Float( "LODBiasPercent", 1, -2.0, 20.0 ).SetStep(0.25).SetTitle( "LOD Bias " ).SetToolTip( "Modifies calculation for when switching of LODs occurs. Default is '0'" ).Show( true ).Enable( true );
+
+	Asset.AddEntry_Vector3(  "cullOutDiameter", "cullOutOffsetMP",  "cullOutOffsetCP",  0.0, 1, 1.0, 0, 1000 ).SetTitle( "Cull Out Diameter" ).SetStep( 0.25f ).SetLabels( "Base Value",     "              Multipliers:      [ Detail ]", "    [ Performance ]", "(Multiply)" ).SetToolTip( "Stop drawing this model if its on-screen pixel diamter is less than this value." );
+	Asset.AddEntry_Vector3(  "LODBiasPercent",  "LODBiasOffsetMP", "LODBiasOffsetCP",  0, 0, 0, -4, 20 ).SetTitle( "LOD Bias" ).SetStep( 0.25f ).SetLabels(  "Base Value", "                  Offsets:      [ Detail ]", "    [ Performance ]", "(Offset)" ).SetToolTip( "Modifies calculation for when switching of LODs occurs. Default is '0'" );
+	//Asset.AddEntry_CheckBox( "neverDistanceCull", false ).SetTitle( "Never Distance Cull" ).SetToolTip( "Forces this model to never fade out regardless of distance" );
+
+	
+
+	
+
+
+	
+	Asset.AddEntry_ButtonGroup("numLods").AddButton("1", "", "void NumLODsClicked(asset Asset, const string& ID)", "1")
+	                                     .AddButton("2", "", "void NumLODsClicked(asset Asset, const string& ID)", "2")
+	                                     .AddButton("3", "", "void NumLODsClicked(asset Asset, const string& ID)", "3")
+	                                     .AddButton("4", "", "void NumLODsClicked(asset Asset, const string& ID)", "4")
+	                                     .AddButton("5", "", "void NumLODsClicked(asset Asset, const string& ID)", "5")
+	                                     .AddButton("6", "", "void NumLODsClicked(asset Asset, const string& ID)", "6")
+	                                     .AddButton("7", "", "void NumLODsClicked(asset Asset, const string& ID)", "7")
+	                                     .AddButton("8", "", "void NumLODsClicked(asset Asset, const string& ID)", "8")
+	                                     .AddButton("XModel Info", "$info.png", "void NumLODsClicked(asset Asset, const string& ID)", "info").SetTitle("Number of LODs").SetToolTip("Select the number of LODs");
+										 
+ 	Asset.BeginCategory( "LODs.Custom LOD Parameters" );
+ 	{
+ 		Asset.AddEntry_CheckBox( "customAutogenParams", false ).SetTitle( "Use Custom Autogen Vertex Weights" ).SetToolTip( "Tweak the priority weights used to generate autogen LODs." ).UpdateOnChange( true );
+ 		Asset.AddEntry_Vector4( "lodPositionPriority", "lodNormalPriority", "LodUvPriority", "LodColorPriority", 12.0,1.54,3.5,0.008, 0.0, 32.0 ).SetTitle( "Vertex Weights" ).SetStep( 0.25f ).SetLabels( "Position", "      Normal", "         UV", "  Vert Color" ).Enable( Asset.GetEntryBool( "customAutogenParams" ) );
+    }
+	
+	Asset.BeginCategory( "LODs.LOD 0" );
+	{
+		Asset.AddEntry_XModel( "filename", "" ).SetTitle( "File" ).SetRelativePath( "model_export/" ).UpdateOnChange( true );
+		Asset.AddEntry_Float( "highLodDist", 0, 0, 1000000 ).SetStep(50).SetTitle( "Distance" ).SetToolTip( "the default high LOD distance is 250." ).SetValidateCallback("void ValidateLODs(asset Asset, const string& ID)");
+	}
+
+	Asset.BeginCategory( "LODs.LOD 1" );
+	{
+		Asset.AddEntry_XModel( "mediumLod", "" ).SetTitle( "File" ).SetRelativePath( "model_export/" ).Enable( !Asset.GetEntryBool( "autogenMediumLod" ) );
+		Asset.AddEntry_Float( "mediumLodDist", 0, 0, 1000000 ).SetStep(50).SetTitle( "Distance" ).SetToolTip( "the default medium LOD distance is 500." ).SetValidateCallback("void ValidateLODs(asset Asset, const string& ID)");
+		Asset.AddEntry_CheckBox( "forceMediumLodRigid", false ).SetTitle( "Force Rigid" ).SetToolTip( "Use this to save memory/CPU or for a collision mesh." );
+		Asset.AddEntry_CheckBox( "autogenMediumLod", false ).SetTitle( "Auto-generate" ).UpdateOnChange( true ).SetToolTip("Have the linker generate this LOD automatically");
+		Asset.AddEntry_Int( "autogenMediumLodPercent", 50, 0, 100 ).SetTitle( "Triangle Percentage").SetToolTip("Percentage of triangles from LOD0 that should be in this LOD");
+	}
+
+	Asset.BeginCategory( "LODs.LOD 2" );
+	{
+		Asset.AddEntry_XModel( "lowLod", "" ).SetTitle( "File" ).SetRelativePath( "model_export/" ).Enable( !Asset.GetEntryBool( "autogenLowLod" ) );
+		Asset.AddEntry_Float( "lowLodDist", 0, 0, 1000000 ).SetStep(50).SetTitle( "Distance" ).SetToolTip( "the default low LOD distance is 1000." ).SetValidateCallback("void ValidateLODs(asset Asset, const string& ID)");
+		Asset.AddEntry_CheckBox( "forceLowLodRigid", false ).SetTitle( "Force Rigid" ).SetToolTip( "Use this to save memory/CPU or for a collision mesh." );
+		Asset.AddEntry_CheckBox( "autogenLowLod", false ).SetTitle( "Auto-generate" ).UpdateOnChange( true ).SetToolTip("Have the linker generate this LOD automatically");
+		Asset.AddEntry_Int( "autogenLowLodPercent", 25, 0, 100 ).SetTitle( "Triangle Percentage").SetToolTip("Percentage of triangles from LOD0 that should be in this LOD");
+	}
+	
+	Asset.BeginCategory( "LODs.LOD 3" );
+	{
+		Asset.AddEntry_XModel( "lowestLod", "" ).SetTitle( "File" ).SetRelativePath( "model_export/" ).Enable( !Asset.GetEntryBool( "autogenLowestLod" ) );
+		Asset.AddEntry_Float( "lowestLodDist", 0, 0, 1000000 ).SetStep(50).SetTitle( "Distance" ).SetToolTip( "the default lowest LOD distance is 0." ).SetValidateCallback("void ValidateLODs(asset Asset, const string& ID)");
+		Asset.AddEntry_CheckBox( "forceLowestLodRigid", false ).SetTitle( "Force Rigid" ).SetToolTip( "Use this to save memory/CPU or for a collision mesh." );
+		Asset.AddEntry_CheckBox( "autogenLowestLod", false ).SetTitle( "Auto-generate" ).UpdateOnChange( true ).SetToolTip("Have the linker generate this LOD automatically");
+		Asset.AddEntry_Int( "autogenLowestLodPercent", 13, 0, 100 ).SetTitle( "Triangle Percentage").SetToolTip("Percentage of triangles from LOD0 that should be in this LOD");
+	}
+	
+	for (int lodIndex = 4; lodIndex < 8; lodIndex++)
+	{
+		Asset.BeginCategory( "LODs.LOD " + lodIndex );
+		Asset.AddEntry_XModel( "lod" + lodIndex + "File", "" ).SetTitle( "File" ).SetRelativePath( "model_export/" ).Enable( !Asset.GetEntryBool( "autogenLod" + lodIndex ) );
+		Asset.AddEntry_Float( "lod" + lodIndex + "Dist", 0, 0, 1000000 ).SetStep(50).SetTitle( "Distance" ).SetToolTip( "the default LOD distance is 0." ).SetValidateCallback("void ValidateLODs(asset Asset, const string& ID)");
+		Asset.AddEntry_CheckBox( "forceLod" + lodIndex + "Rigid", false ).SetTitle( "Force Rigid" ).SetToolTip( "Use this to save memory/CPU or for a collision mesh." );
+		Asset.AddEntry_CheckBox( "autogenLod" + lodIndex, false ).SetTitle( "Auto-generate").UpdateOnChange( true ).SetToolTip("Have the linker generate this LOD automatically");
+		Asset.AddEntry_Int( "autogenLod" + lodIndex + "Percent", 13, 0, 100 ).SetTitle( "Triangle Percentage").SetToolTip("Percentage of triangles from LOD0 that should be in this LOD");
+	}
+	
+	ValidateLODs(Asset, "");
+	
+	//int NumLODs;
+	if (Asset.GetEntryValue("numLods") == "")
+		NumLODs = GetNumLODs(Asset);
+	else
+		NumLODs = Asset.GetEntryInt("numLods");
+		
+	ShowLODControls(Asset, NumLODs, false);
+	
+	
+	Asset.BeginCategory( "LODs.Bullet Collision" );
+	{
+		string bulletMeshString = "None | Custom ";
+		if ( Asset.GetEntryValue( "physicsPreset" ) != "" ) bulletMeshString = "Custom";
+		if ( NumLODs > 7 )  bulletMeshString += "| LOD7";
+		if ( NumLODs > 6 )  bulletMeshString += "| LOD6";
+		if ( NumLODs > 5 )  bulletMeshString += "| LOD5";
+		if ( NumLODs > 4 )  bulletMeshString += "| LOD4";
+		if ( NumLODs > 3 )  bulletMeshString += "| LOD3{Lowest}";
+		if ( NumLODs > 2 )  bulletMeshString += "| LOD2{Low}";
+		if ( NumLODs > 1 )  bulletMeshString += "| LOD1{Medium}";
+		if ( NumLODs > 0 )  bulletMeshString += "| LOD0{High}";
+	
+		//Asset.AddEntry_Combo( "BulletCollisionLOD", "None | Custom | LOD0{High} | LOD1{Medium} | LOD2{Low} | LOD3{Lowest} | LOD4 | LOD5 | LOD6 | LOD7" );
+		Asset.AddEntry_Combo( "BulletCollisionLOD", bulletMeshString ).UpdateOnChange( true );
+		
+		bool showCustomEntry = false;
+		if ( Asset.GetEntryValue( "BulletCollisionLOD" ) == "Custom" ) showCustomEntry = true;
+		Asset.AddEntry_XModel( "BulletCollisionFile", "" ).SetTitle( "Custom Bullet Mesh" ).SetRelativePath( "model_export/" ).Enable( showCustomEntry );
+		Asset.AddEntry_CheckBox( "BulletCollisionRigid", false ).SetTitle( "Force Custom Rigid" ).SetToolTip( "Use for a collision mesh." ).Enable( showCustomEntry );
+	}
+	
+	Asset.BeginCategory( "LODs.Shadow Caster" );
+	{
+		string shadowMeshString = "Auto";
+		if ( NumLODs > 7 )  shadowMeshString += "| LOD7";
+		if ( NumLODs > 6 )  shadowMeshString += "| LOD6";
+		if ( NumLODs > 5 )  shadowMeshString += "| LOD5";
+		if ( NumLODs > 4 )  shadowMeshString += "| LOD4";
+		if ( NumLODs > 3 )  shadowMeshString += "| LOD3{Lowest}";
+		if ( NumLODs > 2 )  shadowMeshString += "| LOD2{Low}";
+		if ( NumLODs > 1 )  shadowMeshString += "| LOD1{Medium}";
+		if ( NumLODs > 0 )  shadowMeshString += "| LOD0{High}";
+		
+		Asset.AddEntry_Combo( "ShadowLOD", shadowMeshString ).SetTitle( "Shadow LOD" ).UpdateOnChange(true).SetToolTip( "Specify which LOD to use for shadow casting; 'Auto' will use lowest" );
+		
+		Asset.AddEntry_CheckBox( "DetailShadows", false ).SetTitle( "Enable Detail Shadows" ).SetToolTip( "Will use higher LOD for shadows when lit by Detail Shadow lights" );
+		Asset.AddEntry_CheckBox( "noCastShadow", false ).SetTitle( "No Shadow Casting" ).SetToolTip( "Disable shadow casting." ).Enable( true );
+	}
+
+	Asset.BeginCategory( "Materials" );
+	{
+		Asset.AddEntry_Text( "materials", "" ).SetTitle( "Materials" ).ShowJumpTo( true ).SetToolTip( "Display the materials in filename, mediumLOD, lowLOD and lowestLOD files." ).Show( false );
+		Asset.AddEntry_Text( "skinOverride", "" ).SetTitle( "Materials" ).ShowJumpTo( true ).SetToolTip( "Enter the name of the new material next to the one you want replaced." );
+	}
+	
+	Asset.BeginCategory( "Attributes" );
+	{
+		Asset.AddEntry_Path( "CollisionMap", "" ).SetTitle( "Collision Map" ).SetRelativePath( "share/raw/collmaps/" ).SetFileFilter( "Collision Map Files (*.map)" ).SetToolTip( "Specifies the collmap that will be used for this model." );	
+		Asset.AddEntry_Path( "hitBoxModel", "" ).SetTitle( "Hit Box Model" ).SetRelativePath( "model_export/" ).SetToolTip( "use this to specify a different hit box for your model." );
+		
+		Asset.GetEntryControl( "isSiege" ).SetBool( isSiege );
+		
+		Asset.AddEntry_Text( "boneControllers", "" ).SetTitle( "Bone Controllers" ).SetToolTip( "Used to specify a joint in a model to be controlled programmatically - list the script control first, space, then the joint being controlled will not work without function in script to match" );
+		Asset.AddEntry_Text( "boneStabilizers", "" ).SetTitle( "Bone Stabilizers" ).SetToolTip( "see bone controllers" );
+		Asset.AddEntry_AssetCombo( "physicsPreset", "physpreset" ).SetTitle( "Physics Preset" ).SetToolTip( "Use this to choose a physics preset file for your model, leave blank for default unmovable object." ).UpdateOnChange( true );
+		Asset.AddEntry_AssetCombo( "physicsConstraints", "physconstraints" ).SetTitle( "Physics Constraints" ).SetToolTip( "Use this to choose a physics constraints file for your model." );
+		
+		Asset.AddEntry_Float( "scale", 1.0, 0, 10 ).SetTitle( "Model Scale" ).SetToolTip( "When converting this model scale it by this amount" ).Show( true );
+		Asset.AddEntry_CheckBox( "scaleCollMap", false ).SetTitle( "Scale Collmap" ).Show( true ).SetToolTip( "Apply the model scale to the collmap also" );
+		
+		Asset.AddEntry_CheckBox( "fp32", false ).SetTitle( "Disable Vertex Quant (PS3 only)" ).Show( false );
+		Asset.AddEntry_CheckBox( "heroLighting", false ).SetTitle( "Hero Lighting" ).SetToolTip( "Forces this model to always pick up hero lighting." ).Show(false);
+		Asset.AddEntry_CheckBox( "noOutdoorOcclude", false ).SetTitle( "No Outdoor Map Occlusion" ).SetToolTip( "Forces this model not to render into the outdoor map for weather and particles." );
+		Asset.AddEntry_CheckBox( "isSiege", false ).SetTitle( "Is Siege" ).SetToolTip( "Is the highest LOD xmodel siege? Can not be edited." ).Enable(false);
+	}
+
+	Asset.BeginCategory( "Submodels" );
+	{
+		for ( int subModelIndex = 0; subModelIndex < 16; subModelIndex++ )
+		{
+			string prefix = "submodel" + subModelIndex + "_";
+			string category = "Submodel #" + (subModelIndex + 1);
+
+			Asset.BeginCategory( "Submodels." + category );
+			{
+				Asset.AddEntry_AssetCombo( prefix + "Name", "xmodel" ).SetTitle( "Model" );
+				Asset.AddEntry_BoneCombo( prefix + "ParentTag", "filename" ).SetTitle( "Parent Tag" );
+				Asset.AddEntry_Vector3( prefix + "OffsetX", prefix + "OffsetY", prefix + "OffsetZ", 0, 0, 0, -10000, 10000 ).SetTitle( "Position Offset" ).SetStep( 0.01f ).SetLabels( "Forward", "Right", "Up", "" );
+				Asset.AddEntry_Vector3( prefix + "OffsetPitch", prefix + "OffsetYaw", prefix + "OffsetRoll", 0, 0, 0, -180, 180 ).SetTitle( "Angles Offset" ).SetStep( 0.01f ).SetHints( "NOWARNINGS" ).SetLabels( "Pitch  ", "Yaw", "Roll", "" );
+			}
+		}
+	}
+
+	Asset.BeginCategory( "Usage" );
+	{
+		array<array<string>> usages = {
+			{ "weapon", "Weapon", "" },
+			{ "attachment", "Attachment", "" },
+			{ "hero", "Hero/Specialist", "" },
+			{ "view", "View Model", "Used as part of viewarms" },
+			{ "zombie_body", "Zombie Body", "Zombie body or body part" },
+			{ "zombie_world_prop", "Zombie World Prop", "Zombie prop that is placed in the world by script" }
+		};
+
+		for( int idx = 0; idx < usages.length(); idx++ )
+		{
+			Asset.AddEntry_CheckBox( "usage_" + usages[idx][0], false ).SetTitle( usages[idx][1] ).SetToolTip( usages[idx][2] ).Show( true );
+		}
+	}
+}

@@ -1,0 +1,99 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "linear (mip none)"
+}
+
+Texture( "colorMap" )
+{
+	image    = Image( <colorMap, $white> )
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "normalMap" )
+{
+	image    = Image( <normalMap, $normal> )
+	tweak    = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Normal Map"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "colorFlipRowsCols" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Flipbook (Rows, Columns)"
+		sortindex	= "30"
+	}
+}
+
+float1( "colorFlipTime" )
+{
+	x     = <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Flipbook Time"
+		sortindex	= "40"
+	}
+}
+
+
+float1( "refractionPixels" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Pixel Offset"
+		sortindex	= "20"
+	}
+}
+
+float1( "blurPixels" )
+{
+	x     = <cg00_y>
+	tweak = Tweak()
+	{
+		category	= "Framebuffer"
+		title		= "Blur Width (Pixels)"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/moon_helmet.hlsl"
+	vs = VertexShader() {}
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

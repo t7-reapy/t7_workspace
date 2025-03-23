@@ -1,0 +1,341 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{1D2D59BC-4A2B-4971-8557-52977FAFBC97}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lightingquality" "1024"
+"newsun" "1"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{9E47AB9B-5104-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 1 63 0 ) ( -1 63 0 ) ( -1 0 0 ) wood_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 0 112 ) ( -1 63 112 ) ( 1 63 112 ) wood_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 0 113 ) ( 1 0 113 ) ( 1 0 0 ) wood_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1 0 113 ) ( 1 63 113 ) ( 1 63 0 ) wood_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1 64 113 ) ( -1 64 113 ) ( -1 64 0 ) wood_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 63 113 ) ( -1 0 113 ) ( -1 0 0 ) wood_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{43F5CE67-5296-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 1 63 0 ) ( -1 63 0 ) ( -1 0 0 ) umbra_high_lod 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 0 112 ) ( -1 63 112 ) ( 1 63 112 ) umbra_high_lod 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 0 113 ) ( 1 0 113 ) ( 1 0 0 ) umbra_high_lod 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1 0 113 ) ( 1 63 113 ) ( 1 63 0 ) umbra_high_lod 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1 64 113 ) ( -1 64 113 ) ( -1 64 0 ) umbra_high_lod 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 63 113 ) ( -1 0 113 ) ( -1 0 0 ) umbra_high_lod 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 2
+{
+ guid "{B101DA1F-5104-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail ai_nosight;
+ ( 3 57 0 ) ( -1 57 0 ) ( -1 31 0 ) t7_metal_planter_top_trim_painted_black 4 0.70711762 0 91.011032 -90 0 lightmap_gray 16384 16384 -633 1513 0 0
+ ( -1 31 4 ) ( -1 57 4 ) ( 3 57 4 ) t7_metal_planter_top_trim_painted_black 24 -3 110.5 -7.2071872 90 0 lightmap_gray 16384 16384 -633 1513 0 0
+ ( -1 57 4 ) ( -1 31 4 ) ( -1 31 -1 ) t7_metal_planter_top_trim_painted_black -24 -3 -110.5 -2.5000801 180 0 lightmap_gray 16384 16384 -1513 396 0 0
+ ( -0.5 57 4 ) ( -1 57 3.5 ) ( -1 89 3.5 ) t7_metal_planter_top_trim_painted_black 24 -2.1213202 110.5 -5.2426972 90 0 lightmap_gray 16384 16384 -598 1513 0 0
+ ( -1 57 0.5 ) ( -0.5 57 0 ) ( -0.5 89 0 ) t7_metal_planter_top_trim_painted_black -4.0000615 -0.50000769 -2.7756732e-006 -0.00096893311 90 0 lightmap_gray 16384 16384 -598 1513 0 0
+ ( 8.5 62.5 1.5 ) ( 8.5 64 0 ) ( 40.5 64 0 ) caulk 16 16 -598 1472 0 0 lightmap_gray 16384 16384 -598 1472 0 0
+ ( 8.5 0 0 ) ( 8.5 1.5 1.5 ) ( 40.5 0 0 ) caulk 16 16 -598 1472 0 0 lightmap_gray 16384 16384 -598 1472 0 0
+ ( -0.25 63.75 113 ) ( -0.25 63.5 113 ) ( -0.25 63.75 145 ) caulk 16 16 0 -1 0 0 lightmap_gray 16384 16384 0 -1 0 0
+}
+// brush 3
+{
+ guid "{B101DA17-5104-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail ai_nosight;
+ ( 3 57 0 ) ( -1 57 0 ) ( -1 31 0 ) t7_metal_planter_top_trim_painted_black -4.000041 -0.50000513 0 -0.25 -90 0 lightmap_gray 16384 16384 -633 1513 0 0
+ ( -1 31 4 ) ( -1 57 4 ) ( 3 57 4 ) t7_metal_trim_stainless_steel_8_worn 4 0.5 44 0.25 -90 0 lightmap_gray 16384 16384 -633 1513 0 0
+ ( 8.5 62.5 1.5 ) ( 8.5 64 0 ) ( 40.5 64 0 ) caulk 16 16 -598 1472 0 0 lightmap_gray 16384 16384 -598 1472 0 0
+ ( 8.5 0 0 ) ( 8.5 1.5 1.5 ) ( 40.5 0 0 ) caulk 16 16 -598 1472 0 0 lightmap_gray 16384 16384 -598 1472 0 0
+ ( -0.25 63.5 113 ) ( -0.25 63.75 113 ) ( -0.25 63.75 145 ) caulk 16 16 0 -1 0 0 lightmap_gray 16384 16384 0 -1 0 0
+ ( 0.25 63.75 113 ) ( 0.25 62.75 113 ) ( 0.25 63.75 145 ) caulk 16 16 0 -1 0 0 lightmap_gray 16384 16384 0 -1 0 0
+}
+// brush 4
+{
+ guid "{B101DA18-5104-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail ai_nosight;
+ ( 3 57 0 ) ( -1 57 0 ) ( -1 31 0 ) t7_metal_planter_top_trim_painted_black 4 0.70711762 0 91.011032 -90 0 lightmap_gray 16384 16384 -633 1513 0 0
+ ( -1 31 4 ) ( -1 57 4 ) ( 3 57 4 ) t7_metal_planter_top_trim_painted_black 4 0.7071104 53.5 0.20711 -90 0 lightmap_gray 16384 16384 -633 1513 0 0
+ ( 1 31 4 ) ( 1 57 4 ) ( 1 57 -1 ) t7_metal_planter_top_trim_painted_black -24 -3 -110.5 -2.5000801 180 0 lightmap_gray 16384 16384 -1513 396 0 0
+ ( 1 57 3.5 ) ( 0.5 57 4 ) ( 0.5 89 4 ) t7_metal_planter_top_trim_painted_black -4.0000205 -0.50000256 -53.5 -2.2649765e-006 90 0 lightmap_gray 16384 16384 -598 1513 0 0
+ ( 0.5 57 0 ) ( 1 57 0.5 ) ( 1 89 0.5 ) t7_metal_planter_top_trim_painted_black -4.0000615 -0.50000769 -2.7756732e-006 -0.00096893311 90 0 lightmap_gray 16384 16384 -598 1513 0 0
+ ( 8.5 62.5 1.5 ) ( 8.5 64 0 ) ( 40.5 64 0 ) caulk 16 16 -598 1472 0 0 lightmap_gray 16384 16384 -598 1472 0 0
+ ( 8.5 0 0 ) ( 8.5 1.5 1.5 ) ( 40.5 0 0 ) caulk 16 16 -598 1472 0 0 lightmap_gray 16384 16384 -598 1472 0 0
+ ( 0.25 62.75 113 ) ( 0.25 63.75 113 ) ( 0.25 63.75 145 ) caulk 16 16 0 -1 0 0 lightmap_gray 16384 16384 0 -1 0 0
+}
+// brush 5
+{
+ guid "{B101DA1B-5104-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail ai_nosight;
+ ( 3 64 105 ) ( -1 64 105 ) ( -1 64 79 ) t7_metal_planter_top_trim_painted_black -4.000041 -0.50000513 0 -0.25 -90 0 lightmap_gray 16384 16384 -633 1465 0 0
+ ( -1 60 79 ) ( -1 60 105 ) ( 3 60 105 ) t7_metal_trim_stainless_steel_8_worn -4.000041 -0.50000513 -100 -0.24999982 90 0 lightmap_gray 16384 16384 -633 1465 0 0
+ ( 8.5 62.5 110.5 ) ( 8.5 64 112 ) ( 40.5 64 112 ) caulk 16 16 -598 1472 0 0 lightmap_gray 16384 16384 -598 1472 0 0
+ ( 8.5 64 0 ) ( 8.5 62.5 1.5 ) ( 40.5 64 0 ) caulk 16 -16 -598 -1536 0 0 lightmap_gray 16384 -16384 -598 -1536 0 0
+ ( -0.25 63.5 113 ) ( -0.25 63.75 113 ) ( -0.25 63.75 145 ) caulk 16 16 0 -1 0 0 lightmap_gray 16384 16384 0 -1 0 0
+ ( 0.25 63.75 113 ) ( 0.25 62.75 113 ) ( 0.25 63.75 145 ) caulk 16 16 0 -1 0 0 lightmap_gray 16384 16384 0 -1 0 0
+}
+// brush 6
+{
+ guid "{B101DA23-5104-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail ai_nosight;
+ ( 3 64 105 ) ( -1 64 105 ) ( -1 64 79 ) t7_metal_planter_top_trim_painted_black 4 0.70711762 0 91.011032 -90 0 lightmap_gray 16384 16384 -633 1465 0 0
+ ( -1 60 79 ) ( -1 60 105 ) ( 3 60 105 ) t7_metal_planter_top_trim_painted_black 24 -3 54.5 -7.2071867 90 0 lightmap_gray 16384 16384 -633 1465 0 0
+ ( -1 60 105 ) ( -1 60 79 ) ( -1 65 79 ) t7_metal_planter_top_trim_painted_black -24 -3 -110.5 -2.5000801 90 0 lightmap_gray 16384 16384 -1465 460 90 0
+ ( -0.5 60 105 ) ( -1 60.5 105 ) ( -1 60.5 137 ) t7_metal_planter_top_trim_painted_black 24 2.1213202 110.5 -15.952212 -90 0 lightmap_gray 16384 -16384 -657.5 -1465 180 0
+ ( -1 63.5 105 ) ( -0.5 64 105 ) ( -0.5 64 137 ) t7_metal_planter_top_trim_painted_black -4.0000615 -0.50000769 -2.7756732e-006 -0.00096893311 90 0 lightmap_gray 16384 16384 -533.5 1465 0 0
+ ( 8.5 62.5 110.5 ) ( 8.5 64 112 ) ( 40.5 64 112 ) caulk 16 16 -598 1472 0 0 lightmap_gray 16384 16384 -598 1472 0 0
+ ( 8.5 64 0 ) ( 8.5 62.5 1.5 ) ( 40.5 64 0 ) caulk 16 -16 -598 -1536 0 0 lightmap_gray 16384 -16384 -598 -1536 0 0
+ ( -0.25 63.75 113 ) ( -0.25 63.5 113 ) ( -0.25 63.75 145 ) caulk 16 16 0 -1 0 0 lightmap_gray 16384 16384 0 -1 0 0
+}
+// brush 7
+{
+ guid "{B101DA1C-5104-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail ai_nosight;
+ ( 3 64 105 ) ( -1 64 105 ) ( -1 64 79 ) t7_metal_planter_top_trim_painted_black 4 0.70711762 0 91.011032 -90 0 lightmap_gray 16384 16384 -633 1465 0 0
+ ( -1 60 79 ) ( -1 60 105 ) ( 3 60 105 ) t7_metal_planter_top_trim_painted_black 4 0.70711046 109.5 0.20711 -90 0 lightmap_gray 16384 16384 -633 1465 0 0
+ ( 1 60 79 ) ( 1 60 105 ) ( 1 65 105 ) t7_metal_planter_top_trim_painted_black -24 -3 -110.5 -2.5000801 90 0 lightmap_gray 16384 16384 -1465 460 90 0
+ ( 1 60.5 105 ) ( 0.5 60 105 ) ( 0.5 60 137 ) t7_metal_planter_top_trim_painted_black -4.0000205 -0.50000256 -53.5 -2.2649765e-006 90 0 lightmap_gray 16384 16384 -538.5 1465 0 0
+ ( 0.5 64 105 ) ( 1 63.5 105 ) ( 1 63.5 137 ) t7_metal_planter_top_trim_painted_black -4.0000615 -0.50000769 -2.7756732e-006 -0.00096893311 90 0 lightmap_gray 16384 -16384 -662.5 -1465 180 0
+ ( 8.5 62.5 110.5 ) ( 8.5 64 112 ) ( 40.5 64 112 ) caulk 16 16 -598 1472 0 0 lightmap_gray 16384 16384 -598 1472 0 0
+ ( 8.5 64 0 ) ( 8.5 62.5 1.5 ) ( 40.5 64 0 ) caulk 16 -16 -598 -1536 0 0 lightmap_gray 16384 -16384 -598 -1536 0 0
+ ( 0.25 62.75 113 ) ( 0.25 63.75 113 ) ( 0.25 63.75 145 ) caulk 16 16 0 -1 0 0 lightmap_gray 16384 16384 0 -1 0 0
+}
+// brush 8
+{
+ guid "{90B672D2-53D2-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 3 0 7 ) ( -1 0 7 ) ( -1 0 33 ) t7_metal_planter_top_trim_painted_black 4 -0.5 -112 -0.25 -90 0 lightmap_gray 16384 -16384 -633 -1577 0 0
+ ( -1 4 33 ) ( -1 4 7 ) ( 3 4 7 ) t7_metal_trim_stainless_steel_8_worn 4 -0.5 211.99873 -0.25 90 0 lightmap_gray 16384 -16384 -633 -1577 0 0
+ ( 8.5 1.5 1.5 ) ( 8.5 0 0 ) ( 40.5 0 0 ) caulk 16 -16 -598 -1536 0 0 lightmap_gray 16384 -16384 -598 -1536 0 0
+ ( 8.5 0 112 ) ( 8.5 1.5 110.5 ) ( 40.5 0 112 ) caulk 16 16 -598 1472 0 0 lightmap_gray 16384 16384 -598 1472 0 0
+ ( -0.25 0.5 -1 ) ( -0.25 0.25 -1 ) ( -0.25 0.25 -33 ) caulk 16 16 -64 111 180 0 lightmap_gray 16384 16384 -64 111 180 0
+ ( 0.25 0.25 -1 ) ( 0.25 1.25 -1 ) ( 0.25 0.25 -33 ) caulk 16 16 -64 111 180 0 lightmap_gray 16384 16384 -64 111 180 0
+}
+// brush 9
+{
+ guid "{90B672D3-53D2-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 3 0 7 ) ( -1 0 7 ) ( -1 0 33 ) t7_metal_planter_top_trim_painted_black 4 -0.70711762 112 -91.011032 90 0 lightmap_gray 16384 -16384 -633 -1577 0 0
+ ( -1 4 33 ) ( -1 4 7 ) ( 3 4 7 ) t7_metal_planter_top_trim_painted_black 24 3 -57.5 7.2071872 -90 0 lightmap_gray 16384 -16384 -633 -1577 0 0
+ ( -1 4 7 ) ( -1 4 33 ) ( -1 -1 33 ) t7_metal_planter_top_trim_painted_black 24 3 222.5 66.5 90 0 lightmap_gray 16384 16384 -1577 396 -90 0
+ ( -0.5 4 7 ) ( -1 3.5 7 ) ( -1 3.5 -25 ) t7_metal_planter_top_trim_painted_black 24 2.12132 222.5 48.047775 90 0 lightmap_gray 16384 -16384 -593.5 -1577 0 0
+ ( -1 0.5 7 ) ( -0.5 0 7 ) ( -0.5 0 -25 ) t7_metal_planter_top_trim_painted_black 4 0.5 112 64 90 0 lightmap_gray 16384 16384 -597.5 1577 180 0
+ ( 8.5 1.5 1.5 ) ( 8.5 0 0 ) ( 40.5 0 0 ) caulk 16 -16 -598 -1536 0 0 lightmap_gray 16384 -16384 -598 -1536 0 0
+ ( 8.5 0 112 ) ( 8.5 1.5 110.5 ) ( 40.5 0 112 ) caulk 16 16 -598 1472 0 0 lightmap_gray 16384 16384 -598 1472 0 0
+ ( -0.25 0.25 -1 ) ( -0.25 0.5 -1 ) ( -0.25 0.25 -33 ) caulk 16 16 -64 111 180 0 lightmap_gray 16384 16384 -64 111 180 0
+}
+// brush 10
+{
+ guid "{90B672D4-53D2-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 3 0 7 ) ( -1 0 7 ) ( -1 0 33 ) t7_metal_planter_top_trim_painted_black 4 -0.70711762 112 -91.011032 90 0 lightmap_gray 16384 -16384 -633 -1577 0 0
+ ( -1 4 33 ) ( -1 4 7 ) ( 3 4 7 ) t7_metal_planter_top_trim_painted_black 4 -0.70711046 221.5 -0.20711 90 0 lightmap_gray 16384 -16384 -633 -1577 0 0
+ ( 1 4 33 ) ( 1 4 7 ) ( 1 -1 7 ) t7_metal_planter_top_trim_painted_black 24 3 222.5 66.5 90 0 lightmap_gray 16384 16384 -1577 396 -90 0
+ ( 1 3.5 7 ) ( 0.5 4 7 ) ( 0.5 4 -25 ) t7_metal_planter_top_trim_painted_black 4 0.5 165.5 64 90 0 lightmap_gray 16384 16384 -602.5 1577 180 0
+ ( 0.5 0 7 ) ( 1 0.5 7 ) ( 1 0.5 -25 ) t7_metal_planter_top_trim_painted_black 4 0.5 112 64 90 0 lightmap_gray 16384 -16384 -598.5 -1577 0 0
+ ( 8.5 1.5 1.5 ) ( 8.5 0 0 ) ( 40.5 0 0 ) caulk 16 -16 -598 -1536 0 0 lightmap_gray 16384 -16384 -598 -1536 0 0
+ ( 8.5 0 112 ) ( 8.5 1.5 110.5 ) ( 40.5 0 112 ) caulk 16 16 -598 1472 0 0 lightmap_gray 16384 16384 -598 1472 0 0
+ ( 0.25 1.25 -1 ) ( 0.25 0.25 -1 ) ( 0.25 0.25 -33 ) caulk 16 16 -64 111 180 0 lightmap_gray 16384 16384 -64 111 180 0
+}
+// brush 11
+{
+ guid "{90B672D5-53D2-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 3 7 112 ) ( -1 7 112 ) ( -1 33 112 ) t7_metal_planter_top_trim_painted_black 4 -0.70711762 64 -91.011032 90 0 lightmap_gray 16384 -16384 -633 -1577 0 0
+ ( -1 33 108 ) ( -1 7 108 ) ( 3 7 108 ) t7_metal_planter_top_trim_painted_black 24 3 46.5 7.2071872 -90 0 lightmap_gray 16384 -16384 -633 -1577 0 0
+ ( -1 7 108 ) ( -1 33 108 ) ( -1 33 113 ) t7_metal_planter_top_trim_painted_black 24 3 46.5 114.5 180 0 lightmap_gray 16384 16384 -1577 508 180 0
+ ( -0.5 7 108 ) ( -1 7 108.5 ) ( -1 -25 108.5 ) t7_metal_planter_top_trim_painted_black 24 2.12132 46.5 5.2426977 -90 0 lightmap_gray 16384 -16384 -598 -1577 0 0
+ ( -1 7 111.5 ) ( -0.5 7 112 ) ( -0.5 -25 112 ) t7_metal_planter_top_trim_painted_black 4 -0.5 63.99865 -0.0013427734 90 0 lightmap_gray 16384 -16384 -598 -1577 0 0
+ ( 8.5 1.5 110.5 ) ( 8.5 0 112 ) ( 40.5 0 112 ) caulk 16 -16 -598 -1536 0 0 lightmap_gray 16384 -16384 -598 -1536 0 0
+ ( 8.5 64 112 ) ( 8.5 62.5 110.5 ) ( 40.5 64 112 ) caulk 16 -16 -598 -1536 0 0 lightmap_gray 16384 -16384 -598 -1536 0 0
+ ( -0.25 0.25 -1 ) ( -0.25 0.5 -1 ) ( -0.25 0.25 -33 ) caulk 16 16 -64 111 180 0 lightmap_gray 16384 16384 -64 111 180 0
+}
+// brush 12
+{
+ guid "{90B672D6-53D2-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 3 7 112 ) ( -1 7 112 ) ( -1 33 112 ) t7_metal_planter_top_trim_painted_black 4 -0.5 -64 -0.25 -90 0 lightmap_gray 16384 -16384 -633 -1577 0 0
+ ( -1 33 108 ) ( -1 7 108 ) ( 3 7 108 ) t7_metal_trim_stainless_steel_8_worn 4 -0.5 108 -0.25 90 0 lightmap_gray 16384 -16384 -633 -1577 0 0
+ ( 8.5 1.5 110.5 ) ( 8.5 0 112 ) ( 40.5 0 112 ) caulk 16 -16 -598 -1536 0 0 lightmap_gray 16384 -16384 -598 -1536 0 0
+ ( 8.5 64 112 ) ( 8.5 62.5 110.5 ) ( 40.5 64 112 ) caulk 16 -16 -598 -1536 0 0 lightmap_gray 16384 -16384 -598 -1536 0 0
+ ( -0.25 0.5 -1 ) ( -0.25 0.25 -1 ) ( -0.25 0.25 -33 ) caulk 16 16 -64 111 180 0 lightmap_gray 16384 16384 -64 111 180 0
+ ( 0.25 0.25 -1 ) ( 0.25 1.25 -1 ) ( 0.25 0.25 -33 ) caulk 16 16 -64 111 180 0 lightmap_gray 16384 16384 -64 111 180 0
+}
+// brush 13
+{
+ guid "{90B672D7-53D2-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 3 7 112 ) ( -1 7 112 ) ( -1 33 112 ) t7_metal_planter_top_trim_painted_black 4 -0.70711762 64 -91.011032 90 0 lightmap_gray 16384 -16384 -633 -1577 0 0
+ ( -1 33 108 ) ( -1 7 108 ) ( 3 7 108 ) t7_metal_planter_top_trim_painted_black 4 -0.7071104 117.5 -0.20711 90 0 lightmap_gray 16384 -16384 -633 -1577 0 0
+ ( 1 33 108 ) ( 1 7 108 ) ( 1 7 113 ) t7_metal_planter_top_trim_painted_black 24 3 46.5 114.5 -180 0 lightmap_gray 16384 16384 -1577 508 -180 0
+ ( 1 7 108.5 ) ( 0.5 7 108 ) ( 0.5 -25 108 ) t7_metal_planter_top_trim_painted_black 4 -0.5 117.5 0 90 0 lightmap_gray 16384 -16384 -598 -1577 0 0
+ ( 0.5 7 112 ) ( 1 7 111.5 ) ( 1 -25 111.5 ) t7_metal_planter_top_trim_painted_black 4 -0.5 63.99865 0 90 0 lightmap_gray 16384 -16384 -598 -1577 0 0
+ ( 8.5 1.5 110.5 ) ( 8.5 0 112 ) ( 40.5 0 112 ) caulk 16 -16 -598 -1536 0 0 lightmap_gray 16384 -16384 -598 -1536 0 0
+ ( 8.5 64 112 ) ( 8.5 62.5 110.5 ) ( 40.5 64 112 ) caulk 16 -16 -598 -1536 0 0 lightmap_gray 16384 -16384 -598 -1536 0 0
+ ( 0.25 1.25 -1 ) ( 0.25 0.25 -1 ) ( 0.25 0.25 -33 ) caulk 16 16 -64 111 180 0 lightmap_gray 16384 16384 -64 111 180 0
+}
+// brush 14
+{
+ guid "{1A0EC40E-5104-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail ai_nosight;
+ ( -0.5 3.5 51 ) ( -0.5 60.5 51 ) ( 1.5 60.5 47 ) t7_test_wood_panel 64 64 -193 -1300.5 90 0 lightmap_gray 16384 16384 -1204.5 201 0 0
+ ( -0.5 60.5 51 ) ( -1 60.5 51 ) ( 1 60.5 47 ) t7_test_wood_panel 64 64 -193 -1300.5 90 0 lightmap_gray 16384 16384 -474.5 201 0 0
+ ( -2 60.5 51 ) ( -2 3.5 51 ) ( 0 3.5 47 ) t7_test_wood_panel 64 64 -193 -1300.5 90 0 lightmap_gray 16384 16384 -1196.5 199 0 0
+ ( -0.5 125.5 51 ) ( -0.5 130.5 51 ) ( 31.5 125.5 51 ) t7_test_wood_panel 64 64 -245.5 -1300.5 180 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+ ( -1 3.5 51 ) ( -0.5 3.5 51 ) ( 1.5 3.5 47 ) t7_test_wood_panel 64 64 -193 -1300.5 90 0 lightmap_gray 16384 16384 -518.5 193 0 0
+ ( 73.5 7.5 47 ) ( 73.5 3.5 47 ) ( 105.5 3.5 47 ) t7_test_wood_panel 64 -64 -238.5 1300.5 0 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+}
+// brush 15
+{
+ guid "{C741FD66-A056-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -0.5 3.5 43 ) ( -0.5 60.5 43 ) ( 1.5 60.5 39 ) t7_test_wood_panel 64 64 -201 -1300.5 90 0 lightmap_gray 16384 16384 -1204.5 209 0 0
+ ( -0.5 60.5 43 ) ( -1 60.5 43 ) ( 1 60.5 39 ) t7_test_wood_panel 64 64 -201 -1300.5 90 0 lightmap_gray 16384 16384 -474.5 209 0 0
+ ( -2 60.5 43 ) ( -2 3.5 43 ) ( 0 3.5 39 ) t7_test_wood_panel 64 64 -201 -1300.5 90 0 lightmap_gray 16384 16384 -1196.5 207 0 0
+ ( -0.5 125.5 43 ) ( -0.5 130.5 43 ) ( 31.5 125.5 43 ) t7_test_wood_panel 64 64 -245.5 -1300.5 180 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+ ( -1 3.5 43 ) ( -0.5 3.5 43 ) ( 1.5 3.5 39 ) t7_test_wood_panel 64 64 -201 -1300.5 90 0 lightmap_gray 16384 16384 -518.5 201 0 0
+ ( 73.5 7.5 39 ) ( 73.5 3.5 39 ) ( 105.5 3.5 39 ) t7_test_wood_panel 64 -64 -238.5 1300.5 0 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+}
+// brush 16
+{
+ guid "{DD6EFAD9-A056-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -0.5 3.5 99 ) ( -0.5 60.5 99 ) ( 1.5 60.5 95 ) t7_test_wood_panel 64 64 -145 -1300.5 90 0 lightmap_gray 16384 16384 -1204.5 153 0 0
+ ( -0.5 60.5 99 ) ( -1 60.5 99 ) ( 1 60.5 95 ) t7_test_wood_panel 64 64 -145 -1300.5 90 0 lightmap_gray 16384 16384 -474.5 153 0 0
+ ( -1.5 60.5 99 ) ( -1.5 3.5 99 ) ( 0.5 3.5 95 ) t7_test_wood_panel 64 64 -145 -1300.5 90 0 lightmap_gray 16384 16384 -1196.5 151 0 0
+ ( -0.5 125.5 99 ) ( -0.5 130.5 99 ) ( 31.5 125.5 99 ) t7_test_wood_panel 64 64 -245.5 -1300.5 180 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+ ( -1 3.5 99 ) ( -0.5 3.5 99 ) ( 1.5 3.5 95 ) t7_test_wood_panel 64 64 -145 -1300.5 90 0 lightmap_gray 16384 16384 -518.5 145 0 0
+ ( 73.5 7.5 95 ) ( 73.5 3.5 95 ) ( 105.5 3.5 95 ) t7_test_wood_panel 64 -64 -238.5 1300.5 0 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+}
+// brush 17
+{
+ guid "{DD6EFADA-A056-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -0.5 3.5 91 ) ( -0.5 60.5 91 ) ( 1.5 60.5 87 ) t7_test_wood_panel 64 64 -153 -1300.5 90 0 lightmap_gray 16384 16384 -1204.5 161 0 0
+ ( -0.5 60.5 91 ) ( -1 60.5 91 ) ( 1 60.5 87 ) t7_test_wood_panel 64 64 -153 -1300.5 90 0 lightmap_gray 16384 16384 -474.5 161 0 0
+ ( -2 60.5 91 ) ( -2 3.5 91 ) ( 0 3.5 87 ) t7_test_wood_panel 64 64 -153 -1300.5 90 0 lightmap_gray 16384 16384 -1196.5 159 0 0
+ ( -0.5 125.5 91 ) ( -0.5 130.5 91 ) ( 31.5 125.5 91 ) t7_test_wood_panel 64 64 -245.5 -1300.5 180 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+ ( -1 3.5 91 ) ( -0.5 3.5 91 ) ( 1.5 3.5 87 ) t7_test_wood_panel 64 64 -153 -1300.5 90 0 lightmap_gray 16384 16384 -518.5 153 0 0
+ ( 73.5 7.5 87 ) ( 73.5 3.5 87 ) ( 105.5 3.5 87 ) t7_test_wood_panel 64 -64 -238.5 1300.5 0 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+}
+// brush 18
+{
+ guid "{DD6EFADB-A056-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -0.5 3.5 83 ) ( -0.5 60.5 83 ) ( 1.5 60.5 79 ) t7_test_wood_panel 64 64 -161 -1300.5 90 0 lightmap_gray 16384 16384 -1204.5 169 0 0
+ ( -0.5 60.5 83 ) ( -1 60.5 83 ) ( 1 60.5 79 ) t7_test_wood_panel 64 64 -161 -1300.5 90 0 lightmap_gray 16384 16384 -474.5 169 0 0
+ ( -2 60.5 83 ) ( -2 3.5 83 ) ( 0 3.5 79 ) t7_test_wood_panel 64 64 -161 -1300.5 90 0 lightmap_gray 16384 16384 -1196.5 167 0 0
+ ( -0.5 125.5 83 ) ( -0.5 130.5 83 ) ( 31.5 125.5 83 ) t7_test_wood_panel 64 64 -245.5 -1300.5 180 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+ ( -1 3.5 83 ) ( -0.5 3.5 83 ) ( 1.5 3.5 79 ) t7_test_wood_panel 64 64 -161 -1300.5 90 0 lightmap_gray 16384 16384 -518.5 161 0 0
+ ( 73.5 7.5 79 ) ( 73.5 3.5 79 ) ( 105.5 3.5 79 ) t7_test_wood_panel 64 -64 -238.5 1300.5 0 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+}
+// brush 19
+{
+ guid "{DD6EFADC-A056-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -0.5 3.5 75 ) ( -0.5 60.5 75 ) ( 1.5 60.5 71 ) t7_test_wood_panel 64 64 -169 -1300.5 90 0 lightmap_gray 16384 16384 -1204.5 177 0 0
+ ( -0.5 60.5 75 ) ( -1 60.5 75 ) ( 1 60.5 71 ) t7_test_wood_panel 64 64 -169 -1300.5 90 0 lightmap_gray 16384 16384 -474.5 177 0 0
+ ( -2 60.5 75 ) ( -2 3.5 75 ) ( 0 3.5 71 ) t7_test_wood_panel 64 64 -169 -1300.5 90 0 lightmap_gray 16384 16384 -1196.5 175 0 0
+ ( -0.5 125.5 75 ) ( -0.5 130.5 75 ) ( 31.5 125.5 75 ) t7_test_wood_panel 64 64 -245.5 -1300.5 180 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+ ( -1 3.5 75 ) ( -0.5 3.5 75 ) ( 1.5 3.5 71 ) t7_test_wood_panel 64 64 -169 -1300.5 90 0 lightmap_gray 16384 16384 -518.5 169 0 0
+ ( 73.5 7.5 71 ) ( 73.5 3.5 71 ) ( 105.5 3.5 71 ) t7_test_wood_panel 64 -64 -238.5 1300.5 0 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+}
+// brush 20
+{
+ guid "{DD6EFADD-A056-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -0.5 3.5 67 ) ( -0.5 60.5 67 ) ( 1.5 60.5 63 ) t7_test_wood_panel 64 64 -177 -1300.5 90 0 lightmap_gray 16384 16384 -1204.5 185 0 0
+ ( -0.5 60.5 67 ) ( -1 60.5 67 ) ( 1 60.5 63 ) t7_test_wood_panel 64 64 -177 -1300.5 90 0 lightmap_gray 16384 16384 -474.5 185 0 0
+ ( -1.5 60.5 67 ) ( -1.5 3.5 67 ) ( 0.5 3.5 63 ) t7_test_wood_panel 64 64 -177 -1300.5 90 0 lightmap_gray 16384 16384 -1196.5 183 0 0
+ ( -0.5 125.5 67 ) ( -0.5 130.5 67 ) ( 31.5 125.5 67 ) t7_test_wood_panel 64 64 -245.5 -1300.5 180 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+ ( -1 3.5 67 ) ( -0.5 3.5 67 ) ( 1.5 3.5 63 ) t7_test_wood_panel 64 64 -177 -1300.5 90 0 lightmap_gray 16384 16384 -518.5 177 0 0
+ ( 73.5 7.5 63 ) ( 73.5 3.5 63 ) ( 105.5 3.5 63 ) t7_test_wood_panel 64 -64 -238.5 1300.5 0 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+}
+// brush 21
+{
+ guid "{DD6EFADE-A056-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -0.5 3.5 59 ) ( -0.5 60.5 59 ) ( 1.5 60.5 55 ) t7_test_wood_panel 64 64 -185 -1300.5 90 0 lightmap_gray 16384 16384 -1204.5 193 0 0
+ ( -0.5 60.5 59 ) ( -1 60.5 59 ) ( 1 60.5 55 ) t7_test_wood_panel 64 64 -185 -1300.5 90 0 lightmap_gray 16384 16384 -474.5 193 0 0
+ ( -2 60.5 58.5 ) ( -2 3.5 58.5 ) ( 0 3.5 54.5 ) t7_test_wood_panel 64 64 -185 -1300.5 90 0 lightmap_gray 16384 16384 -1196.5 191 0 0
+ ( -0.5 125.5 59 ) ( -0.5 130.5 59 ) ( 31.5 125.5 59 ) t7_test_wood_panel 64 64 -245.5 -1300.5 180 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+ ( -1 3.5 59 ) ( -0.5 3.5 59 ) ( 1.5 3.5 55 ) t7_test_wood_panel 64 64 -185 -1300.5 90 0 lightmap_gray 16384 16384 -518.5 185 0 0
+ ( 73.5 7.5 55 ) ( 73.5 3.5 55 ) ( 105.5 3.5 55 ) t7_test_wood_panel 64 -64 -238.5 1300.5 0 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+}
+// brush 22
+{
+ guid "{E66D74B7-A056-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -0.5 3.5 107 ) ( -0.5 60.5 107 ) ( 1.5 60.5 103 ) t7_test_wood_panel 64 64 -137 -1300.5 90 0 lightmap_gray 16384 16384 -1204.5 145 0 0
+ ( -0.5 60.5 107 ) ( -1 60.5 107 ) ( 1 60.5 103 ) t7_test_wood_panel 64 64 -137 -1300.5 90 0 lightmap_gray 16384 16384 -474.5 145 0 0
+ ( -1.5 60.5 107 ) ( -1.5 3.5 107 ) ( 0.5 3.5 103 ) t7_test_wood_panel 64 64 -137 -1300.5 90 0 lightmap_gray 16384 16384 -1196.5 143 0 0
+ ( -0.5 125.5 107 ) ( -0.5 130.5 107 ) ( 31.5 125.5 107 ) t7_test_wood_panel 64 64 -245.5 -1300.5 180 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+ ( -1 3.5 107 ) ( -0.5 3.5 107 ) ( 1.5 3.5 103 ) t7_test_wood_panel 64 64 -137 -1300.5 90 0 lightmap_gray 16384 16384 -518.5 137 0 0
+ ( 73.5 7.5 103 ) ( 73.5 3.5 103 ) ( 105.5 3.5 103 ) t7_test_wood_panel 64 -64 -238.5 1300.5 0 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+}
+// brush 23
+{
+ guid "{CDCAFA6C-A056-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -0.5 3.5 35 ) ( -0.5 60.5 35 ) ( 1.5 60.5 31 ) t7_test_wood_panel 64 64 -209 -1300.5 90 0 lightmap_gray 16384 16384 -1204.5 217 0 0
+ ( -0.5 60.5 35 ) ( -1 60.5 35 ) ( 1 60.5 31 ) t7_test_wood_panel 64 64 -209 -1300.5 90 0 lightmap_gray 16384 16384 -474.5 217 0 0
+ ( -2 60.5 35 ) ( -2 3.5 35 ) ( 0 3.5 31 ) t7_test_wood_panel 64 64 -209 -1300.5 90 0 lightmap_gray 16384 16384 -1196.5 215 0 0
+ ( -0.5 125.5 35 ) ( -0.5 130.5 35 ) ( 31.5 125.5 35 ) t7_test_wood_panel 64 64 -245.5 -1300.5 180 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+ ( -1 3.5 35 ) ( -0.5 3.5 35 ) ( 1.5 3.5 31 ) t7_test_wood_panel 64 64 -209 -1300.5 90 0 lightmap_gray 16384 16384 -518.5 209 0 0
+ ( 73.5 7.5 31 ) ( 73.5 3.5 31 ) ( 105.5 3.5 31 ) t7_test_wood_panel 64 -64 -238.5 1300.5 0 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+}
+// brush 24
+{
+ guid "{D5C7B532-A056-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -0.5 3.5 11 ) ( -0.5 60.5 11 ) ( 1.5 60.5 7 ) t7_test_wood_panel 64 64 -233 -1300.5 90 0 lightmap_gray 16384 16384 -1204.5 241 0 0
+ ( -0.5 60.5 11 ) ( -1 60.5 11 ) ( 1 60.5 7 ) t7_test_wood_panel 64 64 -233 -1300.5 90 0 lightmap_gray 16384 16384 -474.5 241 0 0
+ ( -2 60.5 11 ) ( -2 3.5 11 ) ( 0 3.5 7 ) t7_test_wood_panel 64 64 -233 -1300.5 90 0 lightmap_gray 16384 16384 -1196.5 239 0 0
+ ( -0.5 125.5 11 ) ( -0.5 130.5 11 ) ( 31.5 125.5 11 ) t7_test_wood_panel 64 64 -245.5 -1300.5 180 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+ ( -1 3.5 11 ) ( -0.5 3.5 11 ) ( 1.5 3.5 7 ) t7_test_wood_panel 64 64 -233 -1300.5 90 0 lightmap_gray 16384 16384 -518.5 233 0 0
+ ( 73.5 7.5 7 ) ( 73.5 3.5 7 ) ( 105.5 3.5 7 ) t7_test_wood_panel 64 -64 -238.5 1300.5 0 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+}
+// brush 25
+{
+ guid "{D5C7B533-A056-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -0.5 3.5 19 ) ( -0.5 60.5 19 ) ( 1.5 60.5 15 ) t7_test_wood_panel 64 64 -225 -1300.5 90 0 lightmap_gray 16384 16384 -1204.5 233 0 0
+ ( -0.5 60.5 19 ) ( -1 60.5 19 ) ( 1 60.5 15 ) t7_test_wood_panel 64 64 -225 -1300.5 90 0 lightmap_gray 16384 16384 -474.5 233 0 0
+ ( -2 60.5 19 ) ( -2 3.5 19 ) ( 0 3.5 15 ) t7_test_wood_panel 64 64 -225 -1300.5 90 0 lightmap_gray 16384 16384 -1196.5 231 0 0
+ ( -0.5 125.5 19 ) ( -0.5 130.5 19 ) ( 31.5 125.5 19 ) t7_test_wood_panel 64 64 -245.5 -1300.5 180 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+ ( -1 3.5 19 ) ( -0.5 3.5 19 ) ( 1.5 3.5 15 ) t7_test_wood_panel 64 64 -225 -1300.5 90 0 lightmap_gray 16384 16384 -518.5 225 0 0
+ ( 73.5 7.5 15 ) ( 73.5 3.5 15 ) ( 105.5 3.5 15 ) t7_test_wood_panel 64 -64 -238.5 1300.5 0 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+}
+// brush 26
+{
+ guid "{CDCAFA6B-A056-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -0.5 3.5 27 ) ( -0.5 60.5 27 ) ( 1.5 60.5 23 ) t7_test_wood_panel 64 64 -217 -1300.5 90 0 lightmap_gray 16384 16384 -1204.5 225 0 0
+ ( -0.5 60.5 27 ) ( -1 60.5 27 ) ( 1 60.5 23 ) t7_test_wood_panel 64 64 -217 -1300.5 90 0 lightmap_gray 16384 16384 -474.5 225 0 0
+ ( -2 60.5 27 ) ( -2 3.5 27 ) ( 0 3.5 23 ) t7_test_wood_panel 64 64 -217 -1300.5 90 0 lightmap_gray 16384 16384 -1196.5 223 0 0
+ ( -0.5 125.5 27 ) ( -0.5 130.5 27 ) ( 31.5 125.5 27 ) t7_test_wood_panel 64 64 -245.5 -1300.5 180 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+ ( -1 3.5 27 ) ( -0.5 3.5 27 ) ( 1.5 3.5 23 ) t7_test_wood_panel 64 64 -217 -1300.5 90 0 lightmap_gray 16384 16384 -518.5 217 0 0
+ ( 73.5 7.5 23 ) ( 73.5 3.5 23 ) ( 105.5 3.5 23 ) t7_test_wood_panel 64 -64 -238.5 1300.5 0 0 lightmap_gray 16384 16384 -518.5 1300.5 0 0
+}
+}

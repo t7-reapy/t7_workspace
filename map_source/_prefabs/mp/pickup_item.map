@@ -1,0 +1,45 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{C289047E-2048-11E5-BE25-8CDCD45603E3}"
+"classname" "worldspawn"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{D2B5A480-2048-11E5-BE25-8CDCD45603E3}"
+"classname" "trigger_radius"
+"height" "128"
+"radius" "32"
+"targetname" "pickup_item"
+"_color" "1 0.3 0.1"
+}
+// entity 2
+{
+guid "{B2A51300-2058-11E5-BE25-8CDCD45603E3}"
+"classname" "script_model"
+"model" "fx_axis_createfx"
+"origin" "0 0 30"
+"targetname" "pickup_model"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}

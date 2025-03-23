@@ -1,0 +1,171 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Blend
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = invSrcAlpha
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+Sampler( "FadeMap_Sampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+Texture( "FadeMap" )
+{
+	image    = Image( <colorMap02> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\menu_mp_playlist_map_alpha.tif"
+	}
+}
+#if TOOLSGFX == "1"
+Texture( "heatmapSampler_C3_P0" )
+{
+	image = Image( < sw_codetexture_00 > )
+	tweak = Tweak()
+	{
+		default = "sw4\\textures\\alpha_noise_256.tif"
+	}
+}
+#endif
+Sampler( "heatmapSampler_C3_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+Sampler( "C004_File_Sampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+Texture( "C004_File" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "texture_assets\\menu\\mp_front_end\\menu_mp_playlist_map.tif"
+	}
+}
+float4( "LineColor" )
+{
+	x     = <cg07_x>
+	y     = <cg07_y>
+	z     = <cg07_z>
+	w     = <cg07_w>
+	tweak = Tweak()
+	{
+		title     = "LineColor"
+		sortindex = "0"
+		default   = "0.000000", "0.000000", "0.000000", "0.285714"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float4( "HeatmapNightColor" )
+{
+	x     = <cg06_x>
+	y     = <cg06_y>
+	z     = <cg06_z>
+	w     = <cg06_w>
+	tweak = Tweak()
+	{
+		title     = "HeatmapNightColor"
+		sortindex = "0"
+		default   = "0.076531", "0.347866", "0.535714", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float4( "HeatmapColor" )
+{
+	x     = <cg05_x>
+	y     = <cg05_y>
+	z     = <cg05_z>
+	w     = <cg05_w>
+	tweak = Tweak()
+	{
+		title     = "HeatmapColor"
+		sortindex = "0"
+		default   = "0.214286", "0.678571", "1.000000", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "NoiseScale" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		title     = "NoiseScale"
+		sortindex = "0"
+		default   = "0.250000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "NoiseSpeed" )
+{
+	x     = <cg03_x>
+	tweak = Tweak()
+	{
+		title     = "NoiseSpeed"
+		sortindex = "0"
+		default   = "0.500000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "Power" )
+{
+	x     = <cg02_x>
+	tweak = Tweak()
+	{
+		title     = "Power"
+		sortindex = "0"
+		default   = "3.500000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_heatmap.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_BLEND"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		heatmapSampler_C3_P0 = CodeTexture( "heatmapSampler" )
+	}
+}

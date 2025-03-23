@@ -1,0 +1,29 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+	source = "DOF/underwater_blur_downsample.hlsl"
+
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+		// textures
+		//sceneColor   = CodeTexture( "codeTexture0" )
+		//sceneDepth   = CodeTexture( "codeTexture1" )
+		//sceneStencil = CodeTexture( "codeTexture2" )
+
+		// samplers
+		bilinearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

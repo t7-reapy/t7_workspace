@@ -1,0 +1,119 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+const string SPACE = "    ";
+
+const string CHARACTER_INFO = "";
+const string ANNIHILATE_INFO = "Weapons that completely annihilate the character play this effect.";
+const string MODEL_INFO = "Xmodel to spawn as a dynent.";
+const string SPAWN_TAG_INFO = "Location where the xmodel should spawn.";
+const string FX_INFO = "Effect to play when the gib model spawns.";
+const string FX_TAG_INFO = "Which bone the effect should play on.";
+const string DYNENT_INFO = "Effect to play on the piece that is thrown.";
+const string SOUND_INFO = "Sound played when the gib model spawns.";
+const string HIDE_TAG_INFO = "Tag and all descendants that are hidden when gibbed.";
+
+const int MAX_SCRIPTBUNDLE_OBJECTS = 25;
+
+const array<string> GIB_KEYS = {
+	"gibmodel",
+	"gibtag",
+	"gibhidetag",
+	"gibeffecttag",
+	"gibfx",
+	"gibdynentfx",
+	"gibsound",
+};
+
+const array<array<string>> GIB_PIECES = {
+	{ "Head Gib Piece", "head" },
+	{ "Right Arm Gib Piece", "rightarm" },
+	{ "Left Arm Gib Piece", "leftarm" },
+	{ "Right Leg Gib Piece", "rightleg" },
+	{ "Left Leg Gib Piece", "leftleg" }
+};
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	
+	Asset.AddEntry_Combo( "type", "gibcharacterdef" ).Show( false );
+	Asset.AddEntry_Combo( "vmType", "Both" ).SetTitle( "Script Type" ).Show( false ).SetValue("Both");
+
+	Asset.BeginCategory( "Character Information", 0.3, 0.5, 1, "Icon_asset_character.png" );
+	{
+		Asset.AddEntry_Label(
+			"ignore_characterInfo",
+			"The Xmodel used to populate the \"tag\" dropdowns." ).SetTitle( " " );
+			
+		Asset.AddEntry_AssetCombo( "ignore_model", "xmodel" ).SetTitle( "Base Model:" ).SetToolTip( "An XModel that contains every TAG that will have a destructible piece attached to it." );
+	}
+	
+	Asset.BeginCategory( "Gib Information", 0.3, 0.5, 1, "" );
+	{
+		const string prefix = "Character Gib Pieces";
+
+		Asset.AddEntry_Label(
+			"ignore_gibInfo",
+			"When a character is gibbed, a dynent is created and thrown "
+			"based on the provided information.\n" ).SetTitle( " " );
+
+		Asset.AddEntry_Label( "ignore_modelInfo", MODEL_INFO ).SetTitle( SPACE + "\"Model\" (optional)" );
+		Asset.AddEntry_Label( "ignore_spawnTagInfo", SPAWN_TAG_INFO ).SetTitle( SPACE + "\"Spawn Tag\" (optional)" );
+		Asset.AddEntry_Label( "ignore_hideTagInfo", HIDE_TAG_INFO ).SetTitle( SPACE + "\"Hide Tag\" (optional)" );
+		
+		Asset.AddEntry_Label( "ignore_fxTagInfo", FX_TAG_INFO ).SetTitle( SPACE + "\"FX Tag\" (optional)" );
+		Asset.AddEntry_Label( "ignore_fxInfo", FX_INFO ).SetTitle( SPACE + "\"FX\" (optional)" );
+		Asset.AddEntry_Label( "ignore_dynentEffectInfo", DYNENT_INFO ).SetTitle( SPACE + "\"DynEnt FX\" (optional)" );
+		
+		Asset.AddEntry_Label( "ignore_soundAliasInfo", SOUND_INFO ).SetTitle( SPACE + "\"Sound Alias\" (optional)" );
+	}
+	
+	Asset.BeginCategory( "Annihilate", 1, 0.5, 0.3, "" );
+	{
+		const string label = "Annihilate";
+		const string gibPrefix = "annihilate_";
+		int keyIndex = 3;
+	
+		Asset.AddEntry_Label( "ignore_annihilateInfo", ANNIHILATE_INFO ).SetTitle( " " );
+	
+		Asset.BeginCategory( label + ".Effects", 0.3, 0.5, 1, "" );
+		{
+			Asset.AddEntry_BoneCombo( gibPrefix + GIB_KEYS[keyIndex++], "ignore_model" ).SetTitle( "FX Tag:" ).SetToolTip( FX_TAG_INFO );
+		
+			Asset.AddEntry_Path( gibPrefix + GIB_KEYS[keyIndex++], "model" ).SetTitle( "FX:" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( FX_INFO );
+		}
+	}
+	
+	for ( uint index = 0; index < GIB_PIECES.length(); index++ )
+	{
+		CreateGibPiece( Asset, GIB_PIECES[index][0], GIB_PIECES[index][1] );
+	}
+}
+
+void CreateGibPiece( asset Asset, const string& label, const string& prefix )
+{
+	const string gibPrefix = prefix + "_";
+	uint keyIndex = 0;
+	
+	Asset.BeginCategory( label, 1, 0.5, 0.3, "" );
+	{
+		Asset.AddEntry_AssetCombo( gibPrefix + GIB_KEYS[keyIndex++], "xmodel" ).SetTitle( "Model:" ).SetToolTip( MODEL_INFO );
+		Asset.AddEntry_BoneCombo( gibPrefix + GIB_KEYS[keyIndex++], "ignore_model" ).SetTitle( "Spawn Tag:" ).SetToolTip( SPAWN_TAG_INFO );
+		Asset.AddEntry_BoneCombo( gibPrefix + GIB_KEYS[keyIndex++], "ignore_model" ).SetTitle( "Hide Tag:" ).SetToolTip( HIDE_TAG_INFO );
+		
+		Asset.BeginCategory( label + ".Effects", 0.3, 0.5, 1, "" );
+		{
+			Asset.AddEntry_BoneCombo( gibPrefix + GIB_KEYS[keyIndex++], "ignore_model" ).SetTitle( "FX Tag:" ).SetToolTip( FX_TAG_INFO );
+		
+			Asset.AddEntry_Path( gibPrefix + GIB_KEYS[keyIndex++], "model" ).SetTitle( "FX:" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( FX_INFO );
+			
+			Asset.AddEntry_Path( gibPrefix + GIB_KEYS[keyIndex++], "model" ).SetTitle( "DynEnt FX:" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( DYNENT_INFO );
+		}
+		
+		Asset.BeginCategory( label + ".Sounds", 0.3, 0.5, 1, "" );
+		{
+			Asset.AddEntry_String( gibPrefix + GIB_KEYS[keyIndex++], "" ).SetTitle( "Sound Alias:" ).SetToolTip( SOUND_INFO );
+		}
+	}
+}

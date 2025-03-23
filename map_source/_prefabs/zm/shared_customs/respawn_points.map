@@ -1,0 +1,95 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"000_Global/ALWAYS COMPILE" flags 
+"The Map" flags expanded 
+// entity 0
+{
+guid "{0FE5CDBB-8F17-11E6-BE8C-D43D7E278B2C}"
+"classname" "worldspawn"
+"bloom" "zm_factory"
+"evauto" "1"
+"evcmp" "2.5"
+"evmax" "3.5"
+"evmin" "3"
+"fogtime" "1"
+"lutmaterial" "luts_t7_zm_factory"
+"numOmniShadowSlices" "96"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"umbra_prime_depth" "1"
+"vcolor" "zm_factory"
+"vsky" "zm_factory_lightning_ukko"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{912D76D8-73B5-11E5-8E85-2C27D7F0CA3E}"
+layer "000_Global/ALWAYS COMPILE"
+"classname" "script_struct"
+"_color" "0 0.9961 0.8907"
+"angles" "0 89.9998 0"
+"origin" "0.0249939 -0.0300293 96"
+"radius" "2000"
+"script_int" "2000"
+"script_noteworthy" "CHANGE_TO_ZONE_TARGETNAME"
+"target" "auto399"
+"targetname" "player_respawn_point"
+}
+// entity 2
+{
+guid "{912D76D2-73B5-11E5-8E85-2C27D7F0CA3E}"
+layer "000_Global/ALWAYS COMPILE"
+"classname" "script_struct"
+"_color" "0 0.9961 0.8907"
+"angles" "0 90 0"
+"origin" "-40 -40 0"
+"script_int" "2"
+"script_noteworthy" "player_2"
+"targetname" "auto399"
+}
+// entity 3
+{
+guid "{912D76CF-73B5-11E5-8E85-2C27D7F0CA3E}"
+layer "000_Global/ALWAYS COMPILE"
+"classname" "script_struct"
+"_color" "0 0.9961 0.8907"
+"angles" "0 90 0"
+"origin" "40 -40 0"
+"script_int" "3"
+"script_noteworthy" "player_3"
+"targetname" "auto399"
+}
+// entity 4
+{
+guid "{912D76D5-73B5-11E5-8E85-2C27D7F0CA3E}"
+layer "000_Global/ALWAYS COMPILE"
+"classname" "script_struct"
+"_color" "0 0.9961 0.8907"
+"angles" "0 90 0"
+"origin" "-40 40 0"
+"script_int" "1"
+"script_noteworthy" "player_1"
+"targetname" "auto399"
+}
+// entity 5
+{
+guid "{912D76CC-73B5-11E5-8E85-2C27D7F0CA3E}"
+layer "000_Global/ALWAYS COMPILE"
+"classname" "script_struct"
+"_color" "0 0.9961 0.8907"
+"angles" "0 89.9998 0"
+"origin" "40 40 0"
+"script_int" "4"
+"script_noteworthy" "player_4"
+"targetname" "auto399"
+}

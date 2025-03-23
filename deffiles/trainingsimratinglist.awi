@@ -1,0 +1,8 @@
+#include "asset_list_helper.h"
+const int MAX_TRAINING_SIM_RATING_ENTRIES = 4; // changing this does not require updating anything else
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_Combo( "vmType", "Both | Server | Client" ).Show( true );
+	GenerateItemList( Asset, "trainingsimrating", "TrainingSimRating", "trainingsimrating", MAX_TRAINING_SIM_RATING_ENTRIES );
+}

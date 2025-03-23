@@ -1,0 +1,91 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{A842969F-0435-11F0-B339-DB1F6BAFD392}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+ {
+  guid "{7116A5ED-0270-11F0-B337-A914DBF3801C}"
+  mesh
+  {
+  toolFlags;
+   t7_decal_grunge_gravel_puddle
+   lightmap_gray
+   2 2 16 8
+   (
+	v 1556 -769 133 t 0 0 53.5 -8.375
+	v 1556 -769 112 t 0 -1024 53.5 -7.6875
+   )
+   (
+	v 1570 -769 133 t 1024 0 54.125 -8.375
+	v 1570 -769 112 t 1024 -1024 54.125 -7.6875
+   )
+   decalLayerSort "Damage - New"
+   decalEditorSort -1
+  }
+ }
+}
+// entity 1
+{
+guid "{88A5E8A2-0205-11F0-B336-ACFBA80908B6}"
+"classname" "misc_model"
+"angles" "330.597 89.9989 8.84518e-006"
+"model" "p7_zm_zod_gutter_downspout"
+"origin" "1563 -773.268 132.337"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 2
+{
+guid "{7880C76F-0207-11F0-B336-ACFBA80908B6}"
+"classname" "fx"
+"angles" "0 90 0"
+"delay" "-22401"
+"fxdef" "water/fx_water_stream_thin_long"
+"origin" "1563 -759 126"
+"fxstate1" "1"
+"fxstate2" "1"
+"fxstate3" "1"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 3
+{
+guid "{7880C772-0207-11F0-B336-ACFBA80908B6}"
+"classname" "fx"
+"angles" "0 235.598 0"
+"delay" "-24095"
+"fxdef" "water/fx_water_ground_splash_sm"
+"origin" "1562 -759 -4"
+"fxstate1" "1"
+"fxstate2" "1"
+"fxstate3" "1"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}

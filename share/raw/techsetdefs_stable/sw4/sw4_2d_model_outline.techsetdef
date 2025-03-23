@@ -1,0 +1,75 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Blend
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = invSrcAlpha
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+#if TOOLSGFX == "1"
+Texture( "postEffect1_C4_P0" )
+{
+	image = Image( < sw_codetexture_00 > )
+	tweak = Tweak()
+	{
+		default = "C:\\projects\\cod\\t6\\sw4\\textures\\outlineColor.tif"
+	}
+}
+#endif
+Sampler( "postEffect1_C4_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+#if TOOLSGFX == "1"
+Texture( "postEffect0_C0_P0" )
+{
+	image = Image( < sw_codetexture_01 > )
+	tweak = Tweak()
+	{
+		default = "C:\\projects\\cod\\t6\\sw4\\textures\\outlineDepth.tif"
+	}
+}
+#endif
+Sampler( "postEffect0_C0_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_model_outline.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_BLEND"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		postEffect1_C4_P0 = CodeTexture( "postEffect1" )
+		postEffect0_C0_P0 = CodeTexture( "postEffect0" )
+	}
+}

@@ -1,0 +1,93 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Add
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = one
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = one
+		writeChannels  = "rgba"
+	}
+	cull = "None"
+}
+Sampler( "Lookup_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "Lookup" )
+{
+	image    = Image( "tv_lookup" )
+	semantic = "diffuseMap"
+}
+Sampler( "ColorMap_Sampler" )
+{
+	tile   = "tile horizontal"
+	filter = "nomip bilinear"
+}
+Texture( "ColorMap" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "texture_assets\\menu\\mp_front_end\\weapons\\menu_mp_weapons_metalstorm_big.tif"
+	}
+}
+float1( "MaxSeparation" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		title     = "MaxSeparation"
+		sortindex = "0"
+		default   = "0.020000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "CoordX" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		title     = "CoordX"
+		sortindex = "0"
+		default   = "0.810000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_visor_rgb_separate.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_ADD"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

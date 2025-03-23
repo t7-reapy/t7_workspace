@@ -1,0 +1,31 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+}
+
+Texture( "colorMap" )
+{
+	image = Image( "code_missing_techsetdef" )
+}
+
+Sampler( "colorSampler" )
+{
+}
+
+Technique( "unlit" )
+{
+	state = "replace"
+	vs = VertexShader()
+	{
+		source = "techsetdef_2d.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "techsetdef_2d.hlsl"
+		colorMapSampler = "colorMap"
+	}
+}

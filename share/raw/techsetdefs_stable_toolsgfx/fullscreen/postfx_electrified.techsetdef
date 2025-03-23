@@ -1,0 +1,96 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Texture( "colorMap" )
+{
+	ref = true
+	image = Image( <colorMap14, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Color Map"
+		sortindex = "0"
+	}
+}
+
+Texture( "distortMap" )
+{
+	ref = true
+	image = Image( <colorMap13, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Distortion Map"
+		sortindex = "0"
+	}
+}
+
+
+float1("uvColumn")
+{
+	x = <textureAtlasColumnCount>
+	tweak = Tweak()
+	{
+		category = "UV"
+		title = "UV Texture Atlas Column Count"
+		sortindex = "20"
+	}
+}
+
+float1("uvRow")
+{
+	x = <textureAtlasRowCount>
+	tweak = Tweak()
+	{
+		category = "UV"
+		title = "UV Texture Atlas Row Count"
+		sortindex = "21"
+	}
+}
+
+float1("uvTime")
+{
+	x = <textureAtlasFrameRate>
+	tweak = Tweak()
+	{
+		category = "UV"
+		title = "UV Texture Frame Time"
+		sortindex = "22"
+	}
+}
+
+
+float4("uvAtlas")
+{
+	x = <textureAtlasColumnCount>
+	y = <textureAtlasRowCount>
+	z = <textureAtlasColumnCount*textureAtlasRowCount>
+	w = <textureAtlasFrameRate>
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "postfx/postfx_electrified.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/postfx_electrified.hlsl"
+
+		// textures
+		codeTexture0 = CodeTexture( "codeTexture0" )
+		boltFX = "colorMap"
+		dispFX = "distortMap"
+
+		// samplers
+		bilinearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

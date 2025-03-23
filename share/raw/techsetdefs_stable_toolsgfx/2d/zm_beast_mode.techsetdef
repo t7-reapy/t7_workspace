@@ -1,0 +1,253 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearClampler" )
+{
+	tile   = "no tile"
+	filter = "linear (mip none)"
+}
+Sampler( "bilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "linear (mip none)"
+}
+
+Texture( "colorMap" )
+{
+	image    = Image( <colorMap00, $white_color> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Vignette Map"
+		sortindex	= "20"
+	}
+}
+
+Texture( "revealMap" )
+{
+	image    = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Warp and Blur"
+		title		= "Mask Map"
+		sortindex	= "20"
+	}
+}
+
+Texture( "aberrationMask" )
+{
+	image    = Image( <colorMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Aberration"
+		title		= "Mask Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "twinkleMap" )
+{
+	image    = Image( <colorMap01, $white_color> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Eye Floaters"
+		title		= "Twinkle Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "wormMap" )
+{
+	image    = Image( <colorMap02, $white_color> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Eye Floaters"
+		title		= "Wormies Map"
+		sortindex	= "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "warpPixels" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		category  = "Warp and Blur"
+		title     = "Warp Amount"
+		sortindex = "60"
+		default   = "8"
+		range     = "0", "1024", "1"
+	}
+}
+
+float1( "aberrationPixels" )
+{
+	x     = <cg00_y>
+	tweak = Tweak()
+	{
+		category  = "Aberration"
+		title     = "Max Amount"
+		sortindex = "20"
+		default   = "8"
+		range     = "0", "1024", "1"
+	}
+}
+float3( "aberrationFactors" )
+{
+	x   = <cg01_x>
+	y	= <cg01_y>
+	z	= <cg01_z>
+	tweak = Tweak()
+	{
+		category  = "Aberration"
+		title     = "Channel Factors (R, G, B)"
+		sortindex = "30"
+		default   = "1.0"
+		range     = "-1024.0", "1024.0", "1.0"
+	}
+}
+float1( "abberationMaskRotation" )
+{
+	x     = <cg03_w>
+	tweak = Tweak()
+	{
+		category  = "Aberration"
+		title     = "Mask Spin"
+		sortindex = "15"
+		default   = "0"
+		range     = "0", "1024", "1"
+	}
+}
+
+float2( "twinkleScroll1" )
+{
+	x     = <cg00_z>
+	y     = <cg00_w>
+	tweak = Tweak()
+	{
+		category  = "Eye Floaters"
+		title     = "Twinkle Scroll1"
+		sortindex = "140"
+		default   = "0.0"
+		range     = "-1024.0", "1024.0", "0.1"
+	}
+}
+float2( "twinkleScroll2" )
+{
+	x     = <cg04_x>
+	y     = <cg04_y>
+	tweak = Tweak()
+	{
+		category  = "Eye Floaters"
+		title     = "Twinkle Scroll2"
+		sortindex = "145"
+		default   = "0.0"
+		range     = "-1024.0", "1024.0", "0.1"
+	}
+}
+float2( "twinkleScale" )
+{
+	x     = <cg03_y>
+	y     = <cg03_z>
+	tweak = Tweak()
+	{
+		category  = "Eye Floaters"
+		title     = "Twinkle Scale"
+		sortindex = "150"
+		default   = "1.0"
+		range     = "1.0", "1024.0", "0.01"
+	}
+}
+
+float2( "wormyScroll" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	tweak = Tweak()
+	{
+		category	= "Eye Floaters"
+		title		= "Wormy Scroll"
+		sortindex	= "160"
+		default   = "0.0"
+		range     = "-1024.0", "1024.0", "0.1"
+	}
+}
+
+Bool( "useAlphaBlend" )
+{
+	value = <gCheckBox00>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Use alpha blend (default is screen add)."
+		sortindex	= "50"
+	}
+}
+
+float1( "highlightFalloff" )
+{
+	x     = <cg02_z>
+	tweak = Tweak()
+	{
+		category  = "Lighting"
+		title     = "Fake Sun Falloff"
+		sortindex = "10"
+		default   = "1"
+		range     = "0", "1024", "0.01"
+	}
+}
+
+float1( "highlightBrightness" )
+{
+	x     = <cg02_w>
+	tweak = Tweak()
+	{
+		category  = "Lighting"
+		title     = "Fake Sun Brightness"
+		sortindex = "20"
+		default   = "1"
+		range     = "0", "1024", "0.01"
+	}
+}
+
+float1( "blurPixels" )
+{
+	x     = <cg03_x>
+	tweak = Tweak()
+	{
+		category  = "Warp and Blur"
+		title     = "Blur Amount"
+		sortindex = "30"
+		default   = "16"
+		range     = "0", "1024", "1"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/zm_beast_mode.hlsl"
+
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

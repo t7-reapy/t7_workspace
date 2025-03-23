@@ -1,0 +1,28 @@
+#include "state"
+#include "renderFlags"
+
+Sampler( "floatZWriteDepthSampler" )
+{
+	tile = "no tile"
+	filter = "nomip nearest"
+}
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Technique( "unlit" )
+{
+	state = "depth write"
+	vs = VertexShader()
+	{
+		source = "techsetdef_floatz_writedepth.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "techsetdef_floatz_writedepth.hlsl"
+		float2DArraySampler = CodeTexture( "floatZ" )
+	}
+}

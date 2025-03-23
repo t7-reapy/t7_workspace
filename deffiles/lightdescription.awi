@@ -1,0 +1,72 @@
+
+void GenerateUI( asset Asset )
+{
+	// Animation
+	
+	Asset.AddEntry_Vector3( "angleX", "angleY", "angleZ", 0, 0, 0, 0, 1 ).SetTitle( "angles" );
+
+	Asset.BeginCategory( "Animation Parameters" );
+	{
+		Asset.AddEntry_Float( "animdelay", 0, 0, 1000 ).SetStep( 10 ).SetTitle( "animdelay" );
+		Asset.AddEntry_Combo( "animmode", "loop | once | reverse | pingpong" ).SetTitle( "animmode" );
+		Asset.AddEntry_String( "animname", "" ).SetTitle( "animname" );
+		Asset.AddEntry_Float( "animscale", 1, 0, 1000 ).SetStep( 10 ).SetTitle( "animscale" );
+	}
+
+	Asset.BeginCategory( "Intensity" );
+	{
+		Asset.AddEntry_Vector3( "colorX", "colorY", "colorZ", 0, 0, 0, 0, 1 ).EnableColorView( true ).SetTitle( "color" );
+		Asset.AddEntry_Float( "intensity", 100, 0, 262144 ).SetStep( 10 ).SetTitle( "intensity" );
+	}
+
+	Asset.BeginCategory( "Light Type" );
+	{
+		Asset.AddEntry_Float( "maxmove", 0, 0, 131072 ).SetStep( 10 ).SetTitle( "primary_maxmove" );
+		Asset.AddEntry_Float( "maxturn", 0, 0, 131072 ).SetStep( 10 ).SetTitle( "primary_maxturn" );
+		Asset.AddEntry_CheckBox( "PRIMARY_NOSHADOWMAP", true ).SetTitle( "PRIMARY_NOSHADOWMAP" );
+		Asset.AddEntry_CheckBox( "PRIMARY_SCRIPTABLE", false ).SetTitle( "PRIMARY_SCRIPTABLE" );
+		Asset.AddEntry_Combo( "PRIMARY_TYPE", "NONE | PRIMARY_OMNI | PRIMARY_SPOT | PRIMARY_DIR" ).SetTitle( "PRIMARY_TYPE" );
+	}
+
+	Asset.BeginCategory( "Performance" );
+	{
+		Asset.AddEntry_Float( "cullDist", 1000, 0, 262144 ).SetStep( 10 ).SetTitle( "cull_dist" );
+		Asset.AddEntry_Float( "culling_cutoff", 0, 0, 1080 ).SetStep( 1 ).SetTitle( "culling_cutoff" );
+		Asset.AddEntry_Float( "culling_falloff", 0, 0, 1080 ).SetStep( 1 ).SetTitle( "culling_falloff" );
+	}
+
+	Asset.BeginCategory( "Shadows" );
+	{
+		Asset.AddEntry_Float( "pcss_max", 0.0, 0, 1 ).SetStep( 0.01 ).SetTitle( "pcss_max" ).Show(false);
+		Asset.AddEntry_Float( "pcss_min", 0.0, 0, 1 ).SetStep( 0.01 ).SetTitle( "pcss_min" ).Show(false);
+		Asset.AddEntry_Int( "shadowPriority", 0, 0, 100 ).SetStep( 1 ).SetTitle( "shadowPriority" );
+		Asset.AddEntry_Combo( "shadowUpdate", "Never | Always" ).SetTitle( "update rate" ).SetToolTip( "Does the light update the shadow every frame or only once." );
+		Asset.AddEntry_Combo( "shadowmapScale", "0.5 | 1 | 2" ).SetDefaultValue("1").SetTitle( "resolution scale factor" ).SetToolTip( "Control the shadow map resolution." );
+		Asset.AddEntry_Float( "penumbraRadius", 0.1, 3.f, 64.f ).SetStep( 0.05 ).SetTitle( "penumbra radius" ).SetToolTip( "In pixels" );
+	}
+
+	Asset.BeginCategory( "Shaping" );
+	{
+		Asset.AddEntry_Float( "cut_on", 0, 0, 131072 ).SetStep( 10 ).SetTitle( "cut_on" );
+		Asset.AddEntry_CheckBox( "ENABLE_FALLOFF", false ).SetTitle( "ENABLE_FALLOFF" );
+		Asset.AddEntry_Float( "falloffdistance", 0, 0, 131072 ).SetStep( 10 ).SetTitle( "falloffdistance" );
+		Asset.AddEntry_Float( "far_edge", 0, 0, 131072 ).SetStep( 10 ).SetTitle( "far_edge" );
+		Asset.AddEntry_Float( "fov_inner", 80, 0, 179).SetStep( 5 ).SetTitle( "fov_inner" );
+		Asset.AddEntry_Float( "fov_outer", 120, 0, 179).SetStep( 5 ).SetTitle( "fov_outer" );
+		Asset.AddEntry_Float( "near_edge", 0, 0, 131072 ).SetStep( 10 ).SetTitle( "near_edge" );
+		Asset.AddEntry_Float( "radius", 0, 0, 131072 ).SetStep( 10 ).SetTitle( "radius" );
+		Asset.AddEntry_Float( "roundness", 0.3, 0, 1 ).SetStep( 0.05 ).SetTitle( "roundness" );
+		Asset.AddEntry_Vector4( "superellipseX", "superellipseY", "superellipseZ", "superellipseW", 0, 0, 0, 0, 0, 1 ).SetTitle( "superellipse" );
+		Asset.AddEntry_Float( "bulbRadius", 0.01, 0.01, 30.0 ).SetStep( 0.5 ).SetTitle( "bulbRadius" );
+		Asset.AddEntry_Float( "bulbLength", 0.01, 0.01, 300.0 ).SetStep( 0.5 ).SetTitle( "bulbLength" );
+	}
+
+	Asset.BeginCategory( "Misc" );
+	{
+		Asset.AddEntry_Vector3( "attenuationX", "attenuationY", "attenuationZ", 0, 0, 0, 0, 1 ).SetTitle( "Attenuation" );
+
+		Asset.AddEntry_Int( "lightPriority", 0, 0, 1000 ).SetStep( 1 ).SetTitle( "Light Priority" );
+		Asset.AddEntry_CheckBox( "volumetric", false ).SetTitle( "VOLUMETRIC" );
+		
+	}
+}

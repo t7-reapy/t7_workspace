@@ -1,0 +1,59 @@
+#include "skin_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit forward sss"
+	availablePrefixes = "mc/ mcs/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "bentNormalMap" )
+{
+	image = Image( <colorMap00> )
+	semantic = "multipleMask"
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Bent Normal Map"
+		sortindex = "40"
+	}
+}
+
+Texture( "specOcclusionMap" )
+{
+	image = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Details"
+		title     = "Specular Occlusion Map"
+		sortindex = "30"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "lit_skin_advanced.hlsl"
+	defines = "USE_DEPTH_PREPASS"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque sss"
+	source = "lit_skin_advanced.hlsl"
+	defines = "BASE_SPEC", "USE_DETAIL_MAP", "USE_COLOR_TINT", "USE_SPEC_OCCLUSION", "NO_VERTEX_ALPHA"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}

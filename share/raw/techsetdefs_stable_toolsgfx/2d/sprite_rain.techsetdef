@@ -1,0 +1,74 @@
+#include "state"
+#include "renderFlags"
+#include "2d_sprite_base"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "linear (mip none)"
+}
+
+Texture( "maskTexture" )
+{
+	image    = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Textures"
+		title		= "Mask Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "normalTexture" )
+{
+	image    = Image( <normalMap, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak    = Tweak()
+	{
+		category	= "Textures"
+		title		= "Normal Map"
+		sortindex	= "0"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float3( "colorDispersion" )
+{
+	x     = <cg30_x>
+	y     = <cg30_y>
+	z     = <cg30_z>
+	tweak = Tweak()
+	{
+		title     = "Color Dispersion"
+		category  = "Screen Disruption"
+		sortindex = "20"
+		default   = "0.2", "0.0", "-0.2"
+		range     = "-1.0", "1.0", "0.01"
+		color     = false
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/sprite_rain.hlsl"
+	defines += "SPRITE_EFFECT_SHADER"
+
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

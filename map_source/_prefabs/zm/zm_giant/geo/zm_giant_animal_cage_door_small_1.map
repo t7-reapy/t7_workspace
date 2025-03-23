@@ -1,0 +1,396 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{0CE6F10D-57F9-489F-81DB-F806B1AF015A}"
+"classname" "worldspawn"
+"_color" "0.607843 0.615686 0.658824"
+"ambient" "0.35"
+"diffusefraction" "0.45"
+"suncolor" "0.615686 0.807843 0.815686"
+"sundiffusecolor" "0.3098 0.2745 0.3058"
+"sundirection" "-153 -54 0"
+"sunisprimarylight" "1"
+"sunlight" "0.6"
+"evmax" "31"
+"evmin" "-32"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{28BFA3C3-5ADE-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 2 -28 2 ) ( 0 -28 2 ) ( 0 -32 2 ) caulk 16 16 -2 -32 0 0 lightmap_gray 16384 16384 -2 -30 0 0
+ ( 0 -32 6 ) ( 2 -32 6 ) ( 2 -32 2 ) caulk 16 16 -2 -2 0 0 lightmap_gray 16384 16384 -2 0 0 0
+ ( 2 -32 6 ) ( 2 -28 6 ) ( 2 -28 2 ) t7_metal_worn_iron_dark 64 64 28 0 0 0 lightmap_gray 16384 16384 30 0 0 0
+ ( 0 -28 6 ) ( 0 -32 6 ) ( 0 -32 2 ) t7_metal_worn_iron_dark 64 64 28 0 0 0 lightmap_gray 16384 16384 30 0 0 0
+ ( 2 -31.5 6.5 ) ( 2 -27.5 2.5 ) ( 34 -27.5 2.5 ) t7_metal_panels_painted_2x1_grey 128 128 -64 -30 0 0 lightmap_gray 16384 16384 -2 -30 0 0
+}
+// brush 1
+{
+ guid "{28BFA3C4-5ADE-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 0 -32 26 ) ( 0 -28 26 ) ( 2 -28 26 ) caulk 16 16 -2 -32 0 0 lightmap_gray 16384 16384 -2 -30 0 0
+ ( 2 -32 26 ) ( 2 -32 22 ) ( 0 -32 22 ) caulk 16 -16 -2 -26 0 0 lightmap_gray 16384 -16384 -2 -28 0 0
+ ( 2 -28 26 ) ( 2 -28 22 ) ( 2 -32 22 ) t7_metal_worn_iron_dark 64 64 28 0 0 0 lightmap_gray 16384 -16384 30 -28 0 0
+ ( 0 -32 26 ) ( 0 -32 22 ) ( 0 -28 22 ) t7_metal_worn_iron_dark 64 64 28 0 0 0 lightmap_gray 16384 -16384 30 -28 0 0
+ ( 34 -27.5 25.5 ) ( 2 -27.5 25.5 ) ( 2 -31.5 21.5 ) t7_metal_panels_painted_2x1_grey 128 128 -64 -30 0 0 lightmap_gray 16384 16384 -2 -30 0 0
+}
+// brush 2
+{
+ guid "{28BFA3C6-5ADE-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 2 -29 4 ) ( 2 -27 4 ) ( 2 -29 6 ) t7_metal_worn_iron_dark 64 64 28 0 0 0 lightmap_gray 16384 -16384 -56 9 -90 0
+ ( 2 -27 4 ) ( 4 -27 4 ) ( 4 -29 6 ) t7_metal_planter_trim 64 8 31 -64.5 90 0 lightmap_gray 16384 16384 -62 -87 0 0
+ ( 4 -27 4 ) ( 2 -29 4 ) ( 2 -31 6 ) t7_metal_planter_trim 64 8 87 -122 90 0 lightmap_gray 16384 16384 -126 -87 0 0
+ ( 4 -32 7 ) ( 4 -28 7 ) ( 36 -32 7 ) caulk 16 16 0 -31 0 0 lightmap_gray 16384 16384 0 -31 0 0
+ ( 4 -27 4 ) ( 4 -27 0 ) ( 36 -27 4 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 3
+{
+ guid "{28BFA3C7-5ADE-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 2 -30 114 ) ( 2 -32 114 ) ( 2 -32 -2 ) t7_metal_worn_iron_dark 64 64 28 0 0 0 lightmap_gray 16384 -16384 -58 10 -90 0
+ ( 6 -30 2 ) ( 6 -30 114 ) ( 2 -30 114 ) t7_metal_planter_trim 64 8 2 -64.5 90 0 lightmap_gray 16384 16384 -62 -58 0 0
+ ( 4 -30 66 ) ( 2 -32 66 ) ( 2 -32 98 ) t7_metal_planter_trim 64 8 58 -92 90 0 lightmap_gray 16384 16384 -96 -58 0 0
+ ( 4 -28 7 ) ( 4 -32 7 ) ( 36 -32 7 ) caulk 16 16 0 -30 0 0 lightmap_gray 16384 16384 0 -30 0 0
+ ( 4 -32 21 ) ( 4 -29 21 ) ( 36 -32 21 ) caulk 16 16 0 -27 0 0 lightmap_gray 16384 16384 0 -27 0 0
+}
+// brush 4
+{
+ guid "{28BFA3C8-5ADE-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 2 -30 21 ) ( 2 -28 23 ) ( 2 -30 23 ) t7_metal_worn_iron_dark 64 64 28 0 0 0 lightmap_gray 16384 16384 -29 -10 90 0
+ ( 4 -30 21 ) ( 4 -28 23 ) ( 2 -28 23 ) t7_metal_planter_trim 64 8 30 -64.5 90 0 lightmap_gray 16384 16384 -62 -86 0 0
+ ( 2 -32 21 ) ( 2 -30 23 ) ( 4 -28 23 ) t7_metal_planter_trim 64 8 86 -122 90 0 lightmap_gray 16384 16384 -126 -86 0 0
+ ( 36 -32 21 ) ( 4 -28 21 ) ( 4 -32 21 ) caulk 16 16 0 -30 0 0 lightmap_gray 16384 16384 0 -30 0 0
+ ( 36 -27 23.5 ) ( 4 -27 27.5 ) ( 4 -27 23.5 ) caulk 16 -16 0 -27 0 0 lightmap_gray 16384 -16384 0 -27 0 0
+}
+// brush 5
+{
+ guid "{28BFA3C9-5ADE-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 2 34 -2 ) ( 2 34 114 ) ( 2 32 114 ) t7_metal_worn_iron_dark 64 64 -28 0 0 0 lightmap_gray 16384 16384 -58 -12 -90 0
+ ( 2 32 114 ) ( 6 32 114 ) ( 6 32 2 ) t7_metal_planter_trim 64 8 2 -64.5 90 0 lightmap_gray 16384 16384 -62 -58 0 0
+ ( 2 34 98 ) ( 2 34 66 ) ( 4 32 66 ) t7_metal_planter_trim 64 -8 58 94 90 0 lightmap_gray 16384 -16384 -98 58 180 0
+ ( 36 34 7 ) ( 4 34 7 ) ( 4 30 7 ) caulk 16 -16 0 28 0 0 lightmap_gray 16384 -16384 0 28 0 0
+ ( 36 34 21 ) ( 4 31 21 ) ( 4 34 21 ) caulk 16 -16 0 25 0 0 lightmap_gray 16384 -16384 0 25 0 0
+}
+// brush 6
+{
+ guid "{28BFA3CA-5ADE-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 2 32 23 ) ( 2 30 23 ) ( 2 32 21 ) t7_metal_worn_iron_dark 64 64 -28 0 0 0 lightmap_gray 16384 -16384 -29 12 90 0
+ ( 2 30 23 ) ( 4 30 23 ) ( 4 32 21 ) t7_metal_planter_trim 64 -8 28 64.5 -90 0 lightmap_gray 16384 -16384 -62 84 0 0
+ ( 4 30 23 ) ( 2 32 23 ) ( 2 34 21 ) t7_metal_planter_trim 64 -8 84 122 -90 0 lightmap_gray 16384 -16384 -126 84 0 0
+ ( 4 34 21 ) ( 4 30 21 ) ( 36 34 21 ) caulk 16 -16 0 28 0 0 lightmap_gray 16384 -16384 0 28 0 0
+ ( 4 29 23.5 ) ( 4 29 27.5 ) ( 36 29 23.5 ) caulk 16 -16 0 -27 0 0 lightmap_gray 16384 -16384 0 -27 0 0
+}
+// brush 7
+{
+ guid "{28BFA3D0-5ADE-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 2 84 24 ) ( 2 84 26 ) ( 2 -32 26 ) t7_metal_worn_iron_dark 64 64 28 0 0 0 lightmap_gray 16384 -16384 -28 4 180 0
+ ( 6 -29.5 24 ) ( 6 82.5 24 ) ( 2 82.5 24 ) t7_metal_planter_trim 64 8 -56 -64.5 90 0 lightmap_gray 16384 16384 -62 -28 0 0
+ ( 4 36 24 ) ( 2 36 26 ) ( 2 68 26 ) t7_metal_planter_trim 64 8 28 -58 90 0 lightmap_gray 16384 16384 -62 -28 0 0
+ ( 4 -27 23 ) ( 4 -27 26 ) ( 36 -27 26 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2 29 26 ) ( 2 29 23 ) ( 34 29 26 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 8
+{
+ guid "{28BFA3D3-5ADE-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( 2 -32 2 ) ( 0 -32 2 ) ( 0 -36 0 ) caulk 16 -16 -64 -26 0 0 lightmap_gray 16384 -16384 -64 -28 0 0
+ ( 2 -32 24 ) ( 2 -32 2 ) ( 2 -36 0 ) t7_metal_trim_rivets_02 28 -4 15 -28 -90 0 lightmap_gray 16384 16384 -28 116 180 0
+ ( 0 -36 116 ) ( 2 -36 116 ) ( 2 -36 0 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 -64 -116 0 0
+ ( 0 -32 2 ) ( 0 -32 24 ) ( 0 -36 26 ) t7_metal_trim_rivets_02 28 -4 18 -28 -90 0 lightmap_gray 16384 16384 -28 116 180 0
+ ( 0 -34 26 ) ( 2 -34 26 ) ( 2 -36 28 ) caulk 16 16 0 -28 0 0 lightmap_gray 16384 16384 0 -28 0 0
+ ( 2 -34 26 ) ( 0 -34 26 ) ( 0 -34 1 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 9
+{
+ guid "{28BFA3D4-5ADE-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( 2 -32 2 ) ( 0 -32 2 ) ( 0 -36 0 ) caulk 16 -16 -64 -26 0 0 lightmap_gray 16384 -16384 -64 -28 0 0
+ ( 0 -32 88 ) ( 2 -32 88 ) ( 2 -32 112 ) t7_metal_panels_painted_2x1_grey 128 128 -64 0 0 0 lightmap_gray 16384 -16384 -64 -116 0 0
+ ( 2 -32 24 ) ( 2 -32 2 ) ( 2 -36 0 ) t7_metal_worn_iron_dark 64 64 28 0 0 0 lightmap_gray 16384 16384 -28 116 180 0
+ ( 0 -32 2 ) ( 0 -32 24 ) ( 0 -36 26 ) t7_metal_worn_iron_dark 64 64 28 0 0 0 lightmap_gray 16384 16384 -28 116 180 0
+ ( 2 -34 22 ) ( 2 -34 26 ) ( 34 -34 26 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2 -34 26 ) ( 2 -32 26 ) ( 34 -34 26 ) caulk 16 16 0 -28 0 0 lightmap_gray 16384 16384 0 -28 0 0
+}
+// brush 10
+{
+ guid "{28BFA3D5-5ADE-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( 0 -90 26 ) ( 2 -90 26 ) ( 2 34 26 ) t7_metal_panels_painted_2x1_grey 128 128 -64 -28 0 0 lightmap_gray 16384 16384 -64 -28 0 0
+ ( 2 -34 26 ) ( 0 -34 26 ) ( 0 -36 28 ) caulk 16 16 -64 26 0 0 lightmap_gray 16384 16384 -64 28 0 0
+ ( 2 -34 34 ) ( 2 60 34 ) ( 2 60 30 ) t7_metal_trim_rivets_02 28 -4 -12 0 -180 0 lightmap_gray 16384 16384 28 56 0 0
+ ( 2 36 28 ) ( 0 36 28 ) ( 0 34 26 ) caulk 16 16 -64 26 0 0 lightmap_gray 16384 16384 -64 28 0 0
+ ( 0 60 34 ) ( 0 -34 34 ) ( 0 -34 30 ) t7_metal_trim_rivets_02 28 -4 -12 0 180 0 lightmap_gray 16384 16384 28 56 0 0
+ ( 0 92 28 ) ( 2 92 28 ) ( 2 -36 28 ) t7_metal_worn_iron_dark 64 64 0 -28 0 0 lightmap_gray 16384 16384 0 -28 0 0
+}
+// brush 11
+ {
+  guid "{28BFA3C2-5ADE-11E4-A265-2C27D7F029C0}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_signage_caution_strip
+   lightmap_gray
+   3 2 0 8
+   (
+	v 3 32 7 t 111.99995 3958.7822 3.75 -2.1875
+	v 3 29 4 t 63.999958 3766.7822 3.5625 -2
+   )
+   (
+	v 3 32 21 t 335.99997 3958.7822 3.75 -3.0625
+	v 3 26 4 t 63.999958 3574.7822 3.375 -2
+   )
+   (
+	v 3 29 24 t 383.99997 3766.7822 3.5625 -3.25
+	v 3 26 24 t 383.99997 3574.7822 3.375 -3.25
+   )
+   decalLayerSort "Signage - Old"
+   decalEditorSort -1
+  }
+ }
+// brush 12
+{
+ guid "{28BFA3D1-5ADE-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( 8 32 4 ) ( 0 32 4 ) ( 0 20 4 ) caulk 16 16 -64 26 0 0 lightmap_gray 16384 16384 -64 28 0 0
+ ( 0 20 24 ) ( 0 32 24 ) ( 8 32 24 ) caulk 16 16 -64 26 0 0 lightmap_gray 16384 16384 -64 28 0 0
+ ( 0 26 20 ) ( 8 26 20 ) ( 8 26 4 ) caulk 16 16 -64 26 0 0 lightmap_gray 16384 16384 -64 28 0 0
+ ( 3 20 20 ) ( 3 32 20 ) ( 3 32 4 ) t7_metal_planter_top_trim 36 6 32 28 -90 0 lightmap_gray 16384 16384 -28 28 0 0
+ ( 8 32 20 ) ( 0 32 20 ) ( 0 32 4 ) caulk 16 16 -64 26 0 0 lightmap_gray 16384 16384 -64 28 0 0
+ ( 2 32 20 ) ( 2 20 20 ) ( 2 20 4 ) t7_metal_worn_iron_dark 64 64 -28 0 0 0 lightmap_gray 16384 16384 -28 28 0 0
+ ( 7 32 7 ) ( 7 29 4 ) ( 39 29 4 ) caulk 16 16 0 28 0 0 lightmap_gray 16384 16384 0 28 0 0
+ ( 3 29 24 ) ( 3 32 21 ) ( 35 29 24 ) caulk 16 16 0 28 0 0 lightmap_gray 16384 16384 0 28 0 0
+}
+// brush 13
+{
+ guid "{28BFA3CE-5ADE-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 9 31 4 ) ( 1 31 4 ) ( 1 19 4 ) caulk 16 16 -63 27 0 0 lightmap_gray 16384 16384 -63 29 0 0
+ ( 1 19 24 ) ( 1 31 24 ) ( 9 31 24 ) caulk 16 16 -63 27 0 0 lightmap_gray 16384 16384 -63 29 0 0
+ ( 1 25 20 ) ( 9 25 20 ) ( 9 25 4 ) t7_metal_planter_trim 64 -8 -28 -64 90 0 lightmap_gray 16384 16384 -63 28 0 0
+ ( 4 19 20 ) ( 4 31 20 ) ( 4 31 4 ) t7_metal_planter_trim 64 8 0 -28 90 0 lightmap_gray 16384 16384 -29 28 0 0
+ ( 10 26 20 ) ( 2 26 20 ) ( 2 26 4 ) t7_metal_planter_trim 64 -8 -28 -64 90 0 lightmap_gray 16384 16384 -63 28 0 0
+ ( 2 31 20 ) ( 2 19 20 ) ( 2 19 4 ) t7_metal_worn_iron_dark 64 64 -28 0 0 0 lightmap_gray 16384 16384 -29 28 0 0
+}
+// brush 14
+{
+ guid "{28BFA3CF-5ADE-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 2 31 6 ) ( 2 29 4 ) ( 2 31 4 ) t7_metal_worn_iron_dark 64 64 -28 0 0 0 lightmap_gray 16384 16384 -56 -11 -90 0
+ ( 4 31 6 ) ( 4 29 4 ) ( 2 29 4 ) t7_metal_planter_trim 64 -8 29 64.5 -90 0 lightmap_gray 16384 -16384 -62 85 0 0
+ ( 2 33 6 ) ( 2 31 4 ) ( 4 29 4 ) t7_metal_planter_trim 64 -8 85 122 -90 0 lightmap_gray 16384 -16384 -126 85 0 0
+ ( 36 34 7 ) ( 4 30 7 ) ( 4 34 7 ) caulk 16 -16 0 29 0 0 lightmap_gray 16384 -16384 0 29 0 0
+ ( 36 29 4 ) ( 4 29 0 ) ( 4 29 4 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 15
+{
+ guid "{28BFA3CC-5ADE-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 0 34 2 ) ( 0 30 2 ) ( 2 30 2 ) caulk 16 -16 -2 30 0 0 lightmap_gray 16384 -16384 -2 28 0 0
+ ( 2 34 2 ) ( 2 34 6 ) ( 0 34 6 ) caulk 16 16 -2 -2 0 0 lightmap_gray 16384 16384 -2 0 0 0
+ ( 2 30 2 ) ( 2 30 6 ) ( 2 34 6 ) t7_metal_worn_iron_dark 64 64 -28 0 0 0 lightmap_gray 16384 -16384 28 0 180 0
+ ( 0 34 2 ) ( 0 34 6 ) ( 0 30 6 ) t7_metal_worn_iron_dark 64 64 -28 0 0 0 lightmap_gray 16384 -16384 28 0 180 0
+ ( 34 29.5 2.5 ) ( 2 29.5 2.5 ) ( 2 33.5 6.5 ) t7_metal_panels_painted_2x1_grey 128 -128 -64 28 0 0 lightmap_gray 16384 -16384 -2 28 0 0
+}
+// brush 16
+{
+ guid "{28BFA3D2-5ADE-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( 0 34 2 ) ( 2 34 2 ) ( 2 36 0 ) caulk 16 16 -64 26 0 0 lightmap_gray 16384 16384 -64 28 0 0
+ ( 2 34 112 ) ( 2 34 88 ) ( 0 34 88 ) t7_metal_panels_painted_2x1_grey 128 128 -64 0 0 0 lightmap_gray 16384 -16384 -64 -116 0 0
+ ( 2 34 2 ) ( 2 34 26 ) ( 2 36 28 ) t7_metal_trim_rivets_02 28 -4 18 28 -90 0 lightmap_gray 16384 -16384 -28 -116 0 0
+ ( 2 36 0 ) ( 2 36 116 ) ( 0 36 116 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 -16384 -64 -116 0 0
+ ( 0 34 26 ) ( 0 34 2 ) ( 0 36 0 ) t7_metal_trim_rivets_02 28 -4 18 28 -90 0 lightmap_gray 16384 -16384 -28 -116 0 0
+ ( 2 34 26 ) ( 0 34 26 ) ( 0 36 28 ) caulk 16 -16 0 28 0 0 lightmap_gray 16384 -16384 0 28 0 0
+}
+// brush 17
+{
+ guid "{28BFA3C5-5ADE-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 2 30 26 ) ( 0 30 26 ) ( 0 34 26 ) caulk 16 -16 -2 30 0 0 lightmap_gray 16384 -16384 -2 28 0 0
+ ( 0 34 22 ) ( 2 34 22 ) ( 2 34 26 ) caulk 16 -16 -2 -26 0 0 lightmap_gray 16384 -16384 -2 -28 0 0
+ ( 2 34 22 ) ( 2 30 22 ) ( 2 30 26 ) t7_metal_worn_iron_dark 64 64 -28 0 0 0 lightmap_gray 16384 16384 28 28 180 0
+ ( 0 30 22 ) ( 0 34 22 ) ( 0 34 26 ) t7_metal_worn_iron_dark 64 64 -28 0 0 0 lightmap_gray 16384 16384 28 28 -180 0
+ ( 2 33.5 21.5 ) ( 2 29.5 25.5 ) ( 34 29.5 25.5 ) t7_metal_panels_painted_2x1_grey 128 -128 -64 28 0 0 lightmap_gray 16384 -16384 -2 28 0 0
+}
+// brush 18
+{
+ guid "{28BFA3CB-5ADE-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 2 -28 4 ) ( 2 -28 2 ) ( 2 88 2 ) t7_metal_worn_iron_dark 64 64 28 0 0 0 lightmap_gray 16384 -16384 28 -24 0 0
+ ( 6 92 4 ) ( 6 -20 4 ) ( 2 -20 4 ) t7_metal_planter_trim 64 -8 -256 64.5 -90 0 lightmap_gray 16384 -16384 -62 -28 0 0
+ ( 4 20 4 ) ( 2 20 2 ) ( 2 -12 2 ) t7_metal_planter_trim 64 -8 -28 58 -90 0 lightmap_gray 16384 -16384 -62 -28 0 0
+ ( 5.25 -27 0 ) ( 5.25 -27 4 ) ( 37.25 -27 4 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 3 29 4 ) ( 3 29 1 ) ( 35 29 4 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 19
+{
+ guid "{28BFA3CD-5ADE-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( 0 -32 2 ) ( 2 -32 2 ) ( 2 -36 0 ) caulk 16 -16 -64 -38 0 0 lightmap_gray 16384 -16384 -64 -40 0 0
+ ( 0 36 0 ) ( 2 36 0 ) ( 2 34 2 ) caulk 16 16 -64 -30 0 0 lightmap_gray 16384 16384 -64 -28 0 0
+ ( 2 -88 2 ) ( 0 -88 2 ) ( 0 34 2 ) t7_metal_panels_painted_2x1_grey 128 128 -64 -28 0 0 lightmap_gray 16384 16384 -64 24 0 0
+ ( 2 2 2 ) ( 2 2 0 ) ( 2 -22 0 ) t7_metal_trim_rivets_02 28 -4 -10 0 180 0 lightmap_gray 16384 16384 -64 24 -90 0
+ ( 0 -36 0 ) ( 2 -36 0 ) ( 2 92 0 ) t7_metal_worn_iron_dark 64 64 0 -28 0 0 lightmap_gray 16384 16384 -64 24 0 0
+ ( 0 2 0 ) ( 0 2 2 ) ( 0 -22 2 ) t7_metal_trim_rivets_02 28 -4 -12 0 180 0 lightmap_gray 16384 16384 -64 24 -90 0
+}
+// brush 20
+ {
+  guid "{28BFA3D6-5ADE-11E4-A265-2C27D7F029C0}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_proto_metal_wire_fence
+   lightmap_gray
+   3 2 16 8
+   (
+	v 3 -30 7 t -1887.2324 1434.111 -1.875 1.3125
+	v 3 -30 21 t -1887.2324 525.82416 -1.875 0.4375
+   )
+   (
+	v 3 -27 4 t -1695.2324 1626.111 -1.6875 1.5
+	v 3 -27 24 t -1695.2324 333.82416 -1.6875 0.25
+   )
+   (
+	v 3 25 4 t 1587.7122 1626.111 1.5625 1.5
+	v 3 25 24 t 1587.7122 333.82416 1.5625 0.25
+   )
+  }
+ }
+}
+// entity 1
+{
+guid "{28BFA3D9-5ADE-11E4-A265-2C27D7F029C0}"
+"classname" "misc_model"
+"angles" "45 270 0"
+"model" "p7_window_glass_shard_06"
+"modelscale" "0.75"
+"origin" "3 -28.5 22.5"
+}
+// entity 2
+{
+guid "{28BFA3DF-5ADE-11E4-A265-2C27D7F029C0}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_window_glass_shard_05"
+"modelscale" "0.65"
+"origin" "3 -15 24"
+}
+// entity 3
+{
+guid "{28BFA3E5-5ADE-11E4-A265-2C27D7F029C0}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_window_glass_shard_02"
+"modelscale" "0.799999997764826"
+"origin" "3 16 4"
+}
+// entity 4
+{
+guid "{28BFA3EB-5ADE-11E4-A265-2C27D7F029C0}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_window_glass_shard_08"
+"modelscale" "0.65"
+"origin" "3 -21 4"
+}
+// entity 5
+{
+guid "{28BFA3EE-5ADE-11E4-A265-2C27D7F029C0}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_window_glass_shard_07"
+"modelscale" "0.65"
+"origin" "3 -10 4"
+}
+// entity 6
+{
+guid "{28BFA3F1-5ADE-11E4-A265-2C27D7F029C0}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_ibeam_bracket_junction_01"
+"modelscale" "0.589999997988343"
+"origin" "1 -36 0"
+}
+// entity 7
+{
+guid "{28BFA3F4-5ADE-11E4-A265-2C27D7F029C0}"
+"classname" "misc_model"
+"angles" "0 0 90"
+"model" "p7_zm_der_bridge_piston_bracket"
+"modelscale" "0.100000001490116"
+"origin" "2 -34.75 18"
+}
+// entity 8
+{
+guid "{28BFA3F7-5ADE-11E4-A265-2C27D7F029C0}"
+"classname" "misc_model"
+"angles" "0 0 90"
+"model" "p7_zm_der_bridge_piston_bracket"
+"modelscale" "0.100000001490116"
+"origin" "2 -34.75 10"
+}
+// entity 9
+{
+guid "{28BFA3FD-5ADE-11E4-A265-2C27D7F029C0}"
+"classname" "misc_model"
+"angles" "270 0 -90"
+"model" "p7_ibeam_bracket_junction_01"
+"modelscale" "0.589999997988343"
+"origin" "1 -36 28"
+}
+// entity 10
+{
+guid "{28BFA406-5ADE-11E4-A265-2C27D7F029C0}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_zm_der_signage_steps"
+"modelscale" "0.5"
+"origin" "3 17 10"
+}
+// entity 11
+{
+guid "{28BFA400-5ADE-11E4-A265-2C27D7F029C0}"
+"classname" "misc_model"
+"angles" "0 90 180"
+"model" "p7_ibeam_bracket_junction_01"
+"modelscale" "0.470000002682209"
+"origin" "1 36 28"
+}
+// entity 12
+{
+guid "{28BFA403-5ADE-11E4-A265-2C27D7F029C0}"
+"classname" "misc_model"
+"angles" "90 180 -90"
+"model" "p7_ibeam_bracket_junction_01"
+"modelscale" "0.470000002682209"
+"origin" "1 36 0"
+}
+// entity 13
+{
+guid "{28BFA3FA-5ADE-11E4-A265-2C27D7F029C0}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_cai_apt_door_large_handle"
+"modelscale" "0.75"
+"origin" "3 29 14"
+}

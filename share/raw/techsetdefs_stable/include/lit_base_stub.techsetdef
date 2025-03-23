@@ -1,0 +1,22 @@
+#include "lit_base_shaders"
+#include "color_base"
+#include "normal_base"
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "glossRange" )
+{
+	x = <glossRangeMin>
+	y = <glossRangeMax>
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Gloss Range"
+		sortindex = "45"
+	}
+}
+
+Bool( "noReceiveShadow" )
+{
+	value = <noReceiveDynamicShadow>
+}

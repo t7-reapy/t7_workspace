@@ -1,0 +1,57 @@
+Sampler( "lookupSampler" )
+{
+	tile   = "tile both*"
+	filter = "linear (mip none)"
+}
+
+Texture( "flickerLookupMap" )
+{
+	image = Image( <flickerLookupMap, i_generic_lookup> )
+	semantic = "revealMap"
+}
+
+float2( "flickerSeed" )
+{
+	x = <flickerSeedU>
+	y = <flickerSeedV>
+	tweak = Tweak()
+	{
+		category	= "Flicker"
+		title		= "Seed (Style, Time)"
+		sortindex	= "20"
+	}
+}
+
+float1( "flickerSpeed" )
+{
+	x = <flickerSpeed>
+	tweak = Tweak()
+	{
+		category	= "Flicker"
+		title		= "Speed"
+		sortindex	= "30"
+	}
+}
+
+float2( "flickerRange" )
+{
+	x = <flickerMin>
+	y = <flickerMax>
+	tweak = Tweak()
+	{
+		category	= "Flicker"
+		title		= "Range (Min, Max)"
+		sortindex	= "40"
+	}
+}
+
+float1( "flickerPower" )
+{
+	x = <flickerPower>
+	tweak = Tweak()
+	{
+		category	= "Flicker"
+		title		= "Harshness"
+		sortindex	= "50"
+	}
+}

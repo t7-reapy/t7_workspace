@@ -1,0 +1,238 @@
+float2( "rotationMaxMin" )
+{
+	x     = <cg15_y>
+	y     = <cg16_y>
+	tweak = Tweak()
+	{
+		title     = "Rotation (Max, Min)"
+		category  = "Sprite Motion"
+		sortindex = "30"
+		default   = "0.000000"
+		range     = "-360", "360", "0.01"
+		color     = false
+	}
+}
+float2( "jitterMaxMin" )
+{
+	x     = <cg14_x>
+	y     = <cg13_x>
+	tweak = Tweak()
+	{
+		title     = "Jitter (Max, Min)"
+		category  = "Sprite Motion"
+		sortindex = "28"
+		default   = "0.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float2( "slideMaxMin" )
+{
+	x     = <cg08_x>
+	y     = <cg07_x>
+	tweak = Tweak()
+	{
+		title     = "Slide (Max, Min)"
+		category  = "Sprite Motion"
+		sortindex = "22"
+		default   = "0.500000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float2( "stretchMaxMin" )
+{
+	x     = <cg06_x>
+	y     = <cg05_x>
+	tweak = Tweak()
+	{
+		title     = "Stretch (Max, Min)"
+		category  = "Sprite Motion"
+		sortindex = "20"
+		default   = "12.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float2( "pauseMaxMin" )
+{
+	x     = <cg16_x>
+	y     = <cg15_x>
+	tweak = Tweak()
+	{
+		title     = "Pause (Max, Min)"
+		category  = "Sprite Motion"
+		sortindex = "18"
+		default   = "6.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float2( "source" )
+{
+	x     = <cg27_x>
+	y     = <cg27_y>
+	tweak = Tweak()
+	{
+		title     = "Screen Source (X, Y)"
+		category  = "Sprite Motion"
+		sortindex = "5"
+		default   = "0.000000", "-100.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+
+float2( "warpMaxMin" )
+{
+	x     = <cg12_x>
+	y     = <cg11_x>
+	tweak = Tweak()
+	{
+		title     = "Warp Factor (Max, Min)"
+		category  = "Screen Disruption"
+		sortindex = "26"
+		default   = "0.0"
+		range     = "-1e+009", "1e+009", "1.0"
+		color     = false
+	}
+}
+
+float2( "heightMaxMin" )
+{
+	x     = <cg10_x>
+	y     = <cg09_x>
+	tweak = Tweak()
+	{
+		title     = "Normal Height (Max, Min)"
+		category  = "Sprites"
+		sortindex = "24"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "heightScale" )
+{
+	x     = <cg09_y>
+	tweak = Tweak()
+	{
+		title     = "Normal Height Scale"
+		category  = "Sprites"
+		sortindex = "23"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float2( "fadeOutMaxMin" )
+{
+	x     = <cg24_x>
+	y     = <cg23_x>
+	tweak = Tweak()
+	{
+		title     = "Fade Out (Max, Min)"
+		category  = "Sprites"
+		sortindex = "16"
+		default   = "2.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float2( "fadeInMaxMin" )
+{
+	x     = <cg25_x>
+	y     = <cg29_x>
+	tweak = Tweak()
+	{
+		title     = "Fade In (Max, Min)"
+		category  = "Sprites"
+		sortindex = "14"
+		default   = "5.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float2( "lifeMaxMin" )
+{
+	x     = <cg04_x>
+	y     = <cg03_x>
+	tweak = Tweak()
+	{
+		title     = "Life (Max, Min)"
+		category  = "Sprites"
+		sortindex = "12"
+		default   = "20.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float2( "scaleMax" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	tweak = Tweak()
+	{
+		title     = "Scale Max (U, V)"
+		category  = "Sprites"
+		sortindex = "10"
+		default   = "0.060000", "0.060000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float2( "scaleMin" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	tweak = Tweak()
+	{
+		title     = "Scale Min (U, V)"
+		category  = "Sprites"
+		sortindex = "9"
+		default   = "0.030000", "0.030000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "seed" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		title     = "Seed"
+		category  = "Sprites"
+		sortindex = "8"
+		default   = "1.740000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "count" )
+{
+	x     = <cg31_x>
+	tweak = Tweak()
+	{
+		title     = "Count"
+		category  = "Sprites"
+		sortindex = "7"
+		default   = "300.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+
+float2( "sprites" )
+{
+	x     = <cg28_x>
+	y     = <cg28_y>
+	tweak = Tweak()
+	{
+		title     = "Sprites (Columns, Rows)"
+		category  = "Textures"
+		sortindex = "126"
+		default   = "2.000000", "2.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}

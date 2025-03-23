@@ -1,0 +1,129 @@
+#include "sky_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "emissive sky"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" )
+{
+	tile = "tile horizontal"
+	filter = "aniso4x (mip linear)"
+}
+
+Texture( "colorMap" )
+{
+	ref = true
+	image = Image( <colorMap, $white_diffuse_hdr> )
+	semantic = "HDR"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Color Map"
+		sortindex = "0"
+	}
+}
+
+Texture( "cloudLayer0" )
+{
+	ref = true
+	image = Image( <colorMap00, $white_diffuse_hdr> )
+	semantic = "HDR"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Layer1 Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "cloudMask0" )
+{
+	ref = true
+	image = Image( <colorMap01, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Layer1 Mask"
+		sortindex = "20"
+	}
+}
+
+Texture( "cloudLayer1" )
+{
+	ref = true
+	image = Image( <colorMap02, $white_diffuse_hdr> )
+	semantic = "HDR"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Layer2 Map"
+		sortindex = "30"
+	}
+}
+
+Texture( "cloudMask1" )
+{
+	ref = true
+	image = Image( <colorMap03, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Layer2 Mask"
+		sortindex = "40"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float3( "skyBoxCenter" )
+{
+	x	= <cg00_y>
+	y	= <cg00_z>
+	z	= <cg00_w>
+	tweak = Tweak()
+	{
+		category	= "Parameters"
+		sortindex	= "150"
+		default		= "0.0"
+		range		= "-1e+009", "1e+009", "1.0"
+	}
+}
+
+float2( "cloudHeights" )
+{
+	x	= <cg01_y>
+	y	= <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Parameters"
+		sortindex	= "160"
+		default		= "0.0"
+		range		= "-1e+009", "1e+009", "1.0"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "lit" )
+{
+	state = "sky"
+	source = "sky_latlong_parallax_hdr.hlsl"
+	defines += "USE_EMISSIVE", "MULTILAYER"
+	vs = "vs_sky"
+	ps = "ps_sky"
+}
+
+Technique( "unlit" )
+{
+	state = "disable + depthTestOnly"
+	source = "sky_latlong_parallax_hdr.hlsl"
+	vs = "vs_sky"
+	ps = "ps_sky"
+}

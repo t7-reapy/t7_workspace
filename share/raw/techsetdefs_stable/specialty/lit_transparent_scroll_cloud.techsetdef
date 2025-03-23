@@ -1,0 +1,223 @@
+#include "lit_base_shaders"
+#include "color_base"
+#include "shadowmap_technique_base"
+#include "transparent_shadow_base"
+#include "flow_base"
+#include "transparent_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "alphaMask" )
+{
+	image = Image( <colorMap03, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Alpha Mask"
+		title     = "Mask Map"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Bool( "noReceiveShadow" )
+{
+	value = <noReceiveDynamicShadow>
+}
+
+float2( "glossRange" )
+{
+	x = <glossRangeMin>
+	y = <glossRangeMax>
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Gloss Range"
+		sortindex = "45"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "zFeatherDistance" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Alpha Parameters"
+		title		= "Z Feather"
+		sortindex	= "10"
+		default		= "0.0"
+		range		= "0.0", "1e+009", "0.01"
+	}
+}
+
+float1( "falloffBegin" )
+{
+	x = <cg00_y>
+	tweak = Tweak()
+	{
+		category	= "Alpha Parameters"
+		title		= "Falloff Begin"
+		sortindex	= "20"
+		default		= "0.0"
+		range		= "0.0", "180.0", "0.01"
+	}
+}
+
+float1( "falloffEnd" )
+{
+	x = <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Alpha Parameters"
+		title		= "Falloff End"
+		sortindex	= "30"
+		default		= "0.0"
+		range		= "0.0", "180.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "colorMapScale" )
+{
+	x = <detailScaleX>
+	y = <detailScaleY>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Scale (U, V)"
+		sortindex	= "40"
+	}
+}
+
+float2( "maskRotateUVs" )
+{
+	x = <cg00_w>
+	y = <cg01_x>
+	tweak = Tweak()
+	{
+		category	= "Alpha Mask"
+		title		= "Rotation (Start, Spin)"
+		sortindex	= "20"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+
+float2( "maskScrollUVs" )
+{
+	x = <cg01_y>
+	y = <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Alpha Mask"
+		title		= "Scroll (U, V)"
+		sortindex	= "30"
+		default		= "0.0"
+		range		= "-128.0", "128.0", "0.01"
+	}
+}
+
+float2( "maskScaleUVs" )
+{
+	x = <cg01_w>
+	y = <cg02_x>
+	tweak = Tweak()
+	{
+		category	= "Alpha Mask"
+		title		= "Scale (U, V)"
+		sortindex	= "40"
+		default		= "0.0"
+		range		= "0.0", "128.0", "0.01"
+	}
+}
+
+float2( "maskOffsetUVs" )
+{
+	x = <cg02_y>
+	y = <cg02_z>
+	tweak = Tweak()
+	{
+		category	= "Alpha Mask"
+		title		= "Offset (U, V)"
+		sortindex	= "50"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.01"
+	}
+}
+
+float2( "maskZoomUVs" )
+{
+	x = <cg02_w>
+	y = <cg03_x>
+	tweak = Tweak()
+	{
+		category	= "Alpha Mask"
+		title		= "Zoom (Min, Max)"
+		sortindex	= "60"
+		default		= "1.0"
+		range		= "0.001", "128.0", "0.01"
+	}
+}
+
+float1( "maskZoomRate" )
+{
+	x = <cg03_y>
+	tweak = Tweak()
+	{
+		category	= "Alpha Mask"
+		title		= "Zoom Rate"
+		sortindex	= "70"
+		default		= "0.0"
+		range		= "0.0", "128.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "blend + depth"
+	defines = "USE_SCROLL_ROTATE_UVS"
+	source = "specialty/lit_transparent_scroll_cloud.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		floatZTexture = CodeTexture( "floatZSampler" )
+	}
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

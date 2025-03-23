@@ -1,0 +1,1246 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{2AF3A7A5-5A67-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lightingquality" "1024"
+"newsun" "1"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{4A2FDBA7-4F6E-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 8 374 -1 ) ( -2 374 -1 ) ( -2 233 -1 ) umbra_high_lod 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2 233 111 ) ( -2 374 111 ) ( 8 374 111 ) umbra_high_lod 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -7 -1 109 ) ( 3 -1 109 ) ( 3 -1 -1 ) umbra_high_lod 64 64 0 162 0 0 lightmap_gray 16384 16384 0 162 0 0
+ ( 0 86 109 ) ( 0 227 109 ) ( 0 227 -1 ) umbra_high_lod 64 64 0 162 0 0 lightmap_gray 16384 16384 0 162 0 0
+ ( 8 375 109 ) ( -2 375 109 ) ( -2 375 -1 ) umbra_high_lod 64 64 0 162 0 0 lightmap_gray 16384 16384 0 162 0 0
+ ( -3 374 109 ) ( -3 233 109 ) ( -3 233 -1 ) umbra_high_lod 64 64 0 162 0 0 lightmap_gray 16384 16384 0 162 0 0
+}
+// brush 1
+ {
+  guid "{E62EDA38-5014-11E4-B908-2C27D7F0333E}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_signage_terra_farms_arrow
+   lightmap_gray
+   2 2 16 8
+   (
+	v -2 0 31 t 67069.609 -17408 108.5625 -12 f 1
+	v -2 0 0 t 67069.609 -15425.688 108.5625 -10.0625 f 1
+   )
+   (
+	v -2 10 31 t 67389.609 -17408 109.1875 -12 f 1
+	v -2 10 0 t 67389.609 -15425.688 109.1875 -10.0625 f 1
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+// brush 2
+ {
+  guid "{E62EDA39-5014-11E4-B908-2C27D7F0333E}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_signage_terra_farms_arrow
+   lightmap_gray
+   2 2 16 8
+   (
+	v -2 122.5 49 t 67069.609 -14338.612 110.21875 -13.125 f 1
+	v -2 122.5 97 t 67069.609 -17408 110.21875 -16.125 f 1
+   )
+   (
+	v -2 112.5 49 t 67389.609 -14338.612 109.59375 -13.125 f 1
+	v -2 112.5 97 t 67389.609 -17408 109.59375 -16.125 f 1
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+// brush 3
+ {
+  guid "{E62EDA3A-5014-11E4-B908-2C27D7F0333E}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_signage_terra_farms_number_01
+   lightmap_gray
+   2 2 0 8
+   (
+	v -2 119 36 t 0 0 46 -7.75 f 1
+	v -2 119 46 t 0 -1024 46 -17 f 1
+   )
+   (
+	v -2 109 36 t 1024 0 55 -7.75 f 1
+	v -2 109 46 t 1024 -1024 55 -17 f 1
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+// brush 4
+ {
+  guid "{130AB27B-5015-11E4-B908-2C27D7F0333E}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_signage_terra_farms_caution_01
+   lightmap_gray
+   2 2 0 8
+   (
+	v -2 23 36 t 0 -0 46 -7.75 f 1
+	v -2 23 46 t 0 -1024 46 -17 f 1
+   )
+   (
+	v -2 3 36 t 1024 -0 59.615387 -7.75 f 1
+	v -2 3 46 t 1024 -1024 59.615387 -17 f 1
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+// brush 5
+ {
+  guid "{408E8EDD-5015-11E4-B908-2C27D7F0333E}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_signage_terra_farms_caution_03
+   lightmap_gray
+   2 2 0 8
+   (
+	v -2 175.5 4 t 0 -0 46 -7.75 f 1
+	v -2 175.5 14 t 0 -1024 46 -17 f 1
+   )
+   (
+	v -2 165.5 4 t 1024 -0 55 -7.75 f 1
+	v -2 165.5 14 t 1024 -1024 55 -17 f 1
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+// brush 6
+ {
+  guid "{60F5E9A6-5015-11E4-B908-2C27D7F0333E}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_signage_terra_farms_arrow
+   lightmap_gray
+   2 2 16 8
+   (
+	v -2 374 49 t 67069.609 -14338.612 110.21875 -13.125 f 1
+	v -2 374 97 t 67069.609 -17408 110.21875 -16.125 f 1
+   )
+   (
+	v -2 364 49 t 67389.609 -14338.612 109.59375 -13.125 f 1
+	v -2 364 97 t 67389.609 -17408 109.59375 -16.125 f 1
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+// brush 7
+ {
+  guid "{60F5E9A7-5015-11E4-B908-2C27D7F0333E}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_signage_terra_farms_number_01
+   lightmap_gray
+   2 2 0 8
+   (
+	v -2 265 36 t 0 0 46 -7.75 f 1
+	v -2 265 46 t 0 -1024 46 -17 f 1
+   )
+   (
+	v -2 255 36 t 1024 0 55 -7.75 f 1
+	v -2 255 46 t 1024 -1024 55 -17 f 1
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+// brush 8
+ {
+  guid "{60F5E9A8-5015-11E4-B908-2C27D7F0333E}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_signage_terra_farms_arrow
+   lightmap_gray
+   2 2 16 8
+   (
+	v -2 251.5 31 t 67069.609 -17408 108.5625 -12 f 1
+	v -2 251.5 0 t 67069.609 -15425.688 108.5625 -10.0625 f 1
+   )
+   (
+	v -2 261.5 31 t 67389.609 -17408 109.1875 -12 f 1
+	v -2 261.5 0 t 67389.609 -15425.688 109.1875 -10.0625 f 1
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+// brush 9
+ {
+  guid "{9C147B8C-5015-11E4-B908-2C27D7F0333E}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_signage_terra_farms_hex_logo
+   lightmap_gray
+   2 2 0 8
+   (
+	v -2 351 46 t 0 -0 55 -17 f 1
+	v -2 351 36 t 0 -1024 55 -7.75 f 1
+   )
+   (
+	v -2 361 46 t 1024 -0 46 -17 f 1
+	v -2 361 36 t 1024 -1024 46 -7.75 f 1
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+// brush 10
+ {
+  guid "{A9D99D8B-5015-11E4-B908-2C27D7F0333E}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_signage_terra_farms_hex_logo
+   lightmap_gray
+   2 2 0 8
+   (
+	v -2 369.5 36 t 0 0 46 -7.75 f 1
+	v -2 369.5 46 t 0 -1024 46 -17 f 1
+   )
+   (
+	v -2 359.5 36 t 1024 0 55 -7.75 f 1
+	v -2 359.5 46 t 1024 -1024 55 -17 f 1
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+}
+// entity 1
+{
+guid "{2AF3A7A6-5A67-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{7EA3C760-48F4-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 352 111 ) ( -1 352 -1 ) ( -1 108 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1080 157 0 0
+ ( -2 224 -1 ) ( -2 224 111 ) ( -2 108 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1072 157 0 0
+ ( 6 352 0 ) ( 6 344 0 ) ( 38 352 0 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -514 1376 0 0
+ ( 6 59.5 1 ) ( 6 59.5 5 ) ( 38 59.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 67.5 31 ) ( -1 70.5 31 ) ( 31 67.5 31 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -513 1304 0 0
+ ( -1 90.5 96.5 ) ( -1 90.5 95.5 ) ( 31 90.5 96.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 1
+{
+ guid "{7EA3C75E-48F4-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 352 111 ) ( -1 352 -1 ) ( -1 108 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1080 157 0 0
+ ( -2 224 -1 ) ( -2 224 111 ) ( -2 108 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1072 157 0 0
+ ( 6 59.5 1 ) ( 6 59.5 5 ) ( 38 59.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 91 97 ) ( -1 94 97 ) ( 31 91 97 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -513 1394 0 0
+ ( -1 101 32 ) ( -1 98 32 ) ( 31 98 32 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -513 1304 0 0
+ ( -1 90.5 98.5 ) ( -1 90.5 97.5 ) ( 31 90.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 2
+{
+ guid "{7EA3C75C-48F4-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 352 111 ) ( -1 352 -1 ) ( -1 108 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1080 157 0 0
+ ( -2 224 -1 ) ( -2 224 111 ) ( -2 108 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1072 157 0 0
+ ( 6 336 110 ) ( 6 344 110 ) ( 38 336 110 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -514 1376 0 0
+ ( -1 92.5 98 ) ( -1 89.5 98 ) ( 31 89.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -513 1394 0 0
+ ( -1 59.5 98 ) ( -1 59.5 102 ) ( 31 59.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+ ( -1 90.5 98.5 ) ( -1 90.5 97.5 ) ( 31 90.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 3
+{
+ guid "{781A5522-48F4-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 288 111 ) ( -1 288 -1 ) ( -1 44 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1144 157 0 0
+ ( -2 160 -1 ) ( -2 160 111 ) ( -2 44 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1136 157 0 0
+ ( 6 272 110 ) ( 6 280 110 ) ( 38 272 110 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -514 1440 0 0
+ ( -2 58.5 113 ) ( 0 58.5 113 ) ( -2 58.5 145 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+ ( -1 29.5 98 ) ( -1 26.5 98 ) ( 31 26.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -513 1458 0 0
+ ( -1 27.5 95.5 ) ( -1 27.5 96.5 ) ( 31 27.5 96.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 4
+{
+ guid "{781A5524-48F4-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 288 111 ) ( -1 288 -1 ) ( -1 44 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1144 157 0 0
+ ( -2 160 -1 ) ( -2 160 111 ) ( -2 44 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1136 157 0 0
+ ( -2 58.5 97 ) ( 0 58.5 97 ) ( -2 58.5 129 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+ ( -1 27 97 ) ( -1 30 97 ) ( 31 27 97 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -513 1458 0 0
+ ( -1 37 32 ) ( -1 34 32 ) ( 31 34 32 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -513 1368 0 0
+ ( -1 27.5 95.5 ) ( -1 27.5 96.5 ) ( 31 27.5 96.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 5
+{
+ guid "{781A5526-48F4-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 288 111 ) ( -1 288 -1 ) ( -1 44 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1144 157 0 0
+ ( -2 160 -1 ) ( -2 160 111 ) ( -2 44 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1136 157 0 0
+ ( 6 288 0 ) ( 6 280 0 ) ( 38 288 0 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -514 1440 0 0
+ ( -2 58.5 94 ) ( 0 58.5 94 ) ( -2 58.5 126 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+ ( -1 4.5 31 ) ( -1 7.5 31 ) ( 31 4.5 31 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -513 1368 0 0
+ ( -1 27.5 95.5 ) ( -1 27.5 96.5 ) ( 31 27.5 96.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 6
+{
+ guid "{781A5527-48F4-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 288 111 ) ( -1 288 -1 ) ( -1 44 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1144 157 0 0
+ ( -2 160 -1 ) ( -2 160 111 ) ( -2 44 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1136 157 0 0
+ ( 6 288 0 ) ( 6 280 0 ) ( 38 288 0 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -514 1440 0 0
+ ( 6 0 1 ) ( 6 0 5 ) ( 38 0 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 8 31 ) ( -1 11 31 ) ( 31 8 31 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -513 1368 0 0
+ ( -1 26.5 96.5 ) ( -1 26.5 95.5 ) ( 31 26.5 96.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 7
+{
+ guid "{781A5525-48F4-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 288 111 ) ( -1 288 -1 ) ( -1 44 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1144 157 0 0
+ ( -2 160 -1 ) ( -2 160 111 ) ( -2 44 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1136 157 0 0
+ ( 6 0 1 ) ( 6 0 5 ) ( 38 0 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 27.5 97 ) ( -1 30.5 97 ) ( 31 27.5 97 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -513 1458 0 0
+ ( -1 37 32 ) ( -1 34 32 ) ( 31 34 32 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -513 1368 0 0
+ ( -1 26.5 98.5 ) ( -1 26.5 97.5 ) ( 31 26.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 8
+{
+ guid "{781A5523-48F4-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 288 111 ) ( -1 288 -1 ) ( -1 44 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1144 157 0 0
+ ( -2 160 -1 ) ( -2 160 111 ) ( -2 44 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1136 157 0 0
+ ( 6 272 110 ) ( 6 280 110 ) ( 38 272 110 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -514 1440 0 0
+ ( -1 32.5 98 ) ( -1 29.5 98 ) ( 31 29.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1301 0 0 lightmap_gray 16384 16384 -513 1458 0 0
+ ( -1 0 98 ) ( -1 0 102 ) ( 31 0 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+ ( -1 26.5 98.5 ) ( -1 26.5 97.5 ) ( 31 26.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+}
+// entity 2
+{
+guid "{2AF3A7A7-5A67-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 91 97.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 3
+{
+guid "{2AF3A7A8-5A67-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 91 31.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 4
+{
+guid "{2AF3A7A9-5A67-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 59 97.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 5
+{
+guid "{2AF3A7AA-5A67-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 59 31.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 6
+{
+guid "{2AF3A7AB-5A67-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 27 97.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 7
+{
+guid "{2AF3A7AC-5A67-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 27 31.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 8
+{
+guid "{2AF3A7AD-5A67-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "misc_model"
+"angles" "0 90 180"
+"model" "p7_glass_support_bracket_half"
+"origin" "0 6 31.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 9
+{
+guid "{2AF3A7AE-5A67-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "misc_model"
+"angles" "0 90 180"
+"model" "p7_glass_support_bracket_half"
+"origin" "0 6 97.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 10
+{
+guid "{32246F15-558C-4FB2-97F1-B3BE5D31251A}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{3923E1EB-4F4E-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 384 111 ) ( -1 384 -1 ) ( -1 140 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1269 161 0 0 lightmap_gray 16384 16384 -1048 157 0 0
+ ( -2 256 -1 ) ( -2 256 111 ) ( -2 140 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1301 161 0 0 lightmap_gray 16384 16384 -1040 157 0 0
+ ( 6 91.5 1 ) ( 6 91.5 5 ) ( 38 91.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 123 97 ) ( -1 126 97 ) ( 31 123 97 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1269 0 0 lightmap_gray 16384 16384 -513 1362 0 0
+ ( -1 133 32 ) ( -1 130 32 ) ( 31 130 32 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1269 0 0 lightmap_gray 16384 16384 -513 1272 0 0
+ ( -1 122.5 98.5 ) ( -1 122.5 97.5 ) ( 31 122.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 1
+{
+ guid "{3923E1EC-4F4E-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 384 111 ) ( -1 384 -1 ) ( -1 140 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1269 161 0 0 lightmap_gray 16384 16384 -1048 157 0 0
+ ( -2 256 -1 ) ( -2 256 111 ) ( -2 140 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1269 161 0 0 lightmap_gray 16384 16384 -1040 157 0 0
+ ( 6 384 0 ) ( 6 376 0 ) ( 38 384 0 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1269 0 0 lightmap_gray 16384 16384 -514 1344 0 0
+ ( 6 91.5 1 ) ( 6 91.5 5 ) ( 38 91.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 99.5 31 ) ( -1 102.5 31 ) ( 31 99.5 31 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1269 0 0 lightmap_gray 16384 16384 -513 1272 0 0
+ ( -1 122.5 96.5 ) ( -1 122.5 95.5 ) ( 31 122.5 96.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 2
+{
+ guid "{3923E1ED-4F4E-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 384 111 ) ( -1 384 -1 ) ( -1 140 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1269 161 0 0 lightmap_gray 16384 16384 -1048 157 0 0
+ ( -2 256 -1 ) ( -2 256 111 ) ( -2 140 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1269 161 0 0 lightmap_gray 16384 16384 -1040 157 0 0
+ ( 6 368 110 ) ( 6 376 110 ) ( 38 368 110 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1269 0 0 lightmap_gray 16384 16384 -514 1344 0 0
+ ( -1 124.5 98 ) ( -1 121.5 98 ) ( 31 121.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1269 0 0 lightmap_gray 16384 16384 -513 1362 0 0
+ ( -1 91.5 98 ) ( -1 91.5 102 ) ( 31 91.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+ ( -1 122.5 98.5 ) ( -1 122.5 97.5 ) ( 31 122.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+}
+// entity 11
+{
+guid "{AEB8777A-8E03-451E-81E6-1F58214ADC1A}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 123 97.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 12
+{
+guid "{CFA22CD8-D896-4550-959B-F64AD021A28A}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 123 31.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 13
+{
+guid "{0D526D67-1611-4DE5-9DD2-EB57326C9474}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{3923E1FA-4F4E-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 416 111 ) ( -1 416 -1 ) ( -1 172 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1237 161 0 0 lightmap_gray 16384 16384 -1016 157 0 0
+ ( -2 288 -1 ) ( -2 288 111 ) ( -2 172 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1237 161 0 0 lightmap_gray 16384 16384 -1008 157 0 0
+ ( 6 400 110 ) ( 6 408 110 ) ( 38 400 110 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1237 0 0 lightmap_gray 16384 16384 -514 1312 0 0
+ ( -1 156.5 98 ) ( -1 153.5 98 ) ( 31 153.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1237 0 0 lightmap_gray 16384 16384 -513 1330 0 0
+ ( -1 123.5 98 ) ( -1 123.5 102 ) ( 31 123.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+ ( -1 154.5 98.5 ) ( -1 154.5 97.5 ) ( 31 154.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 1
+{
+ guid "{3923E1FB-4F4E-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 416 111 ) ( -1 416 -1 ) ( -1 172 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1237 161 0 0 lightmap_gray 16384 16384 -1016 157 0 0
+ ( -2 288 -1 ) ( -2 288 111 ) ( -2 172 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1237 161 0 0 lightmap_gray 16384 16384 -1008 157 0 0
+ ( 6 416 0 ) ( 6 408 0 ) ( 38 416 0 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1237 0 0 lightmap_gray 16384 16384 -514 1312 0 0
+ ( 6 123.5 1 ) ( 6 123.5 5 ) ( 38 123.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 131.5 31 ) ( -1 134.5 31 ) ( 31 131.5 31 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1237 0 0 lightmap_gray 16384 16384 -513 1240 0 0
+ ( -1 154.5 96.5 ) ( -1 154.5 95.5 ) ( 31 154.5 96.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 2
+{
+ guid "{3923E1FC-4F4E-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 416 111 ) ( -1 416 -1 ) ( -1 172 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1237 161 0 0 lightmap_gray 16384 16384 -1016 157 0 0
+ ( -2 288 -1 ) ( -2 288 111 ) ( -2 172 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1237 161 0 0 lightmap_gray 16384 16384 -1008 157 0 0
+ ( 6 123.5 1 ) ( 6 123.5 5 ) ( 38 123.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 155 97 ) ( -1 158 97 ) ( 31 155 97 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1237 0 0 lightmap_gray 16384 16384 -513 1330 0 0
+ ( -1 165 32 ) ( -1 162 32 ) ( 31 162 32 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1237 0 0 lightmap_gray 16384 16384 -513 1240 0 0
+ ( -1 154.5 98.5 ) ( -1 154.5 97.5 ) ( 31 154.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+}
+// entity 14
+{
+guid "{843686BE-7C08-4188-8B88-9EEE0A5C91F4}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 155 97.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 15
+{
+guid "{6CC6BEE7-3861-46BB-8613-DB45D1835491}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 187 97.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 16
+{
+guid "{5D048B7C-F9C0-4E88-851A-69C786202907}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 219 97.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 17
+{
+guid "{A0611F00-D054-4532-B7D9-9E809910C71F}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 251 97.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 18
+{
+guid "{15A5AA7A-6C7C-4856-860D-110094A71ECD}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 283 97.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 19
+{
+guid "{0029D682-59E0-463E-AFD4-DC0AE6825A6B}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{95D36231-4F4E-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 576 111 ) ( -1 576 -1 ) ( -1 332 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1077 161 0 0 lightmap_gray 16384 16384 -856 157 0 0
+ ( -2 448 -1 ) ( -2 448 111 ) ( -2 332 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1077 161 0 0 lightmap_gray 16384 16384 -848 157 0 0
+ ( 6 560 110 ) ( 6 568 110 ) ( 38 560 110 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1077 0 0 lightmap_gray 16384 16384 -514 1152 0 0
+ ( -1 316.5 98 ) ( -1 313.5 98 ) ( 31 313.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1077 0 0 lightmap_gray 16384 16384 -513 1170 0 0
+ ( -1 283.5 98 ) ( -1 283.5 102 ) ( 31 283.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+ ( -1 314.5 98.5 ) ( -1 314.5 97.5 ) ( 31 314.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 1
+{
+ guid "{95D36232-4F4E-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 576 111 ) ( -1 576 -1 ) ( -1 332 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1077 161 0 0 lightmap_gray 16384 16384 -856 157 0 0
+ ( -2 448 -1 ) ( -2 448 111 ) ( -2 332 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1077 161 0 0 lightmap_gray 16384 16384 -848 157 0 0
+ ( 6 283.5 1 ) ( 6 283.5 5 ) ( 38 283.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 315 97 ) ( -1 318 97 ) ( 31 315 97 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1077 0 0 lightmap_gray 16384 16384 -513 1170 0 0
+ ( -1 325 32 ) ( -1 322 32 ) ( 31 322 32 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1077 0 0 lightmap_gray 16384 16384 -513 1080 0 0
+ ( -1 314.5 98.5 ) ( -1 314.5 97.5 ) ( 31 314.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 2
+{
+ guid "{95D36233-4F4E-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 576 111 ) ( -1 576 -1 ) ( -1 332 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1077 161 0 0 lightmap_gray 16384 16384 -856 157 0 0
+ ( -2 448 -1 ) ( -2 448 111 ) ( -2 332 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1077 161 0 0 lightmap_gray 16384 16384 -848 157 0 0
+ ( 6 576 0 ) ( 6 568 0 ) ( 38 576 0 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1077 0 0 lightmap_gray 16384 16384 -514 1152 0 0
+ ( 6 283.5 1 ) ( 6 283.5 5 ) ( 38 283.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 291.5 31 ) ( -1 294.5 31 ) ( 31 291.5 31 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1077 0 0 lightmap_gray 16384 16384 -513 1080 0 0
+ ( -1 314.5 96.5 ) ( -1 314.5 95.5 ) ( 31 314.5 96.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+}
+// entity 20
+{
+guid "{6B37EA06-BC45-47A7-8F86-429937C79594}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 315 97.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 21
+{
+guid "{6F09020A-E606-430E-87A0-7B805D3C96D5}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 315 31.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 22
+{
+guid "{7A867FB0-1CC7-4840-B664-B70D1A388693}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{95D36240-4F4E-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 608 111 ) ( -1 608 -1 ) ( -1 364 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1045 161 0 0 lightmap_gray 16384 16384 -824 157 0 0
+ ( -2 480 -1 ) ( -2 480 111 ) ( -2 364 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1045 161 0 0 lightmap_gray 16384 16384 -816 157 0 0
+ ( 6 608 0 ) ( 6 600 0 ) ( 38 608 0 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1045 0 0 lightmap_gray 16384 16384 -514 1120 0 0
+ ( 6 315.5 1 ) ( 6 315.5 5 ) ( 38 315.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 323.5 31 ) ( -1 326.5 31 ) ( 31 323.5 31 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1045 0 0 lightmap_gray 16384 16384 -513 1048 0 0
+ ( -1 346.5 96.5 ) ( -1 346.5 95.5 ) ( 31 346.5 96.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 1
+{
+ guid "{95D36241-4F4E-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 608 111 ) ( -1 608 -1 ) ( -1 364 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1045 161 0 0 lightmap_gray 16384 16384 -824 157 0 0
+ ( -2 480 -1 ) ( -2 480 111 ) ( -2 364 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1045 161 0 0 lightmap_gray 16384 16384 -816 157 0 0
+ ( 6 315.5 1 ) ( 6 315.5 5 ) ( 38 315.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 347 97 ) ( -1 350 97 ) ( 31 347 97 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1045 0 0 lightmap_gray 16384 16384 -513 1138 0 0
+ ( -1 357 32 ) ( -1 354 32 ) ( 31 354 32 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1045 0 0 lightmap_gray 16384 16384 -513 1048 0 0
+ ( -1 346.5 98.5 ) ( -1 346.5 97.5 ) ( 31 346.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 2
+{
+ guid "{95D36242-4F4E-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 608 111 ) ( -1 608 -1 ) ( -1 364 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1045 161 0 0 lightmap_gray 16384 16384 -824 157 0 0
+ ( -2 480 -1 ) ( -2 480 111 ) ( -2 364 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1045 161 0 0 lightmap_gray 16384 16384 -816 157 0 0
+ ( 6 592 110 ) ( 6 600 110 ) ( 38 592 110 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1045 0 0 lightmap_gray 16384 16384 -514 1120 0 0
+ ( -1 348.5 98 ) ( -1 345.5 98 ) ( 31 345.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1045 0 0 lightmap_gray 16384 16384 -513 1138 0 0
+ ( -1 315.5 98 ) ( -1 315.5 102 ) ( 31 315.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+ ( -1 346.5 98.5 ) ( -1 346.5 97.5 ) ( 31 346.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+}
+// entity 23
+{
+guid "{F140E0D7-725F-44B9-8026-6B471F1BA47D}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 347 97.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 24
+{
+guid "{ECA03B12-2A3D-4A6A-8629-96F8A3C7DE7B}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 347 31.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 25
+{
+guid "{2AF3A7AF-5A67-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{95D36251-4F4E-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 640 111 ) ( -1 640 -1 ) ( -1 396 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1013 161 0 0 lightmap_gray 16384 16384 -792 157 0 0
+ ( -2 512 -1 ) ( -2 512 111 ) ( -2 396 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1013 161 0 0 lightmap_gray 16384 16384 -784 157 0 0
+ ( 6 640 0 ) ( 6 632 0 ) ( 38 640 0 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1013 0 0 lightmap_gray 16384 16384 -514 1088 0 0
+ ( 6 347.5 1 ) ( 6 347.5 5 ) ( 38 347.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 351 31 ) ( -1 354 31 ) ( 31 351 31 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1013 0 0 lightmap_gray 16384 16384 -513 1016 0 0
+ ( -1 374 96.5 ) ( -1 374 95.5 ) ( 31 374 96.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 1
+{
+ guid "{95D36250-4F4E-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 640 111 ) ( -1 640 -1 ) ( -1 396 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1013 161 0 0 lightmap_gray 16384 16384 -792 157 0 0
+ ( -2 512 -1 ) ( -2 512 111 ) ( -2 396 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1013 161 0 0 lightmap_gray 16384 16384 -784 157 0 0
+ ( 6 347.5 1 ) ( 6 347.5 5 ) ( 38 347.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 374.5 97 ) ( -1 377.5 97 ) ( 31 374.5 97 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1013 0 0 lightmap_gray 16384 16384 -513 1106 0 0
+ ( -1 389 32 ) ( -1 386 32 ) ( 31 386 32 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1013 0 0 lightmap_gray 16384 16384 -513 1016 0 0
+ ( -1 374 98.5 ) ( -1 374 97.5 ) ( 31 374 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 2
+{
+ guid "{95D3624F-4F4E-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 640 111 ) ( -1 640 -1 ) ( -1 396 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1013 161 0 0 lightmap_gray 16384 16384 -792 157 0 0
+ ( -2 512 -1 ) ( -2 512 111 ) ( -2 396 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1013 161 0 0 lightmap_gray 16384 16384 -784 157 0 0
+ ( 6 624 110 ) ( 6 632 110 ) ( 38 624 110 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1013 0 0 lightmap_gray 16384 16384 -514 1088 0 0
+ ( -1 380.5 98 ) ( -1 377.5 98 ) ( 31 377.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1013 0 0 lightmap_gray 16384 16384 -513 1106 0 0
+ ( -1 347.5 98 ) ( -1 347.5 102 ) ( 31 347.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+ ( -1 374 98.5 ) ( -1 374 97.5 ) ( 31 374 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+}
+// entity 26
+{
+guid "{2AF3A7B0-5A67-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "misc_model"
+"angles" "360 270 3.58585e-005"
+"model" "p7_glass_support_bracket_half"
+"origin" "0 368 97.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 27
+{
+guid "{2AF3A7B1-5A67-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "misc_model"
+"angles" "360 270 3.58585e-005"
+"model" "p7_glass_support_bracket_half"
+"origin" "0 368 31.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 28
+{
+guid "{7FCF90F8-9B8C-45A8-9927-2E25B79A41A9}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{A10CD6F7-5001-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 512 111 ) ( -1 512 -1 ) ( -1 268 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1141 161 0 0 lightmap_gray 16384 16384 -920 157 0 0
+ ( -2 384 -1 ) ( -2 384 111 ) ( -2 268 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1141 161 0 0 lightmap_gray 16384 16384 -912 157 0 0
+ ( 6 512 0 ) ( 6 504 0 ) ( 38 512 0 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1141 0 0 lightmap_gray 16384 16384 -514 1216 0 0
+ ( 6 219.5 1 ) ( 6 219.5 5 ) ( 38 219.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 227.5 31 ) ( -1 230.5 31 ) ( 31 227.5 31 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1141 0 0 lightmap_gray 16384 16384 -513 1144 0 0
+ ( -1 250.5 96.5 ) ( -1 250.5 95.5 ) ( 31 250.5 96.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 1
+{
+ guid "{A10CD6F8-5001-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 512 111 ) ( -1 512 -1 ) ( -1 268 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1141 161 0 0 lightmap_gray 16384 16384 -920 157 0 0
+ ( -2 384 -1 ) ( -2 384 111 ) ( -2 268 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1141 161 0 0 lightmap_gray 16384 16384 -912 157 0 0
+ ( 6 219.5 1 ) ( 6 219.5 5 ) ( 38 219.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 251 97 ) ( -1 254 97 ) ( 31 251 97 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1141 0 0 lightmap_gray 16384 16384 -513 1234 0 0
+ ( -1 261 32 ) ( -1 258 32 ) ( 31 258 32 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1141 0 0 lightmap_gray 16384 16384 -513 1144 0 0
+ ( -1 250.5 98.5 ) ( -1 250.5 97.5 ) ( 31 250.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 2
+{
+ guid "{A10CD6F9-5001-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 512 111 ) ( -1 512 -1 ) ( -1 268 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1141 161 0 0 lightmap_gray 16384 16384 -920 157 0 0
+ ( -2 384 -1 ) ( -2 384 111 ) ( -2 268 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1141 161 0 0 lightmap_gray 16384 16384 -912 157 0 0
+ ( 6 496 110 ) ( 6 504 110 ) ( 38 496 110 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1141 0 0 lightmap_gray 16384 16384 -514 1216 0 0
+ ( -1 252.5 98 ) ( -1 249.5 98 ) ( 31 249.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1141 0 0 lightmap_gray 16384 16384 -513 1234 0 0
+ ( -1 219.5 98 ) ( -1 219.5 102 ) ( 31 219.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+ ( -1 250.5 98.5 ) ( -1 250.5 97.5 ) ( 31 250.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+}
+// entity 29
+{
+guid "{60E21E1A-6223-4496-B2C5-778CEFCBA712}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 251 31.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 30
+{
+guid "{3D976ED5-995F-4277-A11E-5D3ADA2D5373}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{A10CD6FB-5001-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 544 111 ) ( -1 544 -1 ) ( -1 300 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1109 161 0 0 lightmap_gray 16384 16384 -888 157 0 0
+ ( -2 416 -1 ) ( -2 416 111 ) ( -2 300 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1109 161 0 0 lightmap_gray 16384 16384 -880 157 0 0
+ ( 6 528 110 ) ( 6 536 110 ) ( 38 528 110 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1109 0 0 lightmap_gray 16384 16384 -514 1184 0 0
+ ( -1 284.5 98 ) ( -1 281.5 98 ) ( 31 281.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1109 0 0 lightmap_gray 16384 16384 -513 1202 0 0
+ ( -1 251.5 98 ) ( -1 251.5 102 ) ( 31 251.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+ ( -1 282.5 98.5 ) ( -1 282.5 97.5 ) ( 31 282.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 1
+{
+ guid "{A10CD6FC-5001-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 544 111 ) ( -1 544 -1 ) ( -1 300 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1109 161 0 0 lightmap_gray 16384 16384 -888 157 0 0
+ ( -2 416 -1 ) ( -2 416 111 ) ( -2 300 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1109 161 0 0 lightmap_gray 16384 16384 -880 157 0 0
+ ( 6 251.5 1 ) ( 6 251.5 5 ) ( 38 251.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 283 97 ) ( -1 286 97 ) ( 31 283 97 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1109 0 0 lightmap_gray 16384 16384 -513 1202 0 0
+ ( -1 293 32 ) ( -1 290 32 ) ( 31 290 32 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1109 0 0 lightmap_gray 16384 16384 -513 1112 0 0
+ ( -1 282.5 98.5 ) ( -1 282.5 97.5 ) ( 31 282.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 2
+{
+ guid "{A10CD6FD-5001-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 544 111 ) ( -1 544 -1 ) ( -1 300 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1109 161 0 0 lightmap_gray 16384 16384 -888 157 0 0
+ ( -2 416 -1 ) ( -2 416 111 ) ( -2 300 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1109 161 0 0 lightmap_gray 16384 16384 -880 157 0 0
+ ( 6 544 0 ) ( 6 536 0 ) ( 38 544 0 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1109 0 0 lightmap_gray 16384 16384 -514 1184 0 0
+ ( 6 251.5 1 ) ( 6 251.5 5 ) ( 38 251.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 259.5 31 ) ( -1 262.5 31 ) ( 31 259.5 31 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1109 0 0 lightmap_gray 16384 16384 -513 1112 0 0
+ ( -1 282.5 96.5 ) ( -1 282.5 95.5 ) ( 31 282.5 96.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+}
+// entity 31
+{
+guid "{C001A278-28B8-4137-9F3E-14FCEC52DE99}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 283 31.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 32
+{
+guid "{4252211F-84C5-4C20-B776-1E9354F6DAD5}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{A10CD717-5001-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 448 111 ) ( -1 448 -1 ) ( -1 204 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1205 161 0 0 lightmap_gray 16384 16384 -984 157 0 0
+ ( -2 320 -1 ) ( -2 320 111 ) ( -2 204 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1205 161 0 0 lightmap_gray 16384 16384 -976 157 0 0
+ ( 6 432 110 ) ( 6 440 110 ) ( 38 432 110 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1205 0 0 lightmap_gray 16384 16384 -514 1280 0 0
+ ( -1 188.5 98 ) ( -1 185.5 98 ) ( 31 185.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1205 0 0 lightmap_gray 16384 16384 -513 1298 0 0
+ ( -1 155.5 98 ) ( -1 155.5 102 ) ( 31 155.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+ ( -1 186.5 98.5 ) ( -1 186.5 97.5 ) ( 31 186.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 1
+{
+ guid "{A10CD718-5001-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 448 111 ) ( -1 448 -1 ) ( -1 204 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1205 161 0 0 lightmap_gray 16384 16384 -984 157 0 0
+ ( -2 320 -1 ) ( -2 320 111 ) ( -2 204 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1205 161 0 0 lightmap_gray 16384 16384 -976 157 0 0
+ ( 6 155.5 1 ) ( 6 155.5 5 ) ( 38 155.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 187 97 ) ( -1 190 97 ) ( 31 187 97 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1205 0 0 lightmap_gray 16384 16384 -513 1298 0 0
+ ( -1 197 32 ) ( -1 194 32 ) ( 31 194 32 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1205 0 0 lightmap_gray 16384 16384 -513 1208 0 0
+ ( -1 186.5 98.5 ) ( -1 186.5 97.5 ) ( 31 186.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 2
+{
+ guid "{A10CD719-5001-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 448 111 ) ( -1 448 -1 ) ( -1 204 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1205 161 0 0 lightmap_gray 16384 16384 -984 157 0 0
+ ( -2 320 -1 ) ( -2 320 111 ) ( -2 204 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1205 161 0 0 lightmap_gray 16384 16384 -976 157 0 0
+ ( 6 448 0 ) ( 6 440 0 ) ( 38 448 0 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1205 0 0 lightmap_gray 16384 16384 -514 1280 0 0
+ ( 6 155.5 1 ) ( 6 155.5 5 ) ( 38 155.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 163.5 31 ) ( -1 166.5 31 ) ( 31 163.5 31 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1205 0 0 lightmap_gray 16384 16384 -513 1208 0 0
+ ( -1 186.5 96.5 ) ( -1 186.5 95.5 ) ( 31 186.5 96.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+}
+// entity 33
+{
+guid "{211F1C92-814D-472D-98AD-75CE5DE8D423}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 187 31.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 34
+{
+guid "{868FA09B-EFC4-4301-BA88-F044FD2D27A1}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{A10CD71B-5001-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 480 111 ) ( -1 480 -1 ) ( -1 236 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1173 161 0 0 lightmap_gray 16384 16384 -952 157 0 0
+ ( -2 352 -1 ) ( -2 352 111 ) ( -2 236 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1173 161 0 0 lightmap_gray 16384 16384 -944 157 0 0
+ ( 6 480 0 ) ( 6 472 0 ) ( 38 480 0 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1173 0 0 lightmap_gray 16384 16384 -514 1248 0 0
+ ( 6 187.5 1 ) ( 6 187.5 5 ) ( 38 187.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 195.5 31 ) ( -1 198.5 31 ) ( 31 195.5 31 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1173 0 0 lightmap_gray 16384 16384 -513 1176 0 0
+ ( -1 218.5 96.5 ) ( -1 218.5 95.5 ) ( 31 218.5 96.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 1
+{
+ guid "{A10CD71C-5001-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 480 111 ) ( -1 480 -1 ) ( -1 236 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1173 161 0 0 lightmap_gray 16384 16384 -952 157 0 0
+ ( -2 352 -1 ) ( -2 352 111 ) ( -2 236 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1173 161 0 0 lightmap_gray 16384 16384 -944 157 0 0
+ ( 6 187.5 1 ) ( 6 187.5 5 ) ( 38 187.5 1 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -470 157 0 0
+ ( -1 219 97 ) ( -1 222 97 ) ( 31 219 97 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1173 0 0 lightmap_gray 16384 16384 -513 1266 0 0
+ ( -1 229 32 ) ( -1 226 32 ) ( 31 226 32 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1173 0 0 lightmap_gray 16384 16384 -513 1176 0 0
+ ( -1 218.5 98.5 ) ( -1 218.5 97.5 ) ( 31 218.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+// brush 2
+{
+ guid "{A10CD71D-5001-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail umbraTarget ai_nosight;
+ ( -1 480 111 ) ( -1 480 -1 ) ( -1 236 -1 ) t7_wood_veneer_sugarpine_matte 64 64 -1173 161 0 0 lightmap_gray 16384 16384 -952 157 0 0
+ ( -2 352 -1 ) ( -2 352 111 ) ( -2 236 111 ) t7_wood_veneer_sugarpine_matte 64 64 -1173 161 0 0 lightmap_gray 16384 16384 -944 157 0 0
+ ( 6 464 110 ) ( 6 472 110 ) ( 38 464 110 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1173 0 0 lightmap_gray 16384 16384 -514 1248 0 0
+ ( -1 220.5 98 ) ( -1 217.5 98 ) ( 31 217.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 1173 0 0 lightmap_gray 16384 16384 -513 1266 0 0
+ ( -1 187.5 98 ) ( -1 187.5 102 ) ( 31 187.5 98 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+ ( -1 218.5 98.5 ) ( -1 218.5 97.5 ) ( 31 218.5 98.5 ) t7_wood_veneer_sugarpine_matte 64 64 -513 161 0 0 lightmap_gray 16384 16384 -513 161 0 0
+}
+}
+// entity 35
+{
+guid "{3806CA43-B1D4-4429-84FE-92CCD1D2D604}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 219 31.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 36
+{
+guid "{9375D24D-2D03-47FB-8B58-F2B94696FC96}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_glass_support_bracket"
+"origin" "0 155 31.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 37
+{
+guid "{40BC9008-AFF4-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_volume_decal"
+"angles" "3.41509e-006 180 -86.4002"
+"decalLayerSort" "Damage - New"
+"decalLayerSortEnum" "1"
+"decalsize" "1 4 3"
+"modeloverridematerial" "t7_decal_bullet_wood_exit_02"
+"origin" "-2.5 21.51 40.088"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 38
+{
+guid "{40BC9011-AFF4-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_volume_decal"
+"angles" "0 180 86.5999"
+"decalLayerSort" "Damage - New"
+"decalLayerSortEnum" "1"
+"decalsize" "1 3 3"
+"modeloverridematerial" "t7_decal_bullet_wood_exit_01"
+"origin" "-2.5 64.78 67.013"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 39
+{
+guid "{40BC9014-AFF4-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_volume_decal"
+"angles" "0 180 -97.8001"
+"decalLayerSort" "Damage - New"
+"decalLayerSortEnum" "1"
+"decalsize" "1 4 4"
+"modeloverridematerial" "t7_decal_bullet_wood_exit_01"
+"origin" "-2.5 38.4 48.29"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 40
+{
+guid "{40BC9017-AFF4-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_volume_decal"
+"angles" "1.70755e-006 180 -90.6001"
+"decalLayerSort" "Damage - New"
+"decalLayerSortEnum" "1"
+"decalsize" "1 4 4"
+"modeloverridematerial" "t7_decal_bullet_wood_exit_03"
+"origin" "-1.5 97.84 44.489"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 41
+{
+guid "{40BC901A-AFF4-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_volume_decal"
+"angles" "1.70755e-006 180 -92"
+"decalLayerSort" "Damage - New"
+"decalLayerSortEnum" "1"
+"decalsize" "1 3 3"
+"modeloverridematerial" "t7_decal_bullet_wood_exit_03"
+"origin" "-2.5 51.72 52.487"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 42
+{
+guid "{40BC9020-AFF4-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_volume_decal"
+"angles" "0 180 -97.8001"
+"decalLayerSort" "Damage - New"
+"decalLayerSortEnum" "1"
+"decalsize" "1 4 4"
+"modeloverridematerial" "t7_decal_bullet_wood_exit_01"
+"origin" "-2.5 22.4 65.29"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 43
+{
+guid "{40BC900B-AFF4-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_volume_decal"
+"angles" "360 180 -86.3005"
+"decalLayerSort" "Damage - New"
+"decalLayerSortEnum" "1"
+"decalsize" "1 3 3"
+"modeloverridematerial" "t7_decal_bullet_wood_exit_03"
+"origin" "-2.5 102.54 27.707"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 44
+{
+guid "{40BC901D-AFF4-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_volume_decal"
+"angles" "0 180 86.5999"
+"decalLayerSort" "Damage - New"
+"decalLayerSortEnum" "1"
+"decalsize" "1 3 3"
+"modeloverridematerial" "t7_decal_bullet_wood_exit_01"
+"origin" "-2.5 40.78 21.013"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 45
+{
+guid "{40BC9023-AFF4-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_volume_decal"
+"angles" "0 180 -97.8001"
+"decalLayerSort" "Damage - New"
+"decalLayerSortEnum" "1"
+"decalsize" "1 4 4"
+"modeloverridematerial" "t7_decal_bullet_wood_exit_01"
+"origin" "-2.5 74.9 26.79"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 46
+{
+guid "{40BC900E-AFF4-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_volume_decal"
+"angles" "0 180 -92.7"
+"decalLayerSort" "Damage - New"
+"decalLayerSortEnum" "1"
+"decalsize" "1 4 4"
+"modeloverridematerial" "t7_decal_bullet_wood_exit_01"
+"origin" "-2.5 116.07 37.754"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 47
+{
+guid "{D82240AF-AFF4-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_volume_decal"
+"angles" "0 270 -92.7"
+"decalLayerSort" "Damage - New"
+"decalLayerSortEnum" "1"
+"decalsize" "1 1.5 1.5"
+"modeloverridematerial" "t7_decal_bullet_metal_impact_02"
+"origin" "-6.07001 163.5 47.754"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}

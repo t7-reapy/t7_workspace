@@ -1,0 +1,184 @@
+[
+	{
+		"paneName" : "Vehicle",
+		"shortcut" : "Shift+V",
+		 "paneContents" : [
+		 { 
+			"groupName" : "Triggered Vehicle Creation and Manipulation",
+			"members" : [
+				{
+					"name" : "Spawn Vehicle Group",
+					"type" : "groupEntities",
+					"key" :  "script_vehiclespawngroup",
+					"entTypes" : [ "trigger", "vehicle" ],
+					"help" : "Must have trigger(s) and vehicle(s) selected.\nWhen one of the grouped triggers is triggered all of the grouped vehicles will spawn and attach to their targeted path nodes."
+				},
+				{
+					"name" : "Move Vehicle Group",
+					"type" : "groupEntities",
+					"key" : "script_vehiclestartmove",
+					"entTypes" : [ "trigger", "vehicle" ],
+					"help" : "Must have trigger(s) and vehicle(s) selected.\nWhen one of the grouped triggers is triggered all of the grouped vehicles will start moving along their vehicle paths (vehicle must be spawned first)"
+				},
+				{
+					"name" : "Delete Vehicle Group",
+					"type" : "groupEntities",
+					"key" : "script_vehiclegroupdelete",
+					"entTypes" : [ "trigger", "vehicle" ],
+					"help" : "Must have trigger(s) and vehicle(s) selected\nWhen one of the grouped triggers is triggered all of the grouped vehicles will be deleted (works well to get rid of a vehicle that will never be seen by the player again)"
+				}
+			]
+		},
+		{ 
+			"groupName" : "AI And Vehicle Interaction",
+			"members" : [
+				{
+					"name" : "Vehicle Riders Group",
+					"type" : "groupEntities",
+					"key" : "script_vehicleride",
+					"entTypes" : [ "spawner", "vehicle" ],
+					"help" : "Must have spawner(s) and 1 vehicle selected\nThe grouped AI will ride on/in the grouped vehicle. The spawners automatically spawn when the vehicle is spawned"
+				},
+				{
+					"name" : "Vehicle Riders Position",
+					"type" : "setEnum",
+					"key" : "script_startingposition",
+					"enumVals" : [ "driver", "passenger1", "passenger2", "passenger3", "passenger4", "passenger5", "passenger6", "passenger7", "passenger8", "passenger9", "crew1", "crew2", "crew3", "crew4", "crew5", "crew6", "crew7", "crew8", "crew9", "gunner1", "gunner2", "gunner3", "gunner4", "gunner5", "gunner6", "gunner7", "gunner8", "gunner9" ],
+					"entTypes" : [ "spawner" ],
+					"help" : "Must have spawner(s) selected\nSets the position that this AI will ride in vehicle."
+				},
+				{
+					"name" : "Walk With Vehicle Group",
+					"type" : "groupEntities",
+					"key" : "script_vehiclewalk",
+					"entTypes" : [ "trigger", "vehicle" ],
+					"help" : "Must have spawner(s) and 1 vehicle selected\nThe grouped AI will walk beside the grouped vehicle. The spawners automatically spawn when the vehicle is spawned"
+				}
+			]
+		},
+		{ 
+			"groupName" : "Advanced Vehicle Manipulation",
+			"members" : [
+				{
+					"name" : "Vehicle Attack Group",
+					"type" : "groupEntities",
+					"key" : "script_vehicleattackgroup",
+					"entTypes" : [ "node", "vehicle" ],
+					"help" : "Must have an vehicle node and vehicle(s) selected\nWhen a vehicle gets to the selected vehicle node it will begin to attack all of the grouped vehicles on the opposing team. These grouped vehicles will automatically return fire"
+				}
+			]
+		},
+		{ 
+			"groupName" : "Misc Vehicle Properties",
+			"members" : [
+				{
+					"name" : "Set Team",
+					"type"  : "setEnum",
+					"key" : "script_team",
+					"enumVals" : [ "", "allies", "axis" ],
+					"entTypes" : [ "vehicle" ],
+					"help" : "Must have vehicle(s) selected\nSpecifies which team a vehicle belongs to so other vehicles know who their enemies are"
+				},
+				{
+					"name" : "Set Crash Type",
+					"type"  : "setEnum",
+					"key" : "script_crashtype",
+					"enumVals" : [ "default", "plane", "forced" ],
+					"entTypes" : [ "vehicle" ],
+					"help" :  "Must have vehicle node(s) selected\nNode must first be grouped with another node using 'vehicle detour'. Then set this value on the first node of the crash path.\n\nWhen a vehicle is killed it will find the next available crash path that it hasn't passed and take that path when it gets there.\n\ndefault: once a vehicle has used this crash path other vehicles wont be able to use it (should use this most of the time)\n\nplane: multiple vehicles can take this crash path (causing vehicles to pile up at the end of the path). This is usually only helpful for planes that pileup off the screen or get deleted at the end of their paths.\n\nforced: all vehicles (including a vehicle that is still alive) will take this crash path. Only one vehicle will use the path." 
+				}
+			]
+		},
+		{ 
+			"groupName" : "Vehicle Node Properties",
+			"members" : [
+				{
+					"name" : "Vehicle Unload",
+					"type" : "setEnum",
+					"key" : "script_unload",
+					"enumVals" : [ "all", "driver", "passengers", "crew", "gunners" ],
+					"entTypes" : [ "node" ],
+					"help" : "Must have a vehicle node selected.  Sets group to unload at this node."
+				}
+			]
+		}
+		]
+	},
+	{
+		"paneName" : "Misc",
+		"paneContents" : [
+		 { 
+			"groupName" : "Misc Scripting",
+			"members" : [
+				{
+					"name" : "Kill Spawner Group",
+					"type" : "groupEntities",
+					"key" :  "script_killspawner",
+					"entTypes" : [ "trigger", "spawn" ],
+					"help" : "Must have trigger(s) and spawner(s) selected.\nWhen the trigger hits, this group of spawners will be deleted."
+				}
+			]
+		},
+		{ 
+			"groupName" : "Scene Scripting",
+			"members" : [
+				{
+					"name" : "Init Scene Group",
+					"type" : "groupEntities",
+					"key" :  "scriptgroup_initscenes",
+					"entTypes" : [ "trigger", "scene" ],
+					"help" : "Must have trigger(s) and scene(s) selected.\nWhen the trigger hits, this group of scenes will initialize."
+				},
+				{
+					"name" : "Play Scene Group",
+					"type" : "groupEntities",
+					"key" :  "scriptgroup_playscenes",
+					"entTypes" : [ "trigger", "scene" ],
+					"help" : "Must have trigger(s) and scene(s) selected.\nWhen the trigger hits, this group of scenes will play."
+				},
+				{
+					"name" : "Stop Scene Group",
+					"type" : "groupEntities",
+					"key" :  "scriptgroup_stopscenes",
+					"entTypes" : [ "trigger", "scene" ],
+					"help" : "Must have trigger(s) and scene(s) selected.\nWhen the trigger hits, this group of scenes will stop."
+				}
+			]
+		},
+		{ 
+			"groupName" : "Player Spawn Points",
+			"members" : [
+				{
+					"name" : "Enable Spawn Points",
+					"type" : "groupEntities",
+					"key" :  "scriptgroup_playerspawns_enable",
+					"entTypes" : [ "trigger", "cp_coop" ],
+					"help" : "Must have trigger(s) and coop spawn point(s) selected.\nWhen the trigger hits, this group of spawnpoints will be enabled."
+				},
+				{
+					"name" : "Disable Spawn Points",
+					"type" : "groupEntities",
+					"key" :  "scriptgroup_playerspawns_disable",
+					"entTypes" : [ "trigger", "cp_coop" ],
+					"help" : "Must have trigger(s) and coop spawn point(s) selected.\nWhen the trigger hits, this group of spawnpoints will be disabled."
+				},
+				{
+					"name" : "Regroup (catch up teleport) Spawn Points",
+					"type" : "groupEntities",
+					"key" :  "scriptgroup_playerspawns_regroup",
+					"entTypes" : [ "trigger", "cp_coop" ],
+					"help" : "Must have trigger(s) and coop spawn point(s) selected.\nWhen the trigger hits, any players lagging behind will respawn at these spawn points to catch up to the other players."
+				},
+				{
+					"name" : "Regroup Distance",
+					"type" : "inputValue",
+					"key" :  "script_regroup_distance",
+					"value" : "1500",
+					"entTypes" : [ "trigger" ],
+					"help" : "Must have trigger(s) selected.\nWill force other players to teleport to grouped spawn points regardless of distance."
+				}
+			]
+		}
+		]
+	}
+]

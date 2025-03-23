@@ -1,0 +1,31 @@
+
+#include "2d_base"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Technique( "unlit" )
+{
+	state = "blend + nocull"
+#if TOOLSGFX == "1"
+	source = "ToolsGfx/simple.hlsl"
+#else
+	source = "techsetdef_2d.hlsl"
+#endif
+
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		vertexDecl = "generic"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX != "1"
+		colorMapSampler = CodeTexture( "compositeResult" )
+#endif
+	}
+}

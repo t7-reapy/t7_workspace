@@ -1,0 +1,162 @@
+
+//
+// OIT
+//
+ComputeShader("oit_apply")
+{
+	source = "oit_apply.hlsl"
+
+	defines += "OIT_PIX_COUNT_MODE [idx]"			// idx is a special key - the index inside the ComputeShaderSet
+#if PLAT_PC == "1"
+	defines += "OIT_PIX_ENTRY_COUNT_BIT [0;1]"	// 0,1 -> 8, 16
+#else
+	defines += "OIT_PIX_ENTRY_COUNT_BIT [0;0]"	// 0 -> 9
+#endif
+
+#if PLAT_DURANGO == "1"
+#endif
+	
+}
+
+ComputeShader("oit_apply_debug") : "oit_apply"
+{
+	defines += "OIT_DEBUG_DRAW"
+}
+
+ComputeShader("oit_apply_ship") : "oit_apply"
+{
+	defines += "OIT_SHIP_SHADER"
+}
+
+ComputeShader("oit_apply_shadow") : "oit_apply"
+{
+	defines += "DONT_DISABLE_SHADOW"
+}
+
+//
+// COMPUTE SPRITES
+//
+ComputeShader("fx_compute_sprite_cull")
+{
+	source = "fx_compute_sprite_cull.hlsl"
+}
+
+ComputeShader("fx_compute_sprite_cull_down")
+{
+	source = "fx_compute_sprite_cull.hlsl"
+	defines = "downsample_main cs_main"
+}
+
+ComputeShader("fx_compute_sprite_cull_clear")
+{
+	source = "fx_compute_sprite_cull.hlsl"
+	defines = "clear_main cs_main"
+}
+
+ComputeShader("fx_compute_sprite_cull_qtree")
+{
+	source = "fx_compute_sprite_cull.hlsl"
+	defines = "make_qtree cs_main"
+}
+
+ComputeShader("fx_compute_sprite_light_shadow")
+{
+	source = "fx_compute_sprite_light.hlsl"
+	defines = "DONT_DISABLE_SHADOW"
+}
+
+ComputeShader("fx_compute_sprite_light")
+{
+	source = "fx_compute_sprite_light.hlsl"
+}
+
+ComputeShader("fx_compute_sprite_light_lmap")
+{
+	source = "fx_compute_sprite_light.hlsl"
+	defines = "PROCESSING_SPRITES 0"
+}
+
+#if PLAT_ORBIS == "1" || PLAT_DURANGO == "1"
+ComputeShader("fx_compute_sprite_fill_indices")
+{
+	source = "fx_compute_sprite_fill_indices.hlsl"
+}
+
+ComputeShader("fx_compute_sprite_pack")
+{
+	source = "fx_compute_sprite_pack.hlsl"
+}
+#endif
+
+ComputeShader("debugfog_overlay")
+{
+	source = "debugfog_overlay.hlsl"
+}
+
+ComputeShader("copy_rect")
+{
+	source = "copy_rect.hlsl"
+}
+
+#if PLAT_ORBIS == "1" || PLAT_DURANGO == "1"
+
+//
+// fx_gpufx
+//
+
+ComputeShader("fx_gpufx_update_elem_spawners")
+{
+	defines = "FX_GPUFX_BUFFER_COUNTER 1"
+	defines += "FX_GPUFX 1"
+	source = "fx_gpufx_update_elem_spawners.hlsl"
+}
+
+ComputeShader("fx_gpufx_update_elems")
+{
+	defines = "FX_GPUFX 1"
+	source = "fx_gpufx_update_elems.hlsl"
+}
+
+ComputeShader("fx_gpufx_draw_elems")
+{
+	defines = "FX_GPUFX 1"
+	source = "fx_gpufx_draw_elems.hlsl"
+}
+
+ComputeShader("fx_gpufx_gen_dispatch")
+{
+	defines = "FX_GPUFX 1"
+	source = "fx_gpufx_gen_dispatch.hlsl"
+}
+
+ComputeShader("fx_gpufx_sprite_sort")
+{
+	defines = "FX_GPUFX 1"
+	source = "fx_gpufx_sprite_sort.hlsl"
+}
+
+ComputeShader("fx_gpufx_clamp_min_unary")
+{
+	source = "fx_gpufx_clamp_min.hlsl"
+}
+
+ComputeShader("fx_gpufx_clamp_min_binary")
+{
+	defines = "BINARY 1"
+	source = "fx_gpufx_clamp_min.hlsl"
+}
+
+ComputeShader("effect_cloud_process")
+{
+	defines = "FX_GPUFX 1"
+	defines += "FX_PROCESS_CLOUDS 1"
+	source = "effect_cloud_process.hlsl"
+}
+
+#endif
+
+// Lens Flare
+ComputeShader("lensflare_clear_buffers")
+{
+	source = "techsetdef_lensflare_clear_compute.hlsl"
+}

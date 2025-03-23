@@ -1,0 +1,337 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+Sampler( "bilinearClampSampler" )
+{
+	tile   = "tile horizontal"
+	filter = "linear (mip none)"
+}
+
+Texture( "lookupTexture" )
+{
+	image = Image( <alphaRevealMap, $half_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Hole Glow"
+		title     = "Lookup Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "spaceTexture" )
+{
+	image = Image( <colorMap06, $white> )
+	tweak = Tweak()
+	{
+		category  = "Space Anus"
+		title     = "Space Background Map"
+		sortindex = "20"
+	}
+}
+
+Texture( "spaceAnusTexture" )
+{
+	image = Image( <colorMap01, $white> )
+	tweak = Tweak()
+	{
+		category  = "Space Anus"
+		title     = "Space Anus Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "pantherVagTexture" )
+{
+	image = Image( <colorMap00, $white> )
+	tweak = Tweak()
+	{
+		category  = "Time Panther"
+		title     = "Panther Vag Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "lightningTexture" )
+{
+	image = Image( <colorMap02, $white> )
+	tweak = Tweak()
+	{
+		category  = "Lightning"
+		title     = "Lightning Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "sparkleTexture" )
+{
+	image = Image( <colorMap05, $white> )
+	tweak = Tweak()
+	{
+		category  = "Lightning"
+		title     = "Spark Map"
+		sortindex = "20"
+	}
+}
+
+Texture( "faceTexture1" )
+{
+	image = Image( <colorMap03, $white> )
+	tweak = Tweak()
+	{
+		category  = "Faces"
+		title     = "Face Map 1"
+		sortindex = "10"
+	}
+}
+
+Texture( "faceTexture2" )
+{
+	image = Image( <colorMap04, $white> )
+	tweak = Tweak()
+	{
+		category  = "Faces"
+		title     = "Face Map 2"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "anusSpin" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		category  = "Space Anus"
+		title     = "Spin"
+		sortindex = "30"
+		default   = "13.0"
+		range     = "-1e+009", "1e+009", "1.0"
+	}
+}
+
+float1( "anusGlow" )
+{
+	x     = <cg04_y>
+	tweak = Tweak()
+	{
+		category  = "Space Anus"
+		title     = "Glow"
+		sortindex = "40"
+		default   = "1024"
+		range     = "1", "32000", "1"
+	}
+}
+
+float1( "anusOpacity" )
+{
+	x     = <cg04_z>
+	tweak = Tweak()
+	{
+		category  = "Space Anus"
+		title     = "Max Opacity"
+		sortindex = "50"
+		default   = "1.0"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+float1( "vagSpin" )
+{
+	x     = <cg04_w>
+	tweak = Tweak()
+	{
+		category  = "Time Panther"
+		title     = "Spin"
+		sortindex = "20"
+		default   = "13.0"
+		range     = "-1e+009", "1e+009", "1.0"
+	}
+}
+
+float1( "vagGlow" )
+{
+	x     = <cg05_x>
+	tweak = Tweak()
+	{
+		category  = "Time Panther"
+		title     = "Glow"
+		sortindex = "30"
+		default   = "1024"
+		range     = "1", "32000", "1"
+	}
+}
+
+float1( "vagOpacity" )
+{
+	x     = <cg05_y>
+	tweak = Tweak()
+	{
+		category  = "Time Panther"
+		title     = "Max Opacity"
+		sortindex = "40"
+		default   = "1.0"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+float1( "wipeGlow" )
+{
+	x     = <cg05_z>
+	tweak = Tweak()
+	{
+		category  = "Hole Glow"
+		title     = "Glow"
+		sortindex = "20"
+		default   = "1024"
+		range     = "1", "32000", "1"
+	}
+}
+
+float1( "warpPixels" )
+{
+	x     = <cg05_w>
+	tweak = Tweak()
+	{
+		category  = "Warp"
+		title     = "Warp Pixels"
+		sortindex = "10"
+		default   = "8"
+		range     = "0", "1024", "1"
+	}
+}
+
+float2( "lightningReveal" )
+{
+	x = <cg06_y>
+	y = <cg06_z>
+	tweak = Tweak()
+	{
+		category  = "Lightning"
+		title	  = "Reveal (Soft, Ramp)"
+		sortindex = "30"
+		default	  = "0.1"
+		range	  = "0", "1", "0.01"
+	}
+}
+
+float1( "lightningGlow" )
+{
+	x     = <cg06_x>
+	tweak = Tweak()
+	{
+		category  = "Lightning"
+		title     = "Lightning Glow"
+		sortindex = "40"
+		default   = "1024"
+		range     = "1", "32000", "1"
+	}
+}
+
+float1( "sparkleSpeed" )
+{
+	x     = <cg07_y>
+	tweak = Tweak()
+	{
+		category  = "Lightning"
+		title     = "Spark Speed"
+		sortindex = "50"
+		default   = "1.0"
+		range     = "-16.0", "16.0", "0.01"
+	}
+}
+
+float1( "sparkleGlow" )
+{
+	x     = <cg07_z>
+	tweak = Tweak()
+	{
+		category  = "Lightning"
+		title     = "Spark Glow"
+		sortindex = "60"
+		default   = "1024"
+		range     = "1", "32000", "1"
+	}
+}
+
+float1( "faceOpacity" )
+{
+	x     = <cg06_y>
+	tweak = Tweak()
+	{
+		category  = "Faces"
+		title     = "Max Opacity"
+		sortindex = "30"
+		default   = "1.0"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+float1( "faceGlow" )
+{
+	x     = <cg06_z>
+	tweak = Tweak()
+	{
+		category  = "Faces"
+		title     = "Glow"
+		sortindex = "40"
+		default   = "1024"
+		range     = "1", "32000", "1"
+	}
+}
+
+float1( "faceAngle" )
+{
+	x     = <cg06_w>
+	tweak = Tweak()
+	{
+		category  = "Faces"
+		title     = "Angle"
+		sortindex = "50"
+		default   = "0.1"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+float1( "faceSpeed" )
+{
+	x     = <cg07_x>
+	tweak = Tweak()
+	{
+		category  = "Faces"
+		title     = "Speed"
+		sortindex = "60"
+		default   = "0.09"
+		range     = "0.0", "16.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+		source = "postFX/2d_teleportation.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "postFX/2d_teleportation.hlsl"
+		frameBuffer = CodeTexture( "resolvedScene" )
+	}
+}

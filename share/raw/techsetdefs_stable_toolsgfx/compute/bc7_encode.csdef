@@ -1,0 +1,46 @@
+#if PLAT_ORBIS == "1" || PLAT_DURANGO == "1"
+
+ComputeShader("compress_try_mode_456")
+{
+	source = "bc7_encode.hlsl"
+	defines += "TRY_MODE_456"
+	defines += "MODE_ID 0"
+}
+
+ComputeShader("compress_try_mode_1")
+{
+	source = "bc7_encode.hlsl"
+	defines += "TRY_MODE_137", "MODE_ID 1"
+}
+
+ComputeShader("compress_try_mode_3")
+{
+	source = "bc7_encode.hlsl"
+	defines += "TRY_MODE_137", "MODE_ID 3"
+}
+
+ComputeShader("compress_try_mode_7")
+{
+	source = "bc7_encode.hlsl"
+	defines += "TRY_MODE_137", "MODE_ID 7"
+}
+
+ComputeShader("compress_try_mode_0")
+{
+	source = "bc7_encode.hlsl"
+	defines += "TRY_MODE_02", "MODE_ID 0"
+}
+
+ComputeShader("compress_try_mode_2")
+{
+	source = "bc7_encode.hlsl"
+	defines += "TRY_MODE_02", "MODE_ID 2"
+}
+
+ComputeShader("compress_encode_block")
+{
+	source = "bc7_encode.hlsl"
+	defines += "ENCODE_BLOCK"
+}
+
+#endif

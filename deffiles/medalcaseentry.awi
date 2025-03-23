@@ -1,0 +1,26 @@
+void GenerateUI( asset Asset )
+{
+	// this stuff is intentionally hidden and are script bundle items
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false ).SetValue( "SCRIPTBUNDLE" );
+	Asset.AddEntry_String( "type", "medalcaseentry" ).Show( false ).SetValue( "medalcaseentry" );
+	Asset.AddEntry_Combo( "vmType", "Client" ).Show( false ).SetValue( "Client" );
+	
+	Asset.BeginCategory( "Game Info" );
+	{
+		Asset.AddEntry_Int( "int_XPBonus", 5000, 0, 100000 ).SetStep( 100 ).SetTitle( "XP Awarded On Completion" );
+	}
+	
+	Asset.BeginCategory( "World Info" );
+	{
+		Asset.AddEntry_AssetCombo( "xmodel_model", "xmodel" ).SetTitle( "Model" );
+	}
+	
+	Asset.BeginCategory( "UI Info", 0.7, 0.5, 0.2, "ui.png" );
+	{
+		Asset.AddEntry_String( "xstring_displayName", "" ).SetTitle( "Display Name" );
+		Asset.AddEntry_String( "xstring_requirements", "" ).SetTitle( "Requirements" );
+		Asset.AddEntry_String( "xstring_aarDisplayName", "" ).SetTitle( "AAR Display Name" );
+		Asset.AddEntry_AssetCombo("image_smallIcon", "image").SetTitle( "Small Icon" );
+		Asset.AddEntry_AssetCombo("image_largeIcon", "image").SetTitle( "Large Icon" );
+	}
+}

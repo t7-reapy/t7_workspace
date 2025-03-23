@@ -1,0 +1,168 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearClampler" )
+{
+	tile   = "no tile"
+	filter = "linear (mip none)"
+}
+
+Sampler( "bilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "linear (mip none)"
+}
+
+Texture( "distortionTexture" )
+{
+	image = Image( <normalMap, $normal> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Distortion"
+		title     = "Warp Map"
+		sortindex = "0"
+	}
+}
+
+Texture( "maskTexture" )
+{
+	image = Image( <alphaRevealMap, $half_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		title     = "Mask Map"
+		sortindex = "10"
+	}
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "blurRadius" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		category  = "Blur"
+		title     = "MAX Blur Amount"
+		sortindex = "20"
+		default   = "8.0"
+		range     = "0.0", "1e+009", "0.01"
+	}
+}
+
+float1( "distortionAmount" )
+{
+	x     = <cg00_z>
+	tweak = Tweak()
+	{
+		category  = "Distortion"
+		title     = "MAX Warp Amount"
+		sortindex = "30"
+		default   = "8.0"
+		range     = "0.0", "1024.0", "1.0"
+	}
+}
+
+float1( "distortionZoom1" )
+{
+	x     = <cg00_w>
+	tweak = Tweak()
+	{
+		category  = "Distortion"
+		title     = "Distortion Zoom (Layer1)"
+		sortindex = "40"
+		default   = "0.2"
+		range     = "0.0", "1024.0", "0.01"
+	}
+}
+
+float1( "distortionZoom2" )
+{
+	x     = <cg00_y>
+	tweak = Tweak()
+	{
+		category  = "Distortion"
+		title     = "Distortion Zoom (Layer2)"
+		sortindex = "70"
+		default   = "0.2"
+		range     = "0.0", "1024.0", "0.01"
+	}
+}
+
+float1( "distortionRotate1" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		category  = "Distortion"
+		title     = "Distortion Rotate (Layer1)"
+		sortindex = "50"
+		default   = "0.2"
+		range     = "-1024.0", "1024.0", "0.01"
+	}
+}
+
+float1( "distortionRotate2" )
+{
+	x     = <cg01_y>
+	tweak = Tweak()
+	{
+		category  = "Distortion"
+		title     = "Distortion Rotate (Layer2)"
+		sortindex = "80"
+		default   = "0.2"
+		range     = "-1024.0", "1024.0", "0.01"
+	}
+}
+
+float2( "distortionScale1" )
+{
+	x     = <cg01_z>
+	y	  = <cg01_w>
+	tweak = Tweak()
+	{
+		category  = "Distortion"
+		title     = "Distortion Scale (Layer1)"
+		sortindex = "60"
+		default   = "0.2"
+		range     = "-1024.0", "1024.0", "0.01"
+	}
+}
+
+float2( "distortionScale2" )
+{
+	x     = <cg02_x>
+	y	  = <cg02_y>
+	tweak = Tweak()
+	{
+		category  = "Distortion"
+		title     = "Distortion Scale (Layer2)"
+		sortindex = "90"
+		default   = "0.2"
+		range     = "-1024.0", "1024.0", "0.01"
+	}
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postFX/zm_screen_warp.hlsl"
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedScene" )
+	}
+}

@@ -1,0 +1,101 @@
+#include "skin_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit forward sss"
+	availablePrefixes = "mc/ mcs/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "veinMap" )
+{
+	image = Image( <colorMap03, $white> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Vein Map"
+		sortindex = "0"
+	}
+}
+
+float1( "hdrScale" )
+{
+	x = <scaleRGB>
+	tweak = Tweak( "Emissive", "HDR Scale", "20" )
+}
+
+float1( "alphaRevealSoftEdge" )
+{
+	x = <alphaRevealSoftEdge>
+	tweak = Tweak()
+	{
+		category  = "Reveal"
+		title     = "Soft Edge"
+		sortindex = "25"
+	}
+}
+
+float1( "alphaRevealRamp" )
+{
+	x = <alphaRevealRamp>
+	tweak = Tweak()
+	{
+		category  = "Reveal"
+		title     = "Ramp"
+		sortindex = "35"
+	}
+}
+
+float1( "scriptReplacement1" )
+{
+	x = <cg01_x>
+	tweak = Tweak()
+	{
+		category  = "Script Vector Simulator"
+		title     = "Desaturation"
+		sortindex = "10"
+		default   = "0.0"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+float1( "scriptReplacement2" )
+{
+	x = <cg01_y>
+	tweak = Tweak()
+	{
+		category  = "Script Vector Simulator"
+		title     = "Vein Reveal"
+		sortindex = "20"
+		default   = "0.0"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "lit_skin_advanced.hlsl"
+	defines = "USE_DEPTH_PREPASS"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque sss"
+	source = "lit_skin_advanced.hlsl"
+	defines = "BASE_SPEC", "USE_DETAIL_MAP", "USE_COLOR_TINT", "USE_INFECTION", "NO_VERTEX_ALPHA"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}

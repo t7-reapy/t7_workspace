@@ -1,0 +1,93 @@
+#include "lit_base_shaders"
+#include "lit_decal_base.inc"
+#include "flipbook_base"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "base decal renderflags"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Signage"
+		sortindex = "50"
+	}
+}
+
+Texture( "colorMap" )
+{
+	image = Image( <specColorMap, $white_specular> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Signage"
+		title     = "Images"
+		sortindex = "20"
+	}
+}
+
+Texture( "thicknessMap" )
+{
+	image = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "thicknessMap"
+	tweak = Tweak()
+	{
+		category  = "Signage"
+		title     = "Thickness Map"
+		sortindex = "30"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "rowCount" ).tweak = Tweak()
+{
+	category	= "Signage"
+	title		= "Row count"
+	sortindex	= "30"
+}
+
+float1( "columnCount" ).tweak = Tweak()
+{
+	category	= "Signage"
+	title		= "Column Count"
+	sortindex	= "40"
+}
+
+float1( "imageTime" ).tweak = Tweak()
+{
+	category	= "Signage"
+	title		= "Image Time"
+	sortindex	= "45"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines = ""
+}
+
+Technique( "gbuffer" ) : "base lit decal gbuffer specular"
+{
+	defines += "USE_FLIPBOOK_UVS"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

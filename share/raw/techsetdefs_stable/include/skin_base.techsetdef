@@ -1,0 +1,75 @@
+#include "lit_detail_base_mid"
+
+Sampler( "PointSampler" )
+{
+	tile = "no tile"
+	filter = "nomip nearest"
+	nobias = true
+}
+Sampler( "LinearSampler" )
+{
+	tile = "no tile"
+	filter = "nomip bilinear"
+	nobias = true
+}
+Sampler( "PointSampler" ).tweak = ""
+Sampler( "LinearSampler" ).tweak = ""
+
+Bool( "enableGTAO" )
+{
+	value = <enableGTAO>
+	tweak = Tweak()
+	{
+	category  = "Occlusion"
+	title     = "Enable GTAO"
+	sortindex = "0"
+	}
+}
+
+Texture( "thicknessMap" )
+{
+	image = Image( <specColorMap, $white_thickness> )
+	semantic = "thicknessMap"
+	tweak = Tweak()
+	{
+		category  = "Lighting"
+		title     = "Thickness"
+		sortindex = "10"
+	}
+}
+
+Texture( "coneLUTMap" )
+{
+	image = Image( $env_cone_lut )
+	semantic = "One Channel"
+}
+
+Technique( "build shadowmap depth" ) : "build shadowmap depth nocull"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes nocull"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) : "build shadowmap depth layered nocull"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

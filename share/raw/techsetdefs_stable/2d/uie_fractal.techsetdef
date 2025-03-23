@@ -1,0 +1,73 @@
+#include "uie_base"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Sampler( "tileMipBilinearSampler" )
+{
+	tile = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+
+Texture( "colorMapSampler1" )
+{
+	image = Image( <colorMap00, $white> )
+	tweak = Tweak()
+	{
+		category  = "Maps"
+		title     = "Triangle Mask"
+		sortindex = "0"
+	}
+}
+
+Texture( "colorMapSampler2" )
+{
+	image = Image( <colorMap01, $white> )
+	tweak = Tweak()
+	{
+		category  = "Maps"
+		title     = "Dot Tile"
+		sortindex = "1"
+	}
+}
+
+Texture( "colorMapSampler3" )
+{
+	image = Image( <colorMap02, $white> )
+	tweak = Tweak()
+	{
+		category  = "Maps"
+		title     = "Noise"
+		sortindex = "2"
+	}
+}
+
+Technique( "unlit" )
+{
+	state = "blend + nocull"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "uie/uie_fractal.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "uie/uie_fractal.hlsl"
+		colorMapSampler = CodeTexture( "codeTexture0" )
+		colorMapSampler1 = "colorMapSampler1"
+		colorMapSampler2 = "colorMapSampler2"
+		colorMapSampler3 = "colorMapSampler3"
+		tileMipBilinearSampler = "tileMipBilinearSampler"
+#endif
+	}
+}

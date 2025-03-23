@@ -1,0 +1,520 @@
+iwmap 4
+// entity 0
+{
+guid "{1D2D59BC-4A2B-4971-8557-52977FAFBC97}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lightingquality" "1024"
+"newsun" "1"
+"samplescale" "1"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+// brush 0
+{
+ guid "{3452F765-AD92-11E4-BFB4-645106422D82}"
+ ( -47 -9 15.5 ) ( 47 -9 15.5 ) ( 47 24 28.5 ) metal_clip_nosight 64 64 0 -4 0 0 lightmap_gray 16384 16384 0 -4 0 0
+ ( 47 -9 17 ) ( -47 -9 17 ) ( -47 24 30 ) metal_clip_nosight 64 64 0 -4 0 0 lightmap_gray 16384 16384 0 -4 0 0
+ ( -47 -9 17 ) ( 47 -9 17 ) ( 47 -9 4 ) metal_clip_nosight 64 64 0 -1.5 0 0 lightmap_gray 16384 16384 0 -1.5 0 0
+ ( 58 -10.5 15.5 ) ( 58 -10.5 17 ) ( 58 22.5 30 ) metal_clip_nosight 64 64 4 -1.5 0 0 lightmap_gray 16384 16384 4 -1.5 0 0
+ ( 47 23.5 30 ) ( -47 23.5 30 ) ( -47 23.5 17 ) metal_clip_nosight 64 64 0 -1.5 0 0 lightmap_gray 16384 16384 0 -1.5 0 0
+ ( -58 -11 17 ) ( -58 -11 15.5 ) ( -58 22 28.5 ) metal_clip_nosight 64 64 4 -1.5 0 0 lightmap_gray 16384 16384 4 -1.5 0 0
+}
+// brush 1
+{
+ guid "{EC246B9B-AD91-11E4-BFB4-645106422D82}"
+ ( 47 -10 8 ) ( -47 -10 8 ) ( -47 -20 8 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -47 -18 26 ) ( 47 -18 26 ) ( 47 -21 8 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 47 -18 26 ) ( 47 -7 26 ) ( 47 -10 8 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 47 -7 26 ) ( -47 -7 26 ) ( -47 -10 8 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -47 -7 26 ) ( -47 -18 26 ) ( -47 -21 8 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 47 -14 25 ) ( 47 -7 26 ) ( 79 -7 26 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 47 -18.5 22 ) ( 47 -14 25 ) ( 79 -14 25 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 2
+{
+ guid "{5839995E-AD91-11E4-BFB4-645106422D82}"
+ ( 58 -10 8 ) ( 47 -10 8 ) ( 47 -21 8 ) cloth_clip_nosight 64 64 105 0 0 0 lightmap_gray 16384 16384 111 0 0 0
+ ( 47 -5 36.5 ) ( 58 -5 36.5 ) ( 58 -18 34 ) cloth_clip_nosight 64 64 105 0 0 0 lightmap_gray 16384 16384 111 0 0 0
+ ( 47 -18 34 ) ( 58 -18 34 ) ( 58 -21 8 ) cloth_clip_nosight 64 64 105 0 0 0 lightmap_gray 16384 16384 111 0 0 0
+ ( 58 -5 36 ) ( 58 -10 8 ) ( 58 -21 8 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 58 -5 36 ) ( 47 -5 36 ) ( 47 -10 8 ) cloth_clip_nosight 64 64 105 0 0 0 lightmap_gray 16384 16384 111 0 0 0
+ ( 47 -10 8 ) ( 47 -5 36 ) ( 47 -18 34 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 3
+{
+ guid "{4B676EFA-AD91-11E4-BFB4-645106422D82}"
+ ( -47 -10 8 ) ( -58 -10 8 ) ( -58 -21 8 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 6 0 0 0
+ ( -58 -5 36.5 ) ( -47 -5 36.5 ) ( -47 -18 34 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 6 0 0 0
+ ( -58 -18 34 ) ( -47 -18 34 ) ( -47 -21 8 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 6 0 0 0
+ ( -47 -5 36 ) ( -47 -10 8 ) ( -47 -21 8 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -47 -5 36 ) ( -58 -5 36 ) ( -58 -10 8 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 6 0 0 0
+ ( -58 -10 8 ) ( -58 -5 36 ) ( -58 -18 34 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 4
+{
+ guid "{1E80B94B-AD92-11E4-BFB4-645106422D82}"
+ ( 58 24 28.5 ) ( -58 24 28.5 ) ( -58 20 28.5 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -58 20 41.5 ) ( 58 20 41.5 ) ( 58 20 24 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 58 20 41.5 ) ( 58 24 41.5 ) ( 58 24 24 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 58 24 41.5 ) ( -58 24 41.5 ) ( -58 24 24 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -58 24 41.5 ) ( -58 20 41.5 ) ( -58 20 24 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 60 20 39.5 ) ( 60 24 40 ) ( 92 24 40 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 5
+{
+ guid "{6C055915-AD91-11E4-BFB4-645106422D82}"
+ ( -47 8.5 24 ) ( 47.5 8.5 24 ) ( 47.5 20 28.5 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -47 8.5 41.5 ) ( -47 20 41.5 ) ( 47.5 20 41.5 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 47.5 8.5 24 ) ( -47 8.5 24 ) ( -47 8.5 41.5 ) cloth_clip_nosight 64 64 0 -5.5 0 0 lightmap_gray 16384 16384 0 -5.5 0 0
+ ( 47 8.5 41.5 ) ( 47 20 41.5 ) ( 47 20 13.5 ) cloth_clip_nosight 64 64 0 -5.5 0 0 lightmap_gray 16384 16384 0 -5.5 0 0
+ ( -47 20 28.5 ) ( 47.5 20 28.5 ) ( 47.5 20 41.5 ) cloth_clip_nosight 64 64 0 -5.5 0 0 lightmap_gray 16384 16384 0 -5.5 0 0
+ ( -47 20 41.5 ) ( -47 8.5 41.5 ) ( -47 8.5 13.5 ) cloth_clip_nosight 64 64 0 -5.5 0 0 lightmap_gray 16384 16384 0 -5.5 0 0
+}
+// brush 6
+{
+ guid "{A5A7AE79-AD91-11E4-BFB4-645106422D82}"
+ ( 47 8.5 24 ) ( 36 8.5 24 ) ( 36 -8.5 17.5 ) cloth_clip_nosight 64 64 -11 0 0 0 lightmap_gray 16384 16384 -11 0 0 0
+ ( 36 -7 26 ) ( 36 8.5 26 ) ( 47 8.5 26 ) cloth_clip_nosight 64 64 -11 0 0 0 lightmap_gray 16384 16384 -11 0 0 0
+ ( 47 -8.5 17.5 ) ( 36 -8.5 17.5 ) ( 36 -7 26 ) cloth_clip_nosight 64 64 -11 0 0 0 lightmap_gray 16384 16384 -11 0 0 0
+ ( 47 -7 26 ) ( 47 8.5 26 ) ( 47 8.5 22 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 36 8.5 24 ) ( 47 8.5 24 ) ( 47 8.5 26 ) cloth_clip_nosight 64 64 -11 0 0 0 lightmap_gray 16384 16384 -11 0 0 0
+ ( -47 8.5 26 ) ( -47 -7 26 ) ( -47 -7 22 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 7
+{
+ guid "{5839995F-AD91-11E4-BFB4-645106422D82}"
+ ( 58 -5 36.5 ) ( 47 -5 36.5 ) ( 47 20 39.5 ) cloth_clip_nosight 64 64 105 0 0 0 lightmap_gray 16384 16384 111 0 0 0
+ ( 53 -10 8 ) ( 47 -10 8 ) ( 47 -5 36 ) cloth_clip_nosight 64 64 105 0 0 0 lightmap_gray 16384 16384 111 0 0 0
+ ( 58 -9 27 ) ( 58 24 27 ) ( 58 24 2 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 47 20 28 ) ( 53 20 28 ) ( 53 20 40 ) cloth_clip_nosight 64 64 105 0 0 0 lightmap_gray 16384 16384 111 0 0 0
+ ( 47 24 40 ) ( 47 -9 40 ) ( 47 -9 15 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 53 23.5 30 ) ( 53 -6.5 18 ) ( 85 23.5 30 ) cloth_clip_nosight 64 64 105 0 0 0 lightmap_gray 16384 16384 111 0 0 0
+}
+// brush 8
+{
+ guid "{3373B068-AD91-11E4-BFB4-645106422D82}"
+ ( -47 -5 36.5 ) ( -58 -5 36.5 ) ( -58 20 39.5 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 6 0 0 0
+ ( -52 -10 8 ) ( -58 -10 8 ) ( -58 -5 36 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 6 0 0 0
+ ( -47 -9 27 ) ( -47 24 27 ) ( -47 24 2 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -58 20 28 ) ( -52 20 28 ) ( -52 20 40 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 6 0 0 0
+ ( -58 24 40 ) ( -58 -9 40 ) ( -58 -9 15 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -52 23.5 30 ) ( -52 -6.5 18 ) ( -20 23.5 30 ) cloth_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 6 0 0 0
+}
+// brush 9
+{
+ guid "{5FB0C32E-AD91-11E4-BFB4-645106422D82}"
+ ( 64 -10 8 ) ( 58 -10 8 ) ( 58 -21 8 ) metal_clip_nosight 64 64 122 0 0 0 lightmap_gray 16384 16384 122 0 0 0
+ ( 64 -18 34 ) ( 58 -18 34 ) ( 58 -5 36 ) metal_clip_nosight 64 64 122 0 0 0 lightmap_gray 16384 16384 122 0 0 0
+ ( 58 -18 34 ) ( 64 -18 34 ) ( 64 -21 8 ) metal_clip_nosight 64 64 122 0 0 0 lightmap_gray 16384 16384 122 0 0 0
+ ( 64 -18 30 ) ( 64 -5 30 ) ( 64 -8 3 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 58 -10 8 ) ( 64 -10 8 ) ( 64 -5 36 ) metal_clip_nosight 64 64 122 0 0 0 lightmap_gray 16384 16384 122 0 0 0
+ ( 58 -5 35 ) ( 58 -18 35 ) ( 58 -21 8 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 10
+{
+ guid "{5FB0C32D-AD91-11E4-BFB4-645106422D82}"
+ ( 64 -5 36 ) ( 58 -5 36 ) ( 58 24 40 ) metal_clip_nosight 64 64 122 0 0 0 lightmap_gray 16384 16384 122 0 0 0
+ ( 64 -10 8 ) ( 58 -10 8 ) ( 58 -5 36 ) metal_clip_nosight 64 64 122 0 0 0 lightmap_gray 16384 16384 122 0 0 0
+ ( 64 -9 40 ) ( 64 24 40 ) ( 64 24 15 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 58 24 28 ) ( 64 24 28 ) ( 64 24 40 ) metal_clip_nosight 64 64 122 0 0 0 lightmap_gray 16384 16384 122 0 0 0
+ ( 58 24 40 ) ( 58 -9 40 ) ( 58 -9 15 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 64 24 28.5 ) ( 64 -6 16.5 ) ( 96 24 28.5 ) metal_clip_nosight 64 64 122 0 0 0 lightmap_gray 16384 16384 122 0 0 0
+}
+// brush 11
+{
+ guid "{0458F92A-AD91-11E4-BFB4-645106422D82}"
+ ( -58 -5 36 ) ( -64 -5 36 ) ( -64 24 40 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -58 -10 8 ) ( -64 -10 8 ) ( -64 -5 36 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -58 -9 40 ) ( -58 24 40 ) ( -58 24 15 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 24 28 ) ( -58 24 28 ) ( -58 24 40 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 24 40 ) ( -64 -9 40 ) ( -64 -9 15 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -58 24 28.5 ) ( -58 -6 16.5 ) ( -26 24 28.5 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 12
+{
+ guid "{C31D9A15-AD90-11E4-BFB4-645106422D82}"
+ ( -58 -10 8 ) ( -64 -10 8 ) ( -64 -21 8 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -58 -18 34 ) ( -64 -18 34 ) ( -64 -5 36 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 -18 34 ) ( -58 -18 34 ) ( -58 -21 8 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -58 -18 30 ) ( -58 -5 30 ) ( -58 -8 3 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 -10 8 ) ( -58 -10 8 ) ( -58 -5 36 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 -5 35 ) ( -64 -18 35 ) ( -64 -21 8 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 13
+{
+ guid "{B58BA228-AD90-11E4-BFB4-645106422D82}"
+ ( -62 22 0 ) ( -190 22 0 ) ( -190 -10 0 ) metal_clip_nosight 64 64 -126 0 0 0 lightmap_gray 16384 16384 -126 0 0 0
+ ( -190 -10 8 ) ( -190 22 8 ) ( -62 22 8 ) metal_clip_nosight 64 64 -126 0 0 0 lightmap_gray 16384 16384 -126 0 0 0
+ ( -190 -10 8 ) ( -62 -10 8 ) ( -62 -10 0 ) metal_clip_nosight 64 64 -126 0 0 0 lightmap_gray 16384 16384 -126 0 0 0
+ ( -62 -10 8 ) ( -62 22 8 ) ( -62 22 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -62 22 8 ) ( -190 22 8 ) ( -190 22 0 ) metal_clip_nosight 64 64 -126 0 0 0 lightmap_gray 16384 16384 -126 0 0 0
+ ( -64 15 8 ) ( -64 -17 8 ) ( -64 -17 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 14
+{
+ guid "{A6CD5F35-AD90-11E4-BFB4-645106422D82}"
+ ( 64 22 0 ) ( -64 22 0 ) ( -64 -10 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 -10 8 ) ( -64 22 8 ) ( 64 22 8 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 -10 8 ) ( 64 -10 8 ) ( 64 -10 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 64 -10 8 ) ( 64 22 8 ) ( 64 22 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 64 22 8 ) ( -64 22 8 ) ( -64 22 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 62 15 8 ) ( 62 -17 8 ) ( 62 -17 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 15
+{
+ guid "{9FD4DB48-AD90-11E4-BFB4-645106422D82}"
+ ( 64 58 0 ) ( -64 58 0 ) ( -64 12 0 ) metal_clip_nosight 64 64 0 -34 0 0 lightmap_gray 16384 16384 0 -34 0 0
+ ( -64 12 8 ) ( -64 58 8 ) ( 64 58 8 ) metal_clip_nosight 64 64 0 -34 0 0 lightmap_gray 16384 16384 0 -34 0 0
+ ( -64 22 8 ) ( 64 22 8 ) ( 64 22 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 64 12 8 ) ( 64 58 8 ) ( 64 58 0 ) metal_clip_nosight 64 64 34 0 0 0 lightmap_gray 16384 16384 34 0 0 0
+ ( 64 24 8 ) ( -64 24 8 ) ( -64 24 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 58 8 ) ( -64 12 8 ) ( -64 12 0 ) metal_clip_nosight 64 64 34 0 0 0 lightmap_gray 16384 16384 34 0 0 0
+}
+// brush 16
+{
+ guid "{8AF27B65-AD90-11E4-BFB4-645106422D82}"
+ ( 64 24 0 ) ( -64 24 0 ) ( -64 -22 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 -22 8 ) ( -64 24 8 ) ( 64 24 8 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 -21 8 ) ( 64 -21 8 ) ( 64 -21 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 64 -22 8 ) ( 64 24 8 ) ( 64 24 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 64 -10 8 ) ( -64 -10 8 ) ( -64 -10 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 24 8 ) ( -64 -22 8 ) ( -64 -22 0 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 1
+// entity 2
+// entity 3
+// entity 4
+// entity 5
+// entity 6
+// entity 7
+// entity 8
+// entity 9
+// entity 10
+// entity 11
+// entity 12
+// entity 13
+// entity 14
+// entity 15
+// entity 16
+// entity 17
+// entity 18
+// entity 19
+// entity 20
+// entity 21
+// entity 22
+// entity 23
+// entity 24
+// entity 25
+// entity 26
+// entity 27
+// entity 28
+// entity 29
+// entity 30
+// entity 31
+// entity 32
+// entity 33
+// entity 34
+// entity 35
+// entity 36
+// entity 37
+// entity 38
+// entity 39
+// entity 40
+// entity 41
+// entity 42
+// entity 43
+// entity 44
+// entity 45
+// entity 46
+// entity 47
+// entity 48
+// entity 49
+// entity 50
+// entity 51
+// entity 52
+// entity 53
+// entity 54
+// entity 55
+// entity 56
+// entity 57
+// entity 58
+// entity 59
+// entity 60
+// entity 61
+// entity 62
+// entity 63
+// entity 64
+// entity 65
+// entity 66
+// entity 67
+// entity 68
+// entity 69
+// entity 70
+// entity 71
+// entity 72
+// entity 73
+// entity 74
+// entity 75
+// entity 76
+// entity 77
+// entity 78
+// entity 79
+// entity 80
+// entity 81
+// entity 82
+// entity 83
+// entity 84
+// entity 85
+// entity 86
+// entity 87
+// entity 88
+// entity 89
+// entity 90
+// entity 91
+// entity 92
+// entity 93
+// entity 94
+// entity 95
+// entity 96
+// entity 97
+// entity 98
+// entity 99
+// entity 100
+// entity 101
+// entity 102
+// entity 103
+// entity 104
+// entity 105
+// entity 106
+// entity 107
+// entity 108
+// entity 109
+// entity 110
+// entity 111
+// entity 112
+// entity 113
+// entity 114
+// entity 115
+// entity 116
+// entity 117
+// entity 118
+// entity 119
+// entity 120
+// entity 121
+// entity 122
+// entity 123
+// entity 124
+// entity 125
+// entity 126
+// entity 127
+// entity 128
+// entity 129
+// entity 130
+// entity 131
+// entity 132
+// entity 133
+// entity 134
+// entity 135
+// entity 136
+// entity 137
+// entity 138
+// entity 139
+// entity 140
+// entity 141
+// entity 142
+// entity 143
+// entity 144
+// entity 145
+// entity 146
+// entity 147
+// entity 148
+// entity 149
+// entity 150
+// entity 151
+// entity 152
+// entity 153
+// entity 154
+// entity 155
+// entity 156
+// entity 157
+// entity 158
+// entity 159
+// entity 160
+// entity 161
+// entity 162
+// entity 163
+// entity 164
+// entity 165
+// entity 166
+// entity 167
+// entity 168
+// entity 169
+// entity 170
+// entity 171
+// entity 172
+// entity 173
+// entity 174
+// entity 175
+// entity 176
+// entity 177
+// entity 178
+// entity 179
+// entity 180
+// entity 181
+// entity 182
+// entity 183
+// entity 184
+// entity 185
+// entity 186
+// entity 187
+// entity 188
+// entity 189
+// entity 190
+// entity 191
+// entity 192
+// entity 193
+// entity 194
+// entity 195
+// entity 196
+// entity 197
+// entity 198
+// entity 199
+// entity 200
+// entity 201
+// entity 202
+// entity 203
+// entity 204
+// entity 205
+// entity 206
+// entity 207
+// entity 208
+// entity 209
+// entity 210
+// entity 211
+// entity 212
+// entity 213
+// entity 214
+// entity 215
+// entity 216
+// entity 217
+// entity 218
+// entity 219
+// entity 220
+// entity 221
+// entity 222
+// entity 223
+// entity 224
+// entity 225
+// entity 226
+// entity 227
+// entity 228
+// entity 229
+// entity 230
+// entity 231
+// entity 232
+// entity 233
+// entity 234
+// entity 235
+// entity 236
+// entity 237
+// entity 238
+// entity 239
+// entity 240
+// entity 241
+// entity 242
+// entity 243
+// entity 244
+// entity 245
+// entity 246
+// entity 247
+// entity 248
+// entity 249
+// entity 250
+// entity 251
+// entity 252
+// entity 253
+// entity 254
+// entity 255
+// entity 256
+// entity 257
+// entity 258
+// entity 259
+// entity 260
+// entity 261
+// entity 262
+// entity 263
+// entity 264
+// entity 265
+// entity 266
+// entity 267
+// entity 268
+// entity 269
+// entity 270
+// entity 271
+// entity 272
+// entity 273
+// entity 274
+// entity 275
+// entity 276
+// entity 277
+// entity 278
+// entity 279
+// entity 280
+// entity 281
+// entity 282
+// entity 283
+// entity 284
+// entity 285
+// entity 286
+// entity 287
+// entity 288
+// entity 289
+// entity 290
+// entity 291
+// entity 292
+// entity 293
+// entity 294
+// entity 295
+// entity 296
+// entity 297
+// entity 298
+// entity 299
+// entity 300
+// entity 301
+// entity 302
+// entity 303
+// entity 304
+// entity 305
+// entity 306
+// entity 307
+// entity 308
+// entity 309
+// entity 310
+// entity 311
+// entity 312
+// entity 313
+// entity 314
+// entity 315
+// entity 316
+// entity 317
+// entity 318
+// entity 319
+// entity 320
+// entity 321
+// entity 322
+// entity 323
+// entity 324
+// entity 325
+// entity 326
+// entity 327
+// entity 328
+// entity 329
+// entity 330
+// entity 331
+// entity 332
+// entity 333

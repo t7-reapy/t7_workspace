@@ -1,0 +1,134 @@
+
+void GenerateUI( asset Asset )
+{
+	// Source Files
+	
+	Asset.BeginCategory( "Source Files" );
+	{
+		Asset.AddEntry_Path( "filename", "" ).SetTitle( "Anim File" ).SetRelativePath( "xanim_export/" ).SetToolTip( "The camera animation to attach (.XCAM_EXPORT)" );
+		Asset.AddEntry_CheckBox( "hide_hud", true ).SetTitle( "Hide HUD" );
+		Asset.AddEntry_CheckBox( "is_looping", false ).SetTitle( "Loop" );
+		Asset.AddEntry_CheckBox( "hide_local_player", false ).SetTitle( "Hide Local Player Model" ).SetSave(true).SetToolTip("When enabled the game will hide the local player model.");
+		Asset.AddEntry_CheckBox( "use_firstperson_player", false ).SetTitle( "Use First Person Player Model" ).SetSave(true).SetToolTip("When enabled the game will use the first person player model instead of third while this xcam is active.");
+		Asset.AddEntry_CheckBox( "disableNearDof", false ).SetTitle( "Disable Near DOF" ).SetSave(true).SetToolTip("Everything closer than the focal point will be in focus");
+		Asset.AddEntry_CheckBox( "autoMotionBlur", true ).SetTitle( "Auto Motion Blur" ).SetSave(true).SetToolTip("Enables motion blur automatically for the whole duration of the xcam. Disable it for finer control via note tracks");
+		Asset.AddEntry_CheckBox( "easeAnimationsOut", false ).SetTitle( "Ease Subcam Animations Out" ).SetSave(true).SetToolTip("Animations between subxcams or notetracks will be ease-out");
+		Asset.AddEntry_AssetCombo( "parent_scene", "scriptbundle" ).SetTitle( "Parent Scene" ).SetToolTip( "The scene scriptbundle that will use this xcam asset" ).Show( true ).Enable( true ).SetSave( true ).UpdateOnChange( true );
+	}
+	
+	Asset.AddEntry_Vector3( "rightStickRotateOffsetX", "rightStickRotateOffsetY", "rightStickRotateOffsetZ", 0, 0, 0, -1000, 1000 ).SetTitle( "Stick Rotation Offset" ).SetToolTip( "Right Stick rotation center point offset from model center point" );
+	Asset.AddEntry_Vector2( "rightStickRotateMaxDegreesX", "rightStickRotateMaxDegreesY", 0, 0, -180, 180 ).SetTitle( "Stick Rotation Degrees" ).SetToolTip( "Right Stick Max Rotation Degrees Horizontal/Vertical" );
+
+	string noteDropDownList = "";
+	int MAX_GDT_NOTETRACKS = 50;			// Needs to match xcam converter
+	int MAX_GDT_STARTUP_NOTETRACKS = 10;	// Needs to match xcam converter
+	int MAX_GDT_SHUTDOWN_NOTETRACKS = 10;	// Needs to match xcam converter
+	
+	AddNoteTrackCategory( Asset, "Note", "customnote", MAX_GDT_NOTETRACKS, noteDropDownList );
+	AddNoteTrackCategory( Asset, "Startup Note", "startupnote", MAX_GDT_STARTUP_NOTETRACKS, "" );
+	AddNoteTrackCategory( Asset, "Shutdown Note", "shutdownnote", MAX_GDT_SHUTDOWN_NOTETRACKS, "" );
+}
+
+void AddNoteTrackCategory( asset Asset, string category, string prefix, int maxNotes, string dropDownNoteList )
+{
+	bool showNext = true;
+	for( int i = 0; i < maxNotes; i++ )
+	{
+		Asset.BeginCategory( "Notetracks." + category + " " + (i+1) );
+			
+		string id = prefix + i;
+			
+		bool showCur = Asset.GetEntryValue( id + "action" ) != "None";
+
+		if( i > 0 && showCur && !showNext )
+		{
+			/*
+			string yesno = MessageBox( "Move notetracks up due to removed entry for " + Asset.GetName() + "?", "YESNO" );
+			
+			if( yesno == "YES" )
+			{
+				for( int j = i; j < maxNotes; j++ )
+				{
+					string copyFromPrefix = prefix + j;
+					string copyToPrefix = prefix + (j-1);
+					CopyNote( Asset, copyFromPrefix, copyToPrefix );
+				}
+			}*/
+		}
+		
+		bool normalNote = ( prefix == "customnote" );
+		
+		AddNoteTrackAction( Asset, id, showNext || showCur, normalNote, dropDownNoteList );
+			
+		// Set up the 'show' for the next item
+		showNext = Asset.GetEntryValue( id + "action" ) != "None";
+	}
+}
+
+// XCams are only processed on the client so don't add anything here that is server side
+// XCams do not have a model so don't add anything here that requires one
+void AddNoteTrackAction( asset Asset, string id, bool parentShow, bool normalNote, string dropDownNoteList )
+{
+	bool show = parentShow;
+	string actionType = Asset.GetEntryValue( id + "action" );
+	
+	Asset.AddEntry_Combo( id + "action", "None | Level Notify | Play Exploder | Stop Exploder | Kill Exploder | 2D Sound | Rumble | Timescale | Motion Blur | Play Camera Fx | Play Unmanaged Camera Fx | Stop Fx | Kill Fx" ).SetTitle( "Action " ).Show( show ).UpdateOnChange( true ).SetSave( show );
+	
+	// intentionally don't create these fields for startup and shutdown notes
+	if( normalNote )
+	{
+		Asset.AddEntry_Int( id + "frame", 0, 0, 10000 ).SetTitle( "Frame" ).Show( show && actionType != "None" ).SetSave( parentShow ).SetStep( 1 ).Enable( true );
+	}
+	
+	if( actionType == "Level Notify" )
+	{
+		Asset.AddEntry_String( id + "actionparam1", "" ).SetTitle( "Notify Param1" ).Show( show ).SetSave( show );
+		Asset.AddEntry_String( id + "actionparam2", "" ).SetTitle( "Notify Param2" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Play Exploder" || actionType == "Stop Exploder" || actionType == "Kill Exploder" )
+	{
+		Asset.AddEntry_String( id + "actionparam1", "" ).SetTitle( "Exploder ID" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "2D Sound" )
+	{
+		Asset.AddEntry_String( id + "actionparam1", "" ).SetTitle( "Sound Alias" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Rumble" )
+	{
+		Asset.AddEntry_AssetCombo( id + "actionparam1", "rumble" ).SetTitle( "Rumble" ).Show( show ).SetSave( show );
+		Asset.AddEntry_String( id + "actionparam2", "" ).SetTitle( "Param2" ).Show( false ).SetSave( show );
+	}
+	else if( actionType == "Timescale" )
+	{
+		Asset.AddEntry_Float( id + "actionparam1", 1.0, 0.1, 5.0 ).SetTitle( "Timescale" ).Show( show ).SetSave( show );
+		Asset.AddEntry_Float( id + "actionparam2", 0.0, 0.0, 4.0 ).SetTitle( "Lerp Time" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Motion Blur" )
+	{
+		Asset.AddEntry_Float( id + "actionparam1", 1.0, 0.0, 1.0 ).SetTitle( "Strength" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Play Camera Fx" || actionType == "Play Unmanaged Camera Fx" )
+	{
+		Asset.AddEntry_Path( id + "actionparam1", "" ).SetTitle( "FX" ).Show( show ).SetSave( show ).SetRelativePath( "share/raw/fx/" );
+		Asset.AddEntry_CheckBox( id + "actionparam2", true ).SetTitle( "Use X axis as forward" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Stop Fx" || actionType == "Kill Fx")
+	{
+		Asset.AddEntry_Path( id + "actionparam1", "" ).SetTitle( "FX" ).Show( show ).SetSave( show ).SetRelativePath( "share/raw/fx/" );
+		Asset.AddEntry_CheckBox( id + "actionparam2", true ).SetTitle( "Used X axis as forward" ).Show( show ).SetSave( show );
+	}
+	else // actionType == "None"
+	{
+		Asset.AddEntry_String( id + "actionparam1", "" ).SetTitle( "Param1" ).Show( false ).SetSave( show );
+		Asset.AddEntry_String( id + "actionparam2", "" ).SetTitle( "Param2" ).Show( false ).SetSave( show );
+	}
+}
+
+void CopyNote( asset Asset, string fromObjectPrefix, string toObjectPrefix )
+{
+	Asset.GetEntryVariable( toObjectPrefix + "action" ).SetValue( Asset.GetEntryValue( fromObjectPrefix + "action" ) );
+	Asset.GetEntryVariable( toObjectPrefix + "useexistingnote" ).SetValue( Asset.GetEntryValue( fromObjectPrefix + "useexistingnote" ) );
+	Asset.GetEntryVariable( toObjectPrefix + "frame" ).SetValue( Asset.GetEntryValue( fromObjectPrefix + "frame" ) );
+	Asset.GetEntryVariable( toObjectPrefix + "actionparam1" ).SetValue( Asset.GetEntryValue( fromObjectPrefix + "actionparam1" ) );
+	Asset.GetEntryVariable( toObjectPrefix + "actionparam2" ).SetValue( Asset.GetEntryValue( fromObjectPrefix + "actionparam2" ) );
+}

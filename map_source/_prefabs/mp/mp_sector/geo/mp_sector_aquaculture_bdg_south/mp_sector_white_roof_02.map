@@ -1,0 +1,2429 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"000_Global/Ground Floor" flags 
+"The Map" flags expanded 
+// entity 0
+{
+guid "{1D2D59BC-4A2B-4971-8557-52977FAFBC97}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lightingquality" "1024"
+"newsun" "1"
+"samplescale" "1"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+ {
+  guid "{D1CAE171-49B6-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_worn_painted_white
+   lightmap_gray
+   3 3 16 1
+   (
+	v 856 624 400 t 0 -0 1 1
+	v 856 624 416 t 0 -128 1 9
+	v 840 624 416 t 0 -256 1 17
+   )
+   (
+	v 856 692.21051 400 t 545.68408 -0 21 1
+	v 856 692.21051 416 t 545.68408 -128 21 9
+	v 840 692.21051 416 t 545.68408 -256 21 17
+   )
+   (
+	v 856 816 400 t 1536 -0 21 1
+	v 856 816 416 t 1536 -128 21 9
+	v 840 816 416 t 1536 -256 21 17
+   )
+  }
+ }
+// brush 1
+ {
+  guid "{8427263B-49B8-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_worn_painted_white
+   lightmap_gray
+   3 3 16 1
+   (
+	v 392 624 416 t 0 -0 1 1
+	v 375 624 416 t 0 -128 1 9
+	v 370 624 400 t 0 -259.93939 1 17
+   )
+   (
+	v 392 701.05505 416 t 768.55127 -0 21 1
+	v 375 701.05505 416 t 768.55127 -128 21 9
+	v 370 701.05505 400 t 768.55127 -259.93939 21 17
+   )
+   (
+	v 392 778 416 t 1536 -0 21 1
+	v 375 778 416 t 1536 -128 21 9
+	v 370 778 400 t 1536 -259.93939 21 17
+   )
+  }
+ }
+// brush 2
+ {
+  guid "{8427263C-49B8-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   3 3 0 1
+   (
+	v 392 786 408 t 1664 4570.6724 1 1
+	v 383 786 408 t 1664 4653.563 1 5
+	v 378 786 400 t 1664 4740.4502 1 9
+   )
+   (
+	v 392 701.06085 408 t 832.59564 4570.6724 21 1
+	v 383 701.06085 408 t 832.59564 4653.563 21 5
+	v 378 701.06085 400 t 832.59564 4740.4502 21 9
+   )
+   (
+	v 392 616 408 t 0 4570.6724 21 1
+	v 383 616 408 t 0 4653.563 21 5
+	v 378 616 400 t 0 4740.4502 21 9
+   )
+  }
+ }
+// brush 3
+{
+ guid "{C273EFE4-3A0E-11E4-B36A-2C27D7EF3DFC}"
+layer "000_Global/Ground Floor"
+  contents weaponClip detail ai_nosight;
+ ( 712 248 432 ) ( 712 264 432 ) ( 728 264 432 ) t7_metal_panel_white_perforated 64 -71.426628 -4.75 -528.06171 90 0 lightmap_gray 16384 16384 0 48 0 0
+ ( 856 272 424 ) ( 840 272 424 ) ( 840 256 424 ) t7_wood_hardwood_sugarpine 128 128 0 0 90 0 lightmap_gray 16384 16384 0 48 0 0
+ ( -16 220 424 ) ( -16 220 432 ) ( 736 220 432 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 -16384 0 -264 0 0
+ ( 488 224 440 ) ( 488 232 440 ) ( 488 232 472 ) caulk 16 16 -48 -32 0 0 lightmap_gray 16384 16384 -48 -32 0 0
+ ( 800 336 432 ) ( 800 328 432 ) ( 800 336 464 ) caulk 16 16 -48 -32 0 0 lightmap_gray 16384 16384 -48 -32 0 0
+ ( 768 232 432 ) ( 784 232 432 ) ( 768 232 464 ) t7_metal_panels_4x1 128 -128 -696 -976 -90 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 4
+{
+ guid "{3AA13252-49B7-11E4-88C4-2C27D7EF3DFC}"
+layer "000_Global/Ground Floor"
+  contents weaponClip detail ai_nosight;
+ ( 712 296 432 ) ( 712 312 432 ) ( 728 312 432 ) t7_metal_panel_white_perforated 64 -71.426628 -4.75 -528.06171 90 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 856 320 424 ) ( 840 320 424 ) ( 840 304 424 ) t7_wood_hardwood_sugarpine 128 128 0 0 90 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 712 392 432 ) ( 712 392 240 ) ( 728 392 240 ) t7_metal_worn_painted_white 64 64 0 -16 0 0 lightmap_gray 16384 -16384 0 -264 0 0
+ ( 488 272 440 ) ( 488 280 440 ) ( 488 280 472 ) caulk 16 16 0 -32 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 800 384 432 ) ( 800 376 432 ) ( 800 384 464 ) caulk 16 16 0 -32 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 768 384 432 ) ( 752 384 432 ) ( 752 384 464 ) t7_metal_panel_white_perforated 64 -71.426628 -4.75 -528.06171 90 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 5
+{
+ guid "{0AE704ED-3A0F-11E4-B36A-2C27D7EF3DFC}"
+layer "000_Global/Ground Floor"
+  contents weaponClip detail ai_nosight;
+ ( 720 384 424 ) ( 712 384 424 ) ( 712 352 424 ) t7_metal_planter_top_trim_painted_black -32 -4 -62.000031 -2 90 0 lightmap_gray 16384 16384 208 0 0 0
+ ( 712 352 432 ) ( 712 384 432 ) ( 720 384 432 ) t7_metal_planter_top_trim_painted_black -32 -4 -62.000031 -2 90 0 lightmap_gray 16384 16384 208 0 0 0
+ ( 712 234 432 ) ( 720 234 432 ) ( 720 234 424 ) t7_metal_paint_worn_grey_dk 64 64 284 -32 0 0 lightmap_gray 16384 16384 208 -32 0 0
+ ( 718 352 432 ) ( 718 384 432 ) ( 718 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 720 382 432 ) ( 712 382 432 ) ( 712 382 424 ) t7_metal_paint_worn_grey_dk 64 64 284 -32 0 0 lightmap_gray 16384 16384 208 -32 0 0
+ ( 714 336 432 ) ( 714 304 432 ) ( 714 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 6
+ {
+  guid "{D1CAE172-49B6-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   3 3 0 1
+   (
+	v 840 616 408 t 0 -0 1 1
+	v 848 616 408 t 0 -64 1 5
+	v 848 616 400 t 0 -128 1 9
+   )
+   (
+	v 840 692.21051 408 t 609.68408 -0 29 1
+	v 848 692.21051 408 t 609.68408 -64 29 5
+	v 848 692.21051 400 t 609.68408 -128 29 9
+   )
+   (
+	v 840 824 408 t 1664 -0 29 1
+	v 848 824 408 t 1664 -64 29 5
+	v 848 824 400 t 1664 -128 29 9
+   )
+  }
+ }
+// brush 7
+ {
+  guid "{D1CAE170-49B6-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_worn_painted_white
+   lightmap_gray
+   3 3 16 1
+   (
+	v 848 624 400 t 11648 -4864 53 -25
+	v 848 624 408 t 11648 -4992 53 -25.5
+	v 840 624 408 t 11520 -4992 52.5 -25.5
+   )
+   (
+	v 852 624 400 t 11712 -4864 53.25 -25
+	v 852 624 412 t 11712 -5056 53.25 -25.75
+	v 840 624 412 t 11520 -5056 52.5 -25.75
+   )
+   (
+	v 856 624 400 t 11776 -4864 53.5 -25
+	v 856 624 416 t 11776 -5120 53.5 -26
+	v 840 624 416 t 11520 -5120 52.5 -26
+   )
+  }
+ }
+// brush 8
+{
+ guid "{E88A4C94-4C19-11E4-88C4-2C27D7EF3DFC}"
+layer "000_Global/Ground Floor"
+  contents weaponClip detail ai_nosight;
+ ( 840 392 424 ) ( 800 392 424 ) ( 800 272 424 ) t7_wood_hardwood_sugarpine 128 128 0 0 90 0 lightmap_gray 16384 16384 8 0 0 0
+ ( 800 392 432 ) ( 840 392 432 ) ( 840 272 432 ) t7_metal_panel_white_perforated 64 -71.426628 -4.75 -528.06171 90 0 lightmap_gray 16384 16384 8 0 0 0
+ ( 840 232 424 ) ( 800 232 424 ) ( 800 232 432 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 8 -40 0 0
+ ( 844 392 432 ) ( 844 392 424 ) ( 844 272 424 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 -40 0 0
+ ( 840 380 432 ) ( 800 380 432 ) ( 800 380 424 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 832 224 432 ) ( 832 226 432 ) ( 832 224 464 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 9
+ {
+  guid "{55CD6BD1-4C1B-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_trim_painted_black
+   lightmap_gray
+   3 3 16 2
+   (
+	v 846 232 424 t 0 -181.01933 52 -14.5
+	v 847 232 424 t 0 -90.509666 52 -14
+	v 848 232 424 t 0 -0 52 -13.5
+   )
+   (
+	v 846 218 424 t 240 -181.01933 52.5 -14.5
+	v 847 217 424 t 240 -90.509666 52.5 -14
+	v 848 216 424 t 240 -0 52.5 -13.5
+   )
+   (
+	v 832 218 424 t 480 -181.01933 53 -14.5
+	v 832 217 424 t 480 -90.509666 53 -14
+	v 832 216 424 t 480 -0 53 -13.5
+   )
+  }
+ }
+// brush 10
+ {
+  guid "{7BCAC417-4C1E-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   3 3 0 1
+   (
+	v -44 392 416 t 3136 -376.43845 1 1
+	v -44 221.00586 416 t 1768.0469 -376.43845 1 23
+	v -44 220 416 t 1760 -376.43845 1 23
+   )
+   (
+	v -40 392 424 t 3136 -312.86331 5 1
+	v -40 221.00586 424 t 1768.0469 -312.86331 5 23
+	v -40 220 424 t 1760 -312.86331 5 23
+   )
+   (
+	v -32 392 424 t 3136 -256 9 1
+	v -32 221.00586 424 t 1768.0469 -256 9 23
+	v -32 220 424 t 1760 -256 9 23
+   )
+  }
+ }
+// brush 11
+ {
+  guid "{5ACEA7FE-4C1F-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_panel_white_perforated
+   lightmap_gray
+   2 9 0 8
+   (
+	v -32 220 432 t 3596 -7071.0469 1 1
+	v -34.982361 219.97079 431.78714 t 3596 -7028.1802 1 2.5892615
+	v -38.187916 219.97743 431.1048 t 3596 -6981.1948 1 4.5064511
+	v -41.448124 219.98383 429.92169 t 3596 -6931.4727 1 6.6817141
+	v -44.558506 219.98955 428.26563 t 3596 -6880.9551 1 9
+	v -47.316288 220 426.22693 t 3596 -6831.7881 1 11.318286
+	v -49.56221 220 423.94321 t 3596 -6785.8682 1 13.493548
+	v -51.209541 220 421.57004 t 3596 -6744.4521 1 15.410739
+	v -52.25 220 419.25 t 3596 -6708 1 17
+   )
+   (
+	v -32 392 432 t 6348 -7071.0469 23 1
+	v -34.982361 392 431.78714 t 6348 -7028.1816 23 2.5892615
+	v -38.187916 392 431.1048 t 6348 -6981.1963 23 4.5064511
+	v -41.448124 392 429.92169 t 6348 -6931.4741 23 6.6817141
+	v -44.558506 392 428.26563 t 6348 -6880.9561 23 9
+	v -47.316288 392 426.22693 t 6348 -6831.7891 23 11.318286
+	v -49.56221 392 423.94321 t 6348 -6785.8687 23 13.493548
+	v -51.209541 392 421.57004 t 6348 -6744.4526 23 15.410739
+	v -52.25 392 419.25 t 6348 -6708 23 17
+   )
+  }
+ }
+// brush 12
+{
+ guid "{F751D57D-4C1F-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 714 288 432 ) ( 714 304 432 ) ( 730 304 432 ) t7_metal_planter_top_trim_painted_grey 64 8 -126 50 0 0 lightmap_gray 16384 16384 2 8 0 0
+ ( 858 312 424 ) ( 842 312 424 ) ( 842 296 424 ) t7_metal_planter_top_trim_painted_grey 64 -8 -126 -806 0 0 lightmap_gray 16384 16384 2 8 0 0
+ ( 714 384 432 ) ( 714 384 240 ) ( 730 384 240 ) t7_metal_planter_top_trim_painted 64 8 0 0 0 0 lightmap_gray 16384 -16384 2 -264 0 0
+ ( 490 382 432 ) ( 490 382 424 ) ( 488 384 424 ) t7_metal_planter_top_trim_painted 64 8 0 0 0 0 lightmap_gray 16384 16384 -8 -32 0 0
+ ( 798 382 424 ) ( 798 382 432 ) ( 800 384 432 ) t7_metal_planter_top_trim_painted 64 8 0 0 0 0 lightmap_gray 16384 16384 -8 -32 0 0
+ ( 798 382 432 ) ( 798 382 424 ) ( 490 382 424 ) t7_metal_planter_top_trim_painted_grey 64 8 -126 0 0 0 lightmap_gray 16384 16384 2 -32 0 0
+}
+// brush 13
+{
+ guid "{10D9858B-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 574 328 432 ) ( 574 312 432 ) ( 558 312 432 ) t7_metal_planter_top_trim_painted_grey 64 8 -1414 666 -180 0 lightmap_gray 16384 16384 -1286 624 180 0
+ ( 430 304 424 ) ( 446 304 424 ) ( 446 320 424 ) t7_metal_planter_top_trim_painted_grey 64 -8 -1414 -190 -180 0 lightmap_gray 16384 16384 -1286 624 -180 0
+ ( 574 232 432 ) ( 574 232 240 ) ( 558 232 240 ) t7_metal_planter_top_trim_painted 64 -8 -1288 0 180 0 lightmap_gray 16384 16384 -1286 264 180 0
+ ( 798 234 432 ) ( 798 234 424 ) ( 800 232 424 ) t7_metal_planter_top_trim_painted 64 -8 -616 0 180 0 lightmap_gray 16384 -16384 -624 32 180 0
+ ( 490 234 424 ) ( 490 234 432 ) ( 488 232 432 ) t7_metal_planter_top_trim_painted 64 -8 -616 0 180 0 lightmap_gray 16384 -16384 -624 32 180 0
+ ( 490 234 432 ) ( 490 234 424 ) ( 798 234 424 ) t7_metal_planter_top_trim_painted_grey 64 -8 -1414 0 180 0 lightmap_gray 16384 -16384 -1286 32 180 0
+}
+// brush 14
+{
+ guid "{16D225C0-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 584 298 432 ) ( 568 298 432 ) ( 568 314 432 ) t7_metal_planter_top_trim_painted_grey 64 8 -542 922 90 0 lightmap_gray 16384 16384 -414 880 90 0
+ ( 560 442 424 ) ( 560 426 424 ) ( 576 426 424 ) t7_metal_planter_top_trim_painted_grey 64 -8 -542 66 90 0 lightmap_gray 16384 16384 -414 880 90 0
+ ( 488 298 432 ) ( 488 298 240 ) ( 488 314 240 ) t7_metal_planter_top_trim_painted 64 8 -416 0 0 0 lightmap_gray 16384 -16384 -414 -264 0 0
+ ( 490 382 424 ) ( 490 382 432 ) ( 488 384 432 ) t7_metal_planter_top_trim_painted 64 8 0 0 0 0 lightmap_gray 16384 16384 -8 -32 0 0
+ ( 490 382 432 ) ( 490 382 424 ) ( 490 74 424 ) t7_metal_planter_top_trim_painted_grey 64 8 -542 0 0 0 lightmap_gray 16384 16384 -414 -32 0 0
+ ( 490 234 432 ) ( 488 232 432 ) ( 488 232 464 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 15
+{
+ guid "{AAAEBF86-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 704 384 424 ) ( 696 384 424 ) ( 696 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 18 -90 0 lightmap_gray 16384 16384 192 0 0 0
+ ( 696 352 432 ) ( 696 384 432 ) ( 704 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 18 -90 0 lightmap_gray 16384 16384 192 0 0 0
+ ( 696 234 432 ) ( 704 234 432 ) ( 704 234 424 ) t7_metal_paint_worn_grey_dk 64 64 268 -32 0 0 lightmap_gray 16384 16384 192 -32 0 0
+ ( 702 352 432 ) ( 702 384 432 ) ( 702 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 704 382 432 ) ( 696 382 432 ) ( 696 382 424 ) t7_metal_paint_worn_grey_dk 64 64 268 -32 0 0 lightmap_gray 16384 16384 192 -32 0 0
+ ( 698 336 432 ) ( 698 304 432 ) ( 698 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 16
+{
+ guid "{B31FEA09-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 688 384 424 ) ( 680 384 424 ) ( 680 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 34 -90 0 lightmap_gray 16384 16384 176 0 0 0
+ ( 680 352 432 ) ( 680 384 432 ) ( 688 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 34 -90 0 lightmap_gray 16384 16384 176 0 0 0
+ ( 680 234 432 ) ( 688 234 432 ) ( 688 234 424 ) t7_metal_paint_worn_grey_dk 64 64 252 -32 0 0 lightmap_gray 16384 16384 176 -32 0 0
+ ( 686 352 432 ) ( 686 384 432 ) ( 686 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 688 382 432 ) ( 680 382 432 ) ( 680 382 424 ) t7_metal_paint_worn_grey_dk 64 64 252 -32 0 0 lightmap_gray 16384 16384 176 -32 0 0
+ ( 682 336 432 ) ( 682 304 432 ) ( 682 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 17
+{
+ guid "{B97F16CF-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 656 384 424 ) ( 648 384 424 ) ( 648 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 66 -90 0 lightmap_gray 16384 16384 144 0 0 0
+ ( 648 352 432 ) ( 648 384 432 ) ( 656 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 66 -90 0 lightmap_gray 16384 16384 144 0 0 0
+ ( 648 234 432 ) ( 656 234 432 ) ( 656 234 424 ) t7_metal_paint_worn_grey_dk 64 64 220 -32 0 0 lightmap_gray 16384 16384 144 -32 0 0
+ ( 654 352 432 ) ( 654 384 432 ) ( 654 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 656 382 432 ) ( 648 382 432 ) ( 648 382 424 ) t7_metal_paint_worn_grey_dk 64 64 220 -32 0 0 lightmap_gray 16384 16384 144 -32 0 0
+ ( 650 336 432 ) ( 650 304 432 ) ( 650 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 18
+{
+ guid "{B97F16D0-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 672 384 424 ) ( 664 384 424 ) ( 664 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 50 -90 0 lightmap_gray 16384 16384 160 0 0 0
+ ( 664 352 432 ) ( 664 384 432 ) ( 672 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 50 -90 0 lightmap_gray 16384 16384 160 0 0 0
+ ( 664 234 432 ) ( 672 234 432 ) ( 672 234 424 ) t7_metal_paint_worn_grey_dk 64 64 236 -32 0 0 lightmap_gray 16384 16384 160 -32 0 0
+ ( 670 352 432 ) ( 670 384 432 ) ( 670 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 672 382 432 ) ( 664 382 432 ) ( 664 382 424 ) t7_metal_paint_worn_grey_dk 64 64 236 -32 0 0 lightmap_gray 16384 16384 160 -32 0 0
+ ( 666 336 432 ) ( 666 304 432 ) ( 666 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 19
+{
+ guid "{B97F16E0-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 592 384 424 ) ( 584 384 424 ) ( 584 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 130 -90 0 lightmap_gray 16384 16384 80 0 0 0
+ ( 584 352 432 ) ( 584 384 432 ) ( 592 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 130 -90 0 lightmap_gray 16384 16384 80 0 0 0
+ ( 584 234 432 ) ( 592 234 432 ) ( 592 234 424 ) t7_metal_paint_worn_grey_dk 64 64 156 -32 0 0 lightmap_gray 16384 16384 80 -32 0 0
+ ( 590 352 432 ) ( 590 384 432 ) ( 590 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 592 382 432 ) ( 584 382 432 ) ( 584 382 424 ) t7_metal_paint_worn_grey_dk 64 64 156 -32 0 0 lightmap_gray 16384 16384 80 -32 0 0
+ ( 586 336 432 ) ( 586 304 432 ) ( 586 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 20
+{
+ guid "{B97F16E1-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 608 384 424 ) ( 600 384 424 ) ( 600 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 114 -90 0 lightmap_gray 16384 16384 96 0 0 0
+ ( 600 352 432 ) ( 600 384 432 ) ( 608 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 114 -90 0 lightmap_gray 16384 16384 96 0 0 0
+ ( 600 234 432 ) ( 608 234 432 ) ( 608 234 424 ) t7_metal_paint_worn_grey_dk 64 64 172 -32 0 0 lightmap_gray 16384 16384 96 -32 0 0
+ ( 606 352 432 ) ( 606 384 432 ) ( 606 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 608 382 432 ) ( 600 382 432 ) ( 600 382 424 ) t7_metal_paint_worn_grey_dk 64 64 172 -32 0 0 lightmap_gray 16384 16384 96 -32 0 0
+ ( 602 336 432 ) ( 602 304 432 ) ( 602 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 21
+{
+ guid "{B97F16E2-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 624 384 424 ) ( 616 384 424 ) ( 616 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 98 -90 0 lightmap_gray 16384 16384 112 0 0 0
+ ( 616 352 432 ) ( 616 384 432 ) ( 624 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 98 -90 0 lightmap_gray 16384 16384 112 0 0 0
+ ( 616 234 432 ) ( 624 234 432 ) ( 624 234 424 ) t7_metal_paint_worn_grey_dk 64 64 188 -32 0 0 lightmap_gray 16384 16384 112 -32 0 0
+ ( 622 352 432 ) ( 622 384 432 ) ( 622 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 624 382 432 ) ( 616 382 432 ) ( 616 382 424 ) t7_metal_paint_worn_grey_dk 64 64 188 -32 0 0 lightmap_gray 16384 16384 112 -32 0 0
+ ( 618 336 432 ) ( 618 304 432 ) ( 618 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 22
+{
+ guid "{B97F16E3-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 640 384 424 ) ( 632 384 424 ) ( 632 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 82 -90 0 lightmap_gray 16384 16384 128 0 0 0
+ ( 632 352 432 ) ( 632 384 432 ) ( 640 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 82 -90 0 lightmap_gray 16384 16384 128 0 0 0
+ ( 632 234 432 ) ( 640 234 432 ) ( 640 234 424 ) t7_metal_paint_worn_grey_dk 64 64 204 -32 0 0 lightmap_gray 16384 16384 128 -32 0 0
+ ( 638 352 432 ) ( 638 384 432 ) ( 638 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 640 382 432 ) ( 632 382 432 ) ( 632 382 424 ) t7_metal_paint_worn_grey_dk 64 64 204 -32 0 0 lightmap_gray 16384 16384 128 -32 0 0
+ ( 634 336 432 ) ( 634 304 432 ) ( 634 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 23
+{
+ guid "{C17F541D-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 528 384 424 ) ( 520 384 424 ) ( 520 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 194 -90 0 lightmap_gray 16384 16384 16 0 0 0
+ ( 520 352 432 ) ( 520 384 432 ) ( 528 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 194 -90 0 lightmap_gray 16384 16384 16 0 0 0
+ ( 520 234 432 ) ( 528 234 432 ) ( 528 234 424 ) t7_metal_paint_worn_grey_dk 64 64 92 -32 0 0 lightmap_gray 16384 16384 16 -32 0 0
+ ( 526 352 432 ) ( 526 384 432 ) ( 526 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 528 382 432 ) ( 520 382 432 ) ( 520 382 424 ) t7_metal_paint_worn_grey_dk 64 64 92 -32 0 0 lightmap_gray 16384 16384 16 -32 0 0
+ ( 522 336 432 ) ( 522 304 432 ) ( 522 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 24
+{
+ guid "{C17F541E-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 544 384 424 ) ( 536 384 424 ) ( 536 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 178 -90 0 lightmap_gray 16384 16384 32 0 0 0
+ ( 536 352 432 ) ( 536 384 432 ) ( 544 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 178 -90 0 lightmap_gray 16384 16384 32 0 0 0
+ ( 536 234 432 ) ( 544 234 432 ) ( 544 234 424 ) t7_metal_paint_worn_grey_dk 64 64 108 -32 0 0 lightmap_gray 16384 16384 32 -32 0 0
+ ( 542 352 432 ) ( 542 384 432 ) ( 542 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 544 382 432 ) ( 536 382 432 ) ( 536 382 424 ) t7_metal_paint_worn_grey_dk 64 64 108 -32 0 0 lightmap_gray 16384 16384 32 -32 0 0
+ ( 538 336 432 ) ( 538 304 432 ) ( 538 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 25
+{
+ guid "{C17F541F-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 560 384 424 ) ( 552 384 424 ) ( 552 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 162 -90 0 lightmap_gray 16384 16384 48 0 0 0
+ ( 552 352 432 ) ( 552 384 432 ) ( 560 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 162 -90 0 lightmap_gray 16384 16384 48 0 0 0
+ ( 552 234 432 ) ( 560 234 432 ) ( 560 234 424 ) t7_metal_paint_worn_grey_dk 64 64 124 -32 0 0 lightmap_gray 16384 16384 48 -32 0 0
+ ( 558 352 432 ) ( 558 384 432 ) ( 558 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 560 382 432 ) ( 552 382 432 ) ( 552 382 424 ) t7_metal_paint_worn_grey_dk 64 64 124 -32 0 0 lightmap_gray 16384 16384 48 -32 0 0
+ ( 554 336 432 ) ( 554 304 432 ) ( 554 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 26
+{
+ guid "{C17F5420-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 576 384 424 ) ( 568 384 424 ) ( 568 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 146 -90 0 lightmap_gray 16384 16384 64 0 0 0
+ ( 568 352 432 ) ( 568 384 432 ) ( 576 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 146 -90 0 lightmap_gray 16384 16384 64 0 0 0
+ ( 568 234 432 ) ( 576 234 432 ) ( 576 234 424 ) t7_metal_paint_worn_grey_dk 64 64 140 -32 0 0 lightmap_gray 16384 16384 64 -32 0 0
+ ( 574 352 432 ) ( 574 384 432 ) ( 574 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 576 382 432 ) ( 568 382 432 ) ( 568 382 424 ) t7_metal_paint_worn_grey_dk 64 64 140 -32 0 0 lightmap_gray 16384 16384 64 -32 0 0
+ ( 570 336 432 ) ( 570 304 432 ) ( 570 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 27
+{
+ guid "{C7AD849E-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 496 384 424 ) ( 488 384 424 ) ( 488 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 226 -90 0 lightmap_gray 16384 16384 -16 0 0 0
+ ( 488 352 432 ) ( 488 384 432 ) ( 496 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 226 -90 0 lightmap_gray 16384 16384 -16 0 0 0
+ ( 488 234 432 ) ( 496 234 432 ) ( 496 234 424 ) t7_metal_paint_worn_grey_dk 64 64 60 -32 0 0 lightmap_gray 16384 16384 -16 -32 0 0
+ ( 494 352 432 ) ( 494 384 432 ) ( 494 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 496 382 432 ) ( 488 382 432 ) ( 488 382 424 ) t7_metal_paint_worn_grey_dk 64 64 60 -32 0 0 lightmap_gray 16384 16384 -16 -32 0 0
+ ( 490 336 432 ) ( 490 304 432 ) ( 490 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 28
+{
+ guid "{C7AD849F-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 512 384 424 ) ( 504 384 424 ) ( 504 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 210 -90 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 504 352 432 ) ( 504 384 432 ) ( 512 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 210 -90 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 504 234 432 ) ( 512 234 432 ) ( 512 234 424 ) t7_metal_paint_worn_grey_dk 64 64 76 -32 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 510 352 432 ) ( 510 384 432 ) ( 510 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 512 382 432 ) ( 504 382 432 ) ( 504 382 424 ) t7_metal_paint_worn_grey_dk 64 64 76 -32 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 506 336 432 ) ( 506 304 432 ) ( 506 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 29
+{
+ guid "{CE09F23D-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 736 384 424 ) ( 728 384 424 ) ( 728 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 -14 -90 0 lightmap_gray 16384 16384 224 0 0 0
+ ( 728 352 432 ) ( 728 384 432 ) ( 736 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 -14 -90 0 lightmap_gray 16384 16384 224 0 0 0
+ ( 728 234 432 ) ( 736 234 432 ) ( 736 234 424 ) t7_metal_paint_worn_grey_dk 64 64 300 -32 0 0 lightmap_gray 16384 16384 224 -32 0 0
+ ( 734 352 432 ) ( 734 384 432 ) ( 734 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 736 382 432 ) ( 728 382 432 ) ( 728 382 424 ) t7_metal_paint_worn_grey_dk 64 64 300 -32 0 0 lightmap_gray 16384 16384 224 -32 0 0
+ ( 730 336 432 ) ( 730 304 432 ) ( 730 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 30
+{
+ guid "{CE09F23E-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 752 384 424 ) ( 744 384 424 ) ( 744 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 -30 -90 0 lightmap_gray 16384 16384 240 0 0 0
+ ( 744 352 432 ) ( 744 384 432 ) ( 752 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 -30 -90 0 lightmap_gray 16384 16384 240 0 0 0
+ ( 744 234 432 ) ( 752 234 432 ) ( 752 234 424 ) t7_metal_paint_worn_grey_dk 64 64 316 -32 0 0 lightmap_gray 16384 16384 240 -32 0 0
+ ( 750 352 432 ) ( 750 384 432 ) ( 750 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 752 382 432 ) ( 744 382 432 ) ( 744 382 424 ) t7_metal_paint_worn_grey_dk 64 64 316 -32 0 0 lightmap_gray 16384 16384 240 -32 0 0
+ ( 746 336 432 ) ( 746 304 432 ) ( 746 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 31
+{
+ guid "{CE09F23F-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 768 384 424 ) ( 760 384 424 ) ( 760 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 -46 -90 0 lightmap_gray 16384 16384 256 0 0 0
+ ( 760 352 432 ) ( 760 384 432 ) ( 768 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 -46 -90 0 lightmap_gray 16384 16384 256 0 0 0
+ ( 760 234 432 ) ( 768 234 432 ) ( 768 234 424 ) t7_metal_paint_worn_grey_dk 64 64 332 -32 0 0 lightmap_gray 16384 16384 256 -32 0 0
+ ( 766 352 432 ) ( 766 384 432 ) ( 766 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 768 382 432 ) ( 760 382 432 ) ( 760 382 424 ) t7_metal_paint_worn_grey_dk 64 64 332 -32 0 0 lightmap_gray 16384 16384 256 -32 0 0
+ ( 762 336 432 ) ( 762 304 432 ) ( 762 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 32
+{
+ guid "{CE09F240-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 784 384 424 ) ( 776 384 424 ) ( 776 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 -62 -90 0 lightmap_gray 16384 16384 272 0 0 0
+ ( 776 352 432 ) ( 776 384 432 ) ( 784 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 -62 -90 0 lightmap_gray 16384 16384 272 0 0 0
+ ( 776 234 432 ) ( 784 234 432 ) ( 784 234 424 ) t7_metal_paint_worn_grey_dk 64 64 348 -32 0 0 lightmap_gray 16384 16384 272 -32 0 0
+ ( 782 352 432 ) ( 782 384 432 ) ( 782 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 784 382 432 ) ( 776 382 432 ) ( 776 382 424 ) t7_metal_paint_worn_grey_dk 64 64 348 -32 0 0 lightmap_gray 16384 16384 272 -32 0 0
+ ( 778 336 432 ) ( 778 304 432 ) ( 778 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 33
+{
+ guid "{D50C8F2A-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 800 384 424 ) ( 792 384 424 ) ( 792 352 424 ) t7_metal_planter_top_trim_painted_black 32 4 62 -78 -90 0 lightmap_gray 16384 16384 288 0 0 0
+ ( 792 352 432 ) ( 792 384 432 ) ( 800 384 432 ) t7_metal_planter_top_trim_painted_black 32 4 62 -78 -90 0 lightmap_gray 16384 16384 288 0 0 0
+ ( 792 234 432 ) ( 800 234 432 ) ( 800 234 424 ) t7_metal_paint_worn_grey_dk 64 64 364 -32 0 0 lightmap_gray 16384 16384 288 -32 0 0
+ ( 798 352 432 ) ( 798 384 432 ) ( 798 384 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 800 382 432 ) ( 792 382 432 ) ( 792 382 424 ) t7_metal_paint_worn_grey_dk 64 64 364 -32 0 0 lightmap_gray 16384 16384 288 -32 0 0
+ ( 794 336 432 ) ( 794 304 432 ) ( 794 304 424 ) t7_metal_planter_top_trim_painted_black 64 8 -62 0 0 0 lightmap_gray 16384 16384 0 -32 0 0
+}
+// brush 34
+ {
+  guid "{3A917C66-4C21-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_painted_wall_dirty_black
+   lightmap_gray
+   38 3 0 8
+   (
+	v -254 220 0 t 0 -0 5 1 f 1
+	v -252.25 220 0 t 0 -32 3 1 f 1
+	v -252.25 218 0 t 0 -64 1 1 f 1
+   )
+   (
+	v -44 220 416 t 7443.5078 -0 -2.75 -13.625
+	v -42.211147 220 415.10556 t 7443.5078 -32 -2.75 -13.75
+	v -42.211147 218 415.10556 t 7443.5078 -64 1 3
+   )
+   (
+	v -43.138592 220 417.45572 t 7466.814 -0 -2.6755033 -13.625
+	v -41.470959 220 416.36011 t 7466.814 -32 -2.6755033 -13.75
+	v -41.470959 218 416.36011 t 7466.814 -64 1.8766128 3
+   )
+   (
+	v -41.965927 220 418.94476 t 7492.8799 -0 -2.5856352 -13.625
+	v -40.467339 220 417.64337 t 7492.8799 -32 -2.5856352 -13.75
+	v -40.467339 218 417.64337 t 7492.8799 -64 2.7532256 3
+   )
+   (
+	v -40.507126 220 420.37769 t 7520.938 -0 -2.4836698 -13.625
+	v -39.222244 220 418.87827 t 7520.938 -32 -2.4836698 -13.75
+	v -39.222244 218 418.87827 t 7520.938 -64 3.8766127 3
+   )
+   (
+	v -38.828426 220 421.65686 t 7549.8242 -0 -2.375 -13.625
+	v -37.792488 220 419.98065 t 7549.8242 -32 -2.375 -13.75
+	v -37.792488 218 419.98065 t 7549.8242 -64 5 3
+   )
+   (
+	v -37.029697 220 422.69595 t 7578.1797 -0 -2.2663302 -13.625
+	v -36.263203 220 420.87619 t 7578.1797 -32 -2.2663302 -13.75
+	v -36.263203 218 420.87619 t 7578.1797 -64 6.1233873 3
+   )
+   (
+	v -35.225605 220 423.43829 t 7604.7344 -0 -2.1643648 -13.625
+	v -34.731804 220 421.51593 t 7604.7344 -32 -2.1643648 -13.75
+	v -34.731804 218 421.51593 t 7604.7344 -64 7.2467742 3
+   )
+   (
+	v -33.522484 220 423.86646 t 7628.5723 -0 -2.0744967 -13.625
+	v -33.288334 220 421.88489 t 7628.5723 -32 -2.0744967 -13.75
+	v -33.288334 218 421.88489 t 7628.5723 -64 8.1233873 3
+   )
+   (
+	v -32 220 424 t 7649.2676 -0 -2 -26.625 f 1
+	v -32 220 422 t 7649.2676 -32 -2 -26.5
+	v -32 218 422 t 7649.2676 -64 -2 -13.5
+   )
+   (
+	v 832 220 424 t 21473.268 -0 17 3
+	v 832 220 422 t 21473.268 -32 17 1
+	v 832 218 422 t 21473.268 -64 52.875 -13.625
+   )
+   (
+	v 834.18353 220.20033 424 t 21508.352 -0 15.410739 3
+	v 834.18353 220.20033 422 t 21508.352 -32 15.410739 1
+	v 834.54749 218.23372 422 t 21508.352 -64 52.788086 -13.625
+   )
+   (
+	v 836.41711 220.84254 424 t 21545.537 -0 13.493548 3
+	v 836.41711 220.84254 422 t 21545.537 -32 13.493548 1
+	v 837.15332 218.98297 422 t 21545.537 -64 52.683243 -13.625
+   )
+   (
+	v 838.56653 221.95605 424 t 21584.27 -0 11.318286 3
+	v 838.56653 221.95605 422 t 21584.27 -32 11.318286 1
+	v 839.66095 220.28206 422 t 21584.27 -64 52.564281 -13.625
+   )
+   (
+	v 840.48529 223.51472 424 t 21623.822 -0 9 3
+	v 840.48529 223.51472 422 t 21623.822 -32 9 1
+	v 841.89948 222.10051 422 t 21623.822 -64 52.4375 -13.625
+   )
+   (
+	v 842.04395 225.43349 424 t 21663.375 -0 6.6817141 3
+	v 842.04395 225.43349 422 t 21663.375 -32 6.6817141 1
+	v 843.71796 224.33907 422 t 21663.375 -64 52.310719 -13.625
+   )
+   (
+	v 843.15747 227.58287 424 t 21702.105 -0 4.5064511 3
+	v 843.15747 227.58287 422 t 21702.105 -32 4.5064511 1
+	v 845.01703 226.84668 422 t 21702.105 -64 52.191757 -13.625
+   )
+   (
+	v 843.79968 229.81644 424 t 21739.291 -0 2.5892615 3
+	v 843.79968 229.81644 422 t 21739.291 -32 2.5892615 1
+	v 845.7663 229.45251 422 t 21739.291 -64 52.086914 -13.625
+   )
+   (
+	v 844 232 424 t 21774.375 -0 52 -26.625
+	v 844 232 422 t 21774.375 -32 52 -26.5
+	v 846 232 422 t 21774.375 -64 52 -13.625
+   )
+   (
+	v 844 380 424 t 24142.375 -0 42 -26.625
+	v 844 380 422 t 24142.375 -32 42 -26.5
+	v 846 380 422 t 24142.375 -64 42 -13.625
+   )
+   (
+	v 843.75 382.25 424 t 24178.596 -0 2.5892615 3
+	v 843.75 382.25 422 t 24178.596 -32 2.5892615 1
+	v 845.75 382.5 422 t 24178.596 -64 52.086914 -13.625
+   )
+   (
+	v 843.25 384.5 424 t 24215.475 -0 4.5064511 3
+	v 843.25 384.5 422 t 24215.475 -32 4.5064511 1
+	v 845 385.25 422 t 24215.475 -64 52.191757 -13.625
+   )
+   (
+	v 842 386.5 424 t 24253.211 -0 6.6817141 3
+	v 842 386.5 422 t 24253.211 -32 6.6817141 1
+	v 843.75 387.75 422 t 24253.211 -64 52.310719 -13.625
+   )
+   (
+	v 840.5 388.5 424 t 24293.211 -0 9 3
+	v 840.5 388.5 422 t 24293.211 -32 9 1
+	v 842 390 422 t 24293.211 -64 52.4375 -13.625
+   )
+   (
+	v 838.5 390 424 t 24333.211 -0 11.318286 3
+	v 838.5 390 422 t 24333.211 -32 11.318286 1
+	v 839.75 391.75 422 t 24333.211 -64 52.564281 -13.625
+   )
+   (
+	v 836.5 391.25 424 t 24370.947 -0 13.493548 3
+	v 836.5 391.25 422 t 24370.947 -32 13.493548 1
+	v 837.25 393 422 t 24370.947 -64 52.683243 -13.625
+   )
+   (
+	v 834.25 391.75 424 t 24407.826 -0 15.410739 3
+	v 834.25 391.75 422 t 24407.826 -32 15.410739 1
+	v 834.5 393.75 422 t 24407.826 -64 52.788086 -13.625
+   )
+   (
+	v 832 392 424 t 24444.047 -0 17 3 f 1
+	v 832 392 422 t 24444.047 -32 17 1
+	v 832 394 422 t 24444.047 -64 52.875 -13.625
+   )
+   (
+	v -32 392 424 t 38268.047 -0 -2 -26.625 f 1
+	v -32 392 422 t 38268.047 -32 -2 -26.5
+	v -32 394 422 t 38268.047 -64 -2 -13.5
+   )
+   (
+	v -33.522484 392 423.86646 t 38288.742 -0 -2.0744967 -13.625 f 1
+	v -33.288334 392 421.88489 t 38288.742 -32 -2.0744967 -13.75
+	v -33.288334 394 421.88489 t 38288.742 -64 8.1233873 3
+   )
+   (
+	v -35.225605 392 423.43829 t 38312.582 -0 -2.1643648 -13.625 f 1
+	v -34.731804 392 421.51593 t 38312.582 -32 -2.1643648 -13.75
+	v -34.731804 394 421.51593 t 38312.582 -64 7.2467742 3
+   )
+   (
+	v -37.029697 392 422.69595 t 38339.137 -0 -2.2663302 -13.625 f 1
+	v -36.263203 392 420.87619 t 38339.137 -32 -2.2663302 -13.75
+	v -36.263203 394 420.87619 t 38339.137 -64 6.1233873 3
+   )
+   (
+	v -38.828426 392 421.65686 t 38367.492 -0 -2.375 -13.625 f 1
+	v -37.792488 392 419.98065 t 38367.492 -32 -2.375 -13.75
+	v -37.792488 394 419.98065 t 38367.492 -64 5 3
+   )
+   (
+	v -40.507126 392 420.37769 t 38396.379 -0 -2.4836698 -13.625 f 1
+	v -39.222244 392 418.87827 t 38396.379 -32 -2.4836698 -13.75
+	v -39.222244 394 418.87827 t 38396.379 -64 3.8766127 3
+   )
+   (
+	v -41.965927 392 418.94476 t 38424.438 -0 -2.5856352 -13.625 f 1
+	v -40.467339 392 417.64337 t 38424.438 -32 -2.5856352 -13.75
+	v -40.467339 394 417.64337 t 38424.438 -64 2.7532256 3
+   )
+   (
+	v -43.138592 392 417.45572 t 38450.504 -0 -2.6755033 -13.625 f 1
+	v -41.470959 392 416.36011 t 38450.504 -32 -2.6755033 -13.75
+	v -41.470959 394 416.36011 t 38450.504 -64 1.8766128 3
+   )
+   (
+	v -44 392 416 t 38473.809 -0 -2.75 -13.625 f 1
+	v -42.211147 392 415.10556 t 38473.809 -32 -2.75 -13.75 f 1
+	v -42.211147 394 415.10556 t 38473.809 -64 1 3 f 1
+   )
+   (
+	v -254 392 0 t 45917.316 -0 5 1 f 1
+	v -252.25 392 0 t 45917.316 -32 3 1 f 1
+	v -252.25 394 0 t 45917.316 -64 1 1 f 1
+   )
+  }
+ }
+// brush 35
+{
+ guid "{E88A4C95-4C19-11E4-88C4-2C27D7EF3DFC}"
+layer "000_Global/Ground Floor"
+  contents weaponClip detail ai_nosight;
+ ( 840 392 424 ) ( 800 392 424 ) ( 800 272 424 ) t7_wood_hardwood_sugarpine 128 128 0 0 90 0 lightmap_gray 16384 16384 8 0 0 0
+ ( 800 392 432 ) ( 840 392 432 ) ( 840 272 432 ) t7_metal_panel_white_perforated 64 -71.426628 -4.75 -528.06171 90 0 lightmap_gray 16384 16384 8 0 0 0
+ ( 840 220 424 ) ( 800 220 424 ) ( 800 220 432 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 8 -40 0 0
+ ( 800 392 424 ) ( 800 392 432 ) ( 800 272 432 ) t7_metal_worn_painted_white 64 64 0 -16 0 0 lightmap_gray 16384 16384 0 -16 0 0
+ ( 840 392 432 ) ( 800 392 432 ) ( 800 392 424 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 832 226 432 ) ( 832 224 432 ) ( 832 224 464 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 36
+{
+ guid "{16D225BF-4C20-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 704 158 432 ) ( 720 158 432 ) ( 720 142 432 ) t7_metal_planter_top_trim_painted_grey 64 8 -998 -366 -90 0 lightmap_gray 16384 16384 -870 -408 -90 0
+ ( 728 14 424 ) ( 728 30 424 ) ( 712 30 424 ) t7_metal_planter_top_trim_painted_grey 64 -8 -998 -1222 -90 0 lightmap_gray 16384 16384 -870 -408 -90 0
+ ( 800 158 432 ) ( 800 158 240 ) ( 800 142 240 ) t7_metal_planter_top_trim_painted 64 -8 -872 0 180 0 lightmap_gray 16384 16384 -870 264 180 0
+ ( 798 382 432 ) ( 798 382 424 ) ( 800 384 424 ) t7_metal_planter_top_trim_painted 64 8 0 0 0 0 lightmap_gray 16384 16384 -8 -32 0 0
+ ( 798 234 432 ) ( 798 234 424 ) ( 798 382 424 ) t7_metal_planter_top_trim_painted_grey 64 -8 -998 0 180 0 lightmap_gray 16384 -16384 -870 32 -180 0
+ ( 798 234 424 ) ( 798 234 432 ) ( 800 232 432 ) caulk 16 -16 -456 0 180 0 lightmap_gray 16384 -16384 -456 0 180 0
+}
+// brush 37
+{
+ guid "{4B2E6922-3A07-11E4-B36A-2C27D7EF3DFC}"
+layer "000_Global/Ground Floor"
+  contents weaponClip detail ai_nosight;
+ ( -254 220 0 ) ( -254 392 0 ) ( -260 392 0 ) caulk 16 16 0 -248 0 0 lightmap_gray 16384 16384 0 -248 0 0
+ ( -52.25 220 419.25 ) ( -52.25 392 419.25 ) ( -44 392 416 ) caulk 16 16 0 -248 0 0 lightmap_gray 16384 16384 0 -248 0 0
+ ( -52 220 416 ) ( -44 220 416 ) ( -48 220 408 ) caulk 16 16 0 -248 0 0 lightmap_gray 16384 16384 0 -112 0 0
+ ( -254 392 0 ) ( -254 220 0 ) ( -44 220 416 ) t7_wood_hardwood_sugarpine 128 -114.2661 0 -459.67386 0 0 lightmap_gray 16384 16384 248 -112 0 0
+ ( -44 392 404 ) ( -52 392 404 ) ( -56 392 396 ) caulk 16 -16 192 940 0 0 lightmap_gray 16384 16384 0 -112 0 0
+ ( -52.25 392 419.25 ) ( -52.25 220 419.25 ) ( -260 220 0 ) t7_metal_panel_white_perforated 64 64 -4.75 0 0 0 lightmap_gray 16384 16384 248 -112 0 0
+}
+// brush 38
+ {
+  guid "{FD559EE3-4C1B-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_planter_top_trim
+   lightmap_gray
+   4 20 0 8
+   (
+	v -262 220 0 t 0 8.1919718 61 1
+	v -52.25 220 419.25 t -7443.5078 8.1919718 17 1
+	v -51.209541 219.9994 421.57004 t -7466.8135 8.1919718 15.410739 1
+	v -49.56221 219.9975 423.94321 t -7492.8799 8.1919718 13.493548 1
+	v -47.316288 219.99419 426.22693 t -7520.9375 8.1919718 11.318286 1
+	v -44.558506 219.98955 428.26563 t -7549.8237 8.1919718 9 1
+	v -41.448124 219.98383 429.92169 t -7578.1792 8.1919718 6.6817141 1
+	v -38.187916 219.97743 431.1048 t -7604.7344 8.1919718 4.5064511 1
+	v -34.982361 219.97079 431.78714 t -7628.5718 8.1919718 2.5892615 1
+	v -32 220 432 t -7649.2676 8.1919718 1 1 f 1
+	v 832 220 432 t -21473.266 8.1919718 1 97
+	v 834.18353 220.20033 432 t -21520.047 8.1919718 1 81.120811
+	v 836.41711 220.84254 432 t -21569.627 8.1919718 1 65.169357
+	v 838.56653 221.95605 432 t -21621.268 8.1919718 1 50.149578
+	v 840.48529 223.51472 432 t -21674.004 8.1919718 1 37.117748
+	v 842.04395 225.43349 432 t -21726.74 8.1919718 1 26.966717
+	v 843.15747 227.58287 432 t -21778.381 8.1919718 1 20.233871
+	v 843.79968 229.81644 432 t -21827.961 8.1919718 1 17.013424
+	v 844 232 432 t -21874.738 8.1919718 1 17 f 1
+	v 844 380 432 t -24242.738 8.1919718 1 1 f 1
+   )
+   (
+	v -254 216 0 t 0 -759.84204 61 3
+	v -44 216 416 t -7443.5078 -759.84241 17 3
+	v -43.138592 216 417.45572 t -7466.8135 -759.84241 15.410739 3
+	v -41.965927 216 418.94476 t -7492.8799 -759.84045 13.493548 3
+	v -40.507126 216 420.37769 t -7520.9375 -759.84241 11.318286 3
+	v -38.828426 216 421.65686 t -7549.8237 -759.84241 9 3
+	v -37.029697 216 422.69595 t -7578.1792 -759.84241 6.6817141 3
+	v -35.225605 216 423.43829 t -7604.7344 -759.84241 4.5064511 3
+	v -33.522484 216 423.86646 t -7628.5718 -759.84241 2.5892615 3
+	v -32 216 424 t -7649.2676 -759.84241 9 1
+	v 832 216 424 t -21473.266 -759.84241 5 3
+	v 834.91144 216.26712 424 t -21520.047 -759.84241 4.6026845 3
+	v 837.88953 217.12338 424 t -21569.625 -759.84241 4.1233873 3
+	v 840.75537 218.60808 424 t -21621.268 -759.85022 3.5795715 3
+	v 843.31372 220.68629 424 t -21674.004 -759.84241 3 3
+	v 845.39191 223.24464 424 t -21726.738 -759.84241 2.4204285 3
+	v 846.87659 226.11049 424 t -21778.381 -759.85022 1.8766128 3
+	v 847.73291 229.08859 424 t -21827.961 -759.85022 1.3973154 3
+	v 848 232 424 t -21874.738 -759.84241 1 3
+	v 848 380 424 t -24242.738 -759.85022 9 1
+   )
+   (
+	v -252.25 216 0 t 0 -1015.842 61 5
+	v -42.211147 216 415.10556 t -7443.5078 -1015.8424 17 5 f 1
+	v -41.470959 216 416.36011 t -7466.8135 -1015.8424 15.410739 5 f 1
+	v -40.467339 216 417.64337 t -7492.8799 -1015.8405 13.493548 5 f 1
+	v -39.222244 216 418.87827 t -7520.9375 -1015.8424 11.318286 5 f 1
+	v -37.792488 216 419.98065 t -7549.8237 -1015.8424 9 5 f 1
+	v -36.263203 216 420.87619 t -7578.1792 -1015.8424 6.6817141 5 f 1
+	v -34.731804 216 421.51593 t -7604.7344 -1015.8424 4.5064511 5 f 1
+	v -33.288334 216 421.88489 t -7628.5718 -1015.8424 2.5892615 5 f 1
+	v -32 216 422 t -7649.2676 -1015.8424 -2 -13.5 f 1
+	v 832 216 422 t -21473.266 -1015.8424 53 -13.5
+	v 834.91144 216.26712 422 t -21520.047 -1015.8424 52.900673 -13.5
+	v 837.88953 217.12338 422 t -21569.625 -1015.8424 52.780846 -13.5
+	v 840.75537 218.60808 422 t -21621.266 -1015.8424 52.644894 -13.5
+	v 843.31372 220.68629 422 t -21674.004 -1015.8424 52.5 -13.5
+	v 845.39191 223.24464 422 t -21726.738 -1015.8424 52.355106 -13.5
+	v 846.87659 226.11049 422 t -21778.379 -1015.8424 52.219154 -13.5
+	v 847.73291 229.08859 422 t -21827.961 -1015.8424 52.099327 -13.5
+	v 848 232 422 t -21874.738 -1015.8424 52 -13.5 f 1
+	v 848 380 422 t -24242.738 -1015.8424 -2 -13.5 f 1
+   )
+   (
+	v -252.25 218 0 t 0 -1271.842 13.583285 -6.9454179
+	v -42.211147 218 415.10556 t -7443.5078 -1271.8424 13.625 -25.944098 f 1
+	v -41.470959 218 416.36011 t -7466.8135 -1271.8424 1.8766128 1 f 1
+	v -40.467339 218 417.64337 t -7492.8799 -1271.8424 2.7532256 1 f 1
+	v -39.222244 218 418.87827 t -7520.9375 -1271.8424 3.8766127 1 f 1
+	v -37.792488 218 419.98065 t -7549.8237 -1271.8424 5 1 f 1
+	v -36.263203 218 420.87619 t -7578.1792 -1271.8424 6.1233873 1 f 1
+	v -34.731804 218 421.51593 t -7604.7344 -1271.8424 7.2467742 1 f 1
+	v -33.288334 218 421.88489 t -7628.5718 -1271.8424 8.1233873 1 f 1
+	v -32 218 422 t -7649.2676 -1271.8424 -2 -13.625 f 1
+	v 832 218 422 t -21473.266 -1271.8424 53 -14.5
+	v 834.54749 218.23372 422 t -21520.047 -1271.8424 52.900673 -14.5
+	v 837.15332 218.98297 422 t -21569.627 -1271.8346 52.780846 -14.5
+	v 839.66095 220.28206 422 t -21621.268 -1271.8346 52.644894 -14.5
+	v 841.89948 222.10051 422 t -21674.004 -1271.8346 52.5 -14.5
+	v 843.71796 224.33907 422 t -21726.738 -1271.8424 52.355106 -14.5
+	v 845.01703 226.84668 422 t -21778.381 -1271.8346 52.219154 -14.5
+	v 845.7663 229.45251 422 t -21827.961 -1271.8346 52.099327 -14.5
+	v 846 232 422 t -21874.738 -1271.8424 52 -14.5 f 1
+	v 846 380 422 t -24242.738 -1271.8346 -2 -13.625 f 1
+   )
+  }
+ }
+// brush 39
+ {
+  guid "{4A34270C-4C23-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_planter_top_trim
+   lightmap_gray
+   11 3 0 1
+   (
+	v 856 624 244 t 0 -0 1 41
+	v 856 616 244 t 0 -512 5 41
+	v 848 616 244 t 0 -1024 9 41
+   )
+   (
+	v 856 624 305 t 488 -0 1 41
+	v 856 616 305 t 488 -512 5 41
+	v 848 616 305 t 488 -1024 9 41
+   )
+   (
+	v 856 624 400 t 1248 -0 1 17
+	v 856 616 400 t 1248 -512 5 17
+	v 848 616 400 t 1248 -1024 9 17
+   )
+   (
+	v 856 624 416 t 1376 -0 1 9
+	v 856 616 416 t 1376 -512 5 9
+	v 848 616 408 t 1376 -1024 9 9
+   )
+   (
+	v 840 624 416 t 1504 -0 1 97
+	v 840 616 416 t 1504 -512 5 97
+	v 840 616 408 t 1504 -1024 9 97
+   )
+   (
+	v 612 623.75 416 t 3328.001 -0 1 97
+	v 612 615.75 416 t 3328.001 -512 5 97
+	v 612 615.75 408 t 3328.001 -1024 9 97
+   )
+   (
+	v 392 623.96429 416 t 5088.002 -0 1 1
+	v 392 616 416 t 5088.002 -512 5 1
+	v 392 616 408 t 5088.002 -1024 9 1
+   )
+   (
+	v 375 624 416 t 5224.002 -0 1 53
+	v 375 616 416 t 5224.002 -512 5 53
+	v 383 616 408 t 5224.002 -1024 9 53
+   )
+   (
+	v 370 624 400 t 5358.1064 -0 1 45
+	v 370 616 400 t 5358.1064 -512 5 45
+	v 378 616 400 t 5358.1064 -1024 9 45
+   )
+   (
+	v 316 624 290 t 6338.4248 -0 1 45
+	v 316 616 290 t 6338.4248 -512 5 45
+	v 324 616 290 t 6338.4248 -1024 9 45
+   )
+   (
+	v 303 624 264 t 6570.9761 -0 1 1
+	v 303 616 264 t 6570.9761 -512 5 1
+	v 311 616 264 t 6570.9761 -1024 9 1
+   )
+  }
+ }
+// brush 40
+ {
+  guid "{8F7809A8-4C23-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_planter_top_trim
+   lightmap_gray
+   11 3 0 1
+   (
+	v 848 781 244 t 0 -1024 9 41
+	v 856 781 244 t 0 -512 5 41
+	v 856 773 244 t 0 0 1 41
+   )
+   (
+	v 848 797 303 t 488 -1024 9 41
+	v 856 797 303 t 488 -512 5 41
+	v 856 789 303 t 488 0 1 41
+   )
+   (
+	v 848 824 400 t 1248 -1024 9 17
+	v 856 824 400 t 1248 -512 5 17
+	v 856 816 400 t 1248 0 1 17
+   )
+   (
+	v 848 824 408 t 1376 -1024 9 9
+	v 856 824 416 t 1376 -512 5 9
+	v 856 816 416 t 1376 0 1 9
+   )
+   (
+	v 840 824 408 t 1504 -1024 9 97
+	v 840 824 416 t 1504 -512 5 97
+	v 840 816 416 t 1504 0 1 97
+   )
+   (
+	v 616 805.25 408 t 3328.001 -1024 9 97
+	v 616 805.25 416 t 3328.001 -512 5 97
+	v 616 797.25 416 t 3328.001 0 1 97
+   )
+   (
+	v 392 786 408 t 5088.002 -1024 9 1
+	v 392 786 416 t 5088.002 -512 5 1
+	v 392 778 416 t 5088.002 0 1 1
+   )
+   (
+	v 383 786 408 t 5224.002 -1024 9 53
+	v 375 786 416 t 5224.002 -512 5 53
+	v 375 778 416 t 5224.002 0 1 53
+   )
+   (
+	v 378 786 400 t 5358.1064 -1024 9 45
+	v 370 786 400 t 5358.1064 -512 5 45
+	v 370 778 400 t 5358.1064 0 1 45
+   )
+   (
+	v 324 786 290 t 6338.4248 -1024 9 45
+	v 316 786 290 t 6338.4248 -512 5 45
+	v 316 778 290 t 6338.4248 0 1 45
+   )
+   (
+	v 311 786 264 t 6570.9761 -1024 9 1
+	v 303 786 264 t 6570.9761 -512 5 1
+	v 303 778 264 t 6570.9761 0 1 1
+   )
+  }
+ }
+// brush 41
+ {
+  guid "{64F8739E-4C24-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 848 781 244 t 1324.0364 -1719.5734 -112.85416 -16.25
+	v 848 824 400 t 1664 -128 -115.5625 -26
+   )
+   (
+	v 848 616 244 t 0 -1719.5734 -103.0625 -16.25
+	v 848 616 400 t 0 -128 -103.0625 -26
+   )
+  }
+ }
+// brush 42
+ {
+  guid "{88E1BAE4-4C24-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 392 786 408 t 1664 4570.6724 24 -49.125
+	v 392 616 408 t 0 4570.6724 24 -39
+   )
+   (
+	v 840 824 408 t 1664 0 52 -51.5
+	v 840 616 408 t 0 0 52 -39
+   )
+  }
+ }
+// brush 43
+ {
+  guid "{B50FA341-4C24-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_worn_painted_white
+   lightmap_gray
+   2 2 0 8
+   (
+	v 856 816 400 t 1536 0 -115.5625 -26
+	v 856 773 244 t 1536 1591.5736 -112.85416 -16.25
+   )
+   (
+	v 856 624 400 t 0 0 -103.0625 -26
+	v 856 624 244 t 0 1591.5736 -103.0625 -16.25
+   )
+  }
+ }
+// brush 44
+ {
+  guid "{C6D494FD-4C24-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_worn_painted_white
+   lightmap_gray
+   2 2 0 8
+   (
+	v 392 624 416 t 0 -4826.6729 24 -39
+	v 392 778 416 t 1536 -4826.6729 24 -49.125
+   )
+   (
+	v 840 624 416 t 0 -256 52 -39
+	v 840 816 416 t 1536 -256 52 -51.5
+   )
+  }
+ }
+// brush 45
+ {
+  guid "{F5B1C330-4C24-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 378 616 400 t 0 4740.4502 1.5 -19
+	v 378 786 400 t 1664 4740.4502 11.125 -19
+   )
+   (
+	v 311 616 264 t 0 6281.6787 1.5 -10.5
+	v 311 786 264 t 1664 6281.6787 11.125 -10.5
+   )
+  }
+ }
+// brush 46
+ {
+  guid "{05384043-4C25-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_worn_painted_white
+   lightmap_gray
+   2 2 0 8
+   (
+	v 370 778 400 t 12448 -6400 11.125 -19
+	v 370 624 400 t 9984 -6400 1.5 -19
+   )
+   (
+	v 303 778 264 t 12448 -4224 11.125 -10.5
+	v 303 624 264 t 9984 -4224 1.5 -10.5
+   )
+  }
+ }
+// brush 47
+ {
+  guid "{02BDCD3B-4D76-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_planter_top_trim
+   lightmap_gray
+   9 3 16 2
+   (
+	v 824 294 264 t 0 -0 1 1
+	v 824 294 265.5 t 0 -512 1 3
+	v 824 294 267 t 0 -1024 1 3
+   )
+   (
+	v 836 294 264 t 610.35156 -0 5 1
+	v 836 294 265.5 t 610.35156 -512 5 3
+	v 836 294 267 t 610.35156 -1024 5 3
+   )
+   (
+	v 836 306 264 t 1220.7031 -0 9 1
+	v 836 306 265.5 t 1220.7031 -512 9 3
+	v 836 306 267 t 1220.7031 -1024 9 3
+   )
+   (
+	v 836 318 264 t 1831.0547 -0 13 1
+	v 836 318 265.5 t 1831.0547 -512 13 3
+	v 836 318 267 t 1831.0547 -1024 13 3
+   )
+   (
+	v 824 318 264 t 2441.4063 -0 17 1
+	v 824 318 265.5 t 2441.4063 -512 17 3
+	v 824 318 267 t 2441.4063 -1024 17 3
+   )
+   (
+	v 812 318 264 t 3051.7578 -0 21 1
+	v 812 318 265.5 t 3051.7578 -512 21 3
+	v 812 318 267 t 3051.7578 -1024 21 3
+   )
+   (
+	v 812 306 264 t 3662.1094 -0 25 1
+	v 812 306 265.5 t 3662.1094 -512 25 3
+	v 812 306 267 t 3662.1094 -1024 25 3
+   )
+   (
+	v 812 294 264 t 4272.4609 -0 29 1
+	v 812 294 265.5 t 4272.4609 -512 29 3
+	v 812 294 267 t 4272.4609 -1024 29 3
+   )
+   (
+	v 824 294 264 t 4882.8125 -0 33 1
+	v 824 294 265.5 t 4882.8125 -512 33 3
+	v 824 294 267 t 4882.8125 -1024 33 3
+   )
+  }
+ }
+// brush 48
+ {
+  guid "{2CEEE665-4D76-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_concrete_worn_painted_white
+   lightmap_gray
+   9 3 16 2
+   (
+	v 824 294 267 t 0 -0 1 1
+	v 824 294 282.5 t 0 -248 1 5
+	v 824 294 298 t 0 -496 1 5
+   )
+   (
+	v 836 294 267 t 256 -0 5 1
+	v 836 294 282.5 t 256 -248 5 5
+	v 836 294 298 t 256 -496 5 5
+   )
+   (
+	v 836 306 267 t 512 -0 9 1
+	v 836 306 282.5 t 512 -248 9 5
+	v 836 306 298 t 512 -496 9 5
+   )
+   (
+	v 836 318 267 t 768 -0 13 1
+	v 836 318 282.5 t 768 -248 13 5
+	v 836 318 298 t 768 -496 13 5
+   )
+   (
+	v 824 318 267 t 1024 -0 17 1
+	v 824 318 282.5 t 1024 -248 17 5
+	v 824 318 298 t 1024 -496 17 5
+   )
+   (
+	v 812 318 267 t 1280 -0 21 1
+	v 812 318 282.5 t 1280 -248 21 5
+	v 812 318 298 t 1280 -496 21 5
+   )
+   (
+	v 812 306 267 t 1536 -0 25 1
+	v 812 306 282.5 t 1536 -248 25 5
+	v 812 306 298 t 1536 -496 25 5
+   )
+   (
+	v 812 294 267 t 1792 -0 29 1
+	v 812 294 282.5 t 1792 -248 29 5
+	v 812 294 298 t 1792 -496 29 5
+   )
+   (
+	v 824 294 267 t 2048 -0 33 1
+	v 824 294 282.5 t 2048 -248 33 5
+	v 824 294 298 t 2048 -496 33 5
+   )
+  }
+ }
+// brush 49
+ {
+  guid "{8A0D41A3-4D78-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   com_black_true
+   lightmap_gray
+   9 3 16 2
+   (
+	v 824 306 303 t 0 -0 1 1
+	v 824 339 361.5 t 0 -119808 1 11
+	v 824 375 424 t 0 -239616 1 21
+   )
+   (
+	v 825 306 303 t 2048 -0 3 1
+	v 825 339 361.5 t 2048 -119808 3 11
+	v 825 375 424 t 2048 -239616 3 21
+   )
+   (
+	v 825 307 303 t 4096 -0 5 1
+	v 825 340 361.5 t 4096 -119808 5 11
+	v 825 376 424 t 4096 -239616 5 21
+   )
+   (
+	v 825 308 303 t 6144 -0 7 1
+	v 825 341 361.5 t 6144 -119808 7 11
+	v 825 377 424 t 6144 -239616 7 21
+   )
+   (
+	v 824 308 303 t 8192 -0 9 1
+	v 824 341 361.5 t 8192 -119808 9 11
+	v 824 377 424 t 8192 -239616 9 21
+   )
+   (
+	v 823 308 303 t 10240 -0 11 1
+	v 823 341 361.5 t 10240 -119808 11 11
+	v 823 377 424 t 10240 -239616 11 21
+   )
+   (
+	v 823 307 303 t 12288 -0 13 1
+	v 823 340 361.5 t 12288 -119808 13 11
+	v 823 376 424 t 12288 -239616 13 21
+   )
+   (
+	v 823 306 303 t 14336 -0 15 1
+	v 823 339 361.5 t 14336 -119808 15 11
+	v 823 375 424 t 14336 -239616 15 21
+   )
+   (
+	v 824 306 303 t 16384 -0 17 1
+	v 824 339 361.5 t 16384 -119808 17 11
+	v 824 375 424 t 16384 -239616 17 21
+   )
+  }
+ }
+// brush 50
+ {
+  guid "{98688CF8-4D78-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   com_black_true
+   lightmap_gray
+   9 3 16 2
+   (
+	v 824 306 303 t 0 0 1 1
+	v 824 273 361.5 t 0 -119808 1 11
+	v 824 237 424 t 0 -239616 1 21
+   )
+   (
+	v 823 306 303 t 2048 0 3 1
+	v 823 273 361.5 t 2048 -119808 3 11
+	v 823 237 424 t 2048 -239616 3 21
+   )
+   (
+	v 823 305 303 t 4096 0 5 1
+	v 823 272 361.5 t 4096 -119808 5 11
+	v 823 236 424 t 4096 -239616 5 21
+   )
+   (
+	v 823 304 303 t 6144 0 7 1
+	v 823 271 361.5 t 6144 -119808 7 11
+	v 823 235 424 t 6144 -239616 7 21
+   )
+   (
+	v 824 304 303 t 8192 0 9 1
+	v 824 271 361.5 t 8192 -119808 9 11
+	v 824 235 424 t 8192 -239616 9 21
+   )
+   (
+	v 825 304 303 t 10240 0 11 1
+	v 825 271 361.5 t 10240 -119808 11 11
+	v 825 235 424 t 10240 -239616 11 21
+   )
+   (
+	v 825 305 303 t 12288 0 13 1
+	v 825 272 361.5 t 12288 -119808 13 11
+	v 825 236 424 t 12288 -239616 13 21
+   )
+   (
+	v 825 306 303 t 14336 0 15 1
+	v 825 273 361.5 t 14336 -119808 15 11
+	v 825 237 424 t 14336 -239616 15 21
+   )
+   (
+	v 824 306 303 t 16384 0 17 1
+	v 824 273 361.5 t 16384 -119808 17 11
+	v 824 237 424 t 16384 -239616 17 21
+   )
+  }
+ }
+// brush 51
+{
+ guid "{A9870208-4D78-11E4-88C4-2C27D7EF3DFC}"
+  contents weaponClip detail ai_nosight;
+ ( 825 312 303 ) ( 823 312 303 ) ( 823 300 303 ) com_black_true 0.5 0.5 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 823 300 307 ) ( 823 312 307 ) ( 825 312 307 ) com_black_true 0.5 0.5 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 823 300 305 ) ( 825 300 305 ) ( 825 300 303 ) com_black_true 0.5 0.5 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 825.5 300 305 ) ( 825.5 312 305 ) ( 825.5 312 303 ) com_black_true 0.5 0.5 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 825 312 305 ) ( 823 312 305 ) ( 823 312 303 ) com_black_true 0.5 0.5 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 822.5 312 305 ) ( 822.5 300 305 ) ( 822.5 300 303 ) com_black_true 0.5 0.5 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 825 301 306 ) ( 825 302 307 ) ( 857 301 306 ) com_black_true 0.5 0.5 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 825 310 307 ) ( 825 311 306 ) ( 857 310 307 ) com_black_true 0.5 0.5 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 52
+ {
+  guid "{6D318914-50B6-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_decal_signage_terra_farms_caution_03
+   lightmap_gray
+   2 2 0 8
+   (
+	v 856 656 247 c 252 231 0 227 t 0 -0 -103.0625 -16.25
+	v 856 656 259 c 252 231 0 227 t 0 -1024 -103.0625 -26
+   )
+   (
+	v 856 668 247 c 252 231 0 227 t 1024 -0 -112.85416 -16.25
+	v 856 668 259 c 252 231 0 227 t 1024 -1024 -115.5625 -26
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+// brush 53
+ {
+  guid "{A110E8AF-50B6-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_decal_signage_lab_a
+   lightmap_gray
+   2 2 0 8
+   (
+	v 856 624 244 c 255 255 255 227 t 0 -0 -103.0625 -16.25
+	v 856 624 276 c 255 255 255 227 t 0 -1024 -103.0625 -26
+   )
+   (
+	v 856 656 244 c 255 255 255 227 t 1024 -0 -112.85416 -16.25
+	v 856 656 276 c 255 255 255 227 t 1024 -1024 -115.5625 -26
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+// brush 54
+{
+ guid "{2A2ED614-5EE5-11E4-953C-2C27D7F024B0}"
+layer "000_Global/Ground Floor"
+  contents weaponClip detail ai_nosight;
+ ( 712 296 432 ) ( 712 312 432 ) ( 728 312 432 ) t7_metal_panel_white_perforated 64 -71.426628 -4.75 -528.06171 90 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 856 320 424 ) ( 840 320 424 ) ( 840 304 424 ) t7_wood_hardwood_sugarpine 128 128 -650 -456 -90 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 712 392 424 ) ( 712 392 232 ) ( 728 392 232 ) caulk 16 -16 192 940 0 0 lightmap_gray 16384 -16384 0 -264 0 0
+ ( -32 264 432 ) ( -32 264 424 ) ( -32 488 424 ) caulk 16 -16 192 940 0 0 lightmap_gray 16384 -16384 0 -264 0 0
+ ( 488 280 440 ) ( 488 272 440 ) ( 488 280 472 ) t7_metal_panel_white_perforated 64 -71.426628 -4.75 -528.06171 90 0 lightmap_gray 16384 16384 0 -32 0 0
+ ( 496 314 436 ) ( 464 314 436 ) ( 496 314 468 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 55
+{
+ guid "{8632CAA9-5EE9-11E4-953C-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -256 316 432 ) ( -256 300 432 ) ( -272 300 432 ) t7_metal_panel_white_perforated 64 -71.426628 -616.75 -984.06183 -90 0 lightmap_gray 16384 16384 -456 612 -180 0
+ ( -400 292 424 ) ( -384 292 424 ) ( -384 308 424 ) t7_wood_hardwood_sugarpine 128 128 -650 -456 -90 0 lightmap_gray 16384 16384 -456 612 180 0
+ ( -256 220 424 ) ( -256 220 232 ) ( -272 220 232 ) caulk 16 16 -264 -940 180 0 lightmap_gray 16384 16384 -456 264 180 0
+ ( 488 348 432 ) ( 488 348 424 ) ( 488 124 424 ) caulk 16 16 -420 -940 180 0 lightmap_gray 16384 16384 -612 264 180 0
+ ( -32 332 440 ) ( -32 340 440 ) ( -32 332 472 ) t7_metal_panel_white_perforated 64 71.426628 -4.75 1140.0621 90 0 lightmap_gray 16384 -16384 -612 32 -180 0
+ ( -38 298 434 ) ( -6 298 434 ) ( -38 298 466 ) caulk 16 -16 -456 0 180 0 lightmap_gray 16384 -16384 -456 0 180 0
+}
+// brush 56
+{
+ guid "{F1F1B0F0-5EEA-11E4-953C-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( 450 314 424 ) ( 440 314 424 ) ( 440 298 424 ) t7_wood_hardwood_sugarpine 128 128 -650 -456 -90 0 lightmap_gray 16384 16384 348 0 0 0
+ ( 440 298 430 ) ( 440 314 430 ) ( 450 314 430 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 348 0 0 0
+ ( 440 298 430 ) ( 450 298 430 ) ( 450 298 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 348 0 0 0
+ ( 488 298 430 ) ( 488 314 430 ) ( 488 314 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 450 314 430 ) ( 440 314 430 ) ( 440 314 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 348 0 0 0
+ ( 440 314 430 ) ( 440 298 430 ) ( 440 298 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 57
+ {
+  guid "{F1F1B0F1-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 440 301 424 t 2792 2880 5.875 -18.8125
+	v 437 298 424 t 2816 2904 5.875 -18.625
+   )
+   (
+	v 440 301 424 t 2792 2880 6.0625 -18.8125
+	v 440 298 424 t 2816 2880 6.0625 -18.625
+   )
+  }
+ }
+// brush 58
+ {
+  guid "{F1F1B0F2-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 437 314 424 t 2688 2904 5.875 -18.8125
+	v 440 311 424 t 2712 2880 5.875 -18.625
+   )
+   (
+	v 437 314 424 t 2688 2904 6.0625 -18.8125
+	v 440 314 424 t 2688 2880 6.0625 -18.625
+   )
+  }
+ }
+// brush 59
+ {
+  guid "{F1F1B0F3-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 427 298 424 t 2816 2984 5.875 -18.8125
+	v 424 301 424 t 2792 3008 5.875 -18.625
+   )
+   (
+	v 427 298 424 t 2816 2984 6.0625 -18.8125
+	v 424 298 424 t 2816 3008 6.0625 -18.625
+   )
+  }
+ }
+// brush 60
+ {
+  guid "{F1F1B0F4-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 424 311 424 t 2712 3008 5.875 -18.8125
+	v 427 314 424 t 2688 2984 5.875 -18.625
+   )
+   (
+	v 424 311 424 t 2712 3008 6.0625 -18.8125
+	v 424 314 424 t 2688 3008 6.0625 -18.625
+   )
+  }
+ }
+// brush 61
+{
+ guid "{E99F59F2-5EEA-11E4-953C-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( 314 314 424 ) ( 304 314 424 ) ( 304 298 424 ) t7_wood_hardwood_sugarpine 128 128 -650 -456 -90 0 lightmap_gray 16384 16384 212 0 0 0
+ ( 304 298 430 ) ( 304 314 430 ) ( 314 314 430 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 212 0 0 0
+ ( 304 298 430 ) ( 314 298 430 ) ( 314 298 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 212 0 0 0
+ ( 424 298 430 ) ( 424 314 430 ) ( 424 314 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 314 314 430 ) ( 304 314 430 ) ( 304 314 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 212 0 0 0
+ ( 304 314 430 ) ( 304 298 430 ) ( 304 298 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 62
+ {
+  guid "{E99F59F1-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 304 301 424 t 2792 2880 5.875 -18.8125
+	v 301 298 424 t 2816 2904 5.875 -18.625
+   )
+   (
+	v 304 301 424 t 2792 2880 6.0625 -18.8125
+	v 304 298 424 t 2816 2880 6.0625 -18.625
+   )
+  }
+ }
+// brush 63
+ {
+  guid "{E99F59F0-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 301 314 424 t 2688 2904 5.875 -18.8125
+	v 304 311 424 t 2712 2880 5.875 -18.625
+   )
+   (
+	v 301 314 424 t 2688 2904 6.0625 -18.8125
+	v 304 314 424 t 2688 2880 6.0625 -18.625
+   )
+  }
+ }
+// brush 64
+ {
+  guid "{E99F59EF-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 291 298 424 t 2816 2984 5.875 -18.8125
+	v 288 301 424 t 2792 3008 5.875 -18.625
+   )
+   (
+	v 291 298 424 t 2816 2984 6.0625 -18.8125
+	v 288 298 424 t 2816 3008 6.0625 -18.625
+   )
+  }
+ }
+// brush 65
+ {
+  guid "{E99F59EE-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 288 311 424 t 2712 3008 5.875 -18.8125
+	v 291 314 424 t 2688 2984 5.875 -18.625
+   )
+   (
+	v 288 311 424 t 2712 3008 6.0625 -18.8125
+	v 288 314 424 t 2688 3008 6.0625 -18.625
+   )
+  }
+ }
+// brush 66
+ {
+  guid "{E35E1621-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 152 311 424 t 2712 3008 5.875 -18.8125
+	v 155 314 424 t 2688 2984 5.875 -18.625
+   )
+   (
+	v 152 311 424 t 2712 3008 6.0625 -18.8125
+	v 152 314 424 t 2688 3008 6.0625 -18.625
+   )
+  }
+ }
+// brush 67
+ {
+  guid "{E35E1622-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 155 298 424 t 2816 2984 5.875 -18.8125
+	v 152 301 424 t 2792 3008 5.875 -18.625
+   )
+   (
+	v 155 298 424 t 2816 2984 6.0625 -18.8125
+	v 152 298 424 t 2816 3008 6.0625 -18.625
+   )
+  }
+ }
+// brush 68
+ {
+  guid "{E35E1623-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 165 314 424 t 2688 2904 5.875 -18.8125
+	v 168 311 424 t 2712 2880 5.875 -18.625
+   )
+   (
+	v 165 314 424 t 2688 2904 6.0625 -18.8125
+	v 168 314 424 t 2688 2880 6.0625 -18.625
+   )
+  }
+ }
+// brush 69
+ {
+  guid "{E35E1624-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 168 301 424 t 2792 2880 5.875 -18.8125
+	v 165 298 424 t 2816 2904 5.875 -18.625
+   )
+   (
+	v 168 301 424 t 2792 2880 6.0625 -18.8125
+	v 168 298 424 t 2816 2880 6.0625 -18.625
+   )
+  }
+ }
+// brush 70
+{
+ guid "{E35E1625-5EEA-11E4-953C-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( 178 314 424 ) ( 168 314 424 ) ( 168 298 424 ) t7_wood_hardwood_sugarpine 128 128 -650 -456 -90 0 lightmap_gray 16384 16384 76 0 0 0
+ ( 168 298 430 ) ( 168 314 430 ) ( 178 314 430 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 76 0 0 0
+ ( 168 298 430 ) ( 178 298 430 ) ( 178 298 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 76 0 0 0
+ ( 288 298 430 ) ( 288 314 430 ) ( 288 314 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 178 314 430 ) ( 168 314 430 ) ( 168 314 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 76 0 0 0
+ ( 168 314 430 ) ( 168 298 430 ) ( 168 298 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 71
+ {
+  guid "{C5273E40-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 16 311 424 t 2712 3008 5.875 -18.8125
+	v 19 314 424 t 2688 2984 5.875 -18.625
+   )
+   (
+	v 16 311 424 t 2712 3008 6.0625 -18.8125
+	v 16 314 424 t 2688 3008 6.0625 -18.625
+   )
+  }
+ }
+// brush 72
+ {
+  guid "{C5273E4F-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 19 298 424 t 2816 2984 5.875 -18.8125
+	v 16 301 424 t 2792 3008 5.875 -18.625
+   )
+   (
+	v 19 298 424 t 2816 2984 6.0625 -18.8125
+	v 16 298 424 t 2816 3008 6.0625 -18.625
+   )
+  }
+ }
+// brush 73
+ {
+  guid "{C5273E31-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 29 314 424 t 2688 2904 5.875 -18.8125
+	v 32 311 424 t 2712 2880 5.875 -18.625
+   )
+   (
+	v 29 314 424 t 2688 2904 6.0625 -18.8125
+	v 32 314 424 t 2688 2880 6.0625 -18.625
+   )
+  }
+ }
+// brush 74
+ {
+  guid "{BE69C253-5EEA-11E4-953C-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   2 2 0 8
+   (
+	v 32 301 424 t 2792 2880 5.875 -18.8125
+	v 29 298 424 t 2816 2904 5.875 -18.625
+   )
+   (
+	v 32 301 424 t 2792 2880 6.0625 -18.8125
+	v 32 298 424 t 2816 2880 6.0625 -18.625
+   )
+  }
+ }
+// brush 75
+{
+ guid "{9DD2077F-5EEA-11E4-953C-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( 42 314 424 ) ( 32 314 424 ) ( 32 298 424 ) t7_wood_hardwood_sugarpine 128 128 -650 -456 -90 0 lightmap_gray 16384 16384 -60 0 0 0
+ ( 32 298 430 ) ( 32 314 430 ) ( 42 314 430 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 -60 0 0 0
+ ( 32 298 430 ) ( 42 298 430 ) ( 42 298 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 -60 0 0 0
+ ( 152 298 430 ) ( 152 314 430 ) ( 152 314 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 42 314 430 ) ( 32 314 430 ) ( 32 314 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 -60 0 0 0
+ ( 32 314 430 ) ( 32 298 430 ) ( 32 298 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 76
+{
+ guid "{02EBD42A-5EEB-11E4-953C-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -22 314 424 ) ( -32 314 424 ) ( -32 298 424 ) t7_wood_hardwood_sugarpine 128 128 -650 -456 -90 0 lightmap_gray 16384 16384 -124 0 0 0
+ ( -32 298 430 ) ( -32 314 430 ) ( -22 314 430 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 -124 0 0 0
+ ( -32 298 430 ) ( -22 298 430 ) ( -22 298 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 -124 0 0 0
+ ( 16 298 430 ) ( 16 314 430 ) ( 16 314 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -22 314 430 ) ( -32 314 430 ) ( -32 314 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 -124 0 0 0
+ ( -32 314 430 ) ( -32 298 430 ) ( -32 298 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 77
+{
+ guid "{28328FB9-5EEB-11E4-953C-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -248 332 432 ) ( -248 316 432 ) ( -264 316 432 ) t7_metal_panel_white_perforated 64 -71.426628 -616.75 -984.06183 -90 0 lightmap_gray 16384 16384 -464 628 180 0
+ ( -390 308 430 ) ( -374 308 430 ) ( -374 324 430 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 -464 628 -180 0
+ ( -248 298 418 ) ( -248 298 226 ) ( -264 298 226 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 -464 264 180 0
+ ( 488 364 430 ) ( 488 364 422 ) ( 488 140 422 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 -628 264 -180 0
+ ( -32 348 440 ) ( -32 356 440 ) ( -32 348 472 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 -16384 -628 32 180 0
+ ( -30 314 434 ) ( 2 314 434 ) ( -30 314 466 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 -16384 -464 0 180 0
+}
+// brush 78
+ {
+  guid "{ED5D27B0-4C22-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_planter_top_trim
+   lightmap_gray
+   4 19 0 8
+   (
+	v 844 380 432 t 0 -8.1919718 1 17
+	v 843.75 382.25 432 t 48.166378 -8.1919718 1 17.013424
+	v 843.25 384.5 432 t 97.643646 -8.1919718 1 20.233871
+	v 842 386.5 432 t 147.7635 -8.1919718 1 26.966717
+	v 840.5 388.5 432 t 201.578 -8.1919718 1 37.117748
+	v 838.5 390 432 t 255.39249 -8.1919718 1 50.149578
+	v 836.5 391.25 432 t 305.51236 -8.1919718 1 65.169357
+	v 834.25 391.75 432 t 354.98962 -8.1919718 1 81.120811
+	v 832 392 432 t 403.15601 -8.1919718 1 97 f 1
+	v -32 392 432 t 14227.155 -8.1919718 1 1 f 1
+	v -34.982361 392 431.78714 t 14247.851 -8.1919718 2.5892615 1 f 1
+	v -38.187916 392 431.1048 t 14271.689 -8.1919718 4.5064511 1 f 1
+	v -41.448124 392 430 t 14298.243 -8.1919718 6.6817141 1 f 1
+	v -44.558506 392 428.25 t 14326.599 -8.1919718 9 1 f 1
+	v -47.25 392 426.25 t 14355.485 -8.1919718 11.318286 1 f 1
+	v -49.56221 392 424 t 14383.543 -8.1919718 13.493548 1 f 1
+	v -51.209541 392 421.5 t 14409.609 -8.1919718 15.410739 1 f 1
+	v -52.25 392 419.25 t 14432.915 -8.1919718 17 1
+	v -262 392 0 t 21876.42 -8.1919718 61 1
+   )
+   (
+	v 848 380 424 t 0 759.84204 1 3
+	v 847.75 383 424 t 48.166386 759.84204 1.3973154 3
+	v 847 386 424 t 97.643639 759.84192 1.8766128 3
+	v 845.5 388.75 424 t 147.7635 759.84204 2.4204285 3
+	v 843.25 391.25 424 t 201.57799 759.84204 3 3
+	v 840.75 393.5 424 t 255.3925 759.84204 3.5795715 3
+	v 838 395 424 t 305.51236 759.84192 4.1233873 3
+	v 835 395.75 424 t 354.98959 759.84192 4.6026845 3
+	v 832 396 424 t 403.15601 759.84204 5 3
+	v -32 396 424 t 14227.155 759.85022 9 1 f 1
+	v -33.522484 396 423.86646 t 14247.851 759.85022 2.5892615 3 f 1
+	v -35.225605 396 423.43829 t 14271.689 759.84631 4.5064511 3 f 1
+	v -37.029697 396 422.69595 t 14298.242 759.84631 6.6817141 3 f 1
+	v -38.828426 396 421.65686 t 14326.6 759.84631 9 3 f 1
+	v -40.507126 396 420.37769 t 14355.486 759.84631 11.318286 3 f 1
+	v -41.965927 396 418.94476 t 14383.543 759.84631 13.493548 3 f 1
+	v -43.138592 396 417.45572 t 14409.609 759.84631 15.410739 3 f 1
+	v -44 396 416 t 14432.915 759.85022 17 3
+	v -254 396 0 t 21876.422 759.84241 61 3
+   )
+   (
+	v 848 380 422 t 0 1015.842 52 -13.5
+	v 847.75 383 422 t 48.16637 1015.842 52.099327 -13.5
+	v 847 386 422 t 97.643654 1015.8422 52.219154 -13.5
+	v 845.5 388.75 422 t 147.76349 1015.8419 52.355106 -13.5
+	v 843.25 391.25 422 t 201.578 1015.8422 52.5 -13.5
+	v 840.75 393.5 422 t 255.39249 1015.8419 52.644894 -13.5
+	v 838 395 422 t 305.51236 1015.8419 52.780846 -13.5
+	v 835 395.75 422 t 354.98962 1015.842 52.900673 -13.5
+	v 832 396 422 t 403.15598 1015.8422 53 -13.5 f 1
+	v -32 396 422 t 14227.155 1015.8424 -2 -13.5 f 1
+	v -33.288334 396 421.88489 t 14247.851 1015.8424 2.5892615 5 f 1
+	v -34.731804 396 421.51593 t 14271.689 1015.8424 4.5064511 5 f 1
+	v -36.263203 396 420.87619 t 14298.243 1015.8424 6.6817141 5 f 1
+	v -37.792488 396 419.98065 t 14326.6 1015.8385 9 5 f 1
+	v -39.222244 396 418.87827 t 14355.485 1015.8424 11.318286 5 f 1
+	v -40.467339 396 417.64337 t 14383.543 1015.8424 13.493548 5 f 1
+	v -41.470959 396 416.36011 t 14409.609 1015.8424 15.410739 5 f 1
+	v -42.211147 396 415.10556 t 14432.915 1015.8424 17 5
+	v -252.25 396 0 t 21876.422 1015.8424 61 5
+   )
+   (
+	v 846 380 422 t 0 1271.842 52 -14.5
+	v 845.75 382.5 422 t 48.166382 1271.842 52.099327 -14.5
+	v 845 385.25 422 t 97.643654 1271.8422 52.219154 -14.5
+	v 843.75 387.75 422 t 147.7635 1271.842 52.355106 -14.5
+	v 842 390 422 t 201.57799 1271.842 52.5 -14.5
+	v 839.75 391.75 422 t 255.39249 1271.8419 52.644894 -14.5
+	v 837.25 393 422 t 305.51236 1271.8422 52.780846 -14.5
+	v 834.5 393.75 422 t 354.98962 1271.842 52.900673 -14.5
+	v 832 394 422 t 403.15601 1271.842 53 -14.5 f 1
+	v -32 394 422 t 14227.155 1271.8346 -2 -13.625 f 1
+	v -33.288334 394 421.88489 t 14247.851 1271.8346 8.1233873 1 f 1
+	v -34.731804 394 421.51593 t 14271.689 1271.8385 7.2467742 1 f 1
+	v -36.263203 394 420.87619 t 14298.243 1271.8346 6.1233873 1 f 1
+	v -37.792488 394 419.98065 t 14326.6 1271.8385 5 1 f 1
+	v -39.222244 394 418.87827 t 14355.485 1271.8346 3.8766127 1 f 1
+	v -40.467339 394 417.64337 t 14383.543 1271.8385 2.7532256 1 f 1
+	v -41.470959 394 416.36011 t 14409.609 1271.8346 1.8766128 1 f 1
+	v -42.211147 394 415.10556 t 14432.915 1271.8346 13.625 -25.944098
+	v -252.25 394 0 t 21876.422 1271.8424 13.583285 -6.9454179
+   )
+  }
+ }
+}
+// entity 1
+{
+guid "{7276D55A-6D80-4B4D-B2C9-71D48C227D6D}"
+"classname" "func_group"
+"type" "patchCapped"
+// brush 0
+ {
+  guid "{A43A7B23-4C1F-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_panel_white_perforated
+   lightmap_gray
+   3 3 16 1
+   (
+	v 844 232 432 t 3788 -19670.414 52.75 -14.5
+	v 844 220 432 t 3596 -19670.414 52.75 -13.75
+	v 832 220 432 t 3596 -19498.375 52 -13.75
+   )
+   (
+	v 832 232 432 t 3788 -19498.375 52 -14.5
+	v 832 232 432 t 3788 -19498.375 52 -14.5
+	v 832 232 432 t 3788 -19498.375 52 -14.5
+   )
+   (
+	v 832 232 432 t 3788 -19498.375 52 -14.5
+	v 832 232 432 t 3788 -19498.375 52 -14.5
+	v 832 232 432 t 3788 -19498.375 52 -14.5
+   )
+  }
+ }
+}
+// entity 2
+{
+guid "{D4B2ED5B-7C98-4AC9-8B63-D7EA075646E5}"
+"classname" "func_group"
+"type" "patchCapped"
+// brush 0
+ {
+  guid "{EEF881D4-4C20-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   3 3 16 1
+   (
+	v 832 218 424 t 1744 6656 52 -13.625
+	v 846 218 424 t 1744 6768 52.875 -13.625
+	v 846 232 424 t 1856 6768 52.875 -14.5
+   )
+   (
+	v 832 232 424 t 1856 6656 52 -14.5
+	v 832 232 424 t 1856 6656 52 -14.5
+	v 832 232 424 t 1856 6656 52 -14.5
+   )
+   (
+	v 832 232 424 t 1856 6656 52 -14.5
+	v 832 232 424 t 1856 6656 52 -14.5
+	v 832 232 424 t 1856 6656 52 -14.5
+   )
+  }
+ }
+}
+// entity 3
+{
+guid "{F6C02A46-8947-41C7-8C4D-796A845A653B}"
+"classname" "func_group"
+"type" "patchCapped"
+// brush 0
+ {
+  guid "{326074C5-4C23-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_panel_white_perforated
+   lightmap_gray
+   2 9 0 8
+   (
+	v 832 392 432 t 6348 -19498.375 52.125 -13.875
+	v 834.18353 391.79965 432 t 6344.7944 -19529.68 52.261471 -13.862479
+	v 836.5 391.25 432 t 6336 -19562.891 52.40107 -13.822341
+	v 838.56653 390.04395 432 t 6316.7031 -19592.516 52.535408 -13.752747
+	v 840.5 388.5 432 t 6292 -19620.234 52.655331 -13.65533
+	v 842 386.5 432 t 6260 -19641.74 52.752747 -13.535407
+	v 843.25 384.5 432 t 6228 -19659.66 52.822342 -13.401071
+	v 843.79968 382.18356 432 t 6190.937 -19667.541 52.86248 -13.261473
+	v 844 380 432 t 6156 -19670.414 52.875 -13.125
+   )
+   (
+	v 832 380 432 t 6156 -19498.375 52.125 -13.125
+	v 832 380 432 t 6156 -19498.375 52.125 -13.125
+	v 832 380 432 t 6156 -19498.375 52.125 -13.125
+	v 832 380 432 t 6156 -19498.375 52.125 -13.125
+	v 832 380 432 t 6156 -19498.375 52.125 -13.125
+	v 832 380 432 t 6156 -19498.375 52.125 -13.125
+	v 832 380 432 t 6156 -19498.375 52.125 -13.125
+	v 832 380 432 t 6156 -19498.375 52.125 -13.125
+	v 832 380 432 t 6156 -19498.375 52.125 -13.125
+   )
+  }
+ }
+}
+// entity 4
+{
+guid "{1E481DEF-1317-4DD1-94ED-E0BEB4C49DF9}"
+"classname" "func_group"
+"type" "patchCapped"
+// brush 0
+ {
+  guid "{2B2537C5-4C23-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_wood_hardwood_sugarpine
+   lightmap_gray
+   3 3 16 1
+   (
+	v 846 380 424 t 3040 6768 53 -13.125
+	v 846 394 424 t 3152 6768 53 -14
+	v 832 394 424 t 3152 6656 52.125 -14
+   )
+   (
+	v 832 380 424 t 3040 6656 52.125 -13.125
+	v 832 380 424 t 3040 6656 52.125 -13.125
+	v 832 380 424 t 3040 6656 52.125 -13.125
+   )
+   (
+	v 832 380 424 t 3040 6656 52.125 -13.125
+	v 832 380 424 t 3040 6656 52.125 -13.125
+	v 832 380 424 t 3040 6656 52.125 -13.125
+   )
+  }
+ }
+}
+// entity 5
+{
+guid "{7C71C0B9-BCC6-4516-95A1-59EDB6291CAE}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{31898224-4C24-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_plastic_panels_detail
+   lightmap_gray
+   3 3 16 1
+   (
+	v 848 781 244 t 24969.482 -15490.033 48.8125 -15.25
+	v 848 697.5 244 t 22297.482 -15490.033 43.59375 -15.25
+	v 848 616 244 t 19689.482 -15490.033 38.5 -15.25
+   )
+   (
+	v 848 781 242 t 24969.482 -15362.033 48.8125 -15.125
+	v 848 697.5 242 t 22297.482 -15362.033 43.59375 -15.125
+	v 848 616 242 t 19689.482 -15362.033 38.5 -15.125
+   )
+   (
+	v 848 779 242 t 24905.482 -15362.033 48.6875 -15.125
+	v 848 697.5 242 t 22297.482 -15362.033 43.59375 -15.125
+	v 848 618 242 t 19753.482 -15362.033 38.625 -15.125
+   )
+  }
+ }
+// brush 1
+ {
+  guid "{18739977-4C24-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_plastic_panels_detail
+   lightmap_gray
+   18 5 0 8
+   (
+	v 848 618 242 t 14086.144 69.631996 39.25 -18
+	v 848 617.26379 242.14043 t 14086.144 21.665342 39.25 -18.008776
+	v 848 616.58582 242.58578 t 14086.144 -30.249386 39.25 -18.036612
+	v 848 616.14044 243.26381 t 14086.144 -82.167793 39.25 -18.078989
+	v 848 616 244 t 14086.144 -130.1335 39.25 -18.125
+   )
+   (
+	v 849.0918 618.10016 242 t 14129.497 69.631996 37.682026 -12.723071
+	v 849.22577 617.37628 242.14043 t 14129.497 21.665342 37.682026 -12.889762
+	v 849.34912 616.70959 242.58578 t 14129.497 -30.249386 37.682026 -13.116947
+	v 849.43018 616.27167 243.26381 t 14129.497 -82.167793 37.682026 -13.356029
+	v 849.45569 616.13354 244 t 14129.497 -130.1335 37.682026 -13.553179
+   )
+   (
+	v 850.20856 618.42126 242 t 14175.446 69.631996 35.932373 -7.3252535
+	v 850.47955 617.73676 242.14043 t 14175.446 21.665342 35.932373 -7.6534753
+	v 850.72913 617.10638 242.58578 t 14175.446 -30.249386 35.932373 -8.0845776
+	v 850.89307 616.69226 243.26381 t 14175.446 -82.167793 35.932373 -8.5248699
+	v 850.94476 616.56171 244 t 14175.446 -130.1335 35.932373 -8.8766203
+   )
+   (
+	v 851.28326 618.97803 242 t 14223.307 69.631996 34.0835 -2.1309173
+	v 851.6861 618.36182 242.14043 t 14223.307 21.665342 34.0835 -2.6145818
+	v 852.05713 617.79437 242.58578 t 14223.307 -30.249386 34.0835 -3.241914
+	v 852.30084 617.42157 243.26381 t 14223.307 -82.167793 34.0835 -3.8758307
+	v 852.37769 617.30402 244 t 14223.307 -130.1335 34.0835 -4.3763552
+   )
+   (
+	v 852.24261 619.75739 242 t 14272.182 69.631996 32.244797 2.5060966
+	v 852.76324 619.23676 242.14043 t 14272.182 21.665342 32.244797 1.8836675
+	v 853.24261 618.75739 242.58578 t 14272.182 -30.249386 32.244797 1.0811597
+	v 853.55756 618.44244 243.26381 t 14272.182 -82.167793 32.244797 0.27439287
+	v 853.65686 618.34314 244 t 14272.182 -130.1335 32.244797 -0.35894218
+   )
+   (
+	v 853.02197 620.71674 242 t 14321.057 69.631996 30.533627 6.2728696
+	v 853.63818 620.3139 242.14043 t 14321.057 21.665342 30.533627 5.5377183
+	v 854.20563 619.94287 242.58578 t 14321.057 -30.249386 30.533627 4.5929108
+	v 854.57843 619.69916 243.26381 t 14321.057 -82.167793 30.533627 3.6457331
+	v 854.69598 619.62231 244 t 14321.057 -130.1335 30.533627 2.9045122
+   )
+   (
+	v 853.57874 621.79144 242 t 14368.917 69.631996 29.051626 8.9638605
+	v 854.26324 621.52045 242.14043 t 14368.917 21.665342 29.051626 8.14818
+	v 854.89362 621.27087 242.58578 t 14368.917 -30.249386 29.051626 7.1017137
+	v 855.30774 621.10693 243.26381 t 14368.917 -82.167793 29.051626 6.0542259
+	v 855.43829 621.05524 244 t 14368.917 -130.1335 29.051626 5.2359309
+   )
+   (
+	v 853.89984 622.9082 242 t 14414.866 69.631996 27.865583 10.515856
+	v 854.62372 622.77423 242.14043 t 14414.866 21.665342 27.865583 9.6537313
+	v 855.29041 622.65088 242.58578 t 14414.866 -30.249386 27.865583 8.5486336
+	v 855.72833 622.56982 243.26381 t 14414.866 -82.167793 27.865583 7.4432936
+	v 855.86646 622.54431 244 t 14414.866 -130.1335 27.865583 6.5805473
+   )
+   (
+	v 854 624 242 t 14458.22 69.631996 27 11
+	v 854.73621 624 242.14043 t 14458.22 21.665342 27 10.123387
+	v 855.41418 624 242.58578 t 14458.22 -30.249386 27 9
+	v 855.85956 624 243.26381 t 14458.22 -82.167793 27 7.8766127
+	v 856 624 244 t 14458.22 -130.1335 27 7
+   )
+   (
+	v 854 773 242 t 21370.223 69.631996 39.25 -18
+	v 854.73621 773 242.14043 t 21370.223 21.665342 39.25 -18.008776
+	v 855.41418 773 242.58578 t 21370.223 -30.249386 39.25 -18.036612
+	v 855.85956 773 243.26381 t 21370.223 -82.167793 39.25 -18.078989
+	v 856 773 244 t 21370.223 -130.1335 39.25 -18.125
+   )
+   (
+	v 853.89984 774.0918 242 t 21413.576 69.631996 37.682026 -12.723071
+	v 854.62372 774.22577 242.14043 t 21413.576 21.665342 37.682026 -12.889762
+	v 855.29041 774.34912 242.58578 t 21413.576 -30.249386 37.682026 -13.116947
+	v 855.72833 774.43018 243.26381 t 21413.576 -82.167793 37.682026 -13.356029
+	v 855.86646 774.45569 244 t 21413.576 -130.1335 37.682026 -13.553179
+   )
+   (
+	v 853.57874 775.20856 242 t 21459.525 69.631996 35.932373 -7.3252535
+	v 854.26324 775.47955 242.14043 t 21459.525 21.665342 35.932373 -7.6534753
+	v 854.89362 775.72913 242.58578 t 21459.525 -30.249386 35.932373 -8.0845776
+	v 855.30774 775.89307 243.26381 t 21459.525 -82.167793 35.932373 -8.5248699
+	v 855.43829 775.94476 244 t 21459.525 -130.1335 35.932373 -8.8766203
+   )
+   (
+	v 853.02197 776.28326 242 t 21507.385 69.631996 34.0835 -2.1309173
+	v 853.63818 776.6861 242.14043 t 21507.385 21.665342 34.0835 -2.6145818
+	v 854.20563 777.05713 242.58578 t 21507.385 -30.249386 34.0835 -3.241914
+	v 854.57843 777.30084 243.26381 t 21507.385 -82.167793 34.0835 -3.8758307
+	v 854.69598 777.37769 244 t 21507.385 -130.1335 34.0835 -4.3763552
+   )
+   (
+	v 852.24261 777.24261 242 t 21556.26 69.631996 32.244797 2.5060966
+	v 852.76324 777.76324 242.14043 t 21556.26 21.665342 32.244797 1.8836675
+	v 853.24261 778.24261 242.58578 t 21556.26 -30.249386 32.244797 1.0811597
+	v 853.55756 778.55756 243.26381 t 21556.26 -82.167793 32.244797 0.27439287
+	v 853.65686 778.65686 244 t 21556.26 -130.1335 32.244797 -0.35894218
+   )
+   (
+	v 851.28326 778.02197 242 t 21605.135 69.631996 30.533627 6.2728696
+	v 851.6861 778.63818 242.14043 t 21605.135 21.665342 30.533627 5.5377183
+	v 852.05713 779.20563 242.58578 t 21605.135 -30.249386 30.533627 4.5929108
+	v 852.30084 779.57843 243.26381 t 21605.135 -82.167793 30.533627 3.6457331
+	v 852.37769 779.69598 244 t 21605.135 -130.1335 30.533627 2.9045122
+   )
+   (
+	v 850.20856 778.57874 242 t 21652.994 69.631996 29.051626 8.9638605
+	v 850.47955 779.26324 242.14043 t 21652.994 21.665342 29.051626 8.14818
+	v 850.72913 779.89362 242.58578 t 21652.994 -30.249386 29.051626 7.1017137
+	v 850.89307 780.30774 243.26381 t 21652.994 -82.167793 29.051626 6.0542259
+	v 850.94476 780.43829 244 t 21652.994 -130.1335 29.051626 5.2359309
+   )
+   (
+	v 849.0918 778.89984 242 t 21698.943 69.631996 27.865583 10.515856
+	v 849.22577 779.62372 242.14043 t 21698.943 21.665342 27.865583 9.6537313
+	v 849.34912 780.29041 242.58578 t 21698.943 -30.249386 27.865583 8.5486336
+	v 849.43018 780.72833 243.26381 t 21698.943 -82.167793 27.865583 7.4432936
+	v 849.45569 780.86646 244 t 21698.943 -130.1335 27.865583 6.5805473
+   )
+   (
+	v 848 779 242 t 21742.297 69.631996 27 11
+	v 848 779.73621 242.14043 t 21742.297 21.665342 27 10.123387
+	v 848 780.41418 242.58578 t 21742.297 -30.249386 27 9
+	v 848 780.85956 243.26381 t 21742.297 -82.167793 27 7.8766127
+	v 848 781 244 t 21742.297 -130.1335 27 7
+   )
+  }
+ }
+}
+// entity 6
+{
+guid "{CD442504-271E-4D1A-AA69-298B1C0D2AEE}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{674EDF99-4C31-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_painted_wall_dirty_black
+   lightmap_gray
+   9 2 0 8
+   (
+	v 848 779 242 t 3116 -1936 53 -48.6875
+	v 848 618 242 t 2472 -1936 53 -38.625
+   )
+   (
+	v 849.0918 778.89984 242 t 3115.7646 -1936 53.068237 -48.683823
+	v 849.0918 618.10016 242 t 2472.4006 -1936 53.068237 -38.63126
+   )
+   (
+	v 850.20856 778.57874 242 t 3114.6128 -1936 53.138035 -48.665825
+	v 850.20856 618.42126 242 t 2473.6851 -1936 53.138035 -38.651329
+   )
+   (
+	v 851.28326 778.02197 242 t 3112.4722 -1936 53.205204 -48.632378
+	v 851.28326 618.97803 242 t 2475.9121 -1936 53.205204 -38.686127
+   )
+   (
+	v 852.24261 777.24261 242 t 3109.3848 -1936 53.265163 -48.584137
+	v 852.24261 619.75739 242 t 2479.0295 -1936 53.265163 -38.734837
+   )
+   (
+	v 853.02197 776.28326 242 t 3105.5173 -1936 53.313873 -48.523708
+	v 853.02197 620.71674 242 t 2482.8669 -1936 53.313873 -38.794796
+   )
+   (
+	v 853.57874 775.20856 242 t 3101.1321 -1936 53.348671 -48.455189
+	v 853.57874 621.79144 242 t 2487.1658 -1936 53.348671 -38.861965
+   )
+   (
+	v 853.89984 774.0918 242 t 3096.5325 -1936 53.36874 -48.38332
+	v 853.89984 622.9082 242 t 2491.6328 -1936 53.36874 -38.931763
+   )
+   (
+	v 854 773 242 t 3092 -1936 53.375 -48.3125
+	v 854 624 242 t 2496 -1936 53.375 -39
+   )
+  }
+ }
+}
+// entity 7
+{
+guid "{6E67A302-8B67-41AE-BC53-159229F38EBD}"
+"classname" "func_group"
+"type" "patchCapped"
+// brush 0
+ {
+  guid "{355DD7B4-4D78-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_trim_stainless_steel_8_worn
+   lightmap_gray
+   9 3 16 2
+   (
+	v 824 294 298 t 0 -0 1 1
+	v 824 294 300.5 t 0 -512 1 5
+	v 824 294 303 t 0 -1024 1 5
+   )
+   (
+	v 836 294 298 t 390.625 -0 5 1
+	v 836 294 300.5 t 390.625 -512 5 5
+	v 836 294 303 t 390.625 -1024 5 5
+   )
+   (
+	v 836 306 298 t 781.25 -0 9 1
+	v 836 306 300.5 t 781.25 -512 9 5
+	v 836 306 303 t 781.25 -1024 9 5
+   )
+   (
+	v 836 318 298 t 1171.875 -0 13 1
+	v 836 318 300.5 t 1171.875 -512 13 5
+	v 836 318 303 t 1171.875 -1024 13 5
+   )
+   (
+	v 824 318 298 t 1562.5 -0 17 1
+	v 824 318 300.5 t 1562.5 -512 17 5
+	v 824 318 303 t 1562.5 -1024 17 5
+   )
+   (
+	v 812 318 298 t 1953.125 -0 21 1
+	v 812 318 300.5 t 1953.125 -512 21 5
+	v 812 318 303 t 1953.125 -1024 21 5
+   )
+   (
+	v 812 306 298 t 2343.75 -0 25 1
+	v 812 306 300.5 t 2343.75 -512 25 5
+	v 812 306 303 t 2343.75 -1024 25 5
+   )
+   (
+	v 812 294 298 t 2734.375 -0 29 1
+	v 812 294 300.5 t 2734.375 -512 29 5
+	v 812 294 303 t 2734.375 -1024 29 5
+   )
+   (
+	v 824 294 298 t 3125 -0 33 1
+	v 824 294 300.5 t 3125 -512 33 5
+	v 824 294 303 t 3125 -1024 33 5
+   )
+  }
+ }
+// brush 1
+ {
+  guid "{49D2927F-4D78-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_bare_aluminum_brushed_2
+   lightmap_gray
+   3 3 16 7
+   (
+	v 824 294 303 t 6592 -2352 51.5 -18.375
+	v 812 294 303 t 6496 -2352 50.75 -18.375
+	v 812 306 303 t 6496 -2448 50.75 -19.125
+   )
+   (
+	v 836 294 303 t 6688 -2352 52.25 -18.375
+	v 824 306 303 t 6592 -2448 51.5 -19.125
+	v 812 318 303 t 6496 -2544 50.75 -19.875
+   )
+   (
+	v 836 306 303 t 6688 -2448 52.25 -19.125
+	v 836 318 303 t 6688 -2544 52.25 -19.875
+	v 824 318 303 t 6592 -2544 51.5 -19.875
+   )
+  }
+ }
+}
+// entity 8
+{
+guid "{DEE22C5E-5EE9-11E4-953C-2C27D7F024B0}"
+"classname" "misc_model"
+"model" "p7_light_metal_recessed_led"
+"modelscale" "2"
+"origin" "24 306 424"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 9
+{
+guid "{E99F59F5-5EEA-11E4-953C-2C27D7F024B0}"
+"classname" "misc_model"
+"model" "p7_light_metal_recessed_led"
+"modelscale" "2"
+"origin" "296 306 424"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 10
+{
+guid "{F1F1B0F7-5EEA-11E4-953C-2C27D7F024B0}"
+"classname" "misc_model"
+"model" "p7_light_metal_recessed_led"
+"modelscale" "2"
+"origin" "432 306 424"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 11
+{
+guid "{E35E1628-5EEA-11E4-953C-2C27D7F024B0}"
+"classname" "misc_model"
+"model" "p7_light_metal_recessed_led"
+"modelscale" "2"
+"origin" "160 306 424"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}

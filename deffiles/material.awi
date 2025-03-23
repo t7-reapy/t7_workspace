@@ -1,0 +1,1584 @@
+void ShowUI_FrameBufferOps( asset Asset )
+{
+	Asset.BeginCategory( "FrameBuffer Operations.Misc" );
+	{
+		Asset.ShowEntry( "blendFunc" );
+		Asset.ShowEntry( "cullFace" );
+		Asset.ShowEntry( "polygonOffset" );
+	}
+ 
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	if ( Asset.GetEntryValue( "blendFunc" ) == "Custom" )
+	{
+		Asset.BeginCategory( "FrameBuffer Operations.Custom Blend Options.Color" );
+		{
+			Asset.ShowEntry( "customBlendOpRgb" );
+			Asset.ShowEntry( "srcCustomBlendFunc" );
+			Asset.ShowEntry( "destCustomBlendFunc" ); 
+		}	
+	}
+	 
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	if ( Asset.GetEntryValue( "blendFunc" ) == "Custom" ) 
+	{
+		Asset.BeginCategory( "FrameBuffer Operations.Custom Blend Options.Alpha" );
+		{
+			Asset.ShowEntry( "customBlendOpAlpha" );
+			Asset.ShowEntry( "srcCustomBlendFuncAlpha" );
+			Asset.ShowEntry( "destCustomBlendFuncAlpha" );
+	  
+		}
+	}
+	 
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	Asset.BeginCategory( "FrameBuffer Operations.Alpha / Depth Tests" );
+	{
+		Asset.ShowEntry( "alphaTest" );
+		Asset.ShowEntry( "depthTest" );
+		Asset.ShowEntry( "depthWrite" );
+	}
+}
+
+// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+void ShowUI_SpecialProperties( asset Asset )
+{
+	Asset.BeginCategory( "Special Properties" );
+	{
+		// Clip
+		
+		Asset.BeginCategory( "Special Properties.Clip" );
+		{
+			Asset.ShowEntry( "missileClip" );
+			Asset.ShowEntry( "bulletClip" );
+			Asset.ShowEntry( "playerClip" );
+			Asset.ShowEntry( "aiClip" );
+			Asset.ShowEntry( "vehicleClip" );
+			Asset.ShowEntry( "itemClip" );
+			Asset.ShowEntry( "utilityClip" );
+			Asset.ShowEntry( "canShootClip" );
+			Asset.ShowEntry( "aiSightClip" );
+			Asset.ShowEntry( "playerVehicleClip" );
+		}
+		
+		// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+		// Misc 1
+		
+		Asset.BeginCategory( "Special Properties.Misc 1" );
+		{
+			Asset.ShowEntry( "noFallDamage" );
+			Asset.ShowEntry( "noSteps" );
+			Asset.ShowEntry( "noImpact" );
+			Asset.ShowEntry( "noMarks" );
+			Asset.ShowEntry( "noPenetrate" );
+			Asset.ShowEntry( "noDrop" );
+			Asset.ShowEntry( "slick" );
+			Asset.ShowEntry( "mount" );
+			Asset.ShowEntry( "stairs" );
+		}
+		
+		// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+		// Misc 2
+		
+		Asset.BeginCategory( "Special Properties.Misc 2" );
+		{
+			Asset.ShowEntry( "onlyCastSunShadow" );
+			Asset.ShowEntry( "noCastShadow" );
+			Asset.ShowEntry( "onlyCastShadow" );
+			Asset.ShowEntry( "noReceiveDynamicShadow" );
+			Asset.ShowEntry( "noDraw" );
+			Asset.ShowEntry( "noFog" );
+			Asset.ShowEntry( "adsZscaleOn" );
+			Asset.ShowEntry( "heroLight" );
+			Asset.ShowEntry( "drawToggle" );
+			Asset.ShowEntry( "sky" );
+			Asset.ShowEntry( "outdoorOccluder" );
+			Asset.ShowEntry( "caulk" );
+		}
+		
+		// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+		// Misc 3
+		
+		Asset.BeginCategory( "Special Properties.Misc 3" );
+		{
+			Asset.ShowEntry( "nonColliding" );
+			Asset.ShowEntry( "nonSolid" );
+			Asset.ShowEntry( "transparent" );
+			Asset.ShowEntry( "detail" );
+			Asset.ShowEntry( "structural" );
+			Asset.ShowEntry( "portal" );
+			Asset.ShowEntry( "origin" );
+			Asset.ShowEntry( "physicsGeom" );
+         	Asset.ShowEntry( "umbraOccluder" );
+			Asset.ShowEntry( "umbraTarget" );
+		}
+		
+		// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+		// Climbing
+		
+		Asset.BeginCategory( "Special Properties.Climbing" );
+		{
+			Asset.ShowEntry( "surfaceClimbType" );
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+void ValidateGlossSurfaceType(asset Asset, const string& ID)
+{
+	entryControl glossSurfaceType = Asset.GetEntryControl( "glossSurfaceType" );
+	string surfType = glossSurfaceType.GetValue();
+	
+	entryControl entryGlossMin = Asset.GetEntryControl( "glossRangeMin" );
+	entryControl entryGlossMax = Asset.GetEntryControl( "glossRangeMax" );
+
+	if ( entryGlossMin.IsValid() ) entryGlossMin.Enable( true );
+	if ( entryGlossMax.IsValid() ) entryGlossMax.Enable( true );
+	
+	if ( !entryGlossMin.IsValid() ||!entryGlossMax.IsValid() )
+		return;
+		
+	entryGlossMin.Enable( false );
+	entryGlossMax.Enable( false );
+
+	if ( surfType == "<custom>" )
+	{
+		// enable the controls, don't touch the values
+	}
+	else if ( surfType == "<full>" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 17 );
+	}
+	else if ( surfType == "asphalt" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 4 );
+	}
+	else if ( surfType == "brick" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 4 );
+	}
+	else if ( surfType == "carpet" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 2 );
+	}
+	else if ( surfType == "ceramic" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 17 );
+	}
+	else if ( surfType == "cloth" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 4 );
+	}
+	else if ( surfType == "concrete" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 4 );
+	}
+	else if ( surfType == "dirt" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 4 );
+	}
+	else if ( surfType == "skin" )
+	{
+		entryGlossMin.SetFloat( 2 );
+		entryGlossMax.SetFloat( 10 );
+	}
+	else if ( surfType == "foliage" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 6.5 );
+	}
+	else if ( surfType == "glass" )
+	{
+		entryGlossMin.SetFloat( 6 );
+		entryGlossMax.SetFloat( 17 );
+	}
+	else if ( surfType == "gravel" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 4 );
+	}
+	else if ( surfType == "ice" )
+	{
+		entryGlossMin.SetFloat( 4 );
+		entryGlossMax.SetFloat( 17 );
+	}
+	else if ( surfType == "metal" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 17 );
+	}
+	else if ( surfType == "mud" )
+	{
+		entryGlossMin.SetFloat( 4 );
+		entryGlossMax.SetFloat( 13 );
+	}
+	else if ( surfType == "paint" )
+	{
+		entryGlossMin.SetFloat( 2 );
+		entryGlossMax.SetFloat( 7 );
+	}
+	else if ( surfType == "paper" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 2 );
+	}
+	else if ( surfType == "plaster" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 2 );
+	}
+	else if ( surfType == "plastic" )
+	{
+		entryGlossMin.SetFloat( 4 );
+		entryGlossMax.SetFloat( 13 );
+	}
+	else if ( surfType == "rock" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 4 );
+	}
+	else if ( surfType == "rubber" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 4 );
+	}
+	else if ( surfType == "sand" )
+	{
+		entryGlossMin.SetFloat( 2 );
+		entryGlossMax.SetFloat( 8 );
+	}
+	else if ( surfType == "snow" )
+	{
+		entryGlossMin.SetFloat( 4 );
+		entryGlossMax.SetFloat( 12 );
+	}
+	else if ( surfType == "water" )
+	{
+		entryGlossMin.SetFloat( 6 );
+		entryGlossMax.SetFloat( 17 );
+	}
+	else if ( surfType == "wood" )
+	{
+		entryGlossMin.SetFloat( 2 );
+		entryGlossMax.SetFloat( 5 );
+	}
+	else if ( surfType == "bark" )
+	{
+		entryGlossMin.SetFloat( 0 );
+		entryGlossMax.SetFloat( 4 );
+	}
+	
+	if ( surfType == "<custom>" )
+	{
+		entryGlossMin.Enable( true );
+		entryGlossMax.Enable( true );
+	}
+	else // if ( glossSurfaceType.IsSpecified() )
+	{
+		// make sure derived assets write the value
+		entryGlossMin.ForceSpecified();
+		entryGlossMax.ForceSpecified();
+	}
+}
+
+	
+//-----------------------------------------------------------------------------
+
+void GenerateUI( asset Asset )
+{
+	// Hidden or unused
+	
+	Asset.AddEntry_String( "template", "material.template" ).Show( false );
+	Asset.AddEntry_AssetCombo( "alphaMap", "image" ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Combo( "showAdvancedOptions", "<none>* | PC / Xenon" ).Show( false );
+	Asset.AddEntry_Combo( "stencil", "Disable | One-sided | Two-sided" ).Show( false );
+	Asset.AddEntry_Combo( "stencilFunc1", "Always | Never | Less | Equal | LessEqual | Greater | NotEqual | GreaterEqual" ).Show( false );
+	Asset.AddEntry_Combo( "stencilFunc2", "Always | Never | Less | Equal | LessEqual | Greater | NotEqual | GreaterEqual" ).Show( false );
+	Asset.AddEntry_Combo( "stencilOpFail1", "Keep | Zero | Replace | IncrSat | DecrSat | Invert | Incr | Decr" ).Show( false );
+	Asset.AddEntry_Combo( "stencilOpFail2", "Keep | Zero | Replace | IncrSat | DecrSat | Invert | Incr | Decr" ).Show( false );
+	Asset.AddEntry_Combo( "stencilOpPass1", "Keep | Zero | Replace | IncrSat | DecrSat | Invert | Incr | Decr" ).Show( false );
+	Asset.AddEntry_Combo( "stencilOpPass2", "Keep | Zero | Replace | IncrSat | DecrSat | Invert | Incr | Decr" ).Show( false );
+	Asset.AddEntry_Combo( "stencilOpZFail1", "Keep | Zero | Replace | IncrSat | DecrSat | Invert | Incr | Decr" ).Show( false );
+	Asset.AddEntry_Combo( "stencilOpZFail2", "Keep | Zero | Replace | IncrSat | DecrSat | Invert | Incr | Decr" ).Show( false );
+	Asset.AddEntry_Combo( "colorWriteAlpha", "Enable | Disable" ).Show( false );
+	Asset.AddEntry_Combo( "colorWriteBlue", "Enable | Disable" ).Show( false );
+	Asset.AddEntry_Combo( "colorWriteGreen", "Enable | Disable" ).Show( false );
+	Asset.AddEntry_Combo( "colorWriteRed", "Enable | Disable" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Material Category
+
+	string materialCategories = Asset.GetTechsetdefCategories();
+
+	Asset.BeginCategory( "" );
+	Asset.AddEntry_Combo( "materialCategory", materialCategories ).SetTitle( "Material Category" ).UpdateOnChange( true ).SetDefaultValue( "Geometry" );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	string MaterialCategory = Asset.GetEntryValue( "materialCategory" );
+	string MaterialTypes = Asset.GetTechsetdefTypes( MaterialCategory );
+
+	Asset.AddEntry_Combo( "materialType", MaterialTypes ).SetTitle( "Material Type" ).UpdateOnChange( true );
+
+	string CurrentMaterialType = Asset.GetEntryValue( "materialType" );
+	string MaterialLink;
+	
+	if ( CurrentMaterialType.Find( "nocull", 0 ) >= 0 || CurrentMaterialType.Find( "backlit", 0 ) >= 0 || CurrentMaterialType.Find( "emissive", 0 ) >= 0 || CurrentMaterialType == "lit_decal_normal_gloss_reveal" )
+		MaterialLink = "<a href=\"http://tawiki/display/ART/Material+Basics#MaterialBasics-Special\">Special Case Shaders";
+	else if ( CurrentMaterialType.Find( "transparent", 0 ) >= 0 )
+		MaterialLink = "<a href=\"http://tawiki/display/ART/Material+Basics#MaterialBasics-Transparency\">Transparent Shaders";
+	else if ( CurrentMaterialType.Find( "fullspec", 0 ) >= 0 )
+		MaterialLink = "<a href=\"http://tawiki/display/ART/Material+Basics#MaterialBasics-MultiMetal\">Combined Metals";
+	else if ( CurrentMaterialType.Find( "advanced", 0 ) >= 0 )
+		MaterialLink = "<a href=\"http://tawiki/display/ART/Material+Basics#MaterialBasics-Metal\">Metallic Shaders";
+	else if ( CurrentMaterialType.Find( "micro_tile", 0 ) >= 0 )
+		MaterialLink = "<a href=\"http://tawiki/display/ART/Material+Basics#MaterialBasics-MicroTile\">Micro Tiled Shaders";
+	else if ( CurrentMaterialType.Find( "decal", 0 ) >= 0 )
+		MaterialLink = "<a href=\"http://tawiki/display/ART/Material+Basics#MaterialBasics-Decal\">Decal Shaders";
+	else if ( CurrentMaterialType == "vegetation" )
+		MaterialLink = "<a href=\"http://tawiki/display/ART/Material+Basics#MaterialBasics-Vegetation\">Vegetation Shaders";
+	else if ( CurrentMaterialType == "glass" )
+		MaterialLink = "<a href=\"http://tawiki/display/ART/Material+Basics#MaterialBasics-Glass\">Glass Shaders";
+	else if ( CurrentMaterialType.Find( "flag", 0 ) >= 0 )
+		MaterialLink = "<a href=\"http://tawiki/display/ART/Material+Basics#MaterialBasics-FXAnim\">FXAnim Shaders";
+	else if ( CurrentMaterialType.Find( "skin", 0 ) >= 0 || CurrentMaterialType.Find( "cloth", 0 ) >= 0 || CurrentMaterialType == "eye" || CurrentMaterialType == "hair" )
+		MaterialLink = "<a href=\"http://tawiki/display/ART/Material+Basics#MaterialBasics-Character\">Character Shaders";
+	else if ( CurrentMaterialType == "lit_vehicle" || CurrentMaterialType == "lit_weapon" || CurrentMaterialType == "lit_vehicle_advanced" )
+		MaterialLink = "<a href=\"http://tawiki/display/ART/Material+Basics#MaterialBasics-VehicleWeapon\">Vehicle & Weapon Shaders";
+	else
+		MaterialLink = "<a href=\"http://tawiki/display/ART/Material+Basics\">Core Shaders";
+
+	Asset.AddEntry_Label( "materialLink", MaterialLink ).SetTitle( "Shader Documentation" );
+
+	if ( !Asset.IsTechsetdefMaterial( Asset.GetEntryValue( "materialType" ) ) )
+	{
+		Asset.AddEntry_Label("matError", "INVALID MATERIAL TYPE '" + Asset.GetEntryValue( "materialType" ) + "'").SetFontColor(1.0, 0, 0).SetFontBold(true).SetTitle(" ").SetIcon("Icon_ImageMismatch.png");
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Sort
+	
+	string SortEntries = 
+	"""
+		<default>* |
+		distortion |
+		opaque water |
+		boat hull |
+		opaque ambient |
+		opaque |
+		sky |
+		skybox - sun / moon |
+		skybox - clouds |
+		skybox - horizon |
+		decal - bottom 1 |
+		decal - bottom 2 |
+		decal - bottom 3 |
+		decal - static decal |
+		decal - middle 1 |
+		decal - middle 2 |
+		decal - middle 3 |
+		hair |
+		dynamic water |
+		after dynamic water |
+		decal - weapon impact |
+		decal - top 1 |
+		decal - top 2 |
+		decal - top 3 |
+		multiplicative |
+		banner / curtain |
+		underwater |
+		transparent water |
+		corona |
+		window inside |
+		window outside |
+		blend / additive |
+		after blend - bottom |
+		after blend - middle |
+		after blend - top |
+		before effects - bottom |
+		before effects - middle |
+		before effects - top |
+		effect - auto sort |
+		after effects - bottom |
+		after effects - middle |
+		after effects - top |
+		effects - full res |
+		viewmodel effect |
+		viewmodel - bottom |
+		viewmodel - middle |
+		viewmodel - top |
+		post blur - bottom |
+		post blur |
+		post blur - top
+	""";
+	Asset.BeginCategory( "" );
+	Asset.AddEntry_Combo( "sort", SortEntries ).SetTitle( "Sort" ).SetToolTip( "see wiki page for explanation of sort settings!" ).Show( false );
+	
+	string decalSortEntries = 
+	"""
+		Debris (top) |
+		Damage - New |
+		Paper |
+		Water |
+		Snow |
+		Ice |
+		Foliage |
+		Grass |
+		Mud |
+		Sand |
+		Gravel |
+		Dirt |
+		Signage - New |
+		Carpet |
+		Grunge |
+		Damage - Old |
+		Signage - Old |
+		Plaster |
+		Concrete |
+		Brick |
+		Rock |
+		Asphalt (bottom)
+	""";
+	bool isDecal = (CurrentMaterialType.Find( "decal", 0 ) >= 0);
+	Asset.AddEntry_Combo( "layerSortDecal", decalSortEntries ).SetTitle( "Decal Layer" ).SetToolTip( "See wiki page for explanation of sort settings!" ).Show( isDecal );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Surface Type
+	
+	string SurfaceTypeEntries = //wood | bark
+	"""
+		<error> |
+		<none> |
+		asphalt |
+		brick |
+		carpet |
+		ceramic |
+		cloth |
+		concrete |
+		dirt |
+		flesh |
+		foliage |
+		glass |
+		grass |
+		gravel |
+		ice |
+		metal |
+		mud |
+		paper |
+		plaster |
+		plastic |
+		rock |
+		rubber |
+		sand |
+		snow |
+		water |
+		wood |
+		cushion |
+		fruit |
+		paintedmetal |
+		tallgrass |
+		riotshield |
+		bark |
+		player |
+		metalthin |
+		metalhollow |
+		metalcatwalk |
+		metalcar |
+		glasscar |
+		glassbulletproof |
+		watershallow |
+		bodyarmor
+	""";
+	Asset.AddEntry_Combo( "surfaceType", SurfaceTypeEntries ).SetTitle( "Surface Type" ).SetToolTip( "Sets the bullet collision particle for your material." ).Show( true );
+	
+	string glossSurfaceTypes = 
+	"""
+		<custom> |
+		<full> |
+		asphalt |
+		brick |
+		carpet |
+		ceramic |
+		cloth |
+		concrete |
+		dirt |
+		skin |
+		foliage |
+		glass |
+		gravel |
+		ice |
+		metal |
+		mud |
+		paint |
+		paper |
+		plaster |
+		plastic |
+		rock |
+		rubber |
+		sand |
+		snow |
+		water |
+		wood |
+		bark
+	""";
+	Asset.AddEntry_Combo( "glossSurfaceType", glossSurfaceTypes ).SetTitle( "Gloss Range" ).SetToolTip( "Sets the gloss range for your material type." ).UpdateOnChange( true ).Show( true ).SetValidateCallback("void ValidateGlossSurfaceType(asset Asset, const string& ID)");
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Surface Type
+	
+	string UsageEntries =
+	"""
+		<not in editor> |
+		tools |
+		clip |
+		------------------------ |
+		door |
+		floor |
+		ceiling |
+		roof |
+		interior wall |
+		interior trim |
+		exterior wall |
+		exterior trim |
+		window |
+		decal |
+		------------------------ |
+		foliage |
+		terrain |
+		water |
+		sky |
+		background
+	""";
+
+	Asset.AddEntry_Combo( "usage", UsageEntries ).SetTitle( "Usage" ).SetToolTip( "Sets what filters show this material in Radiant" ).Show( ( Asset.GetEntryValue( "materialType" ) != "2d shaderworks" ) ? true : false ).UpdateOnChange( true );
+	
+	Asset.BeginCategory( "Asset Tags" );
+	{
+		Asset.AddEntry_CheckBox( "doNotUse", false ).SetTitle( "DO NOT USE" ).SetToolTip( "This asset should not be used in the game. Radiant will display an X over this asset." ).SetFontColor(1.0, 0, 0).SetFontBold(true);
+		Asset.AddEntry_CheckBox( "fixedGloss", false ).SetTitle( "Gloss Corrected" ).SetToolTip( "Check this box to indicate gloss was post CL# 1921964" );
+		Asset.AddEntry_CheckBox( "failedPBR", false ).SetTitle( "Failed PBR Check" ).SetToolTip( "Check this box if material fails PBR and needs an artist's attention" );
+		Asset.AddEntry_CheckBox( "heroAsset", false ).SetTitle( "Hero Asset" ) .SetToolTip( "This asset has been generated for a specialized purpose." );
+		Asset.AddEntry_CheckBox( "germanUnsafe", false ).SetTitle( "German Unsafe" ) .SetToolTip( "This asset cannot be used for the German SKU." );
+		Asset.AddEntry_CheckBox( "japaneseUnsafe", false ).SetTitle( "Japanese Unsafe" ) .SetToolTip( "This asset cannot be used for the Japanese SKU." );
+		Asset.AddEntry_CheckBox( "arabicUnsafe", false ).SetTitle( "Arabic Unsafe" ) .SetToolTip( "This asset cannot be used for the Arabic SKU." );
+		Asset.AddEntry_CheckBox( "matureContent", false ).SetTitle( "Graphic Content Filter" ) .SetToolTip( "This asset will not be shown when Graphic Content filter is Disabled in Graphics Menu." );		
+	}
+	
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Missing... Declaring them here for now, still need to bind ui controls to them...
+	
+	Asset.AddEntry_Float( "flagX", 1, -1000, 1000 ).SetTitle( "flag speed" ).SetToolTip( "flag speed" ).Show( false );
+	Asset.AddEntry_Float( "flagY", 0, -1000, 1000 ).SetTitle( "flag phase" ).SetToolTip( "flag phase" ).Show( false );
+	Asset.AddEntry_Float( "flagZ", 0.5, 0.0, 1.0 ).SetTitle( "flagZ" ).SetToolTip( "flagZ" ).Show( false );
+	Asset.AddEntry_Float( "flagW", 0, -1000, 1000 ).SetTitle( "flagW" ).SetToolTip( "flagW" ).Show( false );
+	Asset.AddEntry_Vector2( "flagRipple1ScrollU", "flagRipple1ScrollV", 0, 0, -10, 10 ).Show( false );
+	Asset.AddEntry_Vector2( "flagRipple2ScrollU", "flagRipple2ScrollV", 0, 0, -10, 10 ).Show( false );
+	Asset.AddEntry_Float( "flagRippleScale", 1, 1, 1024 ).SetTitle( "flagRippleScale" ).SetToolTip( "Tile the flag ripple normal map" ).Show( false );
+	Asset.AddEntry_Float( "flagRippleHeight", 1, 0, 1 ).SetTitle( "flagRippleScale" ).SetToolTip( "Scale the height of the flag ripple normal map" ).Show( false );
+
+	
+	Asset.AddEntry_Float( "cloudLayer1Blend0", 1, 0, 1 ).SetTitle( "Cloudlayer1 Fade @0" ).SetToolTip( "Cloudlayer1 fade value when sky blend is at zero" ).Show( false );
+	Asset.AddEntry_Float( "cloudLayer1Blend1", 0, 0, 1 ).SetTitle( "Cloudlayer1 Fade @1" ).SetToolTip( "Cloudlayer1 fade value when sky blend is at one" ).Show( false );
+	Asset.AddEntry_Float( "cloudLayer1Distance", 12288, 0, 32768 ).SetTitle( "Distance" ).SetToolTip( "Distance at which feathering starts" ).Show( false );
+	Asset.AddEntry_Float( "cloudLayer1Feather", 4096, 0, 16384 ).SetTitle( "Feather" ).SetToolTip( "Feathering range" ).Show( false );
+	Asset.AddEntry_Float( "cloudLayer1Height", 8000, 0, 10000 ).Show( false );
+	Asset.AddEntry_Vector2( "cloudLayer1UScale", "cloudLayer1VScale", 2048, 2048, 0, 32768 ).Show( false );
+	Asset.AddEntry_Vector2( "cloudLayer1UScroll", "cloudLayer1VScroll", 0, 0, -10, 10 ).Show( false );
+	Asset.AddEntry_Float( "cloudLayer2Blend0", 1, 0, 1 ).Show( false );
+	Asset.AddEntry_Float( "cloudLayer2Blend1", 0, 0, 1 ).Show( false );
+	Asset.AddEntry_Float( "cloudLayer2Distance", 12288, 0, 32768 ).Show( false );
+	Asset.AddEntry_Float( "cloudLayer2Feather", 4096, 0, 16384 ).Show( false );
+	Asset.AddEntry_Float( "cloudLayer2Height", 6000, 0, 10000 ).Show( false );
+	Asset.AddEntry_Vector2( "cloudLayer2UScale", "cloudLayer2VScale", 2048, 2048, 0, 32768 ).Show( false );
+	Asset.AddEntry_Vector2( "cloudLayer2UScroll", "cloudLayer2VScroll", 0, 0, -10, 10 ).Show( false );
+	Asset.AddEntry_Vector2( "cloudMask1UScale", "cloudMask1VScale", 65536, 65536, 0, 131072 ).Show( false );
+	Asset.AddEntry_Vector2( "cloudMask1UScroll", "cloudMask1VScroll", 0.5, 0.5, -2.0, 2.0 ).Show( false );
+	Asset.AddEntry_Vector2( "cloudMask2UScale", "cloudMask2VScale", 65536, 65536, 0, 131072 ).Show( false );
+	Asset.AddEntry_Vector2( "cloudMask2UScroll", "cloudMask2VScroll", 0.5, 0.5, -2.0, 2.0 ).Show( false );
+	
+	Asset.AddEntry_CheckBox( "distFalloff", false ).Show( false );
+	Asset.AddEntry_Float( "distFalloffBeginDistance", 200, 0, 10000 ).Show( false );
+	Asset.AddEntry_Float( "distFalloffEndDistance", 10, 0, 10000 ).Show( false );
+	Asset.AddEntry_Float( "envMapExponent", 1, 0.05, 1.0 ).Show( false );
+	Asset.AddEntry_Float( "envMapMax", 1, 0, 1 ).Show( false );
+	Asset.AddEntry_Float( "envMapMin", 1, 0, 1 ).Show( false );
+	Asset.AddEntry_CheckBox( "reflectionMapEnable", false ).Show( false );
+
+	Asset.AddEntry_CheckBox( "screenReflection", false ).Show( false );
+	Asset.AddEntry_Float( "seethruprlx_alphapower", 12, 0, 100 ).Show( false );
+	Asset.AddEntry_Float( "seethruprlx_height", 0.06, 0.0001, 10.0 ).Show( false );
+	Asset.AddEntry_Float( "seethruprlx_solidrad", 0.1, 0, 1 ).Show( false );
+	Asset.AddEntry_Float( "skyRotation", 0, 0, 360 ).Show( false );
+	Asset.AddEntry_Float( "skyStops", 3, -32, 32 ).Show( false );
+	Asset.AddEntry_Float( "skyScaleRGB", 8, 0, 100000 ).Show( false ); // obsolete
+	Asset.AddEntry_Float( "skyFogFraction", 1, 0, 1 ).Show( false );
+	Asset.AddEntry_Float( "skySize", 8000, -100000, 100000 ).Show( false );
+	Asset.AddEntry_CheckBox( "skyHalfSpace", true ).Show( false );
+	Asset.AddEntry_Float( "skyCenterX", 0, -100000, 100000 ).Show( false );
+	Asset.AddEntry_Float( "skyCenterY", 0, -100000, 100000 ).Show( false );
+	Asset.AddEntry_Float( "skyCenterZ", 0, -100000, 100000 ).Show( false );
+	
+	Asset.AddEntry_Int( "specColorStrength", 100, 10, 100 ).Show( false );
+	Asset.AddEntry_AssetCombo( "specDetailMap", "image" ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Vector2( "specDetailScaleX", "specDetailScaleY", 8, 8, 0.125, 64 ).Show( false );
+	Asset.AddEntry_Int( "specDetailStrength", 100, 10, 100 ).Show( false );
+	Asset.AddEntry_CheckBox( "specMapEnable", false ).Show( false );
+	Asset.AddEntry_Float( "specTint_b", 0.2, 0, 1 ).Show( false );
+	Asset.AddEntry_Float( "specTint_g", 0.2, 0, 1 ).Show( false );
+	Asset.AddEntry_Float( "specTint_r", 0.2, 0, 1 ).Show( false );
+	
+	Asset.AddEntry_Float( "tessSize", 0, 0, 65536 ).Show( false );
+	
+	Asset.AddEntry_CheckBox( "useLegacyNormalEncoding", false ).Show( false );
+	Asset.AddEntry_Float( "waterBobAmount", 5, 0, 32 ).Show( false );
+	Asset.AddEntry_Float( "waterBobSpeed", 0, 0, 32 ).Show( false );
+	Asset.AddEntry_Float( "waterBobWaveLength", 8192, 0, 65536 ).Show( false );
+
+	Asset.AddEntry_Float( "translucentShadowOpacity", 32, 0, 16777216 ).Show( false );
+	Asset.AddEntry_Float( "waterRefractionAmount", 0, -1, 1 ).Show( false );
+	Asset.AddEntry_Float( "waterShadowAdjust", 0, 0, 1 ).Show( false );
+	Asset.AddEntry_Float( "waterSpecularAmount", 1, 0, 1 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveAmplitude0", 0, 0, 100 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveAmplitude1", 0, 0, 100 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveAmplitude2", 0, 0, 100 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveAmplitude3", 0, 0, 100 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveAngle0", 0, 0, 360 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveAngle1", 0, 0, 360 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveAngle2", 0, 0, 360 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveAngle3", 0, 0, 360 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWavePhase0", 0, 0, 6.28319 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWavePhase1", 0, 0, 6.28319 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWavePhase2", 0, 0, 6.28319 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWavePhase3", 0, 0, 6.28319 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveSpeed0", 0, 0, 1024 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveSpeed1", 0, 0, 1024 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveSpeed2", 0, 0, 1024 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveSpeed3", 0, 0, 1024 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveSteepness0", 0, 0, 1024 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveSteepness1", 0, 0, 1024 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveSteepness2", 0, 0, 1024 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveSteepness3", 0, 0, 1024 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveWavelength0", 0, 0, 1024 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveWavelength1", 0, 0, 1024 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveWavelength2", 0, 0, 1024 ).Show( false );
+	Asset.AddEntry_Float( "waterVertexGerstnerWaveWavelength3", 0, 0, 1024 ).Show( false );
+	Asset.AddEntry_Float( "waterWeaveAmount", 5, 0, 32 ).Show( false );
+	Asset.AddEntry_Float( "waterWeaveSpeed", 0, 0, 32 ).Show( false );
+	Asset.AddEntry_Float( "waterWeaveWaveLength", 8192, 0, 65536 ).Show( false );
+	Asset.AddEntry_CheckBox( "wetnessInvert", false ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 		
+	// FramebBuffer Operations
+
+	string BlendFuncs = "One*";
+	string BlendOps   = "Add*";
+	
+	Asset.AddEntry_Label( "blendFunc", "Replace*" ).UpdateOnChange( true ).SetTitle( "Blend Func" ).SetToolTip( "Transparancy settings, Replace is for most materials, Blend is for standard transparency like glass, multiply is used for grime decals, the rest are mostly for fx" ).Show( false );
+	Asset.AddEntry_Label( "cullFace", "Back*" ).SetTitle( "Cull Face" ).SetToolTip( "Back will only draw outside faces, Front will only draw inside faces, None will draw both." ).Show( false );
+	Asset.AddEntry_Label( "polygonOffset", "None* | Static Decal | Weapon Impact" ).SetTitle( "Polygon Offset" ).SetToolTip( "Only adjust this for decals." ).Show( false );
+	Asset.AddEntry_Label( "customBlendOpRgb", BlendOps ).SetTitle( "Color Blend Op" ).Show( false );
+	Asset.AddEntry_Label( "srcCustomBlendFunc", BlendFuncs ).SetTitle( "Color Blend Src" ).Show( false );
+	Asset.AddEntry_Label( "destCustomBlendFunc", BlendFuncs ).SetTitle( "Color Blend Dst" ).Show( false );
+	Asset.AddEntry_Label( "customBlendOpAlpha", BlendOps ).SetTitle( "Alpha Blend Op" ).Show( false );
+	Asset.AddEntry_Label( "srcCustomBlendFuncAlpha", BlendFuncs ).SetTitle( "Alpha Blend Src" ).Show( false );
+	Asset.AddEntry_Label( "destCustomBlendFuncAlpha", BlendFuncs ).SetTitle( "Alpha Blend Dst" ).Show( false );
+	Asset.AddEntry_Label( "alphaTest", "Always*" ).SetTitle( "Alpha Test" ).SetToolTip( "GE128 = punchout alpha, black and white. Always = everything else" ).Show( false );
+	Asset.AddEntry_Label( "depthTest", "LessEqual*" ).SetTitle( "Depth Test" ).SetToolTip( "adjusts the rendering order of the material." ).Show( false );
+	Asset.AddEntry_Label( "depthWrite", "<auto>*" ).SetTitle( "Depth Write" ).SetToolTip( "turns z buffer info on or off, leave on default unless you know what you are doing!" ).Show( false );
+		
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Common Strings
+	
+	string MaterialType 		= Asset.GetEntryValue( "materialType" );
+	string BlendFunc 		= Asset.GetEntryValue( "blendFunc" );
+	string TileModes  		= "tile both* | tile horizontal | tile vertical | no tile";
+	string TileTip   		= "Wraps the image so it repeats at the edges, or clamps it so it stops at the edges";
+	
+	//legacy support
+	//string FilterDefaultModes 	= " linear (mip linear) | mip most expensive (4x trilinear) | mip more expensive (2x trilinear) | mip expensive (4x bilinear) | mip standard (2x bilinear)* | nomip bilinear | nomip nearest | nearest (mip none) | linear (mip none) | linear (mip nearest) | linear (mip linear) | aniso2x (mip linear) | aniso4x (mip linear) | aniso8x (mip linear) | aniso16x (mip linear)";
+	//string FilterNormalModes  	= " aniso2x (mip linear) | mip most expensive (4x trilinear) | mip more expensive (2x trilinear) | mip expensive (4x bilinear) | mip standard (2x bilinear)* | nomip bilinear | nomip nearest | nearest (mip none) | linear (mip none) | linear (mip nearest) | linear (mip linear) | aniso2x (mip linear) | aniso4x (mip linear) | aniso8x (mip linear) | aniso16x (mip linear)";
+	
+	//temporary support for default values if needed
+	string FilterModes 		= "nearest (mip none) | nearest (mip nearest) | linear (mip none) | linear (mip nearest) | linear (mip linear) | aniso2x (mip linear) | aniso4x (mip linear) | aniso8x (mip linear)";
+	string FilterDefaultModes 	= "linear (mip linear) | "+FilterModes;
+	string FilterNormalModes  	= "aniso2x (mip linear) | "+FilterModes;
+	string FilterColorModes		= FilterNormalModes;
+	
+	string FilterTip   		= "Makes the image clearer when viewed from an angle, at some cost of rendering time";
+
+	string TilingSizes =
+	"""
+		<auto>|
+		16|
+		32|
+		64|
+		128|
+		256|
+		512|
+		1024|
+		2048|
+		4096
+	""";
+	Asset.AddEntry_Combo( "tilingWidth", TilingSizes ).SetTitle( "Tiling Width" ).SetToolTip( "Sets the tiling width of this material. <auto> would use the largest width from the material images." ).Show( false );
+	Asset.AddEntry_Combo( "tilingHeight", TilingSizes ).SetTitle( "Tiling Height" ).SetToolTip( "Sets the tiling height of this material. <auto> would use the largest height from the material images." ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	// CGFX
+	
+	for ( int i = 0; i < 32; i++ )
+	{
+		string Digit = i; Digit = ( Digit.Length() == 1 ) ? "0" + Digit : Digit;	
+		Asset.AddEntry_Vector4( "cg" + Digit + "_x", "cg" + Digit + "_y", "cg" + Digit + "_z", "cg" + Digit + "_w", 0.0, 0.0, 0.0, 0.0, -1000000000, 1000000000 ).Show( false );
+		//Asset.AddEntry_String( "varLabel" + Digit, "" ).Show( false );
+	}
+	
+	for ( int i = 0; i < 16; i++ )
+	{
+		string Digit = i; Digit = ( Digit.Length() == 1 ) ? "0" + Digit : Digit;
+		
+		Asset.AddEntry_AssetCombo( "colorMap" + Digit, "image" ).UpdateOnChange( true ).Show( false ).ShowJumpTo (true);
+		Asset.AddEntry_Combo( "texTile" + Digit, TileModes ).Show( false );
+		Asset.AddEntry_Combo( "filterColor" + Digit, FilterDefaultModes ).Show( false ).SetDefaultValue( "linear (mip nearest)" );
+	}
+	
+	for ( int i = 0; i < 16; i++ )
+	{
+		string Digit = i; Digit = ( Digit.Length() == 1 ) ? "0" + Digit : Digit;
+
+		Asset.AddEntry_Float( "sw_static_float_" + Digit, 0, -1000000000, 1000000000 ).Show( false );
+		Asset.AddEntry_CheckBox( "sw_static_bool_" + Digit, false ).Show( false );
+		Asset.AddEntry_Int( "sw_static_int_" + Digit, 0, -1000000000, 1000000000 ).Show( false );
+		Asset.AddEntry_Combo( "sw_static_enum_" + Digit, "" ).Show( false );
+		Asset.AddEntry_AssetCombo( "sw_codetexture_" + Digit, "image" ).Show( false );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	// Color Map
+
+	Asset.AddEntry_AssetCombo( "colorMap", "image" ).SetTitle( "Color Map" ).UpdateOnChange( true ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Combo( "tileColor", TileModes ).SetTitle( "Tile Mode" ).SetToolTip( TileTip ).Show( false );
+	Asset.AddEntry_Combo( "filterColor", FilterColorModes ).SetTitle( "Filter Mode" ).SetToolTip( FilterTip ).Show( false ).SetDefaultValue( "aniso2x (mip linear)" );
+	Asset.AddEntry_CheckBox( "alphaTexture", false ).SetTitle( "Alpha Blend" ).SetToolTip( "Click this to enable alpha blending" ).Show( false );
+	Asset.AddEntry_Color( "colorTint", 1, 1, 1, 1 ).SetTitle( "Tint" ).Show( false );
+	Asset.AddEntry_Color( "colorTint1", 1, 1, 1, 1 ).SetTitle( "Tint1" ).Show( false );
+	Asset.AddEntry_Color( "colorTint2", 1, 1, 1, 1 ).SetTitle( "Tint2" ).Show( false );
+	Asset.AddEntry_Color( "colorTint3", 1, 1, 1, 1 ).SetTitle( "Tint3" ).Show( false );
+	Asset.AddEntry_Color( "colorTint4", 1, 1, 1, 1 ).SetTitle( "Tint4" ).Show( false );
+	Asset.AddEntry_AssetCombo( "heatmap", "image" ).UpdateOnChange( true ).Show( false ).ShowJumpTo (true);
+
+	Asset.AddEntry_CheckBox( "useAlphaReveal", false ).SetTitle( "Use Alpha Reveal" ).UpdateOnChange( true ).Show( false );
+	Asset.AddEntry_Float( "alphaRevealSoftEdge", 0.01, 0.01, 1.0 ).SetTitle( "Reveal Soft Edge" ).SetLiveMapping( "alphaRevealParms.x" ).Show( false );
+	Asset.AddEntry_Float( "alphaRevealRamp", 0.5, 0.0, 1.0 ).SetTitle( "Reveal Ramp" ).SetLiveMapping( "alphaRevealParms.y" ).Show( false );
+	Asset.AddEntry_Vector2( "revealScaleX", "revealScaleY", 1.0, 1.0, 0.001, 1024.0 ).SetToolTip( "A higher number makes the map tile more often." ).Show( false );
+	Asset.AddEntry_AssetCombo( "alphaRevealMap", "image" ).SetTitle( "Reveal Map (Optional)" ).UpdateOnChange( true ).SetToolTip( "If provided the Reveal Map will override the Color Map Alpha" ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Combo( "tileReveal", TileModes ).SetTitle( "Tile Mode" ).SetToolTip( TileTip ).Show( false );
+	Asset.AddEntry_Combo( "filterReveal", FilterDefaultModes ).SetTitle( "Filter Mode" ).SetToolTip( FilterTip ).Show( false ).SetDefaultValue( "linear (mip nearest)" );
+	
+	Asset.AddEntry_Color( "backlightScatterColor", 1.0, 1.0, 1.0, 1.0 ).SetTitle( "Sub-surface scatter" ).SetToolTip( "Color of the light coming through the material." ).Show( false );
+	Asset.AddEntry_Float( "emissiveFalloff", 0.0, 0.0, 128.0 ).SetTitle( "Emissive Falloff" ).Show( false );
+
+	Asset.AddEntry_Float( "uvMotionToggle1",  0.0, 0.0, 1.0 ).SetTitle( "UV Motion Toggle (Flipbook - 1, Scroll/Rotate - 0)" ).Show( false );
+	Asset.AddEntry_Float( "uvMotionToggle2", 0.0, 0.0, 1.0 ).SetTitle( "UV Motion Toggle (Flipbook - 1, Scroll/Rotate - 0)" ).Show( false );
+	Asset.AddEntry_Float( "uvMotionToggle3", 0.0, 0.0, 1.0 ).SetTitle( "UV Motion Toggle (Flipbook - 1, Scroll/Rotate - 0)" ).Show( false );
+	Asset.AddEntry_Float( "uvMotionToggle4", 0.0, 0.0, 1.0 ).SetTitle( "UV Motion Toggle (Flipbook - 1, Scroll/Rotate - 0)" ).Show( false );
+
+	Asset.AddEntry_CheckBox( "clampU", false ).SetTitle( "Clamp U" ).UpdateOnChange( true ).Show( false );
+	Asset.AddEntry_CheckBox( "clampV", false ).SetTitle( "Clamp V" ).UpdateOnChange( true ).Show( false );
+
+	Asset.AddEntry_CheckBox( "ignoreScriptVectors", false ).SetTitle( "Ignore Script Vectors" ).SetToolTip("When checked use the material default value and not the game's script vector.").Show( false );
+	Asset.AddEntry_CheckBox( "useAsCamo", false ).SetTitle( "Use As Camo" ).SetToolTip("When checked use the material is used as a weapon (or character) camo.").Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	// Normal Map
+
+	Asset.AddEntry_AssetCombo( "normalMap", "image" ).SetTitle( "Normal Map (Optional)" ).UpdateOnChange( true ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Combo( "tileNormal", TileModes ).SetTitle( "Tile Mode" ).SetToolTip( TileTip ).Show( false );
+	Asset.AddEntry_Combo( "filterNormal", FilterNormalModes ).SetTitle( "Filter Mode" ).SetToolTip( FilterTip ).Show( false ).SetDefaultValue( "aniso2x (mip linear)" );
+	Asset.AddEntry_CheckBox( "converterOnlyNormal", false ).SetTitle( "Converter Only" ).SetToolTip( "Use the normal map only in the Convert to augment Gloss mipmaps. No effect/cost at Run-Time" ).Show( false );;
+	Asset.AddEntry_Float( "normalVarianceScale", 1.0, 0.0, 1.0 ).SetTitle( "Normal Variance Scale" ).SetToolTip( "Controls the amount of Normal Variance transferred to the Gloss mipmaps during Convert. Lower values could introduce specular aliasing. Advanced use only." ).Show( false );;
+	Asset.AddEntry_Float( "normalHeightScale", 1.0, 0.0, 1.0 ).SetTitle( "Normal Height" ).SetToolTip( "Used to scale down the base normal map" ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Tension Maps
+
+	Asset.AddEntry_Float( "tensionStretchHeight", 1.0, 0.0, 10.0 ).SetTitle( "Stretch Height" ).SetToolTip( "Height multiplier for stretch tension map." ).Show( false );
+	Asset.AddEntry_Float( "tensionCompressHeight", 1.0, 0.0, 10.0 ).SetTitle( "Compression Height" ).SetToolTip( "Height multiplier for compression tension map." ).Show( false );
+	Asset.AddEntry_Float( "tensionPower", 1.0, 0.0, 10.0 ).SetTitle( "Power" ).SetToolTip( "Power to control rate of tension curve increase." ).Show( false );
+	Asset.AddEntry_Float( "tensionStrength", 1.0, 0.0, 10.0 ).SetTitle( "Stretch" ).SetToolTip( "Strength to boost tension curve." ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	 
+	// Detail Normal Map
+	
+	Asset.AddEntry_AssetCombo( "detailMap", "image" ).SetTitle( "Detail Normal Map (Optional)" ).UpdateOnChange( true ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Vector2( "detailScaleX", "detailScaleY", 8.0, 8.0, 0.125, 64.0 ).SetTitle( "Size Scale" ).SetToolTip( "A higher number makes the detail map tile more often relative to the texture it's on." ).Show( false );
+	Asset.AddEntry_Float( "detailScaleHeight", 1.0, 0.0, 1.0 ).SetTitle( "Height Scale" ).SetToolTip( "A higher number makes the detail map more bumpy. (1.0 is default)" ).Show( false );
+	Asset.AddEntry_Combo( "filterDetail", FilterNormalModes ).SetTitle( "Filter Mode" ).SetToolTip( FilterTip ).Show( false ).SetDefaultValue( "aniso2x (mip linear)" );
+			
+	Asset.AddEntry_Vector2( "detail1ScaleX", "detail1ScaleY", 8.0, 8.0, 0.125, 64.0 ).SetTitle( "Size Scale" ).SetToolTip( "A higher number makes the detail map tile more often relative to the texture it's on." ).Show( false );
+	Asset.AddEntry_Float( "detailScaleHeight1", 1.0, 0.0, 1.0 ).SetTitle( "Height Scale" ).SetToolTip( "A higher number makes the detail map more bumpy. (1.0 is default)" ).Show( false );
+	Asset.AddEntry_Vector2( "detail2ScaleX", "detail2ScaleY", 8.0, 8.0, 0.125, 64.0 ).SetTitle( "Size Scale" ).SetToolTip( "A higher number makes the detail map tile more often relative to the texture it's on." ).Show( false );
+	Asset.AddEntry_Float( "detailScaleHeight2", 1.0, 0.0, 1.0 ).SetTitle( "Height Scale" ).SetToolTip( "A higher number makes the detail map more bumpy. (1.0 is default)" ).Show( false );
+	Asset.AddEntry_Vector2( "detail3ScaleX", "detail3ScaleY", 8.0, 8.0, 0.125, 64.0 ).SetTitle( "Size Scale" ).SetToolTip( "A higher number makes the detail map tile more often relative to the texture it's on." ).Show( false );
+	Asset.AddEntry_Float( "detailScaleHeight3", 1.0, 0.0, 1.0 ).SetTitle( "Height Scale" ).SetToolTip( "A higher number makes the detail map more bumpy. (1.0 is default)" ).Show( false );
+				
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// SubImages
+	
+	Asset.AddEntry_Float( "rowCount", 1.0, 0.0, 10.0 ).SetTitle( "Row Count" ).SetToolTip( "Sets the number of rows of images for the texture (1.0 is default)" ).Show( false );
+	Asset.AddEntry_Float( "columnCount", 1.0, 0.0, 10.0 ).SetTitle( "Column Count" ).SetToolTip( "Sets the number of columns of images for the texture. (1.0 is default)" ).Show( false );
+	Asset.AddEntry_Float( "imageTime", 1.0, 0.001, 10.0 ).SetTitle( "Image Time" ).SetToolTip( "Sets the duration each image will last. (1.0 is default)" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	 
+	// Specular Color Map
+	string SpecularColors = 
+		"Everything,0.219604492,0.219604492,0.219604492|"
+		"Acrylic,0.22744751,0.23135376,0.22744751|"
+		"Aluminum,0.960739136,0.964675903,0.964675903|"
+		"Brass,0.792157,0.752926,0.627451|"
+		"Bronze,0.901961,0.809277,0.709804|"
+		"Chrome,0.760757446,0.764663696,0.764663696|"
+		"Copper,0.980361938,0.815658569,0.752914429|"
+		"Diamond,0.313720703,0.313720703,0.313720703|"
+		"Glass,0.235290527,0.239196777,0.239196777|"
+		"Gold,0.999984741,0.858779907,0.568588257|"
+		"Iron,0.748977661,0.725448608,0.705856323|"
+		"Lead,0.725448608,0.756820679,0.807815552|"
+		"Nickel,0.823501587,0.796035767,0.741134644|"
+		"Silicone,0.615646362,0.635269165,0.678390503|"
+		"Silver,0.980361938,0.968582153,0.948989868|"
+		"Tin,0.713699341,0.694076538,0.615646362|"
+		"Titanium,0.756820679,0.729385376,0.694076538|"
+		"Tungsten,0.741134644,0.725448608,0.705856323|"
+		"Water,0.149017334,0.149017334,0.149017334";
+		
+	Asset.AddEntry_AssetCombo( "specColorMap", "image" ).SetTitle( "Specular Color Map" ).UpdateOnChange( true ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Float( "specAmount", 1.0, 0.0, 1.0 ).SetTitle( "Specular Amount" ).SetToolTip( "Use this to suppress specularity: 0 is fully suppressed, 1 is non-suppressed." ).Show( false );
+	Asset.AddEntry_Combo( "tileSpecular", TileModes ).SetTitle( "Tile Mode" ).SetToolTip( TileTip ).Show( false );
+	Asset.AddEntry_Combo( "filterSpecular", FilterDefaultModes ).SetTitle( "Filter Mode" ).SetToolTip( FilterTip ).Show( false ).SetDefaultValue( "linear (mip nearest)" );
+	Asset.AddEntry_Color( "specColorTint", 0.760757446, 0.764663696, 0.764663696, 1.0 ).SetTitle( "Specular Color" ).SetToolTip( "sRGB color for metallic parts of spec map." ).Show( false ).SetPalette(SpecularColors);
+	Asset.AddEntry_Color( "specColorTint1", 0.760757446, 0.764663696, 0.764663696, 1.0 ).SetTitle( "Specular Color" ).SetToolTip( "sRGB color for metallic parts of spec map." ).Show( false ).SetPalette(SpecularColors);
+	Asset.AddEntry_Color( "specColorTint2", 0.760757446, 0.764663696, 0.764663696, 1.0 ).SetTitle( "Specular Color" ).SetToolTip( "sRGB color for metallic parts of spec map." ).Show( false ).SetPalette(SpecularColors);
+	Asset.AddEntry_Color( "specColorTint3", 0.760757446, 0.764663696, 0.764663696, 1.0 ).SetTitle( "Specular Color" ).SetToolTip( "sRGB color for metallic parts of spec map." ).Show( false ).SetPalette(SpecularColors);
+				
+	Asset.AddEntry_Float( "specColorDesaturate1", 1.0,  0.0, 1.0 ).SetStep( 0.01 ).Show( false );
+	Asset.AddEntry_Float( "specColorDesaturate2", 1.0,  0.0, 1.0 ).SetStep( 0.01 ).Show( false );
+	Asset.AddEntry_Float( "specColorDesaturate3", 1.0,  0.0, 1.0 ).SetStep( 0.01 ).Show( false );
+	Asset.AddEntry_Float( "specColorIntensity1",  0.0, -1.0, 1.0 ).SetStep( 0.01 ).Show( false );
+	Asset.AddEntry_Float( "specColorIntensity2",  0.0, -1.0, 1.0 ).SetStep( 0.01 ).Show( false );
+	Asset.AddEntry_Float( "specColorIntensity3",  0.0, -1.0, 1.0 ).SetStep( 0.01 ).Show( false );
+						
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	 
+	// Legacy Cosine Power Map
+	Asset.AddEntry_AssetCombo( "cosinePowerMap", "image" ).SetTitle( "Gloss Mask" ).UpdateOnChange( true ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Vector2( "glossRangeMin", "glossRangeMax", 0.0, 13.0, 0.0, 17.0 ).SetStep( 0.1 ).SetTitle( "Gloss Range" ).SetToolTip( "Maps relative gloss (from the gloss map) to absolute gloss range." ).Show( false );
+	Asset.AddEntry_Vector2( "glossRangeMin1", "glossRangeMax1", 0.0, 17.0, 0.0, 17.0 ).SetStep( 0.1 ).SetTitle( "Gloss Range" ).SetToolTip( "Maps relative gloss (from the gloss map) to absolute gloss range." ).Show( false );
+	Asset.AddEntry_Vector2( "glossRangeMin2", "glossRangeMax2", 0.0, 17.0, 0.0, 17.0 ).SetStep( 0.1 ).SetTitle( "Gloss Range" ).SetToolTip( "Maps relative gloss (from the gloss map) to absolute gloss range." ).Show( false );
+	Asset.AddEntry_Vector2( "glossRangeMin3", "glossRangeMax3", 0.0, 17.0, 0.0, 17.0 ).SetStep( 0.1 ).SetTitle( "Gloss Range" ).SetToolTip( "Maps relative gloss (from the gloss map) to absolute gloss range." ).Show( false );
+		
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	ValidateGlossSurfaceType( Asset, "" );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Ambient Occlusion Map
+	
+	Asset.AddEntry_AssetCombo( "occMap", "image" ).SetTitle( "Ambient Occlusion Map" ).UpdateOnChange( true ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Combo( "tileOcc", TileModes ).SetTitle( "Tile Mode" ).Show( false );
+	Asset.AddEntry_Combo( "filterOcc", FilterDefaultModes ).SetTitle( "Filter Mode" ).Show( false ).SetDefaultValue( "linear (mip nearest)" );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Special transition material settings
+
+	Asset.AddEntry_Combo( "tileTransition", TileModes ).SetTitle( "Tile Mode" ).SetToolTip( TileTip ).Show( false );
+	Asset.AddEntry_Combo( "filterTransition", FilterDefaultModes ).SetTitle( "Filter Mode" ).SetToolTip( FilterTip ).Show( false ).SetDefaultValue( "linear (mip nearest)" );
+	
+	Asset.AddEntry_AssetCombo( "transColorMap", "image" ).SetTitle( "Color Map" ).UpdateOnChange( true ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Color( "transColorTint", 1, 1, 1, 1 ).SetTitle( "Tint" ).Show( false );
+
+	Asset.AddEntry_AssetCombo( "transNormalMap", "image" ).SetTitle( "Normal Map (Optional)" ).UpdateOnChange( true ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Float( "transNormalHeightScale", 1.0, 0.0, 1.0 ).SetTitle( "Normal Height" ).SetToolTip( "Used to scale down the base normal map" ).Show( false );
+
+	Asset.AddEntry_AssetCombo( "transGlossMap", "image" ).SetTitle( "Gloss Map" ).UpdateOnChange( true ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Vector2( "transGlossRangeMin", "transGlossRangeMax", 0.0, 13.0, 0.0, 17.0 ).SetStep( 0.1 ).SetTitle( "Gloss Range" ).SetToolTip( "Maps relative gloss (from the gloss map) to absolute gloss range." ).Show( false );
+	
+	Asset.AddEntry_AssetCombo( "transSpecMap", "image" ).SetTitle( "Specular Color Map" ).UpdateOnChange( true ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Color( "transSpecColorTint", 0.760757446, 0.764663696, 0.764663696, 1.0 ).SetTitle( "Specular Color" ).SetToolTip( "sRGB color for metallic parts of spec map." ).Show( false ).SetPalette(SpecularColors);
+	
+	Asset.AddEntry_AssetCombo( "transRevealMap", "image" ).SetTitle( "Reveal Map (Optional)" ).SetToolTip( "If provided the Reveal Map will override the Color Map Alpha" ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Float( "transRevealSoftEdge", 0.01, 0.01, 1.0 ).SetTitle( "Reveal Soft Edge" ).SetLiveMapping( "transRevealParms.x" ).Show( false );
+	Asset.AddEntry_Float( "transRevealRamp", 0.5, 0.0, 1.0 ).SetTitle( "Reveal Ramp" ).SetLiveMapping( "transRevealParms.y" ).Show( false );
+	
+	Asset.AddEntry_Vector2( "transScaleX", "transScaleY", 8.0, 8.0, 0.125, 64.0 ).SetTitle( "Size Scale" ).SetToolTip( "A higher number makes the transition maps tile more often relative to the texture it's on." ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Special decal stuff
+
+	Asset.AddEntry_Float( "grimeAnglePitch", 0.0, -90.0, 90.0 ).SetStep( 1.0 ).Show( false );
+	Asset.AddEntry_Float( "grimeAngleYaw", 0.0, 0.0, 360.0 ).SetStep( 1.0 ).Show( false );
+	Asset.AddEntry_Float( "normalFlattening", 1.0, 0.0, 1.0 ).SetStep( 0.01 ).Show( false ).SetToolTip( "Amount to flatten the normal under this decal" );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Environment Mapping
+	
+	Asset.AddEntry_AssetCombo( "specReflectionMap", "image" ).SetTitle( "Reflection Occlusion Map" ).UpdateOnChange( true ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Float( "reflectionProbeAmount", 1.0, 0.0, 1.0 ).SetTitle( "Reflection Amount" ).SetStep( 0.01 ).SetToolTip( "Controls how much reflection map is shown on surface: 1 = full amount 0 = none." ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Objective Colors
+	
+	Asset.AddEntry_CheckBox( "objectiveColorsEnabled", false ).SetTitle( "Enable" ).UpdateOnChange( true ).Show( false );
+	Asset.AddEntry_Color( "colorObjMin", 0.25, 0.15, 0.0, 1.0 ).SetTitle( "Color" ).Show( false );
+	Asset.AddEntry_Float( "colorObjMinBaseBlend", 1.0, 0.0, 1.0 ).SetTitle( "Base Color Blend" ).Show( false );
+	Asset.AddEntry_Color( "colorObjMax", 1.0, 1.0, 0.5, 1.0 ).SetTitle( "Color" ).Show( false );
+	Asset.AddEntry_Float( "colorObjMaxBaseBlend", 1.0, 0.0, 1.0 ).SetTitle( "Base Color Blend" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Camo Map
+	
+	Asset.AddEntry_AssetCombo( "camoMaskMap", "image" ).SetToolTip( "Masks the camo (white shows the camo material, black shows the underlaying material)." ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_AssetCombo( "colorDetailMap", "image" ).SetTitle( "Camo Base Map" ).UpdateOnChange( true ).SetToolTip( "The default camo texture that will be replaced by the selected camo texture." ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_AssetCombo( "camoDetailMap", "image" ).SetTitle( "Camo Detail Map" ).UpdateOnChange( true ).Show( false ).ShowJumpTo (true);
+	Asset.AddEntry_Vector2( "colorDetailScaleX", "colorDetailScaleY", 8.0, 8.0, 0.125, 64.0 ).SetTitle( "Scale" ).SetToolTip( "A higher number makes the detail map tile more often relative to the texture it's on." ).Show( false );
+	Asset.AddEntry_Combo( "filterColorDetail", FilterColorModes ).SetTitle( "Filter Mode" ).SetToolTip( FilterTip ).Show( false ).SetDefaultValue( "linear (mip linear)" );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// UV Scroll
+	
+	Asset.AddEntry_Vector2( "uScroll", "vScroll", 0.0, 0.0, -10.0, 10.0 ).SetTitle( "Amount" ).SetLiveMapping( "uvScroll.x", "uvScroll.y" ).SetToolTip( "Texture scroll speed in u direction. 1.0 means the entire texture will scroll by in 1 sec." ).Show( false );
+	Asset.AddEntry_Vector2( "uScroll1", "vScroll1", 0.0, 0.0, -10.0, 10.0 ).SetTitle( "Amount" ).SetLiveMapping( "uvScroll1.x", "uvScroll1.y" ).SetToolTip( "Texture scroll speed in u direction. 1.0 means the entire texture will scroll by in 1 sec." ).Show( false );
+	Asset.AddEntry_Float( "zoomMin", 1.0, 1.0, 10.0 ).SetTitle( "Zoom Min" ).SetToolTip( "Texture zoom minimum." ).Show( false );
+	Asset.AddEntry_Float( "zoomMax", 1.0, 1.0, 10.0 ).SetTitle( "Zoom Max" ).SetToolTip( "Texture zoom maximum." ).Show( false );
+	Asset.AddEntry_Float( "zoomRate", 0.0, 0.0, 128.0 ).SetTitle( "Zoom Rate" ).SetToolTip( "Texture zoom rate to bounce between the limits." ).Show( false );
+	
+	Asset.AddEntry_CheckBox( "useWorldOffsets1", true ).SetTitle( "Enable" ).UpdateOnChange( true ).Show( false );
+	Asset.AddEntry_CheckBox( "useWorldOffsets2", true ).SetTitle( "Enable" ).UpdateOnChange( true ).Show( false );
+	Asset.AddEntry_CheckBox( "useWorldOffsets3", true ).SetTitle( "Enable" ).UpdateOnChange( true ).Show( false );
+
+	Asset.AddEntry_Vector2( "uScale", "vScale", 1.0, 1.0, 0.001, 10000.0 ).SetTitle( "Amount" ).SetLiveMapping( "scaleUVs.x", "scaleUVs.y" ).SetToolTip( "Texture scale" ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Emissive flickering
+
+	Asset.AddEntry_AssetCombo( "flickerLookupMap", "image" ).SetTitle( "Flicker Lookup Map" ).UpdateOnChange( true ).Show( false ).ShowJumpTo( true );
+	Asset.AddEntry_Float( "flickerSeedU", 0.0, 0.0, 1.0 ).SetTitle( "Flicker SeedU" ).SetToolTip( "Seed for flicker style." ).Show( false );
+	Asset.AddEntry_Float( "flickerSeedV", 0.0, 0.0, 1.0 ).SetTitle( "Flicker SeedV" ).SetToolTip( "Seed for flicker time offset." ).Show( false );
+	Asset.AddEntry_Float( "flickerSpeed", 1.0, 0.0, 128.0 ).SetTitle( "Flicker Speed" ).SetToolTip( "Speed of flickering." ).Show( false );
+	Asset.AddEntry_Float( "flickerPower", 1.0, 0.0, 128.0 ).SetTitle( "Flicker Power" ).SetToolTip( "Harshness of flicker transitions." ).Show( false );
+	Asset.AddEntry_Float( "flickerMin", 0.0, 0.0, 1.0 ).SetTitle( "Flicker Min" ).SetToolTip( "Darkest the flicker will get." ).Show( false );
+	Asset.AddEntry_Float( "flickerMax", 1.0, 0.0, 2.0 ).SetTitle( "Flicker Max" ).SetToolTip( "Brightest the flicker will get." ).Show( false );
+	Asset.AddEntry_CheckBox( "emissiveIncompetence", false ).SetTitle( "Failure to achieve." ).Show( false );
+	Asset.AddEntry_CheckBox( "invertFalloff", false ).SetTitle( "Beans above the frank." ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Texture Atlas Settings
+	
+	Asset.AddEntry_Int( "textureAtlasRowCount", 1, 1, 64 ).SetTitle( "Row Count" ).Show( false );
+	Asset.AddEntry_Int( "textureAtlasColumnCount", 1, 1, 64 ).SetTitle( "Column Count" ).Show( false );
+	Asset.AddEntry_Float( "textureAtlasFrameRate", 1.0, 0.1, 60.0 ).SetTitle( "Image Time" ).SetToolTip( "Frame Rate" ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// zFeather Override Settings
+	Asset.AddEntry_Float( "zFeatherOverride", 0, 0, 1000 ).SetTitle( "Z Feather Override" ).SetToolTip( "If greater than zero, override z feather" ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// God Ray Falloff
+	
+	Asset.AddEntry_CheckBox( "falloff", false ).SetTitle( "Enable" ).UpdateOnChange( true ).Show( false );
+	Asset.AddEntry_Float( "falloffBeginAngle", 35, 0, 90 ).SetTitle( "Opaque Angle" ).SetToolTip( "Opaque Angle (0 is head-on, 90 is side-on)" ).Show( false );
+	Asset.AddEntry_Float( "falloffEndAngle", 65, 0, 90 ).SetTitle( "Invisible Angle" ).SetToolTip( "Opaque Angle (0 is head-on, 90 is side-on)" ).Show( false );
+	Asset.AddEntry_Color( "falloffBeginColor", 1, 1, 1, 1 ).SetTitle( "Opaque Color" ).SetToolTip( "Opaque Color" ).Show( false );
+	Asset.AddEntry_Color( "falloffEndColor", 0.5, 0.5, 0.5, 0.5 ).SetTitle( "Transparent Color" ).SetToolTip( "Transparent Color" ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// ZFeathering
+	
+	Asset.AddEntry_CheckBox( "zFeather", false ).SetTitle( "Enable" ).UpdateOnChange( true ).Show( false );
+	Asset.AddEntry_CheckBox( "zFeatherViewModel", false ).SetTitle( "Enable for viewmodel" ).UpdateOnChange( true ).Show( false );
+	Asset.AddEntry_CheckBox( "zFeatherMaskViewModel", false ).SetTitle( "Mask viewmodel depth" ).UpdateOnChange( true ).SetToolTip( "Use the stencil buffer to mask out the viewmodel (slower)" ).Show( false );
+	Asset.AddEntry_Float( "zFeatherDepth", 40, 0, 1024 ).SetTitle( "Depth" ).Show( false );
+	Asset.AddEntry_CheckBox( "zFeatherComputeSprites", false ).SetTitle( "Make compute sprites zfeather against this material" ).Show( false );
+	Asset.AddEntry_Float( "zFeatherPlane", 0, -10000, 10000 ).SetTitle( "Additional Z Feather Plane" ).Show( false );
+	Asset.AddEntry_Float( "zFeatherPlaneDir", 1, -1, 1).SetTitle( "Z Feather Plane Direction +-1 for above/below" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Alpha Dissolve (for cloud materials)
+
+	Asset.AddEntry_Int( "alphaDissolveInt", 255, 0, 255 ).SetTitle( "Alpha Dissolve" ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Levels and Desaturation
+
+	Asset.AddEntry_Vector2( "levelsInputMin", "levelsInputMax", 0, 255, 0, 255 ).SetTitle( "Levels Inputs" ).Show( false );
+	Asset.AddEntry_Vector2( "levelsOutputMin", "levelsOutputMax", 0, 255, 0, 255 ).SetTitle( "Levels Input Min" ).Show( false );
+	Asset.AddEntry_Vector2( "levelsInputMin1", "levelsInputMax1", 0, 255, 0, 255 ).SetTitle( "Levels Inputs" ).Show( false );
+	Asset.AddEntry_Vector2( "levelsOutputMin1", "levelsOutputMax1", 0, 255, 0, 255 ).SetTitle( "Levels Input Min" ).Show( false );
+	Asset.AddEntry_Float( "desaturationAmount", 0.0, 0.0, 1.0 ).SetTitle( "Desaturation" ).Show( false );
+	Asset.AddEntry_CheckBox( "useOldHDRScale", false ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Eye Offset
+	
+	Asset.AddEntry_Int( "eyeOffsetDepth", 0, -1024, 1024 ).SetTitle( "Depth" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Misc ( used in different places )
+	
+	Asset.AddEntry_CheckBox( "outdoorOnly", false ).SetTitle( "Outdoors Only" ).UpdateOnChange( true ).Show( false );
+	Asset.AddEntry_CheckBox( "notInBoats", false ).SetTitle( "Not In Boats" ).Show( false );
+	Asset.AddEntry_CheckBox( "vertexAlphaAO", false ).SetTitle( "Vertex Alpha AO" ).SetToolTip( "Vertex Alpha will be treated as Ambient Occlusion. Vertex Transparency will be treated as opaque." ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Spot Light
+	
+	Asset.AddEntry_CheckBox( "useSpotLight", false ).SetTitle( "Enable" ).UpdateOnChange( true ).Show( false );
+	Asset.AddEntry_Float( "spotLightWeight", 0, -100, 100 ).SetTitle( "Weight" ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Spot Light Shadow
+	
+	Asset.AddEntry_CheckBox( "useSpotLightShadow", false ).SetTitle( "Enable" ).UpdateOnChange( true ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Alpha Dissolve
+	
+	Asset.AddEntry_CheckBox( "useAlphaDissolve", false ).SetTitle( "Enable" ).UpdateOnChange( true ).Show( false );
+	Asset.AddEntry_Int( "alphaDissolveMarginAbove", 0, 0, 255 ).SetTitle( "Soft Edge" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Custom Radiant Material
+	
+	Asset.AddEntry_CheckBox( "hasEditorMaterial", false ).SetTitle( "Enable" ).SetToolTip( "Enable to create a duplicate material ( '<materialname>_editor' ) that uses separate material parameters for display purposes in Radiant" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Distortion Settings
+	
+	Asset.AddEntry_Vector2( "distortionScaleX", "distortionScaleY", 0.5, 0.5, 0, 1000 ).SetTitle( "Scale" ).Show( false );
+	Asset.AddEntry_Combo( "distortionColorBehavior", "scales distortion strength* | tints distorted pixel color" ).SetTitle( "Vertex Color Behavior" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Tex scroll
+	
+	Asset.AddEntry_CheckBox( "texScroll", false ).SetTitle( "Thread Scroll" ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// UV Scroll
+	
+	Asset.AddEntry_CheckBox( "useUVScroll", false ).SetTitle( "UV Scroll" ).UpdateOnChange( true ).Show(false);
+	Asset.AddEntry_Float( "uvScrollAngle", 0.0, 0.0, 360.0 ).SetTitle( "UV Scroll Angle" ).Show(false);
+	Asset.AddEntry_Float( "uvScrollAngle1", 0.0, 0.0, 360.0 ).SetTitle( "UV Scroll Angle1" ).Show(false);
+	Asset.AddEntry_Float( "uvScrollRate", 0.0, -10.0, 10.0 ).SetTitle( "UV Scroll Rate" ).Show(false);
+	
+	Asset.AddEntry_CheckBox( "useUVRotate", false ).SetTitle( "UV Rotate" ).UpdateOnChange( true ).Show(false);
+	Asset.AddEntry_Float( "uvRotationRate", 0.0, -3600.0, 3600.0 ).SetTitle( "UV Rotation Rate" ).Show(false);
+	Asset.AddEntry_Float( "uvRotationRate1", 0.0, -3600.0, 3600.0 ).SetTitle( "UV Rotation Rate1" ).Show(false);
+	Asset.AddEntry_Float( "uvRotationRate2", 0.0, -3600.0, 3600.0 ).SetTitle( "UV Rotation Rate2" ).Show(false);
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Tree Cannopy
+	
+	Asset.AddEntry_CheckBox( "treeCanopyEnableSway", false ).SetTitle( "Enable Sway" ).UpdateOnChange( true ).Show( false );
+	Asset.AddEntry_CheckBox( "treeCanopyNewVertexControl", false ).SetTitle( "Use New Vertex Control" ).SetToolTip( "Vertex Red picks Wind Variant, Vertex Green scales the Sway Amount, Vertex Alpha specifies the Ambient Occlusion" ).Show( false );
+	Asset.AddEntry_Float( "treeCanopyMinimumSway", 0, 0, 1 ).SetTitle( "Minimum Sway" ).SetToolTip( "Minimum sway specifies the least sway fraction, Random value between 1 and (1-minimum sway is added per leaf)." ).Show( false );
+	Asset.AddEntry_Float( "treeCanopySwayRange", 0.2, 0, 1 ).SetTitle( "Sway Range" ).SetToolTip( "Sway range controls the maximum amount of sway that is applied above the minimum sway." ).Show( false );
+	Asset.AddEntry_Float( "treeCanopyScaleRotationAngles", 0.1, 0, 1 ).SetTitle( "Scale rotation angles" ).SetToolTip( "Think of this value as the inverse distance from pivot to leaf. Closer the leaves to the pivot, higher this value." ).Show( false );
+	Asset.AddEntry_Float( "treeCanopyRadialLighting", 0.5, 0, 1 ).SetTitle( "Radial Lighting" ).SetToolTip( "Amount of radial lighting (0 means vertex normal dominates, 1 means radial normal dominates)." ).Show( false );
+	Asset.AddEntry_Float( "treeCanopySpecularGloss", 0.3, 0, 1 ).SetTitle( "Specular Gloss" ).SetToolTip( "Specular gloss (0 means rough, 1 means smooth)." ).Show( false );
+	Asset.AddEntry_Color( "treeCanopyScatterColor", 0.7, 0.83, 0.36, 0 ).SetTitle( "Sub-surface scatter" ).SetToolTip( "Color of the light coming through the leaves." ).Show( false );
+	Asset.AddEntry_CheckBox( "treeCanopyDisablePrepass", false ).SetTitle( "Disable Depth Prepass" ).SetToolTip( "Optimization option. No prepass will run faster but there might be sorting issues." ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// old Water Map
+	
+	Asset.AddEntry_Vector2( "waterScrollX0", "waterScrollY0", -1.98,  1.32, -100.0, 100.0 ).SetTitle( "Water 0 Scroll" ).Show( false );
+	Asset.AddEntry_Vector2( "waterScrollX1", "waterScrollY1",  4.44, -5.18, -100.0, 100.0 ).SetTitle( "Water 1 Scroll" ).Show( false );
+	Asset.AddEntry_Vector2( "waterScrollX2", "waterScrollY2",  3.44,  3.18, -100.0, 100.0 ).SetTitle( "Water 2 Scroll" ).Show( false );
+	Asset.AddEntry_Color( "waterColor", 0.19, 0.3, 0.15, 0.0 ).SetLiveMapping( "waterColor.x", "waterColor.y", "waterColor.z", "waterColor.w" ).SetTitle( "Color" ).SetToolTip( "Base color of the water itself" ).Show( false );
+	Asset.AddEntry_Float( "waterFeather", 0.05, 0.0, 1.0 ).SetTitle( "Feather" ).SetLiveMapping( "waterParams.z" ).SetToolTip( "" ).Show( false );
+	Asset.AddEntry_Float( "waterOpacity", 0.0, 0.0, 1.0 ).SetTitle( "Opacity" ).SetLiveMapping( "waterParams.w" ).SetToolTip( "" ).Show( false );
+	Asset.AddEntry_Float( "waterRoughness", 0.1, 0.0, 10.0 ).SetTitle( "Roughness" ).SetLiveMapping( "waterParams.x" ).SetToolTip( "" ).Show( false );
+	Asset.AddEntry_Float( "waterRefract", 30.0, 0.0, 200.0 ).SetTitle( "Refract" ).SetLiveMapping( "waterParams.y" ).SetToolTip( "" ).Show( false );
+	Asset.AddEntry_Color( "waterSkyColor", 0.63, 0.77, 0.77, 0.0 ).SetLiveMapping( "waterSkyColor.x", "waterSkyColor.y", "waterSkyColor.z", "waterSkyColor.w" ).SetTitle( "Sky Color" ).SetToolTip( "" ).Show( false );
+	Asset.AddEntry_Color( "waterGroundColor", 0.26, 0.27, 0.11, 0.0 ).SetLiveMapping( "waterGroundColor.x", "waterGroundColor.y", "waterGroundColor.z", "waterGroundColor.w" ).SetTitle( "Ground Color" ).SetToolTip( "" ).Show( false );
+	Asset.AddEntry_Float( "oceanSunBrightness", 10.0, 0.0, 100.0 ).SetLiveMapping( "waterSunValues.x" ).SetTitle( "Sun Brightness" ).SetToolTip( "" ).Show( false );
+	Asset.AddEntry_Float( "oceanSunSize", 0.0125, 0, 1 ).SetLiveMapping( "waterSunValues.y" ).SetTitle( "Sun Size" ).SetToolTip( "" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -	
+	// lit_water_sim_*
+	Asset.AddEntry_CheckBox( "useScreenspaceReflection", false ).SetToolTip( "Enable dynamic reflection from screen" ).Show( false );
+	Asset.AddEntry_CheckBox( "useLoopedScreenspaceReflection", false ).SetToolTip( "Enable higher quality dynamic reflection from screen" ).Show( false );
+	Asset.AddEntry_CheckBox( "orientNormalsToFlow", false ).SetToolTip( "Rotate normal map to flow map direction" ).Show( false );
+	Asset.AddEntry_CheckBox( "foamMapEnable", false ).SetToolTip( "Add foam on top of water" ).Show( false );
+	Asset.AddEntry_CheckBox( "doubleSidedLighting", false ).SetToolTip( "Double sided lighting" ).Show( false );
+
+	Asset.AddEntry_Float( "underwaterOpacityScale", 0.75, 0.0, 1.0 ).SetTitle( "Underwater Opacity" ).Show( false );
+	Asset.AddEntry_Float( "overwaterOpacityScale", 0.75, 0.0, 1.0 ).SetTitle( "Overwater Opacity" ).Show( false );
+	Asset.AddEntry_Float( "waterShadowOffset", 0.0, -100.0, 100.0 ).SetTitle( "Water Shadow Offset" ).Show( false );
+
+	Asset.AddEntry_Float( "maxRayDepth", 1000.0, 1.0, 10000.0 ).SetTitle( "Max SSR ray depth" ).SetToolTip( "max clamp for SSR ray distance" ).Show( false ); 
+	Asset.AddEntry_Float( "ssrRayDepthScale", 1.0, 0.0, 1000.0 ).SetTitle( "SSR ray depth scale" ).SetToolTip( "Multiplier for SSR ray depth" ).Show( false ); 
+	Asset.AddEntry_Float( "ssrRayStepSize", 20.0, 1.0, 10000.0 ).SetTitle( "SSR ray step size" ).SetToolTip( "SSR ray step size" ).Show( false ); 
+	Asset.AddEntry_Color( "foamColor", 1.0, 1.0, 1.0, 1.0 ).SetTitle( "Foam Color" ).SetToolTip( "Color of foam" ).Show( false );
+	Asset.AddEntry_Float( "foamWaveIncrease", 0.0, -50.0, 50.0 ).SetTitle( "Foam wave increase" ).SetToolTip( "Scale for increase of foam amount at vertex wave peaks" ).Show( false ); 
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -	
+	// flow
+	Asset.AddEntry_CheckBox( "scaleNormalsWithFlow", false ).SetToolTip( "Scale normals according to flow speed" ).Show( false );
+	Asset.AddEntry_Float( "normalsFlowScaleMin", 0.0, 0.0, 1.0 ).SetTitle( "Minimum normal flow scale multiplier" ).Show( false );
+	
+
+	// Thermal Material used when thermal vision is on
+	string materialCategoryType = Asset.GetEntryValue( "materialCategory" );
+	bool isGeometry = materialCategoryType == "Geometry" || materialCategoryType == "Geometry Advanced" || materialCategoryType == "Geometry Plus";
+	
+	Asset.BeginCategory( "Thermal Material" );
+	Asset.AddEntry_AssetCombo( "thermalMaterial", "material" ).SetTitle( "Thermal Material" ).Show( false );
+	
+	Asset.BeginCategory( "Enemy Material" );
+	Asset.AddEntry_Label( "enemyMaterialInfo", "Material used when \"DR_METHOD_ENEMY_MATERIAL\" is set in the duplicate renderer." ).SetTitle( " " ).Show( isGeometry );
+	Asset.AddEntry_AssetCombo( "enemyMaterial", "material" ).SetTitle( "Enemy Material" ).Show( isGeometry );
+	 
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	// lit_skin_advanced
+	Asset.AddEntry_CheckBox( "enableGTAO", false ).SetTitle( "Enable GTAO" ).SetToolTip( "GTAO is needed by mouth. and it's already on eye." ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	// lit_eye
+	Asset.AddEntry_AssetCombo( "causticMap", "image" ).SetTitle( "Caustic Map" ).UpdateOnChange( true ).Show( false ).ShowJumpTo (true);
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	// Locales - Adding a new locale also requires adding a checkbox for it.
+	//           Locale specifications must match the locales in 'locale.txt' exactly, with spaces
+	//           replaced by '_' and with 'locale_' prefixed.
+
+	Asset.AddEntry_CheckBox( "locale_test", false ).SetTitle( "Test" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_tools", false ).SetTitle( "Tools" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_core", false ).SetTitle( "Core" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_angola", false ).SetTitle( "Angola" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_myanmar", false ).SetTitle( "Myanmar" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_afghanistan", false ).SetTitle( "Afghanistan" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_nicaragua", false ).SetTitle( "Nicaragua" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_pakistan", false ).SetTitle( "Pakistan" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_kyrgyzstan", false ).SetTitle( "Kyrgyzstan" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_nepal", false ).SetTitle( "Nepal" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_singapore", false ).SetTitle( "Singapore" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_ship", false ).SetTitle( "Ship" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_panama", false ).SetTitle( "Panama" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_antarctica", false ).SetTitle( "Antarctica" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_yemen", false ).SetTitle( "Yemen" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_carrier", false ).SetTitle( "Carrier" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_la", false ).SetTitle( "LA" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_cuba", false ).SetTitle( "Cuba" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_zombie", false ).SetTitle( "Zombie" ).Show( false );
+	Asset.AddEntry_CheckBox( "locale_mp_dlc", false ).SetTitle( "MP DLC" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Special Properties
+
+	Asset.AddEntry_CheckBox( "missileClip", false ).SetTitle( "Missile Clip" ).Show( false );
+	Asset.AddEntry_CheckBox( "bulletClip", false ).SetTitle( "Bullet Clip" ).Show( false );
+	Asset.AddEntry_CheckBox( "playerClip", false ).SetTitle( "PlayerClip" ).Show( false );
+	Asset.AddEntry_CheckBox( "aiClip", false ).SetTitle( "AI Clip" ).Show( false );
+	Asset.AddEntry_CheckBox( "vehicleClip", false ).SetTitle( "Vehicle Clip" ).Show( false );
+	Asset.AddEntry_CheckBox( "itemClip", false ).SetTitle( "Item Clip" ).Show( false );
+	Asset.AddEntry_CheckBox( "utilityClip", false ).SetTitle( "UtilityClip" ).Show( false );
+	Asset.AddEntry_CheckBox( "canShootClip", false ).SetTitle( "Can Shoot Clip" ).Show( false );
+	Asset.AddEntry_CheckBox( "aiSightClip", false ).SetTitle( "AI Sight Clip" ).Show( false );
+	Asset.AddEntry_CheckBox( "playerVehicleClip", false ).SetTitle( "Player Vehicle Clip" ).Show( false );
+	Asset.AddEntry_CheckBox( "noFallDamage", false ).SetTitle( "No Fall Damage" ).Show( false );
+	Asset.AddEntry_CheckBox( "noSteps", false ).SetTitle( "No Steps" ).Show( false );
+	Asset.AddEntry_CheckBox( "noImpact", false ).SetTitle( "No Impact" ).Show( false );
+	Asset.AddEntry_CheckBox( "noMarks", false ).SetTitle( "No Marks" ).Show( false );
+	Asset.AddEntry_CheckBox( "noPenetrate", false ).SetTitle( "No Penetrate" ).Show( false );
+	Asset.AddEntry_CheckBox( "noDrop", false ).SetTitle( "No Drop" ).Show( false );
+	Asset.AddEntry_CheckBox( "slick", false ).SetTitle( "Slick" ).Show( false );
+	Asset.AddEntry_CheckBox( "mount", false ).SetTitle( "Mount" ).Show( false );
+	Asset.AddEntry_CheckBox( "stairs", false ).SetTitle( "Stairs" ).Show( false );
+	Asset.AddEntry_CheckBox( "noDynamicLight", false ).SetTitle( "No Dynamic Light" ).Show( false ); // NOT USED
+	Asset.AddEntry_CheckBox( "outdoorOccluder", false ).SetTitle( "Outdoor Occluder" ).Show( false );
+	Asset.AddEntry_CheckBox( "onlyCastSunShadow", false ).SetTitle( "Only Cast Sun Shadow" ).Show( false );
+	Asset.AddEntry_CheckBox( "noCastShadow", false ).SetTitle( "No Cast Shadow" ).Show( false );
+	Asset.AddEntry_CheckBox( "onlyCastShadow", false ).SetTitle( "Only Cast Shadow" ).Show( false );
+	Asset.AddEntry_CheckBox( "noReceiveDynamicShadow", false ).SetTitle( "No Receive Shadow" ).Show( false );
+	Asset.AddEntry_CheckBox( "noDraw", false ).SetTitle( "No Draw" ).Show( false );
+	Asset.AddEntry_CheckBox( "noFog", false ).SetTitle( "No Fog" ).Show( false );
+	Asset.AddEntry_CheckBox( "adsZscaleOn", false ).SetTitle( "AdsZ Scale On" ).Show( false );
+	Asset.AddEntry_CheckBox( "heroLight", false ).SetTitle( "Hero Light" ).Show( false );
+	Asset.AddEntry_CheckBox( "drawToggle", false ).SetTitle( "Draw Toggle" ).Show( false );
+	Asset.AddEntry_CheckBox( "sky", false ).SetTitle( "Sky" ).Show( false );
+	Asset.AddEntry_CheckBox( "caulk", false ).SetTitle( "Caulk" ).Show( false );
+	Asset.AddEntry_CheckBox( "areaLight", false ).SetTitle( "Area Light" ).Show( false ); // NOT USED
+	Asset.AddEntry_CheckBox( "nonColliding", false ).SetTitle( "Non Colliding" ).SetToolTip( "No collision data is ever stored in the BSP, saving memory and CPU in the game." ).Show( false );
+	Asset.AddEntry_CheckBox( "nonSolid", false ).SetTitle( "Non Solid" ).SetToolTip( "Nothing collides with this surface, but it still generates collision data.  Use 'nonColliding' if possible." ).Show( false );
+	Asset.AddEntry_CheckBox( "transparent", false ).SetTitle( "Transparent" ).SetToolTip( "This material isn't a boundary for portals, and geometry on the other side of it won't get deleted." ).Show( false );
+	Asset.AddEntry_CheckBox( "detail", false ).SetTitle( "Detail" ).SetToolTip( "This material will never split the BSP in the map compiler.  This is usually set in the editor instead." ).Show( false );
+	Asset.AddEntry_CheckBox( "structural", false ).SetTitle( "Structural" ).SetToolTip( "This material will split the BSP in the map compiler by default.  This can be overridden in the editor." ).Show( false );
+	Asset.AddEntry_CheckBox( "portal", false ).SetTitle( "Portal" ).SetToolTip( "This material is a runtime portal.  The edges of brush faces using this material will cull geometry." ).Show( false );
+	Asset.AddEntry_CheckBox( "lightPortal", false ).SetTitle( "Light Portal" ).SetToolTip( "This material starts a new region of influence for a primary light.  It doesn't split the BSP." ).Show( false ); // NOT USED
+	Asset.AddEntry_CheckBox( "lightDemoteHint", false ).SetTitle( "Light Demote Hint" ).SetToolTip( "This material hints that a primary light on one side should become a secondary light on the other side." ).Show( false ); // NOT USED
+	Asset.AddEntry_CheckBox( "origin", false ).SetTitle( "Origin" ).SetToolTip( "If a brush model entity has a brush with this material, the entity's origin is the center of that brush instead of the world origin." ).Show( false );
+	Asset.AddEntry_CheckBox( "physicsGeom", false ).SetTitle( "Physics Geom" ).SetToolTip( "Used in physics collision maps." ).Show( false );
+	Asset.AddEntry_CheckBox( "umbraOccluder", false ).SetTitle( "Umbra Occluder" ).Show( false );	
+	Asset.AddEntry_CheckBox( "umbraTarget", false ).SetTitle( "Umbra Target" ).Show( false );	
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Surface Type
+	
+	string SurfaceClimbTypeEntries =
+	"""
+		<none> |
+		ladder |
+		mantleOn |
+		mantleOver |
+		climbWall |
+		climbPipe |
+	""";
+	Asset.AddEntry_Combo( "surfaceClimbType", SurfaceClimbTypeEntries ).SetTitle( "Climb Type" ).SetToolTip( "Sets the type of climbing on this material." ).Show( true );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Material ( Cloud )
+	
+	Asset.AddEntry_Color( "cloudLightColor", 1.0, 1.0, 1.0, 1.0 ).SetTitle( "Light Color" ).SetToolTip( "Lighting on the side facing towards the sun." ).Show( false );
+	Asset.AddEntry_Color( "cloudDarkColor", 0.5, 0.5, 0.5, 0.5 ).SetTitle( "Dark Color" ).SetToolTip( "Lighting on the side facing away from the sun." ).Show( false ); 
+	Asset.AddEntry_Color( "cloudLiningColor", 1.0, 0.75, 0.5, 1.0 ).SetTitle( "Silver Lining Color" ).SetToolTip( "Color of the silver lining." ).Show( false ); 
+	Asset.AddEntry_Float( "cloudLiningSize", 16.0, 1.0, 64.0 ).SetTitle( "Silver Lining Size" ).SetToolTip( "Size of the silver lining. Larger values give a smaller size." ).Show( false ); 
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	// Various shared global material properties
+	
+	Asset.AddEntry_Float( "waterNormalScale", 0.25, 0.0, 2.0 ).SetTitle( "Scale" ).SetToolTip( "Controls the strength of the normal map." ).Show( false );
+	Asset.AddEntry_Float( "waterDetailNormalScale", 0.25, 0.0, 2.0 ).SetToolTip( "Controls the strength of the detail normal map." ).Show( false );
+	Asset.AddEntry_Float( "waterNormalTextureScale", 2048.0, 0.0, 8192.0 ).SetTitle( "Texture Wrap A" ).SetToolTip( "Controls the point Normal map repeats." ).Show( false );
+	Asset.AddEntry_Float( "waterNormalTextureScaleB", 2048.0, 0.0, 8192.0 ).SetTitle( "Texture Wrap B" ).SetToolTip( "Controls the point Normal map repeats." ).Show( false );
+	Asset.AddEntry_Float( "waterNormalScrollAngleA", 3.0, 0.0, 360.0 ).SetTitle( "Scroll Angle A" ).SetToolTip( "Controls the scroll angle of Normal A." ).Show( false );
+	Asset.AddEntry_Float( "waterNormalScrollAngleB", 177.0, 0.0, 360.0 ).SetTitle( "Scroll Angle B" ).SetToolTip( "Controls the scroll speed of Normal B." ).Show( false );
+	Asset.AddEntry_Float( "waterNormalScrollSpeedA", 0.0, 0.0, 100.0 ).SetTitle( "Scroll Speed A" ).SetToolTip( "Controls the scroll speed of Normal A." ).Show( false );
+	Asset.AddEntry_Float( "waterNormalScrollSpeedB", 0.0, 0.0, 100.0 ).SetTitle( "Scroll Speed B" ).SetToolTip( "Controls the scroll speed of Normal B." ).Show( false );
+	Asset.AddEntry_Float( "waterDetailNormalTextureScale", 512.0, 0.0, 8192.0 ).SetToolTip( "Controls the point DetailNormal map repeats." ).Show( false );
+	Asset.AddEntry_Float( "waterDetailNormalTextureScaleB", 512.0, 0.0, 8192.0 ).SetToolTip( "Controls the point DetailNormal map repeats." ).Show( false );
+	Asset.AddEntry_Float( "waterDetailNormalScrollAngleA", 7.0, 0.0, 360.0 ).SetToolTip( "Controls the scroll angle of DetailNormal A." ).Show( false );
+	Asset.AddEntry_Float( "waterDetailNormalScrollAngleB", 173.0, 0.0, 360.0 ).SetToolTip( "Controls the scroll angle of DetailNormal B." ).Show( false );
+	Asset.AddEntry_Float( "waterDetailNormalScrollSpeedA", 0.0, 0.0, 100.0 ).Show( false );
+	Asset.AddEntry_Float( "waterDetailNormalScrollSpeedB", 0.0, 0.0, 100.0 ).Show( false );
+	Asset.AddEntry_Float( "waterDetailNormalFadeMin", 0.0, 0.0, 1.0 ).SetTitle( "Fade Min" ).Show( false );
+	Asset.AddEntry_Float( "waterDetailNormalFadeMax", 0.0, 0.0, 1.0 ).SetTitle( "Fade Max" ).Show( false );
+	Asset.AddEntry_Float( "waterSpecularRoughnessA", 0.0625, 0.015625, 0.5 ).Show( false );
+	Asset.AddEntry_Float( "waterSpecularRoughnessB", 0.1875, 0.015625, 0.5 ).Show( false );
+	Asset.AddEntry_Float( "waterOpacityAmount", 0.75, 0.0, 1.0 ).SetTitle( "Opacity" ).Show( false );
+			
+	Asset.AddEntry_Int( "waterThinFilm", 0, 0, 1 ).SetTitle( "Thin Film" ).Show( false );
+	Asset.AddEntry_Float( "waterThinFilmDepth", 0.25, 0.0, 0.5 ).Show( false );
+	Asset.AddEntry_Float( "waterThinFilmAmount", 0.05, 0.0, 1.0 ).SetTitle( "DepthFeather" ).Show( false );
+	
+	Asset.AddEntry_Vector3("waterNearColorR", "waterNearColorG", "waterNearColorB", 0.145, 0.145, 0.145, 0, 1 ).EnableColorView( true ).Show( false ).SetTitle("Surface color");
+	Asset.AddEntry_Vector3("scatterColorR", "scatterColorG", "scatterColorB", 0.145, 0.195, 0.145, 0, 1 ).EnableColorView( true ).Show( false ).SetTitle("Surface scatter color");
+	Asset.AddEntry_Vector3("waterFarColorR", "waterFarColorG", "waterFarColorB", 0.415, 0.415, 0.415, 0, 1 ).EnableColorView( true ).Show( false ).SetTitle("Surface distant color");
+	Asset.AddEntry_Float( "waterFarDistance", 10000, 1, 150000 ).Show( false );
+	Asset.AddEntry_Float( "waterDepthFeather", 1, 0, 1 ).Show( false );	
+			
+	Asset.AddEntry_Float( "waterFoamLayer0Scale", 1024, 1, 16384 ).Show( false );
+	Asset.AddEntry_Float( "waterFoamLayer0Scroll", 25, -128, 128 ).Show( false );
+	Asset.AddEntry_Float( "waterFoamLayer1Scale", 1795, 1, 16384 ).Show( false );
+	Asset.AddEntry_Float( "waterFoamLayer1Scroll", -29.75, -128, 128 ).Show( false );
+	Asset.AddEntry_Float( "waterFoamLayer2Scale", 3142, 1, 16384 ).Show( false );
+	Asset.AddEntry_Float( "waterFoamLayer2Scroll", -35.0625, -128, 128 ).Show( false );
+	Asset.AddEntry_Float( "waterFoamLayer3Scale", 5497, 1, 16384 ).Show( false );
+	Asset.AddEntry_Float( "waterFoamLayer3Scroll", 38.25, -128, 128 ).Show( false );
+	Asset.AddEntry_Float( "waterFoamMin", 0.5, 0.1, 100 ).Show( false );
+	Asset.AddEntry_Float( "waterFoamMax", 10, 0.1, 100 ).Show( false );	
+
+	Asset.AddEntry_CheckBox( "waterVertexGerstnerWaves", false ).Show( false );
+	
+	Asset.AddEntry_CheckBox( "waterOcean", false ).Show( false ).UpdateOnChange(true);
+	
+	Asset.AddEntry_Float("dFlowUVScaleU", 1.0, 0.0, 64.0).Show(false).SetTitle("Flow map U scale");
+	Asset.AddEntry_Float("dFlowUVScaleV", 1.0, 0.0, 64.0).Show(false).SetTitle("Flow map V scale");
+	Asset.AddEntry_Float("dFlowTextureFraction", 0.15, 0.0, 1.0).Show(false).SetTitle("Flow cycle fraction");
+	Asset.AddEntry_Float("dFlowSpeed", 0.25, -100.0, 100.0).Show(false).SetTitle("Flow speed");
+	
+	Asset.AddEntry_Float("dFlowNormalUVScaleU", 1.0, 0.0, 8.0).Show(false).SetTitle("Normal map U scale");
+	Asset.AddEntry_Float("dFlowNormalUVScaleV", 1.0, 0.0, 8.0).Show(false).SetTitle("Normal map V scale");
+	Asset.AddEntry_Vector3("dFlowColorR", "dFlowColorG", "dFlowColorB", 1.0, 1.0, 1.0, 0, 1).EnableColorView(true).Show(false).SetTitle("Color filter");
+	Asset.AddEntry_Float("dFlowNormalScale", 1.0, 0.0, 8.0).Show(false).SetTitle("Normal scale");	
+	Asset.AddEntry_Float("dFlowSpecLobeRoughnessA", 0.020, 0.0, 1.0).Show(false).SetTitle("Dual lobe roughness A");
+	Asset.AddEntry_Float("dFlowSpecLobeRoughnessB", 0.123, 0.0, 1.0).Show(false).SetTitle("Dual lobe roughness B");	
+	Asset.AddEntry_Float("dFlowSpecLobeAWeight", 0.625, 0.0, 1.0).Show(false).SetTitle("Dual lobe A weighting");
+	Asset.AddEntry_Float("dFlowIndexOfRefraction", 1.333, 1.0, 10.0).Show(false).SetTitle("Refractive index");
+	
+	Asset.AddEntry_CheckBox("dFlowThinFilmEnable", false).Show(false).SetTitle("Enable");
+	Asset.AddEntry_Float("dFlowThinFilmNormalScale", 1.0, 0.0, 8.0).Show(false).SetTitle("Thin-film surface normal scale");
+	Asset.AddEntry_Float("dFlowThinFilmDepth", 0.5, 0.0, 8.0).Show(false).SetTitle("Thin-film depth");
+	Asset.AddEntry_Float("dFlowThinFilmWaveLengthR", 600, 0.0, 10000.0).Show(false);
+	Asset.AddEntry_Float("dFlowThinFilmWaveLengthG", 550, 0.0, 10000.0).Show(false);
+	Asset.AddEntry_Float("dFlowThinFilmWaveLengthB", 440, 0.0, 10000.0).Show(false);	
+	Asset.AddEntry_Float("dFlowThinFilmPeriod", 60.0, 0.0, 1000.0).Show(false);
+	
+	Asset.AddEntry_CheckBox("dFlowFrameBufferOps", false).Show(false);
+	Asset.AddEntry_Float("dFlowDepthFeather", 0.3125, 0.0, 8.0).Show(false).SetTitle("ZDepth Feather");	
+	
+	//Asset.AddEntry_Float("gDepthFeather", 0.04, 0.0, 8.0).Show(false).SetTitle("ZDepth Feather");		
+	
+	Asset.AddEntry_CheckBox("gCustomReflectionProbe", false).Show(false).UpdateOnChange(true);
+	Asset.AddEntry_Float("gCustomReflectionProbeScaleB", 1.0, 0, 64.0).Show(false);
+	Asset.AddEntry_Float("gCustomReflectionProbeScaleG", 1.0, 0, 64.0).Show(false);
+	Asset.AddEntry_Float("gCustomReflectionProbeScaleR", 1.0, 0, 64.0).Show(false);
+	Asset.AddEntry_Float("gCustomReflectionProbeBias", 0, -32.0, 32.0).Show(false);	
+	
+	Asset.AddEntry_Float("gReflectionRay0",  50.0, 1.0, 10000.0).Show(false);
+	Asset.AddEntry_Float("gReflectionRay1", 100.0, 1.0, 10000.0).Show(false);
+	Asset.AddEntry_Float("gReflectionRay2", 200.0, 1.0, 10000.0).Show(false);
+	Asset.AddEntry_Float("gRefractionAmount", 8.0, 0.0, 256.0).Show(false);
+	Asset.AddEntry_Float("gDepthFeather", 10.0, 0.1, 100.0).Show(false);	
+	
+	Asset.AddEntry_CheckBox("gCheckBox00", false).Show(false).UpdateOnChange(true);
+	Asset.AddEntry_CheckBox("gCheckBox01", false).Show(false).UpdateOnChange(true);
+	Asset.AddEntry_CheckBox("gCheckBox02", false).Show(false).UpdateOnChange(true);
+	Asset.AddEntry_CheckBox("gCheckBox03", false).Show(false).UpdateOnChange(true);
+	Asset.AddEntry_CheckBox("gCheckBox04", false).Show(false).UpdateOnChange(true);
+	Asset.AddEntry_CheckBox("gCheckBox05", false).Show(false).UpdateOnChange(true);
+	Asset.AddEntry_CheckBox("gCheckBox06", false).Show(false).UpdateOnChange(true);
+	Asset.AddEntry_CheckBox("gCheckBox07", false).Show(false).UpdateOnChange(true);
+
+	Asset.AddEntry_Float("gScale0", 0.0, -100.0, 100.0).Show(false);
+	Asset.AddEntry_Float("gScale1", 0.0, -100.0, 100.0).Show(false);
+	Asset.AddEntry_Float("gScale2", 0.0, -100.0, 100.0).Show(false);
+	Asset.AddEntry_Float("gScale3", 0.0, -100.0, 100.0).Show(false);
+	Asset.AddEntry_Float("gScale4", 0.0, -100.0, 100.0).Show(false);
+	Asset.AddEntry_Float("gScale5", 0.0, -100.0, 100.0).Show(false);
+	Asset.AddEntry_Float("gScale6", 0.0, -100.0, 100.0).Show(false);
+	Asset.AddEntry_Float("gScale7", 0.0, -100.0, 100.0).Show(false);
+			
+	Asset.AddEntry_Vector3("gColor00_R", "gColor00_G", "gColor00_B", 1.0, 1.0, 1.0, 0, 1).EnableColorView(true).Show(false);
+	Asset.AddEntry_Vector3("gColor01_R", "gColor01_G", "gColor01_B", 1.0, 1.0, 1.0, 0, 1).EnableColorView(true).Show(false);
+	Asset.AddEntry_Vector3("gColor02_R", "gColor02_G", "gColor02_B", 1.0, 1.0, 1.0, 0, 1).EnableColorView(true).Show(false);
+	Asset.AddEntry_Vector3("gColor03_R", "gColor03_G", "gColor03_B", 1.0, 1.0, 1.0, 0, 1).EnableColorView(true).Show(false);
+	Asset.AddEntry_Vector3("gColor04_R", "gColor04_G", "gColor04_B", 1.0, 1.0, 1.0, 0, 1).EnableColorView(true).Show(false);
+	Asset.AddEntry_Vector3("gColor05_R", "gColor05_G", "gColor05_B", 1.0, 1.0, 1.0, 0, 1).EnableColorView(true).Show(false);
+	Asset.AddEntry_Vector3("gColor06_R", "gColor06_G", "gColor06_B", 1.0, 1.0, 1.0, 0, 1).EnableColorView(true).Show(false);
+	Asset.AddEntry_Vector3("gColor07_R", "gColor07_G", "gColor07_B", 1.0, 1.0, 1.0, 0, 1).EnableColorView(true).Show(false);
+	
+	Asset.AddEntry_Float("gColorStops00", 0.0, -16.0, 16.0).Show(false);
+	Asset.AddEntry_Float("gColorStops01", 0.0, -16.0, 16.0).Show(false);
+	Asset.AddEntry_Float("gColorStops02", 0.0, -16.0, 16.0).Show(false);
+	Asset.AddEntry_Float("gColorStops03", 0.0, -16.0, 16.0).Show(false);
+	Asset.AddEntry_Float("gColorStops04", 0.0, -16.0, 16.0).Show(false);
+	Asset.AddEntry_Float("gColorStops05", 0.0, -16.0, 16.0).Show(false);
+	Asset.AddEntry_Float("gColorStops06", 0.0, -16.0, 16.0).Show(false);
+	Asset.AddEntry_Float("gColorStops07", 0.0, -16.0, 16.0).Show(false);	
+	
+	Asset.AddEntry_Vector3("gCustomReflectionProbeR", "gCustomReflectionProbeG", "gCustomReflectionProbeB", 1.0, 1.0, 1.0, 0, 1).EnableColorView(true).Show(false);	
+	Asset.AddEntry_Float("gCustomReflectionProbeStops", 0.0, -16.0, 16.0).Show(false);
+	
+	Asset.AddEntry_Float("gHorizonDistance", 10000, 1, 150000).Show( false );
+
+	Asset.AddEntry_Float("gSpecLobeRoughnessA", 0.05, 0.0, 1.0).Show(false).SetTitle("Dual lobe roughness A");
+	Asset.AddEntry_Float("gSpecLobeRoughnessB", 0.1875, 0.0, 1.0).Show(false).SetTitle("Dual lobe roughness B");	
+	Asset.AddEntry_Float("gSpecLobeAWeight", 0.375, 0.0, 1.0).Show(false).SetTitle("Dual lobe A weighting");
+	Asset.AddEntry_Float("gSpecIndexOfRefraction", 1.333, 1.0, 10.0).Show(false).SetTitle("Refractive index");
+	
+	Asset.AddEntry_Float("gSharedU_Scale00", 1.0, 0.01, 8.0).Show(false);	
+	Asset.AddEntry_Float("gSharedV_Scale00", 1.0, 0.01, 8.0).Show(false);	
+	Asset.AddEntry_Float("gSharedU_Offset00", 0.0, -1.0, 1.0).Show(false);	
+	Asset.AddEntry_Float("gSharedV_Offset00", 0.0, -1.0, 1.0).Show(false);	
+
+	Asset.AddEntry_Float("gSharedU_Scale01", 1.0, 0.01, 8.0).Show(false);	
+	Asset.AddEntry_Float("gSharedV_Scale01", 1.0, 0.01, 8.0).Show(false);	
+	Asset.AddEntry_Float("gSharedU_Offset01", 0.0, -1.0, 1.0).Show(false);	
+	Asset.AddEntry_Float("gSharedV_Offset01", 0.0, -1.0, 1.0).Show(false);	
+
+	Asset.AddEntry_Float("gSharedU_Scale02", 1.0, 0.01, 8.0).Show(false);	
+	Asset.AddEntry_Float("gSharedV_Scale02", 1.0, 0.01, 8.0).Show(false);	
+	Asset.AddEntry_Float("gSharedU_Offset02", 0.0, -1.0, 1.0).Show(false);	
+	Asset.AddEntry_Float("gSharedV_Offset02", 0.0, -1.0, 1.0).Show(false);	
+	
+	Asset.AddEntry_Float("gSharedU_Scale03", 1.0, 0.01, 8.0).Show(false);	
+	Asset.AddEntry_Float("gSharedV_Scale03", 1.0, 0.01, 8.0).Show(false);	
+	Asset.AddEntry_Float("gSharedU_Offset03", 0.0, -1.0, 1.0).Show(false);	
+	Asset.AddEntry_Float("gSharedV_Offset03", 0.0, -1.0, 1.0).Show(false);		
+	
+	Asset.AddEntry_Float("gUVScaleOffSet00_ScaleU", 128.0, 0.0, 8192.0).Show(false);
+	Asset.AddEntry_Float("gUVScaleOffSet00_ScaleV", 128.0, 0.0, 8192.0).Show(false);
+	Asset.AddEntry_Float("gUVScaleOffSet00_OffsetU", 0.0, -1.0, 1.0).Show(false);
+	Asset.AddEntry_Float("gUVScaleOffSet00_OffsetV", 0.0, -1.0, 1.0).Show(false);
+	
+	Asset.AddEntry_Float("gUVScaleOffSet01_ScaleU", 128.0, 0.0, 8192.0).Show(false);
+	Asset.AddEntry_Float("gUVScaleOffSet01_ScaleV", 128.0, 0.0, 8192.0).Show(false);
+	Asset.AddEntry_Float("gUVScaleOffSet01_OffsetU", 0.0, -1.0, 1.0).Show(false);
+	Asset.AddEntry_Float("gUVScaleOffSet01_OffsetV", 0.0, -1.0, 1.0).Show(false);	
+	
+	Asset.AddEntry_Float("gUVScaleOffSet02_ScaleU", 128.0, 0.0, 8192.0).Show(false);
+	Asset.AddEntry_Float("gUVScaleOffSet02_ScaleV", 128.0, 0.0, 8192.0).Show(false);
+	Asset.AddEntry_Float("gUVScaleOffSet02_OffsetU", 0.0, -1.0, 1.0).Show(false);
+	Asset.AddEntry_Float("gUVScaleOffSet02_OffsetV", 0.0, -1.0, 1.0).Show(false);
+	
+	Asset.AddEntry_Float("gUVScaleOffSet03_ScaleU", 128.0, 0.0, 8192.0).Show(false);
+	Asset.AddEntry_Float("gUVScaleOffSet03_ScaleV", 128.0, 0.0, 8192.0).Show(false);
+	Asset.AddEntry_Float("gUVScaleOffSet03_OffsetU", 0.0, -1.0, 1.0).Show(false);
+	Asset.AddEntry_Float("gUVScaleOffSet03_OffsetV", 0.0, -1.0, 1.0).Show(false);	
+	
+	Asset.AddEntry_Float("gUVScroll00_ScaleU", 512.0, 0.0, 8192.0).Show(false);	
+	Asset.AddEntry_Float("gUVScroll01_ScaleU", 512.0, 0.0, 8192.0).Show(false);
+	Asset.AddEntry_Float("gUVScroll02_ScaleU", 256.0, 0.0, 8192.0).Show(false);
+	Asset.AddEntry_Float("gUVScroll03_ScaleU", 256.0, 0.0, 8192.0).Show(false);	
+		
+	Asset.AddEntry_Float("gUVScroll00_ScaleV", 512.0, 0.0, 8192.0).Show(false);	
+	Asset.AddEntry_Float("gUVScroll01_ScaleV", 512.0, 0.0, 8192.0).Show(false);
+	Asset.AddEntry_Float("gUVScroll02_ScaleV", 256.0, 0.0, 8192.0).Show(false);
+	Asset.AddEntry_Float("gUVScroll03_ScaleV", 256.0, 0.0, 8192.0).Show(false);		
+	
+	Asset.AddEntry_Float("gUVScroll00_Angle", 0.0, -360.0, 360.0).Show(false);	
+	Asset.AddEntry_Float("gUVScroll01_Angle", 0.0, -360.0, 360.0).Show(false);
+	Asset.AddEntry_Float("gUVScroll02_Angle", 0.0, -360.0, 360.0).Show(false);
+	Asset.AddEntry_Float("gUVScroll03_Angle", 0.0, -360.0, 360.0).Show(false);
+	
+	Asset.AddEntry_Float("gUVScroll00_Speed", 1.0, 0.0, 3600.0).Show(false);	
+	Asset.AddEntry_Float("gUVScroll01_Speed", 1.0, 0.0, 360.0).Show(false);
+	Asset.AddEntry_Float("gUVScroll02_Speed", 1.0, 0.0, 3600.0).Show(false);
+	Asset.AddEntry_Float("gUVScroll03_Speed", 1.0, 0.0, 3600.0).Show(false);	
+	
+	Asset.AddEntry_Float("gNormalScale00", 1.0, 0.0, 8.0).Show(false);	
+	Asset.AddEntry_Float("gNormalScale01", 1.0, 0.0, 8.0).Show(false);
+	Asset.AddEntry_Float("gNormalScale02", 1.0, 0.0, 8.0).Show(false);
+	Asset.AddEntry_Float("gNormalScale03", 1.0, 0.0, 8.0).Show(false);
+	
+	Asset.AddEntry_Float("gDistortion00", 0.0, 0.0, 1.0).Show(false);	
+	Asset.AddEntry_Float("gDistortion01", 0.0, 0.0, 1.0).Show(false);		
+	Asset.AddEntry_Float("gDistortion02", 0.0, 0.0, 1.0).Show(false);
+	Asset.AddEntry_Float("gDistortion03", 0.0, 0.0, 1.0).Show(false);	
+	
+	// foam scale scroll
+	Asset.AddEntry_Float("gFoamUVNoiseScale0", 100.0, 1.0, 5000.0).Show(false);
+	Asset.AddEntry_Float("gFoamUVNoiseScale1", 100.0, 1.0, 5000.0).Show(false); 	
+	Asset.AddEntry_Float("gFoamUVNoiseAngle0", 90.0, -360.0, 360.0).Show(false); 		
+	Asset.AddEntry_Float("gFoamUVNoiseAngle1", 180.0, -360.0, 360.0).Show(false); 
+	Asset.AddEntry_Float("gFoamUVNoiseSpeed0", 0.125, 0.0, 5.0).Show(false); 		
+	Asset.AddEntry_Float("gFoamUVNoiseSpeed1", 0.0125, 0.0, 5.0).Show(false);
+	
+	Asset.AddEntry_Float("gFoamUVScale0", 1024.0, 1.0, 16384.0).Show(false);
+	Asset.AddEntry_Float("gFoamUVScale1", 1795.0, 1.0, 16384.0).Show(false);	
+	Asset.AddEntry_Float("gFoamUVScale2", 3142.0, 1.0, 16384.0).Show(false);
+	Asset.AddEntry_Float("gFoamUVScale3", 5497.0, 1.0, 16384.0).Show(false);
+	
+	Asset.AddEntry_Float("gFoamScrollAngle0", 90.0, 0.0, 360.0).Show(false);
+	Asset.AddEntry_Float("gFoamScrollAngle1", 180.0, 0.0, 360.0).Show(false);	
+	Asset.AddEntry_Float("gFoamScrollAngle2", 270.0, 0.0, 360.0).Show(false);
+	Asset.AddEntry_Float("gFoamScrollAngle3", 0.0, 0.0, 360.0).Show(false);	
+	
+	Asset.AddEntry_Float("gFoamScrollSpeed0", 25.0, -1000.0, 1000.0).Show(false);
+	Asset.AddEntry_Float("gFoamScrollSpeed1", 29.75, -1000.0, 1000.0).Show(false);	
+	Asset.AddEntry_Float("gFoamScrollSpeed2", 25.0625, -1000.0, 1000.0).Show(false);
+	Asset.AddEntry_Float("gFoamScrollSpeed3", 38.25, -1000.0, 1000.0).Show(false);	
+	
+	// wetness controls
+	Asset.AddEntry_Float("gWetnessNormalStrength", 0.25, 0.0, 1.0).Show(false);
+	Asset.AddEntry_Float("gWetnessRoughnessLobe0", 0.05, 0.0, 4.0).Show(false);
+	
+	// Material ( Custom )
+	Asset.AddEntry_String( "customTemplate", "" ).SetTitle( "Template" ).Show( false );
+	Asset.AddEntry_String( "customString", "" ).SetTitle( "String" ).Show( false );
+	Asset.AddEntry_CheckBox( "cinematicGamma", false ).SetTitle( "Cinematic Gamma" ).Show( false );
+
+	Asset.AddEntry_CheckBox( "useParticleCloudVerticalAlign", false ).SetTitle( "Always align with velocity" ).Show( false );
+
+	Asset.AddEntry_Float( "scaleRGB", 8, 0, 999999 ).SetTitle("HDR Scale").SetLiveMapping( "scaleRGB" ).Show( false );
+	Asset.AddEntry_Int( "depthMultiplier", 3, 0, 3 ).SetTitle("Max Thickness").SetLiveMapping( "depthMultiplier" ).Show( false ).SetToolTip ("Max thickness based on alpha, 0 disables thickness.");
+
+	Asset.AddEntry_Float( "kelvinMin", 768.0, 0, 12000 ).SetLiveMapping( "kelvinMin" ).Show( false );
+	Asset.AddEntry_Float( "kelvinMax", 1800.0, 0, 12000 ).SetLiveMapping( "kelvinMax" ).Show( false );
+
+	Asset.AddEntry_CheckBox( "dummy", false ).Show( false );
+	Asset.AddEntry_Vector2( "sway_x", "sway_y", 1.0, 1.0, 0.0, 1.0 ).SetTitle( "").SetStep( 0.1 ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Techsetdef material - make sure that all entries are called before this, otherwise they will not be found:
+	if ( Asset.IsTechsetdefMaterial( MaterialType ) )
+	{
+		string MaterialCategoryName = "Material";
+	
+		Asset.BeginCategory( MaterialCategoryName );
+		{
+			if ( Asset.GetEntryValue( "usage" ) != "<not in editor>" )
+			{
+				Asset.ShowEntry( "tilingWidth" );
+				Asset.ShowEntry( "tilingHeight" );
+			}
+
+			Asset.AddTechsetdefMaterialEntries( MaterialCategoryName, MaterialType );
+		}
+		ShowUI_FrameBufferOps( Asset );
+
+		int showSpecialProperties = 1;
+
+		if ( MaterialCategory == "2d" && MaterialType == "floatz_writedepth" )
+		{
+			showSpecialProperties = 0;
+		}
+
+		if( showSpecialProperties == 1 )
+		{
+			ShowUI_SpecialProperties( Asset );
+		}
+	}
+
+}

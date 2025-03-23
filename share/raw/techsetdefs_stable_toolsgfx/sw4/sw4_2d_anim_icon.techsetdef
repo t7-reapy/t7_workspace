@@ -1,0 +1,108 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Blend
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = invSrcAlpha
+		writeChannels  = "rgba"
+	}
+	cull = "None"
+}
+Sampler( "ColorMap_Sampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+Texture( "ColorMap" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	ref      = true
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "texture_assets\\icons\\cod7\\hud_anim_chinook.tif"
+	}
+}
+float1( "AnimSpeed" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		title     = "AnimSpeed"
+		sortindex = "0"
+		default   = "5.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "NumFrames" )
+{
+	x     = <cg02_x>
+	tweak = Tweak()
+	{
+		title     = "NumFrames"
+		sortindex = "0"
+		default   = "4.000000"
+		range     = "-1e+009", "1e+009", "1"
+		color     = false
+	}
+}
+float1( "LastFrame" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		title     = "LastFrame"
+		sortindex = "0"
+		default   = "2.000000"
+		range     = "-1e+009", "1e+009", "1"
+		color     = false
+	}
+}
+float1( "FirstFrame" )
+{
+	x     = <cg03_x>
+	tweak = Tweak()
+	{
+		title     = "FirstFrame"
+		sortindex = "0"
+		default   = "0.000000"
+		range     = "-1e+009", "1e+009", "1"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_anim_icon.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_ADD"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

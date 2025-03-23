@@ -1,0 +1,134 @@
+#include "lit_base_basic"
+#include "emissive_base"
+#include "flicker_base"
+#include "scroll_base"
+#include "flow_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit forward opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "decalSampler" ) : "colorSampler" {}
+Texture( "decalMap" ) : "colorMap" {}
+Color( "decalTint" ) : "colorTint" {}
+
+Bool( "scaleNormalsWithFlow" )
+{
+	value = <scaleNormalsWithFlow>
+	tweak = Tweak()
+	{
+		category  = "Surface Parameters"
+		title     = "Scale normals with local flow rate"
+		sortindex = "49"
+	}
+}
+Bool( "useOrientedNormalMap" )
+{
+  value = <orientNormalsToFlow>
+  tweak = Tweak()
+  {
+    category  = "Surface Parameters"
+    title     = "Orient normals to flow"
+    sortindex = "48"
+  }
+}
+
+float2( "normalMapScale" )
+{
+	x = 1
+	y = "normalMap.width / normalMap.height"
+}
+
+float3( "normalAdjustAndGloss" )
+{
+	x = 4.0
+	y = -2.0
+	z = 1.0
+}
+
+float2( "normalsFlowScaleMin" )
+{
+	x = 1.0
+	y = 0.0
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "tintMask" )
+{
+	image = Image()
+	{
+		map = <colorMap01, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "20"
+	}
+}
+
+Color( "emissiveTint1" ).tweak = Tweak( "Emissive", "Tint", "10" )
+float1( "hdrScale" ).tweak = Tweak( "Emissive", "HDR Scale", "50" )
+float1( "emissiveFalloffPower" ).tweak = Tweak( "Emissive", "Falloff", "60" )
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque"
+	defines = "BASE_TEXTURES", "USE_COLOR_TINT", "USE_TINT_MASK", "USE_SCROLL_ROTATE_UVS", "NO_VERTEX_ALPHA", "USE_FLOW_COLOR","USE_FLOW_ANY"
+	source = "specialty/lit_emissive_lava_flow.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

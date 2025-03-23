@@ -1,0 +1,28 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	//state = "dof coc blur t24 state"
+	state = "disable"
+	source = "DOF/adsblur_near.hlsl"
+
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+		// textures
+		blurTextureMips = CodeTexture( "codeTexture0" )
+
+		// samplers
+		bilinearClamp = Sampler("no tile", "nomip bilinear")
+		trilinearClamp = Sampler("no tile", "mip (1x trilinear)")
+	}
+}

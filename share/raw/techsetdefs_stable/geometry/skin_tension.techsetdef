@@ -1,0 +1,124 @@
+#include "skin_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit forward sss"
+	availablePrefixes = "mc/ mcs/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "stretchNormal" )
+{
+	image = Image( <colorMap00, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Tension"
+		title     = "Stretch Normal Map"
+		sortindex = "10"
+	}
+}
+Texture( "compressNormal" )
+{
+	image = Image( <colorMap01, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Tension"
+		title     = "Compression Normal Map"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "stretchHeight" )
+{
+	x = <tensionStretchHeight>
+	tweak = Tweak()
+	{
+		category  = "Tension"
+		title     = "Stretch Height"
+		sortindex = "30"
+	}
+}
+float1( "compressHeight" )
+{
+	x = <tensionCompressHeight>
+	tweak = Tweak()
+	{
+		category  = "Tension"
+		title     = "Compression Height"
+		sortindex = "40"
+	}
+}
+float1( "tensionPower" )
+{
+	x = <tensionPower>
+	tweak = Tweak()
+	{
+		category  = "Tension"
+		title     = "Power"
+		sortindex = "50"
+	}
+}
+float1( "tensionStrength" )
+{
+	x = <tensionStrength>
+	tweak = Tweak()
+	{
+		category  = "Tension"
+		title     = "Strength"
+		sortindex = "60"
+	}
+}
+float4( "tensionParms" )
+{
+	x = "stretchHeight"
+	y = "compressHeight"
+	z = "tensionPower"
+	w = "tensionStrength"
+}
+
+Bool( "debugBentNormal" )
+{
+	value = <gCheckBox00>
+	tweak = Tweak()
+	{
+	category  = "Debug Tools"
+	title     = "Debug bent normal: Black/White means Weak/Strong bent effect."
+	sortindex = "80"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "lit_skin_advanced.hlsl"
+	defines = "USE_DEPTH_PREPASS"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque sss"
+	source = "lit_skin_advanced.hlsl"
+	defines = "BASE_SPEC", "USE_DETAIL_MAP", "USE_COLOR_TINT", "USE_TENSION_MAPS", "USE_BENT_NORMAL", "NO_VERTEX_ALPHA"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+#if PLAT_DURANGO == "1"
+		// override any global Durango defines - fixes the glowing eyes
+#endif
+	}
+}

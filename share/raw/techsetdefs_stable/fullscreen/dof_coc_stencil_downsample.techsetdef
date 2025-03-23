@@ -1,0 +1,53 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+State( "dof coc stencil downsample state" )
+{
+	depthTest      = disable
+	depthWrite     = false
+
+	stencilFront = StencilState()
+	{
+		enable	= true
+		func	= Always
+		opFail	= Keep
+		opPass	= Replace
+		opZFail	= Keep
+	}
+
+	blendState = BlendState()
+	{
+		colorBlendFunc = disable
+		colorBlendSrc  = one
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = disable
+		alphaBlendSrc  = zero
+		alphaBlendDst  = one
+		writeChannels  = "rgba"
+	}
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "dof coc stencil downsample state"
+	source = "DOF/dof_coc_stencil_downsample.hlsl"
+
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+		// textures
+		codeTexture0 = CodeTexture( "codeTexture0" )
+		codeTexture1 = CodeTexture( "codeTexture1" )
+
+		// samplers
+		bilinearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

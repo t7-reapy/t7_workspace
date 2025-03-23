@@ -1,0 +1,35 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+State( "vblur" ) : "add"
+{
+	stencilFront = StencilState()
+	{
+		enable	= true
+		func	= Equal
+		opFail	= Keep
+		opPass	= Keep
+		opZFail	= Keep
+	}
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "vblur"
+
+	vs = VertexShader()
+	{
+		source = "skin_composite_ps.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "skin_composite_ps.hlsl"
+		PointSampler = Sampler( "no tile", "nomip nearest" )
+	}
+}

@@ -1,0 +1,205 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+
+Texture( "pulseTexture" )
+{
+	image    = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Pulse"
+		title		= "Pulse Map"
+		sortindex	= "20"
+	}
+}
+
+Texture( "gridTexture" )
+{
+	image    = Image( <colorMap00, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Grid"
+		title		= "Grid Map"
+		sortindex	= "20"
+	}
+}
+
+Texture( "irisTexture" )
+{
+	image    = Image( <colorMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		title		= "Iris Map"
+		sortindex	= "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "pulseScroll" )
+{
+	x     = <cg00_x>
+	y     = <cg00_y>
+	tweak = Tweak()
+	{
+		category  = "Pulse"
+		title     = "Pulse Scroll (U, V)"
+		sortindex = "40"
+		default   = "0.0"
+		range     = "-1024.0", "1024.0", "0.01"
+	}
+}
+
+float2( "pulseTiling" )
+{
+	x     = <cg00_z>
+	y     = <cg00_w>
+	tweak = Tweak()
+	{
+		category  = "Pulse"
+		title     = "Pulse Scale (U, V)"
+		sortindex = "50"
+		default   = "1.0"
+		range     = "0.01", "1024.0", "0.01"
+	}
+}
+
+float1( "pulseWidth" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		category  = "Pulse"
+		title     = "Pulse Width"
+		sortindex = "60"
+		default   = "0.1"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+Color( "pulseColor" )
+{
+	value	= "srgb_to_linear( <colorTint> )"
+	tweak	= Tweak()
+	{
+		category  = "Pulse"
+		title     = "Color Tint"
+		color	  = true
+		sortindex = "70"
+	}
+}
+
+float2( "viewPulseScroll" )
+{
+	x     = <cg03_w>
+	y     = <cg04_x>
+	tweak = Tweak()
+	{
+		category  = "Pulse"
+		title     = "Viewmodel Scroll"
+		sortindex = "80"
+		default   = "0.0"
+		range     = "-1024.0", "1024.0", "0.01"
+	}
+}
+
+float1( "viewOutlineWidth" )
+{
+	x = <cg04_y>
+	tweak = Tweak()
+	{
+		category	= "Pulse"
+		title		= "Viewmodel Outline Width"
+		sortindex	= "90"
+		default		= "6"
+		range		= "0", "256", "1"
+	}
+}
+
+float1( "viewOutlineBold" )
+{
+	x = <cg04_z>
+	tweak = Tweak()
+	{
+		category	= "Pulse"
+		title		= "Viewmodel Outline Boldness"
+		sortindex	= "100"
+		default		= "14.0"
+		range		= "0.0", "1000.0", "0.1"
+	}
+}
+
+float2( "gridScale" )
+{
+	x     = <cg01_y>
+	y     = <cg01_z>
+	tweak = Tweak()
+	{
+		category  = "Grid"
+		title     = "Grid Scale (U, V)"
+		sortindex = "80"
+		default   = "1.0"
+		range     = "1.0", "1024.0", "0.01"
+	}
+}
+
+float2( "gridScroll" )
+{
+	x     = <cg01_w>
+	y     = <cg02_x>
+	tweak = Tweak()
+	{
+		category  = "Grid"
+		title     = "Grid Scroll (U, V)"
+		sortindex = "90"
+		default   = "0.0"
+		range     = "-1024.0", "1024.0", "0.01"
+	}
+}
+
+float1( "glowBoost" )
+{
+	x     = <cg03_w>
+	tweak = Tweak()
+	{
+		category  = "Pulse"
+		title     = "Color Boost"
+		sortindex = "75"
+		default   = "1.0"
+		range     = "1.0", "1024.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/vision_pulse.hlsl"
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+		floatzTexture = CodeTexture( "floatZSampler" )
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+		sonarDepthTexture = CodeTexture( "sonarDepthSampler" )
+		sonarColorTexture = CodeTexture( "sonarColorSampler" )
+	}
+}

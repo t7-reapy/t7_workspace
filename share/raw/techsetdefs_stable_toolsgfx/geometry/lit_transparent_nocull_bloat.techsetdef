@@ -1,0 +1,65 @@
+#include "lit_base_basic"
+#include "transparent_shadow_base"
+#include "transparent_base"
+ 
+Globals()
+{
+	category = "Geometry"
+ 
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+ 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+Texture( "tintMask" )
+{
+	image = Image()
+	{
+		map = <colorMap00, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "20"
+	}
+}
+ 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+Technique( "unlit" )
+{
+	state = "blend + depth + nocull"
+	defines = "USE_COLOR_TINT", "USE_TINT_MASK", "USE_BLOAT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+ 
+Technique( "lit" )
+{
+	state = "blend + depth + nocull"
+	defines = "BASE_TEXTURES", "USE_COLOR_TINT", "USE_TINT_MASK", "USE_BLOAT"
+	source = "lit.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+ 
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez + nocull"
+	defines += "USE_OIT"
+}
+ 
+Technique( "debug color texel" )
+{
+	state = "blend + depth + nocull"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

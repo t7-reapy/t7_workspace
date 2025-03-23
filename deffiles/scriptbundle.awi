@@ -1,0 +1,852 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+
+const int MAX_SCENE_OBJECTS = 32;
+const int MAX_EXTRA_CAM_COUNT = 4;
+
+uint gValidObjectCount = 0;
+bool gDriveSceneLengthTaken = false;
+
+string hero_list = " | dannyli | gomin | goxiulan | hakim | hendricks | hyperion | khalil | minister | nasser | pallas | prometheus | rachel | theia";
+
+array<string> gSceneKeys;
+void FillSceneKeys()
+{
+	// Fill global scene keys array for use in copy/move functions so we can manage these in one place
+
+	array<string> sceneKeys = {
+
+					"Disabled",
+
+					"Name",
+					"Type",
+					"Model",
+					"AlignTarget",
+					"AlignTargetTag",
+					"InitAnim",
+					"InitAnimLoop",
+					"InitDelayMin",
+					"InitDelayMax",
+					"MainAnim",
+					"EndBlend",
+					"MainDelayMin",
+					"MainDelayMax",
+					"EndAnim",
+					"EndBlend",
+					"EndAnimLoop",
+
+					"InitAnimDeath",
+					"InitAnimDeathLoop",
+					"InitAnimLoopDeath",
+					"InitAnimLoopDeathLoop",
+					"MainAnimDeath",
+					"MainAnimDeathLoop",
+					"EndAnimDeath",
+					"EndAnimDeathLoop",
+					"EndAnimLoopDeath",
+					"EndAnimLoopDeathLoop",
+
+					"LowAlertAnimDeath",
+					"LowAlertAnimDeathLoop",
+					"HighAlertAnimDeath",
+					"HighAlertAnimDeathLoop",
+					"CombatAlertAnimDeath",
+					"CombatAlertAnimDeathLoop",
+
+					"HasDeathAnims",
+
+					"DriveSceneLength",
+					"SpawnOnInit",
+					"FirstFrame",
+					"SpawnOnce",
+					"NoSpawn",
+					"TakeDamage",
+					"AllowDeath",
+					"DeleteWhenFinished",
+					"DieWhenFinished",
+					"DoReach",
+					"RemoveWeapon",
+					"DisablePrimaryWeaponSwitch",
+					"LookAtPlayer",
+					"DynamicPaths",
+					"IsSiege",
+					"DelayMovementAtEnd",
+					"DisableArrivalInReach",
+					"OverrideAICharacter",
+					"DontClamp",
+					"KeepWhileSkipping",
+					"Hide",
+
+					"Player",
+					"SharedIGC",
+					"DisableTransitionIn",
+					"DisableTransitionOut",
+					"LerpTime",
+					"EntityLerpTime",
+					"CameraTween",
+					"CameraTweenOut",
+					"LockView",
+					"clampRight",
+					"clampLeft",
+					"clampTop",
+					"clampBottom",
+					"PlayerStance",
+					"FirstWeaponRaise",
+					"ShowWeaponInFirstPerson",
+					"ShowHUD",
+					"DontReloadAmmo",
+
+					"RunSceneOnDmg0",
+					"RunSceneOnDmg1",
+					"RunSceneOnDmg2",
+					"RunSceneOnDmg3",
+					"RunSceneOnDmg4"
+				};
+
+	gSceneKeys = sceneKeys;
+}
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+
+	FillSceneKeys();
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Global variables
+
+	Asset.AddEntry_Combo( "type", "scene" ).SetTitle( "Type" ).Show( true ).UpdateOnChange( true );
+
+	bool isScene = true;
+
+	Asset.AddEntry_Combo( "sceneType", "scene | fxanim | awareness" ).SetTitle( "Scene Type" ).SetToolTip( "What type of scene is this?" ).Show( isScene ).SetSave( isScene ).UpdateOnChange( true );
+
+	string sceneType = Asset.GetEntryValue( "sceneType" );
+
+	bool isAwarenessScene = isScene && ( sceneType == "awareness" );
+	bool isFXanim = isScene && ( sceneType == "fxanim" );
+
+	isScene = ( isScene && ( isAwarenessScene || sceneType == "scene" ) );
+
+	bool isServer = ( Asset.GetEntryValue( "vmType" ) == "Server" );
+
+	if ( Asset.GetEntryValue( "sceneType" ) == "awareness" )
+	{
+		Asset.AddEntry_Combo( "vmType", "Server | Both" ).SetTitle( "Script Type" ).SetToolTip( "Spawn this object in server script or client script?" ).Show( true ).UpdateOnChange( true );
+	}
+	else
+	{
+		Asset.AddEntry_Combo( "vmType", "Server | Client | Both" ).SetTitle( "Script Type" ).SetToolTip( "Spawn this object in server script or client script?" ).Show( true ).UpdateOnChange( true );
+	}
+
+	Asset.AddEntry_String( "AlignTarget", "" ).SetTitle( "Align Target" ).SetToolTip( "The animname/targetname of the object or entity to align this scene to" ).Show( isScene || isFXanim ).SetSave( isScene || isFXanim );
+	Asset.AddEntry_String( "AlignTargetTag", "" ).SetTitle( "Align Tag ( LinkTo )" ).SetToolTip( "The tag of the object or entity to align this scene to" ).Show( isScene || isFXanim ).SetSave( isScene || isFXanim );
+
+	// Scenes / FXAnims
+
+	Asset.AddEntry_CheckBox( "Looping", false ).SetTitle( "Loop Scene (For the whole scene from start to finish.  Looping animations should be set in the xanim instead of here)" ).SetToolTip( "Whether to loop the scene after completion" ).Show( ( isScene || isFXanim ) && !isAwarenessScene ).SetSave( ( isScene || isFXanim ) && !isAwarenessScene ).UpdateOnChange( true );
+	Asset.AddEntry_CheckBox( "AllowMultiple", false ).SetTitle( "Allow Multiple Instances" ).SetToolTip( "Allow multiple instances of this scene (all objects will be spawned)." ).Show( ( isScene || isFXanim ) && !isAwarenessScene ).SetSave( ( isScene || isFXanim ) && !isAwarenessScene ).UpdateOnChange( true );
+	Asset.AddEntry_CheckBox( "DisableSceneSkipping", false ).SetTitle( "Disable Scene Skipping" ).SetToolTip( "The scene cannot be skipped and will break the skip sequence if it is in a scene chain" ).Show( ( isScene || isFXanim ) && !isAwarenessScene ).SetSave( ( isScene || isFXanim ) && !isAwarenessScene ).UpdateOnChange( true );
+	Asset.AddEntry_CheckBox( "DontSync", false ).SetTitle( "Don't Sync With Other Scenes" ).SetToolTip( "Disable syncing this scene with other scenes that are played on the same frame." ).Show( ( isScene || isFXanim ) && !isAwarenessScene ).SetSave( ( isScene || isFXanim ) && !isAwarenessScene );
+	Asset.AddEntry_CheckBox( "DontThrottle", false ).SetTitle( "Ignore Spawn Throttle" ).SetToolTip( "Don't throttle spawning for this scene." ).Show( ( isScene || isFXanim ) && !isAwarenessScene ).SetSave( ( isScene || isFXanim ) && !isAwarenessScene );
+	Asset.AddEntry_CheckBox( "SpectateOnJoin", false ).SetTitle( "Spectate On Hot join" ).SetToolTip( "Any hot-joining players will spawn as spectators until the scene completes" ).Show( ( isScene || isFXanim ) && !isAwarenessScene ).SetSave( ( isScene || isFXanim ) && !isAwarenessScene ).UpdateOnChange( true );
+	Asset.AddEntry_CheckBox( "LinkXCamToOnePlayer", false ).SetTitle( "Play XCam on only One Player" ).SetToolTip( "Play the XCam on the first non-IGC player exists in the bundle, if no players the option will be ignored" ).Show( ( isScene || isFXanim ) && !isAwarenessScene ).SetSave( ( isScene || isFXanim ) && !isAwarenessScene ).UpdateOnChange( true );
+
+	bool bUseDevInfo = isScene && !isAwarenessScene;
+	Asset.AddEntry_Combo( "DevState", "Placeholder | Animatic | Polishing | Final" ).SetTitle( "Dev State" ).SetToolTip( "Set the current development state of this scene." ).Show( bUseDevInfo ).SetSave( bUseDevInfo ).Enable( Asset.GetEntryValue( "cameraSwitcher" ) != "" );
+
+	Asset.AddEntry_AssetCombo( "NextSceneBundle", "scriptbundle" ).SetTitle( "Play another scene when finished" ).SetToolTip( "Scene to automatically play when this scene finishes, must not 'Allow Multiple Instances' or be a looping scene." ).Show( ( isScene || isFXanim ) && !isAwarenessScene ).SetSave( ( isScene || isFXanim ) && !isAwarenessScene );
+	Asset.AddEntry_Combo( "NextSceneMode", "init | play").SetTitle( "Next Scene Mode" ).SetToolTip( "Init or Play the next scene?" ).Show( isFXanim ).SetSave( isFXanim ).Enable( Asset.GetEntryValue( "NextSceneBundle" ) != "" );
+
+	Asset.AddEntry_AssetCombo( "FemaleBundle", "scriptbundle" ).SetTitle( "Female Bundle" ).SetToolTip( "The bundle that has the female version of these animations." ).Show( isScene && !isAwarenessScene ).SetSave( isScene && !isAwarenessScene );
+	
+	Asset.AddEntry_String( "streamerHint", "" ).SetTitle( "Streamer Hint" ).SetToolTip( "Streamer hint to preload and/or play during scene" ).Show( isScene ).SetSave( isScene );
+
+	Asset.BeginCategory( "Camera" );
+	{
+		// Uncomment next line to enable Camera	Switch setup in script bundle(this is still at prototype stage)
+		bool bUseCamSwitcher = isScene && !isAwarenessScene;
+		Asset.AddEntry_AssetCombo( "cameraSwitcher", "xcam" ).SetTitle( "Camera Switcher" ).Show( bUseCamSwitcher ).SetSave( bUseCamSwitcher );
+		Asset.AddEntry_AssetCombo( "cameraSwitcherGraphicContents", "xcam" ).SetTitle( "Camera Switcher for Graphic Contents" ).Show( bUseCamSwitcher ).SetSave( bUseCamSwitcher );
+		//Asset.AddEntry_CheckBox( "HidePlayers", false ).SetTitle( "Hide Players" ).SetToolTip( "Hide all the players so you don't see them standing around in your scene." ).Show( bUseCamSwitcher );//.SetSave( bUseCamSwitcher );
+		Asset.AddEntry_CheckBox( "holdCameraLastFrame", false ).SetTitle( "Hold Camera Last Frame" ).SetToolTip( "Hold the last frame of the xcam animation." ).Show( bUseCamSwitcher );//.SetSave( bUseCamSwitcher );
+
+		for ( int i = 1; i <= MAX_EXTRA_CAM_COUNT; i++ )
+		{
+			Asset.AddEntry_AssetCombo( "extraCamSwitcher" + i, "xcam" ).SetTitle( "Extra Cam " + i + " Camera Switcher" );
+			//Asset.AddEntry_CheckBox( "holdExtraCamLastFrame" + i, false ).SetTitle( "Hold Extra Cam " + i + " Last Frame" ).SetToolTip( "Hold the last frame of the xcam animation." );
+		}
+	}
+
+	Asset.BeginCategory( "Script" );
+	{
+		Asset.AddEntry_String( "script_objective", "" ).SetTitle( "script_objective" ).SetToolTip( "The skipto that this scene is associated with.  Will auto delete when this skipto is complete." ).Show( isScene || isFXanim ).SetSave( isScene || isFXanim );
+	}
+
+	gDriveSceneLengthTaken = false;
+
+	for ( int i = 1; i <= MAX_SCENE_OBJECTS; i++ )
+	{
+		UpdateSceneObject( Asset, i, isScene, isFXanim, isAwarenessScene );
+	}
+
+	for ( int i = 1; i <= MAX_SCENE_OBJECTS; i++ )
+	{
+		GenerateSceneObject( Asset, i, isScene, isFXanim, isAwarenessScene );
+	}
+
+	GenerateSceneObject( Asset, MAX_SCENE_OBJECTS + 1, isScene, isFXanim, isAwarenessScene ); // add one more hidden object that's needed for editing
+}
+
+void AddDeathAnims( asset Asset, const string& index )
+{
+	string prefix = "object" + index + "_";
+
+	Asset.GetEntryVariable( prefix + "HasDeathAnims" ).SetBool( true );
+}
+
+void RemoveDeathAnims( asset Asset, const string& index )
+{
+	string prefix = "object" + index + "_";
+
+	Asset.GetEntryVariable( prefix + "InitAnimDeath" ).SetValue( "" );
+	Asset.GetEntryVariable( prefix + "InitAnimDeathLoop" ).SetValue( "" );
+	Asset.GetEntryVariable( prefix + "InitAnimLoopDeath" ).SetValue( "" );
+	Asset.GetEntryVariable( prefix + "InitAnimLoopDeathLoop" ).SetValue( "" );
+	Asset.GetEntryVariable( prefix + "MainAnimDeath" ).SetValue( "" );
+	Asset.GetEntryVariable( prefix + "MainAnimDeathLoop" ).SetValue( "" );
+	Asset.GetEntryVariable( prefix + "EndAnimDeath" ).SetValue( "" );
+	Asset.GetEntryVariable( prefix + "EndAnimDeathLoop" ).SetValue( "" );
+	Asset.GetEntryVariable( prefix + "EndAnimLoopDeath" ).SetValue( "" );
+	Asset.GetEntryVariable( prefix + "EndAnimLoopDeathLoop" ).SetValue( "" );
+	Asset.GetEntryVariable( prefix + "LowAlertAnimDeath" ).SetValue( "" );
+	Asset.GetEntryVariable( prefix + "LowAlertAnimDeathLoop" ).SetValue( "" );
+	Asset.GetEntryVariable( prefix + "HighAlertAnimDeath" ).SetValue( "" );
+	Asset.GetEntryVariable( prefix + "HighAlertAnimDeathLoop" ).SetValue( "" );
+	Asset.GetEntryVariable( prefix + "CombatAlertAnimDeath" ).SetValue( "" );
+	Asset.GetEntryVariable( prefix + "CombatAlertAnimDeathLoop" ).SetValue( "" );
+
+	Asset.GetEntryVariable( prefix + "HasDeathAnims" ).SetBool( false );
+}
+
+bool HasDeathAnims( asset Asset, const string& index )
+{
+	string prefix = "object" + index + "_";
+
+	return ( Asset.GetEntryBool( prefix + "HasDeathAnims" )
+		|| ( Asset.GetEntryValue( prefix + "InitAnimDeath" ).Length() > 0 )
+		|| ( Asset.GetEntryValue( prefix + "InitAnimDeathLoop" ).Length() > 0 )
+		|| ( Asset.GetEntryValue( prefix + "InitAnimLoopDeath" ).Length() > 0 )
+		|| ( Asset.GetEntryValue( prefix + "InitAnimLoopDeathLoop" ).Length() > 0 )
+		|| ( Asset.GetEntryValue( prefix + "MainAnimDeath" ).Length() > 0 )
+		|| ( Asset.GetEntryValue( prefix + "MainAnimDeathLoop" ).Length() > 0 )
+		|| ( Asset.GetEntryValue( prefix + "EndAnimDeath" ).Length() > 0 )
+		|| ( Asset.GetEntryValue( prefix + "EndAnimDeathLoop" ).Length() > 0 )
+		|| ( Asset.GetEntryValue( prefix + "EndAnimLoopDeath" ).Length() > 0 )
+		|| ( Asset.GetEntryValue( prefix + "EndAnimLoopDeathLoop" ).Length() > 0 )
+		|| ( Asset.GetEntryValue( prefix + "LowAlertAnimDeath" ).Length() > 0 )
+		|| ( Asset.GetEntryValue( prefix + "LowAlertAnimDeathLoop" ).Length() > 0 )
+		|| ( Asset.GetEntryValue( prefix + "HighAlertAnimDeath" ).Length() > 0 )
+		|| ( Asset.GetEntryValue( prefix + "HighAlertAnimDeathLoop" ).Length() > 0 )
+		|| ( Asset.GetEntryValue( prefix + "CombatAlertAnimDeath" ).Length() > 0 )
+		|| ( Asset.GetEntryValue( prefix + "CombatAlertAnimDeathLoop" ).Length() > 0 )
+	);
+}
+
+void AddSceneObject( asset Asset, const string& index )
+{
+	string prefix = "object" + index + "_";
+
+	Asset.GetEntryVariable( prefix + "Name" ).SetValue( "New Object " + index );
+	Asset.GetEntryVariable( prefix + "Type" ).SetValue( "Actor" );
+	Asset.GetEntryVariable( prefix + "Model" ).SetValue( "c_t7_ally_fb" );
+}
+
+void AddFXAnimObject( asset Asset, const string& index )
+{
+	string prefix = "object" + index + "_";
+
+	Asset.GetEntryVariable( prefix + "Name" ).SetValue( "New Object " + index );
+	Asset.GetEntryVariable( prefix + "Type" ).SetValue( "Prop" );
+}
+
+void MoveSceneObjectUp( asset Asset, const string& index )
+{
+	int n_index = index.ToInt();
+
+	string prefix = "object" + index + "_";
+	string prefixPrev = "object" + ( n_index - 1 ) + "_";
+
+	bool firstObject = ( n_index == 1 );
+
+	if ( !firstObject )
+	{
+		SwapObjects( Asset, prefixPrev, prefix );
+	}
+}
+
+void MoveSceneObjectDown( asset Asset, const string& index )
+{
+	int n_index = index.ToInt();
+
+	string prefix = "object" + index + "_";
+	string prefixNext = "object" + ( n_index + 1 ) + "_";
+
+	bool lastObject = ( n_index == MAX_SCENE_OBJECTS );
+
+	if ( !lastObject )
+	{
+		SwapObjects( Asset, prefix, prefixNext );
+	}
+}
+
+void CopySceneObject( asset Asset, const string& index )
+{
+	int n_index = index.ToInt();
+
+	string prefix = "object" + index + "_";
+	string prefixNext = "object" + ( n_index + 1 ) + "_";
+
+	string objectName = "Object " + index;
+
+	// error if there are MAX objects already
+	if ( gValidObjectCount != MAX_SCENE_OBJECTS )
+	{
+		// start at end and shift everything down
+		for ( int i = MAX_SCENE_OBJECTS - 1; i > n_index; i-- )
+		{
+			string copyFromPrefix = "object" + i + "_";
+			string copyToPrefix = "object" + ( i + 1 ) + "_";
+
+			CopyObject( Asset, copyFromPrefix, copyToPrefix );
+		}
+
+		// copy the object we are copying down to the next object
+		CopyObject( Asset, prefix, prefixNext );
+
+		Asset.GetEntryVariable( prefixNext + "Name" ).SetValue( Asset.GetEntryValue( prefix + "Name" ) + "(copy)");
+	}
+	else
+	{
+		MessageBox( "Cannot copy object, already at max object count!", "OK" );
+	}
+}
+
+void DeleteSceneObject( asset Asset, const string& index )
+{
+	string prefix = "object" + index + "_";
+	string objectName = "Object " + index;
+
+	if ( MessageBox( "Are you sure you want to remove " + objectName + "?", "YESNO" ) == "YES" )
+	{
+		int n_index = index.ToInt();
+		for ( uint i = n_index; i <= MAX_SCENE_OBJECTS; i++ )
+		{
+			string copyFromPrefix = "object" + (i+1) + "_";
+			string copyToPrefix = "object" + i + "_";
+
+			CopyObject( Asset, copyFromPrefix, copyToPrefix );
+		}
+	}
+}
+
+void AddSiegeCombo( asset& Asset, string& entry, string& entryShot, bool isSiege )
+{
+	entryControl Cont = Asset.GetEntryControl( entry );
+
+	if(isSiege)
+	{
+		Cont.UpdateOnChange( true );
+	}
+
+	if( isSiege )
+	{
+		string entries = " |" + GetSiegeShots( Asset.GetEntryValue( entry ) );
+		Asset.AddEntry_Combo( entryShot, entries ).SetTitle( Cont.GetTitle()+" Shot" ).SetToolTip( Cont.GetToolTip() ).Show( Cont.GetShow() && isSiege ).Enable( Cont.GetEnable() ).SetSave( Cont.GetSave() && isSiege );
+	}
+	else
+	{
+		Asset.AddEntry_Combo( entryShot, "" ).SetTitle( Cont.GetTitle()+" Shot" ).SetToolTip( Cont.GetToolTip() ).Show( Cont.GetShow() && isSiege ).Enable( Cont.GetEnable() ).SetSave( Cont.GetSave() && isSiege );
+	}
+}
+
+void UpdateSceneObject( asset Asset, int index, bool isScene, bool isFXanim, bool isAwarenessScene )
+{
+	string prefix = "object" + index + "_";
+
+	string type = Asset.GetEntryValue( prefix + "Type" );
+
+	bool isProp			= ( type == "Prop" );
+	bool isVehicle		= ( type == "Vehicle" );
+	bool isActor		= ( type == "Actor" );
+	bool isPlayer		= ( type == "Player" );
+	bool isPlayerModel	= ( type == "Player Model" );
+
+	bool isServer = ( Asset.GetEntryValue( "vmType" ) == "Server" );
+	bool isClient = ( Asset.GetEntryValue( "vmType" ) == "Client" );
+	bool isBoth = !isServer && !isClient;
+
+	bool takeDamage = Asset.GetEntryBool( prefix + "TakeDamage" );
+	bool allowDeath = Asset.GetEntryBool( prefix + "AllowDeath" );
+
+	// bool NewPlayerMethod = Asset.GetEntryBool( prefix + "NewPlayerMethod" );
+
+	bool enabled = !Asset.GetEntryBool( prefix + "Disabled" );
+
+	if ( !enabled )
+	{
+		Asset.GetEntryVariable( prefix + "DriveSceneLength" ).SetBool( false );
+	}
+
+	if ( !gDriveSceneLengthTaken )
+	{
+		gDriveSceneLengthTaken = Asset.GetEntryBool( prefix + "DriveSceneLength" );
+	}
+
+	if ( isAwarenessScene )
+	{
+		// Set main animation for Radiant even though it won't be used in game
+		string initAnim = Asset.GetEntryValue( prefix + "InitAnim" );
+		string initAnimLoop = Asset.GetEntryValue( prefix + "InitAnimLoop" );
+
+		if ( initAnimLoop != "" )
+		{
+			Asset.GetEntryVariable( prefix + "MainAnim" ).SetValue( initAnimLoop );
+		}
+		else
+		{
+			Asset.GetEntryVariable( prefix + "MainAnim" ).SetValue( initAnim );
+		}
+	}
+
+	if ( !takeDamage )
+	{
+		Asset.GetEntryVariable( prefix + "AllowDeath" ).SetBool( false );
+	}
+
+	// if ( !NewPlayerMethod )
+	// {
+	// 	Asset.GetEntryVariable( prefix + "SharedIGC" ).SetBool( false );
+	// }
+
+	// else if ( isActor )
+	// {
+	// 	Asset.GetEntryVariable( prefix + "AllowDeath" ).SetBool( true );
+	// }
+
+	if ( ( isServer || ( isBoth && ( Asset.GetEntryValue( prefix + "vmType" ) == "Server" ) ) ) && Asset.GetEntryBool( prefix + "IsSiege" ) )
+	{
+		Asset.AddEntry_Label( "siegeModel", "This scene has siege models, it has to be Client Script Type for the scene or for the siege object." ).SetTitle(" ").SetIcon( "Icon_ImageMismatch.png" );
+	}
+}
+
+void ValidateDoReach( asset Asset, const string& index )
+{
+	string prefix = "object" + index + "_";
+
+	if ( Asset.GetEntryBool( prefix + "DoReach" ) )
+	{
+		for ( uint i = 1; i <= MAX_SCENE_OBJECTS; i++ )
+		{
+			if ( ( "" + i ) != index )
+			{
+				if ( Asset.GetEntryBool( "object" + i + "_" + "DoReach" ) )
+				{
+					MessageBox( "Only one object can be set to Do Reach", "OK" );
+					Asset.GetEntryVariable( prefix + "DoReach" ).SetBool( false );
+				}
+			}
+		}
+	}
+}
+
+void ValidateSharedIGC( asset Asset, const string& index )
+{
+	string prefix = "object" + index + "_";
+	bool sharedIGC = Asset.GetEntryBool( prefix + "SharedIGC" );
+
+	if ( sharedIGC )
+	{
+		for ( uint i = 1; i <= MAX_SCENE_OBJECTS; i++ )
+		{
+			if ( ( "" + i ) != index )
+			{
+				if ( Asset.GetEntryValue( "object" + i + "_" + "Type" ) == "Player" )
+				{
+					MessageBox( "Only one player object can be in a shared IGC.  Please remove other players.", "OK" );
+					Asset.GetEntryVariable( prefix + "SharedIGC" ).SetBool( false );
+				}
+			}
+		}
+	}
+
+	if ( !sharedIGC )
+	{
+		Asset.GetEntryVariable( prefix + "DisableTransitionIn" ).SetBool( false );
+		Asset.GetEntryVariable( prefix + "DisableTransitionOut" ).SetBool( false );
+	}
+}
+
+void GenerateSceneObject( asset Asset, int index, bool isScene, bool isFXanim, bool isAwarenessScene )
+{
+	// "objectX_" translates directly to a script struct without the "objectX_" part of the key
+	string prefix = "object" + index + "_";
+	string prefixPrev = "object" + ( index - 1 ) + "_";
+	string prefixNext = "object" + ( index + 1 ) + "_";
+	string objectName = "Object " + index;
+
+	bool firstObject = ( index == 1 );
+	bool lastObject = ( index == MAX_SCENE_OBJECTS );
+	bool hiddenObject = ( index == ( MAX_SCENE_OBJECTS + 1 ) );
+
+	string namePrev = "";
+	string modelPrev = "";
+	string typePrev = "";
+
+	string nameNext = "";
+	string modelNext = "";
+	string typeNext = "";
+
+	bool isServer = ( Asset.GetEntryValue( "vmType" ) == "Server" );
+	bool isClient = ( Asset.GetEntryValue( "vmType" ) == "Client" );
+	bool isBoth = !isServer && !isClient;
+
+	if ( !firstObject )
+	{
+		namePrev = Asset.GetEntryValue( prefixPrev + "Name" );
+		modelPrev = Asset.GetEntryValue( prefixPrev + "Model" );
+		typePrev = Asset.GetEntryValue( prefixPrev + "Type" );
+	}
+
+	nameNext = Asset.GetEntryValue( prefixNext + "Name" );
+	modelNext = Asset.GetEntryValue( prefixNext + "Model" );
+	typeNext = Asset.GetEntryValue( prefixNext + "Type" );
+
+	string name = Asset.GetEntryValue( prefix + "Name" );
+	string model = Asset.GetEntryValue( prefix + "Model" );
+
+	float r = 0.3;
+	float g = 0.3;
+	float b = 0.3;
+
+	int color = index % 4;
+	if ( color == 0 )
+	{
+		g = 1.0;
+	}
+	else if ( color == 1 )
+	{
+		b = 1;
+	}
+	else if ( color == 2 )
+	{
+		r = 1.0;
+	}
+	else if ( color == 3 )
+	{
+		r = 0.57;
+		g = 0.57;
+	}
+
+	string type = Asset.GetEntryValue( prefix + "Type" );
+
+	bool isProp		= ( type == "Prop" );
+	bool isVehicle	= ( type == "Vehicle" );
+	bool isActor	= ( type == "Actor" );
+	bool isPlayer	= ( type == "Player" );
+	bool isPlayerModel	= ( type == "Player Model" );
+
+	bool isPlayerPrev	= ( typePrev == "Player" );
+	bool isPlayerNext	= ( typeNext == "Player" );
+
+	bool isValid = ( name != "" || model !="" || isPlayer );
+	bool isValidPrev = ( namePrev != "" || modelPrev !="" || isPlayerPrev );
+	bool isValidNext = ( nameNext != "" || modelNext !="" || isPlayerNext );
+
+	if ( isValid )
+	{
+		gValidObjectCount = index;
+	}
+
+	bool save = ( name != "" || model != "" || isPlayer );
+
+	bool showCat = ( ( isScene || isFXanim ) && isValid && !hiddenObject );
+
+	string objectNameMore = ( isPlayer ? "Player " + Asset.GetEntryValue( prefix + "Player" ) : name );
+
+	if ( objectNameMore == "" )
+	{
+		objectNameMore = model;
+	}
+
+	objectName = objectName + " - " + objectNameMore;
+
+	bool enabled = !Asset.GetEntryBool( prefix + "Disabled" );
+	bool firstFrame = Asset.GetEntryBool( prefix + "FirstFrame" );
+	bool spawnOnInit = Asset.GetEntryBool( prefix + "SpawnOnInit" );
+	bool delayMovementAtEnd = Asset.GetEntryBool( prefix + "DelayMovementAtEnd" );
+	bool disableArrivalInReach = Asset.GetEntryBool( prefix + "DisableArrivalInReach" );
+	bool spawnOnce = Asset.GetEntryBool( prefix + "SpawnOnce" );
+	bool noSpawn = Asset.GetEntryBool( prefix + "NoSpawn" );
+	bool takeDamage = Asset.GetEntryBool( prefix + "TakeDamage" );
+	bool allowDeath = Asset.GetEntryBool( prefix + "AllowDeath" );
+	bool lockView = Asset.GetEntryBool( prefix + "LockView" );
+	// bool NewPlayerMethod = Asset.GetEntryBool( prefix + "NewPlayerMethod" );
+	bool removeWeapon = Asset.GetEntryBool( prefix + "RemoveWeapon" );
+	bool sharedIGC = Asset.GetEntryBool( prefix + "SharedIGC" );
+	bool doReach	= Asset.GetEntryBool( prefix + "DoReach" );
+
+	Asset.BeginCategory( objectName, r, g, b, "" );
+	{
+		if ( !hiddenObject && ( isScene || isFXanim ) && ( isValid || firstObject || isValidPrev ) )
+		{
+			// Add Button Group
+
+			Asset.AddEntry_ButtonGroup( "buttonGroup" + index ).SetTitle( "Edit" );
+
+			if ( !isValid && ( isValidPrev || firstObject ) )
+			{
+				// Add Object
+
+				if ( isScene )
+				{
+					Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Add Object", "", "void AddSceneObject( asset Asset, const string& ID )", "" + index );
+				}
+				else if ( isFXanim )
+				{
+					Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Add Object", "", "void AddFXAnimObject( asset Asset, const string& ID )", "" + index );
+				}
+			}
+			else if ( isValid )
+			{
+				if ( !firstObject )	// Move Up
+				{
+					Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Move Up", "", "void MoveSceneObjectUp( asset Asset, const string& ID )", "" + index );
+				}
+
+				if ( isValidNext )	// Move Down
+				{
+					Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Move Down", "", "void MoveSceneObjectDown( asset Asset, const string& ID )", "" + index );
+				}
+
+				// Copy Object
+
+				Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Copy", "", "void CopySceneObject( asset Asset, const string& ID )", "" + index );
+
+				// Delete Object
+
+				Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Delete", "", "void DeleteSceneObject( asset Asset, const string& ID )", "" + index );
+			}
+		}
+
+		Asset.AddEntry_CheckBox( prefix + "Disabled", false ).SetTitle( "Disabled" ).Show( showCat ).SetSave( showCat && save ).UpdateOnChange( true );
+		Asset.AddEntry_CheckBox( prefix + "Hide", false ).SetTitle( "Hide this Object" ).SetToolTip( "Will hide the object while the scene is running. Should be used to hide objects between chained scenes" ).Show( showCat ).Enable( enabled ).SetSave( showCat && save );
+
+		bool bShowVMType = isBoth && showCat;
+		Asset.AddEntry_Combo( prefix + "vmType", "Server | Client" ).SetTitle( "Script Type" ).SetToolTip( "Spawn this object in server script or client script?" ).Show( bShowVMType ).SetSave( bShowVMType ).UpdateOnChange( true );
+
+		Asset.AddEntry_Combo( prefix + "Name", hero_list, true ).SetTitle( "Name" ).SetToolTip( "This object's unique name.  For scripters: The targetname or animname of the entity to find or spawn.  Use targetname unless you need to use animname to fix ambiguities." ).Show( showCat && !isPlayer ).Enable( enabled ).SetSave( isScene || isFXanim ).UpdateOnChange( true );
+		Asset.AddEntry_AssetCombo( prefix + "Model", "xmodel | character | aitype" ).SetTitle( "Model / Character / AIType" ).SetToolTip( "Use this model instead if the targetname is not found or not specified" ).Show( showCat ).Enable( enabled ).SetSave( isScene || isFXanim ).UpdateOnChange( true );
+		Asset.AddEntry_String( prefix + "AlignTarget", "" ).SetTitle( "Align Target" ).SetToolTip( "The animname/targetname of the object or entity to align this entity to" ).Show( showCat ).Enable( enabled ).SetSave( showCat && save );
+		Asset.AddEntry_String( prefix + "AlignTargetTag", "" ).SetTitle( "Align Tag ( LinkTo )" ).SetToolTip( "The tag of the object or entity to align this entity to" ).Show( showCat ).Enable( enabled ).SetSave( showCat && save );
+
+		bool isSiege = IsXModelSiege( Asset.GetEntryValue( prefix + "Model" ) );
+
+		string animType = "xanim";
+		if( isSiege )
+		{
+			animType = "sanim";
+		}
+
+		if(isSiege)
+		{
+			Asset.BeginCategory( objectName + ".Siege animations" );
+		}
+		else
+		{
+			Asset.BeginCategory( objectName + ".Animations" );
+		}
+		{
+			Asset.AddEntry_AssetCombo( prefix + "InitAnim", animType ).SetTitle( "Initial Animation" ).SetToolTip( "The animation to play when the scene inits" ).Show( showCat ).Enable( !firstFrame && enabled ).SetSave( showCat && save ).UpdateOnChange( true );
+			AddSiegeCombo( Asset, prefix + "InitAnim", prefix + "InitShot", isSiege );
+
+			Asset.AddEntry_AssetCombo( prefix + "InitAnimLoop", animType ).SetTitle( "Initial Animation Loop" ).SetToolTip( "The initial animation loop to play until the main animation kicks off" ).Show( showCat ).Enable( !firstFrame && enabled ).SetSave( showCat && save );
+			AddSiegeCombo( Asset, prefix + "InitAnimLoop", prefix + "InitShotLoop", isSiege );
+			Asset.AddEntry_Vector2( prefix + "InitDelayMin", prefix + "InitDelayMax", 0.0, 0.0, 0.0, 999.0 ).SetTitle( "Initial Delay" ).SetStep( 0.05 ).SetLabels( "Min", "Max", "", "" ).SetToolTip( "Delay before playing the init animation" ).Show( showCat && !isScene ).Enable( !firstFrame && enabled ).SetSave( showCat && save && !isScene );
+
+			Asset.AddEntry_AssetCombo( prefix + "MainAnim", animType ).SetTitle( "Main Animation" ).SetToolTip( "The main animation to play" ).Show( showCat && !isAwarenessScene ).Enable( enabled && !isAwarenessScene ).SetSave( showCat && save );
+			AddSiegeCombo( Asset, prefix + "MainAnim", prefix + "MainShot", isSiege );
+			Asset.AddEntry_Float( prefix + "MainBlend", 0, 0, 40 ).SetStep( 0.05 ).SetTitle( "Blend into main animation override" ).SetToolTip( "The blend amount to trasition from the initial animation to the main animation. Default is 0.2 and 0 during cuts" ).Show( showCat && !isAwarenessScene ).Enable( enabled && !isAwarenessScene ).SetSave( showCat && save && !isAwarenessScene );
+			Asset.AddEntry_Vector2( prefix + "MainDelayMin", prefix + "MainDelayMax", 0.0, 0.0, 0.0, 999.0 ).SetTitle( "Main Delay" ).SetStep( 0.05 ).SetLabels( "Min", "Max", "", "" ).SetToolTip( "Delay before playing the main animation" ).Show( showCat && !isScene ).Enable( enabled ).SetSave( showCat && save && !isScene );
+
+			Asset.AddEntry_AssetCombo( prefix + "LowAlertAnim", animType ).SetTitle( "Low Alert Animation" ).SetToolTip( "The main animation to play when going into low alert" ).Show( showCat && isAwarenessScene ).Enable( enabled && isAwarenessScene ).SetSave( showCat && save && isAwarenessScene );
+			AddSiegeCombo( Asset, prefix + "LowAlertAnim", prefix + "LowAlertShot", isSiege );
+			Asset.AddEntry_AssetCombo( prefix + "HighAlertAnim", animType ).SetTitle( "Hight Alert Animation" ).SetToolTip( "The main animation to play when going into high alert" ).Show( showCat && isAwarenessScene ).Enable( enabled && isAwarenessScene ).SetSave( showCat && save && isAwarenessScene );
+			AddSiegeCombo( Asset, prefix + "HighAlertAnim", prefix + "HighAlertShot", isSiege );
+			Asset.AddEntry_AssetCombo( prefix + "CombatAlertAnim", animType ).SetTitle( "Combat Alert Animation" ).SetToolTip( "The main animation to play when going into combat alert" ).Show( showCat && isAwarenessScene ).Enable( enabled && isAwarenessScene ).SetSave( showCat && save && isAwarenessScene );
+			AddSiegeCombo( Asset, prefix + "CombatAlertAnim", prefix + "CombatAlertShot", isSiege );
+
+			Asset.AddEntry_AssetCombo( prefix + "EndAnim", animType ).SetTitle( "End Animation" ).SetToolTip( "The final (outro) animation to play" ).Show( showCat && ( !isAwarenessScene || !isActor ) ).Enable( enabled && ( !isAwarenessScene || !isActor ) ).SetSave( showCat && save && ( !isAwarenessScene || !isActor ) );
+			AddSiegeCombo( Asset, prefix + "EndAnim", prefix + "EndShot", isSiege );
+
+			Asset.AddEntry_Float( prefix + "EndBlend", 0, 0, 40 ).SetStep( 0.05 ).SetTitle( "Blend into end animation override" ).SetToolTip( "The blend amount to trasition from the main animation to the end animation. Default is 0.2 and 0 during cuts" ).Show( showCat && !isAwarenessScene ).Enable( enabled && !isAwarenessScene ).SetSave( showCat && save && !isAwarenessScene );
+
+			Asset.AddEntry_AssetCombo( prefix + "EndAnimLoop", animType ).SetTitle( "End Animation Loop" ).SetToolTip( "Loop to play after end animation" ).Show( showCat && ( !isAwarenessScene || !isActor ) ).Enable( enabled && ( !isAwarenessScene || !isActor ) ).SetSave( showCat && save && ( !isAwarenessScene || !isActor ) );
+			AddSiegeCombo( Asset, prefix + "EndAnimLoop", prefix + "EndShotLoop", isSiege );
+
+			Asset.AddEntry_CheckBox( prefix + "HasDeathAnims", false ).Show( false ).SetSave( false );
+		}
+
+		bool has_death_anims = HasDeathAnims( Asset, "" + index );
+		bool death_anim_show = has_death_anims && showCat && isServer && !isFXanim;
+
+		Asset.BeginCategory( objectName + ".Death Animations" );
+		{
+			if ( showCat && isServer && !isFXanim )
+			{
+				if ( has_death_anims )
+				{
+					Asset.AddEntry_ButtonGroup( "DeathAnimButton" + index ).SetTitle( "Death Anims" ).AddButton( "Remove Death Anims", "", "void RemoveDeathAnims( asset Asset, const string& ID )", "" + index );
+				}
+				else
+				{
+					Asset.AddEntry_ButtonGroup( "DeathAnimButton" + index ).SetTitle( "Death Anims" ).AddButton( "Add Death Anims", "", "void AddDeathAnims( asset Asset, const string& ID )", "" + index );
+				}
+			}
+
+			Asset.AddEntry_AssetCombo( prefix + "InitAnimDeath", animType ).SetTitle( "Initial Animation Death" ).SetToolTip( "Death animation to play durring 'Initial Animation'" ).Show( death_anim_show ).Enable( !firstFrame && enabled && allowDeath ).SetSave( showCat && save && isServer );
+			Asset.AddEntry_AssetCombo( prefix + "InitAnimLoopDeath", animType ).SetTitle( "Initial Animation Loop Death" ).SetToolTip( "Death animation to play durring 'Initial Animation Loop'" ).Show( death_anim_show ).Enable( !firstFrame && enabled && allowDeath ).SetSave( showCat && save && isServer );
+			Asset.AddEntry_AssetCombo( prefix + "MainAnimDeath", animType ).SetTitle( "Main Animation Death" ).SetToolTip( "Death animation to play durring 'Main Animation'" ).Show( death_anim_show && !isAwarenessScene ).Enable( enabled && allowDeath && !isAwarenessScene ).SetSave( showCat && save && isServer && !isAwarenessScene );
+			Asset.AddEntry_AssetCombo( prefix + "EndAnimDeath", animType ).SetTitle( "End Animation Death" ).SetToolTip( "Death animation to play durring 'End Animation'" ).Show( death_anim_show && ( !isAwarenessScene || !isActor ) ).Enable( enabled && allowDeath && ( !isAwarenessScene || !isActor ) ).SetSave( showCat && save && isServer && ( !isAwarenessScene || !isActor ) );
+			Asset.AddEntry_AssetCombo( prefix + "EndAnimLoopDeath", animType ).SetTitle( "End Animation Loop Death" ).SetToolTip( "Death animation to play durring 'End Animation Loop'" ).Show( death_anim_show && ( !isAwarenessScene || !isActor ) ).Enable( enabled && allowDeath && ( !isAwarenessScene || !isActor ) ).SetSave( showCat && save && isServer && ( !isAwarenessScene || !isActor ) );
+
+			Asset.AddEntry_AssetCombo( prefix + "LowAlertAnimDeath", animType ).SetTitle( "Low Alert Animation Death" ).SetToolTip( "Death animation to play durring 'Low Alert Animation'" ).Show( death_anim_show && isAwarenessScene ).Enable( enabled && allowDeath && isAwarenessScene ).SetSave( showCat && save && isAwarenessScene );
+			Asset.AddEntry_AssetCombo( prefix + "HighAlertAnimDeath", animType ).SetTitle( "Hight Alert Animation Death" ).SetToolTip( "Death animation to play durring 'High Alert Animation'" ).Show( death_anim_show && isAwarenessScene ).Enable( enabled && allowDeath && isAwarenessScene ).SetSave( showCat && save && isAwarenessScene );
+			Asset.AddEntry_AssetCombo( prefix + "CombatAlertAnimDeath", animType ).SetTitle( "Combat Alert Animation Death" ).SetToolTip( "Death animation to play durring 'Combat Alert Animation'" ).Show( death_anim_show && isAwarenessScene ).Enable( enabled && allowDeath && isAwarenessScene ).SetSave( showCat && save && isAwarenessScene );
+
+		}
+
+		Asset.BeginCategory( objectName + ".Death Loop Animations" );
+		{
+			Asset.AddEntry_AssetCombo( prefix + "InitAnimDeathLoop", animType ).SetTitle( "Initial Animation Death Loop" ).SetToolTip( "Death animation to play durring 'Initial Animation'" ).Show( death_anim_show ).Enable( !firstFrame && enabled && allowDeath ).SetSave( showCat && save && isServer );
+			Asset.AddEntry_AssetCombo( prefix + "InitAnimLoopDeathLoop", animType ).SetTitle( "Initial Animation Loop Death Loop" ).SetToolTip( "Death animation to play durring 'Initial Animation Loop'" ).Show( death_anim_show ).Enable( !firstFrame && enabled && allowDeath ).SetSave( showCat && save && isServer );
+			Asset.AddEntry_AssetCombo( prefix + "MainAnimDeathLoop", animType ).SetTitle( "Main Animation Death Loop" ).SetToolTip( "Death animation to play durring 'Main Animation'" ).Show( death_anim_show && !isAwarenessScene ).Enable( enabled && allowDeath && !isAwarenessScene ).SetSave( showCat && save && isServer && !isAwarenessScene );
+			Asset.AddEntry_AssetCombo( prefix + "EndAnimDeathLoop", animType ).SetTitle( "End Animation Death Loop" ).SetToolTip( "Death animation to play durring 'End Animation'" ).Show( death_anim_show && ( !isAwarenessScene || !isActor ) ).Enable( enabled && allowDeath && ( !isAwarenessScene || !isActor ) ).SetSave( showCat && save && isServer && ( !isAwarenessScene || !isActor ) );
+			Asset.AddEntry_AssetCombo( prefix + "EndAnimLoopDeathLoop", animType ).SetTitle( "End Animation Loop Death Loop" ).SetToolTip( "Death animation to play durring 'End Animation Loop'" ).Show( death_anim_show && ( !isAwarenessScene || !isActor ) ).Enable( enabled && allowDeath && ( !isAwarenessScene || !isActor ) ).SetSave( showCat && save && isServer && ( !isAwarenessScene || !isActor ) );
+
+			Asset.AddEntry_AssetCombo( prefix + "LowAlertAnimDeathLoop", animType ).SetTitle( "Low Alert Animation Death Loop" ).SetToolTip( "Death animation to play durring 'Low Alert Animation'" ).Show( death_anim_show && isAwarenessScene ).Enable( enabled && allowDeath && isAwarenessScene ).SetSave( showCat && save && isAwarenessScene );
+			Asset.AddEntry_AssetCombo( prefix + "HighAlertAnimDeathLoop", animType ).SetTitle( "Hight Alert Animation Death Loop" ).SetToolTip( "Death animation to play durring 'High Alert Animation'" ).Show( death_anim_show && isAwarenessScene ).Enable( enabled && allowDeath && isAwarenessScene ).SetSave( showCat && save && isAwarenessScene );
+			Asset.AddEntry_AssetCombo( prefix + "CombatAlertAnimDeathLoop", animType ).SetTitle( "Combat Alert Animation Death Loop" ).SetToolTip( "Death animation to play durring 'Combet Alert Animation'" ).Show( death_anim_show && isAwarenessScene ).Enable( enabled && allowDeath && isAwarenessScene ).SetSave( showCat && save && isAwarenessScene );
+		}
+
+		Asset.BeginCategory( objectName + ".Options" );
+		{
+			Asset.AddEntry_Combo( prefix + "Type", "Prop | Vehicle | Actor | Player | Player Model" ).SetTitle( "Type" ).SetSave( showCat && save ).Show( showCat ).Enable( enabled ).UpdateOnChange( true );
+
+			bool showPlayer = ( showCat && isPlayer );
+
+			// Asset.AddEntry_CheckBox( prefix + "NewPlayerMethod", true ).SetTitle( "Use New (Full Body) Player Animation" ).SetToolTip( "Animates the players actual model instead of linking to a seperate animated view model." ).Show( showPlayer ).SetSave( showCat && save ).Enable( enabled ).UpdateOnChange( true );
+			// Asset.AddEntry_CheckBox( prefix + "FirstWeaponRaise", false ).SetTitle( "First Weapon Raise" ).SetToolTip( "Uses the first (long) weapon raise after the animation is done." ).Show( showPlayer ).SetSave( showCat && save ).Enable( enabled );
+
+			Asset.AddEntry_Combo( prefix + "Player", "1 | 2 | 3 | 4" ).SetTitle( "Player Number" ).SetToolTip( "Player Number" ).Show( showPlayer ).Enable( !sharedIGC ).UpdateOnChange( true ).SetSave( showPlayer );
+			Asset.AddEntry_CheckBox( prefix + "SharedIGC", false ).SetTitle( "Shared IGC" ).SetToolTip( "All players will play the same animation" ).Show( showPlayer ).SetSave( showCat && save ).Enable( enabled /* && NewPlayerMethod */ ).UpdateOnChange( true ).SetValidateCallback("void ValidateSharedIGC(asset Asset, const string& ID)", "" + index);
+			Asset.AddEntry_CheckBox( prefix + "DisableTransitionIn", false ).SetTitle( "Disable Transition FX In" ).SetToolTip( "Disable postfx transition into this shared animation (mostly for intro animations)" ).Show( showPlayer ).SetSave( showCat && save ).Enable( enabled && sharedIGC );
+			Asset.AddEntry_CheckBox( prefix + "DisableTransitionOut", false ).SetTitle( "Disable Transition FX Out" ).SetToolTip( "Disable postfx transition out of this shared animation" ).Show( showPlayer ).SetSave( showCat && save ).Enable( enabled && sharedIGC );
+
+			Asset.AddEntry_Float( prefix + "LerpTime", 0, 0, 9999 ).SetStep( 0.05 ).SetTitle( "Lerp Time" ).SetToolTip( "Set the lerp time used for this player animation" ).Show( showPlayer ).Enable( enabled ).SetSave( showPlayer );
+			Asset.AddEntry_Float( prefix + "EntityLerpTime", 0, 0, 9999 ).SetStep( 0.05 ).SetTitle( "Lerp Time" ).SetToolTip( "Set the lerp time used for this entity animation" ).Show( showCat && !isPlayer ).Enable( enabled ).SetSave( showCat && !isPlayer );
+			Asset.AddEntry_Float( prefix + "CameraTween", 0, 0, 9999 ).SetStep( 0.05 ).SetTitle( "Camera Tween" ).SetToolTip( "Set the camera tween time used for this player animation" ).Show( showPlayer ).Enable( enabled ).SetSave( showPlayer );
+			Asset.AddEntry_Float( prefix + "CameraTweenOut", 0, 0, 9999 ).SetStep( 0.05 ).SetTitle( "Camera Tween Out" ).SetToolTip( "Set the camera tween out time used for this player animation when it ends" ).Show( showPlayer ).Enable( enabled ).SetSave( showPlayer );
+			Asset.AddEntry_CheckBox( prefix + "LockView", false ).SetTitle( "Lock View" ).SetToolTip( "Locks player view to animation (PlayerLinkToAbsolute)" ).Show( showPlayer ).Enable( enabled ).SetSave( showPlayer ).UpdateOnChange( true );
+			Asset.AddEntry_Vector4( prefix + "viewClampRight", prefix + "viewClampLeft", prefix + "viewClampTop", prefix + "viewClampBottom", 0, 0, 0, 0, 0, 180 ).SetTitle( "View Clamp" ).SetStep( 1 ).SetLabels( "Right", "Left", "Top", "Bottom" ).SetToolTip( "View clamp for this player animation" ).Show( showPlayer ).Enable( !lockView && enabled ).SetSave( showPlayer );
+
+			Asset.AddEntry_Combo( prefix + "PlayerStance", "Stand | Crouch | Prone" ).SetTitle( "Set Player Stance" ).SetToolTip( "Set player stance." ).Show( showCat && isPlayer ).Enable( showCat && isPlayer ).SetSave( save && showCat && isPlayer );
+
+			bool DriveSceneLength = Asset.GetEntryBool( prefix + "DriveSceneLength" );
+			Asset.AddEntry_CheckBox( prefix + "DriveSceneLength", false ).SetTitle( "Drive Scene Length" ).SetToolTip( "Drive the scene length based on the length of this animation." ).Show( showCat && false ).Enable( ( !gDriveSceneLengthTaken || DriveSceneLength ) && enabled ).SetSave( showCat && save ).UpdateOnChange( true ); // Hiding for now, this is a problematic option and not really necessary
+
+			Asset.AddEntry_CheckBox( prefix + "SpawnOnInit", false ).SetTitle( "Spawn On Init" ).SetToolTip( "Spawns the model on init even if no initial animation is used." ).Show( showCat ).Enable( !firstFrame && !noSpawn && enabled ).SetSave( showCat && save ).UpdateOnChange( true ).SetBool( noSpawn ? false : ( firstFrame ? true : Asset.GetEntryBool( prefix + "SpawnOnInit" ) ) );
+			Asset.AddEntry_CheckBox( prefix + "FirstFrame", false ).SetTitle( "Set First Frame On Init" ).SetToolTip( "Runs the first frame of the main animation on init. The Init animation will not be used!" ).Show( showCat ).Enable( enabled ).SetSave( showCat && save ).UpdateOnChange( true );
+			Asset.AddEntry_CheckBox( prefix + "SpawnOnce", false ).SetTitle( "Don't Respawn In Looping Scene" ).SetToolTip( "Only spawn once in a looping scene." ).Show( showCat && !isPlayer ).Enable( !noSpawn && enabled ).SetSave( showCat && save ).UpdateOnChange( true ).SetBool( noSpawn ? false : spawnOnce );
+			Asset.AddEntry_CheckBox( prefix + "DynamicPaths", false ).SetTitle( "Dynamic Paths" ).SetToolTip( "Check this if the object should block AI pathing when spawned and unblock the path before playing the main animation." ).Show( isProp && showCat ).Enable( enabled ).SetSave( showCat && save ).SetBool( isProp && Asset.GetEntryBool( prefix + "DynamicPaths") );
+			Asset.AddEntry_CheckBox( prefix + "DieWhenFinished", false ).SetTitle( "Die When Finished (freeze in last frame)" ).SetToolTip( "Check this if the object should be die when the scene ends (overrides \"Allow Death\")." ).Show( !isPlayer && showCat ).Enable( enabled ).SetSave( showCat && save );
+			Asset.AddEntry_CheckBox( prefix + "KeepWhileSkipping", false ).SetTitle( "Keep While Skipping" ).SetToolTip( "Will create the entity while skipping the scene even if is marked as DeleteWhenFinished." ).Show( !isPlayer && showCat ).Enable( enabled ).SetSave( showCat && save );
+
+			Asset.AddEntry_CheckBox( prefix + "ShowWeaponInFirstPerson", false ).SetTitle( "Show 1st person Weapon" ).SetToolTip( "Show player weapon in 1st person scenes" ).Show( showPlayer ).Enable( enabled ).SetSave( showPlayer );
+			Asset.AddEntry_CheckBox( prefix + "RemoveWeapon", false ).SetTitle( "Remove 3rd person Weapon" ).SetToolTip( "Remove 3rd person Weapon." ).Show( showCat && ( isActor || isPlayer ) ).Enable( showCat && ( isActor || isPlayer ) ).SetSave( save && showCat && ( isActor || isPlayer ) );
+			Asset.AddEntry_CheckBox( prefix + "DisablePrimaryWeaponSwitch", false ).SetTitle( "Disable Primary Weapon Switch" ).SetToolTip( "Disable Primary Weapon Switch." ).Show( showCat && isPlayer ).Enable( showCat && isPlayer && !removeWeapon ).SetSave( save && showCat && isPlayer );
+			Asset.AddEntry_CheckBox( prefix + "ShowHUD", false ).SetTitle( "Show HUD" ).SetToolTip( "Don't hide the HUD for this player animation" ).Show( showPlayer ).Enable( enabled ).SetSave( showPlayer );
+			Asset.AddEntry_CheckBox( prefix + "DontReloadAmmo", false ).SetTitle( "Don't Reload Ammo" ).SetToolTip( "Don't reload ammo after this scene" ).Show( showPlayer ).Enable( enabled ).SetSave( showPlayer );
+			Asset.AddEntry_CheckBox( prefix + "LookAtPlayer", false ).SetTitle( "Look At Player" ).SetToolTip( "Set this to have this AI head track the player during this scene." ).Show( showCat && isActor ).Enable( isActor && enabled ).SetSave( showCat && save && isActor );
+			Asset.AddEntry_CheckBox( prefix + "IsSiege", false ).SetTitle( "Is Siege" ).SetToolTip( "Is this model a siege one? Can not be edited." ).Enable( false ).SetSave( showCat && save ).Show( showCat );
+			Asset.GetEntryVariable( prefix + "IsSiege" ).SetBool( isSiege );
+
+			Asset.AddEntry_CheckBox( prefix + "DontClamp", false ).SetTitle( "Don't Clamp To Camera Anim" ).SetToolTip( "Let this animation play out even if it goes beyond the camera's last frame." ).Show( showCat ).Enable( enabled ).SetSave( showCat && save );
+			Asset.AddEntry_CheckBox( prefix + "IgnoreAliveCheck", false ).SetTitle( "Animate Even Is Dead" ).SetToolTip( "Let this animation play out even if the target entity is dead." ).Show( showCat ).Enable( enabled ).SetSave( showCat && save );
+
+			if ( !isAwarenessScene )
+			{
+				bool show = true;
+				for( int i = 0; i <= 5; i++ )
+				{
+					string id = prefix + "RunSceneOnDmg" + i;
+
+					if ( i > 0 )
+					{
+						string idPrev = prefix + "RunSceneOnDmg" + (i-1);
+						show = ( Asset.GetEntryValue( idPrev ) != "" ) && ( Asset.GetEntryValue( idPrev ) != "All" );
+					}
+					else if ( i == 5 )
+					{
+						show = false; // HACK to clear out some old values that should have never been saved to GDTs
+					}
+
+					Asset.AddEntry_Combo( id, " | All | Bullet | Explosive | Projectile | Melee" ).SetTitle( "Run Scene On Damage Type " + (i+1) ).SetToolTip( "Damage Type" ).Show( showCat && show ).SetSave( showCat && show && save ).Enable( takeDamage && enabled ).UpdateOnChange( true );
+
+					if ( !show )
+					{
+						Asset.GetEntryVariable( id ).SetValue( "" );
+					}
+				}
+			}
+		}
+
+		Asset.BeginCategory( objectName + ".Scripter Options" );
+		{
+			Asset.AddEntry_CheckBox( prefix + "NoSpawn", false ).SetTitle( "Ignore (And Don't Spawn) If Entity Is Missing" ).SetToolTip( "Check this if this object is optional in the scene. Will be included in the scene if the entity is alive, but won't spawn for the scene if it's missing." ).Show( showCat && !isPlayer ).Enable( enabled ).SetSave( showCat && save ).UpdateOnChange( true );
+			Asset.AddEntry_CheckBox( prefix + "DoReach", false ).SetTitle( "Do Reach" ).SetToolTip( "Anim Reach to the start of the animation (the AI will run/walk to position instead of warping)." ).Show( showCat && isActor ).Enable( isActor && enabled ).SetSave( showCat && save && isActor ).UpdateOnChange( true ).SetValidateCallback("void ValidateDoReach(asset Asset, const string& ID)", "" + index);
+			Asset.AddEntry_CheckBox( prefix + "DisableArrivalInReach", false ).SetTitle( "Disable Arrivals in AnimReach" ).SetToolTip( "AI will skip arrival transition when doing animreach into the scene." ).Show( showCat && isActor ).Enable( isActor && enabled && doReach ).SetSave( showCat && save ).UpdateOnChange( true );
+			Asset.AddEntry_CheckBox( prefix + "DelayMovementAtEnd", false ).SetTitle( "Delay Movement At End" ).SetToolTip( "Delays AI movement to keep him in exposed for a few sec after animation is over." ).Show( showCat && isActor ).Enable( isActor && enabled ).SetSave( showCat && save ).UpdateOnChange( true );
+			Asset.AddEntry_CheckBox( prefix + "OverrideAICharacter", false ).SetTitle( "Override AI Model" ).SetToolTip( "Override the model when played on AI." ).Show( showCat && isActor ).Enable( isActor && enabled ).SetSave( showCat && save && isActor );
+			Asset.AddEntry_CheckBox( prefix + "DeleteWhenFinished", false ).SetTitle( "Delete When Finished" ).SetToolTip( "Check this if the object should be deleted when the scene ends" ).Show( !isPlayer && showCat ).Enable( enabled ).SetSave( showCat && save );
+			Asset.AddEntry_CheckBox( prefix + "TakeDamage", false ).SetTitle( "Takes Damage" ).SetToolTip( "Check this if you want this object to take damage" ).Show( showCat ).Enable( enabled ).SetSave( showCat && save ).UpdateOnChange( true );
+			Asset.AddEntry_CheckBox( prefix + "AllowDeath", isActor ).SetTitle( "Allow Death" ).SetToolTip( "Check this if you want this object to be able to die" ).Show( showCat ).Enable( takeDamage && enabled ).SetSave( showCat && save ).UpdateOnChange( true );
+		}
+	}
+}
+
+void CopyObject( asset Asset, string fromObjectPrefix, string toObjectPrefix )
+{
+	for ( uint i = 0; i < gSceneKeys.length(); i++ )
+	{
+		Asset.GetEntryVariable( toObjectPrefix + gSceneKeys[i] ).SetValue( Asset.GetEntryValue( fromObjectPrefix + gSceneKeys[i] ) );
+	}
+}
+
+void SwapObjects( asset Asset, string objectAPrefix, string objectBPrefix )
+{
+	array<string> values_temp;
+	for ( uint i = 0; i < gSceneKeys.length(); i++ )
+	{
+		values_temp.insertLast( Asset.GetEntryValue( objectAPrefix + gSceneKeys[i] ) );
+	}
+
+	CopyObject( Asset, objectBPrefix, objectAPrefix );
+
+	for ( uint i = 0; i < values_temp.length(); i++ )
+	{
+		Asset.GetEntryVariable( objectBPrefix + gSceneKeys[i] ).SetValue( values_temp[i] );
+	}
+}

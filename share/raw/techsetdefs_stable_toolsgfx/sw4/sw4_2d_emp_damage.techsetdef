@@ -1,0 +1,131 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isOpaque            = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Replace
+		colorBlendFunc = add
+		colorBlendSrc  = One
+		colorBlendDst  = Zero
+		alphaBlendFunc = add
+		alphaBlendSrc  = One
+		alphaBlendDst  = Zero
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+Sampler( "BlockNoise_Sampler" )
+{
+	tile   = "tile both"
+	filter = "nomip nearest"
+}
+Texture( "BlockNoise" )
+{
+	image    = Image( <colorMap06> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\sam_block_noise.tif"
+	}
+}
+Sampler( "Lookup2_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "Lookup2" )
+{
+	image    = Image( <colorMap10> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\tv_lookup.tif"
+	}
+}
+#if TOOLSGFX == "1"
+Texture( "resolvedPostSun_C1_P0" )
+{
+	image = Image( < sw_codetexture_00 > )
+	tweak = Tweak()
+	{
+		default = "sw4\\textures\\sam.tif"
+	}
+}
+#endif
+Sampler( "resolvedPostSun_C1_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+Sampler( "NoDamage_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "NoDamage" )
+{
+	image    = Image( <colorMap05> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\sam_damage_light.tif"
+	}
+}
+Sampler( "LightDamange_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "LightDamange" )
+{
+	image    = Image( <colorMap04> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\sam_damage_low.tif"
+	}
+}
+float1( "DispersionAmount" )
+{
+	x     = <cg25_x>
+	tweak = Tweak()
+	{
+		title     = "DispersionAmount"
+		sortindex = "0"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_emp_damage.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_REPLACE"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		resolvedPostSun_C1_P0 = CodeTexture( "resolvedPostSun" )
+	}
+}

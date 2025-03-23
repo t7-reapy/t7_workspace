@@ -1,0 +1,132 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearSampler" )
+{
+	tile   = "no tile"
+	filter = "linear (mip none)"
+}
+
+Texture( "colorMap" )
+{
+	image    = Image( <colorMap00, $white_color> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Color Map"
+		sortindex	= "20"
+	}
+}
+
+Texture( "aberrationMask" )
+{
+	image    = Image( <colorMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Aberration"
+		title		= "Mask Map"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "aberrationPixels" )
+{
+	x     = <cg00_y>
+	tweak = Tweak()
+	{
+		category  = "Aberration"
+		title     = "Max Amount"
+		sortindex = "20"
+		default   = "8"
+		range     = "0", "1024", "1"
+	}
+}
+
+float3( "aberrationFactors" )
+{
+	x   = <cg02_x>
+	y	= <cg02_y>
+	z	= <cg02_z>
+	tweak = Tweak()
+	{
+		category  = "Aberration"
+		title     = "Channel Factors (R, G, B)"
+		sortindex = "30"
+		default   = "1.0"
+		range     = "-1.0", "1.0", "0.01"
+	}
+}
+
+float2( "aberrationScroll" )
+{
+	x     = <cg00_z>
+	y     = <cg00_w>
+	tweak = Tweak()
+	{
+		category  = "Aberration"
+		title     = "Mask Scroll"
+		sortindex = "40"
+		default   = "0.0"
+		range     = "-1024.0", "1024.0", "0.1"
+	}
+}
+
+float2( "colorFlipRowsCols" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Flipbook (Rows, Columns)"
+		sortindex	= "30"
+	}
+}
+float1( "colorFlipTime" )
+{
+	x     = <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Flipbook Time"
+		sortindex	= "40"
+	}
+}
+
+float1( "colorScale" )
+{
+	x     = <cg01_w>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Scale"
+		sortindex	= "50"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/alpha_blend.hlsl"
+	defines = "CHROMATIC_ABERRATION", "SCREEN_BLEND"
+
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

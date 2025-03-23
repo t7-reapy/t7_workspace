@@ -1,0 +1,88 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{7CB32486-5CE3-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lightingquality" "1024"
+"newsun" "1"
+"samplescale" "1"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{50DCB4F2-5CE3-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "misc_model"
+"model" "p7_clock_metal_wall_01_base"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 2
+{
+guid "{7672F235-5CE3-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "script_model"
+"client_server" "ClientSide"
+"model" "p7_clock_metal_wall_01_hand_hour"
+"targetname" "minute_hand"
+"_color" "1 0 0"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 3
+{
+guid "{7CB3247A-5CE3-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "script_model"
+"client_server" "ClientSide"
+"model" "p7_clock_metal_wall_01_hand_minute"
+"targetname" "second_hand"
+"_color" "1 0 0"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 4
+{
+guid "{7CB3248D-5CE3-11E5-BC3A-2C27D7EF3DD8}"
+"classname" "script_model"
+"client_server" "ClientSide"
+"model" "p7_clock_metal_wall_01_hand_second"
+"targetname" "hour_hand"
+"_color" "1 0 0"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}

@@ -1,0 +1,501 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{1D2D59BC-4A2B-4971-8557-52977FAFBC97}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"newsun" "1"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"evmax" "31"
+"evmin" "-32"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{A0F1FC9E-95EE-4FED-A645-F7FCE35E4EB3}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{99FA7673-4F30-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_painted_clean_white
+   lightmap_gray
+   2 2 0 8
+   (
+	v 8 8 4 t 0 0 29 -20.25
+	v 56 8 4 t 0 -768 26 -20.25
+   )
+   (
+	v 8 8 21 t 272 0 29 -23.75
+	v 56 8 21 t 272 -768 26 -23.75
+   )
+  }
+ }
+// brush 1
+ {
+  guid "{B5885B98-4F2F-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_planter_top_trim_painted_grey
+   lightmap_gray
+   3 3 0 1
+   (
+	v 4 8 8 t -1069.1058 -1066.0956 16.25 -8.4375
+	v 2 4 8 t -1069.1058 -533.04779 16.125 -8.6875
+	v 0 0 8 t -1069.1058 0 16 -8.9375
+   )
+   (
+	v 4 8 4 t -1018.9215 -1066.0956 16.25 -8.4375
+	v 2 4 2 t -1018.9215 -533.04779 16.125 -8.6875
+	v 0 0 0 t -1018.9215 0 16 -8.9375
+   )
+   (
+	v 8 8 4 t -968.73718 -1066.0956 16.5 -8.4375
+	v 8 4 2 t -968.73718 -533.04779 16.5 -8.6875
+	v 8 0 0 t -968.73718 0 16.5 -8.9375
+   )
+  }
+ }
+// brush 2
+ {
+  guid "{B5885B97-4F2F-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_planter_top_trim_painted_grey
+   lightmap_gray
+   3 3 0 1
+   (
+	v 0 0 56 t -1837.106 0 16 -8.9375
+	v 2 4 56 t -1837.106 -533.04779 16.125 -8.6875
+	v 4 8 56 t -1837.106 -1066.0956 16.25 -8.4375
+   )
+   (
+	v 0 0 64 t -1887.2903 0 16 -8.9375
+	v 2 4 62 t -1887.2903 -533.04779 16.125 -8.6875
+	v 4 8 60 t -1887.2903 -1066.0956 16.25 -8.4375
+   )
+   (
+	v 8 0 64 t -1937.4746 0 16.5 -8.9375
+	v 8 4 62 t -1937.4746 -533.04779 16.5 -8.6875
+	v 8 8 60 t -1937.4746 -1066.0956 16.5 -8.4375
+   )
+  }
+ }
+// brush 3
+ {
+  guid "{56FB3590-4F2F-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_planter_top_trim_painted_grey
+   lightmap_gray
+   3 3 0 8
+   (
+	v 56 8 4 t -200.73715 -1066.0956 16.5 -8.4375
+	v 32 8 4 t -584.73718 -1066.0956 18 -8.4375
+	v 8 8 4 t -968.73718 -1066.0956 19.5 -8.4375
+   )
+   (
+	v 56 4 0 t -200.73715 -441.59131 16.5 -8.6875
+	v 32 4 0 t -584.73718 -441.59131 18 -8.6875
+	v 8 4 0 t -968.73718 -441.59131 19.5 -8.6875
+   )
+   (
+	v 56 0 0 t -200.73715 0 16.5 -8.9375
+	v 32 0 0 t -584.73718 0 18 -8.9375
+	v 8 0 0 t -968.73718 0 19.5 -8.9375
+   )
+  }
+ }
+// brush 4
+ {
+  guid "{AEE916E3-4F2F-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_planter_top_trim_painted_grey
+   lightmap_gray
+   3 3 0 1
+   (
+	v 64 0 8 t 0 0 16 -8.9375
+	v 62 4 8 t 0 -533.04779 16.125 -8.6875
+	v 60 8 8 t 0 -1066.0956 16.25 -8.4375
+   )
+   (
+	v 64 0 0 t -100.36858 0 16 -8.9375
+	v 62 4 2 t -100.36858 -533.04779 16.125 -8.6875
+	v 60 8 4 t -100.36858 -1066.0956 16.25 -8.4375
+   )
+   (
+	v 56 0 0 t -200.73715 0 16.5 -8.9375
+	v 56 4 2 t -200.73715 -533.04779 16.5 -8.6875
+	v 56 8 4 t -200.73715 -1066.0956 16.5 -8.4375
+   )
+  }
+ }
+// brush 5
+ {
+  guid "{492438CF-4F2F-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_planter_top_trim_painted_grey
+   lightmap_gray
+   3 3 0 8
+   (
+	v 4 8 8 t -1069.1058 -1066.0956 8.4375 -20.5
+	v 4 8 32 t -1453.106 -1066.0956 8.4375 -22
+	v 4 8 56 t -1837.106 -1066.0956 8.4375 -23.5
+   )
+   (
+	v 0 4 8 t -1069.1058 -441.59131 8.6875 -20.5
+	v 0 4 32 t -1453.106 -441.59131 8.6875 -22
+	v 0 4 56 t -1837.106 -441.59131 8.6875 -23.5
+   )
+   (
+	v 0 0 8 t -1069.1058 0 8.9375 -20.5
+	v 0 0 32 t -1453.106 0 8.9375 -22
+	v 0 0 56 t -1837.106 0 8.9375 -23.5
+   )
+  }
+ }
+// brush 6
+ {
+  guid "{5054016B-4F2F-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_planter_top_trim_painted_grey
+   lightmap_gray
+   3 3 16 8
+   (
+	v 64 0 56 t 0 -0 -0.625 -24
+	v 64 4 56 t 0 -512 -0.375 -24
+	v 60 8 56 t 0 -1066.0956 -0.125 -24
+   )
+   (
+	v 64 0 32 t 384 -0 -0.625 -22.5
+	v 64 4 32 t 384 -512 -0.375 -22.5
+	v 60 8 32 t 384 -1066.0956 -0.125 -22.5
+   )
+   (
+	v 64 0 8 t 768 -0 -0.625 -21
+	v 64 4 8 t 768 -512 -0.375 -21
+	v 60 8 8 t 768 -1066.0956 -0.125 -21
+   )
+  }
+ }
+// brush 7
+ {
+  guid "{5DEC9403-4F2F-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_planter_top_trim_painted_grey
+   lightmap_gray
+   3 3 0 1
+   (
+	v 60 8 56 t 0 -1066.0956 16.25 -8.4375
+	v 62 4 56 t 0 -533.04779 16.125 -8.6875
+	v 64 0 56 t 0 0 16 -8.9375
+   )
+   (
+	v 60 8 60 t -100.36858 -1066.0956 16.25 -8.4375
+	v 62 4 62 t -100.36858 -533.04779 16.125 -8.6875
+	v 64 0 64 t -100.36858 0 16 -8.9375
+   )
+   (
+	v 56 8 60 t -200.73715 -1066.0956 16.5 -8.4375
+	v 56 4 62 t -200.73715 -533.04779 16.5 -8.6875
+	v 56 0 64 t -200.73715 0 16.5 -8.9375
+   )
+  }
+ }
+// brush 8
+ {
+  guid "{5054016F-4F2F-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_planter_top_trim_painted_grey
+   lightmap_gray
+   3 3 0 8
+   (
+	v 8 8 60 t -1937.4746 -1066.0956 19.5 -8.4375
+	v 32 8 60 t -2129.4746 -1066.0956 18 -8.4375
+	v 56 8 60 t -2321.4749 -1066.0956 16.5 -8.4375
+   )
+   (
+	v 8 4 64 t -1937.4746 -441.59131 19.5 -8.6875
+	v 32 4 64 t -2129.4746 -441.59131 18 -8.6875
+	v 56 4 64 t -2321.4749 -441.59131 16.5 -8.6875
+   )
+   (
+	v 8 0 64 t -1937.4746 0 19.5 -8.9375
+	v 32 0 64 t -2129.4746 0 18 -8.9375
+	v 56 0 64 t -2321.4749 0 16.5 -8.9375
+   )
+  }
+ }
+// brush 9
+ {
+  guid "{941BE632-4F2F-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_painted_clean_white
+   lightmap_gray
+   3 3 16 1
+   (
+	v 60 8 56 t 832 -832 3.75 -24
+	v 60 8 60 t 896 -832 3.75 -24.25
+	v 56 8 60 t 896 -768 3.5 -24.25
+   )
+   (
+	v 56 8 56 t 832 -768 3.5 -24
+	v 56 8 56 t 832 -768 3.5 -24
+	v 56 8 56 t 832 -768 3.5 -24
+   )
+   (
+	v 56 8 56 t 832 -768 3.5 -24
+	v 56 8 56 t 832 -768 3.5 -24
+	v 56 8 56 t 832 -768 3.5 -24
+   )
+  }
+ }
+// brush 10
+ {
+  guid "{8D240054-4F30-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_painted_clean_white
+   lightmap_gray
+   3 3 16 1
+   (
+	v 56 8 4 t 0 -768 3.5 -20.75
+	v 60 8 4 t 0 -832 3.75 -20.75
+	v 60 8 8 t 64 -832 3.75 -21
+   )
+   (
+	v 56 8 8 t 64 -768 3.5 -21
+	v 56 8 8 t 64 -768 3.5 -21
+	v 56 8 8 t 64 -768 3.5 -21
+   )
+   (
+	v 56 8 8 t 64 -768 3.5 -21
+	v 56 8 8 t 64 -768 3.5 -21
+	v 56 8 8 t 64 -768 3.5 -21
+   )
+  }
+ }
+// brush 11
+ {
+  guid "{8D24005B-4F30-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_painted_clean_white
+   lightmap_gray
+   3 3 16 1
+   (
+	v 4 8 8 t 64 64 0.25 -21
+	v 4 8 4 t 0 64 0.25 -20.75
+	v 8 8 4 t 0 0 0.5 -20.75
+   )
+   (
+	v 8 8 8 t 64 0 0.5 -21
+	v 8 8 8 t 64 0 0.5 -21
+	v 8 8 8 t 64 0 0.5 -21
+   )
+   (
+	v 8 8 8 t 64 0 0.5 -21
+	v 8 8 8 t 64 0 0.5 -21
+	v 8 8 8 t 64 0 0.5 -21
+   )
+  }
+ }
+// brush 12
+ {
+  guid "{935453C2-4F30-11E4-88C4-2C27D7EF3DFC}"
+  curve
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_painted_clean_white
+   lightmap_gray
+   3 3 16 1
+   (
+	v 8 8 60 t 896 0 0.5 -24.25
+	v 4 8 60 t 896 64 0.25 -24.25
+	v 4 8 56 t 832 64 0.25 -24
+   )
+   (
+	v 8 8 56 t 832 0 0.5 -24
+	v 8 8 56 t 832 0 0.5 -24
+	v 8 8 56 t 832 0 0.5 -24
+   )
+   (
+	v 8 8 56 t 832 0 0.5 -24
+	v 8 8 56 t 832 0 0.5 -24
+	v 8 8 56 t 832 0 0.5 -24
+   )
+  }
+ }
+// brush 13
+ {
+  guid "{99FA7678-4F30-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_painted_clean_white
+   lightmap_gray
+   2 2 0 8
+   (
+	v 56 8 8 t 64 -768 29 -20.25
+	v 60 8 8 t 64 -832 26 -20.25
+   )
+   (
+	v 56 8 56 t 832 -768 29 -23.75
+	v 60 8 56 t 832 -832 26 -23.75
+   )
+  }
+ }
+// brush 14
+ {
+  guid "{A049763C-4F30-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_painted_clean_white
+   lightmap_gray
+   2 2 0 8
+   (
+	v 4 8 8 t 7424 -5184 29 -20.25
+	v 8 8 8 t 6656 -5184 26 -20.25
+   )
+   (
+	v 4 8 56 t 7424 -6080 29 -23.75
+	v 8 8 56 t 6656 -6080 26 -23.75
+   )
+  }
+ }
+}
+// entity 2
+{
+guid "{6FB3F016-B8B7-4165-828D-8B776F2820B2}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{30FD2AA7-500D-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_decal_signage_terra_farms_number_03_black
+   lightmap_gray
+   2 2 0 8
+   (
+	v 17 8 6 t 0 -0 26 -20.25 f 1
+	v 17 8 16 t 0 -1024 26 -23.75 f 1
+   )
+   (
+	v 7 8 6 t 1024 -0 29 -20.25 f 1
+	v 7 8 16 t 1024 -1024 29 -23.75 f 1
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+}
+// entity 3
+{
+guid "{0784609A-43DC-4C4D-BE72-84DDCD1B9A9D}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_vent_metal_dampers_01"
+"modelscale" "0.899999999329448"
+"origin" "32.5 5 38.5"
+}
+// entity 4
+{
+guid "{89C12D39-B311-4FC1-81E3-AA6EA9A3B6BE}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{31F1DFEF-50C0-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_vent_02
+   lightmap_gray
+   2 2 0 8
+   (
+	v 56 2 21 t 0 -0 26 -20.25 f 1
+	v 56 2 56 t 0 -1024 26 -23.75 f 1
+   )
+   (
+	v 8 2 21 t 1024 -0 29 -20.25 f 1
+	v 8 2 56 t 1024 -1024 29 -23.75 f 1
+   )
+  }
+ }
+}
+// entity 5
+{
+guid "{CE883ACE-5AC2-4CB4-BF5E-F182BDAAACAD}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{97405277-50C0-11E4-88C4-2C27D7EF3DFC}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_metal_painted_clean_white
+   lightmap_gray
+   2 2 0 8
+   (
+	v 8 8 56 t -960 0 29 -20.25
+	v 56 8 56 t -960 -768 26 -20.25
+   )
+   (
+	v 8 8 60 t -1024 0 29 -23.75
+	v 56 8 60 t -1024 -768 26 -23.75
+   )
+  }
+ }
+}

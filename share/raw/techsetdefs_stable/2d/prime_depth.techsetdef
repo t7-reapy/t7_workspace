@@ -1,0 +1,18 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "none"
+}
+
+Technique( "unlit" )
+{
+	//state = "replace + depth write + nocull"
+	state = "depth write"
+	source = "techsetdef_prime.hlsl"
+	
+	vs = VertexShader() { }
+	ps = PixelShader() { }
+}

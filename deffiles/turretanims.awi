@@ -1,0 +1,73 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	 
+	Asset.AddEntry_Combo( "type", "turretanims" ).Show( false );
+
+    Asset.AddEntry_Combo( "vmType", "None" ).SetTitle( "Script Type" ).SetToolTip( "Spawn this object in server script or client script?" ).Show( false );
+
+	Asset.BeginCategory( "Firing Anims" );
+	{
+		Asset.AddEntry_AssetCombo( "fireAdditiveAnim", "xanim" ).SetTitle( "Fire Additive" );
+	}
+
+	Asset.BeginCategory( "Anim Angles" );
+	{
+		Asset.AddEntry_Float( "aimPitchAngleU", 40, 1, 90 ).SetTitle( "Aim Pitch Angle Up" );
+		Asset.AddEntry_Float( "aimPitchAngleD", 40, 1, 90 ).SetTitle( "Aim Pitch Angle Down" );
+		Asset.AddEntry_Float( "aimYawAngleR", 0, 0, 120 ).SetTitle( "Aim Yaw Angle Right" ).UpdateOnChange( true );
+		Asset.AddEntry_Float( "aimYawAngleL", 0, 0, 120 ).SetTitle( "Aim Yaw Angle Left" ).UpdateOnChange( true );
+		Asset.AddEntry_Float( "aimYawFarAngleR", 0, 0, 120 ).SetTitle( "Aim Yaw Far Angle Right" ).UpdateOnChange( true );
+		Asset.AddEntry_Float( "aimYawFarAngleL", 0, 0, 120 ).SetTitle( "Aim Yaw Far Angle Left" ).UpdateOnChange( true );	
+	}
+	
+	float yawAngleR = Asset.GetEntryFloat( "aimYawAngleR" );
+	float yawAngleL = Asset.GetEntryFloat( "aimYawAngleL" );
+	float yawAngleFarR = Asset.GetEntryFloat( "aimYawFarAngleL" );
+	float yawAngleFarL = Asset.GetEntryFloat( "aimYawFarAngleR" );
+
+	bool showRight = ( yawAngleR > 0 );
+	bool showLeft = ( yawAngleL > 0 );
+	bool showRightFar = ( yawAngleFarR > 0 );
+	bool showLeftFar = ( yawAngleFarL > 0 );
+	
+
+	Asset.BeginCategory( "Aim Center Anims" );
+	{
+		Asset.AddEntry_AssetCombo( "centerUpAnim", "xanim" ).SetTitle( "Up" );
+		Asset.AddEntry_AssetCombo( "centerStraightAnim", "xanim" ).SetTitle( "Straight" );
+		Asset.AddEntry_AssetCombo( "centerDownAnim", "xanim" ).SetTitle( "Down" );
+	}
+
+	Asset.BeginCategory( "Aim Right Anims" );
+	{
+		Asset.AddEntry_AssetCombo( "rightUpAnim", "xanim" ).SetTitle( "Up" ).Show( showRight );
+		Asset.AddEntry_AssetCombo( "rightStraightAnim", "xanim" ).SetTitle( "Straight" ).Show( showRight );
+		Asset.AddEntry_AssetCombo( "rightDownAnim", "xanim" ).SetTitle( "Down" ).Show( showRight );
+	}
+
+	Asset.BeginCategory( "Aim Left Anims" );
+	{
+		Asset.AddEntry_AssetCombo( "leftUpAnim", "xanim" ).SetTitle( "Up" ).Show( showLeft );
+		Asset.AddEntry_AssetCombo( "leftStraightAnim", "xanim" ).SetTitle( "Straight" ).Show( showLeft );
+		Asset.AddEntry_AssetCombo( "leftDownAnim", "xanim" ).SetTitle( "Down" ).Show( showLeft );
+	}
+
+	Asset.BeginCategory( "Aim Far Right Anims" );
+	{
+		Asset.AddEntry_AssetCombo( "rightUpFarAnim", "xanim" ).SetTitle( "Up" ).Show( showRightFar );
+		Asset.AddEntry_AssetCombo( "rightStraightFarAnim", "xanim" ).SetTitle( "Straight" ).Show( showRightFar );
+		Asset.AddEntry_AssetCombo( "rightDownFarAnim", "xanim" ).SetTitle( "Down" ).Show( showRightFar );
+	}
+
+	Asset.BeginCategory( "Aim Far Left Anims" );
+	{
+		Asset.AddEntry_AssetCombo( "leftUpFarAnim", "xanim" ).SetTitle( "Up" ).Show( showLeftFar );
+		Asset.AddEntry_AssetCombo( "leftStraightFarAnim", "xanim" ).SetTitle( "Straight" ).Show( showLeftFar );
+		Asset.AddEntry_AssetCombo( "leftDownFarAnim", "xanim" ).SetTitle( "Down" ).Show( showLeftFar );
+	}
+}
+

@@ -1,0 +1,54 @@
+#include "eye_base"
+#include "emissive_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit eye sss"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "emissiveMap" ).tweak = Tweak( "Emissive", "Glowy DNI Jizz Map", "0" )
+
+float1( "scriptController1" )
+{
+	x = <cg00_x>
+	tweak = Tweak( "Script Proxy", "Glow Scale", "0" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "forward eye sss"
+	source = "lit_eye.hlsl"
+	defines += "USE_EMISSIVE_MAP", "NO_VERTEX_ALPHA"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+#if PLAT_DURANGO == "1"
+		// override any global Durango defines - fixes the glowing eyes
+#endif
+	}
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

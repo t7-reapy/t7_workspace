@@ -1,0 +1,98 @@
+
+void GenerateUI( asset Asset )
+{
+	Asset.SetGraphColor(0.196, 0.337, 0.443, 1.0);
+
+	// Hidden
+	
+	Asset.AddEntry_String( "configstringFileType", "PHYSIC" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Object properties 
+	
+	Asset.BeginCategory( "Object properties" );
+	{
+		Asset.AddEntry_Float( "mass", 1, 0.01, 10000 ).SetTitle( "Mass" ).SetToolTip( "The mass of the object expressed in pounds." ).SetStep( 0.01 );
+		Asset.AddEntry_Float( "bounce", 0.1, 0, 1 ).SetTitle( "Bounce" ).SetToolTip( "How much the object will bounce (0 means no bounce at all, 1 means biggest bounce)." ).SetStep( 0.01 );
+		Asset.AddEntry_Float( "friction", 1, 0, 10000 ).SetTitle( "Friction" ).SetToolTip( "The friction of the object (0 means no friction at all)." ).SetStep( 0.1 );
+		Asset.AddEntry_Float( "damping_linear", 1.0, 0, 100 ).SetTitle( "Linear Damping" ).SetToolTip( "Scale the linear damping parameter" ).SetStep( 0.01 );
+		Asset.AddEntry_Float( "damping_angular", 1.0, 0, 100 ).SetTitle( "Angular Damping" ).SetToolTip( "Scale the angular damping parameter" ).SetStep( 0.01 );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Force Scaling
+	
+	Asset.BeginCategory( "Force Scaling" );
+	{
+		Asset.AddEntry_Float( "bulletForceScale", 1, 0, 1 ).SetTitle( "Bullet Force Scale" ).SetToolTip( "How much to scale the bullet force (0 means no force at all, 1 means original force)." ).SetStep( 0.01 );
+		Asset.AddEntry_Float( "explosiveForceScale", 1, 0, 1 ).SetTitle( "Explosive Force Scale" ).SetToolTip( "How much to scale the explosive force (0 means no force at all, 1 means original force)." ).SetStep( 0.01 );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Gravity
+	
+	Asset.BeginCategory( "Gravity" );
+	{
+		Asset.AddEntry_Float( "gravityScale", 1, 0.01, 10 ).SetTitle( "Gravity Scale" ).SetToolTip( "Scale the gravity applied to this object." ).SetStep( 0.01 );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Center of Mass Offset
+	
+	Asset.BeginCategory( "Center of Mass Offset" );
+	{
+		Asset.AddEntry_Float( "massOffsetX", 0, -500, 500 ).SetTitle( "X" );
+		Asset.AddEntry_Float( "massOffsetY", 0, -500, 500 ).SetTitle( "Y" );
+		Asset.AddEntry_Float( "massOffsetZ", 0, -500, 500 ).SetTitle( "Z" );
+	}
+	
+	// -  -  -  -  -    -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	Asset.AddEntry_CheckBox( "canFloat", true ).SetTitle( "Can float" ).SetToolTip( "The entity can float." );
+	
+	// -  -  -  -  -    -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Buoyancy Box Min
+	
+	Asset.BeginCategory( "Buoyancy Box Min" );
+	{
+		Asset.AddEntry_Float( "buoyancyMinX", 0, -500, 500 );
+		Asset.AddEntry_Float( "buoyancyMinY", 0, -500, 500 );
+		Asset.AddEntry_Float( "buoyancyMinZ", 0, -500, 500 );
+	}
+	
+	// -  -  -  -  -    -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Buoyancy Box Max
+	
+	Asset.BeginCategory( "Buoyancy Box Max" );
+	{
+		Asset.AddEntry_Float( "buoyancyMaxX", 0, -500, 500 );
+		Asset.AddEntry_Float( "buoyancyMaxY", 0, -500, 500 );
+		Asset.AddEntry_Float( "buoyancyMaxZ", 0, -500, 500 );	
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	// Trail FX
+
+	Asset.BeginCategory( "Trail FX" );
+	{
+		Asset.AddEntry_Path( "trailFX", "" ).SetTitle( "Dyn Ent Trail FX" ).SetRelativePath( "share/raw/fx" ).SetToolTip( "Play this effect when spawning a dyn ent with this preset." );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	// Impacts
+	
+	Asset.BeginCategory( "Impacts" );
+	{
+		Asset.AddEntry_AssetCombo( "impactsFxTable", "impactsfxtable" ).SetTitle( "Explosion Effects Table" ).SetHints( "Impact Effects for this object" );
+		Asset.AddEntry_AssetCombo( "impactsSoundsTable", "impactsoundstable" ).SetTitle( "Explosion Sounds Table" ).SetHints( "Impact Sounds for this object" );
+	}
+
+}

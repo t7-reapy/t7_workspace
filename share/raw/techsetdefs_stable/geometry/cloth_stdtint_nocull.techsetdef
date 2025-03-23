@@ -1,0 +1,95 @@
+#include "lit_detail_base_mid"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit deferred opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "velveteenSampler" )
+{
+	tile = <tileReveal>
+	filter = <filterReveal>
+	tweak = Tweak()
+	{
+		category  = "Lighting"
+		sortindex = "30"
+	}
+}
+
+Texture( "velveteenMask" )
+{
+	image = Image()
+	{
+		map = <alphaRevealMap, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Lighting"
+		title     = "Velveteen Mask"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "waterRefractionAmount" )
+{
+	x = <waterRefractionAmount>
+	tweak = Tweak()
+	{
+		category  = "Lighting"
+		title     = "Velveteen"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth nocull"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes nocull"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered nocull"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth + nocull"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque + nocull"
+	defines = "USE_DETAIL_MAP", "BASE_SPEC", "USE_COLOR_TINT"
+	source = "gbuffer_cloth.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth + nocull"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

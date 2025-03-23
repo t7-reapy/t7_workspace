@@ -1,0 +1,66 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Texture( "smaaMap" )
+{
+	ref = true
+	image = Image( <colorMap, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "SMAA Tex"
+		sortindex = "0"
+	}
+}
+
+State( "smaa pass2 state" )
+{
+	depthTest      = disable
+	depthWrite     = false
+
+
+	stencilFront = StencilState()
+	{
+		enable	= true
+		func	= Equal
+		opFail	= Keep
+		opPass	= Keep
+		opZFail	= Keep
+	}
+
+	blendState = BlendState()
+	{
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = disable
+		alphaBlendSrc  = zero
+		alphaBlendDst  = one
+		writeChannels  = "rgba"
+	}
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "smaa pass2 state"
+	source = "smaa_pass2.hlsl"
+
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+		edgesTex = CodeTexture( "codeTexture0" )
+		blendTex = CodeTexture( "codeTexture1" )
+		smaaTex = "smaaMap"
+
+		bilinearSampler = Sampler("no tile", "nomip bilinear")
+	}
+}
+

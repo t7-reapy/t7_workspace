@@ -1,0 +1,99 @@
+#include "lit_base_basic"
+#include "lit_decal_base.inc"
+
+Globals()
+{
+	category = "Decal"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+	renderFlags = "base decal renderflags"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "tintMask" )
+{
+	image = Image( <colorMap00, $white_multimask> )
+	semantic = "multipleMask"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "20"
+	}
+}
+
+Sampler( "tintMaskSampler" )
+{
+	tile = <texTile00>
+	filter = <filterColor00>
+	tweak = Tweak()
+	{
+		category  = "Color"
+		sortindex = "28" // leave some indices to have other color maps (need 2 indices - tile + filter)
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "colorTint" ).tweak = Tweak()
+{
+	category  = "Color"
+	title     = "Albedo Tint (R Channel)"
+	sortindex = "30"
+	color = true
+}
+Color( "colorTint1" )
+{
+	value = "srgb_to_linear( <colorTint1> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Albedo Tint (G Channel)"
+		sortindex = "40"
+		color = true
+	}
+}
+Color( "colorTint2" )
+{
+	value = "srgb_to_linear( <colorTint2> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Albedo Tint (B Channel)"
+		sortindex = "50"
+		color = true
+	}
+}
+Color( "colorTint3" )
+{
+	value = "srgb_to_linear( <colorTint3> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Albedo Tint (A Channel)"
+		sortindex = "60"
+		color = true
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+}
+
+Technique( "gbuffer" ) : "base lit decal gbuffer"
+{
+	defines += "BASE_TEXTURES", "USE_COLOR_TINT", "USE_TINT_MASK", "USE_MULTI_TINT"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

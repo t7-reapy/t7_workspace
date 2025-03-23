@@ -1,0 +1,56 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+	gameOnly = true
+}
+
+//----------------------------------------------------------------
+
+Texture( "heatLookup" )
+{
+	image = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	tweak = Tweak( "Heat Lookup", "Texture", "0" )
+}
+
+Texture( "sceneLookup" )
+{
+	image = Image( <colorMap01> )
+	semantic = "diffuseMap"
+	tweak = Tweak( "Scene Lookup", "Texture", "10" )
+}
+
+Texture( "noiseTexture" )
+{
+	image = Image( <colorMap02, $black> )
+	semantic = "diffuseMap"
+	tweak = Tweak( "Noise", "Texture", "20" )
+}
+
+//----------------------------------------------------------------
+
+Technique( "unlit" )
+{
+	state = "disable"
+	source = "postfx/postfx_infrared.hlsl"
+	defines = "USE_VERTCOL 0"
+
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+	    sceneTexture = CodeTexture( "resolvedPostSun" )
+		sceneDepthTexture = CodeTexture( "floatZ" )
+	    sonarTexture = CodeTexture( "sonarColorSampler" )
+	    sonarDepthTexture = CodeTexture( "sonarDepthSampler" )
+
+ 		sonarSampler = Sampler( "no tile", "nomip bilinear" )
+ 		heatLookupSampler = Sampler( "no tile", "nomip bilinear" )
+ 		noiseSampler = Sampler( "tile both", "nomip bilinear" )
+	}
+}

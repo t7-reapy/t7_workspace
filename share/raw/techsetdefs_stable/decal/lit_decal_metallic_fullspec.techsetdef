@@ -1,0 +1,78 @@
+#include "lit_base_shaders"
+#include "lit_decal_base.inc"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "base decal renderflags"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" )
+{
+	tile = <tileSpecular>
+	filter = <filterSpecular>
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		sortindex = "30"
+	}
+}
+Sampler( "specColorSampler" ) : "colorSampler" {}
+
+Texture( "colorMap" )
+{
+	image = Image( <specColorMap, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Specular Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "glossMap" )
+{
+	image = Image( <cosinePowerMap, $white_gloss> )
+	semantic = "glossMap"
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Gloss Map"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "glossRange" )
+{
+	x = 0
+	y = 17
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines = ""
+}
+
+Technique( "gbuffer" ) : "base lit decal gbuffer metallic"
+{
+	source = "gbuffer_decal_metallic.hlsl"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

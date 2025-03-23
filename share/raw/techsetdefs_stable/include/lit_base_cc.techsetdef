@@ -1,0 +1,13 @@
+
+
+// No tweaks - hidden
+Texture( "customizeMask" )
+{
+	image = Image( $black ) // black so even if script vectors are not set then non of the channels will be visible
+	usage = "camo mask map"
+}
+
+// Hide the albedo tweak
+
+Color( "colorTint" ). tweak = ""
+

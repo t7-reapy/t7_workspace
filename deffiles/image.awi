@@ -1,0 +1,243 @@
+
+//---------------------------------------------------------------------------------------------
+/*
+        PLEASE UPDATE THIS TABLE WHEN ADDING NEW SEMANTICS:
+         If the table changes, please also update the "gCoreSemanticCompression" dictionary in this py file: %TA_TOOLS_PATH%\scripts\codartutils\materials.py
+
+    +----------------------------+-------------------+----------------------------------------------------------------------------+------------------------------------+
+    | SEMANTIC                   | CORE SEMANTIC     | COMPRESSION OPTIONS                                                        | Converter compression maping(*)    |
+    +----------------------------+-------------------+----------------------------------------------------------------------------+------------------------------------+
+    | diffuseMap,                | sRGB3chAlpha      | compressed high color, compressed low color, compressed no alpha,          | BC7_SRGB, BC3_SRGB, BC1_SRGB,      |
+    | effectMap,                 |                   | uncompressed                                                               | R8G8B8A8_SRGB                      |
+    +----------------------------+-------------------+----------------------------------------------------------------------------+------------------------------------+
+    | specularMap                | sRGB3ch           | compressed, uncompressed                                                   | BC1_SRGB, R8G8B8A8_SRGB            |
+    +----------------------------+-------------------+----------------------------------------------------------------------------+------------------------------------+
+    | normalMap                  | Normal            | compressed, uncompressed                                                   | BC7, R8G8B8A8                      |
+    +----------------------------+-------------------+----------------------------------------------------------------------------+------------------------------------+
+    | 2d, multipleMask           | Linear4ch         | compressed, uncompressed                                                   | BC7, R8G8B8A8                      |
+    +----------------------------+-------------------+----------------------------------------------------------------------------+------------------------------------+
+    | camoMap                    | Linear3ch         | compressed, uncompressed                                                   | BC1, R8G8B8A8                      |
+    +----------------------------+-------------------+----------------------------------------------------------------------------+------------------------------------+
+    | Two Channel                | Linear2ch         | compressed, uncompressed                                                   | BC5, R8G8                          |
+    +----------------------------+-------------------+----------------------------------------------------------------------------+------------------------------------+
+    | glossMap, specularMask     | Linear1ch         | compressed, uncompressed                                                   | BC4, R8                            |
+    | occlusionMap, revealMap    |                   |                                                                            |                                    |
+    | thicknessMap, One Channel  |                   |                                                                            |                                    |
+    +----------------------------+-------------------+----------------------------------------------------------------------------+------------------------------------+
+    | LutTpage                   | LutTpage          | uncompressed                                                               | R10G10B10A2                        |
+    +----------------------------+-------------------+----------------------------------------------------------------------------+------------------------------------+
+    | Emblem                     | Emblem            | uncompressed                                                               | R8G8B8A8                           |
+    +----------------------------+-------------------+----------------------------------------------------------------------------+------------------------------------+
+    | HDR                        | HDR               | compressed, shared exponent, uncompressed                                  | BC6_UH, R9G9B9E5, R16G16B16A16F    |
+    +----------------------------+-------------------+----------------------------------------------------------------------------+------------------------------------+
+    | Custom                     | Custom            | R8, R16, R16F, R32F, R8G8, R16G16, R16G16F, R32G32F, R9G9B9E5, R8G8B8A8,   | (same)                             |
+    |                            |                   | R8G8B8A8_SRGB, R10G10B10A2, R16G16B16A16, R16G16B16A16F, R32G32B32A32F,    |                                    |
+    |                            |                   | BC1, BC1_SRGB, BC2, BC2_SRGB, BC3, BC3_SRGB, BC4, BC5, BC6, BC7, BC7_SRGB  |                                    |
+    +----------------------------+-------------------+----------------------------------------------------------------------------+------------------------------------+
+    | Eye Caustic                | HDR               | compressed, shared exponent, uncompressed                                  | BC6_UH, R9G9B9E5, R16G16B16A16F    |
+    +----------------------------+-------------------+----------------------------------------------------------------------------+------------------------------------+
+    |                            |                   |                                                                            |                                    |
+    +----------------------------+-------------------+----------------------------------------------------------------------------+------------------------------------+
+
+	(*) the converter compression mapping is for info only - might change in the future
+
+*/
+//---------------------------------------------------------------------------------------------
+
+void ValidatePremulAlpha( asset Asset, const string& ID )
+{
+	bool effect = Asset.GetEntryValue( "semantic" ) == "effectMap";
+	Asset.GetEntryControl( "premulAlpha" ).SetBool( effect );
+	Asset.GetEntryControl( "streamable" ).SetBool( !effect );
+}
+
+void GenerateUI( asset Asset )
+{
+	string imageTypes = "image | composite";
+	
+
+	
+	string semantics = "2d | diffuseMap | effectMap | normalMap | specularMask | specularMap | glossMap | occlusionMap | revealMap | multipleMask | thicknessMap | camoMap | One Channel | Two Channel | Emblem | HDR | Eye Caustic | Custom | LutTpage ";
+
+	string compMethodSRGB = "Best color compression{compressed high color}|Better alpha compression{compressed low color}|Low quality color compression with no Alpha{compressed no alpha}|Uncompressed{uncompressed}";
+	string compMethodDefault = "compressed{compressed}|uncompressed{uncompressed}";
+	string compMethodUncompressed = "uncompressed{uncompressed}";
+	string compMethodHDR = "compressed|shared exponent|uncompressed";
+	string compMethodCustom = "R8|R16|R16F|R32F|R8G8|R16G16|R16G16F|R32G32F|R9G9B9E5|R8G8B8A8|R8G8B8A8_SRGB|R10G10B10A2|R16G16B16A16|R16G16B16A16F|R32G32B32A32F|BC1|BC1_SRGB|BC2|BC2_SRGB|BC3|BC3_SRGB|BC4|BC5|BC6|BC7|BC7_SRGB";
+	
+	string mipMode = "Average|Luminance|Alpha|Luminance Alpha|Punch-Through Alpha{PunchThru}";
+	string mipModeHeight = "Average|Luminance|Max";
+	string mipBase = "1/1|1/2|1/4|1/8";
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	Asset.AddEntry_Combo( "type", imageTypes ).SetTitle ("Image Type").UpdateOnChange(true);
+
+	bool showComposite = Asset.GetEntryValue( "type" ) == "composite";
+	string compositeImages;
+	if ( showComposite )
+		compositeImages = Asset.GetMaterialCompositeImages();
+
+	Asset.AddEntry_Combo( "compositeType", compositeImages ).UpdateOnChange( true ).Show( showComposite );
+
+	Asset.AddEntry_Float("glossVarianceScale", 1, 0, 1).SetTitle("Variance Scale").UpdateOnChange(true).Show(false);
+
+	Asset.AddEntry_CheckBox("fromAlpha", false).SetTitle("Use Texture Alpha Channel").UpdateOnChange(true).Show(false);
+	Asset.AddEntry_CheckBox("colorSRGB", false).SetTitle("sRGB Color Space Texture").UpdateOnChange(true).Show(false);
+	
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	// Init the composite entries:
+	for ( int i=0 ; i<4 ; i++ )
+	{
+		// Do not change those names - they are referenced in code and techsetdefs.
+		Asset.AddEntry_Texture( "compositeImage" + (i+1), "").Show( false ).UpdateOnChange( true );
+		Asset.AddEntry_Texture( "compositeChannel" + (i+1), "").Show( false );
+		Asset.AddEntry_Texture( "compositeSample" + (i+1), "").Show( false );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	Asset.AddEntry_Combo( "semantic", semantics ).SetTitle( "Image Usage:" ).UpdateOnChange(true).Show( false ).SetValidateCallback("void ValidatePremulAlpha(asset Asset, const string& ID)");
+	Asset.AddEntry_Texture( "baseImage", "" ).SetTitle("Texture").UpdateOnChange(true).Show( false );
+
+	Asset.AddEntry_Texture("mipMask", "").SetTitle("Texture").UpdateOnChange(true).Show(false);
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	string semanticStr = Asset.GetEntryValue("semantic");
+
+	Asset.BeginCategory ("Map");
+	{
+	
+		string HelpLinkMap = "<a href=\"http://tawiki/x/PYP_\">Map Settings Documentation";
+		Asset.AddEntry_Label( "helpLinkMap", HelpLinkMap ).SetTitle( "Map Settings Explainer" );
+		bool composite = Asset.GetEntryValue( "type" ) == "composite";
+
+		if ( composite )
+		{
+			Asset.AddCompositeImageEntries(Asset.GetEntryValue( "compositeType" ) );
+		}
+		else
+		{
+			Asset.ShowEntry( "baseImage" );
+			Asset.ShowEntry( "semantic" );
+		}
+
+
+		if (semanticStr == "normalMap")
+			Asset.ShowEntry("glossVarianceScale");
+		
+		if (semanticStr == "Custom")
+			Asset.ShowEntry("colorSRGB");
+			
+		if (semanticStr == "One Channel")
+			Asset.ShowEntry("fromAlpha");
+
+		//
+		// Core semantic:
+		//
+		string coreSemanticStr = "";
+		if ( composite )
+			coreSemanticStr = "sRGB3chAlpha"; // Asset.GetCompositeImageCoreSemantic( Asset.GetEntryValue( "compositeType" ) ); // TODO: Need to add to APE
+
+		else if ((semanticStr == "diffuseMap") || (semanticStr == "effectMap"))
+			coreSemanticStr = "sRGB3chAlpha";
+
+		else if (semanticStr == "normalMap")
+			coreSemanticStr = "Normal";
+
+		else if (semanticStr == "specularMap")
+			coreSemanticStr = "sRGB3ch";
+
+		else if ((semanticStr == "glossMap") || (semanticStr == "occlusionMap") || (semanticStr == "revealMap") || (semanticStr == "thicknessMap") || (semanticStr == "One Channel"))
+			coreSemanticStr = "Linear1ch";
+
+		else if (semanticStr == "specularMask")
+			coreSemanticStr = "Linear1ch";
+
+		else if (semanticStr == "Two Channel")
+			coreSemanticStr = "Linear2ch";
+
+		else if (semanticStr == "camoMap")
+			coreSemanticStr = "Linear3ch";
+
+		else if ( (semanticStr == "2d") || (semanticStr == "multipleMask") )
+			coreSemanticStr = "Linear4ch";
+
+		else if (semanticStr == "LutTpage")
+			coreSemanticStr = "LutTpage";
+
+		else if (semanticStr == "Emblem")
+			coreSemanticStr = "Emblem";
+
+		else if (semanticStr == "HDR" || semanticStr == "Eye Caustic")
+			coreSemanticStr = "HDR";
+
+		else if (semanticStr == "Custom")
+			coreSemanticStr = "Custom";
+
+		Asset.AddEntry_String( "coreSemantic", "" ).Show( false ).ForceSpecified().SetValue( coreSemanticStr );
+
+		//
+		// Compression method:
+		//
+		string compressionMethodStr = compMethodDefault;
+
+		if ((semanticStr == "diffuseMap") || (semanticStr == "effectMap"))
+			compressionMethodStr = compMethodSRGB;
+		
+		else if ( (semanticStr == "LutTpage") || (semanticStr == "emblem") )
+			compressionMethodStr = compMethodUncompressed;
+		
+		else if ( (semanticStr == "HDR") || (semanticStr == "Eye Caustic") )
+			compressionMethodStr = compMethodHDR;
+
+		else if (semanticStr == "Custom")
+			compressionMethodStr = compMethodCustom;
+
+		Asset.AddEntry_Combo( "compressionMethod", compressionMethodStr ).SetTitle("Compression:");
+
+		Asset.AddEntry_Combo( "imageType", "Texture | Cube | Volume" ).SetTitle( "Image Type" );
+	}
+
+	Asset.BeginCategory ("Properties");
+	{
+		bool AllowMipBase = true;
+		if ( Asset.GetEntryBool("doNotResize") )
+		{
+				AllowMipBase = false;
+				//Asset.GetEntryControl("mipBase").SetValue( "1/1" );
+		}
+		//
+		// Mip Mode
+		//
+		string HelpLinkProperties = "<a href=\"http://tawiki/x/CIAaAQ\">Properties Documentation";
+		Asset.AddEntry_Label( "helpLink", HelpLinkProperties ).SetTitle( "Properties Explainer" );
+		
+		string mipModeStr = mipMode;
+		if ((semanticStr == "glossMap") || (semanticStr == "occlusionMap") || (semanticStr == "revealMap") || (semanticStr == "thicknessMap") || (semanticStr == "One Channel"))
+			mipModeStr = mipModeHeight;
+		Asset.AddEntry_Combo("mipMode", mipModeStr).SetTitle("Mipmap Method:").UpdateOnChange(true);
+
+		Asset.AddEntry_Combo("mipBase", mipBase).SetTitle("Mipmap Base Size:").UpdateOnChange(true).Enable( AllowMipBase );
+		Asset.AddEntry_CheckBox("doNotResize", false).SetTitle("Do Not Resize").SetToolTip( "Use to lock Mipmap Base Size Spinner." ).UpdateOnChange(true);
+		Asset.AddEntry_CheckBox("mipNorm", false).SetTitle("Normalize Channels");
+		Asset.AddEntry_CheckBox("noMipMaps", false).SetTitle("Mipmap Disable");
+		
+		Asset.AddEntry_Int("textureAtlasRowCount", 1, 1, 64).SetTitle("Row Count");
+		Asset.AddEntry_Int("textureAtlasColumnCount", 1, 1, 64).SetTitle("Column Count");
+		Asset.AddEntry_CheckBox("clampU", false).SetTitle("Clamp Horizontal");
+		Asset.AddEntry_CheckBox("clampV", false).SetTitle("Clamp Vertical");
+		Asset.AddEntry_CheckBox( "premulAlpha", false ).SetTitle("Premultiply Alpha").Show( true ).UpdateOnChange(true).SetToolTip( "Use for image types with transparency, like PNG");
+
+		Asset.AddEntry_CheckBox("streamable", true ).SetTitle("Streamable");
+		Asset.AddEntry_CheckBox("noPicMip", false).SetTitle("Always High Resolution (PC Only)");
+		Asset.AddEntry_CheckBox("himipStreaming", false).SetTitle( "Hi-Mip Streaming" ).SetToolTip("Allow only two streaming parts, at most");
+		Asset.AddEntry_CheckBox("forceStreaming", false).SetTitle( "Force Streaming" ).SetToolTip("Force an image to be streamed even if it has no mipmaps");
+		Asset.AddEntry_CheckBox( "germanUnsafe", false ).SetTitle( "German Unsafe" ) .SetToolTip( "This asset cannot be used for the German SKU." );
+		Asset.AddEntry_CheckBox( "japaneseUnsafe", false ).SetTitle( "Japanese Unsafe" ) .SetToolTip( "This asset cannot be used for the Japanese SKU." );	
+		Asset.AddEntry_CheckBox( "arabicUnsafe", false ).SetTitle( "Arabic Unsafe" ) .SetToolTip( "This asset cannot be used for the Arabic SKU." );
+		Asset.AddEntry_CheckBox( "matureContent", false ).SetTitle( "Graphic Content Filter" ) .SetToolTip( "This asset will not be shown when Graphic Content filter is Disabled in Graphics Menu." );
+		Asset.AddEntry_CheckBox( "legallyApproved", false ).SetTitle( "Approved by Legal" ) .SetToolTip( "This asset has been approved by legal." );	
+	}
+}

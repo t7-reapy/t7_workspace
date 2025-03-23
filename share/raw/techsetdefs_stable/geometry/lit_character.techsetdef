@@ -1,0 +1,177 @@
+#include "lit_base_mid"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit deferred opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "styleMaskMap" )
+{
+	image = Image( <colorMap01, $white> )
+	semantic = "multipleMask" // should be 3 channel only
+	tweak = Tweak( "Style Mask", "Style Mask Map", "0" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "swatch1Scale" )
+{
+	x = <detail1ScaleX>
+	y = <detail1ScaleY>
+	tweak = Tweak( "Detail Swatch Modifiers", "Detail Swatch 1 Scale", "5" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "swatch2Scale" )
+{
+	x = <detail2ScaleX>
+	y = <detail2ScaleY>
+	tweak = Tweak( "Detail Swatch Modifiers", "Detail Swatch 2 Scale", "6" )
+}
+
+float1( "swatchHeight" )
+{
+	x = <detailScaleHeight1>
+	tweak = Tweak( "Detail Swatch Modifiers", "Detail Swatch Height", "4" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "colorSwatch1Map" )
+{
+	image = Image( <colorMap02, $white> )
+	semantic = "diffuseMap"
+	tweak = Tweak( "Color", "Color Swatch 1", "11" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "colorSwatch2Map" )
+{
+	image = Image( <colorMap03, $white> )
+	semantic = "diffuseMap"
+	tweak = Tweak( "Color", "Color Swatch 2", "12" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "normalSwatch1Map" )
+{
+	image = Image( <colorMap04, $normal> )
+	semantic = "normalMap"
+	tweak = Tweak( "Normal", "Normal Swatch 1", "21" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "normalSwatch2Map" )
+{
+	image = Image( <colorMap05, $normal> )
+	semantic = "normalMap"
+	tweak = Tweak( "Normal", "Normal Swatch 2", "22" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "specColorMap" )
+{
+	image = Image( <specColorMap, $specular> )
+	semantic = "specularMap"
+	tweak = Tweak( "Specular and Gloss", "Specular Map", "25" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "specSwatch1Map" )
+{
+	image = Image( <colorMap06, $specular> )
+	semantic = "specularMap"
+	tweak = Tweak( "Specular and Gloss", "Specular Swatch 1", "26" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "specSwatch2Map" )
+{
+	image = Image( <colorMap07, $specular> )
+	semantic = "specularMap"
+	tweak = Tweak( "Specular and Gloss", "Specular Swatch 2", "27" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "glossSwatch1Map" )
+{
+	image = Image( <colorMap08, $white_gloss> )
+	semantic = "glossMap"
+	tweak = Tweak( "Specular and Gloss", "Gloss Swatch 1", "31" )
+}
+
+Texture( "glossSwatch2Map" )
+{
+	image = Image( <colorMap09, $white_gloss> )
+	semantic = "glossMap"
+	tweak = Tweak( "Specular and Gloss", "Gloss Swatch 2", "32" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque"
+	defines = "USE_COLOR_SPEC", "USE_COLOR_TINT"
+	source = "gbuffer_character.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

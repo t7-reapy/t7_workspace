@@ -1,0 +1,231 @@
+#include "lit_base_basic"
+#include "transparent_shadow_base"
+#include "emissive_base"
+#include "flipbook_base"
+#include "flicker_base"
+#include "transparent_base"
+#include "camo_base"
+
+Globals()
+{
+	category = "Geometry"
+
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "tintMask" )
+{
+	image = Image()
+	{
+		map = <colorMap01, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "layerDepth" )
+{
+	x = <waterRoughness>
+	tweak = Tweak()
+	{
+		category  = "Emissive Parameters"
+		title     = "Depth"
+		sortindex = "10"
+	}
+}
+
+float2( "scrollUVs" )
+{
+	x = <gUVScroll02_Angle>
+	y = <gUVScroll03_Angle>
+	tweak = Tweak()
+	{
+		category  = "Emissive Parameters"
+		title     = "Scroll (U, V)"
+		sortindex = "20"
+	}
+}
+
+float2( "rotateUVs" )
+{
+	x = <uvScrollAngle>
+	y = <uvRotationRate>
+	tweak = Tweak()
+	{
+		category	= "Emissive Parameters"
+		title		= "UV Rotation, Spin Rate"
+		sortindex	= "30"
+	}
+}
+
+float2( "scaleUVs" )
+{
+	x = <detailScaleX>
+	y = <detailScaleY>
+	tweak = Tweak()
+	{
+		category	= "Emissive Parameters"
+		title		= "Scale (U, V)"
+		sortindex	= "40"
+	}
+}
+
+float2( "offsetUVs" )
+{
+	x = <uScroll>
+	y = <vScroll>
+	tweak = Tweak()
+	{
+		category	= "Emissive Parameters"
+		title		= "Offset (U, V)"
+		sortindex	= "50"
+	}
+}
+
+float2( "zoomUVs" )
+{
+	x = <zoomMin>
+	y = <zoomMax>
+	tweak = Tweak()
+	{
+		category	= "Emissive Parameters"
+		title		= "UV Zoom (Min, Max)"
+		sortindex	= "60"
+	}
+}
+
+float1( "zoomRate" )
+{
+	x = <zoomRate>
+	tweak = Tweak()
+	{
+		category	= "Emissive Parameters"
+		title		= "Zoom Rate"
+		sortindex	= "65"
+	}
+}
+
+Bool( "clampU" )
+{
+	value = <clampU>
+	tweak = Tweak()
+	{
+		category	= "Emissive Parameters"
+		title		= "Clamp U"
+		sortindex	= "66"
+	}
+}
+
+Bool( "clampV" )
+{
+	value = <clampV>
+	tweak = Tweak()
+	{
+		category	= "Emissive Parameters"
+		title		= "Clamp V"
+		sortindex	= "67"
+	}
+}
+
+float1( "uvMotionToggle1" )
+{
+	x = <uvMotionToggle1>
+	tweak = Tweak()
+	{
+		category	= "Emissive Parameters"
+		title		= "UV Toggle (Fipbook - 1, Scroll/Rotate - 0)"
+		sortindex	= "70"
+	}
+}
+
+Texture( "emissiveMap" ).streamerUvScale = float2( "1.0 / lerp( 1.0, <columnCount>, <uvMotionToggle1> )", "1.0 / lerp( 1.0, <rowCount>, <uvMotionToggle1> )" )
+
+float1( "rowCount" ).tweak = Tweak()
+{
+	category	= "Emissive Parameters"
+	title		= "Flipbook Row Count"
+	sortindex	= "80"
+}
+float1( "columnCount" ).tweak = Tweak()
+{
+	category	= "Emissive Parameters"
+	title		= "Flipbook Column Count"
+	sortindex	= "90"
+}
+float1( "imageTime" ).tweak = Tweak()
+{
+	category	= "Emissive Parameters"
+	title		= "Flipbook Image Time"
+	sortindex	= "100"
+}
+
+float2( "flickerSeed" ).tweak = Tweak()
+{
+	category	= "Emissive Parameters"
+	title		= "Flicker Seed (Style, Time)"
+	sortindex	= "110"
+}
+float1( "flickerSpeed" ).tweak = Tweak()
+{
+	category	= "Emissive Parameters"
+	title		= "Flicker Speed"
+	sortindex	= "120"
+}
+float2( "flickerRange" ).tweak = Tweak()
+{
+	category	= "Emissive Parameters"
+	title		= "Flicker Range (Min, Max)"
+	sortindex	= "130"
+}
+float1( "flickerPower" ).tweak = Tweak()
+{
+	category	= "Emissive Parameters"
+	title		= "Flicker Harshness"
+	sortindex	= "140"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	defines = "USE_COLOR_TINT", "USE_TINT_MASK"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "blend + depth"
+	defines = "BASE_TEXTURES", "USE_COLOR_TINT", "USE_TINT_MASK", "USE_SCROLL_ROTATE_UVS", "USE_FLIPBOOK_UVS", "USE_EMISSIVE_FLICKER"
+	source = "lit_emissive_transparent.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

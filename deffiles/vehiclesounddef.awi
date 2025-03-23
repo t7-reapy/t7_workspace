@@ -1,0 +1,307 @@
+
+void GenerateUI( asset Asset )
+{
+	// Hidden
+	
+	Asset.AddEntry_String( "configstringFileType", "VEHICLESOUNDDEF" ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Engine Sounds
+
+	Asset.BeginCategory( "Engine Sounds", 0, 0.5, 0, "Icon_Sound.png" );
+	{
+		bool isSimple = Asset.AddEntry_CheckBox( "simpleEngine", false ).SetTitle( "Simple Engine" ).UpdateOnChange( true ).GetBool();
+		
+		bool isAdvanced = !isSimple;
+
+		// ------------------- Advanced Section ---------------------------
+		Asset.AddEntry_Path( "engineGraph", "" ).SetRelativePath( "share/raw/vehicle/" ).SetTitle( "Engine Curve" ).SetToolTip( "Graph file for in-game editing of the non-linear engine curve." ).Show( isAdvanced );
+		
+		Asset.BeginCategory( "Engine Sounds.Engine" );		
+		{
+			Asset.AddEntry_Float( "idleRpms", 1000, 1, 20000 ).SetTitle( "Idle RPMS" ).Show( isAdvanced );			
+			Asset.AddEntry_Float( "maxRpms", 10000, 1, 20000 ).SetTitle( "Max RPMS" ).Show( isAdvanced );
+			Asset.AddEntry_Float( "maxTorque", 2000, 1, 20000 ).SetTitle( "Torque" ).Show( isAdvanced );
+			Asset.AddEntry_Float( "brakingCoeff", 0.75, 0, 10 ).SetTitle( "Braking Coefficient" ).Show( isAdvanced );			
+			if( isAdvanced )
+			{
+				Asset.AddEntry_Float( "throttleLag", 0, 0.01, 100 ).SetTitle( "Throttle Lerp Rate" );		
+			}
+			Asset.AddEntry_Float( "pitchScale", 1, 0.00, 100 ).SetTitle( "Pitch Scale" ).Show( isAdvanced );
+			Asset.AddEntry_Float( "rpmSmoothing", 1, 0.1, 100 ).SetTitle( "RPM Smoothing" ).Show( isAdvanced );
+			Asset.AddEntry_Float( "differentialRatio", 2.7, 0.1, 100 ).SetTitle( "Differential Ratio" ).Show( isAdvanced );			
+		}
+
+		Asset.BeginCategory( "Engine Sounds.Transmission" );		
+		{
+			Asset.AddEntry_Int( "numGears", 0, 0, 10 ).SetTitle( "Gear Count" ).UpdateOnChange( true ).Show( isAdvanced );
+			Asset.AddEntry_CheckBox( "loopLastGear", false ).SetTitle( "Loop Final Gear" ).Show( isAdvanced );
+
+			int numGears = 10; 
+			for ( int i = 0; i < numGears; i++ )
+			{
+				bool show = i < Asset.GetEntryInt( "numGears" ) && isAdvanced;
+				
+				Asset.BeginCategory( "Engine Sounds.Transmission.Gear" + i );
+				{
+					Asset.AddEntry_Float( "gear_min_rpm" + i, 0, 0, 20000 ).SetTitle( "Min RPMS" ).Show( show );			
+					Asset.AddEntry_Float( "gear_max_rpm" + i, 0, 0, 20000 ).SetTitle( "Max RPMS" ).Show( show );			
+					Asset.AddEntry_Float( "gear_ratio" + i, 0, 0, 100 ).SetTitle( "Ratio" ).Show( show );			
+				}
+			}
+		}
+		
+		Asset.BeginCategory( "Engine Sounds.Load" );
+		{			
+			Asset.AddEntry_Float( "onLoadFadeInStart", 0.433, 0, 1 ).SetTitle( "On Load Fade In Start" ).Show( isAdvanced );
+			Asset.AddEntry_Float( "onLoadFadeInEnd", 0.562, 0, 1 ).SetTitle( "On Load Fade In End" ).Show( isAdvanced );
+			Asset.AddEntry_Float( "onLoadMin", 0.0, 0, 1 ).SetTitle( "On Load Min" ).Show( isAdvanced );
+			Asset.AddEntry_Float( "onLoadMax", 1, 0, 1 ).SetTitle( "On Load Max" ).Show( isAdvanced );			
+			Asset.AddEntry_Float( "offLoadMin", 0.0, 0, 1 ).SetTitle( "Off Load Min" ).Show( isAdvanced );
+			Asset.AddEntry_Float( "offLoadMax", 1, 0, 1 ).SetTitle( "Off Load Max" ).Show( isAdvanced );						
+			Asset.AddEntry_Float( "offLoadFadeOutStart", 0.433, 0, 1 ).SetTitle( "Off Load Fade Out Start" ).Show( isAdvanced );
+			Asset.AddEntry_Float( "offLoadFadeOutEnd", 0.562, 0, 1 ).SetTitle( "Off Load Fade Out End" ).Show( isAdvanced );
+			Asset.AddEntry_Float( "loadScale", 10, 0, 1000 ).SetTitle( "Load Scale" ).Show( isAdvanced );						
+			Asset.AddEntry_Float( "loadSmooting", 0.05, 0, 100 ).SetTitle( "Load Smoothing" ).Show( isAdvanced );								
+		}
+		
+		Asset.BeginCategory( "Engine Sounds.On Load Sounds" );
+		{		
+			Asset.AddEntry_String( "on_engsnd_name0", "" ).SetTitle( "Name" ).UpdateOnChange( true ).Show( isAdvanced );
+			Asset.AddEntry_Float( "on_engsnd_fade_in_start0", 0, -1, 2 ).SetTitle( "Fade In Start" ).Show( isAdvanced );			
+			Asset.AddEntry_Float( "on_engsnd_fade_in_end0", 0, -1, 2 ).SetTitle( "Fade In End" ).Show( isAdvanced );			
+			Asset.AddEntry_Float( "on_engsnd_fade_out_start0", 0, -1, 2 ).SetTitle( "Fade Out Start" ).Show( isAdvanced );			
+			Asset.AddEntry_Float( "on_engsnd_fade_out_end0", 0, -1, 2 ).SetTitle( "Fade Out End" ).Show( isAdvanced );			
+			Asset.AddEntry_Float( "on_engsnd_pitch_ref0", 0, -1, 2 ).SetTitle( "Pitch Ref" ).Show( isAdvanced );						
+			Asset.AddEntry_Float( "on_engsnd_vol_min0", 0, 0, 2 ).SetTitle( "Min Volume" ).Show( isAdvanced );			
+			Asset.AddEntry_Float( "on_engsnd_vol_max0", 1, 0, 2 ).SetTitle( "Max Volume" ).Show( isAdvanced );								
+			
+			for ( int i = 1; i < 5; i++ )
+			{
+				string previousEntryName = Asset.GetEntryValue( "on_engsnd_name" + ( i - 1 ) );
+				bool show = ( previousEntryName != "" ) && isAdvanced;
+				
+				Asset.AddEntry_String( "on_engsnd_name" + i, "" ).SetTitle( "Name" ).UpdateOnChange( true ).Show( show );
+				Asset.AddEntry_Float( "on_engsnd_fade_in_start" + i, 0, -1, 2 ).SetTitle( "Fade In Start" ).Show( show );			
+				Asset.AddEntry_Float( "on_engsnd_fade_in_end" + i, 0, -1, 2 ).SetTitle( "Fade In End" ).Show( show );			
+				Asset.AddEntry_Float( "on_engsnd_fade_out_start" + i, 0, -1, 2 ).SetTitle( "Fade Out Start" ).Show( show );			
+				Asset.AddEntry_Float( "on_engsnd_fade_out_end" + i, 0, -1, 2 ).SetTitle( "Fade Out End" ).Show( show );			
+				Asset.AddEntry_Float( "on_engsnd_pitch_ref" + i, 0, -1, 2 ).SetTitle( "Pitch Ref" ).Show( show );
+				Asset.AddEntry_Float( "on_engsnd_vol_min" + i, 0, 0, 2 ).SetTitle( "Min Volume" ).Show( show );			
+				Asset.AddEntry_Float( "on_engsnd_vol_max" + i, 1, 0, 2 ).SetTitle( "Max Volume" ).Show( show );				
+			}			
+		}
+		
+		Asset.BeginCategory( "Engine Sounds.Off Load Sounds" );
+		{		
+			Asset.AddEntry_String( "off_engsnd_name0", "" ).SetTitle( "Name" ).UpdateOnChange( true ).Show( isAdvanced );
+			Asset.AddEntry_Float( "off_engsnd_fade_in_start0", 0, -1, 2 ).SetTitle( "Fade In Start" ).Show( isAdvanced );			
+			Asset.AddEntry_Float( "off_engsnd_fade_in_end0", 0, -1, 2 ).SetTitle( "Fade In End" ).Show( isAdvanced );			
+			Asset.AddEntry_Float( "off_engsnd_fade_out_start0", 0, -1, 2 ).SetTitle( "Fade Out Start" ).Show( isAdvanced );			
+			Asset.AddEntry_Float( "off_engsnd_fade_out_end0", 0, -1, 2 ).SetTitle( "Fade Out End" ).Show( isAdvanced );			
+			Asset.AddEntry_Float( "off_engsnd_pitch_ref0", 0, -1, 2 ).SetTitle( "Pitch Ref" ).Show( isAdvanced );	
+			Asset.AddEntry_Float( "off_engsnd_vol_min0", 0, 0, 2 ).SetTitle( "Min Volume" ).Show( isAdvanced );			
+			Asset.AddEntry_Float( "off_engsnd_vol_max0", 1, 0, 2 ).SetTitle( "Max Volume" ).Show( isAdvanced );				
+			
+			for ( int i = 1; i < 5; i++ )
+			{
+				string previousEntryName = Asset.GetEntryValue( "off_engsnd_name" + ( i - 1 ) );
+				bool show = ( previousEntryName != "" ) && isAdvanced;
+				
+				Asset.AddEntry_String( "off_engsnd_name" + i, "" ).SetTitle( "Name" ).UpdateOnChange( true ).Show( show );
+				Asset.AddEntry_Float( "off_engsnd_fade_in_start" + i, 0, -1, 2 ).SetTitle( "Fade In Start" ).Show( show );			
+				Asset.AddEntry_Float( "off_engsnd_fade_in_end" + i, 0, -1, 2 ).SetTitle( "Fade In End" ).Show( show );			
+				Asset.AddEntry_Float( "off_engsnd_fade_out_start" + i, 0, -1, 2 ).SetTitle( "Fade Out Start" ).Show( show );			
+				Asset.AddEntry_Float( "off_engsnd_fade_out_end" + i, 0, -1, 2 ).SetTitle( "Fade Out End" ).Show( show );			
+				Asset.AddEntry_Float( "off_engsnd_pitch_ref" + i, 0, -1, 2 ).SetTitle( "Pitch Ref" ).Show( show );
+				Asset.AddEntry_Float( "off_engsnd_vol_min" + i, 0, 0, 2 ).SetTitle( "Min Volume" ).Show( show );			
+				Asset.AddEntry_Float( "off_engsnd_vol_max" + i, 1, 0, 2 ).SetTitle( "Max Volume" ).Show( show );				
+			}			
+		}		
+
+		// ------------------- Simple Section ---------------------------
+
+		Asset.BeginCategory( "Engine Sounds.Simple Settings" );
+		{
+			Asset.AddEntry_String( "eng_idle_snd_name", "" ).SetTitle( "Idle Sound" ).Show( isSimple );
+			Asset.AddEntry_String( "eng_move_snd_name", "" ).SetTitle( "Move Sound" ).Show( isSimple );
+			Asset.AddEntry_String( "eng_offload_snd_name", "").SetTitle( "Offload Sound" ).Show( isSimple );
+
+			bool useAudioMaxSpeed = Asset.AddEntry_CheckBox( "use_audio_max_speed", false ).SetTitle( "Use Audio Max Speed" ).UpdateOnChange( true ).SetToolTip( "Use this to determine the speed percentage instead of the max speed in the vehicle GDT.  This uses inches per second and NOT MPH" ).GetBool();
+			Asset.AddEntry_Float( "audio_max_speed", 500, 1, 10000 ).SetTitle( "Audio Max Speed" ).SetToolTip( "Use this to determine the speed percentage instead of the max speed in the vehicle GDT.  This uses inches per second and NOT MPH" ).Enable( useAudioMaxSpeed );
+		
+			Asset.AddEntry_Float( "throttleLag", 0, 0.01, 100 ).SetTitle( "Speed Lerp Rate" ).SetToolTip( "The higher the number the quicker it matches the actual speed" );
+			
+			Asset.AddEntry_Float( "eng_idle_start_speed", 0, 0, 1000000 ).SetTitle( "Idle Sound Start Speed" ).SetStep( 0.01 ).SetToolTip( "The speed at which idle start to be faded out." ).Show( isSimple );
+			Asset.AddEntry_Float( "eng_idle_end_speed", 0.15, 0, 1000000 ).SetTitle( "Idle Sound End Speed" ).SetStep( 0.01 ).SetToolTip( "The speed at which idle will be fully faded out." ).Show( isSimple );
+
+			Asset.AddEntry_Float( "eng_idle_start_pitch", 1, 0, 100 ).SetTitle( "Idle Sound Start Pitch" ).SetStep( 0.01 ).SetToolTip( "The pitch at which the idle sounds starts when at 0 Speed." ).Show( isSimple );
+			Asset.AddEntry_Float( "eng_idle_end_pitch", 1.2, 0, 100 ).SetTitle( "Idle Sound End Pitch" ).SetStep( 0.01 ).SetToolTip( "The pitch at which the idle sounds plays when at Idle Sound End Speed." ).Show( isSimple );
+
+			Asset.AddEntry_Float( "eng_move_start_speed", 0.1, 0, 100000 ).SetTitle( "Move Sound Start Speed" ).SetStep( 0.01 ).SetToolTip( "The speed at which the move sounds starts to fade in." ).Show( isSimple );
+			Asset.AddEntry_Float( "eng_move_end_speed", 0.25, 0, 100000 ).SetTitle( "Move Sound End Speed" ).SetStep( 0.01 ).SetToolTip( "The speed at which the move sounds is fully faded in." ).Show( isSimple );
+
+			Asset.AddEntry_Float( "eng_move_start_pitch", 1, 0, 100 ).SetTitle( "Move Sound Start Pitch" ).SetStep( 0.01 ).SetToolTip( "The pitch at which the move sounds starts when at Move Sound Start Speed." ).Show( isSimple );
+			Asset.AddEntry_Float( "eng_move_end_pitch", 1, 0, 100 ).SetTitle( "Move Sound End Pitch" ).SetStep( 0.01 ).SetToolTip( "The pitch at which the move sounds plays when at max speed." ).Show( isSimple );
+			
+			Asset.AddEntry_Float( "eng_offload_start_pitch", 1, 0, 100 ).SetTitle( "Offload Sound Start Pitch" ).SetStep( 0.01 ).SetToolTip( "The pitch at which the offload sounds starts when at Move Sound End Speed." ).Show( isSimple );
+			Asset.AddEntry_Float( "eng_offload_end_pitch", 1, 0, 100 ).SetTitle( "Offload Sound End Pitch" ).SetStep( 0.01 ).SetToolTip( "The pitch at which the Offload sounds plays when at min threshold speed." ).Show( isSimple );
+			
+		}
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Drive By Sounds 
+	Asset.BeginCategory( "Drive By Sounds", 0, 0.5, 0, "Icon_Sound.png" );
+	{
+		Asset.AddEntry_Float( "p_drive_by_sound_radius", 10000, 100, 50000 ).SetTitle( "Outer Radius" );
+		Asset.AddEntry_Float( "s_drive_by_sound_radius", 5000, 100, 50000 ).SetTitle( "Inner Radius" );				
+		
+		Asset.BeginCategory( "Drive By Sounds.Primary" );
+		{		
+			Asset.AddEntry_String( "p_drive_by_sound_name0", "" ).SetTitle( "Sound Name1" ).UpdateOnChange( true );
+			Asset.AddEntry_Int( "p_drive_by_sound_apex0", 0, 0, 50000 ).SetTitle( "Apex Time1" ).UpdateOnChange( true );
+			
+			for ( int i = 1; i < 20; i++ )
+			{
+				string previousEntryName = Asset.GetEntryValue( "p_drive_by_sound_name" + ( i - 1 ) );
+				int previousEntryTime = Asset.GetEntryInt( "p_drive_by_sound_apex" + ( i - 1 ) );
+				bool show = ( previousEntryName != "" && previousEntryTime != 0 );
+				
+				Asset.AddEntry_String( "p_drive_by_sound_name" + i, "" ).SetTitle( "Sound Name" + ( i + 1 ) ).UpdateOnChange( true ).Show( show );
+				Asset.AddEntry_Int( "p_drive_by_sound_apex" + i, 0, 0, 50000 ).SetTitle( "Apex Time" + ( i + 1 ) ).UpdateOnChange( true ).Show( show );	
+			}
+		}
+		
+		Asset.BeginCategory( "Drive By Sounds.Secondary" );
+		{		
+			Asset.AddEntry_String( "s_drive_by_sound_name0", "" ).SetTitle( "Sound Name1" ).UpdateOnChange( true );
+			Asset.AddEntry_Int( "s_drive_by_sound_apex0", 0, 0, 50000 ).SetTitle( "Apex Time1" ).UpdateOnChange( true );
+			
+			for ( int i = 1; i < 20; i++ )
+			{
+				string previousEntryName = Asset.GetEntryValue( "s_drive_by_sound_name" + ( i - 1 ) );
+				int previousEntryTime = Asset.GetEntryInt( "s_drive_by_sound_apex" + ( i - 1 ) );
+				bool show = ( previousEntryName != "" && previousEntryTime != 0 );
+				
+				Asset.AddEntry_String( "s_drive_by_sound_name" + i, "" ).SetTitle( "Sound Name" + ( i + 1 ) ).UpdateOnChange( true ).Show( show );
+				Asset.AddEntry_Int( "s_drive_by_sound_apex" + i, 0, 0, 50000 ).SetTitle( "Apex Time" + ( i + 1 ) ).UpdateOnChange( true ).Show( show );	
+			}
+		}		
+	}
+
+	Asset.BeginCategory( "Aircraft Sounds", 0, 0.5, 0, "Icon_Sound.png" );
+	{
+		int MAX_AIRCRAFT_PRESETS = 20;	// Needs to match xanim converter
+		int MAX_AIRCRAFT_SOUNDS = 20;	// Needs to match xanim converter
+
+		Asset.BeginCategory( "Aircraft Sounds.Preset " + 1 );
+		AddAircraftPreset( Asset, 0, true );
+		
+		for( int i = 1; i < MAX_AIRCRAFT_PRESETS; i++ )
+		{
+			Asset.BeginCategory( "Aircraft Sounds.Preset " + (i+1) );
+
+			string previousPreset = Asset.GetEntryValue( "preset_name" + ( i - 1 ) );
+			string currentPreset = Asset.GetEntryValue( "preset_name" + i );
+
+			bool setShow = currentPreset != "" || previousPreset != "";
+
+			AddAircraftPreset( Asset, i, setShow );
+		}
+
+		string allPresets = "None";
+		
+		for( int i = 0; i < MAX_AIRCRAFT_PRESETS; i++ )
+		{
+			string currentPreset = Asset.GetEntryValue( "preset_name" + i );
+			
+			if( currentPreset != "" )
+			{
+				allPresets += " | ";
+				allPresets += currentPreset;
+			}
+		}		
+		
+		Asset.BeginCategory( "Aircraft Sounds.Sound " + 1 );
+		AddAircraftSound( Asset, 0, true, allPresets );
+
+		for( int i = 1; i < MAX_AIRCRAFT_SOUNDS; i++ )
+		{
+			Asset.BeginCategory( "Aircraft Sounds.Sound " + (i+1) );
+
+			string previousSound = Asset.GetEntryValue( "preset_selected" + ( i - 1 ) );
+			string currentSound = Asset.GetEntryValue( "preset_selected" + i );
+
+			bool setShow = ( currentSound != "" &&  currentSound != "None" ) || ( previousSound != "" && previousSound != "None" );
+
+			AddAircraftSound( Asset, i, setShow, allPresets );	
+		}
+		
+		Asset.BeginCategory( "Surface Sounds", 0, 0.5, 0, "Icon_Sound.png" );
+		AddSurfaceSounds( Asset );
+	}
+}
+
+void AddAircraftPreset( asset Asset, uint i, bool setShow )
+{
+	Asset.AddEntry_String( "preset_name" + i, "" ).SetTitle( "Preset Name" ).UpdateOnChange( true ).Show( setShow );
+
+	Asset.AddEntry_Int( "max_speed_vol" + i, 0, 0, 1000 ).SetTitle( "Maximum Speed Volume" ).SetStep( 1 ).Show( setShow );
+	Asset.AddEntry_Float( "min_vol" + i, 0, 0, 2 ).SetTitle( "Minimum Volume" ).SetStep( 0.01 ).Show( setShow );
+	Asset.AddEntry_Float( "max_vol" + i, 0, 0, 2 ).SetTitle( "Maximum Volume" ).SetStep( 0.01 ).Show( setShow );
+
+	Asset.AddEntry_Int( "max_speed_pitch" + i, 0, 0, 1000 ).SetTitle( "Maximum Speed Pitch" ).SetStep( 1 ).Show( setShow );
+	Asset.AddEntry_Float( "min_pitch" + i, 0, 0, 2 ).SetTitle( "Minimum Pitch" ).SetStep( 0.01 ).Show( setShow );
+	Asset.AddEntry_Float( "max_pitch" + i, 0, 0, 2 ).SetTitle( "Maximum Pitch" ).SetStep( 0.01 ).Show( setShow );
+	
+	Asset.AddEntry_CheckBox("axis_x" + i, true).SetTitle( "X Axis" ).Show( setShow );
+	Asset.AddEntry_CheckBox("axis_y" + i, true).SetTitle( "Y Axis" ).Show( setShow );
+	Asset.AddEntry_CheckBox("axis_z" + i, true).SetTitle( "Z Axis" ).Show( setShow );
+}
+
+void AddAircraftSound( asset Asset, uint i, bool setShow, string presets )
+{
+	Asset.AddEntry_Combo( "preset_selected" + i, presets ).SetTitle( "Preset" ).Show( setShow ).UpdateOnChange( true );
+	Asset.AddEntry_String( "alias" + i, "" ).SetTitle( "Alias" ).Show( setShow );
+	Asset.AddEntry_String( "tag" + i, "" ).SetTitle( "Tag" ).Show( setShow );
+}
+
+void AddSurfaceSounds( asset Asset )
+{
+	Asset.AddEntry_String( "surfaceSoundAsphalt", "" ).SetTitle( "Asphalt" );
+	Asset.AddEntry_String( "surfaceSoundBark", "" ).SetTitle( "Bark" );
+	Asset.AddEntry_String( "surfaceSoundBrick", "" ).SetTitle( "Brick" );
+	Asset.AddEntry_String( "surfaceSoundCarpet", "" ).SetTitle( "Carpet" );
+	Asset.AddEntry_String( "surfaceSoundCeramic", "" ).SetTitle( "Ceramic" );
+	Asset.AddEntry_String( "surfaceSoundCloth", "" ).SetTitle( "Cloth" );
+	Asset.AddEntry_String( "surfaceSoundConcrete", "" ).SetTitle( "Concrete" );
+	Asset.AddEntry_String( "surfaceSoundDefault", "" ).SetTitle( "Default" );
+	Asset.AddEntry_String( "surfaceSoundDirt", "" ).SetTitle( "Dirt" );
+	Asset.AddEntry_String( "surfaceSoundFlesh", "" ).SetTitle( "Flesh" );
+	Asset.AddEntry_String( "surfaceSoundFoliage", "" ).SetTitle( "Foliage" );
+	Asset.AddEntry_String( "surfaceSoundGlass", "" ).SetTitle( "Glass" );
+	Asset.AddEntry_String( "surfaceSoundGrass", "" ).SetTitle( "Grass" );
+	Asset.AddEntry_String( "surfaceSoundGravel", "" ).SetTitle( "Gravel" );
+	Asset.AddEntry_String( "surfaceSoundIce", "" ).SetTitle( "Ice" );
+	Asset.AddEntry_String( "surfaceSoundMetal", "" ).SetTitle( "Metal" );
+	Asset.AddEntry_String( "surfaceSoundMud", "" ).SetTitle( "Mud" );
+	Asset.AddEntry_String( "surfaceSoundPaintedMetal", "" ).SetTitle( "PaintedMetal" );
+	Asset.AddEntry_String( "surfaceSoundPlaster", "" ).SetTitle( "Plaster" );
+	Asset.AddEntry_String( "surfaceSoundRock", "" ).SetTitle( "Rock" );
+	Asset.AddEntry_String( "surfaceSoundRubber", "" ).SetTitle( "Rubber" );
+	Asset.AddEntry_String( "surfaceSoundSand", "" ).SetTitle( "Sand" );
+	Asset.AddEntry_String( "surfaceSoundSnow", "" ).SetTitle( "Snow" );
+	Asset.AddEntry_String( "surfaceSoundWater", "" ).SetTitle( "Water" );
+	Asset.AddEntry_String( "surfaceSoundWood", "" ).SetTitle( "Wood" );
+	Asset.AddEntry_String( "surfaceSoundMetalThin", "" ).SetTitle( "MetalThin" );
+	Asset.AddEntry_String( "surfaceSoundMetalHollow", "" ).SetTitle( "MetalHollow" );
+	Asset.AddEntry_String( "surfaceSoundMetalCatwalk", "" ).SetTitle( "MetalCatwalk" );
+	Asset.AddEntry_String( "surfaceSoundMetalCar", "" ).SetTitle( "MetalCar" );
+	Asset.AddEntry_String( "surfaceSoundGlassCar", "" ).SetTitle( "GlassCar" );
+	Asset.AddEntry_String( "surfaceSoundGlassBulletproof", "" ).SetTitle( "GlassBulletproof" );
+	Asset.AddEntry_String( "surfaceSoundWaterShallow", "" ).SetTitle( "WaterShallow" );
+	Asset.AddEntry_String( "surfaceSoundBodyArmor", "" ).SetTitle( "BodyArmor" );
+}

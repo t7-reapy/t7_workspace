@@ -1,0 +1,179 @@
+const int MAX_MAPTABLE_ENTRIES = 30;
+const int MAX_DLC_VALUE = 10;
+
+int firstMapId = 0;
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_Int( "mapCount", 3, 0, MAX_MAPTABLE_ENTRIES ).SetTitle( "Count" ).Show( false ).SetToolTip( "Hidden value containing the map count." ).UpdateOnChange(true);
+	Asset.AddEntry_Combo( "sessionMode", "CP{2} | MP{1} | ZM{0} | CORE{-1}" ).SetTitle("Session Mode").UpdateOnChange(true);
+	Asset.AddEntry_Combo( "campaignMode", "Default{0} | Nightmares{1}" ).SetTitle("Campaign Mode").UpdateOnChange(true).Show( Asset.GetEntryValue( "sessionMode" ) == "2" );
+	Asset.AddEntry_Combo( "dlcIndex", "Dev{-1} | Base{0} | DLC0ZM{1} | DLC0MP{2} | DLC1{3} | DLC2{4} | DLC3{5} | DLC4{6} | DLC5{7} | DLC6(MPHD){12}" ).SetTitle("DLC Index").UpdateOnChange(true);
+
+	// math should match com_gameinfo.h
+	int sessionMode = Asset.GetEntryInt("sessionMode");
+	int dlcIndex = Asset.GetEntryInt("dlcIndex");
+	int campaignModeIndex = Asset.GetEntryInt("campaignMode");
+	firstMapId = sessionMode*100 + ((dlcIndex+100)%100)*10000;
+	firstMapId = firstMapId + campaignModeIndex*100;
+
+	for ( int i = 1; i <= MAX_MAPTABLE_ENTRIES; ++i )
+	{
+		GenerateMapItem( Asset, i );
+	}
+}
+
+int GetCount( asset Asset )
+{
+	return Asset.GetEntryVariable( "mapCount" ).GetValue().ToInt();
+}
+
+string GetItemForIndex( int index )
+{
+	string mapId = "map";
+	if( index < 10 ) { mapId += "0"; }
+	mapId += index;
+	return mapId;
+}
+
+bool IsItemValid( asset Asset, int index )
+{
+	return index >= 1 && index <= GetCount( Asset );
+}
+
+bool ItemHasValue( asset Asset, int index )
+{
+	string item = GetItemForIndex( index );
+	return (Asset.GetEntryVariable( item ).GetValue() != "");
+}
+
+void CopyObject( asset Asset, int indexA, int indexB )
+{
+	string itemA = GetItemForIndex( indexA );
+	string itemB = GetItemForIndex( indexB );
+
+	Asset.GetEntryVariable( itemA ).SetValue( Asset.GetEntryValue( itemB ) );
+}
+
+void SwapObjects( asset Asset, int indexA, int indexB )
+{
+	string itemA = GetItemForIndex( indexA );
+	string itemB = GetItemForIndex( indexB );
+
+	string valueB = Asset.GetEntryValue( itemB );
+	Asset.GetEntryVariable( itemB ).SetValue( Asset.GetEntryValue( itemA ) );
+	Asset.GetEntryVariable( itemA ).SetValue( valueB );
+}
+
+void AddMap( asset Asset, const string& index )
+{
+	int n_index = index.ToInt();
+	string item = GetItemForIndex( n_index );
+	Asset.GetEntryVariable( item ).SetValue( "" );
+	Asset.GetEntryVariable( "mapCount" ).SetInt( n_index );
+}
+
+void MoveMapUp( asset Asset, const string& index )
+{
+	int n_index = index.ToInt();
+	
+	if ( n_index > 0 )
+	{
+		SwapObjects( Asset, n_index, n_index - 1 );
+	}
+}
+
+void MoveMapDown( asset Asset, const string& index )
+{
+	int n_index = index.ToInt();
+	
+	if ( n_index <= MAX_MAPTABLE_ENTRIES )
+	{
+		SwapObjects( Asset, n_index, n_index + 1 );
+	}
+}
+
+void DeleteMap( asset Asset, const string& index )
+{
+	string objectName = "Map " + index;
+	
+	if ( MessageBox( "Are you sure you want to remove " + objectName + "?", "YESNO" ) == "YES" )
+	{
+		int n_index = index.ToInt();
+		for ( int i = n_index; i <= MAX_MAPTABLE_ENTRIES; i++ )
+		{			
+			CopyObject( Asset, i, i + 1 );
+			
+			if ( !ItemHasValue( Asset, i ) )
+			{
+				Asset.GetEntryVariable( "mapCount" ).SetInt( i-1 );
+				break;
+			}
+		}
+	}
+}
+
+void InsertMap( asset Asset, const string& index )
+{
+	string objectName = "Map " + index;
+	int n_index = index.ToInt();
+	int count = GetCount( Asset ) + 1;
+	Asset.GetEntryVariable( "mapCount" ).SetInt( count );
+
+	for ( int i = count; i >= n_index; i-- )
+	{
+		CopyObject( Asset, i + 1, i );
+	}
+
+	string item = GetItemForIndex( n_index );
+	Asset.GetEntryVariable( item ).SetValue( "" );
+}
+
+void GenerateMapItem( asset Asset, int index )
+{
+	string item = GetItemForIndex( index );
+	string objectName = "Map " + (index-1 + firstMapId);
+	bool firstObject = ( index == 1 );
+	bool isHiddenObject = ( index > MAX_MAPTABLE_ENTRIES );
+	
+	bool isValid = IsItemValid( Asset, index );
+	bool isPreviousValid = IsItemValid( Asset, index - 1 );
+
+	int count = GetCount( Asset );
+	
+	Asset.BeginCategory( objectName );
+	{
+		if ( !isHiddenObject && ( firstObject || isValid || isPreviousValid ) )
+		{
+			// Add Button Group
+			Asset.AddEntry_ButtonGroup( "buttonGroup" + index ).SetTitle( "Edit" );
+			
+			if ( isValid )
+			{
+				if( count < MAX_MAPTABLE_ENTRIES )
+				{
+					Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Insert Before", "", "void InsertMap( asset Asset, const string& index )", "" + index );
+				}
+
+				if ( !firstObject )	// Move Up
+				{
+					Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Move Up", "", "void MoveMapUp( asset Asset, const string& index )", "" + index );
+				}
+				
+				if ( IsItemValid( Asset, index + 1 ) )	// Move Down
+				{
+					Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Move Down", "", "void MoveMapDown( asset Asset, const string& index )", "" + index );
+				}
+
+				// Delete Object
+				Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Delete", "", "void DeleteMap( asset Asset, const string& index )", "" + index );
+			}
+			else if ( firstObject || isPreviousValid )
+			{
+				Asset.GetEntryControl( "buttonGroup" + index ).AddButton( "Add Map", "", "void AddMap( asset Asset, const string& index )", "" + index );
+			}
+		}
+		
+		Asset.AddEntry_AssetCombo( item, "maptableentry" ).SetTitle( "Map " ).Show( isValid ).SetToolTip( "The map asset." );
+	}
+}

@@ -1,0 +1,69 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Specialty"
+	availablePrefixes = "mc/ mcs/"
+	gameOnly = true
+	renderFlags = RenderFlags()
+	{
+		isEmissive = true
+		needCurrentResolve = true
+		needCurrentDepthResolve = true
+	}
+}
+
+//----------------------------------------------------------------
+
+Texture( "heatLookup" )
+{
+	image = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	tweak = Tweak( "Heat Lookup", "Texture", "0" )
+}
+
+Texture( "sceneLookup" )
+{
+	image = Image( <colorMap01> )
+	semantic = "diffuseMap"
+	tweak = Tweak( "Scene Lookup", "Texture", "10" )
+}
+
+Texture( "noiseTexture" )
+{
+	image = Image( <colorMap02, $black> )
+	semantic = "2d"
+	tweak = Tweak( "Noise", "Texture", "20" )
+}
+
+//----------------------------------------------------------------
+
+Technique( "lit" )
+{
+
+	state = State() : "disable + depthTestOnly"
+	{
+		stencilFront = "write stencil"
+		stencilRef = 128
+	}
+
+	source = "specialty/thermal_scope.hlsl"
+	defines = "USE_VERTCOL 0"
+
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+		sceneTexture = CodeTexture( "resolvedPostSun" )
+		sceneDepthTexture = CodeTexture( "depthForSonar" )
+		sonarTexture = CodeTexture( "sonarColorSampler" )
+		sonarDepthTexture = CodeTexture( "sonarDepthSampler" )
+
+		sonarSampler = Sampler( "no tile", "nomip bilinear" )
+		heatLookupSampler = Sampler( "no tile", "nomip bilinear" )
+		noiseSampler = Sampler( "tile both", "nomip bilinear" )
+	}
+}

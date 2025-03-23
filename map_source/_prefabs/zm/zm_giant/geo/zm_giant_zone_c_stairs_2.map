@@ -1,0 +1,5333 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{49FCEE40-6C5A-11E5-ABAF-645106422D48}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"suncolor" "0.6352 0.7137 0.8"
+"sundirection" "-153 -54 0"
+"sunlight" "0.6"
+"vertexbake" "1.0"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{7241DCAE-FBB7-4151-8CA2-2953768D2B88}"
+  contents weaponClip detail;
+ ( -15 -114.5 -23 ) ( 4 -114.5 -23 ) ( 4 135.5 177 ) t7_metal_trim_worn_iron_dark -32.000076 -4.0000095 0 -0.99999428 90 0 lightmap_gray 16384 16384 -1593 -2928 0 0
+ ( -1 -105 1.75 ) ( -1 135.5 182 ) ( -1 135.5 176.75 ) t7_metal_trim_worn_iron_dark 40.980091 4 -45.977551 57.471798 -141.34018 0 lightmap_gray 16384 16384 2928 1191.5 0 0
+ ( 4 -114.5 -18 ) ( -15 -114.5 -18 ) ( -15 135.5 182 ) t7_metal_trim_worn_iron_dark -32.000076 -4.0000095 0 -0.99999428 90 0 lightmap_gray 16384 16384 -1593 -2928 0 0
+ ( -5 -105 -4.25 ) ( -5 135.5 176.75 ) ( -5 135.5 182 ) t7_metal_trim_worn_iron_dark 40.980091 -4 -45.977551 61.471798 -141.34018 0 lightmap_gray 16384 16384 2928 1191.5 0 0
+ ( -15 135.5 176 ) ( 4 135.5 176 ) ( 4 135.5 182 ) t7_metal_trim_worn_iron_dark -32.000004 -4.0000005 0 -0.99999189 90 0 caulk 16384 16384 -1593 1191.5 0 0
+ ( 42 -89.5 1.75 ) ( 42 -89.5 2 ) ( 74 -89.5 2 ) t7_metal_trim_worn_iron_dark -32 -4 0 -1 90 0 lightmap_gray 16384 16384 -3 14.75 0 0
+}
+// brush 1
+{
+ guid "{5B2E08DB-D425-4E3F-8B79-F61000F60EDB}"
+ ( -15.25 135.5 178 ) ( -41.25 135.5 178 ) ( -41.25 113 178 ) metal_clip_nosight 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -41.25 113 184 ) ( -41.25 135.5 184 ) ( -15.25 135.5 184 ) metal_clip_nosight 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -51.25 125.5 184 ) ( -25.25 125.5 184 ) ( -25.25 125.5 178 ) metal_clip_nosight 16 16 0 14.75 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+ ( 41 107.75 184 ) ( 41 130.25 184 ) ( 41 130.25 178 ) metal_clip_nosight 16 16 0 14.75 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+ ( -15.25 135.5 184 ) ( -41.25 135.5 184 ) ( -41.25 135.5 178 ) metal_clip_nosight 16 16 0 14.75 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+ ( -48 135.5 184 ) ( -48 113 184 ) ( -48 113 178 ) metal_clip_nosight 16 16 0 14.75 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+}
+// brush 2
+{
+ guid "{125104C2-AF17-4ADF-822E-312686553A1E}"
+ ( -44.25 -115 173.25 ) ( -18.25 -115 173.25 ) ( -18.25 -115 167.25 ) metal_clip_nosight 16 16 0 14.75 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+ ( 41 97.75 184 ) ( 41 120.25 184 ) ( 41 120.25 178 ) metal_clip_nosight 16 16 0 14.75 0 0 lightmap_gray 16384 16384 -10 14.75 0 0
+ ( -22.25 125.5 184 ) ( -48.25 125.5 184 ) ( -48.25 125.5 178 ) metal_clip_nosight 16 16 0 14.75 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+ ( -48 125.5 184 ) ( -48 103 184 ) ( -48 103 178 ) metal_clip_nosight 16 16 0 14.75 0 0 lightmap_gray 16384 16384 -10 14.75 0 0
+ ( 41 -94.5 8 ) ( 41 125.5 184 ) ( 73 125.5 184 ) metal_clip_nosight 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 41 130.5 178 ) ( 41 -89.5 2 ) ( 73 -89.5 2 ) metal_clip_nosight 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 3
+{
+ guid "{0C24E1BF-804C-49DD-85CB-DAFF65E1308D}"
+  contents weaponClip detail;
+ ( -47 -98 -1.5 ) ( -51 -98 -1.5 ) ( -51 -98.5 -2 ) caulk 16 16 -10 218 0 0 lightmap_gray 16384 16384 -10 230 0 0
+ ( -51 -98 7.5 ) ( -47 -98 7.5 ) ( -47 -98.5 8 ) t7_metal_worn_iron_dark 64 -64 -1592 492 0 0 lightmap_gray 16384 16384 -10 230 0 0
+ ( -51.5 -98.5 10.25 ) ( 30.5 -98.5 10.25 ) ( 30.5 -98.5 4 ) t7_metal_trim_worn_iron_dark 32 4 163.73743 -7 90 0 lightmap_gray 16384 16384 -10 188 0 0
+ ( -47 -101.5 10.75 ) ( -47 -89.5 10.75 ) ( -47 -89.5 4.5 ) t7_metal_trim_worn_iron_dark 32 4 163.73741 -58.5 90 0 lightmap_gray 16384 16384 -230 188 0 0
+ ( -51 -94.5 10.75 ) ( -51 -106.5 10.75 ) ( -51 -106.5 4.5 ) t7_metal_trim_worn_iron_dark 32 -4 163.73741 -142.5 90 0 lightmap_gray 16384 16384 -230 188 0 0
+ ( -51 -97.5 -1.5 ) ( -47 -97.5 -1.5 ) ( -47 -97.5 7.5 ) t7_metal_trim_worn_iron_dark 24.987806 4 24.041836 -7 90 0 lightmap_gray 16384 16384 -6 14.75 0 0
+}
+// brush 4
+{
+ guid "{364508B6-C1F8-4F3B-8346-FEF2A8F09751}"
+  contents weaponClip detail;
+ ( -47 -98.5 8 ) ( -51 -98.5 8 ) ( -51 -94.5 8 ) t7_metal_trim_worn_iron_dark 32 4 57.237438 -7 90 0 lightmap_gray 16384 16384 -10 230 0 0
+ ( -47 -101.5 10.75 ) ( -47 -89.5 10.75 ) ( -47 -89.5 4.5 ) t7_metal_trim_worn_iron_dark 32 4 57.237434 32 0 0 lightmap_gray 16384 16384 -230 188 0 0
+ ( -51 -94.25 7.5 ) ( -47 -94.25 7.5 ) ( -47 -94.5 8 ) caulk 16 16 -10 184.75 0 0 lightmap_gray 16384 16384 -10 188 0 0
+ ( -51 -94.5 10.75 ) ( -51 -106.5 10.75 ) ( -51 -106.5 4.5 ) t7_metal_trim_worn_iron_dark 32 -4 57.237434 -52 0 0 lightmap_gray 16384 16384 -230 188 0 0
+ ( -51 -98.5 8 ) ( -47 -98.5 8 ) ( -47 -98 7.5 ) caulk 16 16 -6 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+ ( -47 -94.25 7 ) ( -51 -94.25 7 ) ( -51 -98 7 ) t7_metal_trim_worn_iron_dark 24.987806 4 24.041836 -7 90 0 lightmap_gray 16384 16384 -6 0 0 0
+}
+// brush 5
+ {
+  guid "{D98D48B3-B310-4BBA-B4BC-7D355DDD4E77}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   2 3 0 8
+   (
+	v -48 126.25 183 t 0 0 91.8125 -3.9375
+	v -48 125.75 183 t 30.720001 -512 91.75 -3.9375
+	v -48 125.25 182.5 t 61.440002 -1024 91.6875 -3.9375
+   )
+   (
+	v -48 126.25 176 t 1024 0 91.8125 -3.375
+	v -48 125.5 176.5 t 1024 -512 91.75 -3.375
+	v -48 125 176.5 t 1024 -1024 91.6875 -3.375
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+// brush 6
+ {
+  guid "{E599A797-6675-4372-882C-B97354C41210}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   2 3 0 8
+   (
+	v -48 -93.25 7.5 t 0 0 91.8125 -3.9375
+	v -48 -94 7.25 t 30.720001 -512 91.75 -3.9375
+	v -48 -94.75 7 t 61.440002 -1024 91.6875 -3.9375
+   )
+   (
+	v -48 -93.75 1.75 t 1024 0 91.8125 -3.375
+	v -48 -94.25 1.25 t 1024 -512 91.75 -3.375
+	v -48 -94.75 1 t 1024 -1024 91.6875 -3.375
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+// brush 7
+{
+ guid "{43A69884-8AAB-4022-8B58-FC9AAD2E25D9}"
+  contents weaponClip detail;
+ ( -48 55 0 ) ( -56 55 0 ) ( -56 50 0 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -73 0 0
+ ( -56 50 4 ) ( -56 55 4 ) ( -48 55 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -73 0 0
+ ( -56 45.25 4.25 ) ( -48 45.25 4.25 ) ( -48 45.25 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 14.75 0 0
+ ( -46 50 4 ) ( -46 55 4 ) ( -46 55 0 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 73 14.75 0 0
+ ( -48 60.25 4.25 ) ( -56 60.25 4.25 ) ( -56 60.25 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 14.75 0 0
+ ( -51.75 55 4.25 ) ( -51.75 50 4.25 ) ( -51.75 50 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 73 14.75 0 0
+ ( -51 56.5 4 ) ( -51.25 56.5 3.75 ) ( -51 88.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -73 0 0
+ ( -46.5 56.5 3.5 ) ( -46.75 56.5 3.75 ) ( -46.75 88.5 3.75 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -73 0 0
+ ( -48.5 45.75 3.75 ) ( -48.5 46 4 ) ( -16.5 46 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -73 0 0
+ ( -48.5 59.5 4 ) ( -48.5 59.75 3.75 ) ( -16.5 59.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -73 0 0
+}
+// brush 8
+{
+ guid "{CE7EA266-F06F-431A-93E5-0A763C0CFD7A}"
+  contents weaponClip detail;
+ ( -48 134.5 0 ) ( -56 134.5 0 ) ( -56 129.5 0 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -152.5 0 0
+ ( -56 129.5 4 ) ( -56 134.5 4 ) ( -48 134.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -152.5 0 0
+ ( -56 124.75 4.25 ) ( -48 124.75 4.25 ) ( -48 124.75 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 14.75 0 0
+ ( -46.25 129.5 4.25 ) ( -46.25 134.5 4.25 ) ( -46.25 134.5 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 152.5 14.75 0 0
+ ( -48 139.75 4.25 ) ( -56 139.75 4.25 ) ( -56 139.75 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 14.75 0 0
+ ( -51.75 134.5 4.25 ) ( -51.75 129.5 4.25 ) ( -51.75 129.5 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 152.5 14.75 0 0
+ ( -51 136 4 ) ( -51.25 136 3.75 ) ( -51 168 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -152.5 0 0
+ ( -46.75 136 3.75 ) ( -47 136 4 ) ( -47 168 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -152.5 0 0
+ ( -48.5 125.25 3.75 ) ( -48.5 125.5 4 ) ( -16.5 125.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -152.5 0 0
+ ( -48.5 139 4 ) ( -48.5 139.25 3.75 ) ( -16.5 139 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -152.5 0 0
+}
+// brush 9
+{
+ guid "{B459F12B-A7AD-40B7-BAE2-2C934A2A48D5}"
+  contents weaponClip detail;
+ ( -50 130 58 ) ( -50 130 62 ) ( -48 130 62 ) t7_metal_trim_worn_iron_dark 32 -4 -180 81 90 0 lightmap_gray 16374.71 -16383.5 176.64958 -63.723511 180 -0.00024413317
+ ( -51 134 19.5 ) ( -51 134 23.5 ) ( -51 130 23.5 ) t7_metal_trim_worn_iron_dark 32 4 -180 -2 90 0 lightmap_gray 16388.596 16385.063 438.3194 65.290077 0 0
+ ( -48 134 27.5 ) ( -48 134 31.5 ) ( -50 134 31.5 ) t7_metal_trim_worn_iron_dark 32 4 -180 -187 90 0 lightmap_gray 16385.898 -16383.5 176.94066 -64.805923 180 0.00012206659
+ ( -50.5 130.5 94 ) ( -50.5 130 94 ) ( -50.5 130 126 ) t7_metal_trim_worn_iron_dark 32 4 -166 -2 90 0 lightmap_gray 16384 16384 570 -40 0 0
+ ( -43.5 130.75 4 ) ( -43.5 130.5 4 ) ( -11.5 130.5 4 ) caulk 16 16 -6 -152.5 0 0 lightmap_gray 16384 16384 -6 -152.5 0 0
+ ( -43.5 130.25 176 ) ( -43.5 131 176 ) ( -11.5 130.25 176 ) caulk 16 16 -6 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+}
+// brush 10
+{
+ guid "{3CBB362C-508D-4941-8681-17A7D426B71E}"
+  contents weaponClip detail;
+ ( -50 131.5 172.75 ) ( -50 131.5 176.75 ) ( -48 131.5 176.75 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 -8.5 90 0 lightmap_gray 16374.71 -16383.5 176.64958 -63.723511 180 -0.00024413317
+ ( -48 132.5 27.5 ) ( -48 132.5 31.5 ) ( -50 132.5 31.5 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 -8.5 90 0 lightmap_gray 16385.898 -16383.5 176.94066 -64.805923 180 0.00012206659
+ ( -47.5 130.5 94 ) ( -47.5 130 94 ) ( -47.5 130 126 ) caulk 16 16 570 -40 0 0 lightmap_gray 16384 16384 570 -40 0 0
+ ( -50.5 130 94 ) ( -50.5 130.5 94 ) ( -50.5 130 126 ) caulk 16 16 570 -40 0 0 lightmap_gray 16384 16384 570 -40 0 0
+ ( -43.5 130.75 4 ) ( -43.5 130.5 4 ) ( -11.5 130.5 4 ) caulk 16 16 -6 -152.5 0 0 lightmap_gray 16384 16384 -6 -152.5 0 0
+ ( -43.5 130.25 176 ) ( -43.5 131 176 ) ( -11.5 130.25 176 ) caulk 16 16 -6 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+}
+// brush 11
+{
+ guid "{7973930E-87ED-445C-93C7-902C7DE22351}"
+  contents weaponClip detail;
+ ( -50 130 58 ) ( -50 130 62 ) ( -48 130 62 ) t7_metal_trim_worn_iron_dark 32 4 -176 -179 90 0 lightmap_gray 16374.71 -16383.5 176.64958 -63.723511 180 -0.00024413317
+ ( -48 134 27.5 ) ( -48 134 31.5 ) ( -50 134 31.5 ) t7_metal_trim_worn_iron_dark 32 -4 -176 89 90 0 lightmap_gray 16385.898 -16383.5 176.94066 -64.805923 180 0.00012206659
+ ( -47 130 18.5 ) ( -47 130 22.5 ) ( -47 134 22.5 ) t7_metal_trim_worn_iron_dark 32 4 -176 -2 90 0 lightmap_gray 16384.559 16383.875 437.875 64.616493 0 0
+ ( -47.5 130 94 ) ( -47.5 130.5 94 ) ( -47.5 130 126 ) t7_metal_trim_worn_iron_dark 32 4 -166 -2 90 0 lightmap_gray 16384 16384 570 -40 0 0
+ ( -43.5 130.75 4 ) ( -43.5 130.5 4 ) ( -11.5 130.5 4 ) caulk 16 16 -6 -152.5 0 0 lightmap_gray 16384 16384 -6 -152.5 0 0
+ ( -43.5 130.25 176 ) ( -43.5 131 176 ) ( -11.5 130.25 176 ) caulk 16 16 -6 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+}
+// brush 12
+{
+ guid "{B5F43E7B-E164-4A3A-BAD3-965855217762}"
+  contents weaponClip detail;
+ ( 42 50 0 ) ( 50 50 0 ) ( 50 55 0 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 32 180 0
+ ( 50 55 4 ) ( 50 50 4 ) ( 42 50 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 32 180 0
+ ( 50 59.75 4.25 ) ( 42 59.75 4.25 ) ( 42 59.75 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 -16384 0 -14.75 180 0
+ ( 40.25 55 4.25 ) ( 40.25 50 4.25 ) ( 40.25 50 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 -16384 -32 -14.75 180 0
+ ( 42 44.75 4.25 ) ( 50 44.75 4.25 ) ( 50 44.75 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 -16384 0 -14.75 180 0
+ ( 45.75 50 4.25 ) ( 45.75 55 4.25 ) ( 45.75 55 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 -16384 -32 -14.75 180 0
+ ( 45 48.5 4 ) ( 45.25 48.5 3.75 ) ( 45 16.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 32 180 0
+ ( 40.75 48.5 3.75 ) ( 41 48.5 4 ) ( 41 16.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 32 180 0
+ ( 42.5 59.25 3.75 ) ( 42.5 59 4 ) ( 10.5 59 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 32 180 0
+ ( 42.5 45.5 4 ) ( 42.5 45.25 3.75 ) ( 10.5 45.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 32 180 0
+}
+// brush 13
+{
+ guid "{039251C2-A266-4D18-9616-FCEFA5ACE295}"
+  contents weaponClip detail;
+ ( 42 129.5 0 ) ( 50 129.5 0 ) ( 50 134.5 0 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 111.5 180 0
+ ( 50 134.5 4 ) ( 50 129.5 4 ) ( 42 129.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 111.5 180 0
+ ( 50 139.25 4.25 ) ( 42 139.25 4.25 ) ( 42 139.25 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 -16384 0 -14.75 180 0
+ ( 40 134.5 4 ) ( 40 129.5 4 ) ( 40 129.5 0 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 -16384 -111.5 -14.75 180 0
+ ( 42 124.25 4.25 ) ( 50 124.25 4.25 ) ( 50 124.25 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 -16384 0 -14.75 180 0
+ ( 45.75 129.5 4.25 ) ( 45.75 134.5 4.25 ) ( 45.75 134.5 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 -16384 -111.5 -14.75 180 0
+ ( 45 128 4 ) ( 45.25 128 3.75 ) ( 45 96 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 111.5 180 0
+ ( 40.5 128 3.5 ) ( 40.75 128 3.75 ) ( 40.75 96 3.75 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 111.5 180 0
+ ( 42.5 138.75 3.75 ) ( 42.5 138.5 4 ) ( 10.5 138.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 111.5 180 0
+ ( 42.5 125 4 ) ( 42.5 124.75 3.75 ) ( 10.5 125 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 111.5 180 0
+}
+// brush 14
+{
+ guid "{180E30B9-0C44-4FDA-A3AD-FBE70774C07B}"
+  contents weaponClip detail;
+ ( -48 -18 0 ) ( -56 -18 0 ) ( -56 -23 0 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+ ( -56 -23 4 ) ( -56 -18 4 ) ( -48 -18 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+ ( -56 -26.75 4 ) ( -48 -26.75 4 ) ( -48 -26.75 0 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 14.75 0 0
+ ( -46 -23 4 ) ( -46 -18 4 ) ( -46 -18 0 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+ ( -48 -12.75 4.25 ) ( -56 -12.75 4.25 ) ( -56 -12.75 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 14.75 0 0
+ ( -51.75 -18 4.25 ) ( -51.75 -23 4.25 ) ( -51.75 -23 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+ ( -51 -16.5 4 ) ( -51.25 -16.5 3.75 ) ( -51 15.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+ ( -46.5 -16.5 3.5 ) ( -46.75 -16.5 3.75 ) ( -46.75 15.5 3.75 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+ ( -48.5 -26.25 3.5 ) ( -48.5 -26 3.75 ) ( -16.5 -26 3.75 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+ ( -48.5 -13.5 4 ) ( -48.5 -13.25 3.75 ) ( -16.5 -13.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+}
+// brush 15
+{
+ guid "{051F4558-CF59-474C-8E26-00B7E4F4F1D1}"
+  contents weaponClip detail;
+ ( -46.5 -67 0 ) ( -46.5 -59 0 ) ( -51.5 -59 0 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 109 28.5 -90 0
+ ( -51.5 -59 4 ) ( -46.5 -59 4 ) ( -46.5 -67 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 109 28.5 -90 0
+ ( -51.75 -59 4.25 ) ( -51.75 -67 4.25 ) ( -51.75 -67 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 -16384 109 -14.75 180 0
+ ( -51.5 -71.5 4.25 ) ( -46.5 -71.5 4.25 ) ( -46.5 -71.5 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -28.5 14.75 0 0
+ ( -46.25 -67 4.25 ) ( -46.25 -59 4.25 ) ( -46.25 -59 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 -16384 109 -14.75 180 0
+ ( -46.5 -59.5 4.25 ) ( -51.5 -59.5 4.25 ) ( -51.5 -59.5 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -28.5 14.75 0 0
+ ( -45 -60.25 4 ) ( -45 -60 3.75 ) ( -13 -60.25 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 109 28.5 -90 0
+ ( -45 -71 3.75 ) ( -45 -70.75 4 ) ( -13 -70.75 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 109 28.5 -90 0
+ ( -51.25 -66.5 3.75 ) ( -51 -66.5 4 ) ( -51 -98.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 109 28.5 -90 0
+ ( -47 -66.5 4 ) ( -46.75 -66.5 3.75 ) ( -47 -98.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 109 28.5 -90 0
+}
+// brush 16
+{
+ guid "{6AD52E3E-3849-45DB-A1EF-31FAC92111AA}"
+  contents weaponClip detail;
+ ( 44 -18 0 ) ( 36 -18 0 ) ( 36 -23 0 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 86 0 0 0
+ ( 36 -23 4 ) ( 36 -18 4 ) ( 44 -18 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 86 0 0 0
+ ( 36 -26.75 4.25 ) ( 44 -26.75 4.25 ) ( 44 -26.75 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 86 14.75 0 0
+ ( 45.75 -23 4 ) ( 45.75 -18 4 ) ( 45.75 -18 0 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+ ( 44 -13.25 4.25 ) ( 36 -13.25 4.25 ) ( 36 -13.25 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 86 14.75 0 0
+ ( 40.25 -18 4.25 ) ( 40.25 -23 4.25 ) ( 40.25 -23 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+ ( 41 -16.5 4 ) ( 40.75 -16.5 3.75 ) ( 41 15.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 86 0 0 0
+ ( 45.5 -16.5 3.5 ) ( 45.25 -16.5 3.75 ) ( 45.25 15.5 3.75 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 86 0 0 0
+ ( 43.5 -26 3.75 ) ( 43.5 -25.75 4 ) ( 75.5 -25.75 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 86 0 0 0
+ ( 43.5 -14 4 ) ( 43.5 -13.75 3.75 ) ( 75.5 -14 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 86 0 0 0
+}
+// brush 17
+{
+ guid "{89DA49FD-DDF7-4C89-8357-CC9FB3AC0116}"
+  contents weaponClip detail;
+ ( 45.5 -67 0 ) ( 45.5 -59 0 ) ( 40.5 -59 0 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 109 -63.5 -90 0
+ ( 40.5 -59 4 ) ( 45.5 -59 4 ) ( 45.5 -67 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 109 -63.5 -90 0
+ ( 40.25 -59 4.25 ) ( 40.25 -67 4.25 ) ( 40.25 -67 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 -16384 109 -14.75 180 0
+ ( 40.5 -71.5 4.25 ) ( 45.5 -71.5 4.25 ) ( 45.5 -71.5 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 63.5 14.75 0 0
+ ( 45.75 -67 4.25 ) ( 45.75 -59 4.25 ) ( 45.75 -59 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 -16384 109 -14.75 180 0
+ ( 45.5 -59.5 4.25 ) ( 40.5 -59.5 4.25 ) ( 40.5 -59.5 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 63.5 14.75 0 0
+ ( 47 -60.25 4 ) ( 47 -60 3.75 ) ( 79 -60.25 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 109 -63.5 -90 0
+ ( 47 -71 3.75 ) ( 47 -70.75 4 ) ( 79 -70.75 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 109 -63.5 -90 0
+ ( 40.75 -66.5 3.75 ) ( 41 -66.5 4 ) ( 41 -98.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 109 -63.5 -90 0
+ ( 45 -66.5 4 ) ( 45.25 -66.5 3.75 ) ( 45 -98.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 109 -63.5 -90 0
+}
+// brush 18
+{
+ guid "{FDAA5827-E88B-4CBB-8EC2-562A6ED286EF}"
+  contents weaponClip detail;
+ ( -50 212 58 ) ( -50 212 62 ) ( -48 212 62 ) t7_metal_trim_worn_iron_dark 32 -4 -173.99889 161 90 0 lightmap_gray 16374.71 -16383.5 176.64958 -63.723511 180 -0.00024413317
+ ( -51 216 19.5 ) ( -51 216 23.5 ) ( -51 212 23.5 ) t7_metal_trim_worn_iron_dark 32 4 -173.9989 0 90 0 lightmap_gray 16388.596 16385.063 520.31891 65.290047 0 0
+ ( -48 216 27.5 ) ( -48 216 31.5 ) ( -50 216 31.5 ) t7_metal_trim_worn_iron_dark 32 4 -173.99889 -267 90 0 lightmap_gray 16385.898 -16383.5 176.94066 -64.805923 180 0.00012206659
+ ( -50.5 212.5 100 ) ( -50.5 212 100 ) ( -50.5 212 132 ) t7_metal_trim_worn_iron_dark 32 4 -173.9989 0 90 0 lightmap_gray 16384 16384 652 -40 0 0
+ ( -43.5 212.75 4 ) ( -43.5 212.5 4 ) ( -11.5 212.5 4 ) caulk 16 16 -6 -234.5 0 0 lightmap_gray 16384 16384 -6 -234.5 0 0
+ ( -43.5 212.25 182 ) ( -43.5 213 182 ) ( -11.5 212.25 182 ) caulk 16 16 -6 -82 0 0 lightmap_gray 16384 16384 -6 -82 0 0
+}
+// brush 19
+{
+ guid "{4FE45CED-AC71-4B4A-B54E-098CDB688E7C}"
+  contents weaponClip detail;
+ ( -50 213.5 172.75 ) ( -50 213.5 176.75 ) ( -48 213.5 176.75 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 -8.5 90 0 lightmap_gray 16374.71 -16383.5 176.64958 -63.723511 180 -0.00024413317
+ ( -48 214.5 27.5 ) ( -48 214.5 31.5 ) ( -50 214.5 31.5 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 -8.5 90 0 lightmap_gray 16385.898 -16383.5 176.94066 -64.805923 180 0.00012206659
+ ( -47.5 212.5 100 ) ( -47.5 212 100 ) ( -47.5 212 132 ) caulk 16 16 652 -40 0 0 lightmap_gray 16384 16384 652 -40 0 0
+ ( -50.5 212 100 ) ( -50.5 212.5 100 ) ( -50.5 212 132 ) caulk 16 16 652 -40 0 0 lightmap_gray 16384 16384 652 -40 0 0
+ ( -43.5 212.75 4 ) ( -43.5 212.5 4 ) ( -11.5 212.5 4 ) caulk 16 16 -6 -234.5 0 0 lightmap_gray 16384 16384 -6 -234.5 0 0
+ ( -43.5 212.25 182 ) ( -43.5 213 182 ) ( -11.5 212.25 182 ) caulk 16 16 -6 -82 0 0 lightmap_gray 16384 16384 -6 -82 0 0
+}
+// brush 20
+{
+ guid "{202D958D-B23E-408C-8226-E95CC3AE0DA1}"
+  contents weaponClip detail;
+ ( -50 212 58 ) ( -50 212 62 ) ( -48 212 62 ) t7_metal_trim_worn_iron_dark 32 4 -173.99889 -259 90 0 lightmap_gray 16374.71 -16383.5 176.64958 -63.723511 180 -0.00024413317
+ ( -48 216 27.5 ) ( -48 216 31.5 ) ( -50 216 31.5 ) t7_metal_trim_worn_iron_dark 32 -4 -173.99889 169 90 0 lightmap_gray 16385.898 -16383.5 176.94066 -64.805923 180 0.00012206659
+ ( -47 212 24.5 ) ( -47 212 28.5 ) ( -47 216 28.5 ) t7_metal_trim_worn_iron_dark 32 4 -173.9989 0 90 0 lightmap_gray 16384.559 16383.875 519.875 64.616508 0 0
+ ( -47.5 212 100 ) ( -47.5 212.5 100 ) ( -47.5 212 132 ) t7_metal_trim_worn_iron_dark 32 4 -173.9989 0 90 0 lightmap_gray 16384 16384 652 -40 0 0
+ ( -43.5 212.75 4 ) ( -43.5 212.5 4 ) ( -11.5 212.5 4 ) caulk 16 16 -6 -234.5 0 0 lightmap_gray 16384 16384 -6 -234.5 0 0
+ ( -43.5 212.25 182 ) ( -43.5 213 182 ) ( -11.5 212.25 182 ) caulk 16 16 -6 -82 0 0 lightmap_gray 16384 16384 -6 -82 0 0
+}
+// brush 21
+{
+ guid "{F73B5D7C-A34E-48CD-AA3B-A6BF48936577}"
+  contents weaponClip detail;
+ ( -48 216.5 0 ) ( -56 216.5 0 ) ( -56 211.5 0 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -234.5 0 0
+ ( -56 211.5 4 ) ( -56 216.5 4 ) ( -48 216.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -234.5 0 0
+ ( -56 206.75 4.25 ) ( -48 206.75 4.25 ) ( -48 206.75 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 14.75 0 0
+ ( -46.25 211.5 4.25 ) ( -46.25 216.5 4.25 ) ( -46.25 216.5 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 234.5 14.75 0 0
+ ( -48 216.75 4.25 ) ( -56 216.75 4.25 ) ( -56 216.75 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 14.75 0 0
+ ( -51.75 216.5 4.25 ) ( -51.75 211.5 4.25 ) ( -51.75 211.5 0.25 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 234.5 14.75 0 0
+ ( -51 218 4 ) ( -51.25 218 3.75 ) ( -51 250 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -234.5 0 0
+ ( -46.75 218 3.75 ) ( -47 218 4 ) ( -47 250 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -234.5 0 0
+ ( -48.5 207.25 3.75 ) ( -48.5 207.5 4 ) ( -16.5 207.5 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -234.5 0 0
+ ( -48.5 216 4 ) ( -48.5 216.25 3.75 ) ( -16.5 216 4 ) t7_concrete_poured_bunker_dirty_01_wet 128 128 0 0 0 0 lightmap_gray 16384 16384 -6 -234.5 0 0
+}
+// brush 22
+{
+ guid "{49D77E22-1280-47BB-9E13-8DE583C13CF1}"
+ ( -44.25 -115 173.25 ) ( -18.25 -115 173.25 ) ( -18.25 -115 167.25 ) clip_missile 16 16 0 14.75 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+ ( 41 97.75 184 ) ( 41 120.25 184 ) ( 41 120.25 178 ) clip_missile 16 16 0 14.75 0 0 lightmap_gray 16384 16384 -10 14.75 0 0
+ ( -22.25 125.5 184 ) ( -48.25 125.5 184 ) ( -48.25 125.5 178 ) clip_missile 16 16 0 14.75 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+ ( -48 125.5 184 ) ( -48 103 184 ) ( -48 103 178 ) clip_missile 16 16 0 14.75 0 0 lightmap_gray 16384 16384 -10 14.75 0 0
+ ( 41 -94.5 8 ) ( 41 125.5 184 ) ( 73 125.5 184 ) clip_missile 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 41 130.5 178 ) ( 41 -89.5 2 ) ( 73 -89.5 2 ) clip_missile 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 23
+{
+ guid "{F082D977-CEDB-4CF7-B0CC-CADAD8E0DD0B}"
+ ( -15.25 135.5 178 ) ( -41.25 135.5 178 ) ( -41.25 113 178 ) clip_missile 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -41.25 113 184 ) ( -41.25 135.5 184 ) ( -15.25 135.5 184 ) clip_missile 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -51.25 125.5 184 ) ( -25.25 125.5 184 ) ( -25.25 125.5 178 ) clip_missile 16 16 0 14.75 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+ ( 41 107.75 184 ) ( 41 130.25 184 ) ( 41 130.25 178 ) clip_missile 16 16 0 14.75 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+ ( -15.25 135.5 184 ) ( -41.25 135.5 184 ) ( -41.25 135.5 178 ) clip_missile 16 16 0 14.75 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+ ( -48 135.5 184 ) ( -48 113 184 ) ( -48 113 178 ) clip_missile 16 16 0 14.75 0 0 lightmap_gray 16384 16384 0 14.75 0 0
+}
+// brush 24
+ {
+  guid "{7684542C-5A36-4829-AC0C-408DAC067426}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   5 3 0 8
+   (
+	v -47 -93.5 -1 t 0 0 -134.20313 -63.40625 f 1
+	v -47 -94 -2 t 0 -558.66937 8.484375 -12.21875 f 1
+	v -47 -94.5 -2 t 0 -1024 8.25 -12.21875 f 1
+   )
+   (
+	v -47 -94.03125 8.375 t 583.4895 0 -134.21875 -63.4375 f 1
+	v -47 -94.5 8 t 583.4895 -558.66937 8.46875 -12.25 f 1
+	v -47 -95 8 t 583.4895 -1024 8.21875 -12.25 f 1
+   )
+   (
+	v -51 -94.03125 8.375 t 816.59412 0 -134.21875 -63.4375 f 1
+	v -51 -94.5 8 t 816.59412 -558.66937 8.46875 -12.25 f 1
+	v -51 -95 8 t 816.59412 -1024 8.21875 -12.25 f 1
+   )
+   (
+	v -51 -93.28125 7.375 t 849.17151 0 -2.8125 0.734375 f 1
+	v -51 -93.75 7 t 849.17151 -558.66937 -2.8125 5.890625 f 1
+	v -51 -94.75 7 t 849.17151 -1024 -2.8125 6.125 f 1
+   )
+   (
+	v -48 -93.28125 7.375 t 1024 0 -134.20313 -63.40625 f 1
+	v -48 -93.75 7 t 1024 -558.66937 8.484375 -12.21875 f 1
+	v -48 -94.75 7 t 1024 -1024 8.25 -12.21875 f 1
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+// brush 25
+ {
+  guid "{2982E9B4-158C-47B3-B6D8-82E8BDA5D776}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   8 3 0 8
+   (
+	v -48 125.25 182.25 t 0 0 -2.5625 -5.28125
+	v -48 126 183 t 0 -722.92731 -2.5625 -7.859375
+	v -48 126.25 183 t 0 -1024 -2.5625 -8.46875
+   )
+   (
+	v -51 125.25 182.25 t 368.42166 0 -177.46875 -83.90625 f 1
+	v -51 126 183 t 366.72528 -722.92731 -174.76563 -85.96875
+	v -51 126.25 183 t 368.59393 -1024 -174.15625 -85.96875
+   )
+   (
+	v -51 125.03125 183.625 t 437.07297 0 96.5625 177.48438
+	v -51 125.5 184 t 435.06049 -558.66937 96.5625 174.90625
+	v -51 126 184 t 430.02628 -1024 96.5 174.15625
+   )
+   (
+	v -47 125.03125 183.625 t 928.30188 0 96.8125 177.48438 f 1
+	v -47 125.5 184 t 924.02759 -558.66937 96.8125 174.90625 f 1
+	v -47 126 184 t 921.48486 -1024 96.75 174.15625 f 1
+   )
+   (
+	v -47 125.6875 175.75 t 2143.6982 0 96.8125 176.625
+	v -47 126 176 t 2147.9724 -630.27216 96.8125 174.90625
+	v -47 126.5 176 t 2150.5151 -1023.9999 96.75 174.1875
+   )
+   (
+	v -51 125.6875 175.75 t 2634.927 0 96.5625 176.625
+	v -51 126 176 t 2636.9395 -630.27216 96.5625 174.90625 f 1
+	v -51 126.25 176 t 2641.9739 -1023.9999 96.5 174.1875 f 1
+   )
+   (
+	v -51 125.1875 176.75 t 2703.5784 0 -176.64063 -84.03125
+	v -51 125.5 177 t 2705.2747 -455.23453 -174.92188 -85.40625
+	v -51 126.5 177 t 2703.406 -1024 -174.1875 -85.40625
+   )
+   (
+	v -48 125.1875 176.75 t 3072 0 -2.5625 -6.109375
+	v -48 125.5 177 t 3072 -455.23453 -2.5625 -7.828125
+	v -48 126.5 177 t 3072 -1024 -2.5625 -8.4375
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+// brush 26
+{
+ guid "{5989619C-FC0F-42FB-851E-A341B58E2C77}"
+  contents weaponClip detail;
+ ( 42 130 58 ) ( 42 130 62 ) ( 44 130 62 ) t7_metal_trim_worn_iron_dark 32 4 -176 -87 90 0 lightmap_gray 16374.71 -16383.5 84.649529 -63.723511 180 -0.00024413317
+ ( 44 134 27.5 ) ( 44 134 31.5 ) ( 42 134 31.5 ) t7_metal_trim_worn_iron_dark 32 -4 -176 181 90 0 lightmap_gray 16385.898 -16383.5 84.940613 -64.805923 180 0.00012206659
+ ( 45 130 18.5 ) ( 45 130 22.5 ) ( 45 134 22.5 ) t7_metal_trim_worn_iron_dark 32 4 -176 -2 90 0 lightmap_gray 16384.559 16383.875 437.875 64.616493 0 0
+ ( 44.5 130 94 ) ( 44.5 130.5 94 ) ( 44.5 130 126 ) t7_metal_trim_worn_iron_dark 32 4 -166 -2 90 0 lightmap_gray 16384 16384 570 -40 0 0
+ ( 48.5 130.75 4 ) ( 48.5 130.5 4 ) ( 80.5 130.5 4 ) caulk 16 16 86 -152.5 0 0 lightmap_gray 16384 16384 86 -152.5 0 0
+ ( 48.5 130.25 176 ) ( 48.5 131 176 ) ( 80.5 130.25 176 ) caulk 16 16 86 0 0 0 lightmap_gray 16384 16384 86 0 0 0
+}
+// brush 27
+{
+ guid "{F37B26BE-B9F3-4855-885D-1427C33138D5}"
+  contents weaponClip detail;
+ ( 42 131.5 172.75 ) ( 42 131.5 176.75 ) ( 44 131.5 176.75 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 83.5 90 0 lightmap_gray 16374.71 -16383.5 84.649529 -63.723511 180 -0.00024413317
+ ( 44 132.5 27.5 ) ( 44 132.5 31.5 ) ( 42 132.5 31.5 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 83.5 90 0 lightmap_gray 16385.898 -16383.5 84.940613 -64.805923 180 0.00012206659
+ ( 44.5 130.5 94 ) ( 44.5 130 94 ) ( 44.5 130 126 ) caulk 16 16 570 -40 0 0 lightmap_gray 16384 16384 570 -40 0 0
+ ( 41.5 130 94 ) ( 41.5 130.5 94 ) ( 41.5 130 126 ) caulk 16 16 570 -40 0 0 lightmap_gray 16384 16384 570 -40 0 0
+ ( 48.5 130.75 4 ) ( 48.5 130.5 4 ) ( 80.5 130.5 4 ) caulk 16 16 86 -152.5 0 0 lightmap_gray 16384 16384 86 -152.5 0 0
+ ( 48.5 130.25 176 ) ( 48.5 131 176 ) ( 80.5 130.25 176 ) caulk 16 16 86 0 0 0 lightmap_gray 16384 16384 86 0 0 0
+}
+// brush 28
+{
+ guid "{6C7A16AA-E77A-4C58-AF08-39E840BD2337}"
+  contents weaponClip detail;
+ ( 42 130 58 ) ( 42 130 62 ) ( 44 130 62 ) t7_metal_trim_worn_iron_dark 32 -4 -180 173 90 0 lightmap_gray 16374.71 -16383.5 84.649529 -63.723511 180 -0.00024413317
+ ( 41 134 19.5 ) ( 41 134 23.5 ) ( 41 130 23.5 ) t7_metal_trim_worn_iron_dark 32 4 -180 -2 90 0 lightmap_gray 16388.596 16385.063 438.3194 65.290077 0 0
+ ( 44 134 27.5 ) ( 44 134 31.5 ) ( 42 134 31.5 ) t7_metal_trim_worn_iron_dark 32 4 -180 -95 90 0 lightmap_gray 16385.898 -16383.5 84.940613 -64.805923 180 0.00012206659
+ ( 41.5 130.5 94 ) ( 41.5 130 94 ) ( 41.5 130 126 ) t7_metal_trim_worn_iron_dark 32 4 -166 -2 90 0 lightmap_gray 16384 16384 570 -40 0 0
+ ( 48.5 130.75 4 ) ( 48.5 130.5 4 ) ( 80.5 130.5 4 ) caulk 16 16 86 -152.5 0 0 lightmap_gray 16384 16384 86 -152.5 0 0
+ ( 48.5 130.25 176 ) ( 48.5 131 176 ) ( 80.5 130.25 176 ) caulk 16 16 86 0 0 0 lightmap_gray 16384 16384 86 0 0 0
+}
+// brush 29
+{
+ guid "{26BE9290-0E83-4A54-882E-DCA9F218C411}"
+  contents weaponClip detail;
+ ( 42 212 58 ) ( 42 212 62 ) ( 44 212 62 ) t7_metal_trim_worn_iron_dark 32 -4 -173.99889 253 90 0 lightmap_gray 16374.71 -16383.5 84.649529 -63.723511 180 -0.00024413317
+ ( 41 216 19.5 ) ( 41 216 23.5 ) ( 41 212 23.5 ) t7_metal_trim_worn_iron_dark 32 4 -173.9989 0 90 0 lightmap_gray 16388.596 16385.063 520.31891 65.290047 0 0
+ ( 44 216 27.5 ) ( 44 216 31.5 ) ( 42 216 31.5 ) t7_metal_trim_worn_iron_dark 32 4 -173.99889 -175 90 0 lightmap_gray 16385.898 -16383.5 84.940613 -64.805923 180 0.00012206659
+ ( 41.5 212.5 100 ) ( 41.5 212 100 ) ( 41.5 212 132 ) t7_metal_trim_worn_iron_dark 32 4 -173.9989 0 90 0 lightmap_gray 16384 16384 652 -40 0 0
+ ( 48.5 212.75 4 ) ( 48.5 212.5 4 ) ( 80.5 212.5 4 ) caulk 16 16 86 -234.5 0 0 lightmap_gray 16384 16384 86 -234.5 0 0
+ ( 48.5 212.25 182 ) ( 48.5 213 182 ) ( 80.5 212.25 182 ) caulk 16 16 86 -82 0 0 lightmap_gray 16384 16384 86 -82 0 0
+}
+// brush 30
+{
+ guid "{3D637ED8-8561-4C15-9083-412BB5F1C3F6}"
+  contents weaponClip detail;
+ ( 42 213.5 172.75 ) ( 42 213.5 176.75 ) ( 44 213.5 176.75 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 83.5 90 0 lightmap_gray 16374.71 -16383.5 84.649529 -63.723511 180 -0.00024413317
+ ( 44 214.5 27.5 ) ( 44 214.5 31.5 ) ( 42 214.5 31.5 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 83.5 90 0 lightmap_gray 16385.898 -16383.5 84.940613 -64.805923 180 0.00012206659
+ ( 44.5 212.5 100 ) ( 44.5 212 100 ) ( 44.5 212 132 ) caulk 16 16 652 -40 0 0 lightmap_gray 16384 16384 652 -40 0 0
+ ( 41.5 212 100 ) ( 41.5 212.5 100 ) ( 41.5 212 132 ) caulk 16 16 652 -40 0 0 lightmap_gray 16384 16384 652 -40 0 0
+ ( 48.5 212.75 4 ) ( 48.5 212.5 4 ) ( 80.5 212.5 4 ) caulk 16 16 86 -234.5 0 0 lightmap_gray 16384 16384 86 -234.5 0 0
+ ( 48.5 212.25 182 ) ( 48.5 213 182 ) ( 80.5 212.25 182 ) caulk 16 16 86 -82 0 0 lightmap_gray 16384 16384 86 -82 0 0
+}
+// brush 31
+{
+ guid "{BA3744B2-2012-4983-9446-F399D9F7D518}"
+  contents weaponClip detail;
+ ( 42 212 58 ) ( 42 212 62 ) ( 44 212 62 ) t7_metal_trim_worn_iron_dark 32 4 -173.99889 -167 90 0 lightmap_gray 16374.71 -16383.5 84.649529 -63.723511 180 -0.00024413317
+ ( 44 216 27.5 ) ( 44 216 31.5 ) ( 42 216 31.5 ) t7_metal_trim_worn_iron_dark 32 -4 -173.99889 261 90 0 lightmap_gray 16385.898 -16383.5 84.940613 -64.805923 180 0.00012206659
+ ( 45 212 24.5 ) ( 45 212 28.5 ) ( 45 216 28.5 ) t7_metal_trim_worn_iron_dark 32 4 -173.9989 0 90 0 lightmap_gray 16384.559 16383.875 519.875 64.616508 0 0
+ ( 44.5 212 100 ) ( 44.5 212.5 100 ) ( 44.5 212 132 ) t7_metal_trim_worn_iron_dark 32 4 -173.9989 0 90 0 lightmap_gray 16384 16384 652 -40 0 0
+ ( 48.5 212.75 4 ) ( 48.5 212.5 4 ) ( 80.5 212.5 4 ) caulk 16 16 86 -234.5 0 0 lightmap_gray 16384 16384 86 -234.5 0 0
+ ( 48.5 212.25 182 ) ( 48.5 213 182 ) ( 80.5 212.25 182 ) caulk 16 16 86 -82 0 0 lightmap_gray 16384 16384 86 -82 0 0
+}
+// brush 32
+{
+ guid "{13EF6951-05FE-44DC-8829-C37CFEA37F9C}"
+  contents weaponClip detail;
+ ( -47 123.75 184 ) ( -47 134.75 184 ) ( -47 134.75 176 ) t7_metal_trim_rivets_02 64 -8 -2127 -1192 180 0 lightmap_gray 16384 16384 2922 1192 0 0
+ ( -47 125.5 177 ) ( -48 125.5 177 ) ( -48 126 183 ) caulk 16 16 -6 8.75 0 0 lightmap_gray 16384 16384 -1595 1192 0 0
+ ( -48 134.5 184 ) ( -48 123.5 184 ) ( -48 123.5 176 ) t7_metal_trim_rivets_02 64 -8 -2127 -1192 180 0 lightmap_gray 16384 16384 2922 1192 0 0
+ ( -47 135 183 ) ( -48 135 183 ) ( -48 135 176 ) t7_metal_worn_iron_dark 64 -64 -1592 506.75 0 0 lightmap_gray 16384 16384 -6 14.75 0 0
+ ( -48 135 183 ) ( -47 135 183 ) ( -47 126 183 ) caulk 72 -9 0 -235.5 90 0 lightmap_gray 16384 16384 -6 0 0 0
+ ( -48 125.5 177 ) ( -47 125.5 177 ) ( -47 135 177 ) caulk 16 16 -6 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+}
+// brush 33
+{
+ guid "{13F1EE1B-6843-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( -51 125.75 176 ) ( -47 125.75 176 ) ( -47 135 176 ) t7_metal_trim_worn_iron_dark 32 4 -2143 -2733 -90 0 lightmap_gray 16384 16384 -1595 -2922 0 0
+ ( -47 123.75 186 ) ( -47 134.75 186 ) ( -47 134.75 178 ) t7_metal_trim_rivets_02 64 -8 -2127 -1192 180 0 lightmap_gray 16384 16384 2922 1190 0 0
+ ( -47 125.75 176 ) ( -51 125.75 176 ) ( -51 125.5 177 ) caulk 16 16 -6 6.75 0 0 lightmap_gray 16384 16384 -1595 1190 0 0
+ ( -51 134.5 186 ) ( -51 123.5 186 ) ( -51 123.5 178 ) t7_metal_trim_rivets_02 64 8 -1927 1192 0 0 lightmap_gray 16384 16384 2922 1190 0 0
+ ( -47 135 176.5 ) ( -51 135 176.5 ) ( -51 135 176 ) t7_metal_worn_iron_dark 64 -64 -1592 504.75 0 0 lightmap_gray 16384 16384 -6 -2 0 0
+ ( -51 135.5 177 ) ( -47 135.5 177 ) ( -47 125.75 177 ) t7_metal_trim_worn_iron_dark 32 4 -2143 -2733 -90 0 lightmap_gray 16384 16384 -6 0 0 0
+}
+// brush 34
+{
+ guid "{A758A9CE-6844-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( -47 -94 -2 ) ( -51 -94 -2 ) ( -51 -98.5 -2 ) t7_metal_trim_worn_iron_dark 32 4 57.237438 -7 90 0 lightmap_gray 16384 16384 -10 230 0 0
+ ( -47 -89.5 1.5 ) ( -47 -89.5 -4.75 ) ( -47 -101.5 -4.75 ) t7_metal_trim_worn_iron_dark 32 -4 57.237434 -38 0 0 lightmap_gray 16384 -16384 -230 -194 0 0
+ ( -47 -94.5 -1 ) ( -51 -94.5 -1 ) ( -51 -94 -2 ) caulk 16 -16 -10 -190.75 0 0 lightmap_gray 16384 -16384 -10 -194 0 0
+ ( -51 -106.5 1.5 ) ( -51 -106.5 -4.75 ) ( -51 -94.5 -4.75 ) t7_metal_trim_worn_iron_dark 32 4 57.237434 46 0 0 lightmap_gray 16384 -16384 -230 -194 0 0
+ ( -47 -98 -1.5 ) ( -47 -98.5 -2 ) ( -51 -98.5 -2 ) caulk 16 16 -6 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+ ( -51 -94.5 -1 ) ( -47 -94.5 -1 ) ( -47 -97.5 -1 ) t7_metal_trim_worn_iron_dark 24.987806 4 24.041836 -7 90 0 lightmap_gray 16384 16384 -6 0 0 0
+}
+// brush 35
+{
+ guid "{B561A683-6844-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( -47 -94 2.5 ) ( -51 -94 2.5 ) ( -51 -94 -2 ) t7_metal_trim_worn_iron_dark 32 4 153.73744 -7 90 0 lightmap_gray 16384 16384 -10 133.5 0 0
+ ( -47 -97.5 7 ) ( -47 -91.25 7 ) ( -47 -91.25 -5 ) t7_metal_trim_worn_iron_dark 32 -4 153.73744 -134 90 0 lightmap_gray 16384 -16384 -133.5 -290 90 0
+ ( -51 -97.5 -10 ) ( -51 -91.25 -10 ) ( -51 -91.25 2 ) t7_metal_trim_worn_iron_dark 32 4 153.73743 -50 90 0 lightmap_gray 16384 -16384 -133.5 -290 90 0
+ ( -51 -94.5 -1 ) ( -47 -94.5 -1 ) ( -47 -94 -2 ) caulk 16 -16 -6 192.5 0 0 lightmap_gray 16384 -16384 -6 192.5 0 0
+ ( -47 -94.5 -1 ) ( -51 -94.5 -1 ) ( -51 -94.5 1 ) t7_metal_trim_worn_iron_dark 24.987806 4 120.54186 -7 90 0 lightmap_gray 16384 16384 -6 -96.5 0 0
+ ( -47 -94.5 1 ) ( -47 -94 0 ) ( -15 -94 0 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 36
+ {
+  guid "{F8AA88D0-6844-11E4-A047-2C27D7F0337A}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   5 3 0 8
+   (
+	v -47 -94.5 6.25 t 0 0 -134.20313 -63.40625 f 1
+	v -47 -94 6.75 t 0 -558.66937 8.484375 -12.21875 f 1
+	v -47 -93.5 7 t 0 -1024 8.25 -12.21875 f 1
+   )
+   (
+	v -47 -93.96875 -0.625 t 583.4895 0 -134.21875 -63.4375 f 1
+	v -47 -94 0 t 583.4895 -558.66937 8.46875 -12.25 f 1
+	v -47 -93.25 0.5 t 583.4895 -1024 8.21875 -12.25 f 1
+   )
+   (
+	v -51 -93.96875 -0.625 t 816.59412 0 -134.21875 -63.4375 f 1
+	v -51 -94 0 t 816.59412 -558.66937 8.46875 -12.25 f 1
+	v -51 -93.25 0.5 t 816.59412 -1024 8.21875 -12.25 f 1
+   )
+   (
+	v -51 -94.5 0.25 t 849.17151 0 -2.8125 0.734375 f 1
+	v -51 -94.5 1 t 849.17151 -558.66937 -2.8125 5.890625 f 1
+	v -51 -93.75 1.75 t 849.17151 -1024 -2.8125 6.125 f 1
+   )
+   (
+	v -48 -94.5 0.25 t 1024 0 -134.20313 -63.40625 f 1
+	v -48 -94.5 1 t 1024 -558.66937 8.484375 -12.21875 f 1
+	v -48 -93.75 1.75 t 1024 -1024 8.25 -12.21875 f 1
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+// brush 37
+ {
+  guid "{F8AA88D1-6844-11E4-A047-2C27D7F0337A}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   2 3 0 8
+   (
+	v -48 -94.5 0.25 t 0 0 91.8125 -3.9375
+	v -48 -94.25 0.75 t 30.720001 -512 91.75 -3.9375
+	v -48 -93.75 1.75 t 61.440002 -1024 91.6875 -3.9375
+   )
+   (
+	v -48 -94.5 6.25 t 1024 0 91.8125 -3.375
+	v -48 -94 6.75 t 1024 -512 91.75 -3.375
+	v -48 -93.5 7 t 1024 -1024 91.6875 -3.375
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+// brush 38
+{
+ guid "{FC6F5CAE-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 45 -98.5 -2 ) ( 45 -98 -1.5 ) ( 41 -98 -1.5 ) caulk 16 -16 -4 -218 180 0 lightmap_gray 16384 -16384 -4 -230 180 0
+ ( 41 -98.5 8 ) ( 41 -98 7.5 ) ( 45 -98 7.5 ) t7_metal_worn_iron_dark 64 64 -1586 -492 180 0 lightmap_gray 16384 -16384 -4 -230 180 0
+ ( -36.5 -98.5 4 ) ( -36.5 -98.5 10.25 ) ( 45.5 -98.5 10.25 ) t7_metal_trim_worn_iron_dark 32 -4 163.73743 1 90 0 lightmap_gray 16384 -16384 -4 -188 180 0
+ ( 41 -89.5 4.5 ) ( 41 -89.5 10.75 ) ( 41 -101.5 10.75 ) t7_metal_trim_worn_iron_dark 32 4 163.73741 -58.5 90 0 lightmap_gray 16384 16384 -230 188 0 0
+ ( 45 -106.5 4.5 ) ( 45 -106.5 10.75 ) ( 45 -94.5 10.75 ) t7_metal_trim_worn_iron_dark 32 -4 163.73741 -142.5 90 0 lightmap_gray 16384 16384 -230 188 0 0
+ ( 41 -97.5 7.5 ) ( 41 -97.5 -1.5 ) ( 45 -97.5 -1.5 ) t7_metal_trim_worn_iron_dark 24.987806 -4 24.041836 1 90 0 lightmap_gray 16384 -16384 0 -14.75 180 0
+}
+// brush 39
+ {
+  guid "{FC6F5CAF-6845-11E4-A047-2C27D7F0337A}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   5 3 0 8
+   (
+	v 41 -94.5 -2 t 0 -1024 8.25 -12.21875 f 1
+	v 41 -94 -2 t 0 -558.66937 8.484375 -12.21875 f 1
+	v 41 -93.5 -1 t 0 0 -134.20313 -63.40625 f 1
+   )
+   (
+	v 41 -95 8 t 583.4895 -1024 8.21875 -12.25 f 1
+	v 41 -94.5 8 t 583.4895 -558.66937 8.46875 -12.25 f 1
+	v 41 -94.03125 8.375 t 583.4895 0 -134.21875 -63.4375 f 1
+   )
+   (
+	v 45 -95 8 t 816.59412 -1024 8.21875 -12.25 f 1
+	v 45 -94.5 8 t 816.59412 -558.66937 8.46875 -12.25 f 1
+	v 45 -94.03125 8.375 t 816.59412 0 -134.21875 -63.4375 f 1
+   )
+   (
+	v 45 -94.75 7 t 849.17151 -1024 -2.8125 6.125 f 1
+	v 45 -93.75 7 t 849.17151 -558.66937 -2.8125 5.890625 f 1
+	v 45 -93.28125 7.375 t 849.17151 0 -2.8125 0.734375 f 1
+   )
+   (
+	v 42 -94.75 7 t 1024 -1024 8.25 -12.21875 f 1
+	v 42 -93.75 7 t 1024 -558.66937 8.484375 -12.21875 f 1
+	v 42 -93.28125 7.375 t 1024 0 -134.20313 -63.40625 f 1
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+// brush 40
+ {
+  guid "{FC6F5CB1-6845-11E4-A047-2C27D7F0337A}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   5 3 0 8
+   (
+	v 41 -93.5 7 t 0 -1024 8.25 -12.21875 f 1
+	v 41 -94 6.75 t 0 -558.66937 8.484375 -12.21875 f 1
+	v 41 -94.5 6.25 t 0 0 -134.20313 -63.40625 f 1
+   )
+   (
+	v 41 -93.25 0.5 t 583.4895 -1024 8.21875 -12.25 f 1
+	v 41 -94 0 t 583.4895 -558.66937 8.46875 -12.25 f 1
+	v 41 -93.96875 -0.625 t 583.4895 0 -134.21875 -63.4375 f 1
+   )
+   (
+	v 45 -93.25 0.5 t 816.59412 -1024 8.21875 -12.25 f 1
+	v 45 -94 0 t 816.59412 -558.66937 8.46875 -12.25 f 1
+	v 45 -93.96875 -0.625 t 816.59412 0 -134.21875 -63.4375 f 1
+   )
+   (
+	v 45 -93.75 1.75 t 849.17151 -1024 -2.8125 6.125 f 1
+	v 45 -94.5 1 t 849.17151 -558.66937 -2.8125 5.890625 f 1
+	v 45 -94.5 0.25 t 849.17151 0 -2.8125 0.734375 f 1
+   )
+   (
+	v 42 -93.75 1.75 t 1024 -1024 8.25 -12.21875 f 1
+	v 42 -94.5 1 t 1024 -558.66937 8.484375 -12.21875 f 1
+	v 42 -94.5 0.25 t 1024 0 -134.20313 -63.40625 f 1
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+// brush 41
+ {
+  guid "{FC6F5CB2-6845-11E4-A047-2C27D7F0337A}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   2 3 0 8
+   (
+	v 42 -94.75 7 t 61.440002 -1024 91.6875 -3.9375
+	v 42 -94 7.25 t 30.720001 -512 91.75 -3.9375
+	v 42 -93.25 7.5 t 0 0 91.8125 -3.9375
+   )
+   (
+	v 42 -94.75 1 t 1024 -1024 91.6875 -3.375
+	v 42 -94.25 1.25 t 1024 -512 91.75 -3.375
+	v 42 -93.75 1.75 t 1024 0 91.8125 -3.375
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+// brush 42
+ {
+  guid "{FC6F5CB3-6845-11E4-A047-2C27D7F0337A}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   2 3 0 8
+   (
+	v 42 -93.75 1.75 t 61.440002 -1024 91.6875 -3.9375
+	v 42 -94.25 0.75 t 30.720001 -512 91.75 -3.9375
+	v 42 -94.5 0.25 t 0 0 91.8125 -3.9375
+   )
+   (
+	v 42 -93.5 7 t 1024 -1024 91.6875 -3.375
+	v 42 -94 6.75 t 1024 -512 91.75 -3.375
+	v 42 -94.5 6.25 t 1024 0 91.8125 -3.375
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+// brush 43
+{
+ guid "{FC6F5CB4-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 45 134.5 184 ) ( 45 123.5 184 ) ( 43 123.5 184 ) t7_metal_trim_worn_iron_dark 32 -4 -2143 2739 -90 0 lightmap_gray 16384 -16384 -1589 2922 -180 0
+ ( 41 134.75 176 ) ( 41 134.75 184 ) ( 41 123.75 184 ) t7_metal_worn_iron_dark 64 -64 -1586 506.75 0 0 lightmap_gray 16384 16384 2922 1192 0 0
+ ( 45 125.5 184 ) ( 45 125.75 183.5 ) ( 41 125.75 183.5 ) caulk 16 -16 0 -8.75 180 0 lightmap_gray 16384 -16384 -1589 -1192 180 0
+ ( 45 123.5 176 ) ( 45 123.5 184 ) ( 45 134.5 184 ) t7_metal_trim_rivets_02 64 8 -1927 1192 0 0 lightmap_gray 16384 16384 2922 1192 0 0
+ ( 41 135.5 184 ) ( 41 135.5 183.5 ) ( 45 135.5 183.5 ) caulk 16 -16 0 0 180 0 lightmap_gray 16384 -16384 0 0 180 0
+ ( 45 125.75 183 ) ( 45 135.5 183 ) ( 41 135.5 183 ) t7_metal_trim_worn_iron_dark 32 -4 -2143 2739 -90 0 lightmap_gray 16384 -16384 0 0 180 0
+}
+// brush 44
+ {
+  guid "{FC6F5CB6-6845-11E4-A047-2C27D7F0337A}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   8 3 0 8
+   (
+	v 42 126.25 183 t 0 -1024 -2.5625 -8.46875
+	v 42 126 183 t 0 -722.92731 -2.5625 -7.859375
+	v 42 125.25 182.25 t 0 0 -2.5625 -5.28125
+   )
+   (
+	v 45 126.25 183 t 368.59393 -1024 -174.15625 -85.96875
+	v 45 126 183 t 366.72528 -722.92731 -174.76563 -85.96875 f 1
+	v 45 125.25 182.25 t 368.42166 0 -177.46875 -83.90625 f 1
+   )
+   (
+	v 45 126 184 t 430.02628 -1024 96.5 174.15625
+	v 45 125.5 184 t 435.06049 -558.66937 96.5625 174.90625
+	v 45 125.03125 183.625 t 437.07297 0 96.5625 177.48438
+   )
+   (
+	v 41 126 184 t 921.48486 -1024 96.75 174.15625 f 1
+	v 41 125.5 184 t 924.02759 -558.66937 96.8125 174.90625 f 1
+	v 41 125.03125 183.625 t 928.30188 0 96.8125 177.48438 f 1
+   )
+   (
+	v 41 126.5 176 t 2150.5151 -1023.9999 96.75 174.1875
+	v 41 126 176 t 2147.9724 -630.27216 96.8125 174.90625
+	v 41 125.6875 175.75 t 2143.6982 0 96.8125 176.625
+   )
+   (
+	v 45 126.25 176 t 2641.9739 -1023.9999 96.5 174.1875 f 1
+	v 45 126 176 t 2636.9395 -630.27216 96.5625 174.90625
+	v 45 125.6875 175.75 t 2634.927 0 96.5625 176.625
+   )
+   (
+	v 45 126.5 177 t 2703.406 -1024 -174.1875 -85.40625
+	v 45 125.5 177 t 2705.2747 -455.23453 -174.92188 -85.40625
+	v 45 125.1875 176.75 t 2703.5784 0 -176.64063 -84.03125
+   )
+   (
+	v 42 126.5 177 t 3072 -1024 -2.5625 -8.4375
+	v 42 125.5 177 t 3072 -455.23453 -2.5625 -7.828125
+	v 42 125.1875 176.75 t 3072 0 -2.5625 -6.109375
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+// brush 45
+ {
+  guid "{FC6F5CB7-6845-11E4-A047-2C27D7F0337A}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   2 3 0 8
+   (
+	v 42 125.25 182.5 t 61.440002 -1024 91.6875 -3.9375
+	v 42 125.75 183 t 30.720001 -512 91.75 -3.9375
+	v 42 126.25 183 t 0 0 91.8125 -3.9375
+   )
+   (
+	v 42 125 176.5 t 1024 -1024 91.6875 -3.375
+	v 42 125.5 176.5 t 1024 -512 91.75 -3.375
+	v 42 126.25 176 t 1024 0 91.8125 -3.375
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+// brush 46
+{
+ guid "{FC6F5CB8-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 41 134.75 176 ) ( 41 134.75 184 ) ( 41 123.75 184 ) t7_metal_trim_rivets_02 64 -8 -2127 -1192 180 0 lightmap_gray 16384 16384 2922 1192 0 0
+ ( 42 126 183 ) ( 42 125.5 177 ) ( 41 125.5 177 ) caulk 16 -16 0 -8.75 180 0 lightmap_gray 16384 -16384 -1589 -1192 180 0
+ ( 42 123.5 176 ) ( 42 123.5 184 ) ( 42 134.5 184 ) t7_metal_trim_rivets_02 64 -8 -2127 -1192 -180 0 lightmap_gray 16384 16384 2922 1192 0 0
+ ( 42 135 176 ) ( 42 135 183 ) ( 41 135 183 ) t7_metal_worn_iron_dark 64 64 -1586 -506.75 180 0 lightmap_gray 16384 -16384 0 -14.75 180 0
+ ( 41 126 183 ) ( 41 135 183 ) ( 42 135 183 ) caulk 72 9 0 229.5 90 0 lightmap_gray 16384 -16384 0 0 180 0
+ ( 41 135 177 ) ( 41 125.5 177 ) ( 42 125.5 177 ) caulk 16 -16 0 0 180 0 lightmap_gray 16384 -16384 0 0 180 0
+}
+// brush 47
+{
+ guid "{FC6F5CB5-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 41 125.75 176 ) ( 45 125.75 176 ) ( 45 135 176 ) t7_metal_trim_worn_iron_dark 32 -4 -2143 2739 -90 0 lightmap_gray 16384 -16384 -1589 2922 180 0
+ ( 41 134.75 178 ) ( 41 134.75 186 ) ( 41 123.75 186 ) t7_metal_trim_rivets_02 64 -8 -2127 -1192 180 0 lightmap_gray 16384 16384 2922 1190 0 0
+ ( 45 125.75 176 ) ( 41 125.75 176 ) ( 41 125.5 177 ) caulk 16 -16 0 -6.75 180 0 lightmap_gray 16384 -16384 -1589 -1190 180 0
+ ( 45 123.5 178 ) ( 45 123.5 186 ) ( 45 134.5 186 ) t7_metal_trim_rivets_02 64 8 -1927 1192 0 0 lightmap_gray 16384 16384 2922 1190 0 0
+ ( 45 135 176 ) ( 45 135 176.5 ) ( 41 135 176.5 ) t7_metal_worn_iron_dark 64 64 -1586 -504.75 180 0 lightmap_gray 16384 -16384 0 2 180 0
+ ( 41 125.75 177 ) ( 41 135.5 177 ) ( 45 135.5 177 ) t7_metal_trim_worn_iron_dark 32 -4 -2143 2739 -90 0 lightmap_gray 16384 -16384 0 0 180 0
+}
+// brush 48
+{
+ guid "{B4530097-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( -50 52 111.5 ) ( -50 52 115.5 ) ( -48 52 115.5 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 -8.5 90 0 lightmap_gray 16374.71 -16383.5 176.64958 -63.723511 180 -0.00024413317
+ ( -48 53 27.5 ) ( -48 53 31.5 ) ( -50 53 31.5 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 -8.5 90 0 lightmap_gray 16385.898 -16383.5 176.94066 -64.805923 180 0.00012206659
+ ( -47.5 51 94 ) ( -47.5 50.5 94 ) ( -47.5 50.5 126 ) caulk 16 16 490.5 -40 0 0 lightmap_gray 16384 16384 490.5 -40 0 0
+ ( -50.5 50.5 94 ) ( -50.5 51 94 ) ( -50.5 50.5 126 ) caulk 16 16 490.5 -40 0 0 lightmap_gray 16384 16384 490.5 -40 0 0
+ ( -43.5 51.25 4 ) ( -43.5 51 4 ) ( -11.5 51 4 ) caulk 16 16 -6 -73 0 0 lightmap_gray 16384 16384 -6 -73 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 49
+{
+ guid "{B4530099-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( -50 50.5 58 ) ( -50 50.5 62 ) ( -48 50.5 62 ) t7_metal_trim_worn_iron_dark 32 4 -132.79997 -99 90 0 lightmap_gray 16374.71 -16383.5 176.64958 -63.723511 180 -0.00024413317
+ ( -48 54.5 27.5 ) ( -48 54.5 31.5 ) ( -50 54.5 31.5 ) t7_metal_trim_worn_iron_dark 32 -4 -132.79997 9 90 0 lightmap_gray 16385.898 -16383.5 176.94066 -64.805923 180 0.00012206659
+ ( -47 50.5 18.5 ) ( -47 50.5 22.5 ) ( -47 54.5 22.5 ) t7_metal_trim_worn_iron_dark 32 4 -132.79999 -1.5 90 0 lightmap_gray 16384.559 16383.875 358.375 64.616493 0 0
+ ( -47.5 50.5 94 ) ( -47.5 51 94 ) ( -47.5 50.5 126 ) t7_metal_trim_worn_iron_dark 32 4 -108.79999 -1.5 90 0 lightmap_gray 16384 16384 490.5 -40 0 0
+ ( -43.5 51.25 4 ) ( -43.5 51 4 ) ( -11.5 51 4 ) caulk 16 16 -6 -73 0 0 lightmap_gray 16384 16384 -6 -73 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 50
+{
+ guid "{B453009B-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( -50 50.5 58 ) ( -50 50.5 62 ) ( -48 50.5 62 ) t7_metal_trim_worn_iron_dark 32 -4 -120.79998 1 90 0 lightmap_gray 16374.71 -16383.5 176.64958 -63.723511 180 -0.00024413317
+ ( -51 54.5 19.5 ) ( -51 54.5 23.5 ) ( -51 50.5 23.5 ) t7_metal_trim_worn_iron_dark 32 4 -120.79999 -1.5 90 0 lightmap_gray 16388.596 16385.063 358.81985 65.290077 0 0
+ ( -48 54.5 27.5 ) ( -48 54.5 31.5 ) ( -50 54.5 31.5 ) t7_metal_trim_worn_iron_dark 32 4 -120.79998 -107 90 0 lightmap_gray 16385.898 -16383.5 176.94066 -64.805923 180 0.00012206659
+ ( -50.5 51 94 ) ( -50.5 50.5 94 ) ( -50.5 50.5 126 ) t7_metal_trim_worn_iron_dark 32 4 -108.79999 -1.5 90 0 lightmap_gray 16384 16384 490.5 -40 0 0
+ ( -43.5 51.25 4 ) ( -43.5 51 4 ) ( -11.5 51 4 ) caulk 16 16 -6 -73 0 0 lightmap_gray 16384 16384 -6 -73 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 51
+{
+ guid "{B453009D-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 42 50.5 58 ) ( 42 50.5 62 ) ( 44 50.5 62 ) t7_metal_trim_worn_iron_dark 32 4 -132.79997 -7 90 0 lightmap_gray 16374.71 -16383.5 84.649529 -63.723511 180 -0.00024413317
+ ( 44 54.5 27.5 ) ( 44 54.5 31.5 ) ( 42 54.5 31.5 ) t7_metal_trim_worn_iron_dark 32 -4 -132.79997 101 90 0 lightmap_gray 16385.898 -16383.5 84.940613 -64.805923 180 0.00012206659
+ ( 45 50.5 18.5 ) ( 45 50.5 22.5 ) ( 45 54.5 22.5 ) t7_metal_trim_worn_iron_dark 32 4 -132.79999 -1.5 90 0 lightmap_gray 16384.559 16383.875 358.375 64.616493 0 0
+ ( 44.5 50.5 94 ) ( 44.5 51 94 ) ( 44.5 50.5 126 ) t7_metal_trim_worn_iron_dark 32 4 -108.79999 -1.5 90 0 lightmap_gray 16384 16384 490.5 -40 0 0
+ ( 48.5 51.25 4 ) ( 48.5 51 4 ) ( 80.5 51 4 ) caulk 16 16 86 -73 0 0 lightmap_gray 16384 16384 86 -73 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 52
+{
+ guid "{B453009F-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 42 52 111.5 ) ( 42 52 115.5 ) ( 44 52 115.5 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 83.5 90 0 lightmap_gray 16374.71 -16383.5 84.649529 -63.723511 180 -0.00024413317
+ ( 44 53 27.5 ) ( 44 53 31.5 ) ( 42 53 31.5 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 83.5 90 0 lightmap_gray 16385.898 -16383.5 84.940613 -64.805923 180 0.00012206659
+ ( 44.5 51 94 ) ( 44.5 50.5 94 ) ( 44.5 50.5 126 ) caulk 16 16 490.5 -40 0 0 lightmap_gray 16384 16384 490.5 -40 0 0
+ ( 41.5 50.5 94 ) ( 41.5 51 94 ) ( 41.5 50.5 126 ) caulk 16 16 490.5 -40 0 0 lightmap_gray 16384 16384 490.5 -40 0 0
+ ( 48.5 51.25 4 ) ( 48.5 51 4 ) ( 80.5 51 4 ) caulk 16 16 86 -73 0 0 lightmap_gray 16384 16384 86 -73 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 53
+{
+ guid "{B45300A1-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 42 50.5 58 ) ( 42 50.5 62 ) ( 44 50.5 62 ) t7_metal_trim_worn_iron_dark 32 -4 -120.79998 93 90 0 lightmap_gray 16374.71 -16383.5 84.649529 -63.723511 180 -0.00024413317
+ ( 41 54.5 19.5 ) ( 41 54.5 23.5 ) ( 41 50.5 23.5 ) t7_metal_trim_worn_iron_dark 32 4 -120.79999 -1.5 90 0 lightmap_gray 16388.596 16385.063 358.81982 65.290077 0 0
+ ( 44 54.5 27.5 ) ( 44 54.5 31.5 ) ( 42 54.5 31.5 ) t7_metal_trim_worn_iron_dark 32 4 -120.79998 -15 90 0 lightmap_gray 16385.898 -16383.5 84.940613 -64.805923 180 0.00012206659
+ ( 41.5 51 94 ) ( 41.5 50.5 94 ) ( 41.5 50.5 126 ) t7_metal_trim_worn_iron_dark 32 4 -108.79999 -1.5 90 0 lightmap_gray 16384 16384 490.5 -40 0 0
+ ( 48.5 51.25 4 ) ( 48.5 51 4 ) ( 80.5 51 4 ) caulk 16 16 86 -73 0 0 lightmap_gray 16384 16384 86 -73 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 54
+{
+ guid "{B45300A3-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( -50 -22.5 58 ) ( -50 -22.5 62 ) ( -48 -22.5 62 ) t7_metal_trim_worn_iron_dark 32 -4 -120.79998 1 90 0 lightmap_gray 16374.71 -16383.5 176.64958 -63.723511 180 -0.00024413317
+ ( -51 -18.5 19.5 ) ( -51 -18.5 23.5 ) ( -51 -22.5 23.5 ) t7_metal_trim_worn_iron_dark 32 4 -120.79999 -74.5 90 0 lightmap_gray 16388.596 16385.063 285.81924 65.290077 0 0
+ ( -48 -18.5 35 ) ( -48 -18.5 39 ) ( -50 -18.5 39 ) t7_metal_trim_worn_iron_dark 32 4 -120.79998 -107 90 0 lightmap_gray 16385.898 -16383.5 176.94066 -64.805923 180 0.00012206659
+ ( -50.5 -22 94 ) ( -50.5 -22.5 94 ) ( -50.5 -22.5 126 ) t7_metal_trim_worn_iron_dark 32 4 -108.79999 -74.5 90 0 lightmap_gray 16384 16384 417.5 -40 0 0
+ ( -43.5 -21.75 4 ) ( -43.5 -22 4 ) ( -11.5 -22 4 ) caulk 16 16 -6 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 55
+{
+ guid "{B45300A5-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( -50 -22.5 58 ) ( -50 -22.5 62 ) ( -48 -22.5 62 ) t7_metal_trim_worn_iron_dark 32 4 -132.79997 -99 90 0 lightmap_gray 16374.71 -16383.5 176.64958 -63.723511 180 -0.00024413317
+ ( -48 -18.5 35 ) ( -48 -18.5 39 ) ( -50 -18.5 39 ) t7_metal_trim_worn_iron_dark 32 -4 -132.79997 9 90 0 lightmap_gray 16385.898 -16383.5 176.94066 -64.805923 180 0.00012206659
+ ( -47 -22.5 18.5 ) ( -47 -22.5 22.5 ) ( -47 -18.5 22.5 ) t7_metal_trim_worn_iron_dark 32 4 -132.79999 -74.5 90 0 lightmap_gray 16384.559 16383.875 285.375 64.616493 0 0
+ ( -47.5 -22.5 94 ) ( -47.5 -22 94 ) ( -47.5 -22.5 126 ) t7_metal_trim_worn_iron_dark 32 4 -108.79999 -74.5 90 0 lightmap_gray 16384 16384 417.5 -40 0 0
+ ( -43.5 -21.75 4 ) ( -43.5 -22 4 ) ( -11.5 -22 4 ) caulk 16 16 -6 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 56
+{
+ guid "{B45300A7-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( -50 -21 109 ) ( -50 -21 113 ) ( -48 -21 113 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 -8.5 90 0 lightmap_gray 16374.71 -16383.5 176.64958 -63.723511 180 -0.00024413317
+ ( -48 -20 35 ) ( -48 -20 39 ) ( -50 -20 39 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 -8.5 90 0 lightmap_gray 16385.898 -16383.5 176.94066 -64.805923 180 0.00012206659
+ ( -47.5 -22 94 ) ( -47.5 -22.5 94 ) ( -47.5 -22.5 126 ) caulk 16 16 417.5 -40 0 0 lightmap_gray 16384 16384 417.5 -40 0 0
+ ( -50.5 -22.5 94 ) ( -50.5 -22 94 ) ( -50.5 -22.5 126 ) caulk 16 16 417.5 -40 0 0 lightmap_gray 16384 16384 417.5 -40 0 0
+ ( -43.5 -21.75 4 ) ( -43.5 -22 4 ) ( -11.5 -22 4 ) caulk 16 16 -6 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 57
+{
+ guid "{B45300A9-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 42 -22.5 58 ) ( 42 -22.5 62 ) ( 44 -22.5 62 ) t7_metal_trim_worn_iron_dark 32 4 -132.79997 -7 90 0 lightmap_gray 16374.71 -16383.5 84.649529 -63.723511 180 -0.00024413317
+ ( 44 -18.5 35 ) ( 44 -18.5 39 ) ( 42 -18.5 39 ) t7_metal_trim_worn_iron_dark 32 -4 -132.79997 101 90 0 lightmap_gray 16385.898 -16383.5 84.940613 -64.805923 180 0.00012206659
+ ( 45 -22.5 18.5 ) ( 45 -22.5 22.5 ) ( 45 -18.5 22.5 ) t7_metal_trim_worn_iron_dark 32 4 -132.79999 -74.5 90 0 lightmap_gray 16384.559 16383.875 285.375 64.616493 0 0
+ ( 44.5 -22.5 94 ) ( 44.5 -22 94 ) ( 44.5 -22.5 126 ) t7_metal_trim_worn_iron_dark 32 4 -108.79999 -74.5 90 0 lightmap_gray 16384 16384 417.5 -40 0 0
+ ( 48.5 -21.75 4 ) ( 48.5 -22 4 ) ( 80.5 -22 4 ) caulk 16 16 86 0 0 0 lightmap_gray 16384 16384 86 0 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 58
+{
+ guid "{B45300AB-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 42 -21 109 ) ( 42 -21 113 ) ( 44 -21 113 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 83.5 90 0 lightmap_gray 16374.71 -16383.5 84.649529 -63.723511 180 -0.00024413317
+ ( 44 -20 35 ) ( 44 -20 39 ) ( 42 -20 39 ) t7_metal_trim_worn_iron_dark 24 3 -106.8 83.5 90 0 lightmap_gray 16385.898 -16383.5 84.940613 -64.805923 180 0.00012206659
+ ( 44.5 -22 94 ) ( 44.5 -22.5 94 ) ( 44.5 -22.5 126 ) caulk 16 16 417.5 -40 0 0 lightmap_gray 16384 16384 417.5 -40 0 0
+ ( 41.5 -22.5 94 ) ( 41.5 -22 94 ) ( 41.5 -22.5 126 ) caulk 16 16 417.5 -40 0 0 lightmap_gray 16384 16384 417.5 -40 0 0
+ ( 48.5 -21.75 4 ) ( 48.5 -22 4 ) ( 80.5 -22 4 ) caulk 16 16 86 0 0 0 lightmap_gray 16384 16384 86 0 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 59
+{
+ guid "{B45300AD-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 42 -22.5 58 ) ( 42 -22.5 62 ) ( 44 -22.5 62 ) t7_metal_trim_worn_iron_dark 32 -4 -120.79998 93 90 0 lightmap_gray 16374.71 -16383.5 84.649529 -63.723511 180 -0.00024413317
+ ( 41 -18.5 19.5 ) ( 41 -18.5 23.5 ) ( 41 -22.5 23.5 ) t7_metal_trim_worn_iron_dark 32 4 -120.79999 -74.5 90 0 lightmap_gray 16388.596 16385.063 285.8186 65.290077 0 0
+ ( 44 -18.5 35 ) ( 44 -18.5 39 ) ( 42 -18.5 39 ) t7_metal_trim_worn_iron_dark 32 4 -120.79998 -15 90 0 lightmap_gray 16385.898 -16383.5 84.940613 -64.805923 180 0.00012206659
+ ( 41.5 -22 94 ) ( 41.5 -22.5 94 ) ( 41.5 -22.5 126 ) t7_metal_trim_worn_iron_dark 32 4 -108.79999 -74.5 90 0 lightmap_gray 16384 16384 417.5 -40 0 0
+ ( 48.5 -21.75 4 ) ( 48.5 -22 4 ) ( 80.5 -22 4 ) caulk 16 16 86 0 0 0 lightmap_gray 16384 16384 86 0 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 60
+{
+ guid "{B45300AF-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( -50 -67.5 58 ) ( -50 -67.5 62 ) ( -48 -67.5 62 ) t7_metal_trim_worn_iron_dark 32 -4 -120.79998 1 90 0 lightmap_gray 16374.71 -16383.5 176.64958 -63.723511 180 -0.00024413317
+ ( -51 -63.5 19.5 ) ( -51 -63.5 23.5 ) ( -51 -67.5 23.5 ) t7_metal_trim_worn_iron_dark 32 4 -120.79999 -119.5 90 0 lightmap_gray 16388.596 16385.063 240.81908 65.290077 0 0
+ ( -48 -63.5 35 ) ( -48 -63.5 39 ) ( -50 -63.5 39 ) t7_metal_trim_worn_iron_dark 32 4 -120.79998 -107 90 0 lightmap_gray 16385.898 -16383.5 176.94066 -64.805923 180 0.00012206659
+ ( -50.5 -67 94 ) ( -50.5 -67.5 94 ) ( -50.5 -67.5 126 ) t7_metal_trim_worn_iron_dark 32 4 -108.79999 -119.5 90 0 lightmap_gray 16384 16384 372.5 -40 0 0
+ ( -43.5 -66.75 4 ) ( -43.5 -67 4 ) ( -11.5 -67 4 ) caulk 16 16 -6 45 0 0 lightmap_gray 16384 16384 -6 45 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 61
+{
+ guid "{B45300B1-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( -50 -66 109 ) ( -50 -66 113 ) ( -48 -66 113 ) t7_metal_trim_worn_iron_dark 24 3 -106.80023 -8.5 90 0 lightmap_gray 16374.71 -16383.5 176.64958 -63.723511 180 -0.00024413317
+ ( -48 -65 35 ) ( -48 -65 39 ) ( -50 -65 39 ) t7_metal_trim_worn_iron_dark 24 3 -106.80023 -8.5 90 0 lightmap_gray 16385.898 -16383.5 176.94066 -64.805923 180 0.00012206659
+ ( -47.5 -67 94 ) ( -47.5 -67.5 94 ) ( -47.5 -67.5 126 ) caulk 16 16 372.5 -40 0 0 lightmap_gray 16384 16384 372.5 -40 0 0
+ ( -50.5 -67.5 94 ) ( -50.5 -67 94 ) ( -50.5 -67.5 126 ) caulk 16 16 372.5 -40 0 0 lightmap_gray 16384 16384 372.5 -40 0 0
+ ( -43.5 -66.75 4 ) ( -43.5 -67 4 ) ( -11.5 -67 4 ) caulk 16 16 -6 45 0 0 lightmap_gray 16384 16384 -6 45 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 62
+{
+ guid "{B45300B3-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( -50 -67.5 58 ) ( -50 -67.5 62 ) ( -48 -67.5 62 ) t7_metal_trim_worn_iron_dark 32 4 -132.79997 -99 90 0 lightmap_gray 16374.71 -16383.5 176.64958 -63.723511 180 -0.00024413317
+ ( -48 -63.5 35 ) ( -48 -63.5 39 ) ( -50 -63.5 39 ) t7_metal_trim_worn_iron_dark 32 -4 -132.79997 9 90 0 lightmap_gray 16385.898 -16383.5 176.94066 -64.805923 180 0.00012206659
+ ( -47 -67.5 18.5 ) ( -47 -67.5 22.5 ) ( -47 -63.5 22.5 ) t7_metal_trim_worn_iron_dark 32 4 -132.79999 -119.5 90 0 lightmap_gray 16384.559 16383.875 240.375 64.616501 0 0
+ ( -47.5 -67.5 94 ) ( -47.5 -67 94 ) ( -47.5 -67.5 126 ) t7_metal_trim_worn_iron_dark 32 4 -108.79999 -119.5 90 0 lightmap_gray 16384 16384 372.5 -40 0 0
+ ( -43.5 -66.75 4 ) ( -43.5 -67 4 ) ( -11.5 -67 4 ) caulk 16 16 -6 45 0 0 lightmap_gray 16384 16384 -6 45 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 63
+{
+ guid "{B45300B5-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 42 -67.5 58 ) ( 42 -67.5 62 ) ( 44 -67.5 62 ) t7_metal_trim_worn_iron_dark 32 4 -132.79997 -7 90 0 lightmap_gray 16374.71 -16383.5 84.649529 -63.723511 180 -0.00024413317
+ ( 44 -63.5 35 ) ( 44 -63.5 39 ) ( 42 -63.5 39 ) t7_metal_trim_worn_iron_dark 32 -4 -132.79997 101 90 0 lightmap_gray 16385.898 -16383.5 84.940613 -64.805923 180 0.00012206659
+ ( 45 -67.5 18.5 ) ( 45 -67.5 22.5 ) ( 45 -63.5 22.5 ) t7_metal_trim_worn_iron_dark 32 4 -132.79999 -119.5 90 0 lightmap_gray 16384.559 16383.875 240.375 64.616501 0 0
+ ( 44.5 -67.5 94 ) ( 44.5 -67 94 ) ( 44.5 -67.5 126 ) t7_metal_trim_worn_iron_dark 32 4 -108.79999 -119.5 90 0 lightmap_gray 16384 16384 372.5 -40 0 0
+ ( 48.5 -66.75 4 ) ( 48.5 -67 4 ) ( 80.5 -67 4 ) caulk 16 16 86 45 0 0 lightmap_gray 16384 16384 86 45 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 64
+{
+ guid "{B45300B7-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 42 -66 109 ) ( 42 -66 113 ) ( 44 -66 113 ) t7_metal_trim_worn_iron_dark 24 3 -106.80023 83.5 90 0 lightmap_gray 16374.71 -16383.5 84.649529 -63.723511 180 -0.00024413317
+ ( 44 -65 35 ) ( 44 -65 39 ) ( 42 -65 39 ) t7_metal_trim_worn_iron_dark 24 3 -106.80023 83.5 90 0 lightmap_gray 16385.898 -16383.5 84.940613 -64.805923 180 0.00012206659
+ ( 44.5 -67 94 ) ( 44.5 -67.5 94 ) ( 44.5 -67.5 126 ) caulk 16 16 372.5 -40 0 0 lightmap_gray 16384 16384 372.5 -40 0 0
+ ( 41.5 -67.5 94 ) ( 41.5 -67 94 ) ( 41.5 -67.5 126 ) caulk 16 16 372.5 -40 0 0 lightmap_gray 16384 16384 372.5 -40 0 0
+ ( 48.5 -66.75 4 ) ( 48.5 -67 4 ) ( 80.5 -67 4 ) caulk 16 16 86 45 0 0 lightmap_gray 16384 16384 86 45 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 65
+{
+ guid "{B45300B9-6846-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 42 -67.5 58 ) ( 42 -67.5 62 ) ( 44 -67.5 62 ) t7_metal_trim_worn_iron_dark 32 -4 -120.79998 93 90 0 lightmap_gray 16374.71 -16383.5 84.649529 -63.723511 180 -0.00024413317
+ ( 41 -63.5 19.5 ) ( 41 -63.5 23.5 ) ( 41 -67.5 23.5 ) t7_metal_trim_worn_iron_dark 32 4 -120.79999 -119.5 90 0 lightmap_gray 16388.596 16385.063 240.81908 65.290077 0 0
+ ( 44 -63.5 35 ) ( 44 -63.5 39 ) ( 42 -63.5 39 ) t7_metal_trim_worn_iron_dark 32 4 -120.79998 -15 90 0 lightmap_gray 16385.898 -16383.5 84.940613 -64.805923 180 0.00012206659
+ ( 41.5 -67 94 ) ( 41.5 -67.5 94 ) ( 41.5 -67.5 126 ) t7_metal_trim_worn_iron_dark 32 4 -108.79999 -119.5 90 0 lightmap_gray 16384 16384 372.5 -40 0 0
+ ( 48.5 -66.75 4 ) ( 48.5 -67 4 ) ( 80.5 -67 4 ) caulk 16 16 86 45 0 0 lightmap_gray 16384 16384 86 45 0 0
+ ( -47 -94 0 ) ( -47 125.75 176 ) ( -15 125.75 176 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 66
+{
+ guid "{3538DAF8-3CAE-41C2-9F7B-0DF14D27DDE9}"
+  contents weaponClip detail;
+ ( -49 123.5 184 ) ( -51 123.5 184 ) ( -51 134.5 184 ) t7_metal_trim_worn_iron_dark 32 4 -2143 -2733 -90 0 lightmap_gray 16384 16384 -1595 -2922 0 0
+ ( -47 123.75 184 ) ( -47 134.75 184 ) ( -47 134.75 176 ) t7_metal_worn_iron_dark 64 -64 -1586 506.75 0 0 lightmap_gray 16384 16384 2922 1192 0 0
+ ( -47 126 183 ) ( -51 126 183 ) ( -51 125.5 184 ) caulk 16 16 -6 8.75 0 0 lightmap_gray 16384 16384 -1595 1192 0 0
+ ( -51 134.5 184 ) ( -51 123.5 184 ) ( -51 123.5 176 ) t7_metal_trim_rivets_02 64 8 -1927 1192 0 0 lightmap_gray 16384 16384 2922 1192 0 0
+ ( -51 135.5 183.5 ) ( -47 135.5 183.5 ) ( -47 135.5 184 ) caulk 16 16 -6 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+ ( -47 135.5 183 ) ( -51 135.5 183 ) ( -51 125.75 183 ) t7_metal_trim_worn_iron_dark 32 4 -2143 -2733 -90 0 lightmap_gray 16384 16384 -6 0 0 0
+}
+// brush 67
+{
+ guid "{ADE9D7B7-4038-4E4D-AD66-34EC70165258}"
+  contents weaponClip detail;
+ ( -51 125.5 184 ) ( -47 125.5 184 ) ( -47 -94.5 8 ) t7_metal_trim_worn_iron_dark 24.987806 4 -1700.903 -2733 -90 0 lightmap_gray 16384 16384 -1596 -2924 0 0
+ ( -51 -94.25 7.5 ) ( -51 125.75 183.5 ) ( -51 125.5 184 ) t7_metal_trim_rivets_02 64 -8 -2213.7083 -1310.8125 -141.34018 0 lightmap_gray 16384 16384 2924 1192 0 0
+ ( -47 125.5 184 ) ( -51 125.5 184 ) ( -51 126 183 ) caulk 16 16 -6 14.75 0 0 lightmap_gray 16384 16384 -1596 1192 0 0
+ ( -47 125.75 183.5 ) ( -47 -94.25 7.5 ) ( -47 -94.5 8 ) t7_metal_trim_rivets_02 64 -8 -2213.7083 -1310.8125 -141.34018 0 lightmap_gray 16384 16384 2924 1192 0 0
+ ( -47 -94.25 7.5 ) ( -51 -94.25 7.5 ) ( -51 -94.5 8 ) caulk 16 16 -6 14.75 0 0 lightmap_gray 16384 16384 -6 14.75 0 0
+ ( -47 126 183 ) ( -51 126 183 ) ( -51 -94 7 ) t7_metal_trim_worn_iron_dark 49.975613 -8 -1688.5187 -1324 -90 0 lightmap_gray 16384 16384 -6 0 0 0
+}
+// brush 68
+{
+ guid "{FC6F5CB0-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 41 -89.5 4.5 ) ( 41 -89.5 10.75 ) ( 41 -101.5 10.75 ) t7_metal_trim_rivets_02 80 10 2127 2 0 0 lightmap_gray 16384 16384 -230 188 0 0
+ ( 38 -94.25 7.5 ) ( 38 -94.25 -1.5 ) ( 42 -94.25 -1.5 ) caulk 16 -16 -4 -184.75 180 0 lightmap_gray 16384 -16384 -4 -188 180 0
+ ( 42 -106.5 4.5 ) ( 42 -106.5 10.75 ) ( 42 -94.5 10.75 ) t7_metal_trim_rivets_02 80 10 2127 2 0 0 lightmap_gray 16384 16384 -230 188 0 0
+ ( -391 -97.5 7.75 ) ( -359 -97.5 7.75 ) ( -359 -97.5 6.75 ) caulk 16 -16 0 -14.75 180 0 lightmap_gray 16384 -16384 0 -14.75 180 0
+ ( 41 -98 7 ) ( 41 -94.25 7 ) ( 45 -94.25 7 ) caulk 16 -16 0 0 180 0 lightmap_gray 16384 -16384 0 0 180 0
+ ( 45 -98 -1 ) ( 45 -94.25 -1 ) ( 41 -94.25 -1 ) caulk 16 -16 0 0 180 0 lightmap_gray 16384 -16384 0 0 180 0
+}
+// brush 69
+{
+ guid "{FC6F5CAC-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 45 -98.5 -2 ) ( 45 -94 -2 ) ( 41 -94 -2 ) t7_metal_trim_worn_iron_dark 32 -4 57.237438 1 90 0 lightmap_gray 16384 -16384 -4 -230 -180 0
+ ( 41 -101.5 -4.75 ) ( 41 -89.5 -4.75 ) ( 41 -89.5 1.5 ) t7_metal_trim_worn_iron_dark 32 -4 57.237434 -38 0 0 lightmap_gray 16384 -16384 -230 -194 0 0
+ ( 45 -94 -2 ) ( 45 -94.5 -1 ) ( 41 -94.5 -1 ) caulk 16 16 -4 190.75 180 0 lightmap_gray 16384 16384 -4 194 180 0
+ ( 45 -94.5 -4.75 ) ( 45 -106.5 -4.75 ) ( 45 -106.5 1.5 ) t7_metal_trim_worn_iron_dark 32 4 57.237434 46 0 0 lightmap_gray 16384 -16384 -230 -194 0 0
+ ( 45 -98.5 -2 ) ( 41 -98.5 -2 ) ( 41 -98 -1.5 ) caulk 16 -16 0 0 180 0 lightmap_gray 16384 -16384 0 0 180 0
+ ( 41 -97.5 -1 ) ( 41 -94.5 -1 ) ( 45 -94.5 -1 ) t7_metal_trim_worn_iron_dark 24.987806 -4 24.041836 1 90 0 lightmap_gray 16384 -16384 0 0 180 0
+}
+// brush 70
+{
+ guid "{FC6F5CAA-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 45 -94.5 8 ) ( 41 -94.5 8 ) ( 41 125.5 184 ) t7_metal_trim_worn_iron_dark 24.987806 -4 -1700.903 2739 -90 0 lightmap_gray 16384 -16384 -1590 2924 180 0
+ ( 45 -94 7 ) ( 45 -94.5 8 ) ( 45 125.5 184 ) t7_metal_trim_rivets_02 64 -8 -2213.7083 -1310.8125 -141.34016 0 lightmap_gray 16384 16384 2924 1192 0 0
+ ( 41 125.5 184 ) ( 41 125.75 183.5 ) ( 45 125.75 183.5 ) caulk 16 -16 0 -14.75 180 0 lightmap_gray 16384 -16384 -1590 -1192 180 0
+ ( 41 -94.5 8 ) ( 41 -94 7 ) ( 41 126 183 ) t7_metal_trim_rivets_02 64 -8 -2213.7083 -1310.8125 -141.34018 0 lightmap_gray 16384 16384 2924 1192 0 0
+ ( 45 -94.5 8 ) ( 45 -94.25 7.5 ) ( 41 -94.25 7.5 ) caulk 16 -16 0 -14.75 180 0 lightmap_gray 16384 -16384 0 -14.75 180 0
+ ( 41 -94 7 ) ( 45 -94 7 ) ( 45 126 183 ) t7_metal_trim_worn_iron_dark 49.975613 8 -1688.5187 1330 -90 0 lightmap_gray 16384 -16384 0 0 180 0
+}
+// brush 71
+{
+ guid "{FC6F5CAD-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 45 -94.5 8 ) ( 45 -98.5 8 ) ( 41 -98.5 8 ) t7_metal_trim_worn_iron_dark 32 -4 57.237438 1 90 0 lightmap_gray 16384 -16384 -4 -230 -180 0
+ ( 41 -89.5 4.5 ) ( 41 -89.5 10.75 ) ( 41 -101.5 10.75 ) t7_metal_trim_worn_iron_dark 32 4 57.237434 32 0 0 lightmap_gray 16384 16384 -230 188 0 0
+ ( 41 -94.5 8 ) ( 41 -94.25 7.5 ) ( 45 -94.25 7.5 ) caulk 16 -16 -4 -184.75 180 0 lightmap_gray 16384 -16384 -4 -188 180 0
+ ( 45 -106.5 4.5 ) ( 45 -106.5 10.75 ) ( 45 -94.5 10.75 ) t7_metal_trim_worn_iron_dark 32 -4 57.237434 -52 0 0 lightmap_gray 16384 16384 -230 188 0 0
+ ( 41 -98 7.5 ) ( 41 -98.5 8 ) ( 45 -98.5 8 ) caulk 16 -16 0 0 180 0 lightmap_gray 16384 -16384 0 0 180 0
+ ( 45 -98 7 ) ( 45 -94.25 7 ) ( 41 -94.25 7 ) t7_metal_trim_worn_iron_dark 24.987806 -4 24.041836 1 90 0 lightmap_gray 16384 -16384 0 0 180 0
+}
+// brush 72
+{
+ guid "{FC6F5CA8-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 41 -94 0 ) ( 45 -94 0 ) ( 45 125.75 176 ) t7_metal_trim_worn_iron_dark 49.975613 8 -1688.5187 1323 -90 0 lightmap_gray 16384 -16384 -1590 2924.25 180 0
+ ( 45 -94 0 ) ( 45 -94.5 1 ) ( 45 125.5 177 ) t7_metal_trim_rivets_02 64 -8 -2209.3354 -1309.2786 -141.34016 0 lightmap_gray 16384 16384 2924.25 1189.5 0 0
+ ( 41 125.75 176 ) ( 45 125.75 176 ) ( 45 125.5 177 ) caulk 16 -16 0 -12.25 180 0 lightmap_gray 16384 -16384 -1590 -1189.5 180 0
+ ( 41 -94.5 1 ) ( 41 -94 0 ) ( 41 125.75 176 ) t7_metal_trim_rivets_02 51.200001 6.4000001 -2209.9485 -1317.0302 -141.118 0 lightmap_gray 16384 16384 2924.25 1189.5 0 0
+ ( 41 -94.25 0.5 ) ( 41 -94.5 1 ) ( 45 -94.5 1 ) caulk 16 -16 0 -12.25 180 0 lightmap_gray 16384 -16384 0 -12.25 180 0
+ ( 45 -94.5 1 ) ( 41 -94.5 1 ) ( 41 125.5 177 ) t7_metal_trim_worn_iron_dark 24.987806 -4 -1700.903 2739 -90 0 lightmap_gray 16384 -16384 0 0.25 180 0
+}
+// brush 73
+{
+ guid "{FC6F5CAB-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 45 -94 -2 ) ( 45 -94 2.5 ) ( 41 -94 2.5 ) t7_metal_trim_worn_iron_dark 32 -4 153.73744 1 90 0 lightmap_gray 16384 -16384 -4 -133.5 180 0
+ ( 41 -91.25 -5 ) ( 41 -91.25 7 ) ( 41 -97.5 7 ) t7_metal_trim_worn_iron_dark 32 -4 153.73744 -134 90 0 lightmap_gray 16384 -16384 -133.5 -290 90 0
+ ( 45 -91.25 2 ) ( 45 -91.25 -10 ) ( 45 -97.5 -10 ) t7_metal_trim_worn_iron_dark 32 4 153.73743 -50 90 0 lightmap_gray 16384 -16384 -133.5 -290 90 0
+ ( 41 -94 -2 ) ( 41 -94.5 -1 ) ( 45 -94.5 -1 ) caulk 16 16 0 -192.5 180 0 lightmap_gray 16384 16384 0 -192.5 180 0
+ ( 45 -94.5 1 ) ( 45 -94.5 -1 ) ( 41 -94.5 -1 ) t7_metal_trim_worn_iron_dark 24.987806 -4 120.54186 1 90 0 lightmap_gray 16384 -16384 0 96.5 180 0
+ ( 9 -94 0 ) ( 41 -94 0 ) ( 41 -94.5 1 ) caulk 16 -16 6 0 180 0 lightmap_gray 16384 -16384 6 0 180 0
+}
+// brush 74
+{
+ guid "{FC6F5CA9-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 42 125.5 177 ) ( 42 -94.5 1 ) ( 42 -94 7 ) t7_metal_trim_rivets_02 51.200001 6.4000001 -2209.9485 -1317.0302 -141.118 0 lightmap_gray 16384 16384 2923.75 1192.25 0 0
+ ( 42 126 183 ) ( 41 126 183 ) ( 41 125.5 177 ) caulk 16 -16 0 -15 180 0 lightmap_gray 16384 -16384 -1590 -1192.25 -180 0
+ ( 41 126 183 ) ( 41 -94 7 ) ( 41 -94.5 1 ) t7_metal_trim_rivets_02 51.200001 6.4000001 -2209.9485 -1317.0302 -141.118 0 lightmap_gray 16384 16384 2923.75 1192.25 0 0
+ ( 42 -94.5 1 ) ( 41 -94.5 1 ) ( 41 -94 7 ) caulk 16 -16 0 -15 180 0 lightmap_gray 16384 -16384 0 -15 180 0
+ ( 41 -94 7 ) ( 41 126 183 ) ( 42 126 183 ) caulk 56.40324 9 27.044338 229.5 90 0 lightmap_gray 16384 -16384 0 -0.25 180 0
+ ( 41 -94.5 1 ) ( 42 -94.5 1 ) ( 42 125.5 177 ) caulk 49.820225 8 -1683.2997 1327 -90 0 lightmap_gray 16384 -16384 0 -0.25 180 0
+}
+// brush 75
+{
+ guid "{A11C2CE0-BBD1-4F2A-90A4-7C7B1D504630}"
+  contents weaponClip detail;
+ ( -47 -101.5 10.75 ) ( -47 -89.5 10.75 ) ( -47 -89.5 4.5 ) t7_metal_trim_rivets_02 -80 -10 -2127 -1.9999918 180 0 lightmap_gray 16384 16384 -230 188 0 0
+ ( -48 -94.25 -1.5 ) ( -44 -94.25 -1.5 ) ( -44 -94.25 7.5 ) caulk 16 16 -10 184.75 0 0 lightmap_gray 16384 16384 -10 188 0 0
+ ( -48 -94.5 10.75 ) ( -48 -106.5 10.75 ) ( -48 -106.5 4.5 ) t7_metal_trim_rivets_02 -80 -10 -2127 -1.9999918 180 0 lightmap_gray 16384 16384 -230 188 0 0
+ ( 353 -97.5 6.75 ) ( 353 -97.5 7.75 ) ( 385 -97.5 7.75 ) caulk 16 16 -6 14.75 0 0 lightmap_gray 16384 16384 -6 14.75 0 0
+ ( -51 -94.25 7 ) ( -47 -94.25 7 ) ( -47 -98 7 ) caulk 16 16 -6 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+ ( -47 -94.25 -1 ) ( -51 -94.25 -1 ) ( -51 -98 -1 ) caulk 16 16 -6 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+}
+// brush 76
+{
+ guid "{AF0C8AD4-D235-495E-B045-859F406EA29D}"
+  contents weaponClip detail;
+ ( -47 125.75 176 ) ( -51 125.75 176 ) ( -51 -94 0 ) t7_metal_trim_worn_iron_dark 49.975613 -8 -1688.5187 -1317 -90 0 lightmap_gray 16384 16384 -1596 -2924.25 0 0
+ ( -51 125.5 177 ) ( -51 -94.5 1 ) ( -51 -94.25 0.5 ) t7_metal_trim_rivets_02 64 -8 -2209.3354 -1309.2786 -141.34018 0 lightmap_gray 16384 16384 2924.25 1189.5 0 0
+ ( -51 125.75 176 ) ( -47 125.75 176 ) ( -47 125.5 177 ) caulk 16 16 -6 12.25 0 0 lightmap_gray 16384 16384 -1596 1189.5 0 0
+ ( -47 -94.5 1 ) ( -47 125.5 177 ) ( -47 125.75 176.5 ) t7_metal_trim_rivets_02 51.200001 6.4000001 -2209.9485 -1317.03 218.882 0 lightmap_gray 16384 16384 2924.25 1189.5 0 0
+ ( -51 -94.5 1 ) ( -47 -94.5 1 ) ( -47 -94.25 0.5 ) caulk 16 16 -6 12.25 0 0 lightmap_gray 16384 16384 -6 12.25 0 0
+ ( -47 -94.5 1 ) ( -47 125.5 177 ) ( -15 -94.5 1 ) t7_metal_trim_worn_iron_dark 24.987806 4 -1700.903 -2733 -90 0 lightmap_gray 16384 16384 -6 -0.25 0 0
+}
+// brush 77
+{
+ guid "{4E04D409-CADC-4CA8-A87E-5473665B5AE2}"
+  contents weaponClip detail;
+ ( -48 126 183 ) ( -48 -94 7 ) ( -48 -94.5 1 ) t7_metal_trim_rivets_02 51.200001 6.4000001 -2209.9485 -1317.0302 -141.118 0 lightmap_gray 16384 16384 2923.75 1192.25 0 0
+ ( -47 125.5 177 ) ( -47 126 183 ) ( -48 126 183 ) caulk 16 16 -6 15 0 0 lightmap_gray 16384 16384 -1596 1192.25 0 0
+ ( -47 125.5 177 ) ( -47 -94.5 1 ) ( -47 -94 7 ) t7_metal_trim_rivets_02 51.200001 6.4000001 -2209.9485 -1317.03 218.882 0 lightmap_gray 16384 16384 2923.75 1192.25 0 0
+ ( -48 -94.5 1 ) ( -48 -94 7 ) ( -47 -94 7 ) caulk 16 16 -6 15 0 0 lightmap_gray 16384 16384 -6 15 0 0
+ ( -48 126 183 ) ( -47 126 183 ) ( -47 -94 7 ) caulk 56.40324 -9 27.044338 -235.5 90 0 lightmap_gray 16384 16384 -6 0.25 0 0
+ ( -48 -94.5 1 ) ( -47 -94.5 1 ) ( -47 125.5 177 ) caulk 49.820225 -8 -1683.2997 -1321 -90 0 lightmap_gray 16384 16384 -6 0.25 0 0
+}
+// brush 78
+ {
+  guid "{9D09ECE3-AB01-421E-8338-B49709378290}"
+  curve
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_worn_iron_dark
+   lightmap_gray
+   9 3 16 1
+   (
+	v -49 134.75 218.25 t 0 -0 1 1
+	v -49 132.61247 218.25 t 0 -34.200439 1 3
+	v -49 130.25 218.25 t 0 -72 1 3
+   )
+   (
+	v -48.25 134.75 218.25 t 12 -0 3 1
+	v -48.25 132.61247 218.25 t 12 -34.200439 3 3
+	v -48.25 130.25 218.25 t 12 -72 3 3
+   )
+   (
+	v -48.25 134.75 219 t 24 -0 5 1
+	v -48.25 132.61247 219 t 24 -34.200439 5 3
+	v -48.25 130.25 219 t 24 -72 5 3
+   )
+   (
+	v -48.25 134.75 219.75 t 36 -0 7 1
+	v -48.25 132.61247 219.75 t 36 -34.200439 7 3
+	v -48.25 130.25 219.75 t 36 -72 7 3
+   )
+   (
+	v -49 134.75 219.75 t 48 -0 9 1
+	v -49 132.61247 219.75 t 48 -34.200439 9 3
+	v -49 130.25 219.75 t 48 -72 9 3
+   )
+   (
+	v -49.75 134.75 219.75 t 60 -0 11 1
+	v -49.75 132.61247 219.75 t 60 -34.200439 11 3
+	v -49.75 130.25 219.75 t 60 -72 11 3
+   )
+   (
+	v -49.75 134.75 219 t 72 -0 13 1
+	v -49.75 132.61247 219 t 72 -34.200439 13 3
+	v -49.75 130.25 219 t 72 -72 13 3
+   )
+   (
+	v -49.75 134.75 218.25 t 84 -0 15 1
+	v -49.75 132.61247 218.25 t 84 -34.200439 15 3
+	v -49.75 130.25 218.25 t 84 -72 15 3
+   )
+   (
+	v -49 134.75 218.25 t 96 -0 17 1
+	v -49 132.61247 218.25 t 96 -34.200439 17 3
+	v -49 130.25 218.25 t 96 -72 17 3
+   )
+  }
+ }
+// brush 79
+ {
+  guid "{7C457C3A-683F-11E4-A047-2C27D7F0337A}"
+  curve
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_worn_iron_dark
+   lightmap_gray
+   9 3 16 1
+   (
+	v -49 -94.25 28 t 0 -0 1 1
+	v -49 17.75 118 t 0 -4620.2612 1 37
+	v -49 126 205 t 0 -9035.623 1 37
+   )
+   (
+	v -49.75 -94.25 28 t 24 -0 3 1
+	v -49.75 17.75 118 t 24 -4620.2612 3 37
+	v -49.75 126 205 t 24 -9035.623 3 37
+   )
+   (
+	v -49.75 -94.5 28.5 t 48 -0 5 1
+	v -49.75 17.75 118.75 t 48 -4620.2612 5 37
+	v -49.75 125.75 205.5 t 48 -9035.623 5 37
+   )
+   (
+	v -49.75 -94.75 29 t 72 -0 7 1
+	v -49.75 17.75 119.5 t 72 -4620.2612 7 37
+	v -49.75 125.25 206 t 72 -9035.623 7 37
+   )
+   (
+	v -49 -94.75 29 t 96 -0 9 1
+	v -49 17.75 119.5 t 96 -4620.2612 9 37
+	v -49 125.25 206 t 96 -9035.623 9 37
+   )
+   (
+	v -48.25 -94.75 29 t 120 -0 11 1
+	v -48.25 17.75 119.5 t 120 -4620.2612 11 37
+	v -48.25 125.25 206 t 120 -9035.623 11 37
+   )
+   (
+	v -48.25 -94.5 28.5 t 144 -0 13 1
+	v -48.25 17.75 118.75 t 144 -4620.2612 13 37
+	v -48.25 125.75 205.5 t 144 -9035.623 13 37
+   )
+   (
+	v -48.25 -94.25 28 t 168 -0 15 1
+	v -48.25 17.75 118 t 168 -4620.2612 15 37
+	v -48.25 126 205 t 168 -9035.623 15 37
+   )
+   (
+	v -49 -94.25 28 t 192 -0 17 1
+	v -49 17.75 118 t 192 -4620.2612 17 37
+	v -49 126 205 t 192 -9035.623 17 37
+   )
+  }
+ }
+// brush 80
+ {
+  guid "{66F1887F-527C-4585-912F-F3EEDE7AC091}"
+  curve
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_worn_iron_dark
+   lightmap_gray
+   9 3 16 1
+   (
+	v -49 -94.25 42 t 0 -0 1 1
+	v -49 17.75 132 t 0 -4620.2612 1 37
+	v -49 124.75 217.5 t 0 -9003.123 1 37
+   )
+   (
+	v -49.75 -94.25 42 t 24 -0 3 1
+	v -49.75 17.75 132 t 24 -4620.2612 3 37
+	v -49.75 124.75 217.5 t 24 -9003.123 3 37
+   )
+   (
+	v -49.75 -94.5 42.5 t 48 -0 5 1
+	v -49.75 17.75 132.75 t 48 -4620.2612 5 37
+	v -49.75 124.75 218.25 t 48 -9003.123 5 37
+   )
+   (
+	v -49.75 -94.75 43 t 72 -0 7 1
+	v -49.75 17.75 133.5 t 72 -4620.2612 7 37
+	v -49.75 124.75 219 t 72 -9003.123 7 37
+   )
+   (
+	v -49 -94.75 43 t 96 -0 9 1
+	v -49 17.75 133.5 t 96 -4620.2612 9 37
+	v -49 124.75 219 t 96 -9003.123 9 37
+   )
+   (
+	v -48.25 -94.75 43 t 120 -0 11 1
+	v -48.25 17.75 133.5 t 120 -4620.2612 11 37
+	v -48.25 124.75 219 t 120 -9003.123 11 37
+   )
+   (
+	v -48.25 -94.5 42.5 t 144 -0 13 1
+	v -48.25 17.75 132.75 t 144 -4620.2612 13 37
+	v -48.25 124.75 218.25 t 144 -9003.123 13 37
+   )
+   (
+	v -48.25 -94.25 42 t 168 -0 15 1
+	v -48.25 17.75 132 t 168 -4620.2612 15 37
+	v -48.25 124.75 217.5 t 168 -9003.123 15 37
+   )
+   (
+	v -49 -94.25 42 t 192 -0 17 1
+	v -49 17.75 132 t 192 -4620.2612 17 37
+	v -49 124.75 217.5 t 192 -9003.123 17 37
+   )
+  }
+ }
+// brush 81
+ {
+  guid "{914F6588-C2F7-4067-BA2C-9E500C53BCB4}"
+  curve
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_worn_iron_dark
+   lightmap_gray
+   9 3 16 1
+   (
+	v 43 134.75 218.25 t 0 -0 1 1
+	v 43 132.61247 218.25 t 0 -34.200439 1 3
+	v 43 130.25 218.25 t 0 -72 1 3
+   )
+   (
+	v 43.75 134.75 218.25 t 12 -0 3 1
+	v 43.75 132.61247 218.25 t 12 -34.200439 3 3
+	v 43.75 130.25 218.25 t 12 -72 3 3
+   )
+   (
+	v 43.75 134.75 219 t 24 -0 5 1
+	v 43.75 132.61247 219 t 24 -34.200439 5 3
+	v 43.75 130.25 219 t 24 -72 5 3
+   )
+   (
+	v 43.75 134.75 219.75 t 36 -0 7 1
+	v 43.75 132.61247 219.75 t 36 -34.200439 7 3
+	v 43.75 130.25 219.75 t 36 -72 7 3
+   )
+   (
+	v 43 134.75 219.75 t 48 -0 9 1
+	v 43 132.61247 219.75 t 48 -34.200439 9 3
+	v 43 130.25 219.75 t 48 -72 9 3
+   )
+   (
+	v 42.25 134.75 219.75 t 60 -0 11 1
+	v 42.25 132.61247 219.75 t 60 -34.200439 11 3
+	v 42.25 130.25 219.75 t 60 -72 11 3
+   )
+   (
+	v 42.25 134.75 219 t 72 -0 13 1
+	v 42.25 132.61247 219 t 72 -34.200439 13 3
+	v 42.25 130.25 219 t 72 -72 13 3
+   )
+   (
+	v 42.25 134.75 218.25 t 84 -0 15 1
+	v 42.25 132.61247 218.25 t 84 -34.200439 15 3
+	v 42.25 130.25 218.25 t 84 -72 15 3
+   )
+   (
+	v 43 134.75 218.25 t 96 -0 17 1
+	v 43 132.61247 218.25 t 96 -34.200439 17 3
+	v 43 130.25 218.25 t 96 -72 17 3
+   )
+  }
+ }
+// brush 82
+ {
+  guid "{9836A22A-E909-4349-8A25-7D1CCA726A9D}"
+  curve
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_worn_iron_dark
+   lightmap_gray
+   9 3 16 1
+   (
+	v 43 -94.25 42 t 0 -0 1 1
+	v 43 17.75 132 t 0 -2290.1423 1 37
+	v 43 124.75 217.5 t 0 -4489.084 1 37
+   )
+   (
+	v 42.25 -94.25 42 t 12 -0 3 1
+	v 42.25 17.75 132 t 12 -2290.1423 3 37
+	v 42.25 124.75 217.5 t 2.8477366 -4489.084 3 37
+   )
+   (
+	v 42.25 -94.5 42.5 t 24 -0 5 1
+	v 42.25 17.75 132.75 t 24 -2290.1423 5 37
+	v 42.25 124.75 218.25 t 12.493826 -4489.084 5 37
+   )
+   (
+	v 42.25 -94.75 43 t 36 -0 7 1
+	v 42.25 17.75 133.5 t 36 -2290.1423 7 37
+	v 42.25 124.75 219 t 33.646091 -4489.084 7 37
+   )
+   (
+	v 43 -94.75 43 t 48 -0 9 1
+	v 43 17.75 133.5 t 48 -2290.1423 9 37
+	v 43 124.75 219 t 48 -4489.084 9 37
+   )
+   (
+	v 43.75 -94.75 43 t 60 -0 11 1
+	v 43.75 17.75 133.5 t 60 -2290.1423 11 37
+	v 43.75 124.75 219 t 67.374481 -4489.084 11 37
+   )
+   (
+	v 43.75 -94.5 42.5 t 72 -0 13 1
+	v 43.75 17.75 132.75 t 72 -2290.1423 13 37
+	v 43.75 124.75 218.25 t 85.283943 -4489.084 13 37
+   )
+   (
+	v 43.75 -94.25 42 t 84 -0 15 1
+	v 43.75 17.75 132 t 84 -2290.1423 15 37
+	v 43.75 124.75 217.5 t 89.90947 -4489.084 15 37
+   )
+   (
+	v 43 -94.25 42 t 96 -0 17 1
+	v 43 17.75 132 t 96 -2290.1423 17 37
+	v 43 124.75 217.5 t 96 -4489.084 17 37
+   )
+  }
+ }
+// brush 83
+ {
+  guid "{AC67A7B5-683F-11E4-A047-2C27D7F0337A}"
+  curve
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_metal_worn_iron_dark
+   lightmap_gray
+   9 3 16 1
+   (
+	v 43 -94.25 28 t 0 -0 1 1
+	v 43 17.75 118 t 0 -4620.2612 1 37
+	v 43 126 205 t 0 -9035.623 1 37
+   )
+   (
+	v 42.25 -94.25 28 t 24 -0 3 1
+	v 42.25 17.75 118 t 24 -4620.2612 3 37
+	v 42.25 126 205 t 24 -9035.623 3 37
+   )
+   (
+	v 42.25 -94.5 28.5 t 48 -0 5 1
+	v 42.25 17.75 118.75 t 48 -4620.2612 5 37
+	v 42.25 125.75 205.5 t 48 -9035.623 5 37
+   )
+   (
+	v 42.25 -94.75 29 t 72 -0 7 1
+	v 42.25 17.75 119.5 t 72 -4620.2612 7 37
+	v 42.25 125.25 206 t 72 -9035.623 7 37
+   )
+   (
+	v 43 -94.75 29 t 96 -0 9 1
+	v 43 17.75 119.5 t 96 -4620.2612 9 37
+	v 43 125.25 206 t 96 -9035.623 9 37
+   )
+   (
+	v 43.75 -94.75 29 t 120 -0 11 1
+	v 43.75 17.75 119.5 t 120 -4620.2612 11 37
+	v 43.75 125.25 206 t 120 -9035.623 11 37
+   )
+   (
+	v 43.75 -94.5 28.5 t 144 -0 13 1
+	v 43.75 17.75 118.75 t 144 -4620.2612 13 37
+	v 43.75 125.75 205.5 t 144 -9035.623 13 37
+   )
+   (
+	v 43.75 -94.25 28 t 168 -0 15 1
+	v 43.75 17.75 118 t 168 -4620.2612 15 37
+	v 43.75 126 205 t 168 -9035.623 15 37
+   )
+   (
+	v 43 -94.25 28 t 192 -0 17 1
+	v 43 17.75 118 t 192 -4620.2612 17 37
+	v 43 126 205 t 192 -9035.623 17 37
+   )
+  }
+ }
+}
+// entity 1
+{
+guid "{DF57A9E8-3579-4542-B5AC-426175B43DB5}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{52DF1719-27A9-48B0-8FD0-6CE826BA2087}"
+  contents weaponClip detail;
+ ( -47.75 53 80.75 ) ( -47.75 53 76.75 ) ( -49.75 53 76.75 ) caulk 128.06223 63.980476 180.69794 -224.65677 180 0.00074474839 caulk 16384 16384 -1596 1192.25 0 0
+ ( -50.5 175.5 81.75 ) ( -50.5 175.5 77.75 ) ( -50.5 179.5 77.75 ) t7_metal_trim_worn_iron_dark 24 3 -73.5 32.75 180 0 lightmap_gray 16384 16384 2922 1192.25 0 0
+ ( -50 111.5 77.75 ) ( -48 111.5 77.75 ) ( -48 115.5 77.75 ) t7_metal_trim_worn_iron_dark 24 3 -73.5 5.5 -90 0 lightmap_gray 16384 16384 -1596 -2922 0 0
+ ( -47.5 238.5 77.75 ) ( -47.5 238.5 81.75 ) ( -47.5 242.5 81.75 ) t7_metal_worn_iron_dark 64 -64 -1586 506.75 0 0 lightmap_gray 16384 16384 2922 1192.25 0 0
+ ( -47 131.5 81.75 ) ( -47 131.5 78.75 ) ( -15 131.5 81.75 ) caulk 64 64 -1596 1192.25 0 0 caulk 16384 16384 -1596 1192.25 0 0
+ ( -49.25 48 78.25 ) ( -50.5 48 78.25 ) ( -50.5 80 78.25 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 5.5 -90 0 lightmap_gray 16384 16384 -6 0 0 0
+}
+// brush 1
+{
+ guid "{E017BFCA-3F1B-4D87-9357-DCDAED354021}"
+  contents weaponClip detail;
+ ( -47.75 53 80.75 ) ( -47.75 53 76.75 ) ( -49.75 53 76.75 ) caulk 128.06223 63.980476 180.69794 -224.65677 180 0.00074474839 caulk 16384 16384 -1596 1192.25 0 0
+ ( -48 137 81.75 ) ( -50 137 81.75 ) ( -50 141 81.75 ) t7_metal_trim_worn_iron_dark 24 3 -71.5 5.5 -90 0 lightmap_gray 16384 16384 -1596 -2922 0 0
+ ( -50.5 175.5 81.75 ) ( -50.5 175.5 77.75 ) ( -50.5 179.5 77.75 ) t7_metal_trim_worn_iron_dark 24 -3 -51.5 126.75 -180 0 lightmap_gray 16384 16384 2922 1192.25 0 0
+ ( -47.5 238.5 77.75 ) ( -47.5 238.5 81.75 ) ( -47.5 242.5 81.75 ) t7_metal_worn_iron_dark 64 -64 -1586 506.75 0 0 lightmap_gray 16384 16384 2922 1192.25 0 0
+ ( -47 131.5 81.75 ) ( -47 131.5 78.75 ) ( -15 131.5 81.75 ) caulk 64 64 -1596 1192.25 0 0 caulk 16384 16384 -1596 1192.25 0 0
+ ( -50.25 48 81.25 ) ( -49.5 48 81.25 ) ( -50.25 80 81.25 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 5.5 -90 0 lightmap_gray 16384 16384 -6 0 0 0
+}
+// brush 2
+{
+ guid "{B51DD8C6-64EB-4331-8B2B-B33F78CA0AB9}"
+  contents weaponClip detail;
+ ( -47.75 53 80.75 ) ( -47.75 53 76.75 ) ( -49.75 53 76.75 ) caulk 128.06223 63.980476 180.69794 -224.65677 180 0.00074474839 caulk 16384 16384 -1596 1192.25 0 0
+ ( -49.5 175.5 81.75 ) ( -49.5 175.5 77.75 ) ( -49.5 179.5 77.75 ) t7_metal_trim_worn_iron_dark 24 3 -29.5 2.75 0 0 lightmap_gray 16384 16384 2922 1192.25 0 0
+ ( -48.5 238.5 77.75 ) ( -48.5 238.5 81.75 ) ( -48.5 242.5 81.75 ) t7_metal_worn_iron_dark 64 -64 -1586 506.75 0 0 lightmap_gray 16384 16384 2922 1192.25 0 0
+ ( -47 131.5 81.75 ) ( -47 131.5 78.75 ) ( -15 131.5 81.75 ) caulk 64 64 -1596 1192.25 0 0 caulk 16384 16384 -1596 1192.25 0 0
+ ( -50.5 48 78.25 ) ( -49.25 48 78.25 ) ( -50.5 80 78.25 ) caulk 16 16 -6 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+ ( -49.5 48 81.25 ) ( -50.25 48 81.25 ) ( -50.25 80 81.25 ) caulk 16 16 -6 0 0 0 lightmap_gray 16384 16384 -6 0 0 0
+}
+}
+// entity 2
+{
+guid "{F54F3BB5-0D5C-4DBE-BDF7-31FE2AC8B90F}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 130.5 184"
+}
+// entity 3
+{
+guid "{8BA05DBE-655D-4BD2-8097-0DA12BA94A02}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 120.5 176"
+}
+// entity 4
+{
+guid "{BBE926A2-B288-48CD-AA93-328DC8D93502}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 110.5 168"
+}
+// entity 5
+{
+guid "{9CFE1910-E695-4575-B735-CB9FA6592C5C}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 100.5 160"
+}
+// entity 6
+{
+guid "{ED6FA0DD-4BFD-48C9-A70A-D4D5DAA7E748}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 90.5 152"
+}
+// entity 7
+{
+guid "{CD5274E1-EDFA-4211-BAF7-8B8C090AB483}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 80.5 144"
+}
+// entity 8
+{
+guid "{DDFA8C20-3D27-4E44-873A-516F014D03C8}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 70.5 136"
+}
+// entity 9
+{
+guid "{F4CF841C-3DCB-41DD-9E64-ED410C43E91B}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 60.5 128"
+}
+// entity 10
+{
+guid "{F8856345-462A-42B9-98D7-870F1946E33D}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 50.5 120"
+}
+// entity 11
+{
+guid "{08B3781F-2380-4186-B8AE-74D0EBA27DFA}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 40.5 112"
+}
+// entity 12
+{
+guid "{F28734B6-FC71-4A29-BA10-9DF1EE153C6B}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 30.5 104"
+}
+// entity 13
+{
+guid "{EA13C1E0-361A-4AEA-856A-D63F8A499DE9}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 20.5 96"
+}
+// entity 14
+{
+guid "{47010536-B1B3-44BD-ABD8-22FE0D264265}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 10.5 88"
+}
+// entity 15
+{
+guid "{3428892F-2C1F-4A18-A44C-71106D8DD970}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 0.5 80"
+}
+// entity 16
+{
+guid "{561BF65F-C3D5-40F7-846E-E2E107A5BECA}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 -9.5 72"
+}
+// entity 17
+{
+guid "{D87CD46A-8F8F-4AB6-8C2A-532E9D043145}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 -19.5 64"
+}
+// entity 18
+{
+guid "{34078A30-B14F-4DE6-AB1F-5884E7E0486E}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 -29.5 56"
+}
+// entity 19
+{
+guid "{8A1D8451-0122-4876-8FBA-6D58EE56D4F7}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 -39.5 48"
+}
+// entity 20
+{
+guid "{C9C92B92-6B3A-43D0-AF03-2499CAF844AB}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 -49.5 40"
+}
+// entity 21
+{
+guid "{8DB82E55-4B9B-426F-8AFD-980F7A23D69D}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 -59.5 32"
+}
+// entity 22
+{
+guid "{2846384A-8798-4FA9-A7DB-ECAAB6A771A6}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 -69.5 24"
+}
+// entity 23
+{
+guid "{B3EA2100-8C07-49D9-B506-E60E166B5F71}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 -79.5 16"
+}
+// entity 24
+{
+guid "{047D36BA-40E1-47A5-AD65-8D5BBE414361}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_zone_c_stairs_2_steps.map"
+"origin" "0 -89.5 8"
+}
+// entity 25
+{
+guid "{D0EE5EDE-70D9-4154-BC0B-C71E164DA588}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"br.j_post_middle_right" "0.000000 0.000000 329.999969"
+"bt.j_post_middle_right" "0.000000 1.000000 0.250000"
+"model" "p7_zm_der_handrail_post_middle"
+"origin" "43 127.5 184"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 26
+{
+guid "{90E10F82-33A1-4F49-9E61-B090404E66FE}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_zm_der_handrail_post_corner"
+"origin" "43 137.5 184"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 27
+{
+guid "{9FA0F59B-3192-40AC-8B8D-9FCF83C8FC9B}"
+"classname" "misc_model"
+"angles" "0 2.50448e-006 0"
+"model" "p7_zm_der_handrail_post_corner"
+"origin" "-49 137.5 184"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 28
+{
+guid "{D499BCDD-3E0C-417C-9158-21EE681F09B9}"
+"classname" "misc_model"
+"br.j_post_end_02" "0.000000 0.000000 67.799889"
+"bt.j_post_emd_dmg_03" "0.000000 0.000000 -1.500000"
+"bt.j_post_end_01" "0.000000 0.000000 0.500000"
+"model" "p7_zm_der_handrail_post_end"
+"origin" "-49 -96.5 8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 29
+{
+guid "{57FC2E23-1FC6-4B08-AE55-80957EDFDD52}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 131.5 77.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 30
+{
+guid "{6EEB770A-648D-4DBA-86A0-A43E44DD70C6}"
+"classname" "misc_model"
+"angles" "9.7464e-007 180 -90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 53 77.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 31
+{
+guid "{7CF96FBD-44E8-4321-AEA9-56A0C91A718C}"
+"classname" "misc_model"
+"angles" "1.76624e-006 180 180"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 53 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 32
+{
+guid "{F695616A-D4E8-4CBC-8AD9-C4C140CF1971}"
+"classname" "misc_model"
+"angles" "2.40918e-006 180 90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 131.5 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 33
+{
+guid "{80A82EDC-613D-4956-BE03-F4D7AA77D28F}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_tie_rod_metal_01_ring"
+"origin" "-47.75 92.25 41"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 34
+{
+guid "{F075E9FE-3E80-4422-8F5C-2D7E03233F90}"
+"classname" "misc_model"
+"angles" "5.74392e-006 180 137.6"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 56.5647 7.1209"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 35
+{
+guid "{3557F7E0-E4A2-4880-9A26-7081EC292436}"
+"classname" "misc_model"
+"angles" "9.7877e-006 1.05446e-005 43.3995"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 65.4612 15.3937"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 36
+{
+guid "{1D37692D-73E2-4F07-9DBF-72B3274ED987}"
+"classname" "misc_model"
+"angles" "338.77 201.711 -47.7171"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7552 72.8154 22.4107"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 37
+{
+guid "{2E0EB685-5B51-4515-A72B-3AC5196E0978}"
+"classname" "misc_model"
+"angles" "9.7877e-006 1.05446e-005 43.3995"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 80.2196 29.3875"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 38
+{
+guid "{B0F48924-8375-4C62-8874-FD07E3643BE5}"
+"classname" "misc_model"
+"angles" "359.999 180 -43.9994"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 89.25 38"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 39
+{
+guid "{E63F6ED1-5758-4999-9685-4D4AAA9A089C}"
+"classname" "misc_model"
+"angles" "5.74392e-006 180 137.6"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 95.3147 43.8709"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 40
+{
+guid "{50E3EEC8-2112-40BA-B2B2-15D9E3072BCB}"
+"classname" "misc_model"
+"angles" "9.7877e-006 1.05446e-005 43.3995"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 104.211 52.1437"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 41
+{
+guid "{4AC63458-0C2D-4553-958F-26A664CBE9CB}"
+"classname" "misc_model"
+"angles" "338.77 201.711 -47.7171"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7552 111.565 59.1607"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 42
+{
+guid "{6BC80CE7-0711-440F-B876-F5F41448B1C1}"
+"classname" "misc_model"
+"angles" "9.7877e-006 1.05446e-005 43.3995"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 118.97 66.1375"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 43
+{
+guid "{1C3BB4DD-C1AA-4E71-B781-D9F941418A4D}"
+"classname" "misc_model"
+"angles" "359.999 180 -43.9994"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 128 74.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 44
+{
+guid "{C0E9DD20-A040-4D43-8DD7-353CC3BCF206}"
+"classname" "misc_model"
+"angles" "9.89994e-006 180 -136.4"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 95.3751 37.9439"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 45
+{
+guid "{E6972D6B-AAE1-4B15-B208-089BF7FF5C26}"
+"classname" "misc_model"
+"angles" "1.75491e-005 9.95667e-006 -42.6006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 104.248 29.6463"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 46
+{
+guid "{B3ACB053-8F03-4721-A082-0AEBA630E6D1}"
+"classname" "misc_model"
+"angles" "338.331 158.726 46.5168"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7552 111.761 22.7997"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 47
+{
+guid "{12A440B9-5792-4FCA-80D8-47AEA06ABB68}"
+"classname" "misc_model"
+"angles" "1.75491e-005 9.95667e-006 -42.6006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 119.238 15.8993"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 48
+{
+guid "{0E8FF823-6970-4366-A078-7FCEB92435D6}"
+"classname" "misc_model"
+"angles" "8.74612e-005 179.999 42.0008"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 128.459 7.4921"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 49
+{
+guid "{4EE4B5F1-BD7F-4C3B-BB03-CAF8DF03399C}"
+"classname" "misc_model"
+"angles" "9.89994e-006 180 -136.4"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 56.1251 74.4439"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 50
+{
+guid "{67AAF892-2595-4825-B5A5-A598A344ED4D}"
+"classname" "misc_model"
+"angles" "1.75491e-005 9.95667e-006 -42.6006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 64.998 66.1463"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 51
+{
+guid "{5DFDD0F2-DEE0-4371-887B-278BB24C8BB8}"
+"classname" "misc_model"
+"angles" "338.331 158.726 46.5168"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7552 72.511 59.2997"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 52
+{
+guid "{EBA841B7-7FC7-4251-BBFE-6633BE99A4F9}"
+"classname" "misc_model"
+"angles" "1.75491e-005 9.95667e-006 -42.6006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 79.988 52.3993"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 53
+{
+guid "{79B38172-AFC2-4387-B724-355F352023A5}"
+"classname" "misc_model"
+"angles" "8.74612e-005 179.999 42.0008"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 89.209 43.9921"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 54
+{
+guid "{55B7AC78-953B-48E6-B9F2-C2F94C464E3C}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 52 54.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 55
+{
+guid "{BFD55696-6DC1-4F6F-B3FC-4E4453230E03}"
+"classname" "misc_model"
+"angles" "9.7464e-007 180 -90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 -20 54.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 56
+{
+guid "{BFA3FBB2-8011-4A31-8408-36AB319AE0BA}"
+"classname" "misc_model"
+"angles" "1.76624e-006 180 180"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 -20 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 57
+{
+guid "{C556AB0F-6523-40E7-B968-222D6CD9EC1D}"
+"classname" "misc_model"
+"angles" "2.40918e-006 180 90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 52 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 58
+{
+guid "{8C1DFC4C-4E13-4988-AD94-C581117C2E33}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_tie_rod_metal_01_ring"
+"origin" "-47.75 16 29.25"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 59
+{
+guid "{D7F1A957-38CE-40A8-93BD-D63610C3E7EE}"
+"classname" "misc_model"
+"angles" "1.15003e-005 8.64466e-006 33.1993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "-47.75 26.5837 37.2137"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 60
+{
+guid "{8E50F586-4764-45F2-8233-A2A73465C40C}"
+"classname" "misc_model"
+"angles" "335.326 197.632 -37.2859"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7552 33.5641 41.8175"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 61
+{
+guid "{EA104193-B89D-4084-B65C-7CB5E357823D}"
+"classname" "misc_model"
+"angles" "1.15003e-005 8.64466e-006 33.1993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "-47.75 40.0875 46.1227"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 62
+{
+guid "{627E0D0D-5373-4E4F-A89E-9F03E998A681}"
+"classname" "misc_model"
+"angles" "359.999 180 -33.4991"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 48.5 51.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 63
+{
+guid "{3C845931-4578-49E6-9AA7-DF1ABE134565}"
+"classname" "misc_model"
+"angles" "2.69068e-006 180 147.1"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 18.8612 32.1484"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 64
+{
+guid "{4B63F1D7-D4D4-483A-9AB0-05DAEAC970C8}"
+"classname" "misc_model"
+"angles" "1.15003e-005 8.64466e-006 33.1993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "-47.75 -8.6663 11.9637"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 65
+{
+guid "{7C78FBA1-E8F5-4626-B622-6BC9FACF3F34}"
+"classname" "misc_model"
+"angles" "335.326 197.632 -37.2859"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7552 -1.6859 16.5675"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 66
+{
+guid "{B86A4D81-658D-40DD-8D25-B047CADD3F0E}"
+"classname" "misc_model"
+"angles" "1.15003e-005 8.64466e-006 33.1993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "-47.75 4.8375 20.8727"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 67
+{
+guid "{27ABE025-50A4-4AD6-BD86-28A1A27D9834}"
+"classname" "misc_model"
+"angles" "359.999 180 -33.4991"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 13 26.25"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 68
+{
+guid "{A903D7D5-6A0B-4929-BA5E-D9C4AE8335F0}"
+"classname" "misc_model"
+"angles" "2.69068e-006 180 147.1"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 -16.3888 6.8984"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 69
+{
+guid "{5EAA94FB-03A4-4671-8088-6F393D6D3541}"
+"classname" "misc_model"
+"angles" "1.16776e-005 180 32.1993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "-47.75 5.16665 37.0984"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 70
+{
+guid "{EF11C410-720F-4696-A53D-A1B1452B1511}"
+"classname" "misc_model"
+"angles" "335.027 17.1906 -36.2346"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7448 -1.89304 41.5797"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 71
+{
+guid "{1C02EFCC-A6CB-4BFF-971F-1CF4D1F86949}"
+"classname" "misc_model"
+"angles" "1.16776e-005 180 32.1993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "-47.75 -8.49058 45.7704"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 72
+{
+guid "{A5713AC9-FFAC-406F-A64A-352A3BC18958}"
+"classname" "misc_model"
+"angles" "359.999 3.09792e-005 -32.4991"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 -17 51.25"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 73
+{
+guid "{56CA969C-1CA8-4848-8F11-348DB41ED1C8}"
+"classname" "misc_model"
+"angles" "2.64656e-006 2.55105e-006 148.1"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 12.9764 32.1686"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 74
+{
+guid "{E867A80C-1280-4DAB-A94A-8542C7BD22E8}"
+"classname" "misc_model"
+"angles" "1.19409e-005 180 31.6993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "-47.75 40.9768 12.4466"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 75
+{
+guid "{9E9D90AA-0A3A-4991-A2A4-335760CBB400}"
+"classname" "misc_model"
+"angles" "334.968 17.1015 -36.0237"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7448 33.8854 16.8772"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 76
+{
+guid "{AFCD4641-66E6-45B6-96B9-BFC1D12F62B5}"
+"classname" "misc_model"
+"angles" "1.18432e-005 180 31.9993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "-47.75 27.2733 21.0448"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 77
+{
+guid "{AC287A04-3328-4FFE-BC53-3C9E4CFBB6F0}"
+"classname" "misc_model"
+"angles" "359.999 3.03057e-006 -32.2991"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 19 26.25"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 78
+{
+guid "{38A5134A-09ED-4A92-961C-9E92A9BDD892}"
+"classname" "misc_model"
+"angles" "2.63764e-006 2.56028e-006 148.3"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 49.0376 7.5181"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 79
+{
+guid "{C23DF6BD-2DCA-4A38-A4D7-E0784869500B}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "-49 53 81.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 80
+{
+guid "{DCE4E209-D58E-4845-8861-8745F185A67B}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "-49 131.5 81.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 81
+{
+guid "{0B6498D7-E0AD-4E3A-8038-07845852722C}"
+"classname" "misc_model"
+"angles" "2.50448e-006 90 180"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "-49 131.5 176"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 82
+{
+guid "{D8FFF07E-EF48-4644-8BCF-83B7C8066AED}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_ibeam_bracket_32_thin_l_02"
+"modelscale" "0.35"
+"origin" "-47 132 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 83
+{
+guid "{85A9893B-7528-42E0-9227-AC5AE1542696}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "-49 52 58.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 84
+{
+guid "{D110142D-ED01-4297-B0E7-9AA72C56B8BC}"
+"classname" "misc_model"
+"angles" "0 2.50448e-006 0"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "42.75 53 77.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 85
+{
+guid "{FFE245F5-CC59-4481-85E1-140EE0E42C67}"
+"classname" "misc_model"
+"angles" "9.7464e-007 2.50448e-006 -90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "42.75 131.5 77.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 86
+{
+guid "{DE8E9DE4-C32D-4625-BEC1-8E654E51C949}"
+"classname" "misc_model"
+"angles" "1.76624e-006 2.50448e-006 180"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "42.75 131.5 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 87
+{
+guid "{CC65A174-A6AC-430E-B6F6-C0E714EEC5A3}"
+"classname" "misc_model"
+"angles" "2.40918e-006 2.50448e-006 90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "42.75 53 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 88
+{
+guid "{9553DC9E-0426-4873-BEA3-D6C5E60D34D4}"
+"classname" "misc_model"
+"angles" "0 2.50448e-006 0"
+"model" "p7_tie_rod_metal_01_ring"
+"origin" "41.75 92.25 41"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 89
+{
+guid "{C44E6F14-B31E-43F3-A69B-D6EB171B97DE}"
+"classname" "misc_model"
+"angles" "5.74392e-006 2.50448e-006 137.6"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 127.935 7.1209"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 90
+{
+guid "{64768779-5BB0-4CD1-90DF-25440D043A06}"
+"classname" "misc_model"
+"angles" "9.7877e-006 180 43.3995"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 119.039 15.3937"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 91
+{
+guid "{F4A3F11D-A694-4BE5-96DD-18F9C86B1C54}"
+"classname" "misc_model"
+"angles" "338.77 21.711 -47.7171"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7552 111.685 22.4107"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 92
+{
+guid "{7A8A3309-5EA1-4495-AE0F-2FBA8DEAD3E3}"
+"classname" "misc_model"
+"angles" "9.7877e-006 180 43.3995"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 104.28 29.3875"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 93
+{
+guid "{BB475C86-CAB3-4747-B03B-379E90874C5D}"
+"classname" "misc_model"
+"angles" "359.999 2.50448e-006 -43.9994"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 95.25 38"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 94
+{
+guid "{BE17CCFF-E006-44D6-8F92-7E4CECC541A3}"
+"classname" "misc_model"
+"angles" "5.74392e-006 2.50448e-006 137.6"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 89.1853 43.8709"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 95
+{
+guid "{32E9BC62-5D54-4674-8643-82E7B502666F}"
+"classname" "misc_model"
+"angles" "9.7877e-006 180 43.3995"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 80.289 52.1437"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 96
+{
+guid "{4D34589E-005C-4DD7-9C22-F7AFF9AC9469}"
+"classname" "misc_model"
+"angles" "338.77 21.711 -47.7171"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7552 72.935 59.1607"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 97
+{
+guid "{2D8EB80D-4B60-411B-AFF0-21D70D31BC94}"
+"classname" "misc_model"
+"angles" "9.7877e-006 180 43.3995"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 65.53 66.1375"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 98
+{
+guid "{D76C2420-563B-49A8-A909-CE6636DCB6BA}"
+"classname" "misc_model"
+"angles" "359.999 2.50448e-006 -43.9994"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 56.5 74.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 99
+{
+guid "{3E3B3F69-D077-4EDC-A435-479D83E1FEA3}"
+"classname" "misc_model"
+"angles" "9.89994e-006 2.50448e-006 -136.4"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 89.1249 37.9439"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 100
+{
+guid "{18C6895A-4B4D-4F64-A0FC-12B5614852FA}"
+"classname" "misc_model"
+"angles" "1.75491e-005 180 -42.6006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 80.252 29.6463"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 101
+{
+guid "{75520179-2F72-4BAD-858E-53EFBE6A10D0}"
+"classname" "misc_model"
+"angles" "338.331 338.726 46.5168"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7552 72.739 22.7997"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 102
+{
+guid "{BCC0FB05-DA0F-49BD-974D-0FE60D87F89F}"
+"classname" "misc_model"
+"angles" "1.75491e-005 180 -42.6006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 65.262 15.8993"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 103
+{
+guid "{F0B2AAEA-E9D1-479C-9830-E6E30074D5FA}"
+"classname" "misc_model"
+"angles" "8.74612e-005 359.999 42.0008"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 56.041 7.4921"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 104
+{
+guid "{81381C35-49F0-47F1-8E6F-135068C5AC00}"
+"classname" "misc_model"
+"angles" "9.89994e-006 2.50448e-006 -136.4"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 128.375 74.4439"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 105
+{
+guid "{904BAC51-B5BB-4D56-B6BB-5C94F9947E87}"
+"classname" "misc_model"
+"angles" "1.75491e-005 180 -42.6006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 119.502 66.1463"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 106
+{
+guid "{77589BD9-A286-4F10-A718-5BED77F99A37}"
+"classname" "misc_model"
+"angles" "338.331 338.726 46.5168"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7552 111.989 59.2997"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 107
+{
+guid "{923E514D-B374-4446-9B5E-BCB290EB218B}"
+"classname" "misc_model"
+"angles" "1.75491e-005 180 -42.6006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 104.512 52.3993"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 108
+{
+guid "{F58D071C-14FB-4144-8313-68A11847BC14}"
+"classname" "misc_model"
+"angles" "8.74612e-005 359.999 42.0008"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 95.291 43.9921"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 109
+{
+guid "{36B0C5A8-4683-414C-90D2-194E287A040A}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "43 131.5 81.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 110
+{
+guid "{3848E479-8125-49FB-9EB9-DFDC8DA1ADB2}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "43 53 81.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 111
+{
+guid "{6248CBC3-8B7F-4D80-8A7E-AB8AE4864802}"
+"classname" "misc_model"
+"angles" "0 2.50448e-006 0"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "42.75 -20 54.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 112
+{
+guid "{085CCE81-AF1C-4EE9-837E-05A4C693D440}"
+"classname" "misc_model"
+"angles" "9.7464e-007 2.50448e-006 -90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "42.75 52 54.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 113
+{
+guid "{DF1E41E9-4CF1-4729-B3D2-5C4DA8CE0D2B}"
+"classname" "misc_model"
+"angles" "1.76624e-006 2.50448e-006 180"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "42.75 52 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 114
+{
+guid "{AC182396-E181-49AE-9AF4-369E9E85E840}"
+"classname" "misc_model"
+"angles" "2.40918e-006 2.50448e-006 90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "42.75 -20 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 115
+{
+guid "{EA716301-19D4-49A5-BBDF-64F5DFB9C3C4}"
+"classname" "misc_model"
+"angles" "0 2.50448e-006 0"
+"model" "p7_tie_rod_metal_01_ring"
+"origin" "41.75 16 29.25"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 116
+{
+guid "{8A0562FA-E8A0-41FC-8887-876F80CA7D9A}"
+"classname" "misc_model"
+"angles" "1.15003e-005 180 33.1993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "41.75 5.4163 37.2137"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 117
+{
+guid "{1013F14A-D8F1-43E1-B0E5-62AF309BC61C}"
+"classname" "misc_model"
+"angles" "335.326 17.632 -37.2859"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7552 -1.5641 41.8175"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 118
+{
+guid "{447B660E-21F7-4BF3-A972-8CABCF574FF4}"
+"classname" "misc_model"
+"angles" "1.15003e-005 180 33.1993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "41.75 -8.0875 46.1227"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 119
+{
+guid "{C8381A29-D247-46CF-8E93-8EE8B83B45A3}"
+"classname" "misc_model"
+"angles" "359.999 2.50448e-006 -33.4991"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 -16.5 51.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 120
+{
+guid "{B43B2511-EC54-4063-B703-4DC3C0EAB291}"
+"classname" "misc_model"
+"angles" "2.69068e-006 2.50448e-006 147.1"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 13.1388 32.1484"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 121
+{
+guid "{3DF45867-9C3D-4382-94D1-6785371C0148}"
+"classname" "misc_model"
+"angles" "1.15003e-005 180 33.1993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "41.75 40.6663 11.9637"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 122
+{
+guid "{7B3D4A9C-0649-41A7-9F10-C40B803C15D6}"
+"classname" "misc_model"
+"angles" "335.326 17.632 -37.2859"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7552 33.6859 16.5675"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 123
+{
+guid "{22562681-1A13-43D3-8269-0C6B3675B5D6}"
+"classname" "misc_model"
+"angles" "1.15003e-005 180 33.1993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "41.75 27.1625 20.8727"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 124
+{
+guid "{73B34824-5DCD-4883-BD12-57F47208A446}"
+"classname" "misc_model"
+"angles" "359.999 2.50448e-006 -33.4991"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 19 26.25"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 125
+{
+guid "{C2975160-458A-496A-A4BA-14FA6D64D047}"
+"classname" "misc_model"
+"angles" "2.69068e-006 2.50448e-006 147.1"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 48.3888 6.8984"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 126
+{
+guid "{184D3228-6DF4-4E0C-8F99-2D921C76810C}"
+"classname" "misc_model"
+"angles" "1.16776e-005 2.50448e-006 32.1993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "41.75 26.8334 37.0984"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 127
+{
+guid "{F759B662-10C6-492D-B9F3-9A49FE515287}"
+"classname" "misc_model"
+"angles" "335.027 197.191 -36.2346"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7448 33.893 41.5797"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 128
+{
+guid "{A8D1947B-5456-49D1-AD3C-AA97AA2653B0}"
+"classname" "misc_model"
+"angles" "1.16776e-005 2.50448e-006 32.1993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "41.75 40.4906 45.7704"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 129
+{
+guid "{B411EEA9-D295-4E4C-A5E5-EE59902E45C1}"
+"classname" "misc_model"
+"angles" "359.999 180 -32.4991"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 49 51.25"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 130
+{
+guid "{93F04F5A-D1BD-48AC-B1AE-9E5608B7C387}"
+"classname" "misc_model"
+"angles" "2.64656e-006 180 148.1"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 19.0236 32.1686"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 131
+{
+guid "{710A1CF2-782B-43BC-94BB-3BF68B600487}"
+"classname" "misc_model"
+"angles" "1.19409e-005 2.50448e-006 31.6993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "41.75 -8.9768 12.4466"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 132
+{
+guid "{6CFD6531-420C-43F0-87F8-52BAA422F3CD}"
+"classname" "misc_model"
+"angles" "334.968 197.102 -36.0237"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7448 -1.8854 16.8772"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 133
+{
+guid "{8243E890-AAD3-46F5-AECC-495473AA367E}"
+"classname" "misc_model"
+"angles" "1.18432e-005 2.50448e-006 31.9993"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"origin" "41.75 4.7267 21.0448"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 134
+{
+guid "{B2DC8673-AD83-4F3C-BD5B-23B7FCB8603A}"
+"classname" "misc_model"
+"angles" "359.999 180 -32.2991"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 13 26.25"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 135
+{
+guid "{3AC9F3AD-FFF4-4425-AC26-91E994739A15}"
+"classname" "misc_model"
+"angles" "2.63764e-006 180 148.3"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 -17.0376 7.5181"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 136
+{
+guid "{84AFFDE2-D060-4472-9CBC-36F8C5DED402}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "-49 -21 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 137
+{
+guid "{8BE71D51-6EF7-4498-AD51-017803C5A2BD}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "43 -21 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 138
+{
+guid "{8E06DC69-5D73-4B5A-9008-897E8976B025}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "-49 -66 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 139
+{
+guid "{D4B61005-870E-4316-92C6-C7CB0EDEA434}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "-49 -65 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 140
+{
+guid "{2B043CC1-69B0-43F2-BCDC-1EF4083D274C}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "43 -66 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 141
+{
+guid "{65D8E4CC-5FA6-403C-ABCE-B7FB23833567}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "43 -65 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 142
+{
+guid "{1D6431FB-A037-4ACE-A1FC-F2C6D1B63695}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "43 52 58.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 143
+{
+guid "{D799BFA8-FD8C-4C0B-A36B-FEAD1C79CED4}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{FC41340B-D50C-4B8F-9255-5EB99AAB636D}"
+  contents weaponClip detail;
+ ( -47.75 132.5 80.75 ) ( -47.75 132.5 76.75 ) ( -49.75 132.5 76.75 ) caulk 128.06223 63.980476 180.69794 -224.65677 180 0.00074474839 caulk 16384 16384 -1596 1192.25 0 0
+ ( -50.5 257.5 81.75 ) ( -50.5 257.5 77.75 ) ( -50.5 261.5 77.75 ) t7_metal_trim_worn_iron_dark 24 3 -73.5 32.75 -180 0 lightmap_gray 16384 16384 3004 1192.25 0 0
+ ( -50 193.5 77.75 ) ( -48 193.5 77.75 ) ( -48 197.5 77.75 ) t7_metal_trim_worn_iron_dark 24 3 -73.5 5.5 -90 0 lightmap_gray 16384 16384 -1596 -3004 0 0
+ ( -47.5 320.5 77.75 ) ( -47.5 320.5 81.75 ) ( -47.5 324.5 81.75 ) t7_metal_trim_worn_iron_dark 24 -3 -73.5 119.75 180 0 lightmap_gray 16384 16384 3004 1192.25 0 0
+ ( -47 213.5 81.75 ) ( -47 213.5 78.75 ) ( -15 213.5 81.75 ) caulk 64 64 -1596 1192.25 0 0 caulk 16384 16384 -1596 1192.25 0 0
+ ( -49.25 127.5 78.25 ) ( -50.5 127.5 78.25 ) ( -50.5 159.5 78.25 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 5.5 -90 0 lightmap_gray 16384 16384 -6 -82 0 0
+}
+// brush 1
+{
+ guid "{2680E965-BCFC-4A7F-82C9-B0CF2B8FB1B7}"
+  contents weaponClip detail;
+ ( -47.75 132.5 80.75 ) ( -47.75 132.5 76.75 ) ( -49.75 132.5 76.75 ) caulk 128.06223 63.980476 180.69794 -224.65677 180 0.00074474839 caulk 16384 16384 -1596 1192.25 0 0
+ ( -49.5 257.5 81.75 ) ( -49.5 257.5 77.75 ) ( -49.5 261.5 77.75 ) t7_metal_trim_worn_iron_dark 24 3 -29.5 2.75 0 0 lightmap_gray 16384 16384 3004 1192.25 0 0
+ ( -48.5 320.5 77.75 ) ( -48.5 320.5 81.75 ) ( -48.5 324.5 81.75 ) t7_metal_trim_worn_iron_dark 24 3 -29.5 2.75 0 0 lightmap_gray 16384 16384 3004 1192.25 0 0
+ ( -47 213.5 81.75 ) ( -47 213.5 78.75 ) ( -15 213.5 81.75 ) caulk 64 64 -1596 1192.25 0 0 caulk 16384 16384 -1596 1192.25 0 0
+ ( -50.5 127.5 78.25 ) ( -49.25 127.5 78.25 ) ( -50.5 159.5 78.25 ) caulk 16 16 -6 -82 0 0 lightmap_gray 16384 16384 -6 -82 0 0
+ ( -49.5 127.5 81.25 ) ( -50.25 127.5 81.25 ) ( -50.25 159.5 81.25 ) caulk 16 16 -6 -82 0 0 lightmap_gray 16384 16384 -6 -82 0 0
+}
+// brush 2
+{
+ guid "{E9277A2E-FAC4-4E36-B57D-CC4FDDE7460E}"
+  contents weaponClip detail;
+ ( -47.75 132.5 80.75 ) ( -47.75 132.5 76.75 ) ( -49.75 132.5 76.75 ) caulk 128.06223 63.980476 180.69794 -224.65677 180 0.00074474839 caulk 16384 16384 -1596 1192.25 0 0
+ ( -48 219 81.75 ) ( -50 219 81.75 ) ( -50 223 81.75 ) t7_metal_trim_worn_iron_dark 24 3 -71.5 5.5 -90 0 lightmap_gray 16384 16384 -1596 -3004 0 0
+ ( -50.5 257.5 81.75 ) ( -50.5 257.5 77.75 ) ( -50.5 261.5 77.75 ) t7_metal_trim_worn_iron_dark 24 -3 -51.5 126.75 -180 0 lightmap_gray 16384 16384 3004 1192.25 0 0
+ ( -47.5 320.5 77.75 ) ( -47.5 320.5 81.75 ) ( -47.5 324.5 81.75 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 39.75 180 0 lightmap_gray 16384 16384 3004 1192.25 0 0
+ ( -47 213.5 81.75 ) ( -47 213.5 78.75 ) ( -15 213.5 81.75 ) caulk 64 64 -1596 1192.25 0 0 caulk 16384 16384 -1596 1192.25 0 0
+ ( -50.25 127.5 81.25 ) ( -49.5 127.5 81.25 ) ( -50.25 159.5 81.25 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 5.5 -90 0 lightmap_gray 16384 16384 -6 -82 0 0
+}
+}
+// entity 144
+{
+guid "{D4F65D1E-9384-4470-AD7C-41A604CDA181}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 213.5 77.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 145
+{
+guid "{9631D7B7-0905-430E-AAA4-A0D7DCA06FB8}"
+"classname" "misc_model"
+"angles" "9.7464e-007 180 -90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 132.5 77.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 146
+{
+guid "{93317FCB-D392-4351-8404-523703516956}"
+"classname" "misc_model"
+"angles" "1.76624e-006 180 180"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 132.5 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 147
+{
+guid "{96FD833E-1142-4111-80A3-C792CBAAD203}"
+"classname" "misc_model"
+"angles" "2.40918e-006 180 90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 213.5 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 148
+{
+guid "{CBE12BFC-1941-4D4E-B4D7-1029F61D2290}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_tie_rod_metal_01_ring"
+"origin" "-47.75 173 41"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 149
+{
+guid "{F04687FC-BA58-43BF-9648-C9B4C71878E6}"
+"classname" "misc_model"
+"angles" "1.03363e-005 180 -137.6"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 135.495 74.2435"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 150
+{
+guid "{EB1F5F74-9A01-44FA-99EB-02480CDEECCE}"
+"classname" "misc_model"
+"angles" "1.73367e-005 1.0322e-005 -41.4006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 144.79 65.8836"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 151
+{
+guid "{99A0EE1A-F327-4DDF-AFEC-18239ED84424}"
+"classname" "misc_model"
+"angles" "337.9 159.176 45.3099"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7552 152.444 59.1958"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 152
+{
+guid "{425D3454-25DC-417B-8E34-C33E3A7CF44B}"
+"classname" "misc_model"
+"angles" "1.7246e-005 1.04729e-005 -40.9006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 160.106 52.5023"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 153
+{
+guid "{E38540C7-A062-418A-AC4C-1D7FBF9CB7E1}"
+"classname" "misc_model"
+"angles" "6.6378e-005 179.999 40.8008"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 169.959 43.9912"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 154
+{
+guid "{EF5B81C0-5DEC-4B0F-A8F6-2AAF6E067D6E}"
+"classname" "misc_model"
+"angles" "1.03363e-005 180 -137.6"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 175.995 37.9935"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 155
+{
+guid "{15455709-52B4-44AB-B9B8-20FD3613D5C4}"
+"classname" "misc_model"
+"angles" "1.73367e-005 1.0322e-005 -41.4006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 185.29 29.6336"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 156
+{
+guid "{7CCC62A6-A2F1-4B02-9833-02E1E65E509B}"
+"classname" "misc_model"
+"angles" "337.9 159.176 45.3099"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7552 192.944 22.9458"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 157
+{
+guid "{6510A16E-1A8D-4570-85BA-C00EB22D9FDC}"
+"classname" "misc_model"
+"angles" "1.7246e-005 1.04729e-005 -40.9006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 200.606 16.2523"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 158
+{
+guid "{7171F1AF-8B00-448F-B589-ECE9C011E6C7}"
+"classname" "misc_model"
+"angles" "8.39343e-005 179.999 41.8009"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 210.459 7.4919"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 159
+{
+guid "{A6AE438C-4585-4ABC-AB97-7B9635EA57B5}"
+"classname" "misc_model"
+"angles" "1.03003e-005 2.64854e-006 -136.8"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 210.079 74.7223"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 160
+{
+guid "{A2EC543C-6BBC-40B4-81F0-E1CE105E5DE3}"
+"classname" "misc_model"
+"angles" "1.76395e-005 180 -42.2005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 200.902 66.2334"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 161
+{
+guid "{0FB0B1AC-4C56-4A19-8DD4-6FD21A53F255}"
+"classname" "misc_model"
+"angles" "338.186 338.875 46.1153"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7448 193.342 59.4394"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 162
+{
+guid "{7106417E-BE16-4CDC-9128-0BA4F8895822}"
+"classname" "misc_model"
+"angles" "1.75488e-005 180 -41.7005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 185.774 52.6396"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 163
+{
+guid "{21070CEE-CDEE-4125-91B5-09F1DDF931C3}"
+"classname" "misc_model"
+"angles" "8.03284e-005 359.999 41.6007"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 176.041 43.9918"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 164
+{
+guid "{7A24CAEC-B259-4315-B037-7563A79FE246}"
+"classname" "misc_model"
+"angles" "1.03003e-005 2.64854e-006 -136.8"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 170.005 37.9936"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 165
+{
+guid "{8508B79A-3504-437F-A04D-DFB821E38067}"
+"classname" "misc_model"
+"angles" "1.76391e-005 180 -42.2005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 160.828 29.5047"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 166
+{
+guid "{9D51F4EC-7C60-4EB2-91D6-901F87940050}"
+"classname" "misc_model"
+"angles" "338.186 338.875 46.1153"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7448 153.268 22.7107"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 167
+{
+guid "{C4224291-2DAF-461E-8EEB-361DFC4CD78A}"
+"classname" "misc_model"
+"angles" "1.75484e-005 180 -41.7005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 145.7 15.9109"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 168
+{
+guid "{6B9219F1-6E1E-47FA-871C-7BE17678A4DC}"
+"classname" "misc_model"
+"angles" "9.78783e-005 359.999 42.6008"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 135.97 7.0138"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 169
+{
+guid "{01EA17AA-76F3-4FC4-9890-686110107311}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 213.5 155.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 170
+{
+guid "{B517D269-2ABE-4736-9F15-3E59A9BA6ECF}"
+"classname" "misc_model"
+"angles" "9.7464e-007 180 -90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 132.5 155.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 171
+{
+guid "{080D2E3B-341E-418D-83A1-2CFDC10E74D9}"
+"classname" "misc_model"
+"angles" "1.76624e-006 180 180"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 132.5 81.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 172
+{
+guid "{91ECFC29-7BF3-4774-9A17-64BFE60EE851}"
+"classname" "misc_model"
+"angles" "2.40918e-006 180 90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "-48.75 213.5 81.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 173
+{
+guid "{DC5834EF-C097-4591-9946-E1D2252F8830}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_tie_rod_metal_01_ring"
+"origin" "-47.75 173 118.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 174
+{
+guid "{30E10DDF-D7DC-4483-8390-E14969EB5706}"
+"classname" "misc_model"
+"angles" "1.03363e-005 180 -137.6"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 135.495 151.993"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 175
+{
+guid "{C8121488-0AE9-4C34-A4D4-D1308FAD6108}"
+"classname" "misc_model"
+"angles" "1.73367e-005 1.0322e-005 -41.4006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 144.79 143.634"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 176
+{
+guid "{22A539B3-0D76-456D-90FE-8BB4B8C84C0A}"
+"classname" "misc_model"
+"angles" "337.9 159.176 45.3099"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7552 152.444 136.946"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 177
+{
+guid "{6289E29F-81F2-483E-8F0C-8915BCB6262A}"
+"classname" "misc_model"
+"angles" "1.7246e-005 1.04729e-005 -40.9006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 160.106 130.252"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 178
+{
+guid "{BFE082E7-030F-4D42-904B-4D8462C48E1D}"
+"classname" "misc_model"
+"angles" "6.6378e-005 179.999 40.8008"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 169.959 121.741"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 179
+{
+guid "{92FD3E4C-C7EE-49A2-AA75-CD6DE051719D}"
+"classname" "misc_model"
+"angles" "1.03363e-005 180 -137.6"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 175.995 115.743"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 180
+{
+guid "{62A09588-DCBA-41BC-A93F-EF09B5CC1B05}"
+"classname" "misc_model"
+"angles" "1.73367e-005 1.0322e-005 -41.4006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 185.29 107.384"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 181
+{
+guid "{3A3165DC-FE52-40D7-958F-07C8CA791FDF}"
+"classname" "misc_model"
+"angles" "337.9 159.176 45.3099"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7552 192.944 100.696"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 182
+{
+guid "{47C820CF-277D-4DBB-91C6-074EAF435969}"
+"classname" "misc_model"
+"angles" "1.7246e-005 1.04729e-005 -40.9006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 200.606 94.002"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 183
+{
+guid "{D37EE41E-E013-492C-93A2-6EF3315611E0}"
+"classname" "misc_model"
+"angles" "8.39343e-005 179.999 41.8009"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 210.459 85.2419"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 184
+{
+guid "{0E8AEBBC-9E35-4290-8696-4099C5455D64}"
+"classname" "misc_model"
+"angles" "1.03003e-005 2.64854e-006 -136.8"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 210.079 152.472"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 185
+{
+guid "{0895EDA6-B8D0-4A52-92BA-1017E3C31BC7}"
+"classname" "misc_model"
+"angles" "1.76395e-005 180 -42.2005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 200.902 143.983"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 186
+{
+guid "{5428B87A-78E3-4AF1-BDA5-2893AFECEF1C}"
+"classname" "misc_model"
+"angles" "338.186 338.875 46.1153"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7448 193.342 137.189"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 187
+{
+guid "{F7DF7105-9249-42AE-AEF6-FF226CC8B9A6}"
+"classname" "misc_model"
+"angles" "1.75488e-005 180 -41.7005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 185.774 130.39"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 188
+{
+guid "{FF512E48-057C-4019-B585-017197DA8AD3}"
+"classname" "misc_model"
+"angles" "8.03284e-005 359.999 41.6007"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 176.041 121.742"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 189
+{
+guid "{6FB89574-C6CF-4AD5-AC75-FAA1D4BE2A68}"
+"classname" "misc_model"
+"angles" "1.03003e-005 2.64854e-006 -136.8"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 170.005 115.744"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 190
+{
+guid "{2AF51889-A05C-4A2C-9A72-A6AF4155FB2B}"
+"classname" "misc_model"
+"angles" "1.76391e-005 180 -42.2005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 160.828 107.255"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 191
+{
+guid "{A85B7B24-007A-44F7-8937-17D217238CC2}"
+"classname" "misc_model"
+"angles" "338.186 338.875 46.1153"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "-47.7448 153.268 100.461"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 192
+{
+guid "{18C1E804-35BD-4759-84D5-67C4C3AD75CE}"
+"classname" "misc_model"
+"angles" "1.75484e-005 180 -41.7005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "-47.75 145.7 93.661"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 193
+{
+guid "{F281E48F-DE73-4680-ABBD-021CD3A2C1E1}"
+"classname" "misc_model"
+"angles" "9.78783e-005 359.999 42.6008"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "-47.75 135.97 84.7638"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 194
+{
+guid "{A8CCF9C0-23D6-4776-B6B9-4AF26A7D752B}"
+"classname" "misc_model"
+"angles" "0 2.50448e-006 0"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "42.75 132.5 77.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 195
+{
+guid "{F7372828-381D-4A9B-8181-3F30FE61829D}"
+"classname" "misc_model"
+"angles" "9.7464e-007 2.50448e-006 -90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "42.75 213.5 77.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 196
+{
+guid "{B9496D46-47CD-4CDD-BBB6-3E36FEA08937}"
+"classname" "misc_model"
+"angles" "2.40918e-006 2.50448e-006 90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "42.75 132.5 4"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 197
+{
+guid "{D4716373-9033-43F9-8221-820DE59842FD}"
+"classname" "misc_model"
+"angles" "0 2.50448e-006 0"
+"model" "p7_tie_rod_metal_01_ring"
+"origin" "41.75 173 41"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 198
+{
+guid "{8C29F906-A7EE-4A6D-8C5D-72F02C2C2252}"
+"classname" "misc_model"
+"angles" "1.03363e-005 2.50448e-006 -137.6"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 210.505 74.2435"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 199
+{
+guid "{BBBA8D4B-1BB9-44AA-9E88-713E24201A40}"
+"classname" "misc_model"
+"angles" "1.73367e-005 180 -41.4006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 201.21 65.8836"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 200
+{
+guid "{0B786EE7-0BCC-4684-9FBC-5EC0158FE51A}"
+"classname" "misc_model"
+"angles" "337.9 339.176 45.3099"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7552 193.556 59.1958"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 201
+{
+guid "{80605DCC-567C-40E4-BA96-262E926968C3}"
+"classname" "misc_model"
+"angles" "1.7246e-005 180 -40.9006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 185.894 52.5023"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 202
+{
+guid "{1ABDB744-249D-4564-BB04-FD9506814981}"
+"classname" "misc_model"
+"angles" "6.6378e-005 359.999 40.8008"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 176.041 43.9912"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 203
+{
+guid "{86212768-E2EE-486F-B02E-F4BA977ED865}"
+"classname" "misc_model"
+"angles" "1.03363e-005 2.50448e-006 -137.6"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 170.005 37.9935"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 204
+{
+guid "{5E110755-1A79-4F91-A636-01F92C3C5D25}"
+"classname" "misc_model"
+"angles" "1.73367e-005 180 -41.4006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 160.71 29.6336"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 205
+{
+guid "{8B8D75E1-1C40-4CA6-83A2-08EED81C15B6}"
+"classname" "misc_model"
+"angles" "337.9 339.176 45.3099"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7552 153.056 22.9458"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 206
+{
+guid "{C874613B-2FFB-4236-A7E6-FD21907D1EB0}"
+"classname" "misc_model"
+"angles" "1.7246e-005 180 -40.9006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 145.394 16.2523"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 207
+{
+guid "{4B4FE915-2E87-4FD4-A3B2-B1D902F12F54}"
+"classname" "misc_model"
+"angles" "8.39343e-005 359.999 41.8009"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 135.541 7.4919"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 208
+{
+guid "{8F0D4E25-A1F8-48BC-A956-C9E066365EFE}"
+"classname" "misc_model"
+"angles" "1.03003e-005 180 -136.8"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 135.921 74.7223"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 209
+{
+guid "{6F21D15D-0820-4DEE-A418-3489CF7AD1F4}"
+"classname" "misc_model"
+"angles" "1.76395e-005 2.50448e-006 -42.2005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 145.098 66.2334"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 210
+{
+guid "{42369423-8CB3-40FA-9D1B-CB4CFB39FF9E}"
+"classname" "misc_model"
+"angles" "338.186 158.875 46.1153"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7448 152.658 59.4394"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 211
+{
+guid "{9BE200D5-8745-49D6-A226-4EBFE9DB86FB}"
+"classname" "misc_model"
+"angles" "1.75488e-005 2.50448e-006 -41.7005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 160.226 52.6396"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 212
+{
+guid "{5754E83F-4C87-4FB4-B880-6D4422711D50}"
+"classname" "misc_model"
+"angles" "8.03284e-005 179.999 41.6007"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 169.959 43.9918"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 213
+{
+guid "{9DEBCFF3-78D7-4F85-B245-D2508CC0FC58}"
+"classname" "misc_model"
+"angles" "1.03003e-005 180 -136.8"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 175.995 37.9936"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 214
+{
+guid "{A96889D9-5BDB-451F-B96D-1C1BD03596CC}"
+"classname" "misc_model"
+"angles" "1.76391e-005 2.50448e-006 -42.2005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 185.172 29.5047"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 215
+{
+guid "{82C89C1D-4E45-48A3-B516-3E744B89B085}"
+"classname" "misc_model"
+"angles" "338.186 158.875 46.1153"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7448 192.732 22.7107"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 216
+{
+guid "{AC77C6DF-1FE8-4204-8ABB-DBAFE50F324E}"
+"classname" "misc_model"
+"angles" "1.75484e-005 2.50448e-006 -41.7005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 200.3 15.9109"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 217
+{
+guid "{C35D92DE-1FDE-42BB-A578-F00A1A56F397}"
+"classname" "misc_model"
+"angles" "0 2.50448e-006 0"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "42.75 132.5 155.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 218
+{
+guid "{E53E0054-E23A-4351-B7A6-F75280C78F85}"
+"classname" "misc_model"
+"angles" "9.7464e-007 2.50448e-006 -90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "42.75 213.5 155.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 219
+{
+guid "{727A96E9-5E84-4A79-8F38-7171C22C660C}"
+"classname" "misc_model"
+"angles" "1.76624e-006 2.50448e-006 180"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "42.75 213.5 81.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 220
+{
+guid "{EB9A27D8-ECF3-40D3-91F6-5C3AF8B854EF}"
+"classname" "misc_model"
+"angles" "2.40918e-006 2.50448e-006 90"
+"model" "p7_tie_rod_metal_01_bracket_corner"
+"origin" "42.75 132.5 81.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 221
+{
+guid "{5E8CE4A0-40CC-4EA2-96F5-9FFC2D3B2BF8}"
+"classname" "misc_model"
+"angles" "0 2.50448e-006 0"
+"model" "p7_tie_rod_metal_01_ring"
+"origin" "41.75 173 118.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 222
+{
+guid "{748A3074-4340-4ED4-8AA0-78B7F51059A9}"
+"classname" "misc_model"
+"angles" "1.03363e-005 2.50448e-006 -137.6"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 210.505 151.993"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 223
+{
+guid "{0243E01C-11FA-4555-B8E0-E01650B5096D}"
+"classname" "misc_model"
+"angles" "1.73367e-005 180 -41.4006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 201.21 143.634"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 224
+{
+guid "{17A87357-FC8B-4E79-A8F5-DF59F3CF26A1}"
+"classname" "misc_model"
+"angles" "337.9 339.176 45.3099"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7552 193.556 136.946"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 225
+{
+guid "{19E36C41-634F-45FE-8856-E2454F7426E9}"
+"classname" "misc_model"
+"angles" "1.7246e-005 180 -40.9006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 185.894 130.252"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 226
+{
+guid "{5B96AE45-EF97-45D9-A749-165A9F15EA1A}"
+"classname" "misc_model"
+"angles" "6.6378e-005 359.999 40.8008"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 176.041 121.741"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 227
+{
+guid "{EC0324D1-E873-4B20-AAAA-E6B3AE58D297}"
+"classname" "misc_model"
+"angles" "1.03363e-005 2.50448e-006 -137.6"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 170.005 115.743"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 228
+{
+guid "{0CB734F9-5392-46BC-B9D4-3F85F3BFDF0C}"
+"classname" "misc_model"
+"angles" "1.73367e-005 180 -41.4006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 160.71 107.384"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 229
+{
+guid "{E9EF3E0C-037A-4EEC-9A9F-0064E6FE709C}"
+"classname" "misc_model"
+"angles" "337.9 339.176 45.3099"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7552 153.056 100.696"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 230
+{
+guid "{3B9E7285-4136-4917-9B3C-2E61FC71E734}"
+"classname" "misc_model"
+"angles" "1.7246e-005 180 -40.9006"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 145.394 94.002"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 231
+{
+guid "{691AE21C-24ED-4355-B159-31B85DD545B4}"
+"classname" "misc_model"
+"angles" "8.39343e-005 359.999 41.8009"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 135.541 85.2419"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 232
+{
+guid "{DA5DA65D-F092-4198-AC8F-EA6E5C1BF080}"
+"classname" "misc_model"
+"angles" "1.03003e-005 180 -136.8"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 135.921 152.472"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 233
+{
+guid "{CC62F201-5B1F-4D95-BB6D-9BE5A9DDFE77}"
+"classname" "misc_model"
+"angles" "1.76395e-005 2.50448e-006 -42.2005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 145.098 143.983"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 234
+{
+guid "{1C2A3BFA-329A-4C7A-ADF8-1A86EBA79512}"
+"classname" "misc_model"
+"angles" "338.186 158.875 46.1153"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7448 152.658 137.189"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 235
+{
+guid "{173E06DE-F49B-4BB3-B3FB-5C50F3D71030}"
+"classname" "misc_model"
+"angles" "1.75488e-005 2.50448e-006 -41.7005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 160.226 130.39"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 236
+{
+guid "{8A85AA6D-5180-4420-B5FB-C59EB5527A67}"
+"classname" "misc_model"
+"angles" "8.03284e-005 179.999 41.6007"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 169.959 121.742"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 237
+{
+guid "{A95145F9-9B08-4357-AD69-BD30CD000324}"
+"classname" "misc_model"
+"angles" "1.03003e-005 180 -136.8"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 175.995 115.744"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 238
+{
+guid "{C137F810-6FA7-4805-9CE4-5B0AA55D7A42}"
+"classname" "misc_model"
+"angles" "1.76391e-005 2.50448e-006 -42.2005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 185.172 107.255"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 239
+{
+guid "{846B59D2-7348-4EBA-BC03-ACFA5F76887C}"
+"classname" "misc_model"
+"angles" "338.186 158.875 46.1153"
+"model" "p7_tie_rod_metal_01_middle"
+"origin" "41.7448 192.732 100.461"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 240
+{
+guid "{FF39B0E5-341C-437B-992B-42C98C3E484E}"
+"classname" "misc_model"
+"angles" "1.75484e-005 2.50448e-006 -41.7005"
+"model" "p7_zm_der2_tie_rod_metal_01_bar_16"
+"modelscale" "1.1"
+"origin" "41.75 200.3 93.661"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 241
+{
+guid "{4CD76622-AB9D-42EA-BEEB-B38AF525496A}"
+"classname" "misc_model"
+"angles" "9.78783e-005 179.999 42.6008"
+"model" "p7_tie_rod_metal_01_end"
+"origin" "41.75 210.03 84.7638"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 242
+{
+guid "{00180318-90C2-41ED-8325-9FFE02625F2C}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "-49 213.5 159.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 243
+{
+guid "{D90AC3E1-A6D2-4539-A041-824492F61936}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "-49 132.5 159.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 244
+{
+guid "{779582EA-BB73-4E2E-B6C7-94733E30AE22}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "43 213.5 159.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 245
+{
+guid "{0E71E13F-3FA4-482F-BE55-EC9C92FC5C26}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "43 132.5 159.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 246
+{
+guid "{F3E76A1E-6892-4147-B888-CD67468B9F61}"
+"classname" "misc_model"
+"angles" "2.50448e-006 90 180"
+"model" "p7_ibeam_bracket_32_thin_l_01"
+"modelscale" "0.3"
+"origin" "43 131.5 176"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 247
+{
+guid "{364943BA-FB58-4D83-A69A-AD78560FAD5D}"
+"classname" "misc_model"
+"angles" "360 270 180"
+"model" "p7_ibeam_bracket_32_thin_l_02"
+"modelscale" "0.3"
+"origin" "-49 132.5 176"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 248
+{
+guid "{7038C553-3189-405A-AE73-0EF0CA88804B}"
+"classname" "misc_model"
+"angles" "360 270 180"
+"model" "p7_ibeam_bracket_32_thin_l_02"
+"modelscale" "0.3"
+"origin" "43 132.5 176"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 249
+{
+guid "{D7453591-93BD-4354-9E40-5F3FFBFF577E}"
+"classname" "misc_model"
+"angles" "1.00179e-005 90 180"
+"model" "p7_ibeam_bracket_32_thin_l_02"
+"modelscale" "0.3"
+"origin" "-49 213.5 182"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 250
+{
+guid "{B6684B1B-FE7C-4287-9E6C-EC8D59408045}"
+"classname" "misc_model"
+"angles" "1.00179e-005 90 180"
+"model" "p7_ibeam_bracket_32_thin_l_02"
+"modelscale" "0.3"
+"origin" "43 213.5 182"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 251
+{
+guid "{0F92AB9A-FB23-47DC-9052-E136BD8E95CD}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{E2B306D0-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( -49.5 96 58.75 ) ( -49.5 96 54.75 ) ( -49.5 100 54.75 ) t7_metal_trim_worn_iron_dark 24 3 -109 25.75 0 0 lightmap_gray 16384 16384 2842.5 1215.25 0 0
+ ( -48.5 159 54.75 ) ( -48.5 159 58.75 ) ( -48.5 163 58.75 ) t7_metal_worn_iron_dark 64 -64 -1665.5 529.75 0 0 lightmap_gray 16384 16384 2842.5 1215.25 0 0
+ ( -47 52 58.75 ) ( -47 52 55.75 ) ( -15 52 58.75 ) caulk 64 64 -1596 1215.25 0 0 caulk 16384 16384 -1596 1215.25 0 0
+ ( -50.5 -34 55.25 ) ( -49.25 -34 55.25 ) ( -50.5 -2 55.25 ) caulk 16 16 -6 79.5 0 0 lightmap_gray 16384 16384 -6 79.5 0 0
+ ( -49.5 -34 58.25 ) ( -50.25 -34 58.25 ) ( -50.25 -2 58.25 ) caulk 16 16 -6 79.5 0 0 lightmap_gray 16384 16384 -6 79.5 0 0
+ ( -47.5 -20 55 ) ( -47.5 -20 56.5 ) ( -15.5 -20 55 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{E2B306D2-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( -48 57.5 58.75 ) ( -50 57.5 58.75 ) ( -50 61.5 58.75 ) t7_metal_trim_worn_iron_dark 24 3 8 5.5 -90 0 lightmap_gray 16384 16384 -1596 -2842.5 0 0
+ ( -50.5 96 58.75 ) ( -50.5 96 54.75 ) ( -50.5 100 54.75 ) t7_metal_trim_worn_iron_dark 24 -3 28 103.75 -180 0 lightmap_gray 16384 16384 2842.5 1215.25 0 0
+ ( -47.5 159 54.75 ) ( -47.5 159 58.75 ) ( -47.5 163 58.75 ) t7_metal_worn_iron_dark 64 -64 -1665.5 529.75 0 0 lightmap_gray 16384 16384 2842.5 1215.25 0 0
+ ( -47 52 58.75 ) ( -47 52 55.75 ) ( -15 52 58.75 ) caulk 64 64 -1596 1215.25 0 0 caulk 16384 16384 -1596 1215.25 0 0
+ ( -50.25 -34 58.25 ) ( -49.5 -34 58.25 ) ( -50.25 -2 58.25 ) t7_metal_trim_worn_iron_dark 24 3 28 5.5 -90 0 lightmap_gray 16384 16384 -6 79.5 0 0
+ ( -47.5 -20 55 ) ( -47.5 -20 56.5 ) ( -15.5 -20 55 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 2
+{
+ guid "{E2B306DA-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( -50.5 96 58.75 ) ( -50.5 96 54.75 ) ( -50.5 100 54.75 ) t7_metal_trim_worn_iron_dark 24 3 6 9.75 180 0 lightmap_gray 16384 16384 2842.5 1215.25 0 0
+ ( -50 32 54.75 ) ( -48 32 54.75 ) ( -48 36 54.75 ) t7_metal_trim_worn_iron_dark 24 3 6 5.5 -90 0 lightmap_gray 16384 16384 -1596 -2842.5 0 0
+ ( -47.5 159 54.75 ) ( -47.5 159 58.75 ) ( -47.5 163 58.75 ) t7_metal_worn_iron_dark 64 -64 -1665.5 529.75 0 0 lightmap_gray 16384 16384 2842.5 1215.25 0 0
+ ( -47 52 58.75 ) ( -47 52 55.75 ) ( -15 52 58.75 ) caulk 64 64 -1596 1215.25 0 0 caulk 16384 16384 -1596 1215.25 0 0
+ ( -49.25 -34 55.25 ) ( -50.5 -34 55.25 ) ( -50.5 -2 55.25 ) t7_metal_trim_worn_iron_dark 24 3 28 5.5 -90 0 lightmap_gray 16384 16384 -6 79.5 0 0
+ ( -47.5 -20 55 ) ( -47.5 -20 56.5 ) ( -15.5 -20 55 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 252
+{
+guid "{47126C94-7729-4082-A314-D0BE9769F6BE}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{847382E7-468C-43E0-8461-CCB80DE65DCF}"
+  contents weaponClip detail;
+ ( -47.75 132.5 158.5 ) ( -47.75 132.5 154.5 ) ( -49.75 132.5 154.5 ) caulk 128.06223 63.980476 180.81384 -146.90677 180 0.00074474839 caulk 16384 16384 -1596 1114.5 0 0
+ ( -48 219 159.5 ) ( -50 219 159.5 ) ( -50 223 159.5 ) t7_metal_trim_worn_iron_dark 24 3 -71.5 5.5 -90 0 lightmap_gray 16384 16384 -1596 -3004 0 0
+ ( -50.5 257.5 159.5 ) ( -50.5 257.5 155.5 ) ( -50.5 261.5 155.5 ) t7_metal_trim_worn_iron_dark 24 -3 -51.5 204.5 180 0 lightmap_gray 16384 16384 3004 1114.5 0 0
+ ( -47.5 320.5 155.5 ) ( -47.5 320.5 159.5 ) ( -47.5 324.5 159.5 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 117.5 180 0 lightmap_gray 16384 16384 3004 1114.5 0 0
+ ( -47 213.5 159.5 ) ( -47 213.5 156.5 ) ( -15 213.5 159.5 ) caulk 64 64 -1596 1114.5 0 0 caulk 16384 16384 -1596 1114.5 0 0
+ ( -50.25 127.5 159 ) ( -49.5 127.5 159 ) ( -50.25 159.5 159 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 5.5 -90 0 lightmap_gray 16384 16384 -6 -82 0 0
+}
+// brush 1
+{
+ guid "{7B4874E0-2B2F-4480-8F3D-E73A7E8D8025}"
+  contents weaponClip detail;
+ ( -47.75 132.5 158.5 ) ( -47.75 132.5 154.5 ) ( -49.75 132.5 154.5 ) caulk 128.06223 63.980476 180.81384 -146.90677 180 0.00074474839 caulk 16384 16384 -1596 1114.5 0 0
+ ( -49.5 257.5 159.5 ) ( -49.5 257.5 155.5 ) ( -49.5 261.5 155.5 ) t7_metal_trim_worn_iron_dark 24 3 -29.5 -75 0 0 lightmap_gray 16384 16384 3004 1114.5 0 0
+ ( -48.5 320.5 155.5 ) ( -48.5 320.5 159.5 ) ( -48.5 324.5 159.5 ) t7_metal_trim_worn_iron_dark 24 3 -29.5 -75 0 0 lightmap_gray 16384 16384 3004 1114.5 0 0
+ ( -47 213.5 159.5 ) ( -47 213.5 156.5 ) ( -15 213.5 159.5 ) caulk 64 64 -1596 1114.5 0 0 caulk 16384 16384 -1596 1114.5 0 0
+ ( -50.5 127.5 156 ) ( -49.25 127.5 156 ) ( -50.5 159.5 156 ) caulk 16 16 -6 -82 0 0 lightmap_gray 16384 16384 -6 -82 0 0
+ ( -49.5 127.5 159 ) ( -50.25 127.5 159 ) ( -50.25 159.5 159 ) caulk 16 16 -6 -82 0 0 lightmap_gray 16384 16384 -6 -82 0 0
+}
+// brush 2
+{
+ guid "{85BE7F2B-42D0-480E-994D-2193613B93C1}"
+  contents weaponClip detail;
+ ( -47.75 132.5 158.5 ) ( -47.75 132.5 154.5 ) ( -49.75 132.5 154.5 ) caulk 128.06223 63.980476 180.81384 -146.90677 180 0.00074474839 caulk 16384 16384 -1596 1114.5 0 0
+ ( -50.5 257.5 159.5 ) ( -50.5 257.5 155.5 ) ( -50.5 261.5 155.5 ) t7_metal_trim_worn_iron_dark 24 3 -73.5 110.5 180 0 lightmap_gray 16384 16384 3004 1114.5 0 0
+ ( -50 193.5 155.5 ) ( -48 193.5 155.5 ) ( -48 197.5 155.5 ) t7_metal_trim_worn_iron_dark 24 3 -73.5 5.5 -90 0 lightmap_gray 16384 16384 -1596 -3004 0 0
+ ( -47.5 320.5 155.5 ) ( -47.5 320.5 159.5 ) ( -47.5 324.5 159.5 ) t7_metal_trim_worn_iron_dark 24 -3 -73.5 197.5 180 0 lightmap_gray 16384 16384 3004 1114.5 0 0
+ ( -47 213.5 159.5 ) ( -47 213.5 156.5 ) ( -15 213.5 159.5 ) caulk 64 64 -1596 1114.5 0 0 caulk 16384 16384 -1596 1114.5 0 0
+ ( -49.25 127.5 156 ) ( -50.5 127.5 156 ) ( -50.5 159.5 156 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 5.5 -90 0 lightmap_gray 16384 16384 -6 -82 0 0
+}
+}
+// entity 253
+{
+guid "{8F0A41F2-96CD-48D7-8B0D-16FEB5879AFD}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{D2547EAF-E6A2-4D0D-B536-3A8BE63A913B}"
+  contents weaponClip detail;
+ ( 44.25 53 80.75 ) ( 44.25 53 76.75 ) ( 42.25 53 76.75 ) caulk 128.06223 63.980476 88.697891 -224.65677 180 0.00074474839 caulk 16384 16384 -1504 1192.25 0 0
+ ( 41.5 175.5 81.75 ) ( 41.5 175.5 77.75 ) ( 41.5 179.5 77.75 ) t7_metal_trim_worn_iron_dark 24 3 -73.5 32.75 180 0 lightmap_gray 16384 16384 2922 1192.25 0 0
+ ( 42 111.5 77.75 ) ( 44 111.5 77.75 ) ( 44 115.5 77.75 ) t7_metal_trim_worn_iron_dark 24 3 -73.5 -86.5 -90 0 lightmap_gray 16384 16384 -1504 -2922 0 0
+ ( 44.5 238.5 77.75 ) ( 44.5 238.5 81.75 ) ( 44.5 242.5 81.75 ) t7_metal_worn_iron_dark 64 -64 -1586 506.75 0 0 lightmap_gray 16384 16384 2922 1192.25 0 0
+ ( 45 131.5 81.75 ) ( 45 131.5 78.75 ) ( 77 131.5 81.75 ) caulk 64 64 -1504 1192.25 0 0 caulk 16384 16384 -1504 1192.25 0 0
+ ( 42.75 48 78.25 ) ( 41.5 48 78.25 ) ( 41.5 80 78.25 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 -86.5 -90 0 lightmap_gray 16384 16384 86 0 0 0
+}
+// brush 1
+{
+ guid "{F3507259-C4F6-4B0E-B48D-DA51BA70857B}"
+  contents weaponClip detail;
+ ( 44.25 53 80.75 ) ( 44.25 53 76.75 ) ( 42.25 53 76.75 ) caulk 128.06223 63.980476 88.697891 -224.65677 180 0.00074474839 caulk 16384 16384 -1504 1192.25 0 0
+ ( 42.5 175.5 81.75 ) ( 42.5 175.5 77.75 ) ( 42.5 179.5 77.75 ) t7_metal_trim_worn_iron_dark 24 3 -29.5 2.75 0 0 lightmap_gray 16384 16384 2922 1192.25 0 0
+ ( 43.5 238.5 77.75 ) ( 43.5 238.5 81.75 ) ( 43.5 242.5 81.75 ) t7_metal_worn_iron_dark 64 -64 -1586 506.75 0 0 lightmap_gray 16384 16384 2922 1192.25 0 0
+ ( 45 131.5 81.75 ) ( 45 131.5 78.75 ) ( 77 131.5 81.75 ) caulk 64 64 -1504 1192.25 0 0 caulk 16384 16384 -1504 1192.25 0 0
+ ( 41.5 48 78.25 ) ( 42.75 48 78.25 ) ( 41.5 80 78.25 ) caulk 16 16 86 0 0 0 lightmap_gray 16384 16384 86 0 0 0
+ ( 42.5 48 81.25 ) ( 41.75 48 81.25 ) ( 41.75 80 81.25 ) caulk 16 16 86 0 0 0 lightmap_gray 16384 16384 86 0 0 0
+}
+// brush 2
+{
+ guid "{1203065F-B7D0-4B50-87BC-8F6ED1F5DFBF}"
+  contents weaponClip detail;
+ ( 44.25 53 80.75 ) ( 44.25 53 76.75 ) ( 42.25 53 76.75 ) caulk 128.06223 63.980476 88.697891 -224.65677 180 0.00074474839 caulk 16384 16384 -1504 1192.25 0 0
+ ( 44 137 81.75 ) ( 42 137 81.75 ) ( 42 141 81.75 ) t7_metal_trim_worn_iron_dark 24 3 -71.5 -86.5 -90 0 lightmap_gray 16384 16384 -1504 -2922 0 0
+ ( 41.5 175.5 81.75 ) ( 41.5 175.5 77.75 ) ( 41.5 179.5 77.75 ) t7_metal_trim_worn_iron_dark 24 -3 -51.5 126.75 -180 0 lightmap_gray 16384 16384 2922 1192.25 0 0
+ ( 44.5 238.5 77.75 ) ( 44.5 238.5 81.75 ) ( 44.5 242.5 81.75 ) t7_metal_worn_iron_dark 64 -64 -1586 506.75 0 0 lightmap_gray 16384 16384 2922 1192.25 0 0
+ ( 45 131.5 81.75 ) ( 45 131.5 78.75 ) ( 77 131.5 81.75 ) caulk 64 64 -1504 1192.25 0 0 caulk 16384 16384 -1504 1192.25 0 0
+ ( 41.75 48 81.25 ) ( 42.5 48 81.25 ) ( 41.75 80 81.25 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 -86.5 -90 0 lightmap_gray 16384 16384 86 0 0 0
+}
+}
+// entity 254
+{
+guid "{8C04FCD3-6C9A-4DF9-9B92-3A564A8D1C65}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{8565E86C-22C7-4E33-8572-8A99D901DB11}"
+  contents weaponClip detail;
+ ( 44.25 132.5 80.75 ) ( 44.25 132.5 76.75 ) ( 42.25 132.5 76.75 ) caulk 128.06223 63.980476 88.697891 -224.65677 180 0.00074474839 caulk 16384 16384 -1504 1192.25 0 0
+ ( 41.5 257.5 81.75 ) ( 41.5 257.5 77.75 ) ( 41.5 261.5 77.75 ) t7_metal_trim_worn_iron_dark 24 3 -73.5 32.75 -180 0 lightmap_gray 16384 16384 3004 1192.25 0 0
+ ( 42 193.5 77.75 ) ( 44 193.5 77.75 ) ( 44 197.5 77.75 ) t7_metal_trim_worn_iron_dark 24 3 -73.5 -86.5 -90 0 lightmap_gray 16384 16384 -1504 -3004 0 0
+ ( 44.5 320.5 77.75 ) ( 44.5 320.5 81.75 ) ( 44.5 324.5 81.75 ) t7_metal_trim_worn_iron_dark 24 -3 -73.5 119.75 180 0 lightmap_gray 16384 16384 3004 1192.25 0 0
+ ( 45 213.5 81.75 ) ( 45 213.5 78.75 ) ( 77 213.5 81.75 ) caulk 64 64 -1504 1192.25 0 0 caulk 16384 16384 -1504 1192.25 0 0
+ ( 42.75 127.5 78.25 ) ( 41.5 127.5 78.25 ) ( 41.5 159.5 78.25 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 -86.5 -90 0 lightmap_gray 16384 16384 86 -82 0 0
+}
+// brush 1
+{
+ guid "{9C18DA88-398E-4A9E-A05A-FAD362C28C20}"
+  contents weaponClip detail;
+ ( 44.25 132.5 80.75 ) ( 44.25 132.5 76.75 ) ( 42.25 132.5 76.75 ) caulk 128.06223 63.980476 88.697891 -224.65677 180 0.00074474839 caulk 16384 16384 -1504 1192.25 0 0
+ ( 42.5 257.5 81.75 ) ( 42.5 257.5 77.75 ) ( 42.5 261.5 77.75 ) t7_metal_trim_worn_iron_dark 24 3 -29.5 2.75 0 0 lightmap_gray 16384 16384 3004 1192.25 0 0
+ ( 43.5 320.5 77.75 ) ( 43.5 320.5 81.75 ) ( 43.5 324.5 81.75 ) t7_metal_trim_worn_iron_dark 24 3 -29.5 2.75 0 0 lightmap_gray 16384 16384 3004 1192.25 0 0
+ ( 45 213.5 81.75 ) ( 45 213.5 78.75 ) ( 77 213.5 81.75 ) caulk 64 64 -1504 1192.25 0 0 caulk 16384 16384 -1504 1192.25 0 0
+ ( 41.5 127.5 78.25 ) ( 42.75 127.5 78.25 ) ( 41.5 159.5 78.25 ) caulk 16 16 86 -82 0 0 lightmap_gray 16384 16384 86 -82 0 0
+ ( 42.5 127.5 81.25 ) ( 41.75 127.5 81.25 ) ( 41.75 159.5 81.25 ) caulk 16 16 86 -82 0 0 lightmap_gray 16384 16384 86 -82 0 0
+}
+// brush 2
+{
+ guid "{B3A2D9BB-3475-4CEE-BD80-1E5231AC8C71}"
+  contents weaponClip detail;
+ ( 44.25 132.5 80.75 ) ( 44.25 132.5 76.75 ) ( 42.25 132.5 76.75 ) caulk 128.06223 63.980476 88.697891 -224.65677 180 0.00074474839 caulk 16384 16384 -1504 1192.25 0 0
+ ( 44 219 81.75 ) ( 42 219 81.75 ) ( 42 223 81.75 ) t7_metal_trim_worn_iron_dark 24 3 -71.5 -86.5 -90 0 lightmap_gray 16384 16384 -1504 -3004 0 0
+ ( 41.5 257.5 81.75 ) ( 41.5 257.5 77.75 ) ( 41.5 261.5 77.75 ) t7_metal_trim_worn_iron_dark 24 -3 -51.5 126.75 -180 0 lightmap_gray 16384 16384 3004 1192.25 0 0
+ ( 44.5 320.5 77.75 ) ( 44.5 320.5 81.75 ) ( 44.5 324.5 81.75 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 39.75 180 0 lightmap_gray 16384 16384 3004 1192.25 0 0
+ ( 45 213.5 81.75 ) ( 45 213.5 78.75 ) ( 77 213.5 81.75 ) caulk 64 64 -1504 1192.25 0 0 caulk 16384 16384 -1504 1192.25 0 0
+ ( 41.75 127.5 81.25 ) ( 42.5 127.5 81.25 ) ( 41.75 159.5 81.25 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 -86.5 -90 0 lightmap_gray 16384 16384 86 -82 0 0
+}
+}
+// entity 255
+{
+guid "{D4845B99-C595-4DB0-9ED1-13357CE2BC64}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{E2B306D4-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 44 57.5 58.75 ) ( 42 57.5 58.75 ) ( 42 61.5 58.75 ) t7_metal_trim_worn_iron_dark 24 3 8 -86.5 -90 0 lightmap_gray 16384 16384 -1504 -2842.5 0 0
+ ( 41.5 96 58.75 ) ( 41.5 96 54.75 ) ( 41.5 100 54.75 ) t7_metal_trim_worn_iron_dark 24 -3 28 103.75 -180 0 lightmap_gray 16384 16384 2842.5 1215.25 0 0
+ ( 44.5 159 54.75 ) ( 44.5 159 58.75 ) ( 44.5 163 58.75 ) t7_metal_worn_iron_dark 64 -64 -1665.5 529.75 0 0 lightmap_gray 16384 16384 2842.5 1215.25 0 0
+ ( 45 52 58.75 ) ( 45 52 55.75 ) ( 77 52 58.75 ) caulk 64 64 -1504 1215.25 0 0 caulk 16384 16384 -1504 1215.25 0 0
+ ( 41.75 -31.5 58.25 ) ( 42.5 -31.5 58.25 ) ( 41.75 0.5 58.25 ) t7_metal_trim_worn_iron_dark 24 3 28 -86.5 -90 0 lightmap_gray 16384 16384 86 79.5 0 0
+ ( -47.5 -20 55 ) ( -47.5 -20 56.5 ) ( -15.5 -20 55 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{E2B306D6-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 42.5 96 58.75 ) ( 42.5 96 54.75 ) ( 42.5 100 54.75 ) t7_metal_trim_worn_iron_dark 24 3 -109 25.75 0 0 lightmap_gray 16384 16384 2842.5 1215.25 0 0
+ ( 43.5 159 54.75 ) ( 43.5 159 58.75 ) ( 43.5 163 58.75 ) t7_metal_worn_iron_dark 64 -64 -1665.5 529.75 0 0 lightmap_gray 16384 16384 2842.5 1215.25 0 0
+ ( 45 52 58.75 ) ( 45 52 55.75 ) ( 77 52 58.75 ) caulk 64 64 -1504 1215.25 0 0 caulk 16384 16384 -1504 1215.25 0 0
+ ( 41.5 -34 55.25 ) ( 42.75 -34 55.25 ) ( 41.5 -2 55.25 ) caulk 16 16 86 79.5 0 0 lightmap_gray 16384 16384 86 79.5 0 0
+ ( 42.5 -34 58.25 ) ( 41.75 -34 58.25 ) ( 41.75 -2 58.25 ) caulk 16 16 86 79.5 0 0 lightmap_gray 16384 16384 86 79.5 0 0
+ ( -47.5 -20 55 ) ( -47.5 -20 56.5 ) ( -15.5 -20 55 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 2
+{
+ guid "{E2B306D8-6845-11E4-A047-2C27D7F0337A}"
+  contents weaponClip detail;
+ ( 41.5 96 58.75 ) ( 41.5 96 54.75 ) ( 41.5 100 54.75 ) t7_metal_trim_worn_iron_dark 24 3 6 9.75 180 0 lightmap_gray 16384 16384 2842.5 1215.25 0 0
+ ( 42 32 54.75 ) ( 44 32 54.75 ) ( 44 36 54.75 ) t7_metal_trim_worn_iron_dark 24 3 6 -86.5 -90 0 lightmap_gray 16384 16384 -1504 -2842.5 0 0
+ ( 44.5 159 54.75 ) ( 44.5 159 58.75 ) ( 44.5 163 58.75 ) t7_metal_worn_iron_dark 64 -64 -1665.5 529.75 0 0 lightmap_gray 16384 16384 2842.5 1215.25 0 0
+ ( 45 52 58.75 ) ( 45 52 55.75 ) ( 77 52 58.75 ) caulk 64 64 -1504 1215.25 0 0 caulk 16384 16384 -1504 1215.25 0 0
+ ( 42.75 -34 55.25 ) ( 41.5 -34 55.25 ) ( 41.5 -2 55.25 ) t7_metal_trim_worn_iron_dark 24 3 28 -86.5 -90 0 lightmap_gray 16384 16384 86 79.5 0 0
+ ( -47.5 -20 55 ) ( -47.5 -20 56.5 ) ( -15.5 -20 55 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 256
+{
+guid "{FD41D9D5-5F32-471D-865A-56E08014EB61}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{35105FA3-5294-42E8-90A1-4BEEC179769A}"
+  contents weaponClip detail;
+ ( 44.25 132.5 158.5 ) ( 44.25 132.5 154.5 ) ( 42.25 132.5 154.5 ) caulk 128.06223 63.980476 88.813797 -146.90677 180 0.00074474839 caulk 16384 16384 -1504 1114.5 0 0
+ ( 41.5 257.5 159.5 ) ( 41.5 257.5 155.5 ) ( 41.5 261.5 155.5 ) t7_metal_trim_worn_iron_dark 24 3 -73.5 110.5 180 0 lightmap_gray 16384 16384 3004 1114.5 0 0
+ ( 42 193.5 155.5 ) ( 44 193.5 155.5 ) ( 44 197.5 155.5 ) t7_metal_trim_worn_iron_dark 24 3 -73.5 -86.5 -90 0 lightmap_gray 16384 16384 -1504 -3004 0 0
+ ( 44.5 320.5 155.5 ) ( 44.5 320.5 159.5 ) ( 44.5 324.5 159.5 ) t7_metal_trim_worn_iron_dark 24 -3 -73.5 197.5 180 0 lightmap_gray 16384 16384 3004 1114.5 0 0
+ ( 45 213.5 159.5 ) ( 45 213.5 156.5 ) ( 77 213.5 159.5 ) caulk 64 64 -1504 1114.5 0 0 caulk 16384 16384 -1504 1114.5 0 0
+ ( 42.75 127.5 156 ) ( 41.5 127.5 156 ) ( 41.5 159.5 156 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 -86.5 -90 0 lightmap_gray 16384 16384 86 -82 0 0
+}
+// brush 1
+{
+ guid "{6E20494B-6A7F-431D-B98C-B79139FAEC01}"
+  contents weaponClip detail;
+ ( 44.25 132.5 158.5 ) ( 44.25 132.5 154.5 ) ( 42.25 132.5 154.5 ) caulk 128.06223 63.980476 88.813797 -146.90677 180 0.00074474839 caulk 16384 16384 -1504 1114.5 0 0
+ ( 42.5 257.5 159.5 ) ( 42.5 257.5 155.5 ) ( 42.5 261.5 155.5 ) t7_metal_trim_worn_iron_dark 24 3 -29.5 -75 0 0 lightmap_gray 16384 16384 3004 1114.5 0 0
+ ( 43.5 320.5 155.5 ) ( 43.5 320.5 159.5 ) ( 43.5 324.5 159.5 ) t7_metal_trim_worn_iron_dark 24 3 -29.5 -75 0 0 lightmap_gray 16384 16384 3004 1114.5 0 0
+ ( 45 213.5 159.5 ) ( 45 213.5 156.5 ) ( 77 213.5 159.5 ) caulk 64 64 -1504 1114.5 0 0 caulk 16384 16384 -1504 1114.5 0 0
+ ( 41.5 127.5 156 ) ( 42.75 127.5 156 ) ( 41.5 159.5 156 ) caulk 16 16 86 -82 0 0 lightmap_gray 16384 16384 86 -82 0 0
+ ( 42.5 127.5 159 ) ( 41.75 127.5 159 ) ( 41.75 159.5 159 ) caulk 16 16 86 -82 0 0 lightmap_gray 16384 16384 86 -82 0 0
+}
+// brush 2
+{
+ guid "{A0040315-486A-413E-9345-7C3C9C870EF1}"
+  contents weaponClip detail;
+ ( 44.25 132.5 158.5 ) ( 44.25 132.5 154.5 ) ( 42.25 132.5 154.5 ) caulk 128.06223 63.980476 88.813797 -146.90677 180 0.00074474839 caulk 16384 16384 -1504 1114.5 0 0
+ ( 44 219 159.5 ) ( 42 219 159.5 ) ( 42 223 159.5 ) t7_metal_trim_worn_iron_dark 24 3 -71.5 -86.5 -90 0 lightmap_gray 16384 16384 -1504 -3004 0 0
+ ( 41.5 257.5 159.5 ) ( 41.5 257.5 155.5 ) ( 41.5 261.5 155.5 ) t7_metal_trim_worn_iron_dark 24 -3 -51.5 204.5 180 0 lightmap_gray 16384 16384 3004 1114.5 0 0
+ ( 44.5 320.5 155.5 ) ( 44.5 320.5 159.5 ) ( 44.5 324.5 159.5 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 117.5 180 0 lightmap_gray 16384 16384 3004 1114.5 0 0
+ ( 45 213.5 159.5 ) ( 45 213.5 156.5 ) ( 77 213.5 159.5 ) caulk 64 64 -1504 1114.5 0 0 caulk 16384 16384 -1504 1114.5 0 0
+ ( 41.75 127.5 159 ) ( 42.5 127.5 159 ) ( 41.75 159.5 159 ) t7_metal_trim_worn_iron_dark 24 3 -51.5 -86.5 -90 0 lightmap_gray 16384 16384 86 -82 0 0
+}
+}
+// entity 257
+{
+guid "{397DF705-683F-11E4-A047-2C27D7F0337A}"
+"classname" "misc_model"
+"br.j_post_end_02" "0.000000 0.000000 67.799889"
+"bt.j_post_emd_dmg_03" "0.000000 0.000000 -1.500000"
+"bt.j_post_end_01" "0.000000 0.000000 0.500000"
+"model" "p7_zm_der_handrail_post_end"
+"origin" "43 -96.5 8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 258
+{
+guid "{5510035C-683F-11E4-A047-2C27D7F0337A}"
+"classname" "misc_model"
+"br.j_joind_end_right" "0.000000 0.000000 23.899893"
+"bt.j_joind_end_right" "0.000000 -0.250000 -0.250000"
+"model" "p7_zm_der_handrail_joint_end"
+"origin" "-49 -96.5 28"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 259
+{
+guid "{65E07D7F-683F-11E4-A047-2C27D7F0337A}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"br.j_joind_end_right" "0.000000 0.000000 336.600037"
+"bt.j_joind_end_right" "0.000000 -0.250003 0.250004"
+"model" "p7_zm_der_handrail_joint_end"
+"origin" "-49 127.5 206"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 260
+{
+guid "{AC67A7B8-683F-11E4-A047-2C27D7F0337A}"
+"classname" "misc_model"
+"br.j_joind_end_right" "0.000000 0.000000 23.899893"
+"bt.j_joind_end_right" "0.000000 -0.250000 -0.250000"
+"model" "p7_zm_der_handrail_joint_end"
+"origin" "43 -96.5 28"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 261
+{
+guid "{AC67A7BB-683F-11E4-A047-2C27D7F0337A}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"br.j_joind_end_right" "0.000000 0.000000 336.600037"
+"bt.j_joind_end_right" "0.000000 -0.250003 0.250004"
+"model" "p7_zm_der_handrail_joint_end"
+"origin" "43 127.5 206"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 262
+{
+guid "{B929E494-D998-4136-AC3D-77D1B5ED07E1}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"br.j_post_middle_right" "0.000000 0.000000 327.599426"
+"bt.j_post_middle_right" "0.000000 1.000000 0.250000"
+"model" "p7_zm_der_handrail_post_middle"
+"origin" "-49 127.5 184"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 263
+{
+guid "{7141A1EA-6C59-11E5-ABAF-645106422D48}"
+"classname" "misc_model"
+"angles" "0 350.299 0"
+"model" "p7_debris_wood_board_2pc_2x4x128_rt_burn"
+"origin" "22.4887 2.18804 79.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 264
+{
+guid "{8C53CC9C-6C59-11E5-ABAF-645106422D48}"
+"classname" "misc_model"
+"angles" "0 274.3 0"
+"model" "p7_plank_wood_broken_2x4x64"
+"origin" "-12.0201 -5.96578 71.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 265
+{
+guid "{C179492E-6C59-11E5-ABAF-645106422D48}"
+"classname" "misc_model"
+"angles" "360 270 180"
+"model" "p7_debris_trash_paper_09"
+"origin" "-40.75 -20.5015 65.0343"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 266
+{
+guid "{43057532-6C5A-11E5-ABAF-645106422D48}"
+"classname" "misc_model"
+"model" "p7_debris_trash_paper_08"
+"origin" "-41.75 103.75 159.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 267
+{
+guid "{49FCEE47-6C5A-11E5-ABAF-645106422D48}"
+"classname" "misc_model"
+"angles" "0 344.5 0"
+"model" "p7_debris_trash_paper_09"
+"origin" "-34.25 99.25 159.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 268
+{
+guid "{5055D961-6C5A-11E5-ABAF-645106422D48}"
+"classname" "misc_model"
+"angles" "0 249.6 0"
+"model" "p7_debris_trash_paper_09"
+"origin" "-42 113.25 167.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}

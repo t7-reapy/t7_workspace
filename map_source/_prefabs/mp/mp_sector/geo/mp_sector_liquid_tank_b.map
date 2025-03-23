@@ -1,0 +1,95 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{0E1EBE62-2949-11E6-9C81-2C27D7F0333E}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{5580051A-5956-11E4-8BFA-2C27D7F024B0}"
+ ( 40 -32 0 ) ( 40 34 0 ) ( -40 34 0 ) metal_clip 64 64 -432 -144 0 0 lightmap_gray 16384 16384 -432 -144 0 0
+ ( -40 -34 112 ) ( -40 32 112 ) ( 40 32 112 ) metal_clip 64 64 -432 -144 0 0 lightmap_gray 16384 16384 -432 -144 0 0
+ ( 40 -32 0 ) ( 40 -32 90 ) ( 40 34 90 ) metal_clip 64 64 144 152 0 0 lightmap_gray 16384 16384 144 152 0 0
+ ( 40 32 0 ) ( 40 32 90 ) ( -40 32 90 ) metal_clip 64 64 -432 152 0 0 lightmap_gray 16384 16384 -432 152 0 0
+ ( -40 34 0 ) ( -40 34 90 ) ( -40 -32 90 ) metal_clip 64 64 144 152 0 0 lightmap_gray 16384 16384 144 152 0 0
+ ( -40 -32 0 ) ( -40 -32 90 ) ( 40 -32 90 ) metal_clip 64 64 -432 152 0 0 lightmap_gray 16384 16384 -432 152 0 0
+}
+// brush 1
+{
+ guid "{CE6E0834-D99E-11E4-ADA6-2C27D7EF3DD8}"
+ ( 40 -32 0 ) ( 40 34 0 ) ( -40 34 0 ) nosight_noclip 64 64 0 0 0 0 lightmap_gray 16384 16384 -432 -144 0 0
+ ( -40 -34 112 ) ( -40 32 112 ) ( 40 32 112 ) nosight_noclip 64 64 0 0 0 0 lightmap_gray 16384 16384 -432 -144 0 0
+ ( 39 -36 0 ) ( 39 -36 90 ) ( 39 30 90 ) nosight_noclip 64 64 0 0 0 0 lightmap_gray 16384 16384 144 152 0 0
+ ( 36 28 0 ) ( 36 28 90 ) ( -44 28 90 ) nosight_noclip 64 64 0 0 0 0 lightmap_gray 16384 16384 -432 152 0 0
+ ( -40 34 0 ) ( -40 34 90 ) ( -40 -32 90 ) nosight_noclip 64 64 0 0 0 0 lightmap_gray 16384 16384 144 152 0 0
+ ( -40 -28 0 ) ( -40 -28 90 ) ( 40 -28 90 ) nosight_noclip 64 64 0 0 0 0 lightmap_gray 16384 16384 -432 152 0 0
+}
+// brush 2
+{
+ guid "{45E9B982-2947-11E6-9C81-2C27D7F0333E}"
+ ( 25 37 0 ) ( -37 37 0 ) ( -37 -37 0 ) caulk 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -37 -37 111 ) ( -37 37 111 ) ( 25 37 111 ) caulk 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -37 -29 113 ) ( 25 -29 113 ) ( 25 -29 10 ) caulk 64 64 0 -1 0 0 lightmap_gray 16384 16384 0 -1 0 0
+ ( 37 -37 111 ) ( 37 37 111 ) ( 37 37 8 ) caulk 64 64 0 1 0 0 lightmap_gray 16384 16384 0 1 0 0
+ ( 25 29 113 ) ( -37 29 113 ) ( -37 29 10 ) caulk 64 64 0 -1 0 0 lightmap_gray 16384 16384 0 -1 0 0
+ ( -37 37 112 ) ( -37 -37 112 ) ( -37 -37 9 ) caulk 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 3
+{
+ guid "{0E1EBE66-2949-11E6-9C81-2C27D7F0333E}"
+  contents umbraTarget;
+ ( -46 37 0 ) ( -108 37 0 ) ( -108 -37 0 ) caulk 64 64 -71 0 0 0 lightmap_gray 16384 16384 -71 0 0 0
+ ( -108 -37 110 ) ( -108 37 110 ) ( -46 37 110 ) infinite_blackness 0.5 0.5 0 0 0 0 lightmap_gray 16384 16384 -71 0 0 0
+ ( -108 -25 113 ) ( -46 -25 113 ) ( -46 -25 10 ) infinite_blackness 0.5 0.5 0 0 0 0 lightmap_gray 16384 16384 -71 -1 0 0
+ ( -37 -37 111 ) ( -37 37 111 ) ( -37 37 8 ) caulk 64 64 0 1 0 0 lightmap_gray 16384 16384 0 1 0 0
+ ( -46 25 113 ) ( -108 25 113 ) ( -108 25 10 ) infinite_blackness 0.5 0.5 0 0 0 0 lightmap_gray 16384 16384 -71 -1 0 0
+ ( -44 37 112 ) ( -44 -37 112 ) ( -44 -37 9 ) caulk 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 1
+{
+guid "{46932FD1-5F0F-11E4-953C-2C27D7F024B0}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_cai_sprinkler_system"
+"umbra_target_only" "1"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 2
+{
+guid "{38365DFA-5F0F-11E4-953C-2C27D7F024B0}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"br.j_door" "0.000000 186.600006 0.000000"
+"model" "p7_cai_sprinkler_system_panel"
+"origin" "-23.5 33.5 72"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}

@@ -1,0 +1,22 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+	source = "vertcol_notexalpha.hlsl"
+
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+		colorMapSampler  = CodeTexture( "feedback" )
+	}
+}

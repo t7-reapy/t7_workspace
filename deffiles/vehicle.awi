@@ -1,0 +1,932 @@
+
+void RotorFlapEntries( asset Asset, string boneEntry, int index, bool show )
+{
+	Asset.AddEntry_BoneCombo( boneEntry, "worldModel" ).SetTitle( "Flap Tag " + index ).Show( show );
+	Asset.AddEntry_Combo( "rotorArmFlapType" + index, "PitchVelocity{0} | YawVelocity{1} | RollVelocity{2} | PitchYawVelLeft{3} | PitchYawVelRight{4}" ).Show( show ).SetTitle("Flap Type " + index );
+	Asset.AddEntry_Float( "rotorArmFlapInf" + index, 1.0, -100.0, 100.0 ).Show( show ).SetToolTip( "+/- Influence percent" ).SetTitle( "Flap Scale " + index );	
+}
+
+void GenerateUI( asset Asset )
+{
+	// Unused
+	
+	Asset.AddEntry_String( "configstringFileType", "VEHICLEFILE" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	string Type = Asset.AddEntry_Combo( "type", "4 wheel | motorcycle | tank | plane | boat | artillery | helicopter" ).SetTitle("Type").UpdateOnChange( true ).GetValue();
+	Asset.AddEntry_String( "scriptVehicleType", "" ).SetTitle( "Script Vehicle Type" ).SetToolTip( "Field used in script so we don't have to check for every variant of a vehicle.  self.scriptVehicleType." );
+	Asset.AddEntry_Combo( "archetype", "none | attack_drone | hunter | quadtank | scout | turret | wasp | amws | raps | siegebot | parasite | glaive | rcbomb | mothership | spider | sentinel_drone | dragon" ).SetTitle( "Archetype" ).SetToolTip( "Set this field if it is an Archetype." );
+	Asset.AddEntry_Combo( "category", "None{0} | Quad Tank{1} | AMWS{2} | Wasp{3} | Rocket Wasp{4} | Hunter {5} | Siege Bot{6}" ).SetTitle( "Category" );
+	Asset.AddEntry_String( "scoretype", "none" ).SetTitle( "Score Type" ).SetToolTip( "Should match the entries in the scoreevents table." );
+	Asset.AddEntry_Combo( "team", "axis | allies | neutral | team3" ).SetTitle( "Team" );
+	Asset.AddEntry_Path( "csvInclude", "" ).SetRelativePath( "share/zone_source/" ).SetTitle( "ZPKG Include" ).SetToolTip( "Any additional assets that this vehicle type might need" );
+	//Asset.AddEntry_Path( "precacheScript", "" ).SetRelativePath( "share/raw/animscripts/aitype/" ).SetTitle( "Additional Precache Script" ).SetToolTip( "For precaching any additional items. Script must have a precache() function" );
+	//Asset.AddEntry_Text( "comments", "" ).SetTitle( "Comments" );
+	Asset.AddEntry_AssetCombo( "playerDrivenVersion" , "vehicle" ).SetTitle( "Player Driven Version" ).SetToolTip( "Spawner name for the version that the player will drive when he takes control of this vehicle.  If left blank, vehicle will not be swapped to another version." );
+	Asset.AddEntry_CheckBox( "nonstick", false ).SetTitle( "Non-stick" ).SetToolTip( "Sticky weapons cannot stick to this vehicle if non-stick is enabled." );
+
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Models
+	
+	Asset.BeginCategory( "Models" );
+	{
+		Asset.AddEntry_AssetCombo( "worldModel", "xmodel" ).SetTitle( "World Model" );
+		Asset.AddEntry_AssetCombo( "viewModel", "xmodel" ).SetTitle( "View Model" ).SetToolTip( "Used for first person driver if set." );;
+		Asset.AddEntry_AssetCombo( "deathModel", "xmodel" ).SetTitle( "Death Model" );
+		Asset.AddEntry_AssetCombo( "enemyModel", "xmodel" ).SetTitle( "Enemy Model" ).SetToolTip( "If team is axis it will show this model if set" );
+        Asset.AddEntry_AssetCombo( "destructibleDef", "destructibledef" ).SetTitle( "Destructible Def" );
+		Asset.AddEntry_Float( "modelSwapDelay", 0, 0, 100000 ).SetStep( 0.01 ).SetTitle( "Swap Delay" );
+		Asset.AddEntry_String( "driverHideTag1", "" ).SetTitle( "Driver Hide Part" ).SetToolTip( "Part on vehicle will be hidden for driver" );
+		Asset.AddEntry_String( "driverOtherHideTag1", "" ).SetTitle( "Driver Other Hide Part 1" ).SetToolTip( "Part on vehicle will be hidden for driver" );
+		Asset.AddEntry_String( "driverOtherHideTag2", "" ).SetTitle( "Driver Other Hide Part 2" ).SetToolTip( "Part on vehicle will be hidden for driver" );
+		Asset.AddEntry_String( "driverOtherHideTag3", "" ).SetTitle( "Driver Other Hide Part 3" ).SetToolTip( "Part on vehicle will be hidden for driver" );
+		Asset.AddEntry_String( "driverOtherHideTag4", "" ).SetTitle( "Driver Other Hide Part 4" ).SetToolTip( "Part on vehicle will be hidden for driver" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Wheels\Rotors
+	bool isHeli = ( Type == "helicopter" );
+	bool useHeliBoneControllers = isHeli;
+	bool useHeliFlapRotors = false;
+	
+	Asset.BeginCategory( "Wheels" );	
+	{
+		Asset.AddEntry_Float( "texureScrollScale", 1, 0, 100 ).Show( !isHeli ).SetStep( 0.05 ).SetToolTip( "This is used to change the speed at which the tank treads scroll" );
+		Asset.AddEntry_Float( "wheelRotRate", 0, 0, 100 ).Show( !isHeli ).SetStep( 0.05 ).SetToolTip( "How fast the wheels rotate, set to the wheel radius or set to 0 if playing an animation in script." );
+		Asset.AddEntry_Float( "extraWheelRotScale", 1, 0, 10 ).Show( !isHeli ).SetStep( 0.05 ).SetToolTip( "How fast the extra wheels rotate relative to the normal wheelRotRate." );
+		Asset.AddEntry_CheckBox( "wheelChildTakesSteerYaw", false ).Show( !isHeli ).SetToolTip( "If set, the wheel tag will only take the vertical movement and the child will take the yaw.  The child's children will take the spin." );
+        Asset.AddEntry_CheckBox( "useHeliBoneControllers", false ).Show( !isHeli ).SetToolTip( "Use the air vehicle controllers instead of the ground controllers.  This is a trade for wheels moving up and down to rotors rotating" ).UpdateOnChange( true );
+		useHeliBoneControllers = Asset.GetEntryBool( "useHeliBoneControllers" ) || isHeli;
+
+		Asset.AddEntry_BoneCombo( "extraWheelLeft1", "worldModel" ).SetTitle( "Extra wheel tag 1" ).Show( !useHeliBoneControllers ).SetToolTip( "Use these bones for extra gears or wheels that also need to rotate" );
+		Asset.AddEntry_BoneCombo( "extraWheelRight1", "worldModel" ).SetTitle( "Extra wheel tag 2" ).Show( !useHeliBoneControllers ).SetToolTip( "Use these bones for extra gears or wheels that also need to rotate" );
+		Asset.AddEntry_BoneCombo( "extraWheelLeft2", "worldModel" ).SetTitle( "Extra wheel tag 3" ).Show( !useHeliBoneControllers ).SetToolTip( "Use these bones for extra gears or wheels that also need to rotate" );
+		Asset.AddEntry_BoneCombo( "extraWheelRight2", "worldModel" ).SetTitle( "Extra wheel tag 4" ).Show( !useHeliBoneControllers ).SetToolTip( "Use these bones for extra gears or wheels that also need to rotate" );
+	}
+
+	
+
+	// Compass	
+	
+	Asset.BeginCategory( "Compass" );	
+	{
+		Asset.AddEntry_CheckBox( "addToCompass", false ).SetTitle( "Show On Compass" );
+		Asset.AddEntry_CheckBox( "addToCompassEnemy", false ).SetTitle( "Show On Enemy Compass" );
+		Asset.AddEntry_CheckBox( "addToCompassEnemyFiring", false ).SetTitle( "Only Show On Enemy Compass While Firing" );
+		Asset.AddEntry_AssetCombo( "compassIcon", "image" ).SetTitle( "Compass Icon" );
+		Asset.AddEntry_BoneCombo( "compassIconTag", "worldModel" ).SetTitle( "Compass Icon Tag" );
+		Asset.AddEntry_Float( "compassScale", 1, 0.1, 5 ).SetStep( 0.05 ).SetTitle( "Scale" ).SetToolTip( "How large to draw the minimap icon relative to others" ).Show( Type == "helicopter" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Attachments
+	
+	Asset.BeginCategory( "Attachments" );
+	{
+		Asset.AddEntry_AssetCombo( "mod0", "xmodel" ).SetTitle( "Model 1" );
+		Asset.AddEntry_BoneCombo( "tag0", "worldModel" ).SetTitle( "Tag 1" );
+		Asset.AddEntry_AssetCombo( "mod1", "xmodel" ).SetTitle( "Model 2" );
+		Asset.AddEntry_BoneCombo( "tag1", "worldModel" ).SetTitle( "Tag 2" );
+		Asset.AddEntry_AssetCombo( "mod2", "xmodel" ).SetTitle( "Model 3" );
+		Asset.AddEntry_BoneCombo( "tag2", "worldModel" ).SetTitle( "Tag 3" );		
+		Asset.AddEntry_AssetCombo( "mod3", "xmodel" ).SetTitle( "Model 4" );
+		Asset.AddEntry_BoneCombo( "tag3", "worldModel" ).SetTitle( "Tag 4" );	
+		
+		Asset.AddEntry_AssetCombo( "dmod0", "xmodel" ).SetTitle( "Destroyed Model 1" );
+		Asset.AddEntry_BoneCombo( "dtag0", "worldModel" ).SetTitle( "Tag 1" );
+		Asset.AddEntry_AssetCombo( "dmod1", "xmodel" ).SetTitle( "Destroyed Model 2" );
+		Asset.AddEntry_BoneCombo( "dtag1", "worldModel" ).SetTitle( "Tag 2" );
+		Asset.AddEntry_AssetCombo( "dmod2", "xmodel" ).SetTitle( "Destroyed Model 3" );
+		Asset.AddEntry_BoneCombo( "dtag2", "worldModel" ).SetTitle( "Tag 3" );
+		Asset.AddEntry_AssetCombo( "dmod3", "xmodel" ).SetTitle( "Destroyed Model 4" );
+		Asset.AddEntry_BoneCombo( "dtag3", "worldModel" ).SetTitle( "Tag 4" );	
+	}
+	
+	Asset.BeginCategory( "Movement" );
+	{
+		Asset.AddEntry_Float( "minSpeed", 500, 0, 2000 ).SetStep( 0.05 ).SetTitle( "Min Speed" ).SetToolTip( "Min speed in MPH" ).Show( Type == "plane" );
+		Asset.AddEntry_Float( "maxSpeed", 1100, 0, 2000 ).SetStep( 0.05 ).SetTitle( "Max Speed" ).SetToolTip( "Max speed in MPH" );
+		Asset.AddEntry_Float( "defaultSpeed", 700, 0, 2000 ).SetStep( 0.05 ).SetTitle( "Default Speed" ).SetToolTip( "The speed at which the vehicle will move if there is no input in MPH" );
+		Asset.AddEntry_Float( "accel", 300, 0, 10000 ).SetStep( 0.05 ).SetTitle( "Acceleration" ).SetToolTip( "For scripted helicopters this is used for determining orientation. Set it to high value for helicopter to fly leveled under regular accelerations" );
+		Asset.AddEntry_Float( "rotRate", 0, 0, 20000 ).SetStep( 0.05 ).SetTitle( "Rotation Rate" ).SetToolTip( "Max rotational rate of this vehicle" );
+
+		Asset.AddEntry_Float( "rotAccel", 0, 0, 20000 ).SetStep( 0.05 ).SetTitle( "Rotation Acceleration" ).SetToolTip( "This is only used for vehicles using radiant paths" );
+
+		Asset.AddEntry_Float( "angDampening", 1, 0, 20000 ).SetStep( 0.05 ).SetTitle( "Velocity dampening" ).SetToolTip( "Used for planes. Dmaping scaler for velocity values" );
+		Asset.AddEntry_Float( "maxAngVelocityPitch", 275, 0, 20000 ).SetStep( 0.05 ).SetTitle( "Max Angular Velocity Pitch" ).SetToolTip( "Used by planes to limit the angular velocity" );
+		Asset.AddEntry_Float( "maxTorquePitch", 275, 0, 20000 ).SetStep( 0.05 ).SetTitle( "Max Torque Pitch" ).SetToolTip( "Used by planes ato limit the max torque" );
+
+		Asset.AddEntry_Float( "rotMomentum", 0, 0, 1 ).SetStep( 0.05 ).Show( Type == "helicopter" ).SetTitle( "Rotation Momentum" ).SetToolTip( "This is the yaw momentum of the helicopter" );
+		Asset.AddEntry_Float( "maxBodyPitch", 0, 0, 360 ).SetStep( 0.05 ).SetTitle( "Max Body Pitch" ).SetToolTip( "Max jolt pitch. Should be 0 for helicopters" );
+		Asset.AddEntry_Float( "maxBodyRoll", 0, 0, 360 ).SetStep( 0.05 ).SetTitle( "Max Body Roll" ).SetToolTip( "Max jolt roll. Should be 0 for helicopters" );
+		Asset.AddEntry_Float( "suspensionTravel", 0, 0, 20 ).SetStep( 0.05 ).SetTitle( "Suspension Travel" );
+		Asset.AddEntry_CheckBox( "fakeBodyStabilizer", false ).SetTitle( "Body Stabilizer" );
+		Asset.AddEntry_CheckBox( "turnInPlace", false ).SetTitle( "Turn in place" );
+		Asset.AddEntry_CheckBox( "aiSlidingTurn", false ).SetTitle( "Sliding turning" ).SetToolTip( "for RAPS AI. Not meant to be used by others." );
+		Asset.AddEntry_CheckBox( "aiJumpingTraversal", false ).SetTitle( "Jump across Traversals" ).SetToolTip( "for RAPS AI. Not meant to be used by others." );
+		Asset.AddEntry_CheckBox( "meleeAvoidance", false ).SetTitle( "Melee attack avoidance" ).SetToolTip( "for RAPS AI. Not meant to be used by others." );
+	}
+	
+	Asset.BeginCategory( "Player Settings" );
+	{
+		Asset.AddEntry_CheckBox( "isDrivable", false ).SetTitle( "Drivable" ).UpdateOnChange( true );
+		Asset.AddEntry_CheckBox( "remoteControl", false ).SetTitle( "Remote Control" );
+		Asset.AddEntry_CheckBox( "rotYawFromInput", false ).Show( Type == "helicopter" ).SetTitle( "Rotate Yaw From Input" ).SetToolTip( "Base yaw rotation on input rather than changes to view angles" );
+		Asset.AddEntry_Int( "numberOfSeats", 0, 0, 9 ).SetTitle( "Number of Player Positions" ).SetToolTip( "Total number of usable player positions in the vehicle (including gunners)." );
+		Asset.AddEntry_Int( "driverControlledGunPos", -1, -1, 4 ).SetTitle( "Driver 2nd Turret" ).SetToolTip( "Driver can fire this gunner position with the grenade button, in addition to controlling the main gun. -1 for none." );
+		Asset.AddEntry_CheckBox( "doFootSteps", false ).SetTitle( "Do Foot Steps" );
+	}
+	
+	Asset.BeginCategory( "AI Settings", 0.9, 0.3, 0.3, "Icon_asset_aitype.png" );
+	{
+		Asset.AddEntry_CheckBox( "isSentient", false ).SetTitle( "Is Sentient" ).SetToolTip( "Make the entity sentient so it can be targeted by other AI and has its enemy" );
+		Asset.AddEntry_CheckBox( "isPathfinder", false ).SetTitle( "Is Pathfinder" ).SetToolTip( "Register the vehicle with navigation system so it can do pathfinding and position query" );
+		Asset.AddEntry_CheckBox( "ignoreVortex", false ).SetTitle( "Ignore Vortex" );
+		Asset.AddEntry_AssetCombo( "scriptbundlesettings", "vehiclecustomsettings" ).SetTitle( "Script Bundle Settings" ).SetToolTip( "Accessible in script on the vehicle as self.scriptbundlesettings" );
+		
+		Asset.AddEntry_Combo( "targetingImmuneSpecialty", "none | specialty_nottargetedbyairsupport | specialty_nottargetedbyaitank | specialty_nottargetedbyraps| specialty_nottargetedbysentry" ).SetTitle( "Do not target player with specialty" ).SetToolTip( "If a player has this speciatly ( perk ) do not target them" );
+		
+		Asset.AddEntry_Path( "animStateMachineName", "" ).SetRelativePath( "share/raw/animstatemachines/" ).SetTitle( "Animation State Machine" ).SetToolTip( "Animation state machine for this vehicle." );
+		Asset.AddEntry_Path( "animSelectorTableName", "" ).SetRelativePath( "share/raw/animtables/" ).SetTitle( "Animation Selector Table" ).SetToolTip( "Animation Selector Table for this vehicle." );
+		Asset.AddEntry_Path( "animMappingTableName", "" ).SetRelativePath( "share/raw/animtables/" ).SetTitle( "Animation Mapping Table" ).SetToolTip( "Animation Mapping Table for this vehicle." );			
+
+        Asset.AddEntry_AssetCombo( "vehicleridersbundle", "vehicleriders" ).SetTitle( "Vehicle Riders Bundle" ).SetToolTip( "Settings for other AI getting in, out and riding vehicles. Accessible in script on the vehicle as self.vehicleridersbundle" );
+        Asset.AddEntry_AssetCombo( "vehicleridersrobotbundle", "vehicleriders" ).SetTitle( "Vehicle Riders Robot Bundle" ).SetToolTip( "Settings for Robot AI getting in, out and riding vehicles. Accessible in script on the vehicle as self.vehicleridersrobotbundle" );
+        Asset.AddEntry_AssetCombo( "assassinationBundle", "aiassassination" ).SetTitle( "Assassination Bundle" ).SetToolTip( "Use this script bundle when this AI gets assassinated." );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	bool isDrivable = (Asset.GetEntryBool( "isDrivable" ) || Asset.GetEntryBool( "remoteControl" ));
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	string modelsList = "worldModel | mod0 | mod1 | mod2 | mod3";
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Movement and Player Settings / Seat Switch Order
+	
+	Asset.BeginCategory( "Player Settings.Seat Switch Order" );
+	{
+		Asset.AddEntry_Int( "seatSwitchOrder1", -1, -1, 12 );
+		Asset.AddEntry_Int( "seatSwitchOrder2", -1, -1, 12 );
+		Asset.AddEntry_Int( "seatSwitchOrder3", -1, -1, 12 );
+		Asset.AddEntry_Int( "seatSwitchOrder4", -1, -1, 12 );
+		Asset.AddEntry_Int( "seatSwitchOrder5", -1, -1, 12 );
+		
+		Asset.AddEntry_Int( "seatSwitchOrder6", -1, -1, 12 ).Show( false );
+		Asset.AddEntry_Int( "seatSwitchOrder7", -1, -1, 12 ).Show( false );
+		Asset.AddEntry_Int( "seatSwitchOrder8", -1, -1, 12 ).Show( false );
+		Asset.AddEntry_Int( "seatSwitchOrder9", -1, -1, 12 ).Show( false );
+		Asset.AddEntry_Int( "seatSwitchOrder10", -1, -1, 12 ).Show( false );		
+		Asset.AddEntry_Int( "seatSwitchOrder11", -1, -1, 12 ).Show( false );
+		
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Helicopter
+	
+	Asset.BeginCategory( "Helicopter" );
+	{
+		Asset.AddEntry_CheckBox( "vehHelicopterAccelTwardsView", false ).Show( Type == "helicopter" || Type == "plane" ).SetTitle( "Accelerate Twards Viewangles" ).SetToolTip( "Instead of accelerating in a flat plane accelerate twards the viewangles of the player." );
+		Asset.AddEntry_CheckBox( "vehHelicopterAccelTwardsViewWhenFiring", false ).Show( Type == "helicopter" || Type == "plane" ).SetTitle( "Accelerate Twards Viewangles When Firing" ).SetToolTip( "Allows the vehicle to continue accelerating towards view angles even when firing (Accelerate Twards Viewangles must also be enabled)" );
+		Asset.AddEntry_Float( "heliCollisionScalar", 1, 0.1, 100 ).Show( Type == "helicopter" || Type == "plane" ).SetToolTip( "The collision is based of the radius of the model wheels (dont ask).  This allows you to increase it." ).SetTitle( "Heli Collision Scalar" );
+		Asset.AddEntry_Float( "maxSpeedVertical", 65, 0.1, 32000 ).Show( Type == "helicopter" || Type == "boat" ).SetToolTip( "Max vertical speed in MPH" ).SetTitle( "Max Speed Vertical" );
+		Asset.AddEntry_Float( "accelVertical", 60, 0.1, 32000 ).Show( Type == "helicopter" ).SetToolTip( "Max vertical acceleration in MPH" ).SetTitle( "Max Accel Vertical" );
+		Asset.AddEntry_Float( "vehHelicopterBoundsRadius", 50.0, 0.0001, 32000 ).Show( Type == "helicopter" ).SetToolTip( "The radius of the collision volume to be used when colliding with world geometry." ).SetTitle( "Bounds Radius" );
+		Asset.AddEntry_Float( "vehHelicopterDecelerationFwd", 0.5, 0.0, 32000 ).Show( Type == "helicopter" ).SetToolTip( "Set the deceleration of the player helicopter (as a fraction of acceleration) in the direction the chopper is facing.  So 1.0 makes it equal to the acceleration." ).SetTitle( "Deceleration Forward" );
+		Asset.AddEntry_Float( "vehHelicopterDecelerationSide", 1, 0.0, 32000 ).Show( Type == "helicopter" ).SetToolTip( "Set the side-to-side deceleration of the player helicopter (as a fraction of acceleration).  So 1.0 makes it equal to the acceleration." ).SetTitle( "Deceleration Sideways" );
+		Asset.AddEntry_Float( "vehHelicopterDecelerationUp", 1, 0.0, 32000 ).Show( Type == "helicopter" ).SetToolTip( "Set the vertical deceleration of the player helicopter (as a fraction of acceleration).  So 1.0 makes it equal to the acceleration." ).SetTitle( "Deceleration Up" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Helicopter Tilt
+	
+	Asset.BeginCategory( "Helicopter.Tilt" );
+	{
+		Asset.AddEntry_Float( "viewPitchOffset", 0, -90, 90 ).Show( Type == "helicopter" ).SetTitle( "View Offset Pitch" ).SetToolTip( "Pitch offset from 0 for the default view" );
+		Asset.AddEntry_Float( "tiltSpeedPitch", 1.2, 0.0, 32000 ).Show( Type == "helicopter" ).SetTitle( "Tilt Speed Pitch" ).SetToolTip( "The rate at which the player helicopter\'s tilt responds" );
+		Asset.AddEntry_Float( "tiltSpeedRoll", 1.2, 0.01, 32000 ).Show( Type == "helicopter" ).SetTitle( "Tilt Speed Roll" ).SetToolTip( "The rate at which the player helicopter\'s tilt responds" );
+		Asset.AddEntry_Float( "tiltFromPreviousPitch", 0, 0, 32000 ).Show( Type == "helicopter" ).SetTitle( "From Previous Pitch" ).SetToolTip( "The amount of tilt kept from the previous pitch" );
+		Asset.AddEntry_Float( "tiltFromPreviousRoll", 0, 0, 32000 ).Show( Type == "helicopter" ).SetTitle( "From Previous Roll" ).SetToolTip( "The amount of tilt kept from the previous roll" );
+		Asset.AddEntry_Float( "tiltFromVelocityPitch", 1, 0, 32000 ).Show( Type == "helicopter" ).SetTitle( "From Velocity Pitch" ).SetToolTip( "The amount of tilt caused by the current velocity" );
+		Asset.AddEntry_Float( "tiltFromVelocityRoll", 1, 0, 32000 ).Show( Type == "helicopter" ).SetTitle( "From Velocity Roll" ).SetToolTip( "The amount of tilt caused by the current velocity" );
+		Asset.AddEntry_Float( "tiltFromAccelerationPitch", 2, 0.0, 32000 ).Show( Type == "helicopter" || Type == "plane" || Type == "boat" ).SetTitle( "From Accel Pitch" ).SetToolTip( "The amount of tilt caused by acceleration" );
+		Asset.AddEntry_Float( "tiltFromAccelerationRoll", 2, 0.01, 32000 ).Show( Type == "helicopter" || Type == "plane" || Type == "boat" ).SetTitle( "From Accel Roll" ).SetToolTip( "The amount of tilt caused by acceleration" );
+		Asset.AddEntry_Float( "tiltFromDecelerationPitch", 2, 0, 32000 ).Show( Type == "helicopter" ).SetTitle( "From Decel Pitch" ).SetToolTip( "The amount of tilt caused by deceleration" );
+		Asset.AddEntry_Float( "tiltFromDecelerationRoll", 2, 0, 32000 ).Show( Type == "helicopter" ).SetTitle( "From Decel Roll" ).SetToolTip( "The amount of tilt caused by deceleration" );
+		Asset.AddEntry_Float( "vehHelicopterTiltFromControllerAxes", 0.0, 0.0, 32000 ).Show( Type == "helicopter" ).SetToolTip( "The amount of tilt caused by the desired velocity (i.e., the amount of controller stick deflection)" ).SetTitle( "Tilt From Controller" );
+		Asset.AddEntry_CheckBox( "vehHelicopterPitchFromLookAxis", false ).Show( Type == "helicopter" ).SetToolTip( "Should the controller look axis control the pitch of the heli?" ).SetTitle( "Pitch From Look Axis" );
+		Asset.AddEntry_Float( "vehHelicopterTiltFromFwdAndYaw", 0.0, 0.0, 32000 ).Show( Type == "helicopter" ).SetToolTip( "The amount of roll caused by yawing while moving forward." ).SetTitle( "Tilt from Forward while yawing" );
+		Asset.AddEntry_Float( "vehHelicopterTiltFromFwdAndYaw_VelAtMaxTilt", 1.0, 0.0, 32000 ).Show( Type == "helicopter" ).SetToolTip( "The forward speed (as a fraction of top speed) at which the tilt due to yaw reaches is maximum value." ).SetTitle( "Max Tilt at Velocity" );
+		Asset.AddEntry_Float( "vehHelicopterTiltMomentum", 0.4, 0.0001, 32000 ).Show( Type == "helicopter" ).SetToolTip( "The amount of rotational momentum the helicopter has with regards to tilting." ).SetTitle( "Tilt Momentum" );
+	}
+
+	Asset.BeginCategory( "Helicopter.Hover" );
+	{
+		Asset.AddEntry_Float( "vehHelicopterHoverRadius", 30, 0, 10000 ).SetTitle( "Hover Radius" ).Show( Type == "helicopter" ).SetToolTip( "Set the default hover radius." );
+		Asset.AddEntry_Float( "vehHelicopterHoverSpeed", 10, 0, 10000 ).SetTitle( "Hover Speed" ).Show( Type == "helicopter" ).SetToolTip( "Set the default hover speed." );
+		Asset.AddEntry_Float( "vehHelicopterHoverAccel", 5, 0, 10000 ).SetTitle( "Hover Accel" ).Show( Type == "helicopter" ).SetToolTip( "Set the default hover acceleration." );
+	}
+
+	Asset.BeginCategory( "Helicopter.Jitter" );
+	{
+		Asset.AddEntry_Vector3( "vehHelicopterJitterMinAccelForward", "vehHelicopterJitterMinAccelRight", "vehHelicopterJitterMinAccelUp", 0, 0, 0, -10000, 10000 ).SetTitle( "Jitter Minimum Acceleration" ).Show( Type == "helicopter" ).SetLabels( "forward", "right", "up", "" ).SetToolTip( "The minimum jitter acceleration." );
+		Asset.AddEntry_Vector3( "vehHelicopterJitterMaxAccelForward", "vehHelicopterJitterMaxAccelRight", "vehHelicopterJitterMaxAccelUp", 0, 0, 0, -10000, 10000 ).SetTitle( "Jitter Maximum Acceleration" ).Show( Type == "helicopter" ).SetLabels( "forward", "right", "up", "" ).SetToolTip( "The maximum jitter acceleration." );
+		Asset.AddEntry_Float( "vehHelicopterJitterMinTime", 0.0, 0.0, 10.0 ).Show( Type == "helicopter" ).SetToolTip( "The minimum amount of time the jitter will happen before changing directions." ).SetTitle( "Jitter Min Time" );
+		Asset.AddEntry_Float( "vehHelicopterJitterMaxTime", 0.0, 0.0, 10.0 ).Show( Type == "helicopter" ).SetToolTip( "The maximum amount of time the jitter will happen before changing directions." ).SetTitle( "Jitter Max Time" );
+		Asset.AddEntry_Float( "vehHelicopterJitterVelocityThreshold", -1.0, -1.0, 10000.0 ).Show( Type == "helicopter" ).SetToolTip( "The helicopter will only begin to apply jitter once the vehicle's velocity is below this threshold." ).SetTitle( "Jitter Velocity Threshold" );
+		Asset.AddEntry_Float( "vehHelicopterJitterTiltPitchScale", 0.0, 0.0, 1.0 ).Show( Type == "helicopter" ).SetToolTip( "Adjusts the helicopter's pitch by this scale based on the forward/backward jitter" ).SetTitle( "Jitter Tilt Pitch Scale" );
+		Asset.AddEntry_Float( "vehHelicopterJitterTiltRollScale", 0.0, 0.0, 1.0 ).Show( Type == "helicopter" ).SetToolTip( "Adjusts the helicopter's roll by this scale based on the left/right jitter" ).SetTitle( "Jitter Tilt Roll Scale" );
+	}
+	
+	Asset.BeginCategory( "Helicopter.Rotors" );
+	{
+		Asset.AddEntry_CheckBox( "vehHelicopterQuadRotor", false ).Show( useHeliBoneControllers ).SetToolTip( "Is this a quad rotor heli?" ).SetTitle( "Quad Rotor Style" );
+		
+		if( useHeliBoneControllers )
+		{
+			useHeliFlapRotors = Asset.AddEntry_CheckBox( "vehHelicopterFlapRotor", false ).Show( useHeliBoneControllers ).UpdateOnChange( true ).SetToolTip( "Does this vehicle use rotors controlled like wing flaps?" ).SetTitle( "Wing Flap Rotors" ).GetBool();
+		}
+    }
+
+    bool showDefaultRotors = useHeliBoneControllers;
+    if ( useHeliFlapRotors )
+    {
+    	showDefaultRotors = false;
+    }
+
+	Asset.BeginCategory( "Helicopter.Rotors.Flap Rotors" );	
+	{
+		if( useHeliFlapRotors )
+		{
+			Asset.AddEntry_Float( "maxRotorArmRotationAngle", 0, -180, 180 ).Show( useHeliFlapRotors ).SetTitle( "Max Absolute Rotation Angle" ).SetToolTip( "Maximum amount of rotor arm tilt positive or negative" );
+			Asset.AddEntry_CheckBox( "rotorArmRotateAroundY", false ).SetTitle( "Rotate Around Y Axis (instead of X)" ).Show( useHeliFlapRotors );
+
+			RotorFlapEntries( Asset, "extraWheelLeft1", 	 1, useHeliFlapRotors );			
+			RotorFlapEntries( Asset, "extraWheelRight1", 	 2, useHeliFlapRotors );
+			RotorFlapEntries( Asset, "extraWheelLeft2", 	 3, useHeliFlapRotors );
+			RotorFlapEntries( Asset, "extraWheelRight2", 	 4, useHeliFlapRotors );
+			RotorFlapEntries( Asset, "rotorArmFrontLeft", 	 5, useHeliFlapRotors );
+			RotorFlapEntries( Asset, "rotorArmFrontRight", 	 6, useHeliFlapRotors );
+			RotorFlapEntries( Asset, "rotorArmBackLeft", 	 7, useHeliFlapRotors );
+			RotorFlapEntries( Asset, "rotorArmBackRight", 	 8, useHeliFlapRotors );
+		}
+    }
+    
+	Asset.BeginCategory( "Helicopter.Rotors.Spinning Rotors" );	
+	{
+		if( useHeliBoneControllers )
+		{
+			Asset.AddEntry_Float( "maxRotorRotationSpeed", 4000, 0, 10000 ).SetTitle( "Max Rotor Rotation Speed" ).Show( showDefaultRotors ).SetToolTip( "Rotation in degrees per second at max speed" );
+			Asset.AddEntry_Float( "idleRotorRotationSpeed", 4000, 0, 10000 ).SetTitle( "Idle Rotor Rotation Speed" ).Show( showDefaultRotors ).SetToolTip( "Rotation in degrees per second at 0 speed" );
+			
+			if( showDefaultRotors )
+			{
+				Asset.AddEntry_BoneCombo( "extraWheelLeft1", "worldModel" ).SetTitle( "Rotor Tag Front Left" ).Show( showDefaultRotors );
+				Asset.AddEntry_BoneCombo( "extraWheelRight1", "worldModel" ).SetTitle( "Rotor Tag Front Right" ).Show( showDefaultRotors );
+				Asset.AddEntry_BoneCombo( "extraWheelLeft2", "worldModel" ).SetTitle( "Rotor Tag Rear Left" ).Show( showDefaultRotors );
+				Asset.AddEntry_BoneCombo( "extraWheelRight2", "worldModel" ).SetTitle( "Rotor Tag Rear Right" ).Show( showDefaultRotors );
+			}
+		}
+    }
+
+	Asset.BeginCategory( "Helicopter.Rotors.Rotor Arms" );
+	{				
+		if( showDefaultRotors )
+		{
+			Asset.AddEntry_Float( "maxRotorArmRotationAngle", 0, -180, 180 ).Show( showDefaultRotors ).SetTitle( "Max Rotor Arm Rotation Angle" ).SetToolTip( "Maximum amount of rotor arm tilt that will come from rotation" );
+			Asset.AddEntry_Float( "maxRotorArmMovementAngle", 0, -90, 90 ).Show( showDefaultRotors ).SetTitle( "Max Rotor Arm Movement Angle" ).SetToolTip( "Maximum amount of rotor arm tilt that will come from movement" );
+			Asset.AddEntry_CheckBox( "rotorArmRotateAroundY", false ).SetTitle( "Rotate Around Y Axis Also (in addition to X)" ).Show( showDefaultRotors );
+			Asset.AddEntry_BoneCombo( "rotorArmFrontLeft", "worldModel" ).Show( showDefaultRotors ).SetTitle( "Rotor Arm Tag 1" ).SetToolTip( "Rotate this bone according to the movement of the quadrotor." );
+			Asset.AddEntry_BoneCombo( "rotorArmFrontRight", "worldModel" ).Show( showDefaultRotors ).SetTitle( "Rotor Arm Tag 2" ).SetToolTip( "Rotate this bone according to the movement of the quadrotor." );
+			Asset.AddEntry_BoneCombo( "rotorArmBackLeft", "worldModel" ).Show( showDefaultRotors ).SetTitle( "Rotor Arm Tag 3" ).SetToolTip( "Rotate this bone according to the movement of the quadrotor." );
+			Asset.AddEntry_BoneCombo( "rotorArmBackRight", "worldModel" ).Show( showDefaultRotors ).SetTitle( "Rotor Arm Tag 4" ).SetToolTip( "Rotate this bone according to the movement of the quadrotor." );
+		}
+		else
+		{
+			Asset.AddEntry_Float( "maxRotorArmMovementAngle", 0, -90, 90 ).Show( showDefaultRotors ).SetTitle( "Max Rotor Arm Movement Angle" ).SetToolTip( "Maximum amount of rotor arm tilt that will come from movement" );
+		}
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Helicopter Maintain Height
+	
+	Asset.BeginCategory( "Helicopter.Maintain Height" );
+	{
+		Asset.AddEntry_CheckBox( "vehHelicopterMaintainHeight", false ).Show( Type == "helicopter" ).SetTitle( "Maintain Height" ).SetToolTip( "Maintain height above the ground." );
+		Asset.AddEntry_CheckBox( "vehHelicopterMaintainMaxHeight", false ).Show( Type == "helicopter" ).SetTitle( "Maintain Max Height" ).SetToolTip( "Keep under the height restriction for the vehicle." );
+		Asset.AddEntry_Float( "vehHelicopterMaintainHeightLimit", 0, 0, 1000 ).Show( Type == "helicopter" ).SetTitle( "Height Delta Limit" ).SetToolTip( "Cap height changes to this limit" );
+		Asset.AddEntry_Float( "vehHelicopterMaintainHeightMaximum", 0, 0, 1000 ).Show( Type == "helicopter" ).SetTitle( "Ground Check Distance" ).SetToolTip( "How far down the vehicle will find the ground. Effectively turns off the system above this height" );
+		Asset.AddEntry_Float( "vehHelicopterMaintainHeightMinimum", 0, 0, 1000 ).Show( Type == "helicopter" ).SetTitle( "Ground Minimum" ).SetToolTip( "Keep this distance from the ground" );
+		Asset.AddEntry_Float( "vehHelicopterMaintainCeilingMinimum", 0, 0, 1000 ).Show( Type == "helicopter" ).SetTitle( "Ceiling Minimum" ).SetToolTip( "Keep this distance from the ceiling" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Helicopter Dogfight
+
+	Asset.BeginCategory( "Helicopter.Dogfight" );
+	{
+		Asset.AddEntry_Vector3( "vehHelicopterDogfightLocalOffsetForward", "vehHelicopterDogfightLocalOffsetRight", "vehHelicopterDogfightLocalOffsetUp", 0, 0, 0, -10000, 10000 ).SetTitle( "Local Offset" ).Show( Type == "helicopter" ).SetLabels( "forward", "right", "up", "" ).SetToolTip( "The offset at which the vehicle will try to maintain in relation to its focus target." );
+		Asset.AddEntry_Float( "vehHelicopterDogfightVelocityOffsetScalar", 0.0, -1000.0, 1000.0 ).Show( Type == "helicopter" ).SetToolTip( "The time in seconds to offset our dogfight target based on its velocity." ).SetTitle( "Velocity Offset Scalar" );
+		Asset.AddEntry_Float( "vehHelicopterDogfightOvershootScalar", 0.0, -100000.0, 100000.0 ).Show( Type == "helicopter" ).SetToolTip( "Offsets the dogfight target position by our velocity times this scalar." ).SetTitle( "Overshoot Scalar" );
+		Asset.AddEntry_Float( "vehHelicopterDogfightDesiredLocationLerpRate", 0.5, 0.0, 1000.0 ).Show( Type == "helicopter" ).SetToolTip( "The rate at which to lerp to the current desired dogfight location." ).SetTitle( "Desired Location Lerp Rate" );
+		Asset.AddEntry_Float( "vehHelicopterDogfightRollRate", 1.0, 0.0, 10000.0 ).Show( Type == "helicopter" ).SetToolTip( "Adjusts how quickly the vehicle lerps to its desired roll during dogfights." ).SetTitle( "Roll Rate" );
+		Asset.AddEntry_Float( "vehHelicopterDogfightSpeedFalloffDistance", 7000.0, 0.0, 32000 ).Show( Type == "helicopter" ).SetToolTip( "The vehicles max speed begins to fall off once it gets within this distance from the target offset." ).SetTitle( "Speed Falloff Distance" );
+		Asset.AddEntry_Float( "vehHelicopterDogfightSpeedFalloffDistanceExponent", 1.0, 0.0, 1000.0 ).Show( Type == "helicopter" ).SetToolTip( "Determines the rate at which the speed falls off once the vehicle is within the falloff distance." ).SetTitle( "Speed Falloff Distance Exponent" );
+		Asset.AddEntry_Float( "vehHelicopterDogfightControlLeewayAngle", -1.0, -1.0, 180.0 ).Show( Type == "helicopter" ).SetToolTip( "How much look control the player retains whilst focused on their dogfighting target.  Postive values override the dvar setting." ).SetTitle( "Control Leeway Angle Override" );
+		Asset.AddEntry_Float( "vehHelicopterDogfightFocusDampingAngle", -1.0, -1.0, 180 ).Show( Type == "helicopter" ).SetToolTip( "Dampens the angular velocity when the delta angle to the focus target is below this threshold.  Postive values override the dvar setting." ).SetTitle( "Focus Damping Angle Override" );
+		Asset.AddEntry_Float( "vehHelicopterDogfightFocusDampingAngleExponent", -1.0, -1.0, 1000.0 ).Show( Type == "helicopter" ).SetToolTip( "The exponential rate at which to damp the focus speed once the angle difference is less than the damping angle.  Postive values override the dvar setting." ).SetTitle( "Focus Damping Angle Exponent Override" );
+		Asset.AddEntry_Float( "vehHelicopterDogfightFocusAngleDeltaMaxRoll", 10.0, 0.0, 180.0 ).Show( Type == "helicopter" ).SetToolTip( "This value is used to lerp from 0 to the max roll by taking the current focus angle yaw delta and dividing it by this value." ).SetTitle( "Focus Angle Delta Max Roll" );
+		Asset.AddEntry_Float( "vehHelicopterDogfightCameraShakeScalar", 0.0, 0.0, 10000.0 ).Show( Type == "helicopter" ).SetToolTip( "The scalar to apply to camera shake (based on the roll of the vehicle)" ).SetTitle( "Camera Shake Scalar" );
+		Asset.AddEntry_Vector3( "vehHelicopterDogfightCameraOffsetForward", "vehHelicopterDogfightCameraOffsetRight", "vehHelicopterDogfightCameraOffsetUp", 0, 0, 0, -10000, 10000 ).SetTitle( "Camera Offset" ).Show( Type == "helicopter" ).SetLabels( "forward", "right", "up", "" ).SetToolTip( "Adds this offset to the camera location when dogfighting." );
+		Asset.AddEntry_Float( "vehHelicopterDogfightCameraLerpTime", 1.5, 0.0, 1000.0 ).Show( Type == "helicopter" ).SetToolTip( "The time to take to lerp to the dogfight camera (the first 25% of the time is spent lerping in the up axis before lerping the other axis)" ).SetTitle( "Camera Lerp Time" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Camera Settings
+	
+	Asset.BeginCategory( "Camera Settings", 0.1, 0.1, 1.0, "Icon_camera.png" );
+	{
+		Asset.AddEntry_Combo( "cameraMode", "chase | first | view | strafe | horse | oldtank | hover | vtol | quadtank" ).Show( isDrivable ).SetTitle( "Mode" ).SetToolTip( "CHASE - is like a balloon on a string following the vehicle. FIRST - first person. VIEW - halo warthog style. STRAFE - halo tank or WAW tank style. HORSE - . OLDTANK - left stick up moves tank in forward direction of tank" );
+		Asset.AddEntry_CheckBox( "autoRecenterOnAccel", true ).Show( isDrivable ).SetTitle( "Auto Center Camera on Accel" ).SetToolTip( "Does not apply to STRAFE or VIEW camera modes, also see vehRecenterDelay dvar" );
+		Asset.AddEntry_CheckBox( "thirdPersonDriver", false ).Show( isDrivable ).SetTitle( "Third Person Camera for Driver" ).SetToolTip( "This can not be used if the driver is firing weapons." );;
+		Asset.AddEntry_CheckBox( "thirdPersonUseVehicleRoll", false ).Show( isDrivable ).SetTitle( "Use vehicle roll to set camera roll" );
+		Asset.AddEntry_Float( "viewInfluence", 0, 0, 1 ).Show( isDrivable ).SetStep( 0.01 ).SetTitle( "View Influence" ).SetToolTip( "The influence on the view angles from being in a vehicle" );
+		Asset.AddEntry_Float( "cameraRollFraction", 0, 0, 1 ).Show( isDrivable ).SetTitle( "Camera Roll Fraction" ).SetToolTip( "The camera will roll the specified fraction of the vehicle roll" );
+		Asset.AddEntry_Vector3( "tagPlayerOffsetX", "tagPlayerOffsetY", "tagPlayerOffsetZ", 0, 0, 0, -1000, 1000 ).SetTitle( "Camera Tag Offset" ).Show( isDrivable ).SetLabels( "forward", "right", "up", "" );
+		Asset.AddEntry_BoneCombo( "cameraTag", "worldModel" ).SetTitle( "Camera Tag" ).Show( isDrivable ).SetToolTip( "Use this bone for camera positioning instead of tag_driver_camera. Setting this also disables a hardcoded player view height offset" );
+		Asset.AddEntry_CheckBox( "cameraAlwaysAutoCenter", false ).Show( isDrivable ).SetTitle( "Third Person Always Auto Center" );
+		Asset.AddEntry_Float( "cameraAutoCenterLerpRate", 4, 0, 10000 ).Show( isDrivable ).SetTitle( "Auto Center Rate" );
+		Asset.AddEntry_Float( "cameraAutoCenterMaxLerpRate", 1, 0, 10000 ).Show( isDrivable ).SetTitle( "Auto Center Max Rate" );	
+		Asset.AddEntry_CheckBox( "lodNoCull", false ).Show( isDrivable ).SetTitle( "Special LOD Cull Behavior" );
+	}
+	Asset.BeginCategory( "Camera Settings.Third Person", 0.1, 0.1, 1.0, "Icon_camera.png" );
+	{
+		Asset.AddEntry_CheckBox( "thirdPersonCameraHeightWorldRelative", false ).Show( isDrivable ).SetTitle( "World Relative Height" ).SetToolTip( "Turns off vehicle relative height offset" );;
+		Asset.AddEntry_Float( "thirdPersonCameraRange", 300, 0, 10000 ).Show( isDrivable ).SetTitle( "Range" );
+		Asset.AddEntry_Float( "thirdPersonCameraHeightMin", 100, -1000, 1000 ).Show( isDrivable ).SetTitle( "Height:  Min" );
+		Asset.AddEntry_Float( "thirdPersonCameraHeight", 100, -1000, 1000 ).Show( isDrivable ).SetTitle( "Max" );
+		Asset.AddEntry_Float( "thirdPersonCameraDriveOnWallHeight", 20, -1000, 1000 ).Show( isDrivable ).SetTitle( "Drive-On-Wall Height" ).SetToolTip( "The additional height used when driving on a wall. Scaled relative to pitch and roll." );
+		Asset.AddEntry_Float( "thirdPersonCameraPitchMin", 0, -180, 180 ).Show( isDrivable ).SetTitle( "Pitch:    Min" );
+		Asset.AddEntry_Float( "thirdPersonCameraPitch", 0, -180, 180 ).Show( isDrivable ).SetTitle( "Max" );
+		Asset.AddEntry_CheckBox( "thirdPersonCameraPitchVehicleRelative", true ).Show( isDrivable ).SetTitle( "Pitch Clamped Vehicle Relative" ).SetToolTip( "The pitch clamps factor in the orientation of the vehicle" );;
+		Asset.AddEntry_Float( "thirdPersonCameraMinPitchClamp", 45, 0, 90 ).Show( isDrivable ).SetTitle( "Pitch Minimum Clamp" ).SetToolTip( "Used to prevent the camera from being able to pitch up into the vehicle" );
+		Asset.AddEntry_Float( "thirdPersonCameraMaxPitchClamp", 70, 0, 90 ).Show( isDrivable ).SetTitle( "Pitch Maximum Clamp" );
+		Asset.AddEntry_Float( "thirdPersonCameraSpringDistance", 0, 0, 256 ).Show( isDrivable ).SetTitle( "Spring Distance" ).SetToolTip( "Additional distance the camera will spring back based on vehicle speed" );	
+		Asset.AddEntry_Float( "thirdPersonCameraSpringTime", 1, 0.1, 10 ).Show( isDrivable ).SetStep( 0.1 ).SetTitle( "Spring Time" ).SetToolTip( "Time it takes for the spring to reach its full distance" );	
+		Asset.AddEntry_Float( "thirdPersonCameraHandbrakeTurnRateInc", 0, 0, 10000 ).Show( isDrivable ).SetTitle( "Handbrake Turn Rate Inc" ).SetToolTip( "Camera turn rate speed increase that gets added onto the value from the turret weapon when the handbrake is pulled" );	
+	}
+	Asset.BeginCategory( "Camera Settings.Camera Effects", 0.1, 0.1, 1.0, "Icon_camera.png" );
+	{
+		Asset.AddEntry_Vector2( "cameraMinFOV", "cameraMaxFOV", 0, 0, 0, 200 ).Show( isDrivable ).SetTitle( "FOV" ).SetLabels( "Min", "Max", "", "" ).SetToolTip( "Set to 0 for default.  Anything below 15 will be ignored" );
+		Asset.AddEntry_Vector2( "cameraMinFOVSpeed", "cameraMaxFOVSpeed", 0, 0, 0, 20000 ).Show( isDrivable ).SetTitle( "FOV Speed" ).SetLabels( "Min", "Max", "", "" ).SetToolTip( "Speeds at which the FOV will be applied" );
+
+		Asset.AddEntry_Vector2( "blurMin", "blurMax", 0, 0, 0, 200 ).Show( isDrivable ).SetTitle( "Blur" ).SetLabels( "Min", "Max", "", "" ).SetToolTip( "Set the blur amount" );
+		Asset.AddEntry_Vector2( "blurMinSpeed", "blurMaxSpeed", 0, 0, 0, 20000 ).Show( isDrivable ).SetTitle( "Blur Speed" ).SetLabels( "Min", "Max", "", "" ).SetToolTip( "Set the blur speeds at which the blur will be applied" );
+		Asset.AddEntry_Vector2( "blurInnerRadius", "blurOuterRadius", 0.5, 0.75, 0, 10 ).Show( isDrivable ).SetTitle( "Blur Radius" ).SetLabels( "Inner", "Outer", "", "" ).SetToolTip( "Inner and outer radius of the blur" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Killcam Settings
+	
+	Asset.BeginCategory( "Killcam Settings", 0.1, 0.1, 1.0, "Icon_camera.png" );
+	{
+		Asset.AddEntry_Float( "killcamDist", 300, -1000, 32000 ).SetTitle( "Distance" ).SetToolTip( "Kill camera distance from vehicle" );
+		Asset.AddEntry_Float( "killcamZDist", 50, -1000, 32000 ).SetTitle( "Distance Above" ).SetToolTip( "Kill camera distance above vehicle" );
+		Asset.AddEntry_Float( "killcamFOV", 65, 0, 160 ).SetTitle( "FOV" ).SetToolTip( "Kill camera field of view" );
+		Asset.AddEntry_CheckBox( "killcamCollision", true ).SetTitle( "Collision" ).SetToolTip( "Do collision on the killcam to make sure nothing is between the camera and target" );
+		Asset.AddEntry_Float( "killcamMinDist", 100, -1000, 32000 ).SetTitle( "Min Distance" ).SetToolTip( "Minimum distance between vehicle and target allowed" );
+		Asset.AddEntry_Float( "killcamZTargetOffset", 0, -32000, 32000 ).SetTitle( "Target Offset" ).SetToolTip( "Offset above or below the target to focus on" );
+		Asset.AddEntry_Float( "killcamNearBlur", 6, 4, 10 ).SetStep( 0.1 ).SetTitle( "Near Blur" ).SetToolTip( "Radius of the gaussian blur in pixels at 640x480" );
+		Asset.AddEntry_Float( "killcamNearBlurStart", 0, 0, 32000 ).SetTitle( "Start" ).SetToolTip( "Start distance of blur from camera" );
+		Asset.AddEntry_Float( "killcamNearBlurEnd", 100, 0, 10000 ).SetTitle( "End" ).SetToolTip( "End distance of blur from camera" );
+		Asset.AddEntry_Float( "killcamFarBlur", 1.8, 0, 10 ).SetStep( 0.1 ).SetTitle( "Far Blur" ).SetToolTip( "Radius of the gaussian blur in pixels at 640x480" );
+		Asset.AddEntry_Float( "killcamFarBlurStart", 100, 0, 32000 ).SetTitle( "Start" ).SetToolTip( "Start distance of blur from camera" );
+		Asset.AddEntry_Float( "killcamFarBlurEnd", 100, 0, 32000 ).SetTitle( "End" ).SetToolTip( "End distance of blur from camera" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Player Use Radius
+	
+	Asset.BeginCategory( "Player Use Radius" );
+	{
+		Asset.AddEntry_Float( "enterRadiusDriver", 80, 0, 200 ).SetTitle( "Left & Driver" );
+		Asset.AddEntry_Float( "enterRadiusGunner1", 80, 0, 200 ).SetTitle( "Right & Gunner1" );
+		Asset.AddEntry_Float( "enterRadiusGunner2", 80, 0, 200 ).SetTitle( "Rear & Gunner2" );
+		Asset.AddEntry_Float( "enterRadiusGunner3", 60, 0, 200 ).SetTitle( "Gunner3" );
+		Asset.AddEntry_Float( "enterRadiusGunner4", 60, 0, 200 ).SetTitle( "Gunner4" );
+	}
+	
+	Asset.BeginCategory( "Main Turret Weapon", 0.2, 0.2, 0.2, "Icon_weapon.png" );
+	{
+		Asset.AddEntry_AssetCombo( "turretWeapon", "turretweapon" );
+		Asset.AddEntry_Vector4( "turretHorizSpanLeft", "turretHorizSpanRight", "turretVertSpanUp", "turretVertSpanDown", 180, 180, 90, 90, -180, 180 ).SetStep( 1 ).SetTitle( "Turret Span" ).SetLabels( "Left", "Right", "Up", "Down" );
+		Asset.AddEntry_Vector4( "turretHorizResistLeft", "turretHorizResistRight", "turretVertResistUp", "turretVertResistDown", 0, 0, 0, 0, 0, 180 ).SetStep( 1 ).SetTitle( "Turret Resistance" ).SetLabels( "Left", "Right", "Up", "Down" );
+		Asset.AddEntry_CheckBox( "turretClampPlayerView", false );
+		Asset.AddEntry_CheckBox( "turretLockTurretToPlayerView", false );
+		Asset.AddEntry_CheckBox( "turretFireFromCamera", false ).SetToolTip( "Fire bullets and projectiles from the camera instead of the weapon tag" );
+		Asset.AddEntry_Float( "tracerOffsetForward", 0, -32000, 32000 ).SetTitle( "Tracer Offset Forward" ).SetToolTip( "Offset from the tag_flash to be used for the first person view" );
+		Asset.AddEntry_Float( "tracerOffsetUp", 0, -32000, 32000 ).SetTitle( "Tracer Offset Up" ).SetToolTip( "Offset from the tag_flash to be used for the first person view" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Gunner Weapons
+	
+	Asset.BeginCategory( "Gunner Weapons", 0.2, 0.2, 0.2, "Icon_weapon.png" );
+	{
+		Asset.AddEntry_Int( "numberOfGunners", 0, 0, 4 ).SetTitle( "Number of Gunners" ).SetToolTip( "Total number gunners active" );
+		Asset.AddEntry_AssetCombo( "gunnerWeapon", "turretweapon" ).SetTitle( "Gunner1" ).SetToolTip( "Uses tags: tag_gunner_turret1, tag_gunner_barrel1, tag_flash_gunner1" );
+		Asset.AddEntry_AssetCombo( "gunnerWeapon1", "turretweapon" ).SetTitle( "Gunner2" ).SetToolTip( "Uses tags: tag_gunner_turret2, tag_gunner_barrel2, tag_flash_gunner2" );
+		Asset.AddEntry_AssetCombo( "gunnerWeapon2", "turretweapon" ).SetTitle( "Gunner3" ).SetToolTip( "Uses tags: tag_gunner_turret3, tag_gunner_barrel3, tag_flash_gunner3" );
+		Asset.AddEntry_AssetCombo( "gunnerWeapon3", "turretweapon" ).SetTitle( "Gunner4" ).SetToolTip( "Uses tags: tag_gunner_turret4, tag_gunner_barrel4, tag_flash_gunner4" );
+	}
+	
+	Asset.BeginCategory( "Health and Damage", 0.9, 0.3, 0.3, "Icon_health.png" );
+	{
+		Asset.AddEntry_Int( "healthDefault", 1000, 0, 100000 ).SetTitle( "HP" );
+		Asset.AddEntry_Float( "radiusDamageMin", 0, 0, 10000 ).SetStep( 10 ).SetTitle( "Radius Damage Min" ).SetToolTip( "The amount of damage that will be applied at the edge of the damage radius." );
+		Asset.AddEntry_Float( "radiusDamageMax", 0, 0, 10000 ).SetTitle( "Radius Damage Max" ).SetToolTip( "The amount of damage that will be applied at the center." );
+		Asset.AddEntry_Float( "radiusDamageRadius", 0, 0, 5000 ).SetTitle( "Radius Damage Radius" ).SetToolTip( "Anything inside this radius will take damage when this vehicle explodes." );
+		Asset.AddEntry_Float( "collisionDamage", 0, 0, 10000 ).SetStep( 0.05 ).SetTitle( "Collision Damage" );
+		Asset.AddEntry_Float( "collisionSpeed", 0, 0, 1000 ).SetStep( 0.05 ).SetTitle( "Collision Speed" );
+	}
+	
+	Asset.BeginCategory( "Damage Types", 0.9, 0.3, 0.3, "Icon_health.png" );
+	{
+		Asset.AddEntry_CheckBox( "bulletDamage", false );
+		Asset.AddEntry_CheckBox( "armorPiercingDamage", true );
+		Asset.AddEntry_CheckBox( "grenadeDamage", false );
+		Asset.AddEntry_CheckBox( "heavyExplosiveDamage", true );
+		Asset.AddEntry_CheckBox( "projectileDamage", false );
+		Asset.AddEntry_CheckBox( "projectileSplashDamage", false );
+		Asset.AddEntry_CheckBox( "burnDamage", false );
+		Asset.AddEntry_CheckBox( "noDirectionalDamage", false ).SetTitle( "No Directional Damage" ).SetToolTip( "Prevents this vehicle from changing damage based on hit direction." );
+		Asset.AddEntry_Vector4( "grenadeLaunchScale", "projectileLaunchScale", "explosiveLaunchScale", "deathLaunchScale", 1, 1, 1, 1, 0, 100 ).SetStep( 0.1 ).SetTitle( "Physics Launch Scale" ).SetLabels( "Grenade", "Projectile", "Explosive", "Death" );
+	}
+
+	Asset.BeginCategory( "Damage Multipliers", 0.9, 0.3, 0.3, "Icon_health.png" );
+	{
+		Asset.AddEntry_Float( "grenadeDamageMultiplier", 1, -500, 500 ).SetTitle( "Grenade Multiplier" ).SetToolTip( "Multiplier to be applied to damage caused by a grenade." );
+		Asset.AddEntry_Float( "projectileDamageMultiplier", 1, -500, 500 ).SetTitle( "Projectile Multiplier" ).SetToolTip( "Multiplier to be applied to damage caused by a projectile." );
+		Asset.AddEntry_Float( "explosiveDamageMultiplier", 1, -500, 500 ).SetTitle( "Explosion Multiplier" ).SetToolTip( "Multiplier to be applied to damage caused by an explosion." );
+		Asset.AddEntry_Float( "bulletDamageMultiplier", 1, -500, 500 ).SetTitle( "Bullet Multiplier" ).SetToolTip( "Multiplier to be applied to damage caused by bullets." );
+		Asset.AddEntry_Float( "meleeDamageMultiplier", 1, -500, 500 ).SetTitle( "Melee Multiplier" ).SetToolTip( "Multiplier to be applied to damage caused by a melee." );
+	}
+	
+	Asset.BeginCategory( "Aim Targeting", 0.9, 0.3, 0.3, "Icon_health.png" );
+	{
+		Asset.AddEntry_Vector3( "aimAssistMinsX", "aimAssistMinsY", "aimAssistMinsZ", 0, 0, 0, -10000, 10000 ).SetTitle( "Aim Assist Mins" );
+		Asset.AddEntry_Vector3( "aimAssistMaxsX", "aimAssistMaxsY", "aimAssistMaxsZ", 0, 0, 0, -10000, 10000 ).SetTitle( "Aim Assist Maxs" );
+		Asset.AddEntry_BoneCombo( "targetTag1", modelsList ).SetTitle( "Target Tag 1" ).SetToolTip( "Used for weak spots, ADS snapping, UI drawing, missile lock on, etc." );
+		Asset.AddEntry_BoneCombo( "targetTag2", modelsList ).SetTitle( "Target Tag 2" ).SetToolTip( "Used for weak spots, ADS snapping, UI drawing, missile lock on, etc." );
+		Asset.AddEntry_BoneCombo( "targetTag3", modelsList ).SetTitle( "Target Tag 3" ).SetToolTip( "Used for weak spots, ADS snapping, UI drawing, missile lock on, etc." );
+		Asset.AddEntry_BoneCombo( "targetTag4", modelsList ).SetTitle( "Target Tag 4" ).SetToolTip( "Used for weak spots, ADS snapping, UI drawing, missile lock on, etc." );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Passenger View Limit Settings
+	
+	Asset.BeginCategory( "Passenger View Limit Settings" );
+	{
+		for ( int i = 1; i <= 6; i++ )
+		{
+			Asset.AddEntry_Vector4( "passenger" + i + "HorizSpanLeft", "passenger" + i + "HorizSpanRight", "passenger" + i + "VertSpanUp", "passenger" + i + "VertSpanDown", 180, 180, 90, 90, 0, 180 ).SetStep( 1 ).SetTitle( "Passenger " + i + " View Clamp" ).SetLabels( "Left", "Right", "Up", "Down" );
+		}
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	Asset.BeginCategory( "" );
+
+	// Nitrous Vehicle Parameters
+	bool isNitrous = Asset.AddEntry_CheckBox( "isNitrous", false ).SetTitle( "Physics Vehicle" ).UpdateOnChange( true ).GetBool();
+		
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	Asset.BeginCategory( "" );
+			
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	Asset.BeginCategory( "Collision" );
+	{
+		bool useCollmap = Asset.AddEntry_CheckBox( "useCollmap", false ).Show( !isNitrous ).SetTitle( "Use Collmap" ).UpdateOnChange( true ).GetBool();
+		Asset.AddEntry_Float( "radius", 0, 0, 1000 ).SetStep( 0.01 ).SetTitle( "Collision cylinder radius" ).SetToolTip( "Collision the cylinder radius" );
+		Asset.AddEntry_Float( "maxHeight", 0, -500, 500 ).SetStep( 0.01 ).SetTitle(  "Collision cylinder max height" ).SetToolTip( "Collision the cylinder max height" ).Show( !useCollmap && !isNitrous );
+		Asset.AddEntry_Float( "minHeight", 0, -500, 500 ).SetStep( 0.01 ).SetTitle(  "Collision cylinder min height" ).SetToolTip( "Collision the cylinder min height" ).Show( !useCollmap && !isNitrous );
+		
+		Asset.AddEntry_Float( "lightCollisionSpeed", 0, 0, 10000 ).SetTitle( "Light Collision Speed" ).SetToolTip( "If the vehicle is moving faster than this speed in MPH it will play the rumble/camera shake and impact sounds" );
+		Asset.AddEntry_AssetCombo( "lightCollisionRumble", "rumble" ).SetTitle( "Light Collision Rumble" );
+		Asset.AddEntry_Float( "heavyCollisionSpeed", 15, 0, 10000 ).SetTitle( "Heavy Collision Speed" ).SetToolTip( "If the vehicle is moving faster than this speed in MPH it will play the rumble/camera shake" );
+		Asset.AddEntry_AssetCombo( "heavyCollisionRumble", "rumble" ).SetTitle( "Heavy Collision Rumble" );
+		Asset.AddEntry_AssetCombo( "jumpLandingRumble", "rumble" ).SetTitle( "Jump Landing Rumble" ).SetToolTip( "Play this rumble/camera shake when the vehicle lands on the ground" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	Asset.BeginCategory( "Jolt" );
+	{
+		Asset.AddEntry_CheckBox( "joltVehicle", false ).SetTitle( "Jolt Vehicle" ).SetToolTip( "Vehicle gets jolted.  Nitrous vehicle jolt when firing." );
+		Asset.AddEntry_CheckBox( "joltVehicleDriver", true ).Show( !isNitrous ).SetTitle( "Jolt Vehicle Driver" ).SetToolTip( "Disables jolting for the vehicle driver." );
+		Asset.AddEntry_Float( "joltMaxTime", 1.3, 0, 30 ).SetStep( 0.1 ).SetTitle( "Jolt Max Time" ).SetToolTip( "Time maximum vehicle jolt lasts." ).Show( !isNitrous );
+		Asset.AddEntry_Float( "joltTime", 1.3, 0, 30 ).SetStep( 0.1 ).SetTitle( "Jolt Time" ).SetToolTip( "Time one vehicle jolt lasts." ).Show( !isNitrous );
+		Asset.AddEntry_Float( "joltWaves", 2, 0, 360 ).SetStep( 0.1 ).SetTitle( "Jolt Waves" ).SetToolTip( "Jolt wave frequency. Zero means jump to max and ramp down" ).Show( !isNitrous );
+		Asset.AddEntry_Float( "joltIntensity", 1, -50, 50 ).SetStep( 0.01 ).SetTitle(  "Jolt Intensity" ).SetToolTip( "Jolt Wave amplitude." );
+	}
+	
+	Asset.BeginCategory( "Antennas" );
+	{
+		for( int i = 1; i <= 4; i++ )
+		{
+			Asset.BeginCategory( "Antennas.Antenna " + i );
+			{
+				Asset.AddEntry_Float( "antenna" + i + "SpringK", 20, 0, 100 ).SetStep( 0.5 ).SetTitle( "Spring K" ).SetToolTip( "Strength of the antenna spring" );
+				Asset.AddEntry_Float( "antenna" + i + "Damp", 0.05, 0, 1 ).SetStep( 0.05 ).SetTitle( "Dampening" ).SetToolTip( "Dampening is like drag." );
+				Asset.AddEntry_Float( "antenna" + i + "Length", 80, 0, 1000 ).SetStep( 5.0 ).SetTitle( "Length" ).SetToolTip( "Length of the antenna." );
+				Asset.AddEntry_Float( "antenna" + i + "Gravity", 0, 0, 1000 ).SetStep( 1.0 ).SetTitle( "Gravity" ).SetToolTip( "Gravity on the antenna." );
+				Asset.AddEntry_CheckBox( "useAntenna" + i + "XAxis", false ).SetTitle( "Use X Axis" ).SetToolTip( "Antennas are aligned by default to Z. Check this to use the X axis instead." );
+			}
+		}
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	Asset.BeginCategory( "Physics Vehicle Parameters", 0.0, 0.9, 0.8, "Icon_physics.png" );
+	{
+		Asset.AddEntry_Float( "nitrous_body_mass", 500, 1, 100000 ).SetStep( 0.05 ).Show( isNitrous ).SetTitle( "Body Mass" ).SetToolTip( "Mass in pounds, this is a video game so tanks weight 1000, do not go higher or we may have floating point problems" );	
+		Asset.AddEntry_Combo( "nitrous_traction_type", "TRACTION_TYPE_ALL_WD | TRACTION_TYPE_FRONT | TRACTION_TYPE_BACK" ).SetTitle( "Traction Type" ).Show( isNitrous );
+		Asset.AddEntry_CheckBox( "isFourWheelSteering", false ).Show( isNitrous ).SetTitle("Four Wheel Steering");
+		Asset.AddEntry_CheckBox( "enableMiddleWheelSteering", false).Show(isNitrous).SetToolTip("Controls whether the middle wheels rotate with the front while steering.").SetTitle("Enable Middle Wheel Steering");
+		Asset.AddEntry_CheckBox( "nitrous_drive_on_walls", false ).Show( isNitrous ).SetTitle("Drive on Walls").SetToolTip( "If set the vehicle will change gravity to the surface the wheels are touching" );
+		Asset.AddEntry_CheckBox( "nitrous_charge_jump", false ).Show( isNitrous ).SetTitle("Charge Jump").SetToolTip( "If set then you can press and hold the jump button to jump higher" );
+		Asset.AddEntry_CheckBox( "alwaysDriveForward", false ).Show( isNitrous ).SetTitle("Always Drive Forward").SetToolTip( "Only used for Halo and Strafe control modes.  Vehicle will not drive in reverse." );
+		Asset.AddEntry_CheckBox( "smallVehicleCollision", false ).Show( isNitrous ).SetTitle("Small Vehicle Collision").SetToolTip( "Collide against Player User rigid bodies and not dyn ents." );
+		Asset.AddEntry_Float( "nitrous_steer_angle_max", 0.6, 0, 100000 ).SetStep( 0.01 ).Show( isNitrous ).SetTitle( "Max Steer Angle" );
+		Asset.AddEntry_Float( "nitrous_steer_angle_speed_scale", 0.0, 0, 1 ).SetStep( 0.01 ).Show( isNitrous ).SetTitle( "Steer Angle Speed Scale" ).SetToolTip( "Scales the max steer angle based on the speed of the vehicle relative to max speed" );
+		Asset.AddEntry_Float( "nitrous_steer_speed", 5, 0, 100000 ).SetStep( 0.01 ).Show( isNitrous ).SetTitle( "Steer Speed" );
+		Asset.AddEntry_Float( "nitrous_wheel_radius", 15, 1, 100000 ).SetStep( 0.05 ).Show( isNitrous ).SetTitle( "Wheel Radius" ).SetToolTip( "How big are those rims?" );
+		Asset.AddEntry_Float( "nitrous_reverse_scale", 0.8, 0, 100000 ).SetStep( 0.5 ).Show( isNitrous ).SetTitle( "Reverse Speed Scale" ).SetToolTip( "Scale the max speed by this number when driving backwards" );
+        Asset.AddEntry_Float( "nitrous_gravity_scale", 1.0, 0.01, 5 ).SetStep( 0.1 ).Show( isNitrous ).SetTitle( "Gravity Scale" ).SetToolTip( "Scale the gravity" );
+
+		Asset.BeginCategory( "Physics Vehicle Parameters.Wheel Friction" );
+		{
+			Asset.AddEntry_Float( "nitrous_tire_fric", 2, 0, 10 ).SetStep( 0.01 ).Show( isNitrous ).SetTitle( "Friction" );
+			Asset.AddEntry_Float( "nitrous_tire_fric_assist", 1, 0, 10 ).SetStep( 0.01 ).Show( isNitrous ).SetTitle( "Friction Assist" );			
+			Asset.AddEntry_Float( "nitrous_tire_fric_assist_threshold", 1.5, 0.1, 100000 ).SetStep( 0.01 ).Show( isNitrous ).SetTitle( "Friction Assist Threshold" );			
+			Asset.AddEntry_Float( "nitrous_tire_fric_load_factor_min", 0.85, 0, 10 ).Show( isNitrous ).SetTitle( "Scale Spring Uncompressed" );									
+			Asset.AddEntry_Float( "nitrous_tire_fric_load_factor_max", 1.7, 0, 10 ).Show( isNitrous ).SetTitle( "Scale Spring Compressed" );			
+			Asset.AddEntry_Vector3( "nitrous_wheel_offset_x", "nitrous_wheel_offset_y", "nitrous_wheel_offset_z", 0, 0, 0, -1000, 1000 ).SetStep( 5 ).Show( isNitrous ).SetTitle( "Wheel Constraint Offset" );
+		}	
+
+		Asset.BeginCategory( "Physics Vehicle Parameters.Suspension" );
+		{
+			Asset.AddEntry_Float( "nitrous_susp_adj", 10, 0, 100000 ).SetStep( 0.2 ).Show( isNitrous ).SetTitle( "Susp Height Adjust" ).SetToolTip( "Raise your ride" );
+			Asset.AddEntry_Float( "nitrous_susp_spring_k", 20, 0, 100000 ).Show( isNitrous ).SetStep( 0.5 ).SetTitle( "Susp Spring K" ).SetToolTip( "Loosen those springs to get a soft ride" );
+			Asset.AddEntry_Float( "nitrous_susp_damp_k", 1, 0, 100000 ).Show( isNitrous ).SetStep( 0.5 ).SetTitle( "Susp Damp K" ).SetToolTip( "Lighten up the dampening to get some more rocking" );
+			Asset.AddEntry_Float( "nitrous_susp_hard_limit", 23, 0, 100000 ).Show( isNitrous ).SetTitle( "Susp Hard Limit" ).SetToolTip( "Max height the wheels can move up" );
+			Asset.AddEntry_Float( "nitrous_susp_min_height", -100, -1000, 1000 ).SetStep( 0.05 ).Show( isNitrous ).SetTitle( "Susp Min Height" ).SetToolTip( "Min height that the wheels.  Use this to fix the wheels from sagging down too low when in the air" );
+		}
+				
+		Asset.BeginCategory( "Physics Vehicle Parameters.Stability" );
+		{
+			Asset.AddEntry_Float( "nitrous_roll_stability", 0, -1000, 1000 ).SetStep( 0.1 ).Show( isNitrous ).SetTitle( "Roll Stability" ).SetToolTip( "This raises/lowers the contact point with the ground to provide more stability" );
+			Asset.AddEntry_Float( "nitrous_pitch_stability", 0, -1000, 1000 ).SetStep( 0.1 ).Show( isNitrous ).SetTitle( "Pitch Stability" ).SetToolTip( "This raises/lowers the contact point with the ground to provide more stability in the forward direction. If 0 then uses roll stability." );
+			Asset.AddEntry_Float( "nitrous_roll_resistance", 100, 0, 10000 ).SetStep( 5 ).Show( isNitrous ).SetTitle( "Roll/Pitch Resistance" ).SetToolTip( "This setting prevents large forces from flipping the vehicle, torque resistance agains pitch and roll" );
+			Asset.AddEntry_Float( "nitrous_yaw_resistance", 0, 0, 10000 ).SetStep( 5 ).Show( isNitrous ).SetTitle( "Yaw Resistance" ).SetToolTip( "This setting prevents large forces from turning the vehicle, kind of like a torque resistance against yaw" );
+			Asset.AddEntry_Float( "nitrous_upright_strength", 50, 0, 100000 ).SetStep( 5 ).Show( isNitrous ).SetTitle( "Upright Strength" ).SetToolTip( "This setting applies a force to hold the vehicle upright, the more it rolls the stronger the force" );
+		}
+		
+		Asset.BeginCategory( "Physics Vehicle Parameters.Inertia Box" );
+		{
+			Asset.AddEntry_Vector3( "nitrous_bbox_min_x", "nitrous_bbox_min_y", "nitrous_bbox_min_z", 0, 0, 0, -100000, 100000 ).Show( isNitrous ).SetStep( 5 ).SetTitle( "BBox Min" ).SetToolTip( "Min dimension of the inertia box" );
+			Asset.AddEntry_Vector3( "nitrous_bbox_max_x", "nitrous_bbox_max_y", "nitrous_bbox_max_z", 0, 0, 0, -100000, 100000 ).Show( isNitrous ).SetStep( 5 ).SetTitle( "BBox Max" ).SetToolTip( "Max dimension of the inertia box" );
+		}
+		
+		Asset.BeginCategory( "Physics Vehicle Parameters.Center of Mass Offset" );
+		{
+			Asset.AddEntry_Vector3( "nitrous_mass_center_offset_x", "nitrous_mass_center_offset_y", "nitrous_mass_center_offset_z", 0, 0, 0, -100000, 100000 ).Show( isNitrous ).SetTitle( "Offset" );
+		}
+		
+		Asset.BeginCategory( "Physics Vehicle Parameters.E Brake" );
+		{
+			Asset.AddEntry_Float( "nitrous_tire_fric_hand_brake_fwd", 0.75, 0, 10 ).Show( isNitrous ).SetTitle( "Friction Hand Brake Forward Scale" ).SetToolTip( "Lower the wheel friction when the hand brake is applied" );	
+			Asset.AddEntry_Float( "nitrous_tire_fric_hand_brake_side", 0.25, 0, 10 ).Show( isNitrous ).SetTitle( "Friction Hand Brake Side Scale" ).SetToolTip( "Lower the wheel friction when the hand brake is applied" );
+			Asset.AddEntry_Float( "nitrous_hand_brake_fake_rotation_force", 20.0, 0, 100000 ).Show( isNitrous ).SetTitle( "Hand Brake Fake Rotation" ).SetToolTip( "Apply a torque force based on the steering" );
+			Asset.AddEntry_Float( "nitrous_hand_brake_redirect_force", 0.0, 0, 100 ).Show( isNitrous ).SetTitle( "Hand Brake Redirect Velocity Force" ).SetToolTip( "Redirects the sideways sliding velocity to forward.  Great for power sliding" );
+			Asset.AddEntry_Float( "nitrous_tire_damp_hand", 10000, 0, 100000 ).SetStep( 0.05 ).Show( isNitrous ).SetTitle( "Tire Damp Hand Brake" ).SetToolTip( "Brake the rear wheels this much" );
+		}
+
+		Asset.BeginCategory( "Physics Vehicle Parameters.Braking" );
+		{
+			Asset.AddEntry_Float( "nitrous_tire_damp_brake", 100, 0, 100000 ).SetStep( 0.05 ).Show( isNitrous ).SetTitle( "Tire Damp Brake" ).SetToolTip( "How fast do you want to brake? wheel friction has a lot to do with this also." );
+			Asset.AddEntry_Float( "nitrous_tire_damp_coast", 10, 0, 100000 ).Show( isNitrous ).SetTitle( "Tire Damp Coast" ).SetToolTip( "How quickly do you want to come to a stop when coasting?" );
+			Asset.AddEntry_Float( "nitrous_hand_brake_slide_time", 1, 0, 10 ).SetStep( 0.05 ).Show( isNitrous ).SetTitle( "Hand Brake Slide Time" ).SetToolTip( "How long to apply scaled hand brake friction." );
+			Asset.AddEntry_Float( "nitrous_brake_to_reverse_time", 0.5, 0, 10 ).Show( isNitrous ).SetTitle( "Brake to Reverse Time" ).SetToolTip( "How long before reverse kicks after being stopped and pressing the brake." );
+			Asset.AddEntry_Float( "autoHandbrakeMinSpeed", 12, 0, 100000 ).Show( isNitrous ).SetTitle( "Auto Hand Brake Min Speed" ).SetToolTip( "This only applies in the halo or strafe control modes and auto applies the hand brake if making a sharp turn (30') at a speed above this speed" );		
+		}
+		
+		Asset.BeginCategory( "Physics Vehicle Parameters.Other" );
+		{
+			Asset.AddEntry_Float( "nitrous_linear_drag_scale", 0.0, 0, 500 ).SetStep( 0.25 ).Show( isNitrous ).SetTitle( "Linear Drag Scale" ).SetToolTip( "Scale the default movement resistance (air drag)" );
+			Asset.AddEntry_Float( "nitrous_angular_drag_scale", 0.0, 0, 500 ).SetStep( 0.25 ).Show( isNitrous ).SetTitle( "Angular Drag Scale" ).SetToolTip( "Scale the default rotational resistance (air drag)" );
+			Asset.AddEntry_Float( "nitrous_max_climb_angle", 46, 0, 175 ).SetStep( 1.0 ).Show( isNitrous ).SetTitle( "Max Climb Angle" ).SetToolTip( "Angle at which to start applying gravity" );
+			Asset.AddEntry_Float( "nitrous_motorcycle_max_lean", 30, 0, 90 ).SetStep( 1.0 ).Show( isNitrous && Type == "motorcycle" ).SetTitle( "Max Motorcycle Lean Angle" ).SetToolTip( "Max angle motorcycle can lean" );			
+		}
+		
+		Asset.BeginCategory( "Physics Vehicle Parameters.Hover" );
+		{
+			Asset.AddEntry_Float( "nitrous_hover_trace_start_offset", 10.0, 0, 200 ).SetStep( 0.1 ).Show( isNitrous ).SetTitle( "Hover Trace Start Offset" ).SetToolTip( "The trace to find a wall to jump to has the following offset." );
+			Asset.AddEntry_Float( "nitrous_hover_trace_length_from_ground", 200.0, 0, 5000 ).SetStep( 10.0 ).Show( isNitrous ).SetTitle( "Hover Trace Length From Ground" ).SetToolTip( "The trace length to use when jumping off the ground." );
+			Asset.AddEntry_Float( "nitrous_hover_trace_length_from_wall", 100.0, 0, 5000 ).SetStep( 10.0 ).Show( isNitrous ).SetTitle( "Hover Trace Length From Wall" ).SetToolTip( "The trace length to find another wall when jumping off the wall." );
+			Asset.AddEntry_Float( "nitrous_hover_to_wall_gravity_scale", 1.2, 0, 100 ).SetStep( 0.01 ).Show( isNitrous ).SetTitle( "Hover To Wall Gravity Scale" ).SetToolTip( "The gravity scale to use on hover vehicle when transitioning from ground to wall. Affects rate to attach to wall." );
+			Asset.AddEntry_Float( "nitrous_hover_to_wall_upright_strength_multiplier", 20.0, 0.001, 200 ).SetStep( 0.1 ).Show( isNitrous ).SetTitle( "Hover To Wall Upright Strength Multiplier" ).SetToolTip( "The upright strength multiplier to use on hover vehicle when transitioning from ground to wall. Affects rate to rotate towards wall." );
+			Asset.AddEntry_Float( "nitrous_hover_to_wall_gravity_lerp_rate", 10.0, 0, 100 ).SetStep( 0.01 ).Show( isNitrous ).SetTitle( "Hover To Wall Gravity LERP Rate" ).SetToolTip( "The rate to transition to wall gravity." );
+			Asset.AddEntry_Float( "nitrous_hover_to_ground_gravity_lerp_rate", 10.0, 0, 100 ).SetStep( 0.01 ).Show( isNitrous ).SetTitle( "Hover To Ground Gravity LERP Rate" ).SetToolTip( "The rate to transition to ground gravity." );
+			Asset.AddEntry_Float( "nitrous_hover_to_ground_upright_strength_multiplier", 3.5, 0.001, 200 ).SetStep( 0.1 ).Show( isNitrous ).SetTitle( "Hover To Ground Upright Strength Multiplier" ).SetToolTip( "The upright strength multiplier to use on hover vehicle when transitioning from wall to ground. Affects rate to rotate towards ground." );
+			Asset.AddEntry_Float( "nitrous_hover_min_speed_to_apply_brakes", 10.0, 0, 200 ).SetStep( 0.1 ).Show( isNitrous ).SetTitle( "Hover Min Speed to Apply Brakes" ).SetToolTip( "The min speed in which brakes are applied. (In inches per second)" );
+			Asset.AddEntry_Float( "nitrous_hover_brake_scale_factor", 0.5, 0, 50 ).SetStep( 0.01 ).Show( isNitrous ).SetTitle( "Hover Brake Scale Factor" ).SetToolTip( "The scale factor for adjust brake effect on hover vehicles." );
+		}
+		
+		Asset.BeginCategory( "Physics Vehicle Parameters.Jump Settings" );
+		{
+			Asset.AddEntry_Float( "nitrous_jump_force", 300, 0, 2000 ).SetStep( 5 ).SetTitle( "Jump Force" ).Show( isNitrous ).SetToolTip( "The amount of force applied when jumping.  Bind moveUpButton to enable." );
+			Asset.AddEntry_Float( "nitrous_jump_force_in_air", 0, 0, 2000 ).SetStep( 1 ).SetTitle( "Jump Force In Air" ).Show( isNitrous ).SetToolTip( "The amount of force applied when jumping while in air." );
+			Asset.AddEntry_Float( "nitrous_jump_force_from_wall", 0, 0, 2000 ).SetStep( 1 ).SetTitle( "Jump Force From Wall" ).Show( isNitrous ).SetToolTip( "The amount of force applied when jumping from a wall.  Bind moveUpButton to enable. Drive On Walls also needs to be checked. Only used if non-zero." );
+			Asset.AddEntry_Float( "nitrous_jump_force_from_wall_max", 15, 0, 2000 ).SetStep( 1 ).SetTitle( "Jump Force From Wall Max" ).Show( isNitrous ).SetToolTip( "The amount of force applied when jumping from a wall with full move stick deflection. Ignored if 'normal' setting above is zero." );
+			Asset.AddEntry_Float( "nitrous_jump_force_from_wall_extra_z", 0, 0, 2000 ).SetStep( 1 ).SetTitle( "Jump Force From Wall Extra Z" ).Show( isNitrous ).SetToolTip( "When jumping from a wall, the extra world z force to apply." );
+			Asset.AddEntry_Float( "nitrous_jump_gravity_scale_upwards", 1, 0.01, 100 ).SetStep( 0.1 ).SetTitle( "Jump Gravity Scale Upwards" ).Show( isNitrous ).SetToolTip( "The extra gravity scale when jumping upwards with button pressed." );
+			Asset.AddEntry_Float( "nitrous_jump_gravity_scale_transition_z", 0, -8000, 8000 ).SetStep( 5 ).SetTitle( "Jump Gravity Scale Transition Z" ).Show( isNitrous ).SetToolTip( "The delta z used to transition from upwards to downwards while jump buttons is pressed." );
+			Asset.AddEntry_Float( "nitrous_jump_gravity_scale_downwards", 1, 0.01, 100 ).SetStep( 0.1 ).SetTitle( "Jump Gravity Scale Downwards" ).Show( isNitrous ).SetToolTip( "The extra gravity scale when falling downwards during a jump with button pressed." );
+			Asset.AddEntry_Float( "nitrous_jump_from_wall_stick_angle", 0, 0, 180 ).SetStep( 1 ).SetTitle( "Jump From Wall Stick Angle" ).Show( isNitrous ).SetToolTip( "The angle needed to jump off wall between the stick deflection face angle needed to be within the wall normal. Ignored if zero." );
+			Asset.AddEntry_CheckBox( "nitrous_jumps_require_button_release", false ).SetTitle( "Jump Requires Button Release" ).SetToolTip( "If unchecked, when the moveUpButton is held down, the vehicle automatically rejumps." );
+		}
+		
+		// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+		
+		// Buoyancy Box Min
+		
+		Asset.BeginCategory( "Physics Vehicle Parameters.Buoyancy Box" );
+		{
+			Asset.AddEntry_Vector3( "nitrous_buoyancybox_min_x", "nitrous_buoyancybox_min_y", "nitrous_buoyancybox_min_z", 0, 0, 0, -100000, 100000 ).SetStep( 5 ).Show( isNitrous ).SetTitle( "BBox Min" );
+			Asset.AddEntry_Vector3( "nitrous_buoyancybox_max_x", "nitrous_buoyancybox_max_y", "nitrous_buoyancybox_max_z", 0, 0, 0, -100000, 100000 ).SetStep( 5 ).Show( isNitrous ).SetTitle( "BBox Max" );	
+		}
+		
+		// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -	
+		
+		//Speed / Tilt / Brake
+		
+		Asset.BeginCategory( "Physics Vehicle Parameters.Boat Settings" );	
+		{
+			Asset.AddEntry_Float( "nitrous_water_speed_max", 10, 0, 100000 ).SetStep( 0.2 ).SetTitle( "Max Water Speed" ).Show( isNitrous );
+			Asset.AddEntry_Float( "nitrous_water_accel_max", 4, 0, 100000 ).SetStep( 0.2 ).SetTitle( "Max Water Accel" ).Show( isNitrous );
+			Asset.AddEntry_Float( "nitrous_water_turn_accel", 0.25, 0, 100000 ).SetStep( 0.2 ).SetTitle( "Water Turn Accel" ).Show( isNitrous );
+			Asset.AddEntry_Float( "nitrous_water_turn_speed_max", 0.25, 0, 100000 ).SetStep( 0.2 ).SetTitle( "Water Max Turn Speed" ).Show( isNitrous );
+			Asset.AddEntry_Float( "nitrous_boat_ebrake_power", 1.5, 0, 10 ).SetStep( 0.2 ).SetTitle( "EBrake power scale" ).Show( isNitrous );
+			Asset.AddEntry_Float( "nitrous_boat_speed_rise", 10, 0, 100 ).SetTitle( "Water Speed Rise" ).Show( isNitrous );
+			Asset.AddEntry_Float( "nitrous_boat_speed_tilt", 10, 0, 100 ).SetTitle( "Water Speed Tilt" ).Show( isNitrous );
+		}
+		
+		// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+		
+		// Boat Motor Offset	
+		
+		Asset.BeginCategory( "Physics Vehicle Parameters.Boat Motor Offset" );
+		{
+			Asset.AddEntry_Vector3( "nitrous_boat_motor_offset_x", "nitrous_boat_motor_offset_y", "nitrous_boat_motor_offset_z", 0, 0, 0, -1000, 1000 ).SetTitle( "Offset" ).SetStep( 0.05 ).Show( isNitrous );
+		}
+		
+		// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+		
+		// Boat Water Friction Scale
+		
+		Asset.BeginCategory( "Physics Vehicle Parameters.Boat Water Friction Scale" );
+		{
+			Asset.AddEntry_Float( "nitrous_boat_side_fric", 3, 0, 10 ).SetStep( 0.05 ).SetTitle( "Side" ).Show( isNitrous );
+			Asset.AddEntry_Float( "nitrous_boat_forward_fric", 0.4, 0, 10 ).SetStep( 0.05 ).SetTitle( "Forward" ).Show( isNitrous );
+			Asset.AddEntry_Float( "nitrous_boat_vertical_fric", 0.5, 0, 10 ).SetStep( 0.05 ).SetTitle( "Vertical" ).Show( isNitrous );
+		}
+		
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+		
+		Asset.BeginCategory( "Boost Parameters" );
+		{
+			Asset.AddEntry_Int( "boostAccelMultiplier", 0, 0, 100 ).SetTitle( "Boost Accel Multiplier" ).SetStep( 1 ).SetToolTip( "When boosting, the increase in acceleration the vehicle will get" );
+			Asset.AddEntry_Float( "boostSpeedIncrease", 0, 0, 100 ).SetTitle( "Boost Speed Increase" ).SetStep( 0.5 ).SetToolTip( "When boosting, the increase in speed the vehicle recieves, multiplier on the base max speed" );
+			Asset.AddEntry_Float( "boostDuration", 0, 0, 1000 ).SetTitle( "Boost Duration" ).SetStep( 1 ).SetToolTip( "Duration in seconds that the boost will last." );
+			Asset.AddEntry_Float( "boostDurationMin", 0, 0, 1000 ).SetTitle( "Boost Duration Minimum" ).SetStep( 1 ).SetToolTip( "Minimum boost duration required to initiate boost." );
+			Asset.AddEntry_Float( "boostRecoveryScalar", 1.0, 0, 10 ).SetTitle( "Boost Recovery Scalar" ).SetStep( 0.1 ).SetToolTip( "Scales boost recovery time, so 0.5 results in recovery taking twice as long as boostDuration." );
+		}
+		
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+			
+	// "Anim Type & Set
+	
+	Asset.BeginCategory( "Anim Type & Set", 0.3, 0.4, 1.0, "Icon_animation.png" );
+	{
+		Asset.AddEntry_Combo( "animType", "default | tank with turret" );
+		Asset.AddEntry_String( "animSet", "" );
+		Asset.AddEntry_CheckBox( "scriptedAnimationEntry", false );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Tank Mantle Angles
+	
+	Asset.BeginCategory( "Tank Mantle Angles" );
+	{
+		Asset.AddEntry_Float( "mantleAngleFront", 0, 0, 360 );
+		Asset.AddEntry_Float( "mantleAngleBack", 90, 0, 360 );
+		Asset.AddEntry_Float( "mantleAngleLeft", 90, 0, 360 );
+		Asset.AddEntry_Float( "mantleAngleRight", 90, 0, 360 );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Rumble
+	
+	Asset.BeginCategory( "Rumble" );	
+	{
+		Asset.AddEntry_String( "rumbleType", "" ).SetTitle( "Type" );
+		Asset.AddEntry_Float( "rumbleScale", 0, 0, 1 ).SetStep( 0.01 ).SetTitle( "Scale" );
+		Asset.AddEntry_Float( "rumbleDuration", 0, 0, 10 ).SetStep( 0.1 ).SetTitle( "Duration" );
+		Asset.AddEntry_Float( "rumbleRadius", 0, 0, 100000 ).SetTitle( "Radius" );
+		Asset.AddEntry_Float( "rumbleBaseTime", 0, 0, 10 ).SetStep( 0.1 ).SetTitle( "Base Time" );
+		Asset.AddEntry_Float( "rumbleAdditionalTime", 0, 0, 10 ).SetTitle( "Addtl Time" );
+		Asset.AddEntry_String( "shootShock", "" ).SetTitle( "Shoot Shock" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Death Quake
+	
+	Asset.BeginCategory( "Death Quake" );	
+	{
+		Asset.AddEntry_Float( "deathQuakeScale", 0, 0, 1 ).SetStep( 0.01 ).SetTitle( "Scale" );
+		Asset.AddEntry_Float( "deathQuakeDuration", 0, 0, 10 ).SetStep( 0.1 ).SetTitle( "Duration" );
+		Asset.AddEntry_Float( "deathQuakeRadius", 0, 0, 100000 ).SetTitle( "Radius" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// DeathFx
+	
+	Asset.BeginCategory( "DeathFx", 1, 0.3, 0.2, "Icon_FX.png" );		
+	{
+		Asset.AddEntry_Path( "deathFxName", "" ).SetTitle( "Name" ).SetRelativePath( "share/raw/fx/" );
+		Asset.AddEntry_BoneCombo( "deathFxTag", modelsList ).SetTitle( "Tag" );
+		Asset.AddEntry_String( "deathFxSound", "" ).SetTitle( "Sound" );
+	}
+	
+	// LightFx
+	
+  const int MAX_NUM_LIGHTFX = 4;
+	Asset.BeginCategory( "LightFx", 1, 0.3, 0.2, "Icon_FX.png" );		
+	{
+    Asset.AddEntry_Int( "lightFx_numslots", 4, 0, MAX_NUM_LIGHTFX ).SetTitle( "Number of Slots" ).UpdateOnChange(true);
+    int numSlots = Asset.GetEntryInt( "lightFx_numslots" );
+
+    for ( int i = 1; i <= MAX_NUM_LIGHTFX; i++ )
+    {
+        bool isValid = (i <= numSlots);
+        Asset.AddEntry_Path( "lightFxName" + i, "" ).SetTitle( "Light " + i + " Fx" ).SetRelativePath( "share/raw/fx/" ).Show(isValid).SetSave(isValid);
+        Asset.AddEntry_BoneCombo( "lightFxTag" + i, modelsList ).SetTitle( "Light " + i + " Tag" ).Show(isValid).SetSave(isValid);
+    }
+	}
+
+	// ExhaustFx
+	Asset.BeginCategory( "ExhaustFx", 1, 0.3, 0.2, "Icon_FX.png" );	
+	{
+		Asset.AddEntry_Path( "exhaustFx", "" ).SetTitle( "Name" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( "First fx plays on tag_engine_left, then tag_engine_right" );
+		Asset.AddEntry_BoneCombo( "exhaustFxTag1", modelsList ).SetTitle( "Exhaust Tag1" ).SetToolTip( "Play the exhaust on this tag" );
+		Asset.AddEntry_BoneCombo( "exhaustFxTag2", modelsList ).SetTitle( "Exhaust Tag2" ).SetToolTip( "Optional additional exhaust tag" );
+	}
+		
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// TreadFx
+	
+	Asset.BeginCategory( "SurfaceFx", 1, 0.3, 0.2, "Icon_FX.png" );	
+	{
+		Asset.AddEntry_AssetCombo( "surfaceFx", "vehiclefxdef" ).SetTitle( "Surface FX Definition" );				
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Controller Bindings
+	
+	Asset.BeginCategory( "Controller Bindings", 0.2, 0.5, 1.0, "Icon_controller.png" );		
+	{
+		string ButtonItemsA = "BUTTON_LTRIG | BUTTON_RTRIG | BUTTON_RSHLDR | BUTTON_LSHLDR | BUTTON_A | BUTTON_B | BUTTON_X | BUTTON_Y | none";
+		string ButtonItemsB = "BUTTON_RTRIG | BUTTON_LTRIG | BUTTON_RSHLDR | BUTTON_LSHLDR | BUTTON_A | BUTTON_B | BUTTON_X | BUTTON_Y | BUTTON_LSTICK | BUTTON_RSTICK | none";
+		string ButtonItemsC = "none | BUTTON_Y | BUTTON_RSHLDR | BUTTON_LTRIG | BUTTON_RTRIG | BUTTON_LSHLDR | BUTTON_A | BUTTON_B | BUTTON_X | BUTTON_LSTICK | BUTTON_RSTICK";
+		string ButtonItemsD = "none | BUTTON_B | BUTTON_LTRIG | BUTTON_RTRIG | BUTTON_RSHLDR | BUTTON_LSHLDR | BUTTON_A | BUTTON_X | BUTTON_Y | BUTTON_LSTICK | BUTTON_RSTICK";
+		string ButtonItemsE = "none | BUTTON_RSHLDR | BUTTON_LTRIG | BUTTON_RTRIG | BUTTON_LSHLDR | BUTTON_A | BUTTON_B | BUTTON_X | BUTTON_Y | BUTTON_LSTICK | BUTTON_RSTICK";
+		string ButtonItemsF = "none | BUTTON_LSHLDR | BUTTON_LTRIG | BUTTON_RTRIG | BUTTON_RSHLDR | BUTTON_A | BUTTON_B | BUTTON_X | BUTTON_Y | BUTTON_LSTICK | BUTTON_RSTICK";
+		
+		string AxisItemsA = "AXIS_LSTICK | AXIS_RSTICK | none";		
+		string AxisItemsB = "none | AXIS_LSTICK | AXIS_RSTICK";				
+		
+		Asset.AddEntry_Combo( "steerAxis", AxisItemsA ).Show( isDrivable );		
+		Asset.AddEntry_Combo( "gasAxis", AxisItemsB ).Show( isDrivable );		
+		Asset.AddEntry_Combo( "gasButton", ButtonItemsA ).Show( isDrivable );
+		Asset.AddEntry_Combo( "reverseBrakeButton", ButtonItemsB ).Show( isDrivable );
+		Asset.AddEntry_Combo( "handBrakeButton", ButtonItemsD ).Show( isDrivable );
+		Asset.AddEntry_Combo( "attackButton", ButtonItemsB ).Show( isDrivable );
+		Asset.AddEntry_Combo( "attackSecondaryButton", ButtonItemsB ).Show( isDrivable );
+		Asset.AddEntry_Combo( "moveUpButton", ButtonItemsF ).Show( isDrivable );
+		Asset.AddEntry_Combo( "moveDownButton", ButtonItemsE ).Show( isDrivable );
+		Asset.AddEntry_Combo( "switchSeatButton", ButtonItemsB ).Show( isDrivable );
+		Asset.AddEntry_Combo( "boostButton", ButtonItemsC ).Show( isDrivable );
+		Asset.AddEntry_Path( "accelGraph", "" ).Show( isDrivable ).SetRelativePath( "share/raw/vehicle/" ).SetTitle( "Accel Graph" ).SetToolTip( "Graph file for in-game editing of the non-linear acceleration curve." );
+		Asset.AddEntry_Path( "steerGraph", "" ).Show( isDrivable ).SetRelativePath( "share/raw/vehicle/" ).SetTitle( "Steering Graph" ).SetToolTip( "Graph file for in-game editing of the non-linear steering curve." );
+		Asset.AddEntry_CheckBox( "noButtonAutoRemap", false ).Show( isDrivable ).SetToolTip( "Don't auto remap buttons based on users current controller config.  Used for zombietron game mode" );
+	}
+		
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Engine Sounds Physics
+	
+	bool isBoat = ( Type == "boat" );
+	bool showPhysicsSound = ( isNitrous && !isBoat );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Turret Sounds
+	
+	Asset.BeginCategory( "Turret Sounds", 0, 0.5, 0, "Icon_Sound.png" );
+	{
+		Asset.AddEntry_String( "turretSpinSnd", "" ).Show(!showPhysicsSound);
+		Asset.AddEntry_String( "turretStopSnd", "" ).Show(!showPhysicsSound);
+	}
+
+	Asset.BeginCategory( "Misc Sounds", 0, 0.5, 0, "Icon_Sound.png" );
+	{
+		Asset.AddEntry_String( "jumpSnd", "" ).Show(showPhysicsSound);
+		Asset.AddEntry_String( "doubleJumpSnd", "" ).Show(showPhysicsSound);
+		Asset.AddEntry_String( "boostSnd", "" ).Show(showPhysicsSound);
+		Asset.AddEntry_String( "wallAttachSnd", "" ).Show(showPhysicsSound);
+		Asset.AddEntry_String( "wallDetachSnd", "" ).Show(showPhysicsSound);
+	}
+	
+	// Ground Sounds	
+	
+	Asset.BeginCategory( "Ground Sounds", 0, 0.5, 0, "Icon_Sound.png" );
+	{
+		Asset.AddEntry_String( "wheelRoadNoiseSnd", "" ).SetTitle( "Road Noise Prefix" ).SetToolTip( "Specifies the prefixt of the per material name. Example 'road' becomes 'road_grass','road_dirt',etc" );
+		Asset.AddEntry_String( "wheelSlidingSnd", "" ).SetTitle( "Sliding Prefix" ).SetToolTip( "Specifies the prefix of the per material name. Example 'road' becomes 'road_grass','road_dirt',etc" );
+		Asset.AddEntry_String( "wheelPeelingOutSnd", "" ).SetTitle( "Peeling Out Prefix" ).SetToolTip( "Specifies the prefix of the per material name. Example 'road' becomes 'road_grass','road_dirt',etc" );
+		Asset.AddEntry_Float( "skidSpeedMin", 100, 0, 5000 ).SetTitle( "Sliding Speed Min:" ).SetToolTip( "Velocity at which a wheel is considered sliding." );
+		Asset.AddEntry_Float( "skidSpeedMax", 600, 0, 5000 ).SetTitle( "Sliding Speed Max:" ).SetToolTip( "Velocity at which wheel sliding is maximum." );
+		Asset.AddEntry_Float( "peelSpeedMin", 300, 0, 5000 ).SetTitle( "Peeling Speed Min:" ).SetToolTip( "Velocity at which a wheel is considered peeling out." );
+		Asset.AddEntry_Float( "peelSpeedMax", 600, 0, 5000 ).SetTitle( "Peeling Speed Max:" ).SetToolTip( "Velocity at which wheel peeling is maximum." );		
+	}
+	
+	// Footstep Sounds
+	Asset.BeginCategory( "Footstep Sounds", 0, 0.5, 0, "Icon_Sound.png" );
+	{
+		Asset.AddEntry_AssetCombo( "vehicleFootstepTable", "surfacesounddef" ).SetTitle( "vehicleFootstepTable" ).SetToolTip( "Use this to specify the surfacesounddef asset for the vehicleFootstepTable." );	
+	}
+	
+	// Footstep FX
+	Asset.BeginCategory( "Footstep FX", 0, 0.5, 0, "Icon_FX.png" );
+	{
+		Asset.AddEntry_AssetCombo( "vehicleFootstepFXTable", "surfacefxtable" ).SetTitle( "vehicleFootstepFXTable" ).SetToolTip( "Use this to specify the surfacefxtable asset for the vehicleFootstepFXTable." );	
+	}
+	
+	// Engine Sounds
+	Asset.BeginCategory( "Engine Sounds", 0, 0.5, 0, "Icon_Sound.png" );
+	{
+		Asset.AddEntry_AssetCombo( "soundDef", "vehiclesounddef" ).SetTitle( "Sound Definition" );				
+	}
+	
+	// Futz Sounds 
+	Asset.BeginCategory( "Futz Sounds", 0, 0.5, 0, "Icon_Sound.png" );
+	{
+		Asset.AddEntry_String( "futzSnd", "" ).SetTitle( "Futz Sound" );
+		Asset.AddEntry_Float( "futzBlend", 0, 0, 1.0 ).SetTitle( "Futz Blend" );			
+	}
+	
+	// UI
+	Asset.BeginCategory( "UI", 0.7, 0.5, 0.2, "ui.png" );
+	{
+		Asset.AddEntry_AssetCombo( "tacticalModeIcon", "image" ).SetTitle( "Tactical Mode Icon" );		
+  		Asset.AddEntry_Float( "tacticalModeHeight", 0, -200.0, 200.0 ).SetTitle( "Tactical Mode Height" );
+	}
+}
+
+

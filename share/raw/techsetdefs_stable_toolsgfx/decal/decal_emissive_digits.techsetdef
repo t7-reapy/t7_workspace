@@ -1,0 +1,96 @@
+#include "lit_base_shaders"
+#include "lit_decal_base.inc"
+#include "emissive_base"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "emissive decal"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		sortindex = "18" // leave some indices to have other color maps (need 2 indices - tile + filter)
+	}
+}
+
+// FOR THE OTHER PASSES
+Texture( "colorMap" ) : "emissiveMap"
+{ }
+Color( "colorTint" ) : "emissiveTint1"
+{ }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+uint1( "numDigits" )
+{
+	x = <sw_static_int_00>
+	tweak = Tweak()
+	{
+		category	= "Digits"
+		title		= "Number of digits"
+		sortindex	= "10"
+		default		= "1"
+		range		= "1", "6", "1"
+	}
+}
+
+uint1( "digitsTestValue" )
+{
+	x = <sw_static_int_01>
+	tweak = Tweak()
+	{
+		category	= "Digits"
+		title		= "Value (tools only)"
+		sortindex	= "11"
+		default		= "0"
+		range		= "0", "1000", "1"
+	}
+}
+
+#if TOOLSGFX == "1"
+float1( "numDigitsFloat" )
+{
+	x = <sw_static_int_00>
+}
+
+float1( "digitsTestValueFloat" )
+{
+	x = <sw_static_int_01>
+}
+#endif
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines = "USE_COLOR_TINT"
+}
+
+Technique( "lit" )
+{
+	state = "add + depth + decal"
+	source = "emissive_decal.hlsl"
+	defines = "USE_COLOR_TINT", "USE_DIGITS_UVS"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

@@ -1,0 +1,143 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+// Registered for live update from APE
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	
+	Asset.AddEntry_Combo( "type", "mpdialog" ).Show( false );
+	Asset.AddEntry_Combo( "vmType", "server" ).Show( false );
+	
+	Asset.BeginCategory( "Enable" );
+	{
+		Asset.AddEntry_CheckBox( "enableHeroDialog", true).SetTitle( "Hero Dialog").SetToolTip( "Heroes will play VO during gameplay" );
+		Asset.AddEntry_CheckBox( "enableConversation", true).SetTitle( "Start Conversation").SetToolTip( "If there is enough time, play a conversation between heroes at the beginning of the game" );
+		Asset.AddEntry_CheckBox( "enableEndTaunt", true).SetTitle( "Round End Taunt").SetToolTip( "The top player can push a button to have their hero play a taunt at the end of the game" );
+	}
+	
+	Asset.AddEntry_Int( "playerVoiceRadius", 100, 0, 10000 ).SetTitle( "Player Voice Radius" ).SetToolTip( "Radius that a player voice can be 'heard'" );
+	
+	Asset.BeginCategory( "Exerts" );
+	{
+		Asset.AddEntry_Int( "smallPainChance", 100, 0, 100 ).SetTitle( "Small Pain Chance" ).SetToolTip( "Chance to make a pain sound" );
+		Asset.AddEntry_Int( "breathingChance", 100, 0, 100 ).SetTitle( "Breathing Chance" ).SetToolTip( "Chance to make a breathing sound when hurt or healed" );
+		Asset.AddEntry_Float( "breathingDelay", 0.5, 0, 10).SetTitle( "Breathing Delay" ).SetToolTip( "Time to wait before playing breathing hurt / better" );
+	}
+	
+	Asset.BeginCategory( "Kills" );
+	{
+		Asset.AddEntry_Int( "enemyKillChance", 100, 0, 100).SetTitle( "Dialog Chance" ).SetToolTip( "Chance to play enemy killed dialog" );
+		Asset.AddEntry_Int( "enemySniperKillTime", 5000, 0, 600000).SetTitle( "Sniper Dialog Time (MS)" ).SetToolTip( "Time window in milliseconds after 'threatSniper' is played that nearby players can kill the sniper and play their 'sniperKill' dialog" );
+		Asset.AddEntry_Int( "enemySniperKillChance", 100, 0, 100).SetTitle( "Sniper Dialog Chance" ).SetToolTip( "Chance to play enemy sniper killed dialog if applicable" );
+		Asset.AddEntry_Int( "enemyHeroKillChance", 100, 0, 100).SetTitle( "Hero Dialog Chance" ).SetToolTip( "Chance to play specialist specific enemy killed dialog" );
+		Asset.AddEntry_Float( "enemyKillDelay", 0.8, 0, 10).SetTitle( "Delay" ).SetToolTip( "Time to wait before playing the enemy killed dialog" );
+	}
+	
+	Asset.BeginCategory( "Enemy Contact" );
+	{
+		Asset.AddEntry_Int( "enemyContactChance", 100, 0, 100 ).SetTitle( "Dialog Chance" ).SetToolTip( "Chance to play enemy contact dialog" );
+		Asset.AddEntry_Int( "enemyContactDistance", 2000, 0, 10000 ).SetTitle( "Enemy Distance" ).SetToolTip( "Distance to check for an enemy player" );
+		Asset.AddEntry_Int( "enemyContactAllyRadius", 500, 0, 10000 ).SetTitle( "Ally Radius" ).SetToolTip( "Radius to look for an ally to play dialog to" );
+		Asset.AddEntry_Float( "enemyContactInterval", 5, 0, 60 ).SetTitle( "Enemy Contact Interval" ).SetToolTip( "Interval between allowed enemy contact dialog on a given player" );
+		Asset.AddEntry_Float( "enemyContactIntervalLevel", 3, 0, 60 ).SetTitle( "Level Enemy Contact Interval" ).SetToolTip( "Interval between allowed enemy contact dialog on each team" );
+	}
+	
+	Asset.BeginCategory( "Incoming Projectiles" );
+	{
+		Asset.AddEntry_Int( "incomingProjectileChance", 100, 0, 100 ).SetTitle( "Dialog Chance" ).SetToolTip( "Chance to play incoming grenade/missile dialog" );
+		Asset.AddEntry_Int( "incomingProjectileRadius", 500, 0, 10000 ).SetTitle( "Projectile Radius" ).SetToolTip( "Radius around the projectile to check for an enemy to play dialog" );
+		
+		Asset.AddEntry_Float( "fragGrenadeDelay", 1, 0.05, 10).SetTitle( "Frag Grenade Delay" );
+		Asset.AddEntry_Float( "semtexDelay", 1, 0.05, 10).SetTitle( "Sticky Grenade Delay" );
+		Asset.AddEntry_Float( "incendiaryGrenadeDelay", 0.2, 0.05, 10).SetTitle( "Incendiary Grenade Delay" );
+		Asset.AddEntry_Float( "missileDelay", 0.2, 0.05, 10).SetTitle( "Missile Delay" );
+	}
+	
+	Asset.BeginCategory( "Sniper Spotted" );
+	{
+		Asset.AddEntry_Int( "sniperKillChance", 100, 0, 100 ).SetTitle( "Dialog Chance" ).SetToolTip( "Chance to play sniper dialog when an ally is killed" );
+		Asset.AddEntry_Int( "sniperKillAllyRadius", 500, 0, 10000).SetTitle( "Ally Distance" ).SetToolTip( "Distance from the killed player to check for an ally to play dialog" );
+	}
+	
+	Asset.BeginCategory( "Underwater" );
+	{
+		Asset.AddEntry_Float( "underwaterInterval", 0.6, 0.05, 10).SetTitle( "Underwater Check Interval" ).SetToolTip( "How often to check if a player is still underwater" );
+		Asset.AddEntry_Float( "underwaterBreathTime", 3, 0, 60).SetTitle( "Breath Time" ).SetToolTip( "Time spent submerged that will trigger breathing when leaving the water" );
+	}
+	
+	Asset.BeginCategory( "Hero Weapons" );
+	{
+		Asset.AddEntry_Int( "heroWeaponKillCount", 2, 0, 100 ).SetTitle( "Kill Success Count" ).SetToolTip( "Number of kills with a single hero weapon activation to play the hero weapon success dialog" );
+		Asset.AddEntry_Int( "heroWeaponKillReactionRadius", 500, 0, 10000 ).SetTitle( "Kill Reaction Radius" ).SetToolTip( "Radius around the killing player to look for an ally to play a reaction line" );
+	}
+	
+	Asset.BeginCategory( "Hero Abilities" );
+	{
+		Asset.AddEntry_Int( "speedBurstKillDistance", 400, 0, 10000 ).SetTitle( "Speed Burst Distance" ).SetToolTip( "Distance to play speed burst success dialog when killing a player" );
+		Asset.AddEntry_Float( "flashbackSuccessDelay", 3, 0, 60 ).SetTitle( "Flashback Delay" ).SetToolTip( "Delay before playing success after glitching" );
+		Asset.AddEntry_Float( "resurrectSuccessDelay", 2, 0, 60 ).SetTitle( "Resurrect Delay" ).SetToolTip( "Delay before playing success after resurrecting" );
+		Asset.AddEntry_Float( "camoKillTime", 2, 0, 60 ).SetTitle( "Camo Kill Time" ).SetToolTip( "Getting a kill in this time period after camo deactivates will activiate the hero success line" );
+		Asset.AddEntry_Float( "cloneSuccessDelay", 4, 0, 60 ).SetTitle( "Mind Hack Delay" ).SetToolTip( "Delay before playing success after activating Mind Hack" );
+		Asset.AddEntry_Float( "heatwaveSuccessDelay", 4, 0, 60 ).SetTitle( "Heat Wave Delay" ).SetToolTip( "Delay before playing success after activating Heat Wave" );
+	}
+	
+	Asset.BeginCategory( "Scorestreaks" );
+	{
+		Asset.AddEntry_Int( "taacomPilotKillConfirmChance", 50, 0, 100 ).SetTitle( "Taacom Pilot Kill Confirm Chance" ).SetToolTip( "Chance for Taacom to play pilot specific kill confirmed dialog"  );
+	}
+	
+	Asset.BeginCategory( "Scorestreak Threat" );
+	{
+		Asset.AddEntry_Int( "killstreakKillChance", 100, 0, 100 ).SetTitle( "Ally Killed Dialog Chance" ).SetToolTip( "Chance to play killstreak threat dialog when an ally is killed"  );
+		Asset.AddEntry_Int( "killstreakKillAllyRadius", 500, 0, 10000 ).SetTitle( "Ally Distance" ).SetToolTip( "Distance from the killed player to check for an ally to play dialog"  );
+		Asset.AddEntry_Int( "rapsDropRadius", 650, 0, 10000 ).SetTitle( "Raps Drop Distance" ).SetToolTip( "Cylindrical distance from the raps drop point to check for an enemy to play dialog"  );
+		Asset.AddEntry_Int( "supplyDropRadius", 650, 0, 10000 ).SetTitle( "Care Package Drop Distance" ).SetToolTip( "Cylindrical distance from the care package point to check for an enemy to play dialog"  );
+		Asset.AddEntry_Int( "killstreakSpotChance", 100, 0, 1000 ).SetTitle( "Flying Spotted Dialog Chance" ).SetToolTip( "Chance to play killstreak threat dialog when looking up at a killstreak in the air"  );
+		Asset.AddEntry_Float( "killstreakSpotInterval", 1.5, 0.05, 60 ).SetTitle( "Flying Spotted Interval" ).SetToolTip( "Interval to check for players looking up at scorestreaks"  );
+		Asset.AddEntry_Float( "killstreakSpotDelay", 5, 0.05, 60 ).SetTitle( "Flying Spotted Delay" ).SetToolTip( "Delay after being spotted to wait until firing up the interval check again"  );
+	}
+	
+	Asset.BeginCategory( "Game End" );
+	{
+		Asset.AddEntry_Float( "announceWinnerDelay", 1, 0, 10).SetTitle( "Announce Winner Delay" );
+	}
+	
+	Asset.BeginCategory( "Dialog Buffers" );
+	{
+		Asset.AddEntry_Float( "playerDialogBuffer", 3.5, 0, 10).SetTitle( "Player Dialog" );
+		Asset.AddEntry_Float( "playerExertBuffer", 3.5, 0, 10).SetTitle( "Player Exert" );
+		Asset.AddEntry_Float( "commanderDialogBuffer", 3.5, 0, 10).SetTitle( "Commander Dialog" );
+		Asset.AddEntry_Float( "killstreakDialogBuffer", 3.5, 0, 10).SetTitle( "Scorestreak Dialog" );
+	}
+	
+	Asset.BeginCategory( "Commander Hardpoint Buffers" );
+	{
+		Asset.AddEntry_Float( "kothActiveDialogBuffer", 3.5, 0, 10).SetTitle( "New Hardpoint" );
+		Asset.AddEntry_Float( "kothTurnoverDialogBuffer", 3.5, 0, 10).SetTitle( "Hardpoint Turnover" );
+	}
+	
+	Asset.BeginCategory( "Commander Domination Buffers" );
+	{
+		Asset.AddEntry_Float( "domPointDialogBuffer", 3.5, 0, 10).SetTitle( "Point Status" );
+	}
+	
+	Asset.BeginCategory( "Blackjack Thief Settings" );
+	{
+		Asset.AddEntry_Int( "thiefReadyChance", 100, 0, 100 ).SetTitle( "Thief Ready Chance" ).SetToolTip( "Chance to play the generic ready dialog when initially stealing a weapon" );
+		Asset.AddEntry_Float( "thiefRepeatThreshold", 0, 0, 1000 ).SetTitle( "Thief Repeat Threshold" ).SetToolTip( "Maximum number of seconds to play the repeat dialog when stealing the same weapon twice in a row" );
+		Asset.AddEntry_Float( "thiefRevealDelay", 0, 0, 60 ).SetTitle( "Thief Reveal Delay" ).SetToolTip( "Delay to play ready dialog when a weapon is initially stolen" );
+		Asset.AddEntry_Float( "thiefFlipDelay", 0, 0, 60 ).SetTitle( "Thief Flip Delay" ).SetToolTip( "Delay to play ready dialog when the user switches to the other stolen weapon" );
+		
+
+	}
+	
+	Asset.BeginCategory( "Blackjack Roulette Settings" );
+	{
+		Asset.AddEntry_Int( "rouletteReadyChance", 100, 0, 100 ).SetTitle( "Roulette Ready Chance" ).SetToolTip( "Chance to play the generic ready dialog when roulette charges" );
+		Asset.AddEntry_Float( "rouletteRepeatThreshold", 0, 0, 1000 ).SetTitle( "Roulette Repeat Threshold" ).SetToolTip( "Maximum number of seconds to play the repeat dialog when earning the same ability twice in a row" );
+		Asset.AddEntry_Float( "rouletteRevealDelay", 0, 0, 60 ).SetTitle( "Roulette Reveal Delay" ).SetToolTip( "Delay to play ready dialog when an ability is initially rolled" );
+		Asset.AddEntry_Float( "rouletteFlipDelay", 0, 0, 60 ).SetTitle( "Roulette Reroll Delay" ).SetToolTip( "Delay to play ready dialog when the user rerolls" );
+	}
+}

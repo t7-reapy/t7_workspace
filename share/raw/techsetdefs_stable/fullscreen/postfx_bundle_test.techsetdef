@@ -1,0 +1,23 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Sampler( "testSampler" )
+{
+	tile = "no tile"
+	filter = "nomip bilinear"
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "blend"
+	source = "postfx/postfx_bundle_test.hlsl"
+
+	vs = VertexShader() { }
+	ps = PixelShader() { }
+}

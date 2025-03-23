@@ -1,0 +1,126 @@
+#include "lit_detail_base_basic"
+#include "emissive_base"
+#include "scroll_base"
+#include "reveal_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit forward opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "revealDriver" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Tools"
+		title		= "Reveal Driver"
+		sortindex	= "10"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.01"
+	}
+}
+float1( "pulseDriver" )
+{
+	x = <cg01_y>
+	tweak = Tweak()
+	{
+		category	= "Tools"
+		title		= "Pulse Driver"
+		sortindex	= "20"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.01"
+	}
+}
+
+float2( "maskTiling" )
+{
+	x = <cg00_y>
+	y = <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Emissive"
+		title		= "Mask Scale"
+		sortindex	= "80"
+		default		= "1.0"
+		range		= "1.0", "128.0", "0.01"
+	}
+}
+
+float2( "colorTiling" )
+{
+	x = <cg00_w>
+	y = <cg01_x>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "UV Scale"
+		sortindex	= "50"
+		default		= "1.0"
+		range		= "1.0", "128.0", "0.01"
+	}
+}
+
+// Hacks to make the detail normal not fight with the UV motion
+float2( "scaleUVs" ).x = <cg01_z>
+float2( "scaleUVs" ).y = <cg01_w>
+float1( "layerDepth" ).x = <cg02_x>
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) :  "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque"
+	defines = "USE_COLOR_TINT", "BASE_TEXTURES", "USE_SCROLL_ROTATE_UVS", "USE_DETAIL_MAP"
+	source = "specialty/lit_emissive_synapse.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

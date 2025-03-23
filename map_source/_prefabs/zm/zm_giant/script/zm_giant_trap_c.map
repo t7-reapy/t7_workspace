@@ -1,0 +1,229 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"000_Global/Special Items" flags 
+"000_Global/Special Items/Traps" flags 
+"The Map" flags expanded 
+// entity 0
+{
+guid "{C50EFCB7-6321-11E5-94BD-645106422D48}"
+"classname" "worldspawn"
+"evauto" "1"
+"evmax" "31"
+"evmin" "-32"
+"fogtime" ""
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{3EF63B21-4EAF-4EA5-955B-78E9C89482AC}"
+layer "000_Global/Special Items/Traps"
+"classname" "trigger_multiple"
+"AI_AXIS" "1"
+"BOTHSIDE_TRIGGER" "1"
+"script_flag_wait" "bridge_down"
+"script_noteworthy" "electric"
+"target" "trap_c"
+"targetname" "zombie_trap"
+"_color" "1 0.3 0.1"
+"spawnflags" "2049"
+// brush 0
+{
+ guid "{8EAD5614-2E44-479F-9985-5393A9591600}"
+layer "000_Global/Special Items/Traps"
+ ( 193.25 -1257.25 52 ) ( 373.25 -1257.25 52 ) ( 373.25 -1249.25 52 ) trigger 64 64 25.14255 1585.189 0 0 lightmap_gray 16384 16384.221 25.14255 1585.158 0 0
+ ( 193.25 -1249.25 168 ) ( 373.25 -1249.25 168 ) ( 373.25 -1257.25 168 ) trigger 64 64 25.135376 1585.1318 0 0 lightmap_gray 16384 16381.445 25.140137 1585.099 0 0
+ ( 190.25 -1258.25 52 ) ( 190.25 -1258.25 168 ) ( 370.25 -1258.25 168 ) trigger 64 64 25.149719 1120.0242 0 0 lightmap_gray 16384 16383.879 25.150452 1120.016 0 0
+ ( 472.25 -1246.25 52 ) ( 472.25 -1254.25 52 ) ( 472.25 -1254.25 168 ) trigger 64 64 -1585.1317 1119.9957 0 0 lightmap_gray 16383.936 16384 -1585.1494 1119.9957 0 0
+ ( 373.25 -1245.25 52 ) ( 373.25 -1245.25 168 ) ( 193.25 -1245.25 168 ) trigger 64 64 25.150818 1120.0226 0 0 lightmap_gray 16384.059 16383.848 25.151335 1120.0133 0 0
+ ( 133.25 -1250.25 168 ) ( 133.25 -1258.25 168 ) ( 133.25 -1258.25 52 ) trigger 64 64 -1584.9935 1120.0048 0 0 lightmap_gray 16383.197 16384 -1585.1351 1120.0048 0 0
+}
+}
+// entity 2
+{
+guid "{02DF8734-2381-475B-AFCF-375889A6BF26}"
+layer "000_Global/Special Items/Traps"
+"classname" "trigger_use"
+"targetname" "trap_c"
+"_color" "0.3 0.5 0.8"
+"cursorhint" "HINT_ACTIVATE"
+// brush 0
+{
+ guid "{4D63E8DB-39BB-44A2-BA64-C43E98F2CB43}"
+layer "000_Global/Special Items/Traps"
+ ( 151.25 -1194.75 115 ) ( 151.25 -1178.75 115 ) ( 143.25 -1178.75 115 ) trigger 64 64 -1336.7482 464.80481 90 -7.6658296e-005 lightmap_gray 16383.111 16385.375 -1336.8455 463.17657 90 -0.00013767213
+ ( 143.25 -1194.75 137 ) ( 143.25 -1178.75 137 ) ( 151.25 -1178.75 137 ) trigger 64 64 -1336.7708 465.29358 90 0 lightmap_gray 16383.484 16386.002 -1336.8585 463.19061 90 0
+ ( 151.25 -1170.75 115 ) ( 151.25 -1170.75 137 ) ( 151.25 -1154.75 137 ) trigger 64 64 -1336.9924 1122.0178 0 0 lightmap_gray 16383.49 16384 -1336.8425 1122.0178 0 0
+ ( 143.25 -1177.75 115 ) ( 151.25 -1177.75 115 ) ( 151.25 -1177.75 137 ) trigger 64 -64 -465.2319 -1122.0083 180 0.00013027749 lightmap_gray 16383.822 -16383.912 -463.09061 -1122.0016 180 0.00016223383
+ ( 143.25 -1178.75 115 ) ( 143.25 -1178.75 137 ) ( 143.25 -1194.75 137 ) trigger 64 64 -1336.8706 1122.0577 0 0 lightmap_gray 16384.686 16384 -1336.8568 1122.0577 0 0
+ ( 143.25 -1194.75 137 ) ( 151.25 -1194.75 137 ) ( 151.25 -1194.75 115 ) trigger 64.007858 -64 -465.16086 -1122.0323 180 0 lightmap_gray 16383.609 -16384 -463.12604 -1122.0323 180 0
+}
+}
+// entity 3
+{
+guid "{93066305-3DB5-4DC6-8B71-6C257BA0043D}"
+"classname" "script_struct"
+"angles" "-90 0 0"
+"origin" "378 -1251.8 62"
+"script_sound" "fire_med"
+"targetname" "trap_c"
+"_color" "1 0 0"
+}
+// entity 4
+{
+guid "{06C009B2-AB1B-4D36-9F3E-062406E14033}"
+"classname" "script_struct"
+"angles" "-90 0 0"
+"origin" "329 -1251.8 62"
+"script_sound" "fire_med"
+"targetname" "trap_c"
+"_color" "1 0 0"
+}
+// entity 5
+{
+guid "{19083D7D-2D29-41F8-AFED-2342B9876957}"
+"classname" "script_struct"
+"angles" "-90 0 0"
+"origin" "280 -1251.8 62"
+"script_sound" "fire_med"
+"targetname" "trap_c"
+"_color" "1 0 0"
+}
+// entity 6
+{
+guid "{9B0A4BE2-0084-4C57-9451-362EFCACF9C5}"
+"classname" "script_struct"
+"angles" "-90 0 0"
+"origin" "231 -1251.8 62"
+"script_sound" "fire_med"
+"targetname" "trap_c"
+"_color" "1 0 0"
+}
+// entity 7
+{
+guid "{94DCBC81-C1A3-42FF-AECF-44B94F52A140}"
+"classname" "script_struct"
+"angles" "-90 0 0"
+"origin" "182 -1252 62"
+"script_sound" "fire_med"
+"targetname" "trap_c"
+"_color" "1 0 0"
+}
+// entity 8
+{
+guid "{5D58C962-F326-4A39-A574-848C6D7350F5}"
+"classname" "script_struct"
+"angles" "-90 0 0"
+"origin" "426 -1251.8 62"
+"script_sound" "fire_med"
+"targetname" "trap_c"
+"_color" "1 0 0"
+}
+// entity 9
+{
+guid "{84206095-720D-4E86-944C-BCE7E8765CAD}"
+"classname" "script_model"
+"angles" "0 2.50448e-006 180"
+"model" "p7_zm_der_trap_control_handle"
+"origin" "138.5 -1176.5 127"
+"script_noteworthy" "switch"
+"targetname" "trap_c"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 10
+{
+guid "{CCFB1278-6F76-42E8-82F5-99EF679DD357}"
+"classname" "script_model"
+"angles" "0 270 -180"
+"model" "p7_zm_der_trap_control_handle"
+"origin" "495.5 -1331 126"
+"script_noteworthy" "switch"
+"targetname" "trap_c"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 11
+{
+guid "{13851BA6-1CB7-45C5-B9DF-598AED88AC01}"
+"classname" "trigger_use"
+"targetname" "trap_c"
+"_color" "0.3 0.5 0.8"
+"cursorhint" "HINT_ACTIVATE"
+// brush 0
+{
+ guid "{D8ED9A0C-77C6-4F2F-AFF3-B71F38F6C92D}"
+ ( 477.25 -1341.25 114 ) ( 493.25 -1341.25 114 ) ( 493.25 -1333.25 114 ) trigger 64 64 335.1048 1654.8032 0 -5.4083754e-005 lightmap_gray 16384.096 16384.623 335.07587 1653.1674 0 -6.9199865e-005
+ ( 477.25 -1333.25 136 ) ( 493.25 -1333.25 136 ) ( 493.25 -1341.25 136 ) trigger 64 64 335.16751 1655.3209 0 0 lightmap_gray 16384.063 16385.838 335.13907 1653.1923 0 0
+ ( 501.25 -1341.25 114 ) ( 501.25 -1341.25 136 ) ( 517.25 -1341.25 136 ) trigger 64 64 335.14798 1123.028 0 0 lightmap_gray 16384.037 16384 335.15125 1123.028 0 0
+ ( 494.25 -1333.25 114 ) ( 494.25 -1341.25 114 ) ( 494.25 -1341.25 136 ) trigger 64 64 -1655.2534 1123.0192 0 7.5562675e-005 lightmap_gray 16384.289 16384 -1653.1001 1123.0192 0 0.00011439696
+ ( 493.25 -1333.25 114 ) ( 493.25 -1333.25 136 ) ( 477.25 -1333.25 136 ) trigger 64 64 335.15103 1123.037 0 0 lightmap_gray 16383.875 16384 335.14987 1123.037 0 0
+ ( 477.25 -1333.25 136 ) ( 477.25 -1341.25 136 ) ( 477.25 -1341.25 114 ) trigger 64.00798 64 -1655.1611 1123.0509 0 0 lightmap_gray 16384.072 16384 -1653.1311 1123.0509 0 0
+}
+}
+// entity 12
+{
+guid "{66DA2EEA-D394-47B7-A8F5-3C231A215218}"
+"classname" "script_struct"
+"origin" "302.897 -1252.63 135"
+"script_noteworthy" "trap_c"
+"targetname" "trap_electric"
+"_color" "1 0 0"
+}
+// entity 13
+{
+guid "{8EB1C502-87CB-4CF4-A498-899FDDC11551}"
+"classname" "misc_prefab"
+"angles" "90 -90 0"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_light_cage_01.map"
+"origin" "489.869 -1331.48 157.373"
+}
+// entity 14
+{
+guid "{FA4BBB01-293B-4289-BAF9-7AE0F587269A}"
+"classname" "misc_prefab"
+"angles" "90 0 0"
+"model" "_prefabs/zm/zm_giant/geo/zm_giant_light_cage_01.map"
+"origin" "139.491 -1182.12 158.199"
+}
+// entity 15
+{
+guid "{F94A5519-86C5-42CB-8E2B-99D996627430}"
+"classname" "script_model"
+"angles" "270 180 -5.00896e-006"
+"model" "p7_zm_der_light_bulb_small"
+"origin" "142 -1182 158.25"
+"script_noteworthy" "light"
+"targetname" "trap_c"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}

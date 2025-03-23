@@ -1,0 +1,32 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+StencilState( "match ref" )
+{
+	enable	= true
+	func	= Equal
+	opFail	= Keep
+	opPass	= Keep
+	opZFail	= Keep
+}
+
+State( "motion vector static" ) : "disable"
+{
+	stencilFront = "match ref"
+	stencilBack = "match ref"
+	stencilRef = 0
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "motion vector static"
+	source = "motion_vector_static.hlsl"
+	vs = VertexShader() {}
+	ps = PixelShader() {}
+}

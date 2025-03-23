@@ -1,0 +1,77 @@
+
+void GenerateUI(asset Asset )
+{
+	Asset.SetGraphColor(0.184, 0.153, 0.216, 1.0);
+
+	// Hidden
+	
+	Asset.AddEntry_String( "configstringFileType", "PHYSCONSTRAINTS" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	Asset.AddEntry_Label( "typeFAQ", "point hinge and actuator are rigid body physics constraints used by the destructible sysetm.\nfake_shake is a fake physics constraint used by the destructible systems.\nlaunch is also a destructible system action.\nantenna is a generic constraint that can be used by any entity." ).SetTitle( "Type FAQ" ).SetSave( false );
+
+	for ( int i = 1; i <= 4; i++ )
+	{
+		Asset.BeginCategory( "constraint " + i );
+		{
+			string prefix = "c" + i;
+
+			string typeValues = "none | point | hinge | actuator | antenna";
+			if( i == 1 )
+			{
+				typeValues = "none | point | hinge | actuator | launch | fake_shake | antenna";
+			}
+			string Value = Asset.AddEntry_Combo( prefix + "_type", typeValues ).SetTitle( "Type" ).UpdateOnChange( true ).GetValue();
+	
+			bool antenna = ( Value == "antenna" );
+			bool isXDollPhysConstraint = ( Value == "point" || Value == "hinge" || Value == "actuator" );
+			bool minMaxAngleShow = ( Value == "hinge" ) || antenna;
+			bool powerShow = ( Value == "launch" || Value == "fake_shake" || antenna );
+		
+			string bone1Title = "Bone 1";
+			if( antenna )
+				bone1Title = "Bone";
+
+			Asset.AddEntry_String( prefix + "_bone1_name", "" ).SetTitle( bone1Title ).Show( isXDollPhysConstraint || antenna );
+			Asset.AddEntry_String( prefix + "_bone2_name", "" ).SetTitle( "Bone 2" ).Show( isXDollPhysConstraint );
+			Asset.AddEntry_Vector3( prefix + "_offsetX", "c" + i + "_offsetY", "c" + i + "_offsetZ", 0, 0, 0, -10000, 10000 ).SetStep( 0.5 ).SetTitle( "Offset" ).SetToolTip( "Local X offset." ).Show( Value == "point" );
+			Asset.AddEntry_Int( prefix + "_timeout", 0, 0, 1000 ).SetTitle( "Timeout" ).SetToolTip( "Constraint timeout in seconds." ).Show( isXDollPhysConstraint );
+			Asset.AddEntry_Float( prefix + "_damp", 0, 0, 10000 ).SetTitle( "Dampening" ).SetStep( 0.5 ).Show( Value == "fake_shake" || Value == "hinge" || antenna );
+			
+			string PowerTitle = "Power";
+			if ( Value == "fake_shake" || antenna )
+				PowerTitle = "Spring Strength";
+			else if ( Value == "launch" )
+				PowerTitle = "Launch Force";
+					
+			Asset.AddEntry_Float( prefix + "_power", 0, 0, 10000 ).SetTitle( PowerTitle ).SetToolTip( "power." ).SetStep( 0.5 ).Show( powerShow );
+	
+			Asset.AddEntry_Float( prefix + "_length", 1, 1, 10000 ).Show( antenna ).SetTitle( "Length" );
+			Asset.AddEntry_Float( prefix + "_gravity", 0, -10000, 10000 ).Show( antenna ).SetTitle( "Gravity" );
+			Asset.AddEntry_CheckBox( prefix + "_useantenna_xaxis", false ).Show( antenna ).SetTitle( "Use X Axis" ).SetToolTip( "Antennas are aligned by default to Z. Check this to use the X axis instead." );
+
+			Asset.AddEntry_Vector3( prefix + "_shakescalex", prefix + "_shakescaley", prefix + "_shakescalez", 0.5, 0.5, 1, 0, 10000 ).SetTitle( "Force Scale" ).SetStep( 0.5 ).Show( Value == "fake_shake" ).SetToolTip( "Spring force scale around the x-axis" );
+			Asset.AddEntry_Float( prefix + "_spin_scale", 0, 0, 1000 ).SetStep( 0.5 ).SetTitle( "Spin Scale" ).Show( Value == "launch" );
+			Asset.AddEntry_Float( prefix + "_yaw", 0, -360, 360 ).SetStep( 2 ).SetTitle( "Launch Yaw" ).Show( Value == "launch" );
+			Asset.AddEntry_Float( prefix + "_pitch", 0, -360, 360 ).SetStep( 2 ).SetTitle( "Launch Pitch" ).Show( Value == "launch" );
+
+			if( antenna )
+			{
+				Asset.AddEntry_Int( prefix + "_min_angle", 90, -180, 180 ).SetTitle( "Min Pitch" ).SetToolTip( "Min pitch for the antenna bone." ).Show( minMaxAngleShow );
+				Asset.AddEntry_Int( prefix + "_max_angle", 90, -180, 180 ).SetTitle( "Max Pitch" ).SetToolTip( "Max pitch for the antenna bone." ).Show( minMaxAngleShow );
+			}
+			else
+			{
+				Asset.AddEntry_Int( prefix + "_min_angle", 90, -180, 180 ).SetTitle( "Min angle" ).SetToolTip( "Min angle for the hinge constraint." ).Show( minMaxAngleShow );
+				Asset.AddEntry_Int( prefix + "_max_angle", 90, -180, 180 ).SetTitle( "Max angle" ).SetToolTip( "Max angle for the hinge constraint." ).Show( minMaxAngleShow );
+			}
+
+			Asset.AddEntry_Int( prefix + "_min_angle_yaw", 90, -180, 180 ).SetTitle( "Min Yaw" ).SetToolTip( "Min yaw for the antenna bone." ).Show( antenna );
+			Asset.AddEntry_Int( prefix + "_max_angle_yaw", 90, -180, 180 ).SetTitle( "Max Yaw" ).SetToolTip( "Max yaw for the antenna bone." ).Show( antenna );
+
+			Asset.AddEntry_Int( prefix + "_min_health", -10000, -10000, 10000 ).Show( isXDollPhysConstraint ).SetTitle( "Min health" ).SetToolTip( "The constraint is activated if the health falls between the min/max values. Greater than min, less or equal than max." );
+			Asset.AddEntry_Int( prefix + "_max_health", 10000, -10000, 10000 ).Show( isXDollPhysConstraint ).SetTitle( "Max health" ).SetToolTip( "The constraint is activated if the health falls between the min/max values. Greater than min, less or equal than max." );
+		}
+	}
+}

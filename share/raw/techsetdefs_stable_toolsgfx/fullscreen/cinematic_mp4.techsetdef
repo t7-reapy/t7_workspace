@@ -1,0 +1,25 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+	source = "cinematic_mp4.hlsl"
+
+
+	vs = VertexShader() {}
+	ps = PixelShader() 
+	{ 
+		yTexture = CodeTexture( "cinematicYSampler" )
+		cbcrTexture = CodeTexture( "cinematicCrSampler" )
+		
+		ySampler = Sampler("no tile", "nomip bilinear")
+		cbcrSampler = Sampler("no tile", "nomip bilinear")
+	}
+}
