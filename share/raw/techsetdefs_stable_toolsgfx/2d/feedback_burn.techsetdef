@@ -1,0 +1,123 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "linear (mip none)"
+}
+
+Texture( "colorMap" )
+{
+	image    = Image( <colorMap, $white> )
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "normalMap" )
+{
+	image    = Image( <normalMap, $identitynormal> )
+	tweak    = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Normal Map"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "colorRowsCols" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Flipbook (Rows, Columns)"
+		default		= "1.0"
+		range		= "0.0", "32.0", "1.0"
+		sortindex	= "20"
+	}
+}
+
+float1( "colorTime" )
+{
+	x     = <cg02_z>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Flipbook Time"
+		default		= "1.0"
+		range		= "0.001", "32.0", "0.01"
+		sortindex	= "30"
+	}
+}
+
+float1( "refractionAmount" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Amount"
+		default		= "8.0"
+		range		= "0.0", "1024", "1.0"
+		sortindex	= "20"
+	}
+}
+
+float1( "refractionScale" )
+{
+	x     = <cg00_y>
+	tweak = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Scale"
+		default		= "1.0"
+		range		= "1.0", "128.0", "0.01"
+		sortindex	= "30"
+	}
+}
+
+float2( "refractionScroll" )
+{
+	x     = <cg00_z>
+	y     = <cg00_w>
+	tweak = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Scroll"
+		default		= "0.0"
+		range		= "-1e+009", "1e+009", "0.01"
+		sortindex	= "40"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+		source = "postfx/feedback_burn.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/feedback_burn.hlsl"
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

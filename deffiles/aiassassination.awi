@@ -1,0 +1,72 @@
+const int MAX_SCRIPTBUNDLE_OBJECTS = 25;
+const float ORANGE_R = 1.0;
+const float ORANGE_G = 0.5;
+const float ORANGE_B = 0.3;
+
+const float BLUE_R = 0.3;
+const float BLUE_G = 0.5;
+const float BLUE_B = 1.0;
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	 
+	Asset.AddEntry_Combo( "type", "aiassassination" ).Show( false );
+
+    Asset.AddEntry_Combo( "vmType", "Server | Client | Both" ).SetTitle( "Script Type:" ).SetToolTip( "Spawn this object in server script or client script?" ).Show( false );
+	
+	Asset.BeginCategory( "Archetype Information", ORANGE_R, ORANGE_G, ORANGE_B, "" );
+	
+	Asset.AddEntry_Combo( "attackerArchetype", "none | human | human_riotshield | human_rpg | robot | warlord | zombie | zombie_dog | skeleton | direwolf | civilian | zod_companion | margwa" ).SetTitle( "Attacker Archetype:" ).SetToolTip( "Attacker's archetype" );
+	Asset.AddEntry_Combo( "defenderArchetype", "none | human | human_riotshield | human_rpg | robot | warlord | zombie | zombie_dog | skeleton | direwolf | civilian | zod_companion | margwa" ).SetTitle( "Defender Archetype:" ).SetToolTip( "Defender's archetype" );
+	
+	Asset.AddEntry_String( "attackerVariant", "regular" ).SetTitle( "Attacker Variant:" ).SetToolTip( "Special variant of the attacker which requires custom animations" );
+	Asset.AddEntry_String( "defenderVariant", "regular" ).SetTitle( "Defender Variant:" ).SetToolTip( "Special variant of the defender which requires custom animations" );
+	
+	Asset.BeginCategory( "Attacker Animations", ORANGE_R, ORANGE_G, ORANGE_B, "" );
+	{
+		Asset.AddEntry_Label( "ignore_attackerAnimInfo", "AI vs AI animations used by the initiating AI." ).SetTitle( " " );
+	
+		Asset.BeginCategory( "Attacker Animations" + ".Winner", BLUE_R, BLUE_G, BLUE_B, "" );
+		{
+			Asset.AddEntry_AssetCombo( "attackerFrontAnim", "xanim" ).SetTitle( "Front Animation:" ).SetToolTip( "Animation to play when assassinating from the front." );
+			Asset.AddEntry_AssetCombo( "attackerAlternateFrontAnim", "xanim" ).SetTitle( "Alternate Front Animation:" ).SetToolTip( "Alternate animation to play when assassinating from the front." );
+			Asset.AddEntry_AssetCombo( "attackerBackAnim", "xanim" ).SetTitle( "Back Animation:" ).SetToolTip( "Animation to play when assassinating from the back." );
+			Asset.AddEntry_AssetCombo( "attackerLeftAnim", "xanim" ).SetTitle( "Left Animation:" ).SetToolTip( "Animation to play when assassinating from the left." );
+			Asset.AddEntry_AssetCombo( "attackerRightAnim", "xanim" ).SetTitle( "Right Animation:" ).SetToolTip( "Animation to play when assassinating from the right." );
+		}
+		
+		Asset.BeginCategory( "Attacker Animations" + ".Loser", BLUE_R, BLUE_G, BLUE_B, "" );
+		{
+			Asset.AddEntry_AssetCombo( "attackerLoserFrontAnim", "xanim" ).SetTitle( "Front Animation:" ).SetToolTip( "Animation to play when assassinating from the front." );
+			Asset.AddEntry_AssetCombo( "attackerLoserAlternateFrontAnim", "xanim" ).SetTitle( "Alternate Front Animation:" ).SetToolTip( "Alternate animation to play when assassinating from the front." );
+			Asset.AddEntry_AssetCombo( "attackerLoserBackAnim", "xanim" ).SetTitle( "Back Animation:" ).SetToolTip( "Animation to play when assassinating from the back." );
+			Asset.AddEntry_AssetCombo( "attackerLoserLeftAnim", "xanim" ).SetTitle( "Left Animation:" ).SetToolTip( "Animation to play when assassinating from the left." );
+			Asset.AddEntry_AssetCombo( "attackerLoserRightAnim", "xanim" ).SetTitle( "Right Animation:" ).SetToolTip( "Animation to play when assassinating from the right." );
+		}
+	}
+	
+	Asset.BeginCategory( "Defender Animations", ORANGE_R, ORANGE_G, ORANGE_B, "" );
+	{
+		Asset.AddEntry_Label( "ignore_defenderAnimInfo", "AI vs AI animations used by the defending AI." ).SetTitle( " " );
+	
+		Asset.BeginCategory( "Defender Animations" + ".Winner", BLUE_R, BLUE_G, BLUE_B, "" );
+		{
+			Asset.AddEntry_AssetCombo( "defenderWinnerFrontAnim", "xanim" ).SetTitle( "Front Animation:" ).SetToolTip( "Animation to play when getting assassinated from the front." );
+			Asset.AddEntry_AssetCombo( "defenderWinnerAlternateFrontAnim", "xanim" ).SetTitle( "Alternate Front Animation:" ).SetToolTip( "Alternate animation to play when getting assassinated from the front." );
+			Asset.AddEntry_AssetCombo( "defenderWinnerBackAnim", "xanim" ).SetTitle( "Back Animation:" ).SetToolTip( "Animation to play when getting assassinated from the back." );
+			Asset.AddEntry_AssetCombo( "defenderWinnerLeftAnim", "xanim" ).SetTitle( "Left Animation:" ).SetToolTip( "Animation to play when getting assassinated from the left." );
+			Asset.AddEntry_AssetCombo( "defenderWinnerRightAnim", "xanim" ).SetTitle( "Right Animation:" ).SetToolTip( "Animation to play when getting assassinated from the right." );
+		}
+	
+		Asset.BeginCategory( "Defender Animations" + ".Loser", BLUE_R, BLUE_G, BLUE_B, "" );
+		{
+			Asset.AddEntry_AssetCombo( "victimFrontAnim", "xanim" ).SetTitle( "Front Animation:" ).SetToolTip( "Animation to play when getting assassinated from the front." );
+			Asset.AddEntry_AssetCombo( "victimAlternateFrontAnim", "xanim" ).SetTitle( "Alternate Front Animation:" ).SetToolTip( "Alternate animation to play when getting assassinated from the front." );
+			Asset.AddEntry_AssetCombo( "victimBackAnim", "xanim" ).SetTitle( "Back Animation:" ).SetToolTip( "Animation to play when getting assassinated from the back." );
+			Asset.AddEntry_AssetCombo( "victimLeftAnim", "xanim" ).SetTitle( "Left Animation:" ).SetToolTip( "Animation to play when getting assassinated from the left." );
+			Asset.AddEntry_AssetCombo( "victimRightAnim", "xanim" ).SetTitle( "Right Animation:" ).SetToolTip( "Animation to play when getting assassinated from the right." );
+		}
+	}
+}
+

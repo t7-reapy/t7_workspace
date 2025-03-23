@@ -1,0 +1,72 @@
+#include "lit_base_shaders"
+#include "lit_decal_base.inc"
+#include "emissive_base"
+#include "scroll_base"
+#include "flipbook_base"
+#include "flicker_base"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "emissive decal"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		sortindex = "18" // leave some indices to have other color maps (need 2 indices - tile + filter)
+	}
+}
+
+// FOR THE OTHER PASSES
+Texture( "colorMap" ) : "emissiveMap"
+{ }
+Color( "colorTint" ) : "emissiveTint1"
+{ }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "uvMotionToggle" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "UV Motion Toggle"
+		title		= "Scroll (0.0), Flipbook (1.0)"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines = "USE_COLOR_TINT"
+}
+
+Technique( "lit" )
+{
+	state = "add + depth + decal"
+	source = "emissive_decal.hlsl"
+	defines = "USE_COLOR_TINT", "USE_SCROLL_ROTATE_UVS", "USE_FLIPBOOK_UVS", "USE_EMISSIVE_FLICKER"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

@@ -1,0 +1,732 @@
+
+BlendState( "disable" )
+{
+	colorBlendFunc = disable
+	alphaBlendFunc = disable
+}
+
+BlendState( "replace" )
+{
+	colorBlendFunc = add
+	colorBlendSrc  = One
+	colorBlendDst  = Zero
+	alphaBlendFunc = add
+	alphaBlendSrc  = One
+	alphaBlendDst  = Zero
+}
+
+BlendState( "blend" )
+{
+	colorBlendFunc = add
+	colorBlendSrc  = srcAlpha
+	colorBlendDst  = invSrcAlpha
+	alphaBlendFunc = add
+	alphaBlendSrc  = srcAlpha
+	alphaBlendDst  = invSrcAlpha
+}
+
+BlendState( "premul" )
+{
+	colorBlendFunc = add
+	colorBlendSrc  = one
+	colorBlendDst  = invSrcAlpha
+	alphaBlendFunc = add
+	alphaBlendSrc  = one
+	alphaBlendDst  = invSrcAlpha
+}
+
+BlendState( "premul color" )
+{
+	colorBlendFunc = add
+	colorBlendSrc  = one
+	colorBlendDst  = invSrcAlpha
+	alphaBlendFunc = add
+	alphaBlendSrc  = zero
+	alphaBlendDst  = one
+}
+
+BlendState( "add" )
+{
+	colorBlendFunc = add
+	colorBlendSrc  = srcAlpha
+	colorBlendDst  = one
+	alphaBlendFunc = add
+	alphaBlendSrc  = srcAlpha
+	alphaBlendDst  = one
+}
+
+BlendState( "invmultiply" )
+{
+	colorBlendFunc = Add
+	colorBlendSrc  = Zero
+	colorBlendDst  = InvSrcColor
+	alphaBlendFunc = Add
+	alphaBlendSrc  = One
+	alphaBlendDst  = Zero
+}
+
+BlendState( "multiply" )
+{
+	colorBlendFunc = Add
+	colorBlendSrc  = Zero
+	colorBlendDst  = SrcColor
+	alphaBlendFunc = Add
+	alphaBlendSrc  = One
+	alphaBlendDst  = Zero
+}
+
+BlendState( "nocolor" )
+{
+	writeChannels = ""
+}
+
+BlendState( "fallback" )
+{
+	writeChannels = "rgba"
+	colorBlendFunc = Add
+	colorBlendSrc  = DestAlpha
+	colorBlendDst  = One
+	alphaBlendFunc = Add
+	alphaBlendSrc  = Zero
+	alphaBlendDst  = InvSrcAlpha
+}
+
+StencilState( "write stencil" )
+{
+	enable	= true
+	func	= Always
+	opFail	= Keep
+	opPass	= Replace
+	opZFail	= Keep
+}
+
+
+//-----------------------------------------
+
+// default States:
+State( "disable" )
+{
+	blendState = "disable"
+}
+
+State( "replace" )
+{
+	blendState = "replace"
+}
+
+State( "replace*" ) : replace // "replace*" is used in the GDT and SW
+{
+}
+
+State( "blend" )
+{
+	blendState = "blend"
+}
+
+State( "premul" )
+{
+	blendState = "premul"
+}
+
+State( "premul color" )
+{
+	blendState = "premul color"
+}
+
+State( "add" )
+{
+	blendState = "add"
+}
+
+State( "multiply" )
+{
+	blendState = "multiply"
+}
+
+State( "invmultiply" )
+{
+	blendState = "invmultiply"
+}
+
+//-----------------------------------
+// Derived:
+State( "replace + depth" ) : "replace"
+{
+	depthWrite     = true
+	depthTest      = lessEqual
+}
+
+State( "replace + depth write + nocull" ) : "replace"
+{
+	depthWrite     = true
+	depthTest      = Always
+	cull           = None
+}
+
+// for SW, TODO phase out
+State( "replace_depth" ) : "replace + depth" {}
+
+State( "replace + depth + nocull" ) : "replace + depth"
+{
+	cull = None
+}
+
+State( "replace + depth + nocull + clear stencil" ) : "replace + depth + nocull"
+{
+	cull = None
+	stencilFront = "write stencil"
+	stencilBack = "write stencil"
+	stencilRef = 0
+}
+
+State( "disable + depth" ) : "disable"
+{
+	depthTest      = lessEqual
+	depthWrite     = true
+}
+
+State( "nocolor + depth" ) : "disable + depth"
+{
+	blendState = "nocolor"
+}
+
+State( "fallback + depth" ) : "disable + depth"
+{
+	blendState = "fallback"
+}
+
+State( "disable + depthTestOnly" ) : "disable"
+{
+	blendState = "disable"
+	depthTest  = lessEqual
+}
+
+State( "nocolor + depthTestOnly" ) : "disable + depthTestOnly"
+{
+	blendState = "nocolor"
+}
+
+State( "fallback + depthTestOnly" ) : "disable + depthTestOnly"
+{
+	blendState = "fallback"
+}
+
+#if PLAT_ORBIS == "1"
+State( "nocolor + depth + rez" ) : "nocolor + depthTestOnly"
+{
+	rez = true
+}
+State( "fallback + depth + rez" ) : "fallback + depthTestOnly"
+{
+	rez = true
+}
+#else
+State( "nocolor + depth + rez" ) : "nocolor + depthTestOnly"
+{
+}
+
+State( "fallback + depth + rez" ) : "fallback + depthTestOnly"
+{
+}
+#endif
+
+State( "nocolor + depth + nocull" ) : "nocolor + depth"
+{
+	cull = None
+}
+
+State( "fallback + depth + nocull" ) : "fallback + depth"
+{
+	cull = None
+}
+
+State( "disable + depthTestOnly + nocull" ) : "disable + depthTestOnly"
+{
+	cull = None
+}
+
+State( "nocolor + depthTestOnly + nocull" ) : "nocolor + depthTestOnly"
+{
+	cull = None
+}
+
+State( "nocolor + depth + rez + nocull" ) : "nocolor + depth + rez"
+{
+	cull = None
+}
+
+State( "fallback + depthTestOnly + nocull" ) : "fallback + depthTestOnly"
+{
+	cull = None
+}
+
+State( "fallback + depth + rez + nocull" ) : "fallback + depth + rez"
+{
+	cull = None
+}
+
+State( "disable + depth + nocull" ) : "disable + depth"
+{
+	cull = None
+}
+
+State( "blend + depth" ) : "blend"
+{
+	depthTest      = lessEqual
+	depthWrite     = false
+}
+
+State( "premul + depth" ) : "premul"
+{
+	depthTest      = lessEqual
+	depthWrite     = false
+}
+
+State( "blend + depth + nocull" ) : "blend + depth"
+{
+	cull = None
+}
+
+State( "blend + depth + weapon impact" ) : "blend + depth"
+{
+	polygonOffset  = "weapon impact"
+}
+
+State( "premul + depth + nocull" ) : "premul + depth"
+{
+	cull = None
+}
+
+State( "premul color + depth" ) : "premul color"
+{
+	depthTest      = lessEqual
+	depthWrite     = false
+}
+
+State( "premul color + depth + weapon impact" ) : "premul color + depth"
+{
+	polygonOffset  = "weapon impact"
+}
+
+State( "add + depth" ) : "add"
+{
+	depthTest      = lessEqual
+	depthWrite     = false
+}
+
+State( "add + depth + nocull" ) : "add + depth"
+{
+	cull = None
+}
+
+State( "multiply + depth" ) : "multiply"
+{
+	depthTest      = lessEqual
+	depthWrite     = false
+}
+
+//------------------------------------------
+// Decal
+//
+State( "replace + decal" ) : "replace"
+{
+	polygonOffset  = "static decal"
+}
+
+State( "replace + depth + decal" ) : "replace + depth"
+{
+	polygonOffset  = "static decal"
+}
+
+State( "blend + depth + decal" ) : "blend + depth"
+{
+	polygonOffset  = "static decal"
+}
+
+State( "multiply + depth + decal" ) : "multiply + depth"
+{
+	polygonOffset  = "static decal"
+}
+
+State( "premul + depth + decal" ) : "premul + depth"
+{
+	polygonOffset  = "static decal"
+}
+
+State( "premul color + depth + decal" ) : "premul color + depth"
+{
+	polygonOffset  = "static decal"
+}
+
+State( "add + depth + decal" ) : "add + depth"
+{
+	polygonOffset  = "static decal"
+}
+
+//------------------------------------------
+// nocull
+//
+State( "add + nocull" ) : "add"
+{
+	cull = None
+}
+
+State( "blend + nocull" ) : "blend"
+{
+	cull = None
+}
+
+State( "replace + nocull" ) : "replace"
+{
+	cull = None
+}
+
+State( "premul + nocull" ) : "premul"
+{
+	cull = None
+}
+
+State( "multiply + nocull" ) : "multiply"
+{
+	cull = None
+}
+
+State( "invmultiply + nocull" ) : "invmultiply"
+{
+	cull = None
+}
+
+//-----------------------------------
+State( "buildShadowmap" )
+{
+	depthTest      = less
+	depthWrite     = true
+	blendState = BlendState()
+	{
+#if TOOLSGFX == "1"
+		writeChannels = "rgba"
+#else
+		writeChannels = ""
+#endif
+	}
+
+	polygonOffset  = "shadowmap"
+}
+
+State( "buildShadowmap + nocull" ) : "buildShadowmap"
+{
+	cull = None
+}
+
+State( "depthPrepass" )
+{
+	blendState = "disable"
+	depthTest = less
+	depthWrite = true
+}
+
+State( "depthPrepass + nocull" ) : "depthPrepass"
+{
+	cull = None
+}
+
+State( "wireframe" )
+{
+	blendState     = "replace"
+	depthTest      = less
+	depthWrite     = true
+	cull           = front
+	wireframe      = true
+}
+
+State( "wireframe + nocull" ) : "wireframe"
+{
+	cull           = None
+}
+
+State( "wireframe + nocull + decal" ) : "wireframe + nocull"
+{
+	polygonOffset  = "static decal"
+}
+
+State( "depth write" ) : "disable"
+{
+	blendState     = "nocolor"
+	depthTest      = Always
+	depthWrite     = true
+	cull           = None
+}
+
+//-----------------------------------
+
+State( "gbuffer opaque" ) : "disable + depth"
+{
+#if TOOLSGFX == "1"
+	stencilFront = "write stencil"
+#endif
+}
+
+State( "gbuffer opaque + nocull" ) : "gbuffer opaque"
+{
+	cull = None
+}
+
+BlendState( "gbuffer disable" )
+{
+	colorBlendFunc = disable
+	alphaBlendFunc = disable
+	writeChannels  = ""
+}
+
+BlendState( "gbuffer albedo blend" )
+{
+	colorBlendFunc = add
+	colorBlendSrc  = one
+	colorBlendDst  = invSrcAlpha
+	alphaBlendFunc = disable
+	writeChannels  = "rgb" 
+}
+
+BlendState( "gbuffer albedo multiply" )
+{
+	colorBlendFunc = Add
+	colorBlendSrc  = Zero
+	colorBlendDst  = SrcColor
+	alphaBlendFunc = Add
+	alphaBlendSrc  = One
+	alphaBlendDst  = Zero
+	writeChannels  = "rgb" 
+}
+
+BlendState( "gbuffer reflectance occlusion blend" )
+{
+#if PLAT_ORBIS == "1" || PLAT_DURANGO == "1"
+	// dual source blend mrt - GFX_USE_DUAL_SOURCE_BLEND_GBUFFER
+	colorBlendFunc = add
+	colorBlendSrc  = one
+	colorBlendDst  = invSrc1Alpha
+	alphaBlendFunc = add
+	alphaBlendSrc  = one
+	alphaBlendDst  = invSrc1Alpha
+#else
+	// YCoCg encoding - GFX_USE_GBUFFER_COMPACT_SPECULAR_COLOR
+	colorBlendFunc = add
+	colorBlendSrc  = one
+	colorBlendDst  = invSrcAlpha
+	alphaBlendFunc = disable
+	writeChannels  = "rgb" 
+#endif
+}
+
+BlendState( "gbuffer reflectance blend" )
+{
+#if PLAT_ORBIS == "1" || PLAT_DURANGO == "1"
+	// dual source blend mrt - GFX_USE_DUAL_SOURCE_BLEND_GBUFFER
+	colorBlendFunc = add
+	colorBlendSrc  = one
+	colorBlendDst  = invSrc1Alpha
+	alphaBlendFunc = disable
+	writeChannels  = "rgb"
+#else
+	// YCoCg encoding - GFX_USE_GBUFFER_COMPACT_SPECULAR_COLOR
+	colorBlendFunc = add
+	colorBlendSrc  = one
+	colorBlendDst  = invSrcAlpha
+	alphaBlendFunc = disable
+	writeChannels  = "rg"
+#endif
+}
+
+BlendState( "gbuffer occlusion blend" )
+{
+#if PLAT_ORBIS == "1" || PLAT_DURANGO == "1"
+	// dual source blend mrt - GFX_USE_DUAL_SOURCE_BLEND_GBUFFER
+	colorBlendFunc = disable
+	alphaBlendFunc = add
+	alphaBlendSrc  = one
+	alphaBlendDst  = invSrc1Alpha
+	writeChannels  = "a"
+#else
+	// YCoCg encoding - GFX_USE_GBUFFER_COMPACT_SPECULAR_COLOR
+	colorBlendFunc = add
+	colorBlendSrc  = one
+	colorBlendDst  = invSrcAlpha
+	alphaBlendFunc = disable
+	writeChannels  = "b"
+#endif
+}
+
+BlendState( "gbuffer normal gloss blend" )
+{
+	colorBlendFunc = add
+	colorBlendSrc  = one
+	colorBlendDst  = invSrcAlpha
+	alphaBlendFunc = disable
+	writeChannels  = "rgb"
+}
+
+BlendState( "gbuffer normal blend" )
+{
+	colorBlendFunc = add
+	colorBlendSrc  = one
+	colorBlendDst  = invSrcAlpha
+	alphaBlendFunc = disable
+	writeChannels  = "rg"
+}
+
+BlendState( "gbuffer gloss blend" )
+{
+	colorBlendFunc = add
+	colorBlendSrc  = one
+	colorBlendDst  = invSrcAlpha
+	alphaBlendFunc = disable
+	writeChannels  = "b"
+}
+
+State( "gbuffer decal" )
+{
+	depthTest      = lessEqual
+	depthWrite     = false
+	polygonOffset  = "static decal"
+
+	blendState0 = "gbuffer albedo blend"
+	blendState1 = "gbuffer normal gloss blend"
+	blendState2 = "gbuffer reflectance occlusion blend"
+
+#if TOOLSGFX == "1"
+	stencilFront = "write stencil"
+#endif
+}
+
+#if TOOLSGFX == "1"
+StencilState( "vol decal stencil" )
+{
+	enable	= false
+	func	= Always
+	opFail	= Keep
+	opPass	= Keep
+	opZFail	= Keep
+}
+StencilState( "dynamic vol decal stencil" ) : "vol decal stencil"
+{
+}
+#else
+StencilState( "vol decal stencil" )
+{
+	enable	= true
+	func	= Equal
+	opFail	= Keep
+	opPass	= Keep
+	opZFail	= Keep
+}
+
+StencilState( "dynamic vol decal stencil" )
+{
+	enable	= true
+	func	= NotEqual
+	opFail	= Keep
+	opPass	= Keep
+	opZFail	= Keep
+}
+#endif
+
+State( "gbuffer vol decal" ) : "gbuffer decal"
+{
+	polygonOffset = "0"
+	stencilFront = "vol decal stencil"
+	stencilBack = "vol decal stencil"
+	stencilRef = 0
+}
+
+State( "gbuffer dynamic vol decal" ) : "gbuffer decal"
+{
+	polygonOffset = "0"
+	stencilFront = "dynamic vol decal stencil"
+	stencilBack = "dynamic vol decal stencil"
+	stencilRef = 0
+}
+
+State( "unlit vol decal" ) : "blend + depth"
+{
+	polygonOffset = "0"
+	stencilFront = "vol decal stencil"
+	stencilBack = "vol decal stencil"
+	stencilRef = 0
+}
+
+State( "unlit dynamic vol decal" ) : "blend + depth"
+{
+	polygonOffset = "0"
+	stencilFront = "dynamic vol decal stencil"
+	stencilBack = "dynamic vol decal stencil"
+	stencilRef = 0
+}
+
+State( "sky" ) : "disable + depthTestOnly"
+{
+#if TOOLSGFX == "1"
+	stencilFront = StencilState()
+	{
+		enable	= true
+		func	= NotEqual
+		opFail	= Keep
+		opPass	= Keep
+		opZFail	= Keep
+	}
+#endif
+}
+
+State( "forward opaque" ) : "disable"
+{
+	depthWrite     = false
+	depthTest      = lessEqual
+}
+
+State( "forward opaque sss" ) : "forward opaque"
+{
+	stencilFront = "write stencil"
+	stencilRef = 255
+}
+
+State( "forward opaque depth write" ) : "replace"
+{
+	depthWrite     = true
+	depthTest      = lessEqual
+}
+
+State( "forward opaque + nocull" ) : "forward opaque"
+{
+	cull = None
+}
+
+PrimitiveType ("trilist")
+{
+	value = "TriList"
+	indexCount = 3
+}
+
+PrimitiveType ("patch")
+{
+	value = "Patch"
+	indexCount = 1
+}
+
+PrimitiveType ("pointlist")
+{
+	value = "PointList"
+	indexCount = 3
+}
+
+PrimitiveType ("rectlist")
+{
+	value = "RectList"
+	indexCount = 3
+}
+
+#if PLAT_ORBIS == "1" 
+PrimitiveType ("quadlist")
+{
+	value = "QuadList"
+	indexCount = 4
+}
+#endif

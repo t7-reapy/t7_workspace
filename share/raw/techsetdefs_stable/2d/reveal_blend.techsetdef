@@ -1,0 +1,91 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "linear (mip none)"
+}
+
+Texture( "colorMap" )
+{
+	image    = Image( <colorMap, $white> )
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "revealMap" )
+{
+	image    = Image( <alphaRevealMap, $white_reveal> )
+	tweak    = Tweak()
+	{
+		category	= "Reveal"
+		title		= "Reveal Map"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "alphaRevealSoftEdge" )
+{
+	x     = <alphaRevealSoftEdge>
+	tweak = Tweak()
+	{
+		category	= "Reveal"
+		title		= "Soft Edge"
+		sortindex	= "20"
+	}
+}
+
+float1( "alphaRevealRamp" )
+{
+	x     = <alphaRevealRamp>
+	tweak = Tweak()
+	{
+		category	= "Reveal"
+		title		= "Ramp"
+		sortindex	= "30"
+	}
+}
+
+float2( "colorScroll" )
+{
+	x = <uScroll>
+	y = <vScroll>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Scrolling (U, V)"
+		sortindex	= "30"
+	}
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+		source = "postfx/reveal_blend.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/reveal_blend.hlsl"
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

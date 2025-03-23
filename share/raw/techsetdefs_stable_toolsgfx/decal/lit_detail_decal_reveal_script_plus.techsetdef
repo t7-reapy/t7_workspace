@@ -1,0 +1,106 @@
+#include "lit_detail_base_mid"
+#include "lit_decal_base.inc"
+#include "reveal_base"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "reveal decal renderflags"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+}
+
+Texture( "transitionDiffuse" )
+{
+	image = Image( <colorMap03, $white> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Transition Material"
+		title     = "Diffuse Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "transitionNormal" )
+{
+	image = Image( <colorMap01, $normal> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Transition Material"
+		title     = "Normal Map"
+		sortindex = "20"
+	}
+}
+
+Texture( "transitionGloss" )
+{
+	image = Image( <colorMap02, $white_gloss> )
+	semantic = "glossMap"
+	tweak = Tweak()
+	{
+		category  = "Transition Material"
+		title     = "Gloss Map"
+		sortindex = "30"
+	}
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "scriptProxy" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Script (Tools Simulation)"
+		title		= "Reveal Threshold"
+		sortindex	= "10"
+	}
+}
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "tintMask" )
+{
+	image = Image()
+	{
+		map = <colorMap00, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines += "USE_REVEAL_MAP"
+}
+
+Technique( "gbuffer" ) 
+{
+ 	defines = "USE_DETAIL_MAP", "BASE_SPEC", "USE_REVEAL_MAP", "USE_COLOR_TINT", "USE_TINT_MASK","USE_REVEALMAP_FROM_INCLUDE"
+  	state = "base gbuffer decal state"
+	source = "gbuffer_decal_reveal_script.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader()
+	{
+		defines = "DEBUG_COLOR_TEXELS", "USE_REVEAL_MAP"
+	}
+}

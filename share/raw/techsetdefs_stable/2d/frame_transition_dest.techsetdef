@@ -1,0 +1,86 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearClampler" )
+{
+	tile   = "no tile"
+	filter = "linear (mip none)"
+}
+
+Texture( "warpMaskMap" )
+{
+	image    = Image( <colorMap01, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Frame"
+		title		= "Warp Mask Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "durdenMap" )
+{
+	image    = Image( <colorMap03, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Durden"
+		title		= "Durden Map"
+		sortindex	= "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "brightnessBoost" )
+{
+	x     = <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Frame"
+		title		= "Boost"
+		sortindex	= "50"
+	}
+}
+
+float1( "warpPixels" )
+{
+	x     = <cg00_w>
+	tweak = Tweak()
+	{
+		category	= "Frame"
+		title		= "Warp"
+		sortindex	= "60"
+	}
+}
+
+float1( "durdenBlur" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		category	= "Durden"
+		title		= "Blur"
+		sortindex	= "70"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/frame_transition_dest.hlsl"
+
+	vs = VertexShader() { }
+	ps = PixelShader() { }
+}

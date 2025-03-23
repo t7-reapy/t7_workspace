@@ -1,0 +1,19 @@
+#include "lit_base_shaders"
+
+Globals()
+{
+	gameOnly = true
+	category = "Tools"
+	renderFlags = "emissive opaque"
+	availablePrefixes = "mc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "lit" )
+{
+	state = "replace + depth + decal"
+	source = "utils/paintshop_debug.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}

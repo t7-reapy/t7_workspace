@@ -1,0 +1,58 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = false
+		forFX               = false
+		isEmissive          = true
+		isOpaque            = true
+	}
+	category          = "Specialty"
+	availablePrefixes = "mc/ mcs/"
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Replace
+		colorBlendFunc = add
+		colorBlendSrc  = One
+		colorBlendDst  = Zero
+		alphaBlendFunc = add
+		alphaBlendSrc  = One
+		alphaBlendDst  = Zero
+		writeChannels  = "a"
+	}
+	depthWrite  = true
+	depthTest   = LessEqual
+	cull        = "Back"
+}
+float4( "Tint" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	z     = <cg02_z>
+	w     = <cg02_w>
+	tweak = Tweak()
+	{
+		title     = "Tint"
+		sortindex = "0"
+		default   = "1.000000", "0.000000", "0.000000", "0.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "lit" )
+{
+	state   = "state"
+	source  = "specialty\hud_outline_model.hlsl"
+	defines += "USE_SCRIPT_COLOR"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

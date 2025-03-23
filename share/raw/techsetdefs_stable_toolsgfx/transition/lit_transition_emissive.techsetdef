@@ -1,0 +1,160 @@
+#include "lit_base_mid"
+#include "transition_base"
+#include "emissive_base"
+
+Globals()
+{
+	category = "Transition"
+	renderFlags = "lit forward opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "emissiveTint1" ).tweak = Tweak( "Emissive", "Tint State1", "10" )
+float1( "hdrScale" ).tweak = Tweak( "Emissive", "HDR Scale", "50" )
+float1( "emissiveFalloffPower" ).tweak = Tweak( "Emissive", "Falloff", "60" )
+
+Color( "tint1" )
+{
+	value = "srgb_to_linear( <colorTint2> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint State 2"
+		sortindex = "20"
+		color = true
+	}
+}
+Color( "tint2" )
+{
+	value = "srgb_to_linear( <colorTint3> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint State 3"
+		sortindex = "30"
+		color = true
+	}
+}
+Color( "tint3" )
+{
+	value = "srgb_to_linear( <colorTint4> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint State 4"
+		sortindex = "40"
+		color = true
+	}
+}
+
+float2( "emissiveScaleUVs" )
+{
+	x = <cg05_y>
+	y = <cg05_z>
+	tweak = Tweak()
+	{
+		category	= "Emissive"
+		title		= "Scale (U, V)"
+		sortindex	= "50"
+		default		= "1.0"
+		range		= "0.001", "128.0", "0.01"
+	}
+}
+
+float2( "emissiveScrollUVs" )
+{
+	x = <cg05_w>
+	y = <cg06_x>
+	tweak = Tweak()
+	{
+		category	= "Emissive"
+		title		= "Scroll (U, V)"
+		sortindex	= "60"
+		default		= "0.0"
+		range		= "-1024.0", "1024.0", "0.01"
+	}
+}
+
+float1( "edgeHighlightPower" )
+{
+	x = <cg06_y>
+	tweak = Tweak()
+	{
+		category	= "Emissive"
+		title		= "Edge Harshness"
+		sortindex	= "70"
+		default		= "1.0"
+		range		= "0.0", "1024.0", "0.01"
+	}
+}
+
+float2( "scriptReplacementEmissive" )
+{
+	x = <cg00_y>
+	y = <cg00_z>
+	tweak = Tweak()
+	{
+		category  = "Transition"
+		title     = "Script Emissive & Tint (Tools Only)"
+		sortindex = "69"
+		default   = "0.0"
+		range     = "0", "4", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque"
+	defines = "BASE_SPEC", "USE_COLOR_TINT"
+	source = "lit_transition_emissive.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

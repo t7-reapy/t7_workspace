@@ -1,0 +1,24 @@
+Texture( "specColorMap" )
+{
+	image = Image( <specColorMap, $white_specular> )
+	semantic = "specularMask"
+	usage = "specular map"
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Specular Map"
+		sortindex = "20"
+	}
+}
+
+Color( "specColorTint" )
+{
+	value = "srgb_to_linear( <specColorTint> )"
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Spec Color"
+		sortindex = "30"
+		color = true
+	}
+}

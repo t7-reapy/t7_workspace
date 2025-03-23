@@ -1,0 +1,101 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{39177E32-6180-11E5-94BD-645106422D48}"
+"classname" "worldspawn"
+"_color" "0.607843 0.615686 0.658824"
+"ambient" "0.35"
+"diffusefraction" "0.45"
+"evmax" "31"
+"evmin" "-32"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"suncolor" "0.615686 0.807843 0.815686"
+"sundiffusecolor" "0.3098 0.2745 0.3058"
+"sundirection" "-153 -54 0"
+"sunisprimarylight" "1"
+"sunlight" "0.6"
+"vertexbake" "1.0"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{7E2E47BC-66D3-11E4-85D6-2C27D7F029C0}"
+"classname" "misc_model"
+"model" "p7_zm_der_window_warehouse_01_snow"
+"modelscale" "0.979999999776483"
+"origin" "0 0 1"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 2
+{
+guid "{00511318-66D4-11E4-85D6-2C27D7F029C0}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{00511313-66D4-11E4-85D6-2C27D7F029C0}"
+  contents detail;
+ ( 13 -4 102 ) ( 13 4 102 ) ( 4 4 102 ) t7_metal_trim_rivets_01 64 8 48 4 0 0 lightmap_gray 16384 16384 240 -88 90 0
+ ( 36 4 104 ) ( 47 4 104 ) ( 47 -4 104 ) t7_metal_trim_rivets_01 64 8 48 4 0 0 lightmap_gray 16384 16384 240 -88 90 0
+ ( -88 -4 100 ) ( -88 4 100 ) ( -89 4 101 ) caulk 16 16 0 48 90 0 lightmap_gray 16384 16384 240 -88 90 0
+ ( 36 -4 104 ) ( 47 -4 104 ) ( 47 -4 103 ) t7_metal_trim_rivets_02 -128 -16 0 8 180 0 lightmap_gray 16384 -16384 88 -160 180 0
+ ( 90 4 102 ) ( 90 -4 102 ) ( 91 -4 103 ) caulk 16 16 0 48 90 0 lightmap_gray 16384 16384 240 -88 90 0
+ ( 47 4 104 ) ( 36 4 104 ) ( 36 4 103 ) t7_metal_trim_rivets_02 -128 -16 0 8 180 0 lightmap_gray 16384 -16384 88 -160 180 0
+}
+// brush 1
+{
+ guid "{00511315-66D4-11E4-85D6-2C27D7F029C0}"
+  contents detail;
+ ( 94 4 -2 ) ( 94 -4 -2 ) ( 95 -4 -3 ) caulk 16 16 0 48 90 0 lightmap_gray 16384 16384 240 -88 90 0
+ ( 91 -4 103 ) ( 91 4 103 ) ( 92 4 104 ) caulk 16 16 0 48 90 0 lightmap_gray 16384 16384 240 -88 90 0
+ ( 90 -4 40 ) ( 90 4 40 ) ( 90 4 102 ) t7_metal_trim_rivets_01 64 8 -40 4 -90 0 lightmap_gray 16384 16384 240 160 0 0
+ ( 91 -4 104 ) ( 92 -4 104 ) ( 92 -4 86 ) t7_metal_trim_rivets_02 -128 -16 0 10 90 0 lightmap_gray 16384 -16384 88 -160 -180 0
+ ( 92 -4 104 ) ( 92 4 104 ) ( 92 4 86 ) t7_metal_trim_rivets_01 64 8 -40 4 -90 0 lightmap_gray 16384 16384 240 160 0 0
+ ( 92 4 104 ) ( 91 4 104 ) ( 91 4 86 ) t7_metal_trim_rivets_02 -128 -16 0 10 90 0 lightmap_gray 16384 -16384 88 -160 180 0
+}
+}
+// entity 3
+{
+guid "{79F349E5-66D4-11E4-85D6-2C27D7F029C0}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{79F349E4-66D4-11E4-85D6-2C27D7F029C0}"
+  contents detail;
+ ( -94 4 106 ) ( -94 -4 106 ) ( -95 -4 107 ) caulk 16 -16 0 -48 90 0 lightmap_gray 16384 -16384 240 88 90 0
+ ( -91 -4 1 ) ( -91 4 1 ) ( -92 4 0 ) caulk 16 -16 0 -48 90 0 lightmap_gray 16384 -16384 240 88 90 0
+ ( -90 -4 64 ) ( -90 4 64 ) ( -90 4 2 ) t7_metal_trim_rivets_01 64 -8 64 -4 90 0 lightmap_gray 16384 -16384 240 -264 0 0
+ ( -91 -4 0 ) ( -92 -4 0 ) ( -92 -4 18 ) t7_metal_trim_rivets_02 -128 -16 0 -10 90 0 lightmap_gray 16384 -16384 88 -264 0 0
+ ( -92 -4 0 ) ( -92 4 0 ) ( -92 4 18 ) t7_metal_trim_rivets_01 64 -8 64 -4 90 0 lightmap_gray 16384 -16384 240 -264 0 0
+ ( -92 4 0 ) ( -91 4 0 ) ( -91 4 18 ) t7_metal_trim_rivets_02 -128 -16 0 -10 90 0 lightmap_gray 16384 -16384 88 -264 0 0
+}
+// brush 1
+{
+ guid "{79F349E3-66D4-11E4-85D6-2C27D7F029C0}"
+  contents detail;
+ ( -13 -4 2 ) ( -13 4 2 ) ( -4 4 2 ) t7_metal_trim_rivets_01 64 -8 48 -4 180 0 lightmap_gray 16384 -16384 240 88 90 0
+ ( -36 4 0 ) ( -47 4 0 ) ( -47 -4 0 ) t7_metal_trim_rivets_01 64 -8 48 -4 180 0 lightmap_gray 16384 -16384 240 88 90 0
+ ( 88 -4 4 ) ( 88 4 4 ) ( 89 4 3 ) caulk 16 -16 0 -48 90 0 lightmap_gray 16384 -16384 240 88 90 0
+ ( -36 -4 0 ) ( -47 -4 0 ) ( -47 -4 1 ) t7_metal_trim_rivets_02 -128 -16 0 0 180 0 lightmap_gray 16384 -16384 88 -264 0 0
+ ( -90 4 2 ) ( -90 -4 2 ) ( -91 -4 1 ) caulk 16 -16 0 -48 90 0 lightmap_gray 16384 -16384 240 88 90 0
+ ( -47 4 0 ) ( -36 4 0 ) ( -36 4 1 ) t7_metal_trim_rivets_02 -128 -16 0 0 180 0 lightmap_gray 16384 -16384 88 -264 0 0
+}
+}

@@ -1,0 +1,88 @@
+#include "water_shore_base.techsetdef"
+#include "water_shore_scroll_base.techsetdef"
+
+float4( "waveFrequency" )
+{
+	//	physical frequency (radians/s) of water in deep water approximation is
+	//	sqrt(g * k)
+	//	we allow an additional dimensionless multiplier
+	//	in the nonflat version this speed is relative to texcoord, not world space, so we reduce the speed a bit to
+	//	compensate, even though it's not strictly correct it helps
+	x = "sqrt(386.22 * 6.2831853 / <waterVertexGerstnerWaveWavelength0>) * <waterVertexGerstnerWaveSpeed0> * 0.01"
+	y = "sqrt(386.22 * 6.2831853 / <waterVertexGerstnerWaveWavelength1>) * <waterVertexGerstnerWaveSpeed1> * 0.01"
+	z = "sqrt(386.22 * 6.2831853 / <waterVertexGerstnerWaveWavelength2>) * <waterVertexGerstnerWaveSpeed2> * 0.01"
+	w = "sqrt(386.22 * 6.2831853 / <waterVertexGerstnerWaveWavelength3>) * <waterVertexGerstnerWaveSpeed3> * 0.01"
+}
+
+float4( "foamNoiseScroll" )
+{
+	x =	"sin(radians(<gFoamUVNoiseAngle0>)) * <gFoamUVNoiseSpeed0> * 0.01"
+	y =	"cos(radians(<gFoamUVNoiseAngle0>)) * <gFoamUVNoiseSpeed0> * 0.01"
+	z =	"sin(radians(<gFoamUVNoiseAngle1>)) * <gFoamUVNoiseSpeed1> * 0.01"
+	w =	"cos(radians(<gFoamUVNoiseAngle1>)) * <gFoamUVNoiseSpeed1> * 0.01"
+}
+
+float4( "foamMaskScroll01" )
+{
+	x =	"-cos(radians(<gFoamScrollAngle0>)) * <gFoamScrollSpeed0> / <gFoamUVScale0> * 0.01"
+	y =	" sin(radians(<gFoamScrollAngle0>)) * <gFoamScrollSpeed0> / <gFoamUVScale0> * 0.01"
+	z =	"-cos(radians(<gFoamScrollAngle1>)) * <gFoamScrollSpeed1> / <gFoamUVScale1> * 0.01"
+	w =	" sin(radians(<gFoamScrollAngle1>)) * <gFoamScrollSpeed1> / <gFoamUVScale1> * 0.01"
+}
+
+float4( "foamMaskScroll23" )
+{
+	x =	"-cos(radians(<gFoamScrollAngle2>)) * <gFoamScrollSpeed2> / <gFoamUVScale2> * 0.01"
+	y =	" sin(radians(<gFoamScrollAngle2>)) * <gFoamScrollSpeed2> / <gFoamUVScale2> * 0.01"
+	z =	"-cos(radians(<gFoamScrollAngle3>)) * <gFoamScrollSpeed3> / <gFoamUVScale3> * 0.01"
+	w =	" sin(radians(<gFoamScrollAngle3>)) * <gFoamScrollSpeed3> / <gFoamUVScale3> * 0.01"
+}
+
+//----------------------------------------------------------------------------------------------
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = RenderFlags()
+	{
+		isOpaque = true
+		castsShadows = false
+		requiresPrepass = true
+		isOccluder = true
+		needOpaqueResolve   = false
+		needOpaqueDepthResolve = false
+	}
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines += "UNLIT_PASS","USE_NONFLAT"
+	source = "water_shore.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "replace + depth"
+	defines += "USE_NONFLAT"
+	source = "water_shore.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	defines += "USE_PREPASS","USE_NONFLAT"
+	source = "water_shore.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}

@@ -1,0 +1,49 @@
+#include "uie_base"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Sampler( "tileMipBilinearSampler" )
+{
+	tile = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+
+Texture( "colorMapSampler1" )
+{
+	image = Image( <colorMap00, $white> )
+	tweak = Tweak()
+	{
+		category  = "Maps"
+		title     = "Noise"
+		sortindex = "0"
+	}
+}
+
+Technique( "unlit" )
+{
+	state = "blend + nocull"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "uie/uie_digital_noise.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "uie/uie_digital_noise.hlsl"
+		colorMapSampler = CodeTexture( "codeTexture0" )
+		colorMapSampler1 = "colorMapSampler1"
+		tileMipBilinearSampler = "tileMipBilinearSampler"
+#endif
+	}
+}

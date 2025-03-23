@@ -1,0 +1,60 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Blend
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = invSrcAlpha
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+#if TOOLSGFX == "1"
+Texture( "fontCache" )
+{
+	image = Image( < sw_codetexture_00 > )
+	tweak = Tweak()
+	{
+		default = "sw4\\textures\\fontcache_char.tif"
+	}
+}
+#endif
+Sampler( "fontCache_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_font_cached_outline.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_BLEND"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		fontCache = CodeTexture( "fontCache" )
+	}
+}

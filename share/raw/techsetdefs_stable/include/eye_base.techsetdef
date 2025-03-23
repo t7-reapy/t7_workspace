@@ -1,0 +1,106 @@
+#include "lit_detail_base_basic"
+
+RenderFlags( "lit eye sss" )
+{
+	isOpaque = true
+	castsShadows = false
+	requiresPrepass = true
+	isDoubleSided = false
+	isSubSurfaceScattering = true
+}
+
+State( "forward eye sss" ) : "forward opaque sss"
+{
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "PointSampler" )
+{
+	tile = "no tile"
+	filter = "nomip nearest"
+	nobias = true
+}
+Sampler( "LinearSampler" )
+{
+	tile = "no tile"
+	filter = "nomip bilinear"
+	nobias = true
+}
+
+Sampler( "normalSampler" ).tweak = ""
+Sampler( "normalSampler" ).nobias = true
+Texture( "normalMap" ).tweak = ""
+float1( "baseNormalHeight" ).tweak = ""
+
+Texture( "causticMap" )
+{
+	image = Image( <causticMap, $i_c_gen_eye_caustic_l> )
+	semantic = "Eye Caustic"
+	tweak = Tweak()
+	{
+		category	= "Caustic"
+		title		= "Caustic map"
+		sortindex	= 50
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "eyeIrisScale" )
+{
+	x = <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Eye Parameters"
+		title		= "Iris Scale"
+		range     = "0.0", "1.0", "0.4"
+		sortindex	= 60
+	}
+}
+float1( "eyePupilDilation" )
+{
+	x = <cg01_w>
+	tweak = Tweak()
+	{
+		category	= "Eye Parameters"
+		title		= "Pupil Dilation (Tools Only)"
+		range     = "0.0", "1.0", "0.1"
+		sortindex	= 70
+	}
+}
+float1( "eyeLimbusScale" )
+{
+	x = <cg02_y>
+	tweak = Tweak()
+	{
+		category	= "Eye Parameters"
+		title		= "Limbus"
+		range     = "0.0", "1.0", "0.844"
+		sortindex	= 100
+	}
+}
+float1( "eyeRedness" )
+{
+	x = <cg02_x>
+	tweak = Tweak()
+	{
+		category	= "Eye Parameters"
+		title		= "Redness"
+		range     = "0.0", "1.0", "0.2"
+		sortindex	= 80
+	}
+}
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass_eye.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}

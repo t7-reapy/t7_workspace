@@ -1,0 +1,49 @@
+
+void GenerateUI( asset Asset )
+{
+	// Sound table
+	
+	Asset.BeginCategory( "Entity Sound Impacts" );
+	{
+		Asset.AddEntry_String( "zombieHead", "").SetTitle("Zombie Head").SetToolTip( "Sound to use for Zombie Head impact.");
+		Asset.AddEntry_String( "zombieHeadFatal", "").SetTitle("Zombie Head Fatal").SetToolTip( "Sound to use for Zombie Head Fatal impact.");
+		Asset.AddEntry_String( "zombieBody", "").SetTitle("Zombie Body").SetToolTip( "Sound to use for Zombie Body impact.");
+		Asset.AddEntry_String( "zombieBodyFatal", "").SetTitle("Zombie Body Fatal").SetToolTip( "Sound to use for Zombie Body Fatal impact.");
+		                      
+		Asset.AddEntry_String( "fleshHead", "").SetTitle("Flesh Head").SetToolTip( "Sound to use for Flesh Head impact.");
+		Asset.AddEntry_String( "fleshHeadFatal", "").SetTitle("Flesh Head Fatal").SetToolTip( "Sound to use for Flesh Head Fatal impact.");
+		Asset.AddEntry_String( "fleshBody", "").SetTitle("Flesh Body").SetToolTip( "Sound to use for Flesh Body impact.");
+		Asset.AddEntry_String( "fleshBodyFatal", "").SetTitle("Flesh Body Fatal").SetToolTip( "Sound to use for Flesh Body Fatal impact.");
+		
+		Asset.AddEntry_String( "armorLightHead", "").SetTitle("Armor Light Head").SetToolTip( "Sound to use for Armor Light Head impact.");
+		Asset.AddEntry_String( "armorLightHeadFatal", "").SetTitle("Armor Light Head Fatal").SetToolTip( "Sound to use for Armor Light Head Fatal impact.");
+		Asset.AddEntry_String( "armorLightBody", "").SetTitle("Armor Light Body").SetToolTip( "Sound to use for Armor Light Body impact.");
+		Asset.AddEntry_String( "armorLightBodyFatal", "").SetTitle("Armor Light Body Fatal").SetToolTip( "Sound to use for Armor Light Body Fatal impact.");
+		
+		Asset.AddEntry_String( "armorHeavyHead", "").SetTitle("Armor Heavy Head").SetToolTip( "Sound to use for Armor Heavy Head impact.");
+		Asset.AddEntry_String( "armorHeavyHeadFatal", "").SetTitle("Armor Heavy Head Fatal").SetToolTip( "Sound to use for Armor Heavy Head Fatal impact.");
+		Asset.AddEntry_String( "armorHeavyBody", "").SetTitle("Armor Heavy Body").SetToolTip( "Sound to use for Armor Heavy Body impact.");
+		Asset.AddEntry_String( "armorHeavyBodyFatal", "").SetTitle("Armor Heavy Body Fatal").SetToolTip( "Sound to use for Armor Heavy Body Fatal impact.");
+		
+		Asset.AddEntry_String( "robotLightHead", "").SetTitle("Robot Light Head").SetToolTip( "Sound to use for Robot Light Head impact.");
+		Asset.AddEntry_String( "robotLightHeadFatal", "").SetTitle("Robot Light Head Fatal").SetToolTip( "Sound to use for Robot Light Head Fatal impact.");
+		Asset.AddEntry_String( "robotLightBody", "").SetTitle("Robot Light Body").SetToolTip( "Sound to use for Robot Light Body impact.");
+		Asset.AddEntry_String( "robotLightBodyFatal", "").SetTitle("Robot Light Body Fatal").SetToolTip( "Sound to use for Robot Light Body Fatal impact.");
+		
+		Asset.AddEntry_String( "robotBossHead", "").SetTitle("Robot Boss Head").SetToolTip( "Sound to use for Robot Boss Head impact.");
+		Asset.AddEntry_String( "robotBossHeadFatal", "").SetTitle("Robot Boss Head Fatal").SetToolTip( "Sound to use for Robot Boss Head Fatal impact.");
+		Asset.AddEntry_String( "robotBossBody", "").SetTitle("Robot Boss Body").SetToolTip( "Sound to use for Robot Boss Body impact.");
+		Asset.AddEntry_String( "robotBossBodyFatal", "").SetTitle("Robot Boss Body Fatal").SetToolTip( "Sound to use for Robot Boss Body Fatal impact.");
+
+		Asset.AddEntry_String( "powerArmorHead", "").SetTitle("Power Armor Head").SetToolTip( "Sound to use for Power Armor Head impact.");
+		Asset.AddEntry_String( "powerArmorHeadFatal", "").SetTitle("Power Armor Head Fatal").SetToolTip( "Sound to use for Power Armor Head Fatal impact.");
+		Asset.AddEntry_String( "powerArmorBody", "").SetTitle("Power Armor Body").SetToolTip( "Sound to use for Power Armor Body impact.");
+		Asset.AddEntry_String( "powerArmorBodyFatal", "").SetTitle("Power Armor Body Fatal").SetToolTip( "Sound to use for Power Armor Body Fatal impact.");
+
+		Asset.AddEntry_String( "skeletonHead", "").SetTitle("Skeleton Head").SetToolTip( "Sound to use for Bone Head impact.");
+		Asset.AddEntry_String( "skeletonHeadFatal", "").SetTitle("Skeleton Head Fatal").SetToolTip( "Sound to use for Bone Head Fatal impact.");
+		Asset.AddEntry_String( "skeletonBody", "").SetTitle("Skeleton Body").SetToolTip( "Sound to use for Bone Body impact.");
+		Asset.AddEntry_String( "skeletonBodyFatal", "").SetTitle("Skeleton Body Fatal").SetToolTip( "Sound to use for Bone Body Fatal impact.");
+
+	}
+}

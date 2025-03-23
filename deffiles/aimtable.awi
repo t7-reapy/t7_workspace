@@ -1,0 +1,20 @@
+
+void GenerateUI( asset Asset )
+{
+	// Aim Table
+
+	Asset.BeginCategory( "Tables" );
+	{
+		for( int i = 0; i < 25; i++ )
+		{
+			Asset.BeginCategory( "Aim Limit " + i );
+			{
+				Asset.AddEntry_String("table_name" + i, "").SetTitle( "table_name" );
+				Asset.AddEntry_Int("aim_right_limit" + i, 0, -360, 360).SetTitle( "aim_right_limit" );
+				Asset.AddEntry_Int("aim_left_limit" + i, 0, -360, 360).SetTitle( "aim_left_limit" );
+				Asset.AddEntry_Int("aim_up_limit" + i, 0, -360, 360).SetTitle( "aim_up_limit" );
+				Asset.AddEntry_Int("aim_down_limit" + i, 0, -360, 360).SetTitle( "aim_down_limit" );
+			}
+		}
+	}
+}

@@ -1,0 +1,59 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+
+Texture( "noiseMap" )
+{
+	ref = true
+	image = Image( <colorMap14, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Noise"
+		sortindex = "0"
+	}
+}
+
+
+Texture( "ditherMap" )
+{
+	ref = true
+	image = Image( <colorMap15, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Dither"
+		sortindex = "1"
+	}
+}
+
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "resample_final_bm.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "resample_final_bm.hlsl"
+
+		// textures
+		codeTexture0 = CodeTexture( "codeTexture0" )
+		tNoise = "noiseMap"
+		tDither = "ditherMap"
+
+
+		// samplers
+		bilinearClamp = Sampler("no tile", "nomip bilinear")
+		bilinearWrap = Sampler("tile both*", "nomip bilinear")
+		pointWrap = Sampler("tile both*", "nomip nearest")
+	}
+}

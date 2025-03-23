@@ -1,0 +1,299 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{CBAFDC49-0CBF-11E5-939F-2C27D7EF3DD8}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lightingquality" "1024"
+"newsun" "1"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+ {
+  guid "{D214D571-0CBF-11E5-939F-2C27D7EF3DD8}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_signage_number_letter_1b
+   lightmap_gray
+   2 2 0 8
+   (
+	v 30.999998 1 10 t 0 -0 23.219999 -6.375
+	v 30.999998 1 30 t 0 -1024 21.625 -6.375
+   )
+   (
+	v 69 1 10 t 1024 -0 23.219999 -8
+	v 69 1 30 t 1024 -1024 21.625 -8
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+}
+// entity 1
+{
+guid "{1676058B-6CF1-40E4-8F08-77767B5F4082}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{857DF301-A1A4-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_decal_signage_alert_scroll_01_transparent
+   lightmap_gray
+   2 2 0 8
+   (
+	v 77 -0.5 61 t 1797.2478 -8261.1172 3.75 -0.15625
+	v 29 -0.5 61 t 1029.2482 -8261.1172 6.75 -0.15625
+   )
+   (
+	v 77 -0.5 68.5 t 1797.2478 -9157.127 3.75 -6.03125
+	v 29 -0.5 68.5 t 1029.2482 -9157.127 6.75 -6.03125
+   )
+  }
+ }
+}
+// entity 2
+{
+guid "{C8DC3B8E-A1AD-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_model"
+"angles" "0 360 0"
+"model" "p7_hinge_metal_straight_l"
+"origin" "78.5 0 3"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 3
+{
+guid "{D5EF4712-A1AD-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_model"
+"angles" "0 360 0"
+"model" "p7_hinge_metal_straight_l"
+"origin" "78.5 0 83"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 4
+{
+guid "{F32CFB9F-BB4E-41CD-805C-F1DE6555FD12}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_door_handle_chrome_01"
+"origin" "32.5 0.5 45.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 5
+{
+guid "{2F946E33-118B-4EA5-B70A-D394673F32F9}"
+"classname" "misc_model"
+"model" "p7_door_handle_chrome_01"
+"origin" "32.5 -0.5 45.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 6
+{
+guid "{10CF7C3B-116F-11E5-939F-2C27D7EF3DD8}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{10CF7C37-116F-11E5-939F-2C27D7EF3DD8}"
+  mesh
+  {
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   2 4 0 8
+   (
+	v 29 -0.5 90.5 t -1306624 -3072 -0.03125 -6.125 f 1
+	v 28.75 -0.25 90.75 t -1306880 -3072 79.734375 -6.125
+	v 28.75 0.25 90.75 t -1307392 -3072 0.015625 -6.125
+	v 29 0.5 90.5 t -1307648 -3072 0.03125 -6.125
+   )
+   (
+	v 29 -0.5 -2.5 t -1306624 -2048 -0.03125 -0.125 f 1
+	v 28.75 -0.25 -2.75 t -1306880 -2048 79.734375 -0.125
+	v 28.75 0.25 -2.75 t -1307392 -2048 0.015625 -0.125
+	v 29 0.5 -2.5 t -1307648 -2048 0.03125 -0.125
+   )
+  }
+ }
+// brush 1
+ {
+  guid "{10CF7C38-116F-11E5-939F-2C27D7EF3DD8}"
+  mesh
+  {
+  toolFlags;
+   t7_glass_smoked
+   lightmap_gray
+   2 2 0 8
+   (
+	v 29 0.5 -2.5 t 5984 -2560 6.78125 -0.46875
+	v 77 0.5 -2.5 t 6748 -2560 3.796875 -0.46875
+   )
+   (
+	v 29 0.5 90.5 t 5984 -4096 6.78125 -6.46875
+	v 77 0.5 90.5 t 6748 -4096 3.796875 -6.46875
+   )
+  }
+ }
+// brush 2
+ {
+  guid "{10CF7C39-116F-11E5-939F-2C27D7EF3DD8}"
+  mesh
+  {
+  toolFlags;
+   t7_glass_smoked
+   lightmap_gray
+   2 2 0 8
+   (
+	v 77 -0.5 -2.5 t 6748 -2560 3.796875 -0.46875
+	v 29 -0.5 -2.5 t 5984 -2560 6.78125 -0.46875
+   )
+   (
+	v 77 -0.5 90.5 t 6748 -4096 3.796875 -6.46875
+	v 29 -0.5 90.5 t 5984 -4096 6.78125 -6.46875
+   )
+  }
+ }
+// brush 3
+ {
+  guid "{10CF7C3A-116F-11E5-939F-2C27D7EF3DD8}"
+  mesh
+  {
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   5 2 0 8
+   (
+	v 77 -0.5 90.5 t 0 -0 -0.03125 -6.125
+	v 77 -0.5 -2.5 t 0 -2992 -0.03125 -0.125
+   )
+   (
+	v 77.25 -0.25 90.75 t 110.85125 -0 -0.015625 -6.125 f 1
+	v 77.25 -0.25 -2.75 t 110.85125 -2992 -0.015625 -0.125 f 1
+   )
+   (
+	v 77.25 0.25 90.75 t 238.85126 -0 79.765625 -6.125 f 1
+	v 77.25 0.25 -2.75 t 238.85126 -2992 79.765625 -0.125 f 1
+   )
+   (
+	v 77 0.5 90.5 t 349.70251 -0 0.03125 -6.125 f 1
+	v 77 0.5 -2.5 t 349.70251 -2992 0.03125 -0.125 f 1
+   )
+   (
+	v 77.25 0.25 90.75 t 460.55377 -0 0.015625 -6.125 f 1
+	v 77.25 0.25 -2.75 t 460.55377 -2992 0.015625 -0.125 f 1
+   )
+  }
+ }
+}
+// entity 7
+{
+guid "{10CF7C3E-116F-11E5-939F-2C27D7EF3DD8}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{10CF7C3D-116F-11E5-939F-2C27D7EF3DD8}"
+  mesh
+  {
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   5 2 0 8
+   (
+	v 29 -0.5 90.5 t 0 -0 -0.03125 -6.125
+	v 77 -0.5 90.5 t 0 -1552 -0.03125 -0.125
+   )
+   (
+	v 28.75 -0.25 90.75 t 110.85125 -0 -0.015625 -6.125 f 1
+	v 77.25 -0.25 90.75 t 110.85125 -1552 -0.015625 -0.125 f 1
+   )
+   (
+	v 28.75 0.25 90.75 t 238.85126 -0 79.765625 -6.125 f 1
+	v 77.25 0.25 90.75 t 238.85126 -1552 79.765625 -0.125 f 1
+   )
+   (
+	v 29 0.5 90.5 t 349.70251 -0 0.03125 -6.125 f 1
+	v 77 0.5 90.5 t 349.70251 -1552 0.03125 -0.125 f 1
+   )
+   (
+	v 28.75 0.25 90.75 t 460.55377 -0 0.015625 -6.125 f 1
+	v 77.25 0.25 90.75 t 460.55377 -1552 0.015625 -0.125 f 1
+   )
+  }
+ }
+}
+// entity 8
+{
+guid "{10CF7C41-116F-11E5-939F-2C27D7EF3DD8}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{10CF7C40-116F-11E5-939F-2C27D7EF3DD8}"
+  mesh
+  {
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   5 2 0 8
+   (
+	v 77 -0.5 -2.5 t -1306624 -3072 -0.03125 -6.125
+	v 29 -0.5 -2.5 t -1306624 -2048 -0.03125 -0.125
+   )
+   (
+	v 77.25 -0.25 -2.75 t -1306880 -3072 -0.015625 -6.125 f 1
+	v 28.75 -0.25 -2.75 t -1306880 -2048 -0.015625 -0.125 f 1
+   )
+   (
+	v 77.25 0.25 -2.75 t -1307392 -3072 79.765625 -6.125 f 1
+	v 28.75 0.25 -2.75 t -1307392 -2048 79.765625 -0.125 f 1
+   )
+   (
+	v 77 0.5 -2.5 t -1307648 -3072 0.03125 -6.125 f 1
+	v 29 0.5 -2.5 t -1307648 -2048 0.03125 -0.125 f 1
+   )
+   (
+	v 77.25 0.25 -2.75 t -1307392 -3072 0.015625 -6.125 f 1
+	v 28.75 0.25 -2.75 t -1307392 -2048 0.015625 -0.125 f 1
+   )
+  }
+ }
+}

@@ -1,0 +1,37 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Sampler( "pointSampler" )
+{
+	tile = "no tile"
+	#if PLAT_ORBIS == "1" || PLAT_DURANGO == "1"
+	filter = "linear (mip nearest)"
+	mode = "min"
+	#else
+	filter = "nearest (mip nearest)"
+	#endif
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	defines = "SAMPLE_COUNT 8", "DIRECTION_COUNT 1"
+
+	vs = VertexShader()
+	{
+		source = "ssao_gtao.hlsl"
+	}
+
+	ps = PixelShader()
+	{
+		source = "ssao_gtao.hlsl"
+
+		depthTex = CodeTexture( "codeTexture2" )
+	}
+}

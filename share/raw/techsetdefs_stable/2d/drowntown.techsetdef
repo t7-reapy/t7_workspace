@@ -1,0 +1,41 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearClampler" )
+{
+	tile   = "tile both*"
+	filter = "linear (mip none)"
+}
+
+Color( "colorTint" )
+{
+	value = "srgb_to_linear( <colorTint> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint"
+		sortindex = "0"
+		color = true
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/drowntown.hlsl"
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

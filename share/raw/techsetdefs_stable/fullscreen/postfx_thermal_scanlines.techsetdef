@@ -1,0 +1,34 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "postfx/postfx_thermal_scanlines.hlsl"
+		defines = "USE_VERTCOL 0"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/postfx_thermal_scanlines.hlsl"
+		defines = "USE_VERTCOL 0"
+		
+		colorMapSampler = CodeTexture( "feedback" )
+	        codeTexture0  = CodeTexture( "codeTexture0" )
+	        codeTexture1  = CodeTexture( "codeTexture1" )
+	        codeTexture2  = CodeTexture( "codeTexture2" )
+
+	        // samplers
+ 		bilinearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

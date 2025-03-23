@@ -1,0 +1,60 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "fillOpacity" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Outline"
+		title		= "Fill Opacity"
+		sortindex	= "10"
+	}
+}
+
+float1( "edgeWidth" )
+{
+	x = <cg00_y>
+	tweak = Tweak()
+	{
+		category	= "Outline"
+		title		= "Edge Width"
+		sortindex	= "20"
+	}
+}
+
+float1( "edgeHarshness" )
+{
+	x = <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Outline"
+		title		= "Edge Harshness"
+		sortindex	= "30"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "disable"
+	source = "postfx/postfx_codcaster_keyline.hlsl"
+	defines = "USE_VERTCOL 0"
+
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+ 		bilinearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

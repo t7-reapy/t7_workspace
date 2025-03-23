@@ -1,0 +1,20 @@
+#include "lit_weapon_camo_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit deferred decal"
+	gameOnly = true
+	availablePrefixes = "mc/ mcs/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "gbuffer" ) : "gbuffer base"
+{
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}

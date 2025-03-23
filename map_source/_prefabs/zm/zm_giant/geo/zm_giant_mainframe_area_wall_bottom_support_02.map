@@ -1,0 +1,213 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{91FC1AE5-7618-46E4-9AD0-CD228725F554}"
+"classname" "worldspawn"
+"suncolor" "0.6352 0.7137 0.8"
+"sundirection" "-153 -54 0"
+"sunlight" "0.6"
+"vertexbake" "1.0"
+"evmax" "31"
+"evmin" "-32"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{CCB7D258-48E9-11E4-B685-D89D67C6FA88}"
+  contents detail;
+ ( 2 8 -68 ) ( -8 8 -68 ) ( -8 -8 -68 ) caulk 16 16 2 476 0 0 lightmap_gray 16384 16384 2 456 0 0
+ ( -4 -8 0 ) ( -4 8 0 ) ( 2 8 0 ) caulk 16 16 2 476 0 0 lightmap_gray 16384 16384 2 456 0 0
+ ( -8 -8 -52 ) ( 2 -8 -52 ) ( 2 -8 -66 ) t7_metal_trim_rivets_02 128 16 -1246.125 -1277.9961 90 0 lightmap_gray 16384 16384 2 66 0 0
+ ( 4 -8 -52 ) ( 4 8 -52 ) ( 4 8 -66 ) t7_metal_trim_rivets_02 64 8 -1236 -1746 90 0 lightmap_gray 16384 16384 -456 66 0 0
+ ( 2 8 -52 ) ( -8 8 -52 ) ( -8 8 -66 ) t7_metal_trim_rivets_02 128 16 -1246.125 -1277.9961 90 0 lightmap_gray 16384 16384 2 66 0 0
+ ( 0 8 -60 ) ( 0 8 -66 ) ( 0 40 -66 ) t7_metal_trim_rivets_01 128 16 -64 -472 90 0 lightmap_gray 16384 16384 -476 66 0 0
+}
+// brush 1
+{
+ guid "{D46A14AC-48E9-11E4-B685-D89D67C6FA88}"
+  contents detail;
+ ( -10 4 -68 ) ( -10 -4 -68 ) ( 2 -4 -68 ) caulk 16 16 4 476 0 0 lightmap_gray 16384 16384 2 456 0 0
+ ( -2 4 0 ) ( 2 4 0 ) ( 2 -4 0 ) caulk 16 16 4 476 0 0 lightmap_gray 16384 16384 2 456 0 0
+ ( 0 -4 -68 ) ( -10 -4 -68 ) ( -2 -4 0 ) t7_metal_trim_rivets_02 128 16 -1246.125 -1277.9961 90 0 lightmap_gray 16384 16384 2 66 0 0
+ ( -10 4 -68 ) ( 0 4 -68 ) ( 0 4 0 ) t7_metal_trim_rivets_02 128 16 -1246.125 -1277.9961 90 0 lightmap_gray 16384 16384 2 66 0 0
+ ( 0 4 -68 ) ( 0 -4 -68 ) ( 0 -4 0 ) caulk 64 8 -476 66 0 0 lightmap_gray 16384 16384 -476 66 0 0
+ ( -10 -4 -68 ) ( -10 4 -68 ) ( -2 4 0 ) caulk 64 8 -476 66 0 0 lightmap_gray 16384 16384 -476 66 0 0
+}
+// brush 2
+ {
+  guid "{2F1645FC-48EB-11E4-B685-D89D67C6FA88}"
+  mesh
+  {
+  contents detail;
+  toolFlags;
+   t7_decal_signage_caution_strip
+   lightmap_gray
+   2 2 16 8
+   (
+	v -8 8 -34 t 0 0 0.5 2.125 f 1
+	v -8 -8 -34 t 0 -1024 -0.5 2.125 f 1
+   )
+   (
+	v -12 8 -68 t 512 0 0.5 4.25 f 1
+	v -12 -8 -68 t 512 -1024 -0.5 4.25 f 1
+   )
+   decalLayerSort "Signage - Old"
+   decalEditorSort -1
+  }
+ }
+// brush 3
+{
+ guid "{D46A14AD-48E9-11E4-B685-D89D67C6FA88}"
+  contents detail;
+ ( -2 8 -68 ) ( -12 8 -68 ) ( -12 -8 -68 ) caulk 16 16 4 476 0 0 lightmap_gray 16384 16384 2 456 0 0
+ ( -4 -8 0 ) ( -4 8 0 ) ( 2 8 0 ) caulk 16 16 4 476 0 0 lightmap_gray 16384 16384 2 456 0 0
+ ( -10 -8 -68 ) ( -12 -8 -68 ) ( -4 -8 0 ) t7_metal_trim_rivets_02 128 16 -1233.7479 -1283.985 83.300003 0 lightmap_gray 16384 16384 2 64 0 0
+ ( -12 8 -68 ) ( -10 8 -68 ) ( -2 8 0 ) t7_metal_trim_rivets_02 128 16 -1233.7479 -1283.985 83.300003 0 lightmap_gray 16384 16384 2 64 0 0
+ ( -12 -8 -68 ) ( -12 8 -68 ) ( -4 8 0 ) t7_metal_trim_rivets_01 128 16 -64 -472 90 0 lightmap_gray 16384 16384 -456 64 0 0
+ ( -10 8 -68 ) ( -10 -8 -68 ) ( -2 -8 0 ) t7_metal_trim_rivets_01 128 16 -64 -472 90 0 lightmap_gray 16384 16384 -476 64 0 0
+}
+// brush 4
+{
+ guid "{3CA9015F-48F3-11E4-B685-D89D67C6FA88}"
+  contents detail;
+ ( -8 1 4 ) ( -8 0 4 ) ( -4 0 4 ) t7_metal_trim_rivets_01 128 16 0.5 8 -90 0 lightmap_gray 16384 16384 0 0.5 0 0
+ ( -4 -0.5 68 ) ( 0 -0.5 68 ) ( 0 -0.5 4 ) t7_metal_trim_worn_iron_dark 64 8 0 7.6875 86.199997 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 0.5 68 ) ( -4 0.5 68 ) ( -12 0.5 4 ) t7_metal_trim_worn_iron_dark 64 8 0 7.6875 86.199997 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -4 1 64 ) ( -4 0 64 ) ( -8 0 4 ) t7_metal_trim_rivets_02 64 8 0 -0.6875 90 0 lightmap_gray 16384 16384 -0.5 0 0 0
+ ( -4 0 64 ) ( -4 1 64 ) ( -4 1 4 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 5
+{
+ guid "{66A0072F-48F5-11E4-B685-D89D67C6FA88}"
+  contents detail;
+ ( -4 0 0 ) ( -8 0 0 ) ( -8 1 0 ) t7_metal_trim_rivets_01 128 16 0.5 8 -90 0 lightmap_gray 16384 16384 0 0.5 0 0
+ ( 0 -0.5 0 ) ( 0 -0.5 -64 ) ( -4 -0.5 -64 ) t7_metal_trim_worn_iron_dark 64 -8 -3.9912028 -7.9519539 -86.200005 0 lightmap_gray 16384 -16384 0 -4 0 0
+ ( -12 0.5 0 ) ( -4 0.5 -64 ) ( 0 0.5 -64 ) t7_metal_trim_worn_iron_dark 64 -8 -3.9912031 -7.9519539 -86.200005 0 lightmap_gray 16384 -16384 0 -4 0 0
+ ( -8 0 0 ) ( -4 0 -60 ) ( -4 1 -60 ) t7_metal_trim_rivets_02 64 -8 -4 0.6875 -90 0 lightmap_gray 16384 -16384 -0.5 -4 0 0
+ ( -5.5 0.5 -12.75 ) ( -4 0.5 0 ) ( -4 32.5 0 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 6
+{
+ guid "{0D31077F-4A6B-11E4-92FF-D89D67C6FA88}"
+  contents detail;
+ ( 9 8 -16 ) ( 6 8 -16 ) ( 6 -8 -16 ) t7_metal_trim_rivets_01 64 8 0 0 90 0 lightmap_gray 16384 16384 10 744 0 0
+ ( 6 -8 12 ) ( 9 -8 12 ) ( 9 -8 4 ) t7_metal_trim_rivets_01 64 8 0 0 90 0 lightmap_gray 16384 16384 10 0 0 0
+ ( 8 -8 12 ) ( 8 8 12 ) ( 8 8 4 ) t7_metal_trim_rivets_01 -128 -16 0 -8 90 0 lightmap_gray 16384 16384 -744 0 0 0
+ ( 9 8 12 ) ( 6 8 12 ) ( 6 8 4 ) t7_metal_trim_rivets_02 -128 -16 -60 -8 90 0 lightmap_gray 16384 16384 10 0 0 0
+ ( 6 8 12 ) ( 6 -8 12 ) ( 6 -8 4 ) t7_metal_trim_rivets_01 -128 -16 0 -8 90 0 lightmap_gray 16384 16384 -744 0 0 0
+ ( -2 874 67 ) ( -3 874 67 ) ( -3 906 67 ) t7_metal_trim_plasma_cut_01 -16 -2.0000005 -8 -1.9073486e-006 90 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 7
+{
+ guid "{0D310781-4A6B-11E4-92FF-D89D67C6FA88}"
+  contents detail;
+ ( -1 8 4 ) ( -4 8 4 ) ( -4 -8 4 ) t7_metal_trim_rivets_01 64 8 0 0 90 0 lightmap_gray 16384 16384 0 744 0 0
+ ( -4 -8 12 ) ( -1 -8 12 ) ( -1 -8 4 ) t7_metal_trim_rivets_01 64 8 0 0 90 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2 -8 12 ) ( -2 8 12 ) ( -2 8 4 ) t7_metal_trim_rivets_01 -128 -16 0 -8 90 0 lightmap_gray 16384 16384 -744 0 0 0
+ ( -1 8 12 ) ( -4 8 12 ) ( -4 8 4 ) t7_metal_trim_rivets_02 -128 -16 -60 -3.9999998 90 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -4 8 12 ) ( -4 -8 12 ) ( -4 -8 4 ) t7_metal_trim_rivets_01 -128 -16 0 -8 90 0 lightmap_gray 16384 16384 -744 0 0 0
+ ( -2 874 67 ) ( -3 874 67 ) ( -3 906 67 ) t7_metal_trim_plasma_cut_01 -16 -2.000001 -8 -1.9999995 90 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 1
+{
+guid "{1683D460-CB0A-471D-B583-3D7CE807F382}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{09E30F9A-491D-11E4-B685-D89D67C6FA88}"
+  mesh
+  {
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   3 3 0 8
+   (
+	v -4.5 0.49999997 4.4999981 t 0 0 46 -0.25 f 1
+	v -4 0.49999997 3.9999981 t 0 -512 46 -0.25 f 1
+	v -4 1 3.9999981 t 0 -1024 47 -0.25 f 1
+   )
+   (
+	v -4.5 0.49999997 56.5 t 3582.7578 0 46 -2.25 f 1
+	v -4 0.49999997 56.5 t 3584.0002 -512 46 -2.25 f 1
+	v -4 1 56.5 t 3583.0061 -1024 47 -2.25 f 1
+   )
+   (
+	v -4 0.24999997 64 t 4096 0 46 -4.25 f 1
+	v -4 0.49999997 64 t 4096 -1023.9999 46 -4.25 f 1
+	v -4 0.5 64 t 4096 -1024 47 -4.25 f 1
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+// brush 1
+ {
+  guid "{5B21D5BF-491E-11E4-B685-D89D67C6FA88}"
+  mesh
+  {
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   3 4 16 8
+   (
+	v -4 -1 4 t 0 0 -0.25 0.0625 f 1
+	v -8.5 -1 4 t 341.33347 1.8650193e-006 -0.53125 0.0625 f 1
+	v -8.5 1 4 t 682.66693 3.7300385e-006 -0.53125 -0.0625 f 1
+	v -4 1 4 t 1024.0004 5.5950577e-006 -0.25 -0.0625 f 1
+   )
+   (
+	v -4 -0.5 4 t -0.0001790419 512 -0.25 0.03125 f 1
+	v -8 -0.5 4 t 341.33328 512 -0.5 0.03125 f 1
+	v -8 0.5 4 t 682.66675 512 -0.5 -0.03125 f 1
+	v -4 0.5 4 t 1024.0002 512 -0.25 -0.03125 f 1
+   )
+   (
+	v -4.5 -0.5 4.5 t -0.00035808381 1024 -0.28125 0.03125 f 1
+	v -8 -0.5 4.5 t 341.3331 1024 -0.5 0.03125 f 1
+	v -8 0.5 4.5 t 682.66656 1024 -0.5 -0.03125 f 1
+	v -4.5 0.5 4.5 t 1024 1024 -0.28125 -0.03125 f 1
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+// brush 2
+ {
+  guid "{1BE75F1B-491E-11E4-B685-D89D67C6FA88}"
+  mesh
+  {
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   3 3 0 8
+   (
+	v -4 -1 4 t 0 0 47 -0.25 f 1
+	v -4 -0.5 4 t 0 -512 46 -0.25 f 1
+	v -4.5 -0.5 4.5 t 0 -1024 46 -0.25 f 1
+   )
+   (
+	v -4 -1 56.5 t 3583.0061 0 47 -2.25
+	v -4 -0.5 56.5 t 3584.0002 -512 46 -2.25
+	v -4.5 -0.5 56.5 t 3582.7578 -1024 46 -2.25 f 1
+   )
+   (
+	v -4 -0.5 64 t 4096 0 47 -4.25 f 1
+	v -4 -0.5 64 t 4096 -0 46 -4.25 f 1
+	v -4 -0.25 64 t 4096 -1024 46 -4.25 f 1
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+}

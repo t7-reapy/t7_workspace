@@ -1,0 +1,184 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "linear (mip none)"
+}
+Sampler( "pointSampler" )
+{
+	tile   = "tile both*"
+	filter = "nearest (mip none)"
+}
+
+Texture( "colorMap" )
+{
+	image    = Image( <colorMap, $white> )
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "maskMap" )
+{
+	image    = Image( <alphaRevealMap, $white_reveal> )
+	tweak    = Tweak()
+	{
+		category	= "Mask"
+		title		= "Mask Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "offsetMap" )
+{
+	image    = Image( <normalMap, $normal> )
+	semantic = "normalMap"
+	tweak    = Tweak()
+	{
+		category	= "Frame Displacemnt"
+		title		= "UV Offset Map"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "refractionAmount" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Refraction Amount"
+		sortindex	= "30"
+	}
+}
+
+float2( "colorFlipRowsCols" )
+{
+	x     = <cg00_y>
+	y     = <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Flipbook (Rows, Columns)"
+		sortindex	= "40"
+	}
+}
+float2( "colorFlipTime" )
+{
+	x     = <cg00_w>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Flipbook Time"
+		sortindex	= "50"
+	}
+}
+
+float1( "colorScale" )
+{
+	x     = <cg03_x>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Scale"
+		sortindex	= "60"
+	}
+}
+
+float2( "maskFlipRowsCols" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	tweak = Tweak()
+	{
+		category	= "Mask"
+		title		= "Flipbook (Rows, Columns)"
+		sortindex	= "30"
+	}
+}
+float2( "maskFlipTime" )
+{
+	x     = <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Mask"
+		title		= "Flipbook Time"
+		sortindex	= "40"
+	}
+}
+
+float1( "maskScale" )
+{
+	x     = <cg01_w>
+	tweak = Tweak()
+	{
+		category	= "Mask"
+		title		= "Scale"
+		sortindex	= "50"
+	}
+}
+
+float2( "offsetFlipRowsCols" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	tweak = Tweak()
+	{
+		category	= "Frame Displacemnt"
+		title		= "Flipbook (Rows, Columns)"
+		sortindex	= "30"
+	}
+}
+
+float1( "offsetFlipTime" )
+{
+	x     = <cg02_z>
+	tweak = Tweak()
+	{
+		category	= "Frame Displacemnt"
+		title		= "Flipbook Time"
+		sortindex	= "40"
+	}
+}
+
+float1( "offsetScale" )
+{
+	x     = <cg02_w>
+	tweak = Tweak()
+	{
+		category	= "Frame Displacemnt"
+		title		= "Scale"
+		sortindex	= "50"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+		source = "postfx/dni_interference.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/dni_interference.hlsl"
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

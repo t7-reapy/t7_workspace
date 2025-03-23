@@ -1,0 +1,14 @@
+#include "transition_base_basic"
+
+Texture( "transGlossMap" )
+{
+	image = Image( <transGlossMap, $white_gloss> )
+	semantic = "glossMap"
+	usage = "gloss map"
+	tweak = Tweak()
+	{
+		category  = "Transition"
+		title     = "Gloss Map"
+		sortindex = "30"
+	}
+}

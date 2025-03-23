@@ -1,0 +1,57 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearClampler" )
+{
+	tile   = "no tile"
+	filter = "linear (mip none)"
+}
+
+Texture( "revealMap" )
+{
+	image    = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Warp"
+		title		= "Mask Map"
+		sortindex	= "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "warpPixels" )
+{
+	x     = <cg00_x>
+	y	  = <cg00_y>
+	tweak = Tweak()
+	{
+		category  = "Warp"
+		title     = "Warp Amount"
+		sortindex = "60"
+		default   = "8"
+		range     = "0", "1024", "1"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/screen_warp.hlsl"
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

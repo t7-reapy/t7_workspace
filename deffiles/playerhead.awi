@@ -1,0 +1,8 @@
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_Combo( "gender", "Male{0} | Female{1}"	);
+	Asset.AddEntry_AssetCombo( "model", "xmodel" ).SetTitle( "Model" );
+	Asset.AddEntry_String( "displayName", "" ).SetTitle( "Display Name" );
+	Asset.AddEntry_AssetCombo( "iconImage", "image" ).SetTitle( "Icon" );
+}

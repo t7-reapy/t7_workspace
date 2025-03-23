@@ -1,0 +1,184 @@
+#include "state"
+#include "renderFlags"
+#include "usage"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit transparent distortion"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "tile both"
+	filter = "mip most expensive (4x trilinear)"
+}
+
+Sampler( "mirrorSampler" )
+{
+	tile   = "mirror both"
+	filter = "nomip bilinear"
+}
+
+Texture( "colorMap" )
+{
+	ref = true
+	image = Image( <colorMap, $white_diffuse> )
+	semantic = "diffuseMap"
+	usage = "diffuse map"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Color Map"
+		sortindex = "0"
+	}
+}
+
+Texture( "revealTexture" )
+{
+	image = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Reveal"
+		title     = "Reveal Map"
+		sortindex = "1"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+float1( "EdgeAmount" )
+{
+	x     = <cg03_x>
+	tweak = Tweak()
+	{
+		category  = "Edges"
+		title     = "Edge Amount"
+		sortindex = "30"
+		default   = "0.500000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+
+float1( "EdgeHarshness" )
+{
+	x     = <cg03_y>
+	tweak = Tweak()
+	{
+		category  = "Edges"
+		title     = "Edge Harshness"
+		sortindex = "40"
+		default   = "2.0"
+		range     = "0.0", "16.0", "0.01"
+		color     = false
+	}
+}
+
+float1( "PulseWidth" )
+{
+	x     = <cg02_w>
+	tweak = Tweak()
+	{
+		category  = "Edges"
+		title     = "Pulse Width"
+		sortindex = "50"
+		default   = "0.2"
+		range     = "0", "1.0", "0.01"
+		color     = false
+	}
+}
+
+float3( "SceneTint" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	z     = <cg02_z>
+	tweak = Tweak()
+	{
+		category  = "Edges"
+		title     = "SceneTint"
+		sortindex = "60"
+		default   = "1.000000", "1.000000", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = true
+	}
+}
+
+
+float1( "DistortionOdd" )
+{
+	x = <cg04_x>
+	tweak = Tweak()
+	{
+		category  = "Distortion"
+		title     = "Amount Odd Pixel"
+		sortindex = "70"
+		default   = "0.25"
+		range     = "-3.0", "3.0", "0.1"
+		color     = false
+	}
+}
+
+float1( "DistortionEven" )
+{
+	x = <cg04_y>
+	tweak = Tweak()
+	{
+		category  = "Distortion"
+		title     = "Amount Even Pixel"
+		sortindex = "70"
+		default   = "1.0"
+		range     = "-3.0", "3.0", "0.1"
+		color     = false
+	}
+}
+
+float1( "scriptFaker" )
+{
+	x     = <cg03_w>
+	tweak = Tweak()
+	{
+		category  = "Reveal"
+		title     = "Script Simulator (Tools Only)"
+		sortindex = "80"
+		default   = "0.0"
+		range     = "0.0", "1.0", "0.01"
+		color     = false
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "lit" )
+{
+#if TOOLSGFX == "1"
+	state = "blend + depth"
+#else
+	state = "replace + depth"
+#endif
+	source = "specialty/cloaking_fade.hlsl"
+	vs = VertexShader()
+	{
+	#if TOOLSGFX == "1"
+		vertexDecl = "generic"
+	#endif
+	}
+	ps = PixelShader()
+	{
+	#if TOOLSGFX != "1"
+		resolvedPostSun = CodeTexture( "resolvedPostSun" )
+	#endif
+	}
+}
+
+#if TOOLSGFX == "1"
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+#endif

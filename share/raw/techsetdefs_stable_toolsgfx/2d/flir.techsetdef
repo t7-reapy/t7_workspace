@@ -1,0 +1,134 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "linear (mip none)"
+}
+
+Texture( "colorMap" )
+{
+	image    = Image( <colorMap, $white> )
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "normalMap" )
+{
+	image    = Image( <normalMap, $identitynormal> )
+	tweak    = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Normal Map"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "alphaRevealSoftEdge" )
+{
+	x     = <alphaRevealSoftEdge>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Reveal Soft Edge"
+		sortindex	= "20"
+	}
+}
+
+float1( "alphaRevealRamp" )
+{
+	x     = <alphaRevealRamp>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Reveal Ramp"
+		sortindex	= "30"
+	}
+}
+
+float2( "colorTile" )
+{
+	x	= <cg00_w>
+	y	= <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Tiling (U, V)"
+		sortindex	= "40"
+	}
+}
+
+float1( "refractionAmount" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Amount"
+		sortindex	= "20"
+	}
+}
+
+float2( "refractionScroll1" )
+{
+	x	= <cg00_y>
+	y	= <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Scroll1 (U, V)"
+		sortindex	= "30"
+	}
+}
+
+float2( "refractionScroll2" )
+{
+	x	= <cg01_x>
+	y	= <cg01_y>
+	tweak = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Scroll2 (U, V)"
+		sortindex	= "40"
+	}
+}
+
+float2( "refractionTile" )
+{
+	x	= <cg02_x>
+	y	= <cg02_y>
+	tweak = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Tiling (U, V)"
+		sortindex	= "40"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/flir.hlsl"
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

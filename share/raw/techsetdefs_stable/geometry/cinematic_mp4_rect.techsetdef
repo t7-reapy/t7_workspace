@@ -1,0 +1,83 @@
+#include "lit_base_basic"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "emissive opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+float2( "movieRectBottomLeft" )
+{
+	x = <cg01_x>
+	y = <cg01_y>
+
+	tweak = Tweak()
+	{
+		category  = "Visible Rectangle"
+		title     = "Bottom Left"
+		sortindex = "30"
+	}
+}
+
+float2( "movieRectUpperRight" )
+{
+	x = <cg02_x>
+	y = <cg02_y>
+
+	tweak = Tweak()
+	{
+		category  = "Visible Rectangle"
+		title     = "Upper Right"
+		sortindex = "31"
+	}
+}
+
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "lit", "unlit" )
+{
+	state = "replace + depth"	
+	source = "cinematic_mp4_rect.hlsl"
+
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+		defines = "USE_EMISSIVE"
+#endif
+	}
+	
+	ps = PixelShader() 
+	{ 
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		defines = "USE_EMISSIVE"
+#else
+		yTexture = CodeTexture( "cinematicYSampler" )
+		cbcrTexture = CodeTexture( "cinematicCrSampler" )
+		
+		ySampler = Sampler("tile both", "nomip bilinear")
+		cbcrSampler = Sampler("tile both", "nomip bilinear")
+#endif
+	}
+}

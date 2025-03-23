@@ -1,0 +1,59 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isOpaque            = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Replace
+		colorBlendFunc = add
+		colorBlendSrc  = One
+		colorBlendDst  = Zero
+		alphaBlendFunc = add
+		alphaBlendSrc  = One
+		alphaBlendDst  = Zero
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+Sampler( "PieChart_Sampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+Texture( "PieChart" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\piechart.tif"
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_piechart.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_REPLACE"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

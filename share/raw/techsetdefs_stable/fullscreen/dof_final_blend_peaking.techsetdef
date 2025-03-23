@@ -1,0 +1,29 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	state  = "blend"
+	source = "DOF/dof_final_blend.hlsl"
+
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+		defines = "FOCUS_PEAKING"
+
+		// textures
+		codeTexture0 = CodeTexture( "codeTexture0" )
+		codeTexture1 = CodeTexture( "codeTexture1" )
+
+		// samplers
+		bilinearClamp = Sampler("no tile", "nomip bilinear")
+		trilinearClamp = Sampler("no tile", "mip (1x trilinear)")
+	}
+}

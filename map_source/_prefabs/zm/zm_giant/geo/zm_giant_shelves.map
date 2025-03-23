@@ -1,0 +1,428 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{68EFB5C8-5B10-11E5-94BD-645106422D48}"
+"classname" "worldspawn"
+"_color" "0.607843 0.615686 0.658824"
+"ambient" "0.35"
+"diffusefraction" "0.45"
+"evmax" "31"
+"evmin" "-32"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"suncolor" "0.615686 0.807843 0.815686"
+"sundiffusecolor" "0.3098 0.2745 0.3058"
+"sundirection" "-153 -54 0"
+"sunisprimarylight" "1"
+"sunlight" "0.6"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{81E9196A-5664-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( 2 -46 14 ) ( 2 50 14 ) ( 0 48 14 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2 50 16 ) ( 2 -46 16 ) ( 0 -48 16 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1 -46 16 ) ( 1 -46 14 ) ( 0 -48 14 ) caulk 16 16 0 8 0 0 lightmap_gray 16384 16384 0 8 0 0
+ ( 1 46 16 ) ( 1 46 14 ) ( 1 -46 14 ) t7_metal_planter_top_trim 64 8 0 1 0 0 lightmap_gray 16384 16384 0 8 0 0
+ ( 1 46 14 ) ( 1 46 16 ) ( 0 48 16 ) caulk 16 16 0 8 0 0 lightmap_gray 16384 16384 0 8 0 0
+ ( 0 48 16 ) ( 0 -48 16 ) ( 0 -48 8 ) caulk 16 16 0 8 0 0 lightmap_gray 16384 16384 0 8 0 0
+}
+// brush 1
+{
+ guid "{A4A6334F-5664-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( 1 46 14 ) ( 15 46 14 ) ( 16 48 14 ) caulk 16 16 -48 -48 -90 0 lightmap_gray 16384 16384 -48 -48 -90 0
+ ( 15 46 16 ) ( 1 46 16 ) ( 0 48 16 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 16384 -48 -48 -90 0
+ ( 1 46 16 ) ( 1 46 14 ) ( 0 48 14 ) caulk 16 -16 0 -8 180 0 lightmap_gray 16384 -16384 0 -8 180 0
+ ( 95 46 16 ) ( 95 46 14 ) ( 3 46 14 ) t7_metal_planter_top_trim 64 8 0 1 0 0 lightmap_gray 16384 16384 48 8 0 0
+ ( 15 46 14 ) ( 15 46 16 ) ( 16 48 16 ) caulk 16 16 0 8 0 0 lightmap_gray 16384 16384 0 8 0 0
+ ( 96 48 16 ) ( 0 48 16 ) ( 0 48 8 ) t7_metal_planter_top_trim 64 8 0 0 0 0 lightmap_gray 16384 16384 48 8 0 0
+}
+// brush 2
+{
+ guid "{ABDE608E-5664-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( 15 -46 14 ) ( 1 -46 14 ) ( 0 -48 14 ) caulk 16 16 -48 -32 90 0 lightmap_gray 16384 16384 -48 -32 90 0
+ ( 1 -46 16 ) ( 15 -46 16 ) ( 16 -48 16 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 16384 -48 -32 90 0
+ ( 15 -46 16 ) ( 15 -46 14 ) ( 16 -48 14 ) caulk 16 16 0 8 0 0 lightmap_gray 16384 16384 0 8 0 0
+ ( -78 -46 16 ) ( -78 -46 14 ) ( 14 -46 14 ) t7_metal_planter_top_trim 64 8 0 1 0 0 lightmap_gray 16384 -16384 32 -8 180 0
+ ( 1 -46 14 ) ( 1 -46 16 ) ( 0 -48 16 ) caulk 16 -16 0 -8 180 0 lightmap_gray 16384 -16384 0 -8 180 0
+ ( -80 -48 16 ) ( 16 -48 16 ) ( 16 -48 8 ) t7_metal_planter_top_trim 64 8 0 0 0 0 lightmap_gray 16384 -16384 32 -8 180 0
+}
+// brush 3
+{
+ guid "{ABDE608F-5664-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( 14 46 14 ) ( 14 -50 14 ) ( 16 -48 14 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 16384 -16 0 -180 0
+ ( 14 -50 16 ) ( 14 46 16 ) ( 16 48 16 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 16384 -16 0 -180 0
+ ( 15 46 16 ) ( 15 46 14 ) ( 16 48 14 ) caulk 16 -16 0 -8 180 0 lightmap_gray 16384 -16384 0 -8 180 0
+ ( 15 46 14 ) ( 15 46 16 ) ( 15 -46 16 ) t7_metal_planter_top_trim 64 8 0 1 0 0 lightmap_gray 16384 -16384 0 -8 180 0
+ ( 15 -46 14 ) ( 15 -46 16 ) ( 16 -48 16 ) caulk 16 -16 0 -8 180 0 lightmap_gray 16384 -16384 0 -8 180 0
+ ( 16 -48 16 ) ( 16 48 16 ) ( 16 48 8 ) t7_metal_planter_top_trim 64 8 0 0 0 0 lightmap_gray 16384 -16384 0 -8 180 0
+}
+// brush 4
+{
+ guid "{B71CEE2C-5664-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( 14 46 15 ) ( 2 46 15 ) ( 2 -20 15 ) t7_wood_beam_worn_oak 32 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2 -20 16 ) ( 2 46 16 ) ( 14 46 16 ) t7_wood_beam_worn_oak 32 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2 -46 16 ) ( 14 -46 16 ) ( 14 -46 14 ) caulk 16 16 0 8 0 0 lightmap_gray 16384 16384 0 8 0 0
+ ( 15 -20 16 ) ( 15 46 16 ) ( 15 46 14 ) caulk 16 16 0 8 0 0 lightmap_gray 16384 16384 0 8 0 0
+ ( 14 46 16 ) ( 2 46 16 ) ( 2 46 14 ) caulk 16 16 0 8 0 0 lightmap_gray 16384 16384 0 8 0 0
+ ( 1 46 16 ) ( 1 -20 16 ) ( 1 -20 14 ) caulk 16 16 0 8 0 0 lightmap_gray 16384 16384 0 8 0 0
+}
+// brush 5
+{
+ guid "{314C268D-5665-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 16 -48 13 ) ( 16 -48 14 ) ( 16 -46 14 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 -16384 -14 47 -90 0
+ ( 0 -46 14 ) ( 0 -46 13 ) ( 11 -46 13 ) t7_metal_grate_trim_01 64 16 -1 7.5 0 0 lightmap_gray 16384 -16384 -14 -22 -90 0
+ ( 0 -47 13.5 ) ( 14 -47 13.5 ) ( 14 -46 13.5 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 -16384 47 -22 -90 0
+ ( 14 -47 13 ) ( 0 -47 13 ) ( 0 -48 14 ) caulk 16 -16 0 -22 -90 0 lightmap_gray 16384 -16384 0 -22 -90 0
+ ( 0 -48 14 ) ( 0 -46 14 ) ( 11 -46 14 ) caulk 16 -16 47 -22 -90 0 lightmap_gray 16384 -16384 47 -22 -90 0
+ ( 0 -80 14 ) ( 4 -48 10 ) ( 0 -48 14 ) caulk 16 -16 0 0 0 0 lightmap_gray 16384 -16384 0 0 0 0
+}
+// brush 6
+{
+ guid "{314C268E-5665-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 16 -48 12 ) ( 16 -48 14 ) ( 16 -47 13 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 16384 -48 -13 0 0
+ ( 16 -48 12 ) ( 16 -47 12 ) ( 2 -47 12 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 16384 -48 22 90 0
+ ( 1 -47.5 13.5 ) ( 2 -47.5 12.5 ) ( 16 -47.5 12.5 ) t7_metal_grate_trim_01 64 16 -1 7.5 0 0 lightmap_gray 16384 16384 13 22 90 0
+ ( 0 -48 14 ) ( 1 -47 13 ) ( 16 -47 13 ) caulk 16 -16 0 -22 -90 0 lightmap_gray 16384 -16384 0 -22 -90 0
+ ( 16 -48 14 ) ( 16 -48 12 ) ( 2 -48 12 ) t7_metal_grate_trim_01 64 16 6 7.5 0 0 lightmap_gray 16384 16384 13 22 90 0
+ ( 2 -47 12 ) ( 1 -47 13 ) ( 0 -48 14 ) caulk 16 -16 0 0 0 0 lightmap_gray 16384 -16384 0 0 0 0
+}
+// brush 7
+{
+ guid "{314C268F-5665-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 12.5 -47.5 13.5 ) ( 2.5 -47.5 13.5 ) ( 2.5 -46.5 13.5 ) caulk 16 -16 0 -0.5 0 0 lightmap_gray 16384 -16384 0 -0.5 0 0
+ ( 12 -47 3 ) ( 12 -47 13 ) ( 2 -47 13 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 16384 0 -1 0 0
+ ( 2 -47.5 3 ) ( 2 -47.5 13 ) ( 12 -47.5 13 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 16384 0 -1 0 0
+ ( 0.5 -46.5 2.5 ) ( 0.5 -46.5 12.5 ) ( 0.5 -47.5 12.5 ) caulk 16 -16 -0.5 1 180 0 lightmap_gray 16384 -16384 -0.5 1 180 0
+ ( 2 -79.5 3 ) ( 4 -47.5 5 ) ( 2 -47.5 3 ) t7_metal_rust_ceiling_01 64 64 0 0.5 0 0 lightmap_gray 16384 -16384 0 -0.5 0 0
+ ( 2 -79.5 5 ) ( 2 -47.5 5 ) ( 3 -47.5 6 ) t7_metal_rust_ceiling_01 64 64 0 0.5 0 0 lightmap_gray 16384 -16384 0 -0.5 0 0
+}
+// brush 8
+{
+ guid "{314C2691-5665-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 0 -46 0 ) ( 0 -48 0 ) ( 1 -48 0 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 -16384 0 47 0 0
+ ( 1 -46 3 ) ( 1 -46 14 ) ( 0 -46 14 ) t7_metal_grate_trim_01 64 -16 -15 -21.5 -90 0 lightmap_gray 16384 16384 0 8 0 0
+ ( 0.5 -46 0.5 ) ( 0.5 -47 0.5 ) ( 0.5 -47 14.5 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 -16384 47 -8 -180 0
+ ( 0 -48 14 ) ( 1 -47 14 ) ( 1 -47 0 ) caulk 16 -16 0 -8 180 0 lightmap_gray 16384 -16384 0 -8 180 0
+ ( 0 -46 3 ) ( 0 -46 14 ) ( 0 -48 14 ) caulk 16 -16 47 -8 180 0 lightmap_gray 16384 -16384 47 -8 180 0
+ ( 0 -80 14 ) ( 0 -48 14 ) ( 4 -48 10 ) caulk 16 -16 0 0 0 0 lightmap_gray 16384 -16384 0 0 0 0
+}
+// brush 9
+{
+ guid "{4A5665FA-5665-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 14 1 14 ) ( 2 1 14 ) ( 2 -1 14 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2 -1 15 ) ( 2 1 15 ) ( 14 1 15 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2 -1 15 ) ( 14 -1 15 ) ( 14 -1 13 ) t7_metal_planter_top_trim 64 8 0 1 0 0 lightmap_gray 16384 16384 0 -1 0 0
+ ( 15 -1 15 ) ( 15 1 15 ) ( 15 1 13 ) caulk 16 16 0 -1 0 0 lightmap_gray 16384 16384 0 -1 0 0
+ ( 14 1 15 ) ( 2 1 15 ) ( 2 1 13 ) t7_metal_planter_top_trim 64 8 0 1 0 0 lightmap_gray 16384 16384 0 -1 0 0
+ ( 1 1 15 ) ( 1 -1 15 ) ( 1 -1 13 ) caulk 16 16 0 -1 0 0 lightmap_gray 16384 16384 0 -1 0 0
+}
+// brush 10
+{
+ guid "{624D61DA-5666-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 1 -47 0 ) ( 0 -48 0 ) ( 2 -48 0 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 16384 -48 1 90 0
+ ( 2 -47 12 ) ( 2 -47 -2 ) ( 2 -48 -2 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 16384 -48 8 0 0
+ ( 2 -47.5 -2 ) ( 2 -47.5 12 ) ( 1 -47.5 13 ) t7_metal_grate_trim_01 64 -16 -15 -21.5 -90 0 lightmap_gray 16384 -16384 -1 -8 180 0
+ ( 1 -47 -2 ) ( 1 -47 13 ) ( 0 -48 14 ) caulk 16 -16 0 -8 180 0 lightmap_gray 16384 -16384 0 -8 180 0
+ ( 2 -48 12 ) ( 2 -48 -2 ) ( 0 -48 -2 ) t7_metal_grate_trim_01 64 -16 -14.25 -21.5 -90 0 lightmap_gray 16384 -16384 -1 -8 180 0
+ ( 0 -48 14 ) ( 1 -47 13 ) ( 2 -47 12 ) caulk 16 -16 0 0 0 0 lightmap_gray 16384 -16384 0 0 0 0
+}
+// brush 11
+{
+ guid "{91E30FD4-566F-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 4 24 8 ) ( 0 24 8 ) ( 0 20 8 ) t7_metal_rust_ceiling_01 64 -64 0 -4 180 0 lightmap_gray 16384 16384 0 4 0 0
+ ( 0 20 14 ) ( 0 24 14 ) ( 4 24 14 ) t7_metal_rust_ceiling_01 64 -64 0 -4 180 0 lightmap_gray 16384 16384 0 4 0 0
+ ( 0 20 12 ) ( 4 20 12 ) ( 4 20 8 ) t7_metal_rust_ceiling_01 64 -64 0 0 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0.5 20 12 ) ( 0.5 24 12 ) ( 0.5 24 8 ) t7_metal_rust_ceiling_01 64 -64 4 0 -180 0 lightmap_gray 16384 16384 -4 0 0 0
+ ( 4 24 12 ) ( 0 24 12 ) ( 0 24 8 ) t7_metal_rust_ceiling_01 64 -64 0 0 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 24 12 ) ( 0 20 12 ) ( 0 20 8 ) caulk 16 16 -4 8 0 0 lightmap_gray 16384 16384 -4 0 0 0
+ ( 1 25 10 ) ( 1 23 8 ) ( 33 23 8 ) t7_metal_rust_ceiling_01 64 -64 0 -4 180 0 lightmap_gray 16384 16384 0 4 0 0
+ ( 1 21 8 ) ( 1 19 10 ) ( 33 21 8 ) t7_metal_rust_ceiling_01 64 -64 0 -4 180 0 lightmap_gray 16384 16384 0 4 0 0
+}
+// brush 12
+{
+ guid "{BD37EFF2-566F-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 0 -20 8 ) ( 0 -24 8 ) ( 4 -24 8 ) t7_metal_rust_ceiling_01 64 64 0 4 180 0 lightmap_gray 16384 -16384 0 -4 0 0
+ ( 4 -24 14 ) ( 0 -24 14 ) ( 0 -20 14 ) t7_metal_rust_ceiling_01 64 64 0 4 180 0 lightmap_gray 16384 -16384 0 -4 0 0
+ ( 4 -20 8 ) ( 4 -20 12 ) ( 0 -20 12 ) t7_metal_rust_ceiling_01 64 -64 0 0 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0.5 -24 8 ) ( 0.5 -24 12 ) ( 0.5 -20 12 ) t7_metal_rust_ceiling_01 64 64 4 0 0 0 lightmap_gray 16384 -16384 -4 0 180 0
+ ( 0 -24 8 ) ( 0 -24 12 ) ( 4 -24 12 ) t7_metal_rust_ceiling_01 64 -64 0 0 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 -20 8 ) ( 0 -20 12 ) ( 0 -24 12 ) caulk 16 -16 -4 -8 180 0 lightmap_gray 16384 -16384 -4 0 180 0
+ ( 33 -23 8 ) ( 1 -23 8 ) ( 1 -25 10 ) t7_metal_rust_ceiling_01 64 64 0 4 180 0 lightmap_gray 16384 -16384 0 -4 0 0
+ ( 33 -21 8 ) ( 1 -19 10 ) ( 1 -21 8 ) t7_metal_rust_ceiling_01 64 64 0 4 180 0 lightmap_gray 16384 -16384 0 -4 0 0
+}
+// brush 13
+{
+ guid "{D55F54DB-5982-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 16 46 14 ) ( 16 48 14 ) ( 16 48 13 ) t7_metal_rust_ceiling_01 64 -64 0 0 180 0 lightmap_gray 16384 16384 -14 -47 -90 0
+ ( 11 46 13 ) ( 0 46 13 ) ( 0 46 14 ) t7_metal_grate_trim_01 64 16 -1 7.5 0 0 lightmap_gray 16384 -16384 -14 -22 -90 0
+ ( 14 46 13.5 ) ( 14 47 13.5 ) ( 0 47 13.5 ) t7_metal_rust_ceiling_01 64 -64 0 0 0 0 lightmap_gray 16384 16384 47 22 90 0
+ ( 0 48 14 ) ( 0 47 13 ) ( 14 47 13 ) caulk 16 16 0 22 90 0 lightmap_gray 16384 16384 0 22 90 0
+ ( 11 46 14 ) ( 0 46 14 ) ( 0 48 14 ) caulk 16 16 47 22 90 0 lightmap_gray 16384 16384 47 22 90 0
+ ( 0 48 14 ) ( 4 48 10 ) ( 0 80 14 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 14
+{
+ guid "{D55F54DC-5982-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 16 47 13 ) ( 16 48 14 ) ( 16 48 12 ) t7_metal_rust_ceiling_01 64 -64 0 0 180 0 lightmap_gray 16384 -16384 -48 13 180 0
+ ( 2 47 12 ) ( 16 47 12 ) ( 16 48 12 ) t7_metal_rust_ceiling_01 64 -64 0 0 0 0 lightmap_gray 16384 -16384 -48 -22 -90 0
+ ( 16 47.5 12.5 ) ( 2 47.5 12.5 ) ( 1 47.5 13.5 ) t7_metal_grate_trim_01 64 16 -1 7.5 0 0 lightmap_gray 16384 16384 13 22 90 0
+ ( 16 47 13 ) ( 1 47 13 ) ( 0 48 14 ) caulk 16 16 0 22 90 0 lightmap_gray 16384 16384 0 22 90 0
+ ( 2 48 12 ) ( 16 48 12 ) ( 16 48 14 ) t7_metal_grate_trim_01 64 16 6 7.5 0 0 lightmap_gray 16384 16384 13 22 90 0
+ ( 0 48 14 ) ( 1 47 13 ) ( 2 47 12 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 15
+{
+ guid "{D55F54DD-5982-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 2.5 46.5 13.5 ) ( 2.5 47.5 13.5 ) ( 12.5 47.5 13.5 ) caulk 16 16 0 0.5 0 0 lightmap_gray 16384 16384 0 0.5 0 0
+ ( 2 47 13 ) ( 12 47 13 ) ( 12 47 3 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 16384 0 -1 0 0
+ ( 12 47.5 13 ) ( 2 47.5 13 ) ( 2 47.5 3 ) t7_metal_rust_ceiling_01 64 64 0 0 0 0 lightmap_gray 16384 16384 0 -1 0 0
+ ( 0.5 47.5 12.5 ) ( 0.5 46.5 12.5 ) ( 0.5 46.5 2.5 ) caulk 16 16 -0.5 -1 0 0 lightmap_gray 16384 16384 -0.5 -1 0 0
+ ( 2 47.5 3 ) ( 4 47.5 5 ) ( 2 79.5 3 ) t7_metal_rust_ceiling_01 64 -64 0 -0.5 0 0 lightmap_gray 16384 16384 0 0.5 0 0
+ ( 3 47.5 6 ) ( 2 47.5 5 ) ( 2 79.5 5 ) t7_metal_rust_ceiling_01 64 -64 0 -0.5 0 0 lightmap_gray 16384 16384 0 0.5 0 0
+}
+// brush 16
+{
+ guid "{D55F54DE-5982-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 2 48 0 ) ( 0 48 0 ) ( 1 47 0 ) t7_metal_rust_ceiling_01 64 -64 0 0 0 0 lightmap_gray 16384 -16384 -48 -1 -90 0
+ ( 2 48 -2 ) ( 2 47 -2 ) ( 2 47 12 ) t7_metal_rust_ceiling_01 64 -64 0 0 180 0 lightmap_gray 16384 -16384 -48 -8 180 0
+ ( 1 47.5 13 ) ( 2 47.5 12 ) ( 2 47.5 -2 ) t7_metal_grate_trim_01 64 -16 -15 -21.5 -90 0 lightmap_gray 16384 -16384 -1 -8 180 0
+ ( 0 48 14 ) ( 1 47 13 ) ( 1 47 -2 ) caulk 16 16 0 8 0 0 lightmap_gray 16384 16384 0 8 0 0
+ ( 0 48 -2 ) ( 2 48 -2 ) ( 2 48 12 ) t7_metal_grate_trim_01 64 -16 -14.25 -21.5 -90 0 lightmap_gray 16384 -16384 -1 -8 180 0
+ ( 2 47 12 ) ( 1 47 13 ) ( 0 48 14 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 17
+{
+ guid "{D55F54DF-5982-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( 1 48 0 ) ( 0 48 0 ) ( 0 46 0 ) t7_metal_rust_ceiling_01 64 -64 0 0 0 0 lightmap_gray 16384 16384 0 -47 0 0
+ ( 0 46 14 ) ( 1 46 14 ) ( 1 46 3 ) t7_metal_grate_trim_01 64 -16 -15 -21.5 -90 0 lightmap_gray 16384 16384 0 8 0 0
+ ( 0.5 47 14.5 ) ( 0.5 47 0.5 ) ( 0.5 46 0.5 ) t7_metal_rust_ceiling_01 64 -64 0 0 180 0 lightmap_gray 16384 16384 47 8 0 0
+ ( 1 47 0 ) ( 1 47 14 ) ( 0 48 14 ) caulk 16 16 0 8 0 0 lightmap_gray 16384 16384 0 8 0 0
+ ( 0 48 14 ) ( 0 46 14 ) ( 0 46 3 ) caulk 16 16 47 8 0 0 lightmap_gray 16384 16384 47 8 0 0
+ ( 4 48 10 ) ( 0 48 14 ) ( 0 80 14 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 1
+{
+guid "{4D4CBC8B-4EF2-4EF4-88A8-CFE4A569D25C}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{0C5561B7-C1FD-4C09-8E60-91669DDC0405}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_grunge_leaking_03
+   lightmap_gray
+   2 2 0 8
+   (
+	v 0 -46 14 t -736 -1018.8802 0 -0
+	v 0 46.000008 14 t 736 -1018.8802 0 -5.625
+   )
+   (
+	v 0 -46 0 t -736 -122.88 0.625 -0
+	v 0 46.000008 0 t 736 -122.88 0.625 -5.625
+   )
+  }
+ }
+}
+// entity 2
+{
+guid "{9E5D5E37-11D6-4867-BA39-18721D61A3EE}"
+"classname" "misc_model"
+"angles" "315 180 89.9999"
+"model" "p7_debris_concrete_rubble_bolt"
+"modelscale" "0.300000011920929"
+"origin" "1 -47 3"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 3
+{
+guid "{8E8BB75D-4964-497B-A0A9-47759645497C}"
+"classname" "misc_model"
+"angles" "270 90 -1.82123e-006"
+"model" "p7_zm_der_rust_angle_plate_bolt"
+"modelscale" "0.550000011920929"
+"origin" "1 -48 3"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 4
+{
+guid "{3D0EEE8A-8507-4081-B09C-66CAEE5F8AA3}"
+"classname" "misc_model"
+"angles" "270 90 -1.82123e-006"
+"model" "p7_zm_der_rust_angle_plate_bolt"
+"modelscale" "0.550000011920929"
+"origin" "10.5 -48 13"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 5
+{
+guid "{BA0D1DA1-0D24-4736-8896-E00FAF437DC1}"
+"classname" "misc_model"
+"angles" "270 90 -2.64622e-012"
+"model" "p7_debris_concrete_rubble_bolt"
+"modelscale" "0.300000011920929"
+"origin" "10.5 47 13"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 6
+{
+guid "{1E88A5D8-2B08-4134-A93D-35505A5CF6DC}"
+"classname" "misc_model"
+"angles" "315 180 -90"
+"model" "p7_debris_concrete_rubble_bolt"
+"modelscale" "0.300000011920929"
+"origin" "1 47 3"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 7
+{
+guid "{0E34A286-755F-4636-BB8E-7DF1D9B4FFBE}"
+"classname" "misc_model"
+"angles" "270 270 2.748e-012"
+"model" "p7_zm_der_rust_angle_plate_bolt"
+"modelscale" "0.550000011920929"
+"origin" "1 48 3"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 8
+{
+guid "{F59B404D-F4CD-4F19-A8C8-F2BE6CE28C86}"
+"classname" "misc_model"
+"angles" "270 270 2.748e-012"
+"model" "p7_zm_der_rust_angle_plate_bolt"
+"modelscale" "0.550000011920929"
+"origin" "10.5 48 13"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 9
+{
+guid "{E1FC88B3-A14E-4168-B774-BEE5A936DEAE}"
+"classname" "misc_model"
+"angles" "270 180 2.748e-012"
+"model" "p7_zm_der_rust_angle_plate_bolt"
+"modelscale" "0.550000011920929"
+"origin" "0.5 23 10"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 10
+{
+guid "{CF1FCECD-9BC6-4600-AC8C-293EC1238CC1}"
+"classname" "misc_model"
+"angles" "270 180 2.748e-012"
+"model" "p7_zm_der_rust_angle_plate_bolt"
+"modelscale" "0.550000011920929"
+"origin" "0.5 21 12"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 11
+{
+guid "{371F4D0A-F3C3-4FD4-8CC1-6A598742A18D}"
+"classname" "misc_model"
+"angles" "270 180 2.748e-012"
+"model" "p7_zm_der_rust_angle_plate_bolt"
+"modelscale" "0.550000011920929"
+"origin" "0.5 -23 10"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 12
+{
+guid "{CB681F8B-5026-4C5F-96A7-45425C2E41D6}"
+"classname" "misc_model"
+"angles" "270 180 2.748e-012"
+"model" "p7_zm_der_rust_angle_plate_bolt"
+"modelscale" "0.550000011920929"
+"origin" "0.5 -21 12"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 13
+{
+guid "{39091896-5358-466C-BA6B-A81259E5D349}"
+"classname" "misc_model"
+"angles" "270 270 1.82123e-006"
+"model" "p7_debris_concrete_rubble_bolt"
+"modelscale" "0.300000011920929"
+"origin" "10.5 -47 13"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}

@@ -1,0 +1,137 @@
+Texture( "flowMap" )
+{
+	image = Image( <colorMap02, $white> )
+	usage = "flow map"
+	//	this should really only be multipleMask, but we have to let 2d & diffuseMap stay here to not break old data
+	semantic = "multipleMask","2d","diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Flow Parameters"
+		title     = "Flow Map"
+		sortindex = "30"
+	}
+}
+
+Sampler( "flowSampler" )
+{
+	tile = <texTile02>
+	filter = "linear (mip none)"
+	tweak = Tweak()
+	{
+		category  = "Flow Parameters"
+		sortindex = "31"
+	}
+}
+
+float1( "tileDensity" )
+{
+	x = <cg04_x>
+	tweak = Tweak()
+	{
+		category	= "Flow Parameters"
+		title		= "Flow tile density"
+		default		= "20.0"
+		range		= "1.0", "1000.0", "0.1"
+		sortindex	= 32
+	}
+}
+
+float1( "flowRate" )
+{
+	x = <cg04_y>
+	tweak = Tweak()
+	{
+		category	= "Flow Parameters"
+		title		= "Flow rate scale"
+		default		= "0.15"
+		range		= "0.0", "100.0", "0.01"
+		sortindex	= 33
+	}
+}
+
+float4( "flowParams" )
+{
+	x = "<cg04_x>"
+	y = "<cg04_y>"
+	z = "1.0"
+	w = "1.0"
+}
+
+Sampler( "noiseSampler" )
+{
+	tile = "tile both"
+	filter = "mip (1x bilinear)"
+}
+
+Texture( "noiseMap" )
+{
+	image = Image( <colorMap04, $white> )
+	semantic = "multipleMask"
+	tweak = Tweak()
+	{
+		category  = "Flow Noise Parameters"
+		title     = "Noise Map"
+		sortindex = "40"
+	}
+}
+
+float1( "noiseSpeedX" )
+{
+	x = <cg05_x>
+	tweak = Tweak()
+	{
+		category	= "Flow Noise Parameters"
+		title		= "Noise shift scale X"
+		default		= "0.002"
+		range		= "0.0", "1.0", "0.0001"
+		sortindex	= 41
+	}
+}
+
+float1( "noiseSpeedY" )
+{
+	x = <cg05_y>
+	tweak = Tweak()
+	{
+		category	= "Flow Noise Parameters"
+		title		= "Noise shift scale Y"
+		default		= "0.003"
+		range		= "0.0", "1.0", "0.0001"
+		sortindex	= 42
+	}
+}
+
+float1( "noiseScale" )
+{
+	x = <cg05_z>
+	tweak = Tweak()
+	{
+		category	= "Flow Noise Parameters"
+		title		= "Noise map scale"
+		default		= "0.1"
+		range		= "0.0", "10.0", "0.01"
+		sortindex	= 43
+	}
+}
+
+float1( "noiseShiftAmount" )
+{
+	x = <cg05_w>
+	tweak = Tweak()
+	{
+		category	= "Flow Noise Parameters"
+		title		= "Noise effect scale"
+		default		= "1.0"
+		range		= "0.0", "10.0", "0.1"
+		sortindex	= 44
+	}
+}
+
+float4( "noiseParams" )
+{
+	x = "<cg05_x>"
+	y = "<cg05_y>"
+	z = "<cg05_z>"
+	w = "<cg05_w>"
+}
+

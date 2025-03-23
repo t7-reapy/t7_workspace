@@ -1,0 +1,97 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearClampler" )
+{
+	tile   = "no tile"
+	filter = "linear (mip none)"
+}
+
+Texture( "normalMap" )
+{
+	image    = Image( <normalMap, $normal> )
+	semantic = "normalMap"
+	tweak    = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Normal Map"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "refractionPixels" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Pixel Offset"
+		sortindex	= "20"
+	}
+}
+float1( "refractionRotation" )
+{
+	x     = <cg00_y>
+	tweak = Tweak()
+	{
+		category	= "Refraction"
+		title		= "Map Rotation"
+		sortindex	= "30"
+	}
+}
+
+float1( "blurPixels" )
+{
+	x     = <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Framebuffer"
+		title		= "Blur Width (Pixels)"
+		sortindex	= "10"
+	}
+}
+float2( "glowRadius" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	tweak = Tweak()
+	{
+		category	= "Framebuffer"
+		title		= "Glow Radii Pixels (Inner, Outter)"
+		sortindex	= "20"
+	}
+}
+Color( "glowColor" )
+{
+	value	= "srgb_to_linear( <colorTint> )"
+	tweak	= Tweak()
+	{
+		category  = "Framebuffer"
+		title     = "Glow Color"
+		color	  = true
+		sortindex = "30"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/zm_teleporter_background.hlsl"
+	vs = VertexShader() {}
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

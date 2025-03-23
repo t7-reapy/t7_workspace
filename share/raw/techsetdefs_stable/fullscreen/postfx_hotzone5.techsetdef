@@ -1,0 +1,47 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+
+float1( "solidBeam" )
+{
+	x = <cg00_y>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		sortindex = "1"
+     	}
+}
+
+float1( "noiseThreshold" )
+{
+	x = <cg01_y>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		sortindex = "2"
+    }
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "postfx/postfx_hotzone5.hlsl"
+		defines = "USE_VERTCOL 0"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/postfx_hotzone5.hlsl"
+		defines = "USE_VERTCOL 0"
+
+		colorMapSampler  = CodeTexture( "feedback" )
+	}
+}

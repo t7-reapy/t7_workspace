@@ -1,0 +1,126 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+
+Texture( "warpTexture" )
+{
+	image = Image( <normalMap, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		title     = "Warp Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "lookupTexture" )
+{
+	image    = Image( <colorMap00, tv_lookup> )
+	tweak    = Tweak()
+	{
+		title		= "Lookup Map"
+		sortindex	= "20"
+	}
+}
+
+Texture( "blockNoiseTexture" )
+{
+	image    = Image( <colorMap01, sam_block_noise> )
+	tweak    = Tweak()
+	{
+		title		= "Block Noise Map"
+		sortindex	= "30"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "warp" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		title     = "Dispersion Amount"
+		sortindex = "40"
+		default   = "0.1"
+		range     = "-1e+009", "1e+009", "0.01"
+	}
+}
+
+float2( "warpScroll" )
+{
+	x = <flagRipple1ScrollU>
+	y = <flagRipple1ScrollV>
+	tweak = Tweak()
+	{
+		title		= "Dispersion Scroll Rate"
+		sortindex	= "50"
+	}
+}
+
+float1( "speed" )
+{
+	x     = <cg04_y>
+	tweak = Tweak()
+	{
+		title     = "Lookup Speed"
+		sortindex = "60"
+		default   = "0.3"
+		range     = "0.0", "1e+009", "0.01"
+	}
+}
+
+float1( "lookupMaxX" )
+{
+	x     = <cg04_z>
+	tweak = Tweak()
+	{
+		title     = "Lookup Max Offset"
+		sortindex = "70"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+
+float1( "lookupMinX" )
+{
+	x     = <cg04_w>
+	tweak = Tweak()
+	{
+		title     = "Lookup Min Offset"
+		sortindex = "80"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+		source = "postfx/ev_interference.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/ev_interference.hlsl"
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

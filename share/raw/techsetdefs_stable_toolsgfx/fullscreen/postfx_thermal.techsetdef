@@ -1,0 +1,81 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Texture( "gridTexture" )
+{
+	ref = true
+	image = Image( <colorMap13, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Grid Texture"
+		sortindex = "0"
+	}
+}
+
+Texture( "randomTextureA" )
+{
+	ref = true
+	image = Image( <colorMap12, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Random Texture A"
+		sortindex = "0"
+	}
+}
+
+Texture( "randomTextureB" )
+{
+	ref = true
+	image = Image( <colorMap11, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Random Texture B"
+		sortindex = "0"
+	}
+}
+
+Texture( "randomTextureC" )
+{
+	ref = true
+	image = Image( <colorMap10, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Random Texture C"
+		sortindex = "0"
+	}
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "postfx/postfx_thermal.hlsl"
+		defines = "USE_VERTCOL 0"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/postfx_thermal.hlsl"
+		defines = "USE_VERTCOL 0"
+
+		colorMapSampler = CodeTexture( "feedback" )
+	        codeTexture0  = CodeTexture( "codeTexture0" )
+	        codeTexture1  = CodeTexture( "codeTexture1" )
+	        codeTexture2  = CodeTexture( "codeTexture2" )
+
+	        // samplers
+ 		bilinearClamp = Sampler("no tile", "nomip bilinear")
+ 		samplerBilinearWrap = Sampler( "tile both", "mip (1x trilinear)" )
+	}
+}

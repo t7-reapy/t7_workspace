@@ -1,0 +1,59 @@
+
+void GenerateUI( asset Asset )
+{
+	// Sound table
+	
+	Asset.BeginCategory( "Shared Weapon Sounds" );
+	{
+		Asset.AddEntry_AssetCombo( "meleeSurfaceSound", "surfacesounddef").SetTitle("meleeSurfaceSound").SetToolTip( "Surface sounds when you melee non entities");
+		Asset.AddEntry_AssetCombo( "meleeSurfaceSoundPlayer", "surfacesounddef").SetTitle("meleeSurfaceSoundPlayer").SetToolTip( "Surface sounds when you melee non entities first person");
+		
+		Asset.AddEntry_AssetCombo( "meleeEntityImpactSwipe", "entitysoundimpacts").SetTitle("Swipe Impact NPC").SetToolTip( "Entity Impact Sound when you Melee Swipe ( NPC )");
+		Asset.AddEntry_AssetCombo( "meleeEntityImpactSwipeVictim", "entitysoundimpacts").SetTitle("Swipe Impact Victim").SetToolTip( "Entity Impact Sound when you Melee Swipe ( Victim )");
+		Asset.AddEntry_AssetCombo( "meleeEntityImpactSwipePlayer", "entitysoundimpacts").SetTitle("Swipe Impact Player").SetToolTip( "Entity Impact Sound when you Melee Swipe ( Player )");
+		Asset.AddEntry_AssetCombo( "meleeEntityImpactPower", "entitysoundimpacts").SetTitle("Power Impact NPC").SetToolTip( "Entity Impact Sound when you Power Melee ( NPC )");
+		Asset.AddEntry_AssetCombo( "meleeEntityImpactPowerVictim", "entitysoundimpacts").SetTitle("Power Impact Victim").SetToolTip( "Entity Impact Sound when you Power Melee( Victim )");
+		Asset.AddEntry_AssetCombo( "meleeEntityImpactPowerPlayer", "entitysoundimpacts").SetTitle("Power Impact Player").SetToolTip( "Entity Impact Sound when you Power Melee ( Player )");
+		Asset.AddEntry_AssetCombo( "meleeEntityImpactLunge", "entitysoundimpacts").SetTitle("Lunge Impact 1 NPC").SetToolTip( "Entity Impact Sound when you Melee Lunge ( NPC )");
+		Asset.AddEntry_AssetCombo( "meleeEntityImpactLungeVictim", "entitysoundimpacts").SetTitle("Lunge Impact 1 Victim").SetToolTip( "Entity Impact Sound when you Melee Lunge ( Victim )");
+		Asset.AddEntry_AssetCombo( "meleeEntityImpactLungePlayer", "entitysoundimpacts").SetTitle("Lunge Impact 1 Player").SetToolTip( "Entity Impact Sound when you Melee Lunge( Player )");
+		Asset.AddEntry_AssetCombo( "meleeEntityImpactChainMid", "entitysoundimpacts").SetTitle("Lunge Impact 2 NPC").SetToolTip( "Entity Impact Sound when you Chain Melee");
+		Asset.AddEntry_AssetCombo( "meleeEntityImpactChainMidPlayer", "entitysoundimpacts").SetTitle("Lunge Impact 2 Player").SetToolTip( "Entity Impact Sound when you Chain Melee ( Player )");
+		Asset.AddEntry_AssetCombo( "meleeEntityImpactChainFinish", "entitysoundimpacts").SetTitle("Lunge Impact 3 NPC").SetToolTip( "Entity Impact Sound when you Melee");
+		Asset.AddEntry_AssetCombo( "meleeEntityImpactChainFinishPlayer", "entitysoundimpacts").SetTitle("Lunge Impact 3 Player").SetToolTip( "Entity Impact Sound when you Melee ( Player )");
+		
+		Asset.AddEntry_String( "meleeWhoosh", "" ).SetTitle( "meleeWhoosh" );
+		Asset.AddEntry_String( "meleeWhooshPlayer", "" ).SetTitle( "meleeWhooshPlayer" );
+		
+		Asset.AddEntry_String( "meleeLungeInWhoosh", "" ).SetTitle( "meleeLungeInWhoosh" );
+		Asset.AddEntry_String( "meleeLungeInWhooshPlayer", "" ).SetTitle( "meleeLungeInWhooshPlayer" );
+		
+		Asset.AddEntry_String( "meleePowerWhoosh", "" ).SetTitle( "meleePowerWhoosh" );
+		Asset.AddEntry_String( "meleePowerWhooshLeft", "" ).SetTitle( "meleePowerWhooshLeft" );
+		Asset.AddEntry_String( "meleePowerWhooshPlayer", "" ).SetTitle( "meleePowerWhooshPlayer" );
+		Asset.AddEntry_String( "meleePowerWhooshPlayerLeft", "" ).SetTitle( "meleePowerWhooshPlayerLeft" );
+		
+		Asset.AddEntry_String( "meleeHitShield", "" ).SetTitle( "meleeHitShield" );
+		Asset.AddEntry_String( "meleeHitShieldVictim", "" ).SetTitle( "meleeHitShieldVictim" );
+		Asset.AddEntry_String( "meleeHitShieldPlayer", "" ).SetTitle( "meleeHitShieldPlayer" );
+		
+		Asset.AddEntry_String( "meleeFromBehind", "" ).SetTitle( "meleeFromBehind" );
+		Asset.AddEntry_String( "meleeFromBehindVictim", "" ).SetTitle( "meleeFromBehindVictim" );
+		Asset.AddEntry_String( "meleeFromBehindPlayer", "" ).SetTitle( "meleeFromBehindPlayer" );
+		
+		Asset.AddEntry_String( "pickupWeapon", "" ).SetTitle( "pickupWeapon" );
+		Asset.AddEntry_String( "pickupWeaponPlayer", "" ).SetTitle( "pickupWeaponPlayer" );
+		Asset.AddEntry_String( "pickupAmmo", "" ).SetTitle( "pickupAmmo" );
+		Asset.AddEntry_String( "pickupAmmoPlayer", "" ).SetTitle( "pickupAmmoPlayer" );
+		Asset.AddEntry_String( "raiseWeapon", "" ).SetTitle( "raiseWeapon" );
+		Asset.AddEntry_String( "raiseWeaponPlayer", "" ).SetTitle( "raiseWeaponPlayer" );
+		Asset.AddEntry_String( "firstRaiseWeapon", "" ).SetTitle( "firstRaiseWeapon" );
+		Asset.AddEntry_String( "firstRaiseWeaponPlayer", "" ).SetTitle( "firstRaiseWeaponPlayer" );
+		Asset.AddEntry_String( "raiseADSWeaponPlayer", "" ).SetTitle( "raiseADSWeaponPlayer" );
+		Asset.AddEntry_String( "lowerADSWeaponPlayer", "" ).SetTitle( "lowerADSWeaponPlayer" );
+		Asset.AddEntry_String( "putAway", "" ).SetTitle( "putAway" );
+		Asset.AddEntry_String( "putAwayPlayer", "" ).SetTitle( "putAwayPlayer" );
+		Asset.AddEntry_String( "altSwitch", "" ).SetTitle( "altSwitch" );
+		Asset.AddEntry_String( "altSwitchPlayer", "" ).SetTitle( "altSwitchPlayer" );
+	}
+}

@@ -1,0 +1,55 @@
+#include "state"
+#include "renderFlags"
+
+Sampler( "fontSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Color"
+		sortindex = "10"
+	}
+}
+
+float1( "shadowDistance" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		title     = "Shadow Distance"
+		sortindex = "20"
+		default   = "0.0"
+		range     = "0.0", "2.0", "0.1"
+	}
+}
+
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Technique( "unlit" )
+{
+	state = "blend + nocull"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "fontcache.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "fontcache.hlsl"
+		fontCacheSampler = CodeTexture("fontCache")
+#endif
+	}
+}

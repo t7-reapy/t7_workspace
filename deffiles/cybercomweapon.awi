@@ -1,0 +1,271 @@
+#include "gadget.h"
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_Combo( "configstringFileType", "WEAPONFILE" ).Show( false );
+	Asset.AddEntry_Float( "adsTransBlendTime", 0.1, 0, 5 ).Show( false );
+	Asset.AddEntry_Int( "twoHanded", 1, 0, 1 ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Misc 
+	Asset.AddEntry_CheckBox( "dniweapon", true).SetTitle( "Cybercom Gadget" ).SetToolTip( "Indicates that this weapon is a cybercom variety of gadget" );
+
+	Asset.BeginCategory( "Misc" );
+	{
+		Asset.AddEntry_String( "displayName", "" ).SetTitle( "Display Name" ).SetHints( "NOWARNINGS" ).SetToolTip( "Localization alias for weapon name displayed on HUD in game." );
+		Asset.AddEntry_String( "fictionname", "" ).SetTitle( "In-Game Name" ).SetToolTip( "Actual in-game weapon name." );
+		Asset.AddEntry_String( "modeName", "" ).SetTitle( "Mode Name" ).SetToolTip( "Localization alias for selective fire mode text displayed on HUD in game." );			
+		Asset.AddEntry_String( "parentWeaponName", "" ).SetTitle( "Stat Name" ).SetToolTip( "Name of parent weapon for weapon stats e.g. parent weapons for dogs_bite_mp is dogs_mp." );
+		Asset.AddEntry_Combo( "inventoryType", "gadget" ).SetTitle( "Inventory" ).SetToolTip( "Select what sort of inventory this weapon is." );
+		Asset.AddEntry_Combo( "offhandSlot", "Gadget" ).SetTitle( "Offhand Slot" );
+		Asset.AddEntry_Combo( "offhandClass", "Gadget" ).SetTitle( "Offhand Class" );
+		Asset.AddEntry_Combo( "weaponType", "bullet | binoculars | riotshield | melee" ).SetTitle( "Type" ).SetToolTip( "Select a weapon type." );
+		Asset.AddEntry_Combo( "weaponClass", "rifle | mg | smg | pistol | item | spread | Killstreak Alt Stored Weapon | melee | pistol spread | ball" ).SetTitle( "Class" ).SetToolTip( "Select an appropriate class for this weapon." );		
+		Asset.AddEntry_Combo( "fireType", "Full Auto | Single Shot | Burst | Auto Burst | Minigun | Charge Shot | Charge Shot Burst | Charge Shot Auto Burst | Jetgun | Melee" ).SetTitle( "Fire Type" ).SetToolTip( "Behavior of the weapon when the trigger is held down." );		
+		Asset.AddEntry_CheckBox( "disallowUseAsOffhandMelee", false ).SetTitle( "Disallow Use As Offhand Melee" ).SetToolTip( "If checked, will not become ps->meleeWeapon, so it won't replace the existing offhand melee weapon when given" );
+	}
+	
+	Asset.BeginCategory( "Location Damage", 0.7, 0.1, 0.1, "Icon_health.png" );
+	{
+		Asset.AddEntry_Float( "locNone", 1, 0, 10 ).SetStep( 0.1 ).SetTitle( "None" ).SetToolTip( "Unrelated to weapon. Used for damage that's not location based, such as grenades or falling.  Included here for completeness." );
+		Asset.AddEntry_CheckBox( "specialPain", false).SetTitle( "Special Pain" ).SetToolTip( "Indicates that damage by this weapon falls into special behavior tree category" );
+	}
+			
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Lock On Options
+	
+	Asset.BeginCategory( "Lock On Options" );
+	{
+		Asset.AddEntry_CheckBox( "requireLockonToFire", false ).SetTitle( "Require Lock On" ).SetToolTip( "Player cannot fire the weapon until script has granted them a lock-on." );
+		Asset.AddEntry_Int( "lockOnSpeed", 0, 0, 10000 ).SetTitle( "Lock On Speed" ).SetToolTip( "Lock on speed in miliseconds." );
+		Asset.AddEntry_Int( "lockOnMinRange", 0, 10, 10000 ).SetTitle( "Lock On Min Range" ).SetToolTip( "Min range for locking on" );
+		Asset.AddEntry_Int( "lockOnMaxRange", 0, 0, 10000 ).SetTitle( "Lock On Max Range" ).SetToolTip( "Max range for locking on" );
+		Asset.AddEntry_Int( "lockOnMaxRangeNoLineOfSight", 0, 0, 10000 ).SetTitle( "Lock On Max Range No Line of Sight" ).SetToolTip( "Max range for locking on when there is no line of sight" );
+		Asset.AddEntry_Int( "lockOnScreenRadius", 25, 0, 10000 ).SetTitle( "Lock On Screen Radius" ).SetToolTip( "Screen size for soft target lockon" );
+		Asset.AddEntry_Float( "lockOnRadius", 0, 0, 500 ).SetTitle( "Lock On Radius" ).SetToolTip( "Lock on radius in pixels." );			
+
+		//Asset.AddEntry_Float( "lockOnTimeMultInCover", 1, 1, 10 ).SetTitle( "Lock On Time Multiplier for Cover" ).SetToolTip( "Lock on time multiplier while target is in cover" );
+		Asset.AddEntry_Int( "lockOnLostSightPivotTimeout", 2000, 0, 10000 ).SetTitle( "Lock On Loss Timeout" ).SetToolTip( "If the player loses sight of the Pivot Point for this long, the Lock-On is lost" );
+		Asset.AddEntry_Int( "lockOnRequiredMsgSuppressAfterFireTime", 0, 0, 10000 ).SetTitle( "Lock On Required Message Suppress After Fire Time" ).SetToolTip( "The window of time in which the lock on required message will not appear after the player fires the weapon (in milliseconds)" );
+
+		Asset.AddEntry_Path( "reticleLockOn", "" ).SetTitle( "Lock On Reticle" ).SetToolTip( "Lock On Reticle." ).SetRelativePath( "pc/main/" );
+		Asset.AddEntry_CheckBox( "noADSLockOnCheck", false ).SetTitle( "No ADS Lock On Check" ).SetToolTip( "Weapons with this set will not be requied to be ADS to show lockon targets" );
+	}
+	
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// User Interface
+ 
+	Asset.BeginCategory( "User Interface" );
+	{
+		Asset.AddEntry_Path( "hudIcon", "" ).SetTitle( "Hud Icon" ).SetRelativePath( "pc/main/" );
+		Asset.AddEntry_Combo( "hudIconRatio", "4:1 | 1:1 | 2:1" ).SetTitle( " Aspect:" );
+		Asset.AddEntry_Path( "killIcon", "" ).SetTitle( "Kill Icon" ).SetRelativePath( "pc/main/" );
+		Asset.AddEntry_Combo( "killIconRatio", "4:1 | 1:1 | 2:1" ).SetTitle( " Aspect:" );
+		Asset.AddEntry_CheckBox( "flipKillIcon", true ).SetTitle( " Flip:" ).SetToolTip( "Used for weapons that need to have their kill icon horizontally flipped before displaying. (For MP obituaries)." );
+		Asset.AddEntry_Path( "dpadIcon", "" ).SetTitle( "DPad Icon" ).SetHints( "NOWARNINGS" ).SetRelativePath( "pc/main/" );
+		Asset.AddEntry_Combo( "dpadIconRatio", "4:1 | 1:1 | 2:1" ).SetTitle( " Aspect:" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_CheckBox( "noAmmoOnDpadIcon", true ).SetTitle( "No Ammo On Dpad" ).SetToolTip( "Dont show ammo on the dpad icon" );
+		Asset.AddEntry_Path( "ammoCounterIcon", "" ).SetTitle( "Ammo Counter Icon" ).SetRelativePath( "pc/main/" );
+		Asset.AddEntry_Combo( "ammoCounterIconRatio", "4:1 | 1:1" ).SetTitle( " Aspect:" );	
+		Asset.AddEntry_Combo( "ammoCounterClip", "None | Magazine | ShortMagazine | Shotgun | Rocket | Beltfed | AltWeapon" ).SetTitle( "Ammo Counter Clip Style" );
+		Asset.AddEntry_Path( "fireTypeIcon", "" ).SetTitle( "Fire Type Icon" ).SetRelativePath( "pc/main/" );
+		Asset.AddEntry_String( "fireTypeString", "" ).SetTitle( "Fire Type String" );
+	}
+	// Crosshair Options
+	
+	Asset.BeginCategory( "Crosshair Options" );
+	{
+		Asset.AddEntry_Float( "enemyCrosshairRange", 1600, 0.0, 10000 ).SetTitle( "Enemy Crosshair Range" ).SetToolTip( "The range in at which friendly names appear and friendly or enemy changes your crosshair color." );
+		Asset.AddEntry_CheckBox( "crosshairColorChange", true ).SetTitle( "Crosshair Color Change" ).SetToolTip( "Change crosshair color if pointing at friendly or enemy" );
+		Asset.AddEntry_CheckBox( "noHitMarker", false).SetTitle( "No Hit Marker" ).SetToolTip( "No hit marker displayed when this box is checked." );
+	}
+	// Gadget Settings
+	
+	Asset.BeginCategory( "Gadget" );
+	{
+		Asset.AddEntry_Combo( "gadget_type", "none | other | optic_camo | juke | shield | armor | drone | pulse_vision | multirocket | deployed_turret | hacker | infrared | speed_burst | hero_weapon | combat_efficiency | flashback | cleanse | system_overload | servo_shortout | exo_breakdown | surge | ravage_core | remote_hijack | iff_override | cacophany| forced_malfunction | concussive_wave | overdrive | unstoppable_force | rapid_strike | active_camo | sensory_overload | es_strike | immolation | firefly_swarm | smokescreen | misdirection | mr_pukey | shock_field | resurrect" ).SetTitle( "Gadget Type" ).SetToolTip( "The gadget type is used to differentiate betweeen gadgets and to make the script callbacks to the correct scripts." );
+		Asset.AddEntry_Combo( "activate_mode", "hold | toggle | single | toggle_attack | toggle_hold | single_stay_on | auto | prime_on_hold_activate_on_release | prime_on_hold_activate_on_release_stay_on" ).SetTitle( "Activate Mode" ).SetToolTip( "The activate mode is used to select the different button presses required to turn the gadget on and off." );
+		Asset.AddEntry_Combo( "weapon_hold_mode", "wield | offhand | throw | hands_free" ).SetTitle( "Weapon Hold Mode" ).SetToolTip( "The weapon hold mode is used to switch and raise the gadget. Wield means the weapon is out while the gadget is on; Offhand means there is a raise and drop to activate; Hands Free just turns the gadget on without any weapon motion." );
+		Asset.AddEntry_Combo( "power_use_type", "ammo | cooldown | powerbar" ).SetTitle( "Power Use Type" ).SetToolTip( "The power use type: power is translated into ammo, and ammo is calculated as powermax/treshhold; cooldown means its powerbased and that there is no powerbar; powerbar means its power based and that a powerbar is shown." );
+		Asset.AddEntry_Int( "activate_with_primed_delay", 0, 0, 10000 ).SetTitle( "Active With Primed Delay" ).SetToolTip( "The time in seconds betweeen pressing the button to activate and the actual gadget activation." );
+		Asset.AddEntry_Int( "flicker_on_damage", 0, 0, 10000 ).SetTitle( "flicker_on_damage" ).SetToolTip( "The flicker_on_damage property" );
+		Asset.AddEntry_Int( "flicker_on_power_loss", 0, 0, 10000 ).SetTitle( "flicker_on_power_loss" ).SetToolTip( "The flicker_on_power_loss property" );
+		Asset.AddEntry_Int( "flicker_on_power_low", 0, 0, 10000 ).SetTitle( "flicker_on_power_low" ).SetToolTip( "The flicker_on_power_low property" );
+		Asset.AddEntry_Int( "flicker_on_whizby", 0, 0, 10000 ).SetTitle( "flicker_on_whizby" ).SetToolTip( "The flicker_on_whizby property" );
+
+		Asset.AddEntry_Float( "movementMultiplierStrafe", 1, .1, 5 ).SetTitle( "movementMultiplierStrafe" ).SetToolTip( "The movement multiplier property for strafe" );
+		Asset.AddEntry_Float( "movementMultiplierWalk", 1, .1, 5 ).SetTitle( "movementMultiplierADSWalk" ).SetToolTip( "The movement multiplier property for ads walk" );
+		Asset.AddEntry_Float( "movementMultiplierRun", 1, .1, 5 ).SetTitle( "movementMultiplierNonADS" ).SetToolTip( "The movement multiplier property for non ads movement" );
+		Asset.AddEntry_Float( "movementMultiplierSprint", 1, .1, 5 ).SetTitle( "movementMultiplierSprint" ).SetToolTip( "The movement multiplier property for sprint" );
+		Asset.AddEntry_Float( "movementMultiplierProne", 1, .1, 5 ).SetTitle( "movementMultiplierProne" ).SetToolTip( "The movement multiplier property for prone" );
+		Asset.AddEntry_Float( "movementMultiplierCrouch", 1, .1, 5 ).SetTitle( "movementMultiplierCrouch" ).SetToolTip( "The movement multiplier property for crouch" );
+		Asset.AddEntry_Float( "movementMultiplierSlide", 1, .1, 5 ).SetTitle( "movementMultiplierSlide" ).SetToolTip( "The movement multiplier property for slide" );
+		Asset.AddEntry_Float( "movementMultiplierWallrun", 1, .1, 5 ).SetTitle( "movementMultiplierWallrun" ).SetToolTip( "The movement multiplier property for wallrun" );
+		Asset.AddEntry_Float( "movementMultiplierDoubleJump", 1, .1, 5 ).SetTitle( "movementMultiplierDoubleJump" ).SetToolTip( "The movement multiplier property for double jump" );
+		Asset.AddEntry_Float( "movementMultiplierJump", 1, .1, 5 ).SetTitle( "movementMultiplierJump" ).SetToolTip( "The movement multiplier property for jump" );
+		Asset.AddEntry_Float( "movementMultiplierLeap", 1, .1, 5 ).SetTitle( "movementMultiplierLeap" ).SetToolTip( "The movement multiplier property for leap" );
+		Asset.AddEntry_Float( "movementMultiplierSprintBob", 1, .001, 1 ).SetTitle( "movementMultiplierSprintBob" ).SetToolTip( "The movement multiplier property for the bob when sprinting" );
+		Asset.AddEntry_Float( "movementMultiplierNonSprintBob", 1, .001, 1 ).SetTitle( "movementMultiplierNonSprintBob" ).SetToolTip( "The movement multiplier property for the bob when not sprinting" );
+				
+		Asset.AddEntry_Float( "blurAmount", 0, 0, 1 ).SetTitle( "blurAmount" ).SetToolTip( "The ratio between 0 and 1 of moyion blur to apply" );
+		Asset.AddEntry_Float( "blurOutScale", 300, 1, 60000 ).SetTitle( "blurOutScale" ).SetToolTip( "Speed at which no blur applies is 1.0" );
+		Asset.AddEntry_CheckBox( "blur_screen", false ).SetTitle( "Should Blur Screen" ).SetToolTip( "Setting this box will blur the screen when activated." );
+		
+		Asset.AddEntry_CheckBox( "fastFire", false ).SetTitle( "Fast Fire" ).SetToolTip( "Allows rapid firing when enabled" );
+		Asset.AddEntry_CheckBox( "fastReload", false ).SetTitle( "Fast Reload" ).SetToolTip( "Allows rapid firing when enabled" );
+		Asset.AddEntry_CheckBox( "fastSwitch", false ).SetTitle( "Fast Switch" ).SetToolTip( "Allows fast weapon switching when enabled" );
+		Asset.AddEntry_CheckBox( "fastMelee", false ).SetTitle( "Fast Melee" ).SetToolTip( "Allows fast melee when enabled" );
+		Asset.AddEntry_CheckBox( "fastToss", false ).SetTitle( "Fast Toss" ).SetToolTip( "Allows fast tossing when enabled" );
+		Asset.AddEntry_CheckBox( "fastEquipmentUse", false ).SetTitle( "Fast Equipment Use" ).SetToolTip( "Allows fast equipment use when enabled" );
+		Asset.AddEntry_CheckBox( "fastADS", false ).SetTitle( "Fast ADS" ).SetToolTip( "Allows fast ADS use when enabled" );
+		Asset.AddEntry_CheckBox( "activatesCast", false ).SetTitle( "Activates Cast Anim" ).SetToolTip( "Firing gadget with this set causes player cast animation to play." );
+		Asset.AddEntry_CheckBox( "targetedCast", false ).SetTitle( "Cast Anim is Targeted" ).SetToolTip( "Firing gadget with this set causes player cast animation to be the Targeted animation variant." );
+		
+		Asset.AddEntry_CheckBox( "power_shared", false ).SetTitle( "Power shared" ).SetToolTip( "The power recharge / consumption is shared between all gadgets with this enabled" );
+		Asset.AddEntry_Int( "power_attack_loss", 0, 0, 100 ).SetTitle( "power_attack_loss" ).SetToolTip( "The power_attack_loss property" );
+		Asset.AddEntry_CheckBox( "power_consume_on_ammo_use", false ).SetTitle( "Power Consume on Ammo Use" ).SetToolTip( "Power is consumed when fired and ammo is used." );
+		Asset.AddEntry_Float( "power_damage_factor", 0, 0, 10 ).SetTitle( "power_damage_factor" ).SetToolTip( "The power_damage_factor property" );
+		Asset.AddEntry_Float( "power_flicker_chance", 0.11, 0, 1 ).SetTitle( "power_flicker_chance" ).SetToolTip( "The power_flicker_chance property" );
+		Asset.AddEntry_Int( "power_flicker_frequency", 1000, 0, 10000 ).SetTitle( "power_flicker_frequency" ).SetToolTip( "The power_flicker_frequency property" );
+		Asset.AddEntry_Int( "power_flicker_threshold", 40, 0, 100 ).SetTitle( "power_flicker_threshold" ).SetToolTip( "The power_flicker_threshold property" );
+		Asset.AddEntry_Float( "power_gain_score_factor", 0, 0, 10 ).SetTitle( "power_gain_score_factor" ).SetToolTip( "The power_gain_score_factor property" );
+		Asset.AddEntry_CheckBox( "power_gain_score_ignore_self", false ).SetTitle( "power_gain_score_ignore_self" ).SetToolTip( "The power_gain_score_ignore_self property" );
+		Asset.AddEntry_CheckBox( "power_gain_score_ignore_when_active", false ).SetTitle( "power_gain_score_ignore_when_active" ).SetToolTip( "The power_gain_score_ignore_when_active property" );
+		Asset.AddEntry_CheckBox( "power_init_empty", false ).SetTitle( "power_init_empty" ).SetToolTip( "The power_init_empty property" );
+		Asset.AddEntry_Int( "power_power_bonus", 0, 0, 100 ).SetTitle( "power_power_bonus" ).SetToolTip( "The power_power_bonus property" );
+		Asset.AddEntry_Int( "power_recharge_delay", 1000, 0, 10000 ).SetTitle( "power_recharge_delay" ).SetToolTip( "The power_recharge_delay property" );
+		Asset.AddEntry_Int( "power_recharge_delay_max", 1000, 0, 10000 ).SetTitle( "power_recharge_delay_max" ).SetToolTip( "The power_recharge_delay_max property" );
+		Asset.AddEntry_Float( "power_recharge_rate", 10, 0, 100 ).SetTitle( "power_recharge_rate" ).SetToolTip( "The power_recharge_rate property" );
+		Asset.AddEntry_CheckBox( "power_recharge_disable_on_emp", false ).SetTitle( "power_recharge_disable_on_emp" ).SetToolTip( "Recharging disabled when emp jammed." );
+		Asset.AddEntry_Float( "power_replenish_factor", 0, 0, 1 ).SetTitle( "power_replenish_factor" ).SetToolTip( "The power_replenish_factor property" );
+		Asset.AddEntry_CheckBox( "power_reset_on_spawn", false ).SetTitle( "power_reset_on_spawn" ).SetToolTip( "The power_reset_on_spawn property" );
+		Asset.AddEntry_CheckBox( "power_reset_on_class_change", false ).SetTitle( "power_reset_on_class_change" ).SetToolTip( "The power_reset_on_class_change property" );
+		Asset.AddEntry_CheckBox( "power_reset_on_team_change", false ).SetTitle( "power_reset_on_team_change" ).SetToolTip( "The power_reset_on_team_change property" );
+		Asset.AddEntry_CheckBox( "power_reset_on_round_switch", false ).SetTitle( "power_reset_on_round_switch" ).SetToolTip( "The power_reset_on_round_switch property" );
+		Asset.AddEntry_Int( "power_usable_threshold", 1, 0, 100 ).SetTitle( "power_usable_threshold" ).SetToolTip( "The power_usable_threshold property" );
+		Asset.AddEntry_Float( "power_usage_rate", 10, 0, 500 ).SetTitle( "power_usage_rate" ).SetToolTip( "The power_usage_rate property" );
+		Asset.AddEntry_String( "gadgetLoopSound", "" ).SetTitle( "Gadget Loop" ).SetToolTip( "Gadget loop sound" );
+		Asset.AddEntry_String( "gadgetOnSound", "" ).SetTitle( "Gadget On" ).SetToolTip( "Gadget turns on sound" );
+		Asset.AddEntry_String( "gadgetOffSound", "" ).SetTitle( "Gadget Off" ).SetToolTip( "Gadget turns off sound" );
+		Asset.AddEntry_String( "gadgetPrimedLoopSound", "" ).SetTitle( "Gadget Primed Loop" ).SetToolTip( "Gadget primed loop sound" );
+		Asset.AddEntry_String( "gadgetPrimedOnSound", "" ).SetTitle( "Gadget Primed On" ).SetToolTip( "Gadget gets primed sound" );
+		Asset.AddEntry_String( "gadgetPrimedOffSound", "" ).SetTitle( "Gadget Primed Off" ).SetToolTip( "Gadget stops being primed off sound" );
+		Asset.AddEntry_String( "gadgetReadySound", "" ).SetTitle( "Gadget Ready" ).SetToolTip( "Gadget is ready sound" );
+		Asset.AddEntry_String( "gadgetFlickerSound", "" ).SetTitle( "Gadget Flicker" ).SetToolTip( "Gadget flickers sound" );
+		Asset.AddEntry_String( "gadgetLoopSoundPlayer", "" ).SetTitle( "Gadget Loop Player" ).SetToolTip( "Gadget loop sound" );
+		Asset.AddEntry_String( "gadgetOnSoundPlayer", "" ).SetTitle( "Gadget On Player" ).SetToolTip( "Gadget turns on sound" );
+		Asset.AddEntry_String( "gadgetOffSoundPlayer", "" ).SetTitle( "Gadget Off Player" ).SetToolTip( "Gadget turns off sound" );
+		Asset.AddEntry_String( "gadgetPrimedLoopSoundPlayer", "" ).SetTitle( "Gadget Primed Loop" ).SetToolTip( "Gadget primed loop sound" );
+		Asset.AddEntry_String( "gadgetPrimedOnSoundPlayer", "" ).SetTitle( "Gadget Primed On" ).SetToolTip( "Gadget gets primed sound" );
+		Asset.AddEntry_String( "gadgetPrimedOffSoundPlayer", "" ).SetTitle( "Gadget Primed Off" ).SetToolTip( "Gadget stops being primed off sound" );
+		Asset.AddEntry_String( "gadgetReadySoundPlayer", "" ).SetTitle( "Gadget Ready Player" ).SetToolTip( "Gadget is ready sound" );
+		Asset.AddEntry_String( "gadgetFlickerSoundPlayer", "" ).SetTitle( "Gadget Flicker Player" ).SetToolTip( "Gadget flickers sound" );
+		Asset.AddEntry_String( "gadgetTakeSoundPlayer", "" ).SetTitle( "Gadget Take Player" ).SetToolTip( "Gadget is taken from player sound" );
+		Asset.AddEntry_String( "gadgetGiveSoundPlayer", "" ).SetTitle( "Gadget Give Player" ).SetToolTip( "Gadget is given to player" );
+		Asset.AddEntry_String( "gadgetPingSoundPlayer", "" ).SetTitle( "Gadget Ping Player" ).SetToolTip( "Gadget makes ping sound for player" );
+		Asset.AddEntry_String( "gadgetMissSoundPlayer", "" ).SetTitle( "Gadget Miss Player" ).SetToolTip( "Sound when gadget fails (i.e. vision pulse does not hit anything)" );
+		Asset.AddEntry_String( "lockOnFinishSound", "" ).SetTitle( "Lock on target" );
+		Asset.AddEntry_String( "lockOnLostSound", "" ).SetTitle( "Lock on lost" );
+		Asset.AddEntry_String( "lockOnNeededFireSound", "" ).SetTitle( "Attempted to fire without lock" );
+		Asset.AddEntry_String( "weaponSwitchCancelSound", "" ).SetTitle( "Weapon Switch Cancel" ).SetToolTip( "Sound when gadget activation failed due to lack of power" );
+		
+		Asset.AddEntry_CheckBox( "changeLens", false ).SetTitle( "Change Lens When Active" ).SetToolTip( "Setting this box allow you to set various lens (FOV) using the values below when the gadget is active" );
+		Asset.AddEntry_Float( "lensScaleInitial", 1, 0, 500 ).SetTitle( "lensScaleInitial" ).SetToolTip( "The lensScaleInitial property" );
+		Asset.AddEntry_Float( "lensScaleFinal", 1, 0, 500 ).SetTitle( "lensScaleFinal" ).SetToolTip( "The lensScaleFinal property" );
+		Asset.AddEntry_Float( "lensMinFocalLength", 14.64, 12, 14.64 ).SetTitle( "lensMinFocalLength" ).SetToolTip( "The lensMinFocalLength property" );
+		Asset.AddEntry_Float( "lensMaxFocalLength", 14.64, 12, 14.64 ).SetTitle( "lensMaxFocalLength" ).SetToolTip( "The lensMaxFocalLength property" );
+		Asset.AddEntry_Int( "lensTransTimeIn", 500, 0, 10000 ).SetTitle( "lensTransTimeIn" ).SetToolTip( "The lensTransTimeIn property" );
+		Asset.AddEntry_Int( "lensTransTimeOut", 500, 0, 10000 ).SetTitle( "lensTransTimeOut" ).SetToolTip( "The lensTransTimeOut property" );
+
+		Asset.AddEntry_Path( "fxThirdPersonOn", "" ).SetTitle( "3p Gadget On FX" ).SetRelativePath( "share/raw" ).SetToolTip( "Third person FX played when gadget turns on" );
+		Asset.AddEntry_String( "fxThirdPersonOnFxTag", "" ).SetTitle( "3p Gadget On FX Tag" ).SetToolTip( "Name of the tag/bone you want the FX to use for attaching or orientation." );
+		Asset.AddEntry_CheckBox( "fxThirdPersonOnFxBolted", false ).SetTitle( "3p Gadget On FX bolted" ).SetToolTip( "The FX is bolted and attached to a bone" );		
+		
+		Asset.AddEntry_Path( "fxThirdPersonLoop", "" ).SetTitle( "3p Gadget Loop FX 3p" ).SetRelativePath( "share/raw" ).SetToolTip( "Third person FX played while gadget is on" );
+		Asset.AddEntry_CheckBox( "fxThirdPersonLoopFxBolted", false ).SetTitle( "3p Gadget Loop FX bolted" ).SetToolTip( "The FX is bolted and attached to a bone" );
+		Asset.AddEntry_String( "fxThirdPersonLoopFxTag", "" ).SetTitle( "3p Gadget Loop FX Tag" ).SetToolTip( "Name of the tag/bone you want the FX to use for attaching or orientation." );
+
+		Asset.AddEntry_Path( "fxThirdPersonOff", "" ).SetTitle( "3p Gadget Off FX 3p" ).SetRelativePath( "share/raw" ).SetToolTip( "Third person FX played when gadget turns off" );
+		Asset.AddEntry_CheckBox( "fxThirdPersonOffFxBolted", false ).SetTitle( "3p Gadget Off FX bolted" ).SetToolTip( "The FX is bolted and attached to a bone" );
+		Asset.AddEntry_String( "fxThirdPersonOffFxTag", "" ).SetTitle( "3p Gadget Off FX Tag" ).SetToolTip( "Name of the tag/bone you want the FX to use for attaching or orientation." );
+
+		Asset.AddEntry_Path( "fxThirdPersonAlt", "" ).SetTitle( "3p Gadget Alt FX 3p" ).SetRelativePath( "share/raw" ).SetToolTip( "Third person FX played at an alternative event" );
+		Asset.AddEntry_CheckBox( "fxThirdPersonAltFxBolted", false ).SetTitle( "3p Gadget Alt FX bolted" ).SetToolTip( "The FX is bolted and attached to a bone" );
+		Asset.AddEntry_String( "fxThirdPersonAltFxTag", "" ).SetTitle( "3p Gadget Alt FX Tag" ).SetToolTip( "Name of the tag/bone you want the FX to use for attaching or orientation." );
+
+		Asset.AddEntry_Path( "fxFirstPersonOn", "" ).SetTitle( "1p Gadget On FX" ).SetRelativePath( "share/raw" ).SetToolTip( "First Person FX played when gadget turns on" );
+		Asset.AddEntry_String( "fxFirstPersonOnFxTag", "" ).SetTitle( "1p Gadget On FX Tag" ).SetToolTip( "Name of the tag/bone you want the FX to use for attaching or orientation." );
+		Asset.AddEntry_CheckBox( "fxFirstPersonOnFxBolted", false ).SetTitle( "1p Gadget On FX bolted" ).SetToolTip( "The FX is bolted and attached to a bone" );		
+		
+		Asset.AddEntry_Path( "fxFirstPersonLoop", "" ).SetTitle( "1p Gadget Loop FX 1p" ).SetRelativePath( "share/raw" ).SetToolTip( "First Person FX played while gadget is on" );
+		Asset.AddEntry_CheckBox( "fxFirstPersonLoopFxBolted", false ).SetTitle( "1p Gadget Loop FX bolted" ).SetToolTip( "The FX is bolted and attached to a bone" );
+		Asset.AddEntry_String( "fxFirstPersonLoopFxTag", "" ).SetTitle( "1p Gadget Loop FX Tag" ).SetToolTip( "Name of the tag/bone you want the FX to use for attaching or orientation." );
+
+		Asset.AddEntry_Path( "fxFirstPersonOff", "" ).SetTitle( "1p Gadget Off FX 1p" ).SetRelativePath( "share/raw" ).SetToolTip( "First Person FX played when gadget turns off" );
+		Asset.AddEntry_CheckBox( "fxFirstPersonOffFxBolted", false ).SetTitle( "1p Gadget Off FX bolted" ).SetToolTip( "The FX is bolted and attached to a bone" );
+		Asset.AddEntry_String( "fxFirstPersonOffFxTag", "" ).SetTitle( "1p Gadget Off FX Tag" ).SetToolTip( "Name of the tag/bone you want the FX to use for attaching or orientation." );
+
+		Asset.AddEntry_Path( "fxFirstPersonAlt", "" ).SetTitle( "1p Gadget Alt FX 1p" ).SetRelativePath( "share/raw" ).SetToolTip( "First Person FX played at an alternative event" );
+		Asset.AddEntry_CheckBox( "fxFirstPersonAltFxBolted", false ).SetTitle( "1p Gadget Alt FX bolted" ).SetToolTip( "The FX is bolted and attached to a bone" );
+		Asset.AddEntry_String( "fxFirstPersonAltFxTag", "" ).SetTitle( "1p Gadget Alt FX Tag" ).SetToolTip( "Name of the tag/bone you want the FX to use for attaching or orientation." );
+
+		Asset.AddEntry_AssetCombo( "gadgetIconAvailable", "image" ).SetTitle( "Gadget Icon (Available)" ).SetToolTip( "HUD Icon to show when the gadget is available" );
+		Asset.AddEntry_AssetCombo( "gadgetIconUnavailable", "image" ).SetTitle( "Gadget Icon (Unavailable)" ).SetToolTip( "HUD Icon to show while the gadget is charging" );
+		Asset.AddEntry_AssetCombo( "gadgetEnemyTypeIcon", "image" ).SetTitle( "Supported Enemy Type Icon" ).SetToolTip( "Supported enemy type icon that will be shown when ability is highlighted" );
+		
+		Asset.AddEntry_CheckBox( "turnoff_onAttack", false ).SetTitle( "turnoff_onAttack" ).SetToolTip( "The turnoff_onAttack property" );
+		Asset.AddEntry_CheckBox( "turnoff_onEmpJammed", true ).SetTitle( "turnoff_onEmpJammed" ).SetToolTip( "The turnoff_onEmpJammed property" );
+	}
+	
+	Asset.BeginCategory( "Melee" );
+	{
+		Asset.AddEntry_CheckBox( "meleeJuke", false ).SetTitle( "Melee Juke" ).SetToolTip( "Do a juke to start a melee attack." );
+		Asset.AddEntry_Int( "meleeJukeTime", 1000, 10, 10000 ).SetTitle( "Melee Juke Time (ms)" ).SetToolTip( "Melee juke time in ms" );
+		Asset.AddEntry_Int( "meleeJukeAccelTime", 0, 0, 10000 ).SetTitle( "Melee Juke Acceleration Time (ms)" ).SetToolTip( "Melee juke acceleration time in ms" );
+		Asset.AddEntry_Int( "meleeJukeDecelTime", 250, 10, 10000 ).SetTitle( "Melee Juke Deceleration Time (ms)" ).SetToolTip( "Melee juke deceleration time in ms" );
+		Asset.AddEntry_Float( "meleeJukeSpeed", 500, 10, 10000 ).SetTitle( "Melee Juke Speed" ).SetToolTip( "Melee juke speed" );
+		Asset.AddEntry_CheckBox( "meleeJukeIgnoreActors", false ).SetTitle( "Melee Juke Ignore Actors" ).SetToolTip( "Ignore actor collisions on melee juke." );
+		Asset.AddEntry_CheckBox( "meleeJukeGroundOnly", false ).SetTitle( "Melee Juke Ground Only" ).SetToolTip( "Disable melee juke when the player is in the air." );
+		Asset.AddEntry_CheckBox( "meleeAmmoJukeOnly", false ).SetTitle( "Melee Ammo For Juke Only" ).SetToolTip( "Only drain ammo on melee jukes." );
+		Asset.AddEntry_CheckBox( "nopostjukemelee", false ).SetTitle( "Skip post-juke melee" ).SetToolTip( "Don't perform melee at the end of melee juke action." );
+	}
+	
+	Asset.BeginCategory( "XModels" );
+	{
+		Asset.AddEntry_AssetCombo( "gunModel", "xmodel" ).SetTitle( "View Gun" );
+		Asset.AddEntry_AssetCombo( "worldModel", "xmodel" ).SetTitle( "World Gun" );
+	}
+	
+	Asset.BeginCategory("State Timers");
+	{
+		Asset.AddEntry_Float( "meleeChargeTime", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge" ).SetToolTip( "Rate of fire in seconds per melee charge attack." );
+		Asset.AddEntry_Float( "firstRaiseTime", 0.5, 0, 10 ).SetStep( 0.05 ).SetTitle( "First Raise" ).SetToolTip( "How long this weapon state will last. The viewmodel animations will get scaled to match the times");
+		Asset.AddEntry_Float( "raiseTime", 0.5, 0, 10 ).SetStep( 0.05 ).SetTitle( "Raise" ).SetToolTip( "How long this weapon state will last. The viewmodel animations will get scaled to match the times set." );		
+		Asset.AddEntry_Float( "emptyRaiseTime", 0.5, 0, 10 ).SetStep( 0.05 ).SetTitle( "Empty Raise" ).SetToolTip( "How long this weapon state will last. The viewmodel animations will get scaled to match the times set." );
+		Asset.AddEntry_Float( "quickRaiseTime", 0.5, 0, 10 ).SetStep( 0.05 ).SetTitle( "Quick Raise" ).SetToolTip( "How long this weapon state will last. The viewmodel animations will get scaled to match the times set." );
+		Asset.AddEntry_Float( "dropTime", 0.5, 0, 10 ).SetStep( 0.05 ).SetTitle( "Drop" ).SetToolTip( "How long this weapon state will last. The viewmodel animations will get scaled to match the times set." );
+		Asset.AddEntry_Float( "emptyDropTime", 0.5, 0, 10 ).SetStep( 0.05 ).SetTitle( "Empty Drop" ).SetToolTip( "How long this weapon state will last. The viewmodel animations will get scaled to match the times set." );
+		Asset.AddEntry_Float( "quickDropTime", 0.5, 0, 10 ).SetStep( 0.05 ).SetTitle( "Quick Drop" ).SetToolTip( "How long this weapon state will last. The viewmodel animations will get scaled to match the times set." );
+	}
+
+	Asset.BeginCategory("XAnims");
+	{
+		Asset.AddEntry_AssetCombo( "idleAnim", "xanim" ).SetTitle( "Idle" ).SetHints( "NOWARNINGS" );	
+		Asset.AddEntry_AssetCombo( "meleeAnim", "xanim" ).SetTitle( "Melee" );
+		Asset.AddEntry_AssetCombo( "meleeChargeAnim", "xanim" ).SetTitle( "Melee Charge In" ).SetToolTip( "The anim played for a melee charge" );
+		Asset.AddEntry_AssetCombo( "raiseAnim", "xanim" ).SetTitle( "Raise" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "emptyRaiseAnim", "xanim" ).SetTitle( "Empty Raise" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "quickRaiseAnim", "xanim" ).SetTitle( "Quick Raise" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "emptyDropAnim", "xanim" ).SetTitle( "Empty Drop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "quickDropAnim", "xanim" ).SetTitle( "Quick Drop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "dropAnim", "xanim" ).SetTitle( "Drop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "adsUpAnim", "xanim" ).SetTitle( "ADS Up" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "adsDownAnim", "xanim" ).SetTitle( "ADS Down" ).SetHints( "NOWARNINGS" );
+	}
+}
+
+	

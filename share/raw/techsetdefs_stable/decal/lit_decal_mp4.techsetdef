@@ -1,0 +1,67 @@
+#include "lit_base_shaders"
+#include "lit_decal_base.inc"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "base decal renderflags"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+}
+Texture( "colorMap" )
+{
+	ref = true
+	image = Image( <colorMap, uie_fractal_trimask> )
+}
+Texture( "tintMask" )
+{
+	image = Image( <colorMap00, $white_reveal> )
+	semantic = "revealMap"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "colorTint" )
+{
+	value = "1"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+}
+
+Technique( "gbuffer" ) : "base lit decal gbuffer diffuse"
+{
+	source = "gbuffer_decal_mp4.hlsl"
+	vs = VertexShader() : "vs_generic" { }
+	ps = PixelShader() : "ps_generic"
+	{ 
+#if TOOLSGFX != "1"
+		yTexture = CodeTexture( "cinematicYSampler" )
+		cbcrTexture = CodeTexture( "cinematicCrSampler" )
+		
+		ySampler = Sampler("tile both", "nomip bilinear")
+		cbcrSampler = Sampler("tile both", "nomip bilinear")
+#endif
+	}
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

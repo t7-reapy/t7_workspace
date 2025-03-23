@@ -1,0 +1,191 @@
+#include "state"
+#include "renderFlags"
+#include "usage"
+#include "normal_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit transparent distortion"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+
+Texture( "revealTexture" )
+{
+	image = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Reveal"
+		title     = "Reveal Map"
+		sortindex = "0"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "normalSampler" ).tweak = ""
+Texture( "normalMap" ).tweak = Tweak()
+{
+	category  = "Distortion"
+	title     = "Warp Map"
+	sortindex = "0"
+}
+float1( "baseNormalHeight" ).tweak = Tweak()
+{
+	category  = "Distortion"
+	title     = "Warp Map Height"
+	sortindex = "10"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "Speed" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		category  = "Distortion"
+		title     = "Wiggle Speed"
+		sortindex = "10"
+		default   = "15.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+
+float1( "Scale" )
+{
+	x     = <cg05_x>
+	tweak = Tweak()
+	{
+		category  = "Distortion"
+		title     = "Amount"
+		sortindex = "20"
+		default   = "0.100000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+
+float1( "EdgeAmount" )
+{
+	x     = <cg03_x>
+	tweak = Tweak()
+	{
+		category  = "Edges"
+		title     = "Edge Amount"
+		sortindex = "30"
+		default   = "0.500000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+
+float1( "EdgeHarshness" )
+{
+	x     = <cg03_y>
+	tweak = Tweak()
+	{
+		category  = "Edges"
+		title     = "Edge Harshness"
+		sortindex = "40"
+		default   = "2.0"
+		range     = "0.0", "16.0", "0.01"
+		color     = false
+	}
+}
+
+float1( "PulseWidth" )
+{
+	x     = <cg02_w>
+	tweak = Tweak()
+	{
+		category  = "Edges"
+		title     = "Pulse Width"
+		sortindex = "50"
+		default   = "0.2"
+		range     = "0", "1.0", "0.01"
+		color     = false
+	}
+}
+
+float3( "SceneTint" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	z     = <cg02_z>
+	tweak = Tweak()
+	{
+		category  = "Edges"
+		title     = "SceneTint"
+		sortindex = "60"
+		default   = "1.000000", "1.000000", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = true
+	}
+}
+
+float1( "PatternScale" )
+{
+	x     = <cg03_z>
+	tweak = Tweak()
+	{
+		category  = "Reveal"
+		title     = "Reveal Scale"
+		sortindex = "70"
+		default   = "8.0"
+		range     = "1.0", "32000", "2.0"
+		color     = false
+	}
+}
+
+float1( "scriptFaker" )
+{
+	x     = <cg03_w>
+	tweak = Tweak()
+	{
+		category  = "Reveal"
+		title     = "Script Simulator (Tools Only)"
+		sortindex = "80"
+		default   = "0.0"
+		range     = "0.0", "1.0", "0.01"
+		color     = false
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "lit" )
+{
+	state	= "blend + depth"
+	source  = "specialty/cloaking.hlsl"
+	vs = VertexShader()
+	{
+	#if TOOLSGFX == "1"
+		vertexDecl = "generic"
+	#endif
+	}
+	ps = PixelShader()
+	{
+	#if TOOLSGFX != "1"
+		resolvedPostSun = CodeTexture( "resolvedPostSun" )
+	#endif
+	}
+}
+
+#if TOOLSGFX == "1"
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+#endif

@@ -1,0 +1,234 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+const string SPACE = "    ";
+
+const string HIT_LOCATIONS = " | helmet | head | left_arm_lower | left_arm_upper | left_foot | left_hand | left_leg_lower | left_leg_upper | neck | right_arm_lower | right_arm_upper | right_foot | right_hand |  right_leg_lower | right_leg_upper | torso_lower | torso_upper";
+const string GIB_PIECES = " | head | right arm | left arm | right leg | left leg";
+const int MAX_FX = 20;
+const int MAX_PIECES = 20;
+const int MAX_SCRIPTBUNDLE_OBJECTS = 50;
+
+const string CHARACTER_INFO = "";
+
+const array<string> FX_KEYS = {
+	"deleteFxButton",
+	"fx",
+	"attachtag",
+	"stopOnGib",
+	"stopOnPieceDestroyed",
+};
+
+const array<string> FX_KEYS_TYPE = {
+	"",
+	"fx",
+	"bone",
+	"combo",
+	"destructible_pieces",
+};
+
+const array<string> FX_KEYS_TITLE = {
+	"Edit:",
+	"FX:",
+	"FX Tag:",
+	"On Gib:",
+	"On Piece Destroyed:",
+};
+
+const array<string> FX_KEYS_TOOL_TIP = {
+	"Delete the current attached fx.",
+	"Effect that is attached to the character model.",
+	"Tag that the effect is attached to.",
+	"Stops the effect if the character is gibbed in this location.",
+	"Stops the effect if this corresponding character destructible piece is destroyed.",
+};
+
+const array<string> FX_KEYS_EXTRA = {
+	"",
+	"",
+	"",
+	GIB_PIECES,
+	"",
+};
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	
+	Asset.AddEntry_Combo( "type", "fxcharacterdef" ).Show( false );
+	Asset.AddEntry_Combo( "vmType", "Client" ).SetTitle( "Script Type" ).Show( false ).SetValue("Client");
+	Asset.AddEntry_Int( "effectCount", 0, 0, MAX_FX ).SetToolTip( "The number of effects." ).Show( false );
+	
+	Asset.BeginCategory( "Character Information", 0.3, 0.5, 1, "Icon_asset_character.png" );
+	{
+		Asset.AddEntry_Label(
+			"ignore_characterInfo",
+			"The Xmodel used to populate the \"tag\" dropdowns." ).SetTitle( " " );
+	
+		Asset.AddEntry_AssetCombo( "ignore_model", "xmodel" ).
+			SetTitle( "Base Model:" ).
+			SetToolTip( "An XModel that contains every TAG that will have an effect attached to it." );
+		
+		Asset.AddEntry_ButtonGroup( "addAttachedFXButton" ).
+			SetTitle( "Edit:" ).
+			AddButton( "Add Attached Effect", "", "void AddAttachedFXPiece( asset Asset, const string& param )", "" ).
+			SetToolTip( "Create a new attached fx, maximum " + MAX_FX + "." );
+	}
+	
+	Asset.BeginCategory( "FX Information", 0.3, 0.5, 1, "" );
+	{
+		Asset.AddEntry_Label(
+			"effectInfo",
+			"Each effect is attached to the character as long as none of the stop conditions are true.\n" ).SetTitle( " " );
+	
+		uint keyIndex = 1;
+		
+		Asset.AddEntry_Label( "ignore_" + FX_KEYS[keyIndex] + "Info", FX_KEYS_TOOL_TIP[keyIndex++] ).SetTitle( SPACE + "\"FX" );
+		Asset.AddEntry_Label( "ignore_" + FX_KEYS[keyIndex] + "Info", FX_KEYS_TOOL_TIP[keyIndex++] ).SetTitle( SPACE + "\"FX Tag" );
+		Asset.AddEntry_Label( "ignore_" + FX_KEYS[keyIndex] + "Info", FX_KEYS_TOOL_TIP[keyIndex++] ).SetTitle( SPACE + "\"On Gib\" (optional)" );
+		Asset.AddEntry_Label( "ignore_" + FX_KEYS[keyIndex] + "Info", FX_KEYS_TOOL_TIP[keyIndex++] ).SetTitle( SPACE + "\"On Piece Destroyed\" (optional)" );
+	}
+	
+	const int effectCount = Asset.GetEntryValue( "effectCount" ).ToInt();
+	
+	for ( int index = 1; index <= MAX_FX; index++ )
+	{
+		CreateAttachedFX( Asset, index );
+		
+		if ( index > effectCount )
+		{
+			ShowPiece( Asset, index, false );
+		}
+	}
+	
+	if ( effectCount >= MAX_FX )
+	{
+		Asset.GetEntryControl( "addAttachedFXButton" ).Enable(false);
+	}
+}
+
+void AddAttachedFXPiece( asset Asset, const string& param )
+{
+	const int effectCount = Asset.GetEntryValue( "effectCount" ).ToInt();
+
+	if ( effectCount < MAX_FX )
+	{
+		Asset.GetEntryVariable( "effectCount" ).SetValue( "" + ( effectCount + 1 ) );
+	}
+	
+	if ( Asset.GetEntryValue( "effectCount" ).ToInt() >= MAX_FX )
+	{
+		MessageBox( "Maximum number of attached fx created \"" + MAX_FX + "\"", "OK");
+	}
+}
+
+void ClearAttachedFX( asset Asset, const int index )
+{
+	const string prefix = CreateAttachedFXName( index );
+	
+	for ( uint i = 0; i < FX_KEYS.length(); i++ )
+	{
+		Asset.GetEntryVariable( prefix + FX_KEYS[i] ).SetValue( "" );
+	}
+}
+
+void AddEntry( asset Asset, string name, string type, string title, string tooltip, string extra )
+{
+	if ( type == "bone" )
+	{
+		Asset.AddEntry_BoneCombo( name, "model" ).SetTitle( title ).SetToolTip( tooltip );
+	}
+	else if ( type == "combo" )
+	{
+		Asset.AddEntry_Combo( name, extra ).SetTitle( title ).SetToolTip( tooltip );
+	}
+	else if ( type == "fx" )
+	{
+		Asset.AddEntry_Path( name, "model" ).SetTitle( title ).SetRelativePath( "share/raw/fx/" ).SetToolTip( tooltip );
+	}
+	else if ( type == "destructible_pieces" )
+	{
+		Asset.AddEntry_Int( name, 0, 0, MAX_PIECES ).SetTitle( title ).SetToolTip( tooltip );
+	}
+}
+
+void CreateAttachedFX( asset Asset, const int index )
+{
+	const string prefix = CreateAttachedFXName( index );
+	const string fxName = "Attached FX " + index;
+	
+	uint keyIndex = 0;
+	
+	Asset.BeginCategory( fxName, 1, 0.5, 0.3, "" );
+	{
+		Asset.AddEntry_ButtonGroup( prefix + FX_KEYS[keyIndex] ).
+			SetTitle( FX_KEYS_TITLE[keyIndex] ).
+			AddButton( "Delete", "", "void DeleteAttachedFX( asset Asset, const string& param )", "" + index ).
+			SetToolTip( FX_KEYS_TOOL_TIP[keyIndex] );
+		
+		keyIndex++;
+		
+		AddEntry( Asset, prefix + FX_KEYS[keyIndex], FX_KEYS_TYPE[keyIndex], FX_KEYS_TITLE[keyIndex], FX_KEYS_TOOL_TIP[keyIndex], FX_KEYS_EXTRA[keyIndex] );
+		keyIndex++;
+		AddEntry( Asset, prefix + FX_KEYS[keyIndex], FX_KEYS_TYPE[keyIndex], FX_KEYS_TITLE[keyIndex], FX_KEYS_TOOL_TIP[keyIndex], FX_KEYS_EXTRA[keyIndex] );
+		keyIndex++;
+		
+		Asset.BeginCategory( fxName + ".Stop Conditions", 0.3, 0.5, 1, "" );
+		{
+			AddEntry( Asset, prefix + FX_KEYS[keyIndex], FX_KEYS_TYPE[keyIndex], FX_KEYS_TITLE[keyIndex], FX_KEYS_TOOL_TIP[keyIndex], FX_KEYS_EXTRA[keyIndex] );
+			keyIndex++;
+			AddEntry( Asset, prefix + FX_KEYS[keyIndex], FX_KEYS_TYPE[keyIndex], FX_KEYS_TITLE[keyIndex], FX_KEYS_TOOL_TIP[keyIndex], FX_KEYS_EXTRA[keyIndex] );
+			keyIndex++;
+		}
+	}
+}
+
+void CopyAttachedFX( asset Asset, const int fromIndex, const int toIndex )
+{
+	const string fromPrefix = CreateAttachedFXName( fromIndex );
+	const string toPrefix = CreateAttachedFXName( toIndex );
+	
+	for ( uint i = 0; i < FX_KEYS.length(); i++ )
+	{
+		Asset.GetEntryVariable( toPrefix + FX_KEYS[i] ).SetValue( Asset.GetEntryValue( fromPrefix + FX_KEYS[i] ) );
+	}
+}
+
+string CreateAttachedFXName( const int index )
+{
+	return "effect" + index + "_";
+}
+
+void DeleteAttachedFX( asset Asset, const string& param )
+{
+	const int deleteIndex = param.ToInt();
+	const string fxName = "Attached FX " + deleteIndex;
+	
+	if ( MessageBox( "Are you sure you want to delete \"" + fxName + "\"", "YESNO") == "NO" )
+	{
+		return;
+	}
+	
+	if ( deleteIndex <= MAX_FX )
+	{
+		for ( uint i = deleteIndex; i < MAX_FX; i++ )
+		{
+			CopyAttachedFX( Asset, i + 1, i );
+		}
+		
+		ClearAttachedFX( Asset, MAX_FX );
+		
+		const int effectCount = Asset.GetEntryValue( "effectCount" ).ToInt();
+		Asset.GetEntryVariable( "effectCount" ).SetValue( "" + ( effectCount - 1 ) );
+	}
+}
+
+void ShowPiece( asset Asset, const int index, const bool show )
+{
+	const string prefix = CreateAttachedFXName( index );
+	
+	for ( uint i = 0; i < FX_KEYS.length(); i++ )
+	{
+		Asset.GetEntryVariable( prefix + FX_KEYS[i] ).Show( show );
+	}
+}

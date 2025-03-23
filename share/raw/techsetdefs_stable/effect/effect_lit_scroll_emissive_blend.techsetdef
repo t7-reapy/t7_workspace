@@ -1,0 +1,261 @@
+#include "effect_base"
+
+Globals()
+{
+	category = "Effect"
+	renderFlags = "lit transparent fx"
+	availablePrefixes = "ei/ el/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "emissiveMap" )
+{
+	image = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	usage = "reveal map"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Emissive Mask"
+		sortindex = "10"
+	}
+}
+
+Texture( "alphaMap" )
+{
+	image = Image( <flickerLookupMap, $white_reveal> )
+	semantic = "revealMap"
+	usage = "reveal map"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Alpha Mask"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "scaleUVsAlpha" )
+{
+	x = <gSharedU_Scale00>
+	y = <gSharedV_Scale00>
+	tweak = Tweak()
+	{
+		category	= "Alpha Parameters"
+		title		= "Scale (U, V)"
+		sortindex	= "20"
+	}
+}
+
+float1( "hdrScale" )
+{
+	x = <scaleRGB>
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Intensity"
+		sortindex = "30"
+	}
+}
+
+Bool( "useOldHDRScale" )
+{
+	value = <useOldHDRScale>
+	tweak = Tweak()
+	{
+		category	= "Emissive"
+		title		= "Physically Based Emissive behavior."
+		sortindex	= "40"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "scrollUVsEmissive" )
+{
+	x = <gUVScroll02_Angle>
+	y = <gUVScroll03_Angle>
+	tweak = Tweak()
+	{
+		category  = "Emissive Parameters"
+		title     = "Scroll (U, V)"
+		sortindex = "20"
+	}
+}
+
+float2( "rotateUVsEmissive" )
+{
+	x = <uvScrollAngle>
+	y = <uvRotationRate>
+	tweak = Tweak()
+	{
+		category	= "Emissive Parameters"
+		title		= "UV Rotation, Spin Rate"
+		sortindex	= "30"
+	}
+}
+
+float2( "scaleUVsEmissive" )
+{
+	x = <detailScaleX>
+	y = <detailScaleY>
+	tweak = Tweak()
+	{
+		category	= "Emissive Parameters"
+		title		= "Scale (U, V)"
+		sortindex	= "40"
+	}
+}
+
+float2( "offsetUVsEmissive" )
+{
+	x = <uScroll>
+	y = <vScroll>
+	tweak = Tweak()
+	{
+		category	= "Emissive Parameters"
+		title		= "Offset (U, V)"
+		sortindex	= "50"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "scrollUVsColor" )
+{
+	x = <gUVScroll00_Angle>
+	y = <gUVScroll01_Angle>
+	tweak = Tweak()
+	{
+		category  = "Color Parameters"
+		title     = "Scroll (U, V)"
+		sortindex = "20"
+	}
+}
+
+float2( "rotateUVsColor" )
+{
+	x = <uvScrollAngle1>
+	y = <uvRotationRate1>
+	tweak = Tweak()
+	{
+		category	= "Color Parameters"
+		title		= "UV Rotation, Spin Rate"
+		sortindex	= "30"
+	}
+}
+
+float2( "scaleUVsColor" )
+{
+	x = <colorDetailScaleX>
+	y = <colorDetailScaleY>
+	tweak = Tweak()
+	{
+		category	= "Color Parameters"
+		title		= "Scale (U, V)"
+		sortindex	= "40"
+	}
+}
+
+float2( "offsetUVsColor" )
+{
+	x = <uScroll1>
+	y = <vScroll1>
+	tweak = Tweak()
+	{
+		category	= "Color Parameters"
+		title		= "Offset (U, V)"
+		sortindex	= "50"
+	}
+}
+
+float1( "zFeatherOverride" )
+{
+	x = <zFeatherOverride>
+	tweak = Tweak()
+	{
+		category	= "Parameters"
+		title		= "Z Feather Override"
+		sortindex	= "60"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "wireframe" )
+{
+	state = "premul + depth"
+	defines += "USE_WIREFRAME 1"
+	vs = VertexShader() : "vs_lit" { }
+#if TOOLSGFX == "1"
+	gs = GeometryShader() : "gs_wireframe" { }
+#endif
+	ps = PixelShader() : "ps_lit" { }
+}
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+#if 0
+	ls = LocalShader() : "ls_default" {}
+	hs = HullShader() : "hs_default" {}
+	ds = DomainShader() : "ds_unlit" {}
+#else
+	vs = VertexShader() : "vs_unlit" { }
+#endif
+	ps = PixelShader() : "ps_unlit" { }
+}
+
+Technique( "lit" )
+{
+	state = "premul + depth"
+	#if EFFECT_INSTANCED_VERTEX_FORMAT == "1"
+	defines += "USE_ALPHA_MAP", "USE_EMISSIVE_MAP", "USE_TRANSMITTANCE", "USE_FALLOFF", "USE_SCROLL_ROTATE_UVS", "USE_ZFEATHER_OVERRIDE"
+	#else
+	defines += "USE_ALPHA_MAP", "USE_EMISSIVE_MAP", "USE_TRANSMITTANCE", "USE_FALLOFF", "USE_SCROLL_ROTATE_UVS", "USE_ZFEATHER_OVERRIDE", "USE_LMAP 0"
+	#endif
+
+#if 0
+	ls = LocalShader() : "ls_default" {}
+	hs = HullShader() : "hs_default" {}
+	ds = DomainShader() : "ds_lit" { }
+#else
+	vs = VertexShader() : "vs_lit" { }
+#endif
+
+	ps = PixelShader() : "ps_lit_blend" { }
+}
+
+Technique( "oit" )
+{
+	state = "fallback + depth + rez"
+	#if EFFECT_INSTANCED_VERTEX_FORMAT == "1"
+	defines += "USE_ALPHA_MAP", "USE_EMISSIVE_MAP", "USE_TRANSMITTANCE", "USE_FALLOFF", "USE_SCROLL_ROTATE_UVS", "USE_ZFEATHER_OVERRIDE"
+	#else
+	defines += "USE_ALPHA_MAP", "USE_EMISSIVE_MAP", "USE_TRANSMITTANCE", "USE_FALLOFF", "USE_SCROLL_ROTATE_UVS", "USE_ZFEATHER_OVERRIDE", "USE_LMAP 0"
+	#endif
+
+#if 0
+	ls = LocalShader() : "ls_default" {}
+	hs = HullShader() : "hs_default" {}
+	ds = DomainShader() : "ds_lit_oit" { }
+#else
+	vs = VertexShader() : "vs_lit_oit" { }
+#endif
+	ps = PixelShader() : "ps_lit_blend_oit" { }
+}
+
+#if TOOLSGFX == "1"
+#else
+Technique( "build shadowmap depth" ) : "fx shadowmap"
+{
+	defines += "USE_ALPHA_MAP", "USE_FALLOFF", "USE_ZFEATHER_OVERRIDE", "USE_SCROLL_ROTATE_UVS"
+}
+
+Technique( "depth prepass" ) : "fx shadowmap depth"
+{
+	defines += "USE_ALPHA_MAP", "USE_FALLOFF", "USE_ZFEATHER_OVERRIDE", "USE_SCROLL_ROTATE_UVS"
+}
+#endif

@@ -1,0 +1,450 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{97983B18-0A0D-4A60-8EAE-A167A4BF4C09}"
+"classname" "worldspawn"
+"suncolor" "0.996078 0.839216 0.537255"
+"sundirection" "313  133 0"
+"sunlight" "0.7"
+"evmax" "31"
+"evmin" "-32"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{68DE127D-3785-4A15-9FE5-BE51A66D2294}"
+  contents weaponClip detail;
+ ( 9.5 8 0 ) ( -6.5 8 0 ) ( -6.5 -8 0 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -4 -8 1 ) ( -4 8 1 ) ( 12 8 1 ) t7_metal_worn_iron_dark 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 -8 84 ) ( 8 -8 84 ) ( 8 -8 0 ) t7_metal_trim_worn_iron_dark 64 8 0 -1 0 0 lightmap_gray 16384 16384 0 -92 0 0
+ ( 8 -8 84 ) ( 8 8 84 ) ( 8 8 0 ) t7_metal_trim_worn_iron_dark 64 8 0 -1 0 0 lightmap_gray 16384 16384 0 -92 0 0
+ ( 8 8 84 ) ( -8 8 84 ) ( -8 8 0 ) t7_metal_trim_worn_iron_dark 64 8 0 -1 0 0 lightmap_gray 16384 16384 0 -92 0 0
+ ( -8 8 84 ) ( -8 -8 84 ) ( -8 -8 0 ) t7_metal_trim_worn_iron_dark 64 8 0 -1 0 0 lightmap_gray 16384 16384 0 -92 0 0
+}
+// brush 1
+{
+ guid "{240F9F07-F8B4-4937-885B-DD21562D4286}"
+  contents weaponClip detail;
+ ( 10 5 1 ) ( -6 5 1 ) ( -6 -11 1 ) t7_metal_trim_rivets_01 64 8 0 -4 90 0 lightmap_gray 16384 16384 -134 107 0 0
+ ( -6 -11 85 ) ( -6 5 85 ) ( 10 5 85 ) t7_metal_trim_rivets_01 64 8 0 -4 90 0 lightmap_gray 16384 16384 -134 107 0 0
+ ( 4 -11 85 ) ( 4 5 85 ) ( 4 5 5 ) t7_metal_trim_rivets_02 64 8 24 4 90 0 lightmap_gray 16384 16384 -107 -93 0 0
+ ( 10 5 85 ) ( -6 5 85 ) ( -6 5 5 ) t7_metal_trim_rivets_01 64 8 0 -4 90 0 lightmap_gray 16384 16384 -134 -93 0 0
+ ( -4 5 85 ) ( -4 -11 85 ) ( -4 -11 5 ) t7_metal_trim_rivets_02 64 8 0 4 90 0 lightmap_gray 16384 16384 -107 -93 0 0
+ ( -1 4.25 85 ) ( -4 4.25 85 ) ( -4 4.25 117 ) t7_metal_trim_rivets_01 64 8 0 -4 90 0 lightmap_gray 16384 16384 0 -93 0 0
+}
+// brush 2
+{
+ guid "{A7261010-EB46-4DD4-83CE-8791129FAC10}"
+  contents weaponClip detail;
+ ( 10 7 1 ) ( -6 7 1 ) ( -6 -9 1 ) t7_metal_trim_rivets_01 64 8 0 -4 90 0 lightmap_gray 16384 16384 -134 105 0 0
+ ( -6 -9 85 ) ( -6 7 85 ) ( 10 7 85 ) t7_metal_trim_rivets_01 64 8 0 -4 90 0 lightmap_gray 16384 16384 -134 105 0 0
+ ( -6 -5 85 ) ( 10 -5 85 ) ( 10 -5 5 ) t7_metal_trim_rivets_01 64 8 0 -4 90 0 lightmap_gray 16384 16384 -134 -93 0 0
+ ( 4 -9 85 ) ( 4 7 85 ) ( 4 7 5 ) t7_metal_trim_rivets_02 64 8 24 4 90 0 lightmap_gray 16384 16384 -105 -93 0 0
+ ( -4 7 85 ) ( -4 -9 85 ) ( -4 -9 5 ) t7_metal_trim_rivets_02 64 8 0 4 90 0 lightmap_gray 16384 16384 -105 -93 0 0
+ ( -4 -4.25 85 ) ( 2 -4.25 85 ) ( -4 -4.25 117 ) t7_metal_trim_rivets_01 64 8 0 -4 90 0 lightmap_gray 16384 16384 0 -93 0 0
+}
+// brush 3
+{
+ guid "{04B768BE-7C33-41F3-BBAF-0927EE23147B}"
+ ( 10 6 1 ) ( -6 6 1 ) ( -6 -10 1 ) t7_metal_trim_rivets_02 64 8 0 -4 90 0 lightmap_gray 16384 16384 -134 106 0 0
+ ( -6 -10 85 ) ( -6 6 85 ) ( 10 6 85 ) t7_metal_trim_rivets_02 64 8 0 -4 90 0 lightmap_gray 16384 16384 -134 106 0 0
+ ( 1 -10 84 ) ( 1 6 84 ) ( 1 6 4 ) t7_metal_trim_rivets_02 64 8 0 0 90 0 lightmap_gray 16384 16384 -106 -93 0 0
+ ( -1 6 85 ) ( -1 -10 85 ) ( -1 -10 5 ) t7_metal_trim_rivets_02 64 8 0 0 90 0 lightmap_gray 16384 16384 -106 -93 0 0
+ ( -2 4.25 85 ) ( 0 4.25 85 ) ( -2 4.25 117 ) t7_metal_trim_rivets_02 64 8 0 -4 90 0 lightmap_gray 16384 16384 0 -93 0 0
+ ( 2 -4.25 85 ) ( 0 -4.25 85 ) ( 2 -4.25 117 ) t7_metal_trim_rivets_02 64 8 0 -4 90 0 lightmap_gray 16384 16384 0 -93 0 0
+}
+// brush 4
+ {
+  guid "{7D048254-23F0-11E4-ABFD-D89D67C6FA88}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   7 3 16 8
+   (
+	v 4 5 84.25 t 0 0 0.1875 -0.015625 f 1
+	v 4 5 85 t 0 -424.15472 0.1875 -0.0625 f 1
+	v 4.75 5.75 85 t 0 -1024 0.234375 -0.0625 f 1
+   )
+   (
+	v -4 5 84.25 t 682.66669 0 0.1875 -0.015625 f 1
+	v -4 5 85 t 682.66669 -424.15472 0.1875 -0.0625 f 1
+	v -4.75 5.75 85 t 720.59259 -1024 0.234375 -0.0625 f 1
+   )
+   (
+	v -4 4.25 84.25 t 746.66669 0 0.140625 -0.015625 f 1
+	v -4 4.25 85 t 746.66669 -424.15472 0.140625 -0.0625 f 1
+	v -4.75 3.5 85 t 891.25928 -1024 0.09375 -0.0625 f 1
+   )
+   (
+	v -1 4.25 84.25 t 1002.6667 0 0.140625 -0.015625 f 1
+	v -1 4.25 85 t 1002.6667 -424.15472 0.140625 -0.0625 f 1
+	v -1.75 3.5 85 t 1118.8148 -1024 0.09375 -0.0625 f 1
+   )
+   (
+	v -1 -4.25 84.25 t 1728 0 -0.390625 -0.015625 f 1
+	v -1 -4.25 85 t 1728 -424.15472 -0.390625 -0.0625 f 1
+	v -1.75 -3.5 85 t 1649.7778 -1024 -0.34375 -0.0625 f 1
+   )
+   (
+	v -4 -4.25 84.25 t 1984 0 -0.390625 -0.015625 f 1
+	v -4 -4.25 85 t 1984 -424.15472 -0.390625 -0.0625 f 1
+	v -4.75 -3.5 85 t 1877.3334 -1024 -0.34375 -0.0625 f 1
+   )
+   (
+	v -4 -5 84.25 t 2048 0 -0.4375 -0.015625 f 1
+	v -4 -5 85 t 2048 -424.15472 -0.4375 -0.0625 f 1
+	v -4.75 -5.75 85 t 2048 -1024 -0.484375 -0.0625 f 1
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort 2
+  }
+ }
+// brush 5
+{
+ guid "{7D048255-23F0-11E4-ABFD-D89D67C6FA88}"
+  contents weaponClip detail;
+ ( -9.5 8 86 ) ( 6.5 8 86 ) ( 6.5 -8 86 ) caulk 16 -16 0 0 180 0 lightmap_gray 16384 -16384 0 0 180 0
+ ( 4 -8 85 ) ( 4 8 85 ) ( -12 8 85 ) t7_metal_worn_iron_dark 64 -64 0 0 180 0 lightmap_gray 16384 -16384 0 0 180 0
+ ( 8 -8 2 ) ( -8 -8 2 ) ( -8 -8 86 ) t7_metal_trim_worn_iron_dark 64 8 0 85 180 0 lightmap_gray 16384 16384 0 -6 180 0
+ ( -8 -8 2 ) ( -8 8 2 ) ( -8 8 86 ) t7_metal_trim_worn_iron_dark 64 -8 0 -85 0 0 lightmap_gray 16384 -16384 0 6 0 0
+ ( -8 8 2 ) ( 8 8 2 ) ( 8 8 86 ) t7_metal_trim_worn_iron_dark 64 8 0 85 180 0 lightmap_gray 16384 16384 0 -6 180 0
+ ( 8 8 2 ) ( 8 -8 2 ) ( 8 -8 86 ) t7_metal_trim_worn_iron_dark 64 -8 0 -85 0 0 lightmap_gray 16384 -16384 0 6 0 0
+}
+// brush 6
+ {
+  guid "{7D048256-23F0-11E4-ABFD-D89D67C6FA88}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_metal_trim_weld_01_paint_grey_drk
+   lightmap_gray
+   7 3 16 8
+   (
+	v -4 -5 84.25 t 0 0 -0.4375 -0.015625 f 1
+	v -4 -5 85 t 0 -424.15472 -0.4375 -0.0625 f 1
+	v -4.75 -5.75 85 t 0 -1024 -0.484375 -0.0625 f 1
+   )
+   (
+	v 4 -5 84.25 t 682.66669 0 -0.4375 -0.015625 f 1
+	v 4 -5 85 t 682.66669 -424.15472 -0.4375 -0.0625 f 1
+	v 4.75 -5.75 85 t 720.59259 -1024 -0.484375 -0.0625 f 1
+   )
+   (
+	v 4 -4.25 84.25 t 746.66669 0 -0.390625 -0.015625 f 1
+	v 4 -4.25 85 t 746.66669 -424.15472 -0.390625 -0.0625 f 1
+	v 4.75 -3.5 85 t 891.25928 -1024 -0.34375 -0.0625 f 1
+   )
+   (
+	v 1 -4.25 84.25 t 1002.6667 0 -0.390625 -0.015625 f 1
+	v 1 -4.25 85 t 1002.6667 -424.15472 -0.390625 -0.0625 f 1
+	v 1.75 -3.5 85 t 1118.8148 -1024 -0.34375 -0.0625 f 1
+   )
+   (
+	v 1 4.25 84.25 t 1728 0 0.140625 -0.015625 f 1
+	v 1 4.25 85 t 1728 -424.15472 0.140625 -0.0625 f 1
+	v 1.75 3.5 85 t 1649.7778 -1024 0.09375 -0.0625 f 1
+   )
+   (
+	v 4 4.25 84.25 t 1984 0 0.140625 -0.015625 f 1
+	v 4 4.25 85 t 1984 -424.15472 0.140625 -0.0625 f 1
+	v 4.75 3.5 85 t 1877.3334 -1024 0.09375 -0.0625 f 1
+   )
+   (
+	v 4 5 84.25 t 2048 0 0.1875 -0.015625 f 1
+	v 4 5 85 t 2048 -424.15472 0.1875 -0.0625 f 1
+	v 4.75 5.75 85 t 2048 -1024 0.234375 -0.0625 f 1
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort 1
+  }
+ }
+// brush 7
+ {
+  guid "{31428C35-3861-11E4-A513-2C27D7EF3DFA}"
+  mesh
+  {
+  toolFlags;
+   t7_snow_powder_03_blend
+   lightmap_gray
+   13 2 0 8
+   (
+	v 4 -4.25 85 c 255 255 255 27 t 0 -0 6.296875 0.5
+	v 4 -4.25 1 c 255 255 255 177 t 0 -1344 6.296875 5.75
+   )
+   (
+	v 4 -5 85 c 255 255 255 27 t 12 -0 6.25 0.5
+	v 4 -5 1 c 255 255 255 177 t 12 -1344 6.25 5.75
+   )
+   (
+	v -4 -5 85 c 255 255 255 27 t 140 -0 6.25 0.5
+	v -4 -5 1 c 255 255 255 177 t 140 -1344 6.25 5.75
+   )
+   (
+	v -4 -4.25 85 c 255 255 255 27 t 152 -0 6.25 0.5
+	v -4 -4.25 1 c 255 255 255 177 t 152 -1344 6.25 5.75
+   )
+   (
+	v -1 -4.25 85 c 255 255 255 27 t 200 -0 6.25 0.5
+	v -1 -4.25 1 c 255 255 255 177 t 200 -1344 6.25 5.75
+   )
+   (
+	v -1 4.25 85 c 255 255 255 27 t 336 -0 6.25 0.5
+	v -1 4.25 1 c 255 255 255 177 t 336 -1344 6.25 5.75
+   )
+   (
+	v -4 4.25 85 c 255 255 255 27 t 384 -0 6.25 0.5
+	v -4 4.25 1 c 255 255 255 177 t 384 -1344 6.25 5.75
+   )
+   (
+	v -4 5 85 c 255 255 255 27 t 396 -0 6.25 0.5
+	v -4 5 1 c 255 255 255 177 t 396 -1344 6.25 5.75
+   )
+   (
+	v 4 5 85 c 255 255 255 27 t 524 -0 6.25 0.5
+	v 4 5 1 c 255 255 255 177 t 524 -1344 6.25 5.75
+   )
+   (
+	v 4 4.25 85 c 255 255 255 27 t 536 -0 6.25 0.5
+	v 4 4.25 1 c 255 255 255 177 t 536 -1344 6.25 5.75
+   )
+   (
+	v 1 4.25 85 c 255 255 255 27 t 584 -0 6.25 0.5
+	v 1 4.25 1 c 255 255 255 177 t 584 -1344 6.25 5.75
+   )
+   (
+	v 1 -4.25 85 c 255 255 255 27 t 720 -0 6.25 0.5
+	v 1 -4.25 1 c 255 255 255 177 t 720 -1344 6.25 5.75
+   )
+   (
+	v 4 -4.25 85 c 255 255 255 27 t 768 -0 6.25 0.5
+	v 4 -4.25 1 c 255 255 255 177 t 768 -1344 6.25 5.75
+   )
+   decalLayerSort "Snow"
+   decalEditorSort 0
+  }
+ }
+// brush 8
+ {
+  guid "{31428C36-3861-11E4-A513-2C27D7EF3DFA}"
+  mesh
+  {
+  toolFlags;
+   t7_snow_powder_03_blend
+   lightmap_gray
+   2 2 0 8
+   (
+	v 1 -4.25 1 c 255 255 255 177 t 0 -0 -0.25 5.75
+	v 4 -4.25 1 c 255 255 255 177 t 0 -48 0.25 5.75
+   )
+   (
+	v 1 -4.25 85 c 255 255 255 27 t 1344 -0 -0.25 0.5
+	v 4 -4.25 85 c 255 255 255 27 t 1344 -48 0.25 0.5
+   )
+   decalLayerSort "Snow"
+   decalEditorSort -1
+  }
+ }
+// brush 9
+ {
+  guid "{80A0489A-3861-11E4-A513-2C27D7EF3DFA}"
+  mesh
+  {
+  toolFlags;
+   t7_snow_powder_03_blend
+   lightmap_gray
+   2 2 0 8
+   (
+	v -8 -8 1 c 255 255 255 177 t -128 128 -0.5 0.5
+	v -8 8 1 c 255 255 255 177 t -128 -128 -0.5 -0.5
+   )
+   (
+	v 8 -8 1 c 255 255 255 177 t 128 128 0.5 0.5
+	v 8 8 1 c 255 255 255 177 t 128 -128 0.5 -0.5
+   )
+   decalLayerSort "Snow"
+   decalEditorSort -1
+  }
+ }
+// brush 10
+ {
+  guid "{80A0489B-3861-11E4-A513-2C27D7EF3DFA}"
+  mesh
+  {
+  toolFlags;
+   t7_snow_powder_03_blend
+   lightmap_gray
+   2 2 0 8
+   (
+	v -8 8 -0 c 255 255 255 102 t 128 0 0.5 5.75
+	v -8 8 1 c 255 255 255 177 t 128 -16 0.5 5.6875
+   )
+   (
+	v -8 -8 0 c 255 255 255 102 t -128 -0 -0.5 5.75
+	v -8 -8 1 c 255 255 255 177 t -128 -16 -0.5 5.6875
+   )
+   decalLayerSort "Snow"
+   decalEditorSort -1
+  }
+ }
+// brush 11
+ {
+  guid "{80A0489C-3861-11E4-A513-2C27D7EF3DFA}"
+  mesh
+  {
+  toolFlags;
+   t7_snow_powder_03_blend
+   lightmap_gray
+   2 2 0 8
+   (
+	v -8 8 -0 c 255 255 255 102 t -128 0 -0.5 5.75
+	v 8 8 -0 c 255 255 255 102 t 128 0 0.5 5.75
+   )
+   (
+	v -8 8 1 c 255 255 255 177 t -128 -16 -0.5 5.6875
+	v 8 8 1 c 255 255 255 177 t 128 -16 0.5 5.6875
+   )
+   decalLayerSort "Snow"
+   decalEditorSort -1
+  }
+ }
+// brush 12
+ {
+  guid "{80A0489D-3861-11E4-A513-2C27D7EF3DFA}"
+  mesh
+  {
+  toolFlags;
+   t7_snow_powder_03_blend
+   lightmap_gray
+   2 2 0 8
+   (
+	v 8 8 1 c 255 255 255 177 t 128 -16 0.5 5.6875
+	v 8 8 -0 c 255 255 255 102 t 128 0 0.5 5.75
+   )
+   (
+	v 8 -8 1 c 255 255 255 177 t -128 -16 -0.5 5.6875
+	v 8 -8 -0 c 255 255 255 102 t -128 0 -0.5 5.75
+   )
+   decalLayerSort "Snow"
+   decalEditorSort -1
+  }
+ }
+// brush 13
+ {
+  guid "{80A0489E-3861-11E4-A513-2C27D7EF3DFA}"
+  mesh
+  {
+  toolFlags;
+   t7_snow_powder_03_blend
+   lightmap_gray
+   2 2 0 8
+   (
+	v 8 -8 -0 c 255 255 255 102 t 128 0 0.5 5.75
+	v -8 -8 0 c 255 255 255 102 t -128 -0 -0.5 5.75
+   )
+   (
+	v 8 -8 1 c 255 255 255 177 t 128 -16 0.5 5.6875
+	v -8 -8 1 c 255 255 255 177 t -128 -16 -0.5 5.6875
+   )
+   decalLayerSort "Snow"
+   decalEditorSort -1
+  }
+ }
+}
+// entity 1
+{
+guid "{ECCC543B-E1B2-44EE-B7F4-81CDF52DB647}"
+"classname" "misc_model"
+"model" "p7_debris_concrete_rubble_bolt"
+"modelscale" "0.750000005587935"
+"origin" "-6 6 1"
+}
+// entity 2
+{
+guid "{5CBBC734-EE93-474A-84F8-ABFF9E991D3C}"
+"classname" "misc_model"
+"model" "p7_debris_concrete_rubble_bolt"
+"modelscale" "0.750000005587935"
+"origin" "6 6 1"
+}
+// entity 3
+{
+guid "{1FE00AA8-3D8E-427C-96BE-D3003607402C}"
+"classname" "misc_model"
+"model" "p7_debris_concrete_rubble_bolt"
+"modelscale" "0.750000005587935"
+"origin" "6 -6 1"
+}
+// entity 4
+{
+guid "{1D477A0B-45C4-4AF0-A615-A2888B574A3E}"
+"classname" "misc_model"
+"model" "p7_debris_concrete_rubble_bolt"
+"modelscale" "0.750000005587935"
+"origin" "-6 -6 1"
+}
+// entity 5
+{
+guid "{64E23371-C065-4A52-BD7E-B88470F42EEF}"
+"classname" "misc_model"
+"angles" "360 180 -180"
+"model" "p7_debris_concrete_rubble_bolt"
+"modelscale" "0.750000005587935"
+"origin" "6 6 85"
+}
+// entity 6
+{
+guid "{F480025A-A56E-482D-9CAC-8BA610794928}"
+"classname" "misc_model"
+"angles" "360 180 -180"
+"model" "p7_debris_concrete_rubble_bolt"
+"modelscale" "0.750000005587935"
+"origin" "-6 6 85"
+}
+// entity 7
+{
+guid "{223F4E08-CD68-4319-914A-4231DDA11840}"
+"classname" "misc_model"
+"angles" "360 180 -180"
+"model" "p7_debris_concrete_rubble_bolt"
+"modelscale" "0.750000005587935"
+"origin" "-6 -6 85"
+}
+// entity 8
+{
+guid "{0D21C8C4-C6F3-4958-9EE6-50A81BE79020}"
+"classname" "misc_model"
+"angles" "360 180 -180"
+"model" "p7_debris_concrete_rubble_bolt"
+"modelscale" "0.750000005587935"
+"origin" "6 -6 85"
+}
+// entity 9
+{
+guid "{C8795421-6858-11E4-A26C-D89D67C6FA88}"
+"classname" "misc_volume_decal"
+"angles" "270 0 0"
+"decalEditorSortEnum" "0"
+"decalLayerSort" "Snow"
+"decalLayerSortEnum" "4"
+"decalsize" "1.9 8 8"
+"modeloverridematerial" "t7_snow_powder_03_blend"
+"origin" "0 0 3"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+}

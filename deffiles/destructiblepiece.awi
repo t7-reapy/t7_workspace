@@ -1,0 +1,131 @@
+
+void GenerateUI( asset Asset )
+{
+	Asset.SetGraphColor(0.369, 0.098, 0.0, 1.0);
+
+	// Hidden or unused 
+
+	Asset.AddEntry_String( "configstringFileType", "DESTRUCTIBLEPIECE" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Base Model Properties
+	
+	Asset.BeginCategory( "Base Damage State Properties", 0.0, 0.7, 0.0, "Icon_asset_destbase.png" );
+	{
+		Asset.AddEntry_String( "showBone", "" ).SetTitle( "Show Tag" ).SetToolTip( "Set the initial show bones for this destructible piece. All other bones in the piece will be hidden " );
+		Asset.AddEntry_CheckBox( "includeChildren", false ).SetTitle( "Include Children" ).SetToolTip( "When checked it will include all children of show bone, and hide them when going to the next state, if any child is specified as a show bone in this or another piece it will override this setting" );		
+		Asset.BeginCategory( "Base Damage State Properties.Base Cosmetic Show Tags", 0.7, 0.0, 0.7, "Icon_asset_bone.png" );
+		{
+			Asset.AddEntry_String( "cosmeticShowBone0", "" ).SetTitle( "Cosmetic Tag 1" ).SetToolTip( "Specify additional bone name to show during the base damage state, all other bones listed in this piece will be hidden. Cosmetic show bones have no impact on collision and physics" );
+			Asset.AddEntry_String( "cosmeticShowBone1", "" ).SetTitle( "Cosmetic Tag 2" ).SetToolTip( "Specify additional bone name to show during the base damage state, all other bones listed in this piece will be hidden. Cosmetic show bones have no impact on collision and physics" );
+			Asset.AddEntry_String( "cosmeticShowBone2", "" ).SetTitle( "Cosmetic Tag 3" ).SetToolTip( "Specify additional bone name to show during the base damage state, all other bones listed in this piece will be hidden. Cosmetic show bones have no impact on collision and physics" );
+			Asset.AddEntry_String( "cosmeticShowBone3", "" ).SetTitle( "Cosmetic Tag 4" ).SetToolTip( "Specify additional bone name to show during the base damage state, all other bones listed in this piece will be hidden. Cosmetic show bones have no impact on collision and physics" );
+		}
+		Asset.BeginCategory( "Base Damage State Properties.Base Effects", 0.7, 0.6, 0.1, "Icon_FX.png" );
+		{
+			Asset.AddEntry_Path( "baseEffect", "" ).SetRelativePath( "share/raw/fx/" ).SetTitle( "Base FX" ).SetToolTip( "Effect to play at full health (and before first break piece)" );
+			Asset.AddEntry_String( "baseEffectTag", "" ).SetTitle( "Base FX Tag" ).SetToolTip( "Name of the tag you want the base effect to be attached at. If blank, the show bone will be used if available." );
+		}
+		Asset.BeginCategory( "Base Damage State Properties.Damage Types", 0.9, 0.3, 0.3, "Icon_health.png" );
+		{
+			Asset.AddEntry_CheckBox( "parentDamage", false ).SetTitle( "Damage Parent" ).SetToolTip( "The parent piece will also take damage if this piece is damaged, DO NOT CHECK if piece receives damage from parent" );
+			Asset.AddEntry_CheckBox( "explosiveDamageOnly", false ).SetTitle( "Explosives Only" ).SetToolTip( "Only explosive damage can be done to this model." );
+			Asset.AddEntry_CheckBox( "meleeDamage", false ).SetTitle( "Melee Damage" ).SetToolTip( "This piece will be affected by melee damage" );
+			Asset.AddEntry_CheckBox( "physicsParent", false ).SetTitle( "Physics On Parent Death" ).SetToolTip( "This piece will only break off into physics when the parent's health reaches 0" );		
+		}			
+		Asset.BeginCategory( "Base Damage State Properties.Break Properties", 0.9, 0.5, 0.0, "Icon_destruct_break.png" );
+		{
+			Asset.AddEntry_Float( "maxTime", -1, -1, 500 ).SetStep( 0.1 ).SetTitle( "Max Shown Time" ).SetToolTip( "After the specified seconds this piece will automatically go to the next damage stage, set to -1 to hold until health threshold is exceeded. '-1' is default behavior" );		
+			Asset.BeginCategory( "Base Damage State Properties.Break Properties.Break Health Values", 0.9, 0.3, 0.3, "Icon_health.png" );
+			{
+				Asset.AddEntry_Float( "breakHealth", 0, -1000000, 100 ).SetStep( 0.1 ).SetTitle( "Min Health % to Break" ).SetToolTip( "Swap to the next stage after this health percentage is gone. Set to '0' to break on piece death. Set to '-1' to break after piece death." );				
+			}
+			Asset.BeginCategory( "Base Damage State Properties.Break Properties.Break Animation", 0.2, 0.5, 0.7, "Icon_asset_xanim.png" );
+			{
+				Asset.AddEntry_AssetCombo( "breakAnim", "xanim" ).SetTitle( "Base Break Anim" ).SetToolTip( "Anim to play when this stage breaks" );
+			}
+			Asset.BeginCategory( "Base Damage State Properties.Break Properties.Break Effects", 0.7, 0.6, 0.1, "Icon_FX.png" );
+			{
+				Asset.AddEntry_Path( "breakEffect", "" ).SetRelativePath( "share/raw/fx/" ).SetTitle( "Base Break FX" ).SetToolTip( "Effect to play when health gets to 0" );
+				Asset.AddEntry_String( "breakEffectTag", "" ).SetTitle( "Base Break FX Tag" ).SetToolTip( "Name of the tag you want the break effect to be attached at. If blank, the show bone will be used if available." );
+			}
+			Asset.BeginCategory( "Base Damage State Properties.Break Properties.Break Sounds", 0.0, 0.5, 0.2, "Icon_Sound.png" );
+			{
+				Asset.AddEntry_String( "breakSound", "" ).SetTitle( "Base Break Sound" ).SetToolTip( "Sound to play when health gets to 0" );
+				Asset.AddEntry_String( "loopSound", "" ).SetTitle( "Loop Sound" ).SetToolTip( "Loop sound to play when this model is showing" );
+			}
+			Asset.BeginCategory( "Base Damage State Properties.Break Properties.Break Script", 0.5, 0.5, 0.5, "Icon_asset_default.png" );
+			{
+				Asset.AddEntry_String( "breakNotify", "" ).SetTitle( "Base Break Notify" ).SetToolTip( "Notify that goes out to the script system when this stage breaks.  self waittill( \"broken\", breakNofiy );" );
+			}
+			Asset.BeginCategory( "Base Damage State Properties.Break Properties.Break Physics", 0.3, 0.3, 0.9, "Icon_asset_physpreset.png" );
+			{
+				Asset.AddEntry_AssetCombo( "physPreset", "physpreset" ).SetTitle( "Phys Preset" ).SetToolTip( "If set this bone will go into physics using the specified physpreset GDT" );
+				Asset.AddEntry_AssetCombo( "spawnModel1", "xmodel" ).SetTitle( "Spawn Model 1" );
+				Asset.AddEntry_AssetCombo( "spawnModel2", "xmodel" ).SetTitle( "Spawn Model 2" );
+			}
+		}
+		
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Destructible State Properties	
+	
+	for ( int i = 1; i <= 6; i++ )
+	{
+		Asset.BeginCategory( "Damage State #" + i, 0.9, 0.5, 0.0, "Icon_asset_deststate.png" );
+		{
+			Asset.AddEntry_CheckBox( "breakOnEntityDeathD" + i, false ).SetTitle( "Hold on Previous Damage State until Entity Death" ).SetToolTip( "Will hold on the last damage state, until the Entity dies. Piece will jump to this state regardless of current health. Commonly used to keep cosemetic geo from swapping to final exploded state until entity explodes.  If checked, MUST be last damage state for piece." );
+			Asset.AddEntry_String( "showBoneD" + i, "" ).SetTitle( "Show Bone" ).SetToolTip( "Specify the bone tag name to show during this damage stage, all other bones listed in this piece will be hidden" );
+			Asset.AddEntry_CheckBox( "includeChildrenD" + i, false ).SetTitle( "Include Children" ).SetToolTip( "Show or hide all the children bones of the show bone when the show bone is shown or hidden" );		
+			Asset.BeginCategory( "Damage State #" + i + ".Cosmetic Show Tags State " + i, 0.7, 0.0, 0.7, "Icon_asset_bone.png" );
+			{
+				Asset.AddEntry_String( "cosmeticShowBone0D" + i, "" ).SetTitle( "Cosmetic Tag 1" ).SetToolTip( "Specify the cosmetic bone tag name to show during this damage stage, all other bones listed in this piece will be hidden. Cosmetic show bones have no impact on collision and physics" );
+				Asset.AddEntry_String( "cosmeticShowBone1D" + i, "" ).SetTitle( "Cosmetic Tag 2" ).SetToolTip( "Specify the cosmetic bone tag name to show during this damage stage, all other bones listed in this piece will be hidden. Cosmetic show bones have no impact on collision and physics" );
+				Asset.AddEntry_String( "cosmeticShowBone2D" + i, "" ).SetTitle( "Cosmetic Tag 3" ).SetToolTip( "Specify the cosmetic bone tag name to show during this damage stage, all other bones listed in this piece will be hidden. Cosmetic show bones have no impact on collision and physics" );
+				Asset.AddEntry_String( "cosmeticShowBone3D" + i, "" ).SetTitle( "Cosmetic Tag 4" ).SetToolTip( "Specify the cosmetic bone tag name to show during this damage stage, all other bones listed in this piece will be hidden. Cosmetic show bones have no impact on collision and physics" );
+			}
+			Asset.BeginCategory(  "Damage State #" + i + ".Damage Types", 0.9, 0.3, 0.3, "Icon_health.png" );
+			{
+				Asset.AddEntry_CheckBox( "parentDamageD" + i, false ).SetTitle( "Damage Parent" ).SetToolTip( "The parent piece will also take damage if this piece is damaged" );
+				Asset.AddEntry_CheckBox( "explosiveDamageOnlyD" + i, false ).SetTitle( "Explosives Only" ).SetToolTip( "Only explosive damage can be done to this model." );
+				Asset.AddEntry_CheckBox( "meleeDamageD" + i, false ).SetTitle( "Melee Damage" ).SetToolTip( "This piece will be affected by melee damage" );				
+				Asset.AddEntry_CheckBox( "physicsParentD" + i, false ).SetTitle( "Physics On Parent Death" ).SetToolTip( "This piece will only break off into physics when the parent's health reaches 0" );
+			}
+			Asset.BeginCategory(  "Damage State #" + i + ".Break Properties Damage State " + i, 0.9, 0.5, 0.0, "Icon_destruct_break.png" );			
+			{
+			Asset.AddEntry_Float( "maxTimeD" + i, -1, -1, 500 ).SetStep( 0.1 ).SetTitle( "Max Shown Time" ).SetToolTip( "After the specified seconds this piece will automatically go to the next damage stage" );			
+				Asset.BeginCategory( "Damage State #" + i + ".Break Properties Damage State " + i + ".Break Health Values", 0.9, 0.3, 0.3, "Icon_health.png" );
+				{
+					Asset.AddEntry_Float( "breakHealthD" + i, 0, -1000000, 100 ).SetStep( 0.1 ).SetTitle( "Damage State " + i +" Min Health % to Break" ).SetToolTip( "Swap to the next stage after this health percentage is gone. Set to '0' to break on piece death. Set to '-1' to break after piece death." );
+				}
+				Asset.BeginCategory( "Damage State #" + i + ".Break Properties Damage State " + i + ".Break Animation", 0.2, 0.5, 0.7, "Icon_asset_xanim.png" );
+			   {
+					Asset.AddEntry_AssetCombo( "breakAnimD" + i, "xanim" ).SetTitle( "Damage State " + i +" Break Anim" ).SetToolTip( "Anim to play when this stage breaks" );
+				}
+				Asset.BeginCategory( "Damage State #" + i + ".Break Properties Damage State " + i + ".Break Effects", 0.7, 0.6, 0.1, "Icon_FX.png" );
+				{	
+					Asset.AddEntry_Path( "breakEffectD" + i, "" ).SetRelativePath( "share/raw/fx/" ).SetTitle( "Damage State " + i +" Break FX" ).SetToolTip( "Effect to play when health gets to 0" );
+					Asset.AddEntry_String( "breakEffectTagD" + i, "" ).SetTitle( "Damage State " + i +" Break FX Tag" ).SetToolTip( "Name of the tag you want the break effect to be attached at. If blank, the show bone will be used if available." );
+				}
+				Asset.BeginCategory( "Damage State #" + i + ".Break Properties Damage State " + i + ".Break Sounds", 0.0, 0.5, 0.2, "Icon_Sound.png" );
+				{	
+					Asset.AddEntry_String( "breakSoundD" + i, "" ).SetTitle( "Damage State " + i +" Break Sound" ).SetToolTip( "Sound to play when health gets to 0" );
+					Asset.AddEntry_String( "loopSoundD" + i, "" ).SetTitle( "Damage State " + i +" Loop Sound" ).SetToolTip( "Loop sound to play when this model is showing" );
+				}
+				Asset.BeginCategory( "Damage State #" + i + ".Break Properties Damage State " + i + ".Break Script", 0.5, 0.5, 0.5, "Icon_asset_default.png" );
+				{	
+					Asset.AddEntry_String( "breakNotifyD" + i, "" ).SetTitle( "Damage State " + i +" Break Notify" ).SetToolTip( "Notify that goes out to the script system when this stage breaks.  self waittill( \"broken\", breakNofiy );" );
+				}
+				Asset.BeginCategory( "Damage State #" + i + ".Break Properties Damage State " + i + ".Break Physics", 0.3, 0.3, 0.9, "Icon_asset_physpreset.png" );
+				{	
+					Asset.AddEntry_AssetCombo( "physPresetD" + i, "physpreset" ).SetTitle( "Damage State " + i +" Phys Preset" ).SetToolTip( "If set this bone will go into physics using the specified physpreset GDT" );			
+					Asset.AddEntry_AssetCombo( "spawnModel1D" + i, "xmodel" ).SetTitle( "Damage State " + i +" Spawn Model 1" );
+					Asset.AddEntry_AssetCombo( "spawnModel2D" + i, "xmodel" ).SetTitle( "Damage State " + i +" Spawn Model 2" );	
+				}
+			}
+		}
+	}
+}

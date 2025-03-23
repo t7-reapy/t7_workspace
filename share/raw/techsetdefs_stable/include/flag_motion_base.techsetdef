@@ -1,0 +1,96 @@
+float1( "flagSpeed" )
+{
+	x = <flagX>
+	tweak = Tweak()
+	{
+		category  = "Flag Motion"
+		title     = "Flag Speed"
+		sortindex = "10"
+	}
+}
+
+float1( "flagPhase" )
+{
+	x = <flagY>
+	tweak = Tweak()
+	{
+		category  = "Flag Motion"
+		title     = "Flag Phase"
+		sortindex = "20"
+	}
+}
+
+float1( "flagZ" )
+{
+	x = <flagZ>
+	tweak = Tweak()
+	{
+		category  = "Misc"
+		title     = "Backlight Bleed"
+		sortindex = "90"
+	}
+}
+
+float1( "windDirection1" )
+{
+	x = <gFoamScrollAngle0>
+	tweak = Tweak()
+	{
+		category  = "Flag Motion"
+		title     = "Wind Direction1"
+		sortindex = "40"
+	}
+}
+
+float1( "windDirection2" )
+{
+	x = <gFoamScrollAngle1>
+	tweak = Tweak()
+	{
+		category  = "Flag Motion"
+		title     = "Wind Direction2"
+		sortindex = "50"
+	}
+}
+
+float1( "windDirection3" )
+{
+	x = <gFoamScrollAngle2>
+	tweak = Tweak()
+	{
+		category  = "Flag Motion"
+		title     = "Wind Direction3"
+		sortindex = "60"
+	}
+}
+
+float4( "flagScrollParms" )
+{
+	x = <flagRipple1ScrollU>
+	y = <flagRipple1ScrollV>
+	z = <flagRipple2ScrollU>
+	w = <flagRipple2ScrollV>
+}
+
+float4( "flagParams" )
+{
+	x = "flagSpeed"
+	y = "flagPhase"
+	z = "flagZ"
+	w = 0
+}
+
+float2( "wind1Parms" )
+{
+	value = "float2( cos( radians( <gFoamScrollAngle0> ) ), sin( radians( <gFoamScrollAngle0> ) ) )"
+}
+
+float2( "wind2Parms" )
+{
+	value = "float2( cos( radians( <gFoamScrollAngle1> ) ), sin( radians( <gFoamScrollAngle1> ) ) )"
+}
+
+float2( "wind3Parms" )
+{
+	value = "float2( cos( radians( <gFoamScrollAngle2> ) ), sin( radians( <gFoamScrollAngle2> ) ) )"
+}

@@ -1,0 +1,252 @@
+// keep these values up to date with the customization.ddi file
+#include "asset_list_helper.h"
+
+const int MAX_BODY_COUNT = 40;
+const int MAX_HELMET_COUNT = 40;
+const int MAX_GESTURES = 20;
+const int MAX_TAUNTS = 15;
+const int MAX_TRANSMISSIONS = 6;
+const int MAX_TRANSMISSION_CONTACTS = 3;
+
+const string FROZEN_MOMENT_CATEGORY = "Frontend Frozen Moments";
+
+void AddFrozenMomentType( asset Asset, string type, string category )
+{
+	Asset.BeginCategory( FROZEN_MOMENT_CATEGORY + "." + category );
+	{
+		Asset.AddEntry_String( "xstring_" + type + "FrontendFrozenMomentAlignTarget", "" ).SetTitle( "Align Target" );
+		Asset.AddEntry_AssetCombo( "playeranim_" + type + "FrontendFrozenMomentXAnim", "xanim" ).SetTitle( "XAnim" );
+		Asset.AddEntry_AssetCombo( "xmodel_" + type + "FrontendFrozenMomentWeaponRightModel", "xmodel" ).SetTitle( "Right Weapon Model" );
+		Asset.AddEntry_AssetCombo( "anim_" + type + "FrontendFrozenMomentWeaponRightAnim", "xanim" ).SetTitle( "Right Weapon Anim" );
+		Asset.AddEntry_AssetCombo( "xmodel_" + type + "FrontendFrozenMomentWeaponLeftModel", "xmodel" ).SetTitle( "Left Weapon Model" );
+		Asset.AddEntry_AssetCombo( "anim_" + type + "FrontendFrozenMomentWeaponLeftAnim", "xanim" ).SetTitle( "Left Weapon Anim" );
+		Asset.AddEntry_String( "xstring_" + type + "FrontendFrozenMomentExploder", "" ).SetTitle( "Exploder ID" );
+		Asset.AddEntry_AssetCombo( "xcam_" + type + "FrontendFrozenMomentXCam", "xcam" ).SetTitle( "XCam" );
+		Asset.AddEntry_String( "xstring_" + type + "FrontendFrozenMomentXCamSubXCam", "" ).SetTitle( "XCam Sub XCam" );
+		Asset.AddEntry_String( "xstring_" + type + "FrontendFrozenMomentXCamFrame", "" ).SetTitle( "XCam Frame" );
+	}
+}
+
+void AddGesture( asset Asset, string type, int index, const string countName )
+{
+	Asset.BeginCategory( "MP Gestures." + type + "." + type + " Gesture " + index );
+	{
+		bool visible = Asset.GetEntryVariable( countName ).GetValue().ToInt() > index;
+		Asset.AddEntry_AssetCombo( "playeranim_gestureAnim" + type + index, "xanim" ).SetTitle( "Player Body XAnim" ).Show( visible );
+		Asset.AddEntry_String( "xstring_gestureName" + type + index, "" ).SetTitle( "Display Name" ).Show( visible );
+	}
+}
+
+void AddGestureCategory( asset Asset, string type )
+{
+	Asset.BeginCategory( "MP Gestures." + type );
+	{
+		const string strCountName = "int_gestureCount" + type;
+		Asset.AddEntry_Int( strCountName, 0, 0, MAX_GESTURES ).SetTitle( type + " Gesture Count" ).UpdateOnChange(true);
+		for ( int i = 0; i < MAX_GESTURES; ++i )
+		{
+			AddGesture( Asset, type, i, strCountName );
+		}
+	}
+}
+
+void AddTaunt( asset Asset, string type, int index, const string countName )
+{
+	Asset.BeginCategory( "MP Taunts." + type + "." + type + " Taunt " + index );
+	{
+		bool visible = Asset.GetEntryVariable( countName ).GetValue().ToInt() > index;
+		Asset.AddEntry_AssetCombo( "playeranim_tauntAnim" + type + index, "xanim" ).SetTitle( "Player Body XAnim" ).Show( visible );
+		Asset.AddEntry_String( "xstring_tauntName" + type + index, "" ).SetTitle( "Display Name" ).Show( visible );
+	}
+}
+
+void AddTauntCategory( asset Asset, string type )
+{
+	Asset.BeginCategory( "MP Taunts." + type );
+	{
+		const string strCountName = "int_tauntCount" + type;
+		Asset.AddEntry_Int( strCountName, 0, 0, MAX_TAUNTS ).SetTitle( type + " Taunt Count" ).UpdateOnChange(true);
+		for ( int i = 0; i < MAX_TAUNTS; ++i )
+		{
+			AddTaunt( Asset, type, i, strCountName );
+		}
+	}
+}
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "displayName", "" ).SetTitle( "Hero Type Name" );
+	Asset.AddEntry_String( "description", "" ).SetTitle( "Description" );
+	Asset.AddEntry_String( "heroWeapon", "" ).SetTitle( "Hero Weapon" );
+	Asset.AddEntry_String( "heroAbility", "" ).SetTitle( "Hero Ability" );
+	Asset.AddEntry_String( "bodySoundContext", "" ).SetTitle( "Body Sound Context" );
+	Asset.AddEntry_Combo( "gender", "Male{0} | Female{1}" ).SetTitle( "Gender" );
+	Asset.AddEntry_AssetCombo( "mpDialog", "mpdialog_player" ).SetTitle( "MP Dialog" );
+	Asset.AddEntry_CheckBox( "bool_digitalBlood", false ).SetTitle( "Digital Blood" );
+	Asset.AddEntry_CheckBox( "disabled", false ).SetTitle( "Disable" );
+
+	Asset.BeginCategory( "UI" );
+	{
+		Asset.AddEntry_AssetCombo( "rewardIcon", "image" ).SetTitle( "Hero Reward Icon" );
+		Asset.AddEntry_AssetCombo( "backgroundWithCharacter", "image" ).SetTitle( "Background with Character" );
+		Asset.AddEntry_AssetCombo( "background", "image" ).SetTitle( "Locked Background with Character" );
+		Asset.AddEntry_AssetCombo( "personalizeRender", "image" ).SetTitle( "Personalize Screen Render" ).Show( false );	// this is no longer used
+		Asset.AddEntry_AssetCombo( "frozenMomentRender", "image" ).SetTitle( "Unlocked Sliver Render" );
+		Asset.AddEntry_AssetCombo( "image_lockedSliverRender", "image" ).SetTitle( "Locked Sliver Render" );
+		Asset.AddEntry_AssetCombo( "lockedImage", "image" ).SetTitle( "Locked Image" ).Show( false );	// this is no longer used
+		Asset.AddEntry_AssetCombo( "defaultHeroRender", "image" ).SetTitle( "Default Hero Render (Weapon)" );
+		Asset.AddEntry_AssetCombo( "defaultHeroRenderAbility", "image" ).SetTitle( "Default Hero Render (Ability)" );
+		Asset.AddEntry_AssetCombo( "streamedimage_challengeSpecialist", "image" ).SetTitle( "MP Challenge Icon" );
+		
+		Asset.BeginCategory( "UI.Ability Icons" );
+		{
+			Asset.AddEntry_AssetCombo( "abilityIconEquipped", "image" ).SetTitle( "Equipped Icon" );
+			Asset.AddEntry_AssetCombo( "abilityIconUnequipped", "image" ).SetTitle( "Unequipped Icon" );
+		}
+		
+		Asset.BeginCategory( "UI.Weapon Icons" );
+		{
+			Asset.AddEntry_AssetCombo( "weaponIconEquipped", "image" ).SetTitle( "Equipped Icon" );
+			Asset.AddEntry_AssetCombo( "weaponIconUnequipped", "image" ).SetTitle( "Unequipped Icon" );
+		}
+	}
+
+	Asset.BeginCategory( "Zombies" );
+	{
+		Asset.AddEntry_AssetCombo( "zombiePlayerIcon", "image" ).SetTitle("Player List Icon");
+	}
+
+	Asset.BeginCategory( "Frontend Vignette" );
+	{
+		Asset.AddEntry_CheckBox( "bool_frontendVignetteUseWeaponHideTagsForAbility", false ).SetTitle( "Use Weapon Hide Tags For Ability" );
+		Asset.AddEntry_String( "xstring_frontendVignetteStruct", "mp_frontend_camera" ).SetTitle( "script_struct" );
+		Asset.AddEntry_AssetCombo( "xcam_frontendVignetteXCam", "xcam" ).SetTitle( "XCam" );
+		Asset.AddEntry_AssetCombo( "playeranim_frontendVignetteXAnimIntro", "xanim" ).SetTitle( "Weapon Hero XAnim Intro" );
+		Asset.AddEntry_AssetCombo( "playeranim_frontendVignetteXAnim", "xanim" ).SetTitle( "Weapon Hero XAnim" );
+		Asset.AddEntry_AssetCombo( "xmodel_frontendVignetteWeaponModel", "xmodel" ).SetTitle( "Right Weapon Model" );
+		Asset.AddEntry_AssetCombo( "anim_frontendVignetteWeaponAnimIntro", "xanim" ).SetTitle( "Weapon Right Weapon Anim Intro" );
+		Asset.AddEntry_AssetCombo( "anim_frontendVignetteWeaponAnim", "xanim" ).SetTitle( "Weapon Right Weapon Anim" );
+		Asset.AddEntry_AssetCombo( "xmodel_frontendVignetteWeaponLeftModel", "xmodel" ).SetTitle( "Left Weapon Model" );
+		Asset.AddEntry_AssetCombo( "anim_frontendVignetteWeaponLeftAnimIntro", "xanim" ).SetTitle( "Weapon Left Weapon Anim Intro" );
+		Asset.AddEntry_AssetCombo( "anim_frontendVignetteWeaponLeftAnim", "xanim" ).SetTitle( "Weapon Left Weapon Anim" );
+		Asset.AddEntry_AssetCombo( "playeranim_frontendVignetteAbilityXAnimIntro", "xanim" ).SetTitle( "Ability Hero XAnim Intro" );
+		Asset.AddEntry_AssetCombo( "playeranim_frontendVignetteAbilityXAnim", "xanim" ).SetTitle( "Ability Hero XAnim" );
+		Asset.AddEntry_AssetCombo( "anim_frontendVignetteAbilityWeaponRightAnimIntro", "xanim" ).SetTitle( "Ability Right Weapon Anim Intro" );
+		Asset.AddEntry_AssetCombo( "anim_frontendVignetteAbilityWeaponRightAnim", "xanim" ).SetTitle( "Ability Right Weapon Anim" );
+		Asset.AddEntry_AssetCombo( "anim_frontendVignetteAbilityWeaponLeftAnimIntro", "xanim" ).SetTitle( "Ability Left Weapon Anim Intro" );
+		Asset.AddEntry_AssetCombo( "anim_frontendVignetteAbilityWeaponLeftAnim", "xanim" ).SetTitle( "Ability Left Weapon Anim" );
+		Asset.AddEntry_String( "xstring_frontendVignetteStreamerHint", "" ).SetTitle( "Streamer Hint" );
+	}
+	
+	Asset.BeginCategory( "Frontend Frozen Moments" );
+	{
+		Asset.AddEntry_AssetCombo( "frozenMomentOverlay", "image" ).SetTitle( "Frozen Moment Overlay" ).Show( false );		// this is no longer in use
+		AddFrozenMomentType( Asset, "weapon", "Weapon" );
+		AddFrozenMomentType( Asset, "ability", "Ability" );
+	}
+
+	Asset.BeginCategory( "Final Cam Animations" );
+	{
+		Asset.AddEntry_AssetCombo( "playeranim_final1stplaceIdle", "xanim" ).SetDefaultValue( "pb_rifle_endgame_1stplace_idle" ).SetTitle( "1st place idle" );
+		Asset.AddEntry_AssetCombo( "playeranim_final2ndplaceIdle", "xanim" ).SetDefaultValue( "pb_rifle_endgame_2ndplace_idle" ).SetTitle( "2nd place idle" );
+		Asset.AddEntry_AssetCombo( "playeranim_final3rdplaceIdle", "xanim" ).SetDefaultValue( "pb_rifle_endgame_3rdplace_idle" ).SetTitle( "3rd place idle" );
+	}
+
+	GenerateItemList( Asset, "playerbodystyle", "Body Style", "bodyStyle", MAX_BODY_COUNT, "Body Styles" );
+	GenerateItemList( Asset, "playerhelmetstyle", "Helmet Style", "helmetStyle", MAX_HELMET_COUNT, "Helmet Styles" );
+	
+	Asset.BeginCategory( "Player FX" );
+	{
+		Asset.AddEntry_Path( "fx_fullbodyexplosion", "" ).SetTitle( "Full Body Explosion" ).SetRelativePath( "share/raw" ).UpdateOnChange( true );
+		Asset.AddEntry_AssetCombo( "characterMovementSounds", "playersoundstable" ).SetTitle( "characterMovementSounds" );
+		Asset.AddEntry_AssetCombo( "characterMovementFx", "playerfxtable" ).SetTitle( "characterMovementFx" );
+		Asset.AddEntry_AssetCombo( "characterFootsteps", "footsteptable" ).SetTitle( "characterFootsteps" );
+		Asset.AddEntry_AssetCombo( "characterFootstepsQuiet", "footsteptable" ).SetTitle( "characterFootstepsQuiet" );
+		Asset.AddEntry_AssetCombo( "characterFootstepsNPC", "footsteptable" ).SetTitle( "characterFootstepsNPC" );
+		Asset.AddEntry_AssetCombo( "characterFootstepsNPCLoud", "footsteptable" ).SetTitle( "characterFootstepsNPCLoud" );
+		Asset.AddEntry_AssetCombo( "characterFootstepsNPCQuiet", "footsteptable" ).SetTitle( "characterFootstepsNPCQuiet" );
+	}
+
+	Asset.BeginCategory( "Misc" );
+	{
+		Asset.AddEntry_AssetCombo( "dogtagfriendly", "xmodel" ).SetTitle("Dogtag Friendly Model");
+		Asset.AddEntry_AssetCombo( "dogtagenemy", "xmodel" ).SetTitle("Dogtag Enemy Model");
+	}
+	
+	Asset.BeginCategory( "MP Card Back" );
+	{
+		Asset.BeginCategory( "MP Card Back.Bio" );
+		{
+			Asset.AddEntry_AssetCombo( "cardBackIcon", "image" ).SetTitle( "Card Back Icon" );
+			Asset.AddEntry_String( "realName", "" ).SetTitle( "Real Name" );
+			Asset.AddEntry_Int( "age", 0, 0, 10000 ).SetTitle( "Age" );
+			Asset.AddEntry_String( "genderString", "" ).SetTitle( "Gender (String)" );
+			Asset.AddEntry_String( "bio", "" ).SetTitle( "Bio" );
+		}
+		
+		Asset.BeginCategory( "MP Card Back.Weapon" );
+		{
+			Asset.AddEntry_AssetCombo( "weaponCardBackIcon", "image" ).SetTitle( "Card Back Icon" );
+			Asset.AddEntry_AssetCombo( "weaponCardBackSubIcon", "image" ).SetTitle( "Card Back Sub Icon" );
+			Asset.AddEntry_String( "weaponCardBackDesc", "" ).SetTitle( "Weapon Description" );
+			Asset.AddEntry_String( "weaponSubItemDesc", "" ).SetTitle( "Sub Item Description" );
+			Asset.AddEntry_String( "weaponSchema", "" ).SetTitle( "Schema" );
+		}
+		
+		Asset.BeginCategory( "MP Card Back.Ability" );
+		{
+			Asset.AddEntry_AssetCombo( "abilityCardBackIcon", "image" ).SetTitle( "Card Back Icon" );
+			Asset.AddEntry_AssetCombo( "abilityCardBackSubIcon", "image" ).SetTitle( "Card Back Sub Icon" );
+			Asset.AddEntry_String( "abilityCardBackDesc", "" ).SetTitle( "Ability Description" );
+			Asset.AddEntry_String( "abilitySubItemDesc", "" ).SetTitle( "Sub Item Description" );
+			Asset.AddEntry_String( "abilitySchema", "" ).SetTitle( "Schema" );
+		}
+		
+		Asset.BeginCategory( "MP Card Back.Transmissions" );
+		{
+			Asset.AddEntry_String( "xstring_characterFrequency", "" ).SetTitle( "Frequency" );
+			Asset.AddEntry_Int( "int_transmissions", 0, 0, MAX_TRANSMISSIONS ).SetTitle( "Transmission count" ).UpdateOnChange(true);
+			
+			for ( int i = 0; i < MAX_TRANSMISSIONS; i++ )
+			{
+				bool visible = Asset.GetEntryVariable( "int_transmissions" ).GetValue().ToInt() > i;
+				Asset.BeginCategory( "MP Card Back.Transmissions.Transmission " + i );
+				{
+					Asset.AddEntry_String( "xstring_transmission" + i + "Name", "" ).SetTitle( "Name" ).Show( visible );
+					Asset.AddEntry_String( "xstring_transmission" + i + "Synopsis", "" ).SetTitle( "Synopsis" ).Show( visible );
+					Asset.AddEntry_String( "xstring_transmission" + i + "ID", "" ).SetTitle( "Transmission ID" ).Show( visible );
+					Asset.AddEntry_String( "xstring_transmission" + i + "Alias", "" ).SetTitle( "Sound Alias" ).Show( visible );
+					
+					Asset.BeginCategory( "MP Card Back.Transmissions.Transmission " + i + ".Contacts" );
+					{
+						string contactCount = "int_transmission" + i + "ContactsCount";
+						Asset.AddEntry_Int( contactCount, 0, 0, MAX_TRANSMISSION_CONTACTS ).SetTitle( "Contacts count" ).UpdateOnChange(true).Show( visible );
+						for ( int j = 0; j < MAX_TRANSMISSION_CONTACTS; j++ )
+						{
+							bool contactVisible = visible && ( Asset.GetEntryVariable( contactCount ).GetValue().ToInt() > j );
+							Asset.BeginCategory( "MP Card Back.Transmissions.Transmission " + i + ".Contacts.Contact " + j );
+							{
+								Asset.AddEntry_AssetCombo( "image_transmission" + i + "Contact" + j + "Image", "image" ).SetTitle( "Contact " + j + " Image" ).Show( contactVisible );
+								Asset.AddEntry_String( "xstring_transmission" + i + "Contact" + j + "Name", "" ).SetTitle( "Contact " + j + " Name" ).Show( contactVisible );
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	Asset.BeginCategory( "MP Taunts" );
+	{
+		// Keep these in sync with the display names stored in CCUtility.lua 
+		AddTauntCategory( Asset, "FirstPlace" );
+	}
+	
+	Asset.BeginCategory( "MP Gestures" );
+	{
+		// Keep these in sync with the display names stored in CCUtility.lua 
+		AddGestureCategory( Asset, "GoodGame" );
+		AddGestureCategory( Asset, "Threaten" );
+		AddGestureCategory( Asset, "Boast" );
+	}
+}

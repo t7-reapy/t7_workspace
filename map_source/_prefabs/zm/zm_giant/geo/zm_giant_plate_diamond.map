@@ -1,0 +1,65 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{67E8F9F7-C4CC-4AFE-A4A8-1B5F29916945}"
+"classname" "worldspawn"
+"_color" "0.607843 0.615686 0.658824"
+"ambient" "0.35"
+"diffusefraction" "0.45"
+"suncolor" "0.615686 0.807843 0.815686"
+"sundiffusecolor" "0.3098 0.2745 0.3058"
+"sundirection" "-153 -54 0"
+"sunisprimarylight" "1"
+"sunlight" "0.6"
+"vertexbake" "1.0"
+"evmax" "31"
+"evmin" "-32"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+ {
+  guid "{88B1BE29-6877-11E4-9AAD-2C27D7F029C0}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_metal_grid_2x2
+   lightmap_gray
+   2 2 0 8
+   (
+	v 0 17 1 t 0 0 88.344208 6
+	v 30 17 1 t 0 -512 90.810104 4
+   )
+   (
+	v 0 -18 1 t 512 0 90.044823 6
+	v 30 -18 1 t 512 -512 91.604446 4
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+// brush 1
+{
+ guid "{90C6BC92-6877-11E4-9AAD-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( 0 195 1 ) ( 3 195 1 ) ( 3 191 1 ) t7_metal_diamond_plate_worn_wet 32 32 0 0 0 0 lightmap_gray 16384 16384 -1418 -95 -90 0
+ ( 0 195 1 ) ( 0 191 1 ) ( 0 191 -31 ) t7_metal_trim_rivets_02 64 -8 -1434 41 180 0 lightmap_gray 16384 -16384 -1418 41 180 0
+ ( 30 191 1 ) ( 30 195 1 ) ( 30 195 -31 ) t7_metal_trim_rivets_02 64 -8 -1434 41 180 0 lightmap_gray 16384 -16384 -1418 41 180 0
+ ( 31 30 0 ) ( 31 27 0 ) ( 63 30 0 ) t7_metal_diamond_plate_worn_wet 32 32 -1434 -55 -90 0 lightmap_gray 16384 16384 -1418 -95 -90 0
+ ( 25 17 1.25 ) ( 30 17 1.25 ) ( 30 17 33.25 ) t7_metal_trim_rivets_02 64 8 55 -41 0 0 lightmap_gray 16384 16384 95 -41 0 0
+ ( 30 -18 1.25 ) ( 26 -18 1.25 ) ( 30 -18 33.25 ) t7_metal_trim_rivets_02 64 8 55 -41 0 0 lightmap_gray 16384 16384 95 -41 0 0
+}
+}
+

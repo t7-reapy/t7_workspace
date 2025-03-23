@@ -1,0 +1,181 @@
+
+ComputeShader("deferred_lighting")
+{
+	source = "deferred_lighting.hlsl"
+
+#if PLAT_ORBIS == "1"
+#endif
+
+#if PLAT_DURANGO == "1"
+
+#endif
+}
+
+ComputeShader("deferred_lighting_exposure_zones")
+{
+	source = "deferred_lighting.hlsl"
+
+#if PLAT_ORBIS == "1"
+#endif
+
+#if PLAT_DURANGO == "1"
+
+#endif
+
+	defines += "SHOW_EXPOSURE_ZONES 1"
+}
+
+ComputeShader("deferred_lighting_bilateral") : "deferred_lighting"
+{
+	defines += "DEFERRED_BILATERAL_UPSAMPLE_SSAO"
+}
+
+ComputeShader("deferred_lighting_ssr") : "deferred_lighting"
+{
+	defines += "USE_DEFERRED_SSR"
+}
+
+//
+// deferred lighting permutations:
+//
+ComputeShader("deferred_lighting_permuted")
+{
+	source = "deferred_lighting.hlsl"
+	
+#if PLAT_ORBIS == "1"
+#endif
+
+	defines += "DEFERRED_LIGHTING_PERMUTED"
+
+	defines += "PERMUTE_FLAGS [idx]"			// idx is a special key - the index inside the ComputeShaderSet
+	// These are kind of misleading, because in all cases 0 means "undecided" or
+	// "default".  But they are not used to affect functionality, only
+	// description.
+	defines += "DEFERRED_PERMUTE_DESC_LIGHTS_PLUS_ONE [0;3]"	// 0,1,2,3
+	defines += "DEFERRED_PERMUTE_DESC_PROBES_PLUS_ONE [0;3]"	// 0,1,2,3
+	defines += "DEFERRED_PERMUTE_DESC_SUN_DISABLED [0;1]"		// 0,1
+	defines += "DEFERRED_PERMUTE_DESC_SINGLE_SIDED [0;1]"		// 0,1
+
+#if PLAT_DURANGO == "1"
+
+#endif
+}
+
+ComputeShader("deferred_lighting_permuted_bilateral") : "deferred_lighting_permuted"
+{
+	defines += "DEFERRED_BILATERAL_UPSAMPLE_SSAO"
+}
+
+ComputeShader("deferred_lighting_permuted_ssr") : "deferred_lighting_permuted"
+{
+	defines += "USE_DEFERRED_SSR"
+}
+
+ComputeShader("deferred_permute_clear")
+{
+	source = "deferred_permute_clear.hlsl"
+}
+
+ComputeShader("deferred_permute_classify")
+{
+	source = "deferred_permute_classify.hlsl"
+}
+
+ComputeShader("deferred_permute_classify_swizzle")
+{
+	source = "deferred_permute_classify.hlsl"
+    	defines = "SWIZZLED_THREADGROUP"
+}
+
+ComputeShader("deferred_permute_classify_no_sun")
+{
+	source = "deferred_permute_classify.hlsl"
+	defines = "DEFERRED_PERMUTED_CLASSIFY_NO_SUN"
+}
+
+ComputeShader("deferred_permute_classify_swizzle_no_sun")
+{
+	source = "deferred_permute_classify.hlsl"
+	defines = "DEFERRED_PERMUTED_CLASSIFY_NO_SUN"
+    	defines += "SWIZZLED_THREADGROUP"
+}
+
+ComputeShader("deferred_permute_draw")
+{
+	source = "deferred_permute_draw.hlsl"
+}
+
+ComputeShader("deferred_permute_uber_resolve")
+{
+	source = "deferred_permute_uber_resolve.hlsl"
+}
+
+ComputeShader("deferred_permute_uber_resolve_hemi")
+{
+	defines = "HEMI_AO_PREPARE_DEPTH"
+	source = "deferred_permute_uber_resolve.hlsl"
+}
+
+ComputeShader("deferred_permute_uber_resolve_gtao")
+{
+	defines = "GTAO_PREPARE_DEPTH"
+	source = "deferred_permute_uber_resolve.hlsl"
+}
+
+ComputeShader("deferred_permute_uber_resolve_gtao_2")
+{
+	source = "deferred_permute_uber_resolve2.hlsl"
+}
+
+ComputeShader("deferred_permute_uber_resolve_volumetrics")
+{
+	defines = "VOLUMETRICS_PREPARE_DEPTH"
+	source = "deferred_permute_uber_resolve.hlsl"
+}
+
+ComputeShader("deferred_permute_uber_resolve_hemi_and_volumetrics")
+{
+	defines = "HEMI_AO_PREPARE_DEPTH"
+	defines += "VOLUMETRICS_PREPARE_DEPTH"
+	source = "deferred_permute_uber_resolve.hlsl"
+}
+
+ComputeShader("deferred_permute_uber_resolve_gtao_and_volumetrics")
+{
+	defines = "GTAO_PREPARE_DEPTH"
+	defines += "VOLUMETRICS_PREPARE_DEPTH"
+	source = "deferred_permute_uber_resolve.hlsl"
+}
+
+ComputeShader("light_culling_base")
+{
+	source = "light_culling.hlsl"
+#if PLAT_DURANGO == "1"
+#endif
+}
+
+ComputeShader("light_culling_probes") : "light_culling_base"
+{
+	defines += "CULL_PROBES 1"
+	defines += "CULL_LIGHTS 0"
+	defines += "CULL_DECALS 0"
+}
+
+ComputeShader("light_culling_lights") : "light_culling_base"
+{
+	defines += "CULL_PROBES 0"
+	defines += "CULL_LIGHTS 1"
+	defines += "CULL_DECALS 0"
+}
+
+ComputeShader("light_culling_decals") : "light_culling_base"
+{
+	defines += "CULL_PROBES 0"
+	defines += "CULL_LIGHTS 0"
+	defines += "CULL_DECALS 1"
+}
+
+ComputeShader("overdraw_overlay")
+{
+	source = "overdraw_overlay.hlsl"
+}

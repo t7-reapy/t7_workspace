@@ -1,0 +1,59 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{04BDFCA5-31C9-11E5-8415-2C27D7F03340}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lightingquality" "1024"
+"samplescale" "1"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{E36E10AE-31C8-11E5-8415-2C27D7F03340}"
+"classname" "trigger_use_touch"
+"script_gameobjectname" "escort"
+"targetname" "escort_robot_reboot_trig"
+"_color" "0.3 0.5 0.8"
+"cursorhint" "HINT_ACTIVATE"
+// brush 0
+{
+ guid "{E36E10AD-31C8-11E5-8415-2C27D7F03340}"
+ ( 17.564716 13.116578 -0.28140831 ) ( -14.435276 13.116578 -0.28140831 ) ( -14.435276 -18.883417 -0.28140831 ) trigger 64 64 -62.489315 -829.03467 0 0 lightmap_gray 16384 16384 -62.489315 -829.03271 0 0
+ ( -14.435276 -18.883417 95.71859 ) ( -14.435276 13.116578 95.71859 ) ( 17.564716 13.116578 95.71859 ) trigger 64 64 -62.489315 -829.03467 0 0 lightmap_gray 16384 16384 -62.489315 -829.03271 0 0
+ ( -14.435276 -34.883427 95.71859 ) ( 17.564716 -34.883427 95.71859 ) ( 17.564716 -34.883427 79.718605 ) trigger 64 64 -62.489315 -79.641685 0 0 lightmap_gray 16384 16384 -62.489315 -79.641685 0 0
+ ( 33.564991 -18.883417 95.71859 ) ( 33.564991 13.116578 95.71859 ) ( 33.564991 13.116578 79.718605 ) trigger 64 64 829.03314 -79.641685 0 0 lightmap_gray 16384 16384 829.03235 -79.641685 0 0
+ ( 17.564716 29.116644 15.71859 ) ( -14.435276 29.116644 15.71859 ) ( -14.435276 29.116644 -0.28140831 ) trigger 64 64 -62.489307 0.35838318 0 0 lightmap_gray 16384 16384 -62.489307 0.35838318 0 0
+ ( -30.435284 13.116578 15.71859 ) ( -30.435284 -18.883417 15.71859 ) ( -30.435284 -18.883417 -0.28140831 ) trigger 64 64 829.03467 0.35838318 0 0 lightmap_gray 16384 16384 829.03259 0.35838318 0 0
+}
+}
+// entity 2
+{
+guid "{E36E10B1-31C8-11E5-8415-2C27D7F03340}"
+"classname" "trigger_radius"
+"angles" "0 90 0"
+"height" "128"
+"radius" "180"
+"script_gameobjectname" "escort"
+"targetname" "escort_robot_move_trig"
+"_color" "1 0.3 0.1"
+}

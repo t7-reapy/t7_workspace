@@ -1,0 +1,120 @@
+#include "tools_base"
+
+Globals()
+{
+	category = "Tools"
+	renderFlags = "emissive semi opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// use polygon offset so that tools_replace materials don't zfight the overlayed mesh
+State( "tools_prepass" ) : "depthPrepass"
+{
+#if TOOLSGFX == "1"
+	polygonOffset  = "tools"
+#endif
+}
+
+State( "tools_replace" ) : "forward opaque"
+{
+#if TOOLSGFX == "1"
+	polygonOffset  = "tools"
+#endif
+}
+
+
+#if TOOLSGFX == "1"
+Technique( "build shadowmap depth" ) : "tools shadowmap depth"
+{
+	defines += "USE_ALPHA_TEST"
+}
+
+Technique( "build shadowmap depth layered" ) : "tools shadowmap depth layered"
+{
+	defines += "USE_ALPHA_TEST"
+}
+#endif
+
+Technique( "depth prepass" )
+{
+	state = "tools_prepass"
+	source = "techsetdef_prepass.hlsl"
+	defines = "USE_ALPHA_TEST"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		vertexDecl = "generic"
+#endif
+	}
+	ps = PixelShader()
+	{
+	}
+}
+
+Technique( "lit" )
+{
+	state = "tools_replace"
+	defines = "USE_EMISSIVE", "USE_ALPHA_TEST"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "techsetdef_unlit.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "techsetdef_unlit.hlsl"
+		colorMapSampler = "colorMap"
+#endif
+	}
+}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_ALPHA_TEST"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "techsetdef_unlit.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "techsetdef_unlit.hlsl"
+		colorMapSampler = "colorMap"
+#endif
+	}
+}
+
+#if TOOLSGFX == "1"
+Technique( "tri density" )
+{
+	state = "add + depth"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/matrix_mode.hlsl"
+		vertexDecl = "generic"
+	}
+	gs = GeometryShader()
+	{
+		source = "ToolsGfx/matrix_mode.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/matrix_mode.hlsl"
+	}
+}
+#endif

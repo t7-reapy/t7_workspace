@@ -1,0 +1,182 @@
+#include "lit_detail_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit forward opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+#if TOOLSGFX == "1"
+Texture( "extracamTexture1" )
+{
+	image = Image( i_test_chart_mat_c )
+	semantic = "diffuseMap"
+}
+#else
+uint1( "extracamSelect" )
+{
+	x = <sw_static_int_00>
+	tweak = Tweak()
+	{
+		category  = "Extra Cam"
+		title	  = "Camera Index"
+		sortindex = "1"
+		default   = "1"
+		range     = "1", "4", "1"
+	}
+}
+#endif
+
+Texture( "detailMap" ).tweak = Tweak()
+{
+	category  = "Wobble"
+	title     = "Normal Map"
+	sortindex = "10"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "detailScaleHeight" ).tweak = Tweak()
+{
+	category  = "Wobble"
+	title     = "Normal Height"
+	sortindex = "110"
+}
+float2( "detailScale" ).tweak = Tweak()
+{
+	category  = "Wobble"
+	title     = "Normal Scale (U, V)"
+	sortindex = "120"
+}
+float2( "wobbleNormalScroll1" )
+{
+	x = <cg01_x>
+	y = <cg01_y>
+	tweak = Tweak()
+	{
+		category  = "Wobble"
+		title     = "Wobble Scroll1 (U, V)"
+		sortindex = "130"
+	}
+}
+float2( "wobbleNormalRotate1" )
+{
+	x = <cg01_z>
+	y = <cg01_w>
+	tweak = Tweak()
+	{
+		category  = "Wobble"
+		title     = "Wobble Rotation1 (Start, Spin)"
+		sortindex = "140"
+	}
+}
+float2( "wobbleNormalScroll2" )
+{
+	x = <cg02_x>
+	y = <cg02_y>
+	tweak = Tweak()
+	{
+		category  = "Wobble"
+		title     = "Wobble Scroll2 (U, V)"
+		sortindex = "150"
+	}
+}
+float2( "wobbleNormalRotate2" )
+{
+	x = <cg02_z>
+	y = <cg02_w>
+	tweak = Tweak()
+	{
+		category  = "Wobble"
+		title     = "Wobble Rotation2 (Start, Spin)"
+		sortindex = "160"
+	}
+}
+float1( "extraCamWarpAmount" )
+{
+	x = <cg03_x>
+	tweak = Tweak()
+	{
+		category  = "Wobble"
+		title     = "ExtraCam Warp Amount"
+		sortindex = "170"
+	}
+}
+
+float1( "scriptControl" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category  = "Tools Script Proxy"
+		title     = "Wobble Appearance"
+		sortindex = "100"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque"
+	source = "specialty/lit_extracam_reflection.hlsl"
+	defines += "USE_COLOR_TINT", "USE_DETAIL_MAP"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+	#if TOOLSGFX != "1"
+		extracamTexture1 = CodeTexture( "extracamTexture1" )
+	  	extracamTexture2 = CodeTexture( "extracamTexture2" )
+	  	extracamTexture3 = CodeTexture( "extracamTexture3" )
+	  	extracamTexture4 = CodeTexture( "extracamTexture4" )
+	#endif
+		extracamSampler = Sampler( "no tile", "nomip bilinear" )
+	}
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

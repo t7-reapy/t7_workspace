@@ -1,0 +1,30 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Sampler( "motionVectorDebugSampler" )
+{
+	tile = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+		source = "techsetdef_motion_vector_debug.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "techsetdef_motion_vector_debug.hlsl"
+
+		aaMotionVectorTexture = CodeTexture( "codeTexture0" )
+		mblurMotionVectorTexture = CodeTexture( "codeTexture1" )
+	}
+}

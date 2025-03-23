@@ -1,0 +1,120 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags expanded 
+"000_Global/upgrades" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{2872CB0E-31F2-4094-8E99-3290EE747F15}"
+"classname" "worldspawn"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{C4371F5E-13B6-4E3C-810C-C25182A824FF}"
+ ( 48 8 0 ) ( -44 8 0 ) ( -44 4 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 -4 0 0
+ ( -44 4 113 ) ( -44 8 113 ) ( 48 8 113 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 -4 0 0
+ ( -44 4 113 ) ( 48 4 113 ) ( 48 4 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 50 8 113 ) ( 50 8 0 ) ( 46 4 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 4 0 0 0
+ ( 51 11 0 ) ( 51 11 113 ) ( -49 11 113 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -48 8 0 ) ( -48 8 113 ) ( -44 4 113 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 4 0 0 0
+ ( 50 10 113 ) ( 50 8 113 ) ( 50 8 145 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 4 0 0 0
+ ( -48 7 113 ) ( -48 9 113 ) ( -48 7 145 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 4 0 0 0
+}
+// brush 1
+{
+ guid "{83347DA2-2F39-4B0D-B814-29F66C39945C}"
+  contents nonColliding;
+ ( -39 12 0 ) ( -39 0 0 ) ( 35 0 0 ) traverse 64 64 -18 29 -90 0 lightmap_gray 16384.146 16384 -6 1 -90 0
+ ( -39 0 40 ) ( -39 12 40 ) ( 35 12 40 ) traverse 64 64 -18 29 -90 0 lightmap_gray 16384.168 16384 -6 1 -90 0
+ ( -25 2 0 ) ( -25 14 0 ) ( -25 14 40 ) traverse 64 -64 -18 -56 180 0 lightmap_gray 16384.156 -16384 -6 0 180 0
+ ( 35 4 0 ) ( -39 4 0 ) ( -39 4 40 ) traverse 64 64 -29 56 0 0 lightmap_gray 16384 16384 -1 0 0 0
+ ( 25 10 0 ) ( 25 -2 0 ) ( 25 -2 40 ) traverse 64 -64 -18 -56 180 0 lightmap_gray 16384 -16384 -6 0 180 0
+ ( -39 12 0 ) ( 35 12 0 ) ( 35 12 40 ) traverse 64 64 -29 56 0 0 lightmap_gray 16384 16384 -1 0 0 0
+}
+// brush 2
+{
+ guid "{BE5416C9-DBFC-486F-B2FB-B30DA26B0506}"
+  contents detail;
+ ( -39 11 0 ) ( -39 -1 0 ) ( 35 -1 0 ) clip_missile 64 64 0 -3 0 0 lightmap_gray 16384.146 16384 -5 1 -90 0
+ ( -39 -1 35 ) ( -39 11 35 ) ( 35 11 35 ) clip_missile 64 64 0 -3 0 0 lightmap_gray 16384.168 16384 -5 1 -90 0
+ ( -32 1 0 ) ( -32 13 0 ) ( -32 13 40 ) clip_missile 64 64 3 0 0 0 lightmap_gray 16384.156 -16384 -5 0 180 0
+ ( 35 5 -1 ) ( -39 5 -1 ) ( -39 5 39 ) clip_missile 64 64 0 0 0 0 lightmap_gray 16384 16384 -1 0 0 0
+ ( 32 9 0 ) ( 32 -3 0 ) ( 32 -3 40 ) clip_missile 64 64 3 0 0 0 lightmap_gray 16384 -16384 -5 0 180 0
+ ( -39 8 0 ) ( 35 8 0 ) ( 35 8 40 ) clip_missile 64 64 0 0 0 0 lightmap_gray 16384 16384 -1 0 0 0
+}
+}
+// entity 1
+{
+guid "{B86FE671-AD48-4AA6-820F-25AD1A523AD7}"
+"classname" "script_struct"
+"angles" "0 270 0"
+"height" "64"
+"origin" "0 3 23"
+"radius" "36"
+"targetname" "auto1"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{7DCA624B-7E9E-4813-B653-0AAFCE56A70B}"
+"classname" "script_struct"
+"angles" "0 270 0"
+"origin" "0 50 16"
+"target" "auto1"
+"targetname" "exterior_goal"
+"_color" "1 0 0"
+}
+// entity 3
+{
+guid "{99C19F57-C2D1-11E4-BFD4-645106422B7A}"
+layer "000_Global/upgrades"
+"classname" "node_pathnode"
+"origin" "0 63 16"
+"_color" "1 0 1"
+}
+// entity 4
+{
+guid "{C7C94F3F-CD00-11E4-AE02-2C27D7EF3DD2}"
+layer "000_Global/upgrades"
+"classname" "zbarrier_zmcore_basicwoodbarrier"
+"angles" "0 270 0"
+"origin" "0 47 31"
+"targetname" "auto1"
+"_color" "0.3 0.3 1"
+"type" "zmcore_basicwoodbarrier"
+"zbarrierNumBoards" "6"
+"zbarrierboardAnim1" "o_zombie_board_1_repair"
+"zbarrierboardAnim2" "o_zombie_board_2_repair"
+"zbarrierboardAnim3" "o_zombie_board_3_repair"
+"zbarrierboardAnim4" "o_zombie_board_4_repair"
+"zbarrierboardAnim5" "o_zombie_board_5_repair"
+"zbarrierboardAnim6" "o_zombie_board_6_repair"
+"zbarrierboardModel1" "p7_anim_zm_barricade_board_01"
+"zbarrierboardModel2" "p7_anim_zm_barricade_board_02"
+"zbarrierboardModel3" "p7_anim_zm_barricade_board_03"
+"zbarrierboardModel4" "p7_anim_zm_barricade_board_04"
+"zbarrierboardModel5" "p7_anim_zm_barricade_board_05"
+"zbarrierboardModel6" "p7_anim_zm_barricade_board_06"
+"zbarriertearAnim1" "o_zombie_board_1_pull"
+"zbarriertearAnim2" "o_zombie_board_2_pull"
+"zbarriertearAnim3" "o_zombie_board_3_pull"
+"zbarriertearAnim4" "o_zombie_board_4_pull"
+"zbarriertearAnim5" "o_zombie_board_5_pull"
+"zbarriertearAnim6" "o_zombie_board_6_pull"
+"zbarrierupgradedBoardModel1" "p6_anim_zm_barricade_board_01_upgrade"
+"zbarrierupgradedBoardModel2" "p6_anim_zm_barricade_board_02_upgrade"
+"zbarrierupgradedBoardModel3" "p6_anim_zm_barricade_board_03_upgrade"
+"zbarrierupgradedBoardModel4" "p6_anim_zm_barricade_board_04_upgrade"
+"zbarrierupgradedBoardModel5" "p6_anim_zm_barricade_board_05_upgrade"
+"zbarrierupgradedBoardModel6" "p6_anim_zm_barricade_board_06_upgrade"
+}

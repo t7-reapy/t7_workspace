@@ -1,0 +1,17 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "unlit" )
+{
+	state = "blend"
+	source = "postFX/darken_screen.hlsl"
+
+	vs = VertexShader() { }
+	ps = PixelShader() { }
+}

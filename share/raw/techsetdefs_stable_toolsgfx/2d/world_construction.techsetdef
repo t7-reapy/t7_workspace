@@ -1,0 +1,199 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+
+Texture( "revealTexture" )
+{
+	image    = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Reveal"
+		title		= "Reveal Map"
+		sortindex	= "20"
+	}
+}
+
+Texture( "uvOffsetTexture" )
+{
+	image    = Image( <normalMap, $normal> )
+	semantic = "normalMap"
+	tweak    = Tweak()
+	{
+		category	= "UV Offsets"
+		title		= "Offset Map"
+		sortindex	= "10"
+	}
+}
+Texture( "uvRevealTexture" )
+{
+	image    = Image( <colorMap00, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "UV Offsets"
+		title		= "Reveal Map"
+		sortindex	= "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "revealScroll" )
+{
+	x     = <cg00_x>
+	y     = <cg00_y>
+	tweak = Tweak()
+	{
+		category  = "Reveal"
+		title     = "Reveal Scroll (U, V)"
+		sortindex = "40"
+		default   = "0.0"
+		range     = "-1024.0", "1024.0", "0.01"
+	}
+}
+
+float2( "revealTiling" )
+{
+	x     = <cg00_z>
+	y     = <cg00_w>
+	tweak = Tweak()
+	{
+		category  = "Reveal"
+		title     = "Reveal Scale (U, V)"
+		sortindex = "50"
+		default   = "1.0"
+		range     = "1.0", "1024.0", "0.01"
+	}
+}
+
+Color( "defaultColor" )
+{
+	value	= "srgb_to_linear( <colorTint> )"
+	tweak	= Tweak()
+	{
+		category  = "Background"
+		title     = "Default Color"
+		color	  = true
+		sortindex = "70"
+	}
+}
+
+float1( "alphaRevealSoftEdge" )
+{
+	x     = <alphaRevealSoftEdge>
+	tweak = Tweak()
+	{
+		category	= "UV Offsets"
+		title		= "Reveal Soft Edge"
+		sortindex	= "80"
+	}
+}
+
+float1( "alphaRevealRamp" )
+{
+	x     = <alphaRevealRamp>
+	tweak = Tweak()
+	{
+		category	= "UV Offsets"
+		title		= "Reveal Ramp"
+		sortindex	= "90"
+	}
+}
+
+float2( "uvRevealRowsCols" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	tweak = Tweak()
+	{
+		category  = "UV Offsets"
+		title     = "Reveal Frames (Rows, Columns)"
+		sortindex = "100"
+		default   = "1.0"
+		range     = "1.0", "1024.0", "1.0"
+	}
+}
+
+float1( "uvRevealFrameTime" )
+{
+	x     = <cg01_z>
+	tweak = Tweak()
+	{
+		category  = "UV Offsets"
+		title     = "Reveal Frame Time"
+		sortindex = "110"
+		default   = "0.033"
+		range     = "0.0001", "1024.0", "0.01"
+	}
+}
+
+float1( "uvOffsetAmount" )
+{
+	x     = <cg01_w>
+	tweak = Tweak()
+	{
+		category  = "UV Offsets"
+		title     = "Offset Pixels"
+		sortindex = "120"
+		default   = "16.0"
+		range     = "0.0", "1024.0", "1.0"
+	}
+}
+
+float2( "offsetScroll" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	tweak = Tweak()
+	{
+		category  = "UV Offsets"
+		title     = "Offset Scroll (U, V)"
+		sortindex = "140"
+		default   = "0.0"
+		range     = "-1024.0", "1024.0", "0.01"
+	}
+}
+
+float2( "offsetTiling" )
+{
+	x     = <cg02_z>
+	y     = <cg02_w>
+	tweak = Tweak()
+	{
+		category  = "UV Offsets"
+		title     = "Offset Scale (U, V)"
+		sortindex = "150"
+		default   = "1.0"
+		range     = "1.0", "1024.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/world_construction.hlsl"
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+		floatzTexture = CodeTexture( "floatZSampler" )
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

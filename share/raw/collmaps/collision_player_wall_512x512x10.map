@@ -1,0 +1,43 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{3E6343AB-5AC0-11E5-9B97-D89D67C6FA88}"
+"classname" "worldspawn"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{3E6343AC-5AC0-11E5-9B97-D89D67C6FA88}"
+ ( -5 -256 256 ) ( -5 -256 -256 ) ( -5 256 -256 ) clip_player_playervehicle 64 64 0 0 0 0 lightmap_gray 16384 16384 -18 56 180 0
+ ( 5 256 256 ) ( 5 256 -256 ) ( 5 -256 -256 ) clip_player_playervehicle 64 64 0 0 0 0 lightmap_gray 16384 16384 -18 56 180 0
+ ( 5 256 256 ) ( 5 -256 256 ) ( -5 -256 256 ) clip_player_playervehicle 64 64 0 0 0 0 lightmap_gray 16384 16384 -18 0 -90 0
+ ( -5 -256 -256 ) ( -5 -256 256 ) ( 5 -256 256 ) clip_player_playervehicle 64 64 0 0 0 0 lightmap_gray 16384 16384 -56 0 -90 0
+ ( -5 256 -256 ) ( -5 -256 -256 ) ( 5 -256 -256 ) clip_player_playervehicle 64 64 0 0 0 0 lightmap_gray 16384 16384 -18 0 -90 0
+ ( 5 256 -256 ) ( 5 256 256 ) ( -5 256 256 ) clip_player_playervehicle 64 64 0 0 0 0 lightmap_gray 16384 16384 -56 0 -90 0
+}
+}
+// entity 1
+{
+guid "{3E6343AD-5AC0-11E5-9B97-D89D67C6FA88}"
+"classname" "misc_model"
+"model" "collision_clip_wall_512x512x10"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}

@@ -1,0 +1,180 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearClampler" )
+{
+	tile   = "no tile"
+	filter = "linear (mip none)"
+}
+Sampler( "bilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "linear (mip none)"
+}
+
+Texture( "colorMap" )
+{
+	image    = Image( <colorMap00, $white_color> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Color Map"
+		sortindex	= "20"
+	}
+}
+
+Texture( "colorMask" )
+{
+	image    = Image( <colorMap01, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Color Mask"
+		sortindex	= "30"
+	}
+}
+
+Texture( "bloodMotesMap" )
+{
+	image    = Image( <colorMap02, $white_color> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Blood Motes"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "revealMap" )
+{
+	image    = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Warp"
+		title		= "Mask Map"
+		sortindex	= "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "warpPixels" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		category  = "Warp"
+		title     = "Warp Amount"
+		sortindex = "60"
+		default   = "8"
+		range     = "0", "1024", "1"
+	}
+}
+
+float3( "colorScroll" )
+{
+	x     = <cg03_x>
+	y     = <cg03_y>
+	z     = <cg04_x>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Zoom (Min, Max, Rate)"
+		sortindex	= "100"
+	}
+}
+
+Bool( "useAlphaBlend" )
+{
+	value = <gCheckBox00>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Use alpha blend (default is screen add)."
+		sortindex	= "110"
+	}
+}
+
+float2( "bloodScroll" )
+{
+	x     = <cg03_z>
+	y     = <cg03_w>
+	tweak = Tweak()
+	{
+		category	= "Crystal Motes"
+		title		= "Scroll (U, V)"
+		sortindex	= "100"
+	}
+}
+
+float2( "bloodRotation" )
+{
+	x     = <cg05_y>
+	tweak = Tweak()
+	{
+		category	= "Crystal Motes"
+		title		= "Rotation Speed"
+		sortindex	= "101"
+	}
+}
+
+
+float1( "rotationSpeed" )
+{
+	x     = <cg05_x>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Rotation Speed"
+		sortindex	= "140"
+	}
+}
+
+float1( "pulseAmp" )
+{
+	x     = <cg05_z>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Pulse Amplitude"
+		sortindex	= "141"
+	}
+}
+
+float1( "pulseRate" )
+{
+	x     = <cg05_w>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Pulse rate"
+		sortindex	= "142"
+	}
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/postfx_swirl.hlsl"
+
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

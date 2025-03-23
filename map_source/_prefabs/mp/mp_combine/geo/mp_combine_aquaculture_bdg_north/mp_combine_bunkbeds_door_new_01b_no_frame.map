@@ -1,0 +1,487 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{E0DA7E42-0CBF-11E5-939F-2C27D7EF3DD8}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lightingquality" "1024"
+"newsun" "1"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+ {
+  guid "{E98C3597-0CBF-11E5-939F-2C27D7EF3DD8}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_signage_number_letter_1c
+   lightmap_gray
+   2 2 0 8
+   (
+	v 30.999998 1 8 t 0 -0 23.219999 -6.375
+	v 30.999998 1 30 t 0 -1024 21.625 -6.375
+   )
+   (
+	v 69 1 8 t 1024 -0 23.219999 -8
+	v 69 1 30 t 1024 -1024 21.625 -8
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+}
+// entity 1
+{
+guid "{0207EFDD-9BA8-49E1-9B6D-60D9EAA5651F}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{8672BD83-4B5D-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 5.5 1.25 -3 ) ( 5.5 -0.75 -3 ) ( 23.5 -0.75 -3 ) caulk 64 64 -233.5 1459.5 0 0 lightmap_gray 16384 16384 -534.75 134.5 90 0
+ ( 24.5 -0.75 91 ) ( 6.5 -0.75 91 ) ( 6.5 1.25 91 ) caulk 64 64 -233.5 1459.5 0 0 lightmap_gray 16384 16384 -534.75 134.5 90 0
+ ( 24.5 0.5 92.5 ) ( 6.5 0.5 92.5 ) ( 6.5 0.5 36.5 ) t7_glass_smoked 64 64 0 0 0 0 lightmap_gray 16384 -16384 -134.5 -5.5 180 0
+ ( 0 1.25 91.5 ) ( 0 -0.75 91.5 ) ( 0 -0.75 35.5 ) caulk 64 64 -1457.5 162.5 0 0 lightmap_gray 16384 16384 -534.75 5.5 0 0
+ ( 6.5 -0.5 87.5 ) ( 24.5 -0.5 87.5 ) ( 24.5 -0.5 31.5 ) t7_glass_smoked 64 64 0 0 0 0 lightmap_gray 16384 -16384 -134.5 -5.5 -180 0
+ ( 26 0.25 86 ) ( 26.25 0 86 ) ( 26 0.25 118 ) t7_glass_edge_trim 1 -94 0.5 -3 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 26.25 0 86 ) ( 26 -0.25 86 ) ( 26.25 0 118 ) t7_glass_edge_trim 1 -94 0.5 -3 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 26 0.25 91 ) ( 26 -0.25 91 ) ( 26 0.25 123 ) t7_glass_edge_trim 1 -94 0.5 -3 180 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{8672BD81-4B5D-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 5.5 1.25 -3 ) ( 5.5 -0.75 -3 ) ( 23.5 -0.75 -3 ) caulk 64 64 -233.5 1459.5 0 0 lightmap_gray 16384 16384 -534.75 134.5 90 0
+ ( 24.5 -0.75 91 ) ( 6.5 -0.75 91 ) ( 6.5 1.25 91 ) caulk 64 64 -233.5 1459.5 0 0 lightmap_gray 16384 16384 -534.75 134.5 90 0
+ ( 24.5 0.5 90.5 ) ( 6.5 0.5 90.5 ) ( 6.5 0.5 34.5 ) t7_glass_smoked 64 64 0 0 0 0 lightmap_gray 16384 -16384 -134.5 -5.5 180 0
+ ( 6.5 -0.5 85.5 ) ( 24.5 -0.5 85.5 ) ( 24.5 -0.5 29.5 ) t7_glass_smoked 64 64 0 0 0 0 lightmap_gray 16384 -16384 -134.5 -5.5 -180 0
+ ( 101 -0.75 90.5 ) ( 101 1.25 90.5 ) ( 101 1.25 34.5 ) caulk 64 64 -1457.5 162.5 0 0 lightmap_gray 16384 16384 -534.75 5.5 0 0
+ ( 75 -0.25 86 ) ( 74.75 0 86 ) ( 75 -0.25 118 ) t7_glass_edge_trim 1 -94 0.5 -3 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 74.75 0 86 ) ( 75 0.25 86 ) ( 74.75 0 118 ) t7_glass_edge_trim 1 -94 0.5 -3 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 75 0 91 ) ( 75 0.25 91 ) ( 75 0 123 ) t7_glass_edge_trim 1 -94 0.5 -3 180 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 2
+ {
+  guid "{21E1A90D-B0BA-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   2 2 0 8
+   (
+	v 26 -0.25 -3 t -256 0 -0.015625 0.1875
+	v 26 -0.25 91 t -256 -1023.9999 -0.015625 -5.6875
+   )
+   (
+	v 25.75 -0.5 -3 t 0 0 -0.03125 0.1875
+	v 25.75 -0.5 91 t 0 -1023.9999 -0.03125 -5.6875
+   )
+  }
+ }
+// brush 3
+ {
+  guid "{21E1A90E-B0BA-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   2 2 0 8
+   (
+	v 26 -0.25 -3 t -256 0 -0.015625 0.1875
+	v 26 0.25 -3 t -768 0 0.015625 0.1875
+   )
+   (
+	v 26 -0.25 91 t -256 -1023.9999 -0.015625 -5.6875
+	v 26 0.25 91 t -768 -1023.9999 0.015625 -5.6875
+   )
+  }
+ }
+// brush 4
+ {
+  guid "{21E1A90F-B0BA-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   2 2 0 8
+   (
+	v 26 0.25 -3 t -768 0 0.015625 0.1875
+	v 25.75 0.5 -3 t -1024 0 0.03125 0.1875
+   )
+   (
+	v 26 0.25 91 t -768 -1023.9999 0.015625 -5.6875
+	v 25.75 0.5 91 t -1024 -1023.9999 0.03125 -5.6875
+   )
+  }
+ }
+// brush 5
+ {
+  guid "{36F47CA5-B0BA-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   2 2 0 8
+   (
+	v 75.25 0.5 -3 t -1024 0 0.03125 0.1875
+	v 75 0.25 -3 t -768 0 0.015625 0.1875
+   )
+   (
+	v 75.25 0.5 91 t -1024 -1023.9999 0.03125 -5.6875
+	v 75 0.25 91 t -768 -1023.9999 0.015625 -5.6875
+   )
+  }
+ }
+// brush 6
+ {
+  guid "{36F47CA6-B0BA-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   2 2 0 8
+   (
+	v 75 0.25 91 t -768 -1023.9999 0.015625 -5.6875
+	v 75 0.25 -3 t -768 0 0.015625 0.1875
+   )
+   (
+	v 75 -0.25 91 t -256 -1023.9999 -0.015625 -5.6875
+	v 75 -0.25 -3 t -256 0 -0.015625 0.1875
+   )
+  }
+ }
+// brush 7
+ {
+  guid "{36F47CA7-B0BA-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   2 2 0 8
+   (
+	v 75 -0.25 91 t -256 -1023.9999 -0.015625 -5.6875
+	v 75 -0.25 -3 t -256 0 -0.015625 0.1875
+   )
+   (
+	v 75.25 -0.5 91 t 0 -1023.9999 -0.03125 -5.6875
+	v 75.25 -0.5 -3 t 0 0 -0.03125 0.1875
+   )
+  }
+ }
+}
+// entity 2
+{
+guid "{0745F478-17E5-4F99-A38E-311EE912483F}"
+"classname" "misc_model"
+"model" "p7_door_handle_chrome_01"
+"origin" "30 -0.5 45.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 3
+{
+guid "{CE0C2718-9320-4150-97E0-072FDDCB985A}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_door_handle_chrome_01"
+"origin" "30 0.5 45.5"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 4
+{
+guid "{571EDD0D-A1A6-11E4-96E0-2C27D7F024B0}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{571EDD0C-A1A6-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_decal_signage_alert_scroll_01_transparent
+   lightmap_gray
+   2 2 0 8
+   (
+	v 128.5 -0.5 61 t 223.23096 -71.168053 6.796875 -0.15625
+	v 100.5 -0.5 61 t -228.77087 -71.168053 8.5625 -0.15625
+   )
+   (
+	v 128.5 -0.5 68.5 t 223.23096 -960 6.796875 -4.5625
+	v 100.5 -0.5 68.5 t -228.77087 -960 8.5625 -4.5625
+   )
+  }
+ }
+}
+// entity 5
+{
+guid "{245672EA-A1A6-11E4-96E0-2C27D7F024B0}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{245672E9-A1A6-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_decal_signage_alert_scroll_01_transparent
+   lightmap_gray
+   2 2 0 8
+   (
+	v 100.5 -0.5 61 t -167.33086 -71.168053 6.796875 -0.15625
+	v 75.25 -0.5 61 t -574.93958 -71.168053 8.5625 -0.15625
+   )
+   (
+	v 100.5 -0.5 68.5 t -167.33086 -960 6.796875 -4.5625
+	v 75.25 -0.5 68.5 t -574.93958 -960 8.5625 -4.5625
+   )
+  }
+ }
+// brush 1
+ {
+  guid "{E5B76F13-A1A8-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_decal_signage_alert_scroll_01_transparent
+   lightmap_gray
+   2 2 0 8
+   (
+	v 25.75 -0.5 61 t -1374.0143 -71.168053 8.5625 -0.15625
+	v 0 -0.5 61 t -1789.6946 -71.168053 8.5625 -0.15625
+   )
+   (
+	v 25.75 -0.5 68.5 t -1374.0143 -960 8.5625 -4.5625
+	v 0 -0.5 68.5 t -1789.6946 -960 8.5625 -4.5625
+   )
+  }
+ }
+// brush 2
+ {
+  guid "{E5B76F24-A1A8-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_decal_signage_alert_scroll_01_transparent
+   lightmap_gray
+   2 2 0 8
+   (
+	v 74.5 -0.5 61 t -587.04681 -71.168053 8.5625 -0.15625
+	v 26.5 -0.5 61 t -1361.9071 -71.168053 8.5625 -0.15625
+   )
+   (
+	v 74.5 -0.5 68.5 t -587.04681 -960 8.5625 -4.5625
+	v 26.5 -0.5 68.5 t -1361.9071 -960 8.5625 -4.5625
+   )
+  }
+ }
+}
+// entity 6
+{
+guid "{4ABD274B-116F-11E5-939F-2C27D7EF3DD8}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{4ABD2747-116F-11E5-939F-2C27D7EF3DD8}"
+  mesh
+  {
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   2 4 0 8
+   (
+	v 26.5 -0.5 90.5 t -1306624 -3072 -0.03125 -6.125 f 1
+	v 26.25 -0.25 90.75 t -1306880 -3072 79.734375 -6.125
+	v 26.25 0.25 90.75 t -1307392 -3072 0.015625 -6.125
+	v 26.5 0.5 90.5 t -1307648 -3072 0.03125 -6.125
+   )
+   (
+	v 26.5 -0.5 -2.5 t -1306624 -2048 -0.03125 -0.125 f 1
+	v 26.25 -0.25 -2.75 t -1306880 -2048 79.734375 -0.125
+	v 26.25 0.25 -2.75 t -1307392 -2048 0.015625 -0.125
+	v 26.5 0.5 -2.5 t -1307648 -2048 0.03125 -0.125
+   )
+  }
+ }
+// brush 1
+ {
+  guid "{4ABD2748-116F-11E5-939F-2C27D7EF3DD8}"
+  mesh
+  {
+  toolFlags;
+   t7_glass_smoked
+   lightmap_gray
+   2 2 0 8
+   (
+	v 26.5 0.5 -2.5 t 5984 -2560 6.78125 -0.46875
+	v 74.5 0.5 -2.5 t 6748 -2560 3.796875 -0.46875
+   )
+   (
+	v 26.5 0.5 90.5 t 5984 -4096 6.78125 -6.46875
+	v 74.5 0.5 90.5 t 6748 -4096 3.796875 -6.46875
+   )
+  }
+ }
+// brush 2
+ {
+  guid "{4ABD2749-116F-11E5-939F-2C27D7EF3DD8}"
+  mesh
+  {
+  toolFlags;
+   t7_glass_smoked
+   lightmap_gray
+   2 2 0 8
+   (
+	v 74.5 -0.5 -2.5 t 6748 -2560 3.796875 -0.46875
+	v 26.5 -0.5 -2.5 t 5984 -2560 6.78125 -0.46875
+   )
+   (
+	v 74.5 -0.5 90.5 t 6748 -4096 3.796875 -6.46875
+	v 26.5 -0.5 90.5 t 5984 -4096 6.78125 -6.46875
+   )
+  }
+ }
+// brush 3
+ {
+  guid "{4ABD274A-116F-11E5-939F-2C27D7EF3DD8}"
+  mesh
+  {
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   5 2 0 8
+   (
+	v 74.5 -0.5 90.5 t -1306624 -3072 -0.03125 -6.125
+	v 74.5 -0.5 -2.5 t -1306624 -2048 -0.03125 -0.125
+   )
+   (
+	v 74.75 -0.25 90.75 t -1306880 -3072 -0.015625 -6.125 f 1
+	v 74.75 -0.25 -2.75 t -1306880 -2048 -0.015625 -0.125 f 1
+   )
+   (
+	v 74.75 0.25 90.75 t -1307392 -3072 79.765625 -6.125 f 1
+	v 74.75 0.25 -2.75 t -1307392 -2048 79.765625 -0.125 f 1
+   )
+   (
+	v 74.5 0.5 90.5 t -1307648 -3072 0.03125 -6.125 f 1
+	v 74.5 0.5 -2.5 t -1307648 -2048 0.03125 -0.125 f 1
+   )
+   (
+	v 74.75 0.25 90.75 t -1307392 -3072 0.015625 -6.125 f 1
+	v 74.75 0.25 -2.75 t -1307392 -2048 0.015625 -0.125 f 1
+   )
+  }
+ }
+}
+// entity 7
+{
+guid "{4ABD274E-116F-11E5-939F-2C27D7EF3DD8}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{4ABD274D-116F-11E5-939F-2C27D7EF3DD8}"
+  mesh
+  {
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   5 2 0 8
+   (
+	v 26.5 -0.5 90.5 t -1306624 -3072 -0.03125 -6.125
+	v 74.5 -0.5 90.5 t -1306624 -2048 -0.03125 -0.125
+   )
+   (
+	v 26.25 -0.25 90.75 t -1306880 -3072 -0.015625 -6.125 f 1
+	v 74.75 -0.25 90.75 t -1306880 -2048 -0.015625 -0.125 f 1
+   )
+   (
+	v 26.25 0.25 90.75 t -1307392 -3072 79.765625 -6.125 f 1
+	v 74.75 0.25 90.75 t -1307392 -2048 79.765625 -0.125 f 1
+   )
+   (
+	v 26.5 0.5 90.5 t -1307648 -3072 0.03125 -6.125 f 1
+	v 74.5 0.5 90.5 t -1307648 -2048 0.03125 -0.125 f 1
+   )
+   (
+	v 26.25 0.25 90.75 t -1307392 -3072 0.015625 -6.125 f 1
+	v 74.75 0.25 90.75 t -1307392 -2048 0.015625 -0.125 f 1
+   )
+  }
+ }
+}
+// entity 8
+{
+guid "{4ABD2751-116F-11E5-939F-2C27D7EF3DD8}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{4ABD2750-116F-11E5-939F-2C27D7EF3DD8}"
+  mesh
+  {
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   5 2 0 8
+   (
+	v 74.5 -0.5 -2.5 t -1306624 -3072 -0.03125 -6.125
+	v 26.5 -0.5 -2.5 t -1306624 -2048 -0.03125 -0.125
+   )
+   (
+	v 74.75 -0.25 -2.75 t -1306880 -3072 -0.015625 -6.125 f 1
+	v 26.25 -0.25 -2.75 t -1306880 -2048 -0.015625 -0.125 f 1
+   )
+   (
+	v 74.75 0.25 -2.75 t -1307392 -3072 79.765625 -6.125 f 1
+	v 26.25 0.25 -2.75 t -1307392 -2048 79.765625 -0.125 f 1
+   )
+   (
+	v 74.5 0.5 -2.5 t -1307648 -3072 0.03125 -6.125 f 1
+	v 26.5 0.5 -2.5 t -1307648 -2048 0.03125 -0.125 f 1
+   )
+   (
+	v 74.75 0.25 -2.75 t -1307392 -3072 0.015625 -6.125 f 1
+	v 26.25 0.25 -2.75 t -1307392 -2048 0.015625 -0.125 f 1
+   )
+  }
+ }
+}

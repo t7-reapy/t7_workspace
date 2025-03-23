@@ -1,0 +1,123 @@
+#include "lit_base_mid"
+
+Globals()
+{
+	category = "Geometry Plus"
+	renderFlags = "lit deferred opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "tintMask" )
+{
+	image = Image( <colorMap00, $white_multimask> )
+	semantic = "multipleMask"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "20"
+	}
+}
+
+Sampler( "tintMaskSampler" )
+{
+	tile = <texTile00>
+	filter = <filterColor00>
+	tweak = Tweak()
+	{
+		category  = "Color"
+		sortindex = "28" // leave some indices to have other color maps (need 2 indices - tile + filter)
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "colorTint" ).tweak = Tweak()
+{
+	category  = "Color"
+	title     = "Albedo Tint (R Channel)"
+	sortindex = "30"
+	color = true
+}
+Color( "colorTint1" )
+{
+	value = "srgb_to_linear( <colorTint1> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Albedo Tint (G Channel)"
+		sortindex = "40"
+		color = true
+	}
+}
+Color( "colorTint2" )
+{
+	value = "srgb_to_linear( <colorTint2> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Albedo Tint (B Channel)"
+		sortindex = "50"
+		color = true
+	}
+}
+Color( "colorTint3" )
+{
+	value = "srgb_to_linear( <colorTint3> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Albedo Tint (A Channel)"
+		sortindex = "60"
+		color = true
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	defines = "BASE_SPEC", "USE_COLOR_TINT", "NO_VERTEX_ALPHA", "USE_MULTI_TINT", "USE_TINT_MASK"
+	state = "gbuffer opaque"
+	source = "gbuffer_lit.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

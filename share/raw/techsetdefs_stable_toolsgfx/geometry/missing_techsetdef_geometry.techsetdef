@@ -1,0 +1,32 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Geometry"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+Texture( "colorMap" )
+{
+	image = Image( "code_missing_techsetdef" )
+}
+
+//----------------------------------------------------------------------------------------------
+
+Technique( "unlit", "lit" )
+{
+	state = "replace + depth"
+	vs = VertexShader()
+	{
+		source = "techsetdef_unlit.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "techsetdef_unlit.hlsl"
+		defines = "MTL_BLEND_MODE_REPLACE"
+		colorMapSampler = "colorMap"
+	}
+}
+

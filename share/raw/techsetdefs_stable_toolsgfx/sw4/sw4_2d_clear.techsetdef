@@ -1,0 +1,43 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isOpaque            = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Replace
+		colorBlendFunc = add
+		colorBlendSrc  = One
+		colorBlendDst  = Zero
+		alphaBlendFunc = add
+		alphaBlendSrc  = One
+		alphaBlendDst  = Zero
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_clear.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_REPLACE"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

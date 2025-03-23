@@ -1,0 +1,74 @@
+#include "flow_base.techsetdef"
+
+Bool( "useOrientedNormalMap" )
+{
+  value = <orientNormalsToFlow>
+  tweak = Tweak()
+  {
+    category  = "Normal"
+    title     = "Orient normals to flow"
+    sortindex = "41"
+  }
+}
+
+float1( "normalTile" )
+{
+	x = <cg12_x>
+	tweak = Tweak()
+	{
+		category	= "Normal"
+		title		= "Normal Tile"
+		default		= "251.0"
+		range		= "0.0", "4096.0", "0.1"
+		sortindex	= 54
+	}
+}
+
+float2( "normalMapScale" )
+{
+	x = "<cg12_x>"
+	y = "<cg12_x> * normalMap.width / normalMap.height"
+}
+
+float4( "normalScale" )
+{
+	x = " 4.0 * <gNormalScale00>"
+	y = "-2.0 * <gNormalScale00>"
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     =  "Normal scale"
+		sortindex = 13
+	}
+}
+
+Bool( "scaleNormalsWithFlow" )
+{
+	value = <scaleNormalsWithFlow>
+	tweak = Tweak()
+	{
+		category  = "Control"
+		title     = "Scale normals with local flow rate"
+		sortindex = "42"
+	}
+}
+
+float1( "normalsFlowScaleMinTweak" )
+{
+	x = <normalsFlowScaleMin>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Minimum normal flow scale multiplier"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.005"
+		sortindex = "31"
+	}
+}
+
+float2( "normalsFlowScaleMin" )
+{
+	x = "<normalsFlowScaleMin>"
+	y = "1.0 - <normalsFlowScaleMin>"
+}
+

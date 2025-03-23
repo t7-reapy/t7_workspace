@@ -1,0 +1,22 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "resample_shift.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "resample_shift.hlsl"
+	}
+}

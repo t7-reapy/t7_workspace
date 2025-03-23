@@ -1,0 +1,139 @@
+
+Color( "foamColor" )
+{
+	value = "srgb_to_linear( <foamColor> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     =  "Foam color"
+		sortindex = "6"
+	}
+}
+
+float1( "minFoamSpacing" )
+{
+	x =	"<cg16_x>"
+	tweak = Tweak()
+	{
+		category  = "Foam"
+		title     =  "Foam Minimum Spacing"
+		default		= "1.0"
+		range		= "0.001", "100.0", "0.001"
+		sortindex = "52"
+	}
+}
+
+float1( "maxFoamSpacing" )
+{
+	x =	"<cg16_y>"
+	tweak = Tweak()
+	{
+		category  = "Foam"
+		title     =  "Foam Maximum Spacing"
+		default		= "6.0"
+		range		= "0.001", "100.0", "0.001"
+		sortindex = "53"
+	}
+}
+
+float1( "foamWaveIncrease" )
+{
+	x = "<foamWaveIncrease> * 0.1"
+	tweak = Tweak()
+	{
+		category  = "Foam"
+		title     =  "Foam Wave Increase"
+		default		= "0.0"
+		range		= "-100.0", "100.0", "1.0"
+		sortindex = "54"
+	}
+}
+
+float3( "foamSpacing" )
+{
+	x = "<cg16_y>"	//	max
+	y = "<cg16_x> - <cg16_y>"	//	min - max (a negative number)
+	z = "<cg16_x>"	//	min
+}
+
+float1( "foamColorScale" )
+{
+	x =	"<cg16_w> * 0.25"
+	tweak = Tweak()
+	{
+		category  = "Foam"
+		title     =  "Foam Color Scale"
+		default		= "1.0"
+		range		= "0.005", "10.0", "0.005"
+		sortindex = "56"
+	}
+}
+
+float3( "foamMaskScroll0" )
+{
+	x =	"<gFoamScrollAngle0>"
+	y =	"<gFoamScrollSpeed0>"
+	z =	"<gFoamUVScale0>"
+	tweak = Tweak()
+	{
+		category  = "Foam"
+		title     =  "Foam UV Scroll 0 (angle, speed, scale)"
+		sortindex = "57"
+	}
+}
+
+float3( "foamMaskScroll1" )
+{
+	x =	"<gFoamScrollAngle1>"
+	y =	"<gFoamScrollSpeed1>"
+	z =	"<gFoamUVScale1>"
+	tweak = Tweak()
+	{
+		category  = "Foam"
+		title     =  "Foam UV Scroll 1 (angle, speed, scale)"
+		sortindex = "58"
+	}
+}
+
+float3( "foamMaskScroll2" )
+{
+	x =	"<gFoamScrollAngle2>"
+	y =	"<gFoamScrollSpeed2>"
+	z =	"<gFoamUVScale2>"
+	tweak = Tweak()
+	{
+		category  = "Foam"
+		title     =  "Foam UV Scroll 2 (angle, speed, scale)"
+		sortindex = "59"
+	}
+}
+
+float3( "foamMaskScroll3" )
+{
+	x =	"<gFoamScrollAngle3>"
+	y =	"<gFoamScrollSpeed3>"
+	z =	"<gFoamUVScale3>"
+	tweak = Tweak()
+	{
+		category  = "Foam"
+		title     =  "Foam UV Scroll 3 (angle, speed, scale)"
+		sortindex = "60"
+	}
+}
+
+float4( "foamMaskScale01" )
+{
+	x =	"1.0 / <gFoamUVScale0>"
+	y =	"1.0 / <gFoamUVScale0>"
+	z =	"1.0 / <gFoamUVScale1>"
+	w =	"1.0 / <gFoamUVScale1>"
+}
+
+float4( "foamMaskScale23" )
+{
+	x =	"1.0 / <gFoamUVScale2>"
+	y =	"1.0 / <gFoamUVScale2>"
+	z =	"1.0 / <gFoamUVScale3>"
+	w =	"1.0 / <gFoamUVScale3>"
+}
+

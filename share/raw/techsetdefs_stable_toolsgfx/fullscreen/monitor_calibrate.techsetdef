@@ -1,0 +1,83 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+
+Texture( "image0" )
+{
+	ref = true
+	image = Image( <colorMap00, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "calibration image 1"
+		sortindex = "0"
+	}
+}
+
+
+Texture( "image1" )
+{
+	ref = true
+	image = Image( <colorMap01, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "calibration image 2"
+		sortindex = "1"
+	}
+}
+
+Texture( "image2" )
+{
+	ref = true
+	image = Image( <colorMap02, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "calibration image 3"
+		sortindex = "2"
+	}
+}
+
+
+
+Texture( "image3" )
+{
+	ref = true
+	image = Image( <colorMap03, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "calibration image 4"
+		sortindex = "3"
+	}
+}
+
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "monitor_calibrate.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "monitor_calibrate.hlsl"
+
+		// textures
+		tImg0 = "image0"
+		tImg1 = "image1"
+		tImg2 = "image2"
+		tImg3 = "image3"
+
+		// samplers
+		pointClamp = Sampler("no tile", "nomip nearest")
+	}
+}

@@ -1,0 +1,114 @@
+#include "tools_base"
+
+Globals()
+{
+	category = "Tools"
+	renderFlags = "emissive transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+float1( "smallestHole" )
+{
+	x = <cg01_x>
+
+	tweak = Tweak()
+	{
+		category  = "Umbra"
+		title     = "SmallestHole"
+		sortindex = "30"
+	}
+}
+
+float1( "smallestOccluder" )
+{
+	x = <cg01_y>
+
+	tweak = Tweak()
+	{
+		category  = "Umbra"
+		title     = "SmallestOccluder"
+		sortindex = "31"
+	}
+}
+
+
+
+// use polygon offset so that tools_blend materials don't zfight the overlayed mesh
+State( "tools_blend" ) : "blend + depth"
+{
+	polygonOffset  = "static decal"
+}
+
+State( "fallback + tools_blend" ) : "fallback + depth + rez"
+{
+	polygonOffset  = "static decal"
+}
+
+Technique( "lit" )
+{
+	state = "tools_blend"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+		defines = "USE_EMISSIVE"
+#else
+		source = "techsetdef_unlit.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		defines = "USE_EMISSIVE"
+#else
+		source = "techsetdef_unlit.hlsl"
+		defines = "MTL_BLEND_MODE_REPLACE"
+		colorMapSampler = "colorMap"
+#endif
+	}
+}
+
+#if TOOLSGFX == "1"
+Technique( "oit" )
+{
+	state = "fallback + tools_blend"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+		defines = "USE_EMISSIVE"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/simple.hlsl"
+		defines = "USE_EMISSIVE", "USE_OIT"
+	}
+}
+#endif
+
+Technique( "unlit" )
+{
+	state = "blend + depth + decal"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "techsetdef_unlit.hlsl"
+		defines = "USE_VERTCOL 1"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "techsetdef_unlit.hlsl"
+		defines = "USE_VERTCOL 1"
+		colorMapSampler = "colorMap"
+#endif
+	}
+}

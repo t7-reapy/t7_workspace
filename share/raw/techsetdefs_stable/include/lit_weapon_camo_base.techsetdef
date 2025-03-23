@@ -1,0 +1,73 @@
+#include "lit_base_mid"
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "specColorMap" )
+{
+	image = Image( <specColorMap, $specular> )
+	semantic = "specularMap"
+	tweak = Tweak( "Specular and Gloss", "Specular Map", "30" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// hidden
+Texture( "camoMaskMap" )
+{
+	image = Image( $camo_base_mask ) // will be replaced by code
+	usage = "camo mask map"
+}
+
+Texture( "normalBodyMap" )
+{
+	image = Image( $camo_base_normal ) // will be replaced by code
+	usage = "normal override map"
+}
+
+Texture( "glossBodyMap" )
+{
+	image = Image( $camo_base_gloss ) // will be replaced by code
+	usage = "gloss override map"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Hide Unused:
+Color( "colorTint" ).tweak = ""
+Sampler( "aoSampler" ).tweak = ""
+Texture( "aoMap" ).tweak = ""
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Since camo is using the same geo it doesn't need a polygon offset
+State( "gbuffer camo" ) : "gbuffer decal"
+{
+	polygonOffset = "0"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+TechniqueTemplate( "gbuffer base" )
+{
+	state = "gbuffer camo"
+	defines = "USE_COLOR_SPEC", "NO_VERTEX_ALPHA", "WEAPON_CAMO"
+	source = "gbuffer_weapon_camo.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

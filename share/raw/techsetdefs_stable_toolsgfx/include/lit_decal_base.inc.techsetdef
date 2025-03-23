@@ -1,0 +1,223 @@
+
+TechniqueTemplate( "base lit decal unlit" )
+{
+#if MTL_TYPE_VOL_DECAL == "1"
+	state = "blend + depth"
+	source = "vol_decal_unlit_simple.hlsl"
+#else
+	state = "blend + depth + decal"
+	source = "techsetdef_unlit_simple.hlsl"
+#endif
+	defines = "USE_COLOR_TINT", "USE_TINT_MASK"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+#if MTL_TYPE_VOL_DECAL == "1"
+State( "base gbuffer decal state" ) : "gbuffer vol decal"
+{
+}
+#else
+State( "base gbuffer decal state" ) : "gbuffer decal"
+{
+}
+#endif
+
+TechniqueTemplate( "base lit decal gbuffer" )
+{
+	state = "base gbuffer decal state"
+	source = "gbuffer_decal.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+RenderFlags( "base decal renderflags" ) : "lit deferred decal"
+{
+#if MTL_TYPE_VOL_DECAL == "1"
+	isVolDecal = true
+#endif
+}
+
+RenderFlags( "reveal decal renderflags" ) : "base decal renderflags"
+{
+	useRevealMap = true
+}
+
+#if MTL_TYPE_VOL_DECAL == "1"
+RenderFlags( "weapon impact renderflags" ) :  "base decal renderflags"
+{
+}
+#else
+RenderFlags( "weapon impact renderflags" ) :  "lit forward decal"
+{
+}
+#endif
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+State( "gbuffer specular" ) : "base gbuffer decal state"
+{
+	blendState0 = "gbuffer disable"
+	blendState1 = "gbuffer disable"
+	blendState2 = "gbuffer reflectance blend"
+}
+
+TechniqueTemplate( "base lit decal gbuffer specular" ) : "base lit decal gbuffer"
+{
+	state = "gbuffer specular"
+	source = "gbuffer_decal_specular.hlsl"
+	defines += "GBUFFER_DECAL_DISABLE_MRT0", "GBUFFER_DECAL_DISABLE_MRT1"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+State( "gbuffer diffuse" ) : "base gbuffer decal state"
+{
+	blendState0 = "gbuffer albedo blend"
+	blendState1 = "gbuffer disable"
+	blendState2 = "gbuffer disable"
+}
+
+TechniqueTemplate( "base lit decal gbuffer diffuse" ) : "base lit decal gbuffer"
+{
+	state = "gbuffer diffuse"
+	source = "gbuffer_decal_diffuse.hlsl"
+	defines += "GBUFFER_DECAL_DISABLE_MRT1", "GBUFFER_DECAL_DISABLE_MRT2"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+State( "gbuffer diffuse multiply" ) : "base gbuffer decal state"
+{
+	blendState0 = "gbuffer albedo blend"
+	blendState1 = "gbuffer disable"
+	blendState2 = "gbuffer disable"
+}
+
+TechniqueTemplate( "base lit decal gbuffer diffuse multiply" ) : "base lit decal gbuffer"
+{
+	state = "gbuffer diffuse multiply"
+	source = "gbuffer_decal_diffuse.hlsl"
+	defines += "GBUFFER_DECAL_DISABLE_MRT1", "GBUFFER_DECAL_DISABLE_MRT2"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+State( "gbuffer ao" ) : "base gbuffer decal state"
+{
+	blendState0 = "gbuffer disable"
+	blendState1 = "gbuffer disable"
+	blendState2 = "gbuffer occlusion blend"
+}
+
+TechniqueTemplate( "base lit decal gbuffer ao" ) : "base lit decal gbuffer"
+{
+	state = "gbuffer ao"
+	source = "gbuffer_decal_ao.hlsl"
+	defines += "GBUFFER_DECAL_DISABLE_MRT0", "GBUFFER_DECAL_DISABLE_MRT1"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+State( "gbuffer dsg" ) : "base gbuffer decal state"
+{
+	blendState0 = "gbuffer albedo blend"
+	blendState1 = "gbuffer gloss blend"
+	blendState2 = "gbuffer reflectance blend"
+}
+
+TechniqueTemplate( "base lit decal gbuffer dsg" ) : "base lit decal gbuffer"
+{
+	state = "gbuffer dsg"
+	source = "gbuffer_decal_diffuse_spec_gloss.hlsl"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+State( "gbuffer metallic" ) : "base gbuffer decal state"
+{
+	blendState0 = "gbuffer albedo blend"
+	blendState1 = "gbuffer gloss blend"
+	blendState2 = "gbuffer reflectance blend"
+}
+
+TechniqueTemplate( "base lit decal gbuffer metallic" ) : "base lit decal gbuffer"
+{
+	state = "gbuffer metallic"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+State( "gbuffer diffuse normal" ) : "base gbuffer decal state"
+{
+	blendState0 = "gbuffer albedo blend"
+	blendState1 = "gbuffer normal blend"
+	blendState2 = "gbuffer disable"
+}
+
+TechniqueTemplate( "base lit decal gbuffer diffuse normal" ) : "base lit decal gbuffer"
+{
+	state = "gbuffer diffuse normal"
+	defines += "GBUFFER_DECAL_DISABLE_MRT2"
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+State( "gbuffer normal" ) : "base gbuffer decal state"
+{
+	blendState0 = "gbuffer disable"
+	blendState1 = "gbuffer normal blend"
+	blendState2 = "gbuffer disable"
+}
+
+TechniqueTemplate( "base lit decal gbuffer normal" ) : "base lit decal gbuffer"
+{
+	state = "gbuffer normal"
+	defines += "GBUFFER_DECAL_DISABLE_MRT0", "GBUFFER_DECAL_DISABLE_MRT2"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+State( "gbuffer normal gloss" ) : "base gbuffer decal state"
+{
+	blendState0 = "gbuffer albedo multiply"
+	blendState1 = "gbuffer normal gloss blend"
+	blendState2 = "gbuffer disable"
+}
+
+TechniqueTemplate( "base lit decal gbuffer normal gloss" ) : "base lit decal gbuffer"
+{
+	state = "gbuffer normal gloss"
+	defines += "GBUFFER_DECAL_DISABLE_MRT2"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+TechniqueTemplate( "vol weapon impact unlit" )
+{
+#if MTL_TYPE_DYN_VOL_DECAL == "1"
+	state = "unlit dynamic vol decal"
+#else
+	state = "unlit vol decal"
+#endif
+	source = "vol_decal_unlit_simple.hlsl"
+	defines = "USE_ALPHA_DISSOLVE"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+
+TechniqueTemplate( "vol weapon impact gbuffer" )
+{
+#if MTL_TYPE_DYN_VOL_DECAL == "1"
+	state = "gbuffer dynamic vol decal"
+#else
+	state = "gbuffer vol decal"
+#endif
+	source = "gbuffer_decal.hlsl"
+	defines = "USE_ALPHA_DISSOLVE"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+

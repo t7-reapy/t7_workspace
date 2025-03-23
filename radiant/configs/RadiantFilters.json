@@ -1,0 +1,738 @@
+[
+	{
+		"Name" : "World",
+		"Command" : "((Misc world || KeyValue classname func_group) && !Contents detail)",
+		"FilterFlags" : [ "fdshow" ],
+		"DefaultGroup" : "Geometry"
+	
+	},
+	{
+		"Name" : "Terrain",
+		"Command" : "Misc terrain",
+		"FilterFlags" : [ "fdshow" ],
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "Litfog",
+		"Command" : "KeyValue classname volume_litfog",
+		"DefaultGroup" : "Volumes"
+	},
+	{
+		"Name" : "Curve",
+		"Command" : "Misc curve",
+		"FilterFlags" : [ "fdshow" ],
+		"DefaultGroup" : "Geometry"
+	
+	},
+	{
+		"Name" : "NonEntityBrushes",
+		"Command": "((Misc world || KeyValue classname func_group) && (!Misc terrain && !Misc curve))",
+		"FilterFlags" : [ "fdshow" ],
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "Sky",
+		"Command" : "Contents sky",
+		"DefaultGroup" : "Geometry"
+	
+	},
+	{
+		"Name" : "CollisionMap",
+		"Command" : "KeyValue classname collmap",
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "Water",
+		"Command" : "Contents water",
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "Mantle",
+		"Command" : "Contents mantle",
+		"DefaultGroup" : "Geometry"
+	
+	},
+	{
+		"Name" : "nodraw_notsolid",
+		"Command" : "nodraw_notsolid",
+		"FilterFlags" : [ "face" ],
+		"DefaultGroup" : "Geometry"
+	
+	},
+	{
+		"Name" : "shadowcaster",
+		"Command" : "shadowcaster",
+		"FilterFlags" : [ "face" ],
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "traverse",
+		"Command" : "traverse",
+		"FilterFlags" : [ "face" ],
+		"DefaultGroup" : "Geometry"
+	
+	},
+	{
+		"Name" : "Foliage",
+		"Command" : "Texture *foliage*",
+		"DefaultGroup" : "Geometry"
+	
+	},
+	{
+		"Name" : "Structural",
+		"Command" : "((Misc world || KeyValue classname func_group) && (!Contents detail && !Contents translucent))",
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "Detail",
+		"Command" : "(Contents detail && !(Contents clipshot || Contents missileclip || Contents noncolliding))",
+		"DefaultGroup" : "Geometry"
+	
+	},
+	{
+		"Name" : "WeaponClip",
+		"Command" : "(Contents clipshot || Contents missileclip)",
+		"DefaultGroup" : "Geometry"
+	
+	},
+	{
+		"Name" : "NonColliding",
+		"Command" : "(Contents noncolliding && Contents detail)",
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "Translucent",
+		"Command" : "Contents translucent",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "InfoVolumes",
+		"Command" : "KeyValue classname info_volume",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Volumes"
+	},
+	{
+		"Name" : "Caulk",
+		"Command" : "caulk caulk_shadow caulk_shadow_primary caulk_transparent caulk_sun_shadow caulk_outdoor_occluder",
+		"FilterFlags" : [ "face" ],
+		"DefaultGroup" : "Geometry"
+	
+	},
+	{
+		"Name" : "NoDraw",
+		"Command" : "Texture nodraw*",
+		"FilterFlags" : [ "face" ],
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "Clip",
+		"Command" : "(Texture *clip* && !Texture volume_lightclip && !Texture *_carver)",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "OutOfBounds",
+		"Command" : "Texture clip_out_of_bounds",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "VehicleClip",
+		"Command" : "Texture *clip_vehicle*",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "MonsterClip",
+		"Command" : "Texture *clip_ai*",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "PlayerClip",
+		"Command" : "Texture *clip_player",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "FullClip",
+		"Command" : "Texture *clip_full",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "ClipOnly",
+		"Command" : "Texture clip",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "PhysicsClip",
+		"Command" : "Texture *clip_physics*",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "HintSkip",
+		"Command" : "(Texture hint || Texture *skip*)",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Geometry"
+	
+	},
+	{
+		"Name" : "Ladder",
+		"Command" : "Texture ladder*",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Geometry"
+	
+	},
+	{
+		"Name" : "Decals",
+		"Command" : "(Misc decal || Texture *decal*)",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "NonDecals",
+		"Command" : "(!Misc decal && !Texture *decal*)",
+		"DefaultGroup" : "Geometry"
+	
+	},
+	{
+		"Name" : "Carvers",
+		"Command" : "Texture *_carver",
+		"DefaultGroup" : "Geometry"
+	
+	},
+	{
+		"Name" : "UmbraTargetGeo",
+		"Command" : "Contents umbraTarget",
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "NonUmbraTargetGeo",
+		"Command" : "!Contents umbraTarget",
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "Triggers",
+		"Command" : "KeyValue classname trigger*",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "Radius-Triggers",
+		"Command" : "KeyValue classname trigger_radius",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "Brush-Triggers",
+		"Command" : "(KeyValue classname trigger* && !KeyValue classname trigger_radius)",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Triggers"
+	
+	},
+		{
+		"Name" : "BCS",
+		"Command" : "(Texture All *bcs* || KeyValue targetname trigger_location || KeyValue targetname trigger_landmark)",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "Escort",
+		"Command" : "Texture All *escort*",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "Unlock",
+		"Command" : "Texture All *unlock*",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "vehicle",
+		"Command" : "Texture All *vehicle_trigger*",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "Friendly_Respawn",
+		"Command" : "Texture All *friendly_respawn*",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "Flag",
+		"Command" : "Texture All flag",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "In/Out-door",
+		"Command" : "Texture All *indoor_outdoor*",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "Standard-trigger",
+		"Command" : "Texture All trigger",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "Kill",
+		"Command" : "Texture All *kill*",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "Auto_adjust",
+		"Command" : "Texture All *adjust*",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "Spawner",
+		"Command" : "(Texture All *spawner_trigger || KeyValue targetname flood_*)",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "StopSpawner",
+		"Command" : "(Texture All *stopspawn* || KeyValue targetname friendly_spawn)",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "FriendlyChain",
+		"Command" : "(Texture All *aitrig* || KeyValue classname trigger_friendlychain)",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "Ambient",
+		"Command" : "(Texture All *ambient* || KeyValue targetname ambient*)",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "Damage",
+		"Command" : "(Texture All *trigger_damage || KeyValue classname trigger_damage*)",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "Hint",
+		"Command" : "(Texture All *trigger_hint* || KeyValue targetname trigger_hint*)",
+		"DefaultGroup" : "Triggers"
+	
+	},
+	{
+		"Name" : "NonAudio",
+		"Command" : "(KeyValue classname trigger* && !KeyValue targetname ambient_package)",
+		"DefaultGroup" : "Triggers"
+	},
+	{
+		"Name" : "Entities",
+		"Command" : "(!Misc world && !KeyValue classname func_group && !KeyValue classname light && !KeyValue classname misc_prefab)",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "Lights",
+		"Command" : "KeyValue classname light",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "Build Lighting",
+		"Command" : "(KeyValue classname build_light || KeyValue classname build_probe)",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "Effects",
+		"Command" : "KeyValue classname fx",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "Rope",
+		"Command" : "Keyvalue classname rope",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "Glass",
+		"Command" : "Keyvalue classname glass",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "ReflectionProbes",
+		"Command" : "KeyValue classname reflection_probe",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "ShadowInfluencers",
+		"Command" : "KeyValue classname shadow_influencer",
+		"DefaultGroup" : "Entities"
+	},
+	{
+		"Name" : "misc_props",
+		"Command" : "KeyValue classname misc_prop",
+		"DefaultGroup" : "Entities"
+	},
+	{
+		"Name" : "ReflectionVolumes",
+		"Command" : "KeyValue classname volume_reflection",
+		"DefaultGroup" : "Volumes"
+	
+	},
+	{
+		"Name" : "LightClipVolumes",
+		"Command" : "KeyValue classname volume_lightclip",
+		"DefaultGroup" : "Volumes"
+	
+	},
+	{
+		"Name" : "SunVolumes",
+		"Command" : "KeyValue classname volume_sun",
+		"DefaultGroup" : "Volumes"
+	
+	},
+	{
+		"Name" : "SunVolumeExtensions",
+		"Command" : "KeyValue classname volume_sun_extension",
+		"DefaultGroup" : "Volumes"
+	
+	},
+	{
+		"Name" : "OutdoorVolumes",
+		"Command" : "KeyValue classname volume_outdoor",
+		"DefaultGroup" : "Volumes"
+	},
+	{
+		"Name" : "ExposureVolumes",
+		"Command" : "KeyValue classname volume_exposure",
+		"DefaultGroup" : "Volumes"
+	},
+	{
+		"Name" : "WorldFogVolumes",
+		"Command" : "KeyValue classname volume_worldfog",
+		"DefaultGroup" : "Volumes"
+	},
+	{
+		"Name" : "WorldFogModifierVolumes",
+		"Command" : "KeyValue classname volume_worldfogmodifier",
+		"DefaultGroup" : "Volumes"
+	},
+	{
+		"Name" : "LUTVolumes",
+		"Command" : "KeyValue classname volume_lut",
+		"DefaultGroup" : "Volumes"
+	},
+	{
+		"Name" : "VColorVolumes",
+		"Command" : "KeyValue classname vcolor_*",
+		"DefaultGroup" : "Volumes"
+	},
+	{
+		"Name" : "PBGVolumes",
+		"Command" : "KeyValue classname pbg_*",
+		"DefaultGroup" : "Volumes"
+	},
+	{
+		"Name" : "FpsToolVolumes",
+		"Command" : "KeyValue classname volume_fpstool",
+		"DefaultGroup" : "Volumes"
+	},
+	{
+		"Name" : "UmbraVolumes",
+		"Command" : "Texture All umbra_*",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Volumes"
+	},
+	{
+		"Name" : "WeatherVolume",
+		"Command" : "KeyValue classname volume_weathergrime",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Volumes"
+	
+	},
+	{
+		"Name" : "ExportVolumes",
+		"Command" : "KeyValue classname export_volume",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Volumes"
+	
+	},
+	{
+		"Name" : "NavVolumes",
+		"Command" : "( KeyValue classname nav_volume || KeyValue classname nav_volume_passable )",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Volumes"
+	
+	},
+	{
+		"Name" : "EntityModels",
+		"Command" : "(KeyValue model xmodel* && !KeyValue classname misc_model && !KeyValue classname misc_prefab)",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "StaticModels",
+		"Command" : "KeyValue classname misc_model",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "AISpawners",
+		"Command" : "(KeyValue classname ai_* || KeyValue classname actor_*)",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "PathNodes",
+		"Command" : "KeyValue classname node_pathnode",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "ActionNodes",
+		"Command" : "(KeyValue classname node_* && !KeyValue classname node_pathnode)",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "CoverNodes",
+		"Command" : "(KeyValue classname node_cover_* || KeyValue classname node_concealment_*)",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "TraversalNodes",
+		"Command" : "KeyValue classname node_negotiation_*",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "Misc",
+		"Command" : "KeyValue classname misc_*",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "Funcs",
+		"Command" : "KeyValue classname func_*",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "Info",
+		"Command" : "KeyValue classname info_*",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "Weapons",
+		"Command" : "KeyValue classname weapon_*",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "AmmoItems",
+		"Command" : "(KeyValue classname ammo_* || KeyValue classname item_*)",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "Posed Models",
+		"Command" : "Misc posed",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "Unposed Models",
+		"Command" : "(!Misc posed && (KeyValue classname misc_model || KeyValue classname script_model))",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+
+	},
+	{
+		"Name" : "DynObjects",
+		"Command" : "KeyValue classname dyn_*",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "MP_entities",
+		"Command" : "KeyValue classname mp_*",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "script_origins",
+		"Command" : "(KeyValue classname script_origin || KeyValue classname script_struct)",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "FoliageModels",
+		"Command" : "(!KeyValue classname worldspawn && (KeyValue model *foliage* || KeyValue model p6_tree_* || KeyValue model p6_bush_* || KeyValue model p6_plant_* || KeyValue model p6_flower_* || KeyValue model p6_grass_*))",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "vehicles",
+		"Command" : "KeyValue classname *vehicle*",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "script_entites",
+		"Command" : "KeyValue classname script_*",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "misc_prefab",
+		"Command" : "KeyValue classname misc_prefab",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "radiant_fx_physics",
+		"Command" : "KeyValue classname radiant_fx_physics",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "heli_height_lock",
+		"Command" : "KeyValue classname heli_height_lock",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "Scriptbundles",
+		"Command" : "KeyValue classname scriptbundle_scene",
+		"DefaultGroup" : "Entities"
+	},
+	{
+		"Name" : "SiegeAnims",
+		"Command" : "(KeyValue classname scriptbundle_scene && eclassflag siege)",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Entities"
+	},
+	{
+		"Name" : "info_player_start",
+		"Command" : "KeyValue classname info_player_start",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "VolumeDecals",
+		"Command" : "KeyValue classname misc_volume_decal",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "CoOpSpawns",
+		"Command" : "(KeyValue classname cp_coop_spawn || KeyValue classname cp_coop_respawn)",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "LightingState1",
+		"Command" : "KeyValue lightingstate1 1",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "LightingState2",
+		"Command" : "KeyValue lightingstate2 1",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "LightingState3",
+		"Command" : "KeyValue lightingstate3 1",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "LightingState4",
+		"Command" : "KeyValue lightingstate4 1",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "NO_COLLIDE",
+		"Command" : "KeyValue NO_COLLIDE 1",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "UmbraTargetEnts",
+		"Command" : "KeyValue umbra_target_only 1",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "NonUmbraTargetEnts",
+		"Command" : "!KeyValue umbra_target_only 1",
+		"DefaultGroup" : "Entities"
+	
+	},
+	{
+		"Name" : "_Blend",
+		"Command" : "Texture *_blend*",
+		"FilterFlags" : [ "fdhide" ],
+		"DefaultGroup" : "Geometry"
+	},
+	{
+		"Name" : "ScriptPrefabs",
+		"Command" : "(KeyValue model *script* && KeyValue classname misc_prefab)",
+		"DefaultGroup" : "Department Prefabs"
+	},
+	{
+		"Name" : "LightingPrefabs",
+		"Command" : "(KeyValue model *_light.map && KeyValue classname misc_prefab)",
+		"DefaultGroup" : "Department Prefabs"
+	},
+	{
+		"Name" : "FxPrefabs",
+		"Command" : "(KeyValue model *_fx.map && KeyValue classname misc_prefab)",
+		"DefaultGroup" : "Department Prefabs"
+	},
+	{
+		"Name" : "FxAnimPrefabs",
+		"Command" : "(KeyValue model *_fxanim.map && KeyValue classname misc_prefab)",
+		"DefaultGroup" : "Department Prefabs"
+	},
+	{
+		"Name" : "AudioPrefabs",
+		"Command" : "(KeyValue model *_audio.map* && KeyValue classname misc_prefab)",
+		"DefaultGroup" : "Department Prefabs"
+	}
+]

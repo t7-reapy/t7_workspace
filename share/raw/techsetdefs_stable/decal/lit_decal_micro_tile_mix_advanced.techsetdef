@@ -1,0 +1,60 @@
+#include "lit_base"
+#include "lit_decal_base.inc"
+#include "micro_tile_mix_advanced_base"
+
+Globals()
+{
+	category = "Decal"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+	renderFlags = "base decal renderflags"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "tintMask" )
+{
+	image = Image( <colorMap04, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps1"
+		title     = "Tint Mask"
+		sortindex = "10"
+	}
+}
+
+Texture( "tintMask2" )
+{
+	image = Image( <colorMap05, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps2"
+		title     = "Tint Mask"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines += "USE_COLOR_TINT", "USE_MICRO_BLEND"
+}
+
+Technique( "gbuffer" ) : "base lit decal gbuffer"
+{
+	defines += "USE_WORLD_TILE_OFFSET", "USE_COLOR_TINT", "USE_TINT_MASK"
+	source  = "gbuffer_decal_micro_tile_mix.hlsl"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

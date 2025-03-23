@@ -1,0 +1,91 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "emissive decal"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+Texture( "colorMap" )
+{
+	ref = true
+	image = Image( <colorMap, $white> )
+	tweak = Tweak( "Emissive", "Emissive Map", "0" )
+}
+
+float1( "hdrScale" )
+{
+	x = <scaleRGB>
+	tweak = Tweak( "Emissive", "HDR Scale", "10" )
+}
+
+#if TOOLSGFX == "1"
+Technique( "unlit", "browser" )
+#else
+Technique( "unlit" )
+#endif
+{
+	state = "blend + depth + decal"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "techsetdef_unlit.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "techsetdef_unlit.hlsl"
+		defines = "MTL_BLEND_MODE_BLEND"
+		colorMapSampler = "colorMap"
+#endif
+	}
+}
+
+Technique( "lit" )
+{
+	state = "blend + depth + decal"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/reference_emissive_decal.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "techsetdef_unlit.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/reference_emissive_decal.hlsl"
+#else
+		source = "techsetdef_unlit.hlsl"
+		defines = "MTL_BLEND_MODE_BLEND"
+		colorMapSampler = "colorMap"
+#endif
+	}
+}
+
+#if TOOLSGFX == "1"
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/debug_texeldensity.hlsl"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/debug_texeldensity.hlsl"
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}
+#endif

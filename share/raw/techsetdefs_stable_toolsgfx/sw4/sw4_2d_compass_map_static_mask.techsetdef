@@ -1,0 +1,93 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Blend
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = one
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = one
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+Sampler( "Mask_Sampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+Texture( "Mask" )
+{
+	image    = Image( <colorMap01> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "texture_assets\\hud\\compass_maps\\minimap_mp_spire_clean.png"
+	}
+}
+Sampler( "BlockNoise_Sampler" )
+{
+	tile   = "tile both"
+	filter = "nomip nearest"
+}
+Texture( "BlockNoise" )
+{
+	image    = Image( "sam_block_noise" )
+	semantic = "diffuseMap"
+}
+Sampler( "Lookup2_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "Lookup2" )
+{
+	image    = Image( "tv_lookup" )
+	semantic = "diffuseMap"
+}
+Sampler( "CompassMap_Sampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+Texture( "CompassMap" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "texture_assets\\hud\\compass_maps\\compass_map_mp_dockside.tif"
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_compass_map_static_mask.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_BLEND"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

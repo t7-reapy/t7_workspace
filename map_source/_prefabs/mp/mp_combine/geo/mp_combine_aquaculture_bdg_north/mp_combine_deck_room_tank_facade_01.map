@@ -1,0 +1,1053 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{79CEDE5E-0CBE-11E5-939F-2C27D7EF3DD8}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lightingquality" "1024"
+"newsun" "1"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{DA8F971F-4F5F-11E4-B908-2C27D7F0333E}"
+ ( 0 -80.5 -555 ) ( 0 -80.5 103 ) ( 0 -216.5 103 ) metal_clip 64 64 -148.5 553 0 0 lightmap_gray 16384 16384 -1304.5 185 0 0
+ ( 8 -89.5 -7 ) ( 8 -92.5 -7 ) ( 8 -89.5 25 ) metal_clip 64 64 -148.5 553 0 0 lightmap_gray 16384 16384 -148.5 555 0 0
+ ( 7 -80.5 88.5 ) ( 5 -80.5 88.5 ) ( 5 -48.5 88.5 ) metal_clip 64 64 80 148.5 0 0 lightmap_gray 16384 16384 80 148.5 0 0
+ ( 8 -182.5 93 ) ( 8 -182.5 96 ) ( 40 -182.5 96 ) metal_clip 64 64 80 553 0 0 lightmap_gray 16384 16384 80 553 0 0
+ ( 8 -109.5 96 ) ( 8 -109.5 95 ) ( 40 -109.5 96 ) metal_clip 64 64 80 553 0 0 lightmap_gray 16384 16384 80 553 0 0
+ ( 10 -202 0 ) ( 12 -202 0 ) ( 10 -170 0 ) metal_clip 64 64 64 146 0 0 lightmap_gray 16384 16384 64 146 0 0
+}
+// brush 1
+{
+ guid "{497137BA-4F65-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 4.5 -111 100 ) ( 4.5 -103 100 ) ( 4.5 -103 0 ) t7_glass_dirty_streaks_darker 128 128 0 0 0 0 lightmap_gray 16384 -16384 75 -552 180 0
+ ( 3.5 -104 88 ) ( 3.5 -103 88 ) ( 3.5 -103 120 ) t7_glass_dirty_streaks_darker 128 128 0 0 0 0 lightmap_gray 16384 -16384 103 -552 180 0
+ ( 4.25 -107 84 ) ( 4.25 -107 80 ) ( -27.75 -107 84 ) caulk 64 -64 72 -552 -180 0 lightmap_gray 16384 -16384 72 -552 -180 0
+ ( 4.25 -59.5 82 ) ( 4.25 -59.5 86 ) ( -27.75 -59.5 82 ) caulk 64 -64 72 -552 180 0 lightmap_gray 16384 -16384 72 -552 180 0
+ ( -152 -85 108 ) ( -152 -93 108 ) ( -184 -85 108 ) caulk 64 64 72 -111 180 0 lightmap_gray 16384 16384 72 -111 180 0
+ ( -152 -99 4 ) ( -152 -91 4 ) ( -184 -91 4 ) caulk 64 64 72 -111 180 0 lightmap_gray 16384 16384 72 -111 180 0
+}
+// brush 2
+{
+ guid "{9F01BB98-E9FF-11E4-86CB-2C27D7F024A6}"
+  contents detail;
+ ( 4.5 -55 100 ) ( 4.5 -47 100 ) ( 4.5 -47 0 ) t7_glass_dirty_streaks_darker 128 128 56 0 0 0 lightmap_gray 16384 -16384 19 -552 180 0
+ ( 3.5 -48 88 ) ( 3.5 -47 88 ) ( 3.5 -47 120 ) t7_glass_dirty_streaks_darker 128 128 56 0 0 0 lightmap_gray 16384 -16384 47 -552 180 0
+ ( 4.25 -51.5 84 ) ( 4.25 -51.5 80 ) ( -27.75 -51.5 84 ) caulk 64 -64 72 -552 -180 0 lightmap_gray 16384 -16384 72 -552 -180 0
+ ( 4.25 -3 82 ) ( 4.25 -3 86 ) ( -27.75 -3 82 ) caulk 64 -64 72 -552 180 0 lightmap_gray 16384 -16384 72 -552 180 0
+ ( -152 -29 108 ) ( -152 -37 108 ) ( -184 -29 108 ) caulk 64 64 72 -55 -180 0 lightmap_gray 16384 16384 72 -55 -180 0
+ ( -152 -43 4 ) ( -152 -35 4 ) ( -184 -35 4 ) caulk 64 64 72 -55 -180 0 lightmap_gray 16384 16384 72 -55 -180 0
+}
+// brush 3
+ {
+  guid "{85BC9C36-0CBE-11E5-939F-2C27D7EF3DD8}"
+  mesh
+  {
+  toolFlags;
+   t7_decal_cai_elevator_room
+   lightmap_gray
+   2 2 0 8
+   (
+	v 3.25 -74 43 t 0 -0 0.25 -34.75
+	v 3.25 -74 66.5 t 0 -1024 -2.71875 -34.75
+   )
+   (
+	v 3.25 -104 43 t 1024 -0 0.25 -41.25
+	v 3.25 -104 66.5 t 1024 -1024 -2.71875 -41.25
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
+}
+// entity 1
+{
+guid "{79CEDE5F-0CBE-11E5-939F-2C27D7EF3DD8}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{DA8F9695-4F5F-11E4-B908-2C27D7F0333E}"
+ ( 132 -168 120 ) ( 132 -168 -1 ) ( 132 20 -1 ) t7_metal_panel_2x1_stainless_steel_brushed 111.99999 -112.00002 0 0 180 0 lightmap_gray 16384 16384 -1256 184 0 0
+ ( 136 -172 -1 ) ( 136 -172 120 ) ( 136 24 120 ) caulk 64 64 -100 552 0 0 lightmap_gray 16384 16384 -100 554 0 0
+ ( 134 -170 120 ) ( 132 -168 120 ) ( 132 -168 152 ) caulk 16 16 -104 552 0 0 lightmap_gray 16384 16384 -104 552 0 0
+ ( 132 0 120 ) ( 134 2 120 ) ( 132 0 152 ) caulk 16 16 -108 552 0 0 lightmap_gray 16384 16384 -108 552 0 0
+ ( -82 24 112 ) ( -86 24 112 ) ( -86 56 112 ) caulk 16 16 56 108 0 0 lightmap_gray 16384 16384 56 108 0 0
+ ( 2 -164 0 ) ( 4 -164 0 ) ( 2 -132 0 ) caulk 16 16 56 108 0 0 lightmap_gray 16384 16384 56 108 0 0
+}
+}
+// entity 2
+{
+guid "{79CEDE60-0CBE-11E5-939F-2C27D7EF3DD8}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{DB1E1BCE-4F60-11E4-B908-2C27D7F0333E}"
+ ( 191 0 111 ) ( 3 0 111 ) ( 3 0 232 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 223 -59.853455 0 0 lightmap_gray 16384 16384 -1136 72 0 0
+ ( 144 4 232 ) ( -52 4 232 ) ( -52 4 111 ) caulk 64 64 20 440 0 0 lightmap_gray 16384 16384 20 442 0 0
+ ( 132 0 264 ) ( 134 2 232 ) ( 132 0 232 ) caulk 16 16 -128 440 0 0 lightmap_gray 16384 16384 -128 440 0 0
+ ( -12 -130 112 ) ( -44 -128 112 ) ( -44 -130 112 ) caulk 16 -16 -76 12 90 0 lightmap_gray 16384 -16384 -76 12 90 0
+ ( 8 1 256 ) ( 8 1 224 ) ( 8 3 224 ) caulk 16 -16 60 -440 -180 0 lightmap_gray 16384 -16384 60 -440 -180 0
+ ( 136 -188 120 ) ( 134 -188 120 ) ( 134 -156 120 ) caulk 16 16 64 128 0 0 lightmap_gray 16384 16384 64 128 0 0
+}
+// brush 1
+{
+ guid "{DB1E1BD2-4F60-11E4-B908-2C27D7F0333E}"
+ ( 11 -168 232 ) ( 11 -168 111 ) ( 199 -168 111 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 223 -59.853455 0 0 lightmap_gray 16384 16384 -1136 72 0 0
+ ( -52 -172 111 ) ( -52 -172 232 ) ( 144 -172 232 ) caulk 64 64 20 440 0 0 lightmap_gray 16384 16384 20 442 0 0
+ ( 132 -168 232 ) ( 134 -170 232 ) ( 132 -168 264 ) caulk 16 -16 40 -440 180 0 lightmap_gray 16384 -16384 40 -440 180 0
+ ( -44 -38 112 ) ( -44 -40 112 ) ( -12 -38 112 ) caulk 16 16 92 -12 -90 0 lightmap_gray 16384 16384 92 -12 -90 0
+ ( 8 -171 224 ) ( 8 -169 224 ) ( 8 -169 256 ) caulk 16 16 -108 440 0 0 lightmap_gray 16384 16384 -108 440 0 0
+ ( 136 -168 120 ) ( 134 -168 120 ) ( 134 -136 120 ) caulk 16 16 64 108 0 0 lightmap_gray 16384 16384 64 108 0 0
+}
+// brush 2
+{
+ guid "{DB1E1BD0-4F60-11E4-B908-2C27D7F0333E}"
+ ( 132 -168 232 ) ( 132 -168 111 ) ( 132 20 111 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 51 -59.853455 0 0 lightmap_gray 16384 16384 -1256 72 0 0
+ ( 136 -172 111 ) ( 136 -172 232 ) ( 136 24 232 ) caulk 64 64 -100 440 0 0 lightmap_gray 16384 16384 -100 442 0 0
+ ( 134 -170 232 ) ( 132 -168 232 ) ( 132 -168 264 ) caulk 16 16 -104 440 0 0 lightmap_gray 16384 16384 -104 440 0 0
+ ( 132 0 232 ) ( 134 2 232 ) ( 132 0 264 ) caulk 16 16 -108 440 0 0 lightmap_gray 16384 16384 -108 440 0 0
+ ( 2 -164 112 ) ( 4 -164 112 ) ( 2 -132 112 ) caulk 16 16 56 108 0 0 lightmap_gray 16384 16384 56 108 0 0
+ ( 128 -168 120 ) ( 126 -168 120 ) ( 126 -136 120 ) caulk 16 16 56 108 0 0 lightmap_gray 16384 16384 56 108 0 0
+}
+}
+// entity 3
+{
+guid "{AB845A61-3F04-469E-A07E-2F4F6DDE3AF1}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{C9658C2B-4FDE-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 8 -209 4 ) ( 1 -209 4 ) ( 1 64 4 ) t7_plastic_rubber_trim 8 64 64 146 0 0 lightmap_gray 16384 16384 -624 223 180 0
+ ( 1 83 0 ) ( 8 83 0 ) ( 8 356 0 ) caulk 64 64 -624 223 180 0 lightmap_gray 16384 16384 -624 223 180 0
+ ( 0 0 0 ) ( 0 -1 1 ) ( -32 0 0 ) caulk 16 16 -624 2058 180 0 lightmap_gray 16384 16384 -624 2058 180 0
+ ( 3 94 108 ) ( 3 94 107 ) ( 3 126 108 ) caulk 16 16 -146 552 0 0 lightmap_gray 16384 16384 -146 552 0 0
+ ( 5 94 107 ) ( 5 94 108 ) ( 5 126 107 ) caulk 16 16 -146 552 0 0 lightmap_gray 16384 16384 -146 552 0 0
+ ( 0 -107 4 ) ( 0 -109 2 ) ( -32 -107 4 ) caulk 16 16 -624 1902 180 0 lightmap_gray 16384 16384 -624 1902 180 0
+}
+// brush 1
+{
+ guid "{7E9138DC-E9FF-11E4-86CB-2C27D7F024A6}"
+  contents detail;
+ ( 8 -209 4 ) ( 1 -209 4 ) ( 1 64 4 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 516 -2103.4392 -90 0 lightmap_gray 16384 16384 -624 223 180 0 smoothing smoothing_smooth_other
+ ( 1 83 0 ) ( 8 83 0 ) ( 8 356 0 ) caulk 64 64 -624 223 180 0 lightmap_gray 16384 16384 -624 223 180 0
+ ( 8 -209 0 ) ( 8 -209 8 ) ( 8 64 8 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 516 -2092.0244 180 0 lightmap_gray 16384 -16384 -2112 -223 -90 0 smoothing smoothing_smooth_other
+ ( 7 -49 4 ) ( 8 -49 3 ) ( 7 -81 4 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 45.254833 516 -1489.4028 -90 0 lightmap_gray 16384 -16384 -2101 -223 0 0 smoothing smoothing_smooth
+ ( 5 94 108 ) ( 5 94 107 ) ( 5 126 107 ) caulk 16 16 -146 552 0 0 lightmap_gray 16384 16384 -146 552 0 0
+ ( 0 -107 4 ) ( 0 -109 2 ) ( -32 -107 4 ) caulk 16 16 -624 1902 180 0 lightmap_gray 16384 16384 -624 1902 180 0
+ ( 3 -59.5 4 ) ( 3 -55.5 0 ) ( 35 -59.5 4 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 2
+{
+ guid "{7E9138DE-E9FF-11E4-86CB-2C27D7F024A6}"
+  contents detail;
+ ( 8 -365 4 ) ( 1 -365 4 ) ( 1 -92 4 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 672 -2103.4392 -90 0 lightmap_gray 16384 16384 -624 67 -180 0 smoothing smoothing_smooth_other
+ ( 0 -365 8 ) ( 0 -365 0 ) ( 0 -92 0 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 672 2106.8535 180 0 lightmap_gray 16384 -16384 -2112 -67 -90 0 smoothing smoothing_smooth_other
+ ( 1 -73 0 ) ( 8 -73 0 ) ( 8 200 0 ) caulk 64 64 -624 67 180 0 lightmap_gray 16384 16384 -624 67 180 0
+ ( 1 -205 4 ) ( 2 -205 5 ) ( 1 -237 4 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 45.254833 672 -1487.646 -90 0 lightmap_gray 16384 16384 -2109 67 180 0 smoothing smoothing_smooth
+ ( 0 -107 4 ) ( 0 -109 2 ) ( -32 -107 4 ) caulk 16 16 -624 1902 180 0 lightmap_gray 16384 16384 -624 1902 180 0
+ ( 3 164 107 ) ( 3 164 108 ) ( 3 196 108 ) caulk 16 16 -146 552 0 0 lightmap_gray 16384 16384 -146 552 0 0
+ ( 3 -59.5 4 ) ( 3 -55.5 0 ) ( 35 -59.5 4 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 3
+{
+ guid "{7E9138F7-E9FF-11E4-86CB-2C27D7F024A6}"
+  contents detail;
+ ( 8 -365 4 ) ( 1 -365 4 ) ( 1 -92 4 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 672 -2103.4392 -90 0 lightmap_gray 16384 16384 -624 67 -180 0 smoothing smoothing_smooth_other
+ ( 0 -365 8 ) ( 0 -365 0 ) ( 0 -92 0 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 672 2106.8535 180 0 lightmap_gray 16384 -16384 -2112 -67 -90 0 smoothing smoothing_smooth_other
+ ( 1 -73 0 ) ( 8 -73 0 ) ( 8 200 0 ) caulk 64 64 -624 67 180 0 lightmap_gray 16384 16384 -624 67 180 0
+ ( 1 -205 4 ) ( 2 -205 5 ) ( 1 -237 4 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 45.254833 672 -1487.646 -90 0 lightmap_gray 16384 16384 -2109 67 180 0 smoothing smoothing_smooth
+ ( 3 164 107 ) ( 3 164 108 ) ( 3 196 108 ) caulk 16 16 -146 552 0 0 lightmap_gray 16384 16384 -146 552 0 0
+ ( 0 0 0 ) ( 0 -1 1 ) ( -32 0 0 ) caulk 16 16 -624 2058 180 0 lightmap_gray 16384 16384 -624 2058 180 0
+ ( 3 -55.5 0 ) ( 3 -51.5 4 ) ( 35 -55.5 0 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 4
+{
+ guid "{7E9138F9-E9FF-11E4-86CB-2C27D7F024A6}"
+  contents detail;
+ ( 8 -209 4 ) ( 1 -209 4 ) ( 1 64 4 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 516 -2103.4392 -90 0 lightmap_gray 16384 16384 -624 223 180 0 smoothing smoothing_smooth_other
+ ( 1 83 0 ) ( 8 83 0 ) ( 8 356 0 ) caulk 64 64 -624 223 180 0 lightmap_gray 16384 16384 -624 223 180 0
+ ( 8 -209 0 ) ( 8 -209 8 ) ( 8 64 8 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 516 -2092.0244 180 0 lightmap_gray 16384 -16384 -2112 -223 -90 0 smoothing smoothing_smooth_other
+ ( 7 -49 4 ) ( 8 -49 3 ) ( 7 -81 4 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 45.254833 516 -1489.4028 -90 0 lightmap_gray 16384 -16384 -2101 -223 0 0 smoothing smoothing_smooth
+ ( 0 0 0 ) ( 0 -1 1 ) ( -32 0 0 ) caulk 16 16 -624 2058 180 0 lightmap_gray 16384 16384 -624 2058 180 0
+ ( 5 94 108 ) ( 5 94 107 ) ( 5 126 107 ) caulk 16 16 -146 552 0 0 lightmap_gray 16384 16384 -146 552 0 0
+ ( 3 -55.5 0 ) ( 3 -51.5 4 ) ( 35 -55.5 0 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 4
+{
+guid "{BEDA2D57-D90E-43A1-AB90-5EF9243398DF}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{11690371-4F65-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 8 -107 272 ) ( 1 -107 272 ) ( 1 -107 -1 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 579 2103.4392 90 0 lightmap_gray 16384 -16384 -624 -160 180 0 smoothing smoothing_smooth_other
+ ( 0 -103 272 ) ( 0 -111 272 ) ( 0 -111 -1 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 579 1995.8535 90 0 lightmap_gray 16384 -16384 -2001 -160 180 0 smoothing smoothing_smooth_other
+ ( 1 -111 100 ) ( 8 -111 100 ) ( 8 -111 -173 ) caulk 64 -64 -624 -160 180 0 lightmap_gray 16384 -16384 -624 -160 180 0
+ ( 1 -107 112 ) ( 2 -106 112 ) ( 1 -107 144 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -45.254833 579 1379.644 90 0 lightmap_gray 16384 -16384 -2001 -160 180 0 smoothing smoothing_smooth
+ ( 0 -108 109 ) ( 0 -110 111 ) ( -32 -108 109 ) caulk 16 16 -624 1996 -180 0 lightmap_gray 16384 16384 -624 1996 -180 0
+ ( 0 -109 2 ) ( 0 -107 4 ) ( -32 -107 4 ) caulk 16 16 -624 1996 180 0 lightmap_gray 16384 16384 -624 1996 180 0
+ ( 3 68 107 ) ( 3 68 108 ) ( 3 100 108 ) caulk 16 16 -52 552 0 0 lightmap_gray 16384 16384 -52 552 0 0
+}
+// brush 1
+{
+ guid "{11690380-4F65-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 8 -107 272 ) ( 1 -107 272 ) ( 1 -107 -1 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 579 2103.4392 90 0 lightmap_gray 16384 -16384 -624 -160 180 0 smoothing smoothing_smooth_other
+ ( 1 -111 100 ) ( 8 -111 100 ) ( 8 -111 -173 ) caulk 64 -64 -624 -160 180 0 lightmap_gray 16384 -16384 -624 -160 180 0
+ ( 8 -111 272 ) ( 8 -103 272 ) ( 8 -103 -1 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 579 -2203.0244 90 0 lightmap_gray 16384 -16384 -2001 -160 -180 0 smoothing smoothing_smooth_other
+ ( 7 -107 112 ) ( 8 -108 112 ) ( 7 -107 144 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 45.254833 579 -1589.394 90 0 lightmap_gray 16384 -16384 -2001 -160 180 0 smoothing smoothing_smooth
+ ( 0 -108 109 ) ( 0 -110 111 ) ( -32 -108 109 ) caulk 16 16 -624 1996 -180 0 lightmap_gray 16384 16384 -624 1996 -180 0
+ ( 0 -109 2 ) ( 0 -107 4 ) ( -32 -107 4 ) caulk 16 16 -624 1996 180 0 lightmap_gray 16384 16384 -624 1996 180 0
+ ( 5 68 108 ) ( 5 68 107 ) ( 5 100 107 ) caulk 16 16 -52 552 0 0 lightmap_gray 16384 16384 -52 552 0 0
+}
+// brush 2
+{
+ guid "{1169037F-4F65-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 8 -107 272 ) ( 1 -107 272 ) ( 1 -107 -1 ) t7_plastic_rubber_trim 8 -64 64 -499 0 0 lightmap_gray 16384 -16384 -624 -160 180 0
+ ( 1 -111 100 ) ( 8 -111 100 ) ( 8 -111 -173 ) caulk 64 -64 -624 -160 180 0 lightmap_gray 16384 -16384 -624 -160 180 0
+ ( 0 -108 109 ) ( 0 -110 111 ) ( -32 -108 109 ) caulk 16 16 -624 1996 -180 0 lightmap_gray 16384 16384 -624 1996 -180 0
+ ( 0 -109 2 ) ( 0 -107 4 ) ( -32 -107 4 ) caulk 16 16 -624 1996 180 0 lightmap_gray 16384 16384 -624 1996 180 0
+ ( 3 68 108 ) ( 3 68 107 ) ( 3 100 108 ) caulk 16 16 -52 552 0 0 lightmap_gray 16384 16384 -52 552 0 0
+ ( 5 68 107 ) ( 5 68 108 ) ( 5 100 107 ) caulk 16 16 -52 552 0 0 lightmap_gray 16384 16384 -52 552 0 0
+}
+}
+// entity 5
+{
+guid "{650063D7-237E-4A23-9E2F-8B2A0DBB827D}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{1169036D-4F65-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 8 -4 -160 ) ( 1 -4 -160 ) ( 1 -4 113 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 467 -2103.4392 -90 0 lightmap_gray 16384 16384 -624 272 180 0 smoothing smoothing_smooth_other
+ ( 0 -8 -160 ) ( 0 0 -160 ) ( 0 0 113 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 467 2106.8535 -90 0 lightmap_gray 16384 -16384 -2112 -272 0 0 smoothing smoothing_smooth_other
+ ( 1 0 12 ) ( 8 0 12 ) ( 8 0 285 ) caulk 64 64 -624 272 180 0 lightmap_gray 16384 16384 -624 272 180 0
+ ( 1 -4 0 ) ( 2 -5 0 ) ( 1 -4 -32 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -45.254833 467 1490.6323 -90 0 lightmap_gray 16384 -16384 -2112 -272 0 0 smoothing smoothing_smooth
+ ( 0 -3 3 ) ( 0 -1 1 ) ( -32 -3 3 ) caulk 16 -16 -624 -2107 180 0 lightmap_gray 16384 -16384 -624 -2107 180 0
+ ( 0 0 112 ) ( 0 -4 108 ) ( -32 0 112 ) caulk 16 16 -624 1928 -180 0 lightmap_gray 16384 16384 -624 1928 -180 0
+ ( 3 0 107 ) ( 3 0 108 ) ( 3 32 108 ) caulk 16 16 -120 552 0 0 lightmap_gray 16384 16384 -120 552 0 0
+}
+// brush 1
+{
+ guid "{1169037B-4F65-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 8 -4 -160 ) ( 1 -4 -160 ) ( 1 -4 113 ) t7_plastic_rubber_trim 8 64 64 112 0 0 lightmap_gray 16384 16384 -624 272 180 0
+ ( 1 0 12 ) ( 8 0 12 ) ( 8 0 285 ) caulk 64 64 -624 272 180 0 lightmap_gray 16384 16384 -624 272 180 0
+ ( 0 -3 3 ) ( 0 -1 1 ) ( -32 -3 3 ) caulk 16 -16 -624 -2107 180 0 lightmap_gray 16384 -16384 -624 -2107 180 0
+ ( 0 0 112 ) ( 0 -4 108 ) ( -32 0 112 ) caulk 16 16 -624 1928 -180 0 lightmap_gray 16384 16384 -624 1928 -180 0
+ ( 3 0 108 ) ( 3 0 107 ) ( 3 32 108 ) caulk 16 16 -120 552 0 0 lightmap_gray 16384 16384 -120 552 0 0
+ ( 5 0 107 ) ( 5 0 108 ) ( 5 32 107 ) caulk 16 16 -120 552 0 0 lightmap_gray 16384 16384 -120 552 0 0
+}
+// brush 2
+{
+ guid "{1169037C-4F65-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 8 -4 -160 ) ( 1 -4 -160 ) ( 1 -4 113 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 467 -2103.4392 -90 0 lightmap_gray 16384 16384 -624 272 180 0 smoothing smoothing_smooth_other
+ ( 1 0 12 ) ( 8 0 12 ) ( 8 0 285 ) caulk 64 64 -624 272 180 0 lightmap_gray 16384 16384 -624 272 180 0
+ ( 8 0 -160 ) ( 8 -8 -160 ) ( 8 -8 113 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 467 -2092.0244 -90 0 lightmap_gray 16384 -16384 -2112 -272 0 0 smoothing smoothing_smooth_other
+ ( 7 -4 0 ) ( 8 -3 0 ) ( 7 -4 -32 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 45.254833 467 -1478.4032 -90 0 lightmap_gray 16384 -16384 -2112 -272 0 0 smoothing smoothing_smooth
+ ( 0 -3 3 ) ( 0 -1 1 ) ( -32 -3 3 ) caulk 16 -16 -624 -2107 180 0 lightmap_gray 16384 -16384 -624 -2107 180 0
+ ( 0 0 112 ) ( 0 -4 108 ) ( -32 0 112 ) caulk 16 16 -624 1928 -180 0 lightmap_gray 16384 16384 -624 1928 -180 0
+ ( 5 0 108 ) ( 5 0 107 ) ( 5 32 107 ) caulk 16 16 -120 552 0 0 lightmap_gray 16384 16384 -120 552 0 0
+}
+}
+// entity 6
+{
+guid "{91C7D476-54EA-4099-970D-BC5F275C13AE}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{1169037D-4F65-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 8 6 108 ) ( 1 6 108 ) ( 1 -267 108 ) t7_plastic_rubber_trim 8 -64 64 -216 0 0 lightmap_gray 16384 -16384 -624 -428 180 0
+ ( 1 -168 112 ) ( 8 -168 112 ) ( 8 -441 112 ) caulk 64 -64 -624 -428 180 0 lightmap_gray 16384 -16384 -624 -428 180 0
+ ( 0 -4 108 ) ( 0 -2 110 ) ( -32 -4 108 ) caulk 16 -16 -624 -2263 -180 0 lightmap_gray 16384 -16384 -624 -2263 -180 0
+ ( 0 -111 112 ) ( 0 -110 111 ) ( -32 -111 112 ) caulk 16 -16 -624 -2263 -180 0 lightmap_gray 16384 -16384 -624 -2263 -180 0
+ ( 3 68 108 ) ( 3 68 107 ) ( 3 100 108 ) caulk 16 16 -120 552 0 0 lightmap_gray 16384 16384 -120 552 0 0
+ ( 5 68 107 ) ( 5 68 108 ) ( 5 100 107 ) caulk 16 16 -120 552 0 0 lightmap_gray 16384 16384 -120 552 0 0
+}
+// brush 1
+{
+ guid "{6FA2AA74-E9FF-11E4-86CB-2C27D7F024A6}"
+  contents detail;
+ ( 8 6 108 ) ( 1 6 108 ) ( 1 -267 108 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 311 2103.4392 90 0 lightmap_gray 16384 -16384 -624 -428 180 0 smoothing smoothing_smooth_other
+ ( 0 4 104 ) ( 0 4 112 ) ( 0 -269 112 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 311 1994.8535 0 0 lightmap_gray 16384 -16384 -2000 -428 90 0 smoothing smoothing_smooth_other
+ ( 1 -168 112 ) ( 8 -168 112 ) ( 8 -441 112 ) caulk 64 -64 -624 -428 180 0 lightmap_gray 16384 -16384 -624 -428 180 0
+ ( 1 -156 108 ) ( 2 -156 107 ) ( 1 -124 108 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -45.254833 311 1487.6449 90 0 lightmap_gray 16384 -16384 -2109 -428 180 0 smoothing smoothing_smooth
+ ( 0 -111 112 ) ( 0 -110 111 ) ( -32 -111 112 ) caulk 16 -16 -624 -2263 -180 0 lightmap_gray 16384 -16384 -624 -2263 -180 0
+ ( 3 68 107 ) ( 3 68 108 ) ( 3 100 108 ) caulk 16 16 -120 552 0 0 lightmap_gray 16384 16384 -120 552 0 0
+ ( 3 -55.5 112 ) ( 3 -59.5 108 ) ( 35 -59.5 108 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 2
+{
+ guid "{6FA2AA76-E9FF-11E4-86CB-2C27D7F024A6}"
+  contents detail;
+ ( 8 6 108 ) ( 1 6 108 ) ( 1 -267 108 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 311 2103.4392 90 0 lightmap_gray 16384 -16384 -624 -428 180 0 smoothing smoothing_smooth_other
+ ( 1 -168 112 ) ( 8 -168 112 ) ( 8 -441 112 ) caulk 64 -64 -624 -428 180 0 lightmap_gray 16384 -16384 -624 -428 180 0
+ ( 8 4 112 ) ( 8 4 104 ) ( 8 -269 104 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 311 -2204.0244 0 0 lightmap_gray 16384 -16384 -2000 -428 90 0 smoothing smoothing_smooth_other
+ ( 7 -156 108 ) ( 8 -156 109 ) ( 7 -124 108 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -45.254833 311 1489.4016 90 0 lightmap_gray 16384 16384 -2101 428 0 0 smoothing smoothing_smooth
+ ( 0 -111 112 ) ( 0 -110 111 ) ( -32 -111 112 ) caulk 16 -16 -624 -2263 -180 0 lightmap_gray 16384 -16384 -624 -2263 -180 0
+ ( 5 68 108 ) ( 5 68 107 ) ( 5 100 107 ) caulk 16 16 -120 552 0 0 lightmap_gray 16384 16384 -120 552 0 0
+ ( 3 -55.5 112 ) ( 3 -59.5 108 ) ( 35 -59.5 108 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 3
+{
+ guid "{764179F2-E9FF-11E4-86CB-2C27D7F024A6}"
+  contents detail;
+ ( 8 6 108 ) ( 1 6 108 ) ( 1 -267 108 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 311 2103.4392 90 0 lightmap_gray 16384 -16384 -624 -428 180 0 smoothing smoothing_smooth_other
+ ( 0 4 104 ) ( 0 4 112 ) ( 0 -269 112 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 311 1994.8535 0 0 lightmap_gray 16384 -16384 -2000 -428 90 0 smoothing smoothing_smooth_other
+ ( 1 -168 112 ) ( 8 -168 112 ) ( 8 -441 112 ) caulk 64 -64 -624 -428 180 0 lightmap_gray 16384 -16384 -624 -428 180 0
+ ( 1 -156 108 ) ( 2 -156 107 ) ( 1 -124 108 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -45.254833 311 1487.6449 90 0 lightmap_gray 16384 -16384 -2109 -428 180 0 smoothing smoothing_smooth
+ ( 0 -4 108 ) ( 0 -2 110 ) ( -32 -4 108 ) caulk 16 -16 -624 -2263 -180 0 lightmap_gray 16384 -16384 -624 -2263 -180 0
+ ( 3 68 107 ) ( 3 68 108 ) ( 3 100 108 ) caulk 16 16 -120 552 0 0 lightmap_gray 16384 16384 -120 552 0 0
+ ( 8 -51.5 108 ) ( 8 -55.5 112 ) ( 40 -51.5 108 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 4
+{
+ guid "{764179F4-E9FF-11E4-86CB-2C27D7F024A6}"
+  contents detail;
+ ( 8 6 108 ) ( 1 6 108 ) ( 1 -267 108 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 311 2103.4392 90 0 lightmap_gray 16384 -16384 -624 -428 180 0 smoothing smoothing_smooth_other
+ ( 1 -168 112 ) ( 8 -168 112 ) ( 8 -441 112 ) caulk 64 -64 -624 -428 180 0 lightmap_gray 16384 -16384 -624 -428 180 0
+ ( 8 4 112 ) ( 8 4 104 ) ( 8 -269 104 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 311 -2204.0244 0 0 lightmap_gray 16384 -16384 -2000 -428 90 0 smoothing smoothing_smooth_other
+ ( 7 -156 108 ) ( 8 -156 109 ) ( 7 -124 108 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -45.254833 311 1489.4016 90 0 lightmap_gray 16384 16384 -2101 428 0 0 smoothing smoothing_smooth
+ ( 0 -4 108 ) ( 0 -2 110 ) ( -32 -4 108 ) caulk 16 -16 -624 -2263 -180 0 lightmap_gray 16384 -16384 -624 -2263 -180 0
+ ( 5 68 108 ) ( 5 68 107 ) ( 5 100 107 ) caulk 16 16 -120 552 0 0 lightmap_gray 16384 16384 -120 552 0 0
+ ( 8 -51.5 108 ) ( 8 -55.5 112 ) ( 40 -51.5 108 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 7
+{
+guid "{3E0B9A87-393B-4236-8F8F-75BD09355503}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{9C2934F8-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 152 -110 130 ) ( 152 -110 -34 ) ( 160 -110 -34 ) t7_metal_worn_steel_plate_base 64 -64 -168 -774 -90 0 lightmap_gray 16384 16384 -778 408 90 0
+ ( 12 -110 118 ) ( 136 -110 118 ) ( 136 -114 118 ) t7_metal_worn_steel_plate_base 64 -64 -762 -774 -90 0 lightmap_gray 16384 16384 -1330 382 90 0
+ ( 120 -114 122 ) ( 120 -114 118 ) ( 88 -114 118 ) t7_metal_worn_steel_plate_base 64 -64 -124 -536 180 0 lightmap_gray 16384 16384 118 778 90 0
+ ( 128 -110 118 ) ( 128 -110 114 ) ( 128 -114 114 ) caulk 16 16 -174 706 0 0 lightmap_gray 16384 16384 -174 706 0 0
+ ( 12 -110 114 ) ( 12 -110 118 ) ( 12 -114 118 ) caulk 16 16 -174 706 0 0 lightmap_gray 16384 16384 -174 706 0 0
+ ( 72 -160 117 ) ( 72 -163 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{9C2934FA-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 160 -54 130 ) ( 160 -54 -34 ) ( 168 -54 -34 ) t7_metal_worn_steel_plate_base 64 -64 -168 -774 -90 0 lightmap_gray 16384 16384 -778 408 90 0
+ ( 12 -54 118 ) ( 136 -54 118 ) ( 136 -58 118 ) t7_metal_worn_steel_plate_base 64 -64 -756 -774 -90 0 lightmap_gray 16384 16384 -1274 382 90 0
+ ( 112 -58 122 ) ( 112 -58 118 ) ( 80 -58 118 ) t7_metal_worn_steel_plate_base 64 -64 -124 -536 180 0 lightmap_gray 16384 16384 118 778 90 0
+ ( 128 -54 118 ) ( 128 -54 114 ) ( 128 -58 114 ) caulk 16 16 -118 706 0 0 lightmap_gray 16384 16384 -118 706 0 0
+ ( 12 -54 114 ) ( 12 -54 118 ) ( 12 -58 118 ) caulk 16 16 -118 706 0 0 lightmap_gray 16384 16384 -118 706 0 0
+ ( 72 -160 117 ) ( 72 -163 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 2
+{
+ guid "{9C293500-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 72 -192 130 ) ( 72 -192 -34 ) ( 72 -200 -34 ) t7_metal_worn_steel_plate_base 64 64 -168 808 -90 0 lightmap_gray 16384 -16384 -778 -442 90 0
+ ( 72 -46 118 ) ( 72 -170 118 ) ( 68 -170 118 ) t7_metal_worn_steel_plate_base 64 -64 -760 -770 -90 0 lightmap_gray 16384 16384 -1148 416 0 0
+ ( 68 -220 122 ) ( 68 -220 118 ) ( 68 -188 118 ) t7_metal_worn_steel_plate_base 64 64 -158 536 0 0 lightmap_gray 16384 -16384 118 -812 90 0
+ ( 72 -164 118 ) ( 72 -164 114 ) ( 68 -164 114 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 72 -114 114 ) ( 72 -114 118 ) ( 68 -114 118 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 72 -160 117 ) ( 72 -163 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 3
+{
+ guid "{9C293502-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 72 -80 118 ) ( 72 -80 114 ) ( 72 -114 114 ) t7_metal_worn_steel_plate_base 64 64 -168 808 -90 0 lightmap_gray 16384 -16384 -778 -442 90 0
+ ( 68 -78 118 ) ( 72 -78 118 ) ( 72 -112 118 ) t7_metal_worn_steel_plate_base 64 -64 -760 -770 -90 0 lightmap_gray 16384 16384 -1148 416 0 0
+ ( 68 -80 114 ) ( 68 -80 118 ) ( 68 -114 118 ) t7_metal_worn_steel_plate_base 64 64 -158 536 0 0 lightmap_gray 16384 -16384 118 -812 90 0
+ ( 72 -110 118 ) ( 72 -110 114 ) ( 68 -110 114 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 72 -58 114 ) ( 72 -58 118 ) ( 68 -58 118 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 72 -160 117 ) ( 72 -163 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 4
+{
+ guid "{9C293504-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 72 -80 118 ) ( 72 -80 114 ) ( 72 -114 114 ) t7_metal_worn_steel_plate_base 64 64 -168 808 -90 0 lightmap_gray 16384 -16384 -778 -442 90 0
+ ( 68 -78 118 ) ( 72 -78 118 ) ( 72 -112 118 ) t7_metal_worn_steel_plate_base 64 -64 -760 -770 -90 0 lightmap_gray 16384 16384 -1148 416 0 0
+ ( 68 -80 114 ) ( 68 -80 118 ) ( 68 -114 118 ) t7_metal_worn_steel_plate_base 64 64 -158 536 0 0 lightmap_gray 16384 -16384 118 -812 90 0
+ ( 72 -54 118 ) ( 72 -54 114 ) ( 68 -54 114 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 71 -4 114 ) ( 71 -4 118 ) ( 67 -4 118 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 72 -160 117 ) ( 72 -163 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 5
+{
+ guid "{9C293506-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 152 0 130 ) ( 152 0 -34 ) ( 160 0 -34 ) caulk 64 64 64 707 0 0 lightmap_gray 16384 16384 -778 408 90 0
+ ( 120 -4 122 ) ( 120 -4 118 ) ( 88 -4 118 ) t7_plastic_rubber_trim 8 64 64 112 90 0 lightmap_gray 16384 16384 118 778 90 0
+ ( 12 -4 118 ) ( 8 0 118 ) ( 8 0 150 ) caulk 16 16 -64 706 0 0 lightmap_gray 16384 16384 -64 706 0 0
+ ( 130 -2 118 ) ( 128 -4 118 ) ( 128 -4 150 ) caulk 16 16 -64 706 0 0 lightmap_gray 16384 16384 -64 706 0 0
+ ( 72 -163 117 ) ( 72 -160 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -157 115 ) ( 72 -160 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 6
+{
+ guid "{9C293507-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 152 0 130 ) ( 152 0 -34 ) ( 160 0 -34 ) caulk 64 64 64 707 0 0 lightmap_gray 16384 16384 -778 408 90 0
+ ( 120 -4 122 ) ( 120 -4 118 ) ( 88 -4 118 ) t7_metal_worn_steel_plate_base 64 -64 -124 -536 180 0 lightmap_gray 16384 16384 118 778 90 0
+ ( 113 -8 114 ) ( 113 0 114 ) ( 109 0 114 ) t7_metal_worn_steel_plate_base 64 -64 -54 -774 -90 0 lightmap_gray 16384 16384 -64 776 90 0
+ ( 12 -4 118 ) ( 8 0 118 ) ( 8 0 150 ) caulk 16 16 -64 706 0 0 lightmap_gray 16384 16384 -64 706 0 0
+ ( 130 -2 118 ) ( 128 -4 118 ) ( 128 -4 150 ) caulk 16 16 -64 706 0 0 lightmap_gray 16384 16384 -64 706 0 0
+ ( 72 -160 115 ) ( 72 -157 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 7
+{
+ guid "{9C293508-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 152 -164 130 ) ( 152 -164 -34 ) ( 160 -164 -34 ) t7_plastic_rubber_trim 8 64 64 112 90 0 lightmap_gray 16384 16384 -778 408 90 0
+ ( 120 -168 122 ) ( 120 -168 118 ) ( 88 -168 118 ) caulk 64 64 64 707 0 0 lightmap_gray 16384 16384 118 778 90 0
+ ( 128 -164 118 ) ( 132 -168 118 ) ( 128 -164 150 ) caulk 16 16 -108 706 0 0 lightmap_gray 16384 16384 -108 706 0 0
+ ( 8 -168 118 ) ( 12 -164 118 ) ( 12 -164 150 ) caulk 16 16 -108 706 0 0 lightmap_gray 16384 16384 -108 706 0 0
+ ( 72 -163 117 ) ( 72 -160 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -157 115 ) ( 72 -160 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 8
+{
+ guid "{9C293509-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 152 -164 130 ) ( 152 -164 -34 ) ( 160 -164 -34 ) t7_metal_worn_steel_plate_base 64 -64 -124 -536 180 0 lightmap_gray 16384 16384 -778 408 90 0
+ ( 120 -168 122 ) ( 120 -168 118 ) ( 88 -168 118 ) caulk 64 64 64 707 0 0 lightmap_gray 16384 16384 118 778 90 0
+ ( 113 -172 114 ) ( 113 -164 114 ) ( 109 -164 114 ) t7_metal_worn_steel_plate_base 64 -64 110 -774 -90 0 lightmap_gray 16384 16384 -228 776 90 0
+ ( 128 -164 118 ) ( 132 -168 118 ) ( 128 -164 150 ) caulk 16 16 -108 706 0 0 lightmap_gray 16384 16384 -108 706 0 0
+ ( 8 -168 118 ) ( 12 -164 118 ) ( 12 -164 150 ) caulk 16 16 -108 706 0 0 lightmap_gray 16384 16384 -108 706 0 0
+ ( 72 -160 115 ) ( 72 -157 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 9
+{
+ guid "{9C29350A-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 152 -110 130 ) ( 152 -110 -34 ) ( 160 -110 -34 ) t7_plastic_rubber_trim 8 64 64 112 90 0 lightmap_gray 16384 16384 -778 408 90 0
+ ( 120 -114 122 ) ( 120 -114 118 ) ( 88 -114 118 ) t7_plastic_rubber_trim 8 64 64 112 90 0 lightmap_gray 16384 16384 118 778 90 0
+ ( 128 -110 118 ) ( 128 -110 114 ) ( 128 -114 114 ) caulk 16 16 -174 706 0 0 lightmap_gray 16384 16384 -174 706 0 0
+ ( 12 -110 114 ) ( 12 -110 118 ) ( 12 -114 118 ) caulk 16 16 -174 706 0 0 lightmap_gray 16384 16384 -174 706 0 0
+ ( 72 -163 117 ) ( 72 -160 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -157 115 ) ( 72 -160 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 10
+{
+ guid "{9C29350B-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 152 -110 130 ) ( 152 -110 -34 ) ( 160 -110 -34 ) t7_metal_worn_steel_plate_base 64 -64 -168 -774 -90 0 lightmap_gray 16384 16384 -778 408 90 0
+ ( 120 -114 122 ) ( 120 -114 118 ) ( 88 -114 118 ) t7_metal_worn_steel_plate_base 64 -64 -124 -536 180 0 lightmap_gray 16384 16384 118 778 90 0
+ ( 136 -110 114 ) ( 12 -110 114 ) ( 12 -114 114 ) t7_metal_worn_steel_plate_base 64 -64 56 -774 -90 0 lightmap_gray 16384 16384 -174 776 90 0
+ ( 128 -110 118 ) ( 128 -110 114 ) ( 128 -114 114 ) caulk 16 16 -174 706 0 0 lightmap_gray 16384 16384 -174 706 0 0
+ ( 12 -110 114 ) ( 12 -110 118 ) ( 12 -114 118 ) caulk 16 16 -174 706 0 0 lightmap_gray 16384 16384 -174 706 0 0
+ ( 72 -160 115 ) ( 72 -157 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 11
+{
+ guid "{9C29350C-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 160 -54 130 ) ( 160 -54 -34 ) ( 168 -54 -34 ) t7_plastic_rubber_trim 8 64 64 112 90 0 lightmap_gray 16384 16384 -778 408 90 0
+ ( 112 -58 122 ) ( 112 -58 118 ) ( 80 -58 118 ) t7_plastic_rubber_trim 8 64 64 112 90 0 lightmap_gray 16384 16384 118 778 90 0
+ ( 128 -54 118 ) ( 128 -54 114 ) ( 128 -58 114 ) caulk 16 16 -118 706 0 0 lightmap_gray 16384 16384 -118 706 0 0
+ ( 12 -54 114 ) ( 12 -54 118 ) ( 12 -58 118 ) caulk 16 16 -118 706 0 0 lightmap_gray 16384 16384 -118 706 0 0
+ ( 72 -163 117 ) ( 72 -160 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -157 115 ) ( 72 -160 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 12
+{
+ guid "{9C29350D-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 160 -54 130 ) ( 160 -54 -34 ) ( 168 -54 -34 ) t7_metal_worn_steel_plate_base 64 -64 -168 -774 -90 0 lightmap_gray 16384 16384 -778 408 90 0
+ ( 112 -58 122 ) ( 112 -58 118 ) ( 80 -58 118 ) t7_metal_worn_steel_plate_base 64 -64 -124 -536 180 0 lightmap_gray 16384 16384 118 778 90 0
+ ( 136 -54 114 ) ( 12 -54 114 ) ( 12 -58 114 ) t7_metal_worn_steel_plate_base 64 -64 0 -774 -90 0 lightmap_gray 16384 16384 -118 776 90 0
+ ( 128 -54 118 ) ( 128 -54 114 ) ( 128 -58 114 ) caulk 16 16 -118 706 0 0 lightmap_gray 16384 16384 -118 706 0 0
+ ( 12 -54 114 ) ( 12 -54 118 ) ( 12 -58 118 ) caulk 16 16 -118 706 0 0 lightmap_gray 16384 16384 -118 706 0 0
+ ( 72 -160 115 ) ( 72 -157 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 13
+{
+ guid "{9C29350E-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 8 -22 130 ) ( 8 -22 -34 ) ( 8 -14 -34 ) caulk 64 64 -114 536 0 0 lightmap_gray 16384 16384 -778 226 90 0
+ ( 12 -64 122 ) ( 12 -64 118 ) ( 12 -96 118 ) t7_plastic_rubber_trim 8 64 64 112 90 0 lightmap_gray 16384 16384 118 596 90 0
+ ( 8 0 118 ) ( 12 -4 118 ) ( 8 0 150 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 12 -164 118 ) ( 8 -168 118 ) ( 12 -164 150 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 72 -163 117 ) ( 72 -160 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -157 115 ) ( 72 -160 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 14
+{
+ guid "{9C29350F-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 8 -22 130 ) ( 8 -22 -34 ) ( 8 -14 -34 ) caulk 64 64 -114 536 0 0 lightmap_gray 16384 16384 -778 226 90 0
+ ( 12 -64 122 ) ( 12 -64 118 ) ( 12 -96 118 ) t7_metal_worn_steel_plate_base 64 -64 58 -536 180 0 lightmap_gray 16384 16384 118 596 90 0
+ ( 16 -69 114 ) ( 8 -69 114 ) ( 8 -73 114 ) t7_metal_worn_steel_plate_base 64 -64 58 -774 -90 0 lightmap_gray 16384 16384 -72 594 -180 0
+ ( 8 0 118 ) ( 12 -4 118 ) ( 8 0 150 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 12 -164 118 ) ( 8 -168 118 ) ( 12 -164 150 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 72 -160 115 ) ( 72 -157 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 15
+{
+ guid "{9C293510-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 128 -22 130 ) ( 128 -22 -34 ) ( 128 -14 -34 ) t7_plastic_rubber_trim 8 64 64 112 90 0 lightmap_gray 16384 16384 -778 226 90 0
+ ( 132 -62 122 ) ( 132 -62 118 ) ( 132 -94 118 ) caulk 64 64 -114 536 0 0 lightmap_gray 16384 16384 118 596 90 0
+ ( 128 -4 118 ) ( 132 0 118 ) ( 128 -4 150 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 132 -168 118 ) ( 128 -164 118 ) ( 128 -164 150 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 72 -163 117 ) ( 72 -160 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -157 115 ) ( 72 -160 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 16
+{
+ guid "{9C293511-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 128 -22 130 ) ( 128 -22 -34 ) ( 128 -14 -34 ) t7_metal_worn_steel_plate_base 64 -64 58 -536 180 0 lightmap_gray 16384 16384 -778 226 90 0
+ ( 132 -62 122 ) ( 132 -62 118 ) ( 132 -94 118 ) caulk 64 64 -114 536 0 0 lightmap_gray 16384 16384 118 596 90 0
+ ( 136 -69 114 ) ( 128 -69 114 ) ( 128 -73 114 ) t7_metal_worn_steel_plate_base 64 -64 58 -774 -90 0 lightmap_gray 16384 16384 -192 594 180 0
+ ( 128 -4 118 ) ( 132 0 118 ) ( 128 -4 150 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 132 -168 118 ) ( 128 -164 118 ) ( 128 -164 150 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 72 -160 115 ) ( 72 -157 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 17
+{
+ guid "{9C293512-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 72 -192 130 ) ( 72 -192 -34 ) ( 72 -200 -34 ) t7_plastic_rubber_trim 8 64 64 112 90 0 lightmap_gray 16384 -16384 -778 -442 90 0
+ ( 68 -220 122 ) ( 68 -220 118 ) ( 68 -188 118 ) t7_plastic_rubber_trim 8 64 64 112 90 0 lightmap_gray 16384 -16384 118 -812 90 0
+ ( 72 -164 118 ) ( 72 -164 114 ) ( 68 -164 114 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 72 -114 114 ) ( 72 -114 118 ) ( 68 -114 118 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 72 -163 117 ) ( 72 -160 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -157 115 ) ( 72 -160 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 18
+{
+ guid "{9C293513-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 72 -194 130 ) ( 72 -194 -34 ) ( 72 -202 -34 ) t7_metal_worn_steel_plate_base 64 64 -168 808 -90 0 lightmap_gray 16384 -16384 -778 -442 90 0
+ ( 68 -220 122 ) ( 68 -220 118 ) ( 68 -188 118 ) t7_metal_worn_steel_plate_base 64 64 -158 536 0 0 lightmap_gray 16384 -16384 118 -812 90 0
+ ( 72 -170 114 ) ( 72 -46 114 ) ( 68 -46 114 ) t7_metal_worn_steel_plate_base 64 -64 -126 -808 -180 0 lightmap_gray 16384 16384 8 810 0 0
+ ( 72 -164 118 ) ( 72 -164 114 ) ( 68 -164 114 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 72 -114 114 ) ( 72 -114 118 ) ( 68 -114 118 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 72 -160 115 ) ( 72 -157 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 19
+{
+ guid "{9C293514-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 72 -80 118 ) ( 72 -80 114 ) ( 72 -114 114 ) t7_plastic_rubber_trim 8 64 64 112 90 0 lightmap_gray 16384 -16384 -778 -442 90 0
+ ( 68 -80 114 ) ( 68 -80 118 ) ( 68 -114 118 ) t7_plastic_rubber_trim 8 64 64 112 90 0 lightmap_gray 16384 -16384 118 -812 90 0
+ ( 72 -110 118 ) ( 72 -110 114 ) ( 68 -110 114 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 72 -58 114 ) ( 72 -58 118 ) ( 68 -58 118 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 72 -163 117 ) ( 72 -160 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -157 115 ) ( 72 -160 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 20
+{
+ guid "{9C293515-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 72 -80 118 ) ( 72 -80 114 ) ( 72 -114 114 ) t7_metal_worn_steel_plate_base 64 64 -168 808 -90 0 lightmap_gray 16384 -16384 -778 -442 90 0
+ ( 68 -80 114 ) ( 68 -80 118 ) ( 68 -114 118 ) t7_metal_worn_steel_plate_base 64 64 -158 536 0 0 lightmap_gray 16384 -16384 118 -812 90 0
+ ( 72 -78 114 ) ( 68 -78 114 ) ( 68 -112 114 ) t7_metal_worn_steel_plate_base 64 -64 -126 -808 -180 0 lightmap_gray 16384 16384 8 810 0 0
+ ( 72 -110 118 ) ( 72 -110 114 ) ( 68 -110 114 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 72 -58 114 ) ( 72 -58 118 ) ( 68 -58 118 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 72 -160 115 ) ( 72 -157 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 21
+{
+ guid "{9C293516-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 72 -80 118 ) ( 72 -80 114 ) ( 72 -114 114 ) t7_plastic_rubber_trim 8 64 64 112 90 0 lightmap_gray 16384 -16384 -778 -442 90 0
+ ( 68 -80 114 ) ( 68 -80 118 ) ( 68 -114 118 ) t7_plastic_rubber_trim 8 64 64 112 90 0 lightmap_gray 16384 -16384 118 -812 90 0
+ ( 72 -54 118 ) ( 72 -54 114 ) ( 68 -54 114 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 71 -4 114 ) ( 71 -4 118 ) ( 67 -4 118 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 72 -163 117 ) ( 72 -160 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -157 115 ) ( 72 -160 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 22
+{
+ guid "{9C293517-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 72 -80 118 ) ( 72 -80 114 ) ( 72 -114 114 ) t7_metal_worn_steel_plate_base 64 64 -168 808 -90 0 lightmap_gray 16384 -16384 -778 -442 90 0
+ ( 68 -80 114 ) ( 68 -80 118 ) ( 68 -114 118 ) t7_metal_worn_steel_plate_base 64 64 -158 536 0 0 lightmap_gray 16384 -16384 118 -812 90 0
+ ( 72 -78 114 ) ( 68 -78 114 ) ( 68 -112 114 ) t7_metal_worn_steel_plate_base 64 -64 -126 -808 -180 0 lightmap_gray 16384 16384 8 810 0 0
+ ( 72 -54 118 ) ( 72 -54 114 ) ( 68 -54 114 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 71 -4 114 ) ( 71 -4 118 ) ( 67 -4 118 ) caulk 16 16 8 706 0 0 lightmap_gray 16384 16384 8 706 0 0
+ ( 72 -160 115 ) ( 72 -157 115 ) ( 104 -157 115 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 23
+{
+ guid "{BBB803D1-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 8 -22 130 ) ( 8 -22 -34 ) ( 8 -14 -34 ) caulk 64 64 -114 536 0 0 lightmap_gray 16384 16384 -778 226 90 0
+ ( 12 -64 122 ) ( 12 -64 118 ) ( 12 -96 118 ) t7_metal_worn_steel_plate_base 64 -64 58 -536 180 0 lightmap_gray 16384 16384 118 596 90 0
+ ( 8 0 119 ) ( 12 -4 119 ) ( 8 0 151 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 12 -164 118 ) ( 8 -168 118 ) ( 12 -164 150 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 72 -160 117 ) ( 72 -163 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -167 118 ) ( 72 -164 118 ) ( 104 -167 118 ) t7_metal_worn_steel_plate_base 64 -64 -760 -770 -90 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 24
+{
+ guid "{BBB803D2-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 8 -22 130 ) ( 8 -22 -34 ) ( 8 -14 -34 ) caulk 64 64 -114 536 0 0 lightmap_gray 16384 16384 -778 226 90 0
+ ( 12 -108 126 ) ( 4 -108 126 ) ( 4 -58 126 ) caulk 64 64 0 0 0 0 lightmap_gray 16384 16384 -1228 200 180 0
+ ( 9 -64 129 ) ( 9 -64 125 ) ( 9 -96 125 ) t7_metal_worn_steel_plate_base 64 -64 58 -536 180 0 lightmap_gray 16384 16384 118 596 90 0
+ ( 8 0 119 ) ( 12 -4 119 ) ( 8 0 151 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 12 -164 125 ) ( 8 -168 125 ) ( 12 -164 157 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 72 -164 118 ) ( 72 -167 118 ) ( 104 -167 118 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 25
+{
+ guid "{BBB803D3-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 152 0 130 ) ( 152 0 -34 ) ( 160 0 -34 ) caulk 64 64 64 707 0 0 lightmap_gray 16384 16384 -778 408 90 0
+ ( 120 -4 122 ) ( 120 -4 118 ) ( 88 -4 118 ) t7_metal_worn_steel_plate_base 64 -64 -124 -536 180 0 lightmap_gray 16384 16384 118 778 90 0
+ ( 12 -4 119 ) ( 8 0 119 ) ( 8 0 151 ) caulk 16 16 -64 706 0 0 lightmap_gray 16384 16384 -64 706 0 0
+ ( 130 -2 118 ) ( 128 -4 118 ) ( 128 -4 150 ) caulk 16 16 -64 706 0 0 lightmap_gray 16384 16384 -64 706 0 0
+ ( 72 -160 117 ) ( 72 -163 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -167 118 ) ( 72 -164 118 ) ( 104 -167 118 ) t7_metal_worn_steel_plate_base 64 -64 -760 -770 -90 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 26
+{
+ guid "{BBB803D4-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 152 0 130 ) ( 152 0 -34 ) ( 160 0 -34 ) caulk 64 64 64 707 0 0 lightmap_gray 16384 16384 -778 408 90 0
+ ( 74 -4 126 ) ( 74 4 126 ) ( 124 4 126 ) caulk 64 64 0 0 0 0 lightmap_gray 16384 16384 -1220 382 90 0
+ ( 120 -1 122 ) ( 120 -1 118 ) ( 88 -1 118 ) t7_metal_worn_steel_plate_base 64 -64 -124 -536 180 0 lightmap_gray 16384 16384 118 778 90 0
+ ( 12 -4 119 ) ( 8 0 119 ) ( 8 0 151 ) caulk 16 16 -64 706 0 0 lightmap_gray 16384 16384 -64 706 0 0
+ ( 130 -2 118 ) ( 128 -4 118 ) ( 128 -4 150 ) caulk 16 16 -64 706 0 0 lightmap_gray 16384 16384 -64 706 0 0
+ ( 72 -164 118 ) ( 72 -167 118 ) ( 104 -167 118 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 27
+{
+ guid "{BBB803D5-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 128 -22 130 ) ( 128 -22 -34 ) ( 128 -14 -34 ) t7_metal_worn_steel_plate_base 64 -64 58 -536 180 0 lightmap_gray 16384 16384 -778 226 90 0
+ ( 132 -62 122 ) ( 132 -62 118 ) ( 132 -94 118 ) caulk 64 64 -114 536 0 0 lightmap_gray 16384 16384 118 596 90 0
+ ( 128 -4 118 ) ( 132 0 118 ) ( 128 -4 150 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 132 -168 118 ) ( 128 -164 118 ) ( 128 -164 150 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 72 -160 117 ) ( 72 -163 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -167 118 ) ( 72 -164 118 ) ( 104 -167 118 ) t7_metal_worn_steel_plate_base 64 -64 -760 -770 -90 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 28
+{
+ guid "{BBB803D6-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 131 -21 137 ) ( 131 -21 -27 ) ( 131 -13 -27 ) t7_metal_worn_steel_plate_base 64 -64 58 -536 180 0 lightmap_gray 16384 16384 -778 226 90 0
+ ( 132 -108 126 ) ( 124 -108 126 ) ( 124 -58 126 ) caulk 64 64 0 0 0 0 lightmap_gray 16384 16384 -1348 200 180 0
+ ( 132 -62 122 ) ( 132 -62 118 ) ( 132 -94 118 ) caulk 64 64 -114 536 0 0 lightmap_gray 16384 16384 118 596 90 0
+ ( 129 -3 118 ) ( 133 1 118 ) ( 129 -3 150 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 132 -168 118 ) ( 128 -164 118 ) ( 128 -164 150 ) caulk 16 16 -114 706 0 0 lightmap_gray 16384 16384 -114 706 0 0
+ ( 72 -164 118 ) ( 72 -167 118 ) ( 104 -167 118 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 29
+{
+ guid "{BBB803D7-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 152 -164 130 ) ( 152 -164 -34 ) ( 160 -164 -34 ) t7_metal_worn_steel_plate_base 64 -64 -124 -536 180 0 lightmap_gray 16384 16384 -778 408 90 0
+ ( 120 -168 122 ) ( 120 -168 118 ) ( 88 -168 118 ) caulk 64 64 64 707 0 0 lightmap_gray 16384 16384 118 778 90 0
+ ( 128 -164 118 ) ( 132 -168 118 ) ( 128 -164 150 ) caulk 16 16 -108 706 0 0 lightmap_gray 16384 16384 -108 706 0 0
+ ( 8 -168 118 ) ( 12 -164 118 ) ( 12 -164 150 ) caulk 16 16 -108 706 0 0 lightmap_gray 16384 16384 -108 706 0 0
+ ( 72 -160 117 ) ( 72 -163 117 ) ( 104 -163 117 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -167 118 ) ( 72 -164 118 ) ( 104 -167 118 ) t7_metal_worn_steel_plate_base 64 -64 -760 -770 -90 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 30
+{
+ guid "{BBB803D8-4FE1-11E4-B908-2C27D7F0333E}"
+ ( 150 -167 130 ) ( 150 -167 -34 ) ( 158 -167 -34 ) t7_metal_worn_steel_plate_base 64 -64 -124 -536 180 0 lightmap_gray 16384 16384 -778 408 90 0
+ ( 74 -168 126 ) ( 74 -160 126 ) ( 124 -160 126 ) caulk 64 64 0 0 0 0 lightmap_gray 16384 16384 -1384 382 90 0
+ ( 120 -168 122 ) ( 120 -168 118 ) ( 88 -168 118 ) caulk 64 64 64 707 0 0 lightmap_gray 16384 16384 118 778 90 0
+ ( 128 -164 118 ) ( 132 -168 118 ) ( 128 -164 150 ) caulk 16 16 -108 706 0 0 lightmap_gray 16384 16384 -108 706 0 0
+ ( 8 -168 125 ) ( 12 -164 125 ) ( 12 -164 157 ) caulk 16 16 -108 706 0 0 lightmap_gray 16384 16384 -108 706 0 0
+ ( 72 -164 118 ) ( 72 -167 118 ) ( 104 -167 118 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 31
+{
+ guid "{2D21FC1B-4FE2-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 60 -58 115.5 ) ( 12 -58 115.5 ) ( 12 -109 115.5 ) t7_plastic_light_cover 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 12 -109 116.5 ) ( 12 -58 116.5 ) ( 60 -58 116.5 ) t7_plastic_light_cover 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 9 -164 123.5 ) ( 57 -164 123.5 ) ( 57 -164 115.5 ) caulk 64 64 0 1.5 0 0 lightmap_gray 16384 16384 0 2.5 0 0
+ ( 128 -56 123.5 ) ( 128 -5 123.5 ) ( 128 -5 115.5 ) caulk 64 64 0 1.5 0 0 lightmap_gray 16384 16384 0 2.5 0 0
+ ( 72 -163 115 ) ( 72 -160 115 ) ( 72 -163 147 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 35 -114 116.5 ) ( 38 -114 116.5 ) ( 35 -114 148.5 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 32
+{
+ guid "{2D21FC1D-4FE2-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 60 -58 115.5 ) ( 12 -58 115.5 ) ( 12 -109 115.5 ) t7_plastic_light_cover 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 12 -109 116.5 ) ( 12 -58 116.5 ) ( 60 -58 116.5 ) t7_plastic_light_cover 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 9 -164 123.5 ) ( 57 -164 123.5 ) ( 57 -164 115.5 ) caulk 64 64 0 1.5 0 0 lightmap_gray 16384 16384 0 2.5 0 0
+ ( 12 -58 123.5 ) ( 12 -109 123.5 ) ( 12 -109 115.5 ) caulk 64 64 0 1.5 0 0 lightmap_gray 16384 16384 0 2.5 0 0
+ ( 68 -160 115 ) ( 68 -163 115 ) ( 68 -163 147 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 35 -114 116.5 ) ( 38 -114 116.5 ) ( 35 -114 148.5 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 33
+{
+ guid "{349C1600-4FE2-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 60 -58 115.5 ) ( 12 -58 115.5 ) ( 12 -109 115.5 ) t7_plastic_light_cover 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 12 -109 116.5 ) ( 12 -58 116.5 ) ( 60 -58 116.5 ) t7_plastic_light_cover 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 12 -58 123.5 ) ( 12 -109 123.5 ) ( 12 -109 115.5 ) caulk 64 64 0 1.5 0 0 lightmap_gray 16384 16384 0 2.5 0 0
+ ( 68 -156 115 ) ( 68 -159 115 ) ( 68 -159 147 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 38 -110 116.5 ) ( 35 -110 116.5 ) ( 35 -110 148.5 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 39 -58 116.5 ) ( 44 -58 116.5 ) ( 39 -58 148.5 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 34
+{
+ guid "{349C1601-4FE2-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 60 -58 115.5 ) ( 12 -58 115.5 ) ( 12 -109 115.5 ) t7_plastic_light_cover 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 12 -109 116.5 ) ( 12 -58 116.5 ) ( 60 -58 116.5 ) t7_plastic_light_cover 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 120 -4 123.5 ) ( 72 -4 123.5 ) ( 72 -4 115.5 ) caulk 64 64 0 1.5 0 0 lightmap_gray 16384 16384 0 2.5 0 0
+ ( 12 -58 123.5 ) ( 12 -109 123.5 ) ( 12 -109 115.5 ) caulk 64 64 0 1.5 0 0 lightmap_gray 16384 16384 0 2.5 0 0
+ ( 68 -152 115 ) ( 68 -155 115 ) ( 68 -155 147 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 44 -54 116.5 ) ( 39 -54 116.5 ) ( 39 -54 148.5 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 35
+{
+ guid "{349C1602-4FE2-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 60 -58 115.5 ) ( 12 -58 115.5 ) ( 12 -109 115.5 ) t7_plastic_light_cover 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 12 -109 116.5 ) ( 12 -58 116.5 ) ( 60 -58 116.5 ) t7_plastic_light_cover 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 128 -56 123.5 ) ( 128 -5 123.5 ) ( 128 -5 115.5 ) caulk 64 64 0 1.5 0 0 lightmap_gray 16384 16384 0 2.5 0 0
+ ( 72 -163 115 ) ( 72 -160 115 ) ( 72 -163 147 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 38 -110 116.5 ) ( 35 -110 116.5 ) ( 35 -110 148.5 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 39 -58 116.5 ) ( 44 -58 116.5 ) ( 39 -58 148.5 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 36
+{
+ guid "{349C1603-4FE2-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 60 -58 115.5 ) ( 12 -58 115.5 ) ( 12 -109 115.5 ) t7_plastic_light_cover 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 12 -109 116.5 ) ( 12 -58 116.5 ) ( 60 -58 116.5 ) t7_plastic_light_cover 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 128 -56 123.5 ) ( 128 -5 123.5 ) ( 128 -5 115.5 ) caulk 64 64 0 1.5 0 0 lightmap_gray 16384 16384 0 2.5 0 0
+ ( 120 -4 123.5 ) ( 72 -4 123.5 ) ( 72 -4 115.5 ) caulk 64 64 0 1.5 0 0 lightmap_gray 16384 16384 0 2.5 0 0
+ ( 72 -163 115 ) ( 72 -160 115 ) ( 72 -163 147 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 44 -54 116.5 ) ( 39 -54 116.5 ) ( 39 -54 148.5 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 37
+{
+ guid "{3D574399-4FE2-11E4-B908-2C27D7F0333E}"
+  contents detail;
+ ( 131 -2 125 ) ( 40 -2 125 ) ( 40 -141 125 ) t7_metal_worn_steel_plate_base 64 -64 -124 -658 180 0 lightmap_gray 16384 16384 3 0 0 0
+ ( 40 -141 126 ) ( 40 -2 126 ) ( 131 -2 126 ) caulk 64 64 0 0 0 0 lightmap_gray 16384 16384 3 0 0 0
+ ( 38 -167 126 ) ( 129 -167 126 ) ( 129 -167 125 ) caulk 64 64 3 -10 0 0 lightmap_gray 16384 16384 3 -10 0 0
+ ( 131 -141 126 ) ( 131 -2 126 ) ( 131 -2 125 ) caulk 64 64 0 -10 0 0 lightmap_gray 16384 16384 0 -10 0 0
+ ( 131 -1 126 ) ( 40 -1 126 ) ( 40 -1 125 ) caulk 64 64 3 -10 0 0 lightmap_gray 16384 16384 3 -10 0 0
+ ( 9 -31 126 ) ( 9 -170 126 ) ( 9 -170 125 ) caulk 64 64 0 -10 0 0 lightmap_gray 16384 16384 0 -10 0 0
+}
+}
+// entity 8
+{
+guid "{AA550D17-11BC-41D4-80E3-2ACF116C04CC}"
+"classname" "misc_model"
+"angles" "0 2.50448e-006 0"
+"model" "p7_wall_decor_power_outlet_01"
+"origin" "14 0 9"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 9
+{
+guid "{CACB602D-ACD1-4AF4-9B6A-4DF8F7AB1FF7}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_lightswitch_metal_m_sensor_off"
+"origin" "14 0 40"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 10
+{
+guid "{F1FC048C-6373-4F93-A33F-1ADA6A1FAF0A}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_lightswitch_metal_m_sensor"
+"origin" "14 0 46"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 11
+{
+guid "{C2D6835A-562C-46DE-ABEB-BDB05BE3A137}"
+"classname" "misc_model"
+"angles" "0 2.50448e-006 0"
+"model" "p7_wall_decor_switch_scanner"
+"origin" "14 0 57"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 12
+{
+guid "{FF8E58B1-047D-4BCE-A86F-D8ED8D79204E}"
+"classname" "misc_model"
+"angles" "0 2.50448e-006 0"
+"model" "p7_wall_decor_power_outlet_01"
+"origin" "22 0 9"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 13
+{
+guid "{3C22BFFA-2509-4F5D-9670-4FA505DB1A01}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{E89F201C-4FFC-11E4-B908-2C27D7F0333E}"
+ ( 191 0 -1 ) ( 3 0 -1 ) ( 3 0 120 ) t7_metal_panel_2x1_stainless_steel_brushed -124 112 -116 0 0 0 lightmap_gray 16384 16384 -1136 184 0 0
+ ( 144 4 120 ) ( -52 4 120 ) ( -52 4 -1 ) caulk 64 64 20 552 0 0 lightmap_gray 16384 16384 20 554 0 0
+ ( 132 0 152 ) ( 134 2 120 ) ( 132 0 120 ) caulk 16 16 -128 552 0 0 lightmap_gray 16384 16384 -128 552 0 0
+ ( 176 -218 112 ) ( 144 -218 112 ) ( 144 -214 112 ) caulk 16 -16 -76 12 90 0 lightmap_gray 16384 -16384 -76 12 90 0
+ ( -12 -130 0 ) ( -44 -128 0 ) ( -44 -130 0 ) caulk 16 -16 -76 12 90 0 lightmap_gray 16384 -16384 -76 12 90 0
+ ( 117 0 100 ) ( 117 3 100 ) ( 117 0 132 ) t7_metal_panel_2x1_stainless_steel_brushed 124 112 233 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{E89F201D-4FFC-11E4-B908-2C27D7F0333E}"
+ ( 191 0 -1 ) ( 3 0 -1 ) ( 3 0 120 ) t7_metal_panel_2x1_stainless_steel_brushed -124 112 -116 0 0 0 lightmap_gray 16384 16384 -1136 184 0 0
+ ( 144 4 120 ) ( -52 4 120 ) ( -52 4 -1 ) caulk 64 64 20 552 0 0 lightmap_gray 16384 16384 20 554 0 0
+ ( 176 -218 112 ) ( 144 -218 112 ) ( 144 -214 112 ) caulk 16 -16 -76 12 90 0 lightmap_gray 16384 -16384 -76 12 90 0
+ ( 83 0 100 ) ( 83 3 100 ) ( 83 0 132 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 117 3 100 ) ( 117 0 100 ) ( 117 0 132 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 83 3.75 99 ) ( 86 3.75 99 ) ( 83 35.75 99 ) t7_metal_panel_2x1_stainless_steel_brushed 124 112 116 99 -180 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 2
+{
+ guid "{E89F201E-4FFC-11E4-B908-2C27D7F0333E}"
+ ( 191 0 -1 ) ( 3 0 -1 ) ( 3 0 120 ) t7_metal_panel_2x1_stainless_steel_brushed -124 112 -116 0 0 0 lightmap_gray 16384 16384 -1136 184 0 0
+ ( 144 4 120 ) ( -52 4 120 ) ( -52 4 -1 ) caulk 64 64 20 552 0 0 lightmap_gray 16384 16384 20 554 0 0
+ ( 176 -218 112 ) ( 144 -218 112 ) ( 144 -214 112 ) caulk 16 -16 -76 12 90 0 lightmap_gray 16384 -16384 -76 12 90 0
+ ( -12 -130 0 ) ( -44 -128 0 ) ( -44 -130 0 ) caulk 16 -16 -76 12 90 0 lightmap_gray 16384 -16384 -76 12 90 0
+ ( 8 1 144 ) ( 8 1 112 ) ( 8 3 112 ) caulk 16 -16 60 -552 180 0 lightmap_gray 16384 -16384 60 -552 180 0
+ ( 83 3 100 ) ( 83 0 100 ) ( 83 0 132 ) t7_metal_panel_2x1_stainless_steel_brushed 124 -112 199 0 180 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 3
+{
+ guid "{E89F201F-4FFC-11E4-B908-2C27D7F0333E}"
+ ( 191 0 -1 ) ( 3 0 -1 ) ( 3 0 120 ) t7_metal_panel_2x1_stainless_steel_brushed -124 112 -116 0 0 0 lightmap_gray 16384 16384 -1136 184 0 0
+ ( 144 4 120 ) ( -52 4 120 ) ( -52 4 -1 ) caulk 64 64 20 552 0 0 lightmap_gray 16384 16384 20 554 0 0
+ ( -12 -130 0 ) ( -44 -128 0 ) ( -44 -130 0 ) caulk 16 -16 -76 12 90 0 lightmap_gray 16384 -16384 -76 12 90 0
+ ( 83 0 100 ) ( 83 3 100 ) ( 83 0 132 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 117 3 100 ) ( 117 0 100 ) ( 117 0 132 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 87 4 77 ) ( 83 4 77 ) ( 83 36 77 ) t7_metal_panel_2x1_stainless_steel_brushed 124 -112 116 -77 180 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 4
+{
+ guid "{E89F2020-4FFC-11E4-B908-2C27D7F0333E}"
+ ( 191 2 -1 ) ( 3 2 -1 ) ( 3 2 120 ) t7_drywall_painted_metallic_black 64 64 0 0 0 0 lightmap_gray 16384 16384 -1136 184 0 0
+ ( 144 4 120 ) ( -52 4 120 ) ( -52 4 -1 ) caulk 64 64 20 552 0 0 lightmap_gray 16384 16384 20 554 0 0
+ ( 83 0 100 ) ( 83 3 100 ) ( 83 0 132 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 117 3 100 ) ( 117 0 100 ) ( 117 0 132 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 83 4 77 ) ( 87 4 77 ) ( 83 36 77 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 86 3.75 99 ) ( 83 3.75 99 ) ( 83 35.75 99 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 14
+{
+guid "{C8719A58-25AE-4F7E-A10E-A8B1F675935F}"
+"classname" "misc_model"
+"model" "p7_vent_wall_metal_01_white"
+"origin" "100 0 88"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 15
+{
+guid "{3DD365C5-2827-428B-86EC-C93E7A660693}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{E89F2026-4FFC-11E4-B908-2C27D7F0333E}"
+ ( 3 -170 120 ) ( 3 -170 -1 ) ( 191 -170 -1 ) t7_drywall_painted_metallic_black 64 64 0 0 0 0 lightmap_gray 16384 16384 -1136 184 0 0
+ ( -52 -172 -1 ) ( -52 -172 120 ) ( 144 -172 120 ) caulk 64 64 20 552 0 0 lightmap_gray 16384 16384 20 554 0 0
+ ( 83 -168 132 ) ( 83 -171 100 ) ( 83 -168 100 ) caulk 16 -16 168 0 180 0 lightmap_gray 16384 -16384 168 0 180 0
+ ( 117 -168 132 ) ( 117 -168 100 ) ( 117 -171 100 ) caulk 16 -16 168 0 180 0 lightmap_gray 16384 -16384 168 0 180 0
+ ( 83 -204 77 ) ( 87 -172 77 ) ( 83 -172 77 ) caulk 16 -16 0 168 0 0 lightmap_gray 16384 -16384 0 168 0 0
+ ( 83 -203.75 99 ) ( 83 -171.75 99 ) ( 86 -171.75 99 ) caulk 16 -16 0 168 0 0 lightmap_gray 16384 -16384 0 168 0 0
+}
+// brush 1
+{
+ guid "{E89F2025-4FFC-11E4-B908-2C27D7F0333E}"
+ ( 3 -168 120 ) ( 3 -168 -1 ) ( 191 -168 -1 ) t7_metal_panel_2x1_stainless_steel_brushed 124 -112 116 0 180 0 lightmap_gray 16384 16384 -1136 184 0 0
+ ( -52 -172 -1 ) ( -52 -172 120 ) ( 144 -172 120 ) caulk 64 64 20 552 0 0 lightmap_gray 16384 16384 20 554 0 0
+ ( -44 -38 0 ) ( -44 -40 0 ) ( -12 -38 0 ) caulk 16 16 92 -12 -90 0 lightmap_gray 16384 16384 92 -12 -90 0
+ ( 83 -168 132 ) ( 83 -171 100 ) ( 83 -168 100 ) caulk 16 -16 168 0 180 0 lightmap_gray 16384 -16384 168 0 180 0
+ ( 117 -168 132 ) ( 117 -168 100 ) ( 117 -171 100 ) caulk 16 -16 168 0 180 0 lightmap_gray 16384 -16384 168 0 180 0
+ ( 83 -204 77 ) ( 83 -172 77 ) ( 87 -172 77 ) t7_metal_panel_2x1_stainless_steel_brushed 124 112 116 -91 -180 0 lightmap_gray 16384 -16384 0 168 0 0
+}
+// brush 2
+{
+ guid "{E89F2024-4FFC-11E4-B908-2C27D7F0333E}"
+ ( 3 -168 120 ) ( 3 -168 -1 ) ( 191 -168 -1 ) t7_metal_panel_2x1_stainless_steel_brushed 124 -112 116 0 180 0 lightmap_gray 16384 16384 -1136 184 0 0
+ ( -52 -172 -1 ) ( -52 -172 120 ) ( 144 -172 120 ) caulk 64 64 20 552 0 0 lightmap_gray 16384 16384 20 554 0 0
+ ( 144 46 112 ) ( 144 50 112 ) ( 176 50 112 ) caulk 16 16 92 -12 -90 0 lightmap_gray 16384 16384 92 -12 -90 0
+ ( -44 -38 0 ) ( -44 -40 0 ) ( -12 -38 0 ) caulk 16 16 92 -12 -90 0 lightmap_gray 16384 16384 92 -12 -90 0
+ ( 8 -171 112 ) ( 8 -169 112 ) ( 8 -169 144 ) caulk 16 16 -108 552 0 0 lightmap_gray 16384 16384 -108 552 0 0
+ ( 83 -168 132 ) ( 83 -168 100 ) ( 83 -171 100 ) t7_metal_panel_2x1_stainless_steel_brushed 124 112 31 0 0 0 lightmap_gray 16384 -16384 168 0 180 0
+}
+// brush 3
+{
+ guid "{E89F2023-4FFC-11E4-B908-2C27D7F0333E}"
+ ( 3 -168 120 ) ( 3 -168 -1 ) ( 191 -168 -1 ) t7_metal_panel_2x1_stainless_steel_brushed 124 -112 116 0 180 0 lightmap_gray 16384 16384 -1136 184 0 0
+ ( -52 -172 -1 ) ( -52 -172 120 ) ( 144 -172 120 ) caulk 64 64 20 552 0 0 lightmap_gray 16384 16384 20 554 0 0
+ ( 144 46 112 ) ( 144 50 112 ) ( 176 50 112 ) caulk 16 16 92 -12 -90 0 lightmap_gray 16384 16384 92 -12 -90 0
+ ( 83 -168 132 ) ( 83 -171 100 ) ( 83 -168 100 ) caulk 16 -16 168 0 180 0 lightmap_gray 16384 -16384 168 0 180 0
+ ( 117 -168 132 ) ( 117 -168 100 ) ( 117 -171 100 ) caulk 16 -16 168 0 180 0 lightmap_gray 16384 -16384 168 0 180 0
+ ( 83 -203.75 99 ) ( 86 -171.75 99 ) ( 83 -171.75 99 ) t7_metal_panel_2x1_stainless_steel_brushed 124 -112 116 -267 180 0 lightmap_gray 16384 -16384 0 168 0 0
+}
+// brush 4
+{
+ guid "{E89F2022-4FFC-11E4-B908-2C27D7F0333E}"
+ ( 3 -168 120 ) ( 3 -168 -1 ) ( 191 -168 -1 ) t7_metal_panel_2x1_stainless_steel_brushed 124 -112 116 0 180 0 lightmap_gray 16384 16384 -1136 184 0 0
+ ( -52 -172 -1 ) ( -52 -172 120 ) ( 144 -172 120 ) caulk 64 64 20 552 0 0 lightmap_gray 16384 16384 20 554 0 0
+ ( 132 -168 120 ) ( 134 -170 120 ) ( 132 -168 152 ) caulk 16 -16 40 -552 180 0 lightmap_gray 16384 -16384 40 -552 180 0
+ ( 144 46 112 ) ( 144 50 112 ) ( 176 50 112 ) caulk 16 16 92 -12 -90 0 lightmap_gray 16384 16384 92 -12 -90 0
+ ( -44 -38 0 ) ( -44 -40 0 ) ( -12 -38 0 ) caulk 16 16 92 -12 -90 0 lightmap_gray 16384 16384 92 -12 -90 0
+ ( 117 -168 132 ) ( 117 -171 100 ) ( 117 -168 100 ) t7_metal_panel_2x1_stainless_steel_brushed 124 -112 401 0 180 0 lightmap_gray 16384 -16384 168 0 180 0
+}
+}
+// entity 16
+{
+guid "{39B56C5C-A8B4-439E-A9A0-D23D5FDA7FE7}"
+"classname" "misc_model"
+"angles" "0 180 0"
+"model" "p7_vent_wall_metal_01_white"
+"origin" "100 -168 88"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 17
+{
+guid "{04DAAF7A-20FB-48D7-BBEB-466CE505AE74}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{A9315B82-503C-11E4-B908-2C27D7F0333E}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_decal_signage_dots_blend
+   lightmap_gray
+   4 2 16 8
+   (
+	v 8 0 1 c 255 255 255 212 t 126.97601 0 0 -0.0625
+	v 8 0 33 c 255 255 255 212 t 126.97601 -1024 0 -2.0625
+   )
+   (
+	v 132 0 1 c 255 255 255 212 t 4094.9744 0 0 -0.0625
+	v 132 0 33 c 255 255 255 212 t 4094.9744 -1024 0 -2.0625
+   )
+   (
+	v 132 -168 1 c 255 255 255 212 t 9470.9668 0 -10.5 -0.0625
+	v 132 -168 33 c 255 255 255 212 t 9470.9668 -1024 -10.5 -2.0625
+   )
+   (
+	v 8 -168 1 c 255 255 255 212 t 13438.967 0 -10.5 -0.0625
+	v 8 -168 33 c 255 255 255 212 t 13438.967 -1024 -10.5 -2.0625
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+}
+// entity 18
+{
+guid "{5FE2BCE8-E9FF-11E4-86CB-2C27D7F024A6}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{5FE2BCE5-E9FF-11E4-86CB-2C27D7F024A6}"
+  contents detail;
+ ( 8 -51.5 272 ) ( 1 -51.5 272 ) ( 1 -51.5 -1 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 579 2103.4392 90 0 lightmap_gray 16384 -16384 -624 -160 180 0 smoothing smoothing_smooth_other
+ ( 1 -55.5 100 ) ( 8 -55.5 100 ) ( 8 -55.5 -173 ) caulk 64 -64 -624 -160 180 0 lightmap_gray 16384 -16384 -624 -160 180 0
+ ( 8 -55.5 272 ) ( 8 -47.5 272 ) ( 8 -47.5 -1 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 579 -2147.5244 90 0 lightmap_gray 16384 -16384 -2056.5 -160 180 0 smoothing smoothing_smooth_other
+ ( 7 -51.5 112 ) ( 8 -52.5 112 ) ( 7 -51.5 144 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 45.254833 579 -1533.8938 90 0 lightmap_gray 16384 -16384 -2056.5 -160 -180 0 smoothing smoothing_smooth
+ ( 0 -52.5 109 ) ( 0 -54.5 111 ) ( -32 -52.5 109 ) caulk 16 16 -624 2051.5 -180 0 lightmap_gray 16384 16384 -624 2051.5 -180 0
+ ( 0 -53.5 2 ) ( 0 -51.5 4 ) ( -32 -51.5 4 ) caulk 16 16 -624 2051.5 180 0 lightmap_gray 16384 16384 -624 2051.5 180 0
+ ( 5 123.5 108 ) ( 5 123.5 107 ) ( 5 155.5 107 ) caulk 16 16 3.5 552 0 0 lightmap_gray 16384 16384 3.5 552 0 0
+}
+// brush 1
+{
+ guid "{5FE2BCE7-E9FF-11E4-86CB-2C27D7F024A6}"
+  contents detail;
+ ( 8 -51.5 272 ) ( 1 -51.5 272 ) ( 1 -51.5 -1 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 579 2103.4392 90 0 lightmap_gray 16384 -16384 -624 -160 180 0 smoothing smoothing_smooth_other
+ ( 0 -47.5 272 ) ( 0 -55.5 272 ) ( 0 -55.5 -1 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 579 2051.3535 90 0 lightmap_gray 16384 -16384 -2056.5 -160 180 0 smoothing smoothing_smooth_other
+ ( 1 -55.5 100 ) ( 8 -55.5 100 ) ( 8 -55.5 -173 ) caulk 64 -64 -624 -160 180 0 lightmap_gray 16384 -16384 -624 -160 180 0
+ ( 1 -51.5 112 ) ( 2 -50.5 112 ) ( 1 -51.5 144 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -45.254833 579 1435.1437 90 0 lightmap_gray 16384 -16384 -2056.5 -160 180 0 smoothing smoothing_smooth
+ ( 0 -52.5 109 ) ( 0 -54.5 111 ) ( -32 -52.5 109 ) caulk 16 16 -624 2051.5 -180 0 lightmap_gray 16384 16384 -624 2051.5 -180 0
+ ( 0 -53.5 2 ) ( 0 -51.5 4 ) ( -32 -51.5 4 ) caulk 16 16 -624 2051.5 180 0 lightmap_gray 16384 16384 -624 2051.5 180 0
+ ( 3 123.5 107 ) ( 3 123.5 108 ) ( 3 155.5 108 ) caulk 16 16 3.5 552 0 0 lightmap_gray 16384 16384 3.5 552 0 0
+}
+// brush 2
+{
+ guid "{988D58DC-E9FF-11E4-86CB-2C27D7F024A6}"
+  contents detail;
+ ( 8 -51.5 272 ) ( 1 -51.5 272 ) ( 1 -51.5 -1 ) t7_plastic_rubber_trim 8 -64 64 -499 0 0 lightmap_gray 16384 -16384 -624 -160 180 0
+ ( 1 -55.5 100 ) ( 8 -55.5 100 ) ( 8 -55.5 -173 ) caulk 64 -64 -624 -160 180 0 lightmap_gray 16384 -16384 -624 -160 180 0
+ ( 3 123.5 108 ) ( 3 123.5 107 ) ( 3 155.5 108 ) caulk 16 16 3.5 552 0 0 lightmap_gray 16384 16384 3.5 552 0 0
+ ( 5 123.5 107 ) ( 5 123.5 108 ) ( 5 155.5 107 ) caulk 16 16 3.5 552 0 0 lightmap_gray 16384 16384 3.5 552 0 0
+ ( 5 -56.5 108 ) ( 5 -55.5 108 ) ( 37 -56.5 108 ) caulk 16 16 0 0.5 0 0 lightmap_gray 16384 16384 0 0.5 0 0
+ ( 5 -53.5 4 ) ( 5 -54.5 4 ) ( 37 -53.5 4 ) caulk 16 16 0 0.5 0 0 lightmap_gray 16384 16384 0 0.5 0 0
+}
+}
+// entity 19
+{
+guid "{5FE2BCFA-E9FF-11E4-86CB-2C27D7F024A6}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{5FE2BCF7-E9FF-11E4-86CB-2C27D7F024A6}"
+  contents detail;
+ ( 0 -59.5 272 ) ( 7 -59.5 272 ) ( 7 -59.5 -1 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 579 -2095.4392 90 0 lightmap_gray 16384 16384 -616 160 0 0 smoothing smoothing_smooth_other
+ ( 8 -63.5 272 ) ( 8 -55.5 272 ) ( 8 -55.5 -1 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 579 -2162.3535 90 0 lightmap_gray 16384 16384 -2167.5 160 0 0 smoothing smoothing_smooth_other
+ ( 7 -55.5 100 ) ( 0 -55.5 100 ) ( 0 -55.5 -173 ) caulk 64 64 -616 160 0 0 lightmap_gray 16384 16384 -616 160 0 0
+ ( 7 -59.5 112 ) ( 6 -60.5 112 ) ( 7 -59.5 144 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 45.254833 579 -1546.1436 90 0 lightmap_gray 16384 16384 -2167.5 160 0 0 smoothing smoothing_smooth
+ ( 8 -58.5 109 ) ( 8 -56.5 111 ) ( 40 -58.5 109 ) caulk 16 16 -616 2162.5 0 0 lightmap_gray 16384 16384 -616 2162.5 0 0
+ ( 8 -57.5 2 ) ( 8 -59.5 4 ) ( 40 -59.5 4 ) caulk 16 16 -616 2162.5 0 0 lightmap_gray 16384 16384 -616 2162.5 0 0
+ ( 5 -234.5 107 ) ( 5 -234.5 108 ) ( 5 -266.5 108 ) caulk 16 -16 114.5 -552 180 0 lightmap_gray 16384 -16384 114.5 -552 180 0
+}
+// brush 1
+{
+ guid "{5FE2BCF9-E9FF-11E4-86CB-2C27D7F024A6}"
+  contents detail;
+ ( 0 -59.5 272 ) ( 7 -59.5 272 ) ( 7 -59.5 -1 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 579 -2095.4392 90 0 lightmap_gray 16384 16384 -616 160 0 0 smoothing smoothing_smooth_other
+ ( 7 -55.5 100 ) ( 0 -55.5 100 ) ( 0 -55.5 -173 ) caulk 64 64 -616 160 0 0 lightmap_gray 16384 16384 -616 160 0 0
+ ( 0 -55.5 272 ) ( 0 -63.5 272 ) ( 0 -63.5 -1 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 579 2036.5244 90 0 lightmap_gray 16384 16384 -2167.5 160 0 0 smoothing smoothing_smooth_other
+ ( 1 -59.5 112 ) ( 0 -58.5 112 ) ( 1 -59.5 144 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -45.254833 579 1422.8934 90 0 lightmap_gray 16384 16384 -2167.5 160 0 0 smoothing smoothing_smooth
+ ( 8 -58.5 109 ) ( 8 -56.5 111 ) ( 40 -58.5 109 ) caulk 16 16 -616 2162.5 0 0 lightmap_gray 16384 16384 -616 2162.5 0 0
+ ( 8 -57.5 2 ) ( 8 -59.5 4 ) ( 40 -59.5 4 ) caulk 16 16 -616 2162.5 0 0 lightmap_gray 16384 16384 -616 2162.5 0 0
+ ( 3 -234.5 108 ) ( 3 -234.5 107 ) ( 3 -266.5 107 ) caulk 16 -16 114.5 -552 180 0 lightmap_gray 16384 -16384 114.5 -552 180 0
+}
+// brush 2
+{
+ guid "{988D58DA-E9FF-11E4-86CB-2C27D7F024A6}"
+  contents detail;
+ ( 0 -59.5 272 ) ( 7 -59.5 272 ) ( 7 -59.5 -1 ) t7_plastic_rubber_trim 8 64 56 499 180 0 lightmap_gray 16384 16384 -616 160 0 0
+ ( 7 -55.5 100 ) ( 0 -55.5 100 ) ( 0 -55.5 -173 ) caulk 64 64 -616 160 0 0 lightmap_gray 16384 16384 -616 160 0 0
+ ( 5 -234.5 108 ) ( 5 -234.5 107 ) ( 5 -266.5 108 ) caulk 16 -16 114.5 -552 -180 0 lightmap_gray 16384 -16384 114.5 -552 -180 0
+ ( 3 -234.5 107 ) ( 3 -234.5 108 ) ( 3 -266.5 107 ) caulk 16 -16 114.5 -552 -180 0 lightmap_gray 16384 -16384 114.5 -552 -180 0
+ ( 5 -56.5 108 ) ( 5 -55.5 108 ) ( 37 -56.5 108 ) caulk 16 16 0 0.5 0 0 lightmap_gray 16384 16384 0 0.5 0 0
+ ( 5 -53.5 4 ) ( 5 -54.5 4 ) ( 37 -53.5 4 ) caulk 16 16 0 0.5 0 0 lightmap_gray 16384 16384 0 0.5 0 0
+}
+}

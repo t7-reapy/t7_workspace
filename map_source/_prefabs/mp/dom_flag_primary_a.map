@@ -1,0 +1,38 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{7D15F7A2-2C77-4A65-AF30-2F6ED5107443}"
+"classname" "worldspawn"
+"_color" "1 1 1"
+"ambient" ".5"
+"suncolor" "1.000000 1.000000 0.882353"
+"sundiffusecolor" "0.909804 0.952941 1.000000"
+"sundirection" "-45 95 0"
+"sunlight" "2"
+"fsi" "default"
+"gravity" "800"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{9F776647-7AEF-44DA-A31F-8BB6F1262F21}"
+"classname" "trigger_radius"
+"height" "128"
+"radius" "160"
+"script_gameobjectname" "dom onslaught"
+"targetname" "flag_trigger_a"
+}
+// entity 2
+{
+guid "{83CDCCA5-24BE-42A1-925A-5ADA852A74F6}"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/dom_flag_triggerless_a.map"
+}

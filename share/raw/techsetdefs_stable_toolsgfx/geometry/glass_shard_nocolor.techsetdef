@@ -1,0 +1,53 @@
+#include "lit_base_basic"
+#include "gloss_base"
+#include "transparent_base"
+
+RenderFlags( "lit transparent shard" ) : "lit transparent"
+{
+	glassShard = true
+}
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit transparent shard"
+	availablePrefixes = "mc/ mcs/ wc/"
+	displayName = "glass_transparent_shard_nocolor"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" ).tweak = ""
+Texture( "colorMap" ).tweak = ""
+Color( "colorTint" ).tweak = ""
+
+float1( "tintAmount" )
+{
+	x = <specAmount>
+	tweak = Tweak()
+	{
+		category  = "Tint"
+		title     = "Tint Amount"
+		sortindex = "15"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "lit" )
+{
+	state = "premul + depth"
+	defines = "BASE_DIFFUSE", "BASE_SPEC", "BASE_AO"
+#if TOOLSGFX != "1"
+	defines += "GLASS_SHARD"
+#endif
+	source = "lit_glass_nocolor.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT", "USE_PREMUL_BLEND"
+}

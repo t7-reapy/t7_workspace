@@ -1,0 +1,247 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "uvOffsetTexture" )
+{
+	image    = Image( <colorMap00, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak    = Tweak()
+	{
+		category	= "UV Offsets"
+		title		= "Offset Map"
+		sortindex	= "10"
+	}
+}
+Texture( "uvOffsetDetailTexture" )
+{
+	image    = Image( <colorMap01, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak    = Tweak()
+	{
+		category	= "UV Offsets"
+		title		= "Offset Detail Map"
+		sortindex	= "15"
+	}
+}
+Texture( "colorDetailTexture" )
+{
+	image    = Image( <colorMap02, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "UV Offsets"
+		title		= "Color Detail Map"
+		sortindex	= "17"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "pulseColor" )
+{
+	value	= "srgb_to_linear( <colorTint> )"
+	tweak	= Tweak()
+	{
+		category  = "Highlight"
+		title     = "Color Tint"
+		color	  = true
+		sortindex = "10"
+	}
+}
+
+float1( "viewOutlineWidth" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Highlight"
+		title		= "Outline Width"
+		sortindex	= "20"
+		default		= "6"
+		range		= "0", "256", "1"
+	}
+}
+
+float1( "viewOutlineBold" )
+{
+	x = <cg00_y>
+	tweak = Tweak()
+	{
+		category	= "Highlight"
+		title		= "Outline Boldness"
+		sortindex	= "30"
+		default		= "14.0"
+		range		= "0.0", "1000.0", "0.1"
+	}
+}
+
+float1( "hdrScale" )
+{
+	x = <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Highlight"
+		title		= "Mesh Brightness"
+		sortindex	= "40"
+		default		= "14.0"
+		range		= "0.0", "1000.0", "0.1"
+	}
+}
+
+float1( "hdrScale1" )
+{
+	x = <cg01_x>
+	tweak = Tweak()
+	{
+		category	= "Highlight"
+		title		= "Keyline Brightness"
+		sortindex	= "45"
+		default		= "14.0"
+		range		= "0.0", "1000.0", "0.1"
+	}
+}
+
+float2( "minBlack" )
+{
+	x = <cg00_w>
+	tweak = Tweak()
+	{
+		category	= "Highlight"
+		title		= "Black Point"
+		sortindex	= "50"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.01"
+	}
+}
+
+float2( "uvOffsetRowsCols" )
+{
+	x = <cg01_z>
+	y = <cg01_w>
+	tweak = Tweak()
+	{
+		category	= "UV Offsets"
+		title		= "Flipbook (Rows, Columns)"
+		sortindex	= "20"
+		default		= "1.0"
+		range		= "1.0", "1024.0.0", "1.0"
+	}
+}
+
+float1( "uvOffsetTime" )
+{
+	x = <cg02_x>
+	tweak = Tweak()
+	{
+		category	= "UV Offsets"
+		title		= "Flipbook Frame Time"
+		sortindex	= "30"
+		default		= "1.0"
+		range		= "0.0001", "1024.0", "0.1"
+	}
+}
+
+float1( "uvOffsetAmount" )
+{
+	x = <cg02_y>
+	tweak = Tweak()
+	{
+		category	= "UV Offsets"
+		title		= "Pixel Amount"
+		sortindex	= "40"
+		default		= "1.0"
+		range		= "0.0", "1024.0", "1.0"
+	}
+}
+
+float2( "uvOffsetTile" )
+{
+	x = <cg02_z>
+	y = <cg02_w>
+	tweak = Tweak()
+	{
+		category	= "UV Offsets"
+		title		= "Scale (U, V)"
+		sortindex	= "50"
+		default		= "1.0"
+		range		= "0.0001", "1024.0", "0.01"
+	}
+}
+
+float2( "uvOffDetailTile" )
+{
+	x = <cg04_x>
+	y = <cg04_y>
+	tweak = Tweak()
+	{
+		category	= "UV Offsets"
+		title		= "Detail Scale (U, V)"
+		sortindex	= "60"
+		default		= "1.0"
+		range		= "0.0001", "1024.0", "0.01"
+	}
+}
+
+float2( "uvOffDetailScroll" )
+{
+	x = <cg04_z>
+	y = <cg04_w>
+	tweak = Tweak()
+	{
+		category	= "UV Offsets"
+		title		= "Detail Scroll (U, V)"
+		sortindex	= "70"
+		default		= "0.0"
+		range		= "-1024.0", "1024.0", "0.01"
+	}
+}
+
+float3( "aberrationFactors" )
+{
+	x = <cg03_x>
+	y = <cg03_y>
+	z = <cg03_z>
+	tweak = Tweak()
+	{
+		category	= "Aberration"
+		title		= "Channel Factors (R, G, B)"
+		sortindex	= "10"
+		default		= "0.0"
+		range		= "-1.0", "1.0", "0.01"
+	}
+}
+
+float1( "aberrationAmount" )
+{
+	x = <cg03_w>
+	tweak = Tweak()
+	{
+		category	= "Aberration"
+		title		= "Pixel Amount"
+		sortindex	= "20"
+		default		= "1.0"
+		range		= "0.0", "1024.0", "1.0"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+	source = "postfx/frontend_gun.hlsl"
+
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+ 		bilinearClampler = Sampler("no tile", "nomip bilinear")
+		pointSampler	 = Sampler("tile both*", "nearest (mip none)")
+	}
+}

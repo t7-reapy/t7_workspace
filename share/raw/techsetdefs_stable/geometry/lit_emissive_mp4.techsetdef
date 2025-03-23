@@ -1,0 +1,116 @@
+#include "lit_base_basic"
+#include "emissive_base"
+#include "camo_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit forward opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "emissiveMap" ).tweak = Tweak( "Emissive", "PREVIEW Emissive Map", "0" )
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "movieRectBottomLeft" )
+{
+	x = <cg01_x>
+	y = <cg01_y>
+
+	tweak = Tweak()
+	{
+		category  = "Visible Rectangle"
+		title     = "Bottom Left"
+		sortindex = "30"
+	}
+}
+
+float2( "movieRectUpperRight" )
+{
+	x = <cg02_x>
+	y = <cg02_y>
+
+	tweak = Tweak()
+	{
+		category  = "Visible Rectangle"
+		title     = "Upper Right"
+		sortindex = "31"
+	}
+}
+
+float1( "layerDepth" )
+{
+	x = <waterRoughness>
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Depth"
+		sortindex = "30"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque"
+	source = "lit_emissive_transparent.hlsl"
+	defines = "BASE_TEXTURES", "USE_COLOR_TINT", "CINEMATIC_MP4"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{ 
+	#if TOOLSGFX != "1"
+		yTexture = CodeTexture( "cinematicYSampler" )
+		cbcrTexture = CodeTexture( "cinematicCrSampler" )
+		ySampler = Sampler("tile both", "nomip bilinear", true)
+		cbcrSampler = Sampler("tile both", "nomip bilinear", true)
+	#endif
+	}
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

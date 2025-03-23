@@ -1,0 +1,22 @@
+#include "state.techsetdef"
+
+Globals()
+{
+	category = "Filters"
+	gameOnly = true
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "replace"
+
+	source = "postfx/passthru_clamped.hlsl"
+	defines = "USE_VERTCOL 0", "SWIZZLE_OPTION 1"
+
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+	}
+}

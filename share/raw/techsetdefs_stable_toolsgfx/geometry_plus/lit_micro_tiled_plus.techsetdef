@@ -1,0 +1,110 @@
+#include "lit_base_mid"
+
+Globals()
+{
+	category = "Geometry Plus"
+
+	renderFlags = "lit deferred opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "detailMap" )
+{
+	image = Image( <detailMap, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps"
+		title     = "Detail Normal Map"
+		sortindex = "20"
+	}
+}
+
+Texture( "colorMap" ).tweak = Tweak()
+{
+	category  = "Detail Maps"
+	title     = "Color Map"
+	sortindex = "0"
+}
+
+Texture( "glossMap" ).tweak = Tweak()
+{
+	category  = "Detail Maps"
+	title     = "Gloss Map"
+	sortindex = "30"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "detailScaleHeight" )
+{
+	x = <detailScaleHeight>
+	tweak = Tweak()
+	{
+		category  = "Detail Modifiers"
+		title     = "Detail Normal Height"
+		sortindex = "10"
+	}
+}
+
+float2( "detailScale" )
+{
+	x = <detailScaleX>
+	y = <detailScaleY>
+	tweak = Tweak()
+	{
+		category  = "Detail Modifiers"
+		title     = "Detail Scale (X, Y)"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	defines = "USE_DETAIL_MAP", "BASE_SPEC", "USE_COLOR_TINT", "USE_WORLD_TILE_OFFSET"
+	state = "gbuffer opaque"
+	source = "gbuffer_lit.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}
+

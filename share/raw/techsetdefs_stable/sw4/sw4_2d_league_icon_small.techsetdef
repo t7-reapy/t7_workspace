@@ -1,0 +1,79 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Blend
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = invSrcAlpha
+		writeChannels  = "rgba"
+	}
+	cull = "None"
+}
+Sampler( "ColorMap_Sampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+Texture( "ColorMap" )
+{
+	image    = Image( "world_league_icon_128" )
+	semantic = "diffuseMap"
+}
+Sampler( "AddMap_Sampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+Texture( "AddMap" )
+{
+	image    = Image( "world_league_icon_uplit_128" )
+	semantic = "diffuseMap"
+}
+float4( "OuterGlowColor" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	z     = <cg01_z>
+	w     = <cg01_w>
+	tweak = Tweak()
+	{
+		title     = "OuterGlowColor"
+		sortindex = "0"
+		default   = "1.000000", "0.500000", "0.000000", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_league_icon_small.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_BLEND"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

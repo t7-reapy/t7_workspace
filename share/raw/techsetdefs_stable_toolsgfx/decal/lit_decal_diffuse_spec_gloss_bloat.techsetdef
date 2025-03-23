@@ -1,0 +1,66 @@
+#include "lit_base_shaders"
+#include "lit_decal_base.inc"
+#include "color_base"
+#include "gloss_base"
+ 
+Globals()
+{
+	category = "Decal"
+	renderFlags = "base decal renderflags"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+}
+ 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+Texture( "tintMask" )
+{
+	image = Image()
+	{
+		map = <colorMap00, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "20"
+	}
+}
+ 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+float2( "glossRange" )
+{
+	x = <glossRangeMin>
+	y = <glossRangeMax>
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Gloss Range"
+		sortindex = "45"
+	}
+}
+ 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines = "USE_COLOR_TINT", "USE_TINT_MASK", "USE_BLOAT"
+}
+ 
+Technique( "gbuffer" ) : "base lit decal gbuffer dsg"
+{
+	defines += "BASE_SPEC", "USE_COLOR_TINT", "USE_TINT_MASK", "USE_BLOAT"
+}
+ 
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}
+ 

@@ -1,0 +1,167 @@
+#include "state.techsetdef"
+#include "renderFlags.techsetdef"
+
+Globals()
+{
+	category = "Weapons"
+	renderFlags = RenderFlags() : "emissive transparent"
+	{
+		postBlur = true
+	}
+	gameOnly = true
+	availablePrefixes = "mc/ mcs/"
+}
+
+Sampler( "Detail_Map_Sampler" )
+{
+	tile   = <texTile01>
+	filter = <filterColor01>
+	tweak  = Tweak()
+	{
+		category  = "Detail Map"
+		sortindex = "3"
+	}
+}
+Texture( "Detail_Map" )
+{
+	image    = Image( <colorMap01> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category  = "Detail Map"
+		sortindex = "2"
+		default   = "model_export\\modern_weapons\\attachment\\weapon_red_cross_background.tif"
+	}
+}
+Sampler( "Color_Map_Sampler" )
+{
+	tile   = <texTile00>
+	filter = <filterColor00>
+	tweak = Tweak()
+	{
+		category  = "Color Map"
+		sortindex = "1"
+	}
+}
+Texture( "Color_Map" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category  = "Color Map"
+		sortindex = "0"
+		default   = "model_export\\t6_weapon\\attachments\\optic\\acog\\mtl_t6_attach_optic_acog_reticle.tif"
+	}
+}
+float1( "Background" )
+{
+	x     = <cg09_x>
+	tweak = Tweak()
+	{
+		title     = "Background"
+		sortindex = "9"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "Glow_Falloff" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		title     = "Glow_Falloff"
+		sortindex = "4"
+		default   = "0.975290"
+		range     = "0.1", "10", "0.01"
+		color     = false
+	}
+}
+float3( "Glow_Color" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	z     = <cg02_z>
+	tweak = Tweak()
+	{
+		title     = "Glow_Color"
+		sortindex = "2"
+		default   = "1.000000", "0.000000", "0.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = true
+	}
+}
+float1( "Color_Map_Noise" )
+{
+	x     = <cg08_x>
+	tweak = Tweak()
+	{
+		title     = "Color_Map_Noise"
+		sortindex = "8"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "Noise_Scale" )
+{
+	x     = <cg06_x>
+	tweak = Tweak()
+	{
+		title     = "Noise_Scale"
+		sortindex = "6"
+		default   = "5.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "Color_Map_Scale" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		title     = "Color_Map_Scale"
+		sortindex = "0"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float3( "Reticle_Color" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	z     = <cg01_z>
+	tweak = Tweak()
+	{
+		title     = "Reticle_Color"
+		sortindex = "1"
+		default   = "0.428571", "1.000000", "0.839286"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = true
+	}
+}
+
+Technique( "lit" )
+{
+	state   = "premul"
+	source  = "Weapons\reticle_dynamic.hlsl"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_CUSTOM", "POST_BLUR"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}
+
+Technique( "wireframe" )
+{
+	state = "wireframe + nocull + decal"
+	source = "wireframe.hlsl"
+
+	vs = VertexShader() { }
+	ps = PixelShader() { }
+}

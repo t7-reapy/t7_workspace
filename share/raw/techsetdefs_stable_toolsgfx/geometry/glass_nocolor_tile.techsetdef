@@ -1,0 +1,90 @@
+#include "lit_base_basic"
+#include "gloss_base"
+#include "transparent_base"
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+	displayName = "glass_transparent_nocolor_tile"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" ).tweak = ""
+Texture( "colorMap" ).tweak = ""
+Color( "colorTint" ).tweak = ""
+
+float1( "tintAmount" )
+{
+	x = <specAmount>
+	tweak = Tweak()
+	{
+		category  = "Tint"
+		title     = "Tint Amount"
+		sortindex = "15"
+	}
+}
+
+float2( "glossScale" )
+{
+	x = <cg00_x>
+	y = <cg00_y>
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Gloss Scale (U, V)"
+		sortindex = "110"
+	}
+}
+
+float2( "normalScale" )
+{
+	x = <cg00_z>
+	y = <cg00_w>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Normal Scale (U, V)"
+		sortindex = "110"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "premul + depth"
+	defines = "BASE_DIFFUSE", "BASE_SPEC", "BASE_AO", "USE_PREMUL_BLEND", "USE_TILING"
+	source = "lit_glass_nocolor.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

@@ -1,0 +1,80 @@
+#include "lit_base_mid"
+#include "transparent_shadow_base"
+#include "reveal_base"
+#include "transparent_base"
+ 
+Globals()
+{
+	category = "Geometry Plus"
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+ 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+Texture( "tintMask" )
+{
+	image = Image()
+	{
+		map = <colorMap00, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "20"
+	}
+}
+ 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+float1( "scriptReplacement" )
+{
+	x = <cg01_x>
+	tweak = Tweak()
+	{
+		category  = "Script Vector Simulator"
+		title     = "Reveal"
+		sortindex = "10"
+		default   = "0.0"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+ 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	defines = "USE_COLOR_TINT", "USE_TINT_MASK", "USE_REVEAL_MAP", "USE_BLOAT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+ 
+Technique( "lit" )
+{
+	state = "blend + depth"
+	defines = "USE_REVEAL_MAP", "BASE_SPEC", "USE_COLOR_TINT", "USE_TINT_MASK", "USE_SCRIPT_VECTORS", "USE_DIFFUSE_ALPHA", "USE_BLOAT"
+	source = "lit.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+ 
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+ 
+Technique( "debug color texel" )
+{
+	state = "blend + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS", "USE_REVEAL_MAP"
+	}
+}

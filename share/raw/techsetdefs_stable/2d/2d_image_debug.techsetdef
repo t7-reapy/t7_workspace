@@ -1,0 +1,37 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Sampler( "pointClampSampler" )
+{
+	tile = "no tile"
+	filter = "nearest (mip nearest)"
+}
+
+Technique( "unlit" )
+{
+	state = "blend + nocull"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "2d_image_debug.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "2d_image_debug.hlsl"
+		debugTexture = CodeTexture( "codeTexture0" )
+#endif
+	}
+}

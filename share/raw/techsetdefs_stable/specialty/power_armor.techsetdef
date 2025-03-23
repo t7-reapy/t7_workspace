@@ -1,0 +1,198 @@
+#include "lit_base_basic"
+#include "transparent_shadow_base"
+#include "emissive_base"
+#include "scroll_base"
+#include "flicker_base"
+#include "reveal_base"
+#include "transparent_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "emissiveMap" ).tweak = Tweak()
+{
+	category  = "Emissive"
+	title     = "Emissive Map"
+	sortindex = "10"
+}
+
+Texture( "tintMask" )
+{
+	image = Image()
+	{
+		map = <colorMap01, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "rotateUVs" ).tweak = ""
+float2( "offsetUVs" ).tweak = ""
+float2( "zoomUVs" ).tweak = ""
+float1( "zoomRate" ).tweak = ""
+float1( "layerDepth" ).tweak = ""
+Bool( "clampU" ).tweak = ""
+Bool( "clampV" ).tweak = ""
+float2( "scrollUVs" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Scroll Rate"
+	sortindex	= "120"
+}
+float2( "scaleUVs" ).tweak = Tweak()
+{
+	category	= "Emissive"
+	title		= "Scale"
+	sortindex	= "130"
+}
+
+Color( "emissiveTint1" ).tweak = ""
+float1( "hdrScale" ).tweak = Tweak( "Emissive", "HDR Scale", "50" )
+float1( "emissiveFalloffPower" ).tweak = Tweak( "Emissive", "Falloff", "60" )
+Bool( "relativeHDR" ).tweak = ""
+
+float4( "scanlineConsts" )
+{
+	x	= <cg28_z>
+	y	= <cg28_w>
+	z	= <cg29_x>
+	w	= <cg29_y>
+	tweak = Tweak()
+	{
+		category	= "Emissive"
+		title		= "Scanline (Sharpness, Contrast, Speed, Width )"
+		sortindex	= "100"
+		default		= "1.0", "1.0", "0.17", "100"
+		range		= "-128.0", "1024.0", "0.01"
+	}
+}
+
+float1( "shieldCushion" )
+{
+	x = <cg01_x>
+	tweak = Tweak()
+	{
+		category  = "Shield"
+		title     = "Cushion Thickness"
+		sortindex = "10"
+		default   = "1.0"
+		range     = "-1e+009", "1e+009", "0.01"
+	}
+}
+
+float1( "shieldOpacity" )
+{
+	x = <cg01_z>
+	tweak = Tweak()
+	{
+		category  = "Shield"
+		title     = "Max Opacity"
+		sortindex = "20"
+		default   = "0.0"
+		range     = "0", "1", "0.01"
+	}
+}
+
+float1( "shieldDamage" )
+{
+	x = <cg01_y>
+	tweak = Tweak()
+	{
+		category  = "Shield"
+		title     = "Damage (Tools Only)"
+		sortindex = "40"
+		default   = "0.0"
+		range     = "0", "1", "0.01"
+	}
+}
+
+float1( "warpPixels" )
+{
+	x = <cg01_w>
+	tweak = Tweak()
+	{
+		category  = "Shield"
+		title     = "Warping"
+		sortindex = "30"
+		default   = "0.0"
+		range     = "0", "1024", "0.01"
+	}
+}
+
+float2( "normalScale" )
+{
+	x = <cg02_x>
+	y = <cg02_y>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Scale (U, V)"
+		sortindex = "130"
+		default   = "0.0"
+		range     = "0", "1024", "0.01"
+	}
+}
+
+float2( "normalScroll" )
+{
+	x = <cg02_z>
+	y = <cg02_w>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Scroll (U, V)"
+		sortindex = "140"
+		default   = "0.0"
+		range     = "-1024", "1024", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	defines = "USE_COLOR_TINT", "USE_TINT_MASK", "USE_REVEAL_MAP"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "blend + depth"
+	defines = "BASE_TEXTURES", "USE_COLOR_TINT", "USE_TINT_MASK", "USE_SCROLL_ROTATE_UVS", "USE_REVEAL_MAP", "USE_DIFFUSE_ALPHA"
+	source = "specialty/power_armor.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS", "USE_REVEAL_MAP"
+	}
+}

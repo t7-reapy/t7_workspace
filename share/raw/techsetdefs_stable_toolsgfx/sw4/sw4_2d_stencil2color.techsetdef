@@ -1,0 +1,59 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isOpaque            = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Replace
+		colorBlendFunc = add
+		colorBlendSrc  = One
+		colorBlendDst  = Zero
+		alphaBlendFunc = add
+		alphaBlendSrc  = One
+		alphaBlendDst  = Zero
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+#if TOOLSGFX == "1"
+Texture( "postEffect0_C3_P0" )
+{
+	image = Image( < sw_codetexture_00 > )
+	tweak = Tweak()
+	{
+		default = "C:\\projects\\cod\\t6\\sw4\\textures\\stencil2colorInput.tif"
+	}
+}
+#endif
+Sampler( "postEffect0_C3_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_stencil2color.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_REPLACE"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		postEffect0_C3_P0 = CodeTexture( "postEffect0" )
+	}
+}

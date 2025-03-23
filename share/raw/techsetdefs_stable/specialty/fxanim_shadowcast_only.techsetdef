@@ -1,0 +1,104 @@
+#include "lit_base_shaders"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit deferred opaque animating"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" )
+{
+	tile = "tile both"
+	filter = "linear (mip none)"
+}
+
+Texture( "colorMap" )
+{
+	image = Image( <colorMap, $shadow_only> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Shadow"
+		title     = "Shadow Map"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "vertexColorScale" )
+{
+	x	= <cg00_x>
+	y	= <cg00_y>
+	tweak = Tweak()
+	{
+		category	= "Vertex Color"
+		title		= "Scale (R, G)"
+		sortindex	= "10"
+		default		= "1.0", "1.0"
+		range		= "0.0", "1.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" )
+{
+	state = "buildShadowmap + nocull"
+	defines = "USE_ALPHA_TEST", "USE_FXANIM"
+	source = "vertexMotion_buildShadowmap.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" )
+{
+	state = "buildShadowmap + nocull"
+	defines = "USE_ALPHA_TEST", "USE_FXANIM"
+	source = "vertexMotion_buildShadowmap.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+	defines += "BUILD_SHADOWMAP_EXTRA_PLANES 1"
+}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth"
+{
+	defines += "BUILD_SHADOWMAP_LAYERED"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque"
+	source = "gbuffer_stub.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

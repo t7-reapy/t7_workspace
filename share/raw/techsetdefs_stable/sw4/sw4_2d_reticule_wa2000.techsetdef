@@ -1,0 +1,100 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isOpaque            = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Replace
+		colorBlendFunc = add
+		colorBlendSrc  = One
+		colorBlendDst  = Zero
+		alphaBlendFunc = add
+		alphaBlendSrc  = One
+		alphaBlendDst  = Zero
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+Sampler( "Normal_Map_Sampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+Texture( "Normal_Map" )
+{
+	image    = Image( <colorMap01> )
+	semantic = "normalMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\scope_normal_1.tif"
+	}
+}
+#if TOOLSGFX == "1"
+Texture( "resolvedScene_C2_P0" )
+{
+	image = Image( < sw_codetexture_00 > )
+	tweak = Tweak()
+	{
+		default = "sw4\\textures\\mw2.tif"
+	}
+}
+#endif
+Sampler( "resolvedScene_C2_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+float3( "DispersionAmount" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	z     = <cg01_z>
+	tweak = Tweak()
+	{
+		title     = "DispersionAmount"
+		sortindex = "0"
+		default   = "0.900000", "1.000000", "1.100000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "WarpHeight" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		title     = "WarpHeight"
+		sortindex = "0"
+		default   = "10.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_reticule_wa2000.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_REPLACE"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		resolvedScene_C2_P0 = CodeTexture( "resolvedScene" )
+	}
+}

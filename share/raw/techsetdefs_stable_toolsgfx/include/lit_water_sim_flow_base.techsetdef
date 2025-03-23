@@ -1,0 +1,109 @@
+#include "lit_water_sim_base"
+#include "flow_base"
+#include "foam_base"
+
+Texture( "foamBase" )
+{
+	image = Image( <colorMap14, $white> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Foam"
+		title     = "Foam Base"
+		sortindex = "42"
+	}
+}
+
+Sampler( "foamSampler" )
+{
+	tile = "tile both"
+	filter = "mip (1x bilinear)"
+	tweak = Tweak()
+	{
+		category  = "Foam"
+		sortindex = "48"
+	}
+}
+
+Bool( "useFoam" )
+{
+  value = <foamMapEnable>
+  tweak = Tweak()
+  {
+    category  = "Surface Parameters"
+    title     = "Use foam map"
+    sortindex = "47"
+  }
+}
+
+Bool( "useOrientedNormalMap" )
+{
+  value = <orientNormalsToFlow>
+  tweak = Tweak()
+  {
+    category  = "Surface Parameters"
+    title     = "Orient normals to flow"
+    sortindex = "48"
+  }
+}
+
+Bool( "scaleNormalsWithFlow" )
+{
+	value = <scaleNormalsWithFlow>
+	tweak = Tweak()
+	{
+		category  = "Surface Parameters"
+		title     = "Scale normals with local flow rate"
+		sortindex = "49"
+	}
+}
+
+float4( "foamMaskScroll01" )
+{
+	x =	"-cos(radians(<gFoamScrollAngle0>)) * <gFoamScrollSpeed0> / <gFoamUVScale0>"
+	y =	" sin(radians(<gFoamScrollAngle0>)) * <gFoamScrollSpeed0> / <gFoamUVScale0>"
+	z =	"-cos(radians(<gFoamScrollAngle1>)) * <gFoamScrollSpeed1> / <gFoamUVScale1>"
+	w =	" sin(radians(<gFoamScrollAngle1>)) * <gFoamScrollSpeed1> / <gFoamUVScale1>"
+}
+
+float4( "foamMaskScroll23" )
+{
+	x =	"-cos(radians(<gFoamScrollAngle2>)) * <gFoamScrollSpeed2> / <gFoamUVScale2>"
+	y =	" sin(radians(<gFoamScrollAngle2>)) * <gFoamScrollSpeed2> / <gFoamUVScale2>"
+	z =	"-cos(radians(<gFoamScrollAngle3>)) * <gFoamScrollSpeed3> / <gFoamUVScale3>"
+	w =	" sin(radians(<gFoamScrollAngle3>)) * <gFoamScrollSpeed3> / <gFoamUVScale3>"
+}
+
+float1( "normalsFlowScaleMinTweak" )
+{
+	x = <normalsFlowScaleMin>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Minimum normal flow scale multiplier"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.005"
+		sortindex = "31"
+	}
+}
+
+float2( "normalsFlowScaleMin" )
+{
+	x = "<normalsFlowScaleMin>"
+	y = "1.0 - <normalsFlowScaleMin>"
+}
+
+float1( "foamZFeather" )
+{
+	x = "1.0 / <gDepthFeather>"
+	tweak = Tweak()
+	{
+		category  = "Foam"
+		title     = "Foam Z Feather"
+		default		= "10.0"
+		range		= "0.001", "500.0", "1"
+		sortindex = "56"
+	}
+}
+
+

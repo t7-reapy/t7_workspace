@@ -1,0 +1,69 @@
+#include "lit_base_shaders"
+#include "shadowmap_technique_base"
+#include "transparent_shadow_base"
+#include "transparent_base"
+#include "emissive_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "emissiveTint1" ).tweak = ""
+float1( "emissiveFalloffPower" ).tweak = ""
+Bool( "relativeHDR" ).tweak = ""
+Texture( "emissiveMap" ).semantic = "diffuseMap", "HDR", "Custom"
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		sortindex = "18" // leave some indices to have other color maps (need 2 indices - tile + filter)
+	}
+}
+
+Texture( "colorMap" ) : "emissiveMap"
+{}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "blend + depth"
+	source = "specialty/emissive_passthrough.hlsl"
+	defines += "SKY_FOG"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

@@ -1,0 +1,202 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Add
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = one
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = one
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+Sampler( "ScrollTextureMap_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "ScrollTextureMap" )
+{
+	image    = Image( <colorMap05> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "texture_assets\\code\\hex_texture.tif"
+	}
+}
+Sampler( "GridTextureMap_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "GridTextureMap" )
+{
+	image    = Image( <colorMap06> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "texture_assets\\code\\test_grid.tif"
+	}
+}
+#if TOOLSGFX == "1"
+Texture( "floatZSampler_C2_P0" )
+{
+	image = Image( < sw_codetexture_00 > )
+	tweak = Tweak()
+	{
+		default = "d:\\t6\\game\\sw4\\textures\\helpers\\sonarscenedepth.png"
+	}
+}
+#endif
+Sampler( "floatZSampler_C2_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+#if TOOLSGFX == "1"
+Texture( "resolvedPostSun_C1_P0" )
+{
+	image = Image( < sw_codetexture_01 > )
+	tweak = Tweak()
+	{
+		default = "d:\\t6\\game\\sw4\\textures\\helpers\\sonarscenecolor.dds"
+	}
+}
+#endif
+Sampler( "resolvedPostSun_C1_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+float1( "UVScale" )
+{
+	x     = <cg07_x>
+	tweak = Tweak()
+	{
+		title     = "UVScale"
+		sortindex = "7"
+		default   = "0.400000"
+		range     = "-1e+009", "1e+009", "0.1"
+		color     = false
+	}
+}
+float1( "FOV" )
+{
+	x     = <cg06_x>
+	tweak = Tweak()
+	{
+		title     = "FOV"
+		sortindex = "6"
+		default   = "65.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "ScrollUVScale" )
+{
+	x     = <cg08_x>
+	tweak = Tweak()
+	{
+		title     = "ScrollUVScale"
+		sortindex = "7"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.1"
+		color     = false
+	}
+}
+float2( "ScrollSpeed" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	tweak = Tweak()
+	{
+		title     = "ScrollSpeed"
+		sortindex = "0"
+		default   = "0.000000", "0.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "PulseAmplitude" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		title     = "PulseAmplitude"
+		sortindex = "0"
+		default   = "0.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "PulseRate" )
+{
+	x     = <cg05_x>
+	tweak = Tweak()
+	{
+		title     = "PulseRate"
+		sortindex = "0"
+		default   = "0.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "OuterRadius" )
+{
+	x     = <cg03_x>
+	tweak = Tweak()
+	{
+		title     = "OuterRadius"
+		sortindex = "0"
+		default   = "0.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "InnerRadius" )
+{
+	x     = <cg02_x>
+	tweak = Tweak()
+	{
+		title     = "InnerRadius"
+		sortindex = "0"
+		default   = "0.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_hud_quad_rotor.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_ADD"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		floatZSampler_C2_P0   = CodeTexture( "floatZSampler" )
+		resolvedPostSun_C1_P0 = CodeTexture( "resolvedPostSun" )
+	}
+}

@@ -1,0 +1,67 @@
+void GenerateUI( asset Asset )
+{
+	Asset.BeginCategory( "Objective Info" );
+	{
+		Asset.AddEntry_Combo( "type", "Waypoint{0} | 3D Prompt{1} | Wounded Soldier{3} | No indicator{2}" ).SetDefaultValue("0").SetTitle("Waypoint Type").UpdateOnChange(true); // | MP Domination{4} | MP KOTH{5} | MP Demolition{6} | MP CTF{7} | MP SD{8}
+		Asset.AddEntry_Combo( "hAlign", "Left{0} | Center{1} | Right{2}" ).SetDefaultValue("1").SetTitle("Horizontal Alignment");
+		Asset.AddEntry_Combo( "vAlign", "Top{0} | Center{1} | Bottom{2}" ).SetDefaultValue("2").SetTitle("Vertical Alignment");
+		int waypointOptionValue = Asset.GetEntryValue( "type" ).ToInt();
+		bool showGeneralOptions = (waypointOptionValue != 2);
+		bool buttonPrompt = (waypointOptionValue == 1);
+		bool showWoundedSoldier = (waypointOptionValue == 3);
+		bool showOwnerBasedIcons = (waypointOptionValue >= 4);
+		
+		Asset.BeginCategory( "General 3D Information Information" );
+		{
+			Asset.AddEntry_Vector3("waypointXOffset", "waypointYOffset", "waypointZOffset", 0, 0, 32, -1000, 1000).SetTitle("Offset").Show(showGeneralOptions);
+			Asset.AddEntry_CheckBox("shouldCullDistance", false).SetTitle( "Distance Culling" ).Show(showGeneralOptions).UpdateOnChange(true);
+			
+			bool cullingDistance = Asset.GetEntryBool( "shouldCullDistance" );
+			Asset.AddEntry_Float("cullDistance", 300, 0, 10000).SetTitle("Cull Distance").Show( showGeneralOptions && cullingDistance );
+			
+			Asset.AddEntry_CheckBox("showDistance", false).SetTitle("Show Distance").Show(showGeneralOptions);
+			Asset.AddEntry_CheckBox("bool_show3dDirectionArrow", false).SetTitle("Show 3D Direction Arrow").Show(showGeneralOptions);
+			Asset.AddEntry_CheckBox("bool_scale3d", false).SetTitle("Scale with 3D distance").Show(showGeneralOptions);
+			Asset.AddEntry_CheckBox("hideArrow", false).SetTitle("Hide Indicator Arrow").Show(showGeneralOptions);
+			Asset.AddEntry_CheckBox("waypointClamp", true).SetTitle("Clamp Waypoint When Offscreen").Show(showGeneralOptions);
+			Asset.AddEntry_CheckBox("waypointFadeWhenTargeted", true).SetTitle("Fade Waypoint During ADS (if in line of sight)").Show(showGeneralOptions);
+			Asset.AddEntry_CheckBox("waypointFadeWhenInCombat", false).SetTitle("Fade Waypoint During Combat").Show(showGeneralOptions);
+			Asset.AddEntry_CheckBox("waypointShowDistanceWhenFar", true).SetTitle("Show Distance Instead of Text When Far").Show(showGeneralOptions);
+			Asset.AddEntry_CheckBox("fadeUnderMinimap", true).SetTitle("Fade Waypoint When Under the Minimap").Show(showGeneralOptions);
+			Asset.AddEntry_CheckBox("waypointForceOffscreenStyle", false).SetTitle("Always Draw Offscreen Style (doesn't do traces)").Show(showGeneralOptions);
+			Asset.AddEntry_CheckBox("waypointHideWhenNotVisible", false).SetTitle("Hide when no line of sight.").Show(buttonPrompt);
+			Asset.AddEntry_CheckBox("bool_isObjective", false).SetTitle("Button Prompt Is Objective").Show(buttonPrompt).SetToolTip("This button prompt should be shown at far distances since it is an objective");
+		}
+
+		Asset.BeginCategory ("Waypoint/Prompt Info");
+		{
+			bool showWaypointOptions = (showGeneralOptions && !showWoundedSoldier);
+			Asset.AddEntry_AssetCombo("waypointImage", "image").SetTitle("Waypoint Image").Show(showWaypointOptions && !showOwnerBasedIcons).SetToolTip("Text that appear with the waypoint in the 3D space");
+			Asset.AddEntry_AssetCombo("material_minimapMaterial", "material").SetTitle("Minimap Material").Show(showWaypointOptions && !showOwnerBasedIcons).SetToolTip("Text that appear with the waypoint in the minimap");
+			Asset.AddEntry_String("waypointText", "").SetTitle("Waypoint Text").Show(showWaypointOptions && !showOwnerBasedIcons).SetToolTip("Text that appears with the waypoint in the 3D space");
+			Asset.AddEntry_String("xstring_waypointFarText", "").SetTitle("Waypoint Far Text").Show(showWaypointOptions && !showOwnerBasedIcons && buttonPrompt).SetToolTip("Text that appears over the waypoint when far away");
+
+			Asset.AddEntry_AssetCombo("enemyImage", "image").SetTitle("Enemy Controlled Waypoint Image").Show(showOwnerBasedIcons);
+			Asset.AddEntry_String("enemyText", "").SetTitle("Enemy Controlled Waypoint Text").Show(showOwnerBasedIcons);
+			Asset.AddEntry_AssetCombo("neutralDefendImage", "image").SetTitle("Neutral Defensive Waypoint Image").Show(showOwnerBasedIcons);
+			Asset.AddEntry_String("neutralDefendText", "").SetTitle("Neutral Defensive Text").Show(showOwnerBasedIcons);
+			Asset.AddEntry_AssetCombo("neutralAttackImage", "image").SetTitle("Neutral Offensive Waypoint Image").Show(showOwnerBasedIcons);
+			Asset.AddEntry_String("neutralAttackText", "").SetTitle("Neutral Offensive Text").Show(showOwnerBasedIcons);
+			Asset.AddEntry_AssetCombo("friendlyImage", "image").SetTitle("Friendly Controlled Waypoint Image").Show(showOwnerBasedIcons);
+			Asset.AddEntry_String("friendlyText", "").SetTitle("Friendly Controlled Waypoint Text").Show(showOwnerBasedIcons);
+		}
+		
+		Asset.BeginCategory( "Wounded Soldier" );
+		{
+			Asset.AddEntry_Combo( "woundedSoldierType", "Minor{0} | Severe{2} | Critical{3}" ).SetDefaultValue("0").SetTitle("Wounded Soldier Type").Show( showWoundedSoldier );
+		}
+
+		Asset.BeginCategory ("Additional Menu Values");
+		{
+			Asset.AddEntry_String("objectiveDesc", "").SetTitle("Objective Description").SetToolTip("Text that appears in the pause menu and Mission Record Vault");
+			Asset.AddEntry_String("subObjectiveString", "").SetTitle("SubObjective Description").SetToolTip("Text that appears as a subitem of an objective in the pause menu and Mission Record Vault");
+			Asset.AddEntry_AssetCombo("subObjectiveImage", "image").SetTitle("Subobjective Image").SetToolTip("Image that appears next to the subobjective in the pause menu and Mission Record Vault");
+			Asset.AddEntry_String("campaignNotifyString", "").SetTitle("Comms Event Notification String").SetToolTip("Text that appears in the notification area when the waypoint/prompt is added");
+		}
+	}
+}

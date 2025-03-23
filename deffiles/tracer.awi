@@ -1,0 +1,40 @@
+
+void GenerateUI( asset Asset )
+{
+	// Hidden
+	
+	Asset.AddEntry_Combo( "configstringFileType", "TRACER" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Misc 
+
+	Asset.BeginCategory( "Base Settings" );
+	{
+		Asset.AddEntry_Combo( "type", "Laser | Smoke" ).SetTitle( "Type" ).SetToolTip( "Setup the tracer type. Default is 'Laser'." );
+		Asset.AddEntry_AssetCombo( "material", "material" ).SetTitle( "Base Material" ).SetToolTip( "Base texture used by the tracer. Default is 'gfx_tracer'." ).ShowJumpTo (true);
+		Asset.AddEntry_Int( "drawInterval", 4, 0, 255 ).SetTitle( "Draw Interval" ).SetToolTip( "Number of bullets that must be fired before a tracer is drawn. 0 disables tracers completely. Should be an Odd number for Akimbo weapons" );
+		Asset.AddEntry_Float( "beamLength", 160.0, 0.1, 100000.0 ).SetTitle( "Length" ).SetToolTip( "The length of a tracer round" );
+		Asset.AddEntry_Float( "beamWidth", 4.0, 0.1, 100000.0 ).SetTitle( "Width" ).SetToolTip( "The width of a tracer round" );
+		Asset.AddEntry_Float( "speed", 7500.0, 1.0, 100000.0 ).SetTitle( "Speed" ).SetToolTip( "The speed of a tracer round in units per second" ).Show( Asset.GetEntryValue( "type" ) == "Laser" );
+		Asset.AddEntry_Float( "screwDist", 100.0, 1.0, 100000.0 ).SetTitle( "Screw Distance" ).SetToolTip( "The length a tracer goes as it completes a full corkscrew revolution." );
+		Asset.AddEntry_Float( "screwRadius", 0.5, 0.0, 100000.0 ).SetTitle( "Screw Radius" ).SetToolTip( "The length a tracer goes as it completes a full corkscrew revolution." ).Show( Asset.GetEntryValue( "type" ) == "Smoke" );
+		Asset.AddEntry_Float( "fadeTime", 0.0, 0.0, 100000.0 ).SetTitle( "Fade Time" ).SetToolTip( "The time it takes to fully fade out." ).Show( Asset.GetEntryValue( "type" ) == "Smoke" );
+		Asset.AddEntry_Float( "fadeScale", 1.0, 0.0, 100000.0 ).SetTitle( "Fade Scale" ).SetToolTip( "The about to scale the width over fade time." ).Show( Asset.GetEntryValue( "type" ) == "Smoke" );
+		Asset.AddEntry_Float( "texRepeatRate", 2.0, 0.0, 100000.0 ).SetTitle( "Texture Repeat Rate" ).SetToolTip( "Scale the texture tiling. Based on Screw Distance." ).Show( Asset.GetEntryValue( "type" ) == "Smoke" );
+		Asset.AddEntry_Int( "curvePoints", 2, 2, 8 ).SetTitle( "Curve Points" ).SetToolTip( "Number of points in the curve at each corner of a curved tracer." );
+		Asset.AddEntry_Float( "curveRadius", 6.0, 0.0, 10000.0 ).SetTitle( "Curve Radius" ).SetToolTip( "Radius of the curve at each corner of a curved tracer." );
+	}
+	
+ 
+	// Range
+	
+	Asset.BeginCategory( "Colors (RGBA) ( Ordered in the direction the bullet is flying )" );
+	{
+		for ( int i = 0; i < 5; i++ )
+		{
+			string Digit = i;	
+			Asset.AddEntry_Vector4( "colorR" + Digit, "colorG" + Digit, "colorB" + Digit, "colorA" + Digit, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0 );
+		}
+	}
+}

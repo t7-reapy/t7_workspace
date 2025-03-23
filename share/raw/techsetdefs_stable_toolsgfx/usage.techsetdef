@@ -1,0 +1,74 @@
+
+Usage( "diffuse map" )
+{
+	colorMap = true  // todo - rename
+}
+
+Usage( "normal map" )
+{
+	normalMap = true
+}
+
+Usage( "specular map" )
+{
+	specularMap = true
+}
+
+Usage( "gloss map" )
+{
+	glossMap = true
+}
+
+Usage( "ao map" )
+{
+	aoMap = true
+}
+
+Usage( "detail map" )
+{
+	detailMap = true
+}
+
+Usage( "camo mask map" )
+{
+	camoMaskMap = true
+	doNotDrop = true
+}
+
+#if TOOLSGFX != "1"
+Usage( "normal override map" )
+{
+	normalOverrideMap = true
+	doNotDrop = true
+}
+
+Usage( "gloss override map" )
+{
+	glossOverrideMap = true
+	doNotDrop = true
+}
+
+Usage( "detail override map" )
+{
+	colorOverrideMap = true // temp - once tools are in replace that with:
+//	detailMap = true
+//	overrideMap = true
+	doNotDrop = true
+}
+#endif
+
+Usage( "flow map" )
+{
+	flowMap = true
+}
+
+Usage( "effect map" )
+{
+	effectMap = true
+}
+
+Usage( "reveal map" )
+{
+	revealMap = true
+}
+

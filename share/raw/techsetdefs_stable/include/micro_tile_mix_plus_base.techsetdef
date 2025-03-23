@@ -1,0 +1,26 @@
+#include "micro_tile_mix_base"
+
+Texture( "glossMap" ).tweak = Tweak()
+{
+	category  = "Detail Maps1"
+	title     = "Gloss Map"
+	sortindex = "30"
+}
+Texture( "glossMapDetail2" )
+{
+	image = Image( <colorMap02, $white_gloss> )
+	semantic = "glossMap"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps2"
+		title     = "Gloss Map"
+		sortindex = "30"
+	}
+}
+
+Texture( "aoMap" ).tweak = Tweak()
+{
+	category  = "Base Maps"
+	title     = "Ambient Occlusion Map"
+	sortindex = "10"
+}

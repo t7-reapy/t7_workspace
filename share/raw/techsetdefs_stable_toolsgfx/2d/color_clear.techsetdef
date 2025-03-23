@@ -1,0 +1,18 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "techsetdef_depth_clear.hlsl"
+	defines = "USE_MATERIAL_COLOR"
+
+	vs = VertexShader()	{ }
+	ps = PixelShader() { }
+}

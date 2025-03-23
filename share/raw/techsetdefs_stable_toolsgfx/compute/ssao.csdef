@@ -1,0 +1,148 @@
+
+//
+// SSAO
+//
+ComputeShader("ssao_hemi_ao_prepare_depth_buffers1_compute")
+{
+	source = "ssao_hemi_ao_prepare_depth_buffers1_inc_compute.hlsl"
+}
+
+ComputeShader("ssao_hemi_ao_prepare_depth_buffers1_max_depth_compute")
+{
+	source = "ssao_hemi_ao_prepare_depth_buffers1_inc_compute.hlsl"
+	defines = "USE_MAX_DEPTH"
+}
+
+ComputeShader("ssao_hemi_ao_prepare_depth_buffers2_compute")
+{
+	source = "ssao_hemi_ao_prepare_depth_buffers2_inc_compute.hlsl"
+}
+
+ComputeShader("ssao_hemi_ao_prepare_depth_buffers2_max_depth_compute")
+{
+	source = "ssao_hemi_ao_prepare_depth_buffers2_inc_compute.hlsl"
+	defines = "USE_MAX_DEPTH"
+}
+
+ComputeShader("ssao_hemi_ao_render1_compute")
+{
+	source = "ssao_hemi_ao_render_compute.hlsl"
+	defines = "INTERLEAVE_RESULT"
+}
+
+ComputeShader("ssao_hemi_ao_render2_compute")
+{
+	source = "ssao_hemi_ao_render_compute.hlsl"
+}
+
+//
+ComputeShader("ssao_hemi_ao_blur_upsample_blend_out_compute")
+{
+	source = "ssao_hemi_ao_blur_and_upsample_compute.hlsl"
+	defines = "BLEND_WITH_HIGHER_RESOLUTION"
+}
+
+ComputeShader("ssao_hemi_ao_blur_upsample_pre_min_blend_out_compute")
+{
+	source = "ssao_hemi_ao_blur_and_upsample_compute.hlsl"
+	defines = "COMBINE_LOWER_RESOLUTIONS"
+	defines += "COMBINE_BEFORE_BLUR"
+	defines += "BLEND_WITH_HIGHER_RESOLUTION"
+}
+
+ComputeShader("ssao_hemi_ao_blur_upsample_pre_mul_blend_out_compute")
+{
+	source = "ssao_hemi_ao_blur_and_upsample_compute.hlsl"
+	defines = "COMBINE_LOWER_RESOLUTIONS"
+	defines += "COMBINE_BEFORE_BLUR"
+	defines += "BLEND_WITH_HIGHER_RESOLUTION"
+	defines += "COMBINE_WITH_MUL"
+}
+
+ComputeShader("ssao_hemi_ao_blur_upsample_post_min_blend_out_compute")
+{
+	source = "ssao_hemi_ao_blur_and_upsample_compute.hlsl"
+	defines += "COMBINE_LOWER_RESOLUTIONS"
+	defines += "BLEND_WITH_HIGHER_RESOLUTION"
+}
+
+ComputeShader("ssao_hemi_ao_blur_upsample_post_mul_blend_out_compute")
+{
+	source = "ssao_hemi_ao_blur_and_upsample_compute.hlsl"
+	defines = "COMBINE_LOWER_RESOLUTIONS"
+	defines += "COMBINE_WITH_MUL"
+	defines += "BLEND_WITH_HIGHER_RESOLUTION"
+}
+
+//-----------------------------
+ComputeShader("ssao_hemi_ao_blur_upsample_compute")
+{
+	source = "ssao_hemi_ao_blur_and_upsample_compute.hlsl"
+}
+
+ComputeShader("ssao_hemi_ao_blur_upsample_pre_min_compute")
+{
+	source = "ssao_hemi_ao_blur_and_upsample_compute.hlsl"
+	defines = "COMBINE_LOWER_RESOLUTIONS"
+	defines += "COMBINE_BEFORE_BLUR"
+}
+
+ComputeShader("ssao_hemi_ao_blur_upsample_pre_mul_compute")
+{
+	source = "ssao_hemi_ao_blur_and_upsample_compute.hlsl"
+	defines = "COMBINE_LOWER_RESOLUTIONS"
+	defines += "COMBINE_BEFORE_BLUR"
+	defines += "COMBINE_WITH_MUL"
+}
+
+ComputeShader("ssao_hemi_ao_blur_upsample_post_min_compute")
+{
+	source = "ssao_hemi_ao_blur_and_upsample_compute.hlsl"
+	defines = "COMBINE_LOWER_RESOLUTIONS"
+}
+
+ComputeShader("ssao_hemi_ao_blur_upsample_post_mul_compute")
+{
+	source = "ssao_hemi_ao_blur_and_upsample_compute.hlsl"
+	defines = "COMBINE_LOWER_RESOLUTIONS"
+	defines += "COMBINE_WITH_MUL"
+}
+
+//-----------------------------
+ComputeShader("ssao_hemi_ao_blur_upsample_final_compute")
+{
+	source = "ssao_hemi_ao_blur_and_upsample_compute.hlsl"
+	defines = "FINAL_PASS"
+}
+
+ComputeShader("ssao_hemi_ao_blur_upsample_pre_min_final_compute")
+{
+	source = "ssao_hemi_ao_blur_and_upsample_compute.hlsl"
+	defines = "COMBINE_LOWER_RESOLUTIONS"
+	defines += "COMBINE_BEFORE_BLUR"
+	defines += "FINAL_PASS"
+}
+
+ComputeShader("ssao_hemi_ao_blur_upsample_pre_mul_final_compute")
+{
+	source = "ssao_hemi_ao_blur_and_upsample_compute.hlsl"
+	defines = "COMBINE_LOWER_RESOLUTIONS"
+	defines += "COMBINE_BEFORE_BLUR"
+	defines += "COMBINE_WITH_MUL"
+	defines += "FINAL_PASS"
+}
+
+ComputeShader("ssao_hemi_ao_blur_upsample_post_min_final_compute")
+{
+	source = "ssao_hemi_ao_blur_and_upsample_compute.hlsl"
+	defines = "COMBINE_LOWER_RESOLUTIONS"
+	defines += "FINAL_PASS"
+}
+
+ComputeShader("ssao_hemi_ao_blur_upsample_post_mul_final_compute")
+{
+	source = "ssao_hemi_ao_blur_and_upsample_compute.hlsl"
+	defines = "COMBINE_LOWER_RESOLUTIONS"
+	defines += "COMBINE_WITH_MUL"
+	defines += "FINAL_PASS"
+}

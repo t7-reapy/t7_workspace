@@ -1,0 +1,20 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+	source = "BLOOM/bloom_blur_mip_x_l4.hlsl"
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+		biLinearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

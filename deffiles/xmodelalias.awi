@@ -1,0 +1,11 @@
+
+void GenerateUI( asset Asset )
+{
+	Asset.BeginCategory( "Misc" );
+	{
+		for ( int i = 1; i <= 50; i++ )
+		{
+			Asset.AddEntry_AssetCombo( "model" + i, "xmodel" ).SetTitle( "Model #" + i );
+		}
+	}
+}

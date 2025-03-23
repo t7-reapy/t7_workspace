@@ -1,0 +1,29 @@
+#include "lit_weapon_camo_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit deferred decal"
+	gameOnly = true
+	availablePrefixes = "mc/ mcs/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "camoDetailMap" )
+{
+	image = Image( $camo_base_detail ) // will be replaced by code
+	usage = "detail override map"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "gbuffer" ) : "gbuffer base"
+{
+	defines += "CAMO_DETAIL_MAP"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}

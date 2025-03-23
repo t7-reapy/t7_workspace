@@ -1,0 +1,165 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+
+Texture( "revealTexture" )
+{
+	image = Image( <alphaRevealMap, $half_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		title     = "Reveal Map"
+		sortindex = "0"
+	}
+}
+
+Texture( "warpTexture" )
+{
+	image = Image( <normalMap, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		title     = "Warp Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "rivuletWarpTexture" )
+{
+	image = Image( <colorMap01, $normal> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		title     = "Rivulet Warp Map"
+		sortindex = "20"
+	}
+}
+
+Texture( "rivuletRevealTexture" )
+{
+	image = Image( <colorMap00, $half_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		title     = "Rivulet Reveal Map"
+		sortindex = "30"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "warp" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		title     = "Warp Amount"
+		sortindex = "40"
+		default   = "0.1"
+		range     = "-1e+009", "1e+009", "0.01"
+	}
+}
+
+float1( "speed" )
+{
+	x     = <cg04_y>
+	tweak = Tweak()
+	{
+		title     = "Sheet Speed"
+		sortindex = "50"
+		default   = "0.3"
+		range     = "0.0", "1e+009", "0.01"
+	}
+}
+
+float2( "tiling" )
+{
+	x     = <cg04_w>
+	y     = <cg06_x>
+	tweak = Tweak()
+	{
+		title     = "Sheet Tiling"
+		sortindex = "60"
+		default   = "1.0"
+		range     = "0.0", "1e+009", "0.01"
+	}
+}
+
+float1( "reveal" )
+{
+	x     = <cg04_z>
+	tweak = Tweak()
+	{
+		title     = "Reveal Alpha"
+		sortindex = "60"
+		default   = "0.5"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+float1( "alphaRevealSoftEdge" )
+{
+	x     = <alphaRevealSoftEdge>
+	tweak = Tweak()
+	{
+		title     = "Reveal Softness"
+		sortindex = "70"
+		default   = "0.5"
+		range     = "0.0", "1.0", "0.01"
+	}
+}
+
+float1( "alphaRevealRamp" )
+{
+	x     = <alphaRevealRamp>
+	tweak = Tweak()
+	{
+		title     = "Reveal Ramp"
+		sortindex = "80"
+		default   = "0.01"
+		range     = "0.01", "1.0", "0.01"
+	}
+}
+
+float3( "aberrationFraction" )
+{
+	x     = <cg05_y>
+	y     = <cg05_z>
+	z     = <cg05_w>
+	tweak = Tweak()
+	{
+		title     = "Aberration Pixels(R, G, B)"
+		sortindex = "90"
+		default   = "0.0"
+		range     = "-1024.0", "1024.0", "1.0"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+		source = "postFX/2d_water_sheeting.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "postFX/2d_water_sheeting.hlsl"
+		frameBuffer = CodeTexture( "resolvedScene" )
+	}
+}

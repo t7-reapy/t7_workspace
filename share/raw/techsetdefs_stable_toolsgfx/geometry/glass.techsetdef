@@ -1,0 +1,27 @@
+#include "glass_base"
+#include "transparent_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+	displayName = "glass_transparent"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "lit" )
+{
+	state = "premul + depth"
+	defines = "BASE_SPEC", "BASE_AO", "USE_COLOR_TINT", "USE_TINT_MASK", "USE_PREMUL_BLEND"
+	source = "lit_glass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}

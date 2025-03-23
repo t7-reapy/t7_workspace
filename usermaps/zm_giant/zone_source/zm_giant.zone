@@ -1,0 +1,47 @@
+>class,zm_mod_level
+>group,modtools
+>title,Mod Giant
+	
+>level.forced_model_lods,-4
+>level.force_character_models,0
+>level.force_static_models,1
+>level.force_view_models,1
+>level.force_world_materials,1
+	
+// KVP
+>level.umbra_accurate_occlusion_threshold,1024
+
+// BSP
+col_map,maps/zm/zm_giant.d3dbsp
+gfx_map,maps/zm/zm_giant.d3dbsp
+
+// Scripted effects,
+fx,_t6/maps/zombie/fx_dust_ceiling_impact_lg_mdbrown
+fx,dlc0/factory/fx_snow_player_os_factory
+
+sound,zm_giant
+
+// Server Scripts
+scriptparsetree,scripts/zm/zm_giant.gsc
+scriptparsetree,scripts/zm/zm_giant_fx.gsc
+scriptparsetree,scripts/zm/zm_giant_gamemodes.gsc
+scriptparsetree,scripts/zm/zm_giant_cleanup_mgr.gsc
+scriptparsetree,scripts/zm/zm_giant_teleporter.gsc
+
+// Client Scripts
+scriptparsetree,scripts/zm/zm_giant.csc
+scriptparsetree,scripts/zm/zm_giant_amb.csc
+scriptparsetree,scripts/zm/zm_giant_fx.csc
+scriptparsetree,scripts/zm/zm_giant_teleporter.csc
+
+////Fog, Sky, and vision
+rawfile,vision/zm_factory.vision
+
+scriptbundle,p7_fxanim_zm_factory_clock_bundle
+scriptbundle,p7_fxanim_zm_factory_clock_igc_bundle
+
+scriptbundle,zm_teleporter
+
+scriptbundle,pstfx_zm_der_teleport
+
+

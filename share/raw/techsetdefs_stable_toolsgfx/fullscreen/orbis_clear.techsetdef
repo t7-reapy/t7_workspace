@@ -1,0 +1,28 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+	gameOnly = true
+	renderFlags = RenderFlags()
+	{
+		platformOrbis = true
+	}
+}
+
+Technique( "unlit" )
+{
+	state = "disable"
+	
+	vs = VertexShader()
+	{
+		source = "orbis_full_quad_vs.hlsl"
+	}
+	
+	ps = PixelShader()
+	{
+		defines = "ORBIS_CLEAR_PS_CLEAR_ALL_TARGETS 0"
+		source = "orbis_clear_ps.hlsl"
+	}
+}

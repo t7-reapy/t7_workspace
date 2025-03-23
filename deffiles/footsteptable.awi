@@ -1,0 +1,16 @@
+
+void GenerateUI( asset Asset )
+{
+	// Effect table
+	
+	Asset.BeginCategory( "FOOTSTEPTABLE" );
+	{
+		Asset.AddEntry_AssetCombo( "footstep_prone", "surfacesounddef" ).SetTitle( "footstep_prone" ).SetToolTip( "Use this to specify the surfacesounddef asset for the footstep_prone." );
+		Asset.AddEntry_AssetCombo( "footstep_crouch_walk", "surfacesounddef" ).SetTitle( "footstep_crouch_walk" ).SetToolTip( "Use this to specify the surfacesounddef asset for the footstep_crouch_walk." );
+		Asset.AddEntry_AssetCombo( "footstep_crouch_run", "surfacesounddef" ).SetTitle( "footstep_crouch_run" ).SetToolTip( "Use this to specify the surfacesounddef asset for the footstep_crouch_run." );
+		Asset.AddEntry_AssetCombo( "footstep_walk", "surfacesounddef" ).SetTitle( "footstep_walk" ).SetToolTip( "Use this to specify the surfacesounddef asset for the footstep_walk." );
+		Asset.AddEntry_AssetCombo( "footstep_run", "surfacesounddef" ).SetTitle( "footstep_run" ).SetToolTip( "Use this to specify the surfacesounddef asset for the footstep_run." );
+		Asset.AddEntry_AssetCombo( "footstep_sprint", "surfacesounddef" ).SetTitle( "footstep_sprint" ).SetToolTip( "Use this to specify the surfacesounddef asset for the footstep_sprint." );
+		Asset.AddEntry_AssetCombo( "footstep_ladder_hand", "surfacesounddef" ).SetTitle( "footstep_ladder_hand" ).SetToolTip( "Use this to specify the surfacesounddef asset for the footstep_ladder_hand." );
+	}
+}

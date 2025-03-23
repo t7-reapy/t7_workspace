@@ -1,0 +1,22 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Technique( "unlit" )
+{
+	state = "depth write"
+	source = "techsetdef_resolve.hlsl"
+	defines = "RESOLVE_DEPTH 1"
+
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		colorMapSampler = CodeTexture( "feedback" )
+		pointClamp = Sampler( "no tile", "nomip nearest" )
+	}
+}

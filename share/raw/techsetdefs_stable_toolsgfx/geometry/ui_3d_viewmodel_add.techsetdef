@@ -1,0 +1,49 @@
+#include "state"
+#include "renderFlags"
+
+#if TOOLSGFX != "1"
+Globals()
+{
+	category = "Geometry"
+	renderFlags = RenderFlags() : "emissive transparent"
+	{
+		postBlur = true
+	}
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+uint1( "ui3dWindow" )
+{
+	x = <sw_static_int_00>
+	tweak = Tweak()
+	{
+		category  = "UI 3D"
+		title	  = "UI 3D Index"
+		sortindex = "1"
+		default   = "0"
+		range     = "0", "5", "1"
+	}
+}
+
+Sampler( "colorSampler" )
+{
+	tile = "tile both"
+	filter = "nomip bilinear"
+}
+
+Technique( "lit" )
+{
+	state = "add + depth"
+	vs = VertexShader()
+	{
+		source = "techsetdef_ui_3d.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "techsetdef_ui_3d.hlsl"
+		defines = "MTL_BLEND_MODE_BLEND"
+		defines += "VIEW_MODEL_UI3D"
+		colorMapSampler = CodeTexture( "ui3d" )
+	}
+}
+#endif

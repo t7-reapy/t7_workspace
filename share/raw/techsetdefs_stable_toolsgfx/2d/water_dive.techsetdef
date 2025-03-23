@@ -1,0 +1,208 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+
+Texture( "warpTexture" )
+{
+	image = Image( <normalMap, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		title     = "Warp Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "lookupTexture" )
+{
+	image    = Image( <colorMap00, tv_lookup> )
+	tweak    = Tweak()
+	{
+		title		= "Lookup Map"
+		sortindex	= "20"
+	}
+}
+
+Texture( "washTexture" )
+{
+	image    = Image( <colorMap01, sam_block_noise> )
+	tweak    = Tweak()
+	{
+		title		= "Bubble Wash Map"
+		sortindex	= "30"
+	}
+}
+
+Texture( "revealTexture" )
+{
+	image    = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		title		= "Bubble Wash Reval Map"
+		sortindex	= "40"
+	}
+}
+
+Texture( "scubaTexture" )
+{
+	image    = Image( <colorMap02, $normal> )
+	semantic = "normalMap"
+	tweak    = Tweak()
+	{
+		title		= "Scuba Bubble Map"
+		sortindex	= "50"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "warp" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		title     = "Warp Amount"
+		sortindex = "60"
+		default   = "0.1"
+		range     = "-1e+009", "1e+009", "0.01"
+	}
+}
+
+float2( "warpScroll" )
+{
+	x = <flagRipple1ScrollU>
+	y = <flagRipple1ScrollV>
+	tweak = Tweak()
+	{
+		title		= "Warp Scroll Rate"
+		sortindex	= "70"
+	}
+}
+
+float1( "wash" )
+{
+	x     = <cg04_y>
+	tweak = Tweak()
+	{
+		title     = "Bubble Wash Amount"
+		sortindex = "80"
+		default   = "0.1"
+		range     = "0", "1", "0.01"
+	}
+}
+
+float1( "washSpin" )
+{
+	x     = <cg04_z>
+	tweak = Tweak()
+	{
+		title     = "Bubble Wash Spin"
+		sortindex = "90"
+		default   = "0.1"
+		range     = "-1e+009", "1e+009", "0.01"
+	}
+}
+
+float1( "washTile" )
+{
+	x     = <cg04_w>
+	tweak = Tweak()
+	{
+		title     = "Bubble Wash Tile"
+		sortindex = "100"
+		default   = "1"
+		range     = "0.0001", "1e+009", "0.01"
+	}
+}
+
+float1( "washOpacity" )
+{
+	x     = <cg01_z>
+	tweak = Tweak()
+	{
+		title     = "Bubble Wash Max Opacity"
+		sortindex = "110"
+		default   = "1"
+		range     = "0", "1", "0.01"
+	}
+}
+
+float2( "washReveal" )
+{
+	x = <cg01_x>
+	y = <cg01_y>
+	tweak = Tweak()
+	{
+		title		= "Wash Reveal (Soft, Ramp)"
+		sortindex	= "120"
+		default		= "0.1"
+		range		= "0", "1", "0.01"
+	}
+}
+
+float1( "scubaSpeed" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		title     = "Scuba Bubble Scroll"
+		sortindex = "130"
+		default   = "0"
+		range     = "-1e+009", "1e+009", "0.01"
+	}
+}
+
+float1( "scubaTile" )
+{
+	x     = <cg00_y>
+	tweak = Tweak()
+	{
+		title     = "Scuba Bubble Tiling"
+		sortindex = "140"
+		default   = "1"
+		range     = "0.0001", "1e+009", "0.01"
+	}
+}
+
+float2( "scubaOffset" )
+{
+	x = <cg00_z>
+	y = <cg00_w>
+	tweak = Tweak()
+	{
+		title		= "Scuba Bubble Offsets"
+		sortindex	= "150"
+		default		= "0"
+		range		= "-1e+009", "1e+009", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+		source = "postFX/2d_water_dive.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "postFX/2d_water_dive.hlsl"
+		frameBuffer = CodeTexture( "resolvedScene" )
+	}
+}

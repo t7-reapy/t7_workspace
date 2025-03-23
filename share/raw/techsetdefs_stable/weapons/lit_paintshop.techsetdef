@@ -1,0 +1,58 @@
+#include "lit_base_mid"
+#include "lit_decal_base.inc"
+
+Globals()
+{
+	category = "Weapons"
+	renderFlags = "base decal renderflags"
+	gameOnly = true
+	availablePrefixes = "mc/ mcs/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "specColorMap" )
+{
+	image = Image( <specColorMap, $specular> )
+	semantic = "specularMap"
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Specular Map"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "aoMap" ).tweak = ""
+Sampler( "aoSampler" ).tweak = ""
+
+Color( "colorTint" ).tweak = ""
+
+// Hide the samplers - this has to be non tiled
+Sampler( "colorSampler" ).tweak = ""
+Sampler( "colorSampler" ).tile = "no tile"
+Sampler( "colorSampler" ).filter = "nomip bilinear" // paintshop images have no mips
+
+Sampler( "normalSampler" ).tweak = ""
+Sampler( "normalSampler" ).tile = "no tile"
+Sampler( "normalSampler" ).filter = "nomip bilinear" // paintshop images have no mips
+
+Sampler( "specColorSampler" ).tweak = ""
+Sampler( "specColorSampler" ).tile = "no tile"
+Sampler( "specColorSampler" ).filter = "nomip bilinear" // paintshop images have no mips
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	source = "gbuffer_paintshop.hlsl"
+}
+
+Technique( "gbuffer" ) : "base lit decal gbuffer"
+{
+	source = "gbuffer_paintshop.hlsl"
+	defines += "USE_COLOR_TINT", "USE_TINT_MASK", "USE_COLOR_SPEC"
+}

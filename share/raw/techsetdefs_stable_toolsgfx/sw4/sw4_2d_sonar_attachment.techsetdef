@@ -1,0 +1,436 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isOpaque            = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Replace
+		colorBlendFunc = add
+		colorBlendSrc  = One
+		colorBlendDst  = Zero
+		alphaBlendFunc = add
+		alphaBlendSrc  = One
+		alphaBlendDst  = Zero
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+Sampler( "LookupMap_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "LookupMap" )
+{
+	image    = Image( <colorMap07> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		title     = "Tearing Lookup Map"
+		category  = "Tearing"
+		sortindex = "35"
+		default   = "sw4\\textures\\rts_holograph_distortion.tif"
+	}
+}
+Sampler( "MaskMap_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "MaskMap" )
+{
+	image    = Image( <colorMap09> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category  = "Tearing"
+		sortindex = "35"
+		default   = "sw4\\textures\\colin\\rts_holoview\\final_mask.tif"
+	}
+}
+Sampler( "Static_Noise_Map_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "Static_Noise_Map" )
+{
+	image    = Image( <colorMap06> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category  = "Noise and Scanline"
+		sortindex = "32"
+		default   = "sw4\\textures\\noise2.tif"
+	}
+}
+Sampler( "ScanlineMap_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip most expensive (4x trilinear)"
+}
+Texture( "ScanlineMap" )
+{
+	image    = Image( <colorMap14> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category  = "Noise and Scanline"
+		sortindex = "33"
+		default   = "sw4\\textures\\bwlines.tif"
+	}
+}
+Sampler( "LineMap_Sampler" )
+{
+	tile   = "tile both"
+	filter = "nomip bilinear"
+}
+Texture( "LineMap" )
+{
+	image    = Image( <colorMap04> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category  = "Player Scanline"
+		sortindex = "31"
+		default   = "sw4\\textures\\lines2_nostream.tif"
+	}
+}
+Sampler( "Lookup_Sampler" )
+{
+	tile   = "tile both"
+	filter = "nomip bilinear"
+}
+Texture( "Lookup" )
+{
+	image    = Image( <colorMap02> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "29"
+		default   = "sw4\\textures\\sonar_attachment_lookup.tif"
+	}
+}
+#if TOOLSGFX == "1"
+Texture( "sonarColorSampler_C1_P0" )
+{
+	image = Image( < sw_codetexture_00 > )
+	tweak = Tweak()
+	{
+		default = "c:\\t6\\main\\game\\sw4\\textures\\helpers\\sonar-overlay_color.dds"
+	}
+}
+#endif
+Sampler( "sonarColorSampler_C1_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+#if TOOLSGFX == "1"
+Texture( "floatZSampler_C2_P0" )
+{
+	image = Image( < sw_codetexture_01 > )
+	tweak = Tweak()
+	{
+		default = "c:\\t6\\main\\game\\sw4\\textures\\helpers\\sonar-overlay_depth.jpg"
+	}
+}
+#endif
+Sampler( "floatZSampler_C2_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+float1( "Tearing_amount" )
+{
+	x     = <cg15_x>
+	tweak = Tweak()
+	{
+		title     = "Tearing_amount"
+		category  = "Tearing"
+		sortindex = "30"
+		default   = "1.000000"
+		range     = "0", "1", "0.01"
+		color     = false
+	}
+}
+float1( "Static_Size" )
+{
+	x     = <cg27_x>
+	tweak = Tweak()
+	{
+		title     = "Static_Size"
+		category  = "Noise and Scanline"
+		sortindex = "0"
+		default   = "0.300000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "Static_amount" )
+{
+	x     = <cg25_x>
+	tweak = Tweak()
+	{
+		title     = "Static_amount"
+		category  = "Noise and Scanline"
+		sortindex = "0"
+		default   = "0.300000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "Scanline_amount" )
+{
+	x     = <cg26_x>
+	tweak = Tweak()
+	{
+		title     = "Scanline_amount"
+		category  = "Noise and Scanline"
+		sortindex = "0"
+		default   = "0.300000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "ScanBias" )
+{
+	x     = <cg24_x>
+	tweak = Tweak()
+	{
+		title     = "ScanBias"
+		category  = "Noise and Scanline"
+		sortindex = "0"
+		default   = "0.400000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float4( "LineColor" )
+{
+	x     = <cg22_x>
+	y     = <cg22_y>
+	z     = <cg22_z>
+	w     = <cg22_w>
+	tweak = Tweak()
+	{
+		title     = "LineColor"
+		category  = "Noise and Scanline"
+		sortindex = "0"
+		default   = "1.000000", "1.000000", "1.000000", "0.142857"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = true
+	}
+}
+float1( "ScrollSpeed" )
+{
+	x     = <cg21_x>
+	tweak = Tweak()
+	{
+		title     = "ScrollSpeed"
+		category  = "Noise and Scanline"
+		sortindex = "0"
+		default   = "-1.470000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "LineScale" )
+{
+	x     = <cg20_x>
+	tweak = Tweak()
+	{
+		title     = "LineScale"
+		category  = "Noise and Scanline"
+		sortindex = "20"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "GlobalNoise" )
+{
+	x     = <cg13_x>
+	tweak = Tweak()
+	{
+		title     = "GlobalNoise"
+		sortindex = "14"
+		default   = "0.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "LineNoise" )
+{
+	x     = <cg12_x>
+	tweak = Tweak()
+	{
+		title     = "LineNoise"
+		sortindex = "13"
+		default   = "0.150000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "SceneNoise" )
+{
+	x     = <cg11_x>
+	tweak = Tweak()
+	{
+		title     = "SceneNoise"
+		sortindex = "12"
+		default   = "0.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "ScatterFalloff" )
+{
+	x     = <cg10_x>
+	tweak = Tweak()
+	{
+		title     = "ScatterFalloff"
+		sortindex = "11"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "ScatterAmount" )
+{
+	x     = <cg09_x>
+	tweak = Tweak()
+	{
+		title     = "ScatterAmount"
+		sortindex = "10"
+		default   = "4.000000"
+		range     = "-1e+009", "1e+009", "0.1"
+		color     = false
+	}
+}
+float2( "ScatterSize" )
+{
+	x     = <cg08_x>
+	y     = <cg08_y>
+	tweak = Tweak()
+	{
+		title     = "ScatterSize"
+		sortindex = "9"
+		default   = "2.000000", "2.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "PulseMaxDistIntensity" )
+{
+	x     = <cg05_x>
+	tweak = Tweak()
+	{
+		title     = "PulseMaxDistIntensity"
+		sortindex = "6"
+		default   = "0.500000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "Pulse_Time" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		title     = "Pulse_Time"
+		sortindex = "4"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "Pulse_Interval" )
+{
+	x     = <cg03_x>
+	tweak = Tweak()
+	{
+		title     = "Pulse_Interval"
+		sortindex = "3"
+		default   = "2.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "DepthColorCurve" )
+{
+	x     = <cg02_x>
+	tweak = Tweak()
+	{
+		title     = "DepthColorCurve"
+		sortindex = "5"
+		default   = "0.060000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "MaxDepth" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		title     = "MaxDepth"
+		sortindex = "2"
+		default   = "2500.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "MinDepth" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		title     = "MinDepth"
+		sortindex = "1"
+		default   = "60.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "Player_Scanline_Scroll_Speed" )
+{
+	x     = <cg30_x>
+	tweak = Tweak()
+	{
+		title     = "Player_Scanline_Scroll_Speed"
+		category  = "Player Scanline"
+		sortindex = "23"
+		default   = "0.250000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_sonar_attachment.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_REPLACE"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		sonarColorSampler_C1_P0 = CodeTexture( "sonarColorSampler" )
+		floatZSampler_C2_P0     = CodeTexture( "floatZSampler" )
+	}
+}

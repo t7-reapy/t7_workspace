@@ -1,0 +1,79 @@
+#include "tools_base"
+
+Globals()
+{
+	category = "Tools"
+	renderFlags = "emissive opaque"
+}
+
+#if TOOLSGFX == "1"
+Technique( "build shadowmap depth" ) : "tools shadowmap depth"
+{}
+
+Technique( "build shadowmap depth layered" ) : "tools shadowmap depth layered"
+{}
+#endif
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		vertexDecl = "generic"
+#endif
+	}
+	ps = PixelShader()
+	{
+	}
+}
+
+Technique( "lit" )
+{
+	state = "replace + depth"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/reference_emissive.hlsl"
+		vertexDecl = "generic"
+		defines = "USE_EMISSIVE"
+#else
+		source = "techsetdef_unlit.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		defines = "USE_EMISSIVE"
+#else
+		source = "techsetdef_unlit.hlsl"
+		defines = "MTL_BLEND_MODE_REPLACE"
+#endif
+		colorMapSampler  = CodeTexture( "feedback" )
+	}
+}
+
+Technique( "unlit" )
+{
+	state = "replace"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/debug_overlay.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "techsetdef_2d.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/debug_overlay.hlsl"
+#else
+		source = "techsetdef_2d.hlsl"
+#endif
+		colorMapSampler  = CodeTexture( "feedback" )
+	}
+}

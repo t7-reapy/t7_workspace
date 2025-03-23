@@ -1,0 +1,163 @@
+#include "lit_base_mid"
+#include "lit_decal_base.inc"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "weapon impact renderflags"
+	availablePrefixes = "/ vd/ vdd/"
+}
+
+float1( "layerDepth" )
+{
+	x = <waterRoughness>
+	tweak = Tweak()
+	{
+		category  = "UV Parameters"
+		title     = "Depth"
+		sortindex = "10"
+	}
+}
+
+float2( "scrollUVs" )
+{
+	x = <gUVScroll02_Angle>
+	y = <gUVScroll03_Angle>
+	tweak = Tweak()
+	{
+		category  = "UV Parameters"
+		title     = "Scroll (U, V)"
+		sortindex = "20"
+	}
+}
+
+float2( "rotateUVs" )
+{
+	x = <uvScrollAngle>
+	y = <uvRotationRate>
+	tweak = Tweak()
+	{
+		category	= "UV Parameters"
+		title		= "UV Rotation, Spin Rate"
+		sortindex	= "30"
+	}
+}
+
+float2( "scaleUVs" )
+{
+	x = <uScale>
+	y = <vScale>
+	tweak = Tweak()
+	{
+		category	= "UV Parameters"
+		title		= "Scale (U, V)"
+		sortindex	= "40"
+	}
+}
+
+float2( "offsetUVs" )
+{
+	x = <uScroll>
+	y = <vScroll>
+	tweak = Tweak()
+	{
+		category	= "UV Parameters"
+		title		= "Offset (U, V)"
+		sortindex	= "50"
+	}
+}
+
+float2( "zoomUVs" )
+{
+	x = <zoomMin>
+	y = <zoomMax>
+	tweak = Tweak()
+	{
+		category	= "UV Parameters"
+		title		= "UV Zoom (Min, Max)"
+		sortindex	= "60"
+	}
+}
+
+float1( "zoomRate" )
+{
+	x = <zoomRate>
+	tweak = Tweak()
+	{
+		category	= "UV Parameters"
+		title		= "Zoom Rate"
+		sortindex	= "65"
+	}
+}
+
+Bool( "clampU" )
+{
+	value = <clampU>
+	tweak = Tweak()
+	{
+		category	= "UV Parameters"
+		title		= "Clamp U"
+		sortindex	= "66"
+	}
+}
+
+Bool( "clampV" )
+{
+	value = <clampV>
+	tweak = Tweak()
+	{
+		category	= "UV Parameters"
+		title		= "Clamp V"
+		sortindex	= "67"
+	}
+}
+
+#if MTL_TYPE_VOL_DECAL == "1"
+
+Technique( "unlit" ) : "vol weapon impact unlit" 
+{
+	defines += "USE_SCROLL_ROTATE_UVS"
+}
+
+Technique( "gbuffer" ) : "vol weapon impact gbuffer"
+{
+	defines += "BASE_SPEC", "USE_SCROLL_ROTATE_UVS"
+}
+
+#else
+
+Technique( "unlit" )
+{
+	state = "blend + depth + weapon impact"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "blend + depth + weapon impact"
+	defines = "BASE_SPEC"
+	source = "lit.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+
+#endif
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + weapon impact"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

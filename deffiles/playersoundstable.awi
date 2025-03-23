@@ -1,0 +1,257 @@
+
+void GenerateUI( asset Asset )
+{
+	// Effect table
+	
+	Asset.BeginCategory( "PLAYERSOUNDS TABLE" );
+	{
+		//First Person
+		Asset.AddEntry_String( "jetpackStart", "" ).SetTitle( "jetpackStart" );
+		Asset.AddEntry_String( "jetpackStartFull", "" ).SetTitle( "jetpackStartFull" );
+		Asset.AddEntry_String( "jetpackLoop", "" ).SetTitle( "jetpackLoop" );
+		Asset.AddEntry_String( "jetpackEnd", "" ).SetTitle( "jetpackEnd" );
+		Asset.AddEntry_String( "jetpackExhausted", "" ).SetTitle( "jetpackExhausted" );
+		Asset.AddEntry_String( "jetpackStartEmp", "" ).SetTitle( "jetpackStartEmp" );
+		Asset.AddEntry_String( "jetpackStartFullEmp", "" ).SetTitle( "jetpackStartFullEmp" );
+		//Asset.AddEntry_String( "jetpackLoopEmp", "" ).SetTitle( "jetpackLoopEmp" );
+		//Asset.AddEntry_String( "jetpackEndEmp", "" ).SetTitle( "jetpackEndEmp" );
+		//Asset.AddEntry_String( "jetpackExhaustedEmp", "" ).SetTitle( "jetpackExhaustedEmp" );
+		Asset.AddEntry_String( "jetpackEnergyEmpty", "" ).SetTitle( "jetpackEnergyEmpty" );
+		Asset.AddEntry_String( "jetpackDisabled", "" ).SetTitle( "jetpackDisabled" );
+		
+		Asset.AddEntry_String( "jetpackQuietStart", "" ).SetTitle( "jetpackQuietStart" );
+		Asset.AddEntry_String( "jetpackQuietStartFull", "" ).SetTitle( "jetpackQuietStartFull" );
+		Asset.AddEntry_String( "jetpackQuietLoop", "" ).SetTitle( "jetpackQuietLoop" );
+		Asset.AddEntry_String( "jetpackQuietEnd", "" ).SetTitle( "jetpackQuietEnd" );
+		Asset.AddEntry_String( "jetpackQuietExhausted", "" ).SetTitle( "jetpackQuietExhausted" );
+		Asset.AddEntry_String( "jetpackQuietStartEmp", "" ).SetTitle( "jetpackQuietStartEmp" );
+		Asset.AddEntry_String( "jetpackQuietStartFullEmp", "" ).SetTitle( "jetpackQuietStartFullEmp" );
+		//Asset.AddEntry_String( "jetpackQuietLoopEmp", "" ).SetTitle( "jetpackQuietLoopEmp" );
+		//Asset.AddEntry_String( "jetpackQuietEndEmp", "" ).SetTitle( "jetpackQuietEndEmp" );
+		//Asset.AddEntry_String( "jetpackQuietExhaustedEmp", "" ).SetTitle( "jetpackQuietExhaustedEmp" );
+		Asset.AddEntry_String( "jetpackQuietEnergyEmpty", "" ).SetTitle( "jetpackQuietEnergyEmpty" );
+		Asset.AddEntry_String( "jetpackQuietDisabled", "" ).SetTitle( "jetpackQuietDisabled" );
+		
+		Asset.AddEntry_AssetCombo( "jumpTakeoff", "surfacesounddef" ).SetTitle( "jumpTakeoff" ).SetToolTip( "Use this to specify the surfacesounddef asset for the jumpTakeoff." );
+		Asset.AddEntry_AssetCombo( "leapTakeoff", "surfacesounddef" ).SetTitle( "leapTakeoff" ).SetToolTip( "Use this to specify the surfacesounddef asset for the leapTakeoff." );
+		
+		Asset.AddEntry_String( "fallWind", "" ).SetTitle( "fallWind" );
+		Asset.AddEntry_String( "fallDamage", "" ).SetTitle( "fallDamage" );
+		Asset.AddEntry_AssetCombo( "fallImpact", "surfacesounddef" ).SetTitle( "fallImpact" ).SetToolTip( "Use this to specify the surfacesounddef asset for the fallImpact." );
+		Asset.AddEntry_AssetCombo( "fallImpactSlow", "surfacesounddef" ).SetTitle( "fallImpactSlow" ).SetToolTip( "Use this to specify the surfacesounddef asset for the fallImpactSlow." );
+		Asset.AddEntry_AssetCombo( "fallImpactMed", "surfacesounddef" ).SetTitle( "fallImpactMed" ).SetToolTip( "Use this to specify the surfacesounddef asset for the fallImpactMed." );
+		Asset.AddEntry_AssetCombo( "fallImpactFast", "surfacesounddef" ).SetTitle( "fallImpactFast" ).SetToolTip( "Use this to specify the surfacesounddef asset for the fallImpactFast." );
+		Asset.AddEntry_AssetCombo( "fallImpactRapid", "surfacesounddef" ).SetTitle( "fallImpactRapid" ).SetToolTip( "Use this to specify the surfacesounddef asset for the fallImpactRapid." );
+		Asset.AddEntry_String( "traverseImpact", "" ).SetTitle( "traverseImpact" );
+		Asset.AddEntry_String( "traverseImpactSlow", "" ).SetTitle( "traverseImpactSlow" );
+		Asset.AddEntry_String( "traverseImpactMed", "" ).SetTitle( "traverseImpactMed" );
+		Asset.AddEntry_String( "traverseImpactFast", "" ).SetTitle( "traverseImpactFast" );
+		Asset.AddEntry_String( "traverseImpactRapid", "" ).SetTitle( "traverseImpactRapid" );
+		Asset.AddEntry_AssetCombo( "wallrunImpactSlow", "surfacesounddef" ).SetTitle( "wallrunImpactSlow" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunImpactSlow." );
+		Asset.AddEntry_AssetCombo( "wallrunImpactMed", "surfacesounddef" ).SetTitle( "wallrunImpactMed" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunImpactMed." );
+		Asset.AddEntry_AssetCombo( "wallrunImpactFast", "surfacesounddef" ).SetTitle( "wallrunImpactFast" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunImpactFast." );
+		Asset.AddEntry_AssetCombo( "wallrunImpactRapid", "surfacesounddef" ).SetTitle( "wallrunImpactRapid" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunImpactRapid." );
+		
+		Asset.AddEntry_String( "waterImpactSlow", "" ).SetTitle( "waterImpactSlow" );
+		Asset.AddEntry_String( "waterImpactMed", "" ).SetTitle( "waterImpactMed" );
+		Asset.AddEntry_String( "waterImpactFast", "" ).SetTitle( "waterImpactFast" );
+		Asset.AddEntry_String( "waterImpactRapid", "" ).SetTitle( "waterImpactRapid" );
+		
+		Asset.AddEntry_String( "traverseDefault", "" ).SetTitle( "traverseDefault" );
+		Asset.AddEntry_String( "traverseStepForward", "" ).SetTitle( "traverseStepForward" );
+		Asset.AddEntry_String( "traverseStepBack", "" ).SetTitle( "traverseStepBack" );
+		Asset.AddEntry_String( "traverseStepLeft", "" ).SetTitle( "traverseStepLeft" );
+		Asset.AddEntry_String( "traverseStepRight", "" ).SetTitle( "traverseStepRight" );
+		Asset.AddEntry_String( "traverseOnLow", "" ).SetTitle( "traverseOnLow" );
+		Asset.AddEntry_String( "traverseOnLowBack", "" ).SetTitle( "traverseOnLowBack" );
+		Asset.AddEntry_String( "traverseOnLowLeft", "" ).SetTitle( "traverseOnLowLeft" );
+		Asset.AddEntry_String( "traverseOnLowRight", "" ).SetTitle( "traverseOnLowRight" );
+		Asset.AddEntry_String( "traverseOnMed", "" ).SetTitle( "traverseOnMed" );
+		Asset.AddEntry_String( "traverseOnMedLeft", "" ).SetTitle( "traverseOnMedLeft" );
+		Asset.AddEntry_String( "traverseOnMedRight", "" ).SetTitle( "traverseOnMedRight" );
+		Asset.AddEntry_String( "traverseOverLowVault", "" ).SetTitle( "traverseOverLowVault" );
+		Asset.AddEntry_String( "traverseOverLow", "" ).SetTitle( "traverseOverLow" );
+		Asset.AddEntry_String( "traverseOverLowBack", "" ).SetTitle( "traverseOverLowBack" );
+		Asset.AddEntry_String( "traverseOverLowLeft", "" ).SetTitle( "traverseOverLowLeft" );
+		Asset.AddEntry_String( "traverseOverLowRight", "" ).SetTitle( "traverseOverLowRight" );
+		Asset.AddEntry_String( "traverseOverHigh", "" ).SetTitle( "traverseOverHigh" );
+		Asset.AddEntry_String( "traverseOverHigher", "" ).SetTitle( "traverseOverHigher" );
+		Asset.AddEntry_String( "traverseOverHighest", "" ).SetTitle( "traverseOverHighest" );
+		Asset.AddEntry_String( "traverseOnHigher", "" ).SetTitle( "traverseOnHigher" );
+		Asset.AddEntry_String( "traverseOnHighest", "" ).SetTitle( "traverseOnHighest" );
+		
+		Asset.AddEntry_String( "jukeStart", "" ).SetTitle( "jukeStart" );
+		Asset.AddEntry_String( "jukeLoop", "" ).SetTitle( "jukeLoop" );
+		Asset.AddEntry_String( "jukeEnd", "" ).SetTitle( "jukeEnd" );
+		
+		Asset.AddEntry_AssetCombo( "slideStart", "surfacesounddef" ).SetTitle( "slideStart" ).SetToolTip( "Use this to specify the surfacesounddef asset for the slideStart." );
+		Asset.AddEntry_AssetCombo( "slideLoop", "surfacesounddef" ).SetTitle( "slideLoop" ).SetToolTip( "Use this to specify the surfacesounddef asset for the slideLoop." );
+		Asset.AddEntry_AssetCombo( "slideEnd", "surfacesounddef" ).SetTitle( "slideEnd" ).SetToolTip( "Use this to specify the surfacesounddef asset for the slideEnd." );
+		Asset.AddEntry_String( "slideEnergyStart", "" ).SetTitle( "slideEnergyStart" );
+		Asset.AddEntry_String( "slideEnergyStartQuiet", "" ).SetTitle( "slideEnergyStartQuiet" );
+		Asset.AddEntry_String( "slideEnergyEmpStart", "" ).SetTitle( "slideEnergyEmpStart" );
+		Asset.AddEntry_String( "slideEnergyEmpStartQuiet", "" ).SetTitle( "slideEnergyEmpStartQuiet" );
+		
+		Asset.AddEntry_String( "sprintEnergyStart", "" ).SetTitle( "sprintEnergyStart" );
+		Asset.AddEntry_String( "sprintEnergyLoop", "" ).SetTitle( "sprintEnergyLoop" );
+		Asset.AddEntry_String( "sprintEnergyEnd", "" ).SetTitle( "sprintEnergyEnd" );
+		
+		Asset.AddEntry_String( "wallrunEnergyStart", "" ).SetTitle( "wallrunEnergyStart" );
+		Asset.AddEntry_String( "wallrunEnergyLoop", "" ).SetTitle( "wallrunEnergyLoop" );
+		Asset.AddEntry_String( "wallrunEnergyEnd", "" ).SetTitle( "wallrunEnergyEnd" );
+		Asset.AddEntry_String( "wallrunQuietEnergyStart", "" ).SetTitle( "wallrunQuietEnergyStart" );
+		Asset.AddEntry_String( "wallrunQuietEnergyLoop", "" ).SetTitle( "wallrunQuietEnergyLoop" );
+		Asset.AddEntry_String( "wallrunQuietEnergyEnd", "" ).SetTitle( "wallrunQuietEnergyEnd" );
+		
+		Asset.AddEntry_String( "swimStart", "" ).SetTitle( "swimStart" );
+		Asset.AddEntry_String( "swimEnd", "" ).SetTitle( "swimEnd" );
+		Asset.AddEntry_String( "underWaterStart", "" ).SetTitle( "underWaterStart" );
+		Asset.AddEntry_String( "underWaterEnd", "" ).SetTitle( "underWaterEnd" );
+		Asset.AddEntry_String( "treadLoop", "" ).SetTitle( "treadLoop" );
+		Asset.AddEntry_String( "underWaterLoop", "" ).SetTitle( "underWaterLoop" );
+		
+		Asset.AddEntry_AssetCombo( "wallrunStart", "surfacesounddef" ).SetTitle( "wallrunStart" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunStart." );
+		Asset.AddEntry_AssetCombo( "wallrunLoop", "surfacesounddef" ).SetTitle( "wallrunLoop" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunLoop." );
+		Asset.AddEntry_AssetCombo( "wallrunEnd", "surfacesounddef" ).SetTitle( "wallrunEnd" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunEnd." );
+		Asset.AddEntry_AssetCombo( "wallrunFootstep", "surfacesounddef" ).SetTitle( "wallrunFootstep" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunFootstep." );
+		Asset.AddEntry_AssetCombo( "wallrunFallStart", "surfacesounddef" ).SetTitle( "wallrunFallStart" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunFallStart." );
+		Asset.AddEntry_AssetCombo( "wallrunFallStep", "surfacesounddef" ).SetTitle( "wallrunFallStep" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunFallStep." );
+		Asset.AddEntry_AssetCombo( "wallrunFallEnd", "surfacesounddef" ).SetTitle( "wallrunFallEnd" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunFallEnd." );
+		
+		Asset.AddEntry_String( "walkStart", "" ).SetTitle( "walkStart" );
+		Asset.AddEntry_String( "walkEnd", "" ).SetTitle( "walkEnd" );
+		Asset.AddEntry_String( "runStart", "" ).SetTitle( "runStart" );
+		Asset.AddEntry_String( "runEnd", "" ).SetTitle( "runEnd" );
+		Asset.AddEntry_String( "sprintStart", "" ).SetTitle( "sprintStart" );
+		Asset.AddEntry_String( "sprintEnd", "" ).SetTitle( "sprintEnd" );
+		Asset.AddEntry_String( "rotateLoop", "" ).SetTitle( "rotateLoop" );
+		Asset.AddEntry_String( "rotateStep", "" ).SetTitle( "rotateStep" );
+		
+		Asset.AddEntry_AssetCombo( "toProne", "surfacesounddef" ).SetTitle( "crouchToProne" ).SetToolTip( "Use this to specify the surfacesounddef asset for the crouchToProne." );
+		Asset.AddEntry_String( "toStand", "" ).SetTitle( "crouchToStand" );
+		Asset.AddEntry_String( "standToCrouch", "" ).SetTitle( "standToCrouch" );
+		Asset.AddEntry_AssetCombo( "proneToCrouch", "surfacesounddef" ).SetTitle( "proneToCrouch" ).SetToolTip( "Use this to specify the surfacesounddef asset for the proneToCrouch." );
+		
+		Asset.AddEntry_String( "assassinationStart", "" ).SetTitle( "assassinationStart" );
+		
+		Asset.AddEntry_String( "meleeTinnitus", "" ).SetTitle( "meleeTinnitus" );
+		
+		//Third Person
+		Asset.AddEntry_String( "jetpackStartThirdPerson", "" ).SetTitle( "jetpackStartThirdPerson" );
+		Asset.AddEntry_String( "jetpackStartFullThirdPerson", "" ).SetTitle( "jetpackStartFullThirdPerson" );
+		Asset.AddEntry_String( "jetpackLoopThirdPerson", "" ).SetTitle( "jetpackLoopThirdPerson" );
+		Asset.AddEntry_String( "jetpackEndThirdPerson", "" ).SetTitle( "jetpackEndThirdPerson" );
+		Asset.AddEntry_String( "jetpackExhaustedThirdPerson", "" ).SetTitle( "jetpackExhaustedThirdPerson" );
+		Asset.AddEntry_String( "jetpackStartThirdPersonEmp", "" ).SetTitle( "jetpackStartThirdPersonEmp" );
+		Asset.AddEntry_String( "jetpackStartFullThirdPersonEmp", "" ).SetTitle( "jetpackStartFullThirdPersonEmp" );
+		//Asset.AddEntry_String( "jetpackLoopThirdPersonEmp", "" ).SetTitle( "jetpackLoopThirdPersonEmp" );
+		//Asset.AddEntry_String( "jetpackEndThirdPersonEmp", "" ).SetTitle( "jetpackEndThirdPersonEmp" );
+		//Asset.AddEntry_String( "jetpackExhaustedThirdPersonEmp", "" ).SetTitle( "jetpackExhaustedThirdPersonEmp" );
+		Asset.AddEntry_String( "jetpackEnergyEmptyThirdPerson", "" ).SetTitle( "jetpackEnergyEmptyThirdPerson" );
+		Asset.AddEntry_String( "jetpackDisabledThirdPerson", "" ).SetTitle( "jetpackDisabledThirdPerson" );
+		
+		Asset.AddEntry_String( "jetpackQuietStartThirdPerson", "" ).SetTitle( "jetpackQuietStartThirdPerson" );
+		Asset.AddEntry_String( "jetpackQuietStartFullThirdPerson", "" ).SetTitle( "jetpackQuietStartFullThirdPerson" );
+		Asset.AddEntry_String( "jetpackQuietLoopThirdPerson", "" ).SetTitle( "jetpackQuietLoopThirdPerson" );
+		Asset.AddEntry_String( "jetpackQuietEndThirdPerson", "" ).SetTitle( "jetpackQuietEndThirdPerson" );
+		Asset.AddEntry_String( "jetpackQuietExhaustedThirdPerson", "" ).SetTitle( "jetpackQuietExhaustedThirdPerson" );
+		Asset.AddEntry_String( "jetpackQuietStartThirdPersonEmp", "" ).SetTitle( "jetpackQuietStartThirdPersonEmp" );
+		Asset.AddEntry_String( "jetpackQuietStartFullThirdPersonEmp", "" ).SetTitle( "jetpackQuietStartFullThirdPersonEmp" );
+		//Asset.AddEntry_String( "jetpackQuietLoopThirdPersonEmp", "" ).SetTitle( "jetpackQuietLoopThirdPersonEmp" );
+		//Asset.AddEntry_String( "jetpackQuietEndThirdPersonEmp", "" ).SetTitle( "jetpackQuietEndThirdPersonEmp" );
+		//Asset.AddEntry_String( "jetpackQuietExhaustedThirdPersonEmp", "" ).SetTitle( "jetpackQuietExhaustedThirdPersonEmp" );
+		Asset.AddEntry_String( "jetpackQuietEnergyEmptyThirdPerson", "" ).SetTitle( "jetpackQuietEnergyEmptyThirdPerson" );
+		Asset.AddEntry_String( "jetpackQuietDisabledThirdPerson", "" ).SetTitle( "jetpackQuietDisabledThirdPerson" );
+		
+		Asset.AddEntry_AssetCombo( "jumpTakeoffThirdPerson", "surfacesounddef" ).SetTitle( "jumpTakeoffThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the jumpTakeoffThirdPerson." );
+		Asset.AddEntry_AssetCombo( "leapTakeoffThirdPerson", "surfacesounddef" ).SetTitle( "leapTakeoffThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the leapTakeoffThirdPerson." );
+		
+		Asset.AddEntry_String( "fallWindThirdPerson", "" ).SetTitle( "fallWindThirdPerson" );
+		Asset.AddEntry_String( "fallDamageThirdPerson", "" ).SetTitle( "fallDamageThirdPerson" );
+		Asset.AddEntry_AssetCombo( "fallImpactThirdPerson", "surfacesounddef" ).SetTitle( "fallImpactThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the fallImpactThirdPerson." );
+		Asset.AddEntry_AssetCombo( "fallImpactSlowThirdPerson", "surfacesounddef" ).SetTitle( "fallImpactSlowThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the fallImpactSlowThirdPerson." );
+		Asset.AddEntry_AssetCombo( "fallImpactMedThirdPerson", "surfacesounddef" ).SetTitle( "fallImpactMedThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the fallImpactMedThirdPerson." );
+		Asset.AddEntry_AssetCombo( "fallImpactFastThirdPerson", "surfacesounddef" ).SetTitle( "fallImpactFastThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the fallImpactFastThirdPerson." );
+		Asset.AddEntry_AssetCombo( "fallImpactRapidThirdPerson", "surfacesounddef" ).SetTitle( "fallImpactRapidThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the fallImpactRapidThirdPerson." );
+		Asset.AddEntry_String( "traverseImpactThirdPerson", "" ).SetTitle( "traverseImpactThirdPerson" );
+		Asset.AddEntry_AssetCombo( "wallrunImpactThirdPerson", "surfacesounddef" ).SetTitle( "wallrunImpactThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunImpactThirdPerson." );
+		
+		Asset.AddEntry_String( "waterImpactSlowThirdPerson", "" ).SetTitle( "waterImpactSlowThirdPerson" );
+		Asset.AddEntry_String( "waterImpactMedThirdPerson", "" ).SetTitle( "waterImpactMedThirdPerson" );
+		Asset.AddEntry_String( "waterImpactFastThirdPerson", "" ).SetTitle( "waterImpactFastThirdPerson" );
+		Asset.AddEntry_String( "waterImpactRapidThirdPerson", "" ).SetTitle( "waterImpactRapidThirdPerson" );
+				
+		Asset.AddEntry_String( "traverseDefaultThirdPerson", "" ).SetTitle( "traverseDefaultThirdPerson" );
+		Asset.AddEntry_String( "traverseStepForwardThirdPerson", "" ).SetTitle( "traverseStepForwardThirdPerson" );
+		Asset.AddEntry_String( "traverseStepBackThirdPerson", "" ).SetTitle( "traverseStepBackThirdPerson" );
+		Asset.AddEntry_String( "traverseStepLeftThirdPerson", "" ).SetTitle( "traverseStepLeftThirdPerson" );
+		Asset.AddEntry_String( "traverseStepRightThirdPerson", "" ).SetTitle( "traverseStepRightThirdPerson" );
+		Asset.AddEntry_String( "traverseOnLowThirdPerson", "" ).SetTitle( "traverseOnLowThirdPerson" );
+		Asset.AddEntry_String( "traverseOnLowBackThirdPerson", "" ).SetTitle( "traverseOnLowBackThirdPerson" );
+		Asset.AddEntry_String( "traverseOnLowLeftThirdPerson", "" ).SetTitle( "traverseOnLowLeftThirdPerson" );
+		Asset.AddEntry_String( "traverseOnLowRightThirdPerson", "" ).SetTitle( "traverseOnLowRightThirdPerson" );
+		Asset.AddEntry_String( "traverseOnMedThirdPerson", "" ).SetTitle( "traverseOnMedThirdPerson" );
+		Asset.AddEntry_String( "traverseOnMedLeftThirdPerson", "" ).SetTitle( "traverseOnMedLeftThirdPerson" );
+		Asset.AddEntry_String( "traverseOnMedRightThirdPerson", "" ).SetTitle( "traverseOnMedRightThirdPerson" );
+		Asset.AddEntry_String( "traverseOverLowVaultThirdPerson", "" ).SetTitle( "traverseOverLowVaultThirdPerson" );
+		Asset.AddEntry_String( "traverseOverLowThirdPerson", "" ).SetTitle( "traverseOverLowThirdPerson" );
+		Asset.AddEntry_String( "traverseOverLowBackThirdPerson", "" ).SetTitle( "traverseOverLowBackThirdPerson" );
+		Asset.AddEntry_String( "traverseOverLowLeftThirdPerson", "" ).SetTitle( "traverseOverLowLeftThirdPerson" );
+		Asset.AddEntry_String( "traverseOverLowRightThirdPerson", "" ).SetTitle( "traverseOverLowRightThirdPerson" );
+		Asset.AddEntry_String( "traverseOverHighThirdPerson", "" ).SetTitle( "traverseOverHighThirdPerson" );
+		Asset.AddEntry_String( "traverseOverHigherThirdPerson", "" ).SetTitle( "traverseOverHigherThirdPerson" );
+		Asset.AddEntry_String( "traverseOverHighestThirdPerson", "" ).SetTitle( "traverseOverHighestThirdPerson" );
+		Asset.AddEntry_String( "traverseOnHigherThirdPerson", "" ).SetTitle( "traverseOnHigherThirdPerson" );
+		Asset.AddEntry_String( "traverseOnHighestThirdPerson", "" ).SetTitle( "traverseOnHighestThirdPerson" );
+		
+		Asset.AddEntry_String( "jukeStartThirdPerson", "" ).SetTitle( "jukeStartThirdPerson" );
+		Asset.AddEntry_String( "jukeLoopThirdPerson", "" ).SetTitle( "jukeLoopThirdPerson" );
+		Asset.AddEntry_String( "jukeEndThirdPerson", "" ).SetTitle( "jukeEndThirdPerson" );
+		
+		Asset.AddEntry_AssetCombo( "slideStartThirdPerson", "surfacesounddef" ).SetTitle( "slideStartThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the slideStartThirdPerson." );
+		Asset.AddEntry_AssetCombo( "slideLoopThirdPerson", "surfacesounddef" ).SetTitle( "slideLoopThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the slideLoopThirdPerson." );
+		Asset.AddEntry_AssetCombo( "slideEndThirdPerson", "surfacesounddef" ).SetTitle( "slideEndThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the slideEndThirdPerson." );
+		Asset.AddEntry_String( "slideEnergyStartThirdPerson", "" ).SetTitle( "slideEnergyStartThirdPerson" );
+		Asset.AddEntry_String( "slideEnergyStartThirdPersonQuiet", "" ).SetTitle( "slideEnergyStartThirdPersonQuiet" );
+		Asset.AddEntry_String( "slideEnergyEmpStartThirdPerson", "" ).SetTitle( "slideEnergyEmpStartThirdPerson" );
+		Asset.AddEntry_String( "slideEnergyEmpStartThirdPersonQuiet", "" ).SetTitle( "slideEnergyEmpStartThirdPersonQuiet" );
+		
+		Asset.AddEntry_String( "sprintEnergyStartThirdPerson", "" ).SetTitle( "sprintEnergyStartThirdPerson" );
+		Asset.AddEntry_String( "sprintEnergyLoopThirdPerson", "" ).SetTitle( "sprintEnergyLoopThirdPerson" );
+		Asset.AddEntry_String( "sprintEnergyEndThirdPerson", "" ).SetTitle( "sprintEnergyEndThirdPerson" );
+		
+		Asset.AddEntry_String( "wallrunEnergyStartThirdPerson", "" ).SetTitle( "wallrunEnergyStartThirdPerson" );
+		Asset.AddEntry_String( "wallrunEnergyLoopThirdPerson", "" ).SetTitle( "wallrunEnergyLoopThirdPerson" );
+		Asset.AddEntry_String( "wallrunEnergyEndThirdPerson", "" ).SetTitle( "wallrunEnergyEndThirdPerson" );
+		Asset.AddEntry_String( "wallrunQuietEnergyStartThirdPerson", "" ).SetTitle( "wallrunQuietEnergyStartThirdPerson" );
+		Asset.AddEntry_String( "wallrunQuietEnergyLoopThirdPerson", "" ).SetTitle( "wallrunQuietEnergyLoopThirdPerson" );
+		Asset.AddEntry_String( "wallrunQuietEnergyEndThirdPerson", "" ).SetTitle( "wallrunQuietEnergyEndThirdPerson" );
+		
+		Asset.AddEntry_String( "swimStartThirdPerson", "" ).SetTitle( "swimStartThirdPerson" );
+		Asset.AddEntry_String( "swimEndThirdPerson", "" ).SetTitle( "swimEndThirdPerson" );
+		Asset.AddEntry_String( "underWaterStartThirdPerson", "" ).SetTitle( "underWaterStartThirdPerson" );
+		Asset.AddEntry_String( "underWaterEndThirdPerson", "" ).SetTitle( "underWaterEndThirdPerson" );
+		Asset.AddEntry_String( "treadLoopThirdPerson", "" ).SetTitle( "treadLoopThirdPerson" );
+		Asset.AddEntry_String( "underWaterLoopThirdPerson", "" ).SetTitle( "underWaterLoopThirdPerson" );
+		
+		Asset.AddEntry_AssetCombo( "wallrunStartThirdPerson", "surfacesounddef" ).SetTitle( "wallrunStartThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunStartThirdPerson." );
+		Asset.AddEntry_AssetCombo( "wallrunLoopThirdPerson", "surfacesounddef" ).SetTitle( "wallrunLoopThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunLoopThirdPerson." );
+		Asset.AddEntry_AssetCombo( "wallrunEndThirdPerson", "surfacesounddef" ).SetTitle( "wallrunEndThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunEndThirdPerson." );
+		Asset.AddEntry_AssetCombo( "wallrunFootstepThirdPerson", "surfacesounddef" ).SetTitle( "wallrunFootstepThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunFootstepThirdPerson." );
+		Asset.AddEntry_AssetCombo( "wallrunFallStartThirdPerson", "surfacesounddef" ).SetTitle( "wallrunFallStartThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunFallStartThirdPerson." );
+		Asset.AddEntry_AssetCombo( "wallrunFallStepThirdPerson", "surfacesounddef" ).SetTitle( "wallrunFallStepThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunFallStepThirdPerson." );
+		Asset.AddEntry_AssetCombo( "wallrunFallEndThirdPerson", "surfacesounddef" ).SetTitle( "wallrunFallEndThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the wallrunFallEndThirdPerson." );
+		
+		Asset.AddEntry_String( "walkStartThirdPerson", "" ).SetTitle( "walkStartThirdPerson" );
+		Asset.AddEntry_String( "walkEndThirdPerson", "" ).SetTitle( "walkEndThirdPerson" );
+		Asset.AddEntry_String( "runStartThirdPerson", "" ).SetTitle( "runStartThirdPerson" );
+		Asset.AddEntry_String( "runEndThirdPerson", "" ).SetTitle( "runEndThirdPerson" );
+		Asset.AddEntry_String( "sprintStartThirdPerson", "" ).SetTitle( "sprintStartThirdPerson" );
+		Asset.AddEntry_String( "sprintEndThirdPerson", "" ).SetTitle( "sprintEndThirdPerson" );
+		
+		Asset.AddEntry_AssetCombo( "toProneThirdPerson", "surfacesounddef" ).SetTitle( "crouchToProneThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the crouchToProneThirdPerson." );
+		Asset.AddEntry_String( "toStandThirdPerson", "" ).SetTitle( "crouchToStandThirdPerson" );
+		Asset.AddEntry_String( "standToCrouchThirdPerson", "" ).SetTitle( "standToCrouchThirdPerson" );
+		Asset.AddEntry_AssetCombo( "proneToCrouchThirdPerson", "surfacesounddef" ).SetTitle( "proneToCrouchThirdPerson" ).SetToolTip( "Use this to specify the surfacesounddef asset for the proneToCrouchThirdPerson." );
+	}
+}

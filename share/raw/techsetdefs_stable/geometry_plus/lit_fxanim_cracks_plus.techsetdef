@@ -1,0 +1,164 @@
+#include "lit_detail_base_mid"
+
+Globals()
+{
+	category = "Geometry Plus"
+	renderFlags = "lit deferred opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+//----------------------------------------------------------------------------------------------
+
+Sampler( "crackSampler" )
+{
+	tile = <texTile00>
+	filter = <filterColor00>
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Crack Map"
+		sortindex = "32"
+	}
+}
+
+Texture( "crackMap" )
+{
+	image = Image( <colorMap00, $white> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Crack Map"
+		sortindex = "30"
+	}
+}
+
+Texture( "crackNormalMap" )
+{
+	image = Image( <colorMap01, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Crack Normal Map"
+		sortindex = "50"
+	}
+}
+
+//----------------------------------------------------------------------------------------------
+
+Color( "colorTint1" )
+{
+	value = "srgb_to_linear( <colorTint1> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Crack Tint"
+		sortindex = "40"
+		color = true
+	}
+}
+
+float2( "colorDetailScale" )
+{
+	x = <colorDetailScaleX>
+	y = <colorDetailScaleY>
+	tweak = Tweak()
+	{
+		category  = "Crack Modifiers"
+		title     = "Detail Scale (X, Y)"
+		sortindex = "20"
+	}
+}
+
+float1( "alphaRevealSoftEdge" )
+{
+	x = <alphaRevealSoftEdge>
+	tweak = Tweak()
+	{
+		category  = "Crack Modifiers"
+		title     = "Reveal Soft Edge"
+		sortindex = "25"
+	}
+}
+
+float1( "alphaRevealRamp" )
+{
+	x = <alphaRevealRamp>
+	tweak = Tweak()
+	{
+		category  = "Crack Modifiers"
+		title     = "Reveal Ramp"
+		sortindex = "35"
+	}
+}
+
+float2( "alphaRevealParms" )
+{
+	x = <alphaRevealSoftEdge>
+	y = <alphaRevealRamp>
+}
+
+float3( "crackReveal" )
+{
+	x = <cg01_x>
+	y = <cg01_y>
+	z = <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Tools Script Faker"
+		title		= "Reveal Thresholds"
+		sortindex	= "10"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.01"
+		color		= false
+	}
+}
+
+//----------------------------------------------------------------------------------------------
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT", "USE_CRACKS"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	defines = "BASE_SPEC", "USE_COLOR_TINT", "USE_DETAIL_MAP"
+	state = "gbuffer opaque"
+	source = "gbuffer_cracks.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}
+

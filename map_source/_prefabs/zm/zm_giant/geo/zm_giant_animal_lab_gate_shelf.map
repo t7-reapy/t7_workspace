@@ -1,0 +1,132 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{0CE6F10D-57F9-489F-81DB-F806B1AF015A}"
+"classname" "worldspawn"
+"_color" "0.607843 0.615686 0.658824"
+"ambient" "0.35"
+"diffusefraction" "0.45"
+"suncolor" "0.615686 0.807843 0.815686"
+"sundiffusecolor" "0.3098 0.2745 0.3058"
+"sundirection" "-153 -54 0"
+"sunisprimarylight" "1"
+"sunlight" "0.6"
+"evmax" "31"
+"evmin" "-32"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{6705996F-589A-11E4-A265-2C27D7F029C0}"
+  contents nonColliding;
+ ( -8 1 0 ) ( -20 1 0 ) ( -20 -1 0 ) t7_metal_rust_ceiling_01 64 64 -22 0 0 0 lightmap_gray 16384 16384 -22 0 0 0
+ ( -20 -1 1 ) ( -20 1 1 ) ( -8 1 1 ) caulk 16 16 -22 0 0 0 lightmap_gray 16384 16384 -22 0 0 0
+ ( -20 -1 1 ) ( -8 -1 1 ) ( -8 -1 -1 ) t7_metal_planter_top_trim 64 8 -22 15 0 0 lightmap_gray 16384 16384 -22 13 0 0
+ ( 2 -1 1 ) ( 2 1 1 ) ( 2 1 -1 ) caulk 16 16 0 13 0 0 lightmap_gray 16384 16384 0 13 0 0
+ ( -8 1 1 ) ( -20 1 1 ) ( -20 1 -1 ) t7_metal_planter_top_trim 64 8 -22 15 0 0 lightmap_gray 16384 16384 -22 13 0 0
+ ( -21 1 1 ) ( -21 -1 1 ) ( -21 -1 -1 ) caulk 16 16 0 13 0 0 lightmap_gray 16384 16384 0 13 0 0
+}
+// brush 1
+{
+ guid "{67059978-589A-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( -21 -62 0 ) ( -21 34 0 ) ( -23 32 0 ) t7_metal_rust_ceiling_01 64 64 -23 16 0 0 lightmap_gray 16384 16384 -23 16 0 0
+ ( -21 34 2 ) ( -21 -62 2 ) ( -23 -64 2 ) t7_metal_rust_ceiling_01 64 64 -23 16 0 0 lightmap_gray 16384 16384 -23 16 0 0
+ ( -21 -62 2 ) ( -21 -62 0 ) ( -23 -64 0 ) caulk 16 -16 -493 -22 180 0 lightmap_gray 16384 -16384 -493 -22 180 0
+ ( -21 -62 0 ) ( -21 -62 2 ) ( -21 62 2 ) t7_metal_planter_top_trim 64 8 -16 15 0 0 lightmap_gray 16384 16384 -16 22 0 0
+ ( -21 62 0 ) ( -21 62 2 ) ( -23 64 2 ) caulk 16 16 -493 22 0 0 lightmap_gray 16384 16384 -493 22 0 0
+ ( -23 32 2 ) ( -23 -64 2 ) ( -23 -64 -6 ) caulk 16 16 -16 22 0 0 lightmap_gray 16384 16384 -16 22 0 0
+}
+// brush 2
+{
+ guid "{67059976-589A-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( -9 -62 0 ) ( -23 -62 0 ) ( -23 -64 0 ) t7_metal_rust_ceiling_01 64 64 -16 16 0 0 lightmap_gray 16384 16384 -64 -55 90 0
+ ( -23 -62 2 ) ( -9 -62 2 ) ( -7 -64 2 ) t7_metal_rust_ceiling_01 64 64 -23 16 0 0 lightmap_gray 16384 16384 -64 -55 90 0
+ ( 2 -62 2 ) ( 2 -62 0 ) ( 4 -64 0 ) caulk 16 16 -598 22 0 0 lightmap_gray 16384 16384 -598 22 0 0
+ ( -21 -62 2 ) ( -21 -62 0 ) ( -9 -62 0 ) t7_metal_planter_top_trim 64 8 -23 15 0 0 lightmap_gray 16384 -16384 55 -22 180 0
+ ( -21 -62 0 ) ( -21 -62 2 ) ( -23 -64 2 ) caulk 16 16 493 22 0 0 lightmap_gray 16384 16384 493 22 0 0
+ ( -103 -64 2 ) ( -7 -64 2 ) ( -7 -64 -6 ) caulk 16 16 -16 22 0 0 lightmap_gray 16384 -16384 55 -22 180 0
+}
+// brush 3
+{
+ guid "{67059975-589A-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( 2 62 0 ) ( 2 -62 0 ) ( 4 -64 0 ) t7_metal_rust_ceiling_01 64 64 -16 16 0 0 lightmap_gray 16384 16384 -4 -16 180 0
+ ( 2 -62 2 ) ( 2 62 2 ) ( 4 64 2 ) t7_metal_rust_ceiling_01 64 64 -23 -16 0 0 lightmap_gray 16384 16384 -4 -16 180 0
+ ( 2 62 2 ) ( 2 62 0 ) ( 4 64 0 ) caulk 16 16 605 22 0 0 lightmap_gray 16384 16384 605 22 0 0
+ ( 2 46 0 ) ( 2 46 2 ) ( 2 -46 2 ) t7_metal_planter_top_trim 64 8 -16 15 0 0 lightmap_gray 16384 -16384 16 -22 180 0
+ ( 2 -62 0 ) ( 2 -62 2 ) ( 4 -64 2 ) caulk 16 -16 605 -22 180 0 lightmap_gray 16384 -16384 605 -22 180 0
+ ( 4 -64 2 ) ( 4 32 2 ) ( 4 32 -6 ) t7_metal_planter_top_trim 64 8 -16 14 0 0 lightmap_gray 16384 -16384 16 -22 180 0
+}
+// brush 4
+{
+ guid "{67059977-589A-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( -22 62 0 ) ( -8 62 0 ) ( -7 64 0 ) t7_metal_rust_ceiling_01 64 64 -16 16 0 0 lightmap_gray 16384 16384 -64 -25 -90 0
+ ( -8 62 2 ) ( -22 62 2 ) ( -23 64 2 ) t7_metal_rust_ceiling_01 64 64 -23 -16 0 0 lightmap_gray 16384 16384 -64 -25 -90 0
+ ( -21 62 2 ) ( -21 62 0 ) ( -23 64 0 ) caulk 16 -16 461 -22 180 0 lightmap_gray 16384 -16384 461 -22 180 0
+ ( -9 62 2 ) ( -9 62 0 ) ( -21 62 0 ) t7_metal_planter_top_trim 64 8 -23 15 0 0 lightmap_gray 16384 16384 25 22 0 0
+ ( 1 61 0 ) ( 1 61 2 ) ( 3 63 2 ) caulk 16 -16 -566 -22 180 0 lightmap_gray 16384 -16384 -566 -22 180 0
+ ( 73 64 2 ) ( -23 64 2 ) ( -23 64 -6 ) caulk 16 16 -16 22 0 0 lightmap_gray 16384 16384 25 22 0 0
+}
+// brush 5
+{
+ guid "{D46E4C96-589B-11E4-A265-2C27D7F029C0}"
+  contents weaponClip detail;
+ ( -9 30 1 ) ( -21 30 1 ) ( -21 -36 1 ) t7_wood_beam_worn_oak 32 128 -23 16 0 0 lightmap_gray 16384 16384 -23 16 0 0
+ ( -21 -36 2 ) ( -21 30 2 ) ( -9 30 2 ) t7_wood_beam_worn_oak 32 128 -23 16 0 0 lightmap_gray 16384 16384 -23 16 0 0
+ ( -21 -62 2 ) ( -9 -62 2 ) ( -9 -62 0 ) caulk 16 16 -23 22 0 0 lightmap_gray 16384 16384 -23 22 0 0
+ ( 2 -37 2 ) ( 2 29 2 ) ( 2 29 0 ) caulk 16 16 -16 22 0 0 lightmap_gray 16384 16384 -16 22 0 0
+ ( -10 62 2 ) ( -22 62 2 ) ( -22 62 0 ) caulk 16 16 -23 22 0 0 lightmap_gray 16384 16384 -23 22 0 0
+ ( -21 30 2 ) ( -21 -36 2 ) ( -21 -36 0 ) caulk 16 16 -16 22 0 0 lightmap_gray 16384 16384 -16 22 0 0
+}
+}
+// entity 1
+{
+guid "{E34692C2-95B9-4076-BAAA-768A8AE3317A}"
+"classname" "misc_model"
+"angles" "360 180 -180"
+"model" "p7_ibeam_bracket_32_l_02"
+"modelscale" "0.239999994635582"
+"origin" "-25 -32 0"
+}
+// entity 2
+{
+guid "{0F844C92-DE78-4E24-9353-3A706CE4FEFC}"
+"classname" "misc_model"
+"angles" "360 180 -180"
+"model" "p7_ibeam_bracket_32_l_02"
+"modelscale" "0.239999994635582"
+"origin" "-25 32 0"
+}
+// entity 3
+{
+guid "{F910017D-B491-4DA7-916E-0129E88BAC29}"
+"classname" "misc_model"
+"angles" "360 270 -180"
+"model" "p7_ibeam_bracket_32_l_02"
+"modelscale" "0.239999994635582"
+"origin" "-2 -66 0"
+}
+// entity 4
+{
+guid "{28007C82-1E41-4613-9D2D-B86AC70BBE53}"
+"classname" "misc_model"
+"angles" "360 90 -180"
+"model" "p7_ibeam_bracket_32_l_02"
+"modelscale" "0.239999994635582"
+"origin" "-2 66 0"
+}

@@ -1,0 +1,127 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isOpaque            = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Replace
+		colorBlendFunc = add
+		colorBlendSrc  = One
+		colorBlendDst  = Zero
+		alphaBlendFunc = add
+		alphaBlendSrc  = One
+		alphaBlendDst  = Zero
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+Sampler( "OverlayMap_Sampler" )
+{
+	tile   = "tile both"
+	filter = "nomip bilinear"
+}
+Texture( "OverlayMap" )
+{
+	image    = Image( <colorMap01> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "texture_assets\\hud\\binocular_overlay_003a.tif"
+	}
+}
+Sampler( "WarpMap_Sampler" )
+{
+	tile   = "tile both"
+	filter = "nomip bilinear"
+}
+Texture( "WarpMap" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "texture_assets\\hud\\binocular_overlay_006.tif"
+	}
+}
+#if TOOLSGFX == "1"
+Texture( "resolvedScene_C4_P0" )
+{
+	image = Image( < sw_codetexture_00 > )
+	tweak = Tweak()
+	{
+		default = "sw4\\textures\\mw2.tif"
+	}
+}
+#endif
+Sampler( "resolvedScene_C4_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+float1( "ScratchStrength" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		title     = "ScratchStrength"
+		sortindex = "0"
+		default   = "0.500000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float2( "WarpAmount" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	tweak = Tweak()
+	{
+		title     = "WarpAmount"
+		sortindex = "0"
+		default   = "0.100000", "0.100000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "DispersionAmount" )
+{
+	x     = <cg02_x>
+	tweak = Tweak()
+	{
+		title     = "DispersionAmount"
+		sortindex = "0"
+		default   = "0.100000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_binoculars.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_REPLACE"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		resolvedScene_C4_P0 = CodeTexture( "resolvedScene" )
+	}
+}

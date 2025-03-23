@@ -1,0 +1,22 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	state  = "add"
+	source = "postFX/postfx_keyline_depth.hlsl"
+
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+		// samplers
+		bilinearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

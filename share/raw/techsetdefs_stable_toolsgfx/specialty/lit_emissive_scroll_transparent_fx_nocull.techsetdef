@@ -1,0 +1,464 @@
+#include "lit_base_basic"
+#include "transparent_shadow_base"
+#include "emissive_base"
+#include "scroll_base"
+#include "flipbook_base"
+#include "flicker_base"
+#include "transparent_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "tintMask" )
+{
+	image = Image()
+	{
+		map = <colorMap01, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "20"
+	}
+}
+
+Texture( "alphaMask" )
+{
+	image = Image()
+	{
+		map = <colorMap02, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Alpha Mask"
+		title     = "Mask Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "distortionMap" )
+{
+	image = Image()
+	{
+		map = <colorMap03, $identitynormalmap>
+	}
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Distortion"
+		title     = "Distortion Map"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "layerDepth" ).tweak = Tweak()
+{
+	category  = "Emissive"
+	title     = "Depth"
+	sortindex = "40"
+}
+float2( "scrollUVs" ).tweak = Tweak()
+{
+	category  = "Base Maps"
+	title     = "Scroll (U, V)"
+	sortindex = "50"
+}
+float2( "rotateUVs" ).tweak = Tweak()
+{
+	category	= "Base Maps"
+	title		= "UV Rotation, Spin Rate"
+	sortindex	= "60"
+}
+float2( "scaleUVs" ).tweak = Tweak()
+{
+	category	= "Base Maps"
+	title		= "Scale (U, V)"
+	sortindex	= "70"
+}
+float2( "offsetUVs" ).tweak = Tweak()
+{
+	category	= "Base Maps"
+	title		= "Offset (U, V)"
+	sortindex	= "80"
+}
+float2( "zoomUVs" ).tweak = Tweak()
+{
+	category	= "Base Maps"
+	title		= "UV Zoom (Min, Max)"
+	sortindex	= "90"
+}
+float1( "zoomRate" ).tweak = Tweak()
+{
+	category	= "Base Maps"
+	title		= "UV Zoom Rate"
+	sortindex	= "100"
+}
+Bool( "clampU" ).tweak = Tweak()
+{
+	category	= "Base Maps"
+	title		= "Clamp U"
+	sortindex	= "110"
+}
+Bool( "clampV" ).tweak = Tweak()
+{
+	category	= "Base Maps"
+	title		= "Clamp V"
+	sortindex	= "120"
+}
+
+float1( "uvMotionToggle1" )
+{
+	x = <uvMotionToggle1>
+	tweak = Tweak()
+	{
+		category	= "Base Maps"
+		title		= "UV Toggle (Fipbook - 1, Scroll/Rotate - 0)"
+		sortindex	= "110"
+	}
+}
+
+float1( "rowCount" ).tweak = Tweak()
+{
+	category	= "Base Maps"
+	title		= "Flipbook Row Count"
+	sortindex	= "120"
+}
+float1( "columnCount" ).tweak = Tweak()
+{
+	category	= "Base Maps"
+	title		= "Flipbook Column Count"
+	sortindex	= "130"
+}
+float1( "imageTime" ).tweak = Tweak()
+{
+	category	= "Base Maps"
+	title		= "Flipbook Image Time"
+	sortindex	= "140"
+}
+
+float2( "flickerSeed" ).tweak = Tweak()
+{
+	category	= "Base Maps"
+	title		= "Flicker Seed (Style, Time)"
+	sortindex	= "150"
+}
+float1( "flickerSpeed" ).tweak = Tweak()
+{
+	category	= "Base Maps"
+	title		= "Flicker Speed"
+	sortindex	= "160"
+}
+float2( "flickerRange" ).tweak = Tweak()
+{
+	category	= "Base Maps"
+	title		= "Flicker Range (Min, Max)"
+	sortindex	= "170"
+}
+float1( "flickerPower" ).tweak = Tweak()
+{
+	category	= "Base Maps"
+	title		= "Flicker Harshness"
+	sortindex	= "180"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "zFeatherDistance" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Alpha Parameters"
+		title		= "Z Feather"
+		sortindex	= "10"
+		default		= "0.0"
+		range		= "0.0", "1e+009", "0.01"
+	}
+}
+
+float1( "falloffBegin" )
+{
+	x = <cg00_y>
+	tweak = Tweak()
+	{
+		category	= "Alpha Parameters"
+		title		= "Falloff Begin"
+		sortindex	= "20"
+		default		= "0.0"
+		range		= "0.0", "180.0", "0.01"
+	}
+}
+
+float1( "falloffEnd" )
+{
+	x = <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Alpha Parameters"
+		title		= "Falloff End"
+		sortindex	= "30"
+		default		= "0.0"
+		range		= "0.0", "180.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "maskRotateUVs" )
+{
+	x = <cg00_w>
+	y = <cg01_x>
+	tweak = Tweak()
+	{
+		category	= "Alpha Mask"
+		title		= "Rotation (Start, Spin)"
+		sortindex	= "20"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+
+float2( "maskScrollUVs" )
+{
+	x = <cg01_y>
+	y = <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Alpha Mask"
+		title		= "Scroll (U, V)"
+		sortindex	= "30"
+		default		= "0.0"
+		range		= "-128.0", "128.0", "0.01"
+	}
+}
+
+float2( "maskScaleUVs" )
+{
+	x = <cg01_w>
+	y = <cg02_x>
+	tweak = Tweak()
+	{
+		category	= "Alpha Mask"
+		title		= "Scale (U, V)"
+		sortindex	= "40"
+		default		= "0.0"
+		range		= "0.0", "128.0", "0.01"
+	}
+}
+
+float2( "maskOffsetUVs" )
+{
+	x = <cg02_y>
+	y = <cg02_z>
+	tweak = Tweak()
+	{
+		category	= "Alpha Mask"
+		title		= "Offset (U, V)"
+		sortindex	= "50"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.01"
+	}
+}
+
+float2( "maskZoomUVs" )
+{
+	x = <cg02_w>
+	y = <cg03_x>
+	tweak = Tweak()
+	{
+		category	= "Alpha Mask"
+		title		= "Zoom (Min, Max)"
+		sortindex	= "60"
+		default		= "1.0"
+		range		= "0.001", "128.0", "0.01"
+	}
+}
+
+float1( "maskZoomRate" )
+{
+	x = <cg03_y>
+	tweak = Tweak()
+	{
+		category	= "Alpha Mask"
+		title		= "Zoom Rate"
+		sortindex	= "70"
+		default		= "0.0"
+		range		= "0.0", "128.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "distortionAmount" )
+{
+	x = <cg03_z>
+	tweak = Tweak()
+	{
+		category	= "Distortion"
+		title		= "Amount"
+		sortindex	= "20"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.01"
+	}
+}
+
+
+float2( "distortionRotateUVs" )
+{
+	x = <cg03_w>
+	y = <cg04_x>
+	tweak = Tweak()
+	{
+		category	= "Distortion"
+		title		= "Rotation (Start, Spin)"
+		sortindex	= "30"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+
+float2( "distortionScrollUVs" )
+{
+	x = <cg04_y>
+	y = <cg04_z>
+	tweak = Tweak()
+	{
+		category	= "Distortion"
+		title		= "Scroll (U, V)"
+		sortindex	= "40"
+		default		= "0.0"
+		range		= "-128.0", "128.0", "0.01"
+	}
+}
+
+float2( "distortionScaleUVs" )
+{
+	x = <cg04_w>
+	y = <cg05_x>
+	tweak = Tweak()
+	{
+		category	= "Distortion"
+		title		= "Scale (U, V)"
+		sortindex	= "50"
+		default		= "0.0"
+		range		= "0.0", "128.0", "0.01"
+	}
+}
+
+float2( "distortionOffsetUVs" )
+{
+	x = <cg05_y>
+	y = <cg05_z>
+	tweak = Tweak()
+	{
+		category	= "Distortion"
+		title		= "Offset (U, V)"
+		sortindex	= "60"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.01"
+	}
+}
+
+float2( "distortionZoomUVs" )
+{
+	x = <cg05_w>
+	y = <cg06_x>
+	tweak = Tweak()
+	{
+		category	= "Distortion"
+		title		= "Zoom (Min, Max)"
+		sortindex	= "70"
+		default		= "1.0"
+		range		= "0.001", "128.0", "0.01"
+	}
+}
+
+float1( "distortionZoomRate" )
+{
+	x = <cg06_y>
+	tweak = Tweak()
+	{
+		category	= "Distortion"
+		title		= "Zoom Rate"
+		sortindex	= "80"
+		default		= "0.0"
+		range		= "0.0", "128.0", "0.01"
+	}
+}
+
+float1( "alphaCooling" )
+{
+	x = <cg06_z>
+	tweak = Tweak()
+	{
+		category	= "Emissive"
+		title		= "Fade Cooling"
+		sortindex	= "300"
+		default		= "1.0"
+		range		= "0.0", "128.0", "0.01"
+	}
+}
+
+float1( "coolingFactor" )
+{
+	x = <cg06_w>
+	tweak = Tweak()
+	{
+		category	= "Emissive"
+		title		= "Cooled Width"
+		sortindex	= "310"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "blend + depth + nocull"
+	defines = "USE_COLOR_TINT", "USE_TINT_MASK"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "blend + depth + nocull"
+	defines = "BASE_TEXTURES", "USE_COLOR_TINT", "USE_TINT_MASK", "USE_SCROLL_ROTATE_UVS", "USE_FLIPBOOK_UVS", "USE_EMISSIVE_FLICKER"
+	source = "specialty/lit_emissive_fx.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		floatZTexture = CodeTexture( "floatZSampler" )
+	}
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + nocull"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

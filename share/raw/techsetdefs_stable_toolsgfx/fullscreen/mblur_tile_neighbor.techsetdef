@@ -1,0 +1,28 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "postfx/mblur_tile_neighbor.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/mblur_tile_neighbor.hlsl"
+
+		// textures
+		codeTexture0 = CodeTexture( "codeTexture0" )
+
+		// samplers
+		pointClamp = Sampler("no tile", "nomip nearest")
+	}
+}

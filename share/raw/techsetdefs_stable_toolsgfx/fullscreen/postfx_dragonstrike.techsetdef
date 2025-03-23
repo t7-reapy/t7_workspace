@@ -1,0 +1,63 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+
+float1( "solidBeam" )
+{
+	x = <cg00_y>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		sortindex = "1"
+     	}
+}
+
+float1( "noiseThreshold" )
+{
+	x = <cg01_y>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		sortindex = "2"
+    }
+}
+
+Texture( "gridTexture" )
+{
+	ref = true
+	image = Image( <colorMap13, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Grid Texture"
+		sortindex = "0"
+	}
+}
+
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "postfx/postfx_dragonstrike.hlsl"
+		defines = "USE_VERTCOL 0"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/postfx_dragonstrike.hlsl"
+		defines = "USE_VERTCOL 0"
+		// textures
+   	     	colorMapSampler  = CodeTexture( "feedback" )
+   		codeTexture0  = CodeTexture( "codeTexture0" )
+  		// samplers
+ 		samplerBilinearWrap = Sampler( "tile both", "mip (1x trilinear)" )
+	}
+}

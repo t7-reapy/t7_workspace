@@ -1,0 +1,430 @@
+#include "lit_base_shaders"
+
+//-------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------
+
+Sampler( "bilinearClamp" )
+{
+	tile   = "no tile"
+	filter = "linear (mip none)"
+}
+Sampler( "pointClamp" )
+{
+	tile   = "no tile"
+	filter = "nearest (mip none)"
+}
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Color"
+		sortindex = "18"
+	}
+}
+
+Texture( "colorMap" )
+{
+	ref = true
+	image = Image( <colorMap, $white> )
+	semantic = "diffuseMap"
+	usage = "diffuse map"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Backscatter Color Ramp"
+		sortindex = "10"
+	}
+}
+
+Texture( "rColorRamp" )
+{
+	image = Image( <colorMap01, $white> )
+	semantic = "diffuseMap"
+	usage = "diffuse map"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Refraction Color Ramp"
+		sortindex = "11"
+	}
+}
+
+Sampler( "normalSampler" )
+{
+	tile = <tileNormal>
+	filter = <filterNormal>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		sortindex = "28"
+	}
+}
+
+Texture( "normalMap" )
+{
+	image = Image( <normalMap, $identitynormalmap> )
+	semantic = "normalMap"
+	usage = "normal map"
+	streamerUvScale = float2( "4.0*<cg02_y>", "4.0*<cg02_y>" )
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Normal Map"
+		sortindex = "20"
+	}
+}
+
+float1( "lobeA" )
+{
+	x = <cg01_x>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Specular Roughness Lobe A"
+		default		= "0.05"
+		range		= "0.005", "1.0", "0.005"
+		sortindex	= 50
+	}
+}
+
+float1( "lobeB" )
+{
+	x = <cg01_y>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Specular Roughness Lobe B"
+		default		= "0.5"
+		range		= "0.005", "1.0", "0.005"
+		sortindex	= 50
+	}
+}
+
+float1( "lobeC" )
+{
+	x = <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Specular Roughness Lobe A Weighting"
+		default		= "0.35"
+		range		= "0.005", "1.0", "0.005"
+		sortindex	= 50
+	}
+}
+
+float1( "refractionS" )
+{
+	x = <cg02_z>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Refraction Distortion Amount"
+		default		= "0."
+		range		= "0.0", "500.0", "1.0"
+		sortindex	= 52
+	}
+}
+
+float1( "reflectionG" )
+{
+	x = <cg02_w>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Reflection Gloss"
+		default		= "0.5"
+		range		= "0.0", "1.0", "0.005"
+		sortindex	= 53
+	}
+}
+
+float1( "normalTile" )
+{
+	x = <cg02_x>
+	tweak = Tweak()
+	{
+		category	= "Normal"
+		title		= "Normal Tile"
+		default		= "251.0"
+		range		= "0.0", "4096.0", "0.1"
+		sortindex	= 29
+	}
+}
+
+float1( "normalScale" )
+{
+	x = <cg02_y>
+	tweak = Tweak()
+	{
+		category	= "Normal"
+		title		= "Normal Scale"
+		default		= "1.0"
+		range		= "0.0", "1.0", "0.005"
+		sortindex	= 30
+	}
+}
+
+float1( "underwaterOpacityScale" )
+{
+	x = <underwaterOpacityScale>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Underwater Opacity Scale"
+		default		= "1.0"
+		range		= "0.0", "1.0", "0.01"
+		sortindex	= 50
+	}
+}
+
+float1( "overwaterOpacityScale" )
+{
+	x = <overwaterOpacityScale>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Overwater Opacity Scale"
+		default		= "1.0"
+		range		= "0.0", "1.0", "0.01"
+		sortindex	= 51
+	}
+}
+
+float1( "invZFeatherDepth" )
+{
+	x = "1.0 / <zFeatherDepth>"
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Specular Z Feather Depth"
+		default		= "10.0"
+		range		= "1.0", "1000.0", "1"
+		sortindex	= 52
+	}
+}
+
+float4( "specularLobeRoughnessControl" )
+{
+	x = "((<cg01_x>*<cg01_x>)*(<cg01_x>*<cg01_x>))-1.0"
+	y = "(<cg01_x>*<cg01_x>)*(<cg01_x>*<cg01_x>)"
+	z = "((<cg01_y>*<cg01_y>)*(<cg01_y>*<cg01_y>))-1.0"
+	w = "(<cg01_y>*<cg01_y>)*(<cg01_y>*<cg01_y>)"
+}
+
+float4( "lobeWeightingThicknessRefraction" )
+{
+	x = "<cg01_z>"
+	y = "1.0-<cg01_z>"
+	z = "1.0"
+	w = "<cg02_z>"
+}
+
+float2( "normalMapScale" )
+{
+	x = "<cg02_x>"
+	y = "<cg02_x> * normalMap.width / normalMap.height"
+}
+
+float2( "opacityScale" )
+{
+	x = "<underwaterOpacityScale>"
+	y = "<overwaterOpacityScale>"
+}
+
+float3( "normalAdjustAndGloss" )
+{
+	x = "4.0*<cg02_y>"
+	y = "-2.0*<cg02_y>"
+	z = "<cg02_w>"
+}
+
+float1( "maxRayDepth" )
+{
+	x = "<maxRayDepth>"
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "SSR maximum ray depth"
+		default		= "500"
+		range		= "1", "10000", "10"
+		sortindex	= 60
+	}
+}
+
+float1( "ssrRayDepthScale" )
+{
+	x = "<ssrRayDepthScale>"
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "SSR ray depth scale"
+		default		= "1"
+		range		= "0", "1000", "0.1"
+		sortindex	= 61
+	}
+}
+
+float1( "ssrRayStepSize" )
+{
+	x = "<ssrRayStepSize>"
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "SSR ray step size"
+		default		= "40"
+		range		= "1", "1000", "5"
+		sortindex	= 62
+	}
+}
+
+float1( "translucentShadowOpacity" )
+{
+	x = <translucentShadowOpacity>
+	tweak = Tweak()
+	{
+		category  = "Lighting"
+		title     = "ShadowTransparency"
+		sortindex = "10"
+	}
+}
+
+
+float1( "translucentShadowOffset" )
+{
+	x = <waterShadowOffset>
+	tweak = Tweak()
+	{
+		category  = "Lighting"
+		title     = "Shadow Offset"
+		sortindex = "11"
+	}
+}
+
+float2( "shadowParams" )
+{
+	x = "<translucentShadowOpacity>"
+	y = "<waterShadowOffset>"
+}
+
+float4( "ssrParams" )
+{
+	x = "<maxRayDepth>"
+	y = "<ssrRayDepthScale>"
+	z = "<ssrRayStepSize>"
+	w = "1.0 / <ssrRayStepSize>"
+}
+
+Bool( "useSSR" )
+{
+  value = <useScreenspaceReflection>
+  tweak = Tweak()
+  {
+    category  = "Surface Parameters"
+    title     = "Use Screenspace Reflection"
+    sortindex = "40"
+  }
+}
+
+Bool( "useLoopedSSR" )
+{
+  value = <useLoopedScreenspaceReflection>
+  tweak = Tweak()
+  {
+    category  = "Surface Parameters"
+    title     = "Use Looped (HQ) SSR"
+    sortindex = "41"
+  }
+}
+
+Bool( "useSpecularZFeather" )
+{
+  value = <zFeather>
+  tweak = Tweak()
+  {
+    category  = "Surface Parameters"
+    title     = "Use Z Feather For Specular"
+    sortindex = "42"
+  }
+}
+
+Bool( "doubleSidedLighting" )
+{
+  value = <doubleSidedLighting>
+  tweak = Tweak()
+  {
+    category  = "Surface Parameters"
+    title     = "Allow double-sided lighting"
+    sortindex = "43"
+  }
+}
+
+//-------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------
+#if TOOLSGFX != "1"
+TechniqueTemplate( "depth prepass base" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+TechniqueTemplate( "depth prepass motion vector base" ) : "depth prepass base"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+TechniqueTemplate( "build shadowmap depth base" )
+{
+//	state = "multiply + depth"
+
+	state = State()
+	{
+		depthTest      = lessEqual
+		depthWrite     = false
+		blendState = "multiply"
+	}
+
+
+	defines += "BUILD_SHADOWMAP 1"
+
+	source = "lit_water_sim.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+#endif
+
+TechniqueTemplate( "unlit base" )
+{
+	state = "replace + depth"
+	defines = "UNLIT_PASS"
+	source = "lit_water_sim.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+TechniqueTemplate( "lit base" )
+{
+#if TOOLSGFX == "1"
+	state	= "blend + depth"
+#else
+	state = "replace + depth + nocull + clear stencil"
+#endif
+	defines += "ALLOW_DOUBLE_SIDED 1"
+	source = "lit_water_sim.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+	#if TOOLSGFX != "1"
+		ifloatZSceneDownsampled = CodeTexture( "floatZDownscaledSampler" )
+		ifloatZScene = CodeTexture( "floatZSampler" )
+		iResolveScene = CodeTexture( "resolvedPostSun" )
+	#endif
+	}
+}
+

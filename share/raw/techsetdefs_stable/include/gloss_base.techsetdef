@@ -1,0 +1,23 @@
+Sampler( "specColorSampler" )
+{
+	tile = <tileSpecular>
+	filter = <filterSpecular>
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		sortindex = "50"
+	}
+}
+
+Texture( "glossMap" )
+{
+	image = Image( <cosinePowerMap, $white_gloss> )
+	semantic = "glossMap"
+	usage = "gloss map"
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Gloss Map"
+		sortindex = "30"
+	}
+}

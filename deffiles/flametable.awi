@@ -1,0 +1,202 @@
+
+void GenerateUI( asset Asset )
+{
+	// Hidden 
+	
+	Asset.AddEntry_Combo( "configstringFileType", "FLAMETABLEFILE" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Other
+	
+	// Materials
+	
+	Asset.BeginCategory( "Misc" );
+	{
+		Asset.AddEntry_String( "name", "" ).SetTitle( "Table Name" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Materials
+	
+	Asset.BeginCategory( "Materials" );
+	{
+		Asset.AddEntry_AssetCombo( "fire", "material" ).SetTitle( "Fire Material" );
+		Asset.AddEntry_AssetCombo( "smoke", "material" ).SetTitle( "Smoke Material" );
+		Asset.AddEntry_AssetCombo( "heat", "material" ).SetTitle( "Heat Material" );
+		Asset.AddEntry_AssetCombo( "drips", "material" ).SetTitle( "Drip Material" );
+		Asset.AddEntry_AssetCombo( "streamFuel", "material" ).SetTitle( "StreamFuel Material" );
+		Asset.AddEntry_AssetCombo( "streamFuel2", "material" ).SetTitle( "StreamFuel2 Material" );
+		Asset.AddEntry_AssetCombo( "streamFlames", "material" ).SetTitle( "StreamFlame Material" );
+		Asset.AddEntry_AssetCombo( "streamFlames2", "material" ).SetTitle( "StreamFlame2 Material" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Sounds	
+
+	Asset.BeginCategory( "Sounds" );
+	{
+		Asset.AddEntry_String( "flameOffLoopSound", "" ).SetTitle( "Flame Off Loop" );
+		Asset.AddEntry_String( "flameIgniteSound", "" ).SetTitle( "Flame Ignite" );
+		Asset.AddEntry_String( "flameOnLoopSound", "" ).SetTitle( "Flame On Loop" );
+		Asset.AddEntry_String( "flameCooldownSound", "" ).SetTitle( "Flame Cooldown" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Stream Variables
+	
+	Asset.BeginCategory( "Stream Variables" );
+	{
+		Asset.AddEntry_Float( "flameVar_streamChunkGravityStart", 200, -10000, 10000 ).SetTitle( "Gravity Start" ).SetToolTip( "Stream Gravity at Start" );
+		Asset.AddEntry_Float( "flameVar_streamChunkGravityEnd", -240, -10000, 10000 ).SetTitle( "Gravity End" ).SetToolTip( "Gravity End" );
+		Asset.AddEntry_Float( "flameVar_streamChunkStartSize", 3, 1, 200 ).SetTitle( "Chunk Size Start" ).SetToolTip( "Starting size of each stream chunk" );
+		Asset.AddEntry_Float( "flameVar_streamChunkEndSize", 60, 1, 500 ).SetTitle( "Chunk Size End" ).SetToolTip( "Goal ending size of each stream chunk" );
+		Asset.AddEntry_Float( "flameVar_streamChunkStartSizeRand", 0.3, 0, 1 ).SetStep( 0.1 ).SetTitle( "Random Size Start" ).SetToolTip( "Maximum percentage of start size to reduce each chunk by randomly" );
+		Asset.AddEntry_Float( "flameVar_streamChunkEndSizeRand", 0.7, 0, 1 ).SetStep( 0.1 ).SetTitle( "Random Size End" ).SetToolTip( "Maximum percentage of end size to reduce each chunk by randomly" );
+		Asset.AddEntry_Float( "flameVar_streamChunkMaxSize", 100, 1, 500 ).SetTitle( "Chunk Size Max" ).SetToolTip( "Maximum size any stream chunk can be" );
+		Asset.AddEntry_Float( "flameVar_streamChunkSizeSpeedScale", 0, -5, 5 ).SetTitle( "Size from Speed" ).SetToolTip( "Controls the rate at which size increases based on current speed" );
+		Asset.AddEntry_Float( "flameVar_streamChunkSizeAgeScale", -2, -5, 5 ).SetTitle( "Size from Age" ).SetToolTip( "Controls the rate at which size increases based on current age" );
+		Asset.AddEntry_Float( "flameVar_streamChunkDistScalar", 1, 0.1, 10 ).SetTitle( "Chunk Spacing" ).SetToolTip( "Controls the chunk spacing.. lower values cause more overlapping, with decreased performance" );
+		Asset.AddEntry_Float( "flameVar_streamChunkDistSwayScale", 0.2, 0.02, 1 ).SetTitle( "Chunk Spacing Turn Scale" ).SetToolTip( "Sets the maximum distance scaling based on angular motion" );
+		Asset.AddEntry_Float( "flameVar_streamChunkDistSwayVelMax", 90, 1, 1000 ).SetTitle( "Max Chunk Spacing Scale" ).SetToolTip( "Sets the maximum sway rate, at which the full dist scaling is applied" );
+		Asset.AddEntry_Float( "flameVar_streamChunkSpeed", 800, 10, 2000 ).SetTitle( "Chunk Speed" ).SetToolTip( "Speed of chunks when they leave the nozzle" );
+		Asset.AddEntry_Float( "flameVar_streamChunkDecel", 0.4, 0, 20 ).SetTitle( "Chunk Decel" ).SetToolTip( "Fraction of current speed to reduce per second" );
+		Asset.AddEntry_Float( "flameVar_streamChunkVelocityAddScale", 0.75, 0, 1 ).SetTitle( "Chunk Speed from Player" ).SetToolTip( "Fraction of movement speed to add to the firing velocity" );
+		Asset.AddEntry_Float( "flameVar_streamChunkDuration", 2.4, 0.02, 10 ).SetTitle( "Chunk Duration" ).SetToolTip( "Lifetime of each chunk in seconds" );
+		Asset.AddEntry_Float( "flameVar_streamChunkDurationScaleMaxVel", 150, 0, 500 ).SetTitle( "Max Vel Scale" ).SetToolTip( "Velocity at which to apply full duration scaling" );
+		Asset.AddEntry_Float( "flameVar_streamChunkDurationVelScalar", 0.4, 0, 1 ).SetTitle( "Max Dur Scale" ).SetToolTip( "Maximum movement duration scalar" );
+		Asset.AddEntry_Float( "flameVar_streamChunkSpawnFireIntervalStart", 0.1, 0.01, 5 ).SetTitle( "Start Fire Spawn Interval" ).SetToolTip( "Interval between spawning flames from chunks at start of chunk life" );
+		Asset.AddEntry_Float( "flameVar_streamChunkSpawnFireIntervalEnd", 0.8, 0.01, 5 ).SetTitle( "End Fire Spawn Interval" ).SetToolTip( "Interval between spawning flames from chunks at end of chunk life" );
+		Asset.AddEntry_Float( "flameVar_streamChunkSpawnFireMinLifeFrac", 0, 0, 1 ).SetTitle( "Life Frac to Start Fire Spawns" ).SetToolTip( "Don't spawn fire before this life frac" );
+		Asset.AddEntry_Float( "flameVar_streamChunkSpawnFireMaxLifeFrac", 0.9, 0.1, 1 ).SetTitle( "Life Frac to Stop Fire Spawns" ).SetToolTip( "Don't spawn fire after this life frac" );
+		Asset.AddEntry_Float( "flameVar_streamChunkFireMinLifeFrac", 0.8, 0, 1 ).SetTitle( "Min Flame Age" ).SetToolTip( "Make sure all flames spawned by chunks are at least this old when spawned" );
+		Asset.AddEntry_Float( "flameVar_streamChunkFireMinLifeFracStart", 0, 0, 1 ).SetTitle( "Min Flame Life Start" ).SetToolTip( "Starting point for adjusting min flame life" );
+		Asset.AddEntry_Float( "flameVar_streamChunkFireMinLifeFracEnd", 0.2, 0, 1 ).SetTitle( "Min Flame Life End" ).SetToolTip( "End point for adjusting min flame life" );
+		Asset.AddEntry_Float( "flameVar_streamChunkDripsMinLifeFrac", 0, 0, 1 ).SetTitle( "Min Drip Age" ).SetToolTip( "Make sure all drips spawned by chunks are at least this old when spawned" );
+		Asset.AddEntry_Float( "flameVar_streamChunkDripsMinLifeFracStart", 0, 0, 1 ).SetTitle( "Min Drip Life Start" ).SetToolTip( "Starting point for adjusting min drip life" );
+		Asset.AddEntry_Float( "flameVar_streamChunkDripsMinLifeFracEnd", 1, 0, 1 ).SetTitle( "Min Flame Drip End" ).SetToolTip( "End point for adjusting min drip life" );
+		Asset.AddEntry_Float( "flameVar_streamChunkRotationRange", 180, 0, 180 ).SetTitle( "Chunk Rotation Range" ).SetToolTip( "Maximum rotation (roll) of chunks" );
+		Asset.AddEntry_Float( "flameVar_streamSizeRandSinWave", 4.13224, 0.1, 50 ).SetTitle( "Sin Thickness variety" ).SetToolTip( "Stream thickness fluctuation frequency (SINE)" );
+		Asset.AddEntry_Float( "flameVar_streamSizeRandCosWave", 7.23244, 0.1, 50 ).SetTitle( "Cos Thickness variety" ).SetToolTip( "Stream thickness fluctuation frequency (COSINE)" );
+		Asset.AddEntry_Float( "flameVar_streamDripsChunkInterval", 0.025, 0.01, 1 ).SetTitle( "Drip Chunk Interval" ).SetToolTip( "Interval between spawning a chunk that will (in it's lifetime) randomly spawn a Drips particle" );
+		Asset.AddEntry_Float( "flameVar_streamDripsChunkMinFrac", 0, 0, 1 ).SetTitle( "Min Drip Spawn Frac" ).SetToolTip( "Minimum life fraction to spawn a Drips particle at" );
+		Asset.AddEntry_Float( "flameVar_streamDripsChunkRandFrac", 0.8, 0, 1 ).SetTitle( "Drip Random Factor" ).SetToolTip( "Random fraction of life frac to add to the minimum fraction when deciding on Drips spawn time" );
+		Asset.AddEntry_Float( "flameVar_streamSmokeChunkInterval", 0.025, 0.01, 1 ).SetTitle( "Smoke Chunk Interval" ).SetToolTip( "Interval between spawning a chunk that will (in it's lifetime) randomly spawn a Smoke particle" );
+		Asset.AddEntry_Float( "flameVar_streamSmokeChunkMinFrac", 0, 0, 1 ).SetTitle( "Min Smoke Spawn Frac" ).SetToolTip( "Minimum life fraction to spawn a Smoke particle at" );	
+		Asset.AddEntry_Float( "flameVar_streamSmokeChunkRandFrac", 0.8, 0, 1 ).SetTitle( "Smoke Random Factor" ).SetToolTip( "Random fraction of life frac to add to the minimum fraction when deciding on Smoke spawn time" );
+		Asset.AddEntry_Float( "flameVar_streamChunkCullMinLife", 0.2, 0, 1 ).SetTitle( "Min Cull Age" ).SetToolTip( "Don't cull chunks younger than this age" );
+		Asset.AddEntry_Float( "flameVar_streamChunkCullMaxLife", 0.8, 0, 1 ).SetTitle( "Max Cull Age" ).SetToolTip( "Don't cull chunks older than this age" );
+		Asset.AddEntry_Float( "flameVar_streamChunkCullDistSizeFrac", 0.2, 0, 3 ).SetTitle( "Cull Percent" ).SetToolTip( "Cull chunks within this percentage of our size" );
+		Asset.AddEntry_Float( "flameVar_streamFuelSizeStart", 1, 0.1, 50 ).SetTitle( "Fuel Start Size" ).SetToolTip( "Stream fuel size at start" );
+		Asset.AddEntry_Float( "flameVar_streamFuelSizeEnd", 3, 0.1, 50 ).SetTitle( "Fuel End Size" ).SetToolTip( "Stream fuel size at end" );
+		Asset.AddEntry_Float( "flameVar_streamFuelLength", 96, 0.01, 512 ).SetTitle( "Fuel Length" ).SetToolTip( "Stream fuel length" );
+		Asset.AddEntry_Float( "flameVar_streamFuelNumSegments", 16, 1, 200 ).SetTitle( "Num Fuel Segments" ).SetToolTip( "Number of stream fuel segments" );
+		Asset.AddEntry_Float( "flameVar_streamFuelAnimLoopTime", 1, 0.1, 5 ).SetTitle( "Fuel Loop Time" ).SetToolTip( "Animation cycle time for animated fuel sprites" );
+		Asset.AddEntry_Float( "flameVar_streamFlameSizeStart", 1, 0.1, 50 ).SetTitle( "Flame Size Start" ).SetToolTip( "Stream flame size at start" );
+		Asset.AddEntry_Float( "flameVar_streamFlameSizeEnd", 3, 0.1, 50 ).SetTitle( "Flame Size End" ).SetToolTip( "Stream flame size at end" );
+		Asset.AddEntry_Float( "flameVar_streamFlameLength", 96, 0.01, 512 ).SetTitle( "Flame Length" ).SetToolTip( "Stream flame length" );
+		Asset.AddEntry_Float( "flameVar_streamFlameNumSegments", 16, 1, 128 ).SetTitle( "Flame Segments" ).SetToolTip( "Number of stream flame segments" );
+		Asset.AddEntry_Float( "flameVar_streamFlameAnimLoopTime", 1, 0.1, 5 ).SetTitle( "Flame Loop Time" ).SetToolTip( "Animation cycle time for animated flame sprites" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Light Variables
+	
+	Asset.BeginCategory( "Light Variables" );
+	{
+		Asset.AddEntry_Float( "flameVar_streamPrimaryLightRadius", 750, 0, 1000 ).SetTitle( "Primary Light Radius" ).SetToolTip( "Primary flamethrower light source radius" );
+		Asset.AddEntry_Float( "flameVar_streamPrimaryLightRadiusFlutter", 120, 0, 1000 ).SetTitle( "Primary Light Flutter Radius" ).SetToolTip( "Primary flamethrower light source radius modulation" );
+		Asset.AddEntry_Float( "flameVar_streamPrimaryLightR", 0.7, 0, 1 ).SetTitle( "Primary Light Red" ).SetToolTip( "Primary flamethrower light source color R" );
+		Asset.AddEntry_Float( "flameVar_streamPrimaryLightG", 0.4, 0, 1 ).SetTitle( "Primary Light Green" ).SetToolTip( "Primary flamethrower light source color G" );
+		Asset.AddEntry_Float( "flameVar_streamPrimaryLightB", 0, 0, 1 ).SetTitle( "Primary Light Blue" ).SetToolTip( "Primary flamethrower light source color B" );
+		Asset.AddEntry_Float( "flameVar_streamPrimaryLightFlutterR", 0.1, 0, 1 ).SetTitle( "Primary Flutter Red" ).SetToolTip( "Primary flamethrower light source color modulation R" );
+		Asset.AddEntry_Float( "flameVar_streamPrimaryLightFlutterG", 0.1, 0, 1 ).SetTitle( "Primary Flutter Green" ).SetToolTip( "Primary flamethrower light source color modulation G" );
+		Asset.AddEntry_Float( "flameVar_streamPrimaryLightFlutterB", 0.1, 0, 1 ).SetTitle( "Primary Flutter Blue" ).SetToolTip( "Primary flamethrower light source color modulation B" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Fire Variables
+	
+	Asset.BeginCategory( "Fire Variables" );
+	{
+		Asset.AddEntry_Float( "flameVar_fireLife", 0.8, 0.1, 3 ).SetTitle( "Fire Lifetime" ).SetToolTip( "Life duration of flames" );
+		Asset.AddEntry_Float( "flameVar_fireLifeRand", 0.6, 0, 3 ).SetTitle( "Fire Life Rand" ).SetToolTip( "Random additive applied to life duration" );
+		Asset.AddEntry_Float( "flameVar_fireSpeedScale", 0.75, 0, 1 ).SetTitle( "Fire Speed Scale" ).SetToolTip( "Fraction of chunk speed that is applied to starting velocity of flames" );
+		Asset.AddEntry_Float( "flameVar_fireSpeedScaleRand", 0.5, 0, 1 ).SetTitle( "Fire Speed Scale Rand" ).SetToolTip( "Randomize speed scale by this fraction" );
+		Asset.AddEntry_Float( "flameVar_fireVelocityAddZ", 60, -200, 200 ).SetTitle( "Fire Z Vel" ).SetToolTip( "Upwards velocity applied to flame velocity" );
+		Asset.AddEntry_Float( "flameVar_fireVelocityAddZRand", -20, -200, 200 ).SetTitle( "Fire Z Vel Rand" ).SetToolTip( "Random additive applied to upwards velocity" );
+		Asset.AddEntry_Float( "flameVar_fireVelocityAddSideways", 0.3, 0, 1 ).SetTitle( "Fire Side Vel" ).SetToolTip( "Random sideways velocity as fraction of forward velocity" );
+		Asset.AddEntry_Float( "flameVar_fireGravity", -200, -500, 0 ).SetTitle( "Fire Gravity" ).SetToolTip( "Fire gravity at start of life" );
+		Asset.AddEntry_Float( "flameVar_fireGravityEnd", -300, -500, 0 ).SetTitle( "Fire Gravity Rand" ).SetToolTip( "Fire gravity at end of life" );
+		Asset.AddEntry_Float( "flameVar_fireMaxRotVel", 60, 0, 200 ).SetTitle( "Fire Max RotVel" ).SetToolTip( "Maximum rotational velocity of flame" );
+		Asset.AddEntry_Float( "flameVar_fireFriction", 4, 0, 10 ).SetTitle( "Fire Friction" ).SetToolTip( "Fraction of starting velocity to decelerate per second" );
+		Asset.AddEntry_Float( "flameVar_fireEndSizeAdd", 15, 0, 100 ).SetTitle( "Fire End Size" ).SetToolTip( "Add this to the size of the chunk, to give the end size of the flame" );
+		Asset.AddEntry_Float( "flameVar_fireStartSizeScale", 1, 0.1, 20 ).SetTitle( "Fire Start Scale" ).SetToolTip( "Multiply this by the size of the chunk, to give the start size of the flame" );
+		Asset.AddEntry_Float( "flameVar_fireEndSizeScale", 1, 0, 20 ).SetTitle( "Fire End Scale" ).SetToolTip( "Multiply this by the size of the chunk, to give the end size of the flame" );
+		Asset.AddEntry_Float( "flameVar_fireBrightness", 0.5, 0, 1 ).SetTitle( "Fire Brightness" ).SetToolTip( "Brightness value of fire. 1.0 = untouched" );	
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Drip Variables
+	
+	Asset.BeginCategory( "Drip Variables" );
+	{
+		Asset.AddEntry_Float( "flameVar_dripsLife", 5, 0.1, 10 ).SetTitle( "Drips Lifetime" ).SetToolTip( "Life duration of drips" );
+		Asset.AddEntry_Float( "flameVar_dripsLifeRand", 0.6, 0, 3 ).SetTitle( "Drips Life Rand" ).SetToolTip( "Random additive applied to life duration" );
+		Asset.AddEntry_Float( "flameVar_dripsSpeedScale", 0.75, 0, 1 ).SetTitle( "Drips Speed Scale" ).SetToolTip( "Fraction of chunk speed that is applied to starting velocity of drips" );
+		Asset.AddEntry_Float( "flameVar_dripsSpeedScaleRand", 0.5, 0, 1 ).SetTitle( "Drips Speed Scale Rand" ).SetToolTip( "Randomize speed scale by this fraction" );
+		Asset.AddEntry_Float( "flameVar_dripsVelocityAddZ", 60, -200, 200 ).SetTitle( "Drips Z Vel" ).SetToolTip( "Upwards velocity applied to drips velocity" );
+		Asset.AddEntry_Float( "flameVar_dripsVelocityAddZRand", -20, -200, 200 ).SetTitle( "Drips Z Vel Rand" ).SetToolTip( "Random additive applied to upwards velocity" );
+		Asset.AddEntry_Float( "flameVar_dripsVelocityAddSideways", 0.3, 0, 1 ).SetTitle( "Drips Side Vel" ).SetToolTip( "Random sideways velocity as fraction of forward velocity" );
+		Asset.AddEntry_Float( "flameVar_dripsGravity", 200, -1000, 1000 ).SetTitle( "Drips Gravity" ).SetToolTip( "Drips gravity at start of life" );
+		Asset.AddEntry_Float( "flameVar_dripsGravityEnd", 200, -1000, 1000 ).SetTitle( "Drips Gravity Rand" ).SetToolTip( "Drips gravity at end of life" );
+		Asset.AddEntry_Float( "flameVar_dripsMaxRotVel", 60, 0, 200 ).SetTitle( "Drips Max RotVel" ).SetToolTip( "Maximum rotational velocity of drips" );
+		Asset.AddEntry_Float( "flameVar_dripsFriction", 4, 0, 10 ).SetTitle( "Drips Friction" ).SetToolTip( "Fraction of starting velocity to decelerate per second" );
+		Asset.AddEntry_Float( "flameVar_dripsEndSizeAdd", 0, 0, 100 ).SetTitle( "Drips End Size" ).SetToolTip( "Add this to the size of the chunk, to give the end size of the drips" );
+		Asset.AddEntry_Float( "flameVar_dripsStartSizeScale", 0.1, 0.1, 20 ).SetTitle( "Drips Start Scale" ).SetToolTip( "Multiply this by the size of the chunk, to give the start size of the drips" );
+		Asset.AddEntry_Float( "flameVar_dripsEndSizeScale", 0, 0, 20 ).SetTitle( "Drips End Scale" ).SetToolTip( "Multiply this by the size of the chunk, to give the end size of the flame" );
+		Asset.AddEntry_Float( "flameVar_dripsBrightness", 0.5, 0, 1 ).SetTitle( "Drip Brightness" ).SetToolTip( "Brightness value of drips. 1.0 = untouched" );	
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Smoke Variables
+	
+	Asset.BeginCategory( "Smoke Variables" );
+	{
+		Asset.AddEntry_Float( "flameVar_smokeLife", 2.5, 0.1, 5 ).SetTitle( "Smoke Lifetime" ).SetToolTip( "Life duration of smoke" );
+		Asset.AddEntry_Float( "flameVar_smokeLifeRand", 1, 0.1, 5 ).SetTitle( "Smoke Life Rand" ).SetToolTip( "Random additive applied to life duration" );
+		Asset.AddEntry_Float( "flameVar_smokeSpeedScale", 0.35, 0, 1 ).SetTitle( "Smoke Speed Scale" ).SetToolTip( "Fraction of chunk speed that is applied to starting velocity of smoke" );
+		Asset.AddEntry_Float( "flameVar_smokeVelocityAddZ", 10, 0, 100 ).SetTitle( "Smoke Z Vel" ).SetToolTip( "Upwards velocity applied to drips velocity" );
+		Asset.AddEntry_Float( "flameVar_smokeGravity", -80, -500, 0 ).SetTitle( "Smoke Gravity" ).SetToolTip( "Smoke gravity at start of life" );
+		Asset.AddEntry_Float( "flameVar_smokeGravityEnd", -100, -500, 0 ).SetTitle( "Smoke Gravity Rand" ).SetToolTip( "Smoke gravity at end of life" );
+		Asset.AddEntry_Float( "flameVar_smokeMaxRotation", 20, 0, 180 ).SetTitle( "Smoke Max Rot" ).SetToolTip( "Maximum rotation (ROLL) of smoke" );
+		Asset.AddEntry_Float( "flameVar_smokeMaxRotVel", 20, 0, 200 ).SetTitle( "Smoke Max RotVel" ).SetToolTip( "Maximum rotational velocity of smoke" );
+		Asset.AddEntry_Float( "flameVar_smokeFriction", 4, 0, 10 ).SetTitle( "Smoke Friction" ).SetToolTip( "Fraction of starting velocity to decelerate per second" );
+		Asset.AddEntry_Float( "flameVar_smokeEndSizeAdd", 80, 0, 200 ).SetTitle( "Smoke Start Size" ).SetToolTip( "Add this to the size of the chunk, to give the start size of the smoke" );
+		Asset.AddEntry_Float( "flameVar_smokeStartSizeAdd", 20, 0, 200 ).SetTitle( "Smoke End Size" ).SetToolTip( "Add this to the size of the chunk, to give the end size of the smoke" );
+		Asset.AddEntry_Float( "flameVar_smokeOriginSizeOfsZScale", 0.7, 0, 3 ).SetTitle( "Smoke Size Z Ofs" ).SetToolTip( "Fraction of size to add to the Z origin of the smoke" );
+		Asset.AddEntry_Float( "flameVar_smokeOriginOfsZ", 4, -30, 100 ).SetTitle( "Smoke Z Ofs" ).SetToolTip( "Absolute value to add to the starting Z origin" );
+		Asset.AddEntry_Float( "flameVar_smokeFadein", 0.5, 0, 1 ).SetTitle( "Smoke Fadein" ).SetToolTip( "Fraction of life to spend fading the smoke in" );
+		Asset.AddEntry_Float( "flameVar_smokeFadeout", 0.5, 0, 1 ).SetTitle( "Smoke Fadeout" ).SetToolTip( "Fraction of life to spend fading the smoke out" );	
+		Asset.AddEntry_Float( "flameVar_smokeMaxAlpha", 0.2, 0, 1 ).SetTitle( "Max Smoke Alpha" ).SetToolTip( "Maximum alpha for smoke" );	
+		Asset.AddEntry_Float( "flameVar_smokeBrightness", 0.5, 0, 1 ).SetTitle( "Smoke Brightness" ).SetToolTip( "Brightness value of smoke. 1.0 = untouched" );	
+		Asset.AddEntry_Float( "flameVar_smokeOriginOffset", 72, 0, 300 ).SetTitle( "Smoke Spawn Ofs" ).SetToolTip( "Offset multiplier to shift smoke create location" );	
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Collision Variables
+	
+	Asset.BeginCategory( "Collision Variables" );
+	{
+		Asset.AddEntry_Float( "flameVar_collisionSpeedScale", 0.6, 0, 1 ).SetTitle( "Coll Speed Scale" ).SetToolTip( "Reduce speed by this scale when colliding with solid objects" );
+		Asset.AddEntry_Float( "flameVar_collisionVolumeScale", 0.5, 0, 10 ).SetTitle( "Coll Vol Scale" ).SetToolTip( "Value used to scale the volume/size of the flame chunks used for character collision" );
+	}
+}

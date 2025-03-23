@@ -1,0 +1,42 @@
+Texture( "thermalHeatmap" )
+{
+	image = Image( <heatmap, $gray_32_one_channel> )
+	semantic = "One Channel"
+	tweak = Tweak( "Thermal", "Heatmap", "500" )
+}
+
+Sampler( "thermalHeatmapSampler" )
+{
+	tile = "tile both"
+	filter = "linear (mip linear)"
+}
+
+//-------------------------------------------------------
+
+State( "thermal" )
+{
+	blendState = BlendState()
+	{
+		colorBlendFunc = disable
+		alphaBlendFunc = disable
+		writeChannels  = "rg"
+	}
+	depthTest  = less
+	depthWrite = true
+}
+
+State( "thermal nocull" ) : "thermal"
+{
+	cull = None
+}
+
+//-------------------------------------------------------
+
+Technique( "thermal" )
+{
+	state = "thermal"
+	source = "specialty/thermal_solid.hlsl"
+
+	vs = VertexShader() { }
+	ps = PixelShader() { }
+}

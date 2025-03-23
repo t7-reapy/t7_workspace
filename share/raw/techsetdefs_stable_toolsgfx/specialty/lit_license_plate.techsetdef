@@ -1,0 +1,201 @@
+#include "lit_base_basic"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit deferred opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "characterColorMap" )
+{
+	image = Image( <colorMap00, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category	= "Dynamic Characters"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "characterNormalMap" )
+{
+	image = Image( <colorMap01, $normal> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category	= "Dynamic Characters"
+		title		= "Normal Map"
+		sortindex	= "20"
+	}
+}
+
+Texture( "characterRevealMap" )
+{
+	image = Image( <colorMap02, $white_multimask> )
+	semantic = "multipleMask"
+	tweak = Tweak()
+	{
+		category	= "Dynamic Characters"
+		title		= "Separation Map"
+		sortindex	= "30"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "charOffset1" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Script Simulation (Tools)"
+		title		= "Character Offset1"
+		sortindex	= "10"
+	}
+}
+float1( "charOffset2" )
+{
+	x = <cg00_y>
+	tweak = Tweak()
+	{
+		category	= "Script Simulation (Tools)"
+		title		= "Character Offset2"
+		sortindex	= "20"
+	}
+}
+float1( "charOffset3" )
+{
+	x = <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Script Simulation (Tools)"
+		title		= "Character Offset3"
+		sortindex	= "30"
+	}
+}
+float1( "charOffset4" )
+{
+	x = <cg00_w>
+	tweak = Tweak()
+	{
+		category	= "Script Simulation (Tools)"
+		title		= "Character Offset4"
+		sortindex	= "40"
+	}
+}
+float1( "charOffset5" )
+{
+	x = <cg01_x>
+	tweak = Tweak()
+	{
+		category	= "Script Simulation (Tools)"
+		title		= "Character Offset5"
+		sortindex	= "50"
+	}
+}
+float1( "charOffset6" )
+{
+	x = <cg01_y>
+	tweak = Tweak()
+	{
+		category	= "Script Simulation (Tools)"
+		title		= "Character Offset6"
+		sortindex	= "60"
+	}
+}
+float1( "charOffset7" )
+{
+	x = <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Script Simulation (Tools)"
+		title		= "Character Offset7"
+		sortindex	= "70"
+	}
+}
+float1( "charOffset8" )
+{
+	x = <cg01_w>
+	tweak = Tweak()
+	{
+		category	= "Script Simulation (Tools)"
+		title		= "Character Offset8"
+		sortindex	= "80"
+	}
+}
+
+float1( "charListCount" )
+{
+	x = <cg02_x>
+	tweak = Tweak()
+	{
+		category	= "Dynamic Characters"
+		title		= "Characters in List"
+		sortindex	= "100"
+	}
+}
+
+float1( "charPosCount" )
+{
+	x = <cg02_y>
+	tweak = Tweak()
+	{
+		category	= "Dynamic Characters"
+		title		= "Characters on Plate"
+		sortindex	= "101"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque"
+	defines = "BASE_TEXTURES"
+	source = "specialty\gbuffer_license_plate.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/debug_texeldensity.hlsl"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/debug_texeldensity.hlsl"
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

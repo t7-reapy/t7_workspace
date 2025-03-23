@@ -1,0 +1,175 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+	availablePrefixes = ""
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearClampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+
+Texture( "revealMap" )
+{
+	image    = Image( <colorMap00, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Reveal"
+		title		= "Reveal Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "diffuseMap" )
+{
+	image    = Image( <colorMap01, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "highlightMap" )
+{
+	image    = Image( <colorMap02, $black_diffuse> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Highlight Map"
+		sortindex	= "20"
+	}
+}
+
+Texture( "vignetteMap" )
+{
+	image    = Image( <colorMap03, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Health Vignette Map"
+		sortindex	= "30"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "bloodBrightness" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "BloodBrightness"
+		sortindex	= "120"
+		default		= "1.000000"
+		range		= "-1e+009", "1e+009", "0.01"
+		color		= false
+	}
+}
+
+float1( "bloodIntensity" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "BloodIntensity"
+		sortindex	= "130"
+		default		= "1.000000"
+		range		= "-1e+009", "1e+009", "0.01"
+		color		= false
+	}
+}
+
+float1( "highlightBrightness" )
+{
+	x     = <cg02_x>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "HighlightBrightness"
+		sortindex	= "140"
+		default		= "1.000000"
+		range		= "0.0", "16.0", "0.01"
+		color		= false
+	}
+}
+
+float1( "highlightFalloff" )
+{
+	x     = <cg03_x>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "HighlightFalloff"
+		sortindex	= "150"
+		default		= "1.000000"
+		range		= "0.0", "16.0", "0.01"
+		color		= false
+	}
+}
+
+float1( "highlightMin" )
+{
+	x     = <cg04_x>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "HighlightMinimum"
+		sortindex	= "160"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.01"
+		color		= false
+	}
+}
+
+float1( "vignettePulse" )
+{
+	x     = <cg05_x>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Vignette Pulse Period"
+		sortindex	= "170"
+		default		= "0.17"
+		range		= "0.0", "1e+009", "0.01"
+		color		= false
+	}
+}
+
+float1( "blurPixels" )
+{
+	x     = <cg00_y>
+	tweak = Tweak()
+	{
+		category	= "Framebuffer"
+		title		= "Blur Width (Pixels)"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/feedback_blood.hlsl"
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

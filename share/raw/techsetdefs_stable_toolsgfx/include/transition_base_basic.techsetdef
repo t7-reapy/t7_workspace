@@ -1,0 +1,133 @@
+Sampler( "transitionSampler" )
+{
+	tile = <tileTransition>
+	filter = <filterTransition>
+	tweak = Tweak()
+	{
+		category  = "Transition"
+		sortindex = "0" // leave some indices to have other color maps (need 2 indices - tile + filter)
+	}
+}
+
+Texture( "transColorMap" )
+{
+	ref = true
+	image = Image( <transColorMap, $white> )
+	semantic = "diffuseMap"
+	usage = "diffuse map"
+	tweak = Tweak()
+	{
+		category  = "Transition"
+		title     = "Color Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "transNormalMap" )
+{
+	image = Image( <transNormalMap, $identitynormalmap> )
+	semantic = "normalMap"
+	usage = "normal map"
+	tweak = Tweak()
+	{
+		category  = "Transition"
+		title     = "Normal Map"
+		sortindex = "20"
+	}
+}
+
+Texture( "transRevealMap" )
+{
+	image = Image( <transRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Transition"
+		title     = "Reveal Map"
+		sortindex = "50"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "transColorTint" )
+{
+	value = "srgb_to_linear( <transColorTint> )"
+	tweak = Tweak()
+	{
+		category  = "Transition"
+		title     = "Albedo Tint"
+		sortindex = "15"
+		color = true
+	}
+}
+
+float1( "transNormalHeight" )
+{
+	x = <transNormalHeightScale>
+	tweak = Tweak()
+	{
+		category  = "Transition"
+		title     = "Height Scale"
+		sortindex = "25"
+	}
+}
+
+float2( "transGlossRange" )
+{
+	x = <transGlossRangeMin>
+	y = <transGlossRangeMax>
+	tweak = Tweak()
+	{
+		category  = "Transition"
+		title     = "Gloss Range"
+		sortindex = "45"
+	}
+}
+
+float1( "transRevealSoftEdge" )
+{
+	x = <alphaRevealSoftEdge>
+	tweak = Tweak()
+	{
+		category  = "Transition"
+		title     = "Reveal Soft Edge"
+		sortindex = "55"
+	}
+}
+
+float1( "transRevealRamp" )
+{
+	x = <alphaRevealRamp>
+	tweak = Tweak()
+	{
+		category  = "Transition"
+		title     = "Reveal Ramp"
+		sortindex = "58"
+	}
+}
+
+float2( "transScale" )
+{
+	x = <transScaleX>
+	y = <transScaleY>
+	tweak = Tweak()
+	{
+		category  = "Transition"
+		title     = "Tiling"
+		sortindex = "85"
+	}
+}
+
+float1( "scriptReplacement" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category  = "Transition"
+		title     = "Reveal (Tools Only)"
+		sortindex = "59"
+		default   = "0.0"
+		range     = "0", "1", "0.01"
+	}
+}

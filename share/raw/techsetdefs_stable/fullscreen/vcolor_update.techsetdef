@@ -1,0 +1,34 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Texture( "colorMap" )
+{
+	ref = true
+	image = Image( <colorMap14, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Color Map"
+		sortindex = "0"
+	}
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader() { source = "vcolor_update.hlsl" }
+
+	ps = PixelShader()
+	{
+		source = "vcolor_update.hlsl"
+
+		baseLut2DSampler = "colorMap"
+	}
+}

@@ -1,0 +1,942 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{14D19682-0FF6-11E5-939F-2C27D7EF3DD8}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lightingquality" "1024"
+"newsun" "1"
+"samplescale" "1"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{00E7DB5B-A112-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail;
+ ( -40 -29 4 ) ( -41 -29 4 ) ( -41 -30 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -41 -30 24 ) ( -41 -29 24 ) ( -40 -29 24 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -41 -30 24 ) ( -40 -30 24 ) ( -40 -30 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -40 -30 24 ) ( -40 -29 24 ) ( -40 -29 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -40 -29 24 ) ( -41 -29 24 ) ( -41 -29 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -41 -29 24 ) ( -41 -30 24 ) ( -41 -30 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{C93F2E61-A112-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail;
+ ( -40 -0.5 4 ) ( -41 -0.5 4 ) ( -41 -1.5 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 -28.5 0 0
+ ( -41 -1.5 24 ) ( -41 -0.5 24 ) ( -40 -0.5 24 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 -28.5 0 0
+ ( -41 -1.5 24 ) ( -40 -1.5 24 ) ( -40 -1.5 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -40 -1.5 24 ) ( -40 -0.5 24 ) ( -40 -0.5 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 28.5 0 0 0
+ ( -40 -0.5 24 ) ( -41 -0.5 24 ) ( -41 -0.5 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -41 -0.5 24 ) ( -41 -1.5 24 ) ( -41 -1.5 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 28.5 0 0 0
+}
+// brush 2
+{
+ guid "{A2A0540D-A112-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail;
+ ( 39 -29 4 ) ( 38 -29 4 ) ( 38 -30 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 79 0 0 0
+ ( 38 -30 24 ) ( 38 -29 24 ) ( 39 -29 24 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 79 0 0 0
+ ( 38 -30 24 ) ( 39 -30 24 ) ( 39 -30 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 79 0 0 0
+ ( 39 -30 24 ) ( 39 -29 24 ) ( 39 -29 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 39 -29 24 ) ( 38 -29 24 ) ( 38 -29 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 79 0 0 0
+ ( 38 -29 24 ) ( 38 -30 24 ) ( 38 -30 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 3
+{
+ guid "{9742089E-A112-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail;
+ ( -15 -29 4 ) ( -16 -29 4 ) ( -16 -30 4 ) t7_plastic_rubber_trim 8 64 -221 1457.5 0 0 lightmap_gray 16384 16384 25 0 0 0
+ ( -16 -30 24 ) ( -16 -29 24 ) ( -15 -29 24 ) t7_plastic_rubber_trim 8 64 -221 1457.5 0 0 lightmap_gray 16384 16384 25 0 0 0
+ ( -16 -30 24 ) ( -15 -30 24 ) ( -15 -30 4 ) t7_plastic_rubber_trim 8 64 -221 1457.5 0 0 lightmap_gray 16384 16384 25 0 0 0
+ ( -15 -30 24 ) ( -15 -29 24 ) ( -15 -29 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -15 -29 24 ) ( -16 -29 24 ) ( -16 -29 4 ) t7_plastic_rubber_trim 8 64 -221 1457.5 0 0 lightmap_gray 16384 16384 25 0 0 0
+ ( -16 -29 24 ) ( -16 -30 24 ) ( -16 -30 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 4
+{
+ guid "{974208A7-A112-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail;
+ ( 15 -29 4 ) ( 14 -29 4 ) ( 14 -30 4 ) t7_plastic_rubber_trim 8 64 -215 1457.5 0 0 lightmap_gray 16384 16384 55 0 0 0
+ ( 14 -30 24 ) ( 14 -29 24 ) ( 15 -29 24 ) t7_plastic_rubber_trim 8 64 -215 1457.5 0 0 lightmap_gray 16384 16384 55 0 0 0
+ ( 14 -30 24 ) ( 15 -30 24 ) ( 15 -30 4 ) t7_plastic_rubber_trim 8 64 -215 1457.5 0 0 lightmap_gray 16384 16384 55 0 0 0
+ ( 15 -30 24 ) ( 15 -29 24 ) ( 15 -29 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 15 -29 24 ) ( 14 -29 24 ) ( 14 -29 4 ) t7_plastic_rubber_trim 8 64 -215 1457.5 0 0 lightmap_gray 16384 16384 55 0 0 0
+ ( 14 -29 24 ) ( 14 -30 24 ) ( 14 -30 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 5
+{
+ guid "{E3B0A282-0FF0-11E5-939F-2C27D7EF3DD8}"
+ ( -14.25 -24 24 ) ( -22.25 -24 24 ) ( -22.25 -30 24 ) clip_physics 64 64 -0.25 0 0 0 lightmap_gray 16384 16384 -0.25 0 0 0
+ ( -22 -30 28 ) ( -22 -24 28 ) ( -14 -24 28 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -20 -32 28 ) ( -12 -32 28 ) ( -12 -32 26 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 2 0 0 0
+ ( 43 -33 28 ) ( 43 -27 28 ) ( 43 -27 26 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 -3 0 0 0
+ ( -14 0 29 ) ( -22 0 29 ) ( -22 0 27 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 0 -1 0 0
+ ( -43 -23 28 ) ( -43 -29 28 ) ( -43 -29 26 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 1 0 0 0
+}
+// brush 6
+{
+ guid "{239E62D3-0FF5-11E5-939F-2C27D7EF3DD8}"
+ ( -16 -29 4 ) ( -40 -29 4 ) ( -40 -30 4 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -40 -29.5 24 ) ( -40 -28.5 24 ) ( -16 -28.5 24 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 0 -0.5 0 0
+ ( -40 -30 5.25 ) ( -16 -30 5.25 ) ( -16 -30 4 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 40 -30 2.75 ) ( 40 -29 2.75 ) ( 40 -29 1.5 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 0 2.5 0 0
+ ( -16 -29 5.25 ) ( -40 -29 5.25 ) ( -40 -29 4 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -41 -29 5.25 ) ( -41 -30 5.25 ) ( -41 -30 4 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 7
+{
+ guid "{F1009496-0FF5-11E5-939F-2C27D7EF3DD8}"
+ ( -16 -28 4 ) ( -40 -28 4 ) ( -40 -29 4 ) clip_physics 64 64 0 -1 0 0 lightmap_gray 16384 16384 0 -1 0 0
+ ( -40 -28.5 24 ) ( -40 -27.5 24 ) ( -16 -27.5 24 ) clip_physics 64 64 0 -1 0 0 lightmap_gray 16384 16384 0 -1.5 0 0
+ ( -40 -29 5.25 ) ( -16 -29 5.25 ) ( -16 -29 4 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 40 -29 2.75 ) ( 40 -28 2.75 ) ( 40 -28 1.5 ) clip_physics 64 64 1 0 0 0 lightmap_gray 16384 16384 1 2.5 0 0
+ ( 64.25 -0.5 5.25 ) ( 40.25 -0.5 5.25 ) ( 40.25 -0.5 4 ) clip_physics 64 64 128 0 0 0 lightmap_gray 16384 16384 128 0 0 0
+ ( 39 -2 5.25 ) ( 39 -3 5.25 ) ( 39 -3 4 ) clip_physics 64 64 36.5 0 0 0 lightmap_gray 16384 16384 36.5 0 0 0
+}
+// brush 8
+{
+ guid "{FEA0A16C-0FF5-11E5-939F-2C27D7EF3DD8}"
+ ( -16 0 4 ) ( -40 0 4 ) ( -40 -1 4 ) clip_physics 64 64 0 -29 0 0 lightmap_gray 16384 16384 0 -29 0 0
+ ( -40 -0.5 24 ) ( -40 0.5 24 ) ( -16 0.5 24 ) clip_physics 64 64 0 -29 0 0 lightmap_gray 16384 16384 0 -29.5 0 0
+ ( -40 -0.5 5.25 ) ( -16 -0.5 5.25 ) ( -16 -0.5 4 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 40 -1 2.75 ) ( 40 0 2.75 ) ( 40 0 1.5 ) clip_physics 64 64 29 0 0 0 lightmap_gray 16384 16384 29 2.5 0 0
+ ( -16 0 5.25 ) ( -40 0 5.25 ) ( -40 0 4 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -41 0 5.25 ) ( -41 -1 5.25 ) ( -41 -1 4 ) clip_physics 64 64 29 0 0 0 lightmap_gray 16384 16384 29 0 0 0
+}
+// brush 9
+{
+ guid "{094ADA7D-0FF6-11E5-939F-2C27D7EF3DD8}"
+ ( -96 -28 4 ) ( -120 -28 4 ) ( -120 -29 4 ) clip_physics 64 64 -80 -1 0 0 lightmap_gray 16384 16384 -80 -1 0 0
+ ( -120 -28.5 24 ) ( -120 -27.5 24 ) ( -96 -27.5 24 ) clip_physics 64 64 -80 -1 0 0 lightmap_gray 16384 16384 -80 -1.5 0 0
+ ( -120 -29 5.25 ) ( -96 -29 5.25 ) ( -96 -29 4 ) clip_physics 64 64 -80 0 0 0 lightmap_gray 16384 16384 -80 0 0 0
+ ( -40 -29 2.75 ) ( -40 -28 2.75 ) ( -40 -28 1.5 ) clip_physics 64 64 1 0 0 0 lightmap_gray 16384 16384 1 2.5 0 0
+ ( -15.75 -0.5 5.25 ) ( -39.75 -0.5 5.25 ) ( -39.75 -0.5 4 ) clip_physics 64 64 48 0 0 0 lightmap_gray 16384 16384 48 0 0 0
+ ( -41 -2 5.25 ) ( -41 -3 5.25 ) ( -41 -3 4 ) clip_physics 64 64 36.5 0 0 0 lightmap_gray 16384 16384 36.5 0 0 0
+}
+// brush 10
+{
+ guid "{14D19687-0FF6-11E5-939F-2C27D7EF3DD8}"
+ ( -14.25 -24 0 ) ( -22.25 -24 0 ) ( -22.25 -30 0 ) clip_physics 64 64 -0.25 0 0 0 lightmap_gray 16384 16384 -0.25 0 0 0
+ ( -22 -30 4 ) ( -22 -24 4 ) ( -14 -24 4 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -23 -30 4 ) ( -15 -30 4 ) ( -15 -30 2 ) clip_physics 64 64 -3 24 0 0 lightmap_gray 16384 16384 -1 24 0 0
+ ( 40 -31 4 ) ( 40 -25 4 ) ( 40 -25 2 ) clip_physics 64 64 2 24 0 0 lightmap_gray 16384 16384 -1 24 0 0
+ ( -14 0 5 ) ( -22 0 5 ) ( -22 0 3 ) clip_physics 64 64 0 24 0 0 lightmap_gray 16384 16384 0 23 0 0
+ ( -41 -23.25 4 ) ( -41 -29.25 4 ) ( -41 -29.25 2 ) clip_physics 64 64 -0.25 24 0 0 lightmap_gray 16384 16384 0.75 24 0 0
+}
+}
+// entity 1
+{
+guid "{92A5CEEA-CD1E-4366-9F85-6E22CF74B350}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{053A3AD7-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 69 -32 0 ) ( 69 0 0 ) ( -43 0 0 ) t7_plastic_base_clean 64 -64 -224 -1364.5854 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -104 -26 4 ) ( 125 -26 4 ) ( 125 -32 4 ) t7_plastic_base_clean 64 64 -224 1432 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -43 -26 4 ) ( -43 -32 4 ) ( -43 -32 0 ) t7_plastic_base_clean 64 -64 -177.29291 -1432 90 0 lightmap_gray 16384 -16384 -361 -32 180 0 smoothing smoothing_smooth_other
+ ( -43 -32 3.5 ) ( -42 -32 4.5 ) ( -43 -64 3.5 ) t7_plastic_base_clean 45.254833 64 -170.83907 1432 0 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth
+ ( -42.5 -32 0 ) ( -43.5 -32 1 ) ( -42.5 -64 0 ) t7_plastic_base_clean 45.254833 -64 -82.71843 -1432 180 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth
+ ( -42.5 -32 16 ) ( -43 -31.5 16 ) ( -43 -31.5 48 ) t7_plastic_base_clean 64 -45.254833 -177.29291 -1021.8024 90 0 lightmap_gray 16384 -16384 -248.5 -32 -180 0 smoothing smoothing_smooth
+ ( 177 0 4 ) ( -52 0 4 ) ( -52 0 0 ) caulk 64 64 -224 168 0 0 lightmap_gray 16384 16384 -323 32 0 0 smoothing smoothing_smooth_other
+ ( 293 1456.5 172 ) ( 293 1457 171.5 ) ( 325 1457 171.5 ) t7_plastic_base_clean 64 45.254833 0 -443.27658 0 0 lightmap_gray 16384 16384 -1640 99 -90 0 smoothing smoothing_smooth
+ ( -43 -0.5 4 ) ( -42.5 0 4 ) ( -43 -0.5 36 ) t7_plastic_base_clean 64 -45.254833 -177.29291 -1012.7226 90 0 lightmap_gray 16384 16384 -1632 192 0 0 smoothing smoothing_smooth
+ ( 44.75 0.5 1 ) ( 44.75 -0.5 0 ) ( 76.75 -0.5 0 ) t7_plastic_base_clean 64 -45.254833 -224 -964.75665 0 0 lightmap_gray 16384 16384 -224 1456 0 0 smoothing smoothing_smooth
+ ( -41 -22 4 ) ( -41 -24 4 ) ( -41 -24 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -41 -30 4 ) ( -42 -31 4 ) ( -41 -30 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+}
+// brush 1
+{
+ guid "{053A3AD8-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 69 -32 24 ) ( 69 0 24 ) ( -43 0 24 ) t7_plastic_base_clean 64 -64 -134.58575 -1456 180 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -104 -26 28 ) ( 125 -26 28 ) ( 125 -32 28 ) t7_plastic_base_clean 64 64 -224 1456 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -43 -26 28 ) ( -43 -32 28 ) ( -43 -32 24 ) t7_plastic_base_clean 64 -64 -153.29292 -1456 90 0 lightmap_gray 16384 -16384 -361 -8 180 0 smoothing smoothing_smooth_other
+ ( -43 -32 27.5 ) ( -42 -32 28.5 ) ( -43 -64 27.5 ) t7_plastic_base_clean 45.254833 64 -170.84018 1456 0 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth
+ ( -42.5 -32 40 ) ( -43 -31.5 40 ) ( -43 -31.5 72 ) t7_plastic_base_clean 45.254833 -64 -96.338905 -1396.2928 -180 0 lightmap_gray 16384 -16384 -248.5 -8 -180 0 smoothing smoothing_smooth
+ ( -43 -0.5 28 ) ( -42.5 0 28 ) ( -43 -0.5 60 ) t7_plastic_base_clean 64 -45.254833 -153.29292 -1029.6934 90 0 lightmap_gray 16384 16384 -1632 168 0 0 smoothing smoothing_smooth
+ ( -39 -28 4 ) ( -42 -31 4 ) ( -42 -31 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -41 -2 26 ) ( -39 -4 26 ) ( -39 -4 58 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -41 -29 4 ) ( -41 -29.75 4 ) ( -41 -29.75 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -42.75 0 24.25 ) ( -42.5 0 24 ) ( -42.75 32 24.25 ) t7_plastic_base_clean 45.254833 -64 -82.717812 -1456 180 0 lightmap_gray 16384 16384 -224 1456 0 0 smoothing smoothing_smooth
+}
+// brush 2
+{
+ guid "{053A3ADB-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 69 -32 24 ) ( 69 0 24 ) ( -43 0 24 ) t7_plastic_base_clean 64 -64 -224 -1388.5859 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -104 -26 28 ) ( 125 -26 28 ) ( 125 -32 28 ) t7_plastic_base_clean 64 64 -224 1456 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -51 -32 28 ) ( 178 -32 28 ) ( 178 -32 24 ) t7_plastic_base_clean 64 64 -224 1396.2928 0 0 lightmap_gray 16384 16384 -323 8 0 0 smoothing smoothing_smooth_other
+ ( 69 -32 27.5 ) ( 69 -31.5 28 ) ( 101 -31.5 28 ) t7_plastic_base_clean 64 45.254833 -224 1038.772 0 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth
+ ( 69 -31.5 24 ) ( 69 -32 24.5 ) ( 101 -32 24.5 ) t7_plastic_base_clean 64 -45.254833 -224 -972.64935 0 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth
+ ( -42.5 -32 40 ) ( -43 -31.5 40 ) ( -43 -31.5 72 ) t7_plastic_base_clean 45.254833 -64 -96.338905 -1396.2928 -180 0 lightmap_gray 16384 -16384 -248.5 -8 -180 0 smoothing smoothing_smooth
+ ( -42 -31 4 ) ( -39 -28 4 ) ( -42 -31 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( 42 -10 27 ) ( 43 -10 28 ) ( 43 22 28 ) caulk 64 64 -224 1456 0 0 lightmap_gray 16384 16384 -224 1456 0 0
+ ( 39 -28 28 ) ( 41 -30 28 ) ( 39 -28 60 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -40.75 -30 28 ) ( -40.25 -30 28 ) ( -40.75 -30 60 ) caulk 16 16 -224 168 0 0 lightmap_gray 16384 16384 -224 168 0 0
+}
+// brush 3
+{
+ guid "{053A3ADC-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( -104 -26.75 24 ) ( 125 -26.75 24 ) ( 125 -32.75 24 ) t7_plastic_base_clean 64 64 -224 1432.75 0 0 lightmap_gray 16384 16384 -360.25 323 -90 0
+ ( 177 0 8.75 ) ( -52 0 8.75 ) ( -52 0 4.75 ) caulk 64 64 -224 163.25 0 0 lightmap_gray 16384 16384 -323 27.25 0 0
+ ( -40 -0.5 4 ) ( 46.25 -0.5 4 ) ( 45.75 0 4 ) t7_plastic_base_clean 64 -45.254833 -224 -964.00726 0 0 lightmap_gray 16384 16384 -224 1456.75 0 0
+ ( -42.5 -0.5 24 ) ( -42.5 -0.5 4 ) ( -42.5 0 4 ) t7_plastic_base_clean 64 -64 -181 -1427.5 180 0 lightmap_gray 16384 16384 -1456.75 163.25 0 0
+ ( -42.5 -0.5 4 ) ( -42.5 -0.5 24 ) ( -41 -0.5 24 ) t7_plastic_base_clean 64 64 -224 1427.5 0 0 lightmap_gray 16384 16384 -224 163.25 0 0
+ ( -41 0 4.25 ) ( -41 0 4.75 ) ( -41 32 4.25 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+}
+// brush 4
+{
+ guid "{053A3ADD-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( -104 -26.75 24 ) ( 125 -26.75 24 ) ( 125 -32.75 24 ) t7_plastic_base_clean 64 64 -224 1432.75 0 0 lightmap_gray 16384 16384 -360.25 323 -90 0
+ ( 177 0 8.75 ) ( -52 0 8.75 ) ( -52 0 4.75 ) caulk 64 64 -224 163.25 0 0 lightmap_gray 16384 16384 -323 27.25 0 0
+ ( -40 -0.5 4 ) ( 46.25 -0.5 4 ) ( 45.75 0 4 ) t7_plastic_base_clean 64 -45.254833 -224 -964.00726 0 0 lightmap_gray 16384 16384 -224 1456.75 0 0
+ ( 46.25 -0.5 4 ) ( -40 -0.5 4 ) ( -40 -0.5 8.75 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 64 -224 168 0 0 lightmap_gray 16384 16384 -224 163.25 0 0
+ ( 39 -2.5 23.25 ) ( 39 -2.5 24 ) ( 39 29.5 24 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -40 0 4.5 ) ( -40 0 4 ) ( -40 32 4 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+}
+// brush 5
+{
+ guid "{053A3ADE-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( -104 -26.75 24 ) ( 125 -26.75 24 ) ( 125 -32.75 24 ) t7_plastic_base_clean 64 64 -224 1432.75 0 0 lightmap_gray 16384 16384 -360.25 323 -90 0
+ ( 177 0 8.75 ) ( -52 0 8.75 ) ( -52 0 4.75 ) caulk 64 64 -224 163.25 0 0 lightmap_gray 16384 16384 -323 27.25 0 0
+ ( -40 -0.5 4 ) ( 46.25 -0.5 4 ) ( 45.75 0 4 ) t7_plastic_base_clean 64 -45.254833 -224 -964.00726 0 0 lightmap_gray 16384 16384 -224 1456.75 0 0
+ ( 46.25 -0.5 4 ) ( -40 -0.5 4 ) ( -40 -0.5 8.75 ) t7_plastic_rubber_trim 8 64 -220 1449 0 0 lightmap_gray 16384 16384 -224 163.25 0 0
+ ( -41 0 4.75 ) ( -41 0 4.25 ) ( -41 32 4.25 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -40 0 4 ) ( -40 0 4.5 ) ( -40 32 4 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+}
+// brush 6
+{
+ guid "{053A3ADF-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 43 0 0 ) ( 43 -32 0 ) ( 43 -32 16 ) t7_plastic_base_clean 64 64 -294.70712 1456 -90 0 lightmap_gray 16384 -16384 -361 -384 180 0 smoothing smoothing_smooth_other
+ ( 39 -26 -100 ) ( 39 -26 129 ) ( 39 -32 129 ) t7_metal_bare_stainless_steel_brushed_2_dull 64 -64 -264.5 -168 -180 0 lightmap_gray 16384 -16384 -361 -384 180 0 smoothing smoothing_smooth_other
+ ( 39 0 116 ) ( 39 0 -113 ) ( 43 0 -113 ) caulk 64 64 -226 168 0 0 lightmap_gray 16384 16383.994 -384 75 90 0 smoothing smoothing_smooth_other
+ ( 43 -32 0 ) ( 43 0 0 ) ( 39 0 4 ) caulk 64 64 -226 1456 0 0 lightmap_gray 16384 -16384 -184 -75 -90 0 smoothing smoothing_smooth_other
+ ( 43 -32 0.5 ) ( 42.5 -32 0 ) ( 42.5 -64 0 ) t7_plastic_base_clean 45.254833 -64 -251.03583 -1456 180 0 lightmap_gray 16384 16384 -184 349 -90 0 smoothing smoothing_smooth
+ ( 41 0 26 ) ( 39 0 24 ) ( 39 32 24 ) caulk 64 64 -226 1456 0 0 lightmap_gray 16384 16384 -226 1456 0 0
+ ( 43 0.25 27.5 ) ( 42.5 0.25 28 ) ( 42.5 32.25 28 ) t7_plastic_base_clean 45.254833 64 -145.94397 1456 0 0 lightmap_gray 16384 16384 -226 1456 0 0 smoothing smoothing_smooth
+ ( 42.5 0 27.75 ) ( 43 -0.5 27.75 ) ( 42.5 0 59.75 ) t7_plastic_base_clean 64 45.254833 -294.70712 1029.6938 -90 0 lightmap_gray 16384 16384 -1456 168 0 0 smoothing smoothing_smooth
+ ( -42 -29 3.75 ) ( -42 -29 4.5 ) ( -10 -29 3.75 ) caulk 16 16 -226 168 0 0 lightmap_gray 16384 16384 -226 168 0 0
+}
+// brush 7
+{
+ guid "{053A3AE0-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 43 0 0 ) ( 43 -32 0 ) ( 43 -32 16 ) t7_plastic_base_clean 64 64 -294.70712 1456 -90 0 lightmap_gray 16384 -16384 -361 -384 180 0 smoothing smoothing_smooth_other
+ ( 39 -26 -100 ) ( 39 -26 129 ) ( 39 -32 129 ) t7_plastic_rubber_trim 8 -64 -1456 261 0 0 lightmap_gray 16384 -16384 -361 -384 180 0 smoothing smoothing_smooth_other
+ ( 43 -32 0 ) ( 43 0 0 ) ( 39 0 4 ) caulk 64 64 -226 1456 0 0 lightmap_gray 16384 -16384 -184 -75 -90 0 smoothing smoothing_smooth_other
+ ( 43 -32 0.5 ) ( 42.5 -32 0 ) ( 42.5 -64 0 ) t7_plastic_base_clean 45.254833 -64 -251.03583 -1456 180 0 lightmap_gray 16384 16384 -184 349 -90 0 smoothing smoothing_smooth
+ ( 41 0 26 ) ( 39 0 24 ) ( 39 32 24 ) caulk 64 64 -226 1456 0 0 lightmap_gray 16384 16384 -226 1456 0 0
+ ( 43 0.25 27.5 ) ( 42.5 0.25 28 ) ( 42.5 32.25 28 ) t7_plastic_base_clean 45.254833 64 -145.94397 1456 0 0 lightmap_gray 16384 16384 -226 1456 0 0 smoothing smoothing_smooth
+ ( -42 -30 3.75 ) ( -42 -30 4 ) ( -10 -30 3.75 ) caulk 16 16 -226 168 0 0 lightmap_gray 16384 16384 -226 168 0 0
+ ( -42 -29 4.5 ) ( -42 -29 3.75 ) ( -10 -29 3.75 ) caulk 16 16 -226 168 0 0 lightmap_gray 16384 16384 -226 168 0 0
+}
+// brush 8
+{
+ guid "{053A3AE1-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 43 0 0 ) ( 43 -32 0 ) ( 43 -32 16 ) t7_plastic_base_clean 64 64 -294.70712 1456 -90 0 lightmap_gray 16384 -16384 -361 -384 180 0 smoothing smoothing_smooth_other
+ ( 39 -26 -100 ) ( 39 -26 129 ) ( 39 -32 129 ) t7_plastic_base_clean 64 -64 -233.29272 -1396.2928 180 0 lightmap_gray 16384 -16384 -361 -384 180 0 smoothing smoothing_smooth_other
+ ( 39 -32 -112 ) ( 39 -32 117 ) ( 43 -32 117 ) t7_plastic_base_clean 64 64 -226 1396.2928 0 0 lightmap_gray 16384 16384 -384 75 90 0 smoothing smoothing_smooth_other
+ ( 43 -32 0 ) ( 43 0 0 ) ( 39 0 4 ) caulk 64 64 -226 1456 0 0 lightmap_gray 16384 -16384 -184 -75 -90 0 smoothing smoothing_smooth_other
+ ( 43 -32 0.5 ) ( 42.5 -32 0 ) ( 42.5 -64 0 ) t7_plastic_base_clean 45.254833 -64 -251.03583 -1456 180 0 lightmap_gray 16384 16384 -184 349 -90 0 smoothing smoothing_smooth
+ ( 39.5 -32 16 ) ( 39 -31.5 16 ) ( 39 -31.5 48 ) t7_plastic_base_clean 45.254833 -64 -155.73642 -1396.2928 180 0 lightmap_gray 16384 -16384 -356.5 -32 180 0 smoothing smoothing_smooth
+ ( 43 -31.5 16 ) ( 42.5 -32 16 ) ( 42.5 -32 48 ) t7_plastic_base_clean 45.254833 64 -221.85814 1396.2928 0 0 lightmap_gray 16384 16384 -423.5 32 0 0 smoothing smoothing_smooth
+ ( 41 0 26 ) ( 39 0 24 ) ( 39 32 24 ) caulk 64 64 -226 1456 0 0 lightmap_gray 16384 16384 -226 1456 0 0
+ ( 43 0.25 27.5 ) ( 42.5 0.25 28 ) ( 42.5 32.25 28 ) t7_plastic_base_clean 45.254833 64 -145.94397 1456 0 0 lightmap_gray 16384 16384 -226 1456 0 0 smoothing smoothing_smooth
+ ( -42 -30 4 ) ( -42 -30 3.75 ) ( -10 -30 3.75 ) caulk 16 16 -226 168 0 0 lightmap_gray 16384 16384 -226 168 0 0
+}
+// brush 9
+{
+ guid "{053A3AE3-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 69 -32 24 ) ( 69 0 24 ) ( -43 0 24 ) t7_plastic_base_clean 64 -64 -224 -1388.5859 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -104 -26 28 ) ( 125 -26 28 ) ( 125 -32 28 ) t7_plastic_base_clean 64 64 -224 1456 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( 20 -28 28 ) ( 28 -28 28 ) ( 28 -28 60 ) caulk 16 16 -224 168 0 0 lightmap_gray 16384 16384 -224 168 0 0
+ ( -42 -31 4 ) ( -39 -28 4 ) ( -42 -31 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( 43 -10 27 ) ( 44 -10 28 ) ( 44 22 28 ) caulk 64 64 -225 1456 0 0 lightmap_gray 16384 16384 -225 1456 0 0
+ ( 39 -28 28 ) ( 41 -30 28 ) ( 39 -28 60 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -39 -29 28 ) ( -39.5 -29 28 ) ( -39 -29 60 ) caulk 16 16 -224 168 0 0 lightmap_gray 16384 16384 -224 168 0 0
+}
+// brush 10
+{
+ guid "{053A3AE4-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 69 -32 24 ) ( 69 0 24 ) ( -43 0 24 ) t7_plastic_rubber_trim 8 64 -220 1453.5 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -104 -26 28 ) ( 125 -26 28 ) ( 125 -32 28 ) t7_plastic_base_clean 64 64 -224 1456 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -39 -28 4 ) ( -42 -31 4 ) ( -42 -31 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -40 -1.5 24 ) ( -40 -1.5 28 ) ( -41 -1.5 28 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -41 -29.75 4 ) ( -41 -29 4 ) ( -41 -29.75 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -40 -2 28 ) ( -40 -2 24 ) ( -40 -29 24 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+}
+// brush 11
+{
+ guid "{053A3AE5-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 69 -32 24 ) ( 69 0 24 ) ( -43 0 24 ) t7_plastic_base_clean 64 -64 -224 -1388.5859 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -104 -26 28 ) ( 125 -26 28 ) ( 125 -32 28 ) t7_plastic_base_clean 64 64 -224 1456 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -39 -5 4 ) ( -39 -7 4 ) ( -39 -7 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -39 -28 4 ) ( -42 -31 4 ) ( -42 -31 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -41 -2 26 ) ( -39 -4 26 ) ( -39 -4 58 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -40 -29 4 ) ( -40 -28.5 4 ) ( -40 -29 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+}
+// brush 12
+{
+ guid "{053A3AE6-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 69.25 -32 4 ) ( 69.25 0 4 ) ( -42.75 0 4 ) t7_glass_reinforced_01 64 64 0.25 0 0 0 lightmap_gray 16384 16384 -361 322.75 -90 0 smoothing smoothing_smooth_other
+ ( -103.75 -26 24 ) ( 125.25 -26 24 ) ( 125.25 -32 24 ) t7_glass_reinforced_01 64 64 0.25 0 0 0 lightmap_gray 16384 16384 -361 322.75 -90 0 smoothing smoothing_smooth_other
+ ( 177.25 0 8 ) ( -51.75 0 8 ) ( -51.75 0 4 ) t7_glass_reinforced_01 64 64 0.25 0 0 0 lightmap_gray 16384 16384 -322.75 28 0 0 smoothing smoothing_smooth_other
+ ( 45 0.5 5 ) ( 45 -0.5 4 ) ( 77 -0.5 4 ) t7_glass_reinforced_01 64 64 0.25 0 0 0 lightmap_gray 16384 16384 -223.75 1456 0 0 smoothing smoothing_smooth
+ ( -40.5 -29 24 ) ( -40.5 -29 4 ) ( -40.5 0 4 ) t7_glass_reinforced_01 64 64 8.5 0 0 0 lightmap_gray 16384 16384 -1456 164 0 0
+ ( -40.75 -29 4 ) ( -40.75 -29 24 ) ( -39.75 -29 24 ) t7_glass_reinforced_01 64 64 0.25 0 0 0 lightmap_gray 16384 16384 -1455.75 164 0 0
+ ( -40 -29 19 ) ( -40 -29 23 ) ( -40 0 23 ) t7_glass_reinforced_01 64 64 0 0 0 0 lightmap_gray 16384 16384 -1456 164 0 0
+}
+// brush 13
+{
+ guid "{053A3AE7-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 69 -32 24 ) ( 69 0 24 ) ( -43 0 24 ) t7_plastic_base_clean 64 -64 -224 -1388.5859 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -104 -26 28 ) ( 125 -26 28 ) ( 125 -32 28 ) t7_glass_dark_opaque 128 128 -224 1456 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -39 -7 4 ) ( -39 -5 4 ) ( -39 -7 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( 39 -5 4 ) ( 39 -7 4 ) ( 39 -7 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( 28 -4 28 ) ( 36 -4 28 ) ( 36 -4 60 ) caulk 16 16 -224 168 0 0 lightmap_gray 16384 16384 -224 168 0 0
+ ( 28 -28 28 ) ( 20 -28 28 ) ( 28 -28 60 ) caulk 16 16 -224 168 0 0 lightmap_gray 16384 16384 -224 168 0 0
+}
+// brush 14
+{
+ guid "{053A3AE9-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( -106 -26 28 ) ( 123 -26 28 ) ( 123 -32 28 ) t7_plastic_base_clean 64 64 -224 1456 0 0 lightmap_gray 16384 16384 -361 325 -90 0 smoothing smoothing_smooth_other
+ ( 42 -10 27 ) ( 43 -10 28 ) ( 43 22 28 ) caulk 64 64 -226 1456 0 0 lightmap_gray 16384 16384 -226 1456 0 0
+ ( 43 0.25 27.5 ) ( 42.5 0.25 28 ) ( 42.5 32.25 28 ) t7_plastic_base_clean 45.254833 64 -145.94397 1456 0 0 lightmap_gray 16384 16384 -226 1456 0 0 smoothing smoothing_smooth
+ ( 39 -7 4 ) ( 39 -5 4 ) ( 39 -7 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( 41 -30 28 ) ( 39 -28 28 ) ( 39 -28 60 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( 39 -4 28 ) ( 41 -2 28 ) ( 39 -4 60 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+}
+// brush 15
+{
+ guid "{053A3ADA-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 69 -32 0 ) ( 69 0 0 ) ( -43 0 0 ) t7_plastic_base_clean 64 -64 -224 -1364.5857 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -104 -26 4 ) ( 125 -26 4 ) ( 125 -32 4 ) t7_plastic_base_clean 64 64 -224 1432 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( 44.75 0.5 1 ) ( 44.75 -0.5 0 ) ( 76.75 -0.5 0 ) t7_plastic_base_clean 64 -45.254833 -224 -964.75665 0 0 lightmap_gray 16384 16384 -224 1456 0 0 smoothing smoothing_smooth
+ ( 43 0 0 ) ( 43 -32 0 ) ( 39 -32 4 ) caulk 64 64 -224 1456 0 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth_other
+ ( 43 -32 0.5 ) ( 42.5 -32 0 ) ( 42.5 -64 0 ) t7_plastic_base_clean 45.254833 -64 -251.03583 -1456 180 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth
+ ( -40 -28 4 ) ( -40 -26 4 ) ( -40 -28 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -33 -29 4 ) ( -36 -29 4 ) ( -36 -29 36 ) caulk 16 16 -224 168 0 0 lightmap_gray 16384 16384 -224 168 0 0
+ ( 45 0 2.75 ) ( 45 0 2 ) ( 77 0 2 ) caulk 16 16 -224 168 0 0 lightmap_gray 16384 16384 -224 168 0 0 smoothing smoothing_smooth_other
+}
+// brush 16
+{
+ guid "{053A3AEA-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 69 -32 0 ) ( 69 0 0 ) ( -43 0 0 ) t7_plastic_base_clean 64 -64 -224 -1364.5857 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -104 -26 4 ) ( 125 -26 4 ) ( 125 -32 4 ) t7_plastic_base_clean 64 64 -224 1432 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -51 -32 4 ) ( 178 -32 4 ) ( 178 -32 0 ) t7_plastic_base_clean 64 64 -224 1396.2928 0 0 lightmap_gray 16384 16384 -323 32 0 0 smoothing smoothing_smooth_other
+ ( 69 -32 3.5 ) ( 69 -31.5 4 ) ( 101 -31.5 4 ) t7_plastic_base_clean 64 45.254833 -224 1021.802 0 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth
+ ( 69 -31.5 0 ) ( 69 -32 0.5 ) ( 101 -32 0.5 ) t7_plastic_base_clean 64 -45.254833 -224 -955.68164 0 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth
+ ( 43 0 0 ) ( 43 -32 0 ) ( 39 -32 4 ) caulk 64 64 -224 1456 0 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth_other
+ ( 43 -32 0.5 ) ( 42.5 -32 0 ) ( 42.5 -64 0 ) t7_plastic_base_clean 45.254833 -64 -251.03583 -1456 180 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth
+ ( -40 -30 4 ) ( -37 -30 4 ) ( -40 -30 36 ) caulk 16 16 -224 168 0 0 lightmap_gray 16384 16384 -224 168 0 0
+ ( -42.5 -32 16 ) ( -43 -31.5 16 ) ( -43 -31.5 48 ) t7_plastic_base_clean 64 -45.254833 -177.29291 -1021.8024 90 0 lightmap_gray 16384 -16384 -248.5 -32 -180 0 smoothing smoothing_smooth
+ ( -42 -31 4 ) ( -41 -30 4 ) ( -41 -30 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+}
+// brush 17
+{
+ guid "{053A3AE2-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 69 -32 24 ) ( 69 0 24 ) ( -43 0 24 ) t7_plastic_rubber_trim 8 64 -1456 -224 90 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -104 -26 28 ) ( 125 -26 28 ) ( 125 -32 28 ) t7_plastic_base_clean 64 64 -224 1456 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -42 -31 4 ) ( -39 -28 4 ) ( -42 -31 36 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( 43 -10 27 ) ( 44 -10 28 ) ( 44 22 28 ) caulk 64 64 -225 1456 0 0 lightmap_gray 16384 16384 -225 1456 0 0
+ ( 39 -28 28 ) ( 41 -30 28 ) ( 39 -28 60 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -40.25 -30 28 ) ( -40.75 -30 28 ) ( -40.75 -30 60 ) caulk 16 16 -224 168 0 0 lightmap_gray 16384 16384 -224 168 0 0
+ ( -39.5 -29 28 ) ( -39 -29 28 ) ( -39 -29 60 ) caulk 16 16 -224 168 0 0 lightmap_gray 16384 16384 -224 168 0 0
+}
+// brush 18
+{
+ guid "{053A3AE8-4809-11E4-B1BF-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 69 -32 0 ) ( 69 0 0 ) ( -43 0 0 ) t7_plastic_base_clean 64 -64 -224 -1364.5857 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -104 -26 4 ) ( 125 -26 4 ) ( 125 -32 4 ) t7_plastic_rubber_trim 8 64 -1456 -224 90 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( 43 0 0 ) ( 43 -32 0 ) ( 39 -32 4 ) caulk 64 64 -224 1456 0 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth_other
+ ( 43 -32 0.5 ) ( 42.5 -32 0 ) ( 42.5 -64 0 ) t7_plastic_base_clean 45.254833 -64 -251.03583 -1456 180 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth
+ ( -40 -30 0 ) ( -40 -30 4 ) ( 41 -30 4 ) caulk 16 16 -224 168 0 0 lightmap_gray 16384 16384 -224 168 0 0
+ ( -41 -30 4 ) ( -41 -30 0 ) ( -40 -29 0 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -37 -29 4 ) ( -34 -29 4 ) ( -37 -29 36 ) caulk 16 16 -224 168 0 0 lightmap_gray 16384 16384 -224 168 0 0
+}
+// brush 19
+{
+ guid "{D6FC12DF-A112-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail;
+ ( 69 -32 24 ) ( 69 0 24 ) ( -43 0 24 ) t7_plastic_base_clean 64 -64 -224 -1388.5859 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -104 -26 28 ) ( 125 -26 28 ) ( 125 -32 28 ) t7_plastic_base_clean 64 64 -224 1456 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( 177 0 28 ) ( -52 0 28 ) ( -52 0 24 ) caulk 64 64 -224 168 0 0 lightmap_gray 16384 16384 -323 8 0 0 smoothing smoothing_smooth_other
+ ( 69 -0.5 28 ) ( 69 0 27.5 ) ( 101 0 27.5 ) t7_plastic_base_clean 64 45.254833 -224 1029.6919 0 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth
+ ( -43 -0.5 28 ) ( -42.5 0 28 ) ( -43 -0.5 60 ) t7_plastic_base_clean 64 -45.254833 -153.29292 -1029.6934 90 0 lightmap_gray 16384 16384 -1632 168 0 0 smoothing smoothing_smooth
+ ( -39 -4 27 ) ( -41 -2 27 ) ( -39 -4 59 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -42.75 0 24.25 ) ( -42.25 0 23.75 ) ( -42.75 32 24.25 ) t7_plastic_base_clean 45.254833 -64 -82.718231 -1456 180 0 lightmap_gray 16384 16384 -224 1456 0 0 smoothing smoothing_smooth
+ ( -41 -1.5 28 ) ( -41 -2 28 ) ( -41 -2 60 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 20
+{
+ guid "{D6FC12E0-A112-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail;
+ ( 69 -32 24 ) ( 69 0 24 ) ( -43 0 24 ) t7_plastic_base_clean 64 -64 -224 -1388.5859 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -104 -26 28 ) ( 125 -26 28 ) ( 125 -32 28 ) t7_plastic_base_clean 64 64 -224 1456 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( 177 0 28 ) ( -52 0 28 ) ( -52 0 24 ) caulk 64 64 -224 168 0 0 lightmap_gray 16384 16384 -323 8 0 0 smoothing smoothing_smooth_other
+ ( 69 -0.5 28 ) ( 69 0 27.5 ) ( 101 0 27.5 ) t7_plastic_base_clean 64 45.254833 -224 1029.6919 0 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth
+ ( -39 -4 27 ) ( -41 -2 27 ) ( -39 -4 59 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( 36 -4 28 ) ( 28 -4 28 ) ( 36 -4 60 ) caulk 16 16 -224 168 0 0 lightmap_gray 16384 16384 -224 168 0 0
+ ( 42 -10 27 ) ( 43 -10 28 ) ( 43 22 28 ) caulk 64 64 -224 1456 0 0 lightmap_gray 16384 16384 -224 1456 0 0
+ ( 41 -2 28 ) ( 39 -4 28 ) ( 39 -4 60 ) caulk 16 16 -1456 168 0 0 lightmap_gray 16384 16384 -1456 168 0 0
+ ( -40 -3 28 ) ( -40 -2 28 ) ( -40 -3 60 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 21
+{
+ guid "{DEBCFB9C-A112-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail;
+ ( 69 -32 24 ) ( 69 0 24 ) ( -43 0 24 ) t7_plastic_base_clean 64 -64 -224 -1388.5859 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( -104 -26 28 ) ( 125 -26 28 ) ( 125 -32 28 ) t7_plastic_base_clean 64 64 -224 1456 0 0 lightmap_gray 16384 16384 -361 323 -90 0 smoothing smoothing_smooth_other
+ ( 177 0 28 ) ( -52 0 28 ) ( -52 0 24 ) caulk 64 64 -224 168 0 0 lightmap_gray 16384 16384 -323 8 0 0 smoothing smoothing_smooth_other
+ ( 69 -0.5 28 ) ( 69 0 27.5 ) ( 101 0 27.5 ) t7_plastic_base_clean 64 45.254833 -224 1029.6919 0 0 lightmap_gray 16384 16384 -184 323 -90 0 smoothing smoothing_smooth
+ ( -40 -2 28 ) ( -40 -3 28 ) ( -40 -3 60 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -41 -2 28 ) ( -41 -1.5 28 ) ( -41 -2 60 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -39.5 -1.5 28 ) ( -40 -1.5 28 ) ( -39.5 -1.5 60 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 2
+{
+guid "{299BB83A-A111-11E4-96E0-2C27D7F024B0}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{26E62BD3-A112-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_decal_signage_fridge_temperature_01
+   lightmap_gray
+   2 2 0 8
+   (
+	v -19 -28 19 t -25.856003 -2112 16.5 -10.96875
+	v -39 -28 19 t -1017.8555 -2112 11.5625 -10.96875
+   )
+   (
+	v -19 -28 24 t -25.856003 -3072 16.5 -11.75
+	v -39 -28 24 t -1017.8555 -3072 11.5625 -11.75
+   )
+  }
+ }
+// brush 1
+{
+ guid "{B37A1D4F-A112-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail;
+ ( 42 -28.75 4 ) ( -40 -28.75 4 ) ( -41 -29.75 4 ) t7_glass_reinforced_01 64 64 0 -0.25 0 0 lightmap_gray 16384 16384 -361.25 324 -90 0 smoothing smoothing_smooth_other
+ ( 39 -28.75 24 ) ( 39 -29.75 24 ) ( -41 -29.75 24 ) t7_glass_reinforced_01 64 64 0 -0.25 0 0 lightmap_gray 16384 16384 -361.25 324 -90 0 smoothing smoothing_smooth_other
+ ( 39 -29.75 24 ) ( 39 -28.75 24 ) ( 39 -28.75 4 ) t7_glass_reinforced_01 64 64 0.25 0 0 0 lightmap_gray 16384 16384 -184 323.75 -90 0 smoothing smoothing_smooth_other
+ ( -39.5 -29.5 4 ) ( -39.5 -29.5 24 ) ( 39.5 -29.5 24 ) t7_glass_reinforced_01 64 64 6.5 0 0 0 lightmap_gray 16384 16384 -225 164 0 0
+ ( 42 -29 4 ) ( 41 -29 24 ) ( -40 -29 24 ) t7_glass_reinforced_01 64 64 0 0 0 0 lightmap_gray 16384 16384 -225 164 0 0
+ ( 15 -30 24 ) ( 15 -29 24 ) ( 15 -29 56 ) t7_glass_reinforced_01 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 2
+{
+ guid "{B37A1D50-A112-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail;
+ ( 42 -28.75 4 ) ( -40 -28.75 4 ) ( -41 -29.75 4 ) t7_glass_reinforced_01 64 64 0 -0.25 0 0 lightmap_gray 16384 16384 -361.25 324 -90 0 smoothing smoothing_smooth_other
+ ( 39 -28.75 24 ) ( 39 -29.75 24 ) ( -41 -29.75 24 ) t7_glass_reinforced_01 64 64 0 -0.25 0 0 lightmap_gray 16384 16384 -361.25 324 -90 0 smoothing smoothing_smooth_other
+ ( -40 -29.5 4 ) ( -40 -29.5 24 ) ( 39 -29.5 24 ) t7_glass_reinforced_01 64 64 6.5 0 0 0 lightmap_gray 16384 16384 -225 164 0 0
+ ( -40 -29.75 24 ) ( -40 -29.75 4 ) ( -40 -28.75 4 ) t7_glass_reinforced_01 64 64 0.25 0 0 0 lightmap_gray 16384 16384 -1455.75 164 0 0
+ ( 42 -29 4 ) ( 41 -29 24 ) ( -40 -29 24 ) t7_glass_reinforced_01 64 64 0 0 0 0 lightmap_gray 16384 16384 -225 164 0 0
+ ( -16 -29 24 ) ( -16 -30 24 ) ( -16 -29 56 ) t7_glass_reinforced_01 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 3
+{
+ guid "{B37A1D4E-A112-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail;
+ ( 43 -29.25 4 ) ( -39 -29.25 4 ) ( -40 -30.25 4 ) t7_glass_reinforced_01 64 64 1 0.25 0 0 lightmap_gray 16384 16384 -360.75 323 -90 0 smoothing smoothing_smooth_other
+ ( 40 -29.25 24 ) ( 40 -30.25 24 ) ( -40 -30.25 24 ) t7_glass_reinforced_01 64 64 1 0.25 0 0 lightmap_gray 16384 16384 -360.75 323 -90 0 smoothing smoothing_smooth_other
+ ( -39 -30 4 ) ( -39 -30 24 ) ( 40 -30 24 ) t7_glass_reinforced_01 64 64 7.5 0 0 0 lightmap_gray 16384 16384 -224 164 0 0
+ ( 43 -29.5 4 ) ( 42 -29.5 24 ) ( -39 -29.5 24 ) t7_glass_reinforced_01 64 64 1 0 0 0 lightmap_gray 16384 16384 -224 164 0 0
+ ( -15 -30.5 24 ) ( -15 -29.5 24 ) ( -15 -29.5 56 ) t7_glass_reinforced_01 64 64 -0.5 0 0 0 lightmap_gray 16384 16384 -0.5 0 0 0
+ ( 14 -29 24 ) ( 14 -30 24 ) ( 14 -29 56 ) t7_glass_reinforced_01 64 64 -0.5 0 0 0 lightmap_gray 16384 16384 -0.5 0 0 0
+}
+}
+// entity 3
+{
+guid "{65C8952B-A112-11E4-96E0-2C27D7F024B0}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{65C8952A-A112-11E4-96E0-2C27D7F024B0}"
+  contents weaponClip detail;
+ ( -104 -0.5 30.25 ) ( 125 -0.5 30.25 ) ( 125 -0.5 36.25 ) t7_plastic_base_clean 64 -64 -224 -1436.25 0 0 lightmap_gray 16383.994 -16384 -356.75 -323 90 0
+ ( 177 -15.75 3.5 ) ( -52 -15.75 3.5 ) ( -52 -19.75 3.5 ) caulk 64 64 -224 171.75 0 0 lightmap_gray 16384 16384 -323 35.75 0 0
+ ( -40 -29 4 ) ( 46.25 -29 4 ) ( 45.75 -29 3.5 ) t7_plastic_base_clean 64 45.254784 -224 960.50604 0 0 lightmap_gray 16384 -16384 -224 -1460.25 0 0
+ ( 46.25 -4.5 4 ) ( -40 -4.5 4 ) ( -40 0.25 4 ) t7_plastic_rubber_trim 8 64 -220 1457.5 0 0 lightmap_gray 16384 16384 -224 171.75 0 0
+ ( -41 -3.75 3.5 ) ( -41 -4.25 3.5 ) ( -41 -4.25 -28.5 ) caulk 16 16 -1459.5 176.5 -90 0 lightmap_gray 16384 16384 -1459.5 176.5 -90 0
+ ( -40 -20.5 3.5 ) ( -40 -20 3.5 ) ( -40 -20.5 -28.5 ) caulk 16 16 -1459.5 176.5 -90 0 lightmap_gray 16384 16384 -1459.5 176.5 -90 0
+}
+}
+// entity 4
+{
+guid "{ABC1B896-A11F-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_model"
+"angles" "0 89.9996 0"
+"model" "p7_cai_apt_door_large_handle"
+"modelscale" "0.300000011920929"
+"origin" "-37.75 -29 13"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 5
+{
+guid "{D3AD8DD7-A11F-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_model"
+"angles" "0 89.9996 0"
+"model" "p7_cai_apt_door_large_handle"
+"modelscale" "0.300000011920929"
+"origin" "36.25 -29 13"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
+}
+// entity 6
+{
+guid "{0C08F4A7-E195-11E4-B627-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_cai_vase_ceramic_01.prop"
+"origin" "33 -10 28"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 7
+{
+guid "{DCA29394-0FF0-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bottle_glass_liquor_04.prop"
+"origin" "-18.23 -8.60001 28"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 8
+{
+guid "{2DD67B96-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "8.25 -8.75 28"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 9
+{
+guid "{4FCBAC7F-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "10.25 -3.75 28"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 10
+{
+guid "{4FCBAC8A-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "13.25 -8.75 28"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 11
+{
+guid "{56715A05-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "14.25 -3.75 28"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 12
+{
+guid "{56715A10-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "17.25 -7.75 28"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 13
+{
+guid "{56715A1B-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "19.25 -3.75 28"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 14
+{
+guid "{603A5526-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "15.25 -12.75 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 15
+{
+guid "{603A5529-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "17.25 -7.75 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 16
+{
+guid "{603A552C-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "20.25 -12.75 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 17
+{
+guid "{603A552F-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "21.25 -7.75 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 18
+{
+guid "{603A5532-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "24.25 -11.75 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 19
+{
+guid "{603A5535-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "26.25 -7.75 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 20
+{
+guid "{66382593-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "27.25 -15.75 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 21
+{
+guid "{66382596-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "29.25 -10.75 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 22
+{
+guid "{66382599-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "32.25 -15.75 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 23
+{
+guid "{6638259C-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "33.25 -10.75 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 24
+{
+guid "{6638259F-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "36.25 -14.75 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 25
+{
+guid "{663825A2-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bartop_glass_wine.prop"
+"origin" "22.25 -16.75 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 26
+{
+guid "{730F8602-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"angles" "0 270 0"
+"model" "_props/p7_bottle_glass_liquor_02.prop"
+"origin" "-20.75 -11.5 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 27
+{
+guid "{95B6A653-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"angles" "0 17.7996 0"
+"model" "_props/p7_bottle_glass_liquor_01.prop"
+"origin" "-28.75 -10 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 28
+{
+guid "{9C697391-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"angles" "0 1.59915 0"
+"model" "_props/p7_bottle_glass_liquor_01.prop"
+"origin" "-28.5 -14 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 29
+{
+guid "{C23E1ADF-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"angles" "0 180 0"
+"model" "_props/p7_bottle_glass_liquor_03.prop"
+"origin" "-13 -6 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 30
+{
+guid "{D6BF0B0A-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"angles" "0 250 0"
+"model" "_props/p7_bottle_glass_liquor_03.prop"
+"origin" "-12.5 -10.25 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 31
+{
+guid "{DD770875-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"angles" "0 300 0"
+"model" "_props/p7_bottle_glass_liquor_03.prop"
+"origin" "-12.25 -14.75 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 32
+{
+guid "{DD770886-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"angles" "0 262.399 0"
+"model" "_props/p7_bottle_glass_liquor_03.prop"
+"origin" "-12.75 -19.5 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 33
+{
+guid "{E8E9EDDB-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_bottle_glass_wine_01.prop"
+"origin" "-1.5 -8.25 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 34
+{
+guid "{F7C8011E-0FF1-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"angles" "0 270 0"
+"model" "_props/p7_bottle_glass_wine_01.prop"
+"origin" "1.25 -10.75 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 35
+{
+guid "{0FCD9B1F-0FF2-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_decanter_glass_bottle.prop"
+"origin" "-0.25 -10.25 28"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 36
+{
+guid "{290AF9D4-0FF2-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"angles" "72.3987 309.2 5.16906e-005"
+"model" "_props/p7_decanter_glass_stopper.prop"
+"origin" "5.30428 -15.5427 29.5292"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 37
+{
+guid "{4E988439-0FF2-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"model" "_props/p7_container_bottle_wine_01.prop"
+"origin" "8.75 -7.25 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 38
+{
+guid "{5C6176E1-0FF2-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"angles" "0 20.5997 0"
+"model" "_props/p7_container_bottle_wine_01.prop"
+"origin" "10.338 -14.234 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 39
+{
+guid "{4B486A02-0FF4-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"angles" "0 270 0"
+"model" "_props/p7_bottle_glass_liquor_04.prop"
+"origin" "-34.85 -18.02 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 40
+{
+guid "{554E6FA8-0FF4-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"angles" "0 9.19982 0"
+"model" "_props/p7_bottle_glass_liquor_04.prop"
+"origin" "-35.9643 -14.5955 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}
+// entity 41
+{
+guid "{554E6FB6-0FF4-11E5-939F-2C27D7EF3DD8}"
+"classname" "misc_prop"
+"angles" "0 266.6 0"
+"model" "_props/p7_bottle_glass_liquor_04.prop"
+"origin" "-35.604 -10.0413 4"
+"clayer_Audio" "1"
+"clayer_FX" "1"
+"clayer_Lights" "1"
+"modelscale" "1"
+}

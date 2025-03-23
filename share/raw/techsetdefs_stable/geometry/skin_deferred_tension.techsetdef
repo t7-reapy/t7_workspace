@@ -1,0 +1,99 @@
+#include "skin_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit deferred opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "stretchNormal" )
+{
+	image = Image( <colorMap00, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Tension"
+		title     = "Stretch Normal Map"
+		sortindex = "10"
+	}
+}
+Texture( "compressNormal" )
+{
+	image = Image( <colorMap01, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Tension"
+		title     = "Compression Normal Map"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "stretchHeight" )
+{
+	x = <tensionStretchHeight>
+	tweak = Tweak()
+	{
+		category  = "Tension"
+		title     = "Stretch Height"
+		sortindex = "30"
+	}
+}
+float1( "compressHeight" )
+{
+	x = <tensionCompressHeight>
+	tweak = Tweak()
+	{
+		category  = "Tension"
+		title     = "Compression Height"
+		sortindex = "40"
+	}
+}
+float1( "tensionPower" )
+{
+	x = <tensionPower>
+	tweak = Tweak()
+	{
+		category  = "Tension"
+		title     = "Power"
+		sortindex = "50"
+	}
+}
+float1( "tensionStrength" )
+{
+	x = <tensionStrength>
+	tweak = Tweak()
+	{
+		category  = "Tension"
+		title     = "Strength"
+		sortindex = "60"
+	}
+}
+float4( "tensionParms" )
+{
+	x = "stretchHeight"
+	y = "compressHeight"
+	z = "tensionPower"
+	w = "tensionStrength"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque"
+	defines = "BASE_SPEC", "USE_DETAIL_MAP", "USE_TENSION_MAPS", "NO_VERTEX_ALPHA"
+	source = "gbuffer_skin.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}

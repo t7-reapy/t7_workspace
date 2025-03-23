@@ -1,0 +1,139 @@
+
+void GenerateUI( asset Asset )
+{
+	// Hidden or Unused
+	
+	Asset.AddEntry_Combo( "configstringFileType", "BULLET_PEN_TABLE" );
+		
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Small Bullets 
+	
+	Asset.BeginCategory( "Small Bullets" );
+	{
+		Asset.AddEntry_Float( "small_bark", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "bark" );
+		Asset.AddEntry_Float( "small_brick", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "brick" );
+		Asset.AddEntry_Float( "small_carpet", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "carpet" );
+		Asset.AddEntry_Float( "small_cloth", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "cloth" );
+		Asset.AddEntry_Float( "small_concrete", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "concrete" );
+		Asset.AddEntry_Float( "small_dirt", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "dirt" );
+		Asset.AddEntry_Float( "small_flesh", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "flesh" );
+		Asset.AddEntry_Float( "small_foliage", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "foliage" );
+		Asset.AddEntry_Float( "small_glass", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "glass" );
+		Asset.AddEntry_Float( "small_grass", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "grass" );
+		Asset.AddEntry_Float( "small_gravel", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "gravel" );
+		Asset.AddEntry_Float( "small_ice", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "ice" );
+		Asset.AddEntry_Float( "small_metal", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "metal" );
+		Asset.AddEntry_Float( "small_mud", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "mud" );
+		Asset.AddEntry_Float( "small_paper", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "paper" );
+		Asset.AddEntry_Float( "small_plaster", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "plaster" );
+		Asset.AddEntry_Float( "small_rock", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "rock" );
+		Asset.AddEntry_Float( "small_sand", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "sand" );
+		Asset.AddEntry_Float( "small_snow", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "snow" );
+		Asset.AddEntry_Float( "small_water", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "water" );
+		Asset.AddEntry_Float( "small_wood", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "wood" );
+		Asset.AddEntry_Float( "small_asphalt", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "asphalt" );
+		Asset.AddEntry_Float( "small_ceramic", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "ceramic" );
+		Asset.AddEntry_Float( "small_plastic", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "plastic" );
+		Asset.AddEntry_Float( "small_rubber", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "rubber" );
+		Asset.AddEntry_Float( "small_cushion", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "cushion" );
+		Asset.AddEntry_Float( "small_fruit", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "fruit" );
+		Asset.AddEntry_Float( "small_paintedmetal", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "paintedmetal" );
+		Asset.AddEntry_Float( "small_metalthin", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "metalthin" );
+		Asset.AddEntry_Float( "small_metalhollow", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "metalhollow" );
+		Asset.AddEntry_Float( "small_metalcatwalk", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "metalcatwalk" );
+		Asset.AddEntry_Float( "small_metalcar", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "metalcar" );
+		Asset.AddEntry_Float( "small_glasscar", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "glasscar" );
+		Asset.AddEntry_Float( "small_glassbulletproof", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "glassbulletproof" );
+		Asset.AddEntry_Float( "small_watershallow", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "watershallow" );
+		Asset.AddEntry_Float( "small_bodyarmor", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "bodyarmor" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Medium Bullets 
+	
+	Asset.BeginCategory( "Medium Bullets" );
+	{
+		Asset.AddEntry_Float( "medium_bark", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "bark" );
+		Asset.AddEntry_Float( "medium_brick", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "brick" );
+		Asset.AddEntry_Float( "medium_carpet", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "carpet" );
+		Asset.AddEntry_Float( "medium_cloth", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "cloth" );
+		Asset.AddEntry_Float( "medium_concrete", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "concrete" );
+		Asset.AddEntry_Float( "medium_dirt", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "dirt" );
+		Asset.AddEntry_Float( "medium_flesh", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "flesh" );
+		Asset.AddEntry_Float( "medium_foliage", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "foliage" );
+		Asset.AddEntry_Float( "medium_glass", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "glass" );
+		Asset.AddEntry_Float( "medium_grass", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "grass" );
+		Asset.AddEntry_Float( "medium_gravel", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "gravel" );
+		Asset.AddEntry_Float( "medium_ice", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "ice" );
+		Asset.AddEntry_Float( "medium_metal", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "metal" );
+		Asset.AddEntry_Float( "medium_mud", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "mud" );
+		Asset.AddEntry_Float( "medium_paper", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "paper" );
+		Asset.AddEntry_Float( "medium_plaster", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "plaster" );
+		Asset.AddEntry_Float( "medium_rock", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "rock" );
+		Asset.AddEntry_Float( "medium_sand", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "sand" );
+		Asset.AddEntry_Float( "medium_snow", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "snow" );
+		Asset.AddEntry_Float( "medium_water", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "water" );
+		Asset.AddEntry_Float( "medium_wood", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "wood" );
+		Asset.AddEntry_Float( "medium_asphalt", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "asphalt" );
+		Asset.AddEntry_Float( "medium_ceramic", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "ceramic" );
+		Asset.AddEntry_Float( "medium_plastic", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "plastic" );
+		Asset.AddEntry_Float( "medium_rubber", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "rubber" );
+		Asset.AddEntry_Float( "medium_cushion", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "cushion" );
+		Asset.AddEntry_Float( "medium_fruit", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "fruit" );
+		Asset.AddEntry_Float( "medium_paintedmetal", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "paintedmetal" );
+		Asset.AddEntry_Float( "medium_metalthin", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "metalthin" );
+		Asset.AddEntry_Float( "medium_metalhollow", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "metalhollow" );
+		Asset.AddEntry_Float( "medium_metalcatwalk", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "metalcatwalk" );
+		Asset.AddEntry_Float( "medium_metalcar", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "metalcar" );
+		Asset.AddEntry_Float( "medium_glasscar", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "glasscar" );
+		Asset.AddEntry_Float( "medium_glassbulletproof", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "glassbulletproof" );
+		Asset.AddEntry_Float( "medium_watershallow", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "watershallow" );
+		Asset.AddEntry_Float( "medium_bodyarmor", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "bodyarmor" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Large Bullets 	
+	
+	Asset.BeginCategory( "Large Bullets" );
+	{
+		Asset.AddEntry_Float( "large_bark", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "bark" );
+		Asset.AddEntry_Float( "large_brick", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "brick" );
+		Asset.AddEntry_Float( "large_carpet", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "carpet" );
+		Asset.AddEntry_Float( "large_cloth", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "cloth" );
+		Asset.AddEntry_Float( "large_concrete", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "concrete" );
+		Asset.AddEntry_Float( "large_dirt", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "dirt" );
+		Asset.AddEntry_Float( "large_flesh", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "flesh" );
+		Asset.AddEntry_Float( "large_foliage", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "foliage" );
+		Asset.AddEntry_Float( "large_glass", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "glass" );
+		Asset.AddEntry_Float( "large_grass", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "grass" );
+		Asset.AddEntry_Float( "large_gravel", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "gravel" );
+		Asset.AddEntry_Float( "large_ice", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "ice" );
+		Asset.AddEntry_Float( "large_metal", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "metal" );
+		Asset.AddEntry_Float( "large_mud", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "mud" );
+		Asset.AddEntry_Float( "large_paper", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "paper" );
+		Asset.AddEntry_Float( "large_plaster", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "plaster" );
+		Asset.AddEntry_Float( "large_rock", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "rock" );
+		Asset.AddEntry_Float( "large_sand", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "sand" );
+		Asset.AddEntry_Float( "large_snow", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "snow" );
+		Asset.AddEntry_Float( "large_water", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "water" );
+		Asset.AddEntry_Float( "large_wood", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "wood" );
+		Asset.AddEntry_Float( "large_asphalt", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "asphalt" );
+		Asset.AddEntry_Float( "large_ceramic", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "ceramic" );
+		Asset.AddEntry_Float( "large_plastic", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "plastic" );
+		Asset.AddEntry_Float( "large_rubber", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "rubber" );
+		Asset.AddEntry_Float( "large_cushion", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "cushion" );
+		Asset.AddEntry_Float( "large_fruit", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "fruit" );
+		Asset.AddEntry_Float( "large_paintedmetal", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "paintedmetal" );
+		Asset.AddEntry_Float( "large_metalthin", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "metalthin" );
+		Asset.AddEntry_Float( "large_metalhollow", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "metalhollow" );
+		Asset.AddEntry_Float( "large_metalcatwalk", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "metalcatwalk" );
+		Asset.AddEntry_Float( "large_metalcar", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "metalcar" );
+		Asset.AddEntry_Float( "large_glasscar", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "glasscar" );
+		Asset.AddEntry_Float( "large_glassbulletproof", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "glassbulletproof" );
+		Asset.AddEntry_Float( "large_watershallow", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "watershallow" );
+		Asset.AddEntry_Float( "large_bodyarmor", 0, 0, 5000 ).SetStep( 0.1 ).SetTitle( "bodyarmor" );
+	}
+}

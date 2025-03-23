@@ -1,0 +1,97 @@
+#include "lit_base_basic"
+#include "scroll_base"
+#include "flag_motion_base"
+#include "reveal_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit deferred opaque animating"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "thicknessMap" )
+{
+	image = Image( <colorMap00, $thickness> )
+	semantic = "thicknessMap"
+	tweak = Tweak()
+	{
+		category  = "Backlight"
+		title     = "Thickness Map"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "backlightScatterColor" )
+{
+	value = "srgb_to_linear( <backlightScatterColor> )"
+	tweak = Tweak()
+	{
+		category  = "Backlight"
+		title     = "Tint"
+		sortindex = "20"
+		color = true
+	}
+}
+
+float1( "flagZ" ).tweak = ""
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth nocull"
+{
+	defines += "USE_FLAG", "USE_ALPHA_TEST", "WATERFALL"
+	source = "vertexMotion_buildShadowmap.hlsl"
+}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes nocull"
+{
+	defines += "USE_FLAG", "USE_ALPHA_TEST", "WATERFALL"
+	source = "vertexMotion_buildShadowmap.hlsl"
+}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered nocull"
+{
+	defines += "USE_FLAG", "USE_ALPHA_TEST", "WATERFALL"
+	source = "vertexMotion_buildShadowmap.hlsl"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + depth + nocull"
+	defines = "USE_COLOR_TINT", "USE_FLAG", "USE_ALPHA_TEST"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque + nocull"
+	defines = "BASE_TEXTURES", "USE_COLOR_TINT", "USE_SCROLL_ROTATE_UVS", "USE_FXANIM", "USE_REVEAL_MAP", "USE_ALPHA_TEST"
+	source = "gbuffer_waterfall.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth + nocull"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

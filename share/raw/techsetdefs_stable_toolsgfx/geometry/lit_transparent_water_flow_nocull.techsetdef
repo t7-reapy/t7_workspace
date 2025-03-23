@@ -1,0 +1,39 @@
+#include "lit_water_sim_flow_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit transparent distortion"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+Technique( "unlit" )
+{
+	state = "blend + depth + nocull"
+	defines = "UNLIT_PASS", "USE_FLOW_ANY"
+	source = "lit_water_sim.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state	= "blend + depth + nocull"
+	source = "lit_water_sim.hlsl"
+	defines = "USE_FLOW_ANY", "DISABLE_FORWARD_NON_SUN_LIGHTS", "USE_NONFLAT_REFRACTION", "USE_NONFLAT"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+	#if TOOLSGFX != "1"
+		ifloatZSceneDownsampled = CodeTexture( "floatZDownscaledSampler" )
+		ifloatZScene = CodeTexture( "floatZSampler" )
+		iResolveScene = CodeTexture( "resolvedPostSun" )
+	#endif
+	}
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez + nocull"
+	defines += "USE_OIT"
+}

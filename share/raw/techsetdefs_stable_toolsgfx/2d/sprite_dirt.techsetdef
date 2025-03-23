@@ -1,0 +1,154 @@
+#include "state"
+#include "renderFlags"
+#include "2d_sprite_base"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+
+Texture( "maskMap" )
+{
+	image    = Image( <colorMap03, $white_reveal> )
+	semantic = "revealMap"
+	ref      = true
+	tweak    = Tweak()
+	{
+		category  = "Textures"
+		title	  = "Mask Map"
+		sortindex = "2"
+	}
+}
+
+Texture( "colorMap" )
+{
+	image    = Image( <colorMap01, $gray_color> )
+	semantic = "diffuseMap"
+	ref      = true
+	tweak    = Tweak()
+	{
+		category  = "Textures"
+		title	  = "Color Map"
+		sortindex = "1"
+	}
+}
+
+Texture( "specHighlightMap" )
+{
+	image    = Image( <colorMap02, $black_diffuse> )
+	semantic = "diffuseMap"
+	ref      = true
+	tweak    = Tweak()
+	{
+		category  = "Fake Highlight"
+		title	  = "Fake Spec Map"
+		sortindex = "3"
+	}
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "source" ).tweak = ""
+float2( "warpMaxMin" ).tweak = ""
+float2( "heightMaxMin" ).tweak = ""
+float1( "heightScale" ).tweak = ""
+
+float1( "falseElapsedTime" )
+{
+	x = <cg00_y>
+	tweak = Tweak()
+	{
+		category	= "Sprite Motion"
+		title		= "Time Override"
+		sortindex	= "80"
+		default		= "0.0"
+		range		= "0.0", "1024.0", "0.01"
+	}
+}
+
+Bool( "useOverride" )
+{
+	value = <gCheckBox00>
+	tweak = Tweak()
+	{
+		category	= "Sprite Motion"
+		title		= "Use static time override."
+		sortindex	= "90"
+	}
+}
+
+float1( "screenDistanceFade" )
+{
+	x = <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Sprite Motion"
+		title		= "Edge Fade"
+		sortindex	= "100"
+		default		= "0.0"
+		range		= "0.0", "4096.0", "0.01"
+	}
+}
+
+float1( "highlightBrightness" )
+{
+	x     = <cg28_z>
+	tweak = Tweak()
+	{
+		category	= "Fake Highlight"
+		title		= "Highlight Brightness"
+		sortindex	= "140"
+		default		= "1.000000"
+		range		= "0.0", "16.0", "0.01"
+		color		= false
+	}
+}
+
+float1( "highlightFalloff" )
+{
+	x     = <cg28_w>
+	tweak = Tweak()
+	{
+		category	= "Fake Highlight"
+		title		= "Highlight Falloff"
+		sortindex	= "150"
+		default		= "1.000000"
+		range		= "0.0", "16.0", "0.01"
+		color		= false
+	}
+}
+
+float1( "highlightMin" )
+{
+	x     = <cg31_y>
+	tweak = Tweak()
+	{
+		category	= "Fake Highlight"
+		title		= "Highlight Minimum"
+		sortindex	= "160"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.01"
+		color		= false
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state  = "premul color" //"blend + nocull"
+	source = "postfx\sprite_dirt.hlsl"
+	defines += "SPRITE_EFFECT_SHADER", "USE_TIME_OVERRIDE", "USE_SCRIPT_SOURCE"
+	vs = VertexShader() { }
+	ps = PixelShader() { }
+}

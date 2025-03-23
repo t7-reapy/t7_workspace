@@ -1,0 +1,144 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "no tile"
+	filter = "mip more expensive (2x trilinear)"
+}
+
+Sampler( "nearestSampler" )
+{
+	tile   = "no tile"
+	filter = "nearest (mip none)"
+}
+
+Texture( "gridTexture" )
+{
+	image    = Image( <colorMap00, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Grid"
+		title		= "Grid Map"
+		sortindex	= "20"
+	}
+}
+
+Texture( "irisTexture" )
+{
+	image    = Image( <colorMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		category	= "Iris"
+		title		= "Iris Map"
+		sortindex	= "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "pulseColor" )
+{
+	value	= "srgb_to_linear( <colorTint> )"
+	tweak	= Tweak()
+	{
+		category  = "Highlight"
+		title     = "Color Tint"
+		color	  = true
+		sortindex = "70"
+	}
+}
+
+
+float1( "viewOutlineWidth" )
+{
+	x = <cg04_y>
+	tweak = Tweak()
+	{
+		category	= "Highlight"
+		title		= "Outline Width"
+		sortindex	= "90"
+		default		= "6"
+		range		= "0", "256", "1"
+	}
+}
+
+float1( "viewOutlineBold" )
+{
+	x = <cg04_z>
+	tweak = Tweak()
+	{
+		category	= "Highlight"
+		title		= "Outline Boldness"
+		sortindex	= "100"
+		default		= "14.0"
+		range		= "0.0", "1000.0", "0.1"
+	}
+}
+
+float2( "gridScale" )
+{
+	x     = <cg01_y>
+	y     = <cg01_z>
+	tweak = Tweak()
+	{
+		category  = "Grid"
+		title     = "Grid Scale (U, V)"
+		sortindex = "80"
+		default   = "1.0"
+		range     = "1.0", "1024.0", "0.01"
+	}
+}
+
+float2( "gridScroll" )
+{
+	x     = <cg01_w>
+	y     = <cg02_x>
+	tweak = Tweak()
+	{
+		category  = "Grid"
+		title     = "Grid Scroll (U, V)"
+		sortindex = "90"
+		default   = "0.0"
+		range     = "-1024.0", "1024.0", "0.01"
+	}
+}
+
+float1( "glowBoost" )
+{
+	x     = <cg03_w>
+	tweak = Tweak()
+	{
+		category  = "Highlight"
+		title     = "Color Boost"
+		sortindex = "75"
+		default   = "1.0"
+		range     = "1.0", "1024.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/engineer.hlsl"
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+		floatzTexture = CodeTexture( "floatZSampler" )
+		sonarColorTexture = CodeTexture( "sonarColorSampler" )
+		sonarDepthTexture = CodeTexture( "sonarDepthSampler" )
+	}
+}

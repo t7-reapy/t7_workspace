@@ -1,0 +1,27 @@
+const int MAX_TABLES = 10;
+
+void GenerateUI( asset Asset )
+{
+	// Hidden
+	Asset.AddEntry_String( "configstringFileType", "WEAPONCAMOTABLE" ).Show( false );	
+	
+	Asset.AddEntry_Int( "numCamoTables", 1, 1, MAX_TABLES ).SetTitle( "Number Camo tables" ).UpdateOnChange(true);
+	int numCamoTables = Asset.GetEntryInt( "numCamoTables" );
+
+	for ( int t = 1; t <= MAX_TABLES; t++ )
+	{
+		string tStr = "";
+		if ( t < 10 ) tStr += "0";
+		tStr += t;
+
+		bool tableVisible = t <= numCamoTables;
+
+		string catPrefix = "Camo Table " + t;
+		string tablePrefix = "table_" + tStr + "_";
+
+		Asset.BeginCategory( catPrefix );
+		{
+			Asset.AddEntry_AssetCombo( tablePrefix + "name", "weaponcamo" ).Show( tableVisible ).SetTitle( "Table:" );
+		}
+	}
+}

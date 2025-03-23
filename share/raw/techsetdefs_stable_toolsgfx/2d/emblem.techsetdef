@@ -1,0 +1,46 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+}
+
+Texture( "colorMap" )
+{
+	ref = true
+	image = Image( <colorMap, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Color Map"
+		sortindex = "0"
+	}
+}
+
+Technique( "lit", "unlit" )
+{
+	state = State()
+	{
+		blendState = BlendState()
+		{
+			colorBlendFunc = add
+			colorBlendSrc  = srcAlpha
+			colorBlendDst  = invSrcAlpha
+			alphaBlendFunc = max
+			alphaBlendSrc  = one
+			alphaBlendDst  = one
+		}
+	}
+
+	source = "emblem.hlsl"
+	vs = VertexShader()	{ }
+	ps = PixelShader()
+	{
+		emblemTexture = CodeTexture( "codeTexture0" )
+		modTexture = CodeTexture( "codeTexture1" )
+		emblemSampler = Sampler("no tile", "nomip bilinear")
+		modSampler = Sampler("tile both", "linear (mip linear)")
+	}
+}

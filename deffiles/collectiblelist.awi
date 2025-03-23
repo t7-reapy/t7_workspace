@@ -1,0 +1,8 @@
+#include "asset_list_helper.h"
+const int MAX_COLLECTIBLE_OBJECTS = 32;
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "vmType", "Client" ).Show( false );
+	GenerateItemList( Asset, "collectible", "Collectible", "collectible", MAX_COLLECTIBLE_OBJECTS );
+}

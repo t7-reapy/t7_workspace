@@ -1,0 +1,150 @@
+#include "lit_base_basic"
+#include "micro_tile_mix_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit deferred opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "breakUpMap" )
+{
+	image = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category	= "Detail Maps1"
+		title		= "Break Up Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "detailMap2" ).tweak = ""
+Texture( "colorMapDetail2" ).tweak = ""
+Sampler( "mixSampler" ).tweak = ""
+Texture( "mixMap" ).tweak = ""
+Color( "colorTint1" ).tweak = ""
+float1( "detailScaleHeight2" ).tweak = ""
+float2( "detailScale2" ).tweak = ""
+float1( "rotateUVs2" ).tweak = ""
+
+float2( "glossRange2" ).tweak = Tweak()
+{
+	category  = "Weather Maps"
+	title     = "Gloss Range"
+	sortindex = "70"
+}
+Bool( "useUVOffsets2" ).tweak = Tweak()
+{
+	category	= "Weather Maps"
+	title		= "Use world space UV offsets."
+	sortindex	= "90"
+}
+
+float1( "weatherThreshold" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Weather Maps"
+		title		= "Normal Threshold"
+		sortindex	= "100"
+		default		= "0.4"
+		range		= "0.0", "1.0", "0.01"
+	}
+}
+
+float1( "weatherHarshness" )
+{
+	x = <cg00_y>
+	tweak = Tweak()
+	{
+		category	= "Weather Maps"
+		title		= "Transition Harshness"
+		sortindex	= "110"
+		default		= "1.0"
+		range		= "0.0", "8.0", "0.01"
+	}
+}
+
+float2( "breakUpMapTile" )
+{
+	x = <cg01_z>
+	y = <cg01_w>
+	tweak = Tweak()
+	{
+		category	= "Detail Maps1"
+		title		= "Break Up Scale"
+		sortindex	= "15"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "vertexColorScale" )
+{
+	x	= <sway_x>
+	y	= <sway_y>
+	tweak = Tweak()
+	{
+		category	= "Vertex Color"
+		title		= "Scale (R, G)"
+		sortindex	= "10"
+		default		= "1.0", "1.0"
+		range		= "0.0", "1.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT", "USE_MICRO_BLEND"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque"
+	defines = "BASE_TEXTURES", "USE_WORLD_TILE_OFFSET", "USE_WEATHER_VOLUME", "USE_FXANIM"
+	source = "gbuffer_micro_tile_blend.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/debug_texeldensity.hlsl"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/debug_texeldensity.hlsl"
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

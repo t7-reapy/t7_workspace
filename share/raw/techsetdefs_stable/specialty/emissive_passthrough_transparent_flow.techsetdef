@@ -1,0 +1,89 @@
+#include "lit_base_shaders"
+#include "shadowmap_technique_base"
+#include "transparent_shadow_base"
+#include "transparent_base"
+#include "emissive_base"
+#include "flow_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "emissiveTint1" ).tweak = ""
+float1( "emissiveFalloffPower" ).tweak = ""
+Bool( "relativeHDR" ).tweak = ""
+Bool( "invertFalloff" ).tweak = ""
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		sortindex = "18" // leave some indices to have other color maps (need 2 indices - tile + filter)
+	}
+}
+
+Texture( "emissiveFlowMap" )
+{
+	image = Image( <colorMap01, $white_diffuse> )
+	tweak = Tweak( "Emissive", "Emissive Flow Layer", "30" )
+	semantic = "diffuseMap", "HDR"
+}
+
+Texture( "colorMap" ) : "emissiveMap"
+{}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Bool( "flowAlpha" )
+{
+	value = <gCheckBox00>
+	tweak = Tweak()
+	{
+		category	= "Emissive"
+		title		= "Flow only affects alpha."
+		sortindex	= "150"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "blend + depth"
+	source = "specialty/emissive_passthrough_flow.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

@@ -1,0 +1,37 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	defines = "TEXCOORD_OFFSET 1", "TEMPORAL_FILTER 1", "DENOISER_TEMPORAL_JITTERING 0"
+
+	vs = VertexShader()
+	{
+		source = "ssao_denoiser.hlsl"
+	}
+
+	ps = PixelShader()
+	{
+		source = "ssao_denoiser.hlsl"
+
+		depthTex0 = CodeTexture( "codeTexture0" )
+		depthTex1 = CodeTexture( "codeTexture1" )
+		depthTex2 = CodeTexture( "codeTexture2" )
+
+		velocityTex0 = CodeTexture( "codeTexture3" )
+		velocityTex1 = CodeTexture( "codeTexture4" )
+
+		aoTex = CodeTexture( "codeTexture5" )
+		aoHistoryTex1 = CodeTexture( "codeTexture6" )
+		aoHistoryTex2 = CodeTexture( "codeTexture7" )
+
+		linearSampler = Sampler( "no tile", "nomip bilinear" )
+	}
+}

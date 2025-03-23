@@ -1,0 +1,61 @@
+#include "effect_base"
+
+Globals()
+{
+	category = "Effect"
+	renderFlags = RenderFlags() //: "emissive transparent"
+	{
+		is2D = true	
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+//float1( "hdrScale" )
+//{
+//	x = <scaleRGB>
+//	tweak = Tweak()
+//	{
+//		category  = "Parameters"
+//		title     = "Intensity"
+//		sortindex = "30"
+//	}
+//}
+
+Texture( "detailMap" )
+{
+	image = Image( <detailMap, $white> )
+	semantic = "effectMap"
+	usage = "effect map"
+	tweak = Tweak()
+	{
+		category  = "Grime Map"
+		title     = "Grime Map"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "add + nocull"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/effect_lensflare_simple.hlsl"
+		vertexDecl = "generic"
+#else
+		defines = "USE_VERTCOL"
+		source = "techsetdef_lensflare_effect.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/effect_lensflare_simple.hlsl"
+#else
+		source = "techsetdef_lensflare_effect.hlsl"
+#endif
+	}
+}

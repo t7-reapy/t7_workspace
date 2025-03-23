@@ -1,0 +1,119 @@
+#include "lit_detail_base_basic"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit deferred opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "normalSampler" ).tweak = ""
+Texture( "normalMap" ).tweak = ""
+float1( "baseNormalHeight" ).tweak = ""
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "eyeWetness" )
+{
+	x = <cg01_y>
+	tweak = Tweak()
+	{
+		category	= "Eye Parameters"
+		title		= "Wetness"
+		range     = "0.0", "1.0", "0.44"
+		sortindex	= 50
+	}
+}
+float1( "eyeIrisSize" )
+{
+	x = <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Eye Parameters"
+		title		= "Iris Scale"
+		range     = "-0.2", "0.2", "0.0"
+		sortindex	= 60
+	}
+}
+float1( "eyePupil" )
+{
+	x = <cg01_w>
+	tweak = Tweak()
+	{
+		category	= "Eye Parameters"
+		title		= "Pupil Size (Tools Only)"
+		range     = "0.0", "1.0", "0.0"
+		sortindex	= 70
+	}
+}
+float1( "eyeRedness" )
+{
+	x = <cg02_x>
+	tweak = Tweak()
+	{
+		category	= "Eye Parameters"
+		title		= "Redness"
+		range     = "0.0", "1.0", "0.2"
+		sortindex	= 80
+	}
+}
+
+float1( "eyeAOTop" )
+{
+	x = <cg02_z>
+	tweak = Tweak()
+	{
+		category	= "Eye Parameters"
+		title		= "AO Top Intensity"
+		range     = "0.0", "15.0", "7.5"
+		sortindex	= 100
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	defines += "USE_DETAIL_MAP", "NO_VERTEX_ALPHA"
+	state = "gbuffer opaque"
+	source = "gbuffer_eye.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

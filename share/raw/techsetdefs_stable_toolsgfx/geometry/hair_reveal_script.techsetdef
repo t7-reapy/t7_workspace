@@ -1,0 +1,127 @@
+#include "lit_base_mid"
+#include "reveal_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit forward opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "PointSampler" )
+{
+	tile = "no tile"
+	filter = "nomip nearest"
+	nobias = true
+}
+Sampler( "LinearSampler" )
+{
+	tile = "no tile"
+	filter = "nomip bilinear"
+	nobias = true
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "anisotropy" )
+{
+	x = <waterRefractionAmount>
+	tweak = Tweak()
+	{
+		category  = "Aniso Control"
+		title     = "Aniso Amount"
+		sortindex = "35"
+	}
+}
+
+Color( "specColorTint" )
+{
+	value = "srgb_to_linear( <specColorTint> )"
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Spec Color"
+		sortindex = "30"
+		color = true
+	}
+}
+
+float1( "scriptControl" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category  = "Script Simulator (Tools Only)"
+		title     = "Reveal"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "thermal" ).defines = "THERMAL_ALPHA_TEST"
+Technique( "thermal" ).state = "thermal nocull"
+Sampler( "normalSampler" ).nobias = true
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass + nocull"
+	defines += "USE_ALPHA_TEST", "USE_REVEAL_MAP", "USE_SCRIPT_CONTROLS", "USE_DIFFUSE_ALPHA"
+	source = "techsetdef_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth alphatest nocull"
+{
+	defines += "USE_ALPHA_TEST", "USE_REVEAL_MAP", "USE_SCRIPT_CONTROLS", "USE_DIFFUSE_ALPHA"
+}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes alphatest nocull"
+{
+	defines += "USE_ALPHA_TEST", "USE_REVEAL_MAP", "USE_SCRIPT_CONTROLS", "USE_DIFFUSE_ALPHA"
+}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered alphatest nocull"
+{
+	defines += "USE_ALPHA_TEST", "USE_REVEAL_MAP", "USE_SCRIPT_CONTROLS", "USE_DIFFUSE_ALPHA"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + depth + nocull"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque + nocull"
+	defines = "BASE_SPEC", "USE_SCRIPT_CONTROLS"
+	source = "lit_hair.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth + nocull"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

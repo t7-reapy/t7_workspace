@@ -1,0 +1,43 @@
+Texture( "emissiveMap" )
+{
+	ref = true
+	image = Image( <colorMap00, $white_diffuse> )
+	tweak = Tweak( "Emissive", "Emissive Map", "0" )
+	semantic = "diffuseMap", "HDR"
+}
+
+Color( "emissiveTint1" )
+{
+	value = "srgb_to_linear( <colorTint1> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint"
+		sortindex = "10"
+		color = true
+	}
+}
+
+float1( "hdrScale" )
+{
+	x = <scaleRGB>
+	tweak = Tweak( "Emissive", "HDR Scale", "20" )
+}
+
+float1( "emissiveFalloffPower" )
+{
+	x = <emissiveFalloff>
+	tweak = Tweak( "Emissive", "Falloff", "30" )
+}
+
+Bool( "relativeHDR" )
+{
+	value = <emissiveIncompetence>
+	tweak = Tweak( "Emissive", "Use gameplay intensity.", "440" )
+}
+
+Bool( "invertFalloff" )
+{
+	value = <invertFalloff>
+	tweak = Tweak( "Emissive", "Invert falloff (brighter edges).", "540" )
+}

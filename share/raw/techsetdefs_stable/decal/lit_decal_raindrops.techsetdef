@@ -1,0 +1,145 @@
+#include "lit_base_shaders"
+#include "lit_decal_base.inc"
+#include "normal_base"
+#include "gloss_base"
+#include "reveal_base"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "base decal renderflags"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "rippleMap" )
+{
+	image = Image( rain_hit_n )
+	semantic = "multipleMask"
+}
+
+Texture( "tintMask" )
+{
+	image = Image( $white_reveal )
+	semantic = "revealMap"
+}
+
+Sampler( "revealSampler" ).tweak = ""
+float2( "revealScale" ).tweak = ""
+Texture( "revealMap" ).tweak = Tweak()
+{
+	category  = "Alpha"
+	title     = "Mask Map"
+	sortindex = "10"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "alphaRevealSoftEdge" ).tweak = ""
+float1( "alphaRevealRamp" ).tweak = ""
+
+Color( "colorTint" )
+{
+	value = "srgb_to_linear( <colorTint> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Albedo Darken"
+		sortindex = "10"
+		color = true
+	}
+}
+
+float2( "normalTiling" )
+{
+	x = <gNormalScale00>
+	y = <gNormalScale01>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Scale (U, V)"
+		sortindex = "45"
+	}
+}
+
+float1( "rippleSpeed" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Ripple Speed"
+		default   = "1.0"
+		range     = "1.0", "1024.0", "0.01"
+		sortindex = "55"
+	}
+}
+
+float2( "rippleScale" )
+{
+	x = <cg00_y>
+	y = <cg00_z>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Ripple Scale"
+		default   = "1.0"
+		range     = "1.0", "1024.0", "0.01"
+		sortindex = "65"
+	}
+}
+
+float2( "glossRange" )
+{
+	x = <glossRangeMin>
+	y = <glossRangeMax>
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Gloss Range"
+		sortindex = "45"
+	}
+}
+
+float1( "normalFlattening" )
+{
+	x = <normalFlattening>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Normal Flattening"
+		sortindex = "66"
+		default   = "1.0"
+	}
+}
+
+// NOT USED, JUST TO KEEP THE UNLIT PASS HAPPY
+Sampler( "colorSampler" ) : "normalSampler"
+{
+}
+Texture( "colorMap" ) : "normalMap"
+{
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{ }
+
+Technique( "gbuffer" ) : "base lit decal gbuffer normal gloss"
+{
+	source = "gbuffer_decal_raindrops.hlsl"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}
+

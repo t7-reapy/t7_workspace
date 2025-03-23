@@ -1,0 +1,108 @@
+#include "lit_base_shaders"
+#include "lit_decal_base.inc"
+#include "emissive_base"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "emissive decal"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		sortindex = "18" // leave some indices to have other color maps (need 2 indices - tile + filter)
+	}
+}
+
+Color( "emissiveTint1" ).tweak = Tweak( "Emissive", "Tint State1", "10" )
+float1( "hdrScale" ).tweak = Tweak( "Emissive", "HDR Scale", "50" )
+float1( "emissiveFalloffPower" ).tweak = Tweak( "Emissive", "Falloff", "60" )
+
+Color( "tint1" )
+{
+	value = "srgb_to_linear( <colorTint2> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint State 2"
+		sortindex = "20"
+		color = true
+	}
+}
+Color( "tint2" )
+{
+	value = "srgb_to_linear( <colorTint3> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint State 3"
+		sortindex = "30"
+		color = true
+	}
+}
+Color( "tint3" )
+{
+	value = "srgb_to_linear( <colorTint4> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint State 4"
+		sortindex = "40"
+		color = true
+	}
+}
+
+float2( "scriptControl" )
+{
+	x = <cg00_x>
+	y = <cg00_y>
+	tweak = Tweak()
+	{
+		category	= "Script Preview"
+		title		= "Tint (Brightness, State)"
+		sortindex	= "80"
+		default		= "1.0"
+		range		= "0.0", "4.0", "0.01"
+	}
+}
+
+// FOR THE OTHER PASSES
+Texture( "colorMap" ) : "emissiveMap"
+{}
+Color( "colorTint" ) : "emissiveTint1"
+{ }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines = ""
+}
+
+Technique( "lit" )
+{
+	state = "add + depth + decal"
+	source = "emissive_decal.hlsl"
+	defines = "USE_COLOR_TINT", "USE_SCRIPT_CONTROLS"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

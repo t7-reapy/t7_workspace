@@ -1,0 +1,58 @@
+#include "state.techsetdef"
+#include "renderFlags.techsetdef"
+
+Globals()
+{
+	category = "Weapons"
+	renderFlags = RenderFlags() : "emissive transparent"
+	{
+		postBlur = true
+	}
+	gameOnly = true
+	availablePrefixes = "mc/ mcs/"
+}
+
+Sampler( "Color_Map_Sampler" )
+{
+	tile   = <texTile00>
+	filter = <filterColor00>
+	tweak = Tweak()
+	{
+		category  = "Color Map"
+		sortindex = "10"
+	}
+}
+Texture( "Color_Map" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category  = "Color Map"
+		sortindex = "0"
+		default   = "model_export\\t6_weapon\\attachments\\optic\\acog\\mtl_t6_attach_optic_acog_reticle.tif"
+	}
+}
+
+Technique( "lit" )
+{
+	state   = "add"
+	source  = "Weapons\reticle.hlsl"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_CUSTOM", "POST_BLUR", "NEW_COLOR_SCALE"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}
+
+Technique( "wireframe" )
+{
+	state = "wireframe + nocull + decal"
+	source = "wireframe.hlsl"
+
+	vs = VertexShader() { }
+	ps = PixelShader() { }
+}

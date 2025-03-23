@@ -1,0 +1,260 @@
+#include "lit_base"
+#include "micro_tile_mix_advanced_base"
+
+Globals()
+{
+	category = "Geometry Advanced"
+	renderFlags = "lit deferred opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "mixMap" ).tweak = Tweak()
+{
+	category  = "Base Maps"
+	title     = "Mix Reveal Map1"
+	sortindex = "20"
+}
+Texture( "mixMap1" )
+{
+	image = Image( <colorMap08, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Base Maps"
+		title     = "Mix Reveal Map2"
+		sortindex = "30"
+	}
+}
+
+Texture( "detailMap3" )
+{
+	image = Image( <colorMap04, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps3"
+		title     = "Normal Map"
+		sortindex = "20"
+	}
+}
+Texture( "colorMapDetail3" )
+{
+	image = Image( <colorMap05, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps3"
+		title     = "Color Map"
+		sortindex = "0"
+	}
+}
+Texture( "glossMapDetail3" )
+{
+	image = Image( <colorMap06, $white_gloss> )
+	semantic = "glossMap"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps3"
+		title     = "Gloss Map"
+		sortindex = "30"
+	}
+}
+Texture( "specularMapDetail3" )
+{
+	image = Image( <colorMap07, $white_specular> )
+	semantic = "specularMask"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps3"
+		title     = "Specular Map"
+		sortindex = "40"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "mixScale" ).tweak = Tweak()
+{
+	category  = "Base Maps"
+	title     = "Mix Reveal Scale1 (X, Y)"
+	sortindex = "100"
+}
+float2( "mixScale1" )
+{
+	x = <cg30_z>
+	y = <cg30_w>
+	tweak = Tweak()
+	{
+		category  = "Base Maps"
+		title     = "Mix Reveal Scale2 (X, Y)"
+		sortindex = "140"
+	}
+}
+
+float1( "alphaRevealSoftEdge1" )
+{
+	x = <alphaRevealSoftEdge>
+	tweak = Tweak()
+	{
+		category  = "Base Maps"
+		title     = "Mix Reveal Soft Edge1"
+		sortindex = "125"
+	}
+}
+float1( "alphaRevealRamp1" )
+{
+	x = <alphaRevealRamp>
+	tweak = Tweak()
+	{
+		category  = "Base Maps"
+		title     = "Mix Reveal Ramp1"
+		sortindex = "135"
+	}
+}
+
+float1( "alphaRevealSoftEdge2" )
+{
+	x = <transRevealSoftEdge>
+	tweak = Tweak()
+	{
+		category  = "Base Maps"
+		title     = "Mix Reveal Soft Edge2"
+		sortindex = "145"
+	}
+}
+float1( "alphaRevealRamp2" )
+{
+	x = <transRevealRamp>
+	tweak = Tweak()
+	{
+		category  = "Base Maps"
+		title     = "Mix Reveal Ramp2"
+		sortindex = "155"
+	}
+}
+
+Color( "colorTint2" )
+{
+	value = "srgb_to_linear( <colorTint2> )"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps3"
+		title     = "Albedo Tint"
+		sortindex = "10"
+		color = true
+	}
+}
+Color( "specColorTint2" )
+{
+	value = "srgb_to_linear( <colorTint3> )"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps3"
+		title     = "Spec Color"
+		sortindex = "50"
+		color = true
+	}
+}
+
+float1( "detailScaleHeight3" )
+{
+	x = <detailScaleHeight2>
+	tweak = Tweak()
+	{
+		category  = "Detail Maps3"
+		title     = "Detail Normal Height"
+		sortindex = "50"
+	}
+}
+float2( "detailScale3" )
+{
+	x = <detail2ScaleX>
+	y = <detail2ScaleY>
+	tweak = Tweak()
+	{
+		category  = "Detail Maps3"
+		title     = "Detail Scale (X, Y)"
+		sortindex = "60"
+	}
+}
+float2( "glossRange3" )
+{
+	x = <glossRangeMin3>
+	y = <glossRangeMax3>
+	tweak = Tweak()
+	{
+		category  = "Detail Maps3"
+		title     = "Gloss Range"
+		sortindex = "70"
+	}
+}
+float1( "rotateUVs3" )
+{
+	x = "radians( <uvRotationRate2> )"
+	tweak = Tweak()
+	{
+		category	= "Detail Maps3"
+		title		= "UV Rotation"
+		sortindex	= "80"
+	}
+}
+Bool( "useUVOffsets3" )
+{
+	value = <useWorldOffsets3>
+	tweak = Tweak()
+	{
+		category	= "Detail Maps3"
+		title		= "Use world space UV offsets."
+		sortindex	= "90"
+	}
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT", "USE_MICRO_BLEND"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque"
+	defines = "USE_WORLD_TILE_OFFSET", "USE_REVEAL_MIX", "USE_VERTEX_COLOR", "USE_TRIPLE_MIX", "COLOR_AS_DATA"
+	source = "gbuffer_micro_tile_triple_mix.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

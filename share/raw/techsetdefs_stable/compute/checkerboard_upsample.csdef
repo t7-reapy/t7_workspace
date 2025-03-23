@@ -1,0 +1,42 @@
+ComputeShader("checkerboard_upsample_filter")
+{
+	source = "postfx/checkerboard_upsample.hlsl"
+	defines += "FILTER"
+}
+
+ComputeShader("checkerboard_upsample_debug")
+{
+	source = "postfx/checkerboard_upsample.hlsl"
+	defines += "DEBUG_CHECKERBOARD"
+}
+
+ComputeShader("checkerboard_separate")
+{
+	source = "postfx/checkerboard_separate.hlsl"
+	defines += "DO_LUMA 0"
+}
+
+ComputeShader("checkerboard_separate_luma")
+{
+	source = "postfx/checkerboard_separate.hlsl"
+	defines += "DO_LUMA 1"
+}
+
+ComputeShader("checkerboard_upsample_copy")
+{
+	source = "postfx/checkerboard_upsample_smaa.hlsl"
+	defines += "SMAA_NEO_UPSAMPLE_FILMIC_FILTER 0"
+	defines += "SMAA_NEO_NAIVE_COPY_ONLY 1"
+}
+
+ComputeShader("checkerboard_upsample_motion_vector")
+{
+	source = "postfx/checkerboard_upsample_smaa.hlsl"
+	defines += "SMAA_NEO_UPSAMPLE_FILMIC_FILTER 0"
+}
+
+ComputeShader("checkerboard_upsample_motion_vector_filmic")
+{
+	source = "postfx/checkerboard_upsample_smaa.hlsl"
+	defines += "SMAA_NEO_UPSAMPLE_FILMIC_FILTER 1"
+}

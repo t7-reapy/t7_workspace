@@ -1,0 +1,232 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{29B17228-0F9E-11E5-939F-2C27D7EF3DD8}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lightingquality" "1024"
+"newsun" "1"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{29B17229-0F9E-11E5-939F-2C27D7EF3DD8}"
+"classname" "func_group"
+// brush 0
+{
+ guid "{5EFBCD33-4B5D-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 8 1.25 -3 ) ( 8 -0.75 -3 ) ( 26 -0.75 -3 ) caulk 64 64 -231 1459.5 0 0 lightmap_gray 16384 16384 -534.75 137 90 0
+ ( 27 -0.75 91 ) ( 9 -0.75 91 ) ( 9 1.25 91 ) caulk 64 64 -231 1459.5 0 0 lightmap_gray 16384 16384 -534.75 137 90 0
+ ( 27 0.5 90.5 ) ( 9 0.5 90.5 ) ( 9 0.5 34.5 ) t7_glass_smoked 64 64 0 0 0 0 lightmap_gray 16384 -16384 -137 -5.5 180 0
+ ( 9 -0.5 85.5 ) ( 27 -0.5 85.5 ) ( 27 -0.5 29.5 ) t7_glass_smoked 64 64 0 0 0 0 lightmap_gray 16384 -16384 -137 -5.5 180 0
+ ( 77.5 -0.25 86 ) ( 77.25 0 86 ) ( 77.5 -0.25 118 ) t7_glass_edge_trim 1 -94 0.5 -3 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 77.25 0 86 ) ( 77.5 0.25 86 ) ( 77.25 0 118 ) t7_glass_edge_trim 1 -94 0.5 -3 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 77.5 0 91 ) ( 77.5 0.25 91 ) ( 77.5 0 123 ) t7_glass_edge_trim 1 -94 0.5 -3 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 106 0.5 81 ) ( 106 0.5 84 ) ( 106 32.5 84 ) caulk 16 16 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+}
+// brush 1
+{
+ guid "{66A6BC5F-4B5D-11E4-B908-2C27D7F0333E}"
+  contents weaponClip detail;
+ ( 8 1.25 -3 ) ( 8 -0.75 -3 ) ( 26 -0.75 -3 ) caulk 64 64 -231 1459.5 0 0 lightmap_gray 16384 16384 -534.75 137 90 0
+ ( 27 -0.75 91 ) ( 9 -0.75 91 ) ( 9 1.25 91 ) caulk 64 64 -231 1459.5 0 0 lightmap_gray 16384 16384 -534.75 137 90 0
+ ( 27 0.5 92.5 ) ( 9 0.5 92.5 ) ( 9 0.5 36.5 ) t7_glass_smoked 64 64 0 0 0 0 lightmap_gray 16384 -16384 -137 -5.5 180 0
+ ( 9 -0.5 87.5 ) ( 27 -0.5 87.5 ) ( 27 -0.5 31.5 ) t7_glass_smoked 64 64 0 0 0 0 lightmap_gray 16384 -16384 -137 -5.5 180 0
+ ( 28.5 0.25 86 ) ( 28.75 0 86 ) ( 28.5 0.25 118 ) t7_glass_edge_trim 1 -94 0.5 -3 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 28.75 0 86 ) ( 28.5 -0.25 86 ) ( 28.75 0 118 ) t7_glass_edge_trim 1 -94 0.5 -3 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 28.5 0.25 91 ) ( 28.5 -0.25 91 ) ( 28.5 0.25 123 ) t7_glass_edge_trim 1 -94 0.5 -3 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 0.5 56 ) ( 0 0.5 55 ) ( 0 32.5 56 ) caulk 16 16 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+}
+// brush 2
+ {
+  guid "{42D178F3-A1A5-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_decal_signage_alert_scroll_01_transparent
+   lightmap_gray
+   2 2 0 8
+   (
+	v 28.25 -0.5 61 t 0 -0 6.796875 -0.15625
+	v 0 -0.5 61 t -452 0 8.5625 -0.15625
+   )
+   (
+	v 28.25 -0.5 68.5 t 0 -960 6.796875 -4.5625
+	v 0 -0.5 68.5 t -452 -960 8.5625 -4.5625
+   )
+  }
+ }
+// brush 3
+ {
+  guid "{FB60699B-B0B9-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   2 2 0 8
+   (
+	v 28.5 0.25 -3 t -768 0 0.015625 0.1875
+	v 28.25 0.5 -3 t -1024 0 0.03125 0.1875
+   )
+   (
+	v 28.5 0.25 91 t -768 -1023.9999 0.015625 -5.6875
+	v 28.25 0.5 91 t -1024 -1023.9999 0.03125 -5.6875
+   )
+  }
+ }
+// brush 4
+ {
+  guid "{FB60699C-B0B9-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   2 2 0 8
+   (
+	v 28.5 -0.25 -3 t -256 0 -0.015625 0.1875
+	v 28.5 -0.25 91 t -256 -1023.9999 -0.015625 -5.6875
+   )
+   (
+	v 28.25 -0.5 -3 t 0 0 -0.03125 0.1875
+	v 28.25 -0.5 91 t 0 -1023.9999 -0.03125 -5.6875
+   )
+  }
+ }
+// brush 5
+ {
+  guid "{FB60699D-B0B9-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   2 2 0 8
+   (
+	v 28.5 -0.25 -3 t -256 0 -0.015625 0.1875
+	v 28.5 0.25 -3 t -768 0 0.015625 0.1875
+   )
+   (
+	v 28.5 -0.25 91 t -256 -1023.9999 -0.015625 -5.6875
+	v 28.5 0.25 91 t -768 -1023.9999 0.015625 -5.6875
+   )
+  }
+ }
+// brush 6
+ {
+  guid "{13854C42-B0BA-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   2 2 0 8
+   (
+	v 77.5 -0.25 91 t -256 -1023.9999 -0.015625 -5.6875
+	v 77.5 -0.25 -3 t -256 0 -0.015625 0.1875
+   )
+   (
+	v 77.75 -0.5 91 t 0 -1023.9999 -0.03125 -5.6875
+	v 77.75 -0.5 -3 t 0 0 -0.03125 0.1875
+   )
+  }
+ }
+// brush 7
+ {
+  guid "{13854C43-B0BA-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   2 2 0 8
+   (
+	v 77.5 0.25 91 t -768 -1023.9999 0.015625 -5.6875
+	v 77.5 0.25 -3 t -768 0 0.015625 0.1875
+   )
+   (
+	v 77.5 -0.25 91 t -256 -1023.9999 -0.015625 -5.6875
+	v 77.5 -0.25 -3 t -256 0 -0.015625 0.1875
+   )
+  }
+ }
+// brush 8
+ {
+  guid "{13854C44-B0BA-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_glass_edge_trim
+   lightmap_gray
+   2 2 0 8
+   (
+	v 77.75 0.5 -3 t -1024 0 0.03125 0.1875
+	v 77.5 0.25 -3 t -768 0 0.015625 0.1875
+   )
+   (
+	v 77.75 0.5 91 t -1024 -1023.9999 0.03125 -5.6875
+	v 77.5 0.25 91 t -768 -1023.9999 0.015625 -5.6875
+   )
+  }
+ }
+}
+// entity 2
+{
+guid "{B68C89ED-A03B-11E4-96E0-2C27D7F024B0}"
+"classname" "misc_prefab"
+"angles" "0 6.29974 0"
+"model" "_prefabs/mp/mp_combine/geo/mp_combine_bunkbed_door.map"
+"origin" "-0.128376 -8.68266 0"
+}
+// entity 3
+{
+guid "{13E80FFB-A1A5-11E4-96E0-2C27D7F024B0}"
+"classname" "func_group"
+// brush 0
+ {
+  guid "{13E80FFA-A1A5-11E4-96E0-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_decal_signage_alert_scroll_01_transparent
+   lightmap_gray
+   2 2 0 8
+   (
+	v 105.75 -0.5 61 t 223.23096 -71.168053 6.796875 -0.15625
+	v 77.75 -0.5 61 t -228.77087 -71.168053 8.5625 -0.15625
+   )
+   (
+	v 105.75 -0.5 68.5 t 223.23096 -960 6.796875 -4.5625
+	v 77.75 -0.5 68.5 t -228.77087 -960 8.5625 -4.5625
+   )
+  }
+ }
+}

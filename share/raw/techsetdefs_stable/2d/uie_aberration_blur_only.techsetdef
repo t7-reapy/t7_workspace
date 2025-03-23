@@ -1,0 +1,73 @@
+#include "uie_base"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Sampler( "tileMipBilinearSampler" )
+{
+	tile = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+
+Sampler( "bilinearClampSampler" )
+{
+    tile = "no tile"
+    filter = "nomip bilinear"
+}
+
+Sampler( "pointClampSampler" )
+{
+    tile = "no tile"
+    filter = "nomip nearest"
+}
+
+Texture( "colorMapSampler1" )
+{
+	image = Image( <colorMap00, $white> )
+	tweak = Tweak()
+	{
+		category  = "Maps"
+		title     = "Shadow Mask"
+		sortindex = "0"
+	}
+}
+
+Texture( "colorMapSampler3" )
+{
+	image = Image( <colorMap02, $white> )
+	tweak = Tweak()
+	{
+		category  = "Maps"
+		title     = "Noise"
+		sortindex = "2"
+	}
+}
+
+Technique( "unlit" )
+{
+	state = "add + nocull"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "uie/uie_aberration_blur_only.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "uie/uie_aberration_blur_only.hlsl"
+		colorMapSampler = CodeTexture( "codeTexture0" )
+		colorMapSampler1 = "colorMapSampler1"
+		colorMapSampler3 = "colorMapSampler3"
+		tileMipBilinearSampler = "tileMipBilinearSampler"
+#endif
+	}
+}

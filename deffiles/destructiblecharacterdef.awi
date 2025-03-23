@@ -1,0 +1,162 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+const string HIT_LOCATIONS = " | helmet | head | left_arm_lower | left_arm_upper | left_foot | left_hand | left_leg_lower | left_leg_upper | neck | right_arm_lower | right_arm_upper | right_foot | right_hand |  right_leg_lower | right_leg_upper | torso_lower | torso_upper";
+const int MAX_PIECES = 20;
+const int MAX_SCRIPTBUNDLE_OBJECTS = 25;
+
+const array<string> PIECE_KEYS = {
+	"deletePieceButton",
+	"hitlocation",
+	"hidetag",
+	"detachmodel",
+	"gibmodel",
+	"gibtag",
+	"gibeffecttag",
+	"gibfx",
+	"gibdynentfx",
+	"gibsound",
+};
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	
+	Asset.AddEntry_Combo( "type", "destructiblecharacterdef" ).Show( false );
+	Asset.AddEntry_Combo( "vmType", "Both" ).SetTitle( "Script Type" ).Show( false ).SetValue("Both");
+	Asset.AddEntry_Int( "pieceCount", 0, 0, MAX_PIECES ).SetToolTip( "The number of destructible pieces." ).Show( false );
+
+	Asset.BeginCategory( "Character Information", 0.3, 0.5, 1, "Icon_asset_character.png" );
+	{
+		Asset.AddEntry_AssetCombo( "ignore_model", "xmodel" ).SetTitle( "Base Model:" ).SetToolTip( "An XModel that contains every TAG that will have a destructible piece attached to it." );
+		
+		Asset.AddEntry_ButtonGroup( "addPieceButton" ).SetTitle( "Edit:" ).AddButton( "Add Destructible Piece", "", "void AddDestructiblePiece( asset Asset, const string& param )", "" ).SetToolTip( "Create a new destructible piece, maximum " + MAX_PIECES + "." );
+	}
+	
+	const int pieceCount = Asset.GetEntryValue( "pieceCount" ).ToInt();
+	
+	for ( int index = 1; index <= MAX_PIECES; index++ )
+	{
+		CreateDestructiblePiece( Asset, index );
+		
+		if ( index > pieceCount )
+		{
+			ShowPiece( Asset, index, false );
+		}
+	}
+	
+	if ( pieceCount >= MAX_PIECES )
+	{
+		Asset.GetEntryControl( "addPieceButton" ).Enable(false);
+	}
+}
+
+void AddDestructiblePiece( asset Asset, const string& param )
+{
+	const int pieceCount = Asset.GetEntryValue( "pieceCount" ).ToInt();
+
+	if ( pieceCount < MAX_PIECES )
+	{
+		Asset.GetEntryVariable( "pieceCount" ).SetValue( "" + ( pieceCount + 1 ) );
+	}
+	
+	if ( Asset.GetEntryValue( "pieceCount" ).ToInt() >= MAX_PIECES )
+	{
+		MessageBox( "Maximum number of destructible pieces created \"" + MAX_PIECES + "\"", "OK");
+	}
+}
+
+void ClearPiece( asset Asset, const int index )
+{
+	const string prefix = CreatePieceName( index );
+	
+	for ( uint i = 0; i < PIECE_KEYS.length(); i++ )
+	{
+		Asset.GetEntryVariable( prefix + PIECE_KEYS[i] ).SetValue( "" );
+	}
+}
+
+void CopyPiece( asset Asset, const int fromIndex, const int toIndex )
+{
+	const string fromPrefix = CreatePieceName( fromIndex );
+	const string toPrefix = CreatePieceName( toIndex );
+
+	for ( uint i = 0; i < PIECE_KEYS.length(); i++ )
+	{
+		Asset.GetEntryVariable( toPrefix + PIECE_KEYS[i] ).SetValue( Asset.GetEntryValue( fromPrefix + PIECE_KEYS[i] ) );
+	}
+}
+
+string CreatePieceName( const int index )
+{
+	return "piece" + index + "_";
+}
+
+void CreateDestructiblePiece( asset Asset, const int index )
+{
+	const string prefix = CreatePieceName( index );
+	const string pieceName = "Destructible Piece " + index;
+	
+	uint keyIndex = 0;
+	
+	Asset.BeginCategory( pieceName, 1, 0.5, 0.3, "" );
+	{
+		Asset.AddEntry_ButtonGroup( prefix + PIECE_KEYS[keyIndex++] ).SetTitle( "Edit:" ).AddButton( "Delete", "", "void DeleteDestructiblePiece( asset Asset, const string& param )", "" + index ).SetToolTip( "Delete the current destructible piece." );
+		
+		Asset.AddEntry_Combo( prefix + PIECE_KEYS[keyIndex++], HIT_LOCATIONS ).SetTitle( "Hit Location:" ).SetToolTip( "When this hit location is shot, the piece will get destroyed." );
+		Asset.AddEntry_BoneCombo( prefix + PIECE_KEYS[keyIndex++], "model" ).SetTitle( "Hide Tag:" ).SetToolTip( "This tag gets hidden when the piece is destroyed." );
+		Asset.AddEntry_AssetCombo( prefix + PIECE_KEYS[keyIndex++], "xmodel" ).SetTitle( "Detach Model:" ).SetToolTip( "This model gets detached when the piece is destroyed." );
+		
+		Asset.BeginCategory( pieceName + ".Gib Piece", 0.3, 0.5, 1, "" );
+		{
+			Asset.AddEntry_AssetCombo( prefix + PIECE_KEYS[keyIndex++], "xmodel" ).SetTitle( "Model:" ).SetToolTip( "Model that is spawned and thrown off when the piece is destroyed." );
+			Asset.AddEntry_BoneCombo( prefix + PIECE_KEYS[keyIndex++], "model" ).SetTitle( "Spawn Tag:" ).SetToolTip( "Tag where the model is spawned." );
+		}
+		
+		Asset.BeginCategory( pieceName + ".Effects", 0.3, 0.5, 1, "" );
+		{
+			Asset.AddEntry_BoneCombo( prefix + PIECE_KEYS[keyIndex++], "model" ).SetTitle( "FX Tag:" ).SetToolTip( "Tag where the effect is played." );
+			Asset.AddEntry_Path( prefix + PIECE_KEYS[keyIndex++], "model" ).SetTitle( "FX:" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( "Effect that is played when the piece is destroyed." );
+			Asset.AddEntry_Path( prefix + PIECE_KEYS[keyIndex++], "model" ).SetTitle( "DynEnt FX:" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( "Effect that is played on the piece that is thrown." );
+		}
+		
+		Asset.BeginCategory( pieceName + ".Sounds", 0.3, 0.5, 1, "" );
+		{
+			Asset.AddEntry_String( prefix + PIECE_KEYS[keyIndex++], "" ).SetTitle( "Sound Alias:" ).SetToolTip( "Sound played when the piece is destroyed." );
+		}
+	}
+}
+
+void DeleteDestructiblePiece( asset Asset, const string& param )
+{
+	const int deleteIndex = param.ToInt();
+	const string pieceName = "Destructible Piece " + deleteIndex;
+	
+	if ( MessageBox( "Are you sure you want to delete \"" + pieceName + "\"", "YESNO") == "NO" )
+	{
+		return;
+	}
+	
+	if ( deleteIndex <= MAX_PIECES )
+	{
+		for ( uint i = deleteIndex; i < MAX_PIECES; i++ )
+		{
+			CopyPiece( Asset, i + 1, i );
+		}
+		
+		ClearPiece( Asset, MAX_PIECES );
+		
+		const int pieceCount = Asset.GetEntryValue( "pieceCount" ).ToInt();
+		Asset.GetEntryVariable( "pieceCount" ).SetValue( "" + ( pieceCount - 1 ) );
+	}
+}
+
+void ShowPiece( asset Asset, const int index, const bool show )
+{
+	const string prefix = CreatePieceName( index );
+	
+	for ( uint i = 0; i < PIECE_KEYS.length(); i++ )
+	{
+		Asset.GetEntryVariable( prefix + PIECE_KEYS[i] ).Show( show );
+	}
+}

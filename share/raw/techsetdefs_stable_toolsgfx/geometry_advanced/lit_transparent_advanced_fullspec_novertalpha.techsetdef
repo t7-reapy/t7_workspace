@@ -1,0 +1,77 @@
+#include "lit_base_mid"
+#include "transparent_shadow_base"
+#include "transparent_base"
+
+Globals()
+{
+	category = "Geometry Advanced"
+
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "specColorMap" )
+{
+	image = Image( <specColorMap, $specular> )
+	semantic = "specularMap"
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Specular Map"
+		sortindex = "20"
+	}
+}
+
+Texture( "tintMask" )
+{
+	image = Image()
+	{
+		map = <colorMap00, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	defines = "USE_COLOR_TINT", "USE_TINT_MASK"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "blend + depth"
+	defines = "USE_COLOR_SPEC", "USE_COLOR_TINT", "USE_TINT_MASK", "NO_VERTEX_ALPHA"
+	source = "lit.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

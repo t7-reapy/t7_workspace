@@ -1,0 +1,430 @@
+#include "lit_base_shaders"
+#include "foam_base"
+
+Sampler( "bilinearClamp" )
+{
+	tile   = "no tile"
+	filter = "linear (mip none)"
+}
+Sampler( "bilinearTile" )
+{
+	tile   = "tile both"
+	filter = "linear (mip none)"
+}
+
+Texture( "controlMap" )
+{
+	// TODO: Composite
+	image = Image( <colorMap08,$white> )
+	tweak = Tweak()
+	{
+		category  = "Control"
+		title     = "Control Map"
+		sortindex = 0
+	}
+}
+
+Bool( "useFoam" )
+{
+	value = <foamMapEnable>
+	tweak = Tweak()
+	{
+		category  = "Control"
+		title     = "Use foam"
+		sortindex = "1"
+	}
+}
+
+Bool( "useVertexWaves" )
+{
+	value = <waterVertexGerstnerWaves>
+	tweak = Tweak()
+	{
+		category  = "Control"
+		title     = "Use vertex (Gerstner) waves"
+		sortindex = "2"
+	}
+}
+
+float1( "lobeA" )
+{
+	x = <cg14_x>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Specular Roughness Lobe A"
+		default		= "0.05"
+		range		= "0.005", "1.0", "0.005"
+		sortindex	= 10
+	}
+}
+
+float1( "lobeB" )
+{
+	x = <cg14_y>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Specular Roughness Lobe B"
+		default		= "0.5"
+		range		= "0.005", "1.0", "0.005"
+		sortindex	= 11
+	}
+}
+
+float1( "lobeAWeight" )
+{
+	x = <cg14_z>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Specular Roughness Lobe A Weighting"
+		default		= "0.35"
+		range		= "0.005", "1.0", "0.005"
+		sortindex	= 12
+	}
+}
+
+float1( "indexOfRefraction" )
+{
+	x = <cg14_w>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Index of refraction of water"
+		default		= "1.33"
+		range		= "0.5", "10.0", "0.1"
+		sortindex	= 13
+	}
+}
+
+float1( "reflectionGloss" )
+{
+	x = <cg15_x>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Reflection Gloss"
+		default		= "0.5"
+		range		= "0.0", "1.0", "0.005"
+		sortindex	= 14
+	}
+}
+
+float1( "probeReflectionLevel" )
+{
+	x = <cg17_x>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Probe Reflection Level"
+		default		= "0.5"
+		range		= "0.0", "10.0", "0.005"
+		sortindex	= 15
+	}
+}
+
+float1( "controlDistortion" )
+{
+	x = <cg15_y>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Control map distortion"
+		default		= "0.5"
+		range		= "0.0", "1.0", "0.005"
+		sortindex	= 15
+	}
+}
+
+float1( "shoreDistortion" )
+{
+	x = <cg15_z>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Shore distortion"
+		default		= "0.5"
+		range		= "0.0", "1.0", "0.005"
+		sortindex	= 16
+	}
+}
+
+float1( "horizonDistance" )
+{
+	x = <cg15_w>
+	tweak = Tweak()
+	{
+		category	= "Surface Parameters"
+		title		= "Horizon Distance"
+		default		= "1000"
+		range		= "100.0", "50000.0", "100"
+		sortindex	= 17
+	}
+}
+
+float4("controlVar0")
+{
+	x = "2.0 / (<cg14_x> * <cg14_x>) - 2.0"
+	y = "2.0 / (<cg14_y> * <cg14_y>) - 2.0"
+	z = "((1.000293 - <cg14_w>) / (1.000293 + <cg14_w>))*((1.000293 - <cg14_w>) / (1.000293 + <cg14_w>))"
+	w = "1.0 - (((1.000293 - <cg14_w>) / (1.000293 + <cg14_w>))*((1.000293 - <cg14_w>) / (1.000293 + <cg14_w>)))"
+}
+
+float4("controlVar1")
+{
+	x = "<cg14_z> / (<cg14_x> * <cg14_x>)"
+	y = "(1.0 - <cg14_z>) / (<cg14_y> * <cg14_y>)"
+	z = <cg15_y>
+	w = <cg15_z>
+}
+
+float2("horizonControl")
+{
+	x = "-1.0 / (1.61803398875 * <cg15_w>)"	//	(sqrt(5) + 1) / 2 - why?
+	y = "1.0 / 1.61803398875"
+}
+
+Sampler( "normalSampler" )
+{
+	tile = <tileNormal>
+	filter = <filterNormal>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		sortindex = 10
+	}
+}
+
+Texture( "normalMap" )
+{
+	image = Image( <normalMap, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Main Normal Map"
+		sortindex = 11
+	}
+}
+
+float4( "shoreUVControl" )
+{
+	x = "1.0 / <cg13_x>"
+	y = "1.0 / <cg13_y>"
+	z = "<cg13_z>"
+	w = "<cg13_w>"
+	tweak = Tweak()
+	{
+		category  = "Shore"
+		title     = "Shore control (scale U,V, offset U,V)"
+		sortindex	= "30"
+	}
+}
+
+Texture( "colorMap" )
+{
+	ref = true
+	image = Image( <colorMap, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Shore"
+		title     = "Shore Map"
+		sortindex = "0"
+	}
+}
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Shore"
+		sortindex = 1
+	}
+}
+
+Color( "waterColorShallow" )
+{
+	value = "srgb_to_linear( <colorTint1> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     =  "Shallow water color"
+		sortindex = "1"
+	}
+}
+
+Color( "waterColorDeep" )
+{
+	value = "srgb_to_linear( <colorTint2> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     =  "Deep water color"
+		sortindex = "2"
+	}
+}
+
+Color( "waterColorShallowScatter" )
+{
+	value = "srgb_to_linear( <colorTint3> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     =  "Shallow scatter water color"
+		sortindex = "3"
+	}
+}
+
+Color( "waterColorDeepScatter" )
+{
+	value = "srgb_to_linear( <colorTint4> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     =  "Deep scatter water color"
+		sortindex = "4"
+	}
+}
+
+Color( "horizonColor" )
+{
+	value = "srgb_to_linear( <backlightScatterColor> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     =  "Horizon color"
+		sortindex = "5"
+	}
+}
+	
+Texture( "maskMap" )
+{
+	image = Image( <colorMap05, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Foam"
+		title     = "Foam Mask Map"
+		sortindex = 50
+	}
+}
+
+float4("wave0AngleAmplitude")
+{
+	x = <waterVertexGerstnerWaveAngle0>
+	y = <waterVertexGerstnerWaveAmplitude0>
+	tweak = Tweak()
+	{
+		category  = "Wave"
+		title     =  "Wave 0 (angle, amplitude)"
+		sortindex = "70"
+	}
+}
+
+float4("wave0SpeedSteepnessWavelength")
+{
+	x = <waterVertexGerstnerWaveSpeed0>
+	y = <waterVertexGerstnerWaveSteepness0>
+	z = <waterVertexGerstnerWaveWavelength0>
+	tweak = Tweak()
+	{
+		category  = "Wave"
+		title     =  "Wave 0 (speed, steepness, wavelength)"
+		sortindex = "71"
+	}
+}
+
+float4("wave1AngleAmplitude")
+{
+	x = <waterVertexGerstnerWaveAngle1>
+	y = <waterVertexGerstnerWaveAmplitude1>
+	tweak = Tweak()
+	{
+		category  = "Wave"
+		title     =  "Wave 1 (angle, amplitude)"
+		sortindex = "72"
+	}
+}
+
+float4("wave1SpeedSteepnessWavelength")
+{
+	x = <waterVertexGerstnerWaveSpeed1>
+	y = <waterVertexGerstnerWaveSteepness1>
+	z = <waterVertexGerstnerWaveWavelength1>
+	tweak = Tweak()
+	{
+		category  = "Wave"
+		title     =  "Wave 1 (speed, steepness, wavelength)"
+		sortindex = "73"
+	}
+}
+
+float4("wave2AngleAmplitude")
+{
+	x = <waterVertexGerstnerWaveAngle2>
+	y = <waterVertexGerstnerWaveAmplitude2>
+	tweak = Tweak()
+	{
+		category  = "Wave"
+		title     =  "Wave 2 (angle, amplitude)"
+		sortindex = "74"
+	}
+}
+
+float4("wave2SpeedSteepnessWavelength")
+{
+	x = <waterVertexGerstnerWaveSpeed2>
+	y = <waterVertexGerstnerWaveSteepness2>
+	z = <waterVertexGerstnerWaveWavelength2>
+	tweak = Tweak()
+	{
+		category  = "Wave"
+		title     =  "Wave 2 (speed, steepness, wavelength)"
+		sortindex = "75"
+	}
+}
+
+float4( "wave0K" )
+{
+	x = "cos(radians(<waterVertexGerstnerWaveAngle0>)) * 6.2831853 / <waterVertexGerstnerWaveWavelength0>"
+	y = "sin(radians(<waterVertexGerstnerWaveAngle0>)) * 6.2831853 / <waterVertexGerstnerWaveWavelength0>"
+	z = "cos(radians(<waterVertexGerstnerWaveAngle0>))"
+	w = "sin(radians(<waterVertexGerstnerWaveAngle0>))"
+}
+
+float4( "wave1K" )
+{
+	x = "cos(radians(<waterVertexGerstnerWaveAngle1>)) * 6.2831853 / <waterVertexGerstnerWaveWavelength1>"
+	y = "sin(radians(<waterVertexGerstnerWaveAngle1>)) * 6.2831853 / <waterVertexGerstnerWaveWavelength1>"
+	z = "cos(radians(<waterVertexGerstnerWaveAngle1>))"
+	w = "sin(radians(<waterVertexGerstnerWaveAngle1>))"
+}
+
+float4( "wave2K" )
+{
+	x = "cos(radians(<waterVertexGerstnerWaveAngle2>)) * 6.2831853 / <waterVertexGerstnerWaveWavelength2>"
+	y = "sin(radians(<waterVertexGerstnerWaveAngle2>)) * 6.2831853 / <waterVertexGerstnerWaveWavelength2>"
+	z = "cos(radians(<waterVertexGerstnerWaveAngle2>))"
+	w = "sin(radians(<waterVertexGerstnerWaveAngle2>))"
+}
+
+float4( "waveAmplitude" )
+{
+	x = "<waterVertexGerstnerWaveAmplitude0>"
+	y = "<waterVertexGerstnerWaveAmplitude1>"
+	z = "<waterVertexGerstnerWaveAmplitude2>"
+	w = "<waterVertexGerstnerWaveAmplitude3>"
+}
+
+float4( "waveSteepness" )
+{
+	x = "<waterVertexGerstnerWaveSteepness0>"
+	y = "<waterVertexGerstnerWaveSteepness1>"
+	z = "<waterVertexGerstnerWaveSteepness2>"
+	w = "<waterVertexGerstnerWaveSteepness3>"
+}
+

@@ -1,0 +1,202 @@
+#include "lit_base_mid"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit deferred opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "styleMaskMap" )
+{
+	image = Image( <colorMap01, $white> )
+	semantic = "multipleMask" // should be 3 channel only
+	tweak = Tweak( "Style Mask", "Style Mask Map", "0" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "colorMap" ).image = Image( <colorMap02> )
+
+Color( "colorTint" ). tweak = ""
+
+Color( "colorTint1" )
+{
+	value = "srgb_to_linear( <colorTint1> )"
+	tweak = Tweak()
+	{
+		category  = "Style Mask.Swatch 1 (Red mask)"
+		title     = "Color"
+		sortindex = "10"
+		color = true
+	}
+}
+
+Color( "colorTint2" )
+{
+	value = "srgb_to_linear( <colorTint2> )"
+	tweak = Tweak()
+	{
+		category  = "Style Mask.Swatch 2 (Green mask)"
+		title     = "Color"
+		sortindex = "20"
+		color = true
+	}
+}
+
+Color( "colorTint3" )
+{
+	value = "srgb_to_linear( <colorTint3> )"
+	tweak = Tweak()
+	{
+		category  = "Style Mask.Swatch 3 (Blue mask)"
+		title     = "Color"
+		sortindex = "30"
+		color = true
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "glossRange1" )
+{
+	x = <glossRangeMin1>
+	y = <glossRangeMax1>
+	tweak = Tweak( "Style Mask.Swatch 1 (Red mask)", "Gloss Range", "11" )
+}
+
+float2( "glossRange2" )
+{
+	x = <glossRangeMin2>
+	y = <glossRangeMax2>
+	tweak = Tweak( "Style Mask.Swatch 2 (Green mask)", "Gloss Range", "21" )
+}
+
+float2( "glossRange3" )
+{
+	x = <glossRangeMin3>
+	y = <glossRangeMax3>
+	tweak = Tweak( "Style Mask.Swatch 3 (Blue mask)", "Gloss Range", "31" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "specColorDesaturate1" )
+{
+	x = <specColorDesaturate1>
+	tweak = Tweak( "Style Mask.Swatch 1 (Red mask)", "Spec color", "12" )
+}
+
+float1( "specColorIntensity1" )
+{
+	x = <specColorIntensity1>
+	tweak = Tweak( "Style Mask.Swatch 1 (Red mask)", "Spec offset", "13" )
+}
+
+float2( "specTweak1" )
+{
+	x = <specColorDesaturate1>
+	y = <specColorIntensity1>
+}
+
+//------
+
+float1( "specColorDesaturate2" )
+{
+	x = <specColorDesaturate2>
+	tweak = Tweak( "Style Mask.Swatch 2 (Green mask)", "Spec color", "22" )
+}
+
+float1( "specColorIntensity2" )
+{
+	x = <specColorIntensity2>
+	tweak = Tweak( "Style Mask.Swatch 2 (Green mask)", "Spec offset", "23" )
+}
+
+float2( "specTweak2" )
+{
+	x = <specColorDesaturate2>
+	y = <specColorIntensity2>
+}
+
+//------
+
+float1( "specColorDesaturate3" )
+{
+	x = <specColorDesaturate3>
+	tweak = Tweak( "Style Mask.Swatch 3 (Blue mask)", "Spec color", "32" )
+}
+
+float1( "specColorIntensity3" )
+{
+	x = <specColorIntensity3>
+	tweak = Tweak( "Style Mask.Swatch 3 (Blue mask)", "Spec offset", "33" )
+}
+
+float2( "specTweak3" )
+{
+	x = <specColorDesaturate3>
+	y = <specColorIntensity3>
+}
+
+//------
+
+Texture( "specColorMap" )
+{
+	image = Image( <specColorMap, $specular> )
+	semantic = "specularMap"
+	tweak = Tweak( "Specular and Gloss", "Specular Map", "25" )
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) : "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) : "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque"
+	defines = "USE_COLOR_SPEC", "USE_COLOR_TINT", "USE_SWATCH_TINT"
+	source = "gbuffer_character.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

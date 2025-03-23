@@ -1,0 +1,135 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Texture( "hudMap" )
+{
+	ref = true
+	image = Image( <colorMap14, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Hud"
+		sortindex = "0"
+	}
+}
+
+Texture( "colorRemapMap" )
+{
+	ref = true
+	image = Image( <colorMap13, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "ColorRemap"
+		sortindex = "1"
+	}
+}
+
+Texture( "shadowMaskMap" )
+{
+	ref = true
+	image = Image( <colorMap12, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "ShadowMask"
+		sortindex = "2"
+	}
+}
+
+float1( "shadowMaskAmount" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		sortindex = "3"
+     	}
+}
+
+float2( "shadowMaskScale" )
+{
+	x = <cg00_y>
+	y = <cg00_z>
+  	tweak = Tweak()
+	{
+		category  = "Parameters"
+		sortindex = "4"
+     	}
+}
+
+
+float1( "chromaticAberration" )
+{
+	x = <cg01_x>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		sortindex = "5"
+    	}
+}
+
+float2( "ghostImageOffset" )
+{
+	x = <cg02_x>
+        y = <cg02_y>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		sortindex = "6"
+    	}
+}
+
+float1( "ghostImageAmount" )
+{
+	x = <cg03_x>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		sortindex = "7"
+    	}
+}
+
+float3( "ghostImageTint" )
+{
+	x = <cg04_x>
+        y = <cg04_y>
+        z = <cg04_z>
+	tweak = Tweak()
+	{
+		category  = "Parameters"
+		sortindex = "8"
+    	}
+}
+
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "postfx/postfx_uihud.hlsl"
+		defines = "USE_VERTCOL 0"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/postfx_uihud.hlsl"
+		defines = "USE_VERTCOL 0"
+		
+		colorMapSampler  = CodeTexture( "feedback" )
+
+		hudTexture = "hudMap"
+		shadowMaskTexture = "shadowMaskMap"
+	        colorRemapTexture = "colorRemapMap"
+
+	        // samplers
+ 		bilinearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

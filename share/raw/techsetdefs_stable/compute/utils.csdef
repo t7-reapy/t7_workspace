@@ -1,0 +1,117 @@
+
+//
+// 
+//
+ComputeShader("depth_fill_from_sst")
+{
+	source = "depth_fill_from_sst.hlsl"
+}
+
+ComputeShader("depth_clear_cache_tile")
+{
+	source = "depth_clear_cache_tile.hlsl"
+}
+
+ComputeShader("depth_copy_in_place")
+{
+	source = "depth_copy_in_place.hlsl"
+}
+
+ComputeShader("deferred_pbr_check")
+{
+	source = "deferred_pbr_check.hlsl"
+}
+
+ComputeShader("copy_compute_256")
+{
+	source = "utils/copy_compute_256.hlsl"
+}
+
+ComputeShader("copy_compute_4")
+{
+	source = "utils/copy_compute_4.hlsl"
+}
+
+ComputeShader("copy_compute_subregion")
+{
+	source = "utils/copy_compute_subregion.hlsl"
+}
+
+ComputeShader("copy_depth")
+{
+	source = "utils/copy_depth.hlsl"
+}
+
+ComputeShader("compute_bitwise_invert_buffer")
+{
+	source = "utils/compute_bitwise_invert_buffer.hlsl"
+}
+
+ComputeShader("clear_compute_texture_array_1_1")
+{
+	defines = "CLEAR_COLOR 1", "CLEAR_CHANNELS 1"
+	source = "utils/clear_compute_texture_array.hlsl"
+}
+
+ComputeShader("clear_compute_texture_black_4")
+{
+	defines = "CLEAR_COLOR black", "CLEAR_CHANNELS 4"
+	source = "utils/clear_compute_texture.hlsl"
+}
+
+ComputeShader("clear_compute_texture_red_4")
+{
+	defines = "CLEAR_COLOR red", "CLEAR_CHANNELS 4"
+	source = "utils/clear_compute_texture.hlsl"
+}
+
+#if PLAT_DURANGO == "1" || PLAT_ORBIS == "1"
+
+ComputeShader("copy_compute_texture_1")
+{
+	defines = "COPY_CHANNELS 1"
+	source = "utils/copy_compute_texture.hlsl"
+}
+
+ComputeShader("copy_compute_texture_2")
+{
+	defines = "COPY_CHANNELS 2"
+	source = "utils/copy_compute_texture.hlsl"
+}
+
+ComputeShader("copy_compute_texture_3")
+{
+	defines = "COPY_CHANNELS 3"
+	source = "utils/copy_compute_texture.hlsl"
+}
+
+ComputeShader("copy_compute_texture_4")
+{
+	defines = "COPY_CHANNELS 4"
+	source = "utils/copy_compute_texture.hlsl"
+}
+
+#endif
+
+//
+// ORBIS:
+//
+
+#if PLAT_ORBIS == "1"
+
+ComputeShader("orbis_cs_fastclear_c")
+{
+	source = "orbis_cs_fastclear_c.hlsl"
+}
+
+ComputeShader("orbis_cs_fastcopy_c")
+{
+	source = "orbis_cs_fastcopy_c.hlsl"
+}
+
+ComputeShader("orbis_cs_fastcopy_c2")
+{
+	source = "orbis_cs_fastcopy_c2.hlsl"
+}
+
+#endif

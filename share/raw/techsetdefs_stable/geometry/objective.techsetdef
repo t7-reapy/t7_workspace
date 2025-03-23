@@ -1,0 +1,77 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Unlit"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+Texture( "colorMap" )
+{
+	image = Image( <colorMap, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Color Map"
+		sortindex = "0"
+	}
+}
+
+Color( "colorObjMin" )
+{
+	value = <colorObjMin>
+	tweak = Tweak()
+	{
+		category = "Color"
+		title = "Color Min"
+		sortindex = "30"
+	}
+}
+
+Color( "colorObjMax" )
+{
+	value = <colorObjMax>
+	tweak = Tweak()
+	{
+		category = "Color"
+		title = "Color Max"
+		sortindex = "30"
+	}
+}
+
+float1( "colorObjMinBaseBlend" )
+{
+	x = <colorObjMinBaseBlend>
+	tweak = Tweak()
+	{
+		category = "Color"
+		title = "Color Min Blend"
+		sortindex = "30"
+	}
+}
+
+float1( "colorObjMaxBaseBlend" )
+{
+	x = <colorObjMaxBaseBlend>
+	tweak = Tweak()
+	{
+		category = "Color"
+		title = "Color Max Blend"
+		sortindex = "30"
+	}
+}
+
+//----------------------------------------------------------------------------------------------
+
+Technique( "lit", "unlit" )
+{
+	state = "replace + depth"
+	source = "techsetdef_objective.hlsl"
+	
+	vs = VertexShader()	{ }
+	ps = PixelShader()
+	{
+		colorMapSampler = "colorMap"
+	}
+}

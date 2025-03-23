@@ -1,0 +1,80 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Blend
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = invSrcAlpha
+		writeChannels  = "rgba"
+	}
+	cull = "None"
+}
+float1( "Scale" )
+{
+	x     = <cg02_x>
+	tweak = Tweak()
+	{
+		title     = "Scale"
+		sortindex = "0"
+		default   = "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "Thickness" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		title     = "Thickness"
+		sortindex = "0"
+		default   = "0.020000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "EdgeHarshness" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		title     = "EdgeHarshness"
+		sortindex = "0"
+		default   = "50.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_arc_outline.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_BLEND"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

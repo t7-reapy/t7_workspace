@@ -1,0 +1,60 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Blend
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = invSrcAlpha
+		writeChannels  = "rgba"
+	}
+	cull = "None"
+}
+#if TOOLSGFX == "1"
+Texture( "codeTexture0_C3_P0" )
+{
+	image = Image( < sw_codetexture_00 > )
+	tweak = Tweak()
+	{
+		default = "texture_assets\\hud\\medals\\hud_medals_avenger.tif"
+	}
+}
+#endif
+Sampler( "codeTexture0_C3_P0_sampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_bitchin_clock.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_BLEND"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		codeTexture0_C3_P0 = CodeTexture( "codeTexture0" )
+	}
+}

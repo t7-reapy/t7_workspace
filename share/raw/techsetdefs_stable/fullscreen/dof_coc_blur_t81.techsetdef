@@ -1,0 +1,70 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+State( "dof coc blur t81 state" )
+{
+	depthTest      = disable
+	depthWrite     = false
+
+
+	stencilFront = StencilState()
+	{
+		enable	= true
+		func	= Equal
+		opFail	= Keep
+		opPass	= Keep
+		opZFail	= Keep
+	}
+
+	blendState = BlendState()
+	{
+		colorBlendFunc = disable
+		colorBlendSrc  = one
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = disable
+		alphaBlendSrc  = zero
+		alphaBlendDst  = one
+		writeChannels  = "rgba"
+	}
+}
+
+
+Texture( "colorMap" )
+{
+	ref = true
+	image = Image( <colorMap14, $white> )
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Color Map"
+		sortindex = "0"
+	}
+}
+
+Technique( "lit", "unlit" )
+{
+//	state = "dof coc blur t81 state"
+	state = "disable"
+	source = "DOF/dof_coc_blur_t81.hlsl"
+
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+		// textures
+		codeTexture0 = CodeTexture( "codeTexture0" )
+		codeTexture1 = CodeTexture( "codeTexture1" )
+		codeTexture2 = CodeTexture( "codeTexture2" )
+
+		// samplers
+		bilinearClamp = Sampler("no tile", "nomip bilinear")
+		pointClamp = Sampler("no tile", "nomip nearest")
+	}
+}

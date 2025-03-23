@@ -1,0 +1,134 @@
+#include "lit_base_shaders"
+#include "shadowmap_technique_base"
+#include "transparent_shadow_base"
+#include "transparent_base"
+#include "emissive_base"
+#include "scroll_base"
+#include "flicker_base"
+#include "flag_motion_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		sortindex = "18" // leave some indices to have other color maps (need 2 indices - tile + filter)
+	}
+}
+
+Texture( "alphaMap" )
+{
+	image = Image( <alphaRevealMap, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Alpha Map"
+		sortindex = "15"
+	}
+}
+
+Texture( "colorMap" ) : "emissiveMap"
+{}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "emissiveTint1" ).tweak = Tweak( "Emissive", "Tint State1", "10" )
+float1( "hdrScale" ).tweak = Tweak( "Emissive", "HDR Scale", "50" )
+float1( "emissiveFalloffPower" ).tweak = Tweak( "Emissive", "Falloff", "60" )
+
+Color( "tint1" )
+{
+	value = "srgb_to_linear( <colorTint2> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint State 2"
+		sortindex = "20"
+		color = true
+	}
+}
+Color( "tint2" )
+{
+	value = "srgb_to_linear( <colorTint3> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint State 3"
+		sortindex = "30"
+		color = true
+	}
+}
+Color( "tint3" )
+{
+	value = "srgb_to_linear( <colorTint4> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint State 4"
+		sortindex = "40"
+		color = true
+	}
+}
+
+float3( "scriptControl" )
+{
+	x	= <cg00_x>
+	y	= <cg00_y>
+	z	= <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Script Simulation (Tools Only)"
+		title		= "ScriptProxy (HDR Scale, Tint, Alpha)"
+		sortindex	= "10"
+		default		= "0.0"
+		range		= "0.0", "3.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "blend + depth"
+	defines += "USE_EMISSIVE_FLICKER", "USE_SCRIPT_CONTROLS", "USE_SCROLL_ROTATE_UVS", "USE_FLAG_MOTION"
+	source = "specialty/emissive_passthrough_scroll.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

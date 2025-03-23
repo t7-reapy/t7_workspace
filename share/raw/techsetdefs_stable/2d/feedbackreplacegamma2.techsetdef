@@ -1,0 +1,28 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Sampler( "feedbackreplacegamma2Sampler" )
+{
+	tile = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+		source = "techsetdef_feedbackreplacegamma2.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "techsetdef_feedbackreplacegamma2.hlsl"
+		colorMapSampler = CodeTexture( "feedback" )
+	}
+}

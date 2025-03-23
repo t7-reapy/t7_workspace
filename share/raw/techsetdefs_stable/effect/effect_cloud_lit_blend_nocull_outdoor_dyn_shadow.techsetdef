@@ -1,0 +1,32 @@
+#include "effect_cloud_base"
+
+Globals()
+{
+	category = "Effect"
+	renderFlags = "lit transparent fx"
+	availablePrefixes = "ec/"
+}
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	vs = VertexShader() : "vs_unlit" { }
+	ps = PixelShader() : "ps_unlit" { }
+}
+
+Technique( "lit" )
+{
+	state = "premul + depth + nocull"
+	defines += "USE_OUTDOOR"
+	vs = VertexShader() : "vs_lit" { defines += "LEAN_LIGHTING_NON_SUN_SHADOW 1" }
+
+	ps = PixelShader() : "ps_lit_blend" { }
+}
+
+Technique( "oit" )
+{
+	state = "fallback + depth + rez + nocull"
+	defines += "USE_OUTDOOR"
+	vs = VertexShader() : "vs_lit_oit" { defines += "LEAN_LIGHTING_NON_SUN_SHADOW 1" }
+	ps = PixelShader() : "ps_lit_blend_oit" { }
+}

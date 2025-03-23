@@ -1,0 +1,74 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Add
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = one
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = one
+		writeChannels  = "rgba"
+	}
+	cull = "None"
+}
+Sampler( "ColorMap_Sampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+Texture( "ColorMap" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "texture_assets\\hud\\mp_scorestreak_hud\\mp_hud_bracket_line_blend.tif"
+	}
+}
+Sampler( "AddMap_Sampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+Texture( "AddMap" )
+{
+	image    = Image( <colorMap01> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "texture_assets\\hud\\mp_scorestreak_hud\\mp_hud_bracket_line_add.tif"
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_color_add.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_ADD"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

@@ -1,0 +1,360 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+// Fix/Increament numbers when adding/inserting in DATA_KEYS
+const int MAX_SKIPTOS					= 30;
+const int SKIPTO_NAME_INDEX				= 3;
+const int LOCOMOTION_CYCLE_START_INDEX	= 19;
+const int HEALTH_START_INDEX			= 20;
+const int LEVEL_START_INDEX				= 21;
+
+const array<string> DATA_KEYS = 
+{
+	"deleteskiptobutton",
+	"validateskiptobutton",
+	"onlyuseonstart",
+	"skiptoname",
+	"zombifyenabled",
+	"startunaware",
+	"alertnessspreaddelay",
+	"forcecleanuponcompletion",
+	"disablefailsafelogic",
+	"powerupdropsenabled",
+	"pathabilityenabled",
+	"sprinttoplayerdistance",
+	"skipobjectivewait",
+	"zigzagdeviationmin",
+	"zigzagdeviationmax",
+	"zigzagdeviationtimemin",
+	"zigzagdeviationtimemax",
+	"extraspawns",
+	"extraspawngapmin",
+	"walkpercent",
+	"runpercent",
+	"sprintpercent",
+	"levelonehealth",
+	"leveltwohealth",
+	"levelthreehealth",
+	"levelonezombies",
+	"leveltwozombies",
+	"levelthreezombies",
+	"suicidalzombiechance",
+	"suicidalzombieupgradedchance",
+	"sparkzombiechance",
+	"sparkzombieupgradedchance",
+	"deimosinfectedzombiechance",
+	"maxreachabilitylevel",
+	"reachabilityinterval",
+	"maxreachabilityparasites",
+	"powerdropsscalar",
+};
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+		
+	Asset.AddEntry_Combo( "type", "bonuszmdata" ).Show( false );
+	Asset.AddEntry_Combo( "vmType", "Server" ).SetTitle( "Script Type" ).Show( false ).SetValue("Server");
+	Asset.AddEntry_Int( "skiptoCount", 0, 0, MAX_SKIPTOS ).SetToolTip( "The number of skiptos." ).Show( false );
+	
+	Asset.BeginCategory( "Campaign Zombies Data Table " + "(" + Asset.GetName() + ")" , 0.3, 0.5, 1, "zombie.png" );
+	{
+		Asset.AddEntry_Label( "bonuszmDataInfo", "Following data is used for Campaign Zombies Mode; a table per skipto for the level." ).SetTitle( " " );
+	
+		Asset.AddEntry_ButtonGroup( "addSkiptoButton" ).SetTitle( "Edit:" ).AddButton( "Add Skipto", "", "void AddSkipto( asset Asset, const string& param )", "" ).SetToolTip( "Add another skipto, maximum " + MAX_SKIPTOS + "." );
+	}
+
+	Asset.BeginCategory( "AI Types", 1, 0.5, 0.3, "archetype.png" );
+	{
+		Asset.AddEntry_Label( "aitypeMaleInfo", "Add male zombie aitypes to use in this section, upto 4 supported." ).SetTitle( " " );
+		Asset.BeginCategory( "AI Types.[Male]", 1, 0.5, 0.3, "archetype.png" );
+		{
+			Asset.AddEntry_AssetCombo( "aitypeMale1", "aitype" ).SetTitle( "Male AI Type 1 ( Default )" );
+			Asset.AddEntry_AssetCombo( "aitypeMale2", "aitype" ).SetTitle( "Male AI Type 2" );
+			Asset.AddEntry_Int( "maleSpawnChance2", 30, 0, 100 ).SetTitle( "Male AI Type 2 Spawn Chance" ).UpdateOnChange(true);					
+			Asset.AddEntry_AssetCombo( "aitypeMale3", "aitype" ).SetTitle( "Male AI Type 3" );
+			Asset.AddEntry_Int( "maleSpawnChance3", 30, 0, 100 ).SetTitle( "Male AI Type 3 Spawn Chance" ).UpdateOnChange(true);					
+			Asset.AddEntry_AssetCombo( "aitypeMale4", "aitype" ).SetTitle( "Male AI Type 4" );
+			Asset.AddEntry_Int( "maleSpawnChance4", 30, 0, 100 ).SetTitle( "Male AI Type 4 Spawn Chance" ).UpdateOnChange(true);					
+		}
+
+		Asset.AddEntry_Label( "aitypeFemaleInfo", "Add female zombie aitypes to use in this section." ).SetTitle( " " );
+		Asset.BeginCategory( "AI Types.[Female]", 1, 0.5, 0.3, "archetype.png" );
+		{
+			Asset.AddEntry_AssetCombo( "aitypeFemale", "aitype" ).SetTitle( "Female AI Type" );
+			Asset.AddEntry_Int( "femaleSpawnChance", 30, 0, 100 ).SetTitle( "Female AI Type Spawn Chance" ).UpdateOnChange(true);					
+		}
+	}
+
+	Asset.BeginCategory( "Powerup Drops", 1, 0.1, 0.7, "powerup.png" );
+	{		
+		Asset.AddEntry_Int( "powerdropchance", 40, 0, 100 ).SetTitle( "Global Powerup Drop Chance" ).UpdateOnChange(true);
+				
+		Asset.BeginCategory( "Powerup Drops.[Normal]", 0, 0, 0.7, "powerup.png" );
+		{				
+			Asset.AddEntry_Int( "maxdropammochance", 50, 0, 100 ).SetTitle( "Max Ammo Drop Chance" ).UpdateOnChange(true);
+			Asset.AddEntry_Int( "cybercoredropchance", 30, 0, 100 ).SetTitle( "Cybercore Drop Chance" ).UpdateOnChange(true);
+			Asset.AddEntry_Int( "weapondropchance", 20, 0, 100 ).SetTitle( "Weapon Drop Chance" ).UpdateOnChange(true);		
+			Asset.AddEntry_Int( "instakilldropchance", 15, 0, 100 ).SetTitle( "InstaKill Drop Chance" ).UpdateOnChange(true);					
+			Asset.AddEntry_Int( "rapsdropchance", 0, 0, 100 ).SetTitle( "Raps Drop Chance(Mr.Milton)" ).UpdateOnChange(true);		
+		}
+
+		Asset.BeginCategory( "Powerup Drops.[Upgraded]", 0.7, 0.1, 0.8, "powerup.png" );
+		{			
+			Asset.AddEntry_Int( "maxdropammoupgradedchance", 0, 0, 100 ).SetTitle( "Max Ammo Upgraded Drop Chance" ).UpdateOnChange(true).SetToolTip( "Upgraded ammo gives ammo to all players." );;		
+			Asset.AddEntry_Int( "cybercoreupgradeddropchance", 0, 0, 100 ).SetTitle( "Cybercore Upgraded Drop Chance" ).UpdateOnChange(true).SetToolTip( "More powerful cybercome abilities." );		
+			Asset.AddEntry_Int( "instakillupgradeddropchance", 0, 0, 100 ).SetTitle( "InstaKill Upgraded Drop Chance(MaxPain)" ).UpdateOnChange(true).SetToolTip( "Time freezes and instakill is given to all players for short duration of time." );		
+		}
+	}
+
+	Asset.BeginCategory( "Weapons", 0.6, 0.6, 0., "Icon_weapon.png" );
+	{
+		Asset.AddEntry_Path( "weaponsTable", "" ).SetRelativePath( "share/raw/gamedata/tables/cpzm" ).SetTitle( "Weapons Table" ).SetToolTip( "csv table used for weapons available as drops for this level." );	
+		Asset.AddEntry_Int( "magicboxonlyweaponchance", 15, 0, 100 ).SetTitle( "Magic Box Only Weapon Chance" ).UpdateOnChange(true).SetToolTip( "Chance of getting a hero weapon in magicbox." );		
+		Asset.AddEntry_Int( "maxmagicboxonlyweapons", 5, 0, 20 ).SetTitle( "Max Magic Box Only Weapons (For the whole level)" ).UpdateOnChange(true).SetToolTip( "Maximum magicbox only weapons per magicbox." );		
+		Asset.AddEntry_Int( "camochance", 30, 0, 100 ).SetTitle( "Camo Chance" ).UpdateOnChange(true).SetToolTip( "Chance of getting a weapon with a camo." );
+	}
+
+	Asset.BeginCategory( "Settings", 0.7, 0.2, 1, "Icon_controller.png" );
+	{		
+		Asset.AddEntry_Label( "zombieSettingsInfo", "Settings used for difficulty and coop." ).SetTitle( " " );		
+
+		Asset.BeginCategory( "Settings.[Health Scalars]", 0.3, 0.7, 0.3, "Icon_Health.png" );
+		{
+			Asset.AddEntry_Label( "zombiehealthscaleinfo", "Health is scaled based on the current difficulty level of the game." ).SetTitle( " " );
+
+			Asset.AddEntry_Float( "zombiehealthscale1", 0.5, 0.25, 8 ).SetStep( 0.1 ).SetTitle( "Zombie Health Scalar (Recruit)" ).UpdateOnChange(true);
+			Asset.AddEntry_Float( "zombiehealthscale2", 1, 0.25, 8 ).SetStep( 0.1 ).SetTitle( "Zombie Health Scalar (Regular)" ).UpdateOnChange(true);
+			Asset.AddEntry_Float( "zombiehealthscale3", 1.25, 0.25, 8 ).SetStep( 0.1 ).SetTitle( "Zombie Health Scalar (Hardened)" ).UpdateOnChange(true);
+			Asset.AddEntry_Float( "zombiehealthscale4", 1.5, 0.25, 8 ).SetStep( 0.1 ).SetTitle( "Zombie Health Scalar (Veteran)" ).UpdateOnChange(true);
+			Asset.AddEntry_Float( "zombiehealthscale5", 2, 0.25, 8 ).SetStep( 0.1 ).SetTitle( "Zombie Health Scalar (Realistic)" ).UpdateOnChange(true);
+		}
+
+		Asset.BeginCategory( "Settings.[Extra Zombie Scalars]", 0.2, 0.5, 0.4, "zombie.png" );
+		{
+			Asset.AddEntry_Label( "extrazombiescalarinfo", "Extra Zombies are scaled based on the current number of players in the game." ).SetTitle( " " );
+
+			Asset.AddEntry_Float( "extrazombiescale1", 1, 0.5, 5 ).SetStep( 0.1 ).SetTitle( "Extra Zombie Scalar (1 Player)" ).UpdateOnChange(true);
+			Asset.AddEntry_Float( "extrazombiescale2", 1.5, 0.5, 5 ).SetStep( 0.1 ).SetTitle( "Extra Zombie Scalar (2 Players)" ).UpdateOnChange(true);
+			Asset.AddEntry_Float( "extrazombiescale3", 1.75, 0.5, 5 ).SetStep( 0.1 ).SetTitle( "Extra Zombie Scalar (3 Players)" ).UpdateOnChange(true);
+			Asset.AddEntry_Float( "extrazombiescale4", 2, 0.5, 5 ).SetStep( 0.1 ).SetTitle( "Extra Zombie Scalar (4 Players)" ).UpdateOnChange(true);
+		}	
+	}
+
+	const int skiptoCount = Asset.GetEntryValue( "skiptoCount" ).ToInt();
+
+	for ( int index = 1; index <= MAX_SKIPTOS; index++ )
+	{
+		CreateSkipto( Asset, index );
+		
+		if ( index > skiptoCount )
+		{
+			ShowSkipto( Asset, index, false );
+		}
+	}
+	
+	if ( skiptoCount >= MAX_SKIPTOS )
+	{
+		Asset.GetEntryControl( "addSkiptoButton" ).Enable(false);
+	}
+}
+
+string CreateSkiptoName( const int index )
+{
+	return "skipto" + index + "_";
+}
+
+void CreateSkipto( asset Asset, const int index )
+{
+	const string prefix = CreateSkiptoName( index );
+	const string skiptoName = "Skipto " + index;
+	
+	uint keyIndex = 0;
+		
+	Asset.BeginCategory( skiptoName, 1, 0.5, 0.3, "" );
+	{
+		Asset.BeginCategory( skiptoName + ".[Options]", 0.2, 0.5, 0.3, "" );	
+		{
+			Asset.AddEntry_ButtonGroup( prefix + DATA_KEYS[keyIndex++] ).SetTitle( "Edit:" ).AddButton( "Delete", "", "void DeleteSkipto( asset Asset, const string& param )", "" + index ).SetToolTip( "Delete the current skipto." );
+			Asset.AddEntry_ButtonGroup( prefix + DATA_KEYS[keyIndex++] ).SetTitle( "Validation:" ).AddButton( "Validate", "", "void ValidateSkipto( asset Asset, const string& param )", "" + index ).SetToolTip( "Validate the current skipto and its data." );
+			Asset.AddEntry_CheckBox( prefix + DATA_KEYS[keyIndex++], false ).SetTitle( "Use only if this checkpoint is loaded at the start of the level" ).SetToolTip( "This means, this skipto will only be application, if level is loaded into this checkpoint." );		
+			Asset.AddEntry_String( prefix + DATA_KEYS[keyIndex++], "" ).SetTitle( "Skipto Name:" ).SetToolTip( "Name of skipto, should match available skiptos in the level." );		
+			
+			Asset.AddEntry_CheckBox( prefix + DATA_KEYS[keyIndex++], true ).SetTitle( "Zombiefy Enabled" ).SetToolTip( "Is zombification of the skipto enabled?." );		
+			Asset.AddEntry_CheckBox( prefix + DATA_KEYS[keyIndex++], false ).SetTitle( "Start Unaware" ).SetToolTip( "When checked zombies will not attack the player until player is seen or attacks them." );
+			Asset.AddEntry_Float( prefix + DATA_KEYS[keyIndex++], 2, 1, 10 ).SetTitle( "Awareness Spread Delay" ).SetToolTip( "Interval between the alertness transfer from a zombie to another zombie." );
+			Asset.AddEntry_CheckBox( prefix + DATA_KEYS[keyIndex++], false ).SetTitle( "Force Cleanup" ).SetToolTip( "When wait for objective completion is called, all the remaining zombie AI's will be killed." );		
+			Asset.AddEntry_CheckBox( prefix + DATA_KEYS[keyIndex++], false ).SetTitle( "Disable Fail Safe Logic" ).SetToolTip( "When set to true, it will not kill zombie AI's who can't attack the player for a while." );		
+			Asset.AddEntry_CheckBox( prefix + DATA_KEYS[keyIndex++], true ).SetTitle( "Power Drops Enabled" ).SetToolTip( "Should power drops be enabled for this skipto." );				
+			Asset.AddEntry_CheckBox( prefix + DATA_KEYS[keyIndex++], false ).SetTitle( "Pathability Teleportation Enabled" ).SetToolTip( "Should Extra Zombies Teleport if they can't path to player?" );				
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 5500, 400, 8000 ).SetTitle( "Sprint toward the enemy distance" ).SetToolTip( "If zombie is outside this radius from enemy, he will sprint to get into that radius." ).UpdateOnChange(true);		
+			Asset.AddEntry_CheckBox( prefix + DATA_KEYS[keyIndex++], false ).SetTitle( "Skip objective wait" ).SetToolTip( "When set, the objective will not wait until all AI's are cleared. AI might bleed over the next skipto, to allow the scripting to continue." );		
+						
+			Asset.BeginCategory( skiptoName + ".[Zigzag]", 0.2, 0.1, 0.5, "" );	
+			{
+				Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 250, 250, 1200 ).SetTitle( "Zigzag Deviation Min" ).SetToolTip( "Min distance that AI will deviate from the path. Use for spreading AI while pathing to player." );				
+				Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 400, 400, 1200 ).SetTitle( "Zigzag Deviation Max" ).SetToolTip( "Max distance that AI will deviate from the path. Use for spreading AI while pathing to player." );				
+
+				Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 2500, 250, 7000 ).SetTitle( "Zigzag Deviation Time Min (ms)" ).SetToolTip( "Min time that AI will deviate from the path before repathing." );				
+				Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 4000, 400, 8000 ).SetTitle( "Zigzag Deviation Time Max (ms)" ).SetToolTip( "Max time that AI will deviate from the path before repathing." );				
+			}
+		}		
+			
+		Asset.BeginCategory( skiptoName + ".[Zombification]", 1, 0, 0.3, "" );	
+		{		
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 0, 0, 40 ).SetTitle( "Extra Zombies" ).SetToolTip( "Number of extra zombies to spawn." );
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 2, 0, 10 ).SetTitle( "Spawn Gap" ).SetToolTip( "Number of extra zombies will spawn with this much spawn gap in-between, in sec." );
+		
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 33, 0, 100 ).SetTitle( "Percentage of Walking Zombies" ).SetToolTip( "Number of extra zombies will spawn with this much time gap in-between." );
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 33, 0, 100 ).SetTitle( "Percentage of Running Zombies" ).SetToolTip( "Number of extra zombies will spawn with this much time gap in-between." );
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 34, 0, 100 ).SetTitle( "Percentage of Sprinting Zombies" ).SetToolTip( "Number of extra zombies will spawn with this much time gap in-between." );
+
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 150, 0, 1000 ).SetTitle( "Level One Health" );
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 350, 0, 1000 ).SetTitle( "Level Two Health" );
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 650, 0, 1000 ).SetTitle( "Level Three Health" );
+
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 33, 0, 100 ).SetTitle( "Percentage of Level One Zombies" ).SetToolTip( "Number of zombies with low health." );
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 33, 0, 100 ).SetTitle( "Percentage of Level Two Zombies" ).SetToolTip( "Number of zombies with medium health." );
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 34, 0, 100 ).SetTitle( "Percentage of Level Three Zombies" ).SetToolTip( "Number of zombies with high health." );				
+		}
+		
+		Asset.BeginCategory( skiptoName + ".[Ghost Rider]", 0.9, 0.1, 0.4, "Icon_Ghost_Rider.png" );	
+		{			
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 5, 0, 100 ).SetTitle( "Spawn Chance" ).SetToolTip( "Random chance that the zombie will be suicidal. Suicidal zombie tend to come at player and explode near him." );				
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 0, 0, 100 ).SetTitle( "Upgraded Spawn Chance" ).SetToolTip( "Random chance that the zombie will be upgraded suicidal. Suicidal zombie tend to come at player and explode near him, upgraded harder to kill." );				
+		}
+		
+		Asset.BeginCategory( skiptoName + ".[Sparky the electric pet]", 0.1, 0.5, 0.8, "Pikachu2.png" );	
+		{			
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 0, 0, 100 ).SetTitle( "Spawn Chance" ).SetToolTip( "Random chance that the zombie will be a sparky zombie. Sparky zombies juke and have camo when they do so. Thanks to Sabarish!" );				
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 0, 0, 100 ).SetTitle( "Upgraded Spawn Chance" ).SetToolTip( "Random chance that the zombie will be a upgraded sparky zombie. Sparky zombies juke and have camo when they do so, upgraded harder to kill. Thanks to Sabarish!" );				
+		}
+
+		Asset.BeginCategory( skiptoName + ".[Deimos Infected Zombie]", 0, 0, 0, "Raven.png" );	
+		{			
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 0, 0, 100 ).SetTitle( "Spawn Chance" ).SetToolTip( "Random chance that the zombie will a Deimos infected zombie. These zombies will have Deimos effect on their torso and will have raven effect when they die. If you hit torso, they will explode." );							
+		}
+		
+		Asset.BeginCategory( skiptoName + ".[Off Limits]", 1, 0, 0, "do_not_enter.png" );	
+		{			
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 5, 0, 10 ).SetTitle( "Max Reachability Level" ).SetToolTip( "Every reachability interval, the reachability level increases. When it reaches this limit, an attack is initiated." );				
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 2, 0, 10 ).SetTitle( "Reachability Interval (sec)" ).SetToolTip( "Time between reachability level updates." );				
+			Asset.AddEntry_Int( prefix + DATA_KEYS[keyIndex++], 4, 0, 10 ).SetTitle( "Max Parasites" ).SetToolTip( "Max parasites that can be spawned at a time to attack unreachable player." );				
+		}
+		
+		Asset.BeginCategory(  skiptoName + ".[Powerup Drops]", 1, 0.1, 0.7, "powerup.png" );
+		{
+			Asset.AddEntry_Float( prefix + DATA_KEYS[keyIndex++], 1, 0.5, 5 ).SetTitle( "Power Drop Scalar" ).SetToolTip( "Scalar to apply to the global power drop for this skipto." ).UpdateOnChange(true);			
+		}
+	}
+}
+
+void ShowSkipto( asset Asset, const int index, const bool show )
+{
+	const string prefix = CreateSkiptoName( index );
+	
+	for ( uint i = 0; i < DATA_KEYS.length(); i++ )
+	{
+		Asset.GetEntryVariable( prefix + DATA_KEYS[i] ).Show( show );
+	}
+}
+
+void AddSkipto( asset Asset, const string& param )
+{
+	const int skiptoCount = Asset.GetEntryValue( "skiptoCount" ).ToInt();
+
+	if ( skiptoCount < MAX_SKIPTOS )
+	{
+		Asset.GetEntryVariable( "skiptoCount" ).SetValue( "" + ( skiptoCount + 1 ) );
+	}
+	
+	if ( Asset.GetEntryValue( "skiptoCount" ).ToInt() >= MAX_SKIPTOS )
+	{
+		MessageBox( "Maximum number of skiptos created \"" + MAX_SKIPTOS + "\"", "OK");
+	}
+}
+
+void ClearSkipto( asset Asset, const int index )
+{
+	const string prefix = CreateSkiptoName( index );
+	
+	for ( uint i = 0; i < DATA_KEYS.length(); i++ )
+	{
+		Asset.GetEntryVariable( prefix + DATA_KEYS[i] ).SetValue( "" );
+	}
+}
+
+void CopySkipto( asset Asset, const int fromIndex, const int toIndex )
+{
+	const string fromPrefix = CreateSkiptoName( fromIndex );
+	const string toPrefix = CreateSkiptoName( toIndex );
+
+	for ( uint i = 0; i < DATA_KEYS.length(); i++ )
+	{
+		Asset.GetEntryVariable( toPrefix + DATA_KEYS[i] ).SetValue( Asset.GetEntryValue( fromPrefix + DATA_KEYS[i] ) );
+	}
+}
+
+void DeleteSkipto( asset Asset, const string& param )
+{
+	const int deleteIndex = param.ToInt();
+	const string skiptoName = CreateSkiptoName( deleteIndex );
+	
+	if ( MessageBox( "Are you sure you want to delete \"" + skiptoName + "\"", "YESNO") == "NO" )
+	{
+		return;
+	}
+	
+	if ( deleteIndex <= MAX_SKIPTOS )
+	{
+		for ( uint i = deleteIndex; i < MAX_SKIPTOS; i++ )
+		{
+			CopySkipto( Asset, i + 1, i );
+		}
+		
+		ClearSkipto( Asset, MAX_SKIPTOS );
+		
+		const int skiptoCount = Asset.GetEntryValue( "skiptoCount" ).ToInt();
+		Asset.GetEntryVariable( "skiptoCount" ).SetValue( "" + ( skiptoCount - 1 ) );
+	}
+}
+
+
+void ValidateSkipto( asset Asset, const string& param )
+{
+	const int index = param.ToInt();
+	const string skiptoName = CreateSkiptoName( index );
+	
+	string skiptoNameValue = "" + Asset.GetEntryValue( skiptoName + DATA_KEYS[SKIPTO_NAME_INDEX] );
+	if( skiptoNameValue == "" || skiptoNameValue == " " )
+	{
+		MessageBox( "Skipto Name is empty string.", "OK" );
+		return;
+	}
+		
+	int locomotionIndex = LOCOMOTION_CYCLE_START_INDEX;
+
+	int walkPercent		= Asset.GetEntryValue( skiptoName + DATA_KEYS[locomotionIndex] ).ToInt();
+	int runPercent		= Asset.GetEntryValue( skiptoName + DATA_KEYS[locomotionIndex+1] ).ToInt();
+	int sprintPercent	= Asset.GetEntryValue( skiptoName + DATA_KEYS[locomotionIndex+2] ).ToInt();
+
+	if( ( walkPercent + runPercent + sprintPercent ) < 100 || ( walkPercent + runPercent + sprintPercent ) > 100 )
+	{
+		MessageBox( skiptoNameValue + " " + "Walk/Run/Sprint percentages dont add up to 100, (" + ( walkPercent + runPercent + sprintPercent ) + ")", "OK" );
+		return;
+	}
+	
+	int Index = LEVEL_START_INDEX;
+
+	int levelOne		= Asset.GetEntryValue( skiptoName + DATA_KEYS[Index] ).ToInt();
+	int levelTwo		= Asset.GetEntryValue( skiptoName + DATA_KEYS[Index+1] ).ToInt();
+	int levelThree		= Asset.GetEntryValue( skiptoName + DATA_KEYS[Index+2] ).ToInt();
+
+	if( ( levelOne + levelTwo + levelThree ) < 100 || ( levelOne + levelTwo + levelThree ) > 100 )
+	{
+		MessageBox( skiptoNameValue + " " + "Number of level one/two/three percentages dont add up to 100", "OK" );
+		return;
+	}
+
+	MessageBox( "Data is all good!", "OK" );
+}

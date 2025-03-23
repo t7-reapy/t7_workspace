@@ -1,0 +1,210 @@
+Texture( "detailMap1" )
+{
+	image = Image( <detailMap, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps1"
+		title     = "Normal Map"
+		sortindex = "20"
+	}
+}
+Texture( "detailMap2" )
+{
+	image = Image( <colorMap00, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps2"
+		title     = "Normal Map"
+		sortindex = "20"
+	}
+}
+
+Texture( "colorMap" ).tweak = Tweak()
+{
+	category  = "Detail Maps1"
+	title     = "Color Map"
+	sortindex = "0"
+}
+Texture( "colorMapDetail2" )
+{
+	image = Image( <colorMap01, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps2"
+		title     = "Color Map"
+		sortindex = "0"
+	}
+}
+
+Sampler( "mixSampler" )
+{
+	tile = <tileReveal>
+	filter = <filterReveal>
+	tweak = Tweak()
+	{
+		category  = "Base Maps"
+		sortindex = "30"
+	}
+}
+Texture( "mixMap" )
+{
+	image = Image( <alphaRevealMap, $black_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Base Maps"
+		title     = "Mix Map"
+		sortindex = "20"
+	}
+}
+
+Texture( "normalMap" ).tweak = Tweak()
+{
+	category  = "Base Maps"
+	title     = "Normal Map"
+	sortindex = "0"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "mixScale" )
+{
+	x = <uScale>
+	y = <vScale>
+	tweak = Tweak()
+	{
+		category  = "Base Maps"
+		title     = "Mix Map Scale (X, Y)"
+		sortindex = "100"
+	}
+}
+
+Color( "colorTint" ).tweak = Tweak()
+{
+	category  = "Detail Maps1"
+	title     = "Albedo Tint"
+	sortindex = "10"
+	color = true
+}
+Color( "colorTint1" )
+{
+	value = "srgb_to_linear( <colorTint1> )"
+	tweak = Tweak()
+	{
+		category  = "Detail Maps2"
+		title     = "Albedo Tint"
+		sortindex = "10"
+		color = true
+	}
+}
+
+float1( "detailScaleHeight1" )
+{
+	x = <detailScaleHeight>
+	tweak = Tweak()
+	{
+		category  = "Detail Maps1"
+		title     = "Detail Normal Height"
+		sortindex = "50"
+	}
+}
+float2( "detailScale1" )
+{
+	x = <detailScaleX>
+	y = <detailScaleY>
+	tweak = Tweak()
+	{
+		category  = "Detail Maps1"
+		title     = "Detail Scale (X, Y)"
+		sortindex = "60"
+	}
+}
+
+float1( "detailScaleHeight2" )
+{
+	x = <detailScaleHeight1>
+	tweak = Tweak()
+	{
+		category  = "Detail Maps2"
+		title     = "Detail Normal Height"
+		sortindex = "50"
+	}
+}
+
+float2( "detailScale2" )
+{
+	x = <detail1ScaleX>
+	y = <detail1ScaleY>
+	tweak = Tweak()
+	{
+		category  = "Detail Maps2"
+		title     = "Detail Scale (X, Y)"
+		sortindex = "60"
+	}
+}
+
+float2( "glossRange" ).tweak = Tweak()
+{
+	category  = "Detail Maps1"
+	title     = "Gloss Range"
+	sortindex = "70"
+}
+
+float2( "glossRange2" )
+{
+	x = <glossRangeMin2>
+	y = <glossRangeMax2>
+	tweak = Tweak()
+	{
+		category  = "Detail Maps2"
+		title     = "Gloss Range"
+		sortindex = "70"
+	}
+}
+
+float1( "rotateUVs1" )
+{
+	x = "radians( <uvRotationRate> )"
+	tweak = Tweak()
+	{
+		category	= "Detail Maps1"
+		title		= "UV Rotation"
+		sortindex	= "80"
+	}
+}
+
+float1( "rotateUVs2" )
+{
+	x = "radians( <uvRotationRate1> )"
+	tweak = Tweak()
+	{
+		category	= "Detail Maps2"
+		title		= "UV Rotation"
+		sortindex	= "80"
+	}
+}
+
+Bool( "useUVOffsets1" )
+{
+	value = <useWorldOffsets1>
+	tweak = Tweak()
+	{
+		category	= "Detail Maps1"
+		title		= "Use world space UV offsets."
+		sortindex	= "90"
+	}
+}
+
+Bool( "useUVOffsets2" )
+{
+	value = <useWorldOffsets2>
+	tweak = Tweak()
+	{
+		category	= "Detail Maps2"
+		title		= "Use world space UV offsets."
+		sortindex	= "90"
+	}
+}

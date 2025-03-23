@@ -1,0 +1,134 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Blend
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = invSrcAlpha
+		writeChannels  = "rgba"
+	}
+	cull = "None"
+}
+float4( "TickMarkColorAndHarshness" )
+{
+	x     = <cg03_x>
+	y     = <cg03_y>
+	z     = <cg03_z>
+	w     = <cg03_w>
+	tweak = Tweak()
+	{
+		title     = "TickMarkColorAndHarshness"
+		sortindex = "0"
+		default   = "1.000000", "1.000000", "1.000000", "100.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float4( "NegativeColor" )
+{
+	x     = <cg05_x>
+	y     = <cg05_y>
+	z     = <cg05_z>
+	w     = <cg05_w>
+	tweak = Tweak()
+	{
+		title     = "NegativeColor"
+		sortindex = "0"
+		default   = "1.000000", "0.190000", "0.190000", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float4( "PositiveColor" )
+{
+	x     = <cg04_x>
+	y     = <cg04_y>
+	z     = <cg04_z>
+	w     = <cg04_w>
+	tweak = Tweak()
+	{
+		title     = "PositiveColor"
+		sortindex = "0"
+		default   = "0.420000", "0.900000", "0.460000", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float4( "GradientColor" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	z     = <cg02_z>
+	w     = <cg02_w>
+	tweak = Tweak()
+	{
+		title     = "GradientColor"
+		sortindex = "0"
+		default   = "0.960000", "0.580000", "0.110000", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float4( "MomentumColor" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	z     = <cg01_z>
+	w     = <cg01_w>
+	tweak = Tweak()
+	{
+		title     = "MomentumColor"
+		sortindex = "0"
+		default   = "0.910000", "0.790000", "0.250000", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float4( "BackgroundColor" )
+{
+	x     = <cg00_x>
+	y     = <cg00_y>
+	z     = <cg00_z>
+	w     = <cg00_w>
+	tweak = Tweak()
+	{
+		title     = "BackgroundColor"
+		sortindex = "0"
+		default   = "0.000000", "0.000000", "0.000000", "0.100000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_momentum_meter.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_BLEND"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

@@ -1,0 +1,43 @@
+Bool( "useAlphaControls" )
+{
+	value = <zFeather>
+	tweak = Tweak()
+	{
+		category  = "Alpha Parameters"
+		title     = "Use extra alpha controls."
+		sortindex = "0"
+	}
+}
+
+float1( "zFeatherDistance" )
+{
+	x = <zFeatherDepth>
+	tweak = Tweak()
+	{
+		category	= "Alpha Parameters"
+		title		= "Z Feather"
+		sortindex	= "10"
+	}
+}
+
+float1( "falloffBegin" )
+{
+	x = <falloffBeginAngle>
+	tweak = Tweak()
+	{
+		category	= "Alpha Parameters"
+		title		= "Falloff Begin"
+		sortindex	= "20"
+	}
+}
+
+float1( "falloffEnd" )
+{
+	x = <falloffEndAngle>
+	tweak = Tweak()
+	{
+		category	= "Alpha Parameters"
+		title		= "Falloff End"
+		sortindex	= "30"
+	}
+}

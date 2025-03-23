@@ -1,0 +1,49 @@
+
+//
+// 
+//
+ComputeShader("volumetric_light_hblur_compute")
+{
+	source = "volumetric_light_hblur_compute.hlsl"
+}
+
+ComputeShader("volumetric_light_vblur_compute")
+{
+	source = "volumetric_light_vblur_compute.hlsl"
+}
+
+ComputeShader("downsample_depth_4x_compute")
+{
+	source = "downsample_depth_4x_compute.hlsl"
+}
+
+ComputeShader("downsample_depth_with_uv_4x_compute")
+{
+	source = "downsample_depth_4x_compute.hlsl"
+	defines += "EXPORT_DEPTH_UV_OFFSET"
+}
+
+ComputeShader("volumetric_light_compute")
+{
+	source = "volumetric_light_compute.hlsl"
+}
+
+ComputeShader("volumetric_light_cull_compute")
+{
+	source = "volumetric_light_cull_compute.hlsl"
+}
+
+ComputeShader("volumetric_probe_cull_compute")
+{
+	source = "volumetric_probe_cull_compute.hlsl"
+}
+
+ComputeShader("volumetric_light_scatter_compute")
+{
+	source = "volumetric_light_scatter_compute.hlsl"
+}
+
+ComputeShader("volumetric_accumulated_light_scatter_compute")
+{
+	source = "volumetric_accumulated_light_scatter_compute.hlsl"
+}

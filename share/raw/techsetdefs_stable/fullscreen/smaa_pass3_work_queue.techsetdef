@@ -1,0 +1,39 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+
+	vs = VertexShader()
+	{
+		source = "smaa_pass3.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "smaa_pass3.hlsl"
+		defines = "WORK_QUEUE 1", "SMAA_TEMPORAL_PRESET SMAA_TEMPORAL_PRESET_MEDIUM", "SMAA_VARIABLE_SPATIAL_QUALITY 1"
+
+		colorTex = CodeTexture( "resolvedScene" )
+		temporalHistoryTex1 = CodeTexture( "codeTexture0" )
+
+		temporalHistoryLumaTex1 = CodeTexture( "codeTexture1" )
+		temporalHistoryLumaTex2 = CodeTexture( "codeTexture2" )
+		temporalHistoryLumaTex3 = CodeTexture( "codeTexture3" )
+
+		velocityTex0 = CodeTexture( "codeTexture4" )
+		velocityTex1 = CodeTexture( "codeTexture5" )
+
+		filmicHistoryTex1 = CodeTexture( "codeTexture6" )
+
+		depthTex = CodeTexture( "codeTexture7" )
+
+		bilinearSampler = Sampler("no tile", "nomip bilinear")
+	}
+}

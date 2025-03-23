@@ -1,0 +1,26 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+	source = "DOF/dof_near_coc_blur_x.hlsl"
+
+	vs = VertexShader()
+	{
+		// textures
+		codeTexture0 = CodeTexture( "codeTexture0" )
+	}
+	ps = PixelShader()
+	{
+		// textures
+		codeTexture0 = CodeTexture( "codeTexture0" )
+		// samplers
+		biLinearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

@@ -1,0 +1,5980 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags hidden expanded  active
+"000_Global/BALL" flags hidden 
+"000_Global/CTF" flags hidden 
+"000_Global/DEM" flags hidden 
+"000_Global/DM" flags hidden 
+"000_Global/DOM" flags hidden 
+"000_Global/ESCORT" flags hidden 
+"000_Global/HELI" flags hidden 
+"000_Global/KOTH" flags hidden 
+"000_Global/MISC" flags hidden 
+"000_Global/OS" flags hidden 
+"000_Global/PROP" flags hidden 
+"000_Global/SD" flags hidden 
+"000_Global/TDM" flags hidden 
+"The Map" flags expanded 
+// entity 0
+{
+guid "{B7EC86B9-B5A4-11E5-A8B9-2C27D7F03340}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lightingquality" "1024"
+"samplescale" "1"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{D570D7A3-1FB0-47BE-9E36-B73FDAD58791}"
+layer "000_Global/MISC"
+"classname" "info_player_start"
+"angles" "0 180 0"
+"origin" "400 176 160"
+}
+// entity 2
+{
+guid "{AB929301-AA33-4431-97DB-D6A86DC3F6DE}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 56.3323 -0"
+"origin" "12.5 -534 189.625"
+}
+// entity 3
+{
+guid "{2ECCDD36-5540-4FA7-AE53-B51E04CCCE4E}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 242.9 0"
+"origin" "304.009 876.004 192"
+}
+// entity 4
+{
+guid "{EC50B643-E0FD-481F-BC2B-FF148175BF75}"
+layer "000_Global/MISC"
+"classname" "mp_global_intermission"
+"angles" "0 118.455 1e-010"
+"origin" "378.221 -458.846 434.137"
+}
+// entity 5
+{
+guid "{16BE662F-2187-4246-9BFB-8D11E883B35C}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 270.8 0"
+"origin" "664.109 1610 192"
+}
+// entity 6
+{
+guid "{8CE82CB7-6C6B-4FE0-B35F-ED923498B953}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 281.81 4e-008"
+"origin" "-528.278 1542.84 153.168"
+}
+// entity 7
+{
+guid "{BC6AC1C5-8D46-431D-85EC-2C19D03F76B3}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 322.2 0"
+"origin" "-570 975 164"
+}
+// entity 8
+{
+guid "{E1142901-38AC-436C-8495-5707F9797797}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 256.943 2e-008"
+"origin" "-919.519 1125.86 164.049"
+}
+// entity 9
+{
+guid "{C43B8269-E1D4-4A4E-B4B0-22238EBE7E26}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 295.332 0"
+"origin" "-1157.52 961.69 172.737"
+}
+// entity 10
+{
+guid "{046C312A-9EC0-4B3A-9824-CFEE44D9E17C}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 291.011 0"
+"origin" "-1237.4 705.6 174.78"
+}
+// entity 11
+{
+guid "{74523DF5-6363-4E30-B41B-0F1473DFC818}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 65.9563 -0"
+"origin" "-1179.59 -464.508 187.625"
+}
+// entity 12
+{
+guid "{EE9A4E85-980A-48E3-9FB0-4F490FD14A24}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 111.033 -0"
+"origin" "-749.008 -764.635 181.625"
+}
+// entity 13
+{
+guid "{9B4E5838-71DE-4B94-B1F6-BF0598D777EF}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 133.857 0"
+"origin" "-571.5 -790 181.625"
+}
+// entity 14
+{
+guid "{844DAC3F-799E-458F-BD2A-C9D7FD3787B7}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 71.455 -0"
+"origin" "-383 -1178.5 189.625"
+}
+// entity 15
+{
+guid "{45967F13-1AEC-4C41-8303-AA948FF611CE}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 82.8369 0"
+"origin" "-350.871 -1595 188.722"
+}
+// entity 16
+{
+guid "{0C943F6F-2909-47BD-BCAA-D2A87DA83AE9}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 64.1994 0"
+"origin" "-52.5 -2271 190"
+}
+// entity 17
+{
+guid "{6597E7F5-1B99-4CC4-BACC-F608C3513717}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 99.8998 0"
+"origin" "214 -2316.5 190"
+}
+// entity 18
+{
+guid "{C1B6AC36-51D8-4761-B4AE-0CC583656E72}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 79.9999 0"
+"origin" "473 -1700 196"
+}
+// entity 19
+{
+guid "{0A85586B-882C-447E-9876-32395649093F}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 68.2031 -0"
+"origin" "481.974 -1311 191.125"
+}
+// entity 20
+{
+guid "{39CA98A6-EFE3-4D66-92B5-BB1B77567099}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 49.5998 0"
+"origin" "-79 -1409 220"
+}
+// entity 21
+{
+guid "{3B151A56-016D-4DF9-B44B-127417A2E0B4}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 89.9999 0"
+"origin" "224 -1366 220"
+}
+// entity 22
+{
+guid "{5DB5A72B-D09D-4414-A322-3533CCDE8E21}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 101.931 -0"
+"origin" "796 -1095 192.836"
+}
+// entity 23
+{
+guid "{1A77AF07-0DCA-4E38-AE86-9505D04AADC2}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 121.4 0"
+"origin" "870.5 -708 194"
+}
+// entity 24
+{
+guid "{2C202B7F-D05C-4B2D-A8A6-0F136C4CDB50}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 110.1 0"
+"origin" "767 -772 192"
+}
+// entity 25
+{
+guid "{5BB9BFDC-3F74-464F-A485-678B6962DC9A}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 88.5059 0"
+"origin" "294.5 -486 189.625"
+}
+// entity 26
+{
+guid "{123810B5-D237-4C43-84AF-D81C97CEA675}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 85.924 3e-009"
+"origin" "-207.48 -526.599 189.625"
+}
+// entity 27
+{
+guid "{F8CD4B03-45B9-4291-91F0-C2468E9E758D}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 68.0997 0"
+"origin" "-319 -383 188"
+}
+// entity 28
+{
+guid "{BC6965AD-B6D1-4EA6-B068-042A3F6AAF71}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 89.9998 0"
+"origin" "-55.5 -888.5 188"
+}
+// entity 29
+{
+guid "{FAB1C8B5-16C0-4463-B574-15627D1E8869}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 88.6157 -0"
+"origin" "-235 -1920 189.233"
+}
+// entity 30
+{
+guid "{62D18F2D-C27C-4F58-9E6B-CD1B7C16C8C5}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 309.869 -0"
+"origin" "-297.5 824 168.424"
+}
+// entity 31
+{
+guid "{57A270B8-4635-417F-B9D2-159976451F56}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 281.915 -0"
+"origin" "-577.539 2022.98 157.625"
+}
+// entity 32
+{
+guid "{AFE5F2A6-5029-4970-B71F-633595A2D9BA}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 257.327 0"
+"origin" "103.71 2574.19 165.625"
+}
+// entity 33
+{
+guid "{C90E606A-9797-48D5-BEC4-C8F55D1B8253}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 272 0"
+"origin" "149.909 1675.1 194.603"
+}
+// entity 34
+{
+guid "{BC424353-E641-49BD-8865-D752F90EBE1A}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 290.912 2e-008"
+"origin" "569.43 2323.58 193.625"
+}
+// entity 35
+{
+guid "{4BC0BF8A-1267-4210-8B22-99C7E57E7206}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 283.7 -0"
+"origin" "655.768 2307.23 193.625"
+}
+// entity 36
+{
+guid "{6B2A788E-592D-4C5B-84ED-4FFD5CF65398}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "-26.8233 3016.1 152"
+}
+// entity 37
+{
+guid "{00DDFDD6-DB0E-4124-A767-D8C94B89B4B5}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "-114.023 3019.3 152"
+}
+// entity 38
+{
+guid "{8B285C36-4405-46C0-B194-58A551F96D84}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "12.3767 3184 153"
+}
+// entity 39
+{
+guid "{D3EF9D0F-57AD-4221-894F-95BF20427B05}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "-74.5971 3184 161.5"
+}
+// entity 40
+{
+guid "{9A379B0D-D8ED-49E6-83F5-55A6EB4C22F6}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "-160.808 3184 161.5"
+}
+// entity 41
+{
+guid "{00C9D6BB-2850-4BF7-BFD9-F8115AB1127B}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "-245.749 3184 164.5"
+}
+// entity 42
+{
+guid "{33468B2B-D4EA-41DF-8BAE-BA3D04B9E5D2}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 269.066 0"
+"origin" "305.222 2615.41 161.25"
+}
+// entity 43
+{
+guid "{2246965F-ED76-4903-A331-0738C63D585A}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 295.45 -0"
+"origin" "-356.272 2567.27 157.991"
+}
+// entity 44
+{
+guid "{6DBB9791-A7EB-4990-8441-4BD9DE6D7D32}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 267.858 -0"
+"origin" "-378 1929 158.27"
+}
+// entity 45
+{
+guid "{13D7BF65-9823-4D42-BF8A-EDDC7C9780CF}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 235 0"
+"origin" "40 1990 152"
+}
+// entity 46
+{
+guid "{16074402-4E66-4413-A250-5C4E3A159614}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "218.5 3019 171.5"
+}
+// entity 47
+{
+guid "{9996E5AE-0365-48C0-8496-3D2B321D55F2}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_allies_start"
+"angles" "0 272 0"
+"origin" "-309.563 2751.19 165.5"
+}
+// entity 48
+{
+guid "{ACB02FCF-2F38-4B51-BFFE-75620F462429}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "-234.5 3039 164"
+}
+// entity 49
+{
+guid "{D8AEC0E0-C43F-48EA-9380-DDCC6DC84364}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "63.206 3010.5 161"
+}
+// entity 50
+{
+guid "{7FB934F0-4E2D-4614-B182-632F7A687AC5}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "138.5 3019 159"
+}
+// entity 51
+{
+guid "{F3694303-9A9F-4965-BE52-961AC85238A2}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_allies_start"
+"angles" "0 272 0"
+"origin" "-272 2911 166"
+}
+// entity 52
+{
+guid "{029A9BF4-82FF-4DFD-AD3C-1AB8BB0A4D43}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "-170.5 2911 160.5"
+}
+// entity 53
+{
+guid "{59193958-9594-48EE-8960-BC070458EC02}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "103.563 2855.06 159.5"
+}
+// entity 54
+{
+guid "{B297263D-31C8-4C30-9207-F2A9B4F73CFA}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "181.625 2853.5 159.5"
+}
+// entity 55
+{
+guid "{0AE0CC24-53AB-4823-8508-C53A3CF3C7C9}"
+layer "000_Global/DOM"
+"classname" "misc_prefab"
+"angles" "0 273.49 0"
+"model" "_prefabs/mp/dom_flag_primary_a.map"
+"origin" "-147.888 2042.38 120.361"
+}
+// entity 56
+{
+guid "{32355382-08F2-4484-A074-F4EE2220A972}"
+layer "000_Global/DOM"
+"classname" "misc_prefab"
+"angles" "0 231.919 0"
+"model" "_prefabs/mp/dom_flag_primary_c.map"
+"origin" "419.191 -1551.87 145.091"
+}
+// entity 57
+{
+guid "{C892BB4E-23F7-46F7-9E1B-CD444C499BCE}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_c"
+"angles" "0 88.6157 -0"
+"origin" "-235 -1920 189.233"
+}
+// entity 58
+{
+guid "{2948FD91-740F-4620-B0D5-0569A4E3F21F}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_c"
+"angles" "0 110.1 0"
+"origin" "767 -772 192"
+}
+// entity 59
+{
+guid "{06D650F3-BCA2-4B89-B9A5-2F0E9D0FE843}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_c"
+"angles" "0 121.4 0"
+"origin" "870.5 -708 194"
+}
+// entity 60
+{
+guid "{1D508B88-0BCC-4D2C-86D6-514FF1ACAAB0}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_c"
+"angles" "0 101.931 -0"
+"origin" "796 -1095 192.836"
+}
+// entity 61
+{
+guid "{1A372E80-4F4C-4429-B0A6-F1667A01AFA4}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_c"
+"angles" "0 54.9999 0"
+"origin" "-79 -1409 220"
+}
+// entity 62
+{
+guid "{38EFE944-FCBE-411E-9F08-53983ED230E2}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_c"
+"angles" "0 68.2031 -0"
+"origin" "481.974 -1311 191.125"
+}
+// entity 63
+{
+guid "{53E59A91-ED72-457F-BD5B-DA622F8B95A6}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_c"
+"angles" "0 87.2699 1.381e-008"
+"origin" "603.188 -1552.65 193.752"
+}
+// entity 64
+{
+guid "{D2CC860B-9F26-4EA1-B89B-699B3500F034}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_c"
+"angles" "0 99.6995 0"
+"origin" "214 -2316.5 190"
+}
+// entity 65
+{
+guid "{F24B476F-C6F9-4FC9-BA37-0B526A0C4815}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_c"
+"angles" "0 64.1994 0"
+"origin" "-52.5 -2271 190"
+}
+// entity 66
+{
+guid "{570DA9DD-2BB6-474D-809D-B64F6EC5BCDF}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_c"
+"angles" "0 82.8369 0"
+"origin" "-350.871 -1595 188.722"
+}
+// entity 67
+{
+guid "{93405B50-8EEF-4BD6-B653-FB4335BB3E95}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_c"
+"angles" "0 71.455 -0"
+"origin" "-383 -1178.5 189.625"
+}
+// entity 68
+{
+guid "{B5E24A05-DEF2-443D-8F27-EBB887BBB165}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_a"
+"angles" "0 235 0"
+"origin" "40 1990 152"
+}
+// entity 69
+{
+guid "{EB1E45F1-6A50-4DD0-9074-92C00EA9E3F5}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_a"
+"angles" "0 267.858 -0"
+"origin" "-378 1929 158.27"
+}
+// entity 70
+{
+guid "{F8A20A0A-4684-4CB0-8C6C-6FDF62632070}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_a"
+"angles" "0 295.45 -0"
+"origin" "-356.272 2567.27 157.991"
+}
+// entity 71
+{
+guid "{62BA04DB-ECC8-4032-A8A9-504ACC2F7D5E}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_a"
+"angles" "0 269.066 0"
+"origin" "305.222 2615.41 161.25"
+}
+// entity 72
+{
+guid "{E142AB8E-4C53-4AA5-861D-318789595F59}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_a"
+"angles" "0 275.625 -0"
+"origin" "769 2033.5 197.625"
+}
+// entity 73
+{
+guid "{3928F89E-AC9E-4C2F-9C7D-17133840A2AF}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_a"
+"angles" "0 284.793 1e-011"
+"origin" "619.768 2325.67 193.625"
+}
+// entity 74
+{
+guid "{E12968E0-826B-4E4C-8D52-CFCC578DB011}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_a"
+"angles" "0 257.327 0"
+"origin" "103.71 2574.19 165.625"
+}
+// entity 75
+{
+guid "{0CC86301-14B7-40A1-8068-DE60633E5F28}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_a"
+"angles" "0 281.915 -0"
+"origin" "-577.539 2022.98 157.625"
+}
+// entity 76
+{
+guid "{DC9BEF71-0FAF-48E3-AEA5-2EAAC4F8E222}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_a"
+"angles" "0 281.81 4e-008"
+"origin" "-528.278 1542.84 153.168"
+}
+// entity 77
+{
+guid "{3C18B456-1B00-436F-8DE9-7D8DCA999F77}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 68.0997 0"
+"origin" "-319 -383 188"
+}
+// entity 78
+{
+guid "{68EBC283-0934-448B-B3CD-9E0AAE20D395}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 85.924 3e-009"
+"origin" "-207.48 -526.599 189.625"
+}
+// entity 79
+{
+guid "{27B48E7E-7D6E-4705-BD07-2965C7CD95AA}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 88.5059 0"
+"origin" "294.5 -486 189.625"
+}
+// entity 80
+{
+guid "{B7FED9F4-22A4-4120-A259-095A9EE39657}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 133.857 0"
+"origin" "-571.5 -790 181.625"
+}
+// entity 81
+{
+guid "{A958BA4B-1115-485D-80EF-CF07C4664149}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 111.033 -0"
+"origin" "-749.008 -764.635 181.625"
+}
+// entity 82
+{
+guid "{2DEF8EC6-F342-4286-AE8C-BEA4B19049D4}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 59.0998 0"
+"origin" "-1178.5 -260.5 188"
+}
+// entity 83
+{
+guid "{2C06FAC0-86A3-4CC1-B516-C82E9FA730F8}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 313 0"
+"origin" "-1212.5 530 161"
+}
+// entity 84
+{
+guid "{D0B6E8E9-4183-4AA0-92A0-3D9E93E455E6}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 293.3 0"
+"origin" "-1158 961.994 176"
+}
+// entity 85
+{
+guid "{8787F64F-E185-4ABB-8AA6-F7558DFBD332}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 256.943 2e-008"
+"origin" "-919.519 1125.86 164.049"
+}
+// entity 86
+{
+guid "{98DC5DAF-2E4C-4CAC-B877-4181B564467C}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_a"
+"angles" "0 270.8 0"
+"origin" "664.609 1611 192"
+}
+// entity 87
+{
+guid "{7007D055-8DCD-4C40-92E7-8A4132ADCD12}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 56.3323 -0"
+"origin" "12.5 -534 189.625"
+}
+// entity 88
+{
+guid "{63B1F3C3-F81B-4BE6-8F61-7E78D71C44CE}"
+layer "000_Global/CTF"
+"classname" "misc_prefab"
+"angles" "0 273.694 0"
+"model" "_prefabs/mp/ctf_flag_allies.map"
+"origin" "-144.372 2159.37 124.032"
+}
+// entity 89
+{
+guid "{F13B1168-34B8-4769-899F-847663926A66}"
+layer "000_Global/CTF"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/ctf_flag_axis.map"
+"origin" "19.5999 -1658.07 147.833"
+}
+// entity 90
+{
+guid "{03540C28-CE81-4D71-9488-BBC91BBEAFCA}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 56.3323 -0"
+"origin" "12.5 -534 189.625"
+}
+// entity 91
+{
+guid "{A5DD59A7-21B7-477A-A8F8-3DB7FC211A08}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 65.9563 -0"
+"origin" "-1179.59 -464.508 187.625"
+}
+// entity 92
+{
+guid "{9D96BFEB-E77F-48AC-8084-E498DD18C607}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 111.033 -0"
+"origin" "-749.008 -764.635 181.625"
+}
+// entity 93
+{
+guid "{D0AA67F5-7119-4ABC-82E6-9E0175994012}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 133.857 0"
+"origin" "-571.5 -790 181.625"
+}
+// entity 94
+{
+guid "{4D4BEA96-F8EC-496A-91ED-47AF33593738}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 88.5059 0"
+"origin" "294.5 -486 189.625"
+}
+// entity 95
+{
+guid "{016B7A1E-16E1-446A-82B4-29721434D153}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 85.924 3e-009"
+"origin" "-207.48 -526.599 189.625"
+}
+// entity 96
+{
+guid "{4A269623-F550-4210-A93C-F99A1A521DAA}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 68.0997 0"
+"origin" "-319 -383 188"
+}
+// entity 97
+{
+guid "{D5C2D1E1-C870-4FF4-ADE7-A8F42899D7D6}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 71.455 -0"
+"origin" "-383 -1178.5 189.625"
+}
+// entity 98
+{
+guid "{A76FA172-2F85-40AE-A59B-266826F117F4}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 82.8369 0"
+"origin" "-350.871 -1595 188.722"
+}
+// entity 99
+{
+guid "{CD0DE94B-E4ED-4FE6-A968-ED725C403AE1}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 79.9999 0"
+"origin" "473 -1700 196"
+}
+// entity 100
+{
+guid "{81689A87-20C6-43AB-812B-D61CF1CA6238}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 68.2031 -0"
+"origin" "481.974 -1311 191.125"
+}
+// entity 101
+{
+guid "{F8764B60-08D3-4710-B552-B8A165807066}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 54.9999 0"
+"origin" "-79 -1409 220"
+}
+// entity 102
+{
+guid "{D8BF537F-48CB-46B1-A16A-8231AFD3D972}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 101.931 -0"
+"origin" "796 -1095 192.836"
+}
+// entity 103
+{
+guid "{ED08ED53-2305-4F6E-972A-FA4DA2B84D57}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 121.4 0"
+"origin" "870.5 -708 194"
+}
+// entity 104
+{
+guid "{272073AC-DC88-4660-AE74-5C0ACA6B4B56}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 110.1 0"
+"origin" "767 -772 192"
+}
+// entity 105
+{
+guid "{3B4BF98D-734E-4455-9058-3372E21BE84E}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 270.8 0"
+"origin" "664.109 1610 192"
+}
+// entity 106
+{
+guid "{3E8D0CC3-6FB7-4499-9328-CB4A2244854F}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 293.3 0"
+"origin" "-1157.45 961.875 176"
+}
+// entity 107
+{
+guid "{771FD0B3-78B3-460B-B2F1-3222649E99A1}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 291.011 0"
+"origin" "-1237.4 705.6 174.78"
+}
+// entity 108
+{
+guid "{0B921319-0E5F-4FD9-8016-AD7E222EF0EE}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 281.81 4e-008"
+"origin" "-528.278 1542.84 153.168"
+}
+// entity 109
+{
+guid "{5128F265-EEE7-4E8C-9420-B9D5658FA1AA}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 281.915 -0"
+"origin" "-577.539 2022.98 157.625"
+}
+// entity 110
+{
+guid "{0B5639F9-2F9E-4161-A7DD-65EEB950C52F}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 290.912 2e-008"
+"origin" "569.43 2323.58 193.625"
+}
+// entity 111
+{
+guid "{2713C369-2256-4618-8000-4128A1BEC531}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 283.7 -0"
+"origin" "655.768 2307.23 193.625"
+}
+// entity 112
+{
+guid "{19A68321-35E3-49BF-83AA-712C7D1DD499}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 267.858 -0"
+"origin" "-378 1929 158.27"
+}
+// entity 113
+{
+guid "{73F33892-4F98-4A58-BF0A-523BB4256528}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 235 0"
+"origin" "40 1990 152"
+}
+// entity 114
+{
+guid "{FEC6B083-F4A5-4278-9A41-B3A299DA70F4}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/koth_zone_center.map"
+"origin" "58.062 185.219 265.881"
+"script_index" "1"
+"target" "visuals_1"
+}
+// entity 115
+{
+guid "{B3C8D9E4-BDA0-40E4-9955-72CB792CD6E8}"
+layer "000_Global/KOTH"
+"classname" "trigger_multiple"
+"script_gameobjectname" "koth"
+"targetname" "koth_zone_trigger"
+"_color" "1 0.3 0.1"
+// brush 0
+{
+ guid "{59E51B5C-6423-4180-AF27-B1F4BCC4FF6D}"
+layer "000_Global/KOTH"
+ ( -107.75 1102.75 164.25 ) ( -275.75 1102.75 164.25 ) ( -275.75 918.75 164.25 ) trigger 32 32 1210.1622 -2169.7188 0 0 lightmap_gray 16384 16384 1210.1622 -2169.7188 0 0
+ ( -250.75 957.75 333.25 ) ( -250.75 1141.75 333.25 ) ( -82.75 1141.75 333.25 ) trigger 32 32 1210.1625 -2169.7188 0 0 lightmap_gray 16384 16384 1210.1625 -2169.7188 0 0
+ ( -17.5 -45.5 260.25 ) ( 150.5 -45.5 260.25 ) ( 150.5 -45.5 -291.75 ) trigger 32 32 1210.1621 1017.7908 0 0 lightmap_gray 16384 16384 1210.1621 1017.7908 0 0
+ ( 181.75 887.25 718.25 ) ( 181.75 1071.25 718.25 ) ( 181.75 1071.25 166.25 ) trigger 32 32 2169.7188 1017.7908 0 0 lightmap_gray 16384 16384 2169.7188 1017.7908 0 0
+ ( -117.5 414 726.25 ) ( -285.5 414 726.25 ) ( -285.5 414 174.25 ) trigger 32 32 1210.1621 1017.7908 0 0 lightmap_gray 16384 16384 1210.1621 1017.7908 0 0
+ ( -76.25 1147.25 726.25 ) ( -76.25 963.25 726.25 ) ( -76.25 963.25 174.25 ) trigger 32 32 2169.7188 1017.7908 0 0 lightmap_gray 16384 16384 2169.7188 1017.7908 0 0
+}
+}
+// entity 116
+{
+guid "{D7DC234E-54B6-48EE-82DE-5DFCEB0274C7}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 179.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "251.864 2119.14 387.481"
+"targetname" "visuals_1"
+}
+// entity 117
+{
+guid "{D8AC8391-778C-4A4E-9627-6C29C30F4AB4}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 179.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "314.647 2118.64 387.481"
+"targetname" "visuals_1"
+}
+// entity 118
+{
+guid "{1238BD7F-323C-4AC9-8784-142ADB7AC7F7}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 359.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-149.214 -1756.63 389.011"
+"targetname" "visuals_1"
+}
+// entity 119
+{
+guid "{62BA22BB-561B-4035-BD34-DFCABC8554F7}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 359.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-208.05 -1756.24 389.011"
+"targetname" "visuals_1"
+}
+// entity 120
+{
+guid "{231C9F48-C082-4A5F-921A-A3A8DB34585A}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 359.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-86.153 -1756.85 389.011"
+"targetname" "visuals_1"
+}
+// entity 121
+{
+guid "{95617B80-783A-4AF2-ACDE-751E48585EA7}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 359.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-25.9329 -1757.06 389.011"
+"targetname" "visuals_1"
+}
+// entity 122
+{
+guid "{35C50898-29BF-408A-BD92-DB754A8DACE2}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 179.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "181.551 2119.39 387.481"
+"targetname" "visuals_1"
+}
+// entity 123
+{
+guid "{E6EB84E3-C827-44EF-BAC4-41F1C67767FE}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 179.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "113.731 2119.63 387.481"
+"targetname" "visuals_1"
+}
+// entity 124
+{
+guid "{EF32858D-A775-4E68-AABF-AC45B2272359}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 269.998 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-1783.66 290.13 389.511"
+"targetname" "visuals_1"
+}
+// entity 125
+{
+guid "{11816775-9A5F-4FAB-A406-17DF849CE2B5}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 269.998 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-1783.47 372.398 389.511"
+"targetname" "visuals_1"
+}
+// entity 126
+{
+guid "{256384D1-8D11-4473-A0B3-21038D730027}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 289 0"
+"origin" "550.475 1543.56 192"
+}
+// entity 127
+{
+guid "{D8DA0F8A-6116-4892-8EE5-988E79C579EF}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 66.1211 -0"
+"origin" "-1136 -789 190.724"
+}
+// entity 128
+{
+guid "{32CB78E9-F9FB-4368-AB13-AEAB8DBFB612}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "107.318 3184 164"
+}
+// entity 129
+{
+guid "{8E50C31A-6647-4B26-8FA2-CFEE8D9E2B2C}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "-202.823 3019.3 168"
+}
+// entity 130
+{
+guid "{268694ED-61B5-4893-8A29-FAA247D16023}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "73.6767 3010 157.5"
+}
+// entity 131
+{
+guid "{CF2D2D54-DFE2-4E8D-B1C0-757EE5C742AC}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/koth_zone_center.map"
+"origin" "-355.079 -735.562 248.105"
+"script_index" "2"
+"target" "visuals_2"
+}
+// entity 132
+{
+guid "{C81AEB02-3A94-4CA9-91DE-56C39924B434}"
+layer "000_Global/KOTH"
+"classname" "trigger_multiple"
+"script_gameobjectname" "koth"
+"targetname" "koth_zone_trigger"
+"_color" "1 0.3 0.1"
+// brush 0
+{
+ guid "{E497A6EB-2E36-11E4-9AE9-2C27D7F03340}"
+layer "000_Global/KOTH"
+ ( -521 182 146.5 ) ( -689 182 146.5 ) ( -689 -2 146.5 ) trigger 32 32 797.02173 -1248.9375 0 0 lightmap_gray 16384 16384 797.02173 -1248.9375 0 0
+ ( -664 37 315.5 ) ( -664 221 315.5 ) ( -496 221 315.5 ) trigger 32 32 797.02185 -1248.9375 0 0 lightmap_gray 16384 16384 797.02185 -1248.9375 0 0
+ ( -430.75 -951.25 242.5 ) ( -262.75 -951.25 242.5 ) ( -262.75 -951.25 -309.5 ) trigger 32 32 797.02148 1035.5673 0 0 lightmap_gray 16384 16384 797.02148 1035.5673 0 0
+ ( 1.5 -36.75 700.5 ) ( 1.5 147.25 700.5 ) ( 1.5 147.25 148.5 ) trigger 32 32 1248.9375 1035.5673 0 0 lightmap_gray 16384 16384 1248.9375 1035.5673 0 0
+ ( -508.75 -575.5 708.5 ) ( -676.75 -575.5 708.5 ) ( -676.75 -575.5 156.5 ) trigger 32 32 797.02148 1035.5674 0 0 lightmap_gray 16384 16384 797.02148 1035.5674 0 0
+ ( -519.25 228.25 708.5 ) ( -519.25 44.25 708.5 ) ( -519.25 44.25 156.5 ) trigger 32 32 1248.9375 1035.5673 0 0 lightmap_gray 16384 16384 1248.9375 1035.5673 0 0
+}
+}
+// entity 133
+{
+guid "{72EFC19C-F14F-415C-9998-EEEB86B89016}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 179.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "89.3894 1135.64 373.672"
+"targetname" "visuals_2"
+}
+// entity 134
+{
+guid "{ED24D407-E496-4630-9E5E-13C9488BD1E8}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 179.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "117.889 1135.66 373.176"
+"targetname" "visuals_2"
+}
+// entity 135
+{
+guid "{30BF88E6-00AD-49B2-8F1B-352BAEF705C3}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 359.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-521.311 -2666.6 369.5"
+"targetname" "visuals_2"
+}
+// entity 136
+{
+guid "{96684CFE-6A54-4F4E-859C-05744CF0E30E}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 359.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-461.091 -2666.81 369.5"
+"targetname" "visuals_2"
+}
+// entity 137
+{
+guid "{05D5E04C-2679-4D3C-A1B4-53A5DE63B99F}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 269.998 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-2237.89 -551.113 372.05"
+"targetname" "visuals_2"
+}
+// entity 138
+{
+guid "{2E53152F-09EA-40DA-9F9C-6B9799E443B2}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 269.998 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-2238.11 -526.806 372.05"
+"targetname" "visuals_2"
+}
+// entity 139
+{
+guid "{110073DB-61CD-4D6B-9EFB-AA4E1D27CE49}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/koth_zone_center.map"
+"origin" "235.711 1475.03 248.105"
+"script_index" "3"
+"target" "visuals_3"
+}
+// entity 140
+{
+guid "{CA8C5D67-0C78-4ED6-A52B-72E772A0C834}"
+layer "000_Global/KOTH"
+"classname" "trigger_multiple"
+"script_gameobjectname" "koth"
+"targetname" "koth_zone_trigger"
+"_color" "1 0.3 0.1"
+// brush 0
+{
+ guid "{E6D5D6D3-DF08-11E4-B51A-2C27D7F03340}"
+layer "000_Global/KOTH"
+ ( -18.5 2469 146.5 ) ( -186.5 2469 146.5 ) ( -186.5 2285 146.5 ) trigger 32 32 1299.6125 -3535.9275 0 0 lightmap_gray 16384 16384.045 1299.6125 -3535.937 0 0
+ ( -165.5 2324 273 ) ( -165.5 2508 273 ) ( 2.5 2508 273 ) trigger 32 32 1299.6125 -3535.9287 0 0 lightmap_gray 16384 16384.033 1299.6125 -3535.9355 0 0
+ ( 129.5 1137.5 242.5 ) ( 297.5 1137.5 242.5 ) ( 297.5 1137.5 -309.5 ) trigger 32 32 1299.6117 1035.5673 0 0 lightmap_gray 16384 16384 1299.6117 1035.5673 0 0
+ ( 504 2250.25 700.5 ) ( 504 2434.25 700.5 ) ( 504 2434.25 148.5 ) trigger 32 32 3535.9275 1035.5673 0 0 lightmap_gray 16384.033 16384 3535.9343 1035.5673 0 0
+ ( -6.25 1711.5 708.5 ) ( -174.25 1711.5 708.5 ) ( -174.25 1711.5 156.5 ) trigger 32 32 1299.6122 1035.5674 0 0 lightmap_gray 16384 16384 1299.6122 1035.5674 0 0
+ ( 207.5 1113.75 176.5 ) ( 209 1157 176.5 ) ( 207.5 1113.75 208.5 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{277C1E7A-B5A7-11E5-A8B9-2C27D7F03340}"
+layer "000_Global/KOTH"
+ ( -18.5 2469 146.5 ) ( -186.5 2469 146.5 ) ( -186.5 2285 146.5 ) trigger 32 32 1299.6125 -3535.9275 0 0 lightmap_gray 16384 16384.045 1299.6125 -3535.937 0 0
+ ( -165.5 2324 273 ) ( -165.5 2508 273 ) ( 2.5 2508 273 ) trigger 32 32 1299.6125 -3535.9287 0 0 lightmap_gray 16384 16384.033 1299.6125 -3535.9355 0 0
+ ( -6.25 1711.5 708.5 ) ( -174.25 1711.5 708.5 ) ( -174.25 1711.5 156.5 ) trigger 32 32 1299.6122 1035.5674 0 0 lightmap_gray 16384 16384 1299.6122 1035.5674 0 0
+ ( 80.5 2516.25 708.5 ) ( 80.5 2332.25 708.5 ) ( 80.5 2332.25 156.5 ) trigger 32 32 3535.9292 1035.5673 0 0 lightmap_gray 16384.037 16384 3535.9368 1035.5673 0 0
+ ( 193.5 1130.25 273 ) ( 193 1063.25 273 ) ( 193 1063.25 305 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 208 1124.75 273 ) ( 195 1125.25 273 ) ( 208 1124.75 305 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 2
+{
+ guid "{277C1E7B-B5A7-11E5-A8B9-2C27D7F03340}"
+layer "000_Global/KOTH"
+ ( -18.5 2469 146.5 ) ( -186.5 2469 146.5 ) ( -186.5 2285 146.5 ) trigger 32 32 1299.6125 -3535.9275 0 0 lightmap_gray 16384 16384.045 1299.6125 -3535.937 0 0
+ ( -165.5 2324 273 ) ( -165.5 2508 273 ) ( 2.5 2508 273 ) trigger 32 32 1299.6125 -3535.9287 0 0 lightmap_gray 16384 16384.033 1299.6125 -3535.9355 0 0
+ ( 128.25 1061.75 242.5 ) ( 296.25 1061.75 242.5 ) ( 296.25 1061.75 -309.5 ) trigger 32 32 1299.6117 1035.5673 0 0 lightmap_gray 16384 16384 1299.6117 1035.5673 0 0
+ ( 80.5 2516.25 708.5 ) ( 80.5 2332.25 708.5 ) ( 80.5 2332.25 156.5 ) trigger 32 32 3535.9292 1035.5673 0 0 lightmap_gray 16384.037 16384 3535.9368 1035.5673 0 0
+ ( 193.5 1130.25 273 ) ( 193 1063.25 273 ) ( 193 1063.25 305 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 195 1125.25 273 ) ( 208 1124.75 273 ) ( 208 1124.75 305 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 3
+{
+ guid "{277C1E7C-B5A7-11E5-A8B9-2C27D7F03340}"
+layer "000_Global/KOTH"
+ ( -18.5 2469 146.5 ) ( -186.5 2469 146.5 ) ( -186.5 2285 146.5 ) trigger 32 32 1299.6125 -3535.9275 0 0 lightmap_gray 16384 16384.045 1299.6125 -3535.937 0 0
+ ( -165.5 2324 273 ) ( -165.5 2508 273 ) ( 2.5 2508 273 ) trigger 32 32 1299.6125 -3535.9287 0 0 lightmap_gray 16384 16384.033 1299.6125 -3535.9355 0 0
+ ( -6.25 1711.5 708.5 ) ( -174.25 1711.5 708.5 ) ( -174.25 1711.5 156.5 ) trigger 32 32 1299.6122 1035.5674 0 0 lightmap_gray 16384 16384 1299.6122 1035.5674 0 0
+ ( 209 1157 176.5 ) ( 207.5 1113.75 176.5 ) ( 207.5 1113.75 208.5 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 193 1063.25 273 ) ( 193.5 1130.25 273 ) ( 193 1063.25 305 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 208 1124.75 273 ) ( 195 1125.25 273 ) ( 208 1124.75 305 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 141
+{
+guid "{7B8B7128-3DD6-4ACD-AA5A-90734D4BCF98}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 269.698 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-1625.04 1341.01 377.986"
+"targetname" "visuals_3"
+}
+// entity 142
+{
+guid "{9A051F74-E516-47CA-87D7-ABFD8BD81143}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 359.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "71.667 -574.202 377.894"
+"targetname" "visuals_3"
+}
+// entity 143
+{
+guid "{639857D6-9899-4456-A0D2-6E62771CBF36}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 359.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "113.102 -574.468 377.894"
+"targetname" "visuals_3"
+}
+// entity 144
+{
+guid "{054779E8-B162-4197-80A1-97F8D58D062F}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 179.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "392.217 3422.66 377.643"
+"targetname" "visuals_3"
+}
+// entity 145
+{
+guid "{45F2AF17-6520-48B7-964F-2A73D36FC180}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 179.798 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "363.718 3422.64 378.139"
+"targetname" "visuals_3"
+}
+// entity 146
+{
+guid "{2857E3B0-5773-4449-9BB5-372388A6CACB}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 89.6971 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "2213.16 1286.22 377.882"
+"targetname" "visuals_3"
+}
+// entity 147
+{
+guid "{6D590AE0-35E3-4E58-867A-88941930FDD3}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 89.6971 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "2213.23 1258.72 377.882"
+"targetname" "visuals_3"
+}
+// entity 148
+{
+guid "{4B99FC5F-F984-4051-A844-C9CA2A9CB1B1}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/koth_zone_center.map"
+"origin" "-726.617 166.647 208.669"
+"script_index" "4"
+"target" "visuals_4"
+}
+// entity 149
+{
+guid "{AE6AF78F-74C0-41B3-AA15-1FCA8E3A7EA1}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 359.597 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-1038.04 -1754.89 332.036"
+"targetname" "visuals_4"
+}
+// entity 150
+{
+guid "{DF430452-0D75-490C-AAD8-604FDA1CD855}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 90.1976 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "1305.88 -16.7061 328.376"
+"targetname" "visuals_4"
+}
+// entity 151
+{
+guid "{CE461F9C-BB63-44EB-9A2A-FB03354E96CD}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 90.1976 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "1305.67 43.513 329.7"
+"targetname" "visuals_4"
+}
+// entity 152
+{
+guid "{90A1A594-F725-4722-8498-F62EAEC0AA42}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 289.045 0"
+"origin" "550.222 1543.27 192"
+}
+// entity 153
+{
+guid "{91939569-7558-4272-B237-552FAE8C7EB4}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 272.084 0"
+"origin" "149.854 1674.86 194.924"
+}
+// entity 154
+{
+guid "{AD16EEEF-8110-470F-AD7E-D514BBDCA6D8}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 256.943 2e-008"
+"origin" "-919.519 1125.86 164.049"
+}
+// entity 155
+{
+guid "{4D465899-2B2B-485C-BFF8-BB75A510D5D0}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 321.85 0"
+"origin" "-569.678 974.713 164.222"
+}
+// entity 156
+{
+guid "{409475CE-0EA4-46A2-8893-B3C4FD5A7BFA}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 309.869 -0"
+"origin" "-297.5 824 168.424"
+}
+// entity 157
+{
+guid "{EF7FC1B5-7FFB-4557-9CF7-C59C36930A6D}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 243.204 0"
+"origin" "304.366 875.595 192.805"
+}
+// entity 158
+{
+guid "{A1CA9145-E18E-49CE-B04F-78840164BD8E}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 66.1211 -0"
+"origin" "-1136 -789 190.724"
+}
+// entity 159
+{
+guid "{CFF67473-60C8-482C-AE2F-156284184972}"
+layer "000_Global/SD"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/sd_bombzone_nuke_a.map"
+"origin" "633.948 855.3 156.095"
+}
+// entity 160
+{
+guid "{3D109D4D-B7E0-43A7-9D22-5EC93EE2CB12}"
+layer "000_Global/SD"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/sd_bombzone_nuke_b.map"
+"origin" "-449.123 1091.33 119.279"
+}
+// entity 161
+{
+guid "{1BC402A8-5B20-41EC-B62C-B8E25DC054D5}"
+layer "000_Global/SD"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/sd_bomb.map"
+"origin" "48.1053 -2079.51 147.292"
+}
+// entity 162
+{
+guid "{6C4EEB3E-828D-4B3A-9371-07640C1CB220}"
+layer "000_Global/SD"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/sd_bombtrigger.map"
+"origin" "827.674 -2276.96 159.5"
+}
+// entity 163
+{
+guid "{3C184575-9817-489B-B4DB-404C30B5C85A}"
+layer "000_Global/DEM"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/dem_bombzone_nuke_a.map"
+"origin" "-454.019 166.938 103.948"
+}
+// entity 164
+{
+guid "{985D822C-3EAE-4052-8AAD-6CA2719DDBAB}"
+layer "000_Global/DEM"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/dem_bombzone_nuke_b.map"
+"origin" "696.949 858.591 155.535"
+}
+// entity 165
+{
+guid "{CCBE26CD-15DF-40BC-BC09-6EBE0C971E78}"
+layer "000_Global/DEM"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/dem_bombzone_nuke_c.map"
+"origin" "-229.066 169.306 104.035"
+}
+// entity 166
+{
+guid "{E8EF7840-279C-45DC-8C43-CA790147DDA3}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_defender"
+"angles" "0 270 0"
+"origin" "100.677 2747.33 162.055"
+}
+// entity 167
+{
+guid "{DFE31A07-2287-4124-A8BC-CC9C0D863A47}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_defender"
+"angles" "0 270 0"
+"origin" "-230.211 2705.76 158.92"
+}
+// entity 168
+{
+guid "{DC07C97D-0B76-42A2-B847-2A382764352E}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_defender"
+"angles" "0 270 0"
+"origin" "139.877 2877.73 158.055"
+}
+// entity 169
+{
+guid "{6C48BEF6-93B9-4B4C-9FBB-2636A78237D2}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_defender"
+"angles" "0 270 0"
+"origin" "-199.864 2832.96 159.5"
+}
+// entity 170
+{
+guid "{11C20AEA-296A-4B5B-92DA-D7F526437C58}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_defender"
+"angles" "0 270 0"
+"origin" "-275.808 2832.96 163.946"
+}
+// entity 171
+{
+guid "{D696041A-DFC4-45C5-9A2C-2B5997E5C85C}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_defender"
+"angles" "0 270 0"
+"origin" "-361.098 2614.96 162.261"
+}
+// entity 172
+{
+guid "{B8A7A380-2A4D-45D6-ACEE-C18C901C29FB}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_defender"
+"angles" "0 270 0"
+"origin" "234.818 2877.73 174.055"
+}
+// entity 173
+{
+guid "{0DA0AA75-AB60-4284-9EB8-5EABE5F1538A}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_defender"
+"angles" "0 270 0"
+"origin" "-299.011 2706.76 163.826"
+}
+// entity 174
+{
+guid "{750A7B9F-0929-4F0F-A9A6-71138970483B}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_defender"
+"angles" "0 270 0"
+"origin" "192.677 2749.73 162.055"
+}
+// entity 175
+{
+guid "{6DD67CC9-FE8B-4311-82DD-4EDA346437CD}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_a"
+"angles" "0 272.266 0"
+"origin" "150.049 1675.15 194.595"
+}
+// entity 176
+{
+guid "{EAFBFBA3-F396-4963-9744-479CF66720CB}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_a"
+"angles" "0 242.8 0"
+"origin" "-232.992 2477.42 159"
+}
+// entity 177
+{
+guid "{717467D0-DA95-48F1-88B8-531479639DD3}"
+layer "000_Global/KOTH"
+"classname" "trigger_multiple"
+"script_gameobjectname" "koth"
+"targetname" "koth_zone_trigger"
+"_color" "1 0.3 0.1"
+// brush 0
+{
+ guid "{E497A6ED-2E36-11E4-9AE9-2C27D7F03340}"
+layer "000_Global/KOTH"
+ ( -1079.75 1094.25 97.25 ) ( -1247.75 1094.25 97.25 ) ( -1247.75 910.25 97.25 ) trigger 32 32 238.13672 -2162.2188 0 0 lightmap_gray 16384 16384 238.13672 -2162.2188 0 0
+ ( -1222.75 953.25 314.25 ) ( -1222.75 1137.25 314.25 ) ( -1054.75 1137.25 314.25 ) trigger 32 32 238.13843 -2162.2188 0 0 lightmap_gray 16384.012 16384 238.1386 -2162.2188 0 0
+ ( -964.5 -23.5 193.25 ) ( -796.5 -23.5 193.25 ) ( -796.5 -23.5 -358.75 ) trigger 32 32 238.13666 1070.75 0 0 lightmap_gray 16383.988 16384 238.13663 1070.75 0 0
+ ( -418.5 867.25 665.25 ) ( -418.5 1051.25 665.25 ) ( -418.5 1051.25 113.25 ) trigger 32 32 2162.2188 1070.75 0 0 lightmap_gray 16384 16384 2162.2188 1070.75 0 0
+ ( -1023.75 355.75 314 ) ( -1023.75 355.75 97 ) ( -393.75 355.75 97 ) trigger 32 32 238.13846 1070.75 0 0 lightmap_gray 16384.012 16384 238.13863 1070.75 0 0
+ ( -1172.25 408.5 97 ) ( -1172.25 408.5 314 ) ( -1172.25 24.5 314 ) trigger 32 32 2162.2188 1070.75 0 0 lightmap_gray 16384 16384 2162.2188 1070.75 0 0
+}
+}
+// entity 178
+{
+guid "{EA8097CD-9209-4A65-A98F-234339C4C7FD}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 359.597 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-1120.09 -1754.03 332.036"
+"targetname" "visuals_4"
+}
+// entity 179
+{
+guid "{3E6C5C3F-57C2-410A-AE1E-1AD56BA2C0FE}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 179.896 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-790.901 2068.12 329.542"
+"targetname" "visuals_4"
+}
+// entity 180
+{
+guid "{FC38ACA2-E07E-4483-8D43-DC8F7F4B6825}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 179.896 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-711.213 2067.69 331.09"
+"targetname" "visuals_4"
+}
+// entity 181
+{
+guid "{31852F44-B475-46E6-B6DD-93F1A8ABB589}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 359.597 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-1204.66 -1753.44 332.036"
+"targetname" "visuals_4"
+}
+// entity 182
+{
+guid "{4450AFAF-ED55-455E-8F1C-65DE53D82892}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 179.896 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-870.764 2068.27 333.186"
+"targetname" "visuals_4"
+}
+// entity 183
+{
+guid "{62B97981-2E69-4C9A-8EC8-A11422C41BC7}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 237.644 0"
+"origin" "396.922 1554.19 195.625"
+}
+// entity 184
+{
+guid "{FE1B9295-F066-4278-B5F4-89B7B2BF630E}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 245.446 -0"
+"origin" "431.444 2206.33 157.625"
+}
+// entity 185
+{
+guid "{4DC31605-604B-43F6-A441-DC7927AE9814}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 230.982 0"
+"origin" "-104.124 1718.66 171.743"
+}
+// entity 186
+{
+guid "{739EF615-9170-43B5-A349-765D7251EE38}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 50.5371 -0"
+"origin" "481.632 -1076.35 185.625"
+}
+// entity 187
+{
+guid "{4060786F-B960-4E5A-B97E-A4FF9DEF2378}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 84.5782 -0"
+"origin" "603.642 -1543.12 193.625"
+}
+// entity 188
+{
+guid "{C9DA3D07-6CF3-4A5C-8CF1-8AEB67A0043C}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 114.908 -1e-006"
+"origin" "-236.918 -1153.25 189.625"
+}
+// entity 189
+{
+guid "{FA6896B8-0B54-42D8-B4BE-55338E96080C}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 143.058 0"
+"origin" "-248.002 -901.089 189.625"
+}
+// entity 190
+{
+guid "{61EACDF4-3BB8-49B0-8E53-14A29487AFB7}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_a"
+"angles" "0 245.446 -0"
+"origin" "431.444 2206.33 157.625"
+}
+// entity 191
+{
+guid "{91C96013-E1CC-433B-8765-8FA2882880A4}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 225 0"
+"origin" "856 1040 192"
+}
+// entity 192
+{
+guid "{BC3328D7-9F15-4341-8C7D-6585C725A156}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 225 0"
+"origin" "856 1040 192"
+}
+// entity 193
+{
+guid "{372DF574-089A-4FE1-BD07-9F04AC9D62F6}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 225 0"
+"origin" "856 1040 192"
+}
+// entity 194
+{
+guid "{27DBBC2D-FFB5-4FFB-A8DC-EB4A8912AF60}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 249.505 0"
+"origin" "852 1418.5 193.625"
+}
+// entity 195
+{
+guid "{BD2DBCDD-0D1F-4F36-8803-4E3B6374CDA7}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 249.505 0"
+"origin" "852 1418.5 193.625"
+}
+// entity 196
+{
+guid "{EC1BCD76-A4DD-4DD3-84D2-215B7C2711AC}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 249.505 0"
+"origin" "852 1418.5 193.625"
+}
+// entity 197
+{
+guid "{3971E748-7942-439B-ADCF-5F5BDFD30644}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 322.2 0"
+"origin" "-570 975 164"
+}
+// entity 198
+{
+guid "{F0DA43DC-B77F-4E62-B670-CC6812190767}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 331.119 0"
+"origin" "-528.32 837.787 164"
+}
+// entity 199
+{
+guid "{04B6E893-A304-42F2-829C-E4C6720A45C4}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 81.0132 0"
+"origin" "392.167 -2052.65 191.625"
+}
+// entity 200
+{
+guid "{6D2213FA-D2F5-46D3-8C64-EA5C531B2406}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_c"
+"angles" "0 81.0132 0"
+"origin" "392.167 -2052.65 191.625"
+}
+// entity 201
+{
+guid "{D0BD1194-420C-417B-9AD9-97D1C35FDED9}"
+layer "000_Global/HELI"
+"classname" "script_struct"
+"origin" "-367.459 408.473 6225.54"
+"targetname" "remote_mortar_height"
+"_color" "1 0 0"
+}
+// entity 202
+{
+guid "{15B44F27-201B-4DFE-840E-B472CD6D4ED3}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"origin" "7667 -12288.9 -138.416"
+"targetname" "heli_leave"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 203
+{
+guid "{34F1EFF3-DA26-452D-84E0-A43F1E541753}"
+layer "000_Global/HELI"
+"classname" "script_struct"
+"origin" "-359.459 408.473 764.54"
+"targetname" "qrdrone_height"
+"_color" "1 0 0"
+}
+// entity 204
+{
+guid "{4EE6842B-8F11-48DD-B7DB-B7ECCC59C50F}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"angles" "1.19998 107.8 8.23493e-006"
+"origin" "-910.392 179.939 190.24"
+"target" "auto1371"
+"targetname" "heli_attack_area"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 205
+{
+guid "{12DC593C-854F-499E-AFF0-158A6DFF20C9}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"angles" "0 345 0"
+"origin" "-316.459 102.273 1027.54"
+"script_accel" "20"
+"script_airspeed" "40"
+"target" "auto42"
+"targetname" "auto482"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 206
+{
+guid "{E61B68BB-D87A-4E7A-A957-163646159E79}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"angles" "0 345 0"
+"origin" "-343.459 109.473 1027.54"
+"target" "auto482"
+"targetname" "heli_crash_start"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 207
+{
+guid "{0869F535-3DD0-4757-9D2E-A6605F1FA891}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"angles" "0 345 0"
+"origin" "-1025.26 -409.33 1087.54"
+"script_accel" "30"
+"script_airspeed" "50"
+"target" "auto44"
+"targetname" "auto42"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 208
+{
+guid "{C13972E5-EE27-41D3-AA5B-405F74C5A50E}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"angles" "0 345 0"
+"origin" "-2191.96 -516.03 1123.54"
+"script_accel" "30"
+"script_airspeed" "50"
+"target" "auto43"
+"targetname" "auto44"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 209
+{
+guid "{ABE7C8CF-FBA7-4952-9E62-09BCC47C8D38}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"angles" "0 345 0"
+"origin" "-2828.46 -1328.53 567.54"
+"script_accel" "30"
+"script_airspeed" "50"
+"targetname" "auto43"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 210
+{
+guid "{564ED8A0-A61A-4260-8060-291C53D9983F}"
+layer "000_Global/HELI"
+"classname" "script_struct"
+"origin" "0.736 124.07 1500"
+"targetname" "air_support_height"
+"_color" "1 0 0"
+}
+// entity 211
+{
+guid "{8A96CE73-C7B8-4A34-A83C-D2A67862AD2C}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"angles" "1.00179e-005 35.6 -0.000388802"
+"origin" "652.215 149.521 371.04"
+"target" "auto1340"
+"targetname" "heli_attack_area"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 212
+{
+guid "{0310C980-85E1-4431-BBF6-D4E30FA1EB0B}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"angles" "2.79998 4.89956e-007 1.00023e-005"
+"origin" "46.24 -1565.53 310.04"
+"target" "auto1338"
+"targetname" "heli_attack_area"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 213
+{
+guid "{23FFD760-1420-48F0-B9E4-066A43BD2EF4}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"angles" "1.19998 9.08149e-007 1.00195e-005"
+"origin" "2.11685 1891.7 369.74"
+"target" "auto1337"
+"targetname" "heli_attack_area"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 214
+{
+guid "{7077ABA9-02A2-41AE-8713-E8E9A37DA84A}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0.5 1 1"
+"angles" "0 276.2 0"
+"origin" "-788.76 2347.57 1919.54"
+"script_accel" "10"
+"script_airspeed" "35"
+"script_delay" "3"
+"target" "auto481"
+"targetname" "auto480"
+"client_server" "ClientSide"
+}
+// entity 215
+{
+guid "{F2E22F21-D926-436F-B61E-F9AD15A4E9FD}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0.5 1 1"
+"angles" "0 246.2 0"
+"origin" "918.04 1406.87 1699.54"
+"script_accel" "10"
+"script_airspeed" "30"
+"target" "auto480"
+"targetname" "auto479"
+"client_server" "ClientSide"
+}
+// entity 216
+{
+guid "{930225B6-7C96-4F25-8CD5-98F32D2532D5}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0.5 1 1"
+"angles" "0 181.2 0"
+"origin" "1465.24 53.873 1663.54"
+"script_accel" "10"
+"script_airspeed" "35"
+"script_delay" "3"
+"target" "auto479"
+"targetname" "auto478"
+"client_server" "ClientSide"
+}
+// entity 217
+{
+guid "{462CCDD6-118A-416E-92C4-7AFFFA31A1B1}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0.5 1 1"
+"angles" "0 146.2 0"
+"origin" "943.84 -1434.73 1927.54"
+"script_accel" "10"
+"script_airspeed" "30"
+"target" "auto478"
+"targetname" "auto477"
+"client_server" "ClientSide"
+}
+// entity 218
+{
+guid "{2638B0F1-232A-41A9-9E37-446233902ED2}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0.5 1 1"
+"angles" "0 56.2 0"
+"origin" "-410.859 -1949.63 1943.54"
+"script_accel" "10"
+"script_airspeed" "40"
+"script_delay" "3"
+"target" "auto477"
+"targetname" "auto476"
+"client_server" "ClientSide"
+}
+// entity 219
+{
+guid "{700E1B8C-BA87-4F23-8C21-46A9CCD2EB09}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0.5 1 1"
+"angles" "0 16.2 0"
+"origin" "-489.16 -2009.83 2055.54"
+"target" "auto476"
+"targetname" "heli_loop_start"
+"client_server" "ClientSide"
+}
+// entity 220
+{
+guid "{0981944B-F389-427B-92D0-FEC41A1D426B}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0.5 1 1"
+"angles" "0 21.2 0"
+"origin" "-1844.36 -862.23 1811.54"
+"script_accel" "10"
+"script_airspeed" "40"
+"script_delay" "3"
+"target" "auto476"
+"targetname" "auto483"
+"client_server" "ClientSide"
+}
+// entity 221
+{
+guid "{DD6C55BE-5006-4A30-8D9C-185A53277899}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0.5 1 1"
+"angles" "0 336.2 0"
+"origin" "-1840.46 680.073 1743.54"
+"script_accel" "10"
+"script_airspeed" "40"
+"target" "auto483"
+"targetname" "auto481"
+"client_server" "ClientSide"
+}
+// entity 222
+{
+guid "{FBF39641-0E82-458D-8F2F-7A7F39EC0D6C}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 360 0"
+"origin" "-16029.9 4138.61 946.604"
+"script_accel" "20"
+"script_airspeed" "70"
+"target" "auto474"
+"targetname" "auto473"
+"client_server" "ClientSide"
+}
+// entity 223
+{
+guid "{8EEE4100-01B7-49A7-AD19-E36367EA161B}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 360 0"
+"origin" "-1830.16 445.673 1758.54"
+"script_accel" "15"
+"script_airspeed" "30"
+"target" "auto467"
+"targetname" "auto475"
+"client_server" "ClientSide"
+}
+// entity 224
+{
+guid "{2DADD759-0319-4BEC-9583-3788DE5535A1}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 100 0"
+"origin" "-517.16 304.573 1779.04"
+"script_accel" "10"
+"targetname" "auto467"
+"client_server" "ClientSide"
+}
+// entity 225
+{
+guid "{02D0479E-F643-468B-B827-F8F729DDF259}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 100.8 0"
+"origin" "-471.36 277.873 1667.54"
+"target" "auto467"
+"targetname" "heli_dest"
+"client_server" "ClientSide"
+}
+// entity 226
+{
+guid "{AFA6D4E1-2CF5-4952-9AAE-EA13BD87C724}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 100 0"
+"origin" "-336.86 -768.13 1587.54"
+"script_accel" "15"
+"script_airspeed" "30"
+"target" "auto467"
+"targetname" "auto471"
+"client_server" "ClientSide"
+}
+// entity 227
+{
+guid "{6DC46C05-DDB9-42F4-89F5-1745642E7C30}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 280 0"
+"origin" "565.841 3934.07 1484.54"
+"script_accel" "20"
+"script_airspeed" "70"
+"target" "auto467"
+"targetname" "auto462"
+"client_server" "ClientSide"
+}
+// entity 228
+{
+guid "{6DF95804-98CC-4D8D-B148-FFEC8A80A05A}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 275 0"
+"origin" "784.84 4677.57 1276.54"
+"script_accel" "20"
+"script_airspeed" "70"
+"target" "auto462"
+"targetname" "auto461"
+"client_server" "ClientSide"
+}
+// entity 229
+{
+guid "{3F4BABBF-1BE0-44BE-8196-A6153A8D8B46}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 280 0"
+"origin" "6340.56 15370.7 -63.7945"
+"script_accel" "20"
+"script_airspeed" "70"
+"target" "auto461"
+"targetname" "auto460"
+"client_server" "ClientSide"
+}
+// entity 230
+{
+guid "{6488697A-1B9B-4391-A855-B375556C79A7}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 280 0"
+"origin" "6341.66 15422.7 -71.7945"
+"target" "auto460"
+"targetname" "heli_start"
+"client_server" "ClientSide"
+}
+// entity 231
+{
+guid "{32A18F76-7340-4D6D-9BAF-6DA91A88872C}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 67 0"
+"origin" "7599.59 -12420 -127.916"
+"target" "auto466"
+"targetname" "heli_start"
+"client_server" "ClientSide"
+}
+// entity 232
+{
+guid "{4E6A9535-1AB7-4A5A-87E5-5A0426E2279E}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 87 0"
+"origin" "7611.69 -12367.4 -119.916"
+"script_accel" "20"
+"script_airspeed" "65"
+"target" "auto471"
+"targetname" "auto466"
+"client_server" "ClientSide"
+}
+// entity 233
+{
+guid "{E44F6871-2060-4588-8AAD-83F2E60FE4DD}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 270 0"
+"origin" "-360.96 -2885.3 2075.98"
+"script_accel" "20"
+"script_airspeed" "60"
+"target" "auto1314"
+"targetname" "auto1380"
+"client_server" "ClientSide"
+}
+// entity 234
+{
+guid "{567ABF38-DD9D-4257-B0D2-B27E6912FAD7}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 270 0"
+"origin" "-230.46 -2097.43 1437.54"
+"script_accel" "10"
+"script_airspeed" "60"
+"target" "auto1336"
+"targetname" "auto1314"
+"client_server" "ClientSide"
+}
+// entity 235
+{
+guid "{0FCE6A30-BB06-451D-BFD3-8EA19F000245}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 280 0"
+"origin" "-160.559 77.673 1413.54"
+"script_accel" "10"
+"script_airspeed" "50"
+"targetname" "auto1336"
+"client_server" "ClientSide"
+}
+// entity 236
+{
+guid "{48B4232E-5738-4E5F-B0D4-9416CD12407C}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 325 0"
+"origin" "-124.359 135.273 1413.54"
+"target" "auto1336"
+"targetname" "heli_dest"
+"client_server" "ClientSide"
+}
+// entity 237
+{
+guid "{1A4267DD-AF3D-4AB6-AAAB-2966799F6B28}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"origin" "6326.26 15372 -80.7945"
+"targetname" "heli_leave"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 238
+{
+guid "{A085B303-5A23-4E8F-A0AA-FF83FC2F396A}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 269.698 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "-1625.04 1363.51 377.986"
+"targetname" "visuals_3"
+}
+// entity 239
+{
+guid "{44CD53FC-295F-44D9-B693-0232FA055404}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 78.0996 0"
+"origin" "-322 -1906.5 190"
+}
+// entity 240
+{
+guid "{BED76247-E886-4BEE-BB1F-054F6FEE1CF3}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_c"
+"angles" "0 78.0996 0"
+"origin" "-322 -1906.5 190"
+}
+// entity 241
+{
+guid "{D5F8D062-A777-4346-A784-B300EB52A2D6}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 113.159 -1e-007"
+"origin" "228.735 -2073.38 191.625"
+}
+// entity 242
+{
+guid "{4DA42EE1-87BE-43BF-A7A1-8A6B3B165BCA}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_c"
+"angles" "0 113.159 -1e-007"
+"origin" "228.735 -2073.38 191.625"
+}
+// entity 243
+{
+guid "{B2D26E6C-E940-495C-B639-0784FB8EB211}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 61.5179 -0"
+"origin" "279 -1828.5 191.625"
+}
+// entity 244
+{
+guid "{E149427F-3A45-4A73-B2CD-F441D53DC73F}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_flag_c"
+"angles" "0 61.5179 -0"
+"origin" "279 -1828.5 191.625"
+}
+// entity 245
+{
+guid "{EB3219B3-9241-40B6-8318-B0F84ABC70C3}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 275.625 -0"
+"origin" "769 2033.5 197.625"
+}
+// entity 246
+{
+guid "{2E0F6317-6436-4C57-8B55-792A0E863AAF}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 275.625 -0"
+"origin" "769 2033.5 197.625"
+}
+// entity 247
+{
+guid "{D77E0166-AD7E-43BD-983B-6D37C71C4465}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn"
+"angles" "0 268.682 -0"
+"origin" "-459.523 2363.94 163.685"
+}
+// entity 248
+{
+guid "{864014C5-1D69-4E1F-B1A4-855E48266BA6}"
+layer "000_Global/DOM"
+"classname" "misc_prefab"
+"angles" "0 270.4 0"
+"model" "_prefabs/mp/dom_flag_triggerless_b.map"
+"origin" "-1 178 170.869"
+}
+// entity 249
+{
+guid "{DA259C3F-7171-4219-9CFF-07AC55885D42}"
+layer "000_Global/DOM"
+"classname" "trigger_multiple"
+"script_gameobjectname" "dom onslaught"
+"targetname" "flag_trigger_b"
+"_color" "1 0.3 0.1"
+// brush 0
+{
+ guid "{013D97AA-3DE6-11E4-8151-2C27D7F03340}"
+layer "000_Global/DOM"
+ ( 103 32 169 ) ( 103 200 169 ) ( -89 200 169 ) trigger 16 16 7 -132 0 0 lightmap_gray 16384 16384 7 -132 0 0
+ ( 103 228 279 ) ( 103 60 279 ) ( -89 60 279 ) trigger 16 16 7 -132 0 0 lightmap_gray 16384 16384 7 -132 0 0
+ ( 58.5 64.5 279 ) ( 58.5 64.5 79 ) ( -160.5 56 79 ) trigger 16 16 7 -79 0 0 lightmap_gray 16384 16384 7 -167 0 0
+ ( 58.5 64.5 79 ) ( 58.5 64.5 279 ) ( 98 289 279 ) trigger 16 16 132 -79 0 0 lightmap_gray 16384 16384 132 -167 0 0
+ ( -76.5 288.5 279 ) ( -76.5 288.5 169 ) ( 98 289 169 ) trigger 16 16 7 -79 0 0 lightmap_gray 16384 16384 7 -167 0 0
+ ( -76.5 288.5 169 ) ( -76.5 288.5 279 ) ( -76.5 59.5 279 ) trigger 16 16 132 -79 0 0 lightmap_gray 16384 16384 132 -167 0 0
+}
+}
+// entity 250
+{
+guid "{DC550E52-CF12-44D4-AF11-C49BAD4AF5BD}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 268.967 1e-008"
+"origin" "-428.258 1329.92 151.447"
+}
+// entity 251
+{
+guid "{3B6B3033-A911-49A5-B9A0-38A997E08D20}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 221.775 1e-008"
+"origin" "526.485 989.917 190.625"
+}
+// entity 252
+{
+guid "{027BC334-CCC0-4609-A972-1232297DBF74}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 128.842 1.061e-007"
+"origin" "548.11 -447.667 189.625"
+}
+// entity 253
+{
+guid "{F288A83F-163E-4DF5-91CE-6C19BDF4F92D}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 76.9317 -1.21e-006"
+"origin" "-1022.17 -739.515 179.732"
+}
+// entity 254
+{
+guid "{422D95E1-4D4A-4755-922F-65FBAE2D3C63}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 51.7676 2.1e-008"
+"origin" "-1145.64 -203.619 166.517"
+}
+// entity 255
+{
+guid "{13A1D923-1D36-4B1C-969F-4B5DEF8F0E64}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 91.7303 2.21e-008"
+"origin" "-817.018 -368.769 164.363"
+}
+// entity 256
+{
+guid "{5B698BAD-9C82-4F85-804D-7B58FD0A9056}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 295.45 -0"
+"origin" "-356.272 2567.27 157.991"
+}
+// entity 257
+{
+guid "{A39B3691-00FA-45C6-BEA6-42A98291C3CD}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 257.327 0"
+"origin" "103.71 2574.19 165.625"
+}
+// entity 258
+{
+guid "{42D8421A-AC86-406F-9659-BBB85CF0155D}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 269.066 0"
+"origin" "305.222 2615.41 161.25"
+}
+// entity 259
+{
+guid "{B1445C63-9490-46EC-989E-A85A71B1E579}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 283.7 -0"
+"origin" "655.768 2307.23 193.625"
+}
+// entity 260
+{
+guid "{37AAC327-8018-4739-ABDA-6AC85D86E0DC}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 290.912 2e-008"
+"origin" "569.43 2323.58 193.625"
+}
+// entity 261
+{
+guid "{4E1288C3-68D5-4999-A20B-008D9FAB9968}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 275.625 -0"
+"origin" "769 2033.5 197.625"
+}
+// entity 262
+{
+guid "{01940573-A90C-4DC0-8DA7-789235A11AA6}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 270.8 0"
+"origin" "664.109 1610 192"
+}
+// entity 263
+{
+guid "{A726D25E-DA91-40B6-9BE5-CCD63CD451B7}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 289 0"
+"origin" "550.475 1543.56 192"
+}
+// entity 264
+{
+guid "{4E676277-1725-406D-A2F4-958A1057D090}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 272 0"
+"origin" "149.909 1675.1 194.603"
+}
+// entity 265
+{
+guid "{17FC14F8-4646-44CA-A26C-CC0ECCF1AF0B}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 235 0"
+"origin" "40 1990 152"
+}
+// entity 266
+{
+guid "{9757F94F-B7F2-4719-BB64-55C2BE19E27E}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 268.682 -0"
+"origin" "-459.523 2363.94 163.685"
+}
+// entity 267
+{
+guid "{C2BBB763-F39C-47EF-9093-E8101E2C3CF1}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 268.682 -0"
+"origin" "-459.523 2363.94 163.685"
+}
+// entity 268
+{
+guid "{43281D13-B02D-45FF-A51C-62920AE20470}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 281.915 -0"
+"origin" "-577.539 2022.98 157.625"
+}
+// entity 269
+{
+guid "{5E7F990E-ADC2-4450-88BB-2674100FA3BA}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 267.858 -0"
+"origin" "-378 1929 158.27"
+}
+// entity 270
+{
+guid "{3F3BCB22-2E5B-4EFA-9286-09C05B0A1333}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 281.81 4e-008"
+"origin" "-528.278 1542.84 153.168"
+}
+// entity 271
+{
+guid "{43E42D3E-0556-437E-B302-76FA98411E8A}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 295.332 0"
+"origin" "-1157.52 961.69 172.737"
+}
+// entity 272
+{
+guid "{85F751C2-4FE8-42B5-A9CD-3C36CB29B5A6}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 256.943 2e-008"
+"origin" "-919.519 1125.86 164.049"
+}
+// entity 273
+{
+guid "{B6BE4FEF-2D14-4E0C-A9D4-97D34ABE753B}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 322.2 0"
+"origin" "-570 975 164"
+}
+// entity 274
+{
+guid "{8C7ED701-288B-4C95-9D3B-6E5EBFC317FA}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "-26.8233 3053.6 152"
+}
+// entity 275
+{
+guid "{F565299C-A2B5-4688-A1D3-36DA2C76BF9E}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "12.3767 3184 153"
+}
+// entity 276
+{
+guid "{1C1CC87C-53CC-4684-A6CF-466FA8AFEA71}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "-74.5971 3184 161.5"
+}
+// entity 277
+{
+guid "{26D61AB8-04BB-47C9-96BA-B281F8B15075}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "-160.808 3184 161.5"
+}
+// entity 278
+{
+guid "{E872D708-8041-4013-A20F-992BF26582C1}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "-245.749 3184 164.5"
+}
+// entity 279
+{
+guid "{1B2CA12A-A4C3-4501-A8A8-EB8A630A0E1F}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "107.318 3184 164"
+}
+// entity 280
+{
+guid "{2E31EB1C-A0AE-4E74-A5C7-87410EA2592C}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "-202.823 3056.8 168"
+}
+// entity 281
+{
+guid "{19B30575-95EA-4A08-8D4A-89AFCE960981}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "73.6767 3047.5 157.5"
+}
+// entity 282
+{
+guid "{569EEAD5-21B3-4FB3-9164-93E8B3BE809D}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "-114.023 3056.8 152"
+}
+// entity 283
+{
+guid "{666C7142-6A9F-4146-BAB9-DC2AF34D564F}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defenderot_start"
+"angles" "0 270 0"
+"origin" "73.6767 3047.5 157.5"
+}
+// entity 284
+{
+guid "{84514F13-A1C0-47E8-9C43-532FBF562810}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defenderot_start"
+"angles" "0 270 0"
+"origin" "-202.823 3056.8 168"
+}
+// entity 285
+{
+guid "{E73F593E-BC6B-45F5-81F4-B7D9CCAE2199}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defenderot_start"
+"angles" "0 270 0"
+"origin" "107.318 3184 164"
+}
+// entity 286
+{
+guid "{AA54BA37-603C-421D-BF03-152DCA7E29A8}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defenderot_start"
+"angles" "0 270 0"
+"origin" "-245.749 3184 164.5"
+}
+// entity 287
+{
+guid "{20659422-AC16-4DC7-A754-CBC84ED43EBC}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defenderot_start"
+"angles" "0 270 0"
+"origin" "-160.808 3184 161.5"
+}
+// entity 288
+{
+guid "{B66ADDB6-7061-4AAA-B716-A2FBBAAA3166}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defenderot_start"
+"angles" "0 270 0"
+"origin" "-74.5971 3184 161.5"
+}
+// entity 289
+{
+guid "{B08AE965-4BDB-4C04-A47E-FEDC411A0255}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defenderot_start"
+"angles" "0 270 0"
+"origin" "12.3767 3184 153"
+}
+// entity 290
+{
+guid "{1EBAC194-3D36-47B5-8792-A57BEAA92358}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defenderot_start"
+"angles" "0 270 0"
+"origin" "-26.8233 3053.6 152"
+}
+// entity 291
+{
+guid "{AF6CA6E7-5D26-4821-A3F1-E1FA14A4A0DA}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defenderot_start"
+"angles" "0 270 0"
+"origin" "-114.023 3056.8 152"
+}
+// entity 292
+{
+guid "{3EEC8DA8-1EEF-49A9-A9B3-E0F5A92E71DF}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attackerot_start"
+"angles" "0 90 0"
+"origin" "124 -2700 200"
+}
+// entity 293
+{
+guid "{03CB15B5-6C92-4534-B4B6-52AC8A2E9F95}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attackerot_start"
+"angles" "0 90 0"
+"origin" "194.5 -2700 200"
+}
+// entity 294
+{
+guid "{8D8E1FDC-2B2C-4175-B762-7576A1415FB3}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attackerot_start"
+"angles" "0 90 0"
+"origin" "28 -2700 200"
+}
+// entity 295
+{
+guid "{CF98F754-0F56-4049-885C-928A7466D19C}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attackerot_start"
+"angles" "0 90 0"
+"origin" "-56 -2700 200"
+}
+// entity 296
+{
+guid "{714DCBC1-C6A3-4F53-883D-C49B468F8A77}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attackerot_start"
+"angles" "0 90 0"
+"origin" "155.46 -2567.52 200"
+}
+// entity 297
+{
+guid "{8CCC6829-20C0-46A8-AF79-AA0D6B814829}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attackerot_start"
+"angles" "0 90 0"
+"origin" "118.56 -2432.8 200"
+}
+// entity 298
+{
+guid "{142FA636-BD8E-4A33-9188-E3A2236AC5A9}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attackerot_start"
+"angles" "0 90 0"
+"origin" "75.36 -2567.52 200"
+}
+// entity 299
+{
+guid "{B1B428C2-4C30-4300-ADEB-6FD8B450464A}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attackerot_start"
+"angles" "0 90 0"
+"origin" "-6.56 -2567.52 200"
+}
+// entity 300
+{
+guid "{E179013C-6545-47B8-8AA0-5EA309C752A4}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "75.36 -2567.52 200"
+}
+// entity 301
+{
+guid "{B36F0D9E-5703-416D-8606-3686D408DF4A}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "118.56 -2432.8 200"
+}
+// entity 302
+{
+guid "{9C2506F9-C0F9-4B4A-9047-E555699556C0}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "-56 -2700 200"
+}
+// entity 303
+{
+guid "{521B9DA3-5101-48A7-937A-1AC86677D992}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "28 -2700 200"
+}
+// entity 304
+{
+guid "{90404EAD-96FD-4A6F-BD7F-D9BF0A89A877}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "194.5 -2700 200"
+}
+// entity 305
+{
+guid "{F8353D70-A385-4389-ADD6-216F9B03B795}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "124 -2700 200"
+}
+// entity 306
+{
+guid "{104DC79C-5E6F-4674-B1F1-DEDC50F5FB49}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "155.46 -2567.52 200"
+}
+// entity 307
+{
+guid "{58ECF384-57BC-4118-8614-CBDE244C8CFD}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 99.8998 0"
+"origin" "214 -2316.5 190"
+}
+// entity 308
+{
+guid "{F896AC92-E9BD-4EFC-86A3-A0CB0BA94608}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 64.1994 0"
+"origin" "-52.5 -2271 190"
+}
+// entity 309
+{
+guid "{F2DA19B8-4BCB-4244-AC8E-AABBA1E9B759}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 82.4995 0"
+"origin" "-394 -1595 190"
+}
+// entity 310
+{
+guid "{10695C3A-A4B5-4D79-B3BA-772627049CCE}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 88.6157 -0"
+"origin" "-235 -1920 189.233"
+}
+// entity 311
+{
+guid "{2A1374D6-CA54-4912-9EA4-6473A988DBF0}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 79.9999 0"
+"origin" "473 -1700 196"
+}
+// entity 312
+{
+guid "{CB2BC623-3F55-43C0-936E-C4934A917338}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 110.1 0"
+"origin" "767 -772 192"
+}
+// entity 313
+{
+guid "{7C1121B9-1EFE-4E2C-A2FA-9C3A6FEDDF39}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 121.4 0"
+"origin" "870.5 -708 194"
+}
+// entity 314
+{
+guid "{2429B931-4E61-4AC0-B037-98BA8D82F0F4}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 101.931 -0"
+"origin" "796 -1095 192.836"
+}
+// entity 315
+{
+guid "{BD3EFE65-877B-46DD-832A-40DC7DD37B54}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 89.9999 0"
+"origin" "224 -1366 220"
+}
+// entity 316
+{
+guid "{FAF9DDBC-15B2-450D-A0F6-CDF27EBBAEE2}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 68.2031 -0"
+"origin" "481.974 -1311 191.125"
+}
+// entity 317
+{
+guid "{5EF4A98A-A613-4D2E-B3BE-6BEC8763A80B}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 49.5998 0"
+"origin" "-79 -1409 220"
+}
+// entity 318
+{
+guid "{419B071E-FCF4-4C46-8060-43D518F9931B}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 71.455 -0"
+"origin" "-383 -1178.5 189.625"
+}
+// entity 319
+{
+guid "{C403F871-FFE5-4C86-9B7D-46C47B7135C2}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 89.9998 0"
+"origin" "-55.5 -888.5 188"
+}
+// entity 320
+{
+guid "{6AE0A170-FDE9-4085-8F9D-874A37ABCD9D}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 133.857 0"
+"origin" "-571.5 -790 181.625"
+}
+// entity 321
+{
+guid "{50402313-9762-4003-8206-9315DEE161DA}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 66.1211 -0"
+"origin" "-1136 -789 190.724"
+}
+// entity 322
+{
+guid "{CA021D3B-5D46-447A-BB57-F93C4E84DCBA}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 111.033 -0"
+"origin" "-749.008 -764.635 181.625"
+}
+// entity 323
+{
+guid "{040BCE60-4670-472F-95B2-5840C955C760}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 74.7994 0"
+"origin" "-1165 -514 188"
+}
+// entity 324
+{
+guid "{BAFC61D0-A2C9-466A-BF4F-F929F97AB5C4}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 81.0132 0"
+"origin" "392.167 -2052.65 191.625"
+}
+// entity 325
+{
+guid "{EE0C1CEB-A13C-491D-8EDD-891B5601D697}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 113.159 -1e-007"
+"origin" "228.735 -2073.38 191.625"
+}
+// entity 326
+{
+guid "{ED87FB40-88B6-4C20-96AF-CB3183220E29}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 61.5179 -0"
+"origin" "279 -1828.5 191.625"
+}
+// entity 327
+{
+guid "{E881E581-E30C-4E61-BD28-390CC8E9C1E8}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 99.8998 0"
+"origin" "211.5 -2560 190"
+}
+// entity 328
+{
+guid "{5B26A100-10F1-45FF-9846-97982583078B}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 75.6992 0"
+"origin" "-76 -2580 190"
+}
+// entity 329
+{
+guid "{587855CD-3E35-4E76-8AB6-9C2070E1F0E9}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 360 0"
+"origin" "-3060.76 1358.37 1609.54"
+"script_accel" "15"
+"script_airspeed" "70"
+"target" "auto475"
+"targetname" "auto474"
+"client_server" "ClientSide"
+}
+// entity 330
+{
+guid "{B271D51D-9C07-4E17-9E49-8DCE89202FA8}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 -60 0"
+"origin" "-16769.6 4962.83 523.793"
+"script_accel" "20"
+"script_airspeed" "70"
+"target" "auto473"
+"targetname" "auto472"
+"client_server" "ClientSide"
+}
+// entity 331
+{
+guid "{1932CE4C-EEB4-4FC7-A1C8-308976590552}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 -60 0"
+"origin" "-16819.5 4945.43 515.793"
+"target" "auto472"
+"targetname" "heli_start"
+"client_server" "ClientSide"
+}
+// entity 332
+{
+guid "{246C4845-D868-4613-94F0-997146EF15AA}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"origin" "-16682.7 4979.63 497.793"
+"targetname" "heli_leave"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 333
+{
+guid "{D93A97EE-5A32-11E4-974F-2C27D7F03340}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 54.9995 0"
+"origin" "514 -1036.5 192"
+}
+// entity 334
+{
+guid "{1ACE9E59-5A33-11E4-974F-2C27D7F03340}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 50.1636 -0"
+"origin" "-385.676 -1862.01 191.706"
+}
+// entity 335
+{
+guid "{E267A58D-5A33-11E4-974F-2C27D7F03340}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 115.6 0"
+"origin" "-211.5 -1178.5 188"
+}
+// entity 336
+{
+guid "{4CB8440A-5A34-11E4-974F-2C27D7F03340}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 90.3994 0"
+"origin" "228.5 -542.5 189"
+}
+// entity 337
+{
+guid "{5DD0C581-5A34-11E4-974F-2C27D7F03340}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 127.9 0"
+"origin" "541 -449.5 189"
+}
+// entity 338
+{
+guid "{66A0B43F-5A34-11E4-974F-2C27D7F03340}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 72.2984 0"
+"origin" "78.5 -542.5 189"
+}
+// entity 339
+{
+guid "{80A9F39D-5A34-11E4-974F-2C27D7F03340}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker"
+"angles" "0 85.924 3e-009"
+"origin" "-207.48 -526.599 189.625"
+}
+// entity 340
+{
+guid "{9286DB8B-5A34-11E4-974F-2C27D7F03340}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 258.9 0"
+"origin" "403.5 2457.5 162.5"
+}
+// entity 341
+{
+guid "{9B45B2CA-5A34-11E4-974F-2C27D7F03340}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 272 0"
+"origin" "301.409 1675.1 194.603"
+}
+// entity 342
+{
+guid "{9B45B2D4-5A34-11E4-974F-2C27D7F03340}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_defender"
+"angles" "0 297.9 0"
+"origin" "661 2033.5 196"
+}
+// entity 343
+{
+guid "{268EAD4A-5E36-11E4-974F-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "script_origin"
+"origin" "-1210 -1405 192"
+"targetname" "auto1370"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 344
+{
+guid "{268EAD47-5E36-11E4-974F-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "script_origin"
+"origin" "622 -1109 184"
+"targetname" "auto1369"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 345
+{
+guid "{268EAD44-5E36-11E4-974F-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "script_origin"
+"origin" "902 203 144"
+"targetname" "auto1368"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 346
+{
+guid "{268EAD41-5E36-11E4-974F-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "script_origin"
+"origin" "-186 1819 176"
+"targetname" "auto1367"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 347
+{
+guid "{268EAD3E-5E36-11E4-974F-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "script_origin"
+"origin" "-1426 211 208"
+"targetname" "auto1366"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 348
+{
+guid "{268EAD3B-5E36-11E4-974F-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "script_origin"
+"origin" "-298 563 4264"
+"target" "auto1367"
+"targetname" "remoteMissileSpawn"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 349
+{
+guid "{268EAD38-5E36-11E4-974F-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "script_origin"
+"origin" "-202 435 4264"
+"target" "auto1368"
+"targetname" "remoteMissileSpawn"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 350
+{
+guid "{268EAD35-5E36-11E4-974F-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "script_origin"
+"origin" "-418 283 4264"
+"target" "auto1370"
+"targetname" "remoteMissileSpawn"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 351
+{
+guid "{268EAD32-5E36-11E4-974F-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "script_origin"
+"origin" "-274 299 4264"
+"target" "auto1369"
+"targetname" "remoteMissileSpawn"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 352
+{
+guid "{268EAD2F-5E36-11E4-974F-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "script_origin"
+"origin" "-506 411 4264"
+"target" "auto1366"
+"targetname" "remoteMissileSpawn"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 353
+{
+guid "{2550C234-A0E1-11E4-8D39-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "nav_volume"
+// brush 0
+{
+ guid "{2550C233-A0E1-11E4-8D39-2C27D7F03340}"
+layer "000_Global/MISC"
+ ( -239.5 363.25 101.25 ) ( -317.75 363.25 101.25 ) ( -317.75 285 101.25 ) volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -316.5 713.5 4393 ) ( -316.5 791.5 4393 ) ( -238.25 791.5 4393 ) volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -930.75 -2755.25 12664 ) ( -852.5 -2755.25 12664 ) ( -852.5 -2755.25 80 ) volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1619.5 -16.25 12664 ) ( 1619.5 61.75 12664 ) ( 1619.5 61.75 80 ) volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 101.25 3312 12664 ) ( 23 3312 12664 ) ( 23 3312 80 ) volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1335 321.25 12664 ) ( -1335 243 12664 ) ( -1335 243 80 ) volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 354
+{
+guid "{80364F2D-A0E6-11E4-8D39-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "nav_volume_passable"
+// brush 0
+{
+ guid "{80364F2C-A0E6-11E4-8D39-2C27D7F03340}"
+layer "000_Global/MISC"
+ ( 525.75 1459.75 197.25 ) ( 493.75 1459.75 197.25 ) ( 493.75 1427.75 197.25 ) volume 64 64 52.495876 -4.182373 0 0 lightmap_gray 16383.688 16384 52.494976 -4.182373 0 0
+ ( 514.75 1426.75 228.75 ) ( 514.75 1458.75 228.75 ) ( 546.75 1458.75 228.75 ) volume 64 64 52.490021 -4.182373 0 0 lightmap_gray 16383.875 16384 52.489689 -4.182373 0 0
+ ( 486.75 1417.75 824.75 ) ( 518.75 1417.75 824.75 ) ( 518.75 1417.75 64.75 ) volume 64 64 52.494362 29.192682 0 0 lightmap_gray 16383.75 16384 52.493603 29.192682 0 0
+ ( 535.75 1423.75 826.75 ) ( 535.75 1455.75 826.75 ) ( 535.75 1455.75 66.75 ) volume 64 64 4.182373 29.192682 0 0 lightmap_gray 16384 16384 4.182373 29.192682 0 0
+ ( 518.75 1459.75 824.75 ) ( 486.75 1459.75 824.75 ) ( 486.75 1459.75 64.75 ) volume 64 64 52.494362 29.192682 0 0 lightmap_gray 16383.75 16384 52.493603 29.192682 0 0
+ ( 486.75 1455.75 826.75 ) ( 486.75 1423.75 826.75 ) ( 486.75 1423.75 66.75 ) volume 64 64 4.182373 29.192682 0 0 lightmap_gray 16384 16384 4.182373 29.192682 0 0
+}
+}
+// entity 355
+{
+guid "{BB1BCE42-A0E6-11E4-8D39-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "nav_volume_passable"
+// brush 0
+{
+ guid "{BB1BCE41-A0E6-11E4-8D39-2C27D7F03340}"
+layer "000_Global/MISC"
+ ( 225.5 1738 197.25 ) ( 193.5 1738 197.25 ) ( 193.5 1706 197.25 ) volume 64 64 -247.90239 -282.31665 0 0 lightmap_gray 16383.625 16384 -247.90419 -282.31665 0 0
+ ( 214.5 1705 228.75 ) ( 214.5 1737 228.75 ) ( 246.5 1737 228.75 ) volume 64 64 -247.90932 -282.31665 0 0 lightmap_gray 16383.82 16384 -247.90941 -282.31665 0 0
+ ( 186.5 1696 824.75 ) ( 218.5 1696 824.75 ) ( 218.5 1696 64.75 ) volume 64 64 -247.905 29.192682 0 0 lightmap_gray 16383.703 16384 -247.90501 29.192682 0 0
+ ( 235.5 1702 826.75 ) ( 235.5 1734 826.75 ) ( 235.5 1734 66.75 ) volume 64 64 282.31665 29.192682 0 0 lightmap_gray 16384 16384 282.31665 29.192682 0 0
+ ( 218.5 1758 823.75 ) ( 186.5 1758 823.75 ) ( 186.5 1758 63.75 ) volume 64 64 -247.905 29.192682 0 0 lightmap_gray 16383.703 16384 -247.90501 29.192682 0 0
+ ( 186.5 1734 826.75 ) ( 186.5 1702 826.75 ) ( 186.5 1702 66.75 ) volume 64 64 282.31665 29.192682 0 0 lightmap_gray 16384 16384 282.31665 29.192682 0 0
+}
+}
+// entity 356
+{
+guid "{C3D96CF9-A0E6-11E4-8D39-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "nav_volume_passable"
+// brush 0
+{
+ guid "{C3D96CF8-A0E6-11E4-8D39-2C27D7F03340}"
+layer "000_Global/MISC"
+ ( -112.25 887 197.25 ) ( -144.25 887 197.25 ) ( -144.25 855 197.25 ) volume 64 64 -585.711 568.63983 0 0 lightmap_gray 16383.633 16384 -585.71381 568.63983 0 0
+ ( -124.5 854 246.75 ) ( -124.5 886 246.75 ) ( -92.5 886 246.75 ) volume 64 64 -585.71783 568.63983 0 0 lightmap_gray 16383.816 16384 -585.71783 568.63983 0 0
+ ( -174 836.25 824.75 ) ( -142 836.25 824.75 ) ( -142 836.25 64.75 ) volume 64 64 -585.71362 29.192682 0 0 lightmap_gray 16383.711 16384 -585.71375 29.192682 0 0
+ ( -80 852.25 826.75 ) ( -80 884.25 826.75 ) ( -80 884.25 66.75 ) volume 64 64 -568.63983 29.192682 0 0 lightmap_gray 16384 16384 -568.63983 29.192682 0 0
+ ( -119.5 887 824.75 ) ( -151.5 887 824.75 ) ( -151.5 887 64.75 ) volume 64 64 -585.71375 29.192682 0 0 lightmap_gray 16383.711 16384 -585.71375 29.192682 0 0
+ ( -174 884.25 826.75 ) ( -174 852.25 826.75 ) ( -174 852.25 66.75 ) volume 64 64 -568.63983 29.192682 0 0 lightmap_gray 16384 16384 -568.63983 29.192682 0 0
+}
+}
+// entity 357
+{
+guid "{F8A47387-A0E7-11E4-8D39-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "node_pathnode"
+"origin" "239.649 1556.99 205.144"
+"_color" "1 0 1"
+}
+// entity 358
+{
+guid "{0DF87081-A0E8-11E4-8D39-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "node_pathnode"
+"origin" "239.649 1326.71 205.144"
+"_color" "1 0 1"
+}
+// entity 359
+{
+guid "{14B4B3D1-A0E8-11E4-8D39-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "node_pathnode"
+"origin" "-85.3507 1044.71 205.144"
+"_color" "1 0 1"
+}
+// entity 360
+{
+guid "{1CACB388-A0E8-11E4-8D39-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "nav_volume_passable"
+// brush 0
+{
+ guid "{1CACB387-A0E8-11E4-8D39-2C27D7F03340}"
+layer "000_Global/MISC"
+ ( 91.25 1207 197.25 ) ( 59.25 1207 197.25 ) ( 59.25 1175 197.25 ) volume 64 64 -382.14511 248.5376 0 0 lightmap_gray 16383.689 16384 -382.14624 248.5376 0 0
+ ( 80.25 1174 228.75 ) ( 80.25 1206 228.75 ) ( 112.25 1206 228.75 ) volume 64 64 -382.15094 248.5376 0 0 lightmap_gray 16383.889 16384 -382.15186 248.5376 0 0
+ ( 52.25 1165 824.75 ) ( 84.25 1165 824.75 ) ( 84.25 1165 64.75 ) volume 64 64 -382.14661 29.192682 0 0 lightmap_gray 16383.742 16384 -382.14746 29.192682 0 0
+ ( 101.25 1171 826.75 ) ( 101.25 1203 826.75 ) ( 101.25 1203 66.75 ) volume 64 64 -248.5376 29.192682 0 0 lightmap_gray 16384 16384 -248.5376 29.192682 0 0
+ ( 84.25 1207 824.75 ) ( 52.25 1207 824.75 ) ( 52.25 1207 64.75 ) volume 64 64 -382.14661 29.192682 0 0 lightmap_gray 16383.742 16384 -382.14746 29.192682 0 0
+ ( 52.25 1203 826.75 ) ( 52.25 1171 826.75 ) ( 52.25 1171 66.75 ) volume 64 64 -248.5376 29.192682 0 0 lightmap_gray 16384 16384 -248.5376 29.192682 0 0
+}
+}
+// entity 361
+{
+guid "{241F5338-A0E8-11E4-8D39-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "nav_volume_passable"
+// brush 0
+{
+ guid "{241F5337-A0E8-11E4-8D39-2C27D7F03340}"
+layer "000_Global/MISC"
+ ( -37.25 -553.5 197.25 ) ( -69.25 -553.5 197.25 ) ( -69.25 -585.5 197.25 ) volume 64 64 -510.56287 2009.1805 0 0 lightmap_gray 16383.701 16384 -510.56433 2009.1805 0 0
+ ( -48.25 -586.5 228.75 ) ( -48.25 -554.5 228.75 ) ( -16.25 -554.5 228.75 ) volume 64 64 -510.56854 2009.1807 0 0 lightmap_gray 16383.904 16384 -510.57062 2009.1807 0 0
+ ( -73 -615 824.75 ) ( -41 -615 824.75 ) ( -41 -615 64.75 ) volume 64 64 -510.56445 29.192682 0 0 lightmap_gray 16383.746 16384 -510.56543 29.192682 0 0
+ ( -39.25 -589.5 809.75 ) ( -39.25 -557.5 809.75 ) ( -39.25 -557.5 49.75 ) volume 64 64 -2009.1804 29.192682 0 0 lightmap_gray 16384 16384 -2009.1804 29.192682 0 0
+ ( -48.75 -525.75 807.75 ) ( -80.75 -525.75 807.75 ) ( -80.75 -525.75 47.75 ) volume 64 64 -510.56433 29.192682 0 0 lightmap_gray 16383.746 16384 -510.56543 29.192682 0 0
+ ( -76.25 -557.5 826.75 ) ( -76.25 -589.5 826.75 ) ( -76.25 -589.5 66.75 ) volume 64 64 -2009.1804 29.192682 0 0 lightmap_gray 16384 16384 -2009.1804 29.192682 0 0
+}
+}
+// entity 362
+{
+guid "{BB618247-F0D3-4A71-A430-521802567DE6}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"angles" "0 270 0"
+"origin" "100.427 4244.68 1000"
+"targetname" "auto1337"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 363
+{
+guid "{3F5988C8-F1E8-4F35-909B-60C794D78DEE}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"origin" "-2978.87 168.699 1000"
+"targetname" "auto1371"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 364
+{
+guid "{0771ECD2-7554-4077-979D-9343633A64EA}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"angles" "0 180 0"
+"origin" "2608.95 145.344 1000"
+"targetname" "auto1340"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 365
+{
+guid "{1DCA0EE7-1DAC-499B-8C39-DAB046540BD3}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"angles" "0 90 0"
+"origin" "20.566 -4112.57 1000"
+"targetname" "auto1338"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 366
+{
+guid "{FCE54AF2-6CF7-45C8-B5D9-BB8CA594FA51}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 35.1439 0"
+"origin" "-21341.4 -19828.5 6423.31"
+"script_accel" "20"
+"script_airspeed" "50"
+"target" "auto1379"
+"targetname" "auto1311"
+"client_server" "ClientSide"
+}
+// entity 367
+{
+guid "{BCDB8D1A-995F-4CF9-BFC3-2A204F64C2FC}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 62.9967 0"
+"origin" "-21365.8 -19883.2 6415.31"
+"script_noteworthy" "primary"
+"target" "auto1311"
+"targetname" "heli_start"
+"client_server" "ClientSide"
+}
+// entity 368
+{
+guid "{29DCDD43-C1F1-11E4-A5F6-2C27D7F03340}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"_color" "0 1 0.5"
+"angles" "0 29.7339 0"
+"origin" "-12836.6 -8168.27 4793"
+"script_accel" "40"
+"script_airspeed" "80"
+"target" "auto1380"
+"targetname" "auto1379"
+"client_server" "ClientSide"
+}
+// entity 369
+{
+guid "{311E7280-C370-11E4-A5F6-2C27D7F03340}"
+layer "000_Global/HELI"
+"classname" "script_origin"
+"origin" "-37889.7 20906.5 601.044"
+"script_noteworthy" "primary"
+"targetname" "heli_leave"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 370
+{
+guid "{BA537881-D4C2-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 66.1211 -0"
+"origin" "-1136 -789 190.724"
+}
+// entity 371
+{
+guid "{EB69BACB-D4C2-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 113.159 -1e-007"
+"origin" "228.735 -2073.38 191.625"
+}
+// entity 372
+{
+guid "{0046890E-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 61.5179 -0"
+"origin" "279 -1828.5 191.625"
+}
+// entity 373
+{
+guid "{0046890B-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 78.0996 0"
+"origin" "-322 -1906.5 190"
+}
+// entity 374
+{
+guid "{00468908-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 71.455 -0"
+"origin" "-383 -1178.5 189.625"
+}
+// entity 375
+{
+guid "{00468905-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 82.8369 0"
+"origin" "-350.871 -1595 188.722"
+}
+// entity 376
+{
+guid "{00468902-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 64.1994 0"
+"origin" "-52.5 -2271 190"
+}
+// entity 377
+{
+guid "{004688FF-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 99.6995 0"
+"origin" "214 -2316.5 190"
+}
+// entity 378
+{
+guid "{004688FC-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 87.2699 1.381e-008"
+"origin" "603.188 -1552.65 193.752"
+}
+// entity 379
+{
+guid "{004688F9-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 54.9999 0"
+"origin" "-79 -1409 220"
+}
+// entity 380
+{
+guid "{004688F6-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 101.931 -0"
+"origin" "796 -1095 192.836"
+}
+// entity 381
+{
+guid "{004688F3-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 88.6157 -0"
+"origin" "-235 -1920 189.233"
+}
+// entity 382
+{
+guid "{1AD50174-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 245.446 -0"
+"origin" "431.444 2206.33 157.625"
+}
+// entity 383
+{
+guid "{1AD50171-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 242.8 0"
+"origin" "-232.992 2477.42 159"
+}
+// entity 384
+{
+guid "{1AD5016E-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 281.81 4e-008"
+"origin" "-528.278 1542.84 153.168"
+}
+// entity 385
+{
+guid "{1AD5016B-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 281.915 -0"
+"origin" "-577.539 2022.98 157.625"
+}
+// entity 386
+{
+guid "{1AD50168-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 257.327 0"
+"origin" "103.71 2574.19 165.625"
+}
+// entity 387
+{
+guid "{1AD50165-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 284.793 1e-011"
+"origin" "619.768 2325.67 193.625"
+}
+// entity 388
+{
+guid "{1AD50162-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 269.066 0"
+"origin" "305.222 2615.41 161.25"
+}
+// entity 389
+{
+guid "{1AD5015F-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 295.45 -0"
+"origin" "-356.272 2567.27 157.991"
+}
+// entity 390
+{
+guid "{1AD5015C-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 267.858 -0"
+"origin" "-378 1929 158.27"
+}
+// entity 391
+{
+guid "{1AD50159-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 235 0"
+"origin" "40 1990 152"
+}
+// entity 392
+{
+guid "{273A1510-D4C3-11E4-8D51-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn"
+"angles" "0 281.331 0"
+"origin" "-307.024 2698.3 159.5"
+}
+// entity 393
+{
+guid "{D54015F3-DEF2-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "73.6767 3010 157.5"
+}
+// entity 394
+{
+guid "{D54015F0-DEF2-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "-202.823 3019.3 168"
+}
+// entity 395
+{
+guid "{D54015ED-DEF2-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "107.318 3184 164"
+}
+// entity 396
+{
+guid "{D54015EA-DEF2-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "-245.749 3184 164.5"
+}
+// entity 397
+{
+guid "{D54015E7-DEF2-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "-160.808 3184 161.5"
+}
+// entity 398
+{
+guid "{D54015E4-DEF2-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "-74.5971 3184 161.5"
+}
+// entity 399
+{
+guid "{D54015E1-DEF2-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "12.3767 3184 153"
+}
+// entity 400
+{
+guid "{D54015DE-DEF2-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "-114.023 3019.3 152"
+}
+// entity 401
+{
+guid "{D54015DB-DEF2-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies_start"
+"angles" "0 270 0"
+"origin" "-26.8233 3016.1 152"
+}
+// entity 402
+{
+guid "{7410EBCE-DEF3-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 238.112 -0"
+"origin" "416.511 2049.09 157.625"
+}
+// entity 403
+{
+guid "{87C2EDDE-DEF3-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 87.3743 -0"
+"origin" "-73.3432 -874.872 189.625"
+}
+// entity 404
+{
+guid "{6E0F00C3-0EBF-496B-A503-0542CFD8206D}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "-6.56 -2567.52 200"
+}
+// entity 405
+{
+guid "{7D2523AE-6698-4CCE-ADDB-DFD89D84EE58}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attackerot_start"
+"angles" "0 90 0"
+"origin" "37.44 -2435.68 200"
+}
+// entity 406
+{
+guid "{BBEF1495-7A6C-47BF-9D79-FBF611076731}"
+layer "000_Global/DEM"
+"classname" "mp_dem_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "37.44 -2435.68 200"
+}
+// entity 407
+{
+guid "{EB502592-DEF4-11E4-B51A-2C27D7F03340}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_attacker"
+"angles" "0 90 0"
+"origin" "37.44 -2435.68 200"
+}
+// entity 408
+{
+guid "{EB50258F-DEF4-11E4-B51A-2C27D7F03340}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_attacker"
+"angles" "0 90 0"
+"origin" "-6.56 -2567.52 200"
+}
+// entity 409
+{
+guid "{EB50258C-DEF4-11E4-B51A-2C27D7F03340}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_attacker"
+"angles" "0 90 0"
+"origin" "155.46 -2567.52 200"
+}
+// entity 410
+{
+guid "{EB502589-DEF4-11E4-B51A-2C27D7F03340}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_attacker"
+"angles" "0 90 0"
+"origin" "124 -2700 200"
+}
+// entity 411
+{
+guid "{EB502586-DEF4-11E4-B51A-2C27D7F03340}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_attacker"
+"angles" "0 90 0"
+"origin" "194.5 -2700 200"
+}
+// entity 412
+{
+guid "{EB502583-DEF4-11E4-B51A-2C27D7F03340}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_attacker"
+"angles" "0 90 0"
+"origin" "28 -2700 200"
+}
+// entity 413
+{
+guid "{EB502580-DEF4-11E4-B51A-2C27D7F03340}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_attacker"
+"angles" "0 90 0"
+"origin" "-56 -2700 200"
+}
+// entity 414
+{
+guid "{EB50257D-DEF4-11E4-B51A-2C27D7F03340}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_attacker"
+"angles" "0 90 0"
+"origin" "118.56 -2432.8 200"
+}
+// entity 415
+{
+guid "{EB50257A-DEF4-11E4-B51A-2C27D7F03340}"
+layer "000_Global/SD"
+"classname" "mp_sd_spawn_attacker"
+"angles" "0 90 0"
+"origin" "75.36 -2567.52 200"
+}
+// entity 416
+{
+guid "{73DD6326-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "70.88 -2504.8 200"
+}
+// entity 417
+{
+guid "{73DD6329-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "122.4 -2360.48 200"
+}
+// entity 418
+{
+guid "{73DD632C-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "-56 -2700 200"
+}
+// entity 419
+{
+guid "{73DD632F-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "28 -2700 200"
+}
+// entity 420
+{
+guid "{73DD6332-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "194.5 -2700 200"
+}
+// entity 421
+{
+guid "{73DD6335-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "124 -2700 200"
+}
+// entity 422
+{
+guid "{73DD6338-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "150.98 -2504.8 200"
+}
+// entity 423
+{
+guid "{73DD633B-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "-11.04 -2504.8 200"
+}
+// entity 424
+{
+guid "{73DD633E-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "41.28 -2363.36 200"
+}
+// entity 425
+{
+guid "{7D19F8E6-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "70.88 -2504.8 200"
+}
+// entity 426
+{
+guid "{7D19F8E9-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "122.4 -2360.48 200"
+}
+// entity 427
+{
+guid "{7D19F8EC-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "-56 -2700 200"
+}
+// entity 428
+{
+guid "{7D19F8EF-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "28 -2700 200"
+}
+// entity 429
+{
+guid "{7D19F8F2-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "194.5 -2700 200"
+}
+// entity 430
+{
+guid "{7D19F8F5-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "124 -2700 200"
+}
+// entity 431
+{
+guid "{7D19F8F8-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "150.98 -2504.8 200"
+}
+// entity 432
+{
+guid "{7D19F8FB-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "-11.04 -2504.8 200"
+}
+// entity 433
+{
+guid "{7D19F8FE-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/DOM"
+"classname" "mp_dom_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "41.28 -2363.36 200"
+}
+// entity 434
+{
+guid "{83172D02-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "70.88 -2504.8 200"
+}
+// entity 435
+{
+guid "{83172D05-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "122.4 -2360.48 200"
+}
+// entity 436
+{
+guid "{83172D08-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "-56 -2700 200"
+}
+// entity 437
+{
+guid "{83172D0B-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "28 -2700 200"
+}
+// entity 438
+{
+guid "{83172D0E-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "194.5 -2700 200"
+}
+// entity 439
+{
+guid "{83172D11-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "124 -2700 200"
+}
+// entity 440
+{
+guid "{83172D14-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "150.98 -2504.8 200"
+}
+// entity 441
+{
+guid "{83172D17-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "-11.04 -2504.8 200"
+}
+// entity 442
+{
+guid "{83172D1A-DEF9-11E4-B51A-2C27D7F03340}"
+layer "000_Global/TDM"
+"classname" "mp_tdm_spawn_axis_start"
+"angles" "0 90 0"
+"origin" "41.28 -2363.36 200"
+}
+// entity 443
+{
+guid "{9258C7FC-DEFA-11E4-B51A-2C27D7F03340}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 89.7979 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "1882.73 -163.764 389.011"
+"targetname" "visuals_1"
+}
+// entity 444
+{
+guid "{9B12960D-DEFA-11E4-B51A-2C27D7F03340}"
+layer "000_Global/KOTH"
+"classname" "misc_prefab"
+"angles" "0 89.7979 0"
+"model" "_prefabs/mp/koth_marker_1.map"
+"origin" "1882.95 -102.35 389.011"
+"targetname" "visuals_1"
+}
+// entity 445
+{
+guid "{E629D8C1-E198-11E4-B51A-2C27D7F03340}"
+layer "000_Global/HELI"
+"classname" "trigger_radius"
+"height" "5400"
+"origin" "8710.57 -684.774 80"
+"radius" "1500"
+"targetname" "no_fly_zone"
+"_color" "1 0.3 0.1"
+}
+// entity 446
+{
+guid "{A9484506-10B0-11E5-821C-2C27D7F03340}"
+layer "000_Global/MISC"
+"classname" "script_struct"
+"origin" "796.791 187.77 48.1502"
+"targetname" "vehicle_oob_minz"
+"_color" "1 0 0"
+}
+// entity 447
+{
+guid "{648DDE78-29C3-11E5-BA8D-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_weapon.map"
+"origin" "446.306 52.9535 306.57"
+"script_ammo_clip" "5"
+"script_ammo_extra" "10"
+"script_gameobjectname" "os"
+"script_parameters" "hero_gravityspikes"
+}
+// entity 448
+{
+guid "{816EA452-29C5-11E5-BA8D-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_weapon.map"
+"origin" "-10.5152 176.68 173.598"
+"script_ammo_clip" "5"
+"script_ammo_extra" "10"
+"script_gameobjectname" "os"
+"script_parameters" "hero_annihilator"
+}
+// entity 449
+{
+guid "{17E7F31C-29C6-11E5-BA8D-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_weapon.map"
+"origin" "734.851 -1021.37 148.019"
+"script_ammo_clip" "10"
+"script_ammo_extra" "20"
+"script_gameobjectname" "os"
+"script_parameters" "smg_capacity+suppressed smg_fastfire smg_standard smg_versatile"
+}
+// entity 450
+{
+guid "{6819589C-29C6-11E5-BA8D-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_weapon.map"
+"origin" "-722.075 -605.767 146.335"
+"script_ammo_clip" "5"
+"script_ammo_extra" "5"
+"script_gameobjectname" "os"
+"script_parameters" "sniper_fastbolt sniper_fastsemi"
+}
+// entity 451
+{
+guid "{8758315C-29C6-11E5-BA8D-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_weapon.map"
+"origin" "-967.322 971.13 140.173"
+"script_ammo_clip" "10"
+"script_ammo_extra" "20"
+"script_gameobjectname" "os"
+"script_parameters" "ar_marksman ar_cqb ar_damage ar_fastburst ar_longburst ar_standard"
+}
+// entity 452
+{
+guid "{CD4FAEA9-29C6-11E5-BA8D-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"angles" "0 90 0"
+"model" "_prefabs/mp/pickup_perk.map"
+"origin" "-572.026 177.549 106.065"
+"script_gameobjectname" "os"
+"script_parameters" "PERKS_TRACKER"
+}
+// entity 453
+{
+guid "{02B0AF16-29C7-11E5-BA8D-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"angles" "0 90 0"
+"model" "_prefabs/mp/pickup_perk.map"
+"origin" "-502.647 856.935 127.531"
+"script_gameobjectname" "os"
+"script_parameters" "PERKS_NINJA"
+}
+// entity 454
+{
+guid "{0E2EB85B-29C7-11E5-BA8D-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"angles" "0 90 0"
+"model" "_prefabs/mp/pickup_perk.map"
+"modelscale" "2"
+"origin" "-328.441 -282.472 154.497"
+"script_gameobjectname" "os"
+"script_parameters" "PERKS_SIXTH_SENSE"
+}
+// entity 455
+{
+guid "{F9105B39-2C10-11E5-8415-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_ammo.map"
+"origin" "390.938 -527.514 273.937"
+"script_gameobjectname" "os"
+}
+// entity 456
+{
+guid "{0E93CDD6-2C11-11E5-8415-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_ammo.map"
+"origin" "398.636 445.516 289.816"
+"script_gameobjectname" "os"
+}
+// entity 457
+{
+guid "{AF24054A-2C1D-11E5-8415-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_weapon.map"
+"origin" "418.925 651.609 157.295"
+"script_ammo_clip" "5"
+"script_ammo_extra" "10"
+"script_gameobjectname" "os"
+"script_parameters" "willy_pete concussion_grenade emp_grenade flash_grenade proximity_grenade"
+}
+// entity 458
+{
+guid "{86F6D55C-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 268.682 -0"
+"origin" "-459.523 2363.94 163.685"
+}
+// entity 459
+{
+guid "{86F6D559-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 275.625 -0"
+"origin" "769 2033.5 197.625"
+}
+// entity 460
+{
+guid "{86F6D556-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 61.5179 -0"
+"origin" "279 -1828.5 191.625"
+}
+// entity 461
+{
+guid "{86F6D553-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 113.159 -1e-007"
+"origin" "228.735 -2073.38 191.625"
+}
+// entity 462
+{
+guid "{86F6D550-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 78.0996 0"
+"origin" "-322 -1906.5 190"
+}
+// entity 463
+{
+guid "{86F6D54D-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 81.0132 0"
+"origin" "392.167 -2052.65 191.625"
+}
+// entity 464
+{
+guid "{86F6D54A-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 249.505 0"
+"origin" "852 1418.5 193.625"
+}
+// entity 465
+{
+guid "{86F6D547-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 225 0"
+"origin" "856 1040 192"
+}
+// entity 466
+{
+guid "{86F6D544-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 66.1211 -0"
+"origin" "-1136 -789 190.724"
+}
+// entity 467
+{
+guid "{86F6D541-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 289 0"
+"origin" "550.475 1543.56 192"
+}
+// entity 468
+{
+guid "{86F6D53E-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 235 0"
+"origin" "40 1990 152"
+}
+// entity 469
+{
+guid "{86F6D53B-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 267.858 -0"
+"origin" "-378 1929 158.27"
+}
+// entity 470
+{
+guid "{86F6D538-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 295.45 -0"
+"origin" "-356.272 2567.27 157.991"
+}
+// entity 471
+{
+guid "{86F6D535-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 269.066 0"
+"origin" "305.222 2615.41 161.25"
+}
+// entity 472
+{
+guid "{86F6D532-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 283.7 -0"
+"origin" "655.768 2307.23 193.625"
+}
+// entity 473
+{
+guid "{86F6D52F-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 290.912 2e-008"
+"origin" "569.43 2323.58 193.625"
+}
+// entity 474
+{
+guid "{86F6D52C-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 272 0"
+"origin" "149.909 1675.1 194.603"
+}
+// entity 475
+{
+guid "{86F6D529-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 257.327 0"
+"origin" "103.71 2574.19 165.625"
+}
+// entity 476
+{
+guid "{86F6D526-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 281.915 -0"
+"origin" "-577.539 2022.98 157.625"
+}
+// entity 477
+{
+guid "{86F6D523-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 309.869 -0"
+"origin" "-297.5 824 168.424"
+}
+// entity 478
+{
+guid "{86F6D520-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 88.6157 -0"
+"origin" "-235 -1920 189.233"
+}
+// entity 479
+{
+guid "{86F6D51D-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 89.9998 0"
+"origin" "-55.5 -888.5 188"
+}
+// entity 480
+{
+guid "{86F6D51A-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 68.0997 0"
+"origin" "-319 -383 188"
+}
+// entity 481
+{
+guid "{86F6D517-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 85.924 3e-009"
+"origin" "-207.48 -526.599 189.625"
+}
+// entity 482
+{
+guid "{86F6D514-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 88.5059 0"
+"origin" "294.5 -486 189.625"
+}
+// entity 483
+{
+guid "{86F6D511-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 110.1 0"
+"origin" "767 -772 192"
+}
+// entity 484
+{
+guid "{86F6D50E-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 121.4 0"
+"origin" "870.5 -708 194"
+}
+// entity 485
+{
+guid "{86F6D50B-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 101.931 -0"
+"origin" "796 -1095 192.836"
+}
+// entity 486
+{
+guid "{86F6D508-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 89.9999 0"
+"origin" "224 -1366 220"
+}
+// entity 487
+{
+guid "{86F6D505-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 49.5998 0"
+"origin" "-79 -1409 220"
+}
+// entity 488
+{
+guid "{86F6D502-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 68.2031 -0"
+"origin" "481.974 -1311 191.125"
+}
+// entity 489
+{
+guid "{86F6D4FF-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 79.9999 0"
+"origin" "473 -1700 196"
+}
+// entity 490
+{
+guid "{86F6D4FC-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 99.8998 0"
+"origin" "214 -2316.5 190"
+}
+// entity 491
+{
+guid "{86F6D4F9-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 64.1994 0"
+"origin" "-52.5 -2271 190"
+}
+// entity 492
+{
+guid "{86F6D4F6-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 82.8369 0"
+"origin" "-350.871 -1595 188.722"
+}
+// entity 493
+{
+guid "{86F6D4F3-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 71.455 -0"
+"origin" "-383 -1178.5 189.625"
+}
+// entity 494
+{
+guid "{86F6D4F0-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 133.857 0"
+"origin" "-571.5 -790 181.625"
+}
+// entity 495
+{
+guid "{86F6D4ED-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 111.033 -0"
+"origin" "-749.008 -764.635 181.625"
+}
+// entity 496
+{
+guid "{86F6D4EA-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 65.9563 -0"
+"origin" "-1179.59 -464.508 187.625"
+}
+// entity 497
+{
+guid "{86F6D4E7-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 291.011 0"
+"origin" "-1237.4 705.6 174.78"
+}
+// entity 498
+{
+guid "{86F6D4E4-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 295.332 0"
+"origin" "-1157.52 961.69 172.737"
+}
+// entity 499
+{
+guid "{86F6D4E1-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 256.943 2e-008"
+"origin" "-919.519 1125.86 164.049"
+}
+// entity 500
+{
+guid "{86F6D4DE-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 322.2 0"
+"origin" "-570 975 164"
+}
+// entity 501
+{
+guid "{86F6D4DB-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 281.81 4e-008"
+"origin" "-528.278 1542.84 153.168"
+}
+// entity 502
+{
+guid "{86F6D4D8-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 270.8 0"
+"origin" "664.109 1610 192"
+}
+// entity 503
+{
+guid "{86F6D4D5-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 242.9 0"
+"origin" "304.009 876.004 192"
+}
+// entity 504
+{
+guid "{86F6D4D2-2C35-11E5-8415-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn"
+"angles" "0 56.3323 -0"
+"origin" "12.5 -534 189.625"
+}
+// entity 505
+{
+guid "{3FAA6D57-29C6-11E5-BA8D-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_weapon.map"
+"origin" "812.141 1353.07 158.309"
+"script_ammo_clip" "5"
+"script_ammo_extra" "10"
+"script_gameobjectname" "os"
+"script_parameters" "shotgun_fullauto shotgun_pump"
+}
+// entity 506
+{
+guid "{685673F2-2C45-11E5-8415-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_weapon.map"
+"origin" "406.295 -271.213 153.535"
+"script_ammo_clip" "5"
+"script_ammo_extra" "10"
+"script_gameobjectname" "os"
+"script_parameters" "frag_grenade hatchet sticky_grenade satchel_charge bouncingbetty incendiary_grenade"
+}
+// entity 507
+{
+guid "{74862F56-2C47-11E5-8415-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_weapon.map"
+"origin" "-110.606 1090.18 162.797"
+"script_ammo_clip" "5"
+"script_ammo_extra" "10"
+"script_gameobjectname" "os"
+"script_parameters" "pistol_burst pistol_fullauto pistol_standard"
+}
+// entity 508
+{
+guid "{81526C06-2C47-11E5-8415-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_weapon.map"
+"origin" "-110.606 -750.616 153.856"
+"script_ammo_clip" "5"
+"script_ammo_extra" "10"
+"script_gameobjectname" "os"
+"script_parameters" "pistol_burst pistol_fullauto pistol_standard"
+}
+// entity 509
+{
+guid "{23FF3D39-2C14-11E5-8415-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"angles" "0 90 0"
+"model" "_prefabs/mp/pickup_damage.map"
+"origin" "1096.72 170.645 170.162"
+"script_gameobjectname" "os"
+"script_parameters" "4"
+}
+// entity 510
+{
+guid "{0B4EB199-2C48-11E5-8415-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_health.map"
+"origin" "1093.12 481.25 249.328"
+"script_gameobjectname" "os"
+"script_parameters" "25"
+}
+// entity 511
+{
+guid "{1BC2FF9F-2C48-11E5-8415-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_health.map"
+"origin" "1093.12 318.75 249.328"
+"script_gameobjectname" "os"
+"script_parameters" "25"
+}
+// entity 512
+{
+guid "{1BC2FFAC-2C48-11E5-8415-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_health.map"
+"origin" "1093.12 15.625 249.328"
+"script_gameobjectname" "os"
+"script_parameters" "25"
+}
+// entity 513
+{
+guid "{1BC2FFAF-2C48-11E5-8415-2C27D7F03340}"
+layer "000_Global/OS"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/pickup_health.map"
+"origin" "1093.12 -146.875 249.328"
+"script_gameobjectname" "os"
+"script_parameters" "25"
+}
+// entity 514
+{
+guid "{FD1E609F-2DAF-11E5-9693-8CDCD4560417}"
+layer "000_Global/BALL"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/ball_goal_axis.map"
+"origin" "50.9745 -2177.55 275"
+}
+// entity 515
+{
+guid "{4EF22CBB-2DB2-11E5-9693-8CDCD4560417}"
+layer "000_Global/BALL"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/ball_goal_allies.map"
+"origin" "18.2025 2742.87 253"
+}
+// entity 516
+{
+guid "{AB864988-2DB2-11E5-9693-8CDCD4560417}"
+layer "000_Global/BALL"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/ball_start.map"
+"origin" "-16 176 188.41"
+}
+// entity 517
+{
+guid "{9D729EBA-31CD-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/escort_attacker_start.map"
+"origin" "94.9762 -2113.22 162.345"
+}
+// entity 518
+{
+guid "{7520487B-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "70.88 -2504.8 200"
+}
+// entity 519
+{
+guid "{7520487E-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "122.4 -2360.48 200"
+}
+// entity 520
+{
+guid "{75204881-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "-56 -2700 200"
+}
+// entity 521
+{
+guid "{75204884-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "28 -2700 200"
+}
+// entity 522
+{
+guid "{75204887-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "194.5 -2700 200"
+}
+// entity 523
+{
+guid "{7520488A-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "124 -2700 200"
+}
+// entity 524
+{
+guid "{7520488D-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "150.98 -2504.8 200"
+}
+// entity 525
+{
+guid "{75204890-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "-11.04 -2504.8 200"
+}
+// entity 526
+{
+guid "{75204893-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker_start"
+"angles" "0 90 0"
+"origin" "41.28 -2363.36 200"
+}
+// entity 527
+{
+guid "{88CC5709-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "73.6767 3010 157.5"
+}
+// entity 528
+{
+guid "{88CC5706-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "-202.823 3019.3 168"
+}
+// entity 529
+{
+guid "{88CC5703-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "107.318 3184 164"
+}
+// entity 530
+{
+guid "{88CC5700-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "-245.749 3184 164.5"
+}
+// entity 531
+{
+guid "{88CC56FD-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "-160.808 3184 161.5"
+}
+// entity 532
+{
+guid "{88CC56FA-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "-74.5971 3184 161.5"
+}
+// entity 533
+{
+guid "{88CC56F7-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "12.3767 3184 153"
+}
+// entity 534
+{
+guid "{88CC56F4-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "-114.023 3019.3 152"
+}
+// entity 535
+{
+guid "{88CC56F1-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender_start"
+"angles" "0 270 0"
+"origin" "-26.8233 3016.1 152"
+}
+// entity 536
+{
+guid "{AB835643-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 242.9 0"
+"origin" "304.009 876.004 192"
+}
+// entity 537
+{
+guid "{AB835646-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 270.8 0"
+"origin" "664.109 1610 192"
+}
+// entity 538
+{
+guid "{AB835649-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 281.81 4e-008"
+"origin" "-528.278 1542.84 153.168"
+}
+// entity 539
+{
+guid "{AB83564C-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 322.2 0"
+"origin" "-570 975 164"
+}
+// entity 540
+{
+guid "{AB83564F-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 256.943 2e-008"
+"origin" "-919.519 1125.86 164.049"
+}
+// entity 541
+{
+guid "{AB835652-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 309.869 -0"
+"origin" "-297.5 824 168.424"
+}
+// entity 542
+{
+guid "{AB835655-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 281.915 -0"
+"origin" "-577.539 2022.98 157.625"
+}
+// entity 543
+{
+guid "{AB835658-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 257.327 0"
+"origin" "103.71 2574.19 165.625"
+}
+// entity 544
+{
+guid "{AB83565B-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 272 0"
+"origin" "149.909 1675.1 194.603"
+}
+// entity 545
+{
+guid "{AB83565E-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 290.912 2e-008"
+"origin" "569.43 2323.58 193.625"
+}
+// entity 546
+{
+guid "{AB835661-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 283.7 -0"
+"origin" "655.768 2307.23 193.625"
+}
+// entity 547
+{
+guid "{AB835664-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 269.066 0"
+"origin" "305.222 2615.41 161.25"
+}
+// entity 548
+{
+guid "{AB835667-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 295.45 -0"
+"origin" "-356.272 2567.27 157.991"
+}
+// entity 549
+{
+guid "{AB83566A-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 267.858 -0"
+"origin" "-378 1929 158.27"
+}
+// entity 550
+{
+guid "{AB83566D-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 235 0"
+"origin" "40 1990 152"
+}
+// entity 551
+{
+guid "{AB835670-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 289 0"
+"origin" "550.475 1543.56 192"
+}
+// entity 552
+{
+guid "{AB835673-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 225 0"
+"origin" "856 1040 192"
+}
+// entity 553
+{
+guid "{AB835676-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 249.505 0"
+"origin" "852 1418.5 193.625"
+}
+// entity 554
+{
+guid "{AB835679-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 275.625 -0"
+"origin" "769 2033.5 197.625"
+}
+// entity 555
+{
+guid "{AB83567C-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_defender"
+"angles" "0 268.682 -0"
+"origin" "-459.523 2363.94 163.685"
+}
+// entity 556
+{
+guid "{C245B9B1-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 56.3323 -0"
+"origin" "12.5 -534 189.625"
+}
+// entity 557
+{
+guid "{C245B9B4-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 65.9563 -0"
+"origin" "-1179.59 -464.508 187.625"
+}
+// entity 558
+{
+guid "{C245B9B7-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 111.033 -0"
+"origin" "-749.008 -764.635 181.625"
+}
+// entity 559
+{
+guid "{C245B9BA-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 133.857 0"
+"origin" "-571.5 -790 181.625"
+}
+// entity 560
+{
+guid "{C245B9BD-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 71.455 -0"
+"origin" "-383 -1178.5 189.625"
+}
+// entity 561
+{
+guid "{C245B9C0-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 82.8369 0"
+"origin" "-350.871 -1595 188.722"
+}
+// entity 562
+{
+guid "{C245B9C3-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 64.1994 0"
+"origin" "-52.5 -2271 190"
+}
+// entity 563
+{
+guid "{C245B9C6-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 99.8998 0"
+"origin" "214 -2316.5 190"
+}
+// entity 564
+{
+guid "{C245B9C9-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 79.9999 0"
+"origin" "473 -1700 196"
+}
+// entity 565
+{
+guid "{C245B9CC-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 68.2031 -0"
+"origin" "481.974 -1311 191.125"
+}
+// entity 566
+{
+guid "{C245B9CF-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 49.5998 0"
+"origin" "-79 -1409 220"
+}
+// entity 567
+{
+guid "{C245B9D2-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 89.9999 0"
+"origin" "224 -1366 220"
+}
+// entity 568
+{
+guid "{C245B9D5-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 101.931 -0"
+"origin" "796 -1095 192.836"
+}
+// entity 569
+{
+guid "{C245B9D8-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 121.4 0"
+"origin" "870.5 -708 194"
+}
+// entity 570
+{
+guid "{C245B9DB-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 110.1 0"
+"origin" "767 -772 192"
+}
+// entity 571
+{
+guid "{C245B9DE-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 88.5059 0"
+"origin" "294.5 -486 189.625"
+}
+// entity 572
+{
+guid "{C245B9E1-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 85.924 3e-009"
+"origin" "-207.48 -526.599 189.625"
+}
+// entity 573
+{
+guid "{C245B9E4-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 68.0997 0"
+"origin" "-319 -383 188"
+}
+// entity 574
+{
+guid "{C245B9E7-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 89.9998 0"
+"origin" "-55.5 -888.5 188"
+}
+// entity 575
+{
+guid "{C245B9EA-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 88.6157 -0"
+"origin" "-235 -1920 189.233"
+}
+// entity 576
+{
+guid "{C245B9ED-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 66.1211 -0"
+"origin" "-1136 -789 190.724"
+}
+// entity 577
+{
+guid "{C245B9F0-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 81.0132 0"
+"origin" "392.167 -2052.65 191.625"
+}
+// entity 578
+{
+guid "{C245B9F3-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 78.0996 0"
+"origin" "-322 -1906.5 190"
+}
+// entity 579
+{
+guid "{C245B9F6-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 113.159 -1e-007"
+"origin" "228.735 -2073.38 191.625"
+}
+// entity 580
+{
+guid "{C245B9F9-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "mp_escort_spawn_attacker"
+"angles" "0 61.5179 -0"
+"origin" "279 -1828.5 191.625"
+}
+// entity 581
+{
+guid "{DCB92F23-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "87.5115 -1974.11 166.496"
+"script_gameobjectname" "escort"
+"target" "auto1381"
+"targetname" "escort_robot_path_start"
+"_color" "1 0 1"
+}
+// entity 582
+{
+guid "{E9DE156B-31D3-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "127.827 -1745.96 166.496"
+"script_gameobjectname" "escort"
+"target" "auto1382"
+"targetname" "auto1381"
+"_color" "1 0 1"
+}
+// entity 583
+{
+guid "{1EE84109-31D4-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "-20.8244 185.84 193.514"
+"script_gameobjectname" "escort"
+"target" "auto1389"
+"targetname" "auto1388"
+"_color" "1 0 1"
+}
+// entity 584
+{
+guid "{1EE84117-31D4-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "52.8146 468.303 175.195"
+"script_gameobjectname" "escort"
+"target" "auto1390"
+"targetname" "auto1389"
+"_color" "1 0 1"
+}
+// entity 585
+{
+guid "{2605929E-31D4-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "504.712 646.842 175.195"
+"script_gameobjectname" "escort"
+"target" "auto1391"
+"targetname" "auto1390"
+"_color" "1 0 1"
+}
+// entity 586
+{
+guid "{5E8832E1-31D4-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "303.903 1516.43 184.628"
+"script_gameobjectname" "escort"
+"target" "auto1406"
+"targetname" "auto1405"
+"_color" "1 0 1"
+}
+// entity 587
+{
+guid "{77EC1B3C-324F-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "657.056 820.67 175.195"
+"script_gameobjectname" "escort"
+"target" "auto1403"
+"targetname" "auto1391"
+"_color" "1 0 1"
+}
+// entity 588
+{
+guid "{7FF02930-324F-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "715.256 1228.62 175.195"
+"script_gameobjectname" "escort"
+"target" "auto1404"
+"targetname" "auto1403"
+"_color" "1 0 1"
+}
+// entity 589
+{
+guid "{7FF0293B-324F-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "515.828 1439.93 175.195"
+"script_gameobjectname" "escort"
+"target" "auto1405"
+"targetname" "auto1404"
+"_color" "1 0 1"
+}
+// entity 590
+{
+guid "{DE9D9546-3BDA-11E5-85C2-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "211.103 1711.35 184.628"
+"script_gameobjectname" "escort"
+"target" "auto1407"
+"targetname" "auto1406"
+"_color" "1 0 1"
+}
+// entity 591
+{
+guid "{ED6F9A44-3BDA-11E5-85C2-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "-102.017 2089.91 144.932"
+"script_gameobjectname" "escort"
+"targetname" "auto1407"
+"_color" "1 0 1"
+}
+// entity 592
+{
+guid "{6E744DA8-31CD-11E5-8415-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "misc_prefab"
+"model" "_prefabs/mp/escort_defender_goal.map"
+"origin" "-102.192 2089.92 140.146"
+}
+// entity 593
+{
+guid "{5F1C3C3D-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "326.264 -1630.33 166.496"
+"script_gameobjectname" "escort"
+"target" "auto1408"
+"targetname" "auto1382"
+"_color" "1 0 1"
+}
+// entity 594
+{
+guid "{65603F38-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "538.764 -1425.64 166.496"
+"script_gameobjectname" "escort"
+"target" "auto1409"
+"targetname" "auto1408"
+"_color" "1 0 1"
+}
+// entity 595
+{
+guid "{65603F43-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "603.788 -1211.62 166.496"
+"script_gameobjectname" "escort"
+"target" "auto1410"
+"targetname" "auto1409"
+"_color" "1 0 1"
+}
+// entity 596
+{
+guid "{6B7D5848-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "699.562 -991.972 166.496"
+"script_gameobjectname" "escort"
+"target" "auto1411"
+"targetname" "auto1410"
+"_color" "1 0 1"
+}
+// entity 597
+{
+guid "{717953EF-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "699.562 -395.216 166.496"
+"script_gameobjectname" "escort"
+"target" "auto1412"
+"targetname" "auto1411"
+"_color" "1 0 1"
+}
+// entity 598
+{
+guid "{717953FD-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "318.312 -279.591 166.496"
+"script_gameobjectname" "escort"
+"target" "auto1413"
+"targetname" "auto1412"
+"_color" "1 0 1"
+}
+// entity 599
+{
+guid "{7AA26166-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/ESCORT"
+"classname" "node_pathnode"
+"angles" "0 90 0"
+"origin" "-0.448689 -124.904 171.043"
+"script_gameobjectname" "escort"
+"target" "auto1388"
+"targetname" "auto1413"
+"_color" "1 0 1"
+}
+// entity 600
+{
+guid "{E5F11582-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn_start"
+"angles" "0 249.505 0"
+"origin" "852 1418.5 193.625"
+}
+// entity 601
+{
+guid "{E5F11585-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn_start"
+"angles" "0 257.327 0"
+"origin" "103.71 2574.19 165.625"
+}
+// entity 602
+{
+guid "{E5F11588-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn_start"
+"angles" "0 89.9998 0"
+"origin" "-55.5 -888.5 188"
+}
+// entity 603
+{
+guid "{E5F1158B-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn_start"
+"angles" "0 121.4 0"
+"origin" "870.5 -708 194"
+}
+// entity 604
+{
+guid "{E5F1158E-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn_start"
+"angles" "0 99.8998 0"
+"origin" "214 -2316.5 190"
+}
+// entity 605
+{
+guid "{E5F11591-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn_start"
+"angles" "0 133.857 0"
+"origin" "-571.5 -790 181.625"
+}
+// entity 606
+{
+guid "{E5F11594-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn_start"
+"angles" "0 295.332 0"
+"origin" "-1157.52 961.69 172.737"
+}
+// entity 607
+{
+guid "{E5F11597-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/DM"
+"classname" "mp_dm_spawn_start"
+"angles" "0 322.2 0"
+"origin" "-570 975 164"
+}
+// entity 608
+{
+guid "{FC487F5A-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 268.682 -0"
+"origin" "-459.523 2363.94 163.685"
+}
+// entity 609
+{
+guid "{FC487F57-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 295.45 -0"
+"origin" "-356.272 2567.27 157.991"
+}
+// entity 610
+{
+guid "{FC487F54-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 269.066 0"
+"origin" "305.222 2615.41 161.25"
+}
+// entity 611
+{
+guid "{FC487F51-3CC2-11E5-85C2-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_allies"
+"angles" "0 257.327 0"
+"origin" "103.71 2574.19 165.625"
+}
+// entity 612
+{
+guid "{205B6DF5-3CC3-11E5-85C2-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 89.9999 0"
+"origin" "224 -1366 220"
+}
+// entity 613
+{
+guid "{205B6DF8-3CC3-11E5-85C2-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 88.6157 -0"
+"origin" "-235 -1920 189.233"
+}
+// entity 614
+{
+guid "{205B6DFB-3CC3-11E5-85C2-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 78.0996 0"
+"origin" "-322 -1906.5 190"
+}
+// entity 615
+{
+guid "{205B6DFE-3CC3-11E5-85C2-2C27D7F03340}"
+layer "000_Global/CTF"
+"classname" "mp_ctf_spawn_axis"
+"angles" "0 61.5179 -0"
+"origin" "279 -1828.5 191.625"
+}
+// entity 616
+{
+guid "{6980AABE-BCF6-4789-93BA-6DD30DB3BC09}"
+layer "000_Global/HELI"
+"classname" "heli_height_lock"
+"targetname" "mp_mode_heli_height_lock"
+// brush 0
+ {
+  guid "{02B1025C-399E-4EAA-9CEF-B6DF5BFDDBA8}"
+  mesh
+  {
+layer "000_Global/HELI"
+  toolFlags splitGeo;
+   nodraw
+   lightmap_gray
+   17 17 16 8
+   (
+	v -654.24689 -2943.9063 970.58447 t -132352 85248 -40.89043 183.99414
+	v -654.24689 -2553.7837 970.58447 t -132352 73584 -40.89043 159.61148
+	v -654.24689 -2163.6619 970.58447 t -132352 61920 -40.89043 135.22887
+	v -654.24689 -1773.5405 970.58447 t -132352 50256 -40.89043 110.84628
+	v -654.24689 -1383.4158 970.58447 t -132352 38592 -40.89043 86.463486
+	v -1427.8545 -993.29285 970.58447 t -132352 26928 -89.240906 62.080803
+	v -1427.8545 -603.16949 970.58447 t -132352 15264 -89.240906 37.698093
+	v -1427.8545 -213.04608 970.58447 t -132352 3600 -89.240906 13.31538
+	v -1427.8545 177.07703 970.58447 t -132352 -8064 -89.240906 -11.067314
+	v -1427.8545 567.19971 970.58447 t -132352 -19728 -89.240906 -35.449982
+	v -1427.8545 957.32251 970.58447 t -132352 -31392 -89.240906 -59.832657
+	v -1238.3802 1347.4471 1251.2579 t -132352 -43056 -77.398766 -84.215446
+	v -775.05408 1737.5691 1259.7052 t -132352 -54720 -48.44088 -108.59807
+	v -775.05408 2127.6941 1259.7052 t -132352 -66384 -48.44088 -132.98088
+	v -775.05408 2517.8171 1259.7052 t -132352 -78048 -48.44088 -157.36357
+	v -775.05408 2907.9382 1259.7052 t -132352 -89712 -48.44088 -181.74614
+	v -775.05408 3298.0605 1259.7052 t -132352 -101376 -48.44088 -206.12878
+   )
+   (
+	v -469.32288 -2943.9063 970.58447 t -120432 85248 -29.33268 183.99414
+	v -469.32288 -2553.7837 970.58447 t -120432 73584 -29.33268 159.61148
+	v -469.32288 -2163.6619 970.58447 t -120432 61920 -29.33268 135.22887
+	v -469.32288 -1773.5405 970.58447 t -120432 50256 -29.33268 110.84628
+	v -469.32288 -1383.4158 970.58447 t -120432 38592 -29.33268 86.463486
+	v -1242.9305 -993.29285 970.58447 t -120432 26928 -77.683159 62.080803
+	v -1242.9305 -603.16949 970.58447 t -120432 15264 -77.683159 37.698093
+	v -1242.9305 -213.04608 970.58447 t -120432 3600 -77.683159 13.31538
+	v -1242.9305 177.07703 970.58447 t -120432 -8064 -77.683159 -11.067314
+	v -1242.9305 567.19971 970.58447 t -120432 -19728 -77.683159 -35.449982
+	v -1242.9305 957.32251 970.58447 t -120432 -31392 -77.683159 -59.832657
+	v -1053.4563 1347.4471 1251.2579 t -120432 -43056 -65.841019 -84.215446
+	v -590.13025 1737.5691 1259.7052 t -120432 -54720 -36.883141 -108.59807
+	v -590.13025 2127.6941 1259.7052 t -120432 -66384 -36.883141 -132.98088
+	v -590.13025 2517.8171 1259.7052 t -120432 -78048 -36.883141 -157.36357
+	v -590.13025 2907.9382 1259.7052 t -120432 -89712 -36.883141 -181.74614
+	v -590.13025 3298.0605 1259.7052 t -120432 -101376 -36.883141 -206.12878
+   )
+   (
+	v -284.39832 -2943.9063 970.58447 t -108512 85248 -17.774895 183.99414
+	v -284.39832 -2553.7837 970.58447 t -108512 73584 -17.774895 159.61148
+	v -284.39832 -2163.6619 970.58447 t -108512 61920 -17.774895 135.22887
+	v -284.39832 -1773.5405 970.58447 t -108512 50256 -17.774895 110.84628
+	v -284.39832 -1383.4158 970.58447 t -108512 38592 -17.774895 86.463486
+	v -1058.0062 -993.29285 970.58447 t -108512 26928 -66.125389 62.080803
+	v -1058.0062 -603.16949 970.58447 t -108512 15264 -66.125389 37.698093
+	v -1058.0062 -213.04608 970.58447 t -108512 3600 -66.125389 13.31538
+	v -1058.0062 177.07703 970.58447 t -108512 -8064 -66.125389 -11.067314
+	v -1058.0062 567.19971 970.58447 t -108512 -19728 -66.125389 -35.449982
+	v -1058.0062 957.32251 970.58447 t -108512 -31392 -66.125389 -59.832657
+	v -868.53198 1347.4471 1251.2579 t -108512 -43056 -54.283249 -84.215446
+	v -405.20599 1737.5691 1251.7152 t -108512 -54720 -25.325375 -108.59807
+	v -405.20599 2127.6941 1235.3337 t -108512 -66384 -25.325375 -132.98088
+	v -405.20599 2517.8171 1251.7152 t -108512 -78048 -25.325375 -157.36357
+	v -405.20599 2907.9382 1251.7152 t -108512 -89712 -25.325375 -181.74614
+	v -405.20599 3298.0605 1251.7152 t -108512 -101376 -25.325375 -206.12878
+   )
+   (
+	v -99.475006 -2943.9063 970.58447 t -96592 85248 -6.2171879 183.99414
+	v -99.475006 -2553.7837 970.58447 t -96592 73584 -6.2171879 159.61148
+	v -99.475006 -2163.6619 970.58447 t -96592 61920 -6.2171879 135.22887
+	v -99.475006 -1773.5405 970.58447 t -96592 50256 -6.2171879 110.84628
+	v -99.475006 -1383.4158 970.58447 t -96592 38592 -6.2171879 86.463486
+	v -873.08282 -993.29285 1074.5845 t -96592 26928 -54.567677 62.080803
+	v -873.08282 -603.16949 1074.5845 t -96592 15264 -54.567677 37.698093
+	v -873.08282 -213.04608 1074.5845 t -96592 3600 -54.567677 13.31538
+	v -873.08282 177.07703 1074.5845 t -96592 -8064 -54.567677 -11.067314
+	v -873.08282 567.19971 1074.5845 t -96592 -19728 -54.567677 -35.449982
+	v -873.08282 957.32251 1074.5845 t -96592 -31392 -54.567677 -59.832657
+	v -873.08282 1347.4471 1074.5845 t -96592 -43056 -54.567677 -84.215446
+	v -409.75684 1737.5691 1251.2579 t -96592 -54720 -25.609802 -108.59807
+	v -409.75684 2127.6941 1251.2579 t -96592 -66384 -25.609802 -132.98088
+	v -409.75684 2517.8171 1251.2579 t -96592 -78048 -25.609802 -157.36357
+	v -409.75684 2907.9382 1251.2579 t -96592 -89712 -25.609802 -181.74614
+	v -409.75684 3298.0605 1251.2579 t -96592 -101376 -25.609802 -206.12878
+   )
+   (
+	v 85.44986 -2943.9063 970.58447 t -84672 85248 5.3406162 183.99414
+	v 85.44986 -2553.7837 970.58447 t -84672 73584 5.3406162 159.61148
+	v 85.44986 -2163.6619 970.58447 t -84672 61920 5.3406162 135.22887
+	v 85.44986 -1773.5405 970.58447 t -84672 50256 5.3406162 110.84628
+	v 85.44986 -1383.4158 970.58447 t -84672 38592 5.3406162 86.463486
+	v -688.15796 -993.29285 1074.5845 t -84672 26928 -43.009872 62.080803
+	v -688.15796 -603.16949 1290.5846 t -84672 15264 -43.009872 37.698093
+	v -688.15796 -213.04608 1290.5846 t -84672 3600 -43.009872 13.31538
+	v -688.15796 177.07703 1290.5846 t -84672 -8064 -43.009872 -11.067314
+	v -688.15796 567.19971 1290.5846 t -84672 -19728 -43.009872 -35.449982
+	v -688.15796 957.32251 1114.5845 t -84672 -31392 -43.009872 -59.832657
+	v -688.15796 1347.4471 1074.5845 t -84672 -43056 -43.009872 -84.215446
+	v -224.83197 1737.5691 1251.2579 t -84672 -54720 -14.051998 -108.59807
+	v -224.83197 2127.6941 1251.2579 t -84672 -66384 -14.051998 -132.98088
+	v -224.83197 2517.8171 1251.2579 t -84672 -78048 -14.051998 -157.36357
+	v -224.83197 2907.9382 1251.2579 t -84672 -89712 -14.051998 -181.74614
+	v -224.83197 3298.0605 970.58447 t -84672 -101376 -14.051998 -206.12878
+   )
+   (
+	v 270.37488 -2943.9063 970.58447 t -72752 85248 16.898438 183.99414
+	v 270.37488 -2553.7837 970.58447 t -72752 73584 16.898438 159.61148
+	v 270.37488 -2163.6619 970.58447 t -72752 61920 16.898438 135.22887
+	v 270.37488 -1773.5405 970.58447 t -72752 50256 16.898438 110.84628
+	v -503.23291 -1383.4158 946.58447 t -72752 38592 -31.452057 86.463486
+	v -503.23291 -993.29285 1358.5846 t -72752 26928 -31.452057 62.080803
+	v -503.23291 -603.16949 1510.5841 t -72752 15264 -31.452057 37.698093
+	v -503.23291 -213.04608 1510.5841 t -72752 3600 -31.452057 13.31538
+	v -503.23291 177.07703 1510.5841 t -72752 -8064 -31.452057 -11.067314
+	v -503.23291 567.19971 1510.5841 t -72752 -19728 -31.452057 -35.449982
+	v -503.23291 957.32251 1338.5846 t -72752 -31392 -31.452057 -59.832657
+	v -503.23291 1347.4471 1074.5845 t -72752 -43056 -31.452057 -84.215446
+	v -503.23291 1737.5691 970.58447 t -72752 -54720 -31.452057 -108.59807
+	v -503.23291 2127.6941 970.58447 t -72752 -66384 -31.452057 -132.98088
+	v -503.23291 2517.8171 970.58447 t -72752 -78048 -31.452057 -157.36357
+	v -503.23291 2907.9382 970.58447 t -72752 -89712 -31.452057 -181.74614
+	v -503.23291 3298.0605 970.58447 t -72752 -101376 -31.452057 -206.12878
+   )
+   (
+	v -318.30768 -2943.9063 970.58447 t -60832 85248 -19.89423 183.99414
+	v -318.30768 -2553.7837 970.58447 t -60832 73584 -19.89423 159.61148
+	v -318.30768 -2163.6619 970.58447 t -60832 61920 -19.89423 135.22887
+	v -318.30768 -1773.5405 970.58447 t -60832 50256 -19.89423 110.84628
+	v -318.30768 -1383.4158 1104.5845 t -60832 38592 -19.89423 86.463486
+	v -318.30768 -993.29285 1358.5846 t -60832 26928 -19.89423 62.080803
+	v -318.30768 -603.16949 1510.5841 t -60832 15264 -19.89423 37.698093
+	v -318.30768 -213.04608 1510.5841 t -60832 3600 -19.89423 13.31538
+	v -318.30768 177.07703 1380.5846 t -60832 -8064 -19.89423 -11.067314
+	v -318.30768 567.19971 1510.5841 t -60832 -19728 -19.89423 -35.449982
+	v -318.30768 957.32251 1410.5846 t -60832 -31392 -19.89423 -59.832657
+	v -318.30768 1347.4471 1074.5845 t -60832 -43056 -19.89423 -84.215446
+	v -318.30768 1737.5691 970.58447 t -60832 -54720 -19.89423 -108.59807
+	v -318.30768 2127.6941 970.58447 t -60832 -66384 -19.89423 -132.98088
+	v -318.30768 2517.8171 970.58447 t -60832 -78048 -19.89423 -157.36357
+	v -318.30768 2907.9382 970.58447 t -60832 -89712 -19.89423 -181.74614
+	v -318.30768 3298.0605 970.58447 t -60832 -101376 -19.89423 -206.12878
+   )
+   (
+	v -133.38237 -2943.9063 970.58447 t -48912 85248 -8.3363981 183.99414
+	v -133.38237 -2553.7837 970.58447 t -48912 73584 -8.3363981 159.61148
+	v -133.38237 -2163.6619 970.58447 t -48912 61920 -8.3363981 135.22887
+	v -133.38237 -1773.5405 970.58447 t -48912 50256 -8.3363981 110.84628
+	v -133.38237 -1383.4158 1196.5845 t -48912 38592 -8.3363981 86.463486
+	v -133.38237 -993.29285 1404.5846 t -48912 26928 -8.3363981 62.080803
+	v -133.38237 -603.16949 1428.5846 t -48912 15264 -8.3363981 37.698093
+	v -133.38237 -213.04608 1502.5841 t -48912 3600 -8.3363981 13.31538
+	v -133.38237 177.07703 1550.5841 t -48912 -8064 -8.3363981 -11.067314
+	v -133.38237 567.19971 1456.5846 t -48912 -19728 -8.3363981 -35.449982
+	v -133.38237 957.32251 1410.5846 t -48912 -31392 -8.3363981 -59.832657
+	v -133.38237 1347.4471 954.58447 t -48912 -43056 -8.3363981 -84.215446
+	v -133.38237 1737.5691 970.58447 t -48912 -54720 -8.3363981 -108.59807
+	v -133.38237 2127.6941 970.58447 t -48912 -66384 -8.3363981 -132.98088
+	v -133.38237 2517.8171 970.58447 t -48912 -78048 -8.3363981 -157.36357
+	v -133.38237 2907.9382 970.58447 t -48912 -89712 -8.3363981 -181.74614
+	v -133.38237 3298.0605 970.58447 t -48912 -101376 -8.3363981 -206.12878
+   )
+   (
+	v 51.542828 -2943.9063 970.58447 t -36992 85248 3.2214267 183.99414
+	v 51.542828 -2553.7837 970.58447 t -36992 73584 3.2214267 159.61148
+	v 51.542828 -2163.6619 970.58447 t -36992 61920 3.2214267 135.22887
+	v 51.542828 -1773.5405 970.58447 t -36992 50256 3.2214267 110.84628
+	v 51.542828 -1383.4158 1150.5845 t -36992 38592 3.2214267 86.463486
+	v 51.542828 -993.29285 1358.5846 t -36992 26928 3.2214267 62.080803
+	v 51.542828 -603.16949 1564.5841 t -36992 15264 3.2214267 37.698093
+	v 51.542828 -213.04608 1498.5841 t -36992 3600 3.2214267 13.31538
+	v 51.542828 177.07703 1510.5841 t -36992 -8064 3.2214267 -11.067314
+	v 51.542828 567.19971 1442.5846 t -36992 -19728 3.2214267 -35.449982
+	v 51.542828 957.32251 1386.5846 t -36992 -31392 3.2214267 -59.832657
+	v 51.542828 1347.4471 1074.5845 t -36992 -43056 3.2214267 -84.215446
+	v 51.542828 1737.5691 970.58447 t -36992 -54720 3.2214267 -108.59807
+	v 51.542828 2127.6941 970.58447 t -36992 -66384 3.2214267 -132.98088
+	v 51.542828 2517.8171 970.58447 t -36992 -78048 3.2214267 -157.36357
+	v 51.542828 2907.9382 970.58447 t -36992 -89712 3.2214267 -181.74614
+	v 51.542828 3298.0605 970.58447 t -36992 -101376 3.2214267 -206.12878
+   )
+   (
+	v 236.46793 -2943.9063 970.58447 t -25072 85248 14.779245 183.99414
+	v 236.46793 -2553.7837 970.58447 t -25072 73584 14.779245 159.61148
+	v 236.46793 -2163.6619 970.58447 t -25072 61920 14.779245 135.22887
+	v 236.46793 -1773.5405 970.58447 t -25072 50256 14.779245 110.84628
+	v 236.46793 -1383.4158 1112.5845 t -25072 38592 14.779245 86.463486
+	v 236.46793 -993.29285 1420.5846 t -25072 26928 14.779245 62.080803
+	v 236.46793 -603.16949 1556.5841 t -25072 15264 14.779245 37.698093
+	v 236.46793 -213.04608 1538.5841 t -25072 3600 14.779245 13.31538
+	v 236.46793 177.07703 1462.5846 t -25072 -8064 14.779245 -11.067314
+	v 236.46793 567.19971 1418.5846 t -25072 -19728 14.779245 -35.449982
+	v 236.46793 957.32251 1458.5846 t -25072 -31392 14.779245 -59.832657
+	v 236.46793 1347.4471 1176.5845 t -25072 -43056 14.779245 -84.215446
+	v 236.46793 1737.5691 970.58447 t -25072 -54720 14.779245 -108.59807
+	v 236.46793 2127.6941 970.58447 t -25072 -66384 14.779245 -132.98088
+	v 236.46793 2517.8171 970.58447 t -25072 -78048 14.779245 -157.36357
+	v 236.46793 2907.9382 970.58447 t -25072 -89712 14.779245 -181.74614
+	v 236.46793 3298.0605 970.58447 t -25072 -101376 14.779245 -206.12878
+   )
+   (
+	v 421.39252 -2943.9063 970.58447 t -13152 85248 26.337032 183.99414
+	v 421.39252 -2553.7837 970.58447 t -13152 73584 26.337032 159.61148
+	v 421.39252 -2163.6619 970.58447 t -13152 61920 26.337032 135.22887
+	v 421.39252 -1773.5405 970.58447 t -13152 50256 26.337032 110.84628
+	v 421.39252 -1383.4158 1008.5845 t -13152 38592 26.337032 86.463486
+	v 421.39252 -993.29285 1358.5846 t -13152 26928 26.337032 62.080803
+	v 421.39252 -603.16949 1510.5841 t -13152 15264 26.337032 37.698093
+	v 421.39252 -213.04608 1510.5841 t -13152 3600 26.337032 13.31538
+	v 421.39252 177.07703 1438.5846 t -13152 -8064 26.337032 -11.067314
+	v 421.39252 567.19971 1418.5846 t -13152 -19728 26.337032 -35.449982
+	v 421.39252 957.32251 1456.5846 t -13152 -31392 26.337032 -59.832657
+	v 421.39252 1347.4471 1176.5845 t -13152 -43056 26.337032 -84.215446
+	v 421.39252 1737.5691 970.58447 t -13152 -54720 26.337032 -108.59807
+	v 421.39252 2127.6941 970.58447 t -13152 -66384 26.337032 -132.98088
+	v 421.39252 2517.8171 970.58447 t -13152 -78048 26.337032 -157.36357
+	v 421.39252 2907.9382 970.58447 t -13152 -89712 26.337032 -181.74614
+	v 421.39252 3298.0605 970.58447 t -13152 -101376 26.337032 -206.12878
+   )
+   (
+	v 606.31732 -2943.9063 970.58447 t -1232 85248 37.894833 183.99414
+	v 606.31732 -2553.7837 970.58447 t -1232 73584 37.894833 159.61148
+	v 606.31732 -2163.6619 970.58447 t -1232 61920 37.894833 135.22887
+	v 606.31732 -1773.5405 970.58447 t -1232 50256 37.894833 110.84628
+	v 606.31732 -1383.4158 970.58447 t -1232 38592 37.894833 86.463486
+	v 606.31732 -993.29285 1312.5846 t -1232 26928 37.894833 62.080803
+	v 606.31732 -603.16949 1426.5846 t -1232 15264 37.894833 37.698093
+	v 606.31732 -213.04608 1466.5846 t -1232 3600 37.894833 13.31538
+	v 606.31732 177.07703 1354.5846 t -1232 -8064 37.894833 -11.067314
+	v 606.31732 567.19971 1424.5846 t -1232 -19728 37.894833 -35.449982
+	v 606.31732 957.32251 1432.5846 t -1232 -31392 37.894833 -59.832657
+	v 606.31732 1347.4471 1160.5845 t -1232 -43056 37.894833 -84.215446
+	v 606.31732 1737.5691 970.58447 t -1232 -54720 37.894833 -108.59807
+	v 606.31732 2127.6941 970.58447 t -1232 -66384 37.894833 -132.98088
+	v 606.31732 2517.8171 970.58447 t -1232 -78048 37.894833 -157.36357
+	v 606.31732 2907.9382 970.58447 t -1232 -89712 37.894833 -181.74614
+	v 606.31732 3298.0605 970.58447 t -1232 -101376 37.894833 -206.12878
+   )
+   (
+	v 791.24225 -2943.9063 970.58447 t 10688 85248 49.452641 183.99414
+	v 791.24225 -2553.7837 970.58447 t 10688 73584 49.452641 159.61148
+	v 791.24225 -2163.6619 970.58447 t 10688 61920 49.452641 135.22887
+	v 791.24225 -1773.5405 970.58447 t 10688 50256 49.452641 110.84628
+	v 791.24225 -1383.4158 984.58447 t 10688 38592 49.452641 86.463486
+	v 791.24225 -993.29285 1088.5845 t 10688 26928 49.452641 62.080803
+	v 791.24225 -603.16949 1298.5846 t 10688 15264 49.452641 37.698093
+	v 791.24225 -213.04608 1346.5846 t 10688 3600 49.452641 13.31538
+	v 791.24225 177.07703 1160.5845 t 10688 -8064 49.452641 -11.067314
+	v 791.24225 567.19971 1168.5845 t 10688 -19728 49.452641 -35.449982
+	v 791.24225 957.32251 1320.5846 t 10688 -31392 49.452641 -59.832657
+	v 791.24225 1347.4471 1160.5845 t 10688 -43056 49.452641 -84.215446
+	v 791.24225 1737.5691 970.58447 t 10688 -54720 49.452641 -108.59807
+	v 791.24225 2127.6941 970.58447 t 10688 -66384 49.452641 -132.98088
+	v 791.24225 2517.8171 970.58447 t 10688 -78048 49.452641 -157.36357
+	v 791.24225 2907.9382 970.58447 t 10688 -89712 49.452641 -181.74614
+	v 791.24225 3298.0605 970.58447 t 10688 -101376 49.452641 -206.12878
+   )
+   (
+	v 976.16718 -2943.9063 970.58447 t 22608 85248 61.010448 183.99414
+	v 976.16718 -2553.7837 970.58447 t 22608 73584 61.010448 159.61148
+	v 976.16718 -2163.6619 970.58447 t 22608 61920 61.010448 135.22887
+	v 976.16718 -1773.5405 970.58447 t 22608 50256 61.010448 110.84628
+	v 976.16718 -1383.4158 984.58447 t 22608 38592 61.010448 86.463486
+	v 976.16718 -993.29285 922.58447 t 22608 26928 61.010448 62.080803
+	v 976.16718 -603.16949 970.58447 t 22608 15264 61.010448 37.698093
+	v 976.16718 -213.04608 970.58447 t 22608 3600 61.010448 13.31538
+	v 976.16718 177.07703 1074.5845 t 22608 -8064 61.010448 -11.067314
+	v 976.16718 567.19971 1080.5845 t 22608 -19728 61.010448 -35.449982
+	v 976.16718 957.32251 1072.5845 t 22608 -31392 61.010448 -59.832657
+	v 976.16718 1347.4471 970.58447 t 22608 -43056 61.010448 -84.215446
+	v 976.16718 1737.5691 970.58447 t 22608 -54720 61.010448 -108.59807
+	v 976.16718 2127.6941 970.58447 t 22608 -66384 61.010448 -132.98088
+	v 976.16718 2517.8171 970.58447 t 22608 -78048 61.010448 -157.36357
+	v 976.16718 2907.9382 970.58447 t 22608 -89712 61.010448 -181.74614
+	v 976.16718 3298.0605 970.58447 t 22608 -101376 61.010448 -206.12878
+   )
+   (
+	v 1161.0917 -2943.9063 970.58447 t 34528 85248 72.56823 183.99414
+	v 1161.0917 -2553.7837 970.58447 t 34528 73584 72.56823 159.61148
+	v 1161.0917 -2163.6619 970.58447 t 34528 61920 72.56823 135.22887
+	v 1161.0917 -1773.5405 970.58447 t 34528 50256 72.56823 110.84628
+	v 1161.0917 -1383.4158 970.58447 t 34528 38592 72.56823 86.463486
+	v 1161.0917 -993.29285 970.58447 t 34528 26928 72.56823 62.080803
+	v 1161.0917 -603.16949 970.58447 t 34528 15264 72.56823 37.698093
+	v 1161.0917 -213.04608 970.58447 t 34528 3600 72.56823 13.31538
+	v 1161.0917 177.07703 970.58447 t 34528 -8064 72.56823 -11.067314
+	v 1161.0917 567.19971 970.58447 t 34528 -19728 72.56823 -35.449982
+	v 1161.0917 957.32251 970.58447 t 34528 -31392 72.56823 -59.832657
+	v 1161.0917 1347.4471 970.58447 t 34528 -43056 72.56823 -84.215446
+	v 1161.0917 1737.5691 970.58447 t 34528 -54720 72.56823 -108.59807
+	v 1161.0917 2127.6941 970.58447 t 34528 -66384 72.56823 -132.98088
+	v 1161.0917 2517.8171 970.58447 t 34528 -78048 72.56823 -157.36357
+	v 1161.0917 2907.9382 970.58447 t 34528 -89712 72.56823 -181.74614
+	v 1161.0917 3298.0605 970.58447 t 34528 -101376 72.56823 -206.12878
+   )
+   (
+	v 1346.0167 -2943.9063 970.58447 t 46448 85248 84.126045 183.99414
+	v 1346.0167 -2553.7837 970.58447 t 46448 73584 84.126045 159.61148
+	v 1346.0167 -2163.6619 970.58447 t 46448 61920 84.126045 135.22887
+	v 1346.0167 -1773.5405 970.58447 t 46448 50256 84.126045 110.84628
+	v 1346.0167 -1383.4158 970.58447 t 46448 38592 84.126045 86.463486
+	v 1346.0167 -993.29285 970.58447 t 46448 26928 84.126045 62.080803
+	v 1346.0167 -603.16949 970.58447 t 46448 15264 84.126045 37.698093
+	v 1346.0167 -213.04608 970.58447 t 46448 3600 84.126045 13.31538
+	v 1346.0167 177.07703 970.58447 t 46448 -8064 84.126045 -11.067314
+	v 1346.0167 567.19971 970.58447 t 46448 -19728 84.126045 -35.449982
+	v 1346.0167 957.32251 970.58447 t 46448 -31392 84.126045 -59.832657
+	v 1346.0167 1347.4471 970.58447 t 46448 -43056 84.126045 -84.215446
+	v 1346.0167 1737.5691 970.58447 t 46448 -54720 84.126045 -108.59807
+	v 1346.0167 2127.6941 970.58447 t 46448 -66384 84.126045 -132.98088
+	v 1346.0167 2517.8171 970.58447 t 46448 -78048 84.126045 -157.36357
+	v 1346.0167 2907.9382 970.58447 t 46448 -89712 84.126045 -181.74614
+	v 1346.0167 3298.0605 970.58447 t 46448 -101376 84.126045 -206.12878
+   )
+   (
+	v 1530.942 -2943.9063 970.58447 t 58368 85248 95.683876 183.99414
+	v 1530.942 -2553.7837 970.58447 t 58368 73584 95.683876 159.61148
+	v 1530.942 -2163.6619 970.58447 t 58368 61920 95.683876 135.22887
+	v 1530.942 -1773.5405 970.58447 t 58368 50256 95.683876 110.84628
+	v 1530.942 -1383.4158 970.58447 t 58368 38592 95.683876 86.463486
+	v 1530.942 -993.29285 970.58447 t 58368 26928 95.683876 62.080803
+	v 1530.942 -603.16949 970.58447 t 58368 15264 95.683876 37.698093
+	v 1530.942 -213.04608 970.58447 t 58368 3600 95.683876 13.31538
+	v 1530.942 177.07703 970.58447 t 58368 -8064 95.683876 -11.067314
+	v 1530.942 567.19971 970.58447 t 58368 -19728 95.683876 -35.449982
+	v 1530.942 957.32251 970.58447 t 58368 -31392 95.683876 -59.832657
+	v 1530.942 1347.4471 970.58447 t 58368 -43056 95.683876 -84.215446
+	v 1530.942 1737.5691 970.58447 t 58368 -54720 95.683876 -108.59807
+	v 1530.942 2127.6941 970.58447 t 58368 -66384 95.683876 -132.98088
+	v 1530.942 2517.8171 970.58447 t 58368 -78048 95.683876 -157.36357
+	v 1530.942 2907.9382 970.58447 t 58368 -89712 95.683876 -181.74614
+	v 1530.942 3298.0605 970.58447 t 58368 -101376 95.683876 -206.12878
+   )
+  }
+ }
+}
+// entity 617
+{
+guid "{9FC96AC0-294C-11E8-A1ED-90B11CA22F81}"
+layer "000_Global/PROP"
+"classname" "script_brushmodel"
+"script_gameobjectname" "prop"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"shadow_casting" "1"
+// brush 0
+{
+ guid "{95617527-294C-11E8-A1ED-90B11CA22F81}"
+layer "000_Global/PROP"
+ ( 348 1337 159 ) ( -37 1337 159 ) ( -37 1042 159 ) wood_clip 64 64 -129 192 0 0 lightmap_gray 16384 16384 242 -1070 0 0
+ ( -37 1042 197 ) ( -37 1337 197 ) ( 348 1337 197 ) wood_clip 64 64 -129 192 0 0 lightmap_gray 16384 16384 242 -1070 0 0
+ ( -36 984 231 ) ( 349 984 231 ) ( 349 984 159 ) wood_clip 64 64 -128 0 0 0 lightmap_gray 16384 16384 243 0 0 0
+ ( 55 1049 231 ) ( 55 1344 231 ) ( 55 1344 159 ) wood_clip 64 64 -185 0 0 0 lightmap_gray 16384 16384 1077 0 0 0
+ ( 47 1334 231 ) ( 47 1039 231 ) ( 47 1039 159 ) wood_clip 64 64 -195 0 0 0 lightmap_gray 16384 16384 1067 0 0 0
+ ( 47 1096 231.75 ) ( 55 1104 231.75 ) ( 55 1104 263.75 ) wood_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{F7DA5680-2C43-11E8-A1ED-90B11CA22F81}"
+layer "000_Global/PROP"
+ ( 354 811 288 ) ( 343 811 288 ) ( 343 809 288 ) metal_clip_nosight 64 64 5 0 0 0 lightmap_gray 16384 16384 9 0 0 0
+ ( 339 809 400 ) ( 339 811 400 ) ( 350 811 400 ) metal_clip_nosight 64 64 2 0 0 0 lightmap_gray 16384 16384 5 0 0 0
+ ( 334 802 197 ) ( 345 802 197 ) ( 345 802 159 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 343 809 197 ) ( 343 811 197 ) ( 343 811 159 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 345 810 197 ) ( 334 810 197 ) ( 334 810 159 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 211 809.5 199 ) ( 211 807.5 199 ) ( 211 807.5 161 ) metal_clip_nosight 64 64 -1.5 0 0 0 lightmap_gray 16384 16384 -1.5 -2 0 0
+}
+// brush 2
+{
+ guid "{1DB94BF8-3748-11E8-A60D-001018030FD0}"
+layer "000_Global/PROP"
+ ( 340 872 398 ) ( 208 872 398 ) ( 208 824 398 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 208 824.5 407.5 ) ( 208 872.5 407.5 ) ( 340 872.5 407.5 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 -0.5 0 0
+ ( 208 810 420 ) ( 340 810 420 ) ( 340 810 400 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 -24 0 0
+ ( 340 824 420 ) ( 340 872 420 ) ( 340 872 400 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 -24 0 0
+ ( 362.5 1441.5 420 ) ( 230.5 1441.5 420 ) ( 230.5 1441.5 400 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 22.5 -24 0 0
+ ( 211 871.5 420 ) ( 211 823.5 420 ) ( 211 823.5 400 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 -0.5 -24 0 0
+}
+// brush 3
+{
+ guid "{FBC8D2FD-3758-11E8-A60D-001018030FD0}"
+layer "000_Global/PROP"
+ ( 374.5 833.5 398 ) ( 340 833.5 398 ) ( 340 810 398 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 340 810 407.5 ) ( 340 833.5 407.5 ) ( 374.5 833.5 407.5 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 345 533 407.5 ) ( 379.5 533 407.5 ) ( 379.5 533 398 ) metal_clip_nosight 64 64 5 0 0 0 lightmap_gray 16384 16384 5 0 0 0
+ ( 441.5 809 407.5 ) ( 441.5 832.5 407.5 ) ( 441.5 832.5 398 ) metal_clip_nosight 64 64 -1 0 0 0 lightmap_gray 16384 16384 -1 0 0 0
+ ( 381 929.5 407.5 ) ( 346.5 929.5 407.5 ) ( 346.5 929.5 398 ) metal_clip_nosight 64 64 6.5 0 0 0 lightmap_gray 16384 16384 6.5 0 0 0
+ ( 340 833.5 407.5 ) ( 340 810 407.5 ) ( 340 810 398 ) metal_clip_nosight 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}

@@ -1,0 +1,24 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "blend"
+
+	vs = VertexShader()
+	{
+		source = "shell_shock.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "shell_shock.hlsl"
+
+		colorMapSampler = CodeTexture( "feedback" )
+	}
+}

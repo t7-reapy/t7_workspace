@@ -1,0 +1,108 @@
+#include "effect_base"
+#include "effect_planeclip_base"
+
+Globals()
+{
+	category = "Effect"
+	renderFlags = "lit transparent fx"
+	availablePrefixes = "ei/ el/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "normalMap" )
+{
+	image = Image( <normalMap, $identitynormalmap> )
+	semantic = "normalMap"
+	usage = "normal map"
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Normal Map"
+		sortindex = "20"
+	}
+}
+
+float2( "glossRange" )
+{
+	x = <glossRangeMin>
+	y = <glossRangeMax>
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Gloss Range"
+		sortindex = "45"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "wireframe" )
+{
+	state = "premul + depth"
+	defines += "USE_WIREFRAME 1"
+	vs = VertexShader() : "vs_lit" { }
+#if TOOLSGFX == "1"
+	gs = GeometryShader() : "gs_wireframe" { }
+#endif
+	ps = PixelShader() : "ps_lit" { }
+}
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	defines += "USE_PLANECLIP 1"
+#if 0
+	ls = LocalShader() : "ls_default" {}
+	hs = HullShader() : "hs_default" {}
+	ds = DomainShader() : "ds_unlit" {}
+#else
+	vs = VertexShader() : "vs_unlit" { }
+#endif
+	ps = PixelShader() : "ps_unlit" { }
+}
+
+Technique( "lit" )
+{
+	state = "premul + depth"
+	#if EFFECT_INSTANCED_VERTEX_FORMAT == "1"
+	defines += "USE_TRANSMITTANCE", "USE_FALLOFF", "USE_PLANECLIP 1"
+	#else
+	defines += "USE_TRANSMITTANCE", "USE_FALLOFF", "USE_LMAP 0", "USE_PLANECLIP 1"
+	#endif
+#if 0
+	ls = LocalShader() : "ls_default" {}
+	hs = HullShader() : "hs_default" {}
+	ds = DomainShader() : "ds_lit_spec" {}
+#else
+	vs = VertexShader() : "vs_lit_spec" { }
+#endif
+	ps = PixelShader() : "ps_lit_spec_blend"	{ }
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_PLANECLIP 1"
+#if 0
+	ls = LocalShader() : "ls_default" {}
+	hs = HullShader() : "hs_default" {}
+	ds = DomainShader() : "ds_lit_spec_oit" {}
+#else
+	vs = VertexShader() : "vs_lit_spec_oit" { }
+#endif
+	ps = PixelShader() : "ps_lit_spec_blend_oit" { }
+}
+
+#if TOOLSGFX == "1"
+#else
+Technique( "build shadowmap depth" ) : "fx shadowmap"
+{
+	defines += "USE_FALLOFF", "USE_PLANECLIP 1"
+}
+
+Technique( "depth prepass" ) : "fx shadowmap depth"
+{
+	defines += "USE_FALLOFF", "USE_PLANECLIP 1"
+}
+#endif

@@ -1,0 +1,47 @@
+
+#include "state"
+#include "renderFlags"
+
+Sampler( "LinearSampler" )
+{
+	tile = "no tile"
+	filter = "nomip bilinear"
+}
+
+Globals()
+{
+	category = "Filters"
+}
+
+State( "ssao debug state" )
+{
+	depthTest      = disable
+	depthWrite     = false
+
+	blendState = BlendState()
+	{
+		colorBlendFunc = disable
+		colorBlendSrc  = one
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = disable
+		alphaBlendSrc  = zero
+		alphaBlendDst  = one
+		writeChannels  = "rgba"
+	}
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "ssao debug state"
+
+	vs = VertexShader()
+	{
+		source = "ssao_debug.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "ssao_debug.hlsl"
+
+		codeTexture0 = CodeTexture( "codeTexture0" )
+	}
+}

@@ -1,0 +1,76 @@
+#include "effect_base"
+
+Globals()
+{
+	category = "Effect"
+	renderFlags = "emissive transparent"
+}
+
+Technique( "lit" )
+{
+	state = "add + depth"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+		defines = "USE_EMISSIVE"
+#else
+		source = "techsetdef_unlit.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		defines = "USE_EMISSIVE"
+#else
+		source = "techsetdef_unlit.hlsl"
+		defines = "MTL_BLEND_MODE_REPLACE"
+		colorMapSampler = "colorMap"
+#endif
+	}
+}
+
+#if TOOLSGFX == "1"
+Technique( "oit" )
+{
+	state = "fallback + depth + rez"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+		defines = "USE_EMISSIVE"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/simple.hlsl"
+		defines = "USE_EMISSIVE", "USE_OIT", "USE_ADD_BLEND"
+	}
+}
+#endif
+
+Technique( "unlit" )
+{
+	state = "add + depth"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "techsetdef_unlit.hlsl"
+		defines = "USE_VERTCOL"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "techsetdef_unlit.hlsl"
+		defines = "MTL_BLEND_MODE_REPLACE","USE_VERTCOL"
+		colorMapSampler = "colorMap"
+#endif
+	}
+}

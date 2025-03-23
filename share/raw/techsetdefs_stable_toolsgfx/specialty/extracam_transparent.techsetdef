@@ -1,0 +1,14 @@
+#include "extracam_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "emissive decal"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+Technique( "lit" ) : "extracam lit"
+{
+	state = "blend + depth + decal"
+	defines = "USE_ALPHA"
+}

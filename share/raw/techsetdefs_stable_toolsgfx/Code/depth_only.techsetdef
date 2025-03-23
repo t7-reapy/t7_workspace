@@ -1,0 +1,36 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Code"
+	gameOnly = true
+	renderFlags = "emissive opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+Texture( "colorMap" )
+{
+	ref = true
+	image = Image( "$white" )
+}
+
+Sampler( "colorSampler" )
+{
+}
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = VertexShader() { }
+	ps = PixelShader() { }
+}
+
+Technique( "unlit", "lit" )
+{
+	state = "nocolor + depth"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = VertexShader() { }
+	ps = PixelShader() { }
+}

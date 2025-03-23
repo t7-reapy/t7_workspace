@@ -1,0 +1,48 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	 
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Global variables 
+
+	bool bXmodelUI = true;
+
+	Asset.AddEntry_Combo( "type", "sitrep" ).Show( false );
+
+	// MODEL: The model field is shared by multiple Script Bundle Types
+	//		   - Set the Bool bXmodelUI to include this UI element
+	Asset.AddEntry_AssetCombo( "model", "xmodel" ).SetTitle( "XModel" ).SetToolTip( "The XModel, will be visible in Radiant.  NOTE: Xmodel needs a collmap for Collision" ).Show( bXmodelUI ).SetSave( bXmodelUI ).UpdateOnChange( true );
+	
+	// If its a DOOR, generate the Door UI
+	// *** NOTE: A syntax issue means you can't call functions within IF statements ***
+	GenerateSitrepObject( Asset );
+}
+
+
+void GenerateSitrepObject( asset Asset )
+{
+	// Hide fields depending on if interactive
+	bool 	bInteract = Asset.GetEntryBool( "sitrep_interact" );
+	
+	Asset.BeginCategory( "Interact" );
+	{
+		Asset.AddEntry_CheckBox( "sitrep_interact", false )
+			.SetTitle( "Object Interactive" )
+			.SetToolTip( "Can player interact with this object?" )
+			.SetSave( bInteract )
+			.UpdateOnChange( true );
+	}
+	
+	/*Asset.BeginCategory( "Audio" );
+	{
+		Asset.AddEntry_String( "interact_sound", "" )
+			.SetTitle( "Interact Sound" )
+			.SetToolTip( "Oneshot that plays when player interacts." )
+			.Show( bInteract )
+			.SetSave( bInteract );
+	}*/
+}

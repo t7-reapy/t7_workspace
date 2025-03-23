@@ -1,0 +1,188 @@
+#include "lit_base_multi_detail_basic"
+#include "ao_base"
+#include "gloss_base"
+
+Globals()
+{
+	category = "Geometry Advanced"
+	renderFlags = "lit forward opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "specColorMap" )
+{
+	image = Image()
+	{
+		map = <specColorMap, $specular>
+	}
+	semantic = "specularMap"
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Specular Map"
+		sortindex = "20"
+	}
+}
+
+Texture( "clearcoatGlossMap" )
+{
+	image = Image( <colorMap06, $white_gloss> )
+	semantic = "glossMap"
+	tweak = Tweak()
+	{
+		category  = "Carpaint"
+		title     = "Clearcoat Gloss Map"
+		sortindex = "30"
+	}
+}
+
+Sampler( "metalFlakeSampler" )
+{
+	tile = <texTile00>
+	filter = <filterColor00>
+	tweak = Tweak()
+	{
+		category  = "Carpaint"
+		title     = "Flake Normal"
+		sortindex = "12"
+	}
+}
+
+Texture( "metalFlakeNormalMap" )
+{
+	ref = true
+	image = Image( <colorMap05, $identitynormalmap> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Carpaint"
+		title     = "Flake Normal"
+		sortindex = "10"
+	}
+}
+Texture( "metalFlakeMaskMap" )
+{
+	ref = true
+	image = Image( <colorMap00, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Carpaint"
+		title     = "Flake Mask"
+		sortindex = "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "metalFlakeNormalScale" )
+{
+	x = <colorDetailScaleY>
+	tweak = Tweak()
+	{
+		category  = "Carpaint"
+		title     = "Flake Normal Scale"
+		sortindex = "40"
+	}
+}
+float1( "metalFlakeMaskScale" )
+{
+	x = <colorDetailScaleX>
+	tweak = Tweak()
+	{
+		category  = "Carpaint"
+		title     = "Flake Mask Scale"
+		sortindex = "50"
+	}
+}
+Color( "metalFlakeSpec" )
+{
+	value = "srgb_to_linear( <cloudDarkColor> )"
+	tweak = Tweak()
+	{
+		category  = "Carpaint"
+		title     = "Flake Spec Color"
+		sortindex = "80"
+		color = true
+	}
+}
+
+float1( "flakeScaleHeight" )
+{
+	x = <dFlowColorB>
+	tweak = Tweak()
+	{
+		category  = "Carpaint"
+		title     = "Flake Normal Height"
+		sortindex = "60"
+	}
+}
+
+float1( "metalFlakeGloss" )
+{
+	x = <dFlowColorG>
+	tweak = Tweak()
+	{
+		category  = "Carpaint"
+		title     = "Flake Gloss"
+		sortindex = "70"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque"
+	defines = "USE_COLOR_SPEC", "USE_MULTI_DETAIL"
+	source = "lit_vehicle.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}
+

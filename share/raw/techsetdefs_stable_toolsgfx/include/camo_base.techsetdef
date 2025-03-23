@@ -1,0 +1,36 @@
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Bool( "useAsCamo" )
+{
+	value = <useAsCamo>
+	tweak = Tweak()
+	{
+		category	= "Game Usage"
+		title		= "Use as camo"
+		sortindex	= "0"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+#if TOOLSGFX != "1"
+Texture( "camoMaskMap" )
+{
+	image = Image( $camo_base_mask ) // will be replaced by code
+	usage = "camo mask map"
+}
+
+Texture( "normalBodyMap" )
+{
+	image = Image( $camo_base_normal ) // will be replaced by code
+	usage = "normal override map"
+}
+
+Texture( "glossBodyMap" )
+{
+	image = Image( $camo_base_gloss ) // will be replaced by code
+	usage = "gloss override map"
+}
+#endif
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

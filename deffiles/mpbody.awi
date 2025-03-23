@@ -1,0 +1,60 @@
+
+void GenerateUI( asset Asset )
+{
+	// Script Comments
+	
+	Asset.BeginCategory( "Script Comments" );
+	{
+		Asset.AddEntry_Text( "comments", "" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Class
+	
+	Asset.BeginCategory( "Weapon Class" );
+	{
+		Asset.AddEntry_Combo( "weaponClass", "rifle | mg | smg | spread | default" ).SetTitle( "Class" ).SetToolTip( "The weapon class that cooresponds to this character set" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+		
+	for ( int i = 0; i < 2; i++ )
+	{
+		string Title;
+		string Faction;
+		string Teams;
+		string Multiteams;
+		
+		switch( i )
+		{
+			case 0: 
+				Title 		= "Seals"; 	
+				Faction 	= "usa_seals"; 
+				Teams 		= "allies";	
+				Multiteams 	= "allies";
+				break;
+				
+			case 1: 
+				Title 		= "PMC"; 	 	
+				Faction 	= "rus_pmc"; 	
+				Teams 		= "axis";
+				Multiteams 	= "team4";
+				break;
+		}
+		
+		Asset.BeginCategory( Title );
+		{
+			Asset.AddEntry_String( "faction" + i, Faction ).Show( false );
+			Asset.AddEntry_String( "team" + i, Teams ).Show( false );
+			Asset.AddEntry_String( "multiteam" + i, Multiteams ).Show( false );
+			Asset.AddEntry_AssetCombo( "viewModel" + i, "xmodel" ).SetTitle( "View Model" );
+			Asset.AddEntry_AssetCombo( "model" + i, "xmodel" ).SetTitle( "Body" );
+			Asset.AddEntry_AssetCombo( "head" + i + "_0", "xmodel" ).SetTitle( "Head 1" );
+			Asset.AddEntry_AssetCombo( "head" + i + "_1", "xmodel" ).SetTitle( "Head 2" );
+			Asset.AddEntry_AssetCombo( "head" + i + "_2", "xmodel" ).SetTitle( "Head 3" );
+			Asset.AddEntry_AssetCombo( "head" + i + "_3", "xmodel" ).SetTitle( "Head 4" ).Show( false );
+			Asset.AddEntry_AssetCombo( "head" + i + "_4", "xmodel" ).SetTitle( "Head 5" ).Show( false );
+		}
+	}
+}

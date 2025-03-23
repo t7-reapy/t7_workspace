@@ -1,0 +1,43 @@
+﻿// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+const int MAX_COLORS = 20;
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	 
+	Asset.AddEntry_Combo( "vmType", "Both" ).SetTitle( "Script Type" ).Show( false ).SetValue("Both");
+	Asset.AddEntry_Combo( "type", "teamcolorfx" ).Show( false );
+
+	string color = "";
+	
+	// these need to be the same order as the colors in mp_codcaster_color_list.json
+	array<string> colors = {
+			"Dark Red",
+			"Light Red",
+			"Dark Orange",
+			"Light Orange",
+			"Dark Yellow",
+			"Light Yellow",
+			"Light Green",
+			"Dark Green",
+			"Light Blue",
+			"Dark Blue",
+			"Light Purple",
+			"Dark Purple",
+			"Light Gray",
+			"Dark Gray"
+		};
+
+	GenerateColorFX( Asset, colors );
+}
+
+void GenerateColorFX( asset Asset, array<string> available_colors )
+{
+	for ( int i = 0; i < available_colors.length; i++ )
+	{
+		Asset.AddEntry_Path( "object" + i + "_fx_colorid", "" ).SetTitle( available_colors[i] ).SetRelativePath( "share/raw/fx/" );
+	}
+}
+

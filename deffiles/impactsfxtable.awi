@@ -1,0 +1,12 @@
+
+void GenerateUI( asset Asset )
+{
+	// Effect table
+	
+	Asset.BeginCategory( "Impact Effects table" );
+	{
+		Asset.AddEntry_AssetCombo( "surfaceFX", "surfacefxtable" ).SetTitle( "Surface Effects" ).SetToolTip( "Use this to specify the surfacefxtable asset for the Surface Effects." );
+		
+		Asset.AddEntry_AssetCombo( "entityFXImpacts", "entityfximpacts").SetTitle( "Entity FX Impacts" ).SetToolTip( "Use this to specify the surfacefxtable asset for the Entity FX Impacts." );
+	}
+}

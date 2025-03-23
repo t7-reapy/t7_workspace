@@ -1,0 +1,85 @@
+#include "lit_base_shaders"
+#include "reveal_base"
+
+Globals()
+{
+	category = "Specialty"
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "edgeAmount" )
+{
+	x     = <cg03_x>
+	tweak = Tweak()
+	{
+		category  = "Edges"
+		title     = "Edge Amount"
+		sortindex = "30"
+		default   = "0.500000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+
+float1( "edgeHarshness" )
+{
+	x     = <cg03_y>
+	tweak = Tweak()
+	{
+		category  = "Edges"
+		title     = "Edge Harshness"
+		sortindex = "40"
+		default   = "2.0"
+		range     = "0.0", "16.0", "0.01"
+		color     = false
+	}
+}
+
+float3( "sceneTint" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	z     = <cg02_z>
+	tweak = Tweak()
+	{
+		category  = "Edges"
+		title     = "SceneTint"
+		sortindex = "60"
+		default   = "1.000000", "1.000000", "1.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = true
+	}
+}
+
+float1( "scriptFaker" )
+{
+	x     = <cg03_w>
+	tweak = Tweak()
+	{
+		category  = "Reveal"
+		title     = "Script Simulator (Tools Only)"
+		sortindex = "80"
+		default   = "0.0"
+		range     = "0.0", "1.0", "0.01"
+		color     = false
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "lit" )
+{
+	state	= "add + depth"
+	source  = "specialty/ghost.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT", "USE_ADD_BLEND"
+}

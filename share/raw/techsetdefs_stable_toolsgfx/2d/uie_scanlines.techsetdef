@@ -1,0 +1,37 @@
+#include "uie_base"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Sampler( "clampMipBilinearSampler" )
+{
+	tile = "no tile"
+	filter = "mip standard (2x bilinear)"
+}
+
+Technique( "unlit" )
+{
+	state = "blend + nocull"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "uie/uie_scanlines.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "uie/uie_scanlines.hlsl"
+		colorMapSampler = CodeTexture( "codeTexture0" )
+		clampMipBilinearSampler = "clampMipBilinearSampler"
+#endif
+	}
+}

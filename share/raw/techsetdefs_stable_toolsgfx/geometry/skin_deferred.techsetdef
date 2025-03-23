@@ -1,0 +1,25 @@
+#include "skin_base"
+
+Globals()
+{
+	category = "Geometry"
+
+	renderFlags = "lit deferred opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque"
+	defines = "BASE_SPEC", "USE_DETAIL_MAP", "NO_VERTEX_ALPHA"
+	source = "gbuffer_skin.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}

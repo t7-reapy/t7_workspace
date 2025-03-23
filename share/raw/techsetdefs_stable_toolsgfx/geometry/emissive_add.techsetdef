@@ -1,0 +1,120 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "emissive transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+Texture( "colorMap" )
+{
+	ref = true
+	image = Image( <colorMap, $white> )
+	tweak = Tweak( "Emissive", "Emissive Map", "0" )
+}
+
+float1( "hdrScale" )
+{
+	x = <scaleRGB>
+	tweak = Tweak( "Emissive", "HDR Scale", "10" )
+}
+
+Color( "colorTint" )
+{
+	value = "srgb_to_linear( <colorTint> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Albedo Tint"
+		sortindex = "30"
+		color = true
+	}
+}
+
+#if TOOLSGFX == "1"
+Technique( "unlit", "browser" )
+#else
+Technique( "unlit" )
+#endif
+{
+	state = "add + depth"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "techsetdef_unlit.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "techsetdef_unlit.hlsl"
+		defines = "MTL_BLEND_MODE_ADD", "USE_COLOR_TINT"
+		colorMapSampler = "colorMap"
+		hdrScale = "hdrScale"
+#endif
+	}
+}
+
+Technique( "lit" )
+{
+	state = "add + depth"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/reference_emissive_transparent.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "techsetdef_unlit.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/reference_emissive_transparent.hlsl"
+#else
+		source = "techsetdef_unlit.hlsl"
+		defines = "MTL_BLEND_MODE_BLEND", "USE_COLOR_TINT"
+		colorMapSampler = "colorMap"
+		hdrScale = "hdrScale"
+#endif
+	}
+}
+
+#if TOOLSGFX == "1"
+Technique( "oit" )
+{
+	state = "fallback + depth + rez + nocull"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/reference_emissive_transparent.hlsl"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/reference_emissive_transparent.hlsl"
+		defines = "USE_OIT", "USE_ADD_BLEND"
+	}
+}
+
+Technique( "debug color texel" )
+{
+	state = "add + depth"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/debug_texeldensity.hlsl"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/debug_texeldensity.hlsl"
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}
+#endif

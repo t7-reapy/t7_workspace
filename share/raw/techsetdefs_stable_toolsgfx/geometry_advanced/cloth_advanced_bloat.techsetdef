@@ -1,0 +1,148 @@
+#include "lit_detail_base"
+ 
+Globals()
+{
+	category = "Geometry Advanced"
+	renderFlags = "lit deferred opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+ 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+Sampler( "velveteenSampler" )
+{
+	tile = <tileReveal>
+	filter = <filterReveal>
+	tweak = Tweak()
+	{
+		category  = "Lighting"
+		sortindex = "30"
+	}
+}
+ 
+Texture( "velveteenMask" )
+{
+	image = Image()
+	{
+		map = <alphaRevealMap, $white_reveal>
+	}
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Lighting"
+		title     = "Velveteen Mask"
+		sortindex = "20"
+	}
+}
+ 
+Sampler( "tintBlendSampler" )
+{
+	tile = <texTile00>
+	filter = <filterColor00>
+}
+ 
+Texture( "tintBlendMask" )
+{
+	image = Image( <colorMap00, $white_multimask> )
+	semantic = "multipleMask"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "40"
+	}
+}
+ 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+float1( "waterRefractionAmount" )
+{
+	x = <waterRefractionAmount>
+	tweak = Tweak()
+	{
+		category  = "Lighting"
+		title     = "Velveteen"
+		sortindex = "10"
+	}
+}
+ 
+float2( "tintScale" )
+{
+	x = <dFlowUVScaleU>
+	y = <dFlowUVScaleV>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Tint Mask Scale"
+		sortindex	= "45"
+	}
+}
+ 
+Color( "primaryTint" ) : "colorTint"
+{
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Primary Tint"
+		sortindex = "50"
+		color = true
+	}
+}
+ 
+Color( "secondaryTint" )
+{
+	value = "srgb_to_linear( <colorTint1> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Secondary Tint"
+		sortindex = "60"
+		color = true
+	}
+}
+ 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+ 
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+ 
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+ 
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+ 
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque"
+	defines = "USE_DETAIL_MAP", "CHARACTER_TINT", "USE_BLOAT"
+	source = "gbuffer_cloth.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+ 
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+ 
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

@@ -1,0 +1,115 @@
+#include "lit_base_basic"
+#include "emissive_base"
+#include "transparent_shadow_base"
+#include "transparent_base"
+#include "camo_base"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit transparent"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "emissiveTint1" ).tweak = Tweak( "Emissive", "Tint State1", "10" )
+float1( "hdrScale" ).tweak = Tweak( "Emissive", "HDR Scale", "50" )
+float1( "emissiveFalloffPower" ).tweak = Tweak( "Emissive", "Falloff", "60" )
+
+Color( "tint1" )
+{
+	value = "srgb_to_linear( <colorTint2> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint State 2"
+		sortindex = "20"
+		color = true
+	}
+}
+Color( "tint2" )
+{
+	value = "srgb_to_linear( <colorTint3> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint State 3"
+		sortindex = "30"
+		color = true
+	}
+}
+Color( "tint3" )
+{
+	value = "srgb_to_linear( <colorTint4> )"
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Tint State 4"
+		sortindex = "40"
+		color = true
+	}
+}
+
+float1( "layerDepth" )
+{
+	x = <waterRoughness>
+	tweak = Tweak()
+	{
+		category  = "Emissive"
+		title     = "Depth"
+		sortindex = "70"
+	}
+}
+
+float3( "scriptControl" )
+{
+	x = <cg00_x>
+	y = <cg00_y>
+	z = <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Script Preview"
+		title		= "Tint (Brightness, State, Alpha)"
+		sortindex	= "80"
+		default		= "1.0"
+		range		= "0.0", "4.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "blend + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "blend + depth"
+	defines = "BASE_TEXTURES", "USE_COLOR_TINT", "USE_SCRIPT_CONTROLS", "USE_SCRIPT_FADE"
+	source = "lit_emissive_transparent.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

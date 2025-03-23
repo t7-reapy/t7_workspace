@@ -1,0 +1,15 @@
+void GenerateUI( asset Asset )
+{
+	Asset.BeginCategory( "Accolade Info" );
+	{
+		Asset.AddEntry_Combo( "vmType", "None" ).Show( false );
+		Asset.AddEntry_Combo("xstring_challengeWidget", "Accuracy | AirVehicleDestroy | Bullshark | Cybernetics | Defend | Explosion | Find | Grenade | GroundVehicleDestroy | HeavyWeapon | Kills | Melee | Score | Stealth | Traversal | TrickShot | Untouched | Weapon ").SetTitle("Challenge Widget");
+		Asset.AddEntry_String("xstring_challengeReference", "").SetTitle( "Challenge Reference" );
+		Asset.AddEntry_String("xstring_challengeName", "").SetTitle("Challenge Name");
+		Asset.AddEntry_String("xstring_challengeDetails", "").SetTitle("Challenge Description");
+		Asset.AddEntry_String("xstring_centerText", "").SetTitle("Center Goal Text");
+
+		Asset.AddEntry_AssetCombo("image_rewardImage", "image").SetTitle("Reward Image");
+		Asset.AddEntry_String("xstring_rewardName", "").SetTitle("Reward Name");
+	}
+}

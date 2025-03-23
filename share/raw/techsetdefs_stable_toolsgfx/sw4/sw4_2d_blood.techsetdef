@@ -1,0 +1,98 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Blend
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = invSrcAlpha
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = invSrcAlpha
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+Sampler( "Reveal_Map_Sampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+Texture( "Reveal_Map" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "revealMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\iw2_blood_reveal.tif"
+	}
+}
+Sampler( "Diffuse_Map_Sampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+Texture( "Diffuse_Map" )
+{
+	image    = Image( <colorMap01> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\iw2_blood_color.tif"
+	}
+}
+float1( "BloodBrightness" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		title     = "BloodBrightness"
+		sortindex = "0"
+		default   = "5.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "BloodIntensity" )
+{
+	x     = <cg01_x>
+	tweak = Tweak()
+	{
+		title     = "BloodIntensity"
+		sortindex = "0"
+		default   = "4.000000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_blood.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_BLEND"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

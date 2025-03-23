@@ -1,0 +1,69 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Add
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = one
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = one
+		writeChannels  = "rgba"
+	}
+	cull = "None"
+}
+Sampler( "Lookup2_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "Lookup2" )
+{
+	image    = Image( "tv_lookup" )
+	semantic = "diffuseMap"
+}
+Sampler( "PlusTile_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "PlusTile" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "sw4\\textures\\plus_grid2.tif"
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_holotable_grid2.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_ADD"
+	vs      = VertexShader()
+	{
+		defines    = "USE_VERTCOL 1"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

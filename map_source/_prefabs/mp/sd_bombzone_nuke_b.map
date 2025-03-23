@@ -1,0 +1,170 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{A0E09E57-48D8-411B-A8D1-204E3555AA5D}"
+"classname" "worldspawn"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{02ACED75-40FE-4473-98FB-D81206DBBFD4}"
+"classname" "trigger_use_touch"
+"script_bombmode_original" "1"
+"script_gameobjectname" "bombzone"
+"script_label" "_b"
+"target" "auto1"
+"targetname" "bombzone"
+"_color" "0.3 0.5 0.8"
+"cursorhint" "HINT_ACTIVATE"
+// brush 0
+{
+ guid "{83F9BCD6-82EA-4D67-9A37-A9DFFC526131}"
+ ( 8 8 0 ) ( -8 8 0 ) ( -8 -8 0 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 -16 16 ) ( -8 0 16 ) ( 8 0 16 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 -8 72 ) ( 8 -8 72 ) ( 8 -8 0 ) origin 64 64 0 64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 8 -8 72 ) ( 8 8 72 ) ( 8 8 0 ) origin 64 64 0 64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 8 8 72 ) ( -8 8 72 ) ( -8 8 0 ) origin 64 64 0 64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 8 72 ) ( -8 -8 72 ) ( -8 -8 0 ) origin 64 64 0 64 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{44A5CBAE-F72E-42B9-B553-2DF127B4DB03}"
+ ( 8 8 0 ) ( -6 8 0 ) ( -6 -8 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -6 -8 33 ) ( -6 8 33 ) ( 8 8 33 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 26 -64 12 ) ( 40 -64 12 ) ( 40 -64 0 ) trigger 64 64 0 64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -40 12 ) ( 72 -24 12 ) ( 72 -24 0 ) trigger 64 64 0 64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -24 64 12 ) ( -38 64 12 ) ( -38 64 0 ) trigger 64 64 0 64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -88 40 12 ) ( -88 24 12 ) ( -88 24 0 ) trigger 64 64 0 64 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 2
+{
+guid "{26D0EE9A-EAF4-4C50-8037-0165CA1512AE}"
+"classname" "trigger_use_touch"
+"script_gameobjectname" "bombzone"
+"targetname" "auto2"
+"_color" "0.3 0.5 0.8"
+"cursorhint" "HINT_ACTIVATE"
+// brush 0
+{
+ guid "{F8E9529E-4701-45BB-89DE-62E89BCB29FD}"
+ ( 8 8 0 ) ( -8 8 0 ) ( -8 -8 0 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 -8 16 ) ( -8 8 16 ) ( 8 8 16 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 -8 16 ) ( 8 -8 16 ) ( 8 -8 0 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 8 -8 16 ) ( 8 8 16 ) ( 8 8 0 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 8 8 16 ) ( -8 8 16 ) ( -8 8 0 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 8 16 ) ( -8 -8 16 ) ( -8 -8 0 ) origin 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{84FA9DA9-2767-4ADF-9D34-7C741FC6D5D2}"
+ ( 32 32 0 ) ( -32 32 0 ) ( -32 -32 0 ) trigger 64 64 -224 -32 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -32 -32 64 ) ( -32 32 64 ) ( 32 32 64 ) trigger 64 64 -224 -32 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -32 -32 16 ) ( 32 -32 16 ) ( 32 -32 0 ) trigger 64 64 -224 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 -32 16 ) ( 32 32 16 ) ( 32 32 0 ) trigger 64 64 32 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 32 16 ) ( -32 32 16 ) ( -32 32 0 ) trigger 64 64 -224 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -32 32 16 ) ( -32 -32 16 ) ( -32 -32 0 ) trigger 64 64 32 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 3
+{
+guid "{9CD403D5-E053-496D-9075-44F049CCBBA7}"
+"classname" "script_model"
+"DYNAMICPATH" "1"
+"angles" "0 270 0"
+"model" "p7_mp_bomb_stack"
+"origin" "0 0 0.1"
+"script_exploder" "2"
+"script_gameobjectname" "bombzone"
+"target" "auto2"
+"targetname" "auto1"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+"spawnflags" "1"
+}
+// entity 4
+{
+guid "{0244A2F0-5266-4EE1-9D4C-304900ADBC55}"
+"classname" "script_model"
+"angles" "0 270 0"
+"model" "p7_mp_bomb_stack_destroyed"
+"script_exploder" "2"
+"script_gameobjectname" "bombzone"
+"targetname" "exploder"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 5
+{
+guid "{0D999521-5B16-11E5-8C4A-2C27D7F03340}"
+"classname" "script_brushmodel"
+"DYNAMICPATH" "1"
+"script_gameobjectname" "bombzone"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"shadow_casting" "1"
+"spawnflags" "1"
+// brush 0
+{
+ guid "{998773C6-F1C7-4850-956F-0B12ED16A5CA}"
+ ( -58 2.5 43.5 ) ( 17 2.5 43.5 ) ( 17 -18.5 43.5 ) metal_clip_nosight 64 64 0 -39.5 0 0 lightmap_gray 16384 16384 -24 0.5 0 0
+ ( -26 -20.5 0 ) ( -26 -20.5 54 ) ( 34 -20.5 54 ) metal_clip_nosight 64 64 0 -40 0 0 lightmap_gray 16384 16384 -24 -40 0 0
+ ( 14 20 95 ) ( -61 20 95 ) ( -61 20 84 ) metal_clip_nosight 64 64 0 -40 0 0 lightmap_gray 16384 16384 -24 -40 0 0
+ ( -62 -19.5 0 ) ( 13 -19.5 0 ) ( 13 3.5 0 ) metal_clip_nosight 64 64 0 -39.5 0 0 lightmap_gray 16384 16384 -24 0.5 0 0
+ ( 37 -17.5 58 ) ( 37 -18.5 58 ) ( 37 -17.5 90 ) metal_clip_nosight 64 64 -0.5 -40 0 0 lightmap_gray 16384 16384 -0.5 0 0 0
+ ( -35.5 -19.5 58 ) ( -35.5 -17.5 58 ) ( -35.5 -19.5 90 ) metal_clip_nosight 64 64 -0.5 -40 0 0 lightmap_gray 16384.01 16384 -0.5 0 0 0
+}
+}
+// entity 6
+{
+guid "{2DC9E240-E24F-45E9-80C6-894C2BC097C7}"
+"classname" "script_brushmodel"
+"DYNAMICPATH" "1"
+"script_gameobjectname" "bombzone"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"shadow_casting" "1"
+"spawnflags" "1"
+// brush 0
+{
+ guid "{D00DD08B-7275-401B-B2CE-994768141439}"
+ ( -58 2.5 56.5 ) ( 17 2.5 56.5 ) ( 17 -18.5 56.5 ) metal_clip_nosight 64 64 0 -39.5 0 0 lightmap_gray 16384 16384 -24 0.5 0 0
+ ( -26 -10.5 0 ) ( -26 -10.5 54 ) ( 34 -10.5 54 ) metal_clip_nosight 64 64 0 -40 0 0 lightmap_gray 16384 16384 -24 -40 0 0
+ ( 14 -2.5 95 ) ( -61 -2.5 95 ) ( -61 -2.5 84 ) metal_clip_nosight 64 64 0 -40 0 0 lightmap_gray 16384 16384 -24 -40 0 0
+ ( -62 -19.5 43.5 ) ( 13 -19.5 43.5 ) ( 13 3.5 43.5 ) metal_clip_nosight 64 64 0 -39.5 0 0 lightmap_gray 16384 16384 -24 0.5 0 0
+ ( 37 -17.5 58 ) ( 37 -18.5 58 ) ( 37 -17.5 90 ) metal_clip_nosight 64 64 -0.5 -40 0 0 lightmap_gray 16384 16384 -0.5 0 0 0
+ ( -35.5 -20 58 ) ( -35.5 -18 58 ) ( -35.5 -20 90 ) metal_clip_nosight 64 64 -0.5 -40 0 0 lightmap_gray 16384.01 16384 -0.5 0 0 0
+}
+}

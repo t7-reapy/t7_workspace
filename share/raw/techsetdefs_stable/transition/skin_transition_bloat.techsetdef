@@ -1,0 +1,47 @@
+#include "skin_base"
+#include "transition_base"
+ 
+Globals()
+{
+	category = "Transition"
+	renderFlags = "lit forward sss"
+	availablePrefixes = "mc/ mcs/"
+}
+ 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+Bool( "debugBentNormal" )
+{
+	value = <gCheckBox00>
+	tweak = Tweak()
+	{
+	category  = "Debug Tools"
+	title     = "Debug bent normal: Black/White means Weak/Strong bent effect."
+	sortindex = "80"
+	}
+}
+ 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ 
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "lit_skin_advanced.hlsl"
+	defines = "USE_DEPTH_PREPASS"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+ 
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+ 
+Technique( "lit" )
+{
+	state = "forward opaque sss"
+	source = "lit_skin_advanced.hlsl"
+	defines = "BASE_SPEC", "USE_DETAIL_MAP", "USE_COLOR_TINT", "USE_TRANSITION_MATERIAL", "NO_VERTEX_ALPHA", "USE_BLOAT"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}

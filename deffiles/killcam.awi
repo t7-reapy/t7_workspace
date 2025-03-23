@@ -1,0 +1,54 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+const array<string> killcamTypeNames = {
+	"None",
+	"Helicopter",
+	"Destructible",
+	"Scripted",
+	"Explosive",
+	"Explosive Fast",
+	"Dog",
+	"Combat Robot",
+	"Artillery",
+	"Vehicle",
+}; // keep in sync with KillCamEntityType enum
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	Asset.AddEntry_Combo( "type", "killcam" ).Show( false );
+	Asset.AddEntry_Combo( "vmType", "none" ).Show( false ).SetValue( "none" );
+
+	string typesList = killcamTypeNames[0];
+	for( int i = 1; i < killcamTypeNames.length(); i++ )
+	{
+		typesList = typesList + "|" + killcamTypeNames[i];
+	}
+	
+	string type = Asset.AddEntry_Combo( "killCamTypeString", typesList ).SetTitle( "Killcam Type" ).UpdateOnChange( true ).GetValue();
+
+	int i;
+	for( i = 0; i < killcamTypeNames.length(); i++ )
+	{
+		if( killcamTypeNames[i] == type )
+			break;
+	}
+	if( i == killcamTypeNames.length() )
+		i = 0;
+	
+	Asset.AddEntry_Int( "killCamType", 0, 0, 100 ).Show( false ).SetInt( i );
+	
+	Asset.BeginCategory( "General" );	
+	{
+		Asset.AddEntry_Float( "killCamUpDist", 10, -100000, 100000 ).SetStep( 1 ).SetTitle( "Up Distance" ).SetToolTip( "Explosive kill camera: distance of camera vertically from explosive" );
+		Asset.AddEntry_Float( "killCamBackDist", 150, -100000, 100000 ).SetStep( 1 ).SetTitle( "Back Distance" ).SetToolTip( "Explosive kill camera: distance of camera backwards from explosive" );
+		Asset.AddEntry_Float( "killCamWallOutDist", 10, -100000, 100000 ).SetStep( 1 ).SetTitle( "Wall Out Distance" ).SetToolTip( "Explosive kill camera when stuck to wall: distance of camera out from wall" );
+		Asset.AddEntry_Float( "killCamWallSideDist", 30, -100000, 100000 ).SetStep( 1 ).SetTitle( "Wall Side Distance" ).SetToolTip( "Explosive kill camera when stuck to wall: distance of camera along wall from explosive" );
+		Asset.AddEntry_Float( "killCamGroundUpDist", 25, -100000, 100000 ).SetStep( 1 ).SetTitle( "Ground Up Distance" ).SetToolTip( "Explosive kill camera when stuck to ground: distance of camera vertically from explosive" );
+		Asset.AddEntry_Float( "killCamGroundBackDist", 50, -100000, 100000 ).SetStep( 1 ).SetTitle( "Ground Back Distance" ).SetToolTip( "Explosive kill camera when stuck to ground: distance of camera backwards from explosive" );
+	}
+}
+
+
+		

@@ -1,0 +1,17 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Technique( "unlit" )
+{
+	state = "depth write"
+	source = "techsetdef_depth_clear.hlsl"
+
+	vs = VertexShader()	{ }
+	ps = PixelShader() { }
+}

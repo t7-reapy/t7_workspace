@@ -1,0 +1,37 @@
+										
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+	renderFlags = "none"
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "replace"
+
+	vs = VertexShader()
+	{
+		source = "volumetric_light_upsample.hlsl"
+	}
+
+	ps = PixelShader()
+	{
+		source = "volumetric_light_upsample.hlsl"
+
+		floatZSampler = CodeTexture( "floatZ" )
+		depthSamplerState = Sampler( "no tile", "nomip nearest" )
+
+		volumeLightTexture = CodeTexture( "postEffect0" )
+		volumeLightSamplerState = Sampler( "no tile", "nomip bilinear" )
+
+		downsampledDepth = CodeTexture( "postEffect1" )
+		downsampledAlphaDepth = CodeTexture( "codeTexture0" )
+		floatAlphaZSampler = CodeTexture( "codeTexture1" )
+
+		pixelAlpha = CodeTexture( "oitFallbackBuffer" )
+	}
+}

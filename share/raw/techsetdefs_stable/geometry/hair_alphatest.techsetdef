@@ -1,0 +1,95 @@
+#include "lit_base_mid"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit forward opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "anisotropy" )
+{
+	x = <waterRefractionAmount>
+	tweak = Tweak()
+	{
+		category  = "Aniso Control"
+		title     = "Aniso Amount"
+		sortindex = "35"
+	}
+}
+
+Color( "specColorTint" )
+{
+	value = "srgb_to_linear( <specColorTint> )"
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Spec Color"
+		sortindex = "30"
+		color = true
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "thermal" ).defines = "THERMAL_ALPHA_TEST"
+Technique( "thermal" ).state = "thermal nocull"
+Sampler( "normalSampler" ).nobias = true
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass + nocull"
+	defines = "USE_ALPHA_TEST"
+	source = "techsetdef_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth alphatest nocull"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes alphatest nocull"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered alphatest nocull"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth + nocull"
+	defines = "USE_ALPHA_TEST"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque + nocull"
+	defines = "BASE_SPEC", "USE_ALPHA_TEST"
+	source = "lit_hair.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth + nocull"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

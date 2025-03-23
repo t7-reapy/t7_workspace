@@ -1,0 +1,36 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+State( "hblur" ) : "disable"
+{
+	stencilFront = StencilState()
+	{
+		enable	= true
+		func	= Equal
+		opFail	= Keep
+		opPass	= Keep
+		opZFail	= Keep
+	}
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "hblur"
+
+	vs = VertexShader()
+	{
+		source = "skin_hblur_ps.hlsl"
+	}
+	ps = PixelShader()
+	{
+		defines = "SUBSAMPLEINDEX 1"
+		source = "skin_hblur_ps.hlsl"
+		PointSampler = Sampler( "no tile", "nomip nearest" )
+	}
+}

@@ -1,0 +1,60 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearClampler" )
+{
+	tile   = "no tile"
+	filter = "nomip bilinear"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "outlineWidth" )
+{
+	x = <cg04_y>
+	tweak = Tweak()
+	{
+		category	= "Highlight"
+		title		= "Outline Width"
+		sortindex	= "90"
+		default		= "6"
+		range		= "0", "256", "1"
+	}
+}
+
+float1( "outlineBold" )
+{
+	x = <cg04_z>
+	tweak = Tweak()
+	{
+		category	= "Highlight"
+		title		= "Outline Boldness"
+		sortindex	= "100"
+		default		= "14.0"
+		range		= "0.0", "1024.0", "0.1"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/keyline_blend.hlsl"
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+		floatzTexture = CodeTexture( "floatZSampler" )
+		sonarDepthTexture = CodeTexture( "sonarDepthSampler" )
+		sonarColorTexture = CodeTexture( "sonarColorSampler" )
+	}
+}

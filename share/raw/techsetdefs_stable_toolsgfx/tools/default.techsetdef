@@ -1,0 +1,149 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Tools"
+	renderFlags = "emissive opaque"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+}
+
+Sampler( "colorSampler" )
+{
+	tile = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+
+Texture( "colorMap" )
+{
+	ref = true
+	image = Image( "$default" )
+}
+
+#if TOOLSGFX == "1"
+TechniqueTemplate( "build shadowmap depth default" )
+{
+	state = "buildShadowmap"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/build_shadowmap.hlsl"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/build_shadowmap.hlsl"
+	}
+}
+
+Technique( "build shadowmap depth" ) : "build shadowmap depth default"
+{
+}
+
+Technique( "build shadowmap depth layered" ) : "build shadowmap depth default"
+{
+	defines += "BUILD_SHADOWMAP_LAYERED"
+}
+
+#endif
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		vertexDecl = "generic"
+#endif
+	}
+	ps = PixelShader()
+	{
+	}
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+		defines = "USE_EMISSIVE"
+#else
+		source = "techsetdef_unlit.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		defines = "USE_EMISSIVE"
+#else
+		source = "techsetdef_unlit.hlsl"
+		defines = "MTL_BLEND_MODE_REPLACE"
+		colorMapSampler = "colorMap"
+#endif
+	}
+}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+#else
+		source = "techsetdef_unlit.hlsl"
+#endif
+	}
+	ps = PixelShader()
+	{
+#if TOOLSGFX == "1"
+		source = "ToolsGfx/simple.hlsl"
+#else
+		source = "techsetdef_unlit.hlsl"
+		defines = "MTL_BLEND_MODE_REPLACE"
+		colorMapSampler = "colorMap"
+#endif
+	}
+}
+
+#if TOOLSGFX == "1"
+Technique( "browser" )
+{
+	state = "blend"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/simple.hlsl"
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/simple.hlsl"
+	}
+}
+#endif
+
+#if TOOLSGFX == "1"
+Technique( "tri density" )
+{
+	state = "add + depth"
+	vs = VertexShader()
+	{
+		source = "ToolsGfx/matrix_mode.hlsl"
+		vertexDecl = "generic"
+	}
+	gs = GeometryShader()
+	{
+		source = "ToolsGfx/matrix_mode.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "ToolsGfx/matrix_mode.hlsl"
+	}
+}
+#endif

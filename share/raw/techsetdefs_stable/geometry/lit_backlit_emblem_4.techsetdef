@@ -1,0 +1,119 @@
+#include "lit_base_basic"
+
+Globals()
+{
+	category = "Geometry"
+	renderFlags = "lit deferred opaque nocull"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "thicknessMap" )
+{
+	image = Image( <alphaRevealMap, $thickness> )
+	semantic = "thicknessMap"
+	tweak = Tweak()
+	{
+		category  = "Backlight"
+		title     = "Thickness Map"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "backlightScatterColor" )
+{
+	value = "srgb_to_linear( <backlightScatterColor> )"
+	tweak = Tweak()
+	{
+		category  = "Backlight"
+		title     = "Tint"
+		sortindex = "20"
+		color = true
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "emblemScaleU" )
+{
+	x = <cg01_x>
+	tweak = Tweak()
+	{
+		category	= "Emblem UV Mapping Parameters"
+		title		= "Scale U"
+		default		= ".95"
+		range		= "0.5", "4.0", "0.125"
+		sortindex	= 50
+	}
+}
+
+float1( "emblemScaleV" )
+{
+	x = <cg01_y>
+	tweak = Tweak()
+	{
+		category	= "Emblem UV Mapping Parameters"
+		title		= "Scale V"
+		default		= ".58"
+		range		= "0.5", "4.0", "0.125"
+		sortindex	= 51
+	}
+}
+
+float4( "emblemSCALEandOFFSET" )
+{
+	x = "(1.0/<cg01_x>)"
+	y = "(1.0/<cg01_y>)"
+	z = "((1.0-<cg01_x>)/2.0)*(-1.0/<cg01_x>)"
+	w = "((1.0-<cg01_y>)/2.0)*(-1.0/<cg01_y>)"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth backlit"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes backlit"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered backlit"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth + nocull"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer" )
+{
+	state = "gbuffer opaque + nocull"
+	defines = "BASE_TEXTURES", "USE_COLOR_TINT","USE_EMBLEM_4"
+	source = "gbuffer_backlit_emblem.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "gbuffer motion vector" ) : "gbuffer"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth + nocull"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

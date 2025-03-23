@@ -1,0 +1,77 @@
+#include "state"
+#include "renderFlags"
+#include "2d_sprite_base"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "trilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "mip more expensive (2x trilinear)"
+}
+
+Texture( "colorMap" )
+{
+	image    = Image( <colorMap01, $gray_color> )
+	semantic = "diffuseMap"
+	ref      = true
+	tweak    = Tweak()
+	{
+		category  = "Textures"
+		title	  = "Color Map"
+		sortindex = "1"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "warpMaxMin" ).tweak = Tweak()
+{
+	category	= "Flipbook"
+	title		= "Start Time Offset (Max, Min)"
+	sortindex	= "30"	
+}
+float2( "heightMaxMin" ).tweak = ""
+float1( "heightScale" ).tweak = ""
+
+float2( "flipbookCounts" )
+{
+	x = <cg00_y>
+	y = <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Flipbook"
+		title		= "Rows, Columns"
+		sortindex	= "10"
+	}
+}
+float1( "flipbookTime" )
+{
+	x = <cg00_w>
+	tweak = Tweak()
+	{
+		category	= "Flipbook"
+		title		= "Frame Time"
+		sortindex	= "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state  = "blend + nocull"
+	source = "postfx\sprite_flipbook.hlsl"
+	defines += "SPRITE_EFFECT_SHADER"
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

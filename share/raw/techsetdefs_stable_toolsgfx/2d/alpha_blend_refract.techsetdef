@@ -1,0 +1,100 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "linear (mip none)"
+}
+
+Texture( "colorMap" )
+{
+	image    = Image( <colorMap, $white_diffuse> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "warpMap" )
+{
+	image    = Image( <normalMap, $normal> )
+	semantic = "normalMap"
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Warp Map"
+		sortindex	= "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "colorFlipRowsCols" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Flipbook (Rows, Columns)"
+		sortindex	= "30"
+	}
+}
+float1( "colorFlipTime" )
+{
+	x     = <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Flipbook Time"
+		sortindex	= "40"
+	}
+}
+
+float1( "colorScale" )
+{
+	x     = <cg01_w>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Scale"
+		sortindex	= "50"
+	}
+}
+
+float1( "warpAmount" )
+{
+	x     = <cg02_x>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Warp Amount"
+		sortindex	= "60"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/alpha_blend.hlsl"
+	defines += "REFRACTION"
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

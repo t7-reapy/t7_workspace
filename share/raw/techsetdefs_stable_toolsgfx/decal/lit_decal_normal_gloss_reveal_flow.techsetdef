@@ -1,0 +1,163 @@
+#include "lit_base_shaders"
+#include "lit_decal_base.inc"
+#include "normal_base"
+#include "gloss_base"
+#include "reveal_base"
+#include "flow_base"
+
+Globals()
+{
+	category = "Decal"
+	renderFlags = "reveal decal renderflags"
+	availablePrefixes = "mc/ mcs/ wc/ / vd/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "colorTint" )
+{
+	value = "srgb_to_linear( <colorTint> )"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Albedo Darken"
+		sortindex = "10"
+		color = true
+	}
+}
+
+Bool( "scaleReveal" )
+{
+	value = <zFeatherComputeSprites>
+	tweak = Tweak()
+	{
+		category	= "Reveal"
+		title		= "Scale reveal map with normal map."
+		sortindex	= "60"
+	}
+}
+
+float2( "glossRange" )
+{
+	x = <glossRangeMin>
+	y = <glossRangeMax>
+	tweak = Tweak()
+	{
+		category  = "Specular and Gloss"
+		title     = "Gloss Range"
+		sortindex = "45"
+	}
+}
+
+float1( "normalTile" )
+{
+	x = <cg02_x>
+	tweak = Tweak()
+	{
+		category	= "Normal"
+		title		= "Normal Tile"
+		default		= "251.0"
+		range		= "0.0", "4096.0", "0.1"
+		sortindex	= 29
+	}
+}
+
+float1( "normalScale" )
+{
+	x = <cg02_y>
+	tweak = Tweak()
+	{
+		category	= "Normal"
+		title		= "Normal Scale"
+		default		= "1.0"
+		range		= "0.0", "1.0", "0.005"
+		sortindex	= 30
+	}
+}
+
+float2( "normalMapScale" )
+{
+	x = "<cg02_x>"
+	y = "<cg02_x> * normalMap.width / normalMap.height"
+}
+
+float3( "normalAdjustAndGloss" )
+{
+	x = "4.0*<cg02_y>"
+	y = "-2.0*<cg02_y>"
+	z = "<cg02_w>"
+}
+
+Bool( "useOrientedNormalMap" )
+{
+  value = <orientNormalsToFlow>
+  tweak = Tweak()
+  {
+    category  = "Surface Parameters"
+    title     = "Orient normals to flow"
+    sortindex = "41"
+  }
+}
+
+Bool( "scaleNormalsWithFlow" )
+{
+	value = <scaleNormalsWithFlow>
+	tweak = Tweak()
+	{
+		category  = "Surface Parameters"
+		title     = "Scale normals with local flow rate"
+		sortindex = "42"
+	}
+}
+
+float1( "normalsFlowScaleMinTweak" )
+{
+	x = <normalsFlowScaleMin>
+	tweak = Tweak()
+	{
+		category  = "Normal"
+		title     = "Minimum normal flow scale multiplier"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.005"
+		sortindex = "31"
+	}
+}
+
+float2( "normalsFlowScaleMin" )
+{
+	x = "<normalsFlowScaleMin>"
+	y = "1.0 - <normalsFlowScaleMin>"
+}
+
+// NOT USED, JUST TO KEEP THE UNLIT PASS HAPPY
+Sampler( "colorSampler" ) : "normalSampler"
+{
+}
+Texture( "colorMap" ) : "normalMap"
+{
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" ) : "base lit decal unlit"
+{
+	defines = "USE_REVEAL_MAP"
+}
+
+Technique( "gbuffer" ) : "base lit decal gbuffer normal gloss"
+{
+	source = "gbuffer_decal_normal_gloss_reveal.hlsl"
+	defines += "USE_REVEAL_MAP", "BASE_SPEC", "USE_FLOW_ANY"
+}
+
+Technique( "debug color texel" )
+{
+	state = "blend + depth + decal"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}
+

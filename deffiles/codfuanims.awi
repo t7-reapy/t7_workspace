@@ -1,0 +1,85 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+array<string> gAnimKeys;
+void FillAnims()
+{
+	array<string> codfu_anims = {
+		"blockexit_stand",
+		"blockidle_crouch",
+		"blockidle_stand",
+		"blockintro_stand",
+
+		"hitfrontmid2_stand",
+		"hitfrontmid_crouch",
+		"hitfrontmid_stand",
+		"hitfrontupper_stand",
+
+		"idle_crouch",
+		"idle_stand",
+
+		"jab_crouch",
+		"jab_stand",
+		"jumpbackwardland_stand",
+		"jumpbackwardlaunch_stand",
+		"jumpforwardkick_stand",
+		"jumpforwardland_stand",
+		"jumpforwardlaunch_stand",
+		"jumpforwardpunch_stand",
+		"jumpupkick_stand",
+		"jumpupland_stand",
+		"jumpuplaunch_stand",
+		"jumpuppunch_stand",
+
+		"knockdownidle_stand",
+		"knockdownin_stand",
+		"knockdownout_stand",
+
+		"lowkick_stand",
+
+		"slowwalkbackward_stand",
+		"slowwalkforward_stand",
+		"sweep_crouch",
+
+		"turnaround_crouch",
+		"turnaround_stand",
+
+		"walkbackward_stand",
+		"walkforward_stand",
+
+		"midkick_stand",
+		"upper_stand",
+		"punch_stand",
+		"spinbackhand_stand",
+		"spinupper_stand",
+
+		"stand_crouch",
+		"crouch_stand"
+		
+	};
+	gAnimKeys = codfu_anims;
+}
+
+void GenerateUI( asset Asset )
+{
+	FillAnims();
+
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	 
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+		
+	Asset.AddEntry_Combo( "type", "codfuanims" ).Show( false );
+
+   	Asset.AddEntry_Combo( "vmType", "Server | Client | Both" ).SetTitle( "Script Type" ).SetToolTip( "Spawn this object in server script or client script?" ).Show( false );
+
+	Asset.BeginCategory( "Fighting Anims" );
+	{
+		for ( uint i = 0; i < gAnimKeys.length(); i++ )
+		{
+		Asset.AddEntry_AssetCombo( "CodFuAnim"+(i*2), "xanim" ).SetTitle( "CodFuAnim"+(i*2) ).SetValue("codfu_" + gAnimKeys[i] + "left");
+		Asset.AddEntry_AssetCombo( "CodFuAnim"+(i*2+1), "xanim" ).SetTitle( "CodFuAnim"+(i*2+1) ).SetValue("codfu_" + gAnimKeys[i] + "right");
+		}
+	}
+
+}
+

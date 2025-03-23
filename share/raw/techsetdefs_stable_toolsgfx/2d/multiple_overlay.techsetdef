@@ -1,0 +1,562 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "linear (mip none)"
+}
+Sampler( "bilinearClampler" )
+{
+	tile   = "no tile"
+	filter = "linear (mip none)"
+}
+
+Texture( "colorMap" )
+{
+	image    = Image( <colorMap, $white> )
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "scanlineMap" )
+{
+	image    = Image( <colorMap00, $white> )
+	tweak    = Tweak()
+	{
+		category	= "Scanlines"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "widgetMap1" )
+{
+	image    = Image( <colorMap01, $white> )
+	tweak    = Tweak()
+	{
+		category	= "Widget 1"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+Texture( "widgetMap2" )
+{
+	image    = Image( <colorMap02, $white> )
+	tweak    = Tweak()
+	{
+		category	= "Widget 2"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+Texture( "widgetMap3" )
+{
+	image    = Image( <colorMap03, $white> )
+	tweak    = Tweak()
+	{
+		category	= "Widget 3"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+Texture( "widgetMap4" )
+{
+	image    = Image( <colorMap04, $white> )
+	tweak    = Tweak()
+	{
+		category	= "Widget 4"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+Texture( "widgetMap5" )
+{
+	image    = Image( <colorMap05, $white> )
+	tweak    = Tweak()
+	{
+		category	= "Widget 5"
+		title		= "Color Map"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "scanlineScale" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Scanlines"
+		title		= "Scale"
+		sortindex	= "20"
+		default		= "1.0"
+		range		= "1.0", "4096", "0.01"
+	}
+}
+
+float2( "w1ScaleUVs" )
+{
+	x     = <cg00_y>
+	y     = <cg00_z>
+	tweak = Tweak()
+	{
+		category	= "Widget 1"
+		title		= "Scale (U, V)"
+		sortindex	= "30"
+		default		= "1.0"
+		range		= "1.0", "4096", "0.01"
+	}
+}
+float2( "w1OffsetUVs" )
+{
+	x     = <cg00_w>
+	y     = <cg01_x>
+	tweak = Tweak()
+	{
+		category	= "Widget 1"
+		title		= "Offset (U, V)"
+		sortindex	= "40"
+		default		= "0.0"
+		range		= "-1.0", "1.0", "0.01"
+	}
+}
+float2( "w1RotateUVs" )
+{
+	x     = <cg01_y>
+	y     = <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Widget 1"
+		title		= "Rotation (Start, Spin)"
+		sortindex	= "50"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+float2( "w1ScrollUVs" )
+{
+	x     = <cg01_w>
+	y     = <cg02_x>
+	tweak = Tweak()
+	{
+		category	= "Widget 1"
+		title		= "Scroll (U, V)"
+		sortindex	= "60"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+float2( "w1ZoomUVs" )
+{
+	x     = <cg02_y>
+	y     = <cg02_z>
+	tweak = Tweak()
+	{
+		category	= "Widget 1"
+		title		= "Zoom (Min, Max)"
+		sortindex	= "70"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+float1( "w1ZoomRate" )
+{
+	x     = <cg02_w>
+	tweak = Tweak()
+	{
+		category	= "Widget 1"
+		title		= "Zoom Rate"
+		sortindex	= "70"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+Bool( "w1Enabled" )
+{
+	value = <gCheckBox00>
+	tweak = Tweak()
+	{
+		category	= "Widget 1"
+		title		= "Enabled"
+		sortindex	= "80"
+	}
+}
+
+float2( "w2ScaleUVs" )
+{
+	x     = <cg03_x>
+	y     = <cg03_y>
+	tweak = Tweak()
+	{
+		category	= "Widget 2"
+		title		= "Scale (U, V)"
+		sortindex	= "30"
+		default		= "1.0"
+		range		= "1.0", "4096", "0.01"
+	}
+}
+float2( "w2OffsetUVs" )
+{
+	x     = <cg03_z>
+	y     = <cg03_w>
+	tweak = Tweak()
+	{
+		category	= "Widget 2"
+		title		= "Offset (U, V)"
+		sortindex	= "40"
+		default		= "0.0"
+		range		= "-1.0", "1.0", "0.01"
+	}
+}
+float2( "w2RotateUVs" )
+{
+	x     = <cg04_x>
+	y     = <cg04_y>
+	tweak = Tweak()
+	{
+		category	= "Widget 2"
+		title		= "Rotation (Start, Spin)"
+		sortindex	= "50"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+float2( "w2ScrollUVs" )
+{
+	x     = <cg04_z>
+	y     = <cg04_w>
+	tweak = Tweak()
+	{
+		category	= "Widget 2"
+		title		= "Scroll (U, V)"
+		sortindex	= "60"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+float2( "w2ZoomUVs" )
+{
+	x     = <cg05_x>
+	y     = <cg05_y>
+	tweak = Tweak()
+	{
+		category	= "Widget 2"
+		title		= "Zoom (Min, Max)"
+		sortindex	= "70"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+float1( "w2ZoomRate" )
+{
+	x     = <cg05_z>
+	tweak = Tweak()
+	{
+		category	= "Widget 2"
+		title		= "Zoom Rate"
+		sortindex	= "70"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+Bool( "w2Enabled" )
+{
+	value = <gCheckBox01>
+	tweak = Tweak()
+	{
+		category	= "Widget 2"
+		title		= "Enabled"
+		sortindex	= "80"
+	}
+}
+
+float2( "w3ScaleUVs" )
+{
+	x     = <cg05_w>
+	y     = <cg06_x>
+	tweak = Tweak()
+	{
+		category	= "Widget 3"
+		title		= "Scale (U, V)"
+		sortindex	= "30"
+		default		= "1.0"
+		range		= "1.0", "4096", "0.01"
+	}
+}
+float2( "w3OffsetUVs" )
+{
+	x     = <cg06_y>
+	y     = <cg06_z>
+	tweak = Tweak()
+	{
+		category	= "Widget 3"
+		title		= "Offset (U, V)"
+		sortindex	= "40"
+		default		= "0.0"
+		range		= "-1.0", "1.0", "0.01"
+	}
+}
+float2( "w3RotateUVs" )
+{
+	x     = <cg06_w>
+	y     = <cg07_x>
+	tweak = Tweak()
+	{
+		category	= "Widget 3"
+		title		= "Rotation (Start, Spin)"
+		sortindex	= "50"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+float2( "w3ScrollUVs" )
+{
+	x     = <cg07_y>
+	y     = <cg07_z>
+	tweak = Tweak()
+	{
+		category	= "Widget 3"
+		title		= "Scroll (U, V)"
+		sortindex	= "60"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+float2( "w3ZoomUVs" )
+{
+	x     = <cg07_w>
+	y     = <cg08_x>
+	tweak = Tweak()
+	{
+		category	= "Widget 3"
+		title		= "Zoom (Min, Max)"
+		sortindex	= "70"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+float1( "w3ZoomRate" )
+{
+	x     = <cg08_y>
+	tweak = Tweak()
+	{
+		category	= "Widget 3"
+		title		= "Zoom Rate"
+		sortindex	= "70"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+Bool( "w3Enabled" )
+{
+	value = <gCheckBox02>
+	tweak = Tweak()
+	{
+		category	= "Widget 3"
+		title		= "Enabled"
+		sortindex	= "80"
+	}
+}
+
+float2( "w4ScaleUVs" )
+{
+	x     = <cg08_z>
+	y     = <cg08_w>
+	tweak = Tweak()
+	{
+		category	= "Widget 4"
+		title		= "Scale (U, V)"
+		sortindex	= "30"
+		default		= "1.0"
+		range		= "1.0", "4096", "0.01"
+	}
+}
+float2( "w4OffsetUVs" )
+{
+	x     = <cg09_x>
+	y     = <cg09_y>
+	tweak = Tweak()
+	{
+		category	= "Widget 4"
+		title		= "Offset (U, V)"
+		sortindex	= "40"
+		default		= "0.0"
+		range		= "-1.0", "1.0", "0.01"
+	}
+}
+float2( "w4RotateUVs" )
+{
+	x     = <cg09_z>
+	y     = <cg09_w>
+	tweak = Tweak()
+	{
+		category	= "Widget 4"
+		title		= "Rotation (Start, Spin)"
+		sortindex	= "50"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+float2( "w4ScrollUVs" )
+{
+	x     = <cg10_x>
+	y     = <cg10_y>
+	tweak = Tweak()
+	{
+		category	= "Widget 4"
+		title		= "Scroll (U, V)"
+		sortindex	= "60"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+float2( "w4ZoomUVs" )
+{
+	x     = <cg10_z>
+	y     = <cg10_w>
+	tweak = Tweak()
+	{
+		category	= "Widget 4"
+		title		= "Zoom (Min, Max)"
+		sortindex	= "70"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+float1( "w4ZoomRate" )
+{
+	x     = <cg11_x>
+	tweak = Tweak()
+	{
+		category	= "Widget 4"
+		title		= "Zoom Rate"
+		sortindex	= "70"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+Bool( "w4Enabled" )
+{
+	value = <gCheckBox03>
+	tweak = Tweak()
+	{
+		category	= "Widget 4"
+		title		= "Enabled"
+		sortindex	= "80"
+	}
+}
+
+float2( "w5ScaleUVs" )
+{
+	x     = <cg11_y>
+	y     = <cg11_z>
+	tweak = Tweak()
+	{
+		category	= "Widget 5"
+		title		= "Scale (U, V)"
+		sortindex	= "30"
+		default		= "1.0"
+		range		= "1.0", "4096", "0.01"
+	}
+}
+float2( "w5OffsetUVs" )
+{
+	x     = <cg11_w>
+	y     = <cg12_x>
+	tweak = Tweak()
+	{
+		category	= "Widget 5"
+		title		= "Offset (U, V)"
+		sortindex	= "40"
+		default		= "0.0"
+		range		= "-1.0", "1.0", "0.01"
+	}
+}
+float2( "w5RotateUVs" )
+{
+	x     = <cg12_y>
+	y     = <cg12_z>
+	tweak = Tweak()
+	{
+		category	= "Widget 5"
+		title		= "Rotation (Start, Spin)"
+		sortindex	= "50"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+float2( "w5ScrollUVs" )
+{
+	x     = <cg12_w>
+	y     = <cg13_x>
+	tweak = Tweak()
+	{
+		category	= "Widget 5"
+		title		= "Scroll (U, V)"
+		sortindex	= "60"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+float2( "w5ZoomUVs" )
+{
+	x     = <cg13_y>
+	y     = <cg13_z>
+	tweak = Tweak()
+	{
+		category	= "Widget 5"
+		title		= "Zoom (Min, Max)"
+		sortindex	= "70"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+float1( "w5ZoomRate" )
+{
+	x     = <cg13_w>
+	tweak = Tweak()
+	{
+		category	= "Widget 5"
+		title		= "Zoom Rate"
+		sortindex	= "70"
+		default		= "0.0"
+		range		= "0.0", "360.0", "0.01"
+	}
+}
+Bool( "w5Enabled" )
+{
+	value = <gCheckBox04>
+	tweak = Tweak()
+	{
+		category	= "Widget 5"
+		title		= "Enabled"
+		sortindex	= "80"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	source = "postfx/multiple_overlay.hlsl"
+	vs = VertexShader() { }
+	ps = PixelShader()
+	{
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

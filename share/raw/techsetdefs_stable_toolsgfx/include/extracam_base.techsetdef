@@ -1,0 +1,87 @@
+#include "lit_base_shaders"
+#include "shadowmap_technique_base"
+
+uint1( "extracamSelect" )
+{
+	x = <sw_static_int_00>
+	tweak = Tweak()
+	{
+		category  = "Extra Cam"
+		title	  = "Camera Index"
+		sortindex = "1"
+		default   = "1"
+		range     = "1", "4", "1"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+#if TOOLSGFX == "1"
+float1( "extracamSelectFloat" )
+{
+	x = <sw_static_int_00>
+}
+
+Texture( "extracamTexture1" )
+{
+	image = Image( "extracam_debug_1" )
+}
+
+Texture( "extracamTexture2" )
+{
+	image = Image( "extracam_debug_2" )
+}
+
+Texture( "extracamTexture3" )
+{
+	image = Image( "extracam_debug_3" )
+}
+
+Texture( "extracamTexture4" )
+{
+	image = Image( "extracam_debug_4" )
+}
+#endif
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+TechniqueTemplate( "extracam lit" )
+{
+	source = "techsetdef_extracam.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader()
+	{
+#if TOOLSGFX != "1"
+	  	extracamTexture1 = CodeTexture( "extracamTexture1" )
+	  	extracamTexture2 = CodeTexture( "extracamTexture2" )
+	  	extracamTexture3 = CodeTexture( "extracamTexture3" )
+	  	extracamTexture4 = CodeTexture( "extracamTexture4" )
+#endif
+
+ 	   	extracamSampler = Sampler( "no tile", "nomip bilinear" )
+	}
+}

@@ -1,0 +1,68 @@
+
+void GenerateUI( asset Asset )
+{
+	// Hidden
+	
+	Asset.AddEntry_String( "configstringFileType", "VEHICLEFXDEF" ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	// Properties
+	
+	string Type = Asset.AddEntry_Combo( "type", "nitrous | ground | aircraft | boat | tank" ).SetTitle("Type").UpdateOnChange( true ).GetValue();
+	Asset.AddEntry_Path( "csvInclude", "" ).SetRelativePath( "share/zone_source/" ).SetTitle( "CSV Include" ).SetToolTip( "Any additional assets that this vehicle type might need" );	
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	Asset.BeginCategory( "TreadFx", 1, 0.3, 0.2, "Icon_FX.png" );
+	{	
+		AddSurfaceFX( Asset, "treadFx" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	Asset.BeginCategory( "PeelFx", 1, 0.3, 0.2, "Icon_FX.png" );
+	{	
+		AddSurfaceFX( Asset, "peelFx" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	Asset.BeginCategory( "SkidFx", 1, 0.3, 0.2, "Icon_FX.png" );
+	{	
+		AddSurfaceFX( Asset, "skidFx" );
+	}
+}
+
+void AddSurfaceFX( asset Asset, string type )
+{
+	Asset.AddEntry_Path( type + "Asphalt", "" ).SetTitle( "Asphalt" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Bark", "" ).SetTitle( "Bark" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Brick", "" ).SetTitle( "Brick" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Carpet", "" ).SetTitle( "Carpet" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Ceramic", "" ).SetTitle( "Ceramic" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Cloth", "" ).SetTitle( "Cloth" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Concrete", "" ).SetTitle( "Concrete" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Default", "" ).SetTitle( "Default" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Dirt", "" ).SetTitle( "Dirt" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Flesh", "" ).SetTitle( "Flesh" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Foliage", "" ).SetTitle( "Foliage" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Glass", "" ).SetTitle( "Glass" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Grass", "" ).SetTitle( "Grass" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Gravel", "" ).SetTitle( "Gravel" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Ice", "" ).SetTitle( "Ice" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Metal", "" ).SetTitle( "Metal" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Mud", "" ).SetTitle( "Mud" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "PaintedMetal", "" ).SetTitle( "PaintedMetal" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Plaster", "" ).SetTitle( "Plaster" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Rock", "" ).SetTitle( "Rock" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Rubber", "" ).SetTitle( "Rubber" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Sand", "" ).SetTitle( "Sand" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Snow", "" ).SetTitle( "Snow" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Water", "" ).SetTitle( "Water" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "Wood", "" ).SetTitle( "Wood" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "MetalThin", "" ).SetTitle( "MetalThin" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "MetalHollow", "" ).SetTitle( "MetalHollow" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "MetalCatwalk", "" ).SetTitle( "MetalCatwalk" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "MetalCar", "" ).SetTitle( "MetalCar" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "GlassCar", "" ).SetTitle( "GlassCar" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "GlassBulletproof", "" ).SetTitle( "GlassBulletproof" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "WaterShallow", "" ).SetTitle( "WaterShallow" ).SetRelativePath( "share/raw/fx/" );
+	Asset.AddEntry_Path( type + "BodyArmor", "" ).SetTitle( "BodyArmor" ).SetRelativePath( "share/raw/fx/" );
+}

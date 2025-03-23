@@ -1,0 +1,23 @@
+
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "Filters"
+}
+
+Technique( "lit", "unlit" )
+{
+	state = "disable"
+	source = "postfx/postfx_keyline.hlsl"
+	defines = "USE_VERTCOL 0"
+
+	vs = VertexShader()
+	{
+	}
+	ps = PixelShader()
+	{
+ 		bilinearClamp = Sampler("no tile", "nomip bilinear")
+	}
+}

@@ -1,0 +1,24 @@
+#include "state"
+#include "renderFlags"
+#include "usage"
+#include "debug_shared.inc.techsetdef"
+
+// shaders
+VertexShader( "vs_generic" )
+{
+#if TOOLSGFX == "1"
+	vertexDecl = "generic"
+#endif
+}
+
+PixelShader( "ps_generic" )
+{
+#if TOOLSGFX != "1"
+	samplerLinear = Sampler( "tile both", "mip (1x trilinear)", true )
+	samplerLinearClamp = Sampler( "no tile", "mip (1x trilinear)", true )
+	shadowmapReadSampler = Sampler( "tile both", "nomip bilinear", true )
+#endif
+#if PLAT_DURANGO == "1"
+#endif
+}
+

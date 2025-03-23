@@ -1,0 +1,57 @@
+
+#if TOOLSGFX != "1"
+Technique( "wireframe" )
+{
+	state = "wireframe + nocull + decal"
+	source = "wireframe.hlsl"
+
+	vs = VertexShader() { }
+	ps = PixelShader() { }
+}
+
+Technique( "overdraw" )
+{
+	state = State()
+	{
+		blendState = BlendState()
+		{
+			colorBlendFunc = add
+			colorBlendSrc  = one
+			colorBlendDst  = one
+			writeChannels = "r"
+		}
+	}
+	source = "overdraw.hlsl"
+
+	vs = VertexShader() { }
+	ps = PixelShader() { }
+}
+#endif
+
+Technique( "tri density" )
+{
+	state = "add + depth"
+#if TOOLSGFX == "1"
+	source = "ToolsGfx/matrix_mode.hlsl"
+#else
+	source = "matrix_mode.hlsl"
+#endif
+
+	vs = VertexShader()
+	{
+#if TOOLSGFX == "1"
+		vertexDecl = "generic"
+#endif
+#if PLAT_ORBIS == "1"
+		primitiveType = "pointlist"
+#endif
+	}
+#if PLAT_ORBIS != "1"
+	gs = GeometryShader()
+	{
+	}
+#endif
+	ps = PixelShader()
+	{
+	}
+}

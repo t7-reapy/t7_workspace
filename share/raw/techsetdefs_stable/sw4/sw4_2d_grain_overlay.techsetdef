@@ -1,0 +1,115 @@
+#include "state.techsetdef"
+Globals()
+{
+	renderFlags = RenderFlags()
+	{
+		is2D                = true
+		
+		forFX               = false
+		isEmissive          = false
+		
+		isTransparent       = true
+	}
+	category          = "ShaderWorks 2D"
+	availablePrefixes = ""
+}
+State( "state" )
+{
+	blendState = BlendState()
+	{
+		// Add
+		colorBlendFunc = add
+		colorBlendSrc  = srcAlpha
+		colorBlendDst  = one
+		alphaBlendFunc = add
+		alphaBlendSrc  = srcAlpha
+		alphaBlendDst  = one
+		writeChannels  = "rgba"
+	}
+	cull = "Back"
+}
+Sampler( "Overlay_Map_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip standard (2x bilinear)"
+}
+Texture( "Overlay_Map" )
+{
+	image    = Image( <colorMap01> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "1"
+		default   = "texture_assets\\hud\\nightvision_overlay_goggles.tif"
+	}
+}
+Sampler( "Grain_Map_Sampler" )
+{
+	tile   = "tile both"
+	filter = "mip (1x bilinear)"
+}
+Texture( "Grain_Map" )
+{
+	image    = Image( <colorMap00> )
+	semantic = "diffuseMap"
+	tweak    = Tweak()
+	{
+		sortindex = "0"
+		default   = "texture_assets\\hud\\nightvision_overlay_grain.tif"
+	}
+}
+float4( "Overlay_Color" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	z     = <cg02_z>
+	w     = <cg02_w>
+	tweak = Tweak()
+	{
+		title     = "Overlay_Color"
+		sortindex = "4"
+		default   = "0.000000", "0.000000", "0.000000", "0.400000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float4( "Grain_Color" )
+{
+	x     = <cg01_x>
+	y     = <cg01_y>
+	z     = <cg01_z>
+	w     = <cg01_w>
+	tweak = Tweak()
+	{
+		title     = "Grain_Color"
+		sortindex = "3"
+		default   = "0.000000", "1.000000", "0.000000", "0.800000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+float1( "Grain_Amount" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		title     = "Grain_Amount"
+		sortindex = "2"
+		default   = "0.500000"
+		range     = "-1e+009", "1e+009", "0.01"
+		color     = false
+	}
+}
+Technique( "unlit" )
+{
+	state   = "state"
+	source  = "ShaderWorks\sw4_2d_grain_overlay.fx"
+	defines = "CONFIG_UNLIT" , "MTL_BLEND_MODE_ADD"
+	vs      = VertexShader()
+	{
+		vertexDecl = "generic"
+	}
+	ps = PixelShader()
+	{
+	}
+}

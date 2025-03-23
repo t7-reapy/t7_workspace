@@ -1,0 +1,131 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Sampler( "bilinearSampler" )
+{
+	tile   = "tile both*"
+	filter = "linear (mip none)"
+}
+
+Texture( "noiseTexture" )
+{
+	image    = Image( <colorMap, $white> )
+	tweak    = Tweak()
+	{
+		category	= "Color"
+		title		= "Noise Map"
+		sortindex	= "10"
+	}
+}
+
+Texture( "maskTexture" )
+{
+	image    = Image( <alphaRevealMap, $white_reveal> )
+	tweak    = Tweak()
+	{
+		category	= "Blur"
+		title		= "Mask Map"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "noiseScale" )
+{
+	x     = <cg00_y>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Scale"
+		default		= "1.0"
+		range		= "1.0", "128.0", "0.01"
+		sortindex	= "20"
+	}
+}
+
+float2( "noiseRowsCols" )
+{
+	x     = <cg02_x>
+	y     = <cg02_y>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Flipbook (Rows, Columns)"
+		default		= "1.0"
+		range		= "0.0", "32.0", "1.0"
+		sortindex	= "30"
+	}
+}
+
+float1( "noiseFrameTime" )
+{
+	x     = <cg02_z>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Flipbook Time"
+		default		= "1.0"
+		range		= "0.001", "32.0", "0.01"
+		sortindex	= "40"
+	}
+}
+
+float1( "alphaRevealSoftEdge" )
+{
+	x     = <alphaRevealSoftEdge>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Reveal Soft Edge"
+		sortindex	= "50"
+	}
+}
+
+float1( "alphaRevealRamp" )
+{
+	x     = <alphaRevealRamp>
+	tweak = Tweak()
+	{
+		category	= "Color"
+		title		= "Reveal Ramp"
+		sortindex	= "60"
+	}
+}
+
+float1( "blurRadius" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		category	= "Blur"
+		title		= "Amount"
+		default		= "8.0"
+		range		= "0", "1024", "1.0"
+		sortindex	= "20"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "unlit" )
+{
+	state = "replace + nocull"
+	vs = VertexShader()
+	{
+		source = "postfx/vehicle_takeover.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "postfx/vehicle_takeover.hlsl"
+		frameBuffer = CodeTexture( "resolvedPostSun" )
+	}
+}

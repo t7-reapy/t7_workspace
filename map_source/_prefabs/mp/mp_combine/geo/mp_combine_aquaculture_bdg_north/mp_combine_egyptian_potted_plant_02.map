@@ -1,0 +1,120 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{8BE46DFD-01C4-41BC-8C7C-AD115EAB0C4E}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lightingquality" "1024"
+"newsun" "1"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"suncolor" "1 1 1"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{0ABEC077-03E2-427F-9E05-D81EEA5155E0}"
+"classname" "misc_model"
+"model" "p7_pottery_terracotta_f_tan"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 2
+{
+guid "{A1A2E059-85FA-4FE2-9234-23D8B137EB3F}"
+"classname" "misc_model"
+"model" "p7_foliage_plant_lion_ear_flower_medium"
+"origin" "0 0 12"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 3
+{
+guid "{9905B304-5032-485C-842B-078818D3ADFA}"
+"classname" "misc_model"
+"model" "p7_foliage_plant_lion_ear_flower_single"
+"origin" "0 0 12"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 4
+{
+guid "{7E12BBBF-A5A6-4B1F-B653-107D20DE5BBA}"
+"classname" "func_group"
+"type" "patchCapped"
+// brush 0
+ {
+  guid "{40FC3709-4B3D-11E4-B908-2C27D7F0333E}"
+  mesh
+  {
+  contents weaponClip detail;
+  toolFlags;
+   t7_sand_pebbles_fine_golden
+   lightmap_gray
+   5 5 0 8
+   (
+	v 0 -5 13.25 t 193.536 30.784023 0 0.3125 f 1
+	v -1.8404735 -4.6489415 13.25 t 178.81221 27.975548 -0.1150296 0.29055884 f 1
+	v -3.5355339 -3.5355339 13.25 t 165.25175 19.068287 -0.22097087 0.22097087
+	v -4.6489415 -1.8404735 13.25 t 156.34448 5.5077915 -0.29055884 0.1150296
+	v -5 0 13.25 t 153.53603 -9.2160044 -0.3125 0
+   )
+   (
+	v 1.8404735 -4.6489415 13.25 t 208.25977 27.975548 0.1150296 0.29055884 f 1
+	v -3.1501283e-008 -3.6450629 12.806329 t 193.536 19.944515 -1.9688302e-009 0.22781643 f 1
+	v -1.9858867 -1.9858867 12.633064 t 177.64893 6.6710949 -0.12411792 0.12411792
+	v -3.6450629 -3.1501283e-008 12.806329 t 164.37552 -9.2160044 -0.22781643 1.9688302e-009
+	v -4.6489415 1.8404735 13.25 t 156.34448 -23.939802 -0.29055884 -0.1150296
+   )
+   (
+	v 3.5355339 -3.5355339 13.25 t 221.8203 19.068287 0.22097087 0.22097087
+	v 1.9858867 -1.9858867 12.633064 t 209.42308 6.6710949 0.12411792 0.12411792
+	v 0 0 12.392136 t 193.536 -9.2160044 0 0 f 1
+	v -1.9858867 1.9858867 12.633064 t 177.64893 -25.103117 -0.12411792 -0.12411792 f 1
+	v -3.5355339 3.5355339 13.25 t 165.25175 -37.500275 -0.22097087 -0.22097087
+   )
+   (
+	v 4.6489415 -1.8404735 13.25 t 230.72755 5.5077915 0.29055884 0.1150296
+	v 3.6450629 3.1501283e-008 12.806329 t 222.69652 -9.2160196 0.22781643 -1.9688302e-009
+	v 1.9858867 1.9858867 12.633064 t 209.42308 -25.103117 0.12411792 -0.12411792 f 1
+	v 3.1501283e-008 3.6450629 12.806329 t 193.536 -38.376492 1.9688302e-009 -0.22781643 f 1
+	v -1.8404735 4.6489415 13.25 t 178.81221 -46.407532 -0.1150296 -0.29055884
+   )
+   (
+	v 5 0 13.25 t 233.53601 -9.2160044 0.3125 0
+	v 4.6489415 1.8404735 13.25 t 230.72755 -23.939802 0.29055884 -0.1150296
+	v 3.5355339 3.5355339 13.25 t 221.8203 -37.500275 0.22097087 -0.22097087
+	v 1.8404735 4.6489415 13.25 t 208.25977 -46.407532 0.1150296 -0.29055884
+	v 0 5 13.25 t 193.536 -49.215996 0 -0.3125
+   )
+  }
+ }
+}

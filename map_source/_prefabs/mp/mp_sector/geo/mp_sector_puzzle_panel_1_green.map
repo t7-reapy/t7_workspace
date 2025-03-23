@@ -1,0 +1,65 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{F015F7F9-69DB-11E4-986A-2C27D7F024B0}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{F85C40D3-69DB-11E4-986A-2C27D7F024B0}"
+  contents weaponClip detail ai_nosight;
+ ( -112 -110 -13.5 ) ( -112 -46 -13.5 ) ( -64 -46 -13.5 ) t7_concrete_poured_bunker_dirty_01 128 128 1264 560 0 0 lightmap_gray 16384 16384 1232 560 0 0
+ ( 8 -102 19 ) ( 8 -38 19 ) ( 8 -38 -117 ) t7_concrete_slabs_interlocked 64 64 -543 176 0 0 lightmap_gray 16384 16384 -560 179 0 0
+ ( 0 -64 293 ) ( 0 -48 293 ) ( 0 -64 325 ) caulk 64 64 -560 177 0 0 lightmap_gray 16384 16384 -560 179 0 0
+ ( 8.25 216 -16 ) ( 8.25 192 -16 ) ( 40.25 216 -16 ) t7_concrete_poured_bunker_dirty_01 128 128 1264 560 0 0 lightmap_gray 16384 16384 1264 560 0 0
+ ( 12 -31 109.5 ) ( 0 -31 109.5 ) ( 0 -31 141.5 ) t7_concrete_poured_bunker_dirty_01 128 128 1264 176 0 0 lightmap_gray 16384 16384 1264 179 0 0
+ ( 0 -20 -13 ) ( 8 -20 -13 ) ( 0 -20 19 ) t7_concrete_poured_bunker_dirty_01 128 128 1264 176 0 0 lightmap_gray 16384 16384 1264 176 0 0
+}
+// brush 1
+ {
+  guid "{61B3FD86-6A1D-11E4-986A-2C27D7F024B0}"
+  mesh
+  {
+  contents weaponClip detail ai_nosight;
+  toolFlags;
+   t7_concrete_painted_green_blend
+   lightmap_gray
+   2 2 0 8
+   (
+	v 8 -31 -13.5 c 255 255 255 138 t -496 216 33.0625 -10.34375
+	v 8 -20 -13.5 c 255 255 255 138 t -320 216 33.75 -10.34375
+   )
+   (
+	v 8 -31 -16 c 255 255 255 138 t -496 256 33.0625 -10.1875
+	v 8 -20 -16 c 255 255 255 138 t -320 256 33.75 -10.1875
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+}
+// entity 1
+{
+guid "{307359B9-6AD7-11E4-986A-2C27D7F024B0}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p7_slab_concrete_interlocked_green"
+"modelscale" "1"
+"no_collmap" "1"
+"origin" "6.5 1 0.5"
+}

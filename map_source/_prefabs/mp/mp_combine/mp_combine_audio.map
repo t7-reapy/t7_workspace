@@ -1,0 +1,2842 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{B67DB9BA-3DDA-484B-A42D-421CA46467DC}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lightingquality" "1024"
+"samplescale" "1"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{95AAAC86-9DBF-4834-A58F-4F315B44110F}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_sound" "alias"
+"targetname" "audio_bump_trigger"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{34C1AB48-AA68-4A5A-9658-D1CD5BBDC06A}"
+ ( 18622.5 479.5 -149 ) ( 18544.5 479.5 -149 ) ( 18544.5 401.5 -149 ) trigger 64 64 10261.5 -438.5 0 0 lightmap_gray 16384 16384 10261.5 -438.5 0 0
+ ( 18544.5 401.5 -133 ) ( 18544.5 479.5 -133 ) ( 18622.5 479.5 -133 ) trigger 64 64 10261.5 -438.5 0 0 lightmap_gray 16384 16384 10261.5 -438.5 0 0
+ ( 18644.5 227 -133 ) ( 18722.5 227 -133 ) ( 18722.5 227 -149 ) trigger 64 64 10261.5 0 0 0 lightmap_gray 16384 16384 10261.5 0 0 0
+ ( 19037 -65 -133 ) ( 19037 13 -133 ) ( 19037 13 -149 ) trigger 64 64 438.5 0 0 0 lightmap_gray 16384 16384 438.5 0 0 0
+ ( 18622.5 479.5 -133 ) ( 18544.5 479.5 -133 ) ( 18544.5 479.5 -149 ) trigger 64 64 10261.5 0 0 0 lightmap_gray 16384 16384 10261.5 0 0 0
+ ( 18544.5 479.5 -133 ) ( 18544.5 401.5 -133 ) ( 18544.5 401.5 -149 ) trigger 64 64 438.5 0 0 0 lightmap_gray 16384 16384 438.5 0 0 0
+}
+}
+// entity 2
+{
+guid "{D360B4DB-0999-472E-A0C7-8B9A60C42761}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_label" "move_inside"
+"script_noteworthy" "exit"
+"script_sound" "enter"
+"targetname" "audio_step_trigger"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{D7B9D2E3-CCAB-4E2A-AD6A-59AEDB850C0C}"
+ ( 18634.5 -27.5 -149 ) ( 18556.5 -27.5 -149 ) ( 18556.5 -105.5 -149 ) trigger 64 64 10720 88 0 0 lightmap_gray 16384 16384 10720 88 0 0
+ ( 18556.5 -105.5 -133 ) ( 18556.5 -27.5 -133 ) ( 18634.5 -27.5 -133 ) trigger 64 64 10720 88 0 0 lightmap_gray 16384 16384 10720 88 0 0
+ ( 18603.5 -313.5 -133 ) ( 18681.5 -313.5 -133 ) ( 18681.5 -313.5 -149 ) trigger 64 64 10720 0 0 0 lightmap_gray 16384 16384 10720 0 0 0
+ ( 19042 -126 -133 ) ( 19042 -48 -133 ) ( 19042 -48 -149 ) trigger 64 64 -88 0 0 0 lightmap_gray 16384 16384 -88 0 0 0
+ ( 18634.5 -27.5 -133 ) ( 18556.5 -27.5 -133 ) ( 18556.5 -27.5 -149 ) trigger 64 64 10720 0 0 0 lightmap_gray 16384 16384 10720 0 0 0
+ ( 18556.5 -27.5 -133 ) ( 18556.5 -105.5 -133 ) ( 18556.5 -105.5 -149 ) trigger 64 64 -88 0 0 0 lightmap_gray 16384 16384 -88 0 0 0
+}
+}
+// entity 3
+{
+guid "{C09694A2-337B-4554-AC33-B0899E567E63}"
+"classname" "script_struct"
+"origin" "794.5 1929 210"
+"script_label" "looper"
+"script_looping" "1"
+"script_sound" "amb_wind_int_mid"
+"_color" "1 0 0"
+}
+// entity 4
+{
+guid "{7426227E-A9FF-4D4B-9C07-E2FF0FE6BB83}"
+"classname" "script_struct"
+"origin" "-255 -797 169"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_stuff"
+"_color" "1 0 0"
+}
+// entity 5
+{
+guid "{F8BD7FD7-08BB-499C-8803-42B02D82D0D2}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_sector_small_room"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{03AD6C3B-D17E-4CC5-AEEE-9BE348A561F0}"
+ ( 107.5 367.5 117 ) ( 75.5 367.5 117 ) ( 75.5 335.5 117 ) trigger 64 64 629.5 -2285.5 0 0 lightmap_gray 16384 16384 629.5 -2285.5 0 0
+ ( 36.5 343.5 265 ) ( 36.5 375.5 265 ) ( 68.5 375.5 265 ) trigger 64 64 629.5 -2285.5 0 0 lightmap_gray 16384 16384 629.5 -2285.5 0 0
+ ( 54 -1200.5 382 ) ( 86 -1200.5 382 ) ( 86 -1200.5 222 ) trigger 64 64 629.5 -26 0 0 lightmap_gray 16384 16384 629.5 -26 0 0
+ ( -164.5 -116.5 389 ) ( -164.5 -84.5 389 ) ( -164.5 -84.5 229 ) trigger 64 64 2285.5 -26 0 0 lightmap_gray 16384 16384 2285.5 -26 0 0
+ ( -266.5 -937.5 377 ) ( -298.5 -937.5 377 ) ( -298.5 -937.5 217 ) trigger 64 64 629.5 -26 0 0 lightmap_gray 16384 16384 629.5 -26 0 0
+ ( -509.5 -36.5 376 ) ( -509.5 -68.5 376 ) ( -509.5 -68.5 216 ) trigger 64 64 2285.5 -26 0 0 lightmap_gray 16384 16384 2285.5 -26 0 0
+}
+}
+// entity 6
+{
+guid "{27838433-811E-4137-B4AE-DE20F1C2440F}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_sector_partial"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{F936CECF-37B7-11E4-8482-40A8F0C961CC}"
+ ( -143.5 1672.5 100 ) ( -175.5 1672.5 100 ) ( -175.5 1640.5 100 ) trigger 64 64 378.5 -3590.5 0 0 lightmap_gray 16384 16384 378.5 -3590.5 0 0
+ ( -214.5 1651.5 299 ) ( -214.5 1683.5 299 ) ( -182.5 1683.5 299 ) trigger 64 64 378.5 -3590.5 0 0 lightmap_gray 16384 16384 378.5 -3590.5 0 0
+ ( -197 104.5 382 ) ( -165 104.5 382 ) ( -165 104.5 222 ) trigger 64 64 378.5 -26 0 0 lightmap_gray 16384 16384 378.5 -26 0 0
+ ( -415.5 1188.5 389 ) ( -415.5 1220.5 389 ) ( -415.5 1220.5 229 ) trigger 64 64 3590.5 -26 0 0 lightmap_gray 16384 16384 3590.5 -26 0 0
+ ( -502.5 252.5 383 ) ( -534.5 252.5 383 ) ( -534.5 252.5 223 ) trigger 64 64 378.5 -26 0 0 lightmap_gray 16384 16384 378.5 -26 0 0
+ ( -795.5 1269.5 416 ) ( -795.5 1237.5 416 ) ( -795.5 1237.5 256 ) trigger 64 64 3590.5 -26 0 0 lightmap_gray 16384 16384 3590.5 -26 0 0
+}
+}
+// entity 7
+{
+guid "{93E9C28B-1648-4BCF-9D8D-5D205D5D9993}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "2"
+"script_ambientroom" "mp_sector_partial"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{F936CED0-37B7-11E4-8482-40A8F0C961CC}"
+ ( -541.5 1686.5 100 ) ( -573.5 1686.5 100 ) ( -573.5 1654.5 100 ) trigger 64 64 -19.5 -3604.5 0 0 lightmap_gray 16384 16384 -19.5 -3604.5 0 0
+ ( -610.5 1665.5 310 ) ( -610.5 1697.5 310 ) ( -578.5 1697.5 310 ) trigger 64 64 -19.5 -3604.5 0 0 lightmap_gray 16384 16384 -19.5 -3604.5 0 0
+ ( -582 -21.5 382 ) ( -550 -21.5 382 ) ( -550 -21.5 222 ) trigger 64 64 -19.5 -26 0 0 lightmap_gray 16384 16384 -19.5 -26 0 0
+ ( -803.5 1231.5 389 ) ( -803.5 1263.5 389 ) ( -803.5 1263.5 229 ) trigger 64 64 3604.5 -26 0 0 lightmap_gray 16384 16384 3604.5 -26 0 0
+ ( -891.5 384.5 383 ) ( -923.5 384.5 383 ) ( -923.5 384.5 223 ) trigger 64 64 -19.5 -26 0 0 lightmap_gray 16384 16384 -19.5 -26 0 0
+ ( -1053.5 1285.5 416 ) ( -1053.5 1253.5 416 ) ( -1053.5 1253.5 256 ) trigger 64 64 3604.5 -26 0 0 lightmap_gray 16384 16384 3604.5 -26 0 0
+}
+}
+// entity 8
+{
+guid "{05BF9545-17FD-4F11-AD76-AB0DAC8456E0}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "2"
+"script_ambientroom" "mp_sector_medroom"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{F936CED1-37B7-11E4-8482-40A8F0C961CC}"
+ ( 108.5 635.5 117 ) ( 76.5 635.5 117 ) ( 76.5 603.5 117 ) trigger 64 64 630.5 -2553.5 0 0 lightmap_gray 16384 16384 630.5 -2553.5 0 0
+ ( 37.5 611.5 265 ) ( 37.5 643.5 265 ) ( 69.5 643.5 265 ) trigger 64 64 630.5 -2553.5 0 0 lightmap_gray 16384 16384 630.5 -2553.5 0 0
+ ( 43 -940.5 382 ) ( 75 -940.5 382 ) ( 75 -940.5 222 ) trigger 64 64 630.5 -26 0 0 lightmap_gray 16384 16384 630.5 -26 0 0
+ ( 17.5 147.5 389 ) ( 17.5 179.5 389 ) ( 17.5 179.5 229 ) trigger 64 64 2553.5 -26 0 0 lightmap_gray 16384 16384 2553.5 -26 0 0
+ ( -269.5 -561.5 377 ) ( -301.5 -561.5 377 ) ( -301.5 -561.5 217 ) trigger 64 64 630.5 -26 0 0 lightmap_gray 16384 16384 630.5 -26 0 0
+ ( -523.5 231.5 379 ) ( -523.5 199.5 379 ) ( -523.5 199.5 219 ) trigger 64 64 2553.5 -26 0 0 lightmap_gray 16384 16384 2553.5 -26 0 0
+}
+}
+// entity 9
+{
+guid "{789748FE-473D-419A-8303-1C7C6C03EA07}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_sector_partial"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{F936CED2-37B7-11E4-8482-40A8F0C961CC}"
+ ( 375.5 1007.5 119 ) ( 343.5 1007.5 119 ) ( 343.5 975.5 119 ) trigger 64 64 897.5 -2925.5 0 0 lightmap_gray 16384 16384 897.5 -2925.5 0 0
+ ( 304.5 983.5 282 ) ( 304.5 1015.5 282 ) ( 336.5 1015.5 282 ) trigger 64 64 897.5 -2925.5 0 0 lightmap_gray 16384 16384 897.5 -2925.5 0 0
+ ( 322 -560.5 384 ) ( 354 -560.5 384 ) ( 354 -560.5 224 ) trigger 64 64 897.5 -28 0 0 lightmap_gray 16384 16384 897.5 -28 0 0
+ ( 8.5 519.5 400 ) ( 8.5 551.5 400 ) ( 8.5 551.5 240 ) trigger 64 64 2925.5 -28 0 0 lightmap_gray 16384 16384 2925.5 -28 0 0
+ ( -1.5 -325.5 384 ) ( -33.5 -325.5 384 ) ( -33.5 -325.5 224 ) trigger 64 64 897.5 -28 0 0 lightmap_gray 16384 16384 897.5 -28 0 0
+ ( -143.5 602.5 383 ) ( -143.5 570.5 383 ) ( -143.5 570.5 223 ) trigger 64 64 2925.5 -28 0 0 lightmap_gray 16384 16384 2925.5 -28 0 0
+}
+}
+// entity 10
+{
+guid "{59CA7911-D496-43A4-9AB5-992574B97517}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_sector_partial"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{F936CED3-37B7-11E4-8482-40A8F0C961CC}"
+ ( 999.5 1079.5 119 ) ( 967.5 1079.5 119 ) ( 967.5 1047.5 119 ) trigger 64 64 1521.5 -2997.5 0 0 lightmap_gray 16384 16384 1521.5 -2997.5 0 0
+ ( 928.5 1055.5 282 ) ( 928.5 1087.5 282 ) ( 960.5 1087.5 282 ) trigger 64 64 1521.5 -2997.5 0 0 lightmap_gray 16384 16384 1521.5 -2997.5 0 0
+ ( 946 -476.5 387 ) ( 978 -476.5 387 ) ( 978 -476.5 227 ) trigger 64 64 1521.5 -28 0 0 lightmap_gray 16384 16384 1521.5 -28 0 0
+ ( 596.5 586.5 400 ) ( 596.5 618.5 400 ) ( 596.5 618.5 240 ) trigger 64 64 2997.5 -28 0 0 lightmap_gray 16384 16384 2997.5 -28 0 0
+ ( 622.5 -167.5 391 ) ( 590.5 -167.5 391 ) ( 590.5 -167.5 231 ) trigger 64 64 1521.5 -28 0 0 lightmap_gray 16384 16384 1521.5 -28 0 0
+ ( 480.5 674.5 383 ) ( 480.5 642.5 383 ) ( 480.5 642.5 223 ) trigger 64 64 2997.5 -28 0 0 lightmap_gray 16384 16384 2997.5 -28 0 0
+}
+}
+// entity 11
+{
+guid "{DD5CE8E1-09C6-4B03-8EBF-DC87B59F4C3D}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_sector_partial"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{F936CED4-37B7-11E4-8482-40A8F0C961CC}"
+ ( 798.5 1918.5 119 ) ( 766.5 1918.5 119 ) ( 766.5 1886.5 119 ) trigger 64 64 1320.5 -3836.5 0 0 lightmap_gray 16384 16384 1320.5 -3836.5 0 0
+ ( 730.5 1894.5 277 ) ( 730.5 1926.5 277 ) ( 762.5 1926.5 277 ) trigger 64 64 1320.5 -3836.5 0 0 lightmap_gray 16384 16384 1320.5 -3836.5 0 0
+ ( 745 540.5 387 ) ( 777 540.5 387 ) ( 777 540.5 227 ) trigger 64 64 1320.5 -28 0 0 lightmap_gray 16384 16384 1320.5 -28 0 0
+ ( 586.5 1460.5 400 ) ( 586.5 1492.5 400 ) ( 586.5 1492.5 240 ) trigger 64 64 3836.5 -28 0 0 lightmap_gray 16384 16384 3836.5 -28 0 0
+ ( 411.5 1060.5 393 ) ( 379.5 1060.5 393 ) ( 379.5 1060.5 233 ) trigger 64 64 1320.5 -28 0 0 lightmap_gray 16384 16384 1320.5 -28 0 0
+ ( 345.5 1549.5 422 ) ( 345.5 1517.5 422 ) ( 345.5 1517.5 262 ) trigger 64 64 3836.5 -28 0 0 lightmap_gray 16384 16384 3836.5 -28 0 0
+}
+}
+// entity 12
+{
+guid "{883582EE-5574-40C6-85FD-CDC5774E6085}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_sector_partial"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{F936CED5-37B7-11E4-8482-40A8F0C961CC}"
+ ( 558.5 1923.5 119 ) ( 526.5 1923.5 119 ) ( 526.5 1891.5 119 ) trigger 64 64 1080.5 -3841.5 0 0 lightmap_gray 16384 16384 1080.5 -3841.5 0 0
+ ( 490.5 1899.5 277 ) ( 490.5 1931.5 277 ) ( 522.5 1931.5 277 ) trigger 64 64 1080.5 -3841.5 0 0 lightmap_gray 16384 16384 1080.5 -3841.5 0 0
+ ( 494 815.5 400 ) ( 526 815.5 400 ) ( 526 815.5 240 ) trigger 64 64 1080.5 -28 0 0 lightmap_gray 16384 16384 1080.5 -28 0 0
+ ( 346.5 1465.5 400 ) ( 346.5 1497.5 400 ) ( 346.5 1497.5 240 ) trigger 64 64 3841.5 -28 0 0 lightmap_gray 16384 16384 3841.5 -28 0 0
+ ( 173.5 965.5 393 ) ( 141.5 965.5 393 ) ( 141.5 965.5 233 ) trigger 64 64 1080.5 -28 0 0 lightmap_gray 16384 16384 1080.5 -28 0 0
+ ( 215.5 1563.5 422 ) ( 215.5 1531.5 422 ) ( 215.5 1531.5 262 ) trigger 64 64 3841.5 -28 0 0 lightmap_gray 16384 16384 3841.5 -28 0 0
+}
+}
+// entity 13
+{
+guid "{EF9ED8EC-10A2-4BE3-BE40-79DCDC4ED848}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_sector_corridor"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{F936CED6-37B7-11E4-8482-40A8F0C961CC}"
+ ( 799.5 1923.5 263 ) ( 767.5 1923.5 263 ) ( 767.5 1891.5 263 ) trigger 64 64 1321.5 -3841.5 0 0 lightmap_gray 16384 16384 1321.5 -3841.5 0 0
+ ( 731.5 1899.5 421 ) ( 731.5 1931.5 421 ) ( 763.5 1931.5 421 ) trigger 64 64 1321.5 -3841.5 0 0 lightmap_gray 16384 16384 1321.5 -3841.5 0 0
+ ( 746 545.5 531 ) ( 778 545.5 531 ) ( 778 545.5 371 ) trigger 64 64 1321.5 -172 0 0 lightmap_gray 16384 16384 1321.5 -172 0 0
+ ( 596.5 1468.5 547 ) ( 596.5 1500.5 547 ) ( 596.5 1500.5 387 ) trigger 64 64 3841.5 -172 0 0 lightmap_gray 16384 16384 3841.5 -172 0 0
+ ( 412.5 951.5 543 ) ( 380.5 951.5 543 ) ( 380.5 951.5 383 ) trigger 64 64 1321.5 -172 0 0 lightmap_gray 16384 16384 1321.5 -172 0 0
+ ( 346.5 1554.5 566 ) ( 346.5 1522.5 566 ) ( 346.5 1522.5 406 ) trigger 64 64 3841.5 -172 0 0 lightmap_gray 16384 16384 3841.5 -172 0 0
+}
+}
+// entity 14
+{
+guid "{79B56A32-0169-447E-B160-5C7F8ACFC95A}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "3"
+"script_ambientroom" "mp_sector_partial"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{F936CED7-37B7-11E4-8482-40A8F0C961CC}"
+ ( 550.5 2070.5 119 ) ( 518.5 2070.5 119 ) ( 518.5 2038.5 119 ) trigger 64 64 1072.5 -3988.5 0 0 lightmap_gray 16384 16384 1072.5 -3988.5 0 0
+ ( 482.5 2050.5 231 ) ( 482.5 2082.5 231 ) ( 514.5 2082.5 231 ) trigger 64 64 1072.5 -3988.5 0 0 lightmap_gray 16384 16384 1072.5 -3988.5 0 0
+ ( 486 962.5 400 ) ( 518 962.5 400 ) ( 518 962.5 240 ) trigger 64 64 1072.5 -28 0 0 lightmap_gray 16384 16384 1072.5 -28 0 0
+ ( 338.5 1612.5 400 ) ( 338.5 1644.5 400 ) ( 338.5 1644.5 240 ) trigger 64 64 3988.5 -28 0 0 lightmap_gray 16384 16384 3988.5 -28 0 0
+ ( 165.5 1099.5 393 ) ( 133.5 1099.5 393 ) ( 133.5 1099.5 233 ) trigger 64 64 1072.5 -28 0 0 lightmap_gray 16384 16384 1072.5 -28 0 0
+ ( 207.5 1710.5 422 ) ( 207.5 1678.5 422 ) ( 207.5 1678.5 262 ) trigger 64 64 3988.5 -28 0 0 lightmap_gray 16384 16384 3988.5 -28 0 0
+}
+}
+// entity 15
+{
+guid "{BAF60D0F-0717-4C51-8689-8D8E05F4719A}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_sector_corridor"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{F936CED8-37B7-11E4-8482-40A8F0C961CC}"
+ ( 549.5 2173.5 263 ) ( 517.5 2173.5 263 ) ( 517.5 2141.5 263 ) trigger 64 64 1071.5 -4091.5 0 0 lightmap_gray 16384 16384 1071.5 -4091.5 0 0
+ ( 481.5 2149.5 408 ) ( 481.5 2181.5 408 ) ( 513.5 2181.5 408 ) trigger 64 64 1071.5 -4091.5 0 0 lightmap_gray 16384 16384 1071.5 -4091.5 0 0
+ ( 496 795.5 531 ) ( 528 795.5 531 ) ( 528 795.5 371 ) trigger 64 64 1071.5 -172 0 0 lightmap_gray 16384 16384 1071.5 -172 0 0
+ ( 346.5 1718.5 547 ) ( 346.5 1750.5 547 ) ( 346.5 1750.5 387 ) trigger 64 64 4091.5 -172 0 0 lightmap_gray 16384 16384 4091.5 -172 0 0
+ ( 149.5 961.5 543 ) ( 117.5 961.5 543 ) ( 117.5 961.5 383 ) trigger 64 64 1071.5 -172 0 0 lightmap_gray 16384 16384 1071.5 -172 0 0
+ ( 207.5 1824.5 564 ) ( 207.5 1792.5 564 ) ( 207.5 1792.5 404 ) trigger 64 64 4091.5 -172 0 0 lightmap_gray 16384 16384 4091.5 -172 0 0
+}
+}
+// entity 16
+{
+guid "{55655F68-1113-4DD2-8B19-A7E19E169616}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_sector_corridor"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{EC9DFFEA-2420-4308-8017-6AC5AFAC0D66}"
+ ( 548.5 2042.5 -508 ) ( 516.5 2042.5 -508 ) ( 516.5 2016.5 -489.5 ) trigger 64 52.038429 1070.5 -3613.9915 0 0 lightmap_gray 16384 13321.937 1070.5 -3614.0161 0 0
+ ( 480.5 2153 -311.75 ) ( 480.5 2179 -330.25 ) ( 512.5 2179 -330.25 ) trigger 64 52.040104 1070.5 -3706.0139 0 0 lightmap_gray 16384 13322.375 1070.5 -3706.043 0 0
+ ( 495 1090 544 ) ( 527 1090 544 ) ( 527 997 414 ) trigger 64 52.037766 1070.5 -252.08792 0 0 lightmap_gray 16384 13321.798 1070.5 -252.08965 0 0
+ ( 345.5 1849.75 19.75 ) ( 345.5 1875.75 1 ) ( 345.5 1782.75 -129 ) trigger 64 64 3865.5945 -717.84717 -35.600037 0 lightmap_gray 16384.383 16384.035 3865.6899 -717.84943 -35.600033 0
+ ( 148.5 1281 400 ) ( 116.5 1281 400 ) ( 116.5 1187.75 270 ) trigger 64 52.037945 1070.5 -155.45467 0 0 lightmap_gray 16384 13321.856 1070.5 -155.45607 0 0
+ ( 202.5 1947 -26.5 ) ( 202.5 1921 -8 ) ( 202.5 1828 -138 ) trigger 64 64 3865.6541 -717.86572 -35.600037 0 lightmap_gray 16383.867 16384 3865.6191 -717.86597 -35.600033 0
+ ( 345.5 990 400 ) ( 345.5 1145 401 ) ( 377.5 990 400 ) trigger 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 17
+{
+guid "{48B83DBF-3E28-4890-AB50-FB66A17BD061}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_sector_small_room"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{F936CED9-37B7-11E4-8482-40A8F0C961CC}"
+ ( 299.5 2575.5 117 ) ( 267.5 2575.5 117 ) ( 267.5 2543.5 117 ) trigger 64 64 821.5 -4493.5 0 0 lightmap_gray 16384 16384 821.5 -4493.5 0 0
+ ( 224.5 2551.5 281 ) ( 224.5 2583.5 281 ) ( 256.5 2583.5 281 ) trigger 64 64 821.5 -4493.5 0 0 lightmap_gray 16384 16384 821.5 -4493.5 0 0
+ ( 258 893.5 382 ) ( 290 893.5 382 ) ( 290 893.5 222 ) trigger 64 64 821.5 -26 0 0 lightmap_gray 16384 16384 821.5 -26 0 0
+ ( 211.5 2113.5 389 ) ( 211.5 2145.5 389 ) ( 211.5 2145.5 229 ) trigger 64 64 4493.5 -26 0 0 lightmap_gray 16384 16384 4493.5 -26 0 0
+ ( -66.5 1382.5 377 ) ( -98.5 1382.5 377 ) ( -98.5 1382.5 217 ) trigger 64 64 821.5 -26 0 0 lightmap_gray 16384 16384 821.5 -26 0 0
+ ( -317.5 2171.5 376 ) ( -317.5 2139.5 376 ) ( -317.5 2139.5 216 ) trigger 64 64 4493.5 -26 0 0 lightmap_gray 16384 16384 4493.5 -26 0 0
+}
+}
+// entity 18
+{
+guid "{3CBBB1AD-3FAA-4915-A1AB-BA50A53444A9}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_sector_medroom"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{F936CEDA-37B7-11E4-8482-40A8F0C961CC}"
+ ( 779.5 3018.5 145 ) ( 747.5 3018.5 145 ) ( 747.5 2986.5 145 ) trigger 64 64 1301.5 -4936.5 0 0 lightmap_gray 16384 16384 1301.5 -4936.5 0 0
+ ( 704.5 2994.5 300 ) ( 704.5 3026.5 300 ) ( 736.5 3026.5 300 ) trigger 64 64 1301.5 -4936.5 0 0 lightmap_gray 16384 16384 1301.5 -4936.5 0 0
+ ( 738 1121.5 424 ) ( 770 1121.5 424 ) ( 770 1121.5 264 ) trigger 64 64 1301.5 -54 0 0 lightmap_gray 16384 16384 1301.5 -54 0 0
+ ( 505.5 2593.5 422 ) ( 505.5 2625.5 422 ) ( 505.5 2625.5 262 ) trigger 64 64 4936.5 -54 0 0 lightmap_gray 16384 16384 4936.5 -54 0 0
+ ( 405.5 1722.5 417 ) ( 373.5 1722.5 417 ) ( 373.5 1722.5 257 ) trigger 64 64 1301.5 -54 0 0 lightmap_gray 16384 16384 1301.5 -54 0 0
+ ( 78.5 2614.5 415 ) ( 78.5 2582.5 415 ) ( 78.5 2582.5 255 ) trigger 64 64 4936.5 -54 0 0 lightmap_gray 16384 16384 4936.5 -54 0 0
+}
+}
+// entity 19
+{
+guid "{3822403D-DDC0-45E1-A76A-482B0D180A76}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_sector_metalroom"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{F936CEDB-37B7-11E4-8482-40A8F0C961CC}"
+ ( 1304.5 3450.5 145 ) ( 1272.5 3450.5 145 ) ( 1272.5 3418.5 145 ) trigger 64 64 1826.5 -5368.5 0 0 lightmap_gray 16384 16384 1826.5 -5368.5 0 0
+ ( 1229.5 3426.5 300 ) ( 1229.5 3458.5 300 ) ( 1261.5 3458.5 300 ) trigger 64 64 1826.5 -5368.5 0 0 lightmap_gray 16384 16384 1826.5 -5368.5 0 0
+ ( 1259 1733.5 408 ) ( 1291 1733.5 408 ) ( 1291 1733.5 248 ) trigger 64 64 1826.5 -54 0 0 lightmap_gray 16384 16384 1826.5 -54 0 0
+ ( 870.5 3023.5 422 ) ( 870.5 3055.5 422 ) ( 870.5 3055.5 262 ) trigger 64 64 5368.5 -54 0 0 lightmap_gray 16384 16384 5368.5 -54 0 0
+ ( 948.5 2105.5 416 ) ( 916.5 2105.5 416 ) ( 916.5 2105.5 256 ) trigger 64 64 1826.5 -54 0 0 lightmap_gray 16384 16384 1826.5 -54 0 0
+ ( 613.5 3070.5 423 ) ( 613.5 3038.5 423 ) ( 613.5 3038.5 263 ) trigger 64 64 5368.5 -54 0 0 lightmap_gray 16384 16384 5368.5 -54 0 0
+}
+}
+// entity 20
+{
+guid "{71FF3F86-2C82-49D4-ADF4-EB6C5D8D42DD}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_sector_partial"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{F936CEDC-37B7-11E4-8482-40A8F0C961CC}"
+ ( -186.5 2653.5 108 ) ( -218.5 2653.5 108 ) ( -218.5 2621.5 108 ) trigger 64 64 335.5 -4571.5 0 0 lightmap_gray 16384 16384 335.5 -4571.5 0 0
+ ( -261.5 2627.5 230 ) ( -261.5 2659.5 230 ) ( -229.5 2659.5 230 ) trigger 64 64 335.5 -4571.5 0 0 lightmap_gray 16384 16384 335.5 -4571.5 0 0
+ ( -227 1041.5 371 ) ( -195 1041.5 371 ) ( -195 1041.5 211 ) trigger 64 64 335.5 -17 0 0 lightmap_gray 16384 16384 335.5 -17 0 0
+ ( -620.5 2226.5 385 ) ( -620.5 2258.5 385 ) ( -620.5 2258.5 225 ) trigger 64 64 4571.5 -17 0 0 lightmap_gray 16384 16384 4571.5 -17 0 0
+ ( -530.5 1165.5 380 ) ( -562.5 1165.5 380 ) ( -562.5 1165.5 220 ) trigger 64 64 335.5 -17 0 0 lightmap_gray 16384 16384 335.5 -17 0 0
+ ( -790.5 2300.5 386 ) ( -790.5 2268.5 386 ) ( -790.5 2268.5 226 ) trigger 64 64 4571.5 -17 0 0 lightmap_gray 16384 16384 4571.5 -17 0 0
+}
+}
+// entity 21
+{
+guid "{471EF27D-9EE2-485D-8F18-840EE713BA5D}"
+"classname" "script_struct"
+"origin" "281 1373 171"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_stuff"
+"_color" "1 0 0"
+}
+// entity 22
+{
+guid "{3054BF2F-BCB4-406C-A95A-45BF85C4B7C1}"
+"classname" "script_struct"
+"origin" "251 1538 191"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_metal_deep"
+"_color" "1 0 0"
+}
+// entity 23
+{
+guid "{D0B734B0-64B7-4380-915A-80A5379A1D27}"
+"classname" "script_struct"
+"origin" "-66 1109 192"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_metal"
+"_color" "1 0 0"
+}
+// entity 24
+{
+guid "{C21DCA9A-BDA7-43D2-9EEE-01D60B2A24A8}"
+"classname" "script_struct"
+"origin" "-272 -661 192"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_stuff"
+"_color" "1 0 0"
+}
+// entity 25
+{
+guid "{71FBA4F8-2245-496F-85F7-C3C115EACBCA}"
+"classname" "script_struct"
+"origin" "-179 -793 192"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_metal_deep"
+"_color" "1 0 0"
+}
+// entity 26
+{
+guid "{6620740D-DCD8-4C26-8599-DC5E124E0E3B}"
+"classname" "script_struct"
+"origin" "-307 -1048 181"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_metal"
+"_color" "1 0 0"
+}
+// entity 27
+{
+guid "{3F0E77F8-DA73-4528-BE46-0604E21838C5}"
+"classname" "script_struct"
+"origin" "117 -1173 218"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_metal_deep"
+"_color" "1 0 0"
+}
+// entity 28
+{
+guid "{736AA1E7-3539-46BC-8296-7E0C2422D8F5}"
+"classname" "script_struct"
+"origin" "-664 172 123"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_metal_deep"
+"_color" "1 0 0"
+}
+// entity 29
+{
+guid "{9B49CEE0-CBBD-4FB5-A518-3B795AFD9A6D}"
+"classname" "script_struct"
+"origin" "494 621 185"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_metal_deep"
+"_color" "1 0 0"
+}
+// entity 30
+{
+guid "{0F82A902-9609-4A6B-8F91-334DB4F04300}"
+"classname" "script_struct"
+"origin" "-403 -1523 189"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_chainlink"
+"_color" "1 0 0"
+}
+// entity 31
+{
+guid "{F9F1E02E-46D0-48EE-A3F1-668044CAF832}"
+"classname" "script_struct"
+"origin" "150 3168 142"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_chainlink"
+"_color" "1 0 0"
+}
+// entity 32
+{
+guid "{2E7F288E-700D-46A6-BA3B-BE7ADCC9BCF3}"
+"classname" "script_struct"
+"origin" "-48 3165 137"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_chainlink"
+"_color" "1 0 0"
+}
+// entity 33
+{
+guid "{562FFA01-AF12-42F0-8CE0-03C97DAE36DB}"
+"classname" "script_struct"
+"origin" "-281 3184 157"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_chainlink"
+"_color" "1 0 0"
+}
+// entity 34
+{
+guid "{9CD97382-5CA8-4B5A-BDE5-575F1CC2DD54}"
+"classname" "script_struct"
+"origin" "324 1005 187"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_metal_deep"
+"_color" "1 0 0"
+}
+// entity 35
+{
+guid "{4373710E-59A3-4546-B456-1BFA6B40BD42}"
+"classname" "script_struct"
+"origin" "770 1927 187"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_metal_deep"
+"_color" "1 0 0"
+}
+// entity 36
+{
+guid "{A7CE51B4-10C2-4294-A1D9-EC44D72D327F}"
+"classname" "script_struct"
+"origin" "-111 1102 191"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_metal_deep"
+"_color" "1 0 0"
+}
+// entity 37
+{
+guid "{AFF3618D-32DB-4F04-8407-7DCB20B58C92}"
+"classname" "script_struct"
+"origin" "-780 -776 196"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_chainlink"
+"_color" "1 0 0"
+}
+// entity 38
+{
+guid "{32EE6649-345C-4111-ACED-6020FD453E88}"
+"classname" "script_struct"
+"origin" "3 141 195"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_metal"
+"_color" "1 0 0"
+}
+// entity 39
+{
+guid "{989BBF10-9EA7-45DB-AA3F-48EF84E4936E}"
+"classname" "script_struct"
+"origin" "-698 1096 139"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_metal_deep"
+"_color" "1 0 0"
+}
+// entity 40
+{
+guid "{B096F4C7-9920-403B-8F92-62647924F393}"
+"classname" "script_struct"
+"origin" "-340 -1853 214"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_chainlink"
+"_color" "1 0 0"
+}
+// entity 41
+{
+guid "{462BF732-BB02-4A2F-97D7-8F5647122EB3}"
+"classname" "script_struct"
+"origin" "-1117 -784 205"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_chainlink"
+"_color" "1 0 0"
+}
+// entity 42
+{
+guid "{3D40D3E4-23A0-4856-A88D-4672EA185598}"
+"classname" "script_struct"
+"origin" "18572.5 2606 833"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_air_r"
+"target" "auto76"
+"_color" "1 0 0"
+}
+// entity 43
+{
+guid "{76620F6E-73C3-4C22-B10A-C9382DAA889A}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_label" "material_type"
+"targetname" "audio_material_trigger"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{FE18C1B5-2843-46F6-BDDB-89D6D1D2DC02}"
+ ( 18712 -740.5 -149 ) ( 18590 -740.5 -149 ) ( 18590 -862.5 -149 ) trigger 64 64 9384 2016 0 0 lightmap_gray 16384 16384 9384 2016 0 0
+ ( 18590 -862.5 -133 ) ( 18590 -740.5 -133 ) ( 18712 -740.5 -133 ) trigger 64 64 9384 2016 0 0 lightmap_gray 16384 16384 9384 2016 0 0
+ ( 18590 -862.5 -133 ) ( 18712 -862.5 -133 ) ( 18712 -862.5 -149 ) trigger 64 64 9384 0 0 0 lightmap_gray 16384 16384 9384 0 0 0
+ ( 19028.5 -954.5 -133 ) ( 19028.5 -832.5 -133 ) ( 19028.5 -832.5 -149 ) trigger 64 64 -2016 0 0 0 lightmap_gray 16384 16384 -2016 0 0 0
+ ( 18727 -553.5 -133 ) ( 18605 -553.5 -133 ) ( 18605 -553.5 -149 ) trigger 64 64 9384 0 0 0 lightmap_gray 16384 16384 9384 0 0 0
+ ( 18590 -740.5 -133 ) ( 18590 -862.5 -133 ) ( 18590 -862.5 -149 ) trigger 64 64 -2016 0 0 0 lightmap_gray 16384 16384 -2016 0 0 0
+}
+}
+// entity 44
+{
+guid "{97A3EEF1-AEFF-4969-8791-D85108B0FF8B}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_sector_large_stone_room"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{6A504ABA-37C4-4CBE-B694-51D613974E65}"
+ ( 18666.5 1708.5 192 ) ( 18634.5 1708.5 192 ) ( 18634.5 1676.5 192 ) trigger 64 64 19194.5 -3620.5 0 0 lightmap_gray 16384 16384 19194.5 -3620.5 0 0
+ ( 18634.5 1676.5 352 ) ( 18634.5 1708.5 352 ) ( 18666.5 1708.5 352 ) trigger 64 64 19194.5 -3620.5 0 0 lightmap_gray 16384 16384 19194.5 -3620.5 0 0
+ ( 18732 1023.5 352 ) ( 18764 1023.5 352 ) ( 18764 1023.5 192 ) trigger 64 64 19194.5 0 0 0 lightmap_gray 16384 16384 19194.5 0 0 0
+ ( 20287.5 1253.5 352 ) ( 20287.5 1285.5 352 ) ( 20287.5 1285.5 192 ) trigger 64 64 3620.5 0 0 0 lightmap_gray 16384 16384 3620.5 0 0 0
+ ( 18666.5 1612.5 352 ) ( 18634.5 1612.5 352 ) ( 18634.5 1612.5 192 ) trigger 64 64 19194.5 0 0 0 lightmap_gray 16384 16384 19194.5 0 0 0
+ ( 18506.5 1340.5 352 ) ( 18506.5 1308.5 352 ) ( 18506.5 1308.5 192 ) trigger 64 64 3620.5 0 0 0 lightmap_gray 16384 16384 3620.5 0 0 0
+}
+}
+// entity 45
+{
+guid "{7021D711-2926-4986-A9B6-8450ED540B2A}"
+"classname" "script_struct"
+"origin" "18583.5 3389 -124.5"
+"script_label" "looper"
+"script_looping" "1"
+"script_sound" "amb_flies"
+"_color" "1 0 0"
+}
+// entity 46
+{
+guid "{62FBDA20-04F1-47A4-95D0-17CC0598CFAE}"
+"classname" "script_struct"
+"origin" "20196 2609 833"
+"targetname" "auto76"
+"_color" "1 0 0"
+}
+// entity 47
+{
+guid "{AC1C3B50-EF22-4151-AD30-5C1825ABEEE4}"
+"classname" "script_struct"
+"origin" "18628.5 2126 833"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_air_l"
+"target" "auto77"
+"_color" "1 0 0"
+}
+// entity 48
+{
+guid "{74A1C610-12BA-4B14-A141-646A964B0A31}"
+"classname" "script_struct"
+"origin" "20228 2153 833"
+"targetname" "auto77"
+"_color" "1 0 0"
+}
+// entity 49
+{
+guid "{654C2D1C-B7F6-4357-830E-73115A70BCFA}"
+"classname" "script_struct"
+"origin" "1513 3154 301"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_storm"
+"target" "auto78"
+"_color" "1 0 0"
+}
+// entity 50
+{
+guid "{FE9CBD88-9661-413A-8A0C-F2AE59AE1EDB}"
+"classname" "script_struct"
+"origin" "1507 -2591 301"
+"targetname" "auto78"
+"_color" "1 0 0"
+}
+// entity 51
+{
+guid "{B28EAE31-A2F1-4D70-8D71-0BDEB352A81C}"
+"classname" "script_struct"
+"origin" "18463 3123.5 -141"
+"script_label" "random"
+"script_sound" "amb_water_lapping"
+"script_wait_max" "4"
+"script_wait_min" "3"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 52
+{
+guid "{D65163EC-6C73-4AE7-8C29-3EB22778DA64}"
+"classname" "script_struct"
+"origin" "-134 2306.5 223"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 53
+{
+guid "{56775F3B-FB41-4E2C-AD4B-8581DB1CFCB4}"
+"classname" "script_struct"
+"origin" "142 2569.5 207"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 54
+{
+guid "{06DC8FB6-D928-40C7-A5C2-D07DA8A6070B}"
+"classname" "script_struct"
+"origin" "656 2318.5 205"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 55
+{
+guid "{E5026ED0-E9C6-4E00-A826-374A6F0465EC}"
+"classname" "script_struct"
+"origin" "638 2169.5 205"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 56
+{
+guid "{DCCB83AB-E2D2-4D78-9742-130BB67D1546}"
+"classname" "script_struct"
+"origin" "316 2568.5 205"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 57
+{
+guid "{B869711F-E489-40CD-92A3-034A22B42012}"
+"classname" "script_struct"
+"origin" "350 2387.5 205"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 58
+{
+guid "{6929CDF3-2166-4611-A5BD-75D47ED6F33C}"
+"classname" "script_struct"
+"origin" "756 2234.5 207"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 59
+{
+guid "{64A4EE4F-84DD-47DA-BE22-484DBDE97BF7}"
+"classname" "script_struct"
+"origin" "854 1578.5 218"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 60
+{
+guid "{8DBC6A98-B08C-4EED-A43A-672436009A6B}"
+"classname" "script_struct"
+"origin" "847 1446.5 218"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 61
+{
+guid "{D7424640-6763-440E-BFD9-523122781CDF}"
+"classname" "script_struct"
+"origin" "812 1295.5 224"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 62
+{
+guid "{1887B67A-694B-4162-A88D-15FD6D897002}"
+"classname" "script_struct"
+"origin" "800 1028.5 220"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 63
+{
+guid "{A37A073A-E014-424D-A9C8-4D5AF6A98B1D}"
+"classname" "script_struct"
+"origin" "802 800.5 217"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 64
+{
+guid "{DFD8FB2B-0919-4695-B517-1F05A8259BEA}"
+"classname" "script_struct"
+"origin" "774 933.5 218"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 65
+{
+guid "{0399EF03-7A1E-4278-9C36-D7748A3B7427}"
+"classname" "script_struct"
+"origin" "649 1454.5 218"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 66
+{
+guid "{99437D63-472B-42D3-8CF0-EE24721B3845}"
+"classname" "script_struct"
+"origin" "1091 -148 276"
+"targetname" "auto79"
+"_color" "1 0 0"
+}
+// entity 67
+{
+guid "{814334B3-4DB8-4DE9-917C-E382583AF58B}"
+"classname" "script_struct"
+"origin" "1045 399.5 217"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 68
+{
+guid "{16AF11D6-7A9E-4AD5-ADF5-BE6EF5626AE5}"
+"classname" "script_struct"
+"origin" "469 279.5 213"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 69
+{
+guid "{3A726757-FD57-4A6A-947A-7ADA5F015DC5}"
+"classname" "script_struct"
+"origin" "479 37.5 217"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 70
+{
+guid "{8C63A778-83BE-4E02-AADC-60B6E449A8A8}"
+"classname" "script_struct"
+"origin" "748 -783.5 202"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 71
+{
+guid "{9AED8489-5939-4BB0-87A2-28C6F8D83C02}"
+"classname" "script_struct"
+"origin" "710 -1025.5 202"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 72
+{
+guid "{6AAD187F-3123-4BDE-A463-42981EA97296}"
+"classname" "script_struct"
+"origin" "581 -1211.5 202"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 73
+{
+guid "{F7D73D98-801B-4C15-9139-99587F5C2919}"
+"classname" "script_struct"
+"origin" "551 -1453.5 202"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 74
+{
+guid "{EE5347A3-50D3-4352-B2B0-FD0005F8593A}"
+"classname" "script_struct"
+"origin" "232 -1694.5 201"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 75
+{
+guid "{6597DD86-86D3-4EBF-B7C5-F178AD5EA0B0}"
+"classname" "script_struct"
+"origin" "163 -2091.5 201"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 76
+{
+guid "{DB20C180-8F99-45E0-B1E3-D394C28184C0}"
+"classname" "script_struct"
+"origin" "161 -2358.5 201"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 77
+{
+guid "{5351D86F-EB94-4422-8634-41D75FA0EE42}"
+"classname" "script_struct"
+"origin" "175 -2634.5 205"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 78
+{
+guid "{9859B253-06E7-46A4-99F5-E5D72EF6B436}"
+"classname" "script_struct"
+"origin" "381 -2043.5 205"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 79
+{
+guid "{01E99F01-441A-46F6-BDD0-FAFC9055D583}"
+"classname" "script_struct"
+"origin" "489 -1638.5 205"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 80
+{
+guid "{D0A09AB1-D177-4C5B-9E3B-92BC15090C65}"
+"classname" "script_struct"
+"origin" "288 -1912.5 277"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 81
+{
+guid "{7605D72D-228A-4A61-A72E-E11D7CDEFD50}"
+"classname" "script_struct"
+"origin" "-310 -1507.5 203"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 82
+{
+guid "{66CA2F12-85F5-4F5D-AF77-5A25C47B447D}"
+"classname" "script_struct"
+"origin" "25 -2236.5 203"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 83
+{
+guid "{1E36C35F-D356-460B-B1C0-B1ECA1C27C34}"
+"classname" "script_struct"
+"origin" "699 -347.5 211"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 84
+{
+guid "{8A4B6263-8146-48EC-881D-8113241CE3C7}"
+"classname" "script_struct"
+"origin" "754 -503.5 202"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 85
+{
+guid "{FAB88562-83C8-4758-AAB5-4A8B76959C34}"
+"classname" "script_struct"
+"origin" "6 2690.5 182"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 86
+{
+guid "{E07CC2DD-93AE-4A4A-866D-1B4B27851BFF}"
+"classname" "script_struct"
+"origin" "-66 2903.5 207"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 87
+{
+guid "{E270D1F5-B56B-4554-94E4-574E8404785E}"
+"classname" "script_struct"
+"origin" "-445 2244.5 236"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 88
+{
+guid "{0DD9C876-4A25-46B9-8807-B69C3CA8C928}"
+"classname" "script_struct"
+"origin" "-147 2038.5 234"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 89
+{
+guid "{79CF49E6-7EBA-448F-B220-5F7A13E22667}"
+"classname" "script_struct"
+"origin" "180 2289.5 208"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 90
+{
+guid "{956DE081-6226-4EE0-8665-80C94EC8E53E}"
+"classname" "script_struct"
+"origin" "-398 1789.5 209"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 91
+{
+guid "{824EECDD-A909-42AC-81CE-C4188460809C}"
+"classname" "script_struct"
+"origin" "-70 -1342.5 203"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 92
+{
+guid "{59CBE53F-5735-47B8-AA3A-283A5023C1F2}"
+"classname" "script_struct"
+"origin" "-1134 -251.5 177"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 93
+{
+guid "{63331B68-3209-4D54-98AC-CC741F671CC9}"
+"classname" "script_struct"
+"origin" "-825 188.5 177"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 94
+{
+guid "{BDA46190-98F6-4127-AD55-E92FE2ABABB6}"
+"classname" "script_struct"
+"origin" "-907 118.5 178"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 95
+{
+guid "{2C48261C-C6AC-47C9-B4F5-A35A004C99F1}"
+"classname" "script_struct"
+"origin" "-40 356.5 243"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 96
+{
+guid "{70C18053-6D4E-4191-B148-29E7B3986369}"
+"classname" "script_struct"
+"origin" "700.5 1928 212"
+"script_label" "looper"
+"script_looping" "1"
+"script_sound" "amb_wind_int_dark"
+"_color" "1 0 0"
+}
+// entity 97
+{
+guid "{FD5A4BFD-74D3-4DF0-A680-28D7892CD25A}"
+"classname" "script_struct"
+"origin" "-733 175 244"
+"targetname" "auto81"
+"_color" "1 0 0"
+}
+// entity 98
+{
+guid "{6B5C365B-525A-48B2-A4E4-778F983B1F24}"
+"classname" "script_struct"
+"origin" "-732 177 190"
+"targetname" "auto82"
+"_color" "1 0 0"
+}
+// entity 99
+{
+guid "{5F5A644C-F28A-4CD5-AA8A-454D2FADB2E2}"
+"classname" "script_struct"
+"origin" "1026 -241 251"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_debris"
+"target" "auto83"
+"_color" "1 0 0"
+}
+// entity 100
+{
+guid "{C2C9392D-B97C-4948-A72C-8E8926F72A6F}"
+"classname" "script_struct"
+"origin" "846 -1755 251"
+"targetname" "auto83"
+"_color" "1 0 0"
+}
+// entity 101
+{
+guid "{656F1D17-FA98-4E4F-910E-762EEDA76A0B}"
+"classname" "script_struct"
+"origin" "351 -323 211"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_lp"
+"target" "auto84"
+"_color" "1 0 0"
+}
+// entity 102
+{
+guid "{F27FA6B6-9FCF-4D8F-95B4-3C2A1EB6B1E9}"
+"classname" "script_struct"
+"origin" "585 -322 211"
+"targetname" "auto84"
+"_color" "1 0 0"
+}
+// entity 103
+{
+guid "{B202596A-5D32-46D5-B97B-2A0DF7DAAB7C}"
+"classname" "script_struct"
+"origin" "443 584 211"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_lp"
+"target" "auto85"
+"_color" "1 0 0"
+}
+// entity 104
+{
+guid "{86848D20-105C-4E93-984D-BB6DF3828586}"
+"classname" "script_struct"
+"origin" "451 943 211"
+"targetname" "auto85"
+"_color" "1 0 0"
+}
+// entity 105
+{
+guid "{5E4970EF-DE8B-4ADB-B06B-D4641422E885}"
+"classname" "script_struct"
+"origin" "470 173.5 212"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 106
+{
+guid "{142B1699-0782-447B-BC78-2A2F23F5961B}"
+"classname" "script_struct"
+"origin" "423.25 3632 218"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_bluster"
+"target" "auto86"
+"_color" "1 0 0"
+}
+// entity 107
+{
+guid "{6141D3D7-D1D4-4D64-8F87-27DC27CDCDA3}"
+"classname" "script_struct"
+"origin" "928.25 2134.5 215"
+"targetname" "auto86"
+"_color" "1 0 0"
+}
+// entity 108
+{
+guid "{EF9BADDF-5D7B-4911-8CF8-F1E7251EE64A}"
+"classname" "script_struct"
+"origin" "-495 171 190"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_int_dark"
+"target" "auto82"
+"_color" "1 0 0"
+}
+// entity 109
+{
+guid "{C2CF7CC1-883A-4717-8099-2DEA060A3E70}"
+"classname" "script_struct"
+"origin" "-496 169 244"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_whistling"
+"target" "auto81"
+"_color" "1 0 0"
+}
+// entity 110
+{
+guid "{8CDC8657-1DDE-4971-B5E2-E54D4E03F99D}"
+"classname" "trigger_multiple"
+"AI_ALLIES" "1"
+"AI_AXIS" "1"
+"AI_NEUTRAL" "1"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_sector_partial"
+"targetname" "ambient_package"
+"_color" "1 0.3 0.1"
+"spawnflags" "135"
+// brush 0
+{
+ guid "{F46DDC11-54CF-11E4-9A47-40A8F0C961CC}"
+ ( 453.5 1679.5 100 ) ( 421.5 1679.5 100 ) ( 421.5 1647.5 100 ) trigger 64 64 975.5 -3597.5 0 0 lightmap_gray 16384 16384 975.5 -3597.5 0 0
+ ( 382.5 1628.5 158 ) ( 382.5 1660.5 158 ) ( 414.5 1660.5 158 ) trigger 64 64 975.5 -3597.5 0 0 lightmap_gray 16384 16384 975.5 -3597.5 0 0
+ ( 400 111.5 379 ) ( 432 111.5 379 ) ( 432 111.5 219 ) trigger 64 64 975.5 -26 0 0 lightmap_gray 16384 16384 975.5 -26 0 0
+ ( 181.5 1195.5 389 ) ( 181.5 1227.5 389 ) ( 181.5 1227.5 229 ) trigger 64 64 3597.5 -26 0 0 lightmap_gray 16384 16384 3597.5 -26 0 0
+ ( 94.5 248.5 382 ) ( 62.5 248.5 382 ) ( 62.5 248.5 222 ) trigger 64 64 975.5 -26 0 0 lightmap_gray 16384 16384 975.5 -26 0 0
+ ( -81.5 1286.5 413 ) ( -81.5 1254.5 413 ) ( -81.5 1254.5 253 ) trigger 64 64 3597.5 -26 0 0 lightmap_gray 16384 16384 3597.5 -26 0 0
+}
+}
+// entity 111
+{
+guid "{EF3C0081-B30E-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-808 -1.5 128"
+"script_label" "random"
+"script_sound" "amb_water_lapping"
+"script_wait_max" "8"
+"script_wait_min" "3"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 112
+{
+guid "{FC5FF461-B30E-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-1056 -1.5 128"
+"script_label" "random"
+"script_sound" "amb_water_lapping"
+"script_wait_max" "8"
+"script_wait_min" "3"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 113
+{
+guid "{025F242E-B30F-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-960 126.5 128"
+"script_label" "random"
+"script_sound" "amb_water_lapping"
+"script_wait_max" "8"
+"script_wait_min" "3"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 114
+{
+guid "{088BA58E-B30F-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-952 230.5 136"
+"script_label" "random"
+"script_sound" "amb_water_lapping"
+"script_wait_max" "8"
+"script_wait_min" "3"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 115
+{
+guid "{088BA598-B30F-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-1056 334.5 136"
+"script_label" "random"
+"script_sound" "amb_water_lapping"
+"script_wait_max" "8"
+"script_wait_min" "3"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 116
+{
+guid "{0FD68F3E-B30F-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-840 302.5 136"
+"script_label" "random"
+"script_sound" "amb_water_lapping"
+"script_wait_max" "8"
+"script_wait_min" "3"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 117
+{
+guid "{173D6560-B30F-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-972 227 128"
+"targetname" "auto87"
+"_color" "1 0 0"
+}
+// entity 118
+{
+guid "{173D6563-B30F-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "265 229 128"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_water_brook_l"
+"target" "auto87"
+"targetname" "amb_water_brook_l"
+"_color" "1 0 0"
+}
+// entity 119
+{
+guid "{3A1E1396-B30F-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-972 115 128"
+"targetname" "auto88"
+"_color" "1 0 0"
+}
+// entity 120
+{
+guid "{3A1E1399-B30F-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "265 117 128"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_water_brook_r"
+"target" "auto88"
+"targetname" "amb_water_brook_r"
+"_color" "1 0 0"
+}
+// entity 121
+{
+guid "{57A6CE73-B30F-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "631 261 178"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_water_fall_dist"
+"target" "auto89"
+"targetname" "amb_water_fall_dist"
+"_color" "1 0 0"
+}
+// entity 122
+{
+guid "{57A6CE76-B30F-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "643 100 178"
+"targetname" "auto89"
+"_color" "1 0 0"
+}
+// entity 123
+{
+guid "{0B1C6D20-B310-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "319 261 130"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_water_drain"
+"target" "auto90"
+"targetname" "amb_water_drain"
+"_color" "1 0 0"
+}
+// entity 124
+{
+guid "{0B1C6D23-B310-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "331 100 130"
+"targetname" "auto90"
+"_color" "1 0 0"
+}
+// entity 125
+{
+guid "{55DA566E-B310-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-1096.5 597 187.5"
+"script_label" "looper"
+"script_looping" "1"
+"script_sound" "amb_water_pump"
+"targetname" "amb_water_pump"
+"_color" "1 0 0"
+}
+// entity 126
+{
+guid "{26E4D608-B316-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "623 261 82"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_water_fall"
+"target" "auto91"
+"targetname" "amb_water_fall"
+"_color" "1 0 0"
+}
+// entity 127
+{
+guid "{26E4D60B-B316-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "635 100 82"
+"targetname" "auto91"
+"_color" "1 0 0"
+}
+// entity 128
+{
+guid "{D41F76BE-B31B-11E4-B296-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-1000.5 -259 195.5"
+"script_label" "looper"
+"script_looping" "1"
+"script_sound" "amb_water_pump"
+"targetname" "amb_water_pump"
+"_color" "1 0 0"
+}
+// entity 129
+{
+guid "{527BA86A-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-512.75 -1360.25 392"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 130
+{
+guid "{7570758E-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-512.5 -1420.5 380"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 131
+{
+guid "{7D040B96-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-512.25 -1622.75 375"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 132
+{
+guid "{7D040BA4-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-412 -1928.75 387"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 133
+{
+guid "{838DA4DA-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-526.75 -1769.5 387"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 134
+{
+guid "{838DA4DD-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-526.5 -1829.75 375"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 135
+{
+guid "{8F335B5D-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-190.25 -2448.5 387"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 136
+{
+guid "{8F335B71-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-150 -2480.75 388"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 137
+{
+guid "{97C3322A-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-190 -2667.75 437"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 138
+{
+guid "{97C3322D-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-189.75 -2728 425"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 139
+{
+guid "{9FAC3D60-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "225.25 -2649 394"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 140
+{
+guid "{9FAC3D63-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "225.5 -2709.25 382"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 141
+{
+guid "{9FAC3D66-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "265.5 -2681.25 395"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 142
+{
+guid "{9FAC3D7F-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "224.5 -2447.25 490"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 143
+{
+guid "{9FAC3D82-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "224.75 -2507.5 478"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 144
+{
+guid "{9FAC3D85-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "264.75 -2479.5 491"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 145
+{
+guid "{BAD3C561-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "214.75 -2152.5 414"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 146
+{
+guid "{BAD3C564-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "215 -2212.75 402"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 147
+{
+guid "{BAD3C567-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "255 -2184.75 415"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 148
+{
+guid "{C8709DD5-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "651.75 -1392.25 368"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 149
+{
+guid "{C8709DD8-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "652 -1452.5 356"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 150
+{
+guid "{C8709DDB-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "692 -1424.5 369"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 151
+{
+guid "{C8709DF4-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "460.25 -1610 458"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 152
+{
+guid "{C8709DFA-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "500.5 -1642.25 459"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 153
+{
+guid "{DE1072C9-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-121.25 2516 458"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "12"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 154
+{
+guid "{DE1072CF-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-81 2483.75 459"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "10"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 155
+{
+guid "{F7A93A45-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "460 2229.75 509"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 156
+{
+guid "{F7A93A48-CC4C-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "460.25 2169.5 497"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 157
+{
+guid "{0E77FA06-CC4D-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "451.5 1922.25 510"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "6"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
+// entity 158
+{
+guid "{756CAD50-CC4D-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "394.5 1275.75 207"
+"script_label" "random"
+"script_sound" "amb_glass_crack"
+"script_wait_max" "16"
+"script_wait_min" "8"
+"targetname" "glass"
+"_color" "1 0 0"
+}
+// entity 159
+{
+guid "{94729A4E-CC4D-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "455.75 1275.5 207"
+"script_label" "random"
+"script_sound" "amb_glass_crack"
+"script_wait_max" "16"
+"script_wait_min" "8"
+"targetname" "glass"
+"_color" "1 0 0"
+}
+// entity 160
+{
+guid "{9D6B6EC6-CC4D-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-190.75 924 216"
+"script_label" "random"
+"script_sound" "amb_glass_crack"
+"script_wait_max" "16"
+"script_wait_min" "8"
+"targetname" "glass"
+"_color" "1 0 0"
+}
+// entity 161
+{
+guid "{A57A2B66-CC4D-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-190.5 975.75 226"
+"script_label" "random"
+"script_sound" "amb_glass_crack"
+"script_wait_max" "16"
+"script_wait_min" "8"
+"targetname" "glass"
+"_color" "1 0 0"
+}
+// entity 162
+{
+guid "{27712A7A-CC4E-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "225.25 1431.25 231.5"
+"script_label" "looper"
+"script_looping" "1"
+"script_sound" "amb_aquarium"
+"targetname" "amb_aquarium"
+"_color" "1 0 0"
+}
+// entity 163
+{
+guid "{A19D6202-CCDB-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-306 3175.5 151"
+"script_label" "random"
+"script_sound" "amb_locust"
+"script_wait_max" "15"
+"script_wait_min" "5"
+"targetname" "insects"
+"_color" "1 0 0"
+}
+// entity 164
+{
+guid "{BCF019CE-CCDB-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-170 2391.5 143"
+"script_label" "random"
+"script_sound" "amb_locust"
+"script_wait_max" "15"
+"script_wait_min" "5"
+"targetname" "insects"
+"_color" "1 0 0"
+}
+// entity 165
+{
+guid "{CDD7ED18-CCDB-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-106 1439.5 167"
+"script_label" "random"
+"script_sound" "amb_locust"
+"script_wait_max" "15"
+"script_wait_min" "5"
+"targetname" "insects"
+"_color" "1 0 0"
+}
+// entity 166
+{
+guid "{DEACAD11-CCDB-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-474 703.5 167"
+"script_label" "random"
+"script_sound" "amb_locust"
+"script_wait_max" "15"
+"script_wait_min" "5"
+"targetname" "insects"
+"_color" "1 0 0"
+}
+// entity 167
+{
+guid "{E73B2443-CCDB-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-1378 1031.5 495"
+"script_label" "random"
+"script_sound" "amb_locust"
+"script_wait_max" "15"
+"script_wait_min" "5"
+"targetname" "insects"
+"_color" "1 0 0"
+}
+// entity 168
+{
+guid "{F0F6B17A-CCDB-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-1170 -712.5 183"
+"script_label" "random"
+"script_sound" "amb_locust"
+"script_wait_max" "15"
+"script_wait_min" "5"
+"targetname" "insects"
+"_color" "1 0 0"
+}
+// entity 169
+{
+guid "{FAEB9FA9-CCDB-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-370 -1856.5 183"
+"script_label" "random"
+"script_sound" "amb_locust"
+"script_wait_max" "15"
+"script_wait_min" "5"
+"targetname" "insects"
+"_color" "1 0 0"
+}
+// entity 170
+{
+guid "{0648B290-CCDC-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "358 -1488.5 183"
+"script_label" "random"
+"script_sound" "amb_locust"
+"script_wait_max" "15"
+"script_wait_min" "5"
+"targetname" "insects"
+"_color" "1 0 0"
+}
+// entity 171
+{
+guid "{0648B29A-CCDC-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-98 -2704.5 311"
+"script_label" "random"
+"script_sound" "amb_locust"
+"script_wait_max" "15"
+"script_wait_min" "5"
+"targetname" "insects"
+"_color" "1 0 0"
+}
+// entity 172
+{
+guid "{C5A136AF-CCE9-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "463.75 859.5 327"
+"script_label" "random"
+"script_sound" "amb_glass_crack"
+"script_wait_max" "16"
+"script_wait_min" "8"
+"targetname" "glass"
+"_color" "1 0 0"
+}
+// entity 173
+{
+guid "{CD59BACA-CCE9-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "471.75 803.5 335"
+"script_label" "random"
+"script_sound" "amb_glass_crack"
+"script_wait_max" "16"
+"script_wait_min" "8"
+"targetname" "glass"
+"_color" "1 0 0"
+}
+// entity 174
+{
+guid "{CD59BAD4-CCE9-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "479.75 763.5 351"
+"script_label" "random"
+"script_sound" "amb_glass_crack"
+"script_wait_max" "16"
+"script_wait_min" "8"
+"targetname" "glass"
+"_color" "1 0 0"
+}
+// entity 175
+{
+guid "{D4526C66-CCE9-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "487.75 667.5 343"
+"script_label" "random"
+"script_sound" "amb_glass_crack"
+"script_wait_max" "16"
+"script_wait_min" "8"
+"targetname" "glass"
+"_color" "1 0 0"
+}
+// entity 176
+{
+guid "{D4526C70-CCE9-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "495.75 611.5 343"
+"script_label" "random"
+"script_sound" "amb_glass_crack"
+"script_wait_max" "16"
+"script_wait_min" "8"
+"targetname" "glass"
+"_color" "1 0 0"
+}
+// entity 177
+{
+guid "{ED1B28C1-CD12-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-443 -1374 186"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_chainlink"
+"_color" "1 0 0"
+}
+// entity 178
+{
+guid "{F7E48363-CD12-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-435 -1638 194"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_chainlink"
+"_color" "1 0 0"
+}
+// entity 179
+{
+guid "{F7E4836D-CD12-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-443 -1878 250"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_chainlink"
+"_color" "1 0 0"
+}
+// entity 180
+{
+guid "{FEBEAFBF-CD12-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-523 -1438 234"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_car_alarm"
+"_color" "1 0 0"
+}
+// entity 181
+{
+guid "{0ED5E73B-CD13-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-515 -1678 226"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_car_alarm"
+"_color" "1 0 0"
+}
+// entity 182
+{
+guid "{1669080B-CD13-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "1933 1354 -574"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_car_alarm_dist"
+"_color" "1 0 0"
+}
+// entity 183
+{
+guid "{322755AB-CD13-11E4-80D1-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "1941 1122 -574"
+"script_label" "sound_rattle"
+"script_sound" "amb_rattle_car_alarm_dist"
+"_color" "1 0 0"
+}
+// entity 184
+{
+guid "{EDE41CF0-CE8E-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "490 -2025 267"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_debris_shrt"
+"target" "auto92"
+"_color" "1 0 0"
+}
+// entity 185
+{
+guid "{EDE41CF3-CE8E-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "486 -2771 267"
+"targetname" "auto92"
+"_color" "1 0 0"
+}
+// entity 186
+{
+guid "{2BFDEC46-D34D-4053-A0A1-4379B40F8B15}"
+"classname" "script_struct"
+"origin" "1079 493 276"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_whistling"
+"target" "auto79"
+"_color" "1 0 0"
+}
+// entity 187
+{
+guid "{5641EDEA-CE91-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "48.5 177 124.5"
+"script_label" "looper"
+"script_looping" "1"
+"script_sound" "amb_wind_lp_shrt"
+"targetname" "amb_water_pump"
+"_color" "1 0 0"
+}
+// entity 188
+{
+guid "{02ADEEBB-CE92-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "996 1701 236"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_debris_shrt"
+"target" "auto93"
+"_color" "1 0 0"
+}
+// entity 189
+{
+guid "{02ADEEBE-CE92-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "1018 742 236"
+"targetname" "auto93"
+"_color" "1 0 0"
+}
+// entity 190
+{
+guid "{AA261C59-CE93-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "616 56 239"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_lp"
+"target" "auto94"
+"_color" "1 0 0"
+}
+// entity 191
+{
+guid "{AA261C5C-CE93-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "613 323 239"
+"targetname" "auto94"
+"_color" "1 0 0"
+}
+// entity 192
+{
+guid "{2327F0E6-CE94-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-1133 -578.5 184"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 193
+{
+guid "{2327F16F-CE94-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-863 -579.5 184"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 194
+{
+guid "{7107DCBB-CE94-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-907 507 214"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_lp"
+"target" "auto95"
+"_color" "1 0 0"
+}
+// entity 195
+{
+guid "{7107DCBE-CE94-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-1142 1045 218"
+"targetname" "auto95"
+"_color" "1 0 0"
+}
+// entity 196
+{
+guid "{9B7B09AA-CE94-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-1174 -527 214"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_lp"
+"target" "auto96"
+"_color" "1 0 0"
+}
+// entity 197
+{
+guid "{9B7B09AD-CE94-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-964 -166 218"
+"targetname" "auto96"
+"_color" "1 0 0"
+}
+// entity 198
+{
+guid "{B1D5F603-CE94-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-867 -711.5 201"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 199
+{
+guid "{B1D5F60D-CE94-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-1052 -741.5 201"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 200
+{
+guid "{4D585713-CE96-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "189 1622 239"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_int_dark"
+"target" "auto97"
+"_color" "1 0 0"
+}
+// entity 201
+{
+guid "{4D585716-CE96-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "438 1383 239"
+"targetname" "auto97"
+"_color" "1 0 0"
+}
+// entity 202
+{
+guid "{D734561F-CE96-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "406 613 358"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_lp"
+"target" "auto98"
+"_color" "1 0 0"
+}
+// entity 203
+{
+guid "{D7345622-CE96-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "406 789 362"
+"targetname" "auto98"
+"_color" "1 0 0"
+}
+// entity 204
+{
+guid "{1F3A2115-CE97-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "153 1279 208"
+"script_label" "line_emitter"
+"script_looping" "1"
+"script_sound" "amb_wind_int_dark"
+"target" "auto99"
+"_color" "1 0 0"
+}
+// entity 205
+{
+guid "{1F3A2118-CE97-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-41 929 211"
+"targetname" "auto99"
+"_color" "1 0 0"
+}
+// entity 206
+{
+guid "{EB54BD9F-CE9D-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-915 -471.5 185"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 207
+{
+guid "{F14D0FB8-CE9D-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-971 976.5 185"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 208
+{
+guid "{F7D548E5-CE9D-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-1195 952.5 185"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 209
+{
+guid "{F7D548EF-CE9D-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-971 784.5 185"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 210
+{
+guid "{FF0EAEA6-CE9D-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-579 1112.5 185"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 211
+{
+guid "{FF0EAEBE-CE9D-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-819 1120.5 185"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 212
+{
+guid "{FE3E5001-9E19-4245-B77D-FD0F59B2A5AC}"
+"classname" "script_struct"
+"origin" "268 187.5 229"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 213
+{
+guid "{3462B673-CE9E-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-711.5 1089 212.5"
+"script_label" "looper"
+"script_looping" "1"
+"script_sound" "amb_wind_lp_shrt"
+"targetname" "amb_water_pump"
+"_color" "1 0 0"
+}
+// entity 214
+{
+guid "{5FAEE3F6-CE9E-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "108 303.5 260"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 215
+{
+guid "{65A7845D-CE9E-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "32 58.5 260"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 216
+{
+guid "{6BF2DA6E-CE9E-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "33 -188.5 264"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 217
+{
+guid "{727C4C5B-CE9E-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "111 645.5 225"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 218
+{
+guid "{BAA1DBDD-CE9E-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "633 932.5 217"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 219
+{
+guid "{C6F0F5C2-CE9E-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "143 2842.5 207"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 220
+{
+guid "{C6F0F5E5-CE9E-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-248 2568.5 198"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 221
+{
+guid "{D36BDBCC-CE9E-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "20 -1947.5 203"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 222
+{
+guid "{E76A6158-2671-42DE-A735-AD0FD4A68CBF}"
+"classname" "script_struct"
+"origin" "-18 -1766.5 203"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 223
+{
+guid "{D36BDBDA-CE9E-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-231 -1720.5 203"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 224
+{
+guid "{DDC24D70-CE9E-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "54 -2498.5 205"
+"script_label" "random"
+"script_sound" "amb_gust_dry"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 225
+{
+guid "{E9E1A3DA-CE9E-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "-38 -2349.5 201"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 226
+{
+guid "{E9E1A3E4-CE9E-11E4-BAA4-40A8F0C961CC}"
+"classname" "script_struct"
+"origin" "72 -1601.5 201"
+"script_label" "random"
+"script_sound" "amb_gust_cold"
+"script_wait_max" "7"
+"script_wait_min" "2"
+"targetname" "amb_water_lapping"
+"_color" "1 0 0"
+}
+// entity 227
+{
+guid "{D922850C-CEA6-11E4-BAA4-40A8F0C961CC}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_label" "watershallow"
+"targetname" "audio_material_trigger"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{D922850B-CEA6-11E4-BAA4-40A8F0C961CC}"
+ ( 311 86.5 127 ) ( 189 86.5 127 ) ( 189 -35.5 127 ) trigger 64 64 -9017 1098 0 0 lightmap_gray 16384 16384 -9017 1098 0 0
+ ( 15 55.5 160 ) ( 15 177.5 160 ) ( 137 177.5 160 ) trigger 64 64 -9017 1098 0 0 lightmap_gray 16384 16384 -9017 1098 0 0
+ ( 194 39.5 146 ) ( 316 39.5 146 ) ( 316 39.5 130 ) trigger 64 64 -9017 -274 0 0 lightmap_gray 16384 16384 -9017 -274 0 0
+ ( 364.5 -36.5 138 ) ( 364.5 85.5 138 ) ( 364.5 85.5 122 ) trigger 64 64 -1098 -274 0 0 lightmap_gray 16384 16384 -1098 -274 0 0
+ ( 328 321.5 166 ) ( 206 321.5 166 ) ( 206 321.5 150 ) trigger 64 64 -9017 -274 0 0 lightmap_gray 16384 16384 -9017 -274 0 0
+ ( 189 177.5 141 ) ( 189 55.5 141 ) ( 189 55.5 125 ) trigger 64 64 -1098 -274 0 0 lightmap_gray 16384 16384 -1098 -274 0 0
+}
+}
+// entity 228
+{
+guid "{3E3F1108-CEA7-11E4-BAA4-40A8F0C961CC}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_label" "watershallow"
+"targetname" "audio_material_trigger"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{3E3F1107-CEA7-11E4-BAA4-40A8F0C961CC}"
+ ( -276 91.5 127 ) ( -398 91.5 127 ) ( -398 -30.5 127 ) trigger 64 64 -9604 1093 0 0 lightmap_gray 16384 16384 -9604 1093 0 0
+ ( -401 -8.5 163 ) ( -401 113.5 163 ) ( -279 113.5 163 ) trigger 64 64 -9604 1093 0 0 lightmap_gray 16384 16384 -9604 1093 0 0
+ ( -398 16.5 146 ) ( -276 16.5 146 ) ( -276 16.5 130 ) trigger 64 64 -9604 -274 0 0 lightmap_gray 16384 16384 -9604 -274 0 0
+ ( -51.5 -31.5 141 ) ( -51.5 90.5 141 ) ( -51.5 90.5 125 ) trigger 64 64 -1093 -274 0 0 lightmap_gray 16384 16384 -1093 -274 0 0
+ ( -264 321.5 166 ) ( -386 321.5 166 ) ( -386 321.5 150 ) trigger 64 64 -9604 -274 0 0 lightmap_gray 16384 16384 -9604 -274 0 0
+ ( -398 182.5 141 ) ( -398 60.5 141 ) ( -398 60.5 125 ) trigger 64 64 -1093 -274 0 0 lightmap_gray 16384 16384 -1093 -274 0 0
+}
+}
+// entity 229
+{
+guid "{4439FC19-CEA7-11E4-BAA4-40A8F0C961CC}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_label" "watershallow"
+"targetname" "audio_material_trigger"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{4439FC18-CEA7-11E4-BAA4-40A8F0C961CC}"
+ ( -634 92.5 110 ) ( -756 92.5 110 ) ( -756 -29.5 110 ) trigger 64 64 -9962 1092 0 0 lightmap_gray 16384 16384 -9962 1092 0 0
+ ( -759 61.5 148 ) ( -759 183.5 148 ) ( -637 183.5 148 ) trigger 64 64 -9962 1092 0 0 lightmap_gray 16384 16384 -9962 1092 0 0
+ ( -766 -49.5 121 ) ( -644 -49.5 121 ) ( -644 -49.5 105 ) trigger 64 64 -9962 -257 0 0 lightmap_gray 16384 16384 -9962 -257 0 0
+ ( -409.5 -30.5 124 ) ( -409.5 91.5 124 ) ( -409.5 91.5 108 ) trigger 64 64 -1092 -257 0 0 lightmap_gray 16384 16384 -1092 -257 0 0
+ ( -622 365.5 152 ) ( -744 365.5 152 ) ( -744 365.5 136 ) trigger 64 64 -9962 -257 0 0 lightmap_gray 16384 16384 -9962 -257 0 0
+ ( -1088 183.5 127 ) ( -1088 61.5 127 ) ( -1088 61.5 111 ) trigger 64 64 -1092 -257 0 0 lightmap_gray 16384 16384 -1092 -257 0 0
+}
+}
+// entity 230
+{
+guid "{16CBE32A-DA62-11E4-BE8C-40A8F0C9B650}"
+"classname" "script_struct"
+"origin" "-80.5 2442.25 459"
+"script_label" "random"
+"script_sound" "amb_tree_leaves"
+"script_wait_max" "10"
+"script_wait_min" "3"
+"targetname" "wind"
+"_color" "1 0 0"
+}
