@@ -97,6 +97,7 @@ function main()
 	init_zones[0] = "start_zone";
 	// init_zones[1] = "second_zone";
 	// init_zones[2] = "third_zone";
+	// init_zones[2] = "fourth_zone";
 	level thread zm_zonemgr::manage_zones( init_zones );
 
 	level.pathdist_type = PATHDIST_ORIGINAL;
@@ -106,6 +107,7 @@ function usermap_test_zone_init()
 {
 	zm_zonemgr::add_adjacent_zone("start_zone", "second_zone", "enter_second_zone");
 	zm_zonemgr::add_adjacent_zone("second_zone", "third_zone", "enter_third_zone");
+	zm_zonemgr::add_adjacent_zone("third_zone", "fourth_zone", "enter_fourth_zone");
 	// level flag::init( "always_on" );
 	// level flag::set( "always_on" );
 }	
