@@ -125,9 +125,6 @@ function precache_fx()
 function MonitorPowerState()
 {
 	level flag::wait_till("initial_blackscreen_passed");
-	level.MainLightState = 0;
-	level.LightningLightState = 2;
-
 	level flag::wait_till("power_on");
 	level.MainLightState = 1;
 	level.LightningLightState = 3;
@@ -158,7 +155,6 @@ function PlayRainSounds()
 // TODO 2: play a thunder strike is the sky ?
 function PlayThunderSoundAndLightings()
 {
-	level util::set_lighting_state(0);
     level flag::wait_till("initial_blackscreen_passed");
     while(1)
     {
