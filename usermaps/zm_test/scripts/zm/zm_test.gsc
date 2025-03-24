@@ -63,29 +63,33 @@
 
 function main()
 {
-    // Decal
+    // Rain & Decal
     clientfield::register( "world", "decal_toggle", VERSION_SHIP, 1, "int" );
-
-    // Rain
     clientfield::register( "world", "rain_fx_stop", VERSION_SHIP, 1, "int" );
+	//Flashlight
+    clientfield::register( "toplayer", "flashlight_fx_view", VERSION_SHIP, 1, "int" );
+    clientfield::register( "allplayers", "flashlight_fx_world", VERSION_SHIP, 1, "int" );
 
 	zm_usermap::main();
 
 	//FX
 	precache_fx();
 
-    // For Perk Machine Lights
+    // For Perk Machine Lights (TODO: doesn't work ?)
     level util::set_lighting_state(0); 
+
+    //Flashlight
+	callback::on_connect ( &flashlight_on_player_connect );
 
     // Uncomment to control when to disable rain.
 	//level thread watch_lightstate();
 
 	//Start monitoring power state
-	level.MainLightState = 0;
-	level.LightningLightState = 2;
 	level thread MonitorPowerState();
 
 	//Start rain and thunder sounds
+	level.MainLightState = 0;
+	level.LightningLightState = 2;
 	level thread PlayRainSounds();
 	level thread PlayThunderSoundAndLightings();
 
@@ -217,4 +221,81 @@ function PlayThunderSoundAndLightings()
     }
 }
 
+//*****************************************************************************
+// FLASHLIGHT
+//*****************************************************************************
+function flashlight_on_player_connect()
+{
+	self thread flashlight_init();
+}
 
+function flashlight_init()
+{
+	//Customise for starting with flashlight on/off
+	self.flashlight_enabled = true;							// true = on, false = off
+	self clientfield::set_to_player( "flashlight_fx_view", 1 ); // 1 = on, 0 = off
+	self clientfield::set( "flashlight_fx_world",	 1 );		// 1 = on, 0 = off
+
+	self thread flashlight_watch_usebutton();
+}
+
+function flashlight_watch_usebutton()
+{
+	self endon( "kill_flashlight" );
+	
+    // TODO: this code is shit.
+	while( 1 )
+	{
+		if( self UseButtonPressed() )
+		{
+			catch_next = false;
+			for( i = 0; i <= 0.5; i += 0.05 )
+			{
+				if( catch_next && self UseButtonPressed() )
+				{
+					if( !self.flashlight_enabled )
+					{
+						self flashlight_state( "ON" );
+						wait 1;
+						break;
+					}
+
+					else
+					{
+						self flashlight_state( "OFF" );
+						wait 1;
+						break;
+					}
+				}
+
+				else if( !( self UseButtonPressed() ) )
+					catch_next = true;
+
+				wait 0.05;
+			}
+		}
+		wait 0.05;
+	}
+}
+
+function flashlight_state( state )
+{
+	if( !isdefined( state ) )
+		break;
+
+	if( state == "ON" )
+	{
+		self clientfield::set_to_player( "flashlight_fx_view", 1 );
+		self clientfield::set( "flashlight_fx_world",	 1 );
+		self.flashlight_enabled = true;
+		break;
+	}
+
+	if( state == "OFF" )
+	{
+		self clientfield::set_to_player( "flashlight_fx_view", 0 );
+		self clientfield::set( "flashlight_fx_world",	 0 );
+		self.flashlight_enabled = false;
+		break;
+	}
+}

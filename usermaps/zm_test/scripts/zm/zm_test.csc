@@ -40,6 +40,11 @@
 #precache ("client_fx", "custom/env/fx_rain_player_z_regular");
 #precache ("client_fx", "custom/env/fx_rain_player_z_heavy");
 
+#precache ("client_fx", "custom/flashlight/flashlight_loop");
+#precache ("client_fx", "custom/flashlight/flashlight_loop_world");
+#precache ("client_fx", "custom/flashlight/flashlight_loop_view_moths");
+
+
 function main()
 {    
 	// Rain player
@@ -50,6 +55,10 @@ function main()
 	clientfield::register( "world", "decal_toggle", VERSION_SHIP, 1, "int", &decal_toggle, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT );
 	level.vdIndexArray = FindVolumeDecalIndexArray( "decalrain" );
 
+    //Flashlight
+    clientfield::register( "toplayer", "flashlight_fx_view", VERSION_SHIP, 1, "int", &flashlight_fx_view, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT );
+    clientfield::register( "allplayers", "flashlight_fx_world", VERSION_SHIP, 1, "int", &flashlight_fx_world, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT );
+    
 	zm_usermap::main();
 
 	include_weapons();
@@ -99,6 +108,11 @@ function precache_fx()
 	//level._effect[ "player_rain" ] = "custom/env/fx_rain_player_z_light";
 	//level._effect[ "player_rain" ] = "custom/env/fx_rain_player_z_regular";
 	level._effect[ "player_rain" ] = "custom/env/fx_rain_player_z_heavy";
+
+    //Flashlight
+    level._effect[ "flashlight_fx_loop_view" ] = "custom/flashlight/flashlight_loop";
+    level._effect[ "flashlight_fx_loop_view_moths" ] = "custom/flashlight/flashlight_loop_view_moths";
+    level._effect[ "flashlight_fx_loop_world" ] = "custom/flashlight/flashlight_loop_world";
 }
 
 function ApplyRainOnAllPlayers() {
@@ -145,5 +159,69 @@ function rain_player( localclientnum )
             }
         }
         
+    }
+}
+
+//*****************************************************************************
+// FLASHLIGHT
+//*****************************************************************************
+function flashlight_fx_view( localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump ) // self == player
+{
+    if ( newVal )
+    {
+        if ( isdefined( self.fx_flashlight_view ) )
+            KillFx( localClientNum, self.fx_flashlight_view );
+
+        if ( isdefined( self.fx_flashlight_moth ) )
+            KillFx( localClientNum, self.fx_flashlight_moth );
+
+        flash_fx_view = level._effect[ "flashlight_fx_loop_view" ];
+            self.fx_flashlight_view = PlayViewmodelFx( localclientnum, flash_fx_view, "tag_flash" ); 
+
+        flash_fx_moth = level._effect[ "flashlight_fx_loop_view_moths" ];
+            self.fx_flashlight_moth = PlayFxOnTag( localClientNum, flash_fx_moth, self, "j_spine4" );
+
+        playsound( localClientNum, "flashlight_on", self.origin ); 
+    }
+    else
+    {
+        if ( isdefined( self.fx_flashlight_view ) )
+        {
+            KillFx( localClientNum, self.fx_flashlight_view );
+                self.fx_flashlight_view = undefined;
+
+            playsound( localClientNum, "flashlight_off", self.origin ); 
+        }
+
+        if ( isdefined( self.fx_flashlight_moth ) )
+        {
+            KillFx( localClientNum, self.fx_flashlight_moth );
+                self.fx_flashlight_moth = undefined;
+        }
+    }
+}
+
+function flashlight_fx_world( localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump ) // self == player
+{
+    if ( newVal )
+    {
+        curr_player = GetLocalPlayer( localClientNum );
+
+        if ( isdefined( self.fx_flashlight_world ) )
+            KillFx( localClientNum, self.fx_flashlight_world );
+
+        if( curr_player != self )
+        {
+            flash_fx_world = level._effect[ "flashlight_fx_loop_world" ];
+                self.fx_flashlight_world = PlayFxOnTag( localClientNum, flash_fx_world, self, "tag_flash" );
+        }
+    }
+    else
+    {
+        if ( isdefined( self.fx_flashlight_world ) )
+        {
+            KillFx( localClientNum, self.fx_flashlight_world );
+                self.fx_flashlight_world = undefined;
+        }
     }
 }
