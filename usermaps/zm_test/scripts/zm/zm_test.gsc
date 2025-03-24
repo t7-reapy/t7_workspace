@@ -57,8 +57,6 @@
 #precache ("fx", "custom/env/fx_rain_player_z_regular");
 #precache ("fx", "custom/env/fx_rain_player_z_heavy");
 
-#define FLASHLIGHT_BUTTON_IS_PRESSED self ActionSlotThreeButtonPressed()
-
 //*****************************************************************************
 // MAIN
 //*****************************************************************************
@@ -68,20 +66,14 @@ function main()
     // Rain & Decal
     clientfield::register("world", "decal_toggle", VERSION_SHIP, 1, "int");
     clientfield::register("world", "rain_fx_stop", VERSION_SHIP, 1, "int");
-    //Flashlight
-    clientfield::register("toplayer", "flashlight_fx_view", VERSION_SHIP, 1, "int");
-    clientfield::register("allplayers", "flashlight_fx_world", VERSION_SHIP, 1, "int");
-
+    
     zm_usermap::main();
 
     //FX
     precache_fx();
 
     // For Perk Machine Lights (TODO: doesn't work ?)
-    level util::set_lighting_state(0); 
-
-    //Flashlight
-    callback::on_connect (&flashlight_on_player_connect);
+    level util::set_lighting_state(0);
 
     // Uncomment to control when to disable rain.
     //level thread watch_lightstate();
@@ -220,68 +212,5 @@ function PlayThunderSoundAndLightings()
             wait RandomFloatRange(0.6,0.6);
             level util::set_lighting_state(level.MainLightState);
         }
-    }
-}
-
-//*****************************************************************************
-// FLASHLIGHT
-//*****************************************************************************
-function flashlight_on_player_connect()
-{
-    self thread flashlight_init();
-}
-
-function flashlight_init()
-{
-    //Customise starting with flashlight on/off
-    self.flashlight_enabled = false;
-    self.flashlight_button_pressed = false;
-    self clientfield::set_to_player("flashlight_fx_view", 0);
-    self clientfield::set("flashlight_fx_world",  0);
-
-    self thread flashlight_watch_button();
-    self thread flashlight_hint();
-}
-
-function flashlight_hint() {
-    level flag::wait_till("initial_blackscreen_passed");
-    self thread zm_equipment::show_hint_text("Press ^3[{+actionslot 3}]^7 to activate your flashlight.");
-}
-
-function flashlight_watch_button()
-{
-    self endon("kill_flashlight");
-
-    while (true)
-    {
-        if (self IsSwitchingWeapons() || self IsThrowingGrenade()) {
-            self turn_on_flashlight(false);
-        }
-        else if (!self.flashlight_button_pressed && FLASHLIGHT_BUTTON_IS_PRESSED)
-        {
-            self.flashlight_button_pressed = true;
-            self turn_on_flashlight(!self.flashlight_enabled);
-        }
-        else if (!FLASHLIGHT_BUTTON_IS_PRESSED)
-        {
-            self.flashlight_button_pressed = false;
-        }
-        WAIT_SERVER_FRAME;
-    }
-}
-
-function turn_on_flashlight(is_on = true)
-{
-    if(is_on)
-    {
-        self clientfield::set_to_player("flashlight_fx_view", 1);
-        self clientfield::set("flashlight_fx_world",  1);
-        self.flashlight_enabled = true;
-    } 
-    else 
-    {
-        self clientfield::set_to_player("flashlight_fx_view", 0);
-        self clientfield::set("flashlight_fx_world",  0);
-        self.flashlight_enabled = false;
     }
 }
