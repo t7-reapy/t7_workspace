@@ -5,7 +5,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{7C1FC175-0811-11F0-B33E-DBD26D4E84BC}"
+guid "{9BC10CE2-0B4C-11F0-B344-B3E6B5F22DE3}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -192,6 +192,16 @@ guid "{7C1FC175-0811-11F0-B33E-DBD26D4E84BC}"
  ( 5408 7392 -480 ) ( 5408 0 -480 ) ( 5408 0 1056 ) sky 16 16 3328 0 0 0 lightmap_gray 16384 16384 3328 0 0 0
  ( 5408 7392 -480 ) ( 5408 7392 1056 ) ( 5376 7392 1056 ) sky 16 16 2086 0 0 0 lightmap_gray 16384 16384 2086 0 0 0
  ( 5376 7392 1056 ) ( 5376 0 1056 ) ( 5376 0 -480 ) sky 16 16 3392 0 0 0 lightmap_gray 16384 16384 3392 0 0 0
+}
+// brush 16
+{
+ guid "{863FB20D-0A93-11F0-B343-BA646767225D}"
+ ( 1903 2338 -140 ) ( 1876 2338 -140 ) ( 1876 2241 -140 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1903 2241 54 ) ( 1903 2338 54 ) ( 1930 2338 54 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1870 2241 -117 ) ( 1897 2241 -117 ) ( 1897 2241 -133 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1897 2241 -117 ) ( 1897 2338 -117 ) ( 1897 2338 -133 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1897 2338 -117 ) ( 1870 2338 -117 ) ( 1870 2338 -133 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1870 2338 -117 ) ( 1870 2241 -117 ) ( 1870 2241 -133 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
 // entity 1
@@ -433,7 +443,7 @@ guid "{E434FAAD-9DA0-11EF-B292-DDE094366BC2}"
 guid "{E434FAB0-9DA0-11EF-B292-DDE094366BC2}"
 "classname" "script_struct"
 "angles" "0 270 0"
-"origin" "1884.88 2355.87 -125.75"
+"origin" "1884.88 2289.87 -125.75"
 "script_noteworthy" "chest_5"
 "targetname" "treasure_chest_use"
 "zombie_cost" "950"
@@ -445,7 +455,7 @@ guid "{E434FAC5-9DA0-11EF-B292-DDE094366BC2}"
 "classname" "misc_prefab"
 "angles" "0 360 0"
 "model" "_prefabs/zm/zm_giant/geo/zm_giant_magicbox_platform.map"
-"origin" "1884.38 2355.62 -140"
+"origin" "1884.38 2289.62 -140"
 }
 // entity 21
 {
@@ -1559,7 +1569,7 @@ guid "{761DA8BD-0682-11F0-B33C-D8CE5A364374}"
 "angles" "0 1.00179e-005 0"
 "origin" "2801 2995 -10"
 "script_noteworthy" "riser_location"
-"script_string" "go_to_entry_e"
+"script_string" "go_to_entry_d"
 "targetname" "second_zone_spawners"
 "_color" "1 0 0"
 }
@@ -1570,7 +1580,7 @@ guid "{345138AF-0683-11F0-B33C-D8CE5A364374}"
 "angles" "0 360 0"
 "origin" "2701 3135 1.90735e-006"
 "script_noteworthy" "spawn_location"
-"script_string" "go_to_entry_e"
+"script_string" "go_to_entry_d"
 "targetname" "second_zone_spawners"
 "_color" "1 0 0"
 }
@@ -1581,7 +1591,7 @@ guid "{8092EF31-0683-11F0-B33C-D8CE5A364374}"
 "angles" "0 270 0"
 "model" "_prefabs/zm/zm_core/barricade_reciever_wood.map"
 "origin" "2672 2933 1"
-"script_string" "go_to_entry_e"
+"script_string" "go_to_entry_d"
 }
 // entity 100
 {
@@ -1787,4 +1797,136 @@ guid "{66333993-0500-11F0-B33A-DE06802534D9}"
 "lightingstate3" "1"
 "lightingstate4" "1"
 "shadow_casting" "1"
+}
+// entity 115
+{
+guid "{3A170641-09D2-11F0-B342-B4A618F96E6D}"
+"classname" "script_struct"
+"angles" "0 1.00179e-005 0"
+"origin" "1263 2096 -100.75"
+"script_noteworthy" "spawn_location"
+"script_string" "go_to_entry_e"
+"targetname" "fourth_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 116
+{
+guid "{E0861BCF-09D3-11F0-B342-B4A618F96E6D}"
+"classname" "misc_prefab"
+"angles" "0 89.9987 0"
+"model" "_prefabs/TJs_Barriers/BO3/bo3_barrier.map"
+"origin" "1698.38 2166.36 -140"
+"script_string" "go_to_entry_e"
+}
+// entity 117
+{
+guid "{85A7A420-0A92-11F0-B343-BA646767225D}"
+"classname" "script_struct"
+"angles" "0 1.00179e-005 0"
+"origin" "1824 2421 -123.849"
+"script_noteworthy" "riser_location"
+"script_string" "find_flesh"
+"targetname" "fourth_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 118
+{
+guid "{A1ED32D4-0A92-11F0-B343-BA646767225D}"
+"classname" "script_struct"
+"angles" "0 1.00179e-005 0"
+"origin" "1824 2281 -123.849"
+"script_noteworthy" "riser_location"
+"script_string" "find_flesh"
+"targetname" "fourth_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 119
+{
+guid "{A84F63A9-0A92-11F0-B343-BA646767225D}"
+"classname" "misc_prefab"
+"angles" "0 270 0"
+"model" "_prefabs/library/traverse/ai_zombie_mantle_over_72.map"
+"origin" "1824 2281 -140"
+}
+// entity 120
+{
+guid "{655ADF13-0A93-11F0-B343-BA646767225D}"
+"classname" "misc_prefab"
+"angles" "0 360 0"
+"model" "_prefabs/library/traverse/ai_zombie_mantle_over_72.map"
+"origin" "1824 2421 -140"
+}
+// entity 121
+{
+guid "{07F79A59-0A95-11F0-B343-BA646767225D}"
+"classname" "script_struct"
+"angles" "0 1.00179e-005 0"
+"origin" "3090 1798 -99.2744"
+"script_noteworthy" "riser_location"
+"script_string" "find_flesh"
+"targetname" "fourth_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 122
+{
+guid "{183FA8AD-0A95-11F0-B343-BA646767225D}"
+"classname" "script_struct"
+"angles" "0 1.00179e-005 0"
+"origin" "1749 1864 -127"
+"script_noteworthy" "riser_location"
+"script_string" "find_flesh"
+"targetname" "fourth_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 123
+{
+guid "{982B4480-0A95-11F0-B343-BA646767225D}"
+"classname" "script_struct"
+"angles" "0 1.00179e-005 0"
+"origin" "2476 1897 -127"
+"script_noteworthy" "riser_location"
+"script_string" "find_flesh"
+"targetname" "fourth_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 124
+{
+guid "{982B4491-0A95-11F0-B343-BA646767225D}"
+"classname" "script_struct"
+"angles" "0 1.00179e-005 0"
+"origin" "2228 2211 -124"
+"script_noteworthy" "riser_location"
+"script_string" "find_flesh"
+"targetname" "fourth_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 125
+{
+guid "{A903A3FE-0A95-11F0-B343-BA646767225D}"
+"classname" "script_struct"
+"angles" "0 1.00179e-005 0"
+"origin" "2913 1612 -100"
+"script_noteworthy" "spawn_location"
+"script_string" "find_flesh"
+"targetname" "fourth_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 126
+{
+guid "{C0AF5FE0-0B46-11F0-B344-B3E6B5F22DE3}"
+"classname" "script_struct"
+"angles" "0 1.00179e-005 0"
+"origin" "1359 2065 -139"
+"script_noteworthy" "riser_location"
+"script_string" "go_to_entry_e"
+"targetname" "fourth_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 127
+{
+guid "{4B559410-0B4D-11F0-B344-B3E6B5F22DE3}"
+"classname" "misc_prefab"
+"angles" "0 90 0"
+"model" "_prefabs/library/traverse/ai_zombie_mantle_over_36.map"
+"origin" "1793 1881 -140"
 }
