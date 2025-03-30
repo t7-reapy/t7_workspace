@@ -1,6 +1,10 @@
-# TODO
+# Overview
+
+This repository contains my config, maps and script files in order to keep track of my progress in my maps in case I have a loss of some of the sources. It also allow me to have some of the features on different branches if I wish to enable/disable them at will.
 
 # External resources installed
+
+I didn't work with basics assets provided by Treyarch, but also installed some external of them... Let's hope they never disappear from internet... Which is realisticly not possible.
 
 | Name | Author | Download Link | Alternate Link | Alternate Link |
 | ---- | ------ | ------------- | -------------- | -------------- |
@@ -10,4 +14,14 @@
 | t10 bo6 foliage pack | MADGAZ | [google drive](https://drive.google.com/file/d/1OS0WFysnv9XqDOG9kjtAS7rn1S6v9utE/view) | [devraw](https://www.devraw.net/approved-assets/madgaz/bo6-foliage-pack) | [legacy asset spreadsheet](https://docs.google.com/spreadsheets/d/10aQLnuZUgvduFS4zgPNOTBlFbD-pBfpy--Gm9ilIqRg) |
 | t10 bo6 gore corpse pack | MADGAZ | [google drive](https://drive.google.com/file/d/1j7xWM6iAP-ClHlgzCoezmvwopRNHH5sT/view) | [devraw](https://www.devraw.net/approved-assets/madgaz/bo6-gore-%26-corpse-pack) | [legacy asset spreadsheet](https://docs.google.com/spreadsheets/d/10aQLnuZUgvduFS4zgPNOTBlFbD-pBfpy--Gm9ilIqRg) |
 | t10 bo 6 liberty falls asset pack | MADGAZ | [google drive](https://drive.google.com/file/d/1Y5pTQR-o8PXRRkrdV7F3fWW6LEtyF7dh/view) | [devraw](https://www.devraw.net/approved-assets/madgaz/liberty-falls-asset-pack-) | [legacy asset spreadsheet](https://docs.google.com/spreadsheets/d/10aQLnuZUgvduFS4zgPNOTBlFbD-pBfpy--Gm9ilIqRg) |
-| window barrier pack | TJ UndeadSlayer | [mega](https://mega.nz/file/siYz2J5C#sO7Tp9iBhNBjIOGNa4p6Du6Rq8Kg1t7dVVrXsV70ybY) | [devraw](https://www.devraw.net/approved-assets/tj-undeadslayer/window-barrier-pack) | [legacy asset spreadsheet](https://docs.google.com/spreadsheets/d/10aQLnuZUgvduFS4zgPNOTBlFbD-pBfpy--Gm9ilIqRg) | 
+| window barrier pack | TJ UndeadSlayer | [mega](https://mega.nz/file/siYz2J5C#sO7Tp9iBhNBjIOGNa4p6Du6Rq8Kg1t7dVVrXsV70ybY) | [devraw](https://www.devraw.net/approved-assets/tj-undeadslayer/window-barrier-pack) | [legacy asset spreadsheet](https://docs.google.com/spreadsheets/d/10aQLnuZUgvduFS4zgPNOTBlFbD-pBfpy--Gm9ilIqRg) |
+| Perks jingles and stings fix | Harrybo21 | [mega](https://mega.nz/#!JBFiSChS!vFjGoob1UT5YYYi-NDYcO8Pld1pNv8KIu6LCPx6sfe8) | [github history](https://github.com/dtzxporter/ModmeWiki/commit/c686f4af6fce99c69deafef74a2b41aa0a1d0585#diff-5f1f6e843dfcde829355978a4dff5e5b8cc78eaaf82b57e7e17b97ec87675e9b) | [mode me forun article](https://wiki.modme.co/wiki/black_ops_3/basics/Fix-the-missing-perk-jingles-and-stings.html)
+
+# Knowns bugs spotted on map
+
+## ZM_TEST
+
+1. The box in courtyard bottom is glitched and not in sync with the wooden support
+2. the zombies don't take the mantle trave next to glithed box
+3. The house window giving access to balcony is blocking the zombies
+4. the weird house in south part has the window glitch again
