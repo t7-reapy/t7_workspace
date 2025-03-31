@@ -1,0 +1,619 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags expanded  active
+"000_Global/No Comp" flags hidden ignore 
+"The Map" flags expanded 
+// entity 0
+{
+guid "{c0723832-0936-43be-a6b7-786c5d97e0d8}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{6dd78fdf-86a7-47f1-94d7-66d6b8dff388}"
+ ( -456 48 0 ) ( -504 48 0 ) ( -504 8 0 ) script_wall 128 128 -768 -72 0 0 lightmap_gray 16384 16384 -768 -72 0 0
+ ( -496 8 256 ) ( -496 48 256 ) ( -448 48 256 ) script_wall 128 128 -768 -72 0 0 lightmap_gray 16384 16384 -768 -72 0 0
+ ( -504 0 88 ) ( -456 0 88 ) ( -456 0 0 ) script_wall 128 128 -768 -64 0 0 lightmap_gray 16384 16384 -768 -64 0 0
+ ( -448 8 88 ) ( -448 48 88 ) ( -448 48 0 ) script_wall 128 128 72 -64 0 0 lightmap_gray 16384 16384 72 -64 0 0
+ ( -456 64 88 ) ( -504 64 88 ) ( -504 64 0 ) script_wall 128 128 -768 -64 0 0 lightmap_gray 16384 16384 -768 -64 0 0
+ ( -512 48 88 ) ( -512 8 88 ) ( -512 8 0 ) script_wall 128 128 72 -64 0 0 lightmap_gray 16384 16384 72 -64 0 0
+}
+// brush 1
+{
+ guid "{91b47d4c-b63f-412f-a5dd-ad23a602eb66}"
+ ( 440 488 0 ) ( 392 488 0 ) ( 392 448 0 ) script_wall 128 128 128 -512 0 0 lightmap_gray 16384 16384 128 -512 0 0
+ ( 400 448 256 ) ( 400 488 256 ) ( 448 488 256 ) script_wall 128 128 128 -512 0 0 lightmap_gray 16384 16384 128 -512 0 0
+ ( 392 448 88 ) ( 440 448 88 ) ( 440 448 0 ) script_wall 128 128 128 -64 0 0 lightmap_gray 16384 16384 128 -64 0 0
+ ( 832 440 88 ) ( 832 480 88 ) ( 832 480 0 ) script_wall 128 128 504 -64 0 0 lightmap_gray 16384 16384 504 -64 0 0
+ ( 444 468 88 ) ( 396 468 88 ) ( 396 468 0 ) script_wall 128 128 132 -64 0 0 lightmap_gray 16384 16384 132 -64 0 0
+ ( 384 488 88 ) ( 384 448 88 ) ( 384 448 0 ) script_wall 128 128 512 -64 0 0 lightmap_gray 16384 16384 512 -64 0 0
+}
+// brush 2
+{
+ guid "{b4b841c1-9171-42a9-8114-d1463f5f75c6}"
+ ( -320 512 0 ) ( -448 512 0 ) ( -448 448 0 ) script_wall 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -448 448 256 ) ( -448 512 256 ) ( -320 512 256 ) script_wall 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -448 448 256 ) ( -320 448 256 ) ( -320 448 0 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( -320 448 256 ) ( -320 512 256 ) ( -320 512 0 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( -320 512 256 ) ( -448 512 256 ) ( -448 512 0 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( -448 512 256 ) ( -448 448 256 ) ( -448 448 0 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+}
+// brush 3
+{
+ guid "{45d687fe-d890-49b3-97d8-36caa8f8b7c2}"
+ ( 1008 56 0 ) ( 960 56 0 ) ( 960 16 0 ) script_wall 128 128 696 -80 0 0 lightmap_gray 16384 16384 696 -80 0 0
+ ( 968 16 256 ) ( 968 56 256 ) ( 1016 56 256 ) script_wall 128 128 696 -80 0 0 lightmap_gray 16384 16384 696 -80 0 0
+ ( 960 16 88 ) ( 1008 16 88 ) ( 1008 16 0 ) script_wall 128 128 696 -64 0 0 lightmap_gray 16384 16384 696 -64 0 0
+ ( 980 16 88 ) ( 980 56 88 ) ( 980 56 0 ) script_wall 128 128 80 -64 0 0 lightmap_gray 16384 16384 80 -64 0 0
+ ( 1008 64 88 ) ( 960 64 88 ) ( 960 64 0 ) script_wall 128 128 696 -64 0 0 lightmap_gray 16384 16384 696 -64 0 0
+ ( 960 56 88 ) ( 960 16 88 ) ( 960 16 0 ) script_wall 128 128 80 -64 0 0 lightmap_gray 16384 16384 80 -64 0 0
+}
+// brush 4
+{
+ guid "{bd13a93e-e554-40dd-b346-454c300d1f42}"
+ ( 64 432 0 ) ( 64 432 128 ) ( 64 632 128 ) script_wall 128 -128 -197.5 24.5 180 0 lightmap_gray 32768 -32768 6025 -122 180 0
+ ( 56 444 128 ) ( 56 444 0 ) ( 56 632 0 ) script_wall 128 -128 -197.5 24.5 180 0 lightmap_gray 32768 -32768 6025 -122 180 0
+ ( 672 631 0 ) ( -888 631 0 ) ( -888 571 0 ) script_wall 128 128 -197.5 -211.50134 -90 0 lightmap_gray 32768 32768 -7892 -6025 -180 0
+ ( 72 632 0 ) ( 72 632 128 ) ( 64 632 128 ) script_wall 128 128 211.5 -24.5 0 0 lightmap_gray 32768 -32768 -7892 -122 180 0
+ ( 56 444 0 ) ( 56 444 128 ) ( 64 436 128 ) script_wall 128 128 91.5 -24.5 0 0 lightmap_gray 32768 -32768 -7772 -122 180 0
+ ( -888 571 128 ) ( -888 631 128 ) ( 672 631 128 ) script_wall 128 128 -197.5 -211.50134 -90 0 lightmap_gray 32768 32768 -7892 -6025 -180 0
+}
+// brush 5
+{
+ guid "{534f4f63-f596-4028-a924-9f45a8a2fff6}"
+ ( -56 464 128 ) ( -56 464 0 ) ( -56 440 0 ) script_wall 128 -128 -197.5 24.5 180 0 lightmap_gray 32768 -32768 6025 -122 180 0
+ ( -64 468 0 ) ( -64 468 104 ) ( -64 432 104 ) script_wall 128 -128 -197.5 24.5 180 0 lightmap_gray 32767.973 -32768 6024.9951 -122 -180 0
+ ( 552 631 0 ) ( -1008 631 0 ) ( -1008 571 0 ) script_wall 128 128 -197.5 -91.501366 -90 0 lightmap_gray 32768 32768.035 -7772 -6025.0068 -180 0
+ ( -48 632 0 ) ( -48 632 128 ) ( -56 632 128 ) script_wall 128 128 91.5 -24.5 0 0 lightmap_gray 32768.094 -32768 -7772.0229 -122 180 0
+ ( -56 444 104 ) ( -56 444 0 ) ( -64 436 0 ) script_wall 128 128 91.5 -24.5 0 0 lightmap_gray 32768.125 -32768 -7772.0283 -122 180 0
+ ( -1008 571 128 ) ( -1008 631 128 ) ( 552 631 128 ) script_wall 128 128 -197.5 -91.501366 -90 0 lightmap_gray 32768 32768.035 -7772 -6025.0068 -180 0
+}
+// brush 6
+{
+ guid "{d6848acb-c086-4d99-bf09-b4aa01ff5d2d}"
+ ( 56 444 104 ) ( 56 444 0 ) ( 64 436 0 ) script_wall 128 128 591.5 -24.5 0 0 lightmap_gray 32768 32768 6780 122 0 0
+ ( 56 444 0 ) ( 56 444 104 ) ( 32 444 104 ) script_wall 128 128 202.5 -24.5 0 0 lightmap_gray 32768 32768 6425 122 0 0
+ ( 64 436 104 ) ( 64 436 0 ) ( 32 436 0 ) script_wall 128 128 202.5 -24.5 0 0 lightmap_gray 32768 32768 6425 122 0 0
+ ( -231 1052 0 ) ( -231 -508 0 ) ( -171 -508 0 ) script_wall 128 128 202.5 -591.5 0 0 lightmap_gray 32768 32768 -8272 -6425 -90 0
+ ( 32 438 32 ) ( 32 442 32 ) ( 32 442 64 ) script_wall 128 128 591.5 -24.5 0 0 lightmap_gray 32768 -32768 -8272 -122 -180 0
+ ( -171.5 -508 106 ) ( -231.5 -508 106 ) ( -231.5 1052 106 ) script_wall 128 128 202.5 -591.5 0 0 lightmap_gray 32768 32768 -8272 -6425 -90 0
+}
+// brush 7
+{
+ guid "{3ee7586d-0fa9-44d5-8665-ccaa59063760}"
+ ( 56 444 104 ) ( 56 444 120 ) ( -56 444 120 ) script_wall 128 128 202.5 -24.5 0 0 lightmap_gray 32768 32768 6425 122 0 0
+ ( -167 436 100 ) ( -167 436 172 ) ( 81 436 172 ) script_wall 128 128 202.5 -24.5 0 0 lightmap_gray 32768 32768 6425 122 0 0
+ ( -230 -508 106 ) ( -170 -508 106 ) ( -230 1052 106 ) script_wall 128 128 202.5 -591.5 0 0 lightmap_gray 32768 32768 -8272 -6425 -90 0
+ ( 56 444 120 ) ( 56 444 104 ) ( 64 436 104 ) script_wall 128 128 591.5 -24.5 0 0 lightmap_gray 32768 -32768 -8272 -122 180 0
+ ( -56 444 104 ) ( -56 444 120 ) ( -64 436 120 ) script_wall 128 128 591.5 -24.5 0 0 lightmap_gray 32768 -32768 -8272 -122 -180 0
+ ( 32 436 128 ) ( 33.5 436 128 ) ( 32 404 128 ) script_wall 128 128 202.5 -591.5 0 0 lightmap_gray 32768 32768 -8272 -6425 -90 0
+}
+// brush 8
+{
+ guid "{2051ad85-a515-4b99-8924-89d875dbbbdb}"
+ ( 341 444 120 ) ( -427 444 120 ) ( -427 444 -8 ) script_wall 128 128 198.5 -24.5 0 0 lightmap_gray 32768 32768 6421 122 0 0
+ ( 77 436 248 ) ( 77 436 120 ) ( -291 436 120 ) script_wall 128 128 198.5 -24.5 0 0 lightmap_gray 32768 32768 6421 122 0 0
+ ( -235 1052 0 ) ( -235 -508 0 ) ( -175 -508 0 ) script_wall 128 128 198.5 -591.5 0 0 lightmap_gray 32768 32768 -8272 -6421 -90 0
+ ( -13 -508 35 ) ( -13 1052 35 ) ( 47 -508 35 ) script_wall 128 128 198.5 -591.5 0 0 lightmap_gray 32768 32768 -8272 -6421 -90 0
+ ( 32 442 31 ) ( 32 438 31 ) ( 32 442 63 ) script_wall 128 128 591.5 -24.5 0 0 lightmap_gray 32768 -32768 -8272 -122 180 0
+ ( -32 437 32 ) ( -32 439 32 ) ( -32 439 64 ) script_wall 128 128 591.5 -24.5 0 0 lightmap_gray 32768 -32768 -8272 -122 180 0
+}
+// brush 9
+{
+ guid "{5d11efa7-67c6-49e7-b21f-10e6a9f8e94f}"
+ ( 351 444 120 ) ( -417 444 120 ) ( -417 444 -8 ) script_wall 128 128 206.5 -24.5 0 0 lightmap_gray 32768 32768 6429 122 0 0
+ ( -64 436 0 ) ( -64 436 104 ) ( -28 436 104 ) script_wall 128 128 206.5 -24.5 0 0 lightmap_gray 32768 32768 6429 122 0 0
+ ( -227 1052 0 ) ( -227 -508 0 ) ( -167 -508 0 ) script_wall 128 128 206.5 -591.5 0 0 lightmap_gray 32768 32768 -8272 -6429 -90 0
+ ( -64 436 104 ) ( -64 436 0 ) ( -56 444 0 ) script_wall 128 128 591.5 -24.5 0 0 lightmap_gray 32768 -32768 -8272 -122 180 0
+ ( -32 439 38 ) ( -32 437 38 ) ( -32 439 70 ) script_wall 128 128 591.5 -24.5 0 0 lightmap_gray 32768 -32768 -8272 -122 180 0
+ ( -167 -508 106 ) ( -227 -508 106 ) ( -227 1052 106 ) script_wall 128 128 206.5 -591.5 0 0 lightmap_gray 32768 32768 -8272 -6429 -90 0
+}
+// brush 10
+{
+ guid "{e8c79fb8-e0dd-4732-b1cb-abebec65f911}"
+ ( 56 440 0 ) ( 56 440 128 ) ( 56 640 128 ) script_wall 128 -128 -197.5 24.5 180 0 lightmap_gray 32768 -32768 6025 -122 180 0
+ ( -56 468 0 ) ( -56 468 104 ) ( -56 432 104 ) script_wall 128 -128 -197.5 24.5 180 0 lightmap_gray 32768 -32768 6025 -122 -180 0
+ ( 560 631 120 ) ( -1000 631 120 ) ( -1000 571 120 ) script_wall 128 128 -197.5 -99.501366 -90 0 lightmap_gray 32768 32768 -7780 -6025 -180 0
+ ( -40 632 0 ) ( -40 632 128 ) ( -48 632 128 ) script_wall 128 128 99.5 -24.5 0 0 lightmap_gray 32768 -32768 -7780 -122 180 0
+ ( -50 444 128 ) ( -50 444 0 ) ( -58 444 0 ) script_wall 128 128 83.5 -24.5 0 0 lightmap_gray 32768 -32768 -7764 -122 180 0
+ ( -1000 571 128 ) ( -1000 631 128 ) ( 560 631 128 ) script_wall 128 128 -197.5 -99.501366 -90 0 lightmap_gray 32768 32768 -7780 -6025 -180 0
+}
+// brush 11
+{
+ guid "{d7711bd3-d15f-412f-be07-29e788643726}"
+ ( 1024 2048 -96 ) ( 0 2048 -96 ) ( 0 -2048 -96 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 -2048 1056 ) ( 32 2048 1056 ) ( 1056 2048 1056 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 -2080 1024 ) ( 1024 -2080 1024 ) ( 1024 -2080 0 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1024 2080 1024 ) ( 0 2080 1024 ) ( 0 2080 0 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2080 2048 1024 ) ( -2080 -2048 1024 ) ( -2080 -2048 0 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2048 -2048 960 ) ( -2048 2048 960 ) ( -2048 -2048 -64 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 12
+{
+ guid "{4d62551d-14e9-483f-9ec6-4d965472a62b}"
+ ( 1024 2048 -96 ) ( 0 2048 -96 ) ( 0 -2048 -96 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 -2048 1056 ) ( 32 2048 1056 ) ( 1056 2048 1056 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2080 -2048 1056 ) ( 2080 2048 1056 ) ( 2080 2048 32 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1024 2080 1024 ) ( 0 2080 1024 ) ( 0 2080 0 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2080 2048 1024 ) ( -2080 -2048 1024 ) ( -2080 -2048 0 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 2048 1024 ) ( 1024 2048 1024 ) ( 0 2048 0 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 13
+{
+ guid "{dde3fc8f-ecba-4854-86e1-0cf440fc97b9}"
+ ( 1024 2048 -96 ) ( 0 2048 -96 ) ( 0 -2048 -96 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 -2048 1056 ) ( 32 2048 1056 ) ( 1056 2048 1056 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 -2080 1024 ) ( 1024 -2080 1024 ) ( 1024 -2080 0 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2080 -2048 1056 ) ( 2080 2048 1056 ) ( 2080 2048 32 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1024 2080 1024 ) ( 0 2080 1024 ) ( 0 2080 0 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2048 2048 992 ) ( 2048 -2048 992 ) ( 2048 2048 -32 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 14
+{
+ guid "{7a5ee6e9-9a3c-483f-bb0a-63f14f58aa1b}"
+ ( 1024 2048 -96 ) ( 0 2048 -96 ) ( 0 -2048 -96 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 -2048 1056 ) ( 32 2048 1056 ) ( 1056 2048 1056 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 -2080 1024 ) ( 1024 -2080 1024 ) ( 1024 -2080 0 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2080 -2048 1056 ) ( 2080 2048 1056 ) ( 2080 2048 32 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2080 2048 1024 ) ( -2080 -2048 1024 ) ( -2080 -2048 0 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1024 -2048 1024 ) ( 0 -2048 1024 ) ( 1024 -2048 0 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 15
+{
+ guid "{f0f4cfaa-5a8f-4588-83d9-150bd35391af}"
+ ( 32 -2048 1056 ) ( 32 2048 1056 ) ( 1056 2048 1056 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 -2080 1024 ) ( 1024 -2080 1024 ) ( 1024 -2080 0 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2080 -2048 1056 ) ( 2080 2048 1056 ) ( 2080 2048 32 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1024 2080 1024 ) ( 0 2080 1024 ) ( 0 2080 0 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2080 2048 1024 ) ( -2080 -2048 1024 ) ( -2080 -2048 0 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 2048 1024 ) ( 32 -2048 1024 ) ( 1056 2048 1024 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 16
+{
+ guid "{44094023-6d66-4b63-87f8-5aee5114e433}"
+ ( 1024 2048 -96 ) ( 0 2048 -96 ) ( 0 -2048 -96 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 -2080 960 ) ( 1024 -2080 960 ) ( 1024 -2080 -64 ) sky 16 16 0 64 0 0 lightmap_gray 16384 16384 0 64 0 0
+ ( 2080 -2048 992 ) ( 2080 2048 992 ) ( 2080 2048 -32 ) sky 16 16 0 64 0 0 lightmap_gray 16384 16384 0 64 0 0
+ ( 1024 2080 960 ) ( 0 2080 960 ) ( 0 2080 -64 ) sky 16 16 0 64 0 0 lightmap_gray 16384 16384 0 64 0 0
+ ( -2080 2048 960 ) ( -2080 -2048 960 ) ( -2080 -2048 -64 ) sky 16 16 0 64 0 0 lightmap_gray 16384 16384 0 64 0 0
+ ( 0 2048 -64 ) ( 1024 2048 -64 ) ( 0 -2048 -64 ) sky 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 17
+{
+ guid "{a37ef027-81ec-4b7d-9d89-cde133147f76}"
+ ( -1536 -1792 -16 ) ( 768 -1792 -16 ) ( 768 768 -16 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1536 -1536 -256 ) ( -1536 -1536 0 ) ( 768 -1536 0 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 1536 768 -256 ) ( 1536 -1792 -256 ) ( 1536 -1792 0 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 768 1536 -256 ) ( 768 1536 0 ) ( -1536 1536 0 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( -1536 768 0 ) ( -1536 -1792 0 ) ( -1536 -1792 -256 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( -1536 768 0 ) ( 768 768 0 ) ( 768 -1792 0 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 18
+{
+ guid "{39a59659-28ce-4c6e-b8bc-3e36705d2f9d}"
+ ( 64 640 0 ) ( -64 640 0 ) ( -64 632 0 ) script_wall 128 -128 -197.5 24.5 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 632 128 ) ( -64 640 128 ) ( 64 640 128 ) script_wall 128 -128 -197.5 24.5 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 632 128 ) ( 64 632 128 ) ( 64 632 0 ) script_wall 128 -128 -197.5 24.5 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 64 632 128 ) ( 64 640 128 ) ( 64 640 0 ) script_wall 128 -128 -197.5 24.5 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 64 640 128 ) ( -64 640 128 ) ( -64 640 0 ) script_wall 128 -128 -197.5 24.5 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 640 128 ) ( -64 632 128 ) ( -64 632 0 ) script_wall 128 -128 -197.5 24.5 180 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 19
+{
+ guid "{c1509813-339f-4eff-8089-41a7777b7a03}"
+ ( 504 424 0 ) ( 456 424 0 ) ( 456 384 0 ) script_wall 128 128 192 -448 0 0 lightmap_gray 16384 16384 192 -448 0 0
+ ( 464 384 256 ) ( 464 424 256 ) ( 512 424 256 ) script_wall 128 128 192 -448 0 0 lightmap_gray 16384 16384 192 -448 0 0
+ ( 448 128 88 ) ( 496 128 88 ) ( 496 128 0 ) script_wall 128 128 184 -64 0 0 lightmap_gray 16384 16384 184 -64 0 0
+ ( 980 380 88 ) ( 980 420 88 ) ( 980 420 0 ) script_wall 128 128 444 -64 0 0 lightmap_gray 16384 16384 444 -64 0 0
+ ( 512 256 88 ) ( 464 256 88 ) ( 464 256 0 ) script_wall 128 128 200 -64 0 0 lightmap_gray 16384 16384 200 -64 0 0
+ ( 960 400 88 ) ( 960 360 88 ) ( 960 360 0 ) script_wall 128 128 424 -64 0 0 lightmap_gray 16384 16384 424 -64 0 0
+}
+}
+// entity 1
+{
+guid "{df099812-4801-4e8c-9cc5-45185a9152bd}"
+"classname" "info_player_start"
+"angles" "0 90 0"
+"origin" "0 -448 40"
+}
+// entity 2
+{
+guid "{2add8f9a-dea5-422f-81b4-c5b391d7a929}"
+"classname" "info_volume"
+"script_noteworthy" "player_volume"
+"target" "start_zone_spawners"
+"targetname" "start_zone"
+// brush 0
+{
+ guid "{c3af345a-2ecf-4657-a4eb-3db833106762}"
+ ( 1536 512 0 ) ( 1536 -1536 0 ) ( 1536 -1536 320 ) volume 64 64 1800 -136 0 0 lightmap_gray 16384 16384 -2044.5 -291.5 0 0
+ ( 768 1408 0 ) ( -1472 1408 0 ) ( -1472 -640 0 ) volume 64 64 -248 -1800 0 0 lightmap_gray 16384 16384 -248 -1800 0 0
+ ( 768 -640 320 ) ( -1472 -640 320 ) ( -1472 1408 320 ) volume 64 64 -248 -1800 0 0 lightmap_gray 16384 16384 -248 -1800 0 0
+ ( 1536 -1536 320 ) ( 1536 -1536 0 ) ( -704 -1536 0 ) volume 64 64 -248 -136 0 0 lightmap_gray 16384 16384 -248 -136 0 0
+ ( -1536 1536 320 ) ( -1536 -512 320 ) ( -1536 -512 0 ) volume 64 64 1800 -136 0 0 lightmap_gray 16384 16384 1800 -136 0 0
+ ( -1536 1536 320 ) ( -1536 1536 0 ) ( 704 1536 0 ) volume 64 64 -248 -136 0 0 lightmap_gray 16384 16384 -248 -136 0 0
+}
+}
+// entity 3
+{
+guid "{0f00a1bc-1caf-4bb0-958f-658d11c385db}"
+"classname" "script_struct"
+"angles" "0 180 0"
+"origin" "576 192 0"
+"script_noteworthy" "riser_location"
+"script_string" "find_flesh"
+"targetname" "start_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 4
+{
+guid "{15281c27-0b19-4885-a593-707a26dcae5b}"
+"classname" "misc_prefab"
+"angles" "0 2.50448e-006 0"
+"model" "_prefabs/zm/zm_core/barricade_reciever_wood.map"
+"origin" "0 432 0"
+"script_string" "receiver_set_entry_a"
+}
+// entity 5
+{
+guid "{4a0b0b1a-fa05-401e-8461-22e2ab2e9084}"
+"classname" "script_struct"
+"angles" "0 360 0"
+"origin" "-576 192 0"
+"script_noteworthy" "riser_location"
+"script_string" "find_flesh"
+"targetname" "start_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 6
+{
+guid "{d4545837-89b4-492d-baa7-011ea9077899}"
+"classname" "script_struct"
+"angles" "0 270 0"
+"origin" "0 576 0"
+"script_noteworthy" "riser_location"
+"script_string" "receiver_set_entry_a"
+"targetname" "start_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 7
+{
+guid "{59c9b9c5-ea64-4bfa-8c03-d6c54f60dc53}"
+"classname" "misc_prefab"
+"angles" "0 270 0"
+"model" "_prefabs/zm/zm_core/power_switch.map"
+"origin" "953.13 39.87 1"
+}
+// entity 8
+{
+guid "{ff3c7fad-10ad-4a31-8e5c-c5bdc26cc6a4}"
+"classname" "misc_prefab"
+"angles" "0 180 0"
+"model" "_prefabs/zm/zm_core/buyable_magic_box_start.map"
+"origin" "-386.25 429 -0.5"
+}
+// entity 9
+{
+guid "{aa46a598-9cbc-4764-be70-af8e4538dd13}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_core/vending_revive_struct.map"
+"origin" "416 436 0"
+"script_string" "zclassic_perks_start_room"
+}
+// entity 10
+{
+guid "{c615a7d1-250a-43d4-9e9f-b301e626fc24}"
+layer "000_Global/No Comp"
+"classname" "actor_zm_nuked_basic_01"
+"count" "9999"
+"export" "1"
+"model" "c_t6_default_character_fb"
+"origin" "0 320 0"
+"script_disable_bleeder" "1"
+"script_forcespawn" "1"
+"script_noteworthy" "zombie_spawner"
+"spawnflags" "3"
+}
+// entity 11
+{
+guid "{bf55ef95-8e95-4752-a9c7-94abd35ff31e}"
+"classname" "script_struct"
+"angles" "0 90 0"
+"origin" "0 -384 28"
+"radius" "2000"
+"script_int" "2000"
+"script_noteworthy" "start_room"
+"script_string" "zclassic_start_room zcleansed_start_room zgrief_start_room"
+"target" "initial_spawn_points"
+"targetname" "player_respawn_point"
+"_color" "1 0 0"
+}
+// entity 12
+{
+guid "{77b2c462-3bb1-4a10-a222-5f09ac22f938}"
+"classname" "script_struct"
+"_color" "1 1 0"
+"angles" "0 90 0"
+"origin" "-64 -256 28"
+"radius" "32"
+"script_int" "2"
+"script_noteworthy" "initial_spawn"
+"script_string" "zcleansed_start_room"
+"targetname" "initial_spawn_points"
+}
+// entity 13
+{
+guid "{2e73e790-373b-458a-91eb-5a7be81c35bc}"
+"classname" "script_struct"
+"_color" "1 0 1"
+"angles" "0 90 0"
+"origin" "-64 -320 28"
+"radius" "32"
+"script_int" "1"
+"script_noteworthy" "initial_spawn"
+"script_string" "zcleansed_start_room"
+"targetname" "initial_spawn_points"
+}
+// entity 14
+{
+guid "{f02126ef-242b-4764-8ba7-84841c2c001c}"
+"classname" "script_struct"
+"_color" "1 1 0"
+"angles" "0 90 0"
+"origin" "64 -256 28"
+"radius" "32"
+"script_int" "2"
+"script_noteworthy" "initial_spawn"
+"script_string" "zcleansed_start_room"
+"targetname" "initial_spawn_points"
+}
+// entity 15
+{
+guid "{4033d792-f77a-45db-b052-4d7e9c206b28}"
+"classname" "script_struct"
+"_color" "1 0 1"
+"angles" "0 90 0"
+"origin" "64 -320 28"
+"radius" "32"
+"script_int" "1"
+"script_noteworthy" "initial_spawn"
+"script_string" "zcleansed_start_room"
+"targetname" "initial_spawn_points"
+}
+// entity 16
+{
+guid "{6e5294ba-3899-4069-b2ab-581251039a83}"
+"classname" "script_struct"
+"_color" "1 1 0"
+"angles" "0 90 0"
+"origin" "192 -256 28"
+"radius" "32"
+"script_int" "2"
+"script_noteworthy" "initial_spawn"
+"script_string" "zcleansed_start_room"
+"targetname" "initial_spawn_points"
+}
+// entity 17
+{
+guid "{615693a1-434b-4243-8895-e83c1bfcf747}"
+"classname" "script_struct"
+"_color" "1 0 1"
+"angles" "0 90 0"
+"origin" "192 -320 28"
+"radius" "32"
+"script_int" "1"
+"script_noteworthy" "initial_spawn"
+"script_string" "zcleansed_start_room"
+"targetname" "initial_spawn_points"
+}
+// entity 18
+{
+guid "{e2999615-fce1-4b15-b9c9-7d4706aa4cde}"
+"classname" "script_struct"
+"_color" "1 1 0"
+"angles" "0 90 0"
+"origin" "-192 -256 28"
+"radius" "32"
+"script_int" "2"
+"script_noteworthy" "initial_spawn"
+"script_string" "zcleansed_start_room"
+"targetname" "initial_spawn_points"
+}
+// entity 19
+{
+guid "{2ec8c0e3-ea27-43f1-8008-95de3077050a}"
+"classname" "script_struct"
+"_color" "1 0 1"
+"angles" "0 90 0"
+"origin" "-192 -320 28"
+"radius" "32"
+"script_int" "1"
+"script_noteworthy" "initial_spawn"
+"script_string" "zcleansed_start_room"
+"targetname" "initial_spawn_points"
+}
+// entity 20
+{
+guid "{2f02a75a-7c57-4762-8c93-a8eccfdd4366}"
+"classname" "script_struct"
+"script_noteworthy" "dog_location"
+"targetname" "start_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 21
+{
+guid "{b7bb3c31-f945-4c41-9718-6c4f14da3c31}"
+"classname" "script_struct"
+"angles" "0 90 0"
+"origin" "-64 -584 104"
+"target" "intermission_b"
+"targetname" "intermission"
+"_color" "1 0 0"
+}
+// entity 22
+{
+guid "{4132c38e-e485-4c4a-8112-1f93e662d89d}"
+"classname" "script_struct"
+"angles" "0 29.9999 0"
+"origin" "-728 -32 104"
+"targetname" "intermission_b"
+"_color" "1 0 0"
+}
+// entity 23
+{
+guid "{d108d44f-684d-469c-bf51-dac3fd90c740}"
+"classname" "volume_sun"
+"ssi" "default_day"
+"grid_density" "32"
+"shadowBiasScale" "1"
+"shadowSplitDistance" "2000"
+"ssi1" "default_day"
+"streamLighting" "1"
+// brush 0
+{
+ guid "{5b456573-b04a-4dda-8a99-f6f1fb78dfd2}"
+ ( -2048 -2048 -64 ) ( 2048 -2048 -64 ) ( 2048 2048 -64 ) sun_volume 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2048 2048 896 ) ( 2048 2048 896 ) ( 2048 -2048 896 ) sun_volume 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2048 -1920 0 ) ( -2048 -1920 1024 ) ( 2048 -1920 1024 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 1920 2048 0 ) ( 1920 -2048 0 ) ( 1920 -2048 1024 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 2048 1920 0 ) ( 2048 1920 1024 ) ( -2048 1920 1024 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( -1920 2048 1024 ) ( -1920 -2048 1024 ) ( -1920 -2048 0 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+}
+}
+// entity 24
+{
+guid "{3469ecc8-c7d7-440a-b1c3-10b2271276bc}"
+"classname" "umbra_volume"
+// brush 0
+{
+ guid "{57e0b027-09cd-4c5a-bae3-fa0d045a14f3}"
+ ( -1536 -768 -64 ) ( 768 -768 -64 ) ( 768 512 -64 ) umbra_volume 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1536 512 832 ) ( 768 512 832 ) ( 768 -768 832 ) umbra_volume 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1536 -1792 -256 ) ( -1536 -1792 512 ) ( 768 -1792 512 ) umbra_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 1792 512 0 ) ( 1792 -768 0 ) ( 1792 -768 768 ) umbra_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 768 1792 0 ) ( 768 1792 768 ) ( -1536 1792 768 ) umbra_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( -1792 512 768 ) ( -1792 -768 768 ) ( -1792 -768 0 ) umbra_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+}
+}
+// entity 25
+{
+guid "{542652f9-baf0-4408-b08c-2d3233c45428}"
+"classname" "volume_fpstool"
+// brush 0
+{
+ guid "{a2600c04-b4dd-48c9-aa72-3450d116b248}"
+ ( -1536 -1536 -64 ) ( 768 -1536 -64 ) ( 768 512 -64 ) volume_fpstool 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1536 512 768 ) ( 768 512 768 ) ( 768 -1536 768 ) volume_fpstool 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1536 -1536 0 ) ( -1536 -1536 768 ) ( 768 -1536 768 ) volume_fpstool 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 1536 256 0 ) ( 1536 -1792 0 ) ( 1536 -1792 768 ) volume_fpstool 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 768 1536 0 ) ( 768 1536 768 ) ( -1536 1536 768 ) volume_fpstool 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( -1536 512 768 ) ( -1536 -1536 768 ) ( -1536 -1536 0 ) volume_fpstool 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+}
+}
+// entity 26
+{
+guid "{9a8c57f9-6c2c-485c-917e-7380cf4e0e37}"
+"classname" "reflection_probe"
+"origin" "4 4 132"
+"radius" "2048"
+"ao_power" "2"
+"ao_range" "16"
+"ao_strength" "1"
+"blend_maxs" "3 3 3"
+"blend_mins" "3 3 3"
+"box" "1"
+"client_server" "ClientSide"
+"debugColor" "1 1 1"
+"debug_render_index_x" "64"
+"exploderFade" "1"
+"grid_density" "16"
+"high_detail" "1"
+"in_play_space" "1"
+"name" "probe"
+"placement_offset" "72"
+"size_max" "72 72 72"
+"size_min" "72 72 72"
+}
+// entity 27
+{
+guid "{d0a20ff7-6a16-4b44-af77-8f0c2b6a3056}"
+"classname" "actor_spawner_zm_factory_zombie"
+"ALERTONSPAWN" "0"
+"MAKEROOM" "1"
+"SCRIPT_FORCESPAWN" "1"
+"angles" "0 270 0"
+"count" "9999"
+"export" "1"
+"origin" "96 659 208"
+"script_disable_bleeder" "1"
+"script_forcespawn" "1"
+"script_noteworthy" "zombie_spawner"
+"SPAWNER" "1"
+"_color" "1 0.25 0"
+"engageMaxDist" "700"
+"engageMinDist" "250"
+"model" "c_zom_test_body1"
+"script_dropammo" "1"
+"sm_active_count_max" "3"
+"sm_active_count_min" "3"
+"spawnflags" "19"
+}
+// entity 28
+{
+guid "{81d91b1f-ca90-4325-b27d-f886f0c1c30e}"
+"classname" "misc_prefab"
+"angles" "0 269.998 0"
+"model" "_prefabs/zm/zm_core/spawnable_weapon_shotgun_pump.map"
+"origin" "-446.5 31 0"
+}
+// entity 29
+{
+guid "{24578c98-27ce-48b7-8c1c-d022e69c021c}"
+"classname" "misc_prefab"
+"angles" "0 359.999 0"
+"model" "_prefabs/zm/zm_core/vending_juggernaut_struct.map"
+"origin" "544 430 0"
+"script_string" "zclassic_perks_start_room"
+}
+// entity 30
+{
+guid "{dcd21b8f-33bf-43ff-b8b7-8634ea327b97}"
+"classname" "misc_prefab"
+"angles" "0 359.999 0"
+"model" "_prefabs/zm/zm_core/vending_sleight_struct.map"
+"origin" "672 435 0"
+"script_string" "zclassic_perks_start_room"
+}
+// entity 31
+{
+guid "{e2b47953-0cae-4cee-8f09-e9c0dcfe8f9f}"
+"classname" "misc_prefab"
+"angles" "0 359.999 0"
+"model" "_prefabs/zm/zm_core/vending_doubletap_struct.map"
+"origin" "799.5 436.5 0"
+"script_string" "zclassic_perks_start_room"
+}
+// entity 32
+{
+guid "{8b0cb9f4-4d14-42ec-9682-c6594492fd3d}"
+"classname" "misc_prefab"
+"angles" "0 359.999 0"
+"model" "_prefabs/zm/zm_core/vending_weapon_upgrade_spawnable.map"
+"origin" "936 195 0"
+"script_string" "zclassic_perks_start_room"
+}
