@@ -1,37 +1,45 @@
 share/assetconvert
-radiant/autosave_backup
-gdtdb/
+steam_appid.txt
 
+# Temp files
+radiant/autosave_backup
+*.bak
+*.tmp
+*.cache
+*.dmp
+
+# Runnable & binaries
 *.exe
 *.dll
+*.bin
+
+# Compiled map files
+*.xpak
+*.d3dbsp
+*.gdb
+*.cgp
+*.hkt
+*.ff
+*.lin
+*.led
+
+# Large file resources
+*.db
 *.mkv
 *.tif
 *.xmodel_bin
 *.XMODEL_BIN
 *.xanim_bin
 *.XANIM_BIN
-*.errlog
-*.d3dbsp
-*.hkt
-*.lin
-*.bak
-*.sabl
-*.xpak
-*.gdb
-*.dmp
-*.tmp
-*.db
-*.cgp
-*.bin
 *.lvi
-*.led
-*.siege_anim_source
+*.sabl
 *.sabs
-*.ff
+*.siege_anim_source
 *.fd
 *.exr
 *ximage*.png
-*.log
-*.cache
 
-steam_appid.txt
+# Logs
+*.errlog
+*.log
+*.gltn

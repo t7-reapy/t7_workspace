@@ -99,6 +99,9 @@ function main()
     level thread zm_zonemgr::manage_zones(init_zones);
 
     level.pathdist_type = PATHDIST_ORIGINAL;
+
+    //TODO: remove
+    level.player_starting_points = 500000;
 }
 
 function usermap_test_zone_init()
