@@ -195,6 +195,40 @@ function apothicon_fury_special_spawn()
     return undefined;
 }
 
+function apothicon_fury_spawn_on_location()
+{
+    a_players = getPlayers();
+    e_player = apothicon_fury_get_valid_player();
+	furies_locs = array::randomize(level.zm_loc_types["fury_location"]);
+
+    if (isDefined(furies_locs) && furies_locs.size > 0)
+    {
+        a_spots = array::randomize(furies_locs);
+        for (i = 0; i < a_spots.size; i++)
+        {
+            v_origin = a_spots[i].origin;
+            v_angles = return_facing_target_angles(v_origin, e_player.origin);
+            
+            apothicon_fury_meteor_fx(v_origin);
+            e_ai_apoticon_fury = apothicon_fury_spawn(v_origin, v_angles, 0);
+            
+            if (isDefined(e_ai_apoticon_fury))
+            {
+                e_ai_apoticon_fury endon("death");
+                e_ai_apoticon_fury.health = level.zombie_health;
+                wait 1;
+                e_ai_apoticon_fury.zombie_think_done = 1;
+                e_ai_apoticon_fury.heroweapon_kill_power = 2;
+                e_ai_apoticon_fury ai::set_behavior_attribute("move_speed", "run");
+                e_ai_apoticon_fury thread zombie_utility::round_spawn_failsafe();
+                return e_ai_apoticon_fury;
+            }
+        }
+    }
+
+    return undefined;
+}
+
 function apothicon_fury_meteor_fx( v_spawn_pos )
 {
     v_start_pos = ( v_spawn_pos[ 0 ], v_spawn_pos[ 1 ], v_spawn_pos[ 2 ] + 1000 );
@@ -382,7 +416,7 @@ function apothicon_fury_round_spawning()
 
         if ( isDefined( level.apothicon_fury_spawn_func ) )
         {
-            e_ai = apothicon_fury_special_spawn();
+            e_ai = [[ level.apothicon_fury_spawn_func ]]();
             if ( isDefined( e_ai ) )     
             {
                 level.zombie_total--;

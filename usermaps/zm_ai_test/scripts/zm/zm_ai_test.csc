@@ -22,8 +22,8 @@
 #using scripts\zm\_zm_perk_sleight_of_hand;
 #using scripts\zm\_zm_perk_staminup;
 
-//Custom AIs
-#using scripts\zm\zm_genesis_apothicon_fury;
+//Hell rounds
+#using scripts\zm\zm_hell_round;
 
 //Powerups
 #using scripts\zm\_zm_powerup_double_points;
