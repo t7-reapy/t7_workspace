@@ -74,8 +74,7 @@ function main()
     zm_usermap::main();
 
     // Use CW M1911 as start weapon
-    weapon = getWeapon("t9_1911");
-    level.start_weapon = (weapon);
+    level.start_weapon = (getWeapon("t9_1911"));
 
     define_rain_amounts();
     remove_players_names();
@@ -130,11 +129,7 @@ function configure_weapon_inspection()
 
 function custom_add_weapons()
 {
-    // TODO: remove common weapons in future ?
     zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_levelcommon_weapons.csv", 1);
-
-    // zm_test map's weapons list
-    zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_test_weapons.csv", 1);
 }
 
 function define_rain_amounts()
