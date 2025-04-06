@@ -16,6 +16,9 @@
 
 #insert scripts\zm\_zm_utility.gsh;
 
+// Weapon inspection
+#using scripts\lilrobot\_inspectable_weapons;
+
 #using scripts\zm\_load;
 #using scripts\zm\_zm;
 #using scripts\zm\_zm_audio;
@@ -66,8 +69,13 @@ function main()
     // Rain & Decal
     clientfield::register("world", "decal_toggle", VERSION_SHIP, 1, "int");
     clientfield::register("world", "rain_fx_stop", VERSION_SHIP, 1, "int");
-    
+    configure_weapon_inspection();
+
     zm_usermap::main();
+
+    // Use CW M1911 as start weapon
+    weapon = getWeapon("t9_1911");
+    level.start_weapon = (weapon);
 
     //FX
     precache_fx();
@@ -113,9 +121,20 @@ function usermap_test_zone_init()
     // level flag::set("always_on");
 } 
 
+function configure_weapon_inspection()
+{
+    inspectable::add_inspectable_weapon(GetWeapon("t9_1911"), 3.33);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_1911_rdw_up"), 5);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_1911_ldw_up"), 5);
+}
+
 function custom_add_weapons()
 {
+    // TODO: remove common weapons in future ?
     zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_levelcommon_weapons.csv", 1);
+
+    // zm_test map's weapons list
+    zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_test_weapons.csv", 1);
 }
 
 function precache_fx()
