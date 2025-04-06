@@ -65,31 +65,31 @@ function main()
 {
     configure_weapon_inspection();
 
-	zm_usermap::main();
+    zm_usermap::main();
 
     // Use CW M1911 as start weapon
     level.start_weapon = (getWeapon("t9_1911"));
-	
-	level._zombie_custom_add_weapons =&custom_add_weapons;
-	
-	//Setup the levels Zombie Zone Volumes
-	level.zones = [];
-	level.zone_manager_init_func =&usermap_test_zone_init;
-	init_zones[0] = "start_zone";
-	level thread zm_zonemgr::manage_zones( init_zones );
+    
+    level._zombie_custom_add_weapons =&custom_add_weapons;
+    
+    //Setup the levels Zombie Zone Volumes
+    level.zones = [];
+    level.zone_manager_init_func =&usermap_test_zone_init;
+    init_zones[0] = "start_zone";
+    level thread zm_zonemgr::manage_zones( init_zones );
 
-	level.pathdist_type = PATHDIST_ORIGINAL;
+    level.pathdist_type = PATHDIST_ORIGINAL;
 }
 
 function usermap_test_zone_init()
 {
-	level flag::init( "always_on" );
-	level flag::set( "always_on" );
+    level flag::init( "always_on" );
+    level flag::set( "always_on" );
 }
 
 function custom_add_weapons()
 {
-	zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_levelcommon_weapons.csv", 1);
+    zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_levelcommon_weapons.csv", 1);
 }
 
 function configure_weapon_inspection()
@@ -97,5 +97,9 @@ function configure_weapon_inspection()
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911"), 3.33);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_rdw_up"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_ldw_up"), 5);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_asval"), 5.76 );
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_asval_up"), 5.76);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_vintorez"), 5.46);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_vintorez_up"), 5.76);
 }
 
