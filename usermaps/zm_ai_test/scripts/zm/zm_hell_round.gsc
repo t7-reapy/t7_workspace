@@ -102,18 +102,13 @@ function hell_round_killer_watcher()
 {
     while (1)
     {
-        if (shouldAbolishHellRounds())
+        if (level.hell_rounds_abolished)
         {
             self flag::clear(HELL_ROUND_FLAG);
             self notify(KILL_HELL_ROUND_WATCHERS_NOTIFICATION);
         }
         WAIT_SERVER_FRAME;
     }
-}
-
-function private shouldAbolishHellRounds()
-{
-    return !level.hell_rounds_abolished;
 }
 
 function spawn_dogs_loop()
