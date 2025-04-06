@@ -70,15 +70,15 @@ function main()
     clientfield::register("world", "decal_toggle", VERSION_SHIP, 1, "int");
     clientfield::register("world", "rain_fx_stop", VERSION_SHIP, 1, "int");
     configure_weapon_inspection();
-
+    
     zm_usermap::main();
 
     // Use CW M1911 as start weapon
     weapon = getWeapon("t9_1911");
     level.start_weapon = (weapon);
 
-    //FX
-    precache_fx();
+    define_rain_amounts();
+    remove_players_names();
 
     // For Perk Machine Lights (TODO: doesn't work ?)
     level util::set_lighting_state(0);
@@ -87,13 +87,13 @@ function main()
     //level thread watch_lightstate();
 
     //Start monitoring power state
-    level thread MonitorPowerState();
+    level thread monitor_power_state();
 
     //Start rain and thunder sounds
     level.MainLightState = 0;
     level.LightningLightState = 2;
-    level thread PlayRainSounds();
-    level thread PlayThunderSoundAndLightings();
+    level thread play_rain_sounds();
+    level thread play_thunder_sound_and_lightings();
 
     level._zombie_custom_add_weapons =&custom_add_weapons;
     
@@ -137,14 +137,22 @@ function custom_add_weapons()
     zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_test_weapons.csv", 1);
 }
 
-function precache_fx()
+function define_rain_amounts()
 {
     //level._effect[ "player_rain" ] = "custom/env/fx_rain_player_z_light";
     //level._effect[ "player_rain" ] = "custom/env/fx_rain_player_z_regular";
     level._effect[ "player_rain" ] = "custom/env/fx_rain_player_z_heavy";
 }
 
-function MonitorPowerState()
+function remove_players_names()
+{
+    // Remove names
+    SetDvar("cg_overheadNamesSize", "0");
+    SetDvar("cg_overheadIconSize", "0");
+    SetDvar("cg_overheadRankSize", "0");
+}
+
+function monitor_power_state()
 {
     level flag::wait_till("initial_blackscreen_passed");
     level flag::wait_till("power_on");
@@ -165,7 +173,7 @@ function MonitorPowerState()
 // }
 
 // TODO: rework sound localization in the map...
-function PlayRainSounds()
+function play_rain_sounds()
 {
     level flag::wait_till("initial_blackscreen_passed");
     RainSource = GetEnt("rain_source", "targetname");
@@ -175,7 +183,7 @@ function PlayRainSounds()
 // TODO: review the way the thunder is triggered and "positionned" to give a better realistic feeling.
 //       today the sound is played "onto" the player itself
 // TODO 2: play a thunder strike is the sky ?
-function PlayThunderSoundAndLightings()
+function play_thunder_sound_and_lightings()
 {
     level flag::wait_till("initial_blackscreen_passed");
     while(1)
