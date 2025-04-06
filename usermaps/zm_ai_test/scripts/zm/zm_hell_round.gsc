@@ -15,7 +15,7 @@
 #define APOTHICAN_FURY_USE_SPECIAL_FURY_ROUNDS 0 // Force disabling fury rounds to have them when wanted
 
 #define HELL_ROUND_TRIGGER_FLAG "power_on"
-#define HELL_ROUND_FLAG "hell_round_flag"
+#define HELL_ROUND_FLAG "hell_round"
 #define KILL_HELL_ROUND_WATCHERS_NOTIFICATION "kill_hell_round_watchers"
 
 #namespace zm_hell_round;
@@ -26,6 +26,8 @@ function init()
 {
     // Init custom flags
     level flag::init(HELL_ROUND_FLAG);
+
+    level.hell_rounds_abolished = false;
 }
 
 function main()
@@ -33,8 +35,6 @@ function main()
     // First, disable all custom rounds (can be repetitive with above defines ...)
     level.dog_rounds_allowed = 0;
     level.apothicon_fury_rounds_enabled = 0;
-
-    level.hell_rounds_enabled = 1;
 
     level.initial_zombie_ai_limit = level.zombie_ai_limit;
     level.initial_zombie_actor_limit = level.zombie_actor_limit;
@@ -113,7 +113,7 @@ function hell_round_killer_watcher()
 
 function private shouldAbolishHellRounds()
 {
-    return !level.hell_rounds_enabled;
+    return !level.hell_rounds_abolished;
 }
 
 function spawn_dogs_loop()
