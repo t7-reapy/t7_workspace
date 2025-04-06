@@ -16,6 +16,8 @@
 
 #insert scripts\zm\_zm_utility.gsh;
 
+#using scripts\lilrobot\_inspectable_weapons;
+
 #using scripts\zm\_load;
 #using scripts\zm\_zm;
 #using scripts\zm\_zm_audio;
@@ -61,7 +63,12 @@
 
 function main()
 {
+    configure_weapon_inspection();
+
 	zm_usermap::main();
+
+    // Use CW M1911 as start weapon
+    level.start_weapon = (getWeapon("t9_1911"));
 	
 	level._zombie_custom_add_weapons =&custom_add_weapons;
 	
@@ -78,10 +85,17 @@ function usermap_test_zone_init()
 {
 	level flag::init( "always_on" );
 	level flag::set( "always_on" );
-}	
+}
 
 function custom_add_weapons()
 {
 	zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_levelcommon_weapons.csv", 1);
+}
+
+function configure_weapon_inspection()
+{
+    inspectable::add_inspectable_weapon(GetWeapon("t9_1911"), 3.33);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_1911_rdw_up"), 5);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_1911_ldw_up"), 5);
 }
 
