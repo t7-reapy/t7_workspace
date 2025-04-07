@@ -22,8 +22,15 @@
 
 REGISTER_SYSTEM_EX("zm_hell_round", &init, &main, undefined)
 
+function void(){}
+
 function init()
 {
+    // First, disable all custom rounds (can be repetitive with above defines ...)
+    level.dog_rounds_allowed = 0;
+    level.apothicon_fury_rounds_enabled = 0;
+    level.apothicon_fury_round_track_override = &void;
+
     // Init custom flags
     level flag::init(HELL_ROUND_FLAG);
 
@@ -32,9 +39,6 @@ function init()
 
 function main()
 {
-    // First, disable all custom rounds (can be repetitive with above defines ...)
-    level.dog_rounds_allowed = 0;
-    level.apothicon_fury_rounds_enabled = 0;
 
     level.initial_zombie_ai_limit = level.zombie_ai_limit;
     level.initial_zombie_actor_limit = level.zombie_actor_limit;
