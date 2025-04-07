@@ -68,7 +68,8 @@ function main()
     zm_usermap::main();
 
     // Use CW M1911 as start weapon
-    level.start_weapon = (getWeapon("t9_1911"));
+    //t9_1911
+    level.start_weapon = (getWeapon("iw8_asval"));
     
     level._zombie_custom_add_weapons =&custom_add_weapons;
     
@@ -79,6 +80,8 @@ function main()
     level thread zm_zonemgr::manage_zones( init_zones );
 
     level.pathdist_type = PATHDIST_ORIGINAL;
+    
+    level.player_starting_points = 500000;
 }
 
 function usermap_test_zone_init()
