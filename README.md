@@ -35,6 +35,7 @@ I didn't work with basics assets provided by Treyarch, but also installed some e
 | Inspeactable weapons                                | lilrobot             | [mega](https://mega.nz/file/AWICGIoD#1mLQIO2tnC4eSBZf3y9M4Fys__ZWfr6lIrFCdIETpF4)                                                                                                                                     | [ugx post](https://www.ugx-mods.com/forum/full-weapons/84/skyes-weapon-ports-to-bo3-master-hub/16874/)                                                                          | []()                                                                                                                |
 | MW Weapon Common                                    | TheSkyeLord          | [icloud](https://www.icloud.com/iclouddrive/05cztXeaoc8lXVAOj-xydq-jg#Skye%5FMW%5FWeapon%5FCommon)                                                                                                                    | [ugx post](https://www.ugx-mods.com/forum/full-weapons/84/skyes-bo3-weapon-ports-page-2/16878/)                                                                                 | []()                                                                                                                |
 | MW 2019 AS Val & Vintorev                           | TheSkyeLord          | [icloud](https://www.icloud.com/iclouddrive/02d-3Q_aNNVJk_2Yk2secnriA#Skye%5FMW%5FAS%5FVal)                                                                                                                           | [ugx post](https://www.ugx-mods.com/forum/full-weapons/84/skyes-bo3-weapon-ports-page-2/16878/)                                                                                 | []()                                                                                                                |
+| Deadshot extra bo3 skyboxes                         | Deadshot.mp4         | [mega](https://mega.nz/folder/8vRmibja#kB0YNBHy07LpMvrnDOEFeA)                                                                                                                                                        | []()                                                                                                                                                                            | [legacy asset spreadsheet](https://docs.google.com/spreadsheets/d/10aQLnuZUgvduFS4zgPNOTBlFbD-pBfpy--Gm9ilIqRg)     |
 
 <!-- | Name | Author | []() | []() | []() | -->
 
@@ -42,9 +43,4 @@ I didn't work with basics assets provided by Treyarch, but also installed some e
 
 ## ZM_TEST
 
-1. The zombies are getting stuck in hallway in fourth zone:
-    - check bad nodes in `zm_test.badnodes`
-    - also (certain) door zombies are trying to access is next to a wall, so they try to access in "in the wall", making them stuck
-2. zombie little "garden" in fourth zone next to hallway is:
-    - not large enough (64 units) and zombies get stuck
-    - generating bonuses if zombie killed inside
+1. Just a texture bug when jumping in spawning corridor.
