@@ -21,9 +21,11 @@ It seems that original script can be overwritten/customized in some places. Exam
 ## Tips
 
 Every script in `share/raw/scripts/zm` can be overwritten by alimenting scripts with the same name by putting it in the `usermaps/zm_ai_test/scripts/zm`. 
-> Note: if it's coming from folder `share/raw/scripts/shared`, it seems it's also better to overwrite in `usermaps/zm_ai_test/scripts/sahred`, so I should respect relative pathing when overwriting script files...
+> Note: if it's coming from folder `share/raw/scripts/shared`, it seems it's also better to overwrite in `usermaps/zm_ai_test/scripts/shared`, so I should respect relative pathing when overwriting script files...
 
 > Note 2: to override certains basic scripts like _zm_ai_dogs.gsc, it needs to be commented with `//` in `zone_source\all\assetlist\zm_patch.csv`, otherwise, previous version is still linked into the map.
+
+> Note 3: to override certains basic resource file like `zm_levelcommon_weapons.csv`, **you don't need to comment anything** in `zone_source\all\assetlist\zm_levelcommon.csv`.
 
 ---
 
