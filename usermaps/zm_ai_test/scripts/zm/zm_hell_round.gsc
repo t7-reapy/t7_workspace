@@ -1,11 +1,17 @@
 #using scripts\zm\_util;
 #using scripts\zm\_zm_utility;
+
+#using scripts\shared\array_shared;
 #using scripts\shared\flag_shared;
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;
+
+// Involved in Hell rounds
+#using scripts\zm\_zm_bloodsplatter;
+#using scripts\zm\zm_bloody_environment;
 
 // AIs involved in hell rounds
 #using scripts\shared\ai\zombie_utility;
@@ -19,7 +25,6 @@
 #define KILL_HELL_ROUND_WATCHERS_NOTIFICATION "kill_hell_round_watchers"
 
 #namespace zm_hell_round;
-
 REGISTER_SYSTEM_EX("zm_hell_round", &init, &main, undefined)
 
 function void(){}
@@ -31,14 +36,20 @@ function init()
     level.apothicon_fury_rounds_enabled = 0;
     level.apothicon_fury_round_track_override = &void;
 
+    // Blood splatter happens only during hell rounds enabled
+    level.bloodsplatter_disabled = true;
+
     // Init custom flags
     level flag::init(HELL_ROUND_FLAG);
 
     level.hell_rounds_abolished = false;
+    level.hell_rounds_begin_callbacks = [];
+    level.hell_rounds_end_callbacks = [];
 }
 
 function main()
 {
+    configure_hellrounds_callbacks();
 
     level.initial_zombie_ai_limit = level.zombie_ai_limit;
     level.initial_zombie_actor_limit = level.zombie_actor_limit;
@@ -48,9 +59,38 @@ function main()
     level thread hell_round_killer_watcher();
 }
 
+function configure_hellrounds_callbacks()
+{
+    add_begin_callback(&zm_bloody_environment::toggle_blood_decals);
+    add_end_callback(&zm_bloody_environment::toggle_blood_decals);
+
+    add_begin_callback(&zm_bloody_environment::enable_red_atmosphere);
+    add_end_callback(&zm_bloody_environment::disable_red_atmosphere);
+
+    add_begin_callback(&zm_bloodsplatter::toggle_blood_splatter);
+    add_end_callback(&zm_bloodsplatter::toggle_blood_splatter);
+}
+
+function add_begin_callback(func) {
+    if (IsFunctionPtr(func)) {
+        array::add(level.hell_rounds_begin_callbacks, func);
+    }
+}
+
+function add_end_callback(func) {
+    if (IsFunctionPtr(func)) {
+        array::add(level.hell_rounds_end_callbacks, func);
+    }
+}
+
 // self = level
 function hell_round_plays()
 {
+    for (i = 0; i < self.hell_rounds_begin_callbacks.size; i++)
+    {
+        self thread [[ self.hell_rounds_begin_callbacks[i] ]]();
+    }
+    
     self.zombie_ai_limit = 120;
     self.zombie_actor_limit = 127;
 
@@ -61,8 +101,10 @@ function hell_round_plays()
 // self = level
 function hell_round_ends()
 {
-    // Custom logic goes here.
-    IPrintLnBold("Hell round ending...");
+    for (i = 0; i < self.hell_rounds_end_callbacks.size; i++)
+    {
+        self thread [[ self.hell_rounds_end_callbacks[i] ]]();
+    }
 
     self.zombie_ai_limit = self.initial_zombie_ai_limit;
     self.zombie_actor_limit = self.initial_zombie_actor_limit;
@@ -121,7 +163,8 @@ function spawn_dogs_loop()
     {
         wait randomIntRange(1, 4);
 
-        custom_special_dog_spawn();
+        ai = zm_ai_dogs::custom_special_dog_spawn();
+        ai thread zm_bloodsplatter::watch_actor();
 
         // Don't use endon because it will bug the entities currently spawning
         if (!flag::get(HELL_ROUND_FLAG))
@@ -137,7 +180,8 @@ function spawn_apothicon_furies_loop()
     {
         wait randomIntRange(1, 4);
 
-        zm_genesis_apothicon_fury::apothicon_fury_spawn_on_location();
+        ai = zm_genesis_apothicon_fury::apothicon_fury_spawn_on_location();
+        ai thread zm_bloodsplatter::watch_actor();
 
         // Don't use endon because it will bug the entities currently spawning
         if (!flag::get(HELL_ROUND_FLAG))
@@ -145,20 +189,4 @@ function spawn_apothicon_furies_loop()
             return;
         }
     }
-}
-
-function custom_special_dog_spawn()
-{    
-    players = GetPlayers();
-    favorite_enemy = zm_ai_dogs::get_favorite_enemy();
-
-    spawn_point = zm_ai_dogs::dog_spawn_factory_logic(favorite_enemy);
-    ai = zombie_utility::spawn_zombie(level.dog_spawners[0]);
-
-    if (isdefined(ai))
-    {
-        ai.favoriteenemy = favorite_enemy;
-        spawn_point thread zm_ai_dogs::dog_spawn_fx(ai, spawn_point);
-        level flag::set("dog_clips");
-    }    
 }

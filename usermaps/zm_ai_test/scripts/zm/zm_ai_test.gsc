@@ -66,6 +66,7 @@ function main()
     configure_weapon_inspection();
 
     zm_usermap::main();
+    level util::set_lighting_state(0);
 
     // Use CW M1911 as start weapon
     //t9_1911
@@ -100,9 +101,8 @@ function configure_weapon_inspection()
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911"), 3.33);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_rdw_up"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_ldw_up"), 5);
-    inspectable::add_inspectable_weapon(GetWeapon("iw8_asval"), 5.76 );
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_asval"), 5.76);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_asval_up"), 5.76);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_vintorez"), 5.46);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_vintorez_up"), 5.76);
 }
-
