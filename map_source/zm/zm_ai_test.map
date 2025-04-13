@@ -6,7 +6,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{07A174A4-1329-11F0-B352-E5D29EB5FBF0}"
+guid "{78BF925F-1799-11F0-B359-977C558A58B1}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -486,6 +486,10 @@ guid "{4132C38E-E485-4C4A-8112-1F93E662D89D}"
 guid "{D108D44F-684D-469C-BF51-DAC3FD90C740}"
 "classname" "volume_sun"
 "ssi" "default_day"
+"ssi1" "house"
+"ssi1_runtime_override" "house_override"
+"ssi2" "house_lighting"
+"ssi2_runtime_override" "house_lighting_override"
 "global_fill_color" "0 0 0"
 "global_fill_intensity" "1"
 "grid_density" "32"
@@ -493,7 +497,6 @@ guid "{D108D44F-684D-469C-BF51-DAC3FD90C740}"
 "shadowBiasScale" "1"
 "shadowSplitDistance" "2000"
 "shadowVistaDetail" "1"
-"ssi1" "default_day"
 "streamLighting" "1"
 // brush 0
 {
@@ -635,12 +638,15 @@ guid "{8B0CB9F4-4D14-42EC-9682-C6594492FD3D}"
 guid "{9B1DF84E-0FF5-11F0-B34C-ED66F78293AA}"
 "classname" "actor_spawner_zm_genesis_apothicon_fury"
 "ALERTONSPAWN" "0"
+"MAKEROOM" "1"
 "SCRIPT_FORCESPAWN" "1"
 "angles" "0 270 0"
 "count" "9999"
 "export" "2"
 "model" "c_zom_dlc4_apothicon_fury_fb"
 "origin" "167.875 663.875 212"
+"script_forcespawn" "1"
+"script_noteworthy" "apothicon_fury_spawner"
 "sm_active_count_max" "9999"
 "SPAWNER" "1"
 "_color" "1 0.25 0"
@@ -648,7 +654,7 @@ guid "{9B1DF84E-0FF5-11F0-B34C-ED66F78293AA}"
 "engageMinDist" "250"
 "script_dropammo" "1"
 "sm_active_count_min" "3"
-"spawnflags" "17"
+"spawnflags" "19"
 }
 // entity 33
 {
@@ -768,6 +774,7 @@ guid "{8A3A8E04-126B-11F0-B350-CF49B2B3A64B}"
 guid "{2B2A1677-126D-11F0-B350-CF49B2B3A64B}"
 "classname" "actor_spawner_zm_factory_zombie_dog"
 "ALERTONSPAWN" "0"
+"MAKEROOM" "1"
 "SCRIPT_FORCESPAWN" "1"
 "angles" "0 270 0"
 "count" "9999"
@@ -783,7 +790,7 @@ guid "{2B2A1677-126D-11F0-B350-CF49B2B3A64B}"
 "model" "zombie_wolf"
 "script_dropammo" "1"
 "sm_active_count_min" "3"
-"spawnflags" "17"
+"spawnflags" "19"
 }
 // entity 43
 {
@@ -807,4 +814,297 @@ guid "{91CB3C60-1329-11F0-B352-E5D29EB5FBF0}"
 "classname" "misc_prefab"
 "model" "_prefabs/zm/zm_core/spawnable_weapon_bowie.map"
 "origin" "610 469 0"
+}
+// entity 46
+{
+guid "{AF9A5828-1776-11F0-B359-977C558A58B1}"
+"classname" "misc_volume_decal"
+"angles" "270 0 0"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "929 33 1"
+"targetname" "decal_blood"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 47
+{
+guid "{F918A8BA-1798-11F0-B359-977C558A58B1}"
+"classname" "misc_volume_decal"
+"angles" "360 180 90.0001"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "960 107 81"
+"targetname" "decal_blood"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 48
+{
+guid "{55095A13-1799-11F0-B359-977C558A58B1}"
+"classname" "misc_volume_decal"
+"angles" "270 270 -6.83245e-007"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "689 295 1"
+"targetname" "decal_blood"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 49
+{
+guid "{55095A21-1799-11F0-B359-977C558A58B1}"
+"classname" "misc_volume_decal"
+"angles" "270 270 -180"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "183 -127 1"
+"targetname" "decal_blood"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 50
+{
+guid "{55095A32-1799-11F0-B359-977C558A58B1}"
+"classname" "misc_volume_decal"
+"angles" "270 270 90"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "-223 401 1"
+"targetname" "decal_blood"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 51
+{
+guid "{55095A40-1799-11F0-B359-977C558A58B1}"
+"classname" "misc_volume_decal"
+"angles" "270 225 -45"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "279 -33 1"
+"targetname" "decal_blood"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 52
+{
+guid "{5C4568ED-1799-11F0-B359-977C558A58B1}"
+"classname" "misc_volume_decal"
+"angles" "270 244.76 25.2397"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "401 95 1"
+"targetname" "decal_blood"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 53
+{
+guid "{5C456904-1799-11F0-B359-977C558A58B1}"
+"classname" "misc_volume_decal"
+"angles" "0 270 90.0001"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "629 448 89"
+"targetname" "decal_blood"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 54
+{
+guid "{62805A8B-1799-11F0-B359-977C558A58B1}"
+"classname" "misc_volume_decal"
+"angles" "360 360 90.0001"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "56 541 -23"
+"targetname" "decal_blood"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 55
+{
+guid "{7064E92A-1799-11F0-B359-977C558A58B1}"
+"classname" "misc_volume_decal"
+"angles" "360 360 90.0001"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "-328 485 -23"
+"targetname" "decal_blood"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 56
+{
+guid "{7064E935-1799-11F0-B359-977C558A58B1}"
+"classname" "misc_volume_decal"
+"angles" "360 360 90.0001"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "-448 61 -23"
+"targetname" "decal_blood"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 57
+{
+guid "{78BF9266-1799-11F0-B359-977C558A58B1}"
+"classname" "misc_volume_decal"
+"angles" "270 225 -45"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "47 151 1"
+"targetname" "decal_blood"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 58
+{
+guid "{3FABCFEF-179C-11F0-B359-977C558A58B1}"
+"classname" "volume_worldfog"
+"BANK_2" "1"
+"DISABLE_FOG" "0"
+"fsi_1" "house_fog"
+"fsi_2" "house_fury_afog"
+"AUTO_PRIORITY" "1"
+"BANK_1" "1"
+"ENABLE_SUN_FOG" "1"
+"LIGHTSTATE_1" "1"
+"LIGHTSTATE_2" "1"
+"LIGHTSTATE_3" "1"
+"LIGHTSTATE_4" "1"
+"fogtime" "1"
+"fsi" "default"
+"fsi_3" "default"
+"fsi_4" "default"
+"spawnflags" "64003"
+// brush 0
+{
+ guid "{3FABCFEE-179C-11F0-B359-977C558A58B1}"
+ ( 776 120 -64 ) ( 744 120 -64 ) ( 744 88 -64 ) fog 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 720 88 864 ) ( 720 120 864 ) ( 752 120 864 ) fog 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1112 -1856 848 ) ( 1144 -1856 848 ) ( 1144 -1856 832 ) fog 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1856 32 848 ) ( 1856 64 848 ) ( 1856 64 832 ) fog 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1800 1856 848 ) ( -1832 1856 848 ) ( -1832 1856 832 ) fog 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1856 1744 848 ) ( -1856 1712 848 ) ( -1856 1712 832 ) fog 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 59
+{
+guid "{B6A8246D-17A1-11F0-B359-977C558A58B1}"
+"classname" "reflection_probe"
+"ao_strength_double_sided" "0.200000002980232"
+"origin" "-94 120 372"
+"size_max" "1630 1416 396"
+"size_min" "1442 1656 388"
+"adaptive_quality_boost" "Off"
+"ao_power" "1"
+"ao_range" "8"
+"ao_strength" "1"
+"blend_maxs" "3 3 3"
+"blend_mins" "3 3 3"
+"box" "1"
+"client_server" "ClientSide"
+"debugColor" "1 1 1"
+"grid_density" "0"
+"high_detail" "1"
+"in_play_space" "1"
+"inpaint_occluded_rays" "1"
+"name" "probe"
+"placement_offset" "72"
+"resolution" "4x"
+}
+// entity 60
+{
+guid "{F84FAEAD-17A6-11F0-B359-977C558A58B1}"
+"classname" "volume_litfog"
+"BANK_2" "1"
+"fsi_1" "house_fog_volumetric"
+"fsi_2" "house_fury_volumetric"
+"AUTO_PRIORITY" "1"
+"BANK_1" "1"
+"ENABLE_LIGHTS" "1"
+"ENABLE_SUN" "1"
+"LIGHTSTATE_1" "1"
+"LIGHTSTATE_2" "1"
+"LIGHTSTATE_3" "1"
+"LIGHTSTATE_4" "1"
+"ambientColor" "0 0 0"
+"ambientIntensity" "1"
+"fogtime" "1"
+"fsi" "default"
+"fsi_3" "default"
+"fsi_4" "default"
+"spawnflags" "63587"
+// brush 0
+{
+ guid "{F84FAEAC-17A6-11F0-B359-977C558A58B1}"
+ ( -1836 944 -64 ) ( -1196 944 -64 ) ( -1196 1840 -64 ) litfog_volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1832 1840 860 ) ( -1192 1840 860 ) ( -1192 944 860 ) litfog_volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1940 -1852 -64 ) ( -1940 -1852 896 ) ( -1300 -1852 896 ) litfog_volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1852 1856 -64 ) ( 1852 960 -64 ) ( 1852 960 896 ) litfog_volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1212 1852 -64 ) ( -1212 1852 896 ) ( -1852 1852 896 ) litfog_volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1852 1852 896 ) ( -1852 956 896 ) ( -1852 956 -64 ) litfog_volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
 }

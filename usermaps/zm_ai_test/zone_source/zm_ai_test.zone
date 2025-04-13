@@ -1,11 +1,9 @@
 >class,zm_mod_level
 >group,modtools
 
-xmodel,skybox_default_day
-material,luts_t7_default
 	
 // Custom weapons
-stringtable,gamedata/weapons/zm/zm_levelcommon_weapons.csv
+stringtable,gamedata/weapons/zm/zm_test_weapons.csv
 scriptparsetree,scripts/lilrobot/_inspectable_weapons.gsc
 weapon,t9_1911
 weapon,t9_1911_rdw_up_zm
@@ -22,13 +20,27 @@ gfx_map,maps/zm/zm_ai_test.d3dbsp
 // Audio
 sound,zm_ai_test
 
+// Materials
+xmodel,skybox_default_day
+material,luts_t7_default
+material,mc/mtl_bloodsplatter_scripted
+
+// Scripts
 scriptparsetree,scripts/zm/zm_ai_test.gsc
 scriptparsetree,scripts/zm/zm_ai_test.csc
+scriptparsetree,scripts/zm/zm_usermap.gsc
+scriptparsetree,scripts/zm/zm_usermap.csc
+scriptparsetree,scripts/zm/_zm_ai_dogs.gsc
 scriptparsetree,scripts/zm/zm_genesis_apothicon_fury.gsc
 scriptparsetree,scripts/zm/zm_genesis_apothicon_fury.csc
 scriptparsetree,scripts/zm/zm_genesis_apothicon_fury.gsh
 scriptparsetree,scripts/zm/zm_hell_round.gsc
 scriptparsetree,scripts/zm/zm_hell_round.csc
+scriptparsetree,scripts/zm/zm_bloody_environment.gsc
+scriptparsetree,scripts/zm/zm_bloody_environment.csc
+scriptparsetree,scripts/zm/zm_bloody_environment.gsh
+scriptparsetree,scripts/zm/_zm_bloodsplatter.gsc
+scriptparsetree,scripts/zm/_zm_bloodsplatter.csc
 
 // Custom AIs
 aitype,spawner_zm_genesis_apothicon_fury
