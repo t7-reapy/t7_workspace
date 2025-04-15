@@ -16,6 +16,7 @@
 // AIs involved in hell rounds
 #using scripts\shared\ai\zombie_utility;
 #using scripts\zm\_zm_ai_dogs;
+#using scripts\zm\_zm_ai_wasp;
 #using scripts\zm\zm_genesis_apothicon_fury;
 #define APOTHICAN_FURY_DEBUG 0                   // Force disabling fury debug to not have it when not wanted
 #define APOTHICAN_FURY_USE_SPECIAL_FURY_ROUNDS 0 // Force disabling fury rounds to have them when wanted
@@ -45,6 +46,9 @@ function init()
     level.hell_rounds_abolished = false;
     level.hell_rounds_begin_callbacks = [];
     level.hell_rounds_end_callbacks = [];
+
+    // Some AI needs to be initiated explicitly
+    zm_ai_wasp::init();
 }
 
 function main()
@@ -61,11 +65,8 @@ function main()
 
 function configure_hellrounds_callbacks()
 {
-    add_begin_callback(&zm_bloody_environment::toggle_blood_decals);
-    add_end_callback(&zm_bloody_environment::toggle_blood_decals);
-
-    add_begin_callback(&zm_bloody_environment::enable_red_atmosphere);
-    add_end_callback(&zm_bloody_environment::disable_red_atmosphere);
+    add_begin_callback(&zm_bloody_environment::toggle_bloody_environment);
+    add_end_callback(&zm_bloody_environment::toggle_bloody_environment);
 
     add_begin_callback(&zm_bloodsplatter::toggle_blood_splatter);
     add_end_callback(&zm_bloodsplatter::toggle_blood_splatter);
@@ -94,8 +95,11 @@ function hell_round_plays()
     self.zombie_ai_limit = 120;
     self.zombie_actor_limit = 127;
 
+    // TODO : add some custom fx for round start like the following one ?
+    // zm_ai_wasp::parasite_round_fx();
     self thread spawn_dogs_loop();
     self thread spawn_apothicon_furies_loop();
+    self thread spawn_wasps_loop();
 }
 
 // self = level
@@ -181,6 +185,23 @@ function spawn_apothicon_furies_loop()
         wait randomIntRange(1, 4);
 
         ai = zm_genesis_apothicon_fury::apothicon_fury_spawn_on_location();
+        ai thread zm_bloodsplatter::watch_actor();
+
+        // Don't use endon because it will bug the entities currently spawning
+        if (!flag::get(HELL_ROUND_FLAG))
+        {
+            return;
+        }
+    }
+}
+
+function spawn_wasps_loop()
+{
+    while (1)
+    {
+        wait randomIntRange(1, 4);
+
+        ai = zm_ai_wasp::special_wasp_spawn();
         ai thread zm_bloodsplatter::watch_actor();
 
         // Don't use endon because it will bug the entities currently spawning
