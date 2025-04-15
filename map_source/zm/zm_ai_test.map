@@ -6,7 +6,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{78BF925F-1799-11F0-B359-977C558A58B1}"
+guid "{49C11AAF-1980-11F0-B35B-E2083BBB6F2D}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -203,7 +203,7 @@ guid "{78BF925F-1799-11F0-B359-977C558A58B1}"
  ( 1536 768 -256 ) ( 1536 -1792 -256 ) ( 1536 -1792 0 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 -64 0 0
  ( 768 1536 -256 ) ( 768 1536 0 ) ( -1536 1536 0 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 -64 0 0
  ( -1536 768 0 ) ( -1536 -1792 0 ) ( -1536 -1792 -256 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 -64 0 0
- ( -1536 768 0 ) ( 768 768 0 ) ( 768 -1792 0 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1536 768 0 ) ( 768 768 0 ) ( 768 -1792 0 ) script_wall 128 128 128 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 // brush 18
 {
@@ -483,34 +483,6 @@ guid "{4132C38E-E485-4C4A-8112-1F93E662D89D}"
 }
 // entity 22
 {
-guid "{D108D44F-684D-469C-BF51-DAC3FD90C740}"
-"classname" "volume_sun"
-"ssi" "default_day"
-"ssi1" "house"
-"ssi1_runtime_override" "house_override"
-"ssi2" "house_lighting"
-"ssi2_runtime_override" "house_lighting_override"
-"global_fill_color" "0 0 0"
-"global_fill_intensity" "1"
-"grid_density" "32"
-"respectLightLods" "1"
-"shadowBiasScale" "1"
-"shadowSplitDistance" "2000"
-"shadowVistaDetail" "1"
-"streamLighting" "1"
-// brush 0
-{
- guid "{5B456573-B04A-4DDA-8A99-F6F1FB78DFD2}"
- ( -2048 -2048 -64 ) ( 2048 -2048 -64 ) ( 2048 2048 -64 ) sun_volume 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -2048 2048 896 ) ( 2048 2048 896 ) ( 2048 -2048 896 ) sun_volume 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -2048 -1920 0 ) ( -2048 -1920 1024 ) ( 2048 -1920 1024 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
- ( 1920 2048 0 ) ( 1920 -2048 0 ) ( 1920 -2048 1024 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
- ( 2048 1920 0 ) ( 2048 1920 1024 ) ( -2048 1920 1024 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
- ( -1920 2048 1024 ) ( -1920 -2048 1024 ) ( -1920 -2048 0 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
-}
-}
-// entity 23
-{
 guid "{3469ECC8-C7D7-440A-B1C3-10B2271276BC}"
 "classname" "umbra_volume"
 // brush 0
@@ -524,7 +496,7 @@ guid "{3469ECC8-C7D7-440A-B1C3-10B2271276BC}"
  ( -1792 512 768 ) ( -1792 -768 768 ) ( -1792 -768 0 ) umbra_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
 }
 }
-// entity 24
+// entity 23
 {
 guid "{542652F9-BAF0-4408-B08C-2D3233C45428}"
 "classname" "volume_fpstool"
@@ -539,34 +511,7 @@ guid "{542652F9-BAF0-4408-B08C-2D3233C45428}"
  ( -1536 512 768 ) ( -1536 -1536 768 ) ( -1536 -1536 0 ) volume_fpstool 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
 }
 }
-// entity 25
-{
-guid "{9A8C57F9-6C2C-485C-917E-7380CF4E0E37}"
-"classname" "reflection_probe"
-"ao_power" "2"
-"ao_range" "16"
-"ao_strength_double_sided" "0.200000002980232"
-"exploderFade" "1"
-"origin" "4 4 132"
-"radius" "2048"
-"resolution" "3x"
-"adaptive_quality_boost" "Off"
-"ao_strength" "1"
-"blend_maxs" "3 3 3"
-"blend_mins" "3 3 3"
-"box" "1"
-"client_server" "ClientSide"
-"debugColor" "1 1 1"
-"grid_density" "0"
-"high_detail" "1"
-"in_play_space" "1"
-"inpaint_occluded_rays" "1"
-"name" "probe"
-"placement_offset" "72"
-"size_max" "72 72 72"
-"size_min" "72 72 72"
-}
-// entity 26
+// entity 24
 {
 guid "{D0A20FF7-6A16-4B44-AF77-8F0C2B6A3056}"
 "classname" "actor_spawner_zm_usermap_zombie"
@@ -589,7 +534,7 @@ guid "{D0A20FF7-6A16-4B44-AF77-8F0C2B6A3056}"
 "sm_active_count_min" "3"
 "spawnflags" "19"
 }
-// entity 27
+// entity 25
 {
 guid "{81D91B1F-CA90-4325-B27D-F886F0C1C30E}"
 "classname" "misc_prefab"
@@ -597,7 +542,7 @@ guid "{81D91B1F-CA90-4325-B27D-F886F0C1C30E}"
 "model" "_prefabs/zm/zm_core/spawnable_weapon_shotgun_pump.map"
 "origin" "-446.5 31 0"
 }
-// entity 28
+// entity 26
 {
 guid "{24578C98-27CE-48B7-8C1C-D022E69C021C}"
 "classname" "misc_prefab"
@@ -606,7 +551,7 @@ guid "{24578C98-27CE-48B7-8C1C-D022E69C021C}"
 "origin" "544 430 0"
 "script_string" "zclassic_perks_start_room"
 }
-// entity 29
+// entity 27
 {
 guid "{DCD21B8F-33BF-43FF-B8B7-8634EA327B97}"
 "classname" "misc_prefab"
@@ -615,7 +560,7 @@ guid "{DCD21B8F-33BF-43FF-B8B7-8634EA327B97}"
 "origin" "672 435 0"
 "script_string" "zclassic_perks_start_room"
 }
-// entity 30
+// entity 28
 {
 guid "{E2B47953-0CAE-4CEE-8F09-E9C0DCFE8F9F}"
 "classname" "misc_prefab"
@@ -624,7 +569,7 @@ guid "{E2B47953-0CAE-4CEE-8F09-E9C0DCFE8F9F}"
 "origin" "799.5 436.5 0"
 "script_string" "zclassic_perks_start_room"
 }
-// entity 31
+// entity 29
 {
 guid "{8B0CB9F4-4D14-42EC-9682-C6594492FD3D}"
 "classname" "misc_prefab"
@@ -633,7 +578,7 @@ guid "{8B0CB9F4-4D14-42EC-9682-C6594492FD3D}"
 "origin" "936 195 0"
 "script_string" "zclassic_perks_start_room"
 }
-// entity 32
+// entity 30
 {
 guid "{9B1DF84E-0FF5-11F0-B34C-ED66F78293AA}"
 "classname" "actor_spawner_zm_genesis_apothicon_fury"
@@ -656,37 +601,7 @@ guid "{9B1DF84E-0FF5-11F0-B34C-ED66F78293AA}"
 "sm_active_count_min" "3"
 "spawnflags" "19"
 }
-// entity 33
-{
-guid "{D83D80CC-0FF6-11F0-B34C-ED66F78293AA}"
-"classname" "script_struct"
-"angles" "0 180 0"
-"origin" "-144 144 0"
-"script_noteworthy" "fury_location"
-"targetname" "start_zone_spawners"
-"_color" "1 0 0"
-}
-// entity 34
-{
-guid "{93B32358-1002-11F0-B34C-ED66F78293AA}"
-"classname" "script_struct"
-"angles" "0 180 0"
-"origin" "-88 144 0"
-"script_noteworthy" "fury_location"
-"targetname" "start_zone_spawners"
-"_color" "1 0 0"
-}
-// entity 35
-{
-guid "{93B32366-1002-11F0-B34C-ED66F78293AA}"
-"classname" "script_struct"
-"angles" "0 180 0"
-"origin" "-32 144 0"
-"script_noteworthy" "fury_location"
-"targetname" "start_zone_spawners"
-"_color" "1 0 0"
-}
-// entity 36
+// entity 31
 {
 guid "{C3238565-1259-11F0-B350-CF49B2B3A64B}"
 layer "000_Global/buyable"
@@ -709,7 +624,7 @@ layer "000_Global/buyable"
  ( 929.13 30.869999 61 ) ( 948.13 30.869999 61 ) ( 948.13 30.869999 39 ) trigger 64.011772 -64.002548 397.18567 -228.69397 -178.81963 5.5688211e-005 lightmap_gray 16385.998 -16384.48 398.53723 -228.53471 -178.8125 -0.00010757034
 }
 }
-// entity 37
+// entity 32
 {
 guid "{C3238568-1259-11F0-B350-CF49B2B3A64B}"
 "classname" "misc_model"
@@ -723,7 +638,7 @@ guid "{C3238568-1259-11F0-B350-CF49B2B3A64B}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 38
+// entity 33
 {
 guid "{C323856B-1259-11F0-B350-CF49B2B3A64B}"
 "classname" "script_model"
@@ -741,7 +656,7 @@ guid "{C323856B-1259-11F0-B350-CF49B2B3A64B}"
 "modelscale" "1"
 "shadow_casting" "1"
 }
-// entity 39
+// entity 34
 {
 guid "{C323856E-1259-11F0-B350-CF49B2B3A64B}"
 "classname" "script_struct"
@@ -751,7 +666,7 @@ guid "{C323856E-1259-11F0-B350-CF49B2B3A64B}"
 "targetname" "auto1"
 "_color" "1 0 0"
 }
-// entity 40
+// entity 35
 {
 guid "{8A3A8DF9-126B-11F0-B350-CF49B2B3A64B}"
 "classname" "script_struct"
@@ -760,7 +675,7 @@ guid "{8A3A8DF9-126B-11F0-B350-CF49B2B3A64B}"
 "targetname" "start_zone_spawners"
 "_color" "1 0 0"
 }
-// entity 41
+// entity 36
 {
 guid "{8A3A8E04-126B-11F0-B350-CF49B2B3A64B}"
 "classname" "script_struct"
@@ -769,7 +684,7 @@ guid "{8A3A8E04-126B-11F0-B350-CF49B2B3A64B}"
 "targetname" "start_zone_spawners"
 "_color" "1 0 0"
 }
-// entity 42
+// entity 37
 {
 guid "{2B2A1677-126D-11F0-B350-CF49B2B3A64B}"
 "classname" "actor_spawner_zm_factory_zombie_dog"
@@ -792,7 +707,7 @@ guid "{2B2A1677-126D-11F0-B350-CF49B2B3A64B}"
 "sm_active_count_min" "3"
 "spawnflags" "19"
 }
-// entity 43
+// entity 38
 {
 guid "{F84CEFA4-1328-11F0-B352-E5D29EB5FBF0}"
 "classname" "misc_prefab"
@@ -800,7 +715,7 @@ guid "{F84CEFA4-1328-11F0-B352-E5D29EB5FBF0}"
 "model" "_prefabs/zm/skye_prefabs/iw8_asval_wallbuy.map"
 "origin" "451 469 0"
 }
-// entity 44
+// entity 39
 {
 guid "{07A174AB-1329-11F0-B352-E5D29EB5FBF0}"
 "classname" "misc_prefab"
@@ -808,14 +723,14 @@ guid "{07A174AB-1329-11F0-B352-E5D29EB5FBF0}"
 "model" "_prefabs/zm/skye_prefabs/iw8_vintorez_wallbuy.map"
 "origin" "518 469 0"
 }
-// entity 45
+// entity 40
 {
 guid "{91CB3C60-1329-11F0-B352-E5D29EB5FBF0}"
 "classname" "misc_prefab"
 "model" "_prefabs/zm/zm_core/spawnable_weapon_bowie.map"
 "origin" "610 469 0"
 }
-// entity 46
+// entity 41
 {
 guid "{AF9A5828-1776-11F0-B359-977C558A58B1}"
 "classname" "misc_volume_decal"
@@ -832,7 +747,7 @@ guid "{AF9A5828-1776-11F0-B359-977C558A58B1}"
 "textureTiling" "1 1"
 "uvBaseAndScale" "0 0 1 1"
 }
-// entity 47
+// entity 42
 {
 guid "{F918A8BA-1798-11F0-B359-977C558A58B1}"
 "classname" "misc_volume_decal"
@@ -849,7 +764,7 @@ guid "{F918A8BA-1798-11F0-B359-977C558A58B1}"
 "textureTiling" "1 1"
 "uvBaseAndScale" "0 0 1 1"
 }
-// entity 48
+// entity 43
 {
 guid "{55095A13-1799-11F0-B359-977C558A58B1}"
 "classname" "misc_volume_decal"
@@ -866,7 +781,7 @@ guid "{55095A13-1799-11F0-B359-977C558A58B1}"
 "textureTiling" "1 1"
 "uvBaseAndScale" "0 0 1 1"
 }
-// entity 49
+// entity 44
 {
 guid "{55095A21-1799-11F0-B359-977C558A58B1}"
 "classname" "misc_volume_decal"
@@ -883,7 +798,7 @@ guid "{55095A21-1799-11F0-B359-977C558A58B1}"
 "textureTiling" "1 1"
 "uvBaseAndScale" "0 0 1 1"
 }
-// entity 50
+// entity 45
 {
 guid "{55095A32-1799-11F0-B359-977C558A58B1}"
 "classname" "misc_volume_decal"
@@ -900,7 +815,7 @@ guid "{55095A32-1799-11F0-B359-977C558A58B1}"
 "textureTiling" "1 1"
 "uvBaseAndScale" "0 0 1 1"
 }
-// entity 51
+// entity 46
 {
 guid "{55095A40-1799-11F0-B359-977C558A58B1}"
 "classname" "misc_volume_decal"
@@ -917,7 +832,7 @@ guid "{55095A40-1799-11F0-B359-977C558A58B1}"
 "textureTiling" "1 1"
 "uvBaseAndScale" "0 0 1 1"
 }
-// entity 52
+// entity 47
 {
 guid "{5C4568ED-1799-11F0-B359-977C558A58B1}"
 "classname" "misc_volume_decal"
@@ -934,7 +849,7 @@ guid "{5C4568ED-1799-11F0-B359-977C558A58B1}"
 "textureTiling" "1 1"
 "uvBaseAndScale" "0 0 1 1"
 }
-// entity 53
+// entity 48
 {
 guid "{5C456904-1799-11F0-B359-977C558A58B1}"
 "classname" "misc_volume_decal"
@@ -951,7 +866,7 @@ guid "{5C456904-1799-11F0-B359-977C558A58B1}"
 "textureTiling" "1 1"
 "uvBaseAndScale" "0 0 1 1"
 }
-// entity 54
+// entity 49
 {
 guid "{62805A8B-1799-11F0-B359-977C558A58B1}"
 "classname" "misc_volume_decal"
@@ -968,7 +883,7 @@ guid "{62805A8B-1799-11F0-B359-977C558A58B1}"
 "textureTiling" "1 1"
 "uvBaseAndScale" "0 0 1 1"
 }
-// entity 55
+// entity 50
 {
 guid "{7064E92A-1799-11F0-B359-977C558A58B1}"
 "classname" "misc_volume_decal"
@@ -985,7 +900,7 @@ guid "{7064E92A-1799-11F0-B359-977C558A58B1}"
 "textureTiling" "1 1"
 "uvBaseAndScale" "0 0 1 1"
 }
-// entity 56
+// entity 51
 {
 guid "{7064E935-1799-11F0-B359-977C558A58B1}"
 "classname" "misc_volume_decal"
@@ -1002,7 +917,7 @@ guid "{7064E935-1799-11F0-B359-977C558A58B1}"
 "textureTiling" "1 1"
 "uvBaseAndScale" "0 0 1 1"
 }
-// entity 57
+// entity 52
 {
 guid "{78BF9266-1799-11F0-B359-977C558A58B1}"
 "classname" "misc_volume_decal"
@@ -1019,14 +934,14 @@ guid "{78BF9266-1799-11F0-B359-977C558A58B1}"
 "textureTiling" "1 1"
 "uvBaseAndScale" "0 0 1 1"
 }
-// entity 58
+// entity 53
 {
 guid "{3FABCFEF-179C-11F0-B359-977C558A58B1}"
 "classname" "volume_worldfog"
 "BANK_2" "1"
 "DISABLE_FOG" "0"
-"fsi_1" "house_fog"
-"fsi_2" "house_fury_afog"
+"fsi_1" "house_fog_a"
+"fsi_2" "house_hell_fog_a"
 "AUTO_PRIORITY" "1"
 "BANK_1" "1"
 "ENABLE_SUN_FOG" "1"
@@ -1050,16 +965,17 @@ guid "{3FABCFEF-179C-11F0-B359-977C558A58B1}"
  ( -1856 1744 848 ) ( -1856 1712 848 ) ( -1856 1712 832 ) fog 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 59
+// entity 54
 {
 guid "{B6A8246D-17A1-11F0-B359-977C558A58B1}"
 "classname" "reflection_probe"
+"ao_power" "8"
 "ao_strength_double_sided" "0.200000002980232"
 "origin" "-94 120 372"
+"resolution" "8x"
 "size_max" "1630 1416 396"
 "size_min" "1442 1656 388"
 "adaptive_quality_boost" "Off"
-"ao_power" "1"
 "ao_range" "8"
 "ao_strength" "1"
 "blend_maxs" "3 3 3"
@@ -1073,15 +989,14 @@ guid "{B6A8246D-17A1-11F0-B359-977C558A58B1}"
 "inpaint_occluded_rays" "1"
 "name" "probe"
 "placement_offset" "72"
-"resolution" "4x"
 }
-// entity 60
+// entity 55
 {
 guid "{F84FAEAD-17A6-11F0-B359-977C558A58B1}"
 "classname" "volume_litfog"
 "BANK_2" "1"
-"fsi_1" "house_fog_volumetric"
-"fsi_2" "house_fury_volumetric"
+"fsi_1" "house_fog_v"
+"fsi_2" "house_hell_fog_v"
 "AUTO_PRIORITY" "1"
 "BANK_1" "1"
 "ENABLE_LIGHTS" "1"
@@ -1107,4 +1022,485 @@ guid "{F84FAEAD-17A6-11F0-B359-977C558A58B1}"
  ( -1212 1852 -64 ) ( -1212 1852 896 ) ( -1852 1852 896 ) litfog_volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
  ( -1852 1852 896 ) ( -1852 956 896 ) ( -1852 956 -64 ) litfog_volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
+}
+// entity 56
+{
+guid "{0FD9B365-1892-11F0-B35A-EE4B92CB1349}"
+"classname" "script_vehicle"
+"angles" "0 270 0"
+"count" "9999"
+"guid" "C18BB037"
+"invalid_s_m_i_d" "62515"
+"origin" "317 644 221"
+"script_badplace" "1"
+"script_noteworthy" "zombie_wasp_spawner"
+"SPAWNER" "1"
+"_color" "1 1 0"
+"model" "c_zom_dlc4_parasite_fb"
+"script" "vehicles/spawner_bo3_parasite_elite_enemy_tool"
+"script_dropammo" "1"
+"sm_active_count_max" "3"
+"sm_active_count_min" "3"
+"vehicletype" "spawner_bo3_parasite_elite_enemy_tool"
+"spawnflags" "2"
+}
+// entity 57
+{
+guid "{0FD9B371-1892-11F0-B35A-EE4B92CB1349}"
+"classname" "script_vehicle"
+"angles" "0 270 0"
+"count" "9999"
+"guid" "C18BB037"
+"invalid_s_m_i_d" "62515"
+"origin" "380 644 232"
+"script_badplace" "1"
+"script_noteworthy" "zombie_wasp_spawner"
+"SPAWNER" "1"
+"_color" "1 1 0"
+"model" "c_zom_parasite_fb"
+"script" "vehicles/spawner_bo3_parasite_enemy_tool"
+"script_dropammo" "1"
+"sm_active_count_max" "3"
+"sm_active_count_min" "3"
+"vehicletype" "spawner_bo3_parasite_enemy_tool"
+"spawnflags" "2"
+}
+// entity 58
+{
+guid "{D83D80CC-0FF6-11F0-B34C-ED66F78293AA}"
+"classname" "script_struct"
+"angles" "0 180 0"
+"origin" "-144 144 0"
+"script_noteworthy" "fury_location"
+"targetname" "start_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 59
+{
+guid "{93B32358-1002-11F0-B34C-ED66F78293AA}"
+"classname" "script_struct"
+"angles" "0 180 0"
+"origin" "-88 144 0"
+"script_noteworthy" "fury_location"
+"targetname" "start_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 60
+{
+guid "{93B32366-1002-11F0-B34C-ED66F78293AA}"
+"classname" "script_struct"
+"angles" "0 180 0"
+"origin" "-32 144 0"
+"script_noteworthy" "fury_location"
+"targetname" "start_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 61
+{
+guid "{79A7132C-1893-11F0-B35A-EE4B92CB1349}"
+"classname" "script_struct"
+"angles" "0 180 0"
+"origin" "-144 72 64"
+"script_noteworthy" "wasp_location"
+"targetname" "start_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 62
+{
+guid "{79A7132F-1893-11F0-B35A-EE4B92CB1349}"
+"classname" "script_struct"
+"angles" "0 180 0"
+"origin" "-88 72 64"
+"script_noteworthy" "wasp_location"
+"targetname" "start_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 63
+{
+guid "{79A71332-1893-11F0-B35A-EE4B92CB1349}"
+"classname" "script_struct"
+"angles" "0 180 0"
+"origin" "-32 72 64"
+"script_noteworthy" "wasp_location"
+"targetname" "start_zone_spawners"
+"_color" "1 0 0"
+}
+// entity 64
+{
+guid "{069F3A64-1895-11F0-B35A-EE4B92CB1349}"
+"classname" "nav_volume"
+// brush 0
+{
+ guid "{069F3A63-1895-11F0-B35A-EE4B92CB1349}"
+ ( 336 904 -64 ) ( 304 904 -64 ) ( 304 872 -64 ) volume 64 64 -688 64 0 0 lightmap_gray 16384 16384 -688 64 0 0
+ ( -144 872 960 ) ( -144 904 960 ) ( -112 904 960 ) volume 64 64 -1184 64 0 0 lightmap_gray 16384 16384 -1184 64 0 0
+ ( 3264 -1984 16 ) ( 3296 -1984 16 ) ( 3296 -1984 0 ) volume 64 64 968 0 0 0 lightmap_gray 16384 16384 968 0 0 0
+ ( 1984 -952 16 ) ( 1984 -920 16 ) ( 1984 -920 0 ) volume 64 64 680 0 0 0 lightmap_gray 16384 16384 680 0 0 0
+ ( -800 1984 16 ) ( -832 1984 16 ) ( -832 1984 0 ) volume 64 64 1096 0 0 0 lightmap_gray 16384 16384 1096 0 0 0
+ ( -1984 2192 16 ) ( -1984 2160 16 ) ( -1984 2160 0 ) volume 64 64 -432 0 0 0 lightmap_gray 16384 16384 -432 0 0 0
+}
+}
+// entity 65
+{
+guid "{FF474AAD-1965-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"angles" "0 179.999 0"
+"lightingstate1" "0"
+"model" "doom_skull_huge_scull_d_pivot"
+"origin" "-1052.23 -112.063 536"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 66
+{
+guid "{05851DD5-1966-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"angles" "0 179.999 0"
+"lightingstate1" "0"
+"model" "doom_skull_huge_jaw_max"
+"origin" "-1092.23 -104.063 232"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 67
+{
+guid "{13035D99-1966-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"angles" "0 239.998 0"
+"lightingstate1" "0"
+"model" "doom_prop_hell_monster_skull"
+"origin" "962.122 -36.2498 16"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 68
+{
+guid "{69229486-1977-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"lightingstate1" "0"
+"model" "doom_gore_props_skull"
+"origin" "368 -112 0"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 69
+{
+guid "{6922948C-1977-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"lightingstate1" "0"
+"model" "doom_gore_totem_01"
+"origin" "168 -144 0"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 70
+{
+guid "{69229492-1977-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"lightingstate1" "0"
+"model" "doom_gore_totem_02"
+"origin" "-56 -152 0"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 71
+{
+guid "{75F8B13B-1977-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"lightingstate1" "0"
+"model" "doom_gore_props_impaled_bloody_05"
+"origin" "72 24 0"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 72
+{
+guid "{7C53DF59-1977-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"lightingstate1" "0"
+"model" "doom_gore_props_floor_gore_pile_full_big_04"
+"origin" "240 88 0"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 73
+{
+guid "{7C53DF60-1977-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"lightingstate1" "0"
+"model" "doom_gore_pile_03"
+"origin" "296 -24 0"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 74
+{
+guid "{829BFFEB-1977-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"lightingstate1" "0"
+"model" "doom_body_bloody_05"
+"origin" "584 184 0"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 75
+{
+guid "{8A59FDCE-1977-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"lightingstate1" "0"
+"model" "doom_body_bloody_07"
+"origin" "600 80 0"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 76
+{
+guid "{8A59FDD4-1977-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"lightingstate1" "0"
+"model" "doom_body_bloody_06"
+"origin" "664 -48 0"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 77
+{
+guid "{8A59FDDA-1977-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"lightingstate1" "0"
+"model" "doom_body_bloody_03"
+"origin" "616 0 0"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 78
+{
+guid "{8A59FDE0-1977-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"lightingstate1" "0"
+"model" "doom_body_bloody_04"
+"origin" "584 136 0"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 79
+{
+guid "{8A59FDE6-1977-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"lightingstate1" "0"
+"model" "doom_body_bloody_02"
+"origin" "672 104 0"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 80
+{
+guid "{9136CD97-1977-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"lightingstate1" "0"
+"model" "doom_body_bloody_01"
+"origin" "552 104 0"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 81
+{
+guid "{9136CD9D-1977-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"lightingstate1" "0"
+"model" "doom_gore_body_01"
+"origin" "576 -48 0"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 82
+{
+guid "{9A5E3876-1977-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"lightingstate1" "0"
+"model" "doom_gore_props_floor_gore_pile_full_big_04"
+"origin" "624 -136 0"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 83
+{
+guid "{49C11A93-1980-11F0-B35B-E2083BBB6F2D}"
+"classname" "volume_sun"
+"ssi" "default_day"
+"ssi1" "house"
+"ssi1_runtime_override" "house_override"
+"ssi2" "house_hell"
+"ssi2_runtime_override" "house_hell_override"
+"global_fill_color" "0 0 0"
+"global_fill_intensity" "1"
+"grid_density" "32"
+"respectLightLods" "1"
+"shadowBiasScale" "1"
+"shadowSplitDistance" "2000"
+"shadowVistaDetail" "1"
+"streamLighting" "1"
+// brush 0
+{
+ guid "{49C11A92-1980-11F0-B35B-E2083BBB6F2D}"
+ ( -2048 -2048 -64 ) ( 2048 -2048 -64 ) ( 2048 2048 -64 ) sun_volume 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2048 2048 896 ) ( 2048 2048 896 ) ( 2048 -2048 896 ) sun_volume 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -2048 -1920 0 ) ( -2048 -1920 1024 ) ( 2048 -1920 1024 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 1920 2048 0 ) ( 1920 -2048 0 ) ( 1920 -2048 1024 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 2048 1920 0 ) ( 2048 1920 1024 ) ( -2048 1920 1024 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( -1920 2048 1024 ) ( -1920 -2048 1024 ) ( -1920 -2048 0 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+}
+}
+// entity 84
+{
+guid "{49C11A96-1980-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_volume_decal"
+"angles" "270 244.76 25.2397"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "673 -281 1"
+"targetname" "decal_blood"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 85
+{
+guid "{49C11AA6-1980-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_volume_decal"
+"angles" "270 244.76 25.2397"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "-311 -369 1"
+"targetname" "decal_blood"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 86
+{
+guid "{49C11ABA-1980-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_volume_decal"
+"angles" "270 244.76 25.2397"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "185 -481 1"
+"targetname" "decal_blood"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 87
+{
+guid "{6E8992F3-1980-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"angles" "0 179.999 0"
+"lightingstate1" "0"
+"model" "doom_skull_huge_horne_damaged"
+"origin" "-960.001 147.5 656"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 88
+{
+guid "{0431300E-1981-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"angles" "71.6991 134.417 108.373"
+"lightingstate1" "0"
+"model" "doom_skull_huge_horne_damaged"
+"origin" "-1506.39 -541.458 1236.64"
+"targetname" "model_blood"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
 }

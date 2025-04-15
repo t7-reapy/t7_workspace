@@ -1,0 +1,41 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{1F2D2AEC-B548-11EA-81E9-0015833D0A57}"
+"classname" "worldspawn"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{E1A7C583-6601-11EA-BEE0-0015833D0A57}"
+ ( 40 24 0 ) ( -24 24 0 ) ( -24 -24 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -24 -24 40 ) ( -24 24 40 ) ( 40 24 40 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -24 -16 16 ) ( 40 -16 16 ) ( 40 -16 -16 ) clip 64 64 0 8 0 0 lightmap_gray 16384 16384 0 16 0 0
+ ( 16 -24 24 ) ( 16 24 24 ) ( 16 24 -8 ) clip 64 64 0 8 0 0 lightmap_gray 16384 16384 0 8 0 0
+ ( 40 16 32 ) ( -24 16 32 ) ( -24 16 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -16 24 32 ) ( -16 -24 32 ) ( -16 -24 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{1F2D2AF1-B548-11EA-81E9-0015833D0A57}"
+ ( 64 24 0 ) ( 0 24 0 ) ( 0 -24 0 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 24 0 0 0
+ ( 0 -24 40 ) ( 0 24 40 ) ( 64 24 40 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 24 0 0 0
+ ( 0 -24 24 ) ( 64 -24 24 ) ( 64 -24 -8 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 24 8 0 0
+ ( 24 -24 32 ) ( 24 24 32 ) ( 24 24 0 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 64 24 32 ) ( 0 24 32 ) ( 0 24 0 ) clip_physics 64 64 0 0 0 0 lightmap_gray 16384 16384 24 0 0 0
+ ( -24 16 32 ) ( -24 -32 32 ) ( -24 -32 0 ) clip_physics 64 64 -8 0 0 0 lightmap_gray 16384 16384 -8 0 0 0
+}
+}
