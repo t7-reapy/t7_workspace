@@ -10,6 +10,7 @@
 #insert scripts\shared\version.gsh;
 
 // Involved in Hell rounds
+#using scripts\zm\_hb21_zm_behavior;
 #using scripts\zm\_zm_bloodsplatter;
 #using scripts\zm\zm_bloody_environment;
 

@@ -1,0 +1,2293 @@
+{
+    "type": "selector",
+    "id": "zombie",
+    "children": 
+	[
+		{
+            "type": "sequence",
+            "id": "zombiedeathceilinginbehavior",
+            "children": 
+			[
+                {
+                    "type": "condition_script",
+                    "id": "waskilled",
+                    "interruptname": "death"
+                },
+                {
+                    "type": "condition_script",
+                    "id": "isfallerinceiling",
+                    "scriptfunction": "isfallerinceiling"
+                },
+                {
+                    "type": "action",
+                    "id": "deathaction",
+                    "actionname": "defaultaction",
+                    "asmstatename": "death_ceiling_in@zombie",
+                    "actionnotify": "death",
+                    "startfunction": "fallerceilingdeath",
+                    "terminatefunction": "startragdoll",
+                    "loopingaction": 0,
+                    "actiontimemax": 0
+                }
+            ]
+        },
+        {
+            "type": "selector",
+            "id": "zombiedeathbehavior",
+            "children": 
+			[
+                {
+                    "type": "sequence",
+                    "id": "idgun_blackhole",
+                    "children": 
+                    [
+                        {
+                            "type": "condition_script",
+                            "id": "wascrushedbyinterdimensionalgunblackhole",
+                            "scriptfunction": "wascrushedbyinterdimensionalgunblackhole",
+                            "interruptname": "death"
+                        },
+                        {
+                            "type": "action",
+                            "id": "idgundeathaction",
+                            "actionname": "defaultaction",
+                            "asmstatename": "death_idgun_blackhole@zombie",
+                            "startfunction": "zombiedeathaction",
+                            "loopingaction": 0,
+                            "actiontimemax": 0,
+                            "actionnotify": "death"
+                        }
+                    ]
+                },
+                {
+                    "type": "sequence",
+                    "id": "killedbyblackholebomb",
+                    "children": 
+                    [
+                        {
+                            "type": "condition_script",
+                            "id": "zombiekilledbyblackholebombcondition",
+                            "scriptFunction": "zombiekilledbyblackholebombcondition",
+                            "interruptName": "death"
+                        },
+                        {
+                            "type": "action",
+                            "id": "zombieblackholebombdeathaction",
+                            "ActionName": "zombieblackholebombdeathaction",
+                            "ASMStateName": "black_hole_bomb_death@zombie",
+                            "actionNotify": "death",
+                            "loopingAction": 0,
+                            "actionTimeMax": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "sequence",
+                    "id": "killedwhilegettingpulledbyblackholebomb",
+                    "children": 
+                    [
+                        {
+                            "type": "condition_script",
+                            "id": "zombiekilledwhilegettingpulled",
+                            "scriptFunction": "zombiekilledwhilegettingpulled",
+                            "interruptName": "death"
+                        },
+                        {
+                            "type": "action",
+                            "id": "blackholebombdeathaction",
+                            "ActionName": "defaultaction",
+                            "ASMStateName": "black_hole_bomb_death_preburst@zombie",
+                            "actionNotify": "death",
+                            "StartFunction": "zombiedeathaction",
+                            "loopingAction": 0,
+                            "actionTimeMax": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "sequence",
+                    "id": "deathexplosive",
+                    "children": 
+                    [
+                        {
+                            "id": "zombiekilledwhilegettingpulled",
+                            "type": "condition_script_negate",
+                            "scriptFunction": "zombiekilledwhilegettingpulled"
+                        },
+                        {
+                            "type": "condition_script",
+                            "id": "hasbeenexplosivekilled",
+                            "scriptfunction": "explosivekilled",
+                            "interruptname": "death"
+                        },
+                        {
+                            "type": "condition_script",
+                            "id": "zombiehaslegs",
+                            "scriptfunction": "zombiehaslegs"
+                        },
+                        {
+                            "type": "condition_script_negate",
+                            "id": "explosivekillinvalid",
+                            "scriptfunction": "explosivekillinvalid"
+                        },
+                        {
+                            "type": "action",
+                            "id": "explosivedeathaction",
+                            "actionname": "defaultaction",
+                            "asmstatename": "death_explosive@zombie",
+                            "actionnotify": "death_explosive",
+                            "terminatefunction": "startragdoll",
+                            "loopingaction": 0,
+                            "actiontimemax": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "sequence",
+                    "id": "deathfreeze",
+                    "children": 
+                    [
+                        {
+                            "type": "condition_script",
+                            "id": "waskilledbywaterstaff",
+                            "scriptfunction": "waskilledbywaterstaff",
+                            "interruptname": "death"
+                        },
+                        {
+                            "type": "action",
+                            "id": "freezedeathaction",
+                            "actionname": "defaultaction",
+                            "asmstatename": "death_freeze@zombie",
+                            "actionnotify": "death_freeze",
+                            "terminatefunction": "startragdoll",
+                            "actiontimemax": 0
+                        }
+                    ]
+                },
+                {
+                    "id": "microwavegundeath",
+                    "type": "sequence",
+                    "children": 
+                    [
+                        {
+                            "id": "waskilledbymicrowavegun",
+                            "type": "condition_script",
+                            "scriptFunction": "moonzombiekilledbymicrowavegun",
+                            "interruptName": "death"
+                        },
+                        {
+                            "id": "microwavegundeathaction",
+                            "type": "action",
+                            "ActionName": "defaultaction",
+                            "ASMStateName": "microwavegun_death@zombie",
+                            "actionNotify": "death",
+                            "StartFunction": "zombiedeathaction",
+                            "actionTimeMax": 0
+                        }
+                    ]
+                },
+                {
+                    "id": "microwavegundwdeath",
+                    "type": "sequence",
+                    "children": 
+                    [
+                        {
+                            "id": "waskilledbymicrowavegundw",
+                            "type": "condition_script",
+                            "scriptFunction": "moonzombiekilledbymicrowavegundw",
+                            "interruptName": "death"
+                        },
+                        {
+                            "id": "microwavegundwdeathaction",
+                            "type": "action",
+                            "ActionName": "defaultaction",
+                            "ASMStateName": "microwavegun_dw_death@zombie",
+                            "actionNotify": "death",
+                            "StartFunction": "zombiedeathaction",
+                            "TerminateFunction": "startragdoll",
+                            "actionTimeMax": 0
+                        }
+                    ]
+                },
+				{
+                    "type": "sequence",
+                    "id": "deathfire",
+                    "children": 
+					[
+                        {
+                            "type": "condition_script",
+                            "id": "waskilledbyfirestaff",
+                            "scriptfunction": "waskilledbyfirestaff",
+                            "interruptname": "death"
+                        },
+                        {
+                            "type": "action",
+                            "id": "firedeathaction",
+                            "actionname": "defaultaction",
+                            "asmstatename": "death_fire@zombie",
+                            "actionnotify": "death_fire",
+                            "terminatefunction": "startragdoll",
+                            "loopingaction": 0,
+                            "actiontimemax": 0
+                        }
+                    ]
+                },
+				{
+                    "type": "sequence",
+                    "id": "deathlightning",
+                    "children": 
+					[
+                        {
+                            "type": "condition_script",
+                            "id": "waskilledbylightningstaff",
+                            "scriptfunction": "waskilledbylightningstaff",
+                            "interruptname": "death"
+                        },
+                        {
+                            "type": "action",
+                            "id": "lightningdeathaction",
+                            "actionname": "defaultaction",
+                            "asmstatename": "death_lightning@zombie",
+                            "actionnotify": "death_lightning",
+                            "terminatefunction": "startragdoll",
+                            "loopingaction": 0,
+                            "actiontimemax": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "sequence",
+                    "id": "defaultdeathbehavior",
+                    "children": 
+					[
+                        {
+                            "type": "condition_script",
+                            "id": "waskilled",
+                            "interruptname": "death"
+                        },
+                        {
+                            "type": "action",
+                            "id": "deathaction",
+                            "actionname": "defaultaction",
+                            "asmstatename": "death@zombie",
+                            "startfunction": "zombiedeathaction",
+                            "terminatefunction": "startragdoll",
+                            "loopingaction": 0,
+                            "actiontimemax": 0,
+                            "actionnotify": "death"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "id": "idgun",
+            "children": 
+            [
+                {
+                    "type": "condition_script",
+                    "id": "waskilledbyidgun",
+                    "scriptfunction": "waskilledbyidgun"
+                },
+                {
+                    "type": "action",
+                    "id": "idgundeathaction",
+                    "actionname": "defaultaction",
+                    "asmstatename": "death_idgun@zombie",
+                    "startfunction": "zombiedeathaction",
+                    "updatefunction": "zombieidgundeathupdate",
+                    "loopingaction": 1,
+                    "actiontimemax": 0
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "id": "proceduraltraversebehavior",
+            "children": 
+            [
+                {
+                    "type": "condition_script",
+                    "id": "shouldtraverse",
+                    "scriptfunction": "locomotionshouldtraverse",
+                    "interruptname": "traverse"
+                },
+                {
+                    "type": "condition_script",
+                    "id": "shouldproceduraltraverse",
+                    "scriptfunction": "zombieshouldproceduraltraverse",
+                    "interruptname": "traverse"
+                },
+                {
+                    "type": "condition_service_script",
+                    "id": "disablerepath",
+                    "scriptfunction": "disablerepath"
+                },
+                {
+                    "type": "action",
+                    "id": "traversejump",
+                    "actionname": "defaultaction",
+                    "asmstatename": "jump@traversal",
+                    "actionnotify": "attack_melee",
+                    "startfunction": "robotcalcproceduraltraversal"
+                },
+                {
+                    "type": "action",
+                    "id": "traverseair",
+                    "actionname": "robotproceduraltraversal",
+                    "asmstatename": "air@traversal"
+                },
+                {
+                    "type": "condition_service_script",
+                    "id": "enablerepath",
+                    "scriptfunction": "enablerepath"
+                },
+                {
+                    "type": "action",
+                    "id": "traverseland",
+                    "actionname": "defaultaction",
+                    "asmstatename": "land@traversal",
+                    "actionnotify": "teardown",
+                    "updatefunction": "robotprocedurallanding",
+                    "terminatefunction": "robottraverseend",
+                    "loopingaction": 0,
+                    "actiontimemax": 0
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "id": "zombiefallerdropbehavior",
+            "children": 
+			[
+                {
+                    "type": "condition_script",
+                    "id": "shouldfallerdrop",
+                    "scriptfunction": "shouldfallerdrop"
+                },
+                {
+                    "type": "action",
+                    "id": "fallerdropaction",
+                    "actionname": "fallerdropaction",
+                    "asmstatename": "drop@faller"
+                },
+                {
+                    "type": "action",
+                    "id": "fallerlandaction",
+                    "actionname": "defaultaction",
+                    "asmstatename": "land@faller",
+                    "loopingaction": 0,
+                    "actiontimemax": 0
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "id": "traversebehavior",
+            "children": 
+            [
+                {
+                    "type": "condition_script",
+                    "id": "shouldtraverse",
+                    "scriptfunction": "locomotionshouldtraverse",
+                    "interruptname": "traverse"
+                },
+                {
+                    "type": "condition_script",
+                    "id": "zombiehaslegs",
+                    "scriptfunction": "zombiehaslegs"
+                },
+                {
+                    "type": "action",
+                    "id": "traverseaction",
+                    "actionname": "zombietraverseaction",
+                    "asmstatename": "traverse@zombie",
+                    "loopingaction": 0,
+                    "actiontimemax": 0
+                }
+            ]
+        },
+        {
+            "type": "sequence",
+            "id": "crawlertraversebehavior",
+            "children": 
+            [
+                {
+                    "type": "condition_script",
+                    "id": "shouldtraverse",
+                    "scriptfunction": "locomotionshouldtraverse",
+                    "interruptname": "traverse"
+                },
+                {
+                    "type": "condition_script_negate",
+                    "id": "zombiehaslegs",
+                    "scriptfunction": "zombiehaslegs"
+                },
+                {
+                    "type": "action",
+                    "id": "traverseaction",
+                    "actionname": "zombietraverseaction",
+                    "asmstatename": "traverse_crawler@zombie",
+                    "loopingaction": 0,
+                    "actiontimemax": 0
+                }
+            ]
+        },
+        {
+            "type": "parallel",
+            "id": "idlespawnbehavior",
+            "children": 
+            [
+                {
+                    "type": "condition_script_negate",
+                    "id": "isspawndone",
+                    "scriptfunction": "zombieisthinkdone"
+                },
+                {
+                    "type": "action",
+                    "id": "idleaction",
+                    "actionname": "zombieidleaction",
+                    "asmstatename": "idle@zombie",
+                    "loopingaction": 1,
+                    "actiontimemax": 0
+                }
+            ]
+        },
+        {
+            "type": "parallel",
+            "id": "nonplayableareabehavior",
+            "children": 
+            [
+                {
+                    "type": "condition_script_negate",
+                    "id": "inplayablearea",
+                    "scriptfunction": "inplayablearea"
+                },
+                {
+                    "type": "selector",
+                    "id": "nonplayableareaselector",
+                    "children": 
+                    [
+                        {
+                            "type": "sequence",
+                            "id": "skipteardownbehavior",
+                            "children": 
+                            [
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldskipteardown",
+                                    "scriptfunction": "shouldskipteardown"
+                                },
+                                {
+                                    "type": "parallel",
+                                    "id": "movetoplayablearea",
+                                    "children": 
+                                    [
+                                        {
+                                            "type": "condition_service_script",
+                                            "id": "findfleshservice",
+                                            "scriptfunction": "zombiefindfleshservice"
+                                        },
+                                        {
+                                            "type": "condition_service_script",
+                                            "id": "enteredplayableservice",
+                                            "scriptfunction": "zombieenteredplayableservice",
+                                            "cooldownmin": 500,
+                                            "cooldownmax": 1000
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "moveaction",
+                                            "actionname": "zombiemoveaction",
+                                            "asmstatename": "move@zombie",
+                                            "loopingaction": 1,
+                                            "actiontimemax": 0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "selector",
+                            "id": "gotoentranceselector",
+                            "children": 
+                            [
+                                {
+                                    "type": "sequence",
+                                    "id": "gotoentrancebehavior",
+                                    "children": 
+                                    [
+                                        {
+                                            "type": "condition_script_negate",
+                                            "id": "gottoentrance",
+                                            "scriptfunction": "zombiegottoentrance"
+                                        },
+                                        {
+                                            "type": "condition_service_script",
+                                            "id": "findnodesservice",
+                                            "scriptfunction": "findnodesservice"
+                                        },
+                                        {
+                                            "type": "parallel",
+                                            "id": "movetoentrance",
+                                            "children": 
+                                            [
+                                                {
+                                                    "type": "condition_script_negate",
+                                                    "id": "isatentrance",
+                                                    "scriptfunction": "zombieisatentrance"
+                                                },
+                                                {
+                                                    "type": "action",
+                                                    "id": "movetoentranceaction",
+                                                    "actionname": "zombiemovetoentranceaction",
+                                                    "asmstatename": "move@zombie",
+                                                    "loopingaction": 1,
+                                                    "actiontimemax": 0
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sequence",
+                            "id": "atentrancebehavior",
+                            "children": 
+                            [
+                                {
+                                    "type": "condition_script",
+                                    "id": "gottoentrance",
+                                    "scriptfunction": "zombiegottoentrance"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "gottoattackspot",
+                                    "scriptfunction": "zombiegottoattackspot"
+                                },
+                                {
+                                    "type": "selector",
+                                    "id": "atentranceselector",
+                                    "children": 
+                                    [
+                                        {
+                                            "type": "sequence",
+                                            "id": "gotoattackspotbehavior",
+                                            "children": 
+                                            [
+                                                {
+                                                    "type": "condition_service_script",
+                                                    "id": "updateattackspotservice",
+                                                    "scriptfunction": "updateattackspotservice"
+                                                },
+                                                {
+                                                    "type": "parallel",
+                                                    "id": "movetoattackspot",
+                                                    "children": 
+                                                    [
+                                                        {
+                                                            "type": "condition_script",
+                                                            "id": "hasattackspot",
+                                                            "scriptfunction": "zombiehasattackspotalready"
+                                                        },
+                                                        {
+                                                            "type": "condition_script_negate",
+                                                            "id": "isatattackspot",
+                                                            "scriptfunction": "zombieisatgoal"
+                                                        },
+                                                        {
+                                                            "type": "action",
+                                                            "id": "movetoattackspotaction",
+                                                            "actionname": "zombiemovetoattackspotaction",
+                                                            "asmstatename": "move@zombie",
+                                                            "loopingaction": 1,
+                                                            "actiontimemax": 0
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "sequence",
+                                            "id": "tauntbehavior",
+                                            "children": 
+                                            [
+                                                {
+                                                    "type": "condition_script_negate",
+                                                    "id": "hasattackspot",
+                                                    "scriptfunction": "zombiehasattackspotalready"
+                                                },
+                                                {
+                                                    "type": "condition_script",
+                                                    "id": "shouldtaunt",
+                                                    "scriptfunction": "zombieshouldtaunt"
+                                                },
+                                                {
+                                                    "type": "action",
+                                                    "id": "tauntaction",
+                                                    "actionname": "zombietauntaction",
+                                                    "asmstatename": "taunt@zombie",
+                                                    "actionnotify": "taunt",
+                                                    "loopingaction": 0,
+                                                    "actiontimemax": 0
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "sequence",
+                                            "id": "idleentrancebehavior",
+                                            "children": 
+                                            [
+                                                {
+                                                    "type": "condition_script_negate",
+                                                    "id": "hasattackspot",
+                                                    "scriptfunction": "zombiehasattackspotalready"
+                                                },
+                                                {
+                                                    "type": "action",
+                                                    "id": "idleaction",
+                                                    "actionname": "zombieidleaction",
+                                                    "asmstatename": "idle@zombie",
+                                                    "loopingaction": 0,
+                                                    "actiontimemax": 500
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sequence",
+                            "id": "tearboardbehavior",
+                            "children": 
+                            [
+                                {
+                                    "type": "condition_script",
+                                    "id": "hasattackspot",
+                                    "scriptfunction": "zombiehasattackspotalready"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldtearboard",
+                                    "scriptfunction": "zombieshouldtear"
+                                },
+                                {
+                                    "type": "sequence",
+                                    "id": "tearboard",
+                                    "children": 
+                                    [
+                                        {
+                                            "type": "condition_service_script",
+                                            "id": "getchunkservice",
+                                            "scriptfunction": "getchunkservice"
+                                        },
+                                        {
+                                            "type": "condition_script",
+                                            "id": "ischunkvalid",
+                                            "scriptfunction": "ischunkvalid"
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "grabboardaction",
+                                            "actionname": "grabboardaction",
+                                            "asmstatename": "grab@zombie",
+                                            "actionnotify": "teardown",
+                                            "loopingaction": 0,
+                                            "actiontimemax": 0
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "pullboardaction",
+                                            "actionname": "pullboardaction",
+                                            "asmstatename": "pull@zombie",
+                                            "loopingaction": 0,
+                                            "actiontimemax": 0
+                                        },
+                                        {
+                                            "type": "selector",
+                                            "id": "selector",
+                                            "children": 
+                                            [
+                                                {
+                                                    "type": "sequence",
+                                                    "id": "attackthroughboardsbehavior",
+                                                    "children": 
+                                                    [
+                                                        {
+                                                            "type": "condition_script",
+                                                            "id": "shouldattackthroughboards",
+                                                            "scriptfunction": "zombieshouldattackthroughboards"
+                                                        },
+                                                        {
+                                                            "type": "action",
+                                                            "id": "attackthroughboardsaction",
+                                                            "actionname": "zombieattackthroughboardsaction",
+                                                            "asmstatename": "meleebehindboards@zombie",
+                                                            "actionnotify": "attack_melee",
+                                                            "loopingaction": 0,
+                                                            "actiontimemax": 0
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "sequence",
+                                                    "id": "tauntbehavior",
+                                                    "children": 
+                                                    [
+                                                        {
+                                                            "type": "condition_script",
+                                                            "id": "shouldtaunt",
+                                                            "scriptfunction": "zombieshouldtaunt"
+                                                        },
+                                                        {
+                                                            "type": "action",
+                                                            "id": "tauntaction",
+                                                            "actionname": "zombietauntaction",
+                                                            "asmstatename": "taunt@zombie",
+                                                            "actionnotify": "taunt",
+                                                            "loopingaction": 0,
+                                                            "actiontimemax": 0
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sequence",
+                            "id": "idleboardbehavior",
+                            "children": 
+                            [
+                                {
+                                    "type": "condition_script",
+                                    "id": "hasattackspot",
+                                    "scriptfunction": "zombiehasattackspotalready"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldtearboard",
+                                    "scriptfunction": "zombieshouldtear"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "ischunkvalid",
+                                    "scriptfunction": "ischunkvalid"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "idleaction",
+                                    "actionname": "zombieidleaction",
+                                    "asmstatename": "idle@zombie",
+                                    "loopingaction": 0,
+                                    "actiontimemax": 0
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sequence",
+                            "id": "enterplayableareabehavior",
+                            "children": 
+                            [
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldenterplayable",
+                                    "scriptfunction": "zombieshouldenterplayable"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "mantleaction",
+                                    "actionname": "zombiemantleaction",
+                                    "asmstatename": "barricadeenter@zombie",
+                                    "loopingaction": 0,
+                                    "actiontimemax": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "parallel",
+            "id": "playableareabehavior",
+            "children": 
+			[
+				{
+                    "type": "condition_service_script",
+                    "id": "zombieattackableobjectservice",
+                    "scriptfunction": "zombieattackableobjectservice",
+                    "cooldownmin": 250,
+                    "cooldownmax": 500
+                },
+				{
+                    "type": "condition_service_script",
+                    "id": "stumbleservice",
+                    "scriptfunction": "zombiestumbleservice",
+                    "cooldownmin": 100,
+                    "cooldownmax": 200
+                },
+                {
+                    "type": "condition_service_script",
+                    "id": "jukeservice",
+                    "scriptfunction": "zombiejukeservice"
+                },
+                {
+                    "type": "condition_script",
+                    "id": "inplayablearea",
+                    "scriptfunction": "inplayablearea"
+                },
+                {
+                    "type": "condition_service_script",
+                    "id": "findfleshservice",
+                    "scriptfunction": "zombiefindfleshservice"
+                },
+				{
+                    "type": "condition_service_script",
+                    "id": "sidestepservice",
+                    "scriptFunction": "zombiesidestepservice"
+                },
+                {
+                    "type": "condition_service_script",
+                    "id": "crawlercollisionservice",
+                    "scriptfunction": "zombiecrawlercollisionservice",
+                    "cooldownmin": 250,
+                    "cooldownmax": 500
+                },
+                {
+                    "type": "selector",
+                    "id": "playableareaselector",
+                    "children": 
+					[
+                        {
+                            "type": "sequence",
+                            "id": "zombieblackholebombpullbehavior",
+                            "children": 
+                            [
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "blackholebombpullaction",
+                                    "ActionName": "hb21zombieblackholebombpullaction",
+                                    "ASMStateName": "black_hole_bomb_pull@zombie",
+                                    "loopingAction": 0,
+                                    "actionTimeMax": 0
+                                }
+                            ]
+                        },
+						{
+                            "type": "parallel",
+                            "id": "zombieshouldinertidlebehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldinertwakeup",
+                                    "scriptfunction": "zombieshouldinertwakeup"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "zombieshouldinertidle",
+                                    "scriptfunction": "zombieshouldinertidle"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "zombieshouldinertidleaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "inert@zombie",
+                                    "loopingaction": 0,
+                                    "actiontimemax": 0
+                                }
+                            ]
+                        },
+						{
+                            "type": "sequence",
+                            "id": "zombieshouldinertwakeupbehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "zombieshouldinertwakeup",
+                                    "scriptfunction": "zombieshouldinertwakeup"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "zombieshouldinertwakeupaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "inert_wakeup@zombie",
+									"terminatefunction": "zombieshouldinertterminate",
+                                    "loopingaction": 0,
+                                    "actiontimemax": 0
+                                }
+                            ]
+                        },
+						{
+                            "type": "sequence",
+                            "id": "zombiefirestaffstunbehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptfunction": "wasstunnedbyfirestaff"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "stunfireaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "stun_lightning@zombie",
+                                    "terminatefunction": "zombiestunfireactionend"
+                                }
+                            ]
+                        },
+						{
+                            "type": "sequence",
+                            "id": "stunlightning",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptfunction": "wasstunnedbylightningstaff"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "stunlightningaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "stun_lightning@zombie",
+                                    "terminatefunction": "zombiestunlightningactionend",
+                                    "loopingaction": 0,
+                                    "actiontimemax": 0
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sequence",
+                            "id": "stunacid",
+                            "children": 
+                            [
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldwhirlwind",
+                                    "scriptfunction": "zombieshouldwhirlwind"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptFunction": "wasstunnedbyfirestaff"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptFunction": "wasstunnedbylightningstaff"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldknockdown",
+                                    "scriptfunction": "zombieshouldknockdown"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldslip",
+                                    "scriptfunction": "zombieshouldslip"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieisbeinggrappled",
+                                    "scriptfunction": "zombieisbeinggrappled"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldbestunned",
+                                    "scriptfunction": "zombieshouldstun"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "wasstunnedbyacid",
+                                    "scriptfunction": "wasstunnedbyacid"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "stunacidaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "stun_acid@zombie",
+                                    "loopingaction": 1
+                                }
+                            ]
+                        },
+						{
+                            "type": "sequence",
+                            "id": "zombiepushedbehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "soniccanattack",
+                                    "scriptFunction": "soniccanattack"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "napalmcanexplode",
+                                    "scriptFunction": "napalmcanexplode"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyacid",
+                                    "scriptfunction": "wasstunnedbyacid"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldwhirlwind",
+                                    "scriptfunction": "zombieshouldwhirlwind"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptFunction": "wasstunnedbyfirestaff"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptFunction": "wasstunnedbylightningstaff"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "zombieispushed",
+                                    "scriptfunction": "zombieispushed"
+                                },
+                                {
+                                    "type": "parallel",
+                                    "id": "parallel",
+                                    "children": 
+									[
+										{
+                                            "id": "zombiepushedaction",
+                                            "type": "action",
+                                            "actionname": "defaultaction",
+                                            "asmstatename": "pushed@zombie",
+                                            "startfunction": "zombiepushedactionstart",
+                                            "terminatefunction": "zombiepushedactionterminate"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sequence",
+                            "id": "zombieslippedbehavior",
+                            "children": 
+                            [
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyacid",
+                                    "scriptfunction": "wasstunnedbyacid"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptFunction": "wasstunnedbyfirestaff"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptFunction": "wasstunnedbylightningstaff"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldknockdown",
+                                    "scriptfunction": "zombieshouldknockdown"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "zombieshouldslip",
+                                    "scriptfunction": "zombieshouldslip"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "slippedaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "slipped@zombie",
+									"startfunction": "zombieslippedactionstart",
+                                    "updatefunction": "zombieslippedactionupdate",
+                                    "terminatefunction": "zombieslippedactionterminate"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sequence",
+                            "id": "zombieknockdownbehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptFunction": "wasstunnedbyfirestaff"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptFunction": "wasstunnedbylightningstaff"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "zombieshouldknockdown",
+                                    "scriptfunction": "zombieshouldknockdown"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "zombieknockdownaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "knockdown@zombie",
+                                    "startfunction": "zombieknockdownactionstart",
+                                    "loopingaction": 0,
+                                    "actiontimemax": 0
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "zombiegetupaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "getup@zombie",
+                                    "terminatefunction": "zombiegetupactionterminate",
+                                    "loopingaction": 0,
+                                    "actiontimemax": 0
+                                }
+                            ]
+                        },
+						{
+                            "type": "sequence",
+                            "id": "painlowgbehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "soniccanattack",
+                                    "scriptFunction": "soniccanattack"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "napalmcanexplode",
+                                    "scriptFunction": "napalmcanexplode"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyacid",
+                                    "scriptfunction": "wasstunnedbyacid"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldslip",
+                                    "scriptfunction": "zombieshouldslip"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldknockdown",
+                                    "scriptfunction": "zombieshouldknockdown"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldwhirlwind",
+                                    "scriptfunction": "zombieshouldwhirlwind"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptFunction": "wasstunnedbyfirestaff"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptFunction": "wasstunnedbylightningstaff"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldmovelowg",
+                                    "scriptfunction": "shouldmovelowg"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldshowpain",
+                                    "scriptfunction": "iszombiewalking",
+                                    "interruptname": "pain"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "painaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "pain_lowg@zombie",
+                                    "loopingaction": 0,
+                                    "actiontimemax": 350
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sequence",
+                            "id": "painbehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyacid",
+                                    "scriptfunction": "wasstunnedbyacid"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldslip",
+                                    "scriptfunction": "zombieshouldslip"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldknockdown",
+                                    "scriptfunction": "zombieshouldknockdown"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldwhirlwind",
+                                    "scriptfunction": "zombieshouldwhirlwind"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptFunction": "wasstunnedbyfirestaff"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptFunction": "wasstunnedbylightningstaff"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldshowpain",
+                                    "scriptfunction": "zombieshoulddisplaypain",
+                                    "interruptname": "pain"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "defaultaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "pain@zombie",
+                                    "loopingaction": 0,
+                                    "actiontimemax": 350
+                                }
+                            ]
+                        },
+						{
+                            "type": "sequence",
+                            "id": "zombiegrappledbehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "zombieisbeinggrappled",
+                                    "scriptfunction": "zombieisbeinggrappled"
+                                },
+                                {
+                                    "type": "parallel",
+                                    "id": "parallel",
+                                    "children": 
+									[
+                                        {
+                                            "type": "action",
+                                            "id": "zombiegrappledimpactaction",
+                                            "actionname": "defaultaction",
+                                            "asmstatename": "grappled_impact@zombie",
+                                            "startfunction": "zombiegrappleactionstart",
+                                            "loopingaction": 0,
+                                            "actiontimemax": 0
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "parallel",
+                                    "id": "parallel",
+                                    "children": 
+									[
+                                        {
+                                            "type": "condition_script",
+                                            "id": "zombieisbeinggrappled",
+                                            "scriptfunction": "zombieisbeinggrappled"
+                                        },
+                                        {
+                                            "type": "action",
+                                            "id": "zombiegrappledaction",
+                                            "actionname": "defaultaction",
+                                            "asmstatename": "grappled@zombie",
+                                            "loopingaction": 0,
+                                            "actiontimemax": 0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "parallel",
+                            "id": "zombiestunbehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyacid",
+                                    "scriptfunction": "wasstunnedbyacid"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldwhirlwind",
+                                    "scriptfunction": "zombieshouldwhirlwind"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptFunction": "wasstunnedbyfirestaff"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptFunction": "wasstunnedbylightningstaff"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldbestunned",
+                                    "scriptfunction": "zombieshouldstun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieisbeinggrappled",
+                                    "scriptfunction": "zombieisbeinggrappled"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "stunaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "stun_tesla@zombie",
+                                    "startfunction": "zombiestunactionstart",
+                                    "terminatefunction": "zombiestunactionend",
+                                    "loopingaction": 1,
+                                    "actiontimemax": 4000
+                                }
+                            ]
+                        },
+						{
+                            "type": "parallel",
+                            "id": "zombiestumblebehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "soniccanattack",
+                                    "scriptFunction": "soniccanattack"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "napalmcanexplode",
+                                    "scriptFunction": "napalmcanexplode"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyacid",
+                                    "scriptfunction": "wasstunnedbyacid"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldslip",
+                                    "scriptfunction": "zombieshouldslip"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldknockdown",
+                                    "scriptfunction": "zombieshouldknockdown"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldwhirlwind",
+                                    "scriptfunction": "zombieshouldwhirlwind"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptFunction": "wasstunnedbyfirestaff"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptFunction": "wasstunnedbylightningstaff"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldstumble",
+                                    "scriptfunction": "zombiestumblecondition"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldbestunned",
+                                    "scriptfunction": "zombieshouldstun"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "stumbleaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "stumble@zombie",
+									"startfunction": "zombiestumbleactionstart",
+                                    "loopingaction": 0,
+                                    "actiontimemax": 0
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sequence",
+                            "id": "zombiejukebehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "soniccanattack",
+                                    "scriptFunction": "soniccanattack"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "napalmcanexplode",
+                                    "scriptFunction": "napalmcanexplode"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyacid",
+                                    "scriptfunction": "wasstunnedbyacid"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldslip",
+                                    "scriptfunction": "zombieshouldslip"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldknockdown",
+                                    "scriptfunction": "zombieshouldknockdown"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldwhirlwind",
+                                    "scriptfunction": "zombieshouldwhirlwind"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptFunction": "wasstunnedbyfirestaff"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptFunction": "wasstunnedbylightningstaff"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldjuke",
+                                    "scriptfunction": "zombieshouldjuke"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldbestunned",
+                                    "scriptfunction": "zombieshouldstun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieisbeinggrappled",
+                                    "scriptfunction": "zombieisbeinggrappled"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "jukeaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "juke@zombie",
+                                    "startfunction": "zombiejukeactionstart",
+                                    "loopingaction": 0,
+                                    "actiontimemax": 0
+                                }
+                            ]
+                        },
+						{
+							"type": "sequence",
+							"id": "ZombieSideStepBehavior",
+							"children": 
+							[
+								{
+									"type": "condition_script",
+									"id": "shouldSideStep",
+									"scriptFunction": "zombieShouldSideStep"
+								},
+								{
+									"type": "condition_script_negate",
+									"id": "shouldBeStunned",
+									"scriptFunction": "zombieShouldStun"
+								},
+								{
+									"type": "condition_script_negate",
+									"id": "zombieIsBeingGrappled",
+									"scriptFunction": "zombieIsBeingGrappled"
+								},
+								{
+									"type": "action",
+									"id": "sideStepAction",
+									"ActionName": "zombieSideStepAction",
+									"ASMStateName": "side_step@zombie",
+									"loopingAction": 0,
+									"actionTimeMax": 0
+								}
+							]
+						},
+						{
+                            "type": "parallel",
+                            "id": "whirlwindbehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptfunction": "wasstunnedbyfirestaff"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptfunction": "wasstunnedbylightningstaff"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "zombieshouldwhirlwind",
+                                    "scriptfunction": "zombieshouldwhirlwind"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "whrilwindaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "whirlwind@zombie",
+                                    "loopingaction": 1,
+                                    "actiontimemax": 0
+                                }
+                            ]
+                        },
+                        {
+                            "type": "parallel",
+                            "id": "moveawaybehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "soniccanattack",
+                                    "scriptFunction": "soniccanattack"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "napalmcanexplode",
+                                    "scriptFunction": "napalmcanexplode"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyacid",
+                                    "scriptfunction": "wasstunnedbyacid"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldslip",
+                                    "scriptfunction": "zombieshouldslip"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldknockdown",
+                                    "scriptfunction": "zombieshouldknockdown"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldwhirlwind",
+                                    "scriptfunction": "zombieshouldwhirlwind"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptFunction": "wasstunnedbyfirestaff"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptFunction": "wasstunnedbylightningstaff"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldmoveaway",
+                                    "scriptfunction": "zombieshouldmoveaway"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldwhirlwind",
+                                    "scriptfunction": "zombieshouldwhirlwind"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieisbeinggrappled",
+                                    "scriptfunction": "zombieisbeinggrappled"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "moveawayaction",
+                                    "actionname": "zombiemoveaway",
+                                    "asmstatename": "move@zombie",
+                                    "loopingaction": 1,
+                                    "actiontimemax": 0
+                                }
+                            ]
+                        },
+                        {
+                            "id": "napalmexplodebehavior",
+                            "type": "sequence",
+                            "children": 
+                            [
+                                {
+                                    "id": "napalmcanexplode",
+                                    "type": "condition_script",
+                                    "scriptFunction": "napalmcanexplode"
+                                },
+                                {
+                                    "id": "napalmexplodeaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "napalmexplode@zombie",
+                                    "StartFunction": "napalmexplodeinitialize",
+                                    "TerminateFunction": "napalmexplodeterminate"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "sonicattackbehavior",
+                            "type": "sequence",
+                            "children": 
+                            [
+                                {
+									"type": "condition_script",
+                                    "id": "soniccanattack",
+                                    "scriptFunction": "soniccanattack"
+                                },
+                                {
+									"type": "action",
+                                    "id": "sonicattackaction",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "sonicattack@zombie",
+                                    "StartFunction": "sonicattackinitialize",
+                                    "TerminateFunction": "sonicattackterminate",
+                                    "actionTimeMax": 0
+                                }
+                            ]
+                        },
+						{
+                            "type": "sequence",
+                            "id": "meleejumpattackbehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "soniccanattack",
+                                    "scriptFunction": "soniccanattack"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "napalmcanexplode",
+                                    "scriptFunction": "napalmcanexplode"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyacid",
+                                    "scriptfunction": "wasstunnedbyacid"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldslip",
+                                    "scriptfunction": "zombieshouldslip"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldknockdown",
+                                    "scriptfunction": "zombieshouldknockdown"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldwhirlwind",
+                                    "scriptfunction": "zombieshouldwhirlwind"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptFunction": "wasstunnedbyfirestaff"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptFunction": "wasstunnedbylightningstaff"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldjumpunderwatermelee",
+                                    "scriptfunction": "zombieshouldjumpunderwatermelee"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieisbeinggrappled",
+                                    "scriptfunction": "zombieisbeinggrappled"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldmoveaway",
+                                    "scriptfunction": "zombieshouldmoveaway"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "meleejumpattackaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "melee_jump@zombie",
+                                    "actionnotify": "attack_melee",
+                                    "loopingaction": 0,
+                                    "actiontimemax": 0
+                                }
+                            ]
+                        },
+						{
+                            "type": "sequence",
+                            "id": "attackobject",
+                            "children": 
+							[
+								{
+                                    "type": "condition_script",
+                                    "id": "zombieisatattackobject",
+                                    "scriptfunction": "zombieisatattackobject"
+                                },
+                                {
+                                    "type": "parallel",
+                                    "id": "parallel",
+                                    "children": 
+									[
+                                        {
+                                            "type": "condition_script_negate",
+                                            "id": "waskilledbyidgun",
+                                            "scriptFunction": "waskilledbyidgun"
+                                        },
+                                        {
+                                            "type": "condition_script_negate",
+                                            "id": "isgettingpulledbyblackholebomb",
+                                            "scriptFunction": "waskilledbyblackholebomb"
+                                        },
+										{
+											"type": "condition_script_negate",
+											"id": "soniccanattack",
+											"scriptFunction": "soniccanattack"
+										},
+										{
+											"type": "condition_script_negate",
+											"id": "napalmcanexplode",
+											"scriptFunction": "napalmcanexplode"
+										},
+                                        {
+                                            "type": "condition_script_negate",
+                                            "id": "wasstunnedbyacid",
+                                            "scriptfunction": "wasstunnedbyacid"
+                                        },
+										{
+											"type": "condition_script_negate",
+											"id": "zombieshouldwhirlwind",
+											"scriptfunction": "zombieshouldwhirlwind"
+										},
+										{
+											"type": "condition_script_negate",
+											"id": "wasstunnedbyfirestaff",
+											"scriptFunction": "wasstunnedbyfirestaff"
+										},
+										{
+											"type": "condition_script_negate",
+											"id": "wasstunnedbylightningstaff",
+											"scriptFunction": "wasstunnedbylightningstaff"
+										},
+                                        {
+                                            "type": "condition_script",
+                                            "id": "zombieshouldattackobject",
+                                            "scriptfunction": "zombieshouldattackobject"
+                                        },
+										{
+											"type": "condition_script_negate",
+											"id": "zombieisbeinggrappled",
+											"scriptfunction": "zombieisbeinggrappled"
+										},
+                                        {
+                                            "type": "action",
+                                            "id": "zombieattackobject",
+                                            "actionname": "defaultaction",
+                                            "asmstatename": "attack_object@zombie",
+                                            "actionnotify": "attack_melee",
+                                            "startfunction": "zombieattackobjectstart",
+                                            "loopingaction": 1,
+                                            "actiontimemax": 0
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "parallel",
+                            "id": "meleeattackbehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "soniccanattack",
+                                    "scriptFunction": "soniccanattack"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "napalmcanexplode",
+                                    "scriptFunction": "napalmcanexplode"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyacid",
+                                    "scriptfunction": "wasstunnedbyacid"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldslip",
+                                    "scriptfunction": "zombieshouldslip"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldknockdown",
+                                    "scriptfunction": "zombieshouldknockdown"
+                                },
+								{
+									"type": "condition_script_negate",
+									"id": "zombieshouldwhirlwind",
+									"scriptfunction": "zombieshouldwhirlwind"
+								},
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptFunction": "wasstunnedbyfirestaff"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptFunction": "wasstunnedbylightningstaff"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldmeleeattack",
+                                    "scriptfunction": "zombieshouldmelee"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieisbeinggrappled",
+                                    "scriptfunction": "zombieisbeinggrappled"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldmoveaway",
+                                    "scriptfunction": "zombieshouldmoveaway"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "meleeattackaction",
+                                    "actionname": "defaultaction",
+                                    "asmstatename": "melee@zombie",
+                                    "loopingaction": 0,
+                                    "actiontimemax": 0,
+                                    "actionnotify": "attack_melee"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "parallel",
+                            "id": "movebehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "napalmcanexplode",
+                                    "scriptFunction": "napalmcanexplode"
+                                },
+                                {
+                                    "id": "soniccanattack",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "soniccanattack"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyacid",
+                                    "scriptfunction": "wasstunnedbyacid"
+                                },
+								{
+									"type": "condition_script_negate",
+									"id": "zombieshouldwhirlwind",
+									"scriptfunction": "zombieshouldwhirlwind"
+								},
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptFunction": "wasstunnedbyfirestaff"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptFunction": "wasstunnedbylightningstaff"
+                                },
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldmove",
+                                    "scriptfunction": "locomotionbehaviorcondition"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieisbeinggrappled",
+                                    "scriptfunction": "zombieisbeinggrappled"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldslip",
+                                    "scriptfunction": "zombieshouldslip"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldknockdown",
+                                    "scriptfunction": "zombieshouldknockdown"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldmoveaway",
+                                    "scriptfunction": "zombieshouldmoveaway"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldbestunned",
+                                    "scriptfunction": "zombieshouldstun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldjuke",
+                                    "scriptfunction": "zombieshouldjuke"
+                                },
+								{
+									"type": "condition_script_negate",
+									"id": "shouldsidestep",
+									"scriptFunction": "zombieshouldsidestep"
+								},
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldmeleeattack",
+                                    "scriptfunction": "zombieshouldmelee"
+                                },
+                                {
+                                    "type": "selector",
+                                    "id": "selector",
+                                    "children": 
+									[
+                                        {
+                                            "type": "parallel",
+                                            "id": "movelowg",
+                                            "children": 
+											[
+                                                {
+                                                    "type": "condition_script",
+                                                    "id": "shouldmovelowg",
+                                                    "scriptfunction": "shouldmovelowg"
+                                                },
+                                                {
+                                                    "type": "action",
+                                                    "id": "movelowgaction",
+                                                    "actionname": "zombiemoveaction",
+                                                    "asmstatename": "move_lowg@zombie",
+                                                    "loopingaction": 1,
+                                                    "actiontimemax": 0
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "parallel",
+                                            "id": "movenormal",
+                                            "children": 
+											[
+                                                {
+                                                    "type": "condition_script_negate",
+                                                    "id": "shouldmovelowg",
+                                                    "scriptfunction": "shouldmovelowg"
+                                                },
+                                                {
+                                                    "type": "action",
+                                                    "id": "moveaction",
+                                                    "actionname": "zombiemoveaction",
+                                                    "asmstatename": "move@zombie",
+                                                    "loopingaction": 1,
+                                                    "actiontimemax": 0
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "parallel",
+                            "id": "idlebehavior",
+                            "children": 
+							[
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "waskilledbyidgun",
+                                    "scriptFunction": "waskilledbyidgun"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "isgettingpulledbyblackholebomb",
+                                    "scriptFunction": "waskilledbyblackholebomb"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "soniccanattack",
+                                    "scriptFunction": "soniccanattack"
+                                },
+								{
+									"type": "condition_script_negate",
+                                    "id": "napalmcanexplode",
+                                    "scriptFunction": "napalmcanexplode"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyacid",
+                                    "scriptfunction": "wasstunnedbyacid"
+                                },
+								{
+									"type": "condition_script_negate",
+									"id": "zombieshouldinertidle",
+									"scriptfunction": "zombieshouldinertidle"
+								},
+								{
+									"type": "condition_script_negate",
+									"id": "zombieshouldwhirlwind",
+									"scriptfunction": "zombieshouldwhirlwind"
+								},
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbyfirestaff",
+                                    "scriptFunction": "wasstunnedbyfirestaff"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "wasstunnedbylightningstaff",
+                                    "scriptFunction": "wasstunnedbylightningstaff"
+                                },
+								{
+                                    "type": "condition_script_negate",
+                                    "id": "zombieisbeinggrappled",
+                                    "scriptfunction": "zombieisbeinggrappled"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldslip",
+                                    "scriptfunction": "zombieshouldslip"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "zombieshouldknockdown",
+                                    "scriptfunction": "zombieshouldknockdown"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldmoveaway",
+                                    "scriptfunction": "zombieshouldmoveaway"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldmeleeattack",
+                                    "scriptfunction": "zombieshouldmelee"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldmove",
+                                    "scriptfunction": "locomotionbehaviorcondition"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "idleaction",
+                                    "actionname": "zombieidleaction",
+                                    "asmstatename": "idle@zombie",
+                                    "loopingaction": 1,
+                                    "actiontimemax": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "action",
+            "id": "debugvoidaction",
+            "actionname": "defaultaction",
+            "asmstatename": "void@debug",
+            "loopingaction": 0,
+            "actiontimemax": 0
+        }
+    ]
+}

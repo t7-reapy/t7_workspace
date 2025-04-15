@@ -5,5 +5,22 @@
 
 #namespace AnimationStateNetworkUtility;
 
-function RequestState( entity, stateName ) {}
-function SearchAnimationMap( entity, aliasName ) {}
+function RequestState( entity, stateName )
+{
+	/#
+		Assert( isDefined( entity ) );
+	#/
+	entity ASMRequestSubstate( stateName );
+}
+
+function SearchAnimationMap( entity, aliasname )
+{
+	if ( isDefined( entity ) && isDefined( aliasname ) )
+	{
+		animationName = entity AnimMappingSearch( istring( aliasname ) );
+		if ( isDefined( animationName ) )
+			return FindAnimByName( "generic", animationName );
+		
+	}
+}
+
