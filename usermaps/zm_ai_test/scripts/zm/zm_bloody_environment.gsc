@@ -26,31 +26,37 @@ REGISTER_SYSTEM_EX("zm_bloody_environment", &init, &main, undefined)
 
 function init()
 {
-    level.blood_decals_show = BLOOD_DECALS_SHOW_INIT;
-    clientfield::register("world", "decal_toggle_blood", VERSION_SHIP, 1, "int");    
+    level.bloody_environment_show = BLOODY_ENV_SHOW_INIT;
+    level.blood_models_show = BLOODY_ENV_SHOW_INIT;
+    clientfield::register("world", BLOODY_TOGGLE_CLIENT_FIELD, VERSION_SHIP, 1, "int");    
 }
 
 function main()
 {    
     level flag::wait_till("initial_blackscreen_passed");
-    level clientfield::set("decal_toggle_blood", BLOOD_DECALS_SHOW_INIT);
+    level clientfield::set(BLOODY_TOGGLE_CLIENT_FIELD, BLOODY_ENV_SHOW_INIT);
 }
 
-function toggle_blood_decals() {
-    level.blood_decals_show = !level.blood_decals_show;
-    level clientfield::set("decal_toggle_blood", level.blood_decals_show);
+function toggle_bloody_environment() {
+    level.bloody_environment_show = !level.bloody_environment_show;
+
+    if (level.bloody_environment_show)
+    {
+        enable_red_atmosphere();
+    }
+    else
+    {
+        disable_red_atmosphere();
+    }
+    level clientfield::set(BLOODY_TOGGLE_CLIENT_FIELD, level.bloody_environment_show);
 }
 
 function enable_red_atmosphere()
 {
-    IPrintLnBold("enable red atmo");
     level util::set_lighting_state(1);
-    util::clientNotify("blood_fog_start");
 }
 
 function disable_red_atmosphere()
 {
-    IPrintLnBold("disable red atmo");
     level util::set_lighting_state(0);
-    util::clientNotify("blood_fog_stop");
 }
