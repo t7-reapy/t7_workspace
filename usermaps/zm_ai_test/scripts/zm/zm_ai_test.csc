@@ -41,14 +41,14 @@
 
 function main()
 {
-	zm_usermap::main();
+    zm_usermap::main();
 
-	include_weapons();
-	
-	util::waitforclient( 0 );
+    include_weapons();
+    
+    util::waitforclient( 0 );
 }
 
 function include_weapons()
 {
-	zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_test_weapons.csv", 1);
+    zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_test_weapons.csv", 1);
 }

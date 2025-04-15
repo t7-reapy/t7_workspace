@@ -10,6 +10,7 @@
 #insert scripts\shared\version.gsh;
 
 // Involved in Hell rounds
+#using scripts\zm\_hb21_zm_behavior;
 #using scripts\zm\_zm_bloodsplatter;
 #using scripts\zm\zm_bloody_environment;
 
@@ -17,6 +18,7 @@
 #using scripts\shared\ai\zombie_utility;
 #using scripts\zm\_zm_ai_dogs;
 #using scripts\zm\_zm_ai_wasp;
+#using scripts\zm\_zm_ai_napalm;
 #using scripts\zm\zm_genesis_apothicon_fury;
 #define APOTHICAN_FURY_DEBUG 0                   // Force disabling fury debug to not have it when not wanted
 #define APOTHICAN_FURY_USE_SPECIAL_FURY_ROUNDS 0 // Force disabling fury rounds to have them when wanted
@@ -100,6 +102,7 @@ function hell_round_plays()
     self thread spawn_dogs_loop();
     self thread spawn_apothicon_furies_loop();
     self thread spawn_wasps_loop();
+    self thread spawn_napalm_zombies_loop();
 }
 
 // self = level
@@ -165,7 +168,7 @@ function spawn_dogs_loop()
 {
     while (1)
     {
-        wait randomIntRange(1, 4);
+        wait randomIntRange(4, 8);
 
         ai = zm_ai_dogs::custom_special_dog_spawn();
         ai thread zm_bloodsplatter::watch_actor();
@@ -182,7 +185,7 @@ function spawn_apothicon_furies_loop()
 {
     while (1)
     {
-        wait randomIntRange(1, 4);
+        wait randomIntRange(4, 8);
 
         ai = zm_genesis_apothicon_fury::apothicon_fury_spawn_on_location();
         ai thread zm_bloodsplatter::watch_actor();
@@ -199,9 +202,26 @@ function spawn_wasps_loop()
 {
     while (1)
     {
-        wait randomIntRange(1, 4);
+        wait randomIntRange(8, 16);
 
         ai = zm_ai_wasp::special_wasp_spawn();
+        ai thread zm_bloodsplatter::watch_actor();
+
+        // Don't use endon because it will bug the entities currently spawning
+        if (!flag::get(HELL_ROUND_FLAG))
+        {
+            return;
+        }
+    }
+}
+
+function spawn_napalm_zombies_loop()
+{
+    while (1)
+    {
+        wait 30;
+
+        ai = zm_ai_napalm::napalm_zombie_spawning();
         ai thread zm_bloodsplatter::watch_actor();
 
         // Don't use endon because it will bug the entities currently spawning
