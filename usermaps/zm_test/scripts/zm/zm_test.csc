@@ -35,115 +35,16 @@
 #using scripts\zm\_zm_trap_electric;
 
 #using scripts\zm\zm_usermap;
-
-#precache ("client_fx", "custom/env/fx_rain_player_z_light");
-#precache ("client_fx", "custom/env/fx_rain_player_z_regular");
-#precache ("client_fx", "custom/env/fx_rain_player_z_heavy");
+#using scripts\zm\zm_rain;
 
 function main()
 {    
-    // Rain player
-    clientfield::register("world", "rain_fx_stop", VERSION_SHIP, 1, "int", &rain_toggle, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
-    level.rain_fx_enabled = true;
-
-    // Decal
-    clientfield::register("world", "decal_toggle", VERSION_SHIP, 1, "int", &decal_toggle, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
-    level.vdIndexArray = FindVolumeDecalIndexArray("decalrain");
-
     zm_usermap::main();
 
     include_weapons();
-
-    //FX
-    precache_fx();
-    
-    thread ApplyRainOnAllPlayers();
 }
-
-function rain_toggle(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
-{
-    if(newVal)
-    {
-        level.rain_fx_enabled = false;
-    } else {
-        level.rain_fx_enabled = true;
-    }
-}
-
-function decal_toggle(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
-{
-    if(newVal)
-    {
-        //IPrintLnBold("Decal HIDE");
-        for(i=0; i < level.vdIndexArray.size; i++)
-        {
-            HideVolumeDecal(level.vdIndexArray[i]);
-        }
-    } else {
-        //IPrintLnBold("Decal UNHIDE");
-        for(i=0; i < level.vdIndexArray.size; i++)
-        {
-            UnhideVolumeDecal(level.vdIndexArray[i]);
-        }
-    }
-}
-
 
 function include_weapons()
 {
     zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_levelcommon_weapons.csv", 1);
-}
-
-function precache_fx()
-{
-    //level._effect["player_rain"] = "custom/env/fx_rain_player_z_light";
-    //level._effect["player_rain"] = "custom/env/fx_rain_player_z_regular";
-    level._effect["player_rain"] = "custom/env/fx_rain_player_z_heavy";
-}
-
-function ApplyRainOnAllPlayers() {
-    util::waitforallclients();
-    players = GetLocalPlayers();
-
-    for(i = 0; i < players.size; i++)
-    {
-        players[i] thread rain_player(i);
-    }
-}
-
-function rain_player(localclientnum)
-{
-    self endon("disconnect");
-    self endon("entityshutdown");
-
-    self.rain_fx_tag = Spawn(localClientNum, self.origin, "script_model");
-    self.rain_fx_tag setModel("tag_origin");
-
-    self.rain_fx = PlayFxOnTag(localClientNum, level._effect["player_rain"], self.rain_fx_tag, "tag_origin");
-
-    SetFXIgnorePause(localClientNum, self.rain_fx, true);
-    SetFXOutdoor(localClientNum , self.rain_fx);
-
-    while(1)
-    {
-        waitrealtime(0.1);
-        if(level.rain_fx_enabled)
-        {
-            if(!isdefined(self.rain_fx))
-            {
-                self.rain_fx = PlayFxOnTag(localClientNum, level._effect["player_rain"], self.rain_fx_tag, "tag_origin");
-
-                SetFXIgnorePause(localClientNum, self.rain_fx, true);
-                SetFXOutdoor(localClientNum , self.rain_fx);
-            }
-            self.rain_fx_tag.origin = self.origin;
-        } else {
-            if(isdefined(self.rain_fx))
-            {
-                DeleteFX(localclientnum, self.rain_fx);
-                self.rain_fx = undefined;
-            }
-        }
-        
-    }
 }
