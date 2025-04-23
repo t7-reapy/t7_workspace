@@ -84,8 +84,8 @@ function toggle_rain()
         level rain_stops();
     }
 
-    level clientfield::increment(FX_RAIN_TOGGLE);
-    level clientfield::increment(DECAL_RAIN_TOGGLE);
+    level clientfield::set(FX_RAIN_TOGGLE, level.rain.enabled);
+    level clientfield::set(DECAL_RAIN_TOGGLE, level.rain.enabled);
 }
 
 function toggle_thunder()
