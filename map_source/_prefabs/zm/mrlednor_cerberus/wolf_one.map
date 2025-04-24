@@ -1,0 +1,142 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{3EF9D1C1-AF60-11EB-A328-D45D647F3272}"
+"classname" "worldspawn"
+"fsi" "zm_alcatraz"
+"guid" "1D2D59BC"
+"lightingquality" "8000"
+"lutmaterial" "zm_prison_lut"
+"newsun" "1"
+"skyboxmodel" "skybox_zm_alcatraz"
+"wateredgescale" "4"
+"wsi" "zm_alcatraz"
+"gravity" "800"
+"lodbias" "default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{68212E2D-AD10-11EB-A325-D45D647F3272}"
+"classname" "script_model"
+"angles" "360 269.8 -7.40957e-005"
+"guid" "A7132727"
+"model" "p6_zm_ai_dream_catcher"
+"origin" "1.38 -0.0302734 34.52"
+"target" "pf3718_auto1111"
+"targetname" "rune_1"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 2
+{
+guid "{68212E2F-AD10-11EB-A325-D45D647F3272}"
+"classname" "script_origin"
+"angles" "0 358.4 0"
+"guid" "5FD4F526"
+"origin" "5.97699 -1.40039 35.8199"
+"script_friendname" "wolfrune_body_1"
+"script_label" "wolfhead_1"
+"script_noteworthy" "rune_1"
+"script_parameters" "soul_catcher_1"
+"target" "pf3718_auto1111"
+"targetname" "wolf_position"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 3
+{
+guid "{68212E31-AD10-11EB-A325-D45D647F3272}"
+"classname" "script_model"
+"angles" "0 358.4 0"
+"guid" "6B0F62F0"
+"model" "c_zom_wolf_head"
+"origin" "-1.44397 -0.639648 31"
+"targetname" "wolfhead_1"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 4
+{
+guid "{68212E3F-AD10-11EB-A325-D45D647F3272}"
+"classname" "script_model"
+"angles" "0 300 0"
+"guid" "499AD9A0"
+"model" "c_zom_der_zombie_body1"
+"origin" "-35.47 2.15039 21"
+"targetname" "wolfrune_body_1"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 5
+{
+guid "{733DA651-AD86-11EB-A326-D45D647F3272}"
+"classname" "trigger_multiple"
+"BOTHSIDE_TRIGGER" "1"
+"targetname" "pf3718_auto1111"
+"_color" "1 0.3 0.1"
+"spawnflags" "2048"
+// brush 0
+{
+ guid "{733DA650-AD86-11EB-A326-D45D647F3272}"
+ ( 203 33.75 -51.75 ) ( 171 33.75 -51.75 ) ( 171 1.75 -51.75 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 171 16.75 43.25 ) ( 171 48.75 43.25 ) ( 203 48.75 43.25 ) trigger 64 64 0 -15 0 0 lightmap_gray 16384 16384 0 -15 0 0
+ ( 153 -129.75 -48.75 ) ( 185 -129.75 -48.75 ) ( 185 -129.75 -64.75 ) trigger 64 64 -18.1875 13 0 0 lightmap_gray 16384 16384 -18.1875 13 0 0
+ ( 336 7.5 -35.75 ) ( 336 39.5 -35.75 ) ( 336 39.5 -51.75 ) trigger 64 64 5.6875 0 0 0 lightmap_gray 16384 16384 5.6875 0 0 0
+ ( 200 138.5 -32.75 ) ( 168 138.5 -32.75 ) ( 168 138.5 -48.75 ) trigger 64 64 -3.125 -3 0 0 lightmap_gray 16384 16384 -3.125 -3 0 0
+ ( 0 -244.25 30.25 ) ( 0 -276.25 30.25 ) ( 0 -276.25 14.25 ) trigger 64 64 -278 -66 0 0 lightmap_gray 16384 16384 -278 -66 0 0
+}
+}
+// entity 6
+{
+guid "{65756F9B-AE80-11EB-A327-D45D647F3272}"
+"classname" "script_struct"
+"origin" "428.303 395.7 -52"
+"_color" "1 0 0"
+}
+// entity 7
+{
+guid "{3EF9D1C8-AF60-11EB-A328-D45D647F3272}"
+"classname" "script_model"
+"angles" "360 269.8 -0.00010871"
+"guid" "A7132727"
+"model" "p6_zm_ai_dream_catcher"
+"origin" "9.854 62.6396 55.03"
+"targetname" "tomahawk_door_sign_1"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
