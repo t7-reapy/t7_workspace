@@ -88,11 +88,13 @@ function configure_weapon_inspection()
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911"), 3.33);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_rdw_up"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_ldw_up"), 5);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_asval"), 5.76);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_asval_up"), 5.76);
 }
 
 function custom_add_weapons()
 {
-    zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_levelcommon_weapons.csv", 1);
+    zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_test_weapons.csv", 1);
 }
 
 function setup_playable_zones()

@@ -58,4 +58,4 @@ I didn't work with basics assets provided by Treyarch, but also installed some e
 
 ## ZM_TEST
 
-1. Just a texture bug when jumping in spawning corridor.
+> None for now

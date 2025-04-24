@@ -5,6 +5,7 @@
 #using scripts\shared\array_shared;
 #using scripts\shared\flag_shared;
 #using scripts\shared\system_shared;
+#using scripts\shared\exploder_shared;
 #using scripts\shared\clientfield_shared;
 
 #insert scripts\shared\shared.gsh;
@@ -13,6 +14,8 @@
 ////////////////////////////////////
 //              RAIN              //
 ////////////////////////////////////
+#define ORIGIN_DEFAULT (0, 0, 0)
+#define IS_DISTANT_THUNDER(__val) (__val > THUNDER_CLOSE_STRIKE_CHANCE_PERCENT)
 
 #using scripts\zm\_zm_postfx_rain_drops;
 
@@ -23,10 +26,21 @@ class Rain {
     var source_ent;
 }
 
+class CloseThunder {
+    var lightstate_missing; // LIGHTSTATE_THUNDER_MISSING
+    var lightstate_strikes; // LIGHTSTATE_THUNDER_CLOSE_STRIKES
+    var sounds; // THUNDER_CLOSE_SOUNDS
+}
+
+class DistantThunder {
+    var exploders; //THUNDER_DISTANT_EXPLODERS
+    var sounds; //THUNDER_DISTANT_SOUNDS
+}
+
 class Thunder {
     var enabled;
-    var lightstate_missing;
-    var lightstate_strikes;
+    var close; // CloseThunder
+    var distant; // DistantThunder
 }
 
 #insert scripts\zm\zm_rain.gsh;
@@ -49,8 +63,15 @@ function init()
     // Thunder
     level.thunder = new Thunder();
     level.thunder.enabled = SHOULD_START_WITH_THUNDER;
-    level.thunder.lightstate_missing = LIGHTSTATE_THUNDER_MISSING;
-    level.thunder.lightstate_strikes = LIGHTSTATE_THUNDER_STRIKES;
+    
+    level.thunder.distant = new DistantThunder();
+    level.thunder.distant.exploders = THUNDER_DISTANT_EXPLODERS;
+    level.thunder.distant.sounds = THUNDER_DISTANT_SOUNDS;
+
+    level.thunder.close = new CloseThunder();
+    level.thunder.close.lightstate_missing = LIGHTSTATE_THUNDER_MISSING;
+    level.thunder.close.lightstate_strikes = LIGHTSTATE_THUNDER_STRIKES;
+    level.thunder.close.sounds = THUNDER_CLOSE_SOUNDS;
 }
 
 function main() 
@@ -117,73 +138,55 @@ function private rain_stops()
     self.rain.source_ent StopSound("rain_sounds");
 }
 
-// TODO: review the way the thunder is triggered and "positionned" to give a better realistic feeling.
-//       today the sound is played "onto" the player itself
-// TODO 2: play a thunder strike is the sky ?
 function private thunder_plays()
 {
+    // self = level
     while(1)
     {
-        wait RandomIntRange(9,15);
-        nb = RandomIntRange(0,100);
+        wait RandomIntRange(MIN_WAIT_BETWEEN_STRIKES, MAX_WAIT_BETWEEN_STRIKES);
 
-        if (!level.thunder.enabled) 
+        if (!self.thunder.enabled) 
         {
             // Exits, skipping next thunder strikes if thunder was disabled elsewhere
             // We don't use endon() to avoid being blocked in a wrong light state ...
             return;
         }
-            
-        if(nb > 80)
+        
+        percent_val = RandomIntRange(1, 100);
+        if(IS_DISTANT_THUNDER(percent_val))
         {
-            self util::set_lighting_state(self.thunder.lightstate_strikes);
-            PlaySoundAtPosition("thunder_short", (0,0,0));
-            wait RandomFloatRange(0.1,0.6);
-            self util::set_lighting_state(self.thunder.lightstate_missing);
+            random_sound_index = RandomIntRange(0, self.thunder.distant.sounds.size);
+            sound = self.thunder.distant.sounds[random_sound_index];
+            random_exploder_index = RandomIntRange(0, self.thunder.distant.exploders.size);
+            exploder = self.thunder.distant.exploders[random_exploder_index];
+
+            // Strikes distant thunder
+            exploder::exploder(exploder);
+            delay = RandomFloatRange(1.0, THUNDER_DISTANT_DELAY); // Strike is distant, so the sound takes time to come to player's ears
+            wait delay;
+            PlaySoundAtPosition(sound, ORIGIN_DEFAULT);
+            if (delay < THUNDER_DISTANT_DELAY)
+            {
+                wait (THUNDER_DISTANT_DELAY - delay);
+            }
+            exploder::exploder_stop(exploder);
         }
-        if(nb > 60 && nb <= 80)
+        else
         {
-            self util::set_lighting_state(self.thunder.lightstate_strikes);
-            PlaySoundAtPosition("thunder_short", (0,0,0));
-            wait RandomFloatRange(0.6,1.5);
-            self util::set_lighting_state(self.thunder.lightstate_missing);
-        }
-        if(nb > 40 && nb <= 60)
-        {
-            self util::set_lighting_state(self.thunder.lightstate_strikes);
-            PlaySoundAtPosition("thunder_short", (0,0,0));
-            wait RandomFloatRange(0.1,0.6);
-            self util::set_lighting_state(self.thunder.lightstate_missing);
-        }
-        if(nb > 20 && nb <= 40)
-        {
-            self util::set_lighting_state(self.thunder.lightstate_strikes);
-            PlaySoundAtPosition("thunder_short", (0,0,0));
-            wait RandomFloatRange(0.4,0.6);
-            self util::set_lighting_state(self.thunder.lightstate_missing);
-            wait RandomFloatRange(0.1,0.3);
-            self util::set_lighting_state(self.thunder.lightstate_strikes);
-            wait RandomFloatRange(0.6,0.9);
-            self util::set_lighting_state(self.thunder.lightstate_missing);
-            wait RandomFloatRange(2,4);
-            self util::set_lighting_state(self.thunder.lightstate_strikes);
-            wait RandomFloatRange(0.6,0.6);
-            self util::set_lighting_state(self.thunder.lightstate_missing);
-        }
-        if(nb > 10 && nb <= 20)
-        {
-            self util::set_lighting_state(self.thunder.lightstate_strikes);
-            PlaySoundAtPosition("thunder_short", (0,0,0));
-            wait RandomFloatRange(0.4,0.6);
-            self util::set_lighting_state(self.thunder.lightstate_missing);
-            wait RandomFloatRange(0.1,0.3);
-            self util::set_lighting_state(self.thunder.lightstate_strikes);
-            wait RandomFloatRange(0.6,0.9);
-            self util::set_lighting_state(self.thunder.lightstate_missing);
-            wait RandomFloatRange(0.1,0.2);
-            self util::set_lighting_state(self.thunder.lightstate_strikes);
-            wait RandomFloatRange(0.6,0.6);
-            self util::set_lighting_state(self.thunder.lightstate_missing);
+            random_sound_index = RandomIntRange(0, self.thunder.close.sounds.size);
+            sound = self.thunder.close.sounds[random_sound_index];
+            random_lightstate_index = RandomIntRange(0, self.thunder.close.lightstate_strikes.size);
+            lightstate = self.thunder.close.lightstate_strikes[random_lightstate_index];
+
+            // Strikes close thunder
+            self util::set_lighting_state(lightstate);
+            PlaySoundAtPosition(sound, ORIGIN_DEFAULT);
+            wait RandomFloatRange(0.3, 0.9);
+            self util::set_lighting_state(self.thunder.close.lightstate_missing);
+            wait RandomFloatRange(0.05, 0.2);
+            self util::set_lighting_state(lightstate);
+            wait RandomFloatRange(0.2, 0.4);
+            self util::set_lighting_state(self.thunder.close.lightstate_missing);
         }
     }
 }
