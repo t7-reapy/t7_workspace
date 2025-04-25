@@ -6,7 +6,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{FD8B46BB-1A3F-11F0-B35C-9E91FAE9D08D}"
+guid "{BD9AC703-21C1-11F0-B365-D2F27EA74773}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -237,6 +237,46 @@ guid "{FD8B46BB-1A3F-11F0-B35C-9E91FAE9D08D}"
  ( 950.13 19.869999 95 ) ( 945.13 27.869999 95 ) ( 950.13 19.869999 127 ) clip 64 -64 0 0 180 0 lightmap_gray 16384 -16384 0 0 180 0
  ( 945.13 53.869999 95 ) ( 950.13 59.869999 95 ) ( 945.13 53.869999 127 ) clip 64 -64 0 0 180 0 lightmap_gray 16384 -16384 0 0 180 0
 }
+// brush 21
+ {
+  guid "{58B9357D-2133-11F0-B364-921BBEABE5E5}"
+  mesh
+  {
+  toolFlags;
+   mtl_p6_zm_al_dream_catcher
+   lightmap_gray
+   2 2 0 8
+   (
+	v 425 469.00006 165 t 13600 -5280 26.5625 -7.9375
+	v 530 468.99991 165 t 16960 -5280 33.125 -7.9375
+   )
+   (
+	v 425 469.00006 197 t 13600 -6304 26.5625 -9.9375
+	v 530 468.99991 197 t 16960 -6304 33.125 -9.9375
+   )
+  }
+ }
+// brush 22
+ {
+  guid "{BD9AC708-21C1-11F0-B365-D2F27EA74773}"
+  mesh
+  {
+  toolFlags;
+   bo2_materimtl_p6_zm_al_dream_catcher_on
+   lightmap_gray
+   2 2 0 8
+   (
+	v 426 469.00006 127 t 13632 -4064 26.5625 -7.9375
+	v 531 468.99991 127 t 16992 -4064 33.125 -7.9375
+   )
+   (
+	v 426 469.00006 159 t 13632 -5088 26.5625 -9.9375
+	v 531 468.99991 159 t 16992 -5088 33.125 -9.9375
+   )
+   decalLayerSort "Debris (top)"
+   decalEditorSort -1
+  }
+ }
 }
 // entity 1
 {
@@ -1548,9 +1588,130 @@ guid "{FD8B46C2-1A3F-11F0-B35C-9E91FAE9D08D}"
 }
 // entity 93
 {
-guid "{D3C59DCF-211D-11F0-B364-921BBEABE5E5}"
+guid "{1127295D-213B-11F0-B364-921BBEABE5E5}"
 "classname" "misc_prefab"
+"angles" "0 89.9999 0"
+"model" "_prefabs/zm/mrlednor_cerberus/wolf_2.map"
+"origin" "76.5 533 0"
+}
+// entity 94
+{
+guid "{88BE7742-21BF-11F0-B365-D2F27EA74773}"
+"classname" "script_model"
+"guid" "A7132727"
+"model" "p6_zm_ai_dream_catcher"
+"origin" "702 468 86.25"
+"target" "pf3718_auto1111"
+"targetname" "rune_1"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 95
+{
+guid "{88BE7751-21BF-11F0-B365-D2F27EA74773}"
+"classname" "script_struct"
 "angles" "0 90 0"
-"model" "_prefabs/zm/mrlednor_cerberus/wolf_one.map"
-"origin" "701.75 468.25 51"
+"origin" "306.3 896.053 -0.25"
+"_color" "1 0 0"
+}
+// entity 96
+{
+guid "{88BE7754-21BF-11F0-B365-D2F27EA74773}"
+"classname" "script_model"
+"guid" "A7132727"
+"model" "p6_zm_ai_dream_catcher"
+"origin" "612.25 468 48"
+"targetname" "tomahawk_door_sign_1"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 97
+{
+guid "{88BE7745-21BF-11F0-B365-D2F27EA74773}"
+"classname" "script_origin"
+"angles" "0 88.4 0"
+"guid" "5FD4F526"
+"origin" "704.15 489.727 95.0699"
+"script_friendname" "wolfrune_body_1"
+"script_label" "wolfhead_1"
+"script_noteworthy" "rune_1"
+"script_parameters" "soul_catcher_1"
+"target" "pf3718_auto1111"
+"targetname" "wolf_position"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}
+// entity 98
+{
+guid "{88BE774B-21BF-11F0-B365-D2F27EA74773}"
+"classname" "script_model"
+"angles" "0 30 0"
+"guid" "499AD9A0"
+"model" "c_zom_der_zombie_body1"
+"origin" "699.85 432.28 72.75"
+"targetname" "wolfrune_body_1"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 99
+{
+guid "{88BE7748-21BF-11F0-B365-D2F27EA74773}"
+"classname" "script_model"
+"angles" "0 88.4 0"
+"guid" "6B0F62F0"
+"model" "c_zom_wolf_head"
+"origin" "702.39 456.556 82.75"
+"targetname" "wolfhead_1"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 100
+{
+guid "{88BE774E-21BF-11F0-B365-D2F27EA74773}"
+"classname" "trigger_multiple"
+"BOTHSIDE_TRIGGER" "1"
+"targetname" "pf3718_auto1111"
+"_color" "1 0.3 0.1"
+"spawnflags" "2048"
+// brush 0
+{
+ guid "{88BE774D-21BF-11F0-B365-D2F27EA74773}"
+ ( 668.25 670.75 0 ) ( 668.25 638.75 0 ) ( 700.25 638.75 0 ) trigger 64 64 0 0 90 0 lightmap_gray 16384 16384 0 0 90 0
+ ( 685.25 638.75 95 ) ( 653.25 638.75 95 ) ( 653.25 670.75 95 ) trigger 64 64 0 -15 90 0 lightmap_gray 16384 16384 0 -15 90 0
+ ( 831.75 620.75 3 ) ( 831.75 652.75 3 ) ( 831.75 652.75 -13 ) trigger 64 64 -18.1875 13 0 0 lightmap_gray 16384 16384 -18.1875 13 0 0
+ ( 694.5 803.75 16 ) ( 662.5 803.75 16 ) ( 662.5 803.75 0 ) trigger 64 -64 5.6875 0 180 0 lightmap_gray 16384 -16384 5.6875 0 180 0
+ ( 563.5 667.75 19 ) ( 563.5 635.75 19 ) ( 563.5 635.75 3 ) trigger 64 64 -3.125 -3 0 0 lightmap_gray 16384 16384 -3.125 -3 0 0
+ ( 946.25 467.75 82 ) ( 978.25 467.75 82 ) ( 978.25 467.75 66 ) trigger 64 -64 -278 66 180 0 lightmap_gray 16384 -16384 -278 66 180 0
+}
+}
+// entity 101
+{
+guid "{92D6047E-213B-11F0-B364-921BBEABE5E5}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/mrlednor_cerberus/wolf_3.map"
+"origin" "980 195.75 0"
 }
