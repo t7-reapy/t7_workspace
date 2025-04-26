@@ -62,4 +62,5 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 
 ## ZM_TEST
 
-> None for now
+- once revive is used 3 times and perk is gone, bumper sound is still ON
+> might be because trigger is still present, it needs to be deleted in the script resposible where perk is moved out.

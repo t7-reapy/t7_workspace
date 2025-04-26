@@ -72,18 +72,14 @@ function main()
     configure_weapon_inspection();
     
     zm_usermap::main();
+    level util::set_lighting_state(0);
     
     setup_playable_zones();
     remove_players_names();
-
-    // Use CW M1911 as start weapon
-    level.start_weapon = GetWeapon("t9_1911");
-    level._zombie_custom_add_weapons = &custom_add_weapons;
-
-    level util::set_lighting_state(0);
-    level thread monitor_power_state();
+    setup_weapons();
 
     //TODO: remove
+    level thread monitor_power_state();
     level.player_starting_points = 500000;
 }
 
@@ -130,6 +126,17 @@ function remove_players_names()
     SetDvar("cg_overheadNamesSize", "0");
     SetDvar("cg_overheadIconSize", "0");
     SetDvar("cg_overheadRankSize", "0");
+}
+
+function setup_weapons()
+{
+    level._zombie_custom_add_weapons = &custom_add_weapons;
+
+    // Use CW M1911 as start and laststand pistol
+    level.start_weapon = GetWeapon("t9_1911");
+    level.laststandpistol = level.start_weapon;
+    level.default_laststandpistol = level.start_weapon;
+    level.default_solo_laststandpistol =  GetWeapon("t9_1911_rdw_up");
 }
 
 function monitor_power_state()
