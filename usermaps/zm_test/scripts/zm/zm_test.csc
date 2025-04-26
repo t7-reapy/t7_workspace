@@ -21,6 +21,9 @@
 #using scripts\zm\_zm_perk_quick_revive;
 #using scripts\zm\_zm_perk_sleight_of_hand;
 #using scripts\zm\_zm_perk_staminup;
+#using scripts\zm\_zm_perk_electric_cherry;
+#using scripts\zm\_zm_perk_tombstone;
+#using scripts\zm\_zm_perk_phdflopper;
 
 //Powerups
 #using scripts\zm\_zm_powerup_double_points;
@@ -39,6 +42,8 @@
 
 function main()
 {    
+    luiLoad("ui.uieditor.menus.hud.t7hud_zm_custom");
+    
     zm_usermap::main();
 
     include_weapons();
