@@ -1,0 +1,215 @@
+// LOCALIZED STRINGS
+localize,hb21_zm_perks
+
+// HARRY LUA STUFF
+rawfile,ui/uieditor/widgets/hud/zm_perks/hb21waypoints.lua
+rawfile,ui/uieditor/widgets/hud/zm_perks/hb21perklistitemfactory.lua
+rawfile,ui/uieditor/widgets/hud/zm_perks/hb21zmperkscontainerfactory.lua
+rawfile,ui/uieditor/widgets/hud/zm_perks/whoswho/whoswhowaypoint.lua
+rawfile,ui/uieditor/widgets/hud/zm_perks/whoswho/whoswhorevivewidget.lua
+rawfile,ui/uieditor/widgets/hud/zm_perks/whoswho/whoswhowaypointcontainer.lua
+
+// OBJECTIVES
+structuredtable,gamedata/tables/common/objectives.json
+
+// FREE PERK FIX
+scriptparsetree,scripts/zm/_zm_powerup_free_perk.gsc
+
+// PERK UTILITY
+scriptparsetree,scripts/zm/_zm_perk_utility.gsc
+scriptparsetree,scripts/zm/_zm_perk_utility.csc
+scriptparsetree,scripts/zm/_zm_perk_utility.gsh
+
+// QUICK REVIVE
+scriptparsetree,scripts/zm/_zm_perk_quick_revive.gsh
+scriptparsetree,scripts/zm/_zm_perk_quick_revive.gsc
+scriptparsetree,scripts/zm/_zm_perk_quick_revive.csc
+xmodel,p9_sur_machine_quick_revive_off
+xmodel,p9_sur_machine_quick_revive
+image,i_t7_specialty_quickrevive
+image,i_t7_soe_specialty_quickrevive
+fx,harry/zm_perks/fx_perk_quick_revive_light.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_quick_revive.efx
+
+// DOUBLETAP2
+scriptparsetree,scripts/zm/_zm_perk_doubletap2.gsh
+scriptparsetree,scripts/zm/_zm_perk_doubletap2.gsc
+scriptparsetree,scripts/zm/_zm_perk_doubletap2.csc
+image,i_t7_specialty_doubletap2
+image,i_t7_soe_specialty_doubletap2
+fx,harry/zm_perks/fx_perk_doubletap_light.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_double_tap.efx
+
+// JUGGERNOG
+scriptparsetree,scripts/zm/_zm_perk_juggernaut.gsh
+scriptparsetree,scripts/zm/_zm_perk_juggernaut.gsc
+scriptparsetree,scripts/zm/_zm_perk_juggernaut.csc
+xmodel,p9_sur_machine_juggernog
+xmodel,p9_sur_machine_juggernog_off
+image,i_t7_specialty_armorvest
+image,i_t7_soe_specialty_armorvest
+fx,harry/zm_perks/fx_perk_juggernaut_light.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_juggernog.efx
+
+// SPEED COLA
+scriptparsetree,scripts/zm/_zm_perk_sleight_of_hand.gsh
+scriptparsetree,scripts/zm/_zm_perk_sleight_of_hand.gsc
+scriptparsetree,scripts/zm/_zm_perk_sleight_of_hand.csc
+image,i_t7_specialty_fastreload
+image,i_t7_soe_specialty_fastreload
+xmodel,p9_sur_machine_speed_cola
+xmodel,p9_sur_machine_speed_cola_off
+xmodel,p9_fxanim_zm_gp_speed_cola_lava_xmodel
+scriptbundle,p9_fxanim_zm_gp_speed_cola_lava_sb
+fx,harry/zm_perks/fx_perk_sleight_of_hand_light.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_speed_cola.efx
+
+// DEADSHOT
+scriptparsetree,scripts/zm/_zm_perk_deadshot.gsh
+scriptparsetree,scripts/zm/_zm_perk_deadshot.gsc
+scriptparsetree,scripts/zm/_zm_perk_deadshot.csc
+xmodel,p9_sur_vending_ads_off
+xmodel,p9_sur_vending_ads
+image,i_t7_specialty_deadshot
+image,i_t7_soe_specialty_deadshot
+fx,harry/zm_perks/fx_perk_daiquiri_light.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_deadshot_daiquiri.efx
+
+// STAMINUP
+scriptparsetree,scripts/zm/_zm_perk_staminup.gsh
+scriptparsetree,scripts/zm/_zm_perk_staminup.gsc
+scriptparsetree,scripts/zm/_zm_perk_staminup.csc
+image,i_t7_specialty_staminup
+image,i_t7_soe_specialty_staminup
+xmodel,p9_sur_machine_staminup
+xmodel,p9_sur_machine_staminup_off
+fx,harry/zm_perks/fx_perk_stamin_up_light.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_stamin_up.efx
+
+// PHD FLOPPER
+scriptparsetree,scripts/zm/_zm_perk_phdflopper.gsh
+scriptparsetree,scripts/zm/_zm_perk_phdflopper.gsc
+scriptparsetree,scripts/zm/_zm_perk_phdflopper.csc
+weapon,zombie_perk_bottle_nuke
+xmodel,p9_sur_machine_phd_slider
+xmodel,p9_sur_machine_phd_slider_off
+image,i_t7_specialty_phdflopper
+image,i_t7_soe_specialty_phdflopper
+fx,harry/zm_perks/fx_perk_phdflopper_light.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_phd_flopper.efx
+fx,harry/phd_flopper/fx_phd_flopper_trail.efx
+rawfile,vision/zombie_cosmodrome_divetonuke.vision
+
+// MULE KICK
+scriptparsetree,scripts/zm/_zm_perk_additionalprimaryweapon.gsh
+scriptparsetree,scripts/zm/_zm_perk_additionalprimaryweapon.gsc
+scriptparsetree,scripts/zm/_zm_perk_additionalprimaryweapon.csc
+image,i_t7_specialty_additionalprimaryweapon
+image,i_t7_soe_specialty_additionalprimaryweapon
+xmodel,p9_sur_machine_mule_kick
+xmodel,p9_sur_machine_mule_kick_off
+fx,harry/zm_perks/fx_perk_mule_kick_light.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_mule_kick.efx
+
+// TOMBSTONE
+scriptparsetree,scripts/zm/_zm_perk_tombstone.gsh
+scriptparsetree,scripts/zm/_zm_perk_tombstone.gsc
+scriptparsetree,scripts/zm/_zm_perk_tombstone.csc
+weapon,zombie_perk_bottle_tombstone
+xmodel,p9_sur_machine_tombstone
+xmodel,p9_sur_machine_tombstone_off
+xmodel,ch_tombstone1
+image,i_t7_specialty_tombstone
+image,i_t7_soe_specialty_tombstone
+fx,harry/zm_perks/fx_perk_tombstone_light.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_tombstone.efx
+fx,harry/tombstone/fx_tombstone_grave_glow.efx
+xmodel,p9_sur_machine_tombstone_grave
+
+// WHOS WHO
+scriptparsetree,scripts/zm/_zm_perk_whoswho.gsh
+scriptparsetree,scripts/zm/_zm_perk_whoswho.gsc
+scriptparsetree,scripts/zm/_zm_perk_whoswho.csc
+weapon,zombie_perk_bottle_whoswho
+xmodel,p6_zm_vending_chugabud
+image,i_t7_specialty_whoswho
+image,i_t7_soe_specialty_whoswho
+material,mc/whoswho_body_filter
+fx,harry/zm_perks/fx_perk_whos_who_light.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_whos_who.efx
+fx,harry/whos_who/fx_whos_who_bled_out.efx
+fx,harry/whos_who/fx_whos_who_revived.efx
+weapon,t6_bare_hands_death_zm
+rawfile,vision/zm_whos_who.vision
+rawfile,vision/zm_whos_who_dark.vision
+shellshock,whoswho
+objective,waypoint_whoswho
+
+// ELECTRIC CHERRY
+scriptparsetree,scripts/zm/_zm_perk_electric_cherry.gsh
+scriptparsetree,scripts/zm/_zm_perk_electric_cherry.gsc
+scriptparsetree,scripts/zm/_zm_perk_electric_cherry.csc
+xmodel,p6_zm_vending_electric_cherry
+image,i_t7_specialty_electriccherry
+image,i_t7_soe_specialty_electriccherry
+fx,harry/zm_perks/fx_perk_electric_cherry_light.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_electric_cherry.efx
+
+// VULTURE AID
+scriptparsetree,scripts/zm/_zm_perk_vulture_aid.gsh
+scriptparsetree,scripts/zm/_zm_perk_vulture_aid.gsc
+scriptparsetree,scripts/zm/_zm_perk_vulture_aid.csc
+weapon,zombie_perk_bottle_vulture
+xmodel,xela_perk_vulture_aid
+xmodel,xela_perk_vulture_aid_off
+xmodel,p6_zm_perk_vulture_ammo
+xmodel,p6_zm_perk_vulture_points
+material,mc/hud_keyline_vulture_aid
+image,i_t7_specialty_vultureaid
+image,i_t7_soe_specialty_vultureaid
+image,i_specialty_vulture_zombies_glow
+image,i_zm_hud_stink_ani_green
+image,i_zm_hud_stink_ani_black
+fx,harry/zm_perks/fx_perk_vulture_aid_light.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_vulture_aid.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_skull.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_gobble_gum.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_mystery_box.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_pack_a_punch.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_rifle.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_wonderfizz.efx
+fx,harry/vulture_aid/fx_vulture_aid_green_mist.efx
+fx,harry/vulture_aid/fx_perk_vulture_drops_glow.efx
+fx,harry/vulture_aid/fx_vulture_aid_powerup_glow_green.efx
+fx,harry/vulture_aid/fx_vulture_aid_powerup_glow_blue.efx
+fx,harry/vulture_aid/fx_vulture_aid_powerup_glow_red.efx
+fx,harry/vulture_aid/fx_vulture_aid_powerup_glow_yellow.efx
+
+// WIDOWS WINE
+scriptparsetree,scripts/zm/_zm_perk_widows_wine.gsh
+scriptparsetree,scripts/zm/_zm_perk_widows_wine.gsc
+scriptparsetree,scripts/zm/_zm_perk_widows_wine.csc
+scriptparsetree,scripts/zm/_zm_powerup_ww_grenade.gsc
+scriptparsetree,scripts/zm/_zm_powerup_ww_grenade.csc
+image,i_t7_specialty_widowswine 
+image,i_t7_soe_specialty_widowswine
+fx,harry/zm_perks/fx_perk_widows_wine_light.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_widows_wine.efx
+
+// ELEMENTAL POP
+scriptparsetree,scripts/zm/_zm_perk_elemental_pop.gsh
+scriptparsetree,scripts/zm/_zm_perk_elemental_pop.gsc
+scriptparsetree,scripts/zm/_zm_perk_elemental_pop.csc
+xmodel,p9_sur_machine_elemental_pop_off
+xmodel,p9_sur_machine_elemental_pop
+image,i_t7_specialty_elemental_pop
+weapon,zombie_perk_bottle_elemental_pop
+fx,harry/zm_perks/fx_perk_elementalpop_light.efx
+fx,harry/vulture_aid/fx_vulture_aid_waypoint_elemental_pop.efx
+
+// DER WUNDERFIZZ
+scriptparsetree,scripts/zm/_zm_perk_random.gsh
+scriptparsetree,scripts/zm/_zm_perk_random.gsc
+scriptparsetree,scripts/zm/_zm_perk_random.csc
+fx,harry/wonderfizz/fx_wonderfizz_sparks.efx
+fx,harry/wonderfizz/fx_wonderfizz_bottle_glow.efx
