@@ -25,6 +25,9 @@
 #using scripts\zm\_zm_perk_tombstone;
 #using scripts\zm\_zm_perk_phdflopper;
 
+// Needed for harrybo21 perks to work
+#using scripts\zm\_zm_perk_widows_wine; 
+
 //Powerups
 #using scripts\zm\_zm_powerup_double_points;
 #using scripts\zm\_zm_powerup_carpenter;
@@ -42,8 +45,8 @@
 
 function main()
 {    
-    luiLoad("ui.uieditor.menus.hud.t7hud_zm_custom");
-    
+	luiLoad("ui.uieditor.menus.hud.t7hud_zm_custom");
+
     zm_usermap::main();
 
     include_weapons();
