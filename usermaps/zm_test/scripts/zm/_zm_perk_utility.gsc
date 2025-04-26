@@ -62,6 +62,8 @@ function __main__()
 	level._actor_damage_callbacks = level.actor_damage_callbacks;
 	level.actor_damage_callbacks = [];
 	level.actor_damage_callbacks[ 0 ] = &actor_damage_callback_override;
+
+	array::thread_all(GetEntArray("audio_bump_trigger", "targetname"), &zm_perks::thread_bump_trigger);
 }
 
 function check_actor_damage_callbacks( inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, sHitLoc, psOffsetTime, boneIndex, surfaceType )
