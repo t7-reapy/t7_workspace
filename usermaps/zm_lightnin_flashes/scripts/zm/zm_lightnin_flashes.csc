@@ -21,12 +21,6 @@
 #using scripts\zm\_zm_perk_quick_revive;
 #using scripts\zm\_zm_perk_sleight_of_hand;
 #using scripts\zm\_zm_perk_staminup;
-#using scripts\zm\_zm_perk_electric_cherry;
-#using scripts\zm\_zm_perk_tombstone;
-#using scripts\zm\_zm_perk_phdflopper;
-
-// Needed for harrybo21 perks to work
-#using scripts\zm\_zm_perk_widows_wine; 
 
 //Powerups
 #using scripts\zm\_zm_powerup_double_points;
@@ -41,20 +35,39 @@
 #using scripts\zm\_zm_trap_electric;
 
 #using scripts\zm\zm_usermap;
-#using scripts\zm\zm_rain;
 
 function main()
-{    
-	luiLoad("ui.uieditor.menus.hud.t7hud_zm_custom");
+{
+	clientfield::register("toplayer", "lightning_strike", VERSION_SHIP, 1, "counter", &lightning_strike, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
 
-    zm_usermap::main();
+	zm_usermap::main();
 
-    include_weapons();
-    
-	util::waitforclient(0);
+	include_weapons();
+	
+	util::waitforclient( 0 );
 }
 
 function include_weapons()
 {
-    zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_test_weapons.csv", 1);
+	zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_levelcommon_weapons.csv", 1);
+}
+
+function lightning_strike(localClientNum, oldVal, newVal, bNewEnt, bInitialSnap, fieldName, bWasTimeJump)
+{
+	SetUkkoScriptIndex(localClientNum, 1, 1);
+	playsound(0, "amb_lightning_dist_low", (0, 0, 0));
+	wait(0.02);
+	SetUkkoScriptIndex(localClientNum, 3, 1);
+	wait(0.15);
+	SetUkkoScriptIndex(localClientNum, 1, 1);
+	wait(0.1);
+	SetUkkoScriptIndex(localClientNum, 4, 1);
+	wait(0.1);
+	SetUkkoScriptIndex(localClientNum, 3, 1);
+	wait(0.25);
+	SetUkkoScriptIndex(localClientNum, 1, 1);
+	wait(0.15);
+	SetUkkoScriptIndex(localClientNum, 3, 1);
+	wait(0.15);
+	SetUkkoScriptIndex(localClientNum, 1, 1);
 }
