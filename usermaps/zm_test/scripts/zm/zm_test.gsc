@@ -65,6 +65,7 @@
 
 #using scripts\zm\zm_usermap;
 #using scripts\zm\zm_rain;
+#using scripts\zm\_zm_animated_switch;
 
 function main()
 {
@@ -72,6 +73,7 @@ function main()
     configure_weapon_inspection();
     
     zm_usermap::main();
+    level thread zm_animated_switch::MasterSwitchInit();
     level util::set_lighting_state(0);
     
     setup_playable_zones();
