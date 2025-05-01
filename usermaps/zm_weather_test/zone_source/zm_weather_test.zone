@@ -1,0 +1,18 @@
+>class,zm_mod_level
+>group,modtools
+
+xmodel,skybox_default_day
+material,luts_t7_default
+	
+// BSP
+col_map,maps/zm/zm_weather_test.d3dbsp
+gfx_map,maps/zm/zm_weather_test.d3dbsp
+
+// Audio
+sound,zm_weather_test
+
+// Weather
+include,weather
+
+scriptparsetree,scripts/zm/zm_weather_test.gsc
+scriptparsetree,scripts/zm/zm_weather_test.csc
