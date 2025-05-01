@@ -1,5 +1,3 @@
-#using scripts\shared\postfx_shared; 
-#using scripts\shared\water_surface; 
 // -------------------------------------------------------------------------------
 // On-Screen Raindrops for Black Ops III - Harry's Downfall Edition
 // Copyright (c) 2022 Philip/Scobalula
@@ -24,48 +22,46 @@
 
 #namespace zm_weather_rain_drops_postfx;
 
-// Init
 function init()
 {
-    // Clientfields
-    clientfield::register("toplayer", ZM_POSTFX_RAIN_DROPS_CF_NAME, VERSION_SHIP, 1, "int", &rain_drops_toggle, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
-    // Callbacks
+    clientfield::register("toplayer", ZM_POSTFX_RAIN_DROPS_CF_NAME, VERSION_SHIP, 2, "int", &rain_drops_toggle, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
+    
     callback::on_localclient_connect(&on_connect);
 }
 
 function run()
 {
-    // filter::init_filter_raindrops(self);
-    // filter::init_filter_sgen_sprite_rain(self);
+    filter::init_filter_raindrops(self);
+    filter::init_filter_sprite_rain(self);
+    filter::init_filter_sgen_sprite_rain(self);
+    init_filter_sgen_sprite_rain_sm(self);
 
-    // local_client_number = self GetLocalClientNumber();
-    // self waterfallOverlay(local_client_number);
+    local_client_number = self GetLocalClientNumber();
 }
 
-// Runs on connect logic.
 function on_connect(local_client_number)
 {
     filter::init_filter_raindrops(self);
+    filter::init_filter_sprite_rain(self);
     filter::init_filter_sgen_sprite_rain(self);
-
-    self waterfallOverlay(local_client_number);
+    init_filter_sgen_sprite_rain_sm(self);
 }
 
-// Runs the clientfield logic.
-function rain_drops_toggle(local_client_number, old_val, new_val, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
+function rain_drops_toggle(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
-    // TODO: I reversed these
-    if(new_val == 1)
+    if(new_intensity != RAIN_INTENSITY_DISABLE)
     {
-        self thread rain_disable(local_client_number);
+        if (old_intensity != new_intensity) {
+            filter::disable_filter_sprite_rain(self, ZM_POSTFX_RAIN_DROPS_FILTER_ID);
+        }
+        self thread rain_enable(local_client_number, new_intensity);
     }
     else
     {
-        self thread rain_enable(local_client_number);
+        self thread rain_disable(local_client_number);
     }
 }
 
-// Disables the on-screen rain drops.
 function rain_disable(local_client_number)
 {
     self notify("stop_raining");
@@ -73,11 +69,6 @@ function rain_disable(local_client_number)
     self endon("entityshutdown");
     self endon("raining");
     self endon("stop_raining");
-
-    if(IsFunctionPtr(level.zm_rain_drops_on_rain_disabled_callback))
-    {
-        self [[level.zm_rain_drops_on_rain_disabled_callback]](local_client_number);
-    }
 
     if(isdefined(self.rain_opacity))
     {
@@ -94,18 +85,13 @@ function rain_disable(local_client_number)
     filter::disable_filter_sprite_rain(self, ZM_POSTFX_RAIN_DROPS_FILTER_ID);
 }
 
-// Enables the on-screen rain drops.
-function rain_enable(local_client_number)
+function rain_enable(local_client_number, intensity)
 {
     self notify("raining");
+
     self endon("entityshutdown");
     self endon("raining");
     self endon("stop_raining");
-
-    if(IsFunctionPtr(level.zm_rain_drops_on_rain_enabled_callback))
-    {
-        self [[level.zm_rain_drops_on_rain_enabled_callback]](local_client_number);
-    }
     
     if(!isdefined(self.rain_opacity))
     {
@@ -117,10 +103,22 @@ function rain_enable(local_client_number)
         filter::set_filter_sprite_rain_seed_offset(self, ZM_POSTFX_RAIN_DROPS_FILTER_ID, 0.2);
     }
 
-    //filter::enable_filter_sgen_sprite_rain(self, ZM_POSTFX_RAIN_DROPS_FILTER_ID);
-    filter::enable_filter_sprite_rain(self, ZM_POSTFX_RAIN_DROPS_FILTER_ID);
+    switch (intensity)
+    {
+        case RAIN_INTENSITY_LOW:
+            enable_filter_sgen_sprite_rain_sm(self, ZM_POSTFX_RAIN_DROPS_FILTER_ID);
+            break;
+        case RAIN_INTENSITY_MED:
+            filter::enable_filter_sgen_sprite_rain(self, ZM_POSTFX_RAIN_DROPS_FILTER_ID);
+            break;
+        case RAIN_INTENSITY_HIG:
+            filter::enable_filter_sprite_rain(self, ZM_POSTFX_RAIN_DROPS_FILTER_ID);
+            break;
+        default:
+            return;
+    }
 
-    while(1)
+    while(true)
     {
         self.rain_opacity += 0.001;
 
@@ -133,69 +131,48 @@ function rain_enable(local_client_number)
     }
 }
 
-/////////////////////////////// -- waterfall -- 
-
-function waterfallOverlay( localClientNum )
+function private init_filter_sgen_sprite_rain_sm(player)
 {
-    triggers = GetEntArray( localClientNum, "waterfall", "targetname" );
-    foreach( trigger in triggers )
-    {
-        trigger thread setupWaterfall( localClientNum );
-    }
+    filter::init_filter_indices();
+    filter::map_material_helper(player, ZM_POSTFX_SMALL_MATERIAL_NAME);
 }
 
-function setupWaterfall( localClientNum )
+function private enable_filter_sgen_sprite_rain_sm(player, filterid)
 {
-    level notify( "setupWaterfall_waterfall_csc" + localclientnum  );
-    level endon ( "setupWaterfall_waterfall_csc" + localclientnum  );
-
-    trigger = self;
-    for(;;)
-    {
-        trigger waittill( "trigger", trigPlayer );
-        
-        if ( !trigPlayer islocalplayer() )
-        {
-            continue;
-        }
-        
-        localclientnum = trigPlayer getlocalclientnumber();
-        if ( isdefined( localclientnum ) )
-        {
-            localplayer = getlocalplayer( localclientnum );
-        }
-        else
-        {
-            localplayer = trigPlayer;
-        }
-
-        trigger thread trigger::function_thread( localplayer, &trig_enter_waterfall, &trig_leave_waterfall );
-    }
+    setfilterpassmaterial(player.localClientNum, filterid, 0, filter::mapped_material_id(ZM_POSTFX_SMALL_MATERIAL_NAME));
+    setfilterpassenabled(player.localClientNum, filterid, 0, true);
+    setfilterpassquads(player.localClientNum, filterid, 0, 2048);
 }
 
-function trig_enter_waterfall( localplayer )
+// TODO: use for wind callbacks.
+function startWaterSheeting()
 {
-    trigger = self;
-    localclientnum = localplayer.localclientnum;
-    localplayer thread postfx::playPostfxBundle( "pstfx_waterfall" );
+	self notify("startWaterSheeting_singleton");
+	self endon("startWaterSheeting_singleton");
+	
+	self endon("entityshutdown");
+	
+	// enabled the filter
+	filter::enable_filter_water_sheeting(self, FILTER_INDEX_WATER_SHEET); 
 
-    playsound(0, "amb_waterfall_hit", (0,0,0));
-            
-    while ( trigger istouching( localplayer ) )
-    {
-        localplayer PlayRumbleOnEntity( localClientNum, "waterfall_rumble" );
-        wait( 0.1 );
-    }
-}
+	// start everything revealed and scrolling
+	filter::set_filter_water_sheet_reveal(self, FILTER_INDEX_WATER_SHEET, 1.0);
+	filter::set_filter_water_sheet_speed(self, FILTER_INDEX_WATER_SHEET, 1.0);
 
-function trig_leave_waterfall( localplayer )
-{
-    WEATHER_PRINT_DEBUG("WATERFALL TRIGGER LEAVE");
-    trigger = self;
-    localClientNum = localplayer.localClientNum;
-    localplayer postfx::StopPostfxBundle();
-    if ( IsUnderwater( localClientNum ) == false )
-    {
-        localplayer thread water_surface::startWaterSheeting();
-    }
+	// taper down and hide
+	for (i = WATER_SHEETING_OVERLAY_TIME; i > 0.0; i -= 0.01)
+	{
+		filter::set_filter_water_sheet_reveal(self, FILTER_INDEX_WATER_SHEET, i / 2.0);
+		filter::set_filter_water_sheet_speed(self, FILTER_INDEX_WATER_SHEET, i / 2.0);
+		// reveal the rivulets as well
+		rivulet1 = (i / 2.0) - 0.19;
+		rivulet2 = (i / 2.0) - 0.13;
+		rivulet3 = (i / 2.0) - 0.07;
+		filter::set_filter_water_sheet_rivulet_reveal(self, FILTER_INDEX_WATER_SHEET, rivulet1, rivulet2, rivulet3);
+		// pause
+		wait 0.01;
+	}
+	filter::set_filter_water_sheet_reveal(self, FILTER_INDEX_WATER_SHEET, 0.0);
+	filter::set_filter_water_sheet_speed(self, FILTER_INDEX_WATER_SHEET, 0.0);
+	filter::set_filter_water_sheet_rivulet_reveal(self, FILTER_INDEX_WATER_SHEET, 0.0, 0.0, 0.0);
 }

@@ -1,21 +1,50 @@
+// WEATHER SHARED
 scriptparsetree,scripts/zm/weather/zm_weather_shared.gsh
 
+// WEATHER MANAGER
+scriptparsetree,scripts/zm/weather/zm_weather.gsh
+scriptparsetree,scripts/zm/weather/zm_weather.gsc
+scriptparsetree,scripts/zm/weather/zm_weather.csc
+
+// WEATHER LIGHTNING
 scriptparsetree,scripts/zm/weather/zm_weather_lightning.gsh
 scriptparsetree,scripts/zm/weather/zm_weather_lightning.gsc
 scriptparsetree,scripts/zm/weather/zm_weather_lightning.csc
 
-scriptparsetree,scripts/zm/weather/zm_weather_rain.gsh
-scriptparsetree,scripts/zm/weather/zm_weather_rain.gsc
-scriptparsetree,scripts/zm/weather/zm_weather_rain.csc
-
+// WEATHER THUNDER
 scriptparsetree,scripts/zm/weather/zm_weather_thunder.gsh
 scriptparsetree,scripts/zm/weather/zm_weather_thunder.gsc
 scriptparsetree,scripts/zm/weather/zm_weather_thunder.csc
 
+// WEATHER WIND
 scriptparsetree,scripts/zm/weather/zm_weather_wind.gsh
 scriptparsetree,scripts/zm/weather/zm_weather_wind.gsc
 scriptparsetree,scripts/zm/weather/zm_weather_wind.csc
 
-scriptparsetree,scripts/zm/weather/zm_weather.gsh
-scriptparsetree,scripts/zm/weather/zm_weather.gsc
-scriptparsetree,scripts/zm/weather/zm_weather.csc
+// WEATHER RAIN
+scriptparsetree,scripts/zm/weather/zm_weather_rain.gsh
+scriptparsetree,scripts/zm/weather/zm_weather_rain.gsc
+scriptparsetree,scripts/zm/weather/zm_weather_rain.csc
+
+scriptparsetree,scripts/zm/weather/rain/zm_weather_rain_ambience.gsh
+scriptparsetree,scripts/zm/weather/rain/zm_weather_rain_ambience.gsc
+scriptparsetree,scripts/zm/weather/rain/zm_weather_rain_ambience.csc
+
+fx,custom/env/fx_rain_player_z_light
+fx,custom/env/fx_rain_player_z_regular
+fx,custom/env/fx_rain_player_z_heavy
+scriptparsetree,scripts/zm/weather/rain/zm_weather_rain_drops_fx.gsh
+scriptparsetree,scripts/zm/weather/rain/zm_weather_rain_drops_fx.gsc
+scriptparsetree,scripts/zm/weather/rain/zm_weather_rain_drops_fx.csc
+
+material,generic_filter_water_sheeting
+material,generic_filter_sprite_rain
+material,generic_filter_blkstn_sprite_rain
+material,generic_filter_blkstn_sprite_rain_sm
+scriptparsetree,scripts/zm/weather/rain/zm_weather_rain_drops_postfx.gsh
+scriptparsetree,scripts/zm/weather/rain/zm_weather_rain_drops_postfx.gsc
+scriptparsetree,scripts/zm/weather/rain/zm_weather_rain_drops_postfx.csc
+
+scriptparsetree,scripts/zm/weather/rain/zm_weather_rain_environment.gsh
+scriptparsetree,scripts/zm/weather/rain/zm_weather_rain_environment.gsc
+scriptparsetree,scripts/zm/weather/rain/zm_weather_rain_environment.csc

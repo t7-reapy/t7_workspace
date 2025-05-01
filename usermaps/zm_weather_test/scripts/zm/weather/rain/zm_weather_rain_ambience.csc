@@ -101,7 +101,6 @@ function rain_interior_sound_play(sound_alias)
     }
     
     acquireMutex();
-    WEATHER_PRINT_DEBUG("INTERIOR: PLAYING sound");
     level.weather.rain.ambience.interior_sound_playing = self PlayLoopSound(sound_alias, SOUND_TIME_FADE);
     releaseMutex();
 }
@@ -116,7 +115,6 @@ function rain_interior_sound_stop(sound_alias)
     }
 
     acquireMutex();
-    WEATHER_PRINT_DEBUG("INTERIOR: STOPPING sound");
     self StopLoopSound(level.weather.rain.ambience.interior_sound_playing, SOUND_TIME_FADE);
     level.weather.rain.ambience.interior_sound_playing = undefined;
     self notify(RAIN_INTERIOR_STOP_NOTIFY);

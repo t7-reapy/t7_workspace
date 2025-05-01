@@ -63,7 +63,6 @@ function rain_trigger_think()
 		if(IsPlayer(e_who))
 		{
 			e_who thread rain_trigger_toggle(self);
-			e_who waittill("exit_rain_trigger");
 		}
 	}
 }

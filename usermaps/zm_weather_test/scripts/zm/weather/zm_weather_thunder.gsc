@@ -5,6 +5,7 @@
 
 #insert scripts\zm\weather\zm_weather_shared.gsh;
 #insert scripts\zm\weather\zm_weather_thunder.gsh;
+
 #namespace zm_weather_thunder;
 
 class Thunder {
@@ -18,26 +19,26 @@ class Thunder {
     var effects;
 }
 
-function init() {
-    WEATHER_ASSERT_INIT;
+function init() 
+{
     level.weather.thunder = default_thunder_state();
 }
 
 function run()
 {
-    WEATHER_THUNDER_ASSERT_INIT;
-    level endon(KILL_THUNDER_NOTIFICATION);
-    WEATHER_PRINT_DEBUG("thunder plays");
-
     while(level flag::get(ACTIVE_THUNDER_FLAG))
     {
-        level.weather.thunder thunder_strikes();
+        level.weather.thunder thunder_strike();
         WAIT_SERVER_FRAME;
     }
 
-    // striking stoppped, let's restore defaults.
+    // striking stopped, let's restore defaults.
     level.weather.thunder = default_thunder_state();
-    WEATHER_PRINT_DEBUG("thunder stops");
+}
+
+function pause()
+{
+    
 }
 
 function private default_thunder_state() 
@@ -45,7 +46,6 @@ function private default_thunder_state()
     thunder = new Thunder();
     thunder.min_wait = DEFAULT_MIN_WAIT_THUNDER;
     thunder.max_wait = DEFAULT_MAX_WAIT_THUNDER;
-    thunder.waiting = false;
     thunder.lightstate_missing = THUNDER_DEFAULT_LIGHTSTATE;
     thunder.lightstate_strikes = THUNDER_STRIKES_LIGHTSTATE;
     thunder.sounds = THUNDER_SOUNDS;
@@ -54,34 +54,27 @@ function private default_thunder_state()
     return thunder;
 }
 
-function higher_frequency()
+function greater_intensity()
 {
-    WEATHER_THUNDER_ASSERT_INIT;
-    WEATHER_PRINT_DEBUG("thunder frequency +");
     level.weather.thunder.min_wait /= HIGH_FREQUENCY_FACTOR_THUNDER;
     level.weather.thunder.max_wait /= HIGH_FREQUENCY_FACTOR_THUNDER;
 
     // TODO: find a way to reset loop to not be blocked in previous lightning strikes waiting
 }
 
-function lower_frequency()
+function lesser_intensity()
 {
-    WEATHER_THUNDER_ASSERT_INIT;
-    WEATHER_PRINT_DEBUG("thunder frequency -");
     level.weather.thunder.min_wait *= HIGH_FREQUENCY_FACTOR_THUNDER;
     level.weather.thunder.max_wait *= HIGH_FREQUENCY_FACTOR_THUNDER;
 
     // TODO: find a way to reset loop to not be blocked in previous lightning strikes waiting
 }
 
-function private thunder_strikes() 
+function private thunder_strike() 
 {
     // self = Thunder (level.weather.thunder)
 
-    WEATHER_PRINT_DEBUG("preparing thunder strike...");
-    thunder.waiting = true;
     wait RandomFloatRange(self.min_wait, self.max_wait);
-    thunder.waiting = false;
 
     if (!level flag::get(ACTIVE_THUNDER_FLAG))
     {
@@ -95,7 +88,6 @@ function private thunder_strikes()
     thunder_effect = undefined; //self.effects[RandomIntRange(0, self.effects.size)];
     thunder_lightstate = self.lightstate_strikes[RandomIntRange(0, self.lightstate_strikes.size)];
 
-    WEATHER_PRINT_DEBUG("thunder strike !");
     PlaySoundAtPosition(thunder_sound, (0, 0, 0));
     level util::set_lighting_state(thunder_lightstate);
     wait RandomFloatRange(0.3, 0.9);

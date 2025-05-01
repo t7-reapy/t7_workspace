@@ -19,22 +19,44 @@
 
 #namespace zm_weather_rain_drops_postfx;
 
+class RainDropsPostFx
+{
+    var triggers;
+    var paused;
+}
+
 // Init
 function init()
 {
-	// Variables
-	level.zm_postfx_rain_drops_rain_triggers = GetEntArray(ZM_POSTFX_RAIN_DROPS_TRIGGER_NAME, "targetname");
-	// Clientfields
-	clientfield::register("toplayer", ZM_POSTFX_RAIN_DROPS_CF_NAME, VERSION_SHIP, 1, "int");
-	// Callbacks
-	callback::on_spawned(&on_player_spawned);
-	// Threads
-	array::thread_all(level.zm_postfx_rain_drops_rain_triggers, &rain_trigger_think);
+    level.weather.rain.drops_postfx = new RainDropsPostFx();
+    level.weather.rain.drops_postfx.triggers = GetEntArray(ZM_POSTFX_RAIN_DROPS_TRIGGER_NAME, "targetname");
+    level.weather.rain.drops_postfx.paused = (level.weather.rain.intensity == RAIN_INTENSITY_DISABLE);
+    
+    clientfield::register("toplayer", ZM_POSTFX_RAIN_DROPS_CF_NAME, VERSION_SHIP, 2, "int");
+    
+    callback::on_spawned(&on_player_spawned);
+    
+    array::thread_all(level.weather.rain.drops_postfx.triggers, &rain_trigger_think);
 }
 
 function run()
 {
-	
+    level endon("entityshutdown");
+
+    while(true)
+    {
+        wait 1;
+
+        if (level.weather.rain.drops_postfx.paused)
+        {
+            continue;
+        }
+
+        foreach (player in level.players)
+        {
+            player update_raindrops(level.weather.rain.intensity);
+        }
+    }
 }
 
 function pause()
@@ -42,63 +64,48 @@ function pause()
     
 }
 
-// Init on Player Spawned
 function on_player_spawned()
 {
-	// self == player
-	self toggle_raindrops(ZM_POSTFX_RAIN_DROPS_DEFAULT_STATE);
+    // self == player
+    self update_raindrops(level.weather.rain.intensity);
 }
 
-// Toggles the rain drops.
-function toggle_raindrops(b_enable)
+function update_raindrops(intensity)
 {
-	if(IsFunctionPtr(level.zm_postfx_rain_drops_on_toggle_callback))
-	{
-		self [[level.zm_postfx_rain_drops_on_toggle_callback]](b_enable);
-	}
-	
-	self.rain_on_screen = b_enable;
-	self clientfield::set_to_player(ZM_POSTFX_RAIN_DROPS_CF_NAME, b_enable);
+    // self == player
+    self.rain_on_screen = (intensity != RAIN_INTENSITY_DISABLE);
+    self clientfield::set_to_player(ZM_POSTFX_RAIN_DROPS_CF_NAME, intensity);
 }
 
 // Runs rain trigger logic.
 function rain_trigger_think()
 {
-	// self == trigger_multiple
-	self endon("death");
+    // self == trigger_multiple
+    self endon("death");
 
-	while(1)
-	{
-		self waittill("trigger", e_who);
+    while(1)
+    {
+        self waittill("trigger", e_who);
 
-		if(IsPlayer(e_who))
-		{
-			e_who thread rain_trigger_toggle(self);
-		}
-	}
+        if(IsPlayer(e_who))
+        {
+            e_who thread rain_trigger_toggle(self);
+        }
+    }
 }
 
 // Runs rain trigger on enter and exit.
 function rain_trigger_toggle(e_trigger)
 {
-	// self == player
-	self notify("enter_rain_trigger");
-	self endon("disconnect");
-	self endon("enter_rain_trigger");
+    // self == player
+    self notify("enter_rain_trigger");
+    self endon("disconnect");
+    self endon("enter_rain_trigger");
 
-	if(IsFunctionPtr(level.zm_postfx_rain_drops_on_enter_trigger_callback))
-	{
-		self [[level.zm_postfx_rain_drops_on_enter_trigger_callback]](e_trigger);
-	}
-
-	self toggle_raindrops(!ZM_POSTFX_RAIN_DROPS_DEFAULT_STATE);
-	util::wait_till_not_touching(e_trigger, self);
-	self toggle_raindrops(ZM_POSTFX_RAIN_DROPS_DEFAULT_STATE);
-
-	if(IsFunctionPtr(level.zm_postfx_rain_drops_on_exit_trigger_callback))
-	{
-		self [[level.zm_postfx_rain_drops_on_exit_trigger_callback]](e_trigger);
-	}
-
-	self notify("exit_rain_trigger");
+    level.weather.rain.drops_postfx.paused = true;
+    self update_raindrops(RAIN_INTENSITY_DISABLE);
+    util::wait_till_not_touching(e_trigger, self);
+    level.weather.rain.drops_postfx.paused = false;
+    
+    self notify("exit_rain_trigger");
 }

@@ -1,3 +1,10 @@
-#define RAIN_ENV_LOW_FX "custom/env/fx_rain_player_z_light"
-#define RAIN_ENV_MID_FX "custom/env/fx_rain_player_z_regular"
-#define RAIN_ENV_HIG_FX "custom/env/fx_rain_player_z_heavy"
+#define ENABLE_RAIN_AMBIENCE 1
+#define ENABLE_RAIN_DROPS_FX 1
+#define ENABLE_RAIN_DROPS_POSTFX 1
+#define ENABLE_RAIN_ENVIRONMENT 1
+
+#define RAIN_INTENSITY_LOW 0
+#define RAIN_INTENSITY_MED 1
+#define RAIN_INTENSITY_HIG 2
+#define RAIN_INTENSITY_DISABLE 3
+#define RAIN_DEFAULT_INTENSITY RAIN_INTENSITY_LOW
