@@ -1,0 +1,4 @@
+#define ENABLE_LIGHTNING 0
+#define ENABLE_RAIN 1
+#define ENABLE_THUNDER 0
+#define ENABLE_WIND 0
