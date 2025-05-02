@@ -15,9 +15,10 @@ class RainEnvironment {
 
 function init() 
 {
-    level.weather.rain.environment = new RainEnvironment();
-    level.weather.rain.environment.volume_decals = FindVolumeDecalIndexArray("decalrain");
     clientfield::register("world", DECAL_RAIN_TOGGLE, VERSION_SHIP, 1, "int", &decal_rain_toggle, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
+
+    level.weather.rain.environment = new RainEnvironment();
+    level.weather.rain.environment.volume_decals = FindVolumeDecalIndexArray(DECAL_RAIN_TARGETNAME);
 }
 
 function run() 
@@ -28,16 +29,15 @@ function private decal_rain_toggle(_localClientNum, _oldVal, shouldRain, _bNewEn
 {
     volume_decals = level.weather.rain.environment.volume_decals;
 
-    if(isdefined(shouldRain) && shouldRain)
+    foreach (volume_decal in volume_decals)
     {
-        for(i=0; i < volume_decals.size; i++)
+        if (isdefined(shouldRain) && shouldRain)
         {
-            UnhideVolumeDecal(volume_decals[i]);
+            UnhideVolumeDecal(volume_decal);
         }
-    } else {
-        for(i=0; i < volume_decals.size; i++)
+        else
         {
-            HideVolumeDecal(volume_decals[i]);
+            HideVolumeDecal(volume_decal);
         }
     }
 }

@@ -26,17 +26,16 @@ function init()
 {
     clientfield::register("toplayer", ZM_POSTFX_RAIN_DROPS_CF_NAME, VERSION_SHIP, 2, "int", &rain_drops_toggle, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
     
+    filter::init_filter_raindrops(self);
+    filter::init_filter_sprite_rain(self);
+    filter::init_filter_sgen_sprite_rain(self);
+    init_filter_sgen_sprite_rain_sm(self);
+    
     callback::on_localclient_connect(&on_connect);
 }
 
 function run()
 {
-    filter::init_filter_raindrops(self);
-    filter::init_filter_sprite_rain(self);
-    filter::init_filter_sgen_sprite_rain(self);
-    init_filter_sgen_sprite_rain_sm(self);
-
-    local_client_number = self GetLocalClientNumber();
 }
 
 function on_connect(local_client_number)

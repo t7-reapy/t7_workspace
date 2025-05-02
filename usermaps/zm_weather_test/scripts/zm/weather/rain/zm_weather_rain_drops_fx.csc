@@ -1,3 +1,4 @@
+#using scripts\shared\callbacks_shared; 
 #using scripts\shared\util_shared;
 #using scripts\shared\clientfield_shared;
 
@@ -26,11 +27,19 @@ function init()
     clientfield::register("world", FX_RAIN_CF_NAME, VERSION_SHIP, 2, "int", &fx_rain, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
 
     define_rain_amount(level.weather.rain.drops_fx.intensity);
+
+    callback::on_localclient_connect(&on_connect);
 }
 
 function run() 
 {
     thread apply_rain_on_all_players();
+}
+
+function on_connect(local_client_number)
+{
+    // self == player
+    self thread rain_player(local_client_number);
 }
 
 function private fx_rain(_localClientNum, old_intensity, new_intensity, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump)
@@ -68,12 +77,6 @@ function private rain_player(localclientnum)
     intensity = level.weather.rain.drops_fx.intensity;
     self.rain_fx_tag = Spawn(localClientNum, self.origin, "script_model");
     self.rain_fx_tag setModel("tag_origin");
-
-    // self.rain_fx = PlayFxOnTag(localClientNum, level._effect[FX_RAIN_LEVEL_NAME], self.rain_fx_tag, "tag_origin");
-    // 
-
-    // SetFXIgnorePause(localClientNum, self.rain_fx, true);
-    // SetFXOutdoor(localClientNum , self.rain_fx);
 
     while(true)
     {

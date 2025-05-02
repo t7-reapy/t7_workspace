@@ -45,6 +45,9 @@ function init()
 
 function run() 
 {
+    level endon("entityshutdown");
+    level.weather.rain.intensity = RAIN_DEFAULT_INTENSITY;
+
     if (ENABLE_RAIN_AMBIENCE)
     {
         thread zm_weather_rain_ambience::run();
@@ -68,7 +71,28 @@ function run()
 
 function pause()
 {
-    // TODO
+    // Must turn off rain here in case of player spawn.
+    level.weather.rain.intensity = RAIN_INTENSITY_DISABLE;
+
+    if (ENABLE_RAIN_AMBIENCE)
+    {
+        thread zm_weather_rain_ambience::pause();
+    }
+
+    if (ENABLE_RAIN_DROPS_FX)
+    {
+        thread zm_weather_rain_drops_fx::pause();
+    }
+
+    if (ENABLE_RAIN_DROPS_POSTFX)
+    {
+        thread zm_weather_rain_drops_postfx::pause();
+    }
+
+    if (ENABLE_RAIN_ENVIRONMENT)
+    {
+        thread zm_weather_rain_environment::pause();
+    }
 }
 
 function greater_intensity()

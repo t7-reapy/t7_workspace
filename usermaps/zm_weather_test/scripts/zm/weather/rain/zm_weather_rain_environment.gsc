@@ -9,13 +9,31 @@
 
 #namespace zm_weather_rain_environment;
 
+class RainEnvironment {
+    var paused;
+}
+
 function init() 
 {
     clientfield::register("world", DECAL_RAIN_TOGGLE, VERSION_SHIP, 1, "int");
+
+    level.weather.rain.environment = new RainEnvironment();
+    level.weather.rain.environment.paused = true;
 }
 
 function run() 
 {
+    level endon("level_stop_rain_environment");
+    level endon("entityshutdown");
+
+    if (!level.weather.rain.environment.paused)
+    {
+        WEATHER_PRINT_DEBUG("already running rain environment");
+        return;
+    }
+    
+    level.weather.rain.environment.paused = false;
+
     while(true)
     {
         update();
@@ -25,7 +43,16 @@ function run()
 
 function pause()
 {
-    
+    if (level.weather.rain.environment.paused)
+    {
+        WEATHER_PRINT_DEBUG("already paused rain environment");
+        return;
+    }
+
+    level notify("level_stop_rain_environment");
+    level clientfield::set(DECAL_RAIN_TOGGLE, false);
+
+    level.weather.rain.environment.paused = true;
 }
 
 function update()
