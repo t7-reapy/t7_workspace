@@ -16,6 +16,7 @@ class RainEnvironment {
 function init() 
 {
     clientfield::register("world", DECAL_RAIN_TOGGLE, VERSION_SHIP, 1, "int");
+    clientfield::register("world", RAIN_EXPLODERS_CF_NAME, VERSION_SHIP, 2, "int");
 
     level.weather.rain.environment = new RainEnvironment();
     level.weather.rain.environment.paused = true;
@@ -51,12 +52,16 @@ function pause()
 
     level notify("level_stop_rain_environment");
     level clientfield::set(DECAL_RAIN_TOGGLE, false);
+    level clientfield::set(RAIN_EXPLODERS_CF_NAME, RAIN_INTENSITY_DISABLE);
 
     level.weather.rain.environment.paused = true;
 }
 
 function update()
 {
-    decal_enabled = (level.weather.rain.intensity != RAIN_INTENSITY_DISABLE);
+    intensity = level.weather.rain.intensity;
+
+    decal_enabled = (intensity != RAIN_INTENSITY_DISABLE);
     level clientfield::set(DECAL_RAIN_TOGGLE, decal_enabled);
+    level clientfield::set(RAIN_EXPLODERS_CF_NAME, intensity);
 }

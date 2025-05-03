@@ -47,7 +47,8 @@ function run()
     {
         player clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, RAIN_INTENSITY_DISABLE);
         player clientfield::set_to_player(RAIN_LIMINAL_TYPE_SFX, RAIN_INTENSITY_DISABLE);
-        player clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, level.weather.rain.intensity);
+        player clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, RAIN_INTENSITY_DISABLE);
+        player thread play_and_update_exterior_rain_sound();
     }
 
     array::thread_all(level.weather.rain.ambience.interior_triggers, &rain_interior_trigger_think);

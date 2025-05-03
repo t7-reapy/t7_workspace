@@ -21,12 +21,7 @@ class RainDropsFx {
 
 function init() 
 {
-    level.weather.rain.drops_fx = new RainDropsFx();
-    level.weather.rain.drops_fx.intensity = RAIN_DEFAULT_INTENSITY;
-
     clientfield::register("world", FX_RAIN_CF_NAME, VERSION_SHIP, 2, "int", &fx_rain, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
-
-    define_rain_amount(level.weather.rain.drops_fx.intensity);
 
     callback::on_localclient_connect(&on_connect);
 }
@@ -39,6 +34,11 @@ function run()
 function on_connect(local_client_number)
 {
     // self == player
+    level.weather.rain.drops_fx = new RainDropsFx();
+    level.weather.rain.drops_fx.intensity = RAIN_DEFAULT_INTENSITY;
+
+    define_rain_amount(level.weather.rain.drops_fx.intensity);
+
     self thread rain_player(local_client_number);
 }
 
