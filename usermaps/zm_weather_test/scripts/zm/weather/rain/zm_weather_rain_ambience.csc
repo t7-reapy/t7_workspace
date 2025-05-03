@@ -189,17 +189,13 @@ function rain_liminal_sound_stop(sound_alias)
 
 function rain_exterior_sound(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
-    WEATHER_PRINT_DEBUG("update?");
-
     if (old_intensity == new_intensity)
     {
-        WEATHER_PRINT_DEBUG("unchanged");
         return;
     }
 
     if(isdefined(new_intensity) && new_intensity != RAIN_INTENSITY_DISABLE)
     {
-        WEATHER_PRINT_DEBUG("playing");
         self thread rain_exterior_sound_play(level.weather.rain.ambience.exterior_sounds[new_intensity], new_intensity);
     }
     else

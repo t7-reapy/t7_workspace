@@ -6,7 +6,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{02797AAC-2790-11F0-B36D-A007C8437680}"
+guid "{8E5C8D68-285C-11F0-B36F-A0B970CF9789}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -875,6 +875,96 @@ guid "{02797AAC-2790-11F0-B36D-A007C8437680}"
  ( 186 -808 68 ) ( 186 -812 68 ) ( 186 -812 16 ) global_diffuse_red 0.5 -0.5 624 0 180 0 lightmap_gray 16384 16384 -1204 0 0 0
  ( 190 -812 68 ) ( 194 -812 68 ) ( 194 -812 16 ) global_diffuse_red 0.5 0.5 1152 0 0 0 lightmap_gray 16384 -16384 608 0 -180 0
 }
+// brush 85
+{
+ guid "{E0D6F3B7-285B-11F0-B36F-A0B970CF9789}"
+ ( 704 -432 144 ) ( 448 -432 144 ) ( 448 -560 144 ) script_floor_ceiling 128 128 -2016 -928 180 0 lightmap_gray 16384 16384 -2016 -928 180 0
+ ( 704 -560 160 ) ( 448 -560 160 ) ( 448 -432 160 ) script_floor_ceiling 128 128 -2016 -928 180 0 lightmap_gray 16384 16384 -2016 -928 180 0
+ ( 704 -432 144 ) ( 704 -432 160 ) ( 448 -432 160 ) script_floor_ceiling 128 -128 -2016 0 -180 0 lightmap_gray 16384 -16384 -2016 0 -180 0
+ ( 32 -560 144 ) ( 32 -432 144 ) ( 32 -432 160 ) script_floor_ceiling 128 -128 928 0 180 0 lightmap_gray 16384 -16384 928 0 180 0
+ ( 560 -592 144 ) ( 560 -592 160 ) ( 816 -592 160 ) script_floor_ceiling 128 -128 -2016 0 180 0 lightmap_gray 16384 -16384 -2016 0 180 0
+ ( 384 -560 160 ) ( 384 -432 160 ) ( 384 -432 144 ) script_floor_ceiling 128 -128 928 0 180 0 lightmap_gray 16384 -16384 928 0 180 0
+}
+// brush 86
+{
+ guid "{E0D6F3B8-285B-11F0-B36F-A0B970CF9789}"
+ ( 464 -1056 0 ) ( 464 -800 0 ) ( 336 -800 0 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 336 -1056 144 ) ( 336 -800 144 ) ( 464 -800 144 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 384 -592 128 ) ( 384 -592 144 ) ( 384 -336 144 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( 336 -576 128 ) ( 464 -576 128 ) ( 464 -576 144 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+ ( 368 -784 128 ) ( 368 -784 144 ) ( 368 -1040 144 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( 256 -592 144 ) ( 384 -592 144 ) ( 384 -592 128 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+}
+// brush 87
+{
+ guid "{E0D6F3B9-285B-11F0-B36F-A0B970CF9789}"
+ ( 464 -912 0 ) ( 464 -656 0 ) ( 336 -656 0 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 336 -912 144 ) ( 336 -656 144 ) ( 464 -656 144 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 384 -448 128 ) ( 384 -448 144 ) ( 384 -192 144 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( 336 -432 128 ) ( 464 -432 128 ) ( 464 -432 144 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+ ( 368 -640 128 ) ( 368 -640 144 ) ( 368 -896 144 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( 256 -448 144 ) ( 384 -448 144 ) ( 384 -448 128 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+}
+// brush 88
+{
+ guid "{E0D6F3BA-285B-11F0-B36F-A0B970CF9789}"
+ ( 128 -912 0 ) ( 128 -656 0 ) ( 0 -656 0 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 0 -912 144 ) ( 0 -656 144 ) ( 128 -656 144 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 48 -448 128 ) ( 48 -448 144 ) ( 48 -192 144 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( 0 -432 128 ) ( 128 -432 128 ) ( 128 -432 144 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+ ( 32 -640 128 ) ( 32 -640 144 ) ( 32 -896 144 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( -80 -448 144 ) ( 48 -448 144 ) ( 48 -448 128 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+}
+// brush 89
+{
+ guid "{E0D6F3BB-285B-11F0-B36F-A0B970CF9789}"
+ ( 128 -1056 0 ) ( 128 -800 0 ) ( 0 -800 0 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 0 -1056 144 ) ( 0 -800 144 ) ( 128 -800 144 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 48 -592 128 ) ( 48 -592 144 ) ( 48 -336 144 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( 0 -576 128 ) ( 128 -576 128 ) ( 128 -576 144 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+ ( 32 -896 128 ) ( 32 -896 144 ) ( 32 -1152 144 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( -80 -592 144 ) ( 48 -592 144 ) ( 48 -592 128 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+}
+// brush 90
+{
+ guid "{FC950A76-285B-11F0-B36F-A0B970CF9789}"
+ ( 336 -912 0 ) ( 336 -656 0 ) ( 208 -656 0 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 227 -912 50 ) ( 227 -656 50 ) ( 355 -656 50 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 368 -452 128 ) ( 368 -452 144 ) ( 368 -196 144 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( 208 -432 128 ) ( 336 -432 128 ) ( 336 -432 144 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+ ( 48 -640 128 ) ( 48 -640 144 ) ( 48 -896 144 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( -64 -448 144 ) ( 64 -448 144 ) ( 64 -448 128 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+}
+// brush 91
+{
+ guid "{03C8CF15-285C-11F0-B36F-A0B970CF9789}"
+ ( 336 -1056 0 ) ( 336 -800 0 ) ( 208 -800 0 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 227 -1056 50 ) ( 227 -800 50 ) ( 355 -800 50 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 368 -596 128 ) ( 368 -596 144 ) ( 368 -340 144 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( 16 -576 128 ) ( 144 -576 128 ) ( 144 -576 144 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+ ( 48 -784 128 ) ( 48 -784 144 ) ( 48 -1040 144 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( 128 -592 144 ) ( 256 -592 144 ) ( 256 -592 128 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+}
+// brush 92
+{
+ guid "{3FB2CF1A-285C-11F0-B36F-A0B970CF9789}"
+ ( 352 -1056 110 ) ( 352 -800 110 ) ( 224 -800 110 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 227 -1056 144 ) ( 227 -800 144 ) ( 355 -800 144 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 368 -596 222 ) ( 368 -596 238 ) ( 368 -340 238 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( 16 -576 222 ) ( 144 -576 222 ) ( 144 -576 238 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+ ( 48 -784 222 ) ( 48 -784 238 ) ( 48 -1040 238 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( 128 -592 238 ) ( 256 -592 238 ) ( 256 -592 222 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+}
+// brush 93
+{
+ guid "{8E5C8D6D-285C-11F0-B36F-A0B970CF9789}"
+ ( 352 -912 110 ) ( 352 -656 110 ) ( 224 -656 110 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 227 -912 144 ) ( 227 -656 144 ) ( 355 -656 144 ) script_floor_ceiling 128 128 -2240 640 90 0 lightmap_gray 16384 16384 -2240 640 90 0
+ ( 368 -452 222 ) ( 368 -452 238 ) ( 368 -196 238 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( 16 -432 222 ) ( 144 -432 222 ) ( 144 -432 238 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+ ( 48 -640 222 ) ( 48 -640 238 ) ( 48 -896 238 ) script_floor_ceiling 128 128 -2240 0 0 0 lightmap_gray 16384 16384 -2240 0 0 0
+ ( 128 -448 238 ) ( 256 -448 238 ) ( 256 -448 222 ) script_floor_ceiling 128 -128 -640 0 180 0 lightmap_gray 16384 -16384 -640 0 180 0
+}
 }
 // entity 1
 {
@@ -1407,20 +1497,6 @@ guid "{A2DF35D0-2390-11F0-B368-D61B04584648}"
 }
 // entity 41
 {
-guid "{A2DF35DB-2390-11F0-B368-D61B04584648}"
-"classname" "misc_model"
-"angles" "0.757155 128.21 2.45377"
-"model" "t10_base_foliage_alder_bush_large_02"
-"modelscale" "0.905938744544983"
-"origin" "178.75 -527 0"
-"lightingstate1" "1"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
-"static" "1"
-}
-// entity 42
-{
 guid "{A2DF35E6-2390-11F0-B368-D61B04584648}"
 "classname" "misc_model"
 "angles" "358.467 52.0862 2.0926"
@@ -1433,7 +1509,7 @@ guid "{A2DF35E6-2390-11F0-B368-D61B04584648}"
 "lightingstate4" "1"
 "static" "1"
 }
-// entity 43
+// entity 42
 {
 guid "{D36F606E-2397-11F0-B368-D61B04584648}"
 "classname" "trigger_multiple"
@@ -1450,7 +1526,7 @@ guid "{D36F606E-2397-11F0-B368-D61B04584648}"
  ( 512 -464 128 ) ( 512 -816 128 ) ( 512 -816 0 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 44
+// entity 43
 {
 guid "{FBF167F7-2397-11F0-B368-D61B04584648}"
 "classname" "trigger_multiple"
@@ -1467,7 +1543,7 @@ guid "{FBF167F7-2397-11F0-B368-D61B04584648}"
  ( 432 -368 144 ) ( 432 -448 144 ) ( 432 -448 0 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 45
+// entity 44
 {
 guid "{41D25194-237A-11F0-B368-D61B04584648}"
 "classname" "script_model"
@@ -1485,7 +1561,7 @@ guid "{41D25194-237A-11F0-B368-D61B04584648}"
 "modelscale" "1"
 "shadow_casting" "1"
 }
-// entity 46
+// entity 45
 {
 guid "{41D25191-237A-11F0-B368-D61B04584648}"
 "classname" "misc_model"
@@ -1499,7 +1575,7 @@ guid "{41D25191-237A-11F0-B368-D61B04584648}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 47
+// entity 46
 {
 guid "{41D25197-237A-11F0-B368-D61B04584648}"
 "classname" "script_struct"
@@ -1509,7 +1585,7 @@ guid "{41D25197-237A-11F0-B368-D61B04584648}"
 "targetname" "auto1"
 "_color" "1 0 0"
 }
-// entity 48
+// entity 47
 {
 guid "{9365429C-2533-11F0-B36A-F225E3595315}"
 "classname" "trigger_multiple"
@@ -1526,7 +1602,7 @@ guid "{9365429C-2533-11F0-B36A-F225E3595315}"
  ( 976 -368 144 ) ( 896 -368 144 ) ( 896 -368 0 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 1152 0 0 0
 }
 }
-// entity 49
+// entity 48
 {
 guid "{99C06D0D-2533-11F0-B36A-F225E3595315}"
 "classname" "trigger_multiple"
@@ -1543,7 +1619,7 @@ guid "{99C06D0D-2533-11F0-B36A-F225E3595315}"
  ( 976 -912 0 ) ( 976 -912 144 ) ( 976 -832 144 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 -16384 832 0 180 0
 }
 }
-// entity 50
+// entity 49
 {
 guid "{99C06D18-2533-11F0-B36A-F225E3595315}"
 "classname" "trigger_multiple"
@@ -1560,7 +1636,7 @@ guid "{99C06D18-2533-11F0-B36A-F225E3595315}"
  ( 432 -912 0 ) ( 432 -912 144 ) ( 512 -912 144 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 -16384 -480 0 180 0
 }
 }
-// entity 51
+// entity 50
 {
 guid "{9DAF197A-261E-11F0-B36B-BDF2891D93DC}"
 "classname" "volume_weathergrime"
@@ -1588,7 +1664,7 @@ guid "{9DAF197A-261E-11F0-B36B-BDF2891D93DC}"
  ( -2624 3664 928 ) ( -2624 -3504 928 ) ( -2624 -3504 -352 ) weathergrime_volume 64 64 3260 0 0 0 lightmap_gray 16384 16384 3260 0 0 0
 }
 }
-// entity 52
+// entity 51
 {
 guid "{9DAF197D-261E-11F0-B36B-BDF2891D93DC}"
 "classname" "volume_outdoor"
@@ -1607,7 +1683,7 @@ guid "{9DAF197D-261E-11F0-B36B-BDF2891D93DC}"
  ( -2608 3648 64 ) ( -2608 3040 64 ) ( -2608 3040 -16 ) outdoorbounds_volume 64 64 3056 0 0 0 lightmap_gray 16384 16384 3056 0 0 0
 }
 }
-// entity 53
+// entity 52
 {
 guid "{5EA42994-2626-11F0-B36B-BDF2891D93DC}"
 "classname" "trigger_use"
@@ -1625,7 +1701,7 @@ guid "{5EA42994-2626-11F0-B36B-BDF2891D93DC}"
  ( 144 -770 56 ) ( 112 -770 56 ) ( 112 -770 40 ) trigger 64 64 1152 0 0 0 lightmap_gray 16384 16384 1152 0 0 0
 }
 }
-// entity 54
+// entity 53
 {
 guid "{6C4ED46B-2626-11F0-B36B-BDF2891D93DC}"
 "classname" "trigger_use"
@@ -1643,12 +1719,12 @@ guid "{6C4ED46B-2626-11F0-B36B-BDF2891D93DC}"
  ( 208 -770 56 ) ( 176 -770 56 ) ( 176 -770 40 ) trigger 64 64 1152 0 0 0 lightmap_gray 16384 16384 1152 0 0 0
 }
 }
-// entity 55
+// entity 54
 {
 guid "{01930F14-262C-11F0-B36B-BDF2891D93DC}"
 "classname" "light"
 "far_edge" "0"
-"origin" "315.75 -650.25 151"
+"origin" "315.75 -762.25 151"
 "radius" "400"
 "ENABLE_FALLOFF" "1"
 "PRIMARY_NOSHADOWMAP" "1"
@@ -1674,7 +1750,7 @@ guid "{01930F14-262C-11F0-B36B-BDF2891D93DC}"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 56
+// entity 55
 {
 guid "{EC0C0066-2633-11F0-B36B-BDF2891D93DC}"
 "classname" "trigger_use"
@@ -1692,7 +1768,7 @@ guid "{EC0C0066-2633-11F0-B36B-BDF2891D93DC}"
  ( 66 -770 56 ) ( 34 -770 56 ) ( 34 -770 40 ) trigger 64 64 1152 0 0 0 lightmap_gray 16384 16384 1152 0 0 0
 }
 }
-// entity 57
+// entity 56
 {
 guid "{BD34D478-267A-11F0-B36C-91C58A81F334}"
 "classname" "trigger_multiple"
@@ -1709,7 +1785,7 @@ guid "{BD34D478-267A-11F0-B36C-91C58A81F334}"
  ( -400 -328 16 ) ( -400 -360 16 ) ( -400 -360 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 58
+// entity 57
 {
 guid "{503EA640-2681-11F0-B36C-91C58A81F334}"
 "classname" "light"
@@ -1740,7 +1816,7 @@ guid "{503EA640-2681-11F0-B36C-91C58A81F334}"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 59
+// entity 58
 {
 guid "{5B58B8E8-2681-11F0-B36C-91C58A81F334}"
 "classname" "light"
@@ -1771,7 +1847,7 @@ guid "{5B58B8E8-2681-11F0-B36C-91C58A81F334}"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 60
+// entity 59
 {
 guid "{5B58B8F3-2681-11F0-B36C-91C58A81F334}"
 "classname" "light"
@@ -1802,7 +1878,7 @@ guid "{5B58B8F3-2681-11F0-B36C-91C58A81F334}"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 61
+// entity 60
 {
 guid "{6FFAA4DD-2681-11F0-B36C-91C58A81F334}"
 "classname" "trigger_multiple"
@@ -1821,7 +1897,7 @@ guid "{6FFAA4DD-2681-11F0-B36C-91C58A81F334}"
  ( -592 -520 16 ) ( -592 -552 16 ) ( -592 -552 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 62
+// entity 61
 {
 guid "{76502C19-2681-11F0-B36C-91C58A81F334}"
 "classname" "trigger_multiple"
@@ -1840,7 +1916,7 @@ guid "{76502C19-2681-11F0-B36C-91C58A81F334}"
  ( -592 -712 16 ) ( -592 -744 16 ) ( -592 -744 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 63
+// entity 62
 {
 guid "{76502C2A-2681-11F0-B36C-91C58A81F334}"
 "classname" "light"
@@ -1871,7 +1947,7 @@ guid "{76502C2A-2681-11F0-B36C-91C58A81F334}"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 64
+// entity 63
 {
 guid "{76502C2D-2681-11F0-B36C-91C58A81F334}"
 "classname" "light"
@@ -1902,7 +1978,7 @@ guid "{76502C2D-2681-11F0-B36C-91C58A81F334}"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 65
+// entity 64
 {
 guid "{09DDD91F-2684-11F0-B36C-91C58A81F334}"
 "classname" "trigger_multiple"
@@ -1919,7 +1995,7 @@ guid "{09DDD91F-2684-11F0-B36C-91C58A81F334}"
  ( -400 -392 16 ) ( -400 -424 16 ) ( -400 -424 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 66
+// entity 65
 {
 guid "{141B7E5E-2684-11F0-B36C-91C58A81F334}"
 "classname" "trigger_multiple"
@@ -1936,7 +2012,7 @@ guid "{141B7E5E-2684-11F0-B36C-91C58A81F334}"
  ( -400 -552 16 ) ( -400 -584 16 ) ( -400 -584 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 67
+// entity 66
 {
 guid "{FECBEDD8-2727-11F0-B36D-A007C8437680}"
 "classname" "misc_model"
@@ -1950,7 +2026,7 @@ guid "{FECBEDD8-2727-11F0-B36D-A007C8437680}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 68
+// entity 67
 {
 guid "{FECBEDDB-2727-11F0-B36D-A007C8437680}"
 "classname" "trigger_use"
@@ -1968,7 +2044,7 @@ guid "{FECBEDDB-2727-11F0-B36D-A007C8437680}"
  ( 713 -826 56 ) ( 681 -826 56 ) ( 681 -826 40 ) trigger 64 64 1536 0 0 0 lightmap_gray 16384 16384 1536 0 0 0
 }
 }
-// entity 69
+// entity 68
 {
 guid "{FECBEDDE-2727-11F0-B36D-A007C8437680}"
 "classname" "trigger_use"
@@ -1986,7 +2062,7 @@ guid "{FECBEDDE-2727-11F0-B36D-A007C8437680}"
  ( 784 -826 56 ) ( 752 -826 56 ) ( 752 -826 40 ) trigger 64 64 1536 0 0 0 lightmap_gray 16384 16384 1536 0 0 0
 }
 }
-// entity 70
+// entity 69
 {
 guid "{FECBEDE4-2727-11F0-B36D-A007C8437680}"
 "classname" "trigger_use"
@@ -2004,7 +2080,7 @@ guid "{FECBEDE4-2727-11F0-B36D-A007C8437680}"
  ( 642 -826 56 ) ( 610 -826 56 ) ( 610 -826 40 ) trigger 64 64 1536 0 0 0 lightmap_gray 16384 16384 1536 0 0 0
 }
 }
-// entity 71
+// entity 70
 {
 guid "{FECBEDE7-2727-11F0-B36D-A007C8437680}"
 "classname" "misc_model"
@@ -2018,7 +2094,7 @@ guid "{FECBEDE7-2727-11F0-B36D-A007C8437680}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 72
+// entity 71
 {
 guid "{0BB660E8-2728-11F0-B36D-A007C8437680}"
 "classname" "light"
@@ -2049,7 +2125,7 @@ guid "{0BB660E8-2728-11F0-B36D-A007C8437680}"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 73
+// entity 72
 {
 guid "{FECBEDE1-2727-11F0-B36D-A007C8437680}"
 "classname" "misc_model"
@@ -2063,7 +2139,7 @@ guid "{FECBEDE1-2727-11F0-B36D-A007C8437680}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 74
+// entity 73
 {
 guid "{C61BA97A-274C-11F0-B36D-A007C8437680}"
 "classname" "light"
@@ -2094,56 +2170,56 @@ guid "{C61BA97A-274C-11F0-B36D-A007C8437680}"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 75
+// entity 74
 {
 guid "{71F28DE0-2766-11F0-B36D-A007C8437680}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
 "origin" "-151 -920 0"
 }
-// entity 76
+// entity 75
 {
 guid "{E9FA2634-274C-11F0-B36D-A007C8437680}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe_heavy_exploder.map"
 "origin" "-256 -920 0"
 }
-// entity 77
+// entity 76
 {
 guid "{25D4B7C3-277D-11F0-B36D-A007C8437680}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe_regular_exploder.map"
 "origin" "-342 -920 0"
 }
-// entity 78
+// entity 77
 {
 guid "{25D4B7CE-277D-11F0-B36D-A007C8437680}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe_light_exploder.map"
 "origin" "-436 -920 0"
 }
-// entity 79
+// entity 78
 {
 guid "{E58D8CF6-278F-11F0-B36D-A007C8437680}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
 "origin" "-95 -920 0"
 }
-// entity 80
+// entity 79
 {
 guid "{E58D8D01-278F-11F0-B36D-A007C8437680}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
 "origin" "-39 -920 0"
 }
-// entity 81
+// entity 80
 {
 guid "{E58D8D0C-278F-11F0-B36D-A007C8437680}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
 "origin" "9 -920 0"
 }
-// entity 82
+// entity 81
 {
 guid "{1AF40E27-2626-11F0-B36B-BDF2891D93DC}"
 "classname" "misc_model"
@@ -2157,7 +2233,7 @@ guid "{1AF40E27-2626-11F0-B36B-BDF2891D93DC}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 83
+// entity 82
 {
 guid "{1AF40E16-2626-11F0-B36B-BDF2891D93DC}"
 "classname" "misc_model"
@@ -2171,7 +2247,7 @@ guid "{1AF40E16-2626-11F0-B36B-BDF2891D93DC}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 84
+// entity 83
 {
 guid "{EC0C0069-2633-11F0-B36B-BDF2891D93DC}"
 "classname" "misc_model"
@@ -2185,7 +2261,7 @@ guid "{EC0C0069-2633-11F0-B36B-BDF2891D93DC}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 85
+// entity 84
 {
 guid "{02797AB3-2790-11F0-B36D-A007C8437680}"
 "classname" "light"
@@ -2193,6 +2269,120 @@ guid "{02797AB3-2790-11F0-B36D-A007C8437680}"
 "name" "light_001"
 "origin" "-348 -836 156"
 "radius" "300"
+"ENABLE_FALLOFF" "1"
+"PRIMARY_NOSHADOWMAP" "1"
+"PRIMARY_TYPE" "PRIMARY_OMNI"
+"_color" "1 1 1"
+"bake_intensity_scale" "1"
+"client_server" "ClientSide"
+"def_tile" "1 1"
+"excludeDedicated" "Off"
+"falloffdistance" "12"
+"fov_outer" "90"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"penumbraRadius" "1.5"
+"roundness" "0.5"
+"shadowUpdate" "Never"
+"shadowmapScale" "1"
+"stops" "11"
+"superellipse" "0.75 1 0.75 1"
+"volumetricSampleCount" "8"
+"spawnflags" "82"
+}
+// entity 85
+{
+guid "{C056ADE7-285B-11F0-B36F-A0B970CF9789}"
+"classname" "trigger_multiple"
+"targetname" "postfx_rain_trigger"
+"_color" "1 0.3 0.1"
+// brush 0
+{
+ guid "{C056ADE6-285B-11F0-B36F-A0B970CF9789}"
+ ( 576 -352 0 ) ( 544 -352 0 ) ( 544 -384 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 552 -384 144 ) ( 552 -352 144 ) ( 584 -352 144 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 819 -912 16 ) ( 851 -912 16 ) ( 851 -912 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 976 -783 16 ) ( 976 -751 16 ) ( 976 -751 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 592 -368 16 ) ( 560 -368 16 ) ( 560 -368 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 432 -496 16 ) ( 432 -528 16 ) ( 432 -528 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 86
+{
+guid "{E0D6F3BE-285B-11F0-B36F-A0B970CF9789}"
+"classname" "trigger_multiple"
+"targetname" "postfx_rain_trigger"
+"_color" "1 0.3 0.1"
+// brush 0
+{
+ guid "{E0D6F3BD-285B-11F0-B36F-A0B970CF9789}"
+ ( 384 -432 0 ) ( 352 -432 0 ) ( 352 -464 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 360 -464 144 ) ( 360 -432 144 ) ( 392 -432 144 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 208 -576 16 ) ( 240 -576 16 ) ( 240 -576 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 368 -448 16 ) ( 368 -416 16 ) ( 368 -416 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 400 -448 16 ) ( 368 -448 16 ) ( 368 -448 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 48 -576 16 ) ( 48 -608 16 ) ( 48 -608 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 87
+{
+guid "{F41746E7-285B-11F0-B36F-A0B970CF9789}"
+"classname" "trigger_multiple"
+"targetname" "weather_trigger_liminal"
+"_color" "1 0.3 0.1"
+// brush 0
+{
+ guid "{F41746E6-285B-11F0-B36F-A0B970CF9789}"
+ ( 320 -912 0 ) ( 320 -448 0 ) ( 240 -448 0 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 -2080 480 90 0
+ ( 240 -912 144 ) ( 240 -448 144 ) ( 320 -448 144 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 -2080 480 90 0
+ ( 368 -576 0 ) ( 368 -576 144 ) ( 368 -112 144 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 -2080 0 0 0
+ ( 320 -448 0 ) ( 320 -448 144 ) ( 240 -448 144 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 -16384 -480 0 180 0
+ ( 48 -448 0 ) ( 48 -448 144 ) ( 48 -912 144 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 -2080 0 0 0
+ ( 288 -576 0 ) ( 288 -576 144 ) ( 368 -576 144 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 -16384 -480 0 180 0
+}
+}
+// entity 88
+{
+guid "{387D64BD-285C-11F0-B36F-A0B970CF9789}"
+"classname" "misc_prefab"
+"angles" "0 180 0"
+"model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
+"origin" "120 -592 0"
+}
+// entity 89
+{
+guid "{3FB2CF26-285C-11F0-B36F-A0B970CF9789}"
+"classname" "misc_prefab"
+"angles" "0 180 0"
+"model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
+"origin" "280 -592 0"
+}
+// entity 90
+{
+guid "{46F0A7DF-285C-11F0-B36F-A0B970CF9789}"
+"classname" "misc_prefab"
+"angles" "0 360 0"
+"model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
+"origin" "280 -432 0"
+}
+// entity 91
+{
+guid "{46F0A7F3-285C-11F0-B36F-A0B970CF9789}"
+"classname" "misc_prefab"
+"angles" "0 360 0"
+"model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
+"origin" "120 -432 0"
+}
+// entity 92
+{
+guid "{7DE1929F-285C-11F0-B36F-A0B970CF9789}"
+"classname" "light"
+"far_edge" "0"
+"name" "light_001"
+"origin" "219.75 -506.25 135"
+"radius" "400"
 "ENABLE_FALLOFF" "1"
 "PRIMARY_NOSHADOWMAP" "1"
 "PRIMARY_TYPE" "PRIMARY_OMNI"
