@@ -76,8 +76,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 
   > might be because trigger is still present, it needs to be deleted in the script resposible where perk is moved out.
 
-- once a perk is buyed, 3d audio fucks up 50% of the time (location/volume)
-
 - the little elevation on fourth zone is blcking the player if he deosn't run
 
 - the mulekick perk is bugged when 3rd weapon is in hand (icon in hud is bugged)

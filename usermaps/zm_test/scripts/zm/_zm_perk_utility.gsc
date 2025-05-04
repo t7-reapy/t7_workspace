@@ -64,6 +64,7 @@ function __main__()
 	level.actor_damage_callbacks[ 0 ] = &actor_damage_callback_override;
 
 	array::thread_all(GetEntArray("audio_bump_trigger", "targetname"), &zm_perks::thread_bump_trigger);
+	level._solo_revive_machine_expire_func = &solo_revive_perk_expire;
 }
 
 function check_actor_damage_callbacks( inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, sHitLoc, psOffsetTime, boneIndex, surfaceType )
@@ -93,6 +94,11 @@ function actor_damage_callback_override( str_inflictor, e_attacker, n_damage, b_
 		n_damage = [ [ level.ptr_dead_shot_damage_buff ] ]( str_inflictor, e_attacker, n_damage, b_flags, str_means_of_death, w_weapon, v_point, v_dir, str_hit_loc, n_ps_offset_time, n_bone_index, str_surface_type );
 	
 	return n_damage;
+}
+
+function private solo_revive_perk_expire() {
+	// self == revive_perk_trigger
+	self.bump TriggerEnable(0);
 }
 
 // --------------------------------
