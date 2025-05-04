@@ -148,7 +148,12 @@ function private play_rain_pipes_sounds_for_given_intensity(intensity)
     {
         // Let's wait with random shifting in order to avoid 
         // having a weird effect with duplicated sounds at the same place...
-        wait RandomFloatRange(1.2, 2.4);
-        SoundLoopEmitter(sound_alias, script_origin.origin);
+        thread play_pipe_draining_sound_with_random_delay(sound_alias, script_origin.origin);
     }
+}
+
+function private play_pipe_draining_sound_with_random_delay(sound_alias, origin)
+{
+    wait RandomFloat(2.4);
+    SoundLoopEmitter(sound_alias, origin);
 }

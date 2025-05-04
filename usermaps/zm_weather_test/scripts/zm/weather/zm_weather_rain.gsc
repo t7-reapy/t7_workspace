@@ -97,7 +97,8 @@ function pause()
 
 function greater_intensity()
 {
-    if (level.weather.rain.intensity < RAIN_INTENSITY_HIG)
+    if (level.weather.rain.intensity < RAIN_INTENSITY_HIG
+        && level.weather.rain.intensity != RAIN_INTENSITY_DISABLE)
     {
         level.weather.rain.intensity++;
     }
@@ -105,7 +106,8 @@ function greater_intensity()
 
 function lesser_intensity()
 {
-    if (level.weather.rain.intensity > RAIN_INTENSITY_LOW)
+    if (level.weather.rain.intensity > RAIN_INTENSITY_LOW
+        && level.weather.rain.intensity != RAIN_INTENSITY_DISABLE)
     {
         level.weather.rain.intensity--;
     }

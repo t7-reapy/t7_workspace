@@ -1,3 +1,4 @@
+#using scripts\shared\util_shared; 
 #using scripts\shared\flag_shared; 
 #using scripts\shared\system_shared;
 
@@ -50,6 +51,8 @@ function init()
 
 function main()
 {
+    util::waitforallclients();
+
     if (ENABLE_LIGHTNING)
     {
         self thread zm_weather_lightning::run();

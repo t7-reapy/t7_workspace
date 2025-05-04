@@ -1213,7 +1213,7 @@ guid "{C573CB49-9AE4-4EF9-890D-0A4A060F691C}"
 guid "{A2B12B1D-109D-4A17-8860-71193D6DFE4E}"
 "classname" "volume_sun"
 "ssi" "default_day"
-"ssi1" "zm_der_riese"
+"ssi1" "house"
 "global_fill_color" "0 0 0"
 "global_fill_intensity" "1"
 "grid_density" "32"
@@ -1225,12 +1225,12 @@ guid "{A2B12B1D-109D-4A17-8860-71193D6DFE4E}"
 // brush 0
 {
  guid "{A71C3C03-030B-4C22-9BFB-7C04A95415B3}"
- ( -2048 -2048 -64 ) ( 2048 -2048 -64 ) ( 2048 2048 -64 ) sun_volume 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -2048 2048 896 ) ( 2048 2048 896 ) ( 2048 -2048 896 ) sun_volume 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( -2048 -1920 0 ) ( -2048 -1920 1024 ) ( 2048 -1920 1024 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
- ( 1920 2048 0 ) ( 1920 -2048 0 ) ( 1920 -2048 1024 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
- ( 2048 1920 0 ) ( 2048 1920 1024 ) ( -2048 1920 1024 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
- ( -1920 2048 1024 ) ( -1920 -2048 1024 ) ( -1920 -2048 0 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( -487 -2048 -5268 ) ( 3609 -2048 -5268 ) ( 3609 2048 -5268 ) sun_volume 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -487 2048 7228 ) ( 3609 2048 7228 ) ( 3609 -2048 7228 ) sun_volume 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -5604 -17966 0 ) ( -5604 -17966 1024 ) ( -1508 -17966 1024 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 16752 3349 0 ) ( 16752 -747 0 ) ( 16752 -747 1024 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 4650 16492 0 ) ( 4650 16492 1024 ) ( 554 16492 1024 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( -13976 3349 1024 ) ( -13976 -747 1024 ) ( -13976 -747 0 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
 }
 }
 // entity 23
@@ -1398,13 +1398,6 @@ layer "000_Global/buyable"
 }
 // entity 34
 {
-guid "{26AB2AA0-2382-11F0-B368-D61B04584648}"
-"classname" "misc_prefab"
-"model" "_prefabs/zm/zm_test/house/sky_cloud_vista.map"
-"origin" "-10 -10 16"
-}
-// entity 35
-{
 guid "{A1A95465-2346-11F0-B367-B88E114507E3}"
 "classname" "misc_volume_decal"
 "angles" "270 0 0"
@@ -1425,7 +1418,7 @@ guid "{A1A95465-2346-11F0-B367-B88E114507E3}"
 "revealDataSize" "revealAll"
 "textureTiling" "1 1"
 }
-// entity 36
+// entity 35
 {
 guid "{979D364D-2390-11F0-B368-D61B04584648}"
 "classname" "misc_model"
@@ -1439,7 +1432,7 @@ guid "{979D364D-2390-11F0-B368-D61B04584648}"
 "lightingstate4" "1"
 "static" "1"
 }
-// entity 37
+// entity 36
 {
 guid "{979D3663-2390-11F0-B368-D61B04584648}"
 "classname" "misc_model"
@@ -1453,7 +1446,7 @@ guid "{979D3663-2390-11F0-B368-D61B04584648}"
 "lightingstate4" "1"
 "static" "1"
 }
-// entity 38
+// entity 37
 {
 guid "{A2DF35A5-2390-11F0-B368-D61B04584648}"
 "classname" "misc_model"
@@ -1467,7 +1460,7 @@ guid "{A2DF35A5-2390-11F0-B368-D61B04584648}"
 "lightingstate4" "1"
 "static" "1"
 }
-// entity 39
+// entity 38
 {
 guid "{A2DF35C5-2390-11F0-B368-D61B04584648}"
 "classname" "misc_model"
@@ -1481,7 +1474,7 @@ guid "{A2DF35C5-2390-11F0-B368-D61B04584648}"
 "lightingstate4" "1"
 "static" "1"
 }
-// entity 40
+// entity 39
 {
 guid "{A2DF35D0-2390-11F0-B368-D61B04584648}"
 "classname" "misc_model"
@@ -1495,7 +1488,7 @@ guid "{A2DF35D0-2390-11F0-B368-D61B04584648}"
 "lightingstate4" "1"
 "static" "1"
 }
-// entity 41
+// entity 40
 {
 guid "{A2DF35E6-2390-11F0-B368-D61B04584648}"
 "classname" "misc_model"
@@ -1509,7 +1502,7 @@ guid "{A2DF35E6-2390-11F0-B368-D61B04584648}"
 "lightingstate4" "1"
 "static" "1"
 }
-// entity 42
+// entity 41
 {
 guid "{D36F606E-2397-11F0-B368-D61B04584648}"
 "classname" "trigger_multiple"
@@ -1526,7 +1519,7 @@ guid "{D36F606E-2397-11F0-B368-D61B04584648}"
  ( 512 -464 128 ) ( 512 -816 128 ) ( 512 -816 0 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 43
+// entity 42
 {
 guid "{FBF167F7-2397-11F0-B368-D61B04584648}"
 "classname" "trigger_multiple"
@@ -1543,7 +1536,7 @@ guid "{FBF167F7-2397-11F0-B368-D61B04584648}"
  ( 432 -368 144 ) ( 432 -448 144 ) ( 432 -448 0 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 44
+// entity 43
 {
 guid "{41D25194-237A-11F0-B368-D61B04584648}"
 "classname" "script_model"
@@ -1561,7 +1554,7 @@ guid "{41D25194-237A-11F0-B368-D61B04584648}"
 "modelscale" "1"
 "shadow_casting" "1"
 }
-// entity 45
+// entity 44
 {
 guid "{41D25191-237A-11F0-B368-D61B04584648}"
 "classname" "misc_model"
@@ -1575,7 +1568,7 @@ guid "{41D25191-237A-11F0-B368-D61B04584648}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 46
+// entity 45
 {
 guid "{41D25197-237A-11F0-B368-D61B04584648}"
 "classname" "script_struct"
@@ -1585,7 +1578,7 @@ guid "{41D25197-237A-11F0-B368-D61B04584648}"
 "targetname" "auto1"
 "_color" "1 0 0"
 }
-// entity 47
+// entity 46
 {
 guid "{9365429C-2533-11F0-B36A-F225E3595315}"
 "classname" "trigger_multiple"
@@ -1602,7 +1595,7 @@ guid "{9365429C-2533-11F0-B36A-F225E3595315}"
  ( 976 -368 144 ) ( 896 -368 144 ) ( 896 -368 0 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 1152 0 0 0
 }
 }
-// entity 48
+// entity 47
 {
 guid "{99C06D0D-2533-11F0-B36A-F225E3595315}"
 "classname" "trigger_multiple"
@@ -1619,7 +1612,7 @@ guid "{99C06D0D-2533-11F0-B36A-F225E3595315}"
  ( 976 -912 0 ) ( 976 -912 144 ) ( 976 -832 144 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 -16384 832 0 180 0
 }
 }
-// entity 49
+// entity 48
 {
 guid "{99C06D18-2533-11F0-B36A-F225E3595315}"
 "classname" "trigger_multiple"
@@ -1636,7 +1629,7 @@ guid "{99C06D18-2533-11F0-B36A-F225E3595315}"
  ( 432 -912 0 ) ( 432 -912 144 ) ( 512 -912 144 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 -16384 -480 0 180 0
 }
 }
-// entity 50
+// entity 49
 {
 guid "{9DAF197A-261E-11F0-B36B-BDF2891D93DC}"
 "classname" "volume_weathergrime"
@@ -1664,7 +1657,7 @@ guid "{9DAF197A-261E-11F0-B36B-BDF2891D93DC}"
  ( -2624 3664 928 ) ( -2624 -3504 928 ) ( -2624 -3504 -352 ) weathergrime_volume 64 64 3260 0 0 0 lightmap_gray 16384 16384 3260 0 0 0
 }
 }
-// entity 51
+// entity 50
 {
 guid "{9DAF197D-261E-11F0-B36B-BDF2891D93DC}"
 "classname" "volume_outdoor"
@@ -1683,7 +1676,7 @@ guid "{9DAF197D-261E-11F0-B36B-BDF2891D93DC}"
  ( -2608 3648 64 ) ( -2608 3040 64 ) ( -2608 3040 -16 ) outdoorbounds_volume 64 64 3056 0 0 0 lightmap_gray 16384 16384 3056 0 0 0
 }
 }
-// entity 52
+// entity 51
 {
 guid "{5EA42994-2626-11F0-B36B-BDF2891D93DC}"
 "classname" "trigger_use"
@@ -1701,7 +1694,7 @@ guid "{5EA42994-2626-11F0-B36B-BDF2891D93DC}"
  ( 144 -770 56 ) ( 112 -770 56 ) ( 112 -770 40 ) trigger 64 64 1152 0 0 0 lightmap_gray 16384 16384 1152 0 0 0
 }
 }
-// entity 53
+// entity 52
 {
 guid "{6C4ED46B-2626-11F0-B36B-BDF2891D93DC}"
 "classname" "trigger_use"
@@ -1719,13 +1712,14 @@ guid "{6C4ED46B-2626-11F0-B36B-BDF2891D93DC}"
  ( 208 -770 56 ) ( 176 -770 56 ) ( 176 -770 40 ) trigger 64 64 1152 0 0 0 lightmap_gray 16384 16384 1152 0 0 0
 }
 }
-// entity 54
+// entity 53
 {
 guid "{01930F14-262C-11F0-B36B-BDF2891D93DC}"
 "classname" "light"
 "far_edge" "0"
 "origin" "315.75 -762.25 151"
 "radius" "400"
+"stops" "15"
 "ENABLE_FALLOFF" "1"
 "PRIMARY_NOSHADOWMAP" "1"
 "PRIMARY_TYPE" "PRIMARY_OMNI"
@@ -1745,12 +1739,11 @@ guid "{01930F14-262C-11F0-B36B-BDF2891D93DC}"
 "roundness" "0.5"
 "shadowUpdate" "Never"
 "shadowmapScale" "1"
-"stops" "11"
 "superellipse" "0.75 1 0.75 1"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 55
+// entity 54
 {
 guid "{EC0C0066-2633-11F0-B36B-BDF2891D93DC}"
 "classname" "trigger_use"
@@ -1768,7 +1761,7 @@ guid "{EC0C0066-2633-11F0-B36B-BDF2891D93DC}"
  ( 66 -770 56 ) ( 34 -770 56 ) ( 34 -770 40 ) trigger 64 64 1152 0 0 0 lightmap_gray 16384 16384 1152 0 0 0
 }
 }
-// entity 56
+// entity 55
 {
 guid "{BD34D478-267A-11F0-B36C-91C58A81F334}"
 "classname" "trigger_multiple"
@@ -1785,13 +1778,14 @@ guid "{BD34D478-267A-11F0-B36C-91C58A81F334}"
  ( -400 -328 16 ) ( -400 -360 16 ) ( -400 -360 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 57
+// entity 56
 {
 guid "{503EA640-2681-11F0-B36C-91C58A81F334}"
 "classname" "light"
 "far_edge" "0"
 "origin" "-336 -456 72"
 "radius" "150"
+"stops" "15"
 "ENABLE_FALLOFF" "1"
 "PRIMARY_NOSHADOWMAP" "1"
 "PRIMARY_TYPE" "PRIMARY_OMNI"
@@ -1811,12 +1805,11 @@ guid "{503EA640-2681-11F0-B36C-91C58A81F334}"
 "roundness" "0.5"
 "shadowUpdate" "Never"
 "shadowmapScale" "1"
-"stops" "11"
 "superellipse" "0.75 1 0.75 1"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 58
+// entity 57
 {
 guid "{5B58B8E8-2681-11F0-B36C-91C58A81F334}"
 "classname" "light"
@@ -1824,6 +1817,7 @@ guid "{5B58B8E8-2681-11F0-B36C-91C58A81F334}"
 "name" "light_001"
 "origin" "-336 -264 72"
 "radius" "150"
+"stops" "15"
 "ENABLE_FALLOFF" "1"
 "PRIMARY_NOSHADOWMAP" "1"
 "PRIMARY_TYPE" "PRIMARY_OMNI"
@@ -1842,12 +1836,11 @@ guid "{5B58B8E8-2681-11F0-B36C-91C58A81F334}"
 "roundness" "0.5"
 "shadowUpdate" "Never"
 "shadowmapScale" "1"
-"stops" "11"
 "superellipse" "0.75 1 0.75 1"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 59
+// entity 58
 {
 guid "{5B58B8F3-2681-11F0-B36C-91C58A81F334}"
 "classname" "light"
@@ -1855,6 +1848,7 @@ guid "{5B58B8F3-2681-11F0-B36C-91C58A81F334}"
 "name" "light_002"
 "origin" "-336 -648 72"
 "radius" "150"
+"stops" "15"
 "ENABLE_FALLOFF" "1"
 "PRIMARY_NOSHADOWMAP" "1"
 "PRIMARY_TYPE" "PRIMARY_OMNI"
@@ -1873,12 +1867,11 @@ guid "{5B58B8F3-2681-11F0-B36C-91C58A81F334}"
 "roundness" "0.5"
 "shadowUpdate" "Never"
 "shadowmapScale" "1"
-"stops" "11"
 "superellipse" "0.75 1 0.75 1"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 60
+// entity 59
 {
 guid "{6FFAA4DD-2681-11F0-B36C-91C58A81F334}"
 "classname" "trigger_multiple"
@@ -1897,7 +1890,7 @@ guid "{6FFAA4DD-2681-11F0-B36C-91C58A81F334}"
  ( -592 -520 16 ) ( -592 -552 16 ) ( -592 -552 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 61
+// entity 60
 {
 guid "{76502C19-2681-11F0-B36C-91C58A81F334}"
 "classname" "trigger_multiple"
@@ -1916,7 +1909,7 @@ guid "{76502C19-2681-11F0-B36C-91C58A81F334}"
  ( -592 -712 16 ) ( -592 -744 16 ) ( -592 -744 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 62
+// entity 61
 {
 guid "{76502C2A-2681-11F0-B36C-91C58A81F334}"
 "classname" "light"
@@ -1924,6 +1917,7 @@ guid "{76502C2A-2681-11F0-B36C-91C58A81F334}"
 "name" "light_001"
 "origin" "-528 -456 72"
 "radius" "150"
+"stops" "15"
 "ENABLE_FALLOFF" "1"
 "PRIMARY_NOSHADOWMAP" "1"
 "PRIMARY_TYPE" "PRIMARY_OMNI"
@@ -1942,12 +1936,11 @@ guid "{76502C2A-2681-11F0-B36C-91C58A81F334}"
 "roundness" "0.5"
 "shadowUpdate" "Never"
 "shadowmapScale" "1"
-"stops" "11"
 "superellipse" "0.75 1 0.75 1"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 63
+// entity 62
 {
 guid "{76502C2D-2681-11F0-B36C-91C58A81F334}"
 "classname" "light"
@@ -1955,6 +1948,7 @@ guid "{76502C2D-2681-11F0-B36C-91C58A81F334}"
 "name" "light_003"
 "origin" "-528 -648 72"
 "radius" "150"
+"stops" "15"
 "ENABLE_FALLOFF" "1"
 "PRIMARY_NOSHADOWMAP" "1"
 "PRIMARY_TYPE" "PRIMARY_OMNI"
@@ -1973,12 +1967,11 @@ guid "{76502C2D-2681-11F0-B36C-91C58A81F334}"
 "roundness" "0.5"
 "shadowUpdate" "Never"
 "shadowmapScale" "1"
-"stops" "11"
 "superellipse" "0.75 1 0.75 1"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 64
+// entity 63
 {
 guid "{09DDD91F-2684-11F0-B36C-91C58A81F334}"
 "classname" "trigger_multiple"
@@ -1995,7 +1988,7 @@ guid "{09DDD91F-2684-11F0-B36C-91C58A81F334}"
  ( -400 -392 16 ) ( -400 -424 16 ) ( -400 -424 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 65
+// entity 64
 {
 guid "{141B7E5E-2684-11F0-B36C-91C58A81F334}"
 "classname" "trigger_multiple"
@@ -2012,7 +2005,7 @@ guid "{141B7E5E-2684-11F0-B36C-91C58A81F334}"
  ( -400 -552 16 ) ( -400 -584 16 ) ( -400 -584 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 66
+// entity 65
 {
 guid "{FECBEDD8-2727-11F0-B36D-A007C8437680}"
 "classname" "misc_model"
@@ -2026,7 +2019,7 @@ guid "{FECBEDD8-2727-11F0-B36D-A007C8437680}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 67
+// entity 66
 {
 guid "{FECBEDDB-2727-11F0-B36D-A007C8437680}"
 "classname" "trigger_use"
@@ -2044,7 +2037,7 @@ guid "{FECBEDDB-2727-11F0-B36D-A007C8437680}"
  ( 713 -826 56 ) ( 681 -826 56 ) ( 681 -826 40 ) trigger 64 64 1536 0 0 0 lightmap_gray 16384 16384 1536 0 0 0
 }
 }
-// entity 68
+// entity 67
 {
 guid "{FECBEDDE-2727-11F0-B36D-A007C8437680}"
 "classname" "trigger_use"
@@ -2062,7 +2055,7 @@ guid "{FECBEDDE-2727-11F0-B36D-A007C8437680}"
  ( 784 -826 56 ) ( 752 -826 56 ) ( 752 -826 40 ) trigger 64 64 1536 0 0 0 lightmap_gray 16384 16384 1536 0 0 0
 }
 }
-// entity 69
+// entity 68
 {
 guid "{FECBEDE4-2727-11F0-B36D-A007C8437680}"
 "classname" "trigger_use"
@@ -2080,7 +2073,7 @@ guid "{FECBEDE4-2727-11F0-B36D-A007C8437680}"
  ( 642 -826 56 ) ( 610 -826 56 ) ( 610 -826 40 ) trigger 64 64 1536 0 0 0 lightmap_gray 16384 16384 1536 0 0 0
 }
 }
-// entity 70
+// entity 69
 {
 guid "{FECBEDE7-2727-11F0-B36D-A007C8437680}"
 "classname" "misc_model"
@@ -2094,7 +2087,7 @@ guid "{FECBEDE7-2727-11F0-B36D-A007C8437680}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 71
+// entity 70
 {
 guid "{0BB660E8-2728-11F0-B36D-A007C8437680}"
 "classname" "light"
@@ -2102,6 +2095,7 @@ guid "{0BB660E8-2728-11F0-B36D-A007C8437680}"
 "name" "light_001"
 "origin" "704 -640 151"
 "radius" "400"
+"stops" "15"
 "ENABLE_FALLOFF" "1"
 "PRIMARY_NOSHADOWMAP" "1"
 "PRIMARY_TYPE" "PRIMARY_OMNI"
@@ -2120,12 +2114,11 @@ guid "{0BB660E8-2728-11F0-B36D-A007C8437680}"
 "roundness" "0.5"
 "shadowUpdate" "Never"
 "shadowmapScale" "1"
-"stops" "11"
 "superellipse" "0.75 1 0.75 1"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 72
+// entity 71
 {
 guid "{FECBEDE1-2727-11F0-B36D-A007C8437680}"
 "classname" "misc_model"
@@ -2139,13 +2132,14 @@ guid "{FECBEDE1-2727-11F0-B36D-A007C8437680}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 73
+// entity 72
 {
 guid "{C61BA97A-274C-11F0-B36D-A007C8437680}"
 "classname" "light"
 "far_edge" "0"
 "origin" "-68 -836 156"
 "radius" "300"
+"stops" "15"
 "ENABLE_FALLOFF" "1"
 "PRIMARY_NOSHADOWMAP" "1"
 "PRIMARY_TYPE" "PRIMARY_OMNI"
@@ -2165,61 +2159,60 @@ guid "{C61BA97A-274C-11F0-B36D-A007C8437680}"
 "roundness" "0.5"
 "shadowUpdate" "Never"
 "shadowmapScale" "1"
-"stops" "11"
 "superellipse" "0.75 1 0.75 1"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 74
+// entity 73
 {
 guid "{71F28DE0-2766-11F0-B36D-A007C8437680}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
 "origin" "-151 -920 0"
 }
-// entity 75
+// entity 74
 {
 guid "{E9FA2634-274C-11F0-B36D-A007C8437680}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe_heavy_exploder.map"
 "origin" "-256 -920 0"
 }
-// entity 76
+// entity 75
 {
 guid "{25D4B7C3-277D-11F0-B36D-A007C8437680}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe_regular_exploder.map"
 "origin" "-342 -920 0"
 }
-// entity 77
+// entity 76
 {
 guid "{25D4B7CE-277D-11F0-B36D-A007C8437680}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe_light_exploder.map"
 "origin" "-436 -920 0"
 }
-// entity 78
+// entity 77
 {
 guid "{E58D8CF6-278F-11F0-B36D-A007C8437680}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
 "origin" "-95 -920 0"
 }
-// entity 79
+// entity 78
 {
 guid "{E58D8D01-278F-11F0-B36D-A007C8437680}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
 "origin" "-39 -920 0"
 }
-// entity 80
+// entity 79
 {
 guid "{E58D8D0C-278F-11F0-B36D-A007C8437680}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
 "origin" "9 -920 0"
 }
-// entity 81
+// entity 80
 {
 guid "{1AF40E27-2626-11F0-B36B-BDF2891D93DC}"
 "classname" "misc_model"
@@ -2233,7 +2226,7 @@ guid "{1AF40E27-2626-11F0-B36B-BDF2891D93DC}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 82
+// entity 81
 {
 guid "{1AF40E16-2626-11F0-B36B-BDF2891D93DC}"
 "classname" "misc_model"
@@ -2247,7 +2240,7 @@ guid "{1AF40E16-2626-11F0-B36B-BDF2891D93DC}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 83
+// entity 82
 {
 guid "{EC0C0069-2633-11F0-B36B-BDF2891D93DC}"
 "classname" "misc_model"
@@ -2261,7 +2254,7 @@ guid "{EC0C0069-2633-11F0-B36B-BDF2891D93DC}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 84
+// entity 83
 {
 guid "{02797AB3-2790-11F0-B36D-A007C8437680}"
 "classname" "light"
@@ -2269,6 +2262,7 @@ guid "{02797AB3-2790-11F0-B36D-A007C8437680}"
 "name" "light_001"
 "origin" "-348 -836 156"
 "radius" "300"
+"stops" "15"
 "ENABLE_FALLOFF" "1"
 "PRIMARY_NOSHADOWMAP" "1"
 "PRIMARY_TYPE" "PRIMARY_OMNI"
@@ -2287,12 +2281,11 @@ guid "{02797AB3-2790-11F0-B36D-A007C8437680}"
 "roundness" "0.5"
 "shadowUpdate" "Never"
 "shadowmapScale" "1"
-"stops" "11"
 "superellipse" "0.75 1 0.75 1"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
 }
-// entity 85
+// entity 84
 {
 guid "{C056ADE7-285B-11F0-B36F-A0B970CF9789}"
 "classname" "trigger_multiple"
@@ -2309,7 +2302,7 @@ guid "{C056ADE7-285B-11F0-B36F-A0B970CF9789}"
  ( 432 -496 16 ) ( 432 -528 16 ) ( 432 -528 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 86
+// entity 85
 {
 guid "{E0D6F3BE-285B-11F0-B36F-A0B970CF9789}"
 "classname" "trigger_multiple"
@@ -2326,7 +2319,7 @@ guid "{E0D6F3BE-285B-11F0-B36F-A0B970CF9789}"
  ( 48 -576 16 ) ( 48 -608 16 ) ( 48 -608 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 87
+// entity 86
 {
 guid "{F41746E7-285B-11F0-B36F-A0B970CF9789}"
 "classname" "trigger_multiple"
@@ -2343,7 +2336,7 @@ guid "{F41746E7-285B-11F0-B36F-A0B970CF9789}"
  ( 288 -576 0 ) ( 288 -576 144 ) ( 368 -576 144 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 -16384 -480 0 180 0
 }
 }
-// entity 88
+// entity 87
 {
 guid "{387D64BD-285C-11F0-B36F-A0B970CF9789}"
 "classname" "misc_prefab"
@@ -2351,7 +2344,7 @@ guid "{387D64BD-285C-11F0-B36F-A0B970CF9789}"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
 "origin" "120 -592 0"
 }
-// entity 89
+// entity 88
 {
 guid "{3FB2CF26-285C-11F0-B36F-A0B970CF9789}"
 "classname" "misc_prefab"
@@ -2359,7 +2352,7 @@ guid "{3FB2CF26-285C-11F0-B36F-A0B970CF9789}"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
 "origin" "280 -592 0"
 }
-// entity 90
+// entity 89
 {
 guid "{46F0A7DF-285C-11F0-B36F-A0B970CF9789}"
 "classname" "misc_prefab"
@@ -2367,7 +2360,7 @@ guid "{46F0A7DF-285C-11F0-B36F-A0B970CF9789}"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
 "origin" "280 -432 0"
 }
-// entity 91
+// entity 90
 {
 guid "{46F0A7F3-285C-11F0-B36F-A0B970CF9789}"
 "classname" "misc_prefab"
@@ -2375,7 +2368,7 @@ guid "{46F0A7F3-285C-11F0-B36F-A0B970CF9789}"
 "model" "_prefabs/library/weather/rain/rain_drain_pipe.map"
 "origin" "120 -432 0"
 }
-// entity 92
+// entity 91
 {
 guid "{7DE1929F-285C-11F0-B36F-A0B970CF9789}"
 "classname" "light"
@@ -2383,6 +2376,7 @@ guid "{7DE1929F-285C-11F0-B36F-A0B970CF9789}"
 "name" "light_001"
 "origin" "219.75 -506.25 135"
 "radius" "400"
+"stops" "15"
 "ENABLE_FALLOFF" "1"
 "PRIMARY_NOSHADOWMAP" "1"
 "PRIMARY_TYPE" "PRIMARY_OMNI"
@@ -2401,8 +2395,14 @@ guid "{7DE1929F-285C-11F0-B36F-A0B970CF9789}"
 "roundness" "0.5"
 "shadowUpdate" "Never"
 "shadowmapScale" "1"
-"stops" "11"
 "superellipse" "0.75 1 0.75 1"
 "volumetricSampleCount" "8"
 "spawnflags" "82"
+}
+// entity 92
+{
+guid "{26AB2AA0-2382-11F0-B368-D61B04584648}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/zm_test/house/sky_cloud_vista.map"
+"origin" "0 0 16"
 }
