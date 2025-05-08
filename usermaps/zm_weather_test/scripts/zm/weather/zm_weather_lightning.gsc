@@ -25,7 +25,7 @@ function init() {
     level.weather.lightning = default_lightning_state();
 }
 
-function run()
+function play()
 {
     level endon("entityshutdown");
     level endon("level_stop_lightning");
@@ -37,12 +37,11 @@ function run()
     }
     level.weather.lightning.paused = false;
 
-    if (level.weather.lightning.intensity == LIGHTNING_INTENSITY_DISABLE)
+    if (level.weather.lightning.intensity == LIGHTNING_INTENSITY_OFF)
     {
         level.weather.lightning.intensity = LIGHTNING_INTENSITY_DEFAULT;
     }
 
-    WEATHER_PRINT_DEBUG("lightning running");
     while(true)
     {
         level.weather.lightning lightning_strike();
@@ -61,16 +60,15 @@ function pause()
     level notify("level_stop_lightning");
     level.weather.lightning = default_lightning_state();
     level.weather.lightning.paused = true;
-    level.weather.lightning.intensity = LIGHTNING_INTENSITY_DISABLE;
-    level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, LIGHTNING_INTENSITY_DISABLE);
-    WEATHER_PRINT_DEBUG("lightning paused");
+    level.weather.lightning.intensity = LIGHTNING_INTENSITY_OFF;
+    level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, LIGHTNING_INTENSITY_OFF);
 }
 
 function private default_lightning_state() 
 {
     lightning = new Lightning();
     lightning.paused = true;
-    lightning.intensity = LIGHTNING_INTENSITY_DISABLE;
+    lightning.intensity = LIGHTNING_INTENSITY_OFF;
     lightning.min_wait = LIGHTNING_BASE_MIN_WAIT;
     lightning.max_wait = LIGHTNING_BASE_MAX_WAIT;
     
@@ -80,7 +78,7 @@ function private default_lightning_state()
 function greater_intensity()
 {
     if (level.weather.lightning.intensity >= LIGHTNING_INTENSITY_HIG
-        || level.weather.lightning.intensity == LIGHTNING_INTENSITY_DISABLE)
+        || level.weather.lightning.intensity == LIGHTNING_INTENSITY_OFF)
     {
         return;
     }
@@ -94,7 +92,7 @@ function greater_intensity()
 function lesser_intensity()
 {
     if (level.weather.lightning.intensity <= LIGHTNING_INTENSITY_LOW
-        || level.weather.lightning.intensity == LIGHTNING_INTENSITY_DISABLE)
+        || level.weather.lightning.intensity == LIGHTNING_INTENSITY_OFF)
     {
         return;
     }
@@ -110,10 +108,8 @@ function private lightning_strike()
     // self == lightning (level.weather.lightning)
     level endon("lightning_end_current_strike");
 
-    WEATHER_PRINT_DEBUG("lightning prepare... : [" + self.min_wait + ";" + self.max_wait + "]");
     wait RandomFloatRange(self.min_wait, self.max_wait);
-    WEATHER_PRINT_DEBUG("lightning strike !");
     level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, level.weather.lightning.intensity);
     WAIT_SERVER_FRAME;
-    level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, LIGHTNING_INTENSITY_DISABLE);
+    level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, LIGHTNING_INTENSITY_OFF);
 }

@@ -9,7 +9,7 @@ function init() {
 
 }
 
-function run()
+function play()
 {
     while(true)
     {

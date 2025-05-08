@@ -27,15 +27,11 @@ class RainAmbience {
 
 function init()
 {
-    clientfield::register("toplayer", RAIN_INTERIOR_TYPE_SFX, VERSION_SHIP, 2, "int", &rain_interior_sound, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
-    clientfield::register("toplayer", RAIN_LIMINAL_TYPE_SFX, VERSION_SHIP, 2, "int", &rain_liminal_sound, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
-    clientfield::register("toplayer", RAIN_EXTERIOR_TYPE_SFX, VERSION_SHIP, 2, "int", &rain_exterior_sound, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
+    clientfield::register("toplayer", RAIN_INTERIOR_TYPE_SFX, VERSION_SHIP, 2, "int", &rain_interior_sound, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
+    clientfield::register("toplayer", RAIN_LIMINAL_TYPE_SFX, VERSION_SHIP, 2, "int", &rain_liminal_sound, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
+    clientfield::register("toplayer", RAIN_EXTERIOR_TYPE_SFX, VERSION_SHIP, 2, "int", &rain_exterior_sound, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
 
     callback::on_localclient_connect(&on_connect);
-}
-
-function run()
-{
 }
 
 function on_connect(local_client_number)
@@ -71,12 +67,7 @@ function releaseMutex()
 
 function rain_interior_sound(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
-    if (old_intensity == new_intensity)
-    {
-        return;
-    }
-
-    if(isdefined(new_intensity) && new_intensity != RAIN_INTENSITY_DISABLE)
+    if(isdefined(new_intensity) && new_intensity != RAIN_INTENSITY_OFF)
     {
         self thread rain_interior_sound_play(level.weather.rain.ambience.interior_sounds[new_intensity]);
     }
@@ -130,12 +121,7 @@ function rain_interior_sound_stop(sound_alias)
 
 function rain_liminal_sound(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
-    if (old_intensity == new_intensity)
-    {
-        return;
-    }
-
-    if(isdefined(new_intensity) && new_intensity != RAIN_INTENSITY_DISABLE)
+    if(isdefined(new_intensity) && new_intensity != RAIN_INTENSITY_OFF)
     {
         self thread rain_liminal_sound_play(level.weather.rain.ambience.liminal_sounds[new_intensity]);
     }
@@ -189,12 +175,7 @@ function rain_liminal_sound_stop(sound_alias)
 
 function rain_exterior_sound(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
-    if (old_intensity == new_intensity)
-    {
-        return;
-    }
-
-    if(isdefined(new_intensity) && new_intensity != RAIN_INTENSITY_DISABLE)
+    if(isdefined(new_intensity) && new_intensity != RAIN_INTENSITY_OFF)
     {
         self thread rain_exterior_sound_play(level.weather.rain.ambience.exterior_sounds[new_intensity], new_intensity);
     }

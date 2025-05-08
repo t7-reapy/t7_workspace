@@ -28,7 +28,7 @@ function init()
     level define_rain_amount();
 }
 
-function run() 
+function play() 
 {
     level endon("level_stop_rain_fx");
     level endon("entityshutdown");
@@ -57,12 +57,12 @@ function pause()
     }
 
     level notify("level_stop_rain_fx");
-    level clientfield::set(FX_RAIN_CF_NAME, RAIN_INTENSITY_DISABLE);
+    level clientfield::set(FX_RAIN_CF_NAME, RAIN_INTENSITY_OFF);
 
     level.weather.rain.drops_fx.paused = true;
 }
 
-function update_rain()
+function private update_rain()
 {
     // self == level
     self define_rain_amount();
@@ -72,6 +72,9 @@ function update_rain()
 function private define_rain_amount()
 {
     // self == level
-    self._effect[FX_RAIN_LEVEL_NAME] = FX_RAIN_LEVELS[self.weather.rain.intensity];
+    if(self.weather.rain.intensity != RAIN_INTENSITY_OFF)
+    {
+        self._effect[FX_RAIN_LEVEL_NAME] = FX_RAIN_LEVELS[self.weather.rain.intensity];
+    }
 }
 

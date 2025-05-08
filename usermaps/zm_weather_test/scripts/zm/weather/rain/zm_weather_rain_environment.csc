@@ -21,14 +21,10 @@ class RainEnvironment {
 
 function init() 
 {
-    clientfield::register("world", DECAL_RAIN_TOGGLE, VERSION_SHIP, 1, "int", &decal_rain_toggle, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
-    clientfield::register("world", RAIN_EXPLODERS_CF_NAME, VERSION_SHIP, 2, "int", &update_rain_pipes, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
+    clientfield::register("world", DECAL_RAIN_TOGGLE, VERSION_SHIP, 1, "int", &decal_rain_toggle, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
+    clientfield::register("world", RAIN_EXPLODERS_CF_NAME, VERSION_SHIP, 2, "int", &update_rain_pipes, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
 
     callback::on_localclient_connect(&on_connect);
-}
-
-function run() 
-{
 }
 
 function private on_connect(local_client_num)
@@ -67,13 +63,8 @@ function private decal_rain_toggle(_localClientNum, _oldVal, shouldRain, _bNewEn
 function private update_rain_pipes(local_client_num, old_intensity, new_intensity, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump)
 {
     // self == player
-    if (old_intensity == new_intensity)
-    {
-        return;
-    }
-
     exploders = level.weather.rain.environment.exploders;
-    if (new_intensity == RAIN_INTENSITY_DISABLE)
+    if (new_intensity == RAIN_INTENSITY_OFF)
     {
         self stop_rain_pipes_exploders(local_client_num, exploders);
         self stop_rain_pipes_sounds();
@@ -98,8 +89,8 @@ function private play_rain_pipes_exploders(local_client_num, exploders, intensit
 {
     // self == player
     exploder::exploder(exploders[intensity], local_client_num);
-    exploder::stop_exploder(exploders[(intensity + 1) % (RAIN_INTENSITY_HIG + 1)], local_client_num);
-    exploder::stop_exploder(exploders[(intensity + 2) % (RAIN_INTENSITY_HIG + 1)], local_client_num);
+    exploder::stop_exploder(exploders[(intensity % RAIN_INTENSITY_HIG) + 1], local_client_num);
+    exploder::stop_exploder(exploders[((intensity + 1) % RAIN_INTENSITY_HIG) + 1], local_client_num);
 }
 
 function private stop_rain_pipes_sounds()
@@ -114,8 +105,8 @@ function private play_rain_pipes_sounds(intensity)
 {
     // self == player
     self thread play_rain_pipes_sounds_for_given_intensity(intensity);
-    self thread stop_rain_pipes_sounds_for_given_intensity((intensity + 1) % (RAIN_INTENSITY_HIG + 1));
-    self thread stop_rain_pipes_sounds_for_given_intensity((intensity + 2) % (RAIN_INTENSITY_HIG + 1));
+    self thread stop_rain_pipes_sounds_for_given_intensity((intensity % RAIN_INTENSITY_HIG) + 1);
+    self thread stop_rain_pipes_sounds_for_given_intensity(((intensity + 1) % RAIN_INTENSITY_HIG) + 1);
 }
 
 function private stop_rain_pipes_sounds_for_given_intensity(intensity)

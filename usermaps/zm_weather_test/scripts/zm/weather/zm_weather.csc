@@ -3,7 +3,6 @@
 #using scripts\shared\system_shared;
 
 #insert scripts\shared\shared.gsh;
-#insert scripts\zm\weather\zm_weather_shared.gsh;
 
 // Weather features
 #using scripts\zm\weather\zm_weather_lightning;
@@ -11,6 +10,7 @@
 #using scripts\zm\weather\zm_weather_thunder;
 #using scripts\zm\weather\zm_weather_wind;
 
+#insert scripts\zm\weather\zm_weather_shared.gsh;
 #insert scripts\zm\weather\zm_weather.gsh;
 #namespace zm_weather;
 
@@ -51,25 +51,5 @@ function init()
 
 function main()
 {
-    util::waitforallclients();
-
-    if (ENABLE_LIGHTNING)
-    {
-        self thread zm_weather_lightning::run();
-    }
-
-    if (ENABLE_RAIN)
-    {
-        self thread zm_weather_rain::run();
-    }
-
-    if (ENABLE_THUNDER)
-    {
-        self thread zm_weather_thunder::run();
-    }
-
-    if (ENABLE_WIND)
-    {
-        self thread zm_weather_wind::run();
-    }
+    // util::waitforallclients();
 }

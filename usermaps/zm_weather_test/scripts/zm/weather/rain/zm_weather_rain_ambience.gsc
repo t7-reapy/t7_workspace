@@ -29,11 +29,9 @@ function init() {
     level.weather.rain.ambience.paused = true;
     level.weather.rain.ambience.interior_triggers = GetEntArray(RAIN_TRIGGER_INTERIOR, "targetname");
     level.weather.rain.ambience.liminal_triggers = GetEntArray(RAIN_TRIGGER_LIMINAL, "targetname");
-
-	callback::on_spawned(&on_player_spawned);
 }
 
-function run() 
+function play() 
 {
     level endon("entityshutdown");
 
@@ -43,17 +41,19 @@ function run()
         return;
     }
 
+    // Remark: waiting initial_blackscreen_passed is essential for playing sounds on client, don't know why tho.
+    flag::wait_till("initial_blackscreen_passed");
     foreach (player in GetPlayers())
     {
-        player clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, RAIN_INTENSITY_DISABLE);
-        player clientfield::set_to_player(RAIN_LIMINAL_TYPE_SFX, RAIN_INTENSITY_DISABLE);
-        player clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, RAIN_INTENSITY_DISABLE);
+        player clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, RAIN_INTENSITY_OFF);
+        player clientfield::set_to_player(RAIN_LIMINAL_TYPE_SFX, RAIN_INTENSITY_OFF);
+        player clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, RAIN_INTENSITY_OFF);
         player thread play_and_update_exterior_rain_sound();
     }
 
     array::thread_all(level.weather.rain.ambience.interior_triggers, &rain_interior_trigger_think);
     array::thread_all(level.weather.rain.ambience.liminal_triggers, &rain_liminal_trigger_think);
-    
+
     level.weather.rain.ambience.paused = false;
 }
 
@@ -87,20 +87,12 @@ function pause()
         player notify("enter_rain_liminal_sound_trigger");
 
         // Finally, turn off client fields
-        player clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, RAIN_INTENSITY_DISABLE);
-        player clientfield::set_to_player(RAIN_LIMINAL_TYPE_SFX, RAIN_INTENSITY_DISABLE);
-        player clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, RAIN_INTENSITY_DISABLE);
+        player clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, RAIN_INTENSITY_OFF);
+        player clientfield::set_to_player(RAIN_LIMINAL_TYPE_SFX, RAIN_INTENSITY_OFF);
+        player clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, RAIN_INTENSITY_OFF);
     }
     
     level.weather.rain.ambience.paused = true;
-}
-
-function private on_player_spawned()
-{
-    // self == player
-    self clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, RAIN_INTENSITY_DISABLE);
-    self clientfield::set_to_player(RAIN_LIMINAL_TYPE_SFX, RAIN_INTENSITY_DISABLE);
-    self clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, level.weather.rain.intensity);
 }
 
 function private rain_interior_trigger_think()
@@ -130,12 +122,14 @@ function private rain_interior_sound(trigger)
 	self endon("enter_rain_interior_sound_trigger");
 
     self notify("stop_exterior_rain_sound_update");
-    self clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, RAIN_INTENSITY_DISABLE);
+    self clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, RAIN_INTENSITY_OFF);
     self thread play_and_update_interior_rain_sound();
+
     util::wait_till_not_touching(trigger, self);
+
     self notify("stop_interior_rain_sound_update");
     self thread play_and_update_exterior_rain_sound();
-    self clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, RAIN_INTENSITY_DISABLE);
+    self clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, RAIN_INTENSITY_OFF);
 }
 
 function private rain_liminal_trigger_think()
@@ -165,16 +159,15 @@ function private rain_liminal_sound(trigger)
 	self endon("enter_rain_liminal_sound_trigger");
 
     self notify("stop_exterior_rain_sound_update");
-    self clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, RAIN_INTENSITY_DISABLE);
+    self clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, RAIN_INTENSITY_OFF);
     self thread play_and_update_liminal_rain_sound();
+
     util::wait_till_not_touching(trigger, self);
+
     self notify("stop_liminal_rain_sound_update");
     self thread play_and_update_exterior_rain_sound();
-    self clientfield::set_to_player(RAIN_LIMINAL_TYPE_SFX, RAIN_INTENSITY_DISABLE);
+    self clientfield::set_to_player(RAIN_LIMINAL_TYPE_SFX, RAIN_INTENSITY_OFF);
 }
-
-
-// TODO: doesn't work.
 
 function private play_and_update_interior_rain_sound()
 {

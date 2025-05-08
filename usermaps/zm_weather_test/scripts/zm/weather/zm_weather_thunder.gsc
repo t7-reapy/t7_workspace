@@ -24,7 +24,7 @@ function init()
     level.weather.thunder = default_thunder_state();
 }
 
-function run()
+function play()
 {
     while(level flag::get(ACTIVE_THUNDER_FLAG))
     {

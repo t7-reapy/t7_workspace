@@ -24,13 +24,9 @@
 
 function init()
 {
-    clientfield::register("toplayer", ZM_POSTFX_RAIN_DROPS_CF_NAME, VERSION_SHIP, 2, "int", &rain_drops_toggle, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
+    clientfield::register("toplayer", ZM_POSTFX_RAIN_DROPS_CF_NAME, VERSION_SHIP, 2, "int", &rain_drops_toggle, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
         
     callback::on_localclient_connect(&on_connect);
-}
-
-function run()
-{
 }
 
 function on_connect(local_client_number)
@@ -43,11 +39,8 @@ function on_connect(local_client_number)
 
 function rain_drops_toggle(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
-    if(new_intensity != RAIN_INTENSITY_DISABLE)
+    if(new_intensity != RAIN_INTENSITY_OFF)
     {
-        if (old_intensity != new_intensity) {
-            filter::disable_filter_sprite_rain(self, ZM_POSTFX_RAIN_DROPS_FILTER_ID);
-        }
         self thread rain_enable(local_client_number, new_intensity);
     }
     else
@@ -87,6 +80,8 @@ function rain_enable(local_client_number, intensity)
     self endon("raining");
     self endon("stop_raining");
     
+    filter::disable_filter_sprite_rain(self, ZM_POSTFX_RAIN_DROPS_FILTER_ID);
+
     if(!isdefined(self.rain_opacity))
     {
         self.rain_opacity = 0.2;

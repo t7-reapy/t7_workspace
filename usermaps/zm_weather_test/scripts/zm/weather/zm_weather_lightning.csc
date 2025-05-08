@@ -23,10 +23,6 @@ function init()
     callback::on_localclient_connect(&on_connect);
 }
 
-function run()
-{
-}
-
 function private on_connect(local_client_number)
 {
     // self == player
@@ -38,15 +34,8 @@ function private on_connect(local_client_number)
 
 function private lightning_explodes(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
-    // self == world
-    WEATHER_PRINT_DEBUG("lightning explodes");
-
-    if (old_intensity == new_intensity)
-    {
-        return;
-    }
-
-    if(isdefined(new_intensity) && new_intensity != LIGHTNING_INTENSITY_DISABLE)
+    // self == world    
+    if(isdefined(new_intensity) && new_intensity != LIGHTNING_INTENSITY_OFF)
     {
         player = GetLocalPlayer(local_client_number);
         player thread lightning_exploders_play(new_intensity);
@@ -56,7 +45,7 @@ function private lightning_explodes(local_client_number, old_intensity, new_inte
 function private lightning_exploders_play(intensity)
 {
     // self == player
-    if (intensity == LIGHTNING_INTENSITY_DISABLE)
+    if (intensity == LIGHTNING_INTENSITY_OFF)
     {
         return;
     }
@@ -72,7 +61,6 @@ function private lightning_exploders_play(intensity)
 function private play_and_stop_exploder(exploder_alias)
 {
     // self == player
-    WEATHER_PRINT_DEBUG("lightning strike: " + exploder_alias);
     // We don't use local_client_number because we want the 
     // exploder to be applied to all local players at the same time.
     exploder::exploder(exploder_alias);
@@ -85,6 +73,5 @@ function private play_lightning_sound(sound_alias, delay)
     // self == player
     // Strike is distant, so the sound takes time to come to player's ears
     wait RandomFloatRange(delay - 1, delay + 1);
-    WEATHER_PRINT_DEBUG("lightning sound: " + sound_alias);
     self PlaySound(self GetLocalClientNumber(), sound_alias);
 }

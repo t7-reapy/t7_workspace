@@ -59,7 +59,7 @@ function main()
 {
 	zm_usermap::main();
 	map_init();
-	thread monitor_power_state();
+	zm_weather::play();
 
 	// Triggers for testing
 	ent_triggers_greater = GetEntArray("trigger_greater_intensity", "targetname");
@@ -70,20 +70,6 @@ function main()
 	
 	ent_triggers_pause = GetEntArray("trigger_play_pause", "targetname");
 	array::thread_all(ent_triggers_pause, &monitor_trigger_play_pause);
-}
-
-function monitor_power_state()
-{
-    level flag::wait_till("initial_blackscreen_passed");
-
-	while(true)
-	{
-		level flag::wait_till("power_on");
-		zm_weather::pause();
-
-		level flag::wait_till_clear("power_on");
-		zm_weather::resume();
-	}
 }
 
 function monitor_trigger_greater_intensity()
@@ -119,9 +105,8 @@ function monitor_trigger_play_pause()
 	{
 		self waittill("trigger");
 		zm_weather::pause();
-
 		self waittill("trigger");
-		zm_weather::resume();
+		zm_weather::play();
 	}
 }
 
