@@ -34,7 +34,7 @@ function private on_connect(local_client_number)
 
 function private lightning_explodes(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
-    // self == world    
+    // self == world
     if(isdefined(new_intensity) && new_intensity != LIGHTNING_INTENSITY_OFF)
     {
         player = GetLocalPlayer(local_client_number);

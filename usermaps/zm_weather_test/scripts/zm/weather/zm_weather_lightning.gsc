@@ -1,6 +1,4 @@
 #using scripts\shared\clientfield_shared; 
-#using scripts\shared\exploder_shared; 
-#using scripts\shared\flag_shared; 
 
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;
@@ -58,9 +56,8 @@ function pause()
     }
 
     level notify("level_stop_lightning");
+    level notify("lightning_end_current_strike");
     level.weather.lightning = default_lightning_state();
-    level.weather.lightning.paused = true;
-    level.weather.lightning.intensity = LIGHTNING_INTENSITY_OFF;
     level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, LIGHTNING_INTENSITY_OFF);
 }
 
@@ -69,8 +66,8 @@ function private default_lightning_state()
     lightning = new Lightning();
     lightning.paused = true;
     lightning.intensity = LIGHTNING_INTENSITY_OFF;
-    lightning.min_wait = LIGHTNING_BASE_MIN_WAIT;
-    lightning.max_wait = LIGHTNING_BASE_MAX_WAIT;
+    lightning.min_wait = LIGHTNING_BASE_MIN_WAIT[lightning.intensity];
+    lightning.max_wait = LIGHTNING_BASE_MAX_WAIT[lightning.intensity];
     
     return lightning;
 }
@@ -83,9 +80,9 @@ function greater_intensity()
         return;
     }
 
-    level.weather.lightning.min_wait -= LIGHTNING_BASE_MIN_WAIT * LIGHTNING_FREQUENCY_FACTOR;
-    level.weather.lightning.max_wait -= LIGHTNING_BASE_MAX_WAIT * LIGHTNING_FREQUENCY_FACTOR;
     level.weather.lightning.intensity++;
+    level.weather.lightning.min_wait = LIGHTNING_BASE_MIN_WAIT[level.weather.lightning.intensity];
+    level.weather.lightning.max_wait = LIGHTNING_BASE_MAX_WAIT[level.weather.lightning.intensity];
     level notify("lightning_end_current_strike");
 }
 
@@ -97,9 +94,9 @@ function lesser_intensity()
         return;
     }
 
-    level.weather.lightning.min_wait += LIGHTNING_BASE_MIN_WAIT * LIGHTNING_FREQUENCY_FACTOR;
-    level.weather.lightning.max_wait += LIGHTNING_BASE_MAX_WAIT * LIGHTNING_FREQUENCY_FACTOR;
     level.weather.lightning.intensity--;
+    level.weather.lightning.min_wait = LIGHTNING_BASE_MIN_WAIT[level.weather.lightning.intensity];
+    level.weather.lightning.max_wait = LIGHTNING_BASE_MAX_WAIT[level.weather.lightning.intensity];
     level notify("lightning_end_current_strike");
 }
 
@@ -109,7 +106,7 @@ function private lightning_strike()
     level endon("lightning_end_current_strike");
 
     wait RandomFloatRange(self.min_wait, self.max_wait);
-    level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, level.weather.lightning.intensity);
+    level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, self.intensity);
     WAIT_SERVER_FRAME;
     level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, LIGHTNING_INTENSITY_OFF);
 }
