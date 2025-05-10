@@ -28,6 +28,15 @@ function init()
     level define_rain_amount();
 }
 
+function private define_rain_amount()
+{
+    // self == level
+    if(self.weather.rain.intensity != WEATHER_INTENSITY_OFF)
+    {
+        self._effect[FX_RAIN_LEVEL_NAME] = FX_RAIN_LEVELS[self.weather.rain.intensity];
+    }
+}
+
 function play() 
 {
     level endon("level_stop_rain_fx");
@@ -48,6 +57,12 @@ function play()
     }
 }
 
+function private update_rain() // self == level
+{
+    self define_rain_amount();
+    self clientfield::set(FX_RAIN_CF_NAME, self.weather.rain.intensity);
+}
+
 function pause()
 {
     if (level.weather.rain.drops_fx.paused)
@@ -61,20 +76,3 @@ function pause()
 
     level.weather.rain.drops_fx.paused = true;
 }
-
-function private update_rain()
-{
-    // self == level
-    self define_rain_amount();
-    self clientfield::set(FX_RAIN_CF_NAME, self.weather.rain.intensity);
-}
-
-function private define_rain_amount()
-{
-    // self == level
-    if(self.weather.rain.intensity != WEATHER_INTENSITY_OFF)
-    {
-        self._effect[FX_RAIN_LEVEL_NAME] = FX_RAIN_LEVELS[self.weather.rain.intensity];
-    }
-}
-

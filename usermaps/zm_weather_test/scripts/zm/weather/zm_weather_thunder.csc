@@ -22,17 +22,15 @@ function init()
     callback::on_localclient_connect(&on_connect);
 }
 
-function private on_connect(local_client_number)
+function private on_connect(local_client_number) // self == player
 {
-    // self == player
     level.weather.thunder = new Thunder();
     level.weather.thunder.sounds = THUNDER_SOUNDS;
     level.weather.thunder.exploders = THUNDER_EXPLODERS;
 }
 
-function private thunder_strike(localClientNum, _oldVal, shouldStrike, bNewEnt, bInitialSnap, _fieldName, _bWasTimeJump)
+function private thunder_strike(localClientNum, _oldVal, shouldStrike, bNewEnt, bInitialSnap, _fieldName, _bWasTimeJump) // self == world
 {
-    // self == world
     if (isdefined(shouldStrike) && shouldStrike)
     {
         player = GetLocalPlayer(localClientNum);
@@ -41,9 +39,8 @@ function private thunder_strike(localClientNum, _oldVal, shouldStrike, bNewEnt, 
 
 }
 
-function thunder_strikes()
+function thunder_strikes() // self == player
 {
-    // self == player
     thunder = level.weather.thunder;
     thunder_sound = thunder.sounds[RandomIntRange(0, thunder.sounds.size)];
     thunder_exploder = thunder.exploders[RandomIntRange(0, thunder.exploders.size)];

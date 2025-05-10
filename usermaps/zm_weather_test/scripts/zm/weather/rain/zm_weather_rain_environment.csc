@@ -42,9 +42,8 @@ function private on_connect(local_client_num)
     }
 }
 
-function private decal_rain_toggle(_localClientNum, _oldVal, shouldRain, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump)
+function private decal_rain_toggle(_localClientNum, _oldVal, shouldRain, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump) // self == player
 {
-    // self == player
     volume_decals = level.weather.rain.environment.volume_decals;
 
     foreach (volume_decal in volume_decals)
@@ -60,9 +59,8 @@ function private decal_rain_toggle(_localClientNum, _oldVal, shouldRain, _bNewEn
     }
 }
 
-function private update_rain_pipes(local_client_num, old_intensity, new_intensity, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump)
+function private update_rain_pipes(local_client_num, old_intensity, new_intensity, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump) // self == player
 {
-    // self == player
     exploders = level.weather.rain.environment.exploders;
     if (new_intensity == WEATHER_INTENSITY_OFF)
     {
@@ -76,42 +74,37 @@ function private update_rain_pipes(local_client_num, old_intensity, new_intensit
     }
 }
 
-function private stop_rain_pipes_exploders(local_client_num, exploders)
+function private stop_rain_pipes_exploders(local_client_num, exploders) // self == player
 {
-    // self == player
     foreach (exploder in exploders)
     {
         exploder::stop_exploder(exploder, local_client_num);
     }
 }
 
-function private play_rain_pipes_exploders(local_client_num, exploders, intensity)
+function private play_rain_pipes_exploders(local_client_num, exploders, intensity) // self == player
 {
-    // self == player
     exploder::exploder(exploders[intensity], local_client_num);
     exploder::stop_exploder(exploders[(intensity % WEATHER_INTENSITY_HIG) + 1], local_client_num);
     exploder::stop_exploder(exploders[((intensity + 1) % WEATHER_INTENSITY_HIG) + 1], local_client_num);
 }
 
-function private stop_rain_pipes_sounds()
+function private stop_rain_pipes_sounds() // self == player
 {
-    // self == player
     self thread stop_rain_pipes_sounds_for_given_intensity(WEATHER_INTENSITY_LOW);
     self thread stop_rain_pipes_sounds_for_given_intensity(WEATHER_INTENSITY_MED);
     self thread stop_rain_pipes_sounds_for_given_intensity(WEATHER_INTENSITY_HIG);
 }
 
-function private play_rain_pipes_sounds(intensity)
+function private play_rain_pipes_sounds(intensity) // self == player
 {
-    // self == player
     self thread play_rain_pipes_sounds_for_given_intensity(intensity);
     self thread stop_rain_pipes_sounds_for_given_intensity((intensity % WEATHER_INTENSITY_HIG) + 1);
     self thread stop_rain_pipes_sounds_for_given_intensity(((intensity + 1) % WEATHER_INTENSITY_HIG) + 1);
 }
 
-function private stop_rain_pipes_sounds_for_given_intensity(intensity)
+function private stop_rain_pipes_sounds_for_given_intensity(intensity) // self == player
 {
-    // self == player
     self notify("stop_rain_pipes_sounds_for_given_intensity_" + intensity);
     self endon("stop_rain_pipes_sounds_for_given_intensity_" + intensity);
     self endon("play_rain_pipes_sounds_for_given_intensity_" + intensity);
@@ -125,9 +118,8 @@ function private stop_rain_pipes_sounds_for_given_intensity(intensity)
     }
 }
 
-function private play_rain_pipes_sounds_for_given_intensity(intensity)
+function private play_rain_pipes_sounds_for_given_intensity(intensity) // self == player
 {
-    // self == player
     self notify("play_rain_pipes_sounds_for_given_intensity_" + intensity);
     self endon("play_rain_pipes_sounds_for_given_intensity_" + intensity);
     self endon("stop_rain_pipes_sounds_for_given_intensity_" + intensity);

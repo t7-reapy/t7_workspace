@@ -46,9 +46,8 @@ function private ensure_players_fx_state()
     }
 }
 
-function private fx_rain(local_client_number, old_intensity, new_intensity, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump)
+function private fx_rain(local_client_number, old_intensity, new_intensity, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump) // self == world
 {
-    // self == world
     if(new_intensity != WEATHER_INTENSITY_OFF)
     {
         level._effect[FX_RAIN_LEVEL_NAME] = FX_RAIN_LEVELS[new_intensity];
@@ -58,9 +57,8 @@ function private fx_rain(local_client_number, old_intensity, new_intensity, _bNe
     ensure_players_fx_state();
 }
 
-function private rain_player(local_client_number)
+function private rain_player(local_client_number) // self == player
 {
-    // self == player
     self endon("disconnect");
     self endon("entityshutdown");
 

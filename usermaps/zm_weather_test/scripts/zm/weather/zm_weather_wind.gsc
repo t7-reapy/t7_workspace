@@ -13,6 +13,7 @@ class Wind {
     var paused;
     var intensity;
 
+    var objects;
     var exploders;
 
     var min_wait;
@@ -25,6 +26,7 @@ function private default_wind_state()
     
     wind.paused = true;
     wind.intensity = WEATHER_INTENSITY_OFF;
+    wind.objects = GetEntArray(WIND_SCRIPT_MODELS_TARGETNAME, "targetname");
     wind.exploders = WIND_EXPLODERS;
     wind.min_wait = WIND_MIN_WAIT[wind.intensity];
     wind.max_wait = WIND_MAX_WAIT[wind.intensity];
@@ -69,13 +71,11 @@ function pause()
     level.weather.wind = default_wind_state();
 }
 
-function private wind_blow() 
+function private wind_blow() // self == Wind (level.weather.wind)
 {
-    // self = Wind (level.weather.wind)
     level endon("wind_end_current_blow");
 
     wait RandomFloatRange(self.min_wait, self.max_wait);
-    WEATHER_PRINT_DEBUG("wind blow");
 
     foreach(exploder in self.exploders) 
     {
@@ -88,12 +88,30 @@ function private wind_blow()
     }
 }
 
-function private toss_objects_around()
+function private toss_objects_around() // self == Wind (level.weather.wind)
 {
-    // self = Wind (level.weather.wind)
+    // Generate a base random angle in degress
+    wind_base_angle = RandomFloat(360);
+    // Set wind min force amplitude
+    wind_min_force = WIND_VECTOR_MAX_FORCE / WEATHER_INTENSITY_HIG; // 0.16667
 
-    // TODO: use API to toss around some objects for wind blows
-    // Like: PhysicsLaunch, PhysicsJetThrust, PhysicsExplosionCylinder, ...
+    foreach (object in self.objects)
+    {
+        object thread tossed_by_wind(wind_base_angle, wind_min_force);
+    }
+}
+
+function private tossed_by_wind(wind_base_angle, wind_min_force) // self == script model
+{
+    // Wind direction and force shouldn't be homogeneous between object on the map
+    // But it shouldn't be drastically different, even if objects are far from eachothers.
+    wind_force = RandomFloatRange(wind_min_force / 2, wind_min_force * level.weather.wind.intensity);
+    wind_force_x = wind_force * cos(wind_base_angle + RandomIntRange(-10, 11));
+    wind_force_y = wind_force * sin(wind_base_angle + RandomIntRange(-10, 11));
+    wind_force_z = 0; // Wind doesn't affect vertical motion
+    wind_force_vectorial = (wind_force_x, wind_force_y, wind_force_z);
+
+    self PhysicsLaunch(self.origin, wind_force_vectorial);
 }
 
 function greater_intensity()

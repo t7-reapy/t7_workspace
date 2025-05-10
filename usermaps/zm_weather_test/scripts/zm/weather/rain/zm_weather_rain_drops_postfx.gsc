@@ -87,23 +87,20 @@ function pause()
     level.weather.rain.drops_postfx.paused = true;
 }
 
-function on_player_spawned()
+function on_player_spawned() // self == player
 {
-    // self == player
     self update_raindrops(level.weather.rain.intensity);
 }
 
-function update_raindrops(intensity)
+function update_raindrops(intensity) // self == player
 {
-    // self == player
     self.rain_on_screen = (intensity != WEATHER_INTENSITY_OFF);
     self clientfield::set_to_player(ZM_POSTFX_RAIN_DROPS_CF_NAME, intensity);
 }
 
 // Runs rain trigger logic.
-function rain_trigger_think()
+function rain_trigger_think() // self == trigger_multiple
 {
-    // self == trigger_multiple
     self endon("trigger_stop_rain_postfx");
     self endon("death");
 
@@ -119,9 +116,8 @@ function rain_trigger_think()
 }
 
 // Runs rain trigger on enter and exit.
-function rain_trigger_toggle(e_trigger)
+function rain_trigger_toggle(e_trigger) // self == player
 {
-    // self == player
     self notify("enter_rain_trigger");
     self endon("disconnect");
     self endon("enter_rain_trigger");

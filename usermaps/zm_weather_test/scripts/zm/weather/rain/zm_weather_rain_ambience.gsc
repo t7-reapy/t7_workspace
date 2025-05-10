@@ -95,9 +95,8 @@ function pause()
     level.weather.rain.ambience.paused = true;
 }
 
-function private rain_interior_trigger_think()
+function private rain_interior_trigger_think() // self == trigger_multiple
 {
-    // self == trigger_multiple
     self notify("trigger_stop_rain_interior");
     self endon("trigger_stop_rain_interior");
     self endon("death");
@@ -114,9 +113,8 @@ function private rain_interior_trigger_think()
     }
 }
 
-function private rain_interior_sound(trigger)
+function private rain_interior_sound(trigger) // self == player
 {
-    // self == player
 	self notify("enter_rain_interior_sound_trigger");
 	self endon("disconnect");
 	self endon("enter_rain_interior_sound_trigger");
@@ -132,9 +130,8 @@ function private rain_interior_sound(trigger)
     self clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, WEATHER_INTENSITY_OFF);
 }
 
-function private rain_liminal_trigger_think()
+function private rain_liminal_trigger_think() // self == trigger_multiple
 {
-    // self == trigger_multiple
     self notify("trigger_stop_rain_liminal");
     self endon("trigger_stop_rain_liminal");
     self endon("death");
@@ -151,9 +148,8 @@ function private rain_liminal_trigger_think()
     }
 }
 
-function private rain_liminal_sound(trigger)
+function private rain_liminal_sound(trigger) // self == player
 {
-    // self == player
 	self notify("enter_rain_liminal_sound_trigger");
 	self endon("disconnect");
 	self endon("enter_rain_liminal_sound_trigger");
@@ -169,9 +165,8 @@ function private rain_liminal_sound(trigger)
     self clientfield::set_to_player(RAIN_LIMINAL_TYPE_SFX, WEATHER_INTENSITY_OFF);
 }
 
-function private play_and_update_interior_rain_sound()
+function private play_and_update_interior_rain_sound() // self == player
 {
-    // self == player
     self endon("stop_interior_rain_sound_update");
 	self endon("disconnect");
 
@@ -182,9 +177,8 @@ function private play_and_update_interior_rain_sound()
     }
 }
 
-function private play_and_update_liminal_rain_sound()
+function private play_and_update_liminal_rain_sound() // self == player
 {
-    // self == player
     self endon("stop_liminal_rain_sound_update");
 	self endon("disconnect");
 
@@ -195,9 +189,8 @@ function private play_and_update_liminal_rain_sound()
     }
 }
 
-function private play_and_update_exterior_rain_sound()
+function private play_and_update_exterior_rain_sound() // self == player
 {
-    // self == player
     self endon("stop_exterior_rain_sound_update");
 	self endon("disconnect");
 

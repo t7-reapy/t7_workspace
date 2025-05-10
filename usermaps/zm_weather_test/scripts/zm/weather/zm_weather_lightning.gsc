@@ -100,9 +100,8 @@ function lesser_intensity()
     level notify("lightning_end_current_strike");
 }
 
-function private lightning_strike() 
+function private lightning_strike() // self == lightning (level.weather.lightning)
 {
-    // self == lightning (level.weather.lightning)
     level endon("lightning_end_current_strike");
 
     wait RandomFloatRange(self.min_wait, self.max_wait);
