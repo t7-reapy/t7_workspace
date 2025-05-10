@@ -35,9 +35,9 @@ function play()
     }
     level.weather.lightning.paused = false;
 
-    if (level.weather.lightning.intensity == LIGHTNING_INTENSITY_OFF)
+    if (level.weather.lightning.intensity == WEATHER_INTENSITY_OFF)
     {
-        level.weather.lightning.intensity = LIGHTNING_INTENSITY_DEFAULT;
+        level.weather.lightning.intensity = WEATHER_INTENSITY_DEFAULT;
     }
 
     while(true)
@@ -58,14 +58,14 @@ function pause()
     level notify("level_stop_lightning");
     level notify("lightning_end_current_strike");
     level.weather.lightning = default_lightning_state();
-    level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, LIGHTNING_INTENSITY_OFF);
+    level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, WEATHER_INTENSITY_OFF);
 }
 
 function private default_lightning_state() 
 {
     lightning = new Lightning();
     lightning.paused = true;
-    lightning.intensity = LIGHTNING_INTENSITY_OFF;
+    lightning.intensity = WEATHER_INTENSITY_OFF;
     lightning.min_wait = LIGHTNING_BASE_MIN_WAIT[lightning.intensity];
     lightning.max_wait = LIGHTNING_BASE_MAX_WAIT[lightning.intensity];
     
@@ -74,8 +74,8 @@ function private default_lightning_state()
 
 function greater_intensity()
 {
-    if (level.weather.lightning.intensity >= LIGHTNING_INTENSITY_HIG
-        || level.weather.lightning.intensity == LIGHTNING_INTENSITY_OFF)
+    if (level.weather.lightning.intensity >= WEATHER_INTENSITY_HIG
+        || level.weather.lightning.intensity == WEATHER_INTENSITY_OFF)
     {
         return;
     }
@@ -88,8 +88,8 @@ function greater_intensity()
 
 function lesser_intensity()
 {
-    if (level.weather.lightning.intensity <= LIGHTNING_INTENSITY_LOW
-        || level.weather.lightning.intensity == LIGHTNING_INTENSITY_OFF)
+    if (level.weather.lightning.intensity <= WEATHER_INTENSITY_LOW
+        || level.weather.lightning.intensity == WEATHER_INTENSITY_OFF)
     {
         return;
     }
@@ -108,5 +108,5 @@ function private lightning_strike()
     wait RandomFloatRange(self.min_wait, self.max_wait);
     level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, self.intensity);
     WAIT_SERVER_FRAME;
-    level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, LIGHTNING_INTENSITY_OFF);
+    level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, WEATHER_INTENSITY_OFF);
 }

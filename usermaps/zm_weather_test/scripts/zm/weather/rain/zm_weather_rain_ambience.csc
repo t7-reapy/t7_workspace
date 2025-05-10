@@ -67,7 +67,7 @@ function releaseMutex()
 
 function rain_interior_sound(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
-    if(isdefined(new_intensity) && new_intensity != RAIN_INTENSITY_OFF)
+    if(isdefined(new_intensity) && new_intensity != WEATHER_INTENSITY_OFF)
     {
         self thread rain_interior_sound_play(level.weather.rain.ambience.interior_sounds[new_intensity]);
     }
@@ -121,7 +121,7 @@ function rain_interior_sound_stop(sound_alias)
 
 function rain_liminal_sound(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
-    if(isdefined(new_intensity) && new_intensity != RAIN_INTENSITY_OFF)
+    if(isdefined(new_intensity) && new_intensity != WEATHER_INTENSITY_OFF)
     {
         self thread rain_liminal_sound_play(level.weather.rain.ambience.liminal_sounds[new_intensity]);
     }
@@ -175,7 +175,7 @@ function rain_liminal_sound_stop(sound_alias)
 
 function rain_exterior_sound(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
-    if(isdefined(new_intensity) && new_intensity != RAIN_INTENSITY_OFF)
+    if(isdefined(new_intensity) && new_intensity != WEATHER_INTENSITY_OFF)
     {
         self thread rain_exterior_sound_play(level.weather.rain.ambience.exterior_sounds[new_intensity], new_intensity);
     }

@@ -45,9 +45,9 @@ function play()
     flag::wait_till("initial_blackscreen_passed");
     foreach (player in GetPlayers())
     {
-        player clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, RAIN_INTENSITY_OFF);
-        player clientfield::set_to_player(RAIN_LIMINAL_TYPE_SFX, RAIN_INTENSITY_OFF);
-        player clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, RAIN_INTENSITY_OFF);
+        player clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, WEATHER_INTENSITY_OFF);
+        player clientfield::set_to_player(RAIN_LIMINAL_TYPE_SFX, WEATHER_INTENSITY_OFF);
+        player clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, WEATHER_INTENSITY_OFF);
         player thread play_and_update_exterior_rain_sound();
     }
 
@@ -87,9 +87,9 @@ function pause()
         player notify("enter_rain_liminal_sound_trigger");
 
         // Finally, turn off client fields
-        player clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, RAIN_INTENSITY_OFF);
-        player clientfield::set_to_player(RAIN_LIMINAL_TYPE_SFX, RAIN_INTENSITY_OFF);
-        player clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, RAIN_INTENSITY_OFF);
+        player clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, WEATHER_INTENSITY_OFF);
+        player clientfield::set_to_player(RAIN_LIMINAL_TYPE_SFX, WEATHER_INTENSITY_OFF);
+        player clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, WEATHER_INTENSITY_OFF);
     }
     
     level.weather.rain.ambience.paused = true;
@@ -122,14 +122,14 @@ function private rain_interior_sound(trigger)
 	self endon("enter_rain_interior_sound_trigger");
 
     self notify("stop_exterior_rain_sound_update");
-    self clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, RAIN_INTENSITY_OFF);
+    self clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, WEATHER_INTENSITY_OFF);
     self thread play_and_update_interior_rain_sound();
 
     util::wait_till_not_touching(trigger, self);
 
     self notify("stop_interior_rain_sound_update");
     self thread play_and_update_exterior_rain_sound();
-    self clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, RAIN_INTENSITY_OFF);
+    self clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, WEATHER_INTENSITY_OFF);
 }
 
 function private rain_liminal_trigger_think()
@@ -159,14 +159,14 @@ function private rain_liminal_sound(trigger)
 	self endon("enter_rain_liminal_sound_trigger");
 
     self notify("stop_exterior_rain_sound_update");
-    self clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, RAIN_INTENSITY_OFF);
+    self clientfield::set_to_player(RAIN_EXTERIOR_TYPE_SFX, WEATHER_INTENSITY_OFF);
     self thread play_and_update_liminal_rain_sound();
 
     util::wait_till_not_touching(trigger, self);
 
     self notify("stop_liminal_rain_sound_update");
     self thread play_and_update_exterior_rain_sound();
-    self clientfield::set_to_player(RAIN_LIMINAL_TYPE_SFX, RAIN_INTENSITY_OFF);
+    self clientfield::set_to_player(RAIN_LIMINAL_TYPE_SFX, WEATHER_INTENSITY_OFF);
 }
 
 function private play_and_update_interior_rain_sound()

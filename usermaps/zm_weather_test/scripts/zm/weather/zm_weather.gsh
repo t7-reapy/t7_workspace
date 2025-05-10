@@ -1,6 +1,6 @@
-// These values are for debug only.
-// If you want to change default state of weather, go to zm_weather_shared.gsh
-#define ENABLE_LIGHTNING 1
-#define ENABLE_RAIN 1
-#define ENABLE_THUNDER 1
-#define ENABLE_WIND 0
+// These values are mostly for debug only.
+// To conctrol weather, check zm_weather.gsc
+#define ENABLE_LIGHTNING 0
+#define ENABLE_RAIN 0
+#define ENABLE_THUNDER 0
+#define ENABLE_WIND 1

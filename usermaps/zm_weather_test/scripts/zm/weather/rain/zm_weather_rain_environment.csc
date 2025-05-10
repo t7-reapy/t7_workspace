@@ -64,7 +64,7 @@ function private update_rain_pipes(local_client_num, old_intensity, new_intensit
 {
     // self == player
     exploders = level.weather.rain.environment.exploders;
-    if (new_intensity == RAIN_INTENSITY_OFF)
+    if (new_intensity == WEATHER_INTENSITY_OFF)
     {
         self stop_rain_pipes_exploders(local_client_num, exploders);
         self stop_rain_pipes_sounds();
@@ -89,24 +89,24 @@ function private play_rain_pipes_exploders(local_client_num, exploders, intensit
 {
     // self == player
     exploder::exploder(exploders[intensity], local_client_num);
-    exploder::stop_exploder(exploders[(intensity % RAIN_INTENSITY_HIG) + 1], local_client_num);
-    exploder::stop_exploder(exploders[((intensity + 1) % RAIN_INTENSITY_HIG) + 1], local_client_num);
+    exploder::stop_exploder(exploders[(intensity % WEATHER_INTENSITY_HIG) + 1], local_client_num);
+    exploder::stop_exploder(exploders[((intensity + 1) % WEATHER_INTENSITY_HIG) + 1], local_client_num);
 }
 
 function private stop_rain_pipes_sounds()
 {
     // self == player
-    self thread stop_rain_pipes_sounds_for_given_intensity(RAIN_INTENSITY_LOW);
-    self thread stop_rain_pipes_sounds_for_given_intensity(RAIN_INTENSITY_MED);
-    self thread stop_rain_pipes_sounds_for_given_intensity(RAIN_INTENSITY_HIG);
+    self thread stop_rain_pipes_sounds_for_given_intensity(WEATHER_INTENSITY_LOW);
+    self thread stop_rain_pipes_sounds_for_given_intensity(WEATHER_INTENSITY_MED);
+    self thread stop_rain_pipes_sounds_for_given_intensity(WEATHER_INTENSITY_HIG);
 }
 
 function private play_rain_pipes_sounds(intensity)
 {
     // self == player
     self thread play_rain_pipes_sounds_for_given_intensity(intensity);
-    self thread stop_rain_pipes_sounds_for_given_intensity((intensity % RAIN_INTENSITY_HIG) + 1);
-    self thread stop_rain_pipes_sounds_for_given_intensity(((intensity + 1) % RAIN_INTENSITY_HIG) + 1);
+    self thread stop_rain_pipes_sounds_for_given_intensity((intensity % WEATHER_INTENSITY_HIG) + 1);
+    self thread stop_rain_pipes_sounds_for_given_intensity(((intensity + 1) % WEATHER_INTENSITY_HIG) + 1);
 }
 
 function private stop_rain_pipes_sounds_for_given_intensity(intensity)

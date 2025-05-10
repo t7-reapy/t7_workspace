@@ -11,6 +11,12 @@
 #using scripts\zm\weather\zm_weather_wind;
 
 #insert scripts\zm\weather\zm_weather.gsh;
+
+#define ACTIVE_LIGHTNING_FLAG "active_lightning_flag"
+#define ACTIVE_RAIN_FLAG "active_rain_flag"
+#define ACTIVE_THUNDER_FLAG "active_thunder_flag"
+#define ACTIVE_WIND_FLAG "active_wind_flag"
+
 #namespace zm_weather;
 
 REGISTER_SYSTEM_EX("zm_weather", &init, &main, undefined)
@@ -30,7 +36,6 @@ REGISTER_SYSTEM_EX("zm_weather", &init, &main, undefined)
 //     level notify(KILL_THUNDER_NOTIFICATION);
 //     level notify(KILL_WIND_NOTIFICATION);
 // }
-
 class Weather{
     var lightning;
     var rain;

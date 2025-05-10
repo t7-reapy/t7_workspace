@@ -20,7 +20,7 @@ class Rain {
 function init() 
 {
     level.weather.rain = new Rain();
-    level.weather.rain.intensity = RAIN_INTENSITY_OFF;
+    level.weather.rain.intensity = WEATHER_INTENSITY_OFF;
 
     if (ENABLE_RAIN_AMBIENCE)
     {
@@ -46,7 +46,7 @@ function init()
 function play() 
 {
     level endon("entityshutdown");
-    level.weather.rain.intensity = RAIN_DEFAULT_INTENSITY;
+    level.weather.rain.intensity = WEATHER_INTENSITY_DEFAULT;
 
     if (ENABLE_RAIN_AMBIENCE)
     {
@@ -72,7 +72,7 @@ function play()
 function pause()
 {
     // Must turn off rain here in case of player spawn.
-    level.weather.rain.intensity = RAIN_INTENSITY_OFF;
+    level.weather.rain.intensity = WEATHER_INTENSITY_OFF;
 
     if (ENABLE_RAIN_AMBIENCE)
     {
@@ -97,8 +97,8 @@ function pause()
 
 function greater_intensity()
 {
-    if (level.weather.rain.intensity < RAIN_INTENSITY_HIG
-        && level.weather.rain.intensity != RAIN_INTENSITY_OFF)
+    if (level.weather.rain.intensity < WEATHER_INTENSITY_HIG
+        && level.weather.rain.intensity != WEATHER_INTENSITY_OFF)
     {
         level.weather.rain.intensity++;
     }
@@ -106,8 +106,8 @@ function greater_intensity()
 
 function lesser_intensity()
 {
-    if (level.weather.rain.intensity > RAIN_INTENSITY_LOW
-        && level.weather.rain.intensity != RAIN_INTENSITY_OFF)
+    if (level.weather.rain.intensity > WEATHER_INTENSITY_LOW
+        && level.weather.rain.intensity != WEATHER_INTENSITY_OFF)
     {
         level.weather.rain.intensity--;
     }

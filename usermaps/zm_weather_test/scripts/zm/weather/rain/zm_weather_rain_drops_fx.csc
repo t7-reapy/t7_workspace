@@ -26,7 +26,7 @@ function init()
 
     level.weather.rain.drops_fx = new RainDropsFx();
     level.weather.rain.drops_fx.raining = false;
-    level.weather.rain.drops_fx.intensity = RAIN_INTENSITY_OFF;
+    level.weather.rain.drops_fx.intensity = WEATHER_INTENSITY_OFF;
 }
 
 function private ensure_players_fx_state()
@@ -49,7 +49,7 @@ function private ensure_players_fx_state()
 function private fx_rain(local_client_number, old_intensity, new_intensity, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump)
 {
     // self == world
-    if(new_intensity != RAIN_INTENSITY_OFF)
+    if(new_intensity != WEATHER_INTENSITY_OFF)
     {
         level._effect[FX_RAIN_LEVEL_NAME] = FX_RAIN_LEVELS[new_intensity];
     }
@@ -71,7 +71,7 @@ function private rain_player(local_client_number)
         intensity = level.weather.rain.drops_fx.intensity;
 
         WAIT_CLIENT_FRAME;
-        if(intensity == RAIN_INTENSITY_OFF)
+        if(intensity == WEATHER_INTENSITY_OFF)
         {
             if(!isdefined(self.rain_fx))
             {

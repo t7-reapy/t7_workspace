@@ -52,7 +52,7 @@ function pause()
 
     level notify("level_stop_rain_environment");
     level clientfield::set(DECAL_RAIN_TOGGLE, false);
-    level clientfield::set(RAIN_EXPLODERS_CF_NAME, RAIN_INTENSITY_OFF);
+    level clientfield::set(RAIN_EXPLODERS_CF_NAME, WEATHER_INTENSITY_OFF);
 
     level.weather.rain.environment.paused = true;
 }
@@ -61,7 +61,7 @@ function update()
 {
     intensity = level.weather.rain.intensity;
 
-    decal_enabled = (intensity != RAIN_INTENSITY_OFF);
+    decal_enabled = (intensity != WEATHER_INTENSITY_OFF);
     level clientfield::set(DECAL_RAIN_TOGGLE, decal_enabled);
     level clientfield::set(RAIN_EXPLODERS_CF_NAME, intensity);
 }

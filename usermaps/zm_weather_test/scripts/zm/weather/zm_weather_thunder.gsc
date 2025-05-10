@@ -64,7 +64,7 @@ function private default_thunder_state()
 {
     thunder = new Thunder();
     thunder.paused = true;
-    thunder.intensity = THUNDER_INTENSITY_DEFAULT;
+    thunder.intensity = WEATHER_INTENSITY_DEFAULT;
     thunder.min_wait = THUNDER_DEFAULT_MIN_WAIT[thunder.intensity];
     thunder.max_wait = THUNDER_DEFAULT_MAX_WAIT[thunder.intensity];
     thunder.lightstate_missing = THUNDER_DEFAULT_LIGHTSTATE;
@@ -75,7 +75,7 @@ function private default_thunder_state()
 
 function greater_intensity()
 {
-    if (level.weather.thunder.intensity >= THUNDER_INTENSITY_HIG)
+    if (level.weather.thunder.intensity >= WEATHER_INTENSITY_HIG)
     {
         return;
     }
@@ -87,7 +87,7 @@ function greater_intensity()
 
 function lesser_intensity()
 {
-    if (level.weather.thunder.intensity <= THUNDER_INTENSITY_LOW)
+    if (level.weather.thunder.intensity <= WEATHER_INTENSITY_LOW)
     {
         return;
     }

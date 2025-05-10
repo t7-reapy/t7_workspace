@@ -28,11 +28,11 @@ class RainDropsPostFx
 // Init
 function init()
 {
+    clientfield::register("toplayer", ZM_POSTFX_RAIN_DROPS_CF_NAME, VERSION_SHIP, 2, "int");
+    
     level.weather.rain.drops_postfx = new RainDropsPostFx();
     level.weather.rain.drops_postfx.paused = true;
     level.weather.rain.drops_postfx.triggers = GetEntArray(ZM_POSTFX_RAIN_DROPS_TRIGGER_NAME, "targetname");
-    
-    clientfield::register("toplayer", ZM_POSTFX_RAIN_DROPS_CF_NAME, VERSION_SHIP, 2, "int");
     
     callback::on_spawned(&on_player_spawned);
 }
@@ -81,7 +81,7 @@ function pause()
         player notify("enter_rain_trigger");
 
         // Finally, turn off client fields
-        player clientfield::set_to_player(ZM_POSTFX_RAIN_DROPS_CF_NAME, RAIN_INTENSITY_OFF);
+        player clientfield::set_to_player(ZM_POSTFX_RAIN_DROPS_CF_NAME, WEATHER_INTENSITY_OFF);
     }
     
     level.weather.rain.drops_postfx.paused = true;
@@ -96,7 +96,7 @@ function on_player_spawned()
 function update_raindrops(intensity)
 {
     // self == player
-    self.rain_on_screen = (intensity != RAIN_INTENSITY_OFF);
+    self.rain_on_screen = (intensity != WEATHER_INTENSITY_OFF);
     self clientfield::set_to_player(ZM_POSTFX_RAIN_DROPS_CF_NAME, intensity);
 }
 
@@ -126,7 +126,7 @@ function rain_trigger_toggle(e_trigger)
     self endon("disconnect");
     self endon("enter_rain_trigger");
 
-    self update_raindrops(RAIN_INTENSITY_OFF);
+    self update_raindrops(WEATHER_INTENSITY_OFF);
     util::wait_till_not_touching(e_trigger, self);
     
     self notify("exit_rain_trigger");
