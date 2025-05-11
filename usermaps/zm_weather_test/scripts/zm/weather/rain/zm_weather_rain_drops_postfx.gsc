@@ -50,6 +50,8 @@ function play()
     array::thread_all(level.weather.rain.drops_postfx.triggers, &rain_trigger_think);
     level.weather.rain.drops_postfx.paused = false;
     
+    // TODO: this is bugged here, update_raindrops is called when inside trigger ...
+
     while(true)
     {
         wait 1;
