@@ -49,7 +49,7 @@ function rain_drops_toggle(local_client_number, old_intensity, new_intensity, b_
     }
 }
 
-function rain_disable(local_client_number)
+function rain_disable(local_client_number) // self == player
 {
     self notify("stop_raining");
 

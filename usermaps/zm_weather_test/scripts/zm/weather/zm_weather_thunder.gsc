@@ -1,3 +1,4 @@
+#using scripts\shared\exploder_shared; 
 #using scripts\shared\util_shared; 
 #using scripts\shared\clientfield_shared; 
 
@@ -13,6 +14,8 @@ class Thunder {
     var paused;
     var intensity;
 
+    var exploders;
+
     var min_wait;
     var max_wait;
 
@@ -22,8 +25,6 @@ class Thunder {
 
 function init() 
 {
-    clientfield::register("world", THUNDER_EXPLODER_CF_NAME, VERSION_SHIP, 1, "int");
-
     level.weather.thunder = default_thunder_state();
 }
 
@@ -69,6 +70,7 @@ function private default_thunder_state()
     thunder.max_wait = THUNDER_DEFAULT_MAX_WAIT[thunder.intensity];
     thunder.lightstate_missing = THUNDER_DEFAULT_LIGHTSTATE;
     thunder.lightstate_strikes = THUNDER_STRIKES_LIGHTSTATE;
+    thunder.exploders = THUNDER_EXPLODERS;
 
     return thunder;
 }
@@ -105,16 +107,15 @@ function private thunder_strike()
     wait RandomFloatRange(self.min_wait, self.max_wait);
 
     thunder_lightstate = self.lightstate_strikes[RandomIntRange(0, self.lightstate_strikes.size)];
-    iterations = RandomIntRange(3, 5);
+    flashes = RandomIntRange(3, 5);
 
-    level clientfield::set(THUNDER_EXPLODER_CF_NAME, 1);  
-    for (i = 0; i < iterations; i++)
+    exploder::exploder(self.exploders[RandomInt(self.exploders.size)]);
+    for (i = 0; i < flashes; i++)
     {
-        wait RandomFloatRange(0.15 / iterations, 0.25 / iterations);
+        wait RandomFloatRange(0.15 / flashes, 0.25 / flashes);
         level util::set_lighting_state(thunder_lightstate);
 
-        wait RandomFloatRange(0.30 / iterations, 0.50 / iterations);
+        wait RandomFloatRange(0.30 / flashes, 0.50 / flashes);
         level util::set_lighting_state(self.lightstate_missing);
-    }    
-    level clientfield::set(THUNDER_EXPLODER_CF_NAME, 0);
+    }
 }
