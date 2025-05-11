@@ -20,9 +20,12 @@ class RainAmbience {
     var exterior_sounds;
 
     var mutex_sound;
-    var interior_sound_playing;
-    var liminal_sound_playing;
-    var exterior_sound_playing;
+
+    // For sounds current state, especially in splitscreen,
+    // the sound currently playing needs to be saved per local client number.
+    var interior_sounds_playing;
+    var liminal_sounds_playing;
+    var exterior_sounds_playing;
 }
 
 function init()
@@ -34,7 +37,7 @@ function init()
     callback::on_localclient_connect(&on_connect);
 }
 
-function on_connect(local_client_number)
+function on_connect(client_num)
 {
     level.weather.rain.ambience = new RainAmbience();
     level.weather.rain.ambience.interior_sounds = RAIN_INTERIOR_SOUNDS;
@@ -42,9 +45,9 @@ function on_connect(local_client_number)
     level.weather.rain.ambience.exterior_sounds = RAIN_EXTERIOR_SOUNDS;
 
     level.weather.rain.ambience.mutex_sound = 1;
-    level.weather.rain.ambience.interior_sound_playing = undefined;
-    level.weather.rain.ambience.liminal_sound_playing = undefined;
-    level.weather.rain.ambience.exterior_sound_playing = undefined;
+    level.weather.rain.ambience.interior_sounds_playing = array(undefined, undefined, undefined, undefined);
+    level.weather.rain.ambience.liminal_sounds_playing = array(undefined, undefined, undefined, undefined);
+    level.weather.rain.ambience.exterior_sounds_playing = array(undefined, undefined, undefined, undefined);
 }
 
 function acquireMutex()
@@ -65,53 +68,53 @@ function releaseMutex()
 
 /* region interior: begin */
 
-function rain_interior_sound(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
+function rain_interior_sound(client_num, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
     if(isdefined(new_intensity) && new_intensity != WEATHER_INTENSITY_OFF)
     {
-        self thread rain_interior_sound_play(level.weather.rain.ambience.interior_sounds[new_intensity]);
+        self thread rain_interior_sound_play(client_num, level.weather.rain.ambience.interior_sounds[new_intensity]);
     }
     else
     {
-        self thread rain_interior_sound_stop(level.weather.rain.ambience.interior_sounds[old_intensity]);
+        self thread rain_interior_sound_stop(client_num, level.weather.rain.ambience.interior_sounds[old_intensity]);
     }
 }
 
-function rain_interior_sound_play(sound_alias)
+function rain_interior_sound_play(client_num, sound_alias)
 {
     self endon("entityshutdown");
 
-    if (isdefined(level.weather.rain.ambience.liminal_sound_playing))
+    if (isdefined(level.weather.rain.ambience.liminal_sounds_playing[client_num]))
     {
         self waittill(RAIN_LIMINAL_STOP_NOTIFY);
     }
 
-    if (isdefined(level.weather.rain.ambience.exterior_sound_playing))
+    if (isdefined(level.weather.rain.ambience.exterior_sounds_playing[client_num]))
     {
         self waittill(RAIN_EXTERIOR_STOP_NOTIFY);
     }
     
     acquireMutex();
-    if (isdefined(level.weather.rain.ambience.interior_sound_playing))
+    if (isdefined(level.weather.rain.ambience.interior_sounds_playing[client_num]))
     {
-        self StopLoopSound(level.weather.rain.ambience.interior_sound_playing, SOUND_TIME_FADE);
+        self StopLoopSound(level.weather.rain.ambience.interior_sounds_playing[client_num], SOUND_TIME_FADE);
     }
-    level.weather.rain.ambience.interior_sound_playing = self PlayLoopSound(sound_alias, SOUND_TIME_FADE/2);
+    level.weather.rain.ambience.interior_sounds_playing[client_num] = self PlayLoopSound(sound_alias, SOUND_TIME_FADE/2);
     releaseMutex();
 }
 
-function rain_interior_sound_stop(sound_alias)
+function rain_interior_sound_stop(client_num, sound_alias)
 {
     self endon("entityshutdown");
 
-    if (!isdefined(level.weather.rain.ambience.interior_sound_playing))
+    if (!isdefined(level.weather.rain.ambience.interior_sounds_playing[client_num]))
     {
         return;
     }
 
     acquireMutex();
-    self StopLoopSound(level.weather.rain.ambience.interior_sound_playing, SOUND_TIME_FADE);
-    level.weather.rain.ambience.interior_sound_playing = undefined;
+    self StopLoopSound(level.weather.rain.ambience.interior_sounds_playing[client_num], SOUND_TIME_FADE);
+    level.weather.rain.ambience.interior_sounds_playing[client_num] = undefined;
     self notify(RAIN_INTERIOR_STOP_NOTIFY);
     releaseMutex();
 }
@@ -119,53 +122,53 @@ function rain_interior_sound_stop(sound_alias)
 /* region interior: end */
 /* region liminal: begin */
 
-function rain_liminal_sound(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
+function rain_liminal_sound(client_num, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
     if(isdefined(new_intensity) && new_intensity != WEATHER_INTENSITY_OFF)
     {
-        self thread rain_liminal_sound_play(level.weather.rain.ambience.liminal_sounds[new_intensity]);
+        self thread rain_liminal_sound_play(client_num, level.weather.rain.ambience.liminal_sounds[new_intensity]);
     }
     else
     {
-        self thread rain_liminal_sound_stop(level.weather.rain.ambience.interior_sounds[old_intensity]);
+        self thread rain_liminal_sound_stop(client_num, level.weather.rain.ambience.interior_sounds[old_intensity]);
     }
 }
 
-function rain_liminal_sound_play( sound_alias)
+function rain_liminal_sound_play(client_num,  sound_alias)
 {
     self endon("entityshutdown");
 
-    if (isdefined(level.weather.rain.ambience.interior_sound_playing))
+    if (isdefined(level.weather.rain.ambience.interior_sounds_playing[client_num]))
     {
         self waittill(RAIN_INTERIOR_STOP_NOTIFY);
     }
 
-    if (isdefined(level.weather.rain.ambience.exterior_sound_playing))
+    if (isdefined(level.weather.rain.ambience.exterior_sounds_playing[client_num]))
     {
         self waittill(RAIN_EXTERIOR_STOP_NOTIFY);
     }
     
     acquireMutex();
-    if (isdefined(level.weather.rain.ambience.liminal_sound_playing))
+    if (isdefined(level.weather.rain.ambience.liminal_sounds_playing[client_num]))
     {
-        self StopLoopSound(level.weather.rain.ambience.liminal_sound_playing, SOUND_TIME_FADE);
+        self StopLoopSound(level.weather.rain.ambience.liminal_sounds_playing[client_num], SOUND_TIME_FADE);
     }
-    level.weather.rain.ambience.liminal_sound_playing = self PlayLoopSound(sound_alias, SOUND_TIME_FADE/2);
+    level.weather.rain.ambience.liminal_sounds_playing[client_num] = self PlayLoopSound(sound_alias, SOUND_TIME_FADE/2);
     releaseMutex();
 }
 
-function rain_liminal_sound_stop(sound_alias)
+function rain_liminal_sound_stop(client_num, sound_alias)
 {
     self endon("entityshutdown");
 
-    if (!isdefined(level.weather.rain.ambience.liminal_sound_playing))
+    if (!isdefined(level.weather.rain.ambience.liminal_sounds_playing[client_num]))
     {
         return;
     }
     
     acquireMutex();
-    self StopLoopSound(level.weather.rain.ambience.liminal_sound_playing, SOUND_TIME_FADE);
-    level.weather.rain.ambience.liminal_sound_playing = undefined;
+    self StopLoopSound(level.weather.rain.ambience.liminal_sounds_playing[client_num], SOUND_TIME_FADE);
+    level.weather.rain.ambience.liminal_sounds_playing[client_num] = undefined;
     self notify(RAIN_LIMINAL_STOP_NOTIFY);
     releaseMutex();
 }
@@ -173,53 +176,53 @@ function rain_liminal_sound_stop(sound_alias)
 /* region liminal: end */
 /* region exterior: begin */
 
-function rain_exterior_sound(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
+function rain_exterior_sound(client_num, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump) // self == player
 {
     if(isdefined(new_intensity) && new_intensity != WEATHER_INTENSITY_OFF)
     {
-        self thread rain_exterior_sound_play(level.weather.rain.ambience.exterior_sounds[new_intensity], new_intensity);
+        self thread rain_exterior_sound_play(client_num, level.weather.rain.ambience.exterior_sounds[new_intensity], new_intensity);
     }
     else
     {
-        self thread rain_exterior_sound_stop(level.weather.rain.ambience.exterior_sounds[old_intensity]);
+        self thread rain_exterior_sound_stop(client_num, level.weather.rain.ambience.exterior_sounds[old_intensity]);
     }
 }
 
-function rain_exterior_sound_play(sound_alias, intensity)
+function rain_exterior_sound_play(client_num, sound_alias, intensity) // self == player
 {
     self endon("entityshutdown");
 
-    if (isdefined(level.weather.rain.ambience.interior_sound_playing))
+    if (isdefined(level.weather.rain.ambience.interior_sounds_playing[client_num]))
     {
         self waittill(RAIN_INTERIOR_STOP_NOTIFY);
     }
 
-    if (isdefined(level.weather.rain.ambience.liminal_sound_playing))
+    if (isdefined(level.weather.rain.ambience.liminal_sounds_playing[client_num]))
     {
         self waittill(RAIN_LIMINAL_STOP_NOTIFY);
     }
     
     acquireMutex();
-    if (isdefined(level.weather.rain.ambience.exterior_sound_playing))
+    if (isdefined(level.weather.rain.ambience.exterior_sounds_playing[client_num]))
     {
-        self StopLoopSound(level.weather.rain.ambience.exterior_sound_playing, SOUND_TIME_FADE);
+        self StopLoopSound(level.weather.rain.ambience.exterior_sounds_playing[client_num], SOUND_TIME_FADE);
     }
-    level.weather.rain.ambience.exterior_sound_playing = self PlayLoopSound(sound_alias, SOUND_TIME_FADE/2);
+    level.weather.rain.ambience.exterior_sounds_playing[client_num] = self PlayLoopSound(sound_alias, SOUND_TIME_FADE/2);
     releaseMutex();
 }
 
-function rain_exterior_sound_stop(sound_alias)
+function rain_exterior_sound_stop(client_num, sound_alias) // self == player
 {
     self endon("entityshutdown");
 
-    if (!isdefined(level.weather.rain.ambience.exterior_sound_playing))
+    if (!isdefined(level.weather.rain.ambience.exterior_sounds_playing[client_num]))
     {
         return;
     }
     
     acquireMutex();
-    self StopLoopSound(level.weather.rain.ambience.exterior_sound_playing, SOUND_TIME_FADE);
-    level.weather.rain.ambience.exterior_sound_playing = undefined;
+    self StopLoopSound(level.weather.rain.ambience.exterior_sounds_playing[client_num], SOUND_TIME_FADE);
+    level.weather.rain.ambience.exterior_sounds_playing[client_num] = undefined;
     self notify(RAIN_EXTERIOR_STOP_NOTIFY);
     releaseMutex();
 }
