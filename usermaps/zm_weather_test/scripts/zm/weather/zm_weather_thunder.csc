@@ -1,7 +1,3 @@
-#using scripts\shared\exploder_shared; 
-#using scripts\shared\callbacks_shared; 
-#using scripts\shared\clientfield_shared; 
-
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;
 

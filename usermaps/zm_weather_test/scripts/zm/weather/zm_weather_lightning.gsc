@@ -1,3 +1,4 @@
+#using scripts\shared\exploder_shared; 
 #using scripts\shared\clientfield_shared; 
 
 #insert scripts\shared\shared.gsh;
@@ -10,16 +11,15 @@
 
 class Lightning {
     var paused;
-
     var intensity;
+
+    var exploders;
 
     var min_wait;
     var max_wait;
 }
 
 function init() {
-    clientfield::register("world", LIGHTNING_EXPLODER_CF_NAME, VERSION_SHIP, 2, "int");
-
     level.weather.lightning = default_lightning_state();
 }
 
@@ -38,6 +38,8 @@ function play()
     if (level.weather.lightning.intensity == WEATHER_INTENSITY_OFF)
     {
         level.weather.lightning.intensity = WEATHER_INTENSITY_DEFAULT;
+        level.weather.lightning.min_wait = LIGHTNING_BASE_MIN_WAIT[level.weather.lightning.intensity];
+        level.weather.lightning.max_wait = LIGHTNING_BASE_MAX_WAIT[level.weather.lightning.intensity];
     }
 
     while(true)
@@ -58,7 +60,6 @@ function pause()
     level notify("level_stop_lightning");
     level notify("lightning_end_current_strike");
     level.weather.lightning = default_lightning_state();
-    level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, WEATHER_INTENSITY_OFF);
 }
 
 function private default_lightning_state() 
@@ -68,6 +69,7 @@ function private default_lightning_state()
     lightning.intensity = WEATHER_INTENSITY_OFF;
     lightning.min_wait = LIGHTNING_BASE_MIN_WAIT[lightning.intensity];
     lightning.max_wait = LIGHTNING_BASE_MAX_WAIT[lightning.intensity];
+    lightning.exploders = LIGHTNING_EXPLODERS;
     
     return lightning;
 }
@@ -105,7 +107,18 @@ function private lightning_strike() // self == lightning (level.weather.lightnin
     level endon("lightning_end_current_strike");
 
     wait RandomFloatRange(self.min_wait, self.max_wait);
-    level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, self.intensity);
-    WAIT_SERVER_FRAME;
-    level clientfield::set(LIGHTNING_EXPLODER_CF_NAME, WEATHER_INTENSITY_OFF);
+    self thread play_and_stop_exploder();
+}
+
+function private play_and_stop_exploder() // self == lightning (level.weather.lightning)
+{
+    if (self.intensity == WEATHER_INTENSITY_OFF)
+    {
+        return;
+    }
+
+    lightning_exploder = self.exploders[RandomInt(self.exploders.size)];
+    exploder::exploder(lightning_exploder);
+    wait LIGHTNING_EXPLODERS_TIME;
+    exploder::stop_exploder(lightning_exploder);
 }
