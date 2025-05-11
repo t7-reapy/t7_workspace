@@ -41,7 +41,7 @@ function rain_drops_toggle(local_client_number, old_intensity, new_intensity, b_
 {
     if(new_intensity != WEATHER_INTENSITY_OFF)
     {
-        self thread rain_enable(local_client_number, new_intensity);
+        // self thread rain_enable(local_client_number, new_intensity);
     }
     else
     {

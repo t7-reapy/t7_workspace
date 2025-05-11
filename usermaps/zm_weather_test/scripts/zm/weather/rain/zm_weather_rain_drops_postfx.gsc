@@ -21,8 +21,10 @@
 
 class RainDropsPostFx
 {
-    var triggers;
     var paused;
+    var triggers;
+
+    var triggers_callbacks;
 }
 
 // Init
@@ -33,6 +35,7 @@ function init()
     level.weather.rain.drops_postfx = new RainDropsPostFx();
     level.weather.rain.drops_postfx.paused = true;
     level.weather.rain.drops_postfx.triggers = GetEntArray(ZM_POSTFX_RAIN_DROPS_TRIGGER_NAME, "targetname");
+    level.weather.rain.drops_postfx.triggers_callbacks = [];
     
     callback::on_spawned(&on_player_spawned);
 }
@@ -56,7 +59,7 @@ function play()
 
         foreach (player in GetPlayers())
         {
-            player update_raindrops(level.weather.rain.intensity);
+            player thread update_raindrops(level.weather.rain.intensity);
         }
     }
 }
@@ -92,10 +95,31 @@ function on_player_spawned() // self == player
     self update_raindrops(level.weather.rain.intensity);
 }
 
-function update_raindrops(intensity) // self == player
+function update_raindrops(intensity, is_trigger_call = false) // self == player
 {
     self.rain_on_screen = (intensity != WEATHER_INTENSITY_OFF);
     self clientfield::set_to_player(ZM_POSTFX_RAIN_DROPS_CF_NAME, intensity);
+
+    WEATHER_PRINT_DEBUG("rain on screen: " + self.rain_on_screen);
+
+    if (!is_trigger_call)
+        return;
+
+    foreach(callback in level.weather.rain.drops_postfx.triggers_callbacks)
+    {
+        WEATHER_PRINT_DEBUG("callback !");
+        self [[ callback ]](self.rain_on_screen);
+    }
+}
+
+function add_rain_on_screen_callback(func_ptr)
+{
+    if (!IsFunctionPtr(func_ptr))
+    {
+        return;
+    }
+
+    level.weather.rain.drops_postfx.triggers_callbacks[level.weather.rain.drops_postfx.triggers_callbacks.size] = func_ptr;
 }
 
 // Runs rain trigger logic.
@@ -122,8 +146,9 @@ function rain_trigger_toggle(e_trigger) // self == player
     self endon("disconnect");
     self endon("enter_rain_trigger");
 
-    self update_raindrops(WEATHER_INTENSITY_OFF);
+    self update_raindrops(WEATHER_INTENSITY_OFF, true);
     util::wait_till_not_touching(e_trigger, self);
+    self update_raindrops(level.weather.rain.intensity, true);
     
     self notify("exit_rain_trigger");
 }
