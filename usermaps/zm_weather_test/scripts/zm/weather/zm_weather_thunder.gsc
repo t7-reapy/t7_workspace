@@ -58,7 +58,6 @@ function pause()
     level notify("level_stop_thunder");
     level notify("thunder_end_current_strike");
     level.weather.thunder = default_thunder_state();
-    level clientfield::set(THUNDER_EXPLODER_CF_NAME, 0);
 }
 
 function private default_thunder_state() 

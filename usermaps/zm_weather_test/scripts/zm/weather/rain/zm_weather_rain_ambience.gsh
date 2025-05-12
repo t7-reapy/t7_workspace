@@ -1,4 +1,5 @@
-#define SOUND_TIME_FADE 1
+#define SOUND_TIME_FADE_IN 1
+#define SOUND_TIME_FADE_OUT 3
 
 #define RAIN_INTERIOR_TYPE_SFX "rain_interior_type_cf_sfx"
 #define RAIN_LIMINAL_TYPE_SFX "rain_liminal_type_cf_sfx"

@@ -14,6 +14,7 @@
 #namespace zm_weather_rain_ambience;
 
 class RainAmbience {
+    var first_run;
     var paused;
 
     var interior_triggers;
@@ -26,6 +27,7 @@ function init() {
     clientfield::register("toplayer", RAIN_EXTERIOR_TYPE_SFX, VERSION_SHIP, 2, "int");
 
     level.weather.rain.ambience = new RainAmbience();
+    level.weather.rain.ambience.first_run = true;
     level.weather.rain.ambience.paused = true;
     level.weather.rain.ambience.interior_triggers = GetEntArray(RAIN_TRIGGER_INTERIOR, "targetname");
     level.weather.rain.ambience.liminal_triggers = GetEntArray(RAIN_TRIGGER_LIMINAL, "targetname");
@@ -41,8 +43,14 @@ function play()
         return;
     }
 
-    // Remark: waiting initial_blackscreen_passed is essential for playing sounds on client, don't know why tho.
-    flag::wait_till("initial_blackscreen_passed");
+    if (level.weather.rain.ambience.first_run)
+    {
+        // Remark: waiting initial_blackscreen_passed is essential for 
+        // playing sounds on client for the first run, don't know why tho.
+        flag::wait_till("initial_blackscreen_passed");
+        level.weather.rain.ambience.first_run = false;
+    }
+
     foreach (player in GetPlayers())
     {
         player clientfield::set_to_player(RAIN_INTERIOR_TYPE_SFX, WEATHER_INTENSITY_OFF);
