@@ -1,0 +1,20 @@
+>class,zm_mod_level
+>group,modtools
+
+xmodel,skybox_default_day
+material,luts_t7_default
+	
+// BSP
+col_map,maps/zm/zm_ambience_reverb_test.d3dbsp
+gfx_map,maps/zm/zm_ambience_reverb_test.d3dbsp
+
+// Audio
+sound,zm_ambience_reverb_test
+
+// Ambient
+scriptparsetree,scripts/zm/_ambient_room.csc
+scriptparsetree,scripts/zm/_zm_audio.csc
+stringtable,sound/ambients/ambient_mod.csv
+
+scriptparsetree,scripts/zm/zm_ambience_reverb_test.gsc
+scriptparsetree,scripts/zm/zm_ambience_reverb_test.csc
