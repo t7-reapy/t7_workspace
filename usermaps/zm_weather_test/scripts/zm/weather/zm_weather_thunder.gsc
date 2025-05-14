@@ -1,7 +1,9 @@
-#using scripts\shared\flag_shared; 
+#using scripts\shared\exploder_shared; 
 #using scripts\shared\util_shared; 
+#using scripts\shared\clientfield_shared; 
 
 #insert scripts\shared\shared.gsh;
+#insert scripts\shared\version.gsh;
 
 #insert scripts\zm\weather\zm_weather_shared.gsh;
 #insert scripts\zm\weather\zm_weather_thunder.gsh;
@@ -9,14 +11,16 @@
 #namespace zm_weather_thunder;
 
 class Thunder {
+    var paused;
+    var intensity;
+
+    var exploders;
+
     var min_wait;
     var max_wait;
 
     var lightstate_missing;
     var lightstate_strikes;
-    
-    var sounds;
-    var effects;
 }
 
 function init() 
@@ -24,76 +28,93 @@ function init()
     level.weather.thunder = default_thunder_state();
 }
 
-function run()
+function play()
 {
-    while(level flag::get(ACTIVE_THUNDER_FLAG))
+    level endon("entityshutdown");
+    level endon("level_stop_thunder");
+
+    if (!level.weather.thunder.paused)
+    {
+        WEATHER_PRINT_DEBUG("thunder already running");
+        return;
+    }
+    level.weather.thunder.paused = false;
+
+    while(true)
     {
         level.weather.thunder thunder_strike();
         WAIT_SERVER_FRAME;
     }
-
-    // striking stopped, let's restore defaults.
-    level.weather.thunder = default_thunder_state();
 }
 
 function pause()
 {
-    
+    if (level.weather.thunder.paused)
+    {
+        WEATHER_PRINT_DEBUG("already paused thunder");
+        return;
+    }
+
+    level notify("level_stop_thunder");
+    level notify("thunder_end_current_strike");
+    level.weather.thunder = default_thunder_state();
 }
 
 function private default_thunder_state() 
 {
     thunder = new Thunder();
-    thunder.min_wait = DEFAULT_MIN_WAIT_THUNDER;
-    thunder.max_wait = DEFAULT_MAX_WAIT_THUNDER;
+    thunder.paused = true;
+    thunder.intensity = WEATHER_INTENSITY_DEFAULT;
+    thunder.min_wait = THUNDER_DEFAULT_MIN_WAIT[thunder.intensity];
+    thunder.max_wait = THUNDER_DEFAULT_MAX_WAIT[thunder.intensity];
     thunder.lightstate_missing = THUNDER_DEFAULT_LIGHTSTATE;
     thunder.lightstate_strikes = THUNDER_STRIKES_LIGHTSTATE;
-    thunder.sounds = THUNDER_SOUNDS;
-    thunder.effects = undefined; // TODO: https://github.com/McReaper/bo3maps/issues/16
+    thunder.exploders = THUNDER_EXPLODERS;
 
     return thunder;
 }
 
 function greater_intensity()
 {
-    level.weather.thunder.min_wait /= HIGH_FREQUENCY_FACTOR_THUNDER;
-    level.weather.thunder.max_wait /= HIGH_FREQUENCY_FACTOR_THUNDER;
-
-    // TODO: find a way to reset loop to not be blocked in previous lightning strikes waiting
+    if (level.weather.thunder.intensity >= WEATHER_INTENSITY_HIG)
+    {
+        return;
+    }
+    level.weather.thunder.intensity++;
+    level.weather.thunder.min_wait = THUNDER_DEFAULT_MIN_WAIT[level.weather.thunder.intensity];
+    level.weather.thunder.max_wait = THUNDER_DEFAULT_MAX_WAIT[level.weather.thunder.intensity];
+    level notify("thunder_end_current_strike");
 }
 
 function lesser_intensity()
 {
-    level.weather.thunder.min_wait *= HIGH_FREQUENCY_FACTOR_THUNDER;
-    level.weather.thunder.max_wait *= HIGH_FREQUENCY_FACTOR_THUNDER;
-
-    // TODO: find a way to reset loop to not be blocked in previous lightning strikes waiting
+    if (level.weather.thunder.intensity <= WEATHER_INTENSITY_LOW)
+    {
+        return;
+    }
+    level.weather.thunder.intensity--;
+    level.weather.thunder.min_wait = THUNDER_DEFAULT_MIN_WAIT[level.weather.thunder.intensity];
+    level.weather.thunder.max_wait = THUNDER_DEFAULT_MAX_WAIT[level.weather.thunder.intensity];
+    level notify("thunder_end_current_strike");
 }
 
 function private thunder_strike() 
 {
     // self = Thunder (level.weather.thunder)
+    level endon("thunder_end_current_strike");
 
     wait RandomFloatRange(self.min_wait, self.max_wait);
 
-    if (!level flag::get(ACTIVE_THUNDER_FLAG))
-    {
-        WEATHER_PRINT_DEBUG("thunder strike canceled");
-        return;
-    }
-
-    // TODO: play FXs with level.weather.thunder.effects
-
-    thunder_sound = self.sounds[RandomIntRange(0, self.sounds.size)];
-    thunder_effect = undefined; //self.effects[RandomIntRange(0, self.effects.size)];
     thunder_lightstate = self.lightstate_strikes[RandomIntRange(0, self.lightstate_strikes.size)];
+    flashes = RandomIntRange(3, 5);
 
-    PlaySoundAtPosition(thunder_sound, (0, 0, 0));
-    level util::set_lighting_state(thunder_lightstate);
-    wait RandomFloatRange(0.3, 0.9);
-    level util::set_lighting_state(self.lightstate_missing);
-    wait RandomFloatRange(0.05, 0.2);
-    level util::set_lighting_state(thunder_lightstate);
-    wait RandomFloatRange(0.2, 0.4);
-    level util::set_lighting_state(self.lightstate_missing);
+    exploder::exploder(self.exploders[RandomInt(self.exploders.size)]);
+    for (i = 0; i < flashes; i++)
+    {
+        wait RandomFloatRange(0.15 / flashes, 0.25 / flashes);
+        level util::set_lighting_state(thunder_lightstate);
+
+        wait RandomFloatRange(0.30 / flashes, 0.50 / flashes);
+        level util::set_lighting_state(self.lightstate_missing);
+    }
 }

@@ -20,7 +20,7 @@ class Rain {
 function init() 
 {
     level.weather.rain = new Rain();
-    level.weather.rain.intensity = RAIN_DEFAULT_INTENSITY;
+    level.weather.rain.intensity = WEATHER_INTENSITY_OFF;
 
     if (ENABLE_RAIN_AMBIENCE)
     {
@@ -37,43 +37,68 @@ function init()
         zm_weather_rain_drops_postfx::init();
     }
 
-    if (ENABLE_RAIN_ENVIRONMENT)
-    {
-        zm_weather_rain_environment::init();
-    }
+    // We don't check for ENABLE_RAIN_ENVIRONMENT here because we certainly want to 
+    // hide present volume decals in the map if ENABLE_RAIN_ENVIRONMENT is turned off.
+    // Thus, GSC needs to initiate some clientfields.
+    zm_weather_rain_environment::init();
 }
 
-function run() 
+function play() 
 {
+    level endon("entityshutdown");
+    level.weather.rain.intensity = WEATHER_INTENSITY_DEFAULT;
+
     if (ENABLE_RAIN_AMBIENCE)
     {
-        thread zm_weather_rain_ambience::run();
+        thread zm_weather_rain_ambience::play();
     }
 
     if (ENABLE_RAIN_DROPS_FX)
     {
-        thread zm_weather_rain_drops_fx::run();
+        thread zm_weather_rain_drops_fx::play();
     }
 
     if (ENABLE_RAIN_DROPS_POSTFX)
     {
-        thread zm_weather_rain_drops_postfx::run();
+        thread zm_weather_rain_drops_postfx::play();
     }
 
     if (ENABLE_RAIN_ENVIRONMENT)
     {
-        thread zm_weather_rain_environment::run();
+        thread zm_weather_rain_environment::play();
     }
 }
 
 function pause()
 {
-    // TODO
+    // Must turn off rain here in case of player spawn.
+    level.weather.rain.intensity = WEATHER_INTENSITY_OFF;
+
+    if (ENABLE_RAIN_AMBIENCE)
+    {
+        thread zm_weather_rain_ambience::pause();
+    }
+
+    if (ENABLE_RAIN_DROPS_FX)
+    {
+        thread zm_weather_rain_drops_fx::pause();
+    }
+
+    if (ENABLE_RAIN_DROPS_POSTFX)
+    {
+        thread zm_weather_rain_drops_postfx::pause();
+    }
+
+    if (ENABLE_RAIN_ENVIRONMENT)
+    {
+        thread zm_weather_rain_environment::pause();
+    }
 }
 
 function greater_intensity()
 {
-    if (level.weather.rain.intensity < RAIN_INTENSITY_HIG)
+    if (level.weather.rain.intensity < WEATHER_INTENSITY_HIG
+        && level.weather.rain.intensity != WEATHER_INTENSITY_OFF)
     {
         level.weather.rain.intensity++;
     }
@@ -81,7 +106,8 @@ function greater_intensity()
 
 function lesser_intensity()
 {
-    if (level.weather.rain.intensity > RAIN_INTENSITY_LOW)
+    if (level.weather.rain.intensity > WEATHER_INTENSITY_LOW
+        && level.weather.rain.intensity != WEATHER_INTENSITY_OFF)
     {
         level.weather.rain.intensity--;
     }

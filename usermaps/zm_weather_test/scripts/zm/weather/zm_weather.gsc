@@ -11,41 +11,24 @@
 #using scripts\zm\weather\zm_weather_wind;
 
 #insert scripts\zm\weather\zm_weather.gsh;
+
 #namespace zm_weather;
 
-REGISTER_SYSTEM_EX("zm_weather", &init, &main, undefined)
-
-// TODO: use these flags for endgame ? maybe for restart
-// #define KILL_WEATHER_METEO_MANAGER "kill_weather_meteo_manager"
-// #define KILL_LIGHTNING_NOTIFICATION "kill_lightning_notification"
-// #define KILL_RAIN_NOTIFICATION "kill_rain_notification"
-// #define KILL_THUNDER_NOTIFICATION "kill_thunder_notification"
-// #define KILL_WIND_NOTIFICATION "kill_wind_notification"
-// function autoexec private end_game_watcher()
-// {
-//     level waittill("end_game");
-//     clear_weather_flags();
-//     level notify(KILL_LIGHTNING_NOTIFICATION);
-//     level notify(KILL_RAIN_NOTIFICATION);
-//     level notify(KILL_THUNDER_NOTIFICATION);
-//     level notify(KILL_WIND_NOTIFICATION);
-// }
+REGISTER_SYSTEM("zm_weather", &init, undefined)
 
 class Weather{
+    var intensity;
+
     var lightning;
     var rain;
     var thunder;
     var wind;
 }
 
-function init() 
+function private init() 
 {
     level.weather = new Weather();
-    
-    level flag::init(ACTIVE_LIGHTNING_FLAG);
-    level flag::init(ACTIVE_RAIN_FLAG);
-    level flag::init(ACTIVE_THUNDER_FLAG);
-    level flag::init(ACTIVE_WIND_FLAG);
+    level.weather.intensity = WEATHER_INTENSITY_DEFAULT;
 
     if (ENABLE_LIGHTNING)
     {
@@ -68,33 +51,89 @@ function init()
     }
 }
 
-function main()
+function play()
 {
-    level flag::wait_till("initial_blackscreen_passed");
-
-    thread do_lightning();
-    thread do_rain();
-    thread do_thunder();
-    thread do_wind();
+    if (ENABLE_LIGHTNING)
+        thread zm_weather_lightning::play();
+    if (ENABLE_RAIN)
+        thread zm_weather_rain::play();
+    if (ENABLE_THUNDER)
+        thread zm_weather_thunder::play();
+    if (ENABLE_WIND)
+        thread zm_weather_wind::play();
 
     thread meteo_manager();
+}
 
-    resume();
+function private meteo_manager()
+{
+    level notify("kill_meteo_manager");
+    level endon("kill_meteo_manager");
+    WEATHER_PRINT_DEBUG("Weather meteo manager playing");
+
+    while(true)
+    {
+        wait RandomFloatRange(STATE_SWITCHING_EVALUATION_MIN_WAIT, STATE_SWITCHING_EVALUATION_MAX_WAIT);
+
+        switch_state_p = RandomInt(100);
+        if (switch_state_p < STATE_SWITCHING_PROBABILITY)
+        {
+            thread switch_state();
+        }
+    }
+}
+
+function private switch_state()
+{
+    switch (level.weather.intensity)
+    {
+        case WEATHER_INTENSITY_LOW:
+            greater_intensity();
+            // There is a chance of drastic transition
+            if (RandomInt(100) < STATE_SWITCHING_DRASTIC_PROBABILITY)
+                greater_intensity();
+            break;
+        case WEATHER_INTENSITY_HIG:
+            lesser_intensity();
+            // There is a chance of drastic transition
+            if (RandomInt(100) < STATE_SWITCHING_DRASTIC_PROBABILITY)
+                lesser_intensity();
+            break;
+        case WEATHER_INTENSITY_MED:
+            if (RandomInt(2)) // fifty fifty
+                greater_intensity();
+            else
+                lesser_intensity();
+            break;
+        default:
+            WEATHER_PRINT_DEBUG("Weather intensity not managed at intensity: " + level.weather.intensity);
+            break;
+    }
 }
 
 function pause()
 {
-    clear_weather_flags();
-}
+    if (ENABLE_LIGHTNING)
+        thread zm_weather_lightning::pause();
+    if (ENABLE_RAIN)
+        thread zm_weather_rain::pause();
+    if (ENABLE_THUNDER)
+        thread zm_weather_thunder::pause();
+    if (ENABLE_WIND)
+        thread zm_weather_wind::pause();
 
-function resume()
-{
-    set_weather_flags();
+    level notify("kill_meteo_manager");
 }
 
 function greater_intensity() 
 {
+    if (level.weather.intensity >= WEATHER_INTENSITY_HIG)
+    {
+        WEATHER_PRINT_DEBUG("Weather intensity already at max");
+        return;
+    }
     WEATHER_PRINT_DEBUG("Weather intensity +");
+    level.weather.intensity++;
 
     if (ENABLE_LIGHTNING)
         zm_weather_lightning::greater_intensity();
@@ -111,7 +150,13 @@ function greater_intensity()
 
 function lesser_intensity() 
 {
+    if (level.weather.intensity <= WEATHER_INTENSITY_LOW)
+    {
+        WEATHER_PRINT_DEBUG("Weather intensity already at min");
+        return;
+    }
     WEATHER_PRINT_DEBUG("Weather intensity -");
+    level.weather.intensity--;
 
     if (ENABLE_LIGHTNING)
         zm_weather_lightning::lesser_intensity();
@@ -124,95 +169,4 @@ function lesser_intensity()
 
     if (ENABLE_WIND)
         zm_weather_wind::lesser_intensity();
-}
-
-function private set_weather_flags()
-{
-    level flag::set(ACTIVE_LIGHTNING_FLAG);
-    level flag::set(ACTIVE_RAIN_FLAG);
-    level flag::set(ACTIVE_THUNDER_FLAG);
-    level flag::set(ACTIVE_WIND_FLAG);
-}
-
-function private clear_weather_flags()
-{
-    level flag::clear(ACTIVE_LIGHTNING_FLAG);
-    level flag::clear(ACTIVE_RAIN_FLAG);
-    level flag::clear(ACTIVE_THUNDER_FLAG);
-    level flag::clear(ACTIVE_WIND_FLAG);
-}
-
-function private do_lightning()
-{
-    if (!ENABLE_LIGHTNING)
-        return;
-
-    while(true)
-    {
-        level flag::wait_till(ACTIVE_LIGHTNING_FLAG);
-        thread zm_weather_lightning::run();
-
-        level flag::wait_till_clear(ACTIVE_LIGHTNING_FLAG);
-        thread zm_weather_lightning::pause();
-    }
-}
-
-function private do_rain()
-{
-    if (!ENABLE_RAIN)
-        return;
-        
-    while(true)
-    {
-        level flag::wait_till(ACTIVE_RAIN_FLAG);
-        thread zm_weather_rain::run();
-
-        level flag::wait_till_clear(ACTIVE_RAIN_FLAG);
-        thread zm_weather_rain::pause();
-    }
-}
-
-function private do_thunder()
-{
-    if (!ENABLE_THUNDER)
-        return;
-
-    while(true)
-    {
-        level flag::wait_till(ACTIVE_THUNDER_FLAG);
-        thread zm_weather_thunder::run();
-     
-        level flag::wait_till_clear(ACTIVE_THUNDER_FLAG);
-        thread zm_weather_thunder::pause();
-    }
-}
-
-function private do_wind()
-{
-    if (!ENABLE_WIND)
-        return;
-
-    while(true)
-    {
-        level flag::wait_till(ACTIVE_WIND_FLAG);
-        thread zm_weather_wind::run();
-
-        level flag::wait_till_clear(ACTIVE_WIND_FLAG);
-        thread zm_weather_wind::pause();
-    }
-}
-
-function private meteo_manager()
-{
-    //level endon(KILL_WEATHER_METEO_MANAGER);
-
-    while(true)
-    {
-        // TODO: remove
-        //WEATHER_PRINT_DEBUG("meteo manager heart beat");
-        wait 1;
-
-        //TODO: increase frequency/intensity of weather, lower them, etc.
-        WAIT_SERVER_FRAME;
-    }
 }

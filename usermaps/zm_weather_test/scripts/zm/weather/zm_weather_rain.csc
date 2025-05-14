@@ -34,31 +34,7 @@ function init()
         self zm_weather_rain_drops_postfx::init();
     }
 
-    if (ENABLE_RAIN_ENVIRONMENT)
-    {
-        self zm_weather_rain_environment::init();
-    }
-}
-
-function run()
-{
-    if (ENABLE_RAIN_AMBIENCE)
-    {
-        self thread zm_weather_rain_ambience::run();
-    }
-
-    if (ENABLE_RAIN_DROPS_FX)
-    {
-        self thread zm_weather_rain_drops_fx::run();
-    }
-
-    if (ENABLE_RAIN_DROPS_POSTFX)
-    {
-        self thread zm_weather_rain_drops_postfx::run();
-    }
-
-    if (ENABLE_RAIN_ENVIRONMENT)
-    {
-        self thread zm_weather_rain_environment::run();
-    }
+    // We don't check for ENABLE_RAIN_ENVIRONMENT here because we certainly want to 
+    // hide present volume decals in the map if ENABLE_RAIN_ENVIRONMENT is turned off
+    self zm_weather_rain_environment::init();
 }

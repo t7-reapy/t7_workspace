@@ -5,12 +5,6 @@
 
 #namespace zm_weather_wind;
 
-// TODO: use startWaterSheeting on rain postfx for wind bursts
-
 function init() 
-{
-}
-
-function run()
 {
 }

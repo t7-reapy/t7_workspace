@@ -24,19 +24,9 @@
 
 function init()
 {
-    clientfield::register("toplayer", ZM_POSTFX_RAIN_DROPS_CF_NAME, VERSION_SHIP, 2, "int", &rain_drops_toggle, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
-    
+    clientfield::register("toplayer", ZM_POSTFX_RAIN_DROPS_CF_NAME, VERSION_SHIP, 2, "int", &rain_drops_toggle, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
+        
     callback::on_localclient_connect(&on_connect);
-}
-
-function run()
-{
-    filter::init_filter_raindrops(self);
-    filter::init_filter_sprite_rain(self);
-    filter::init_filter_sgen_sprite_rain(self);
-    init_filter_sgen_sprite_rain_sm(self);
-
-    local_client_number = self GetLocalClientNumber();
 }
 
 function on_connect(local_client_number)
@@ -49,11 +39,8 @@ function on_connect(local_client_number)
 
 function rain_drops_toggle(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
-    if(new_intensity != RAIN_INTENSITY_DISABLE)
+    if(new_intensity != WEATHER_INTENSITY_OFF)
     {
-        if (old_intensity != new_intensity) {
-            filter::disable_filter_sprite_rain(self, ZM_POSTFX_RAIN_DROPS_FILTER_ID);
-        }
         self thread rain_enable(local_client_number, new_intensity);
     }
     else
@@ -62,7 +49,7 @@ function rain_drops_toggle(local_client_number, old_intensity, new_intensity, b_
     }
 }
 
-function rain_disable(local_client_number)
+function rain_disable(local_client_number) // self == player
 {
     self notify("stop_raining");
 
@@ -93,6 +80,8 @@ function rain_enable(local_client_number, intensity)
     self endon("raining");
     self endon("stop_raining");
     
+    filter::disable_filter_sprite_rain(self, ZM_POSTFX_RAIN_DROPS_FILTER_ID);
+
     if(!isdefined(self.rain_opacity))
     {
         self.rain_opacity = 0.2;
@@ -105,13 +94,13 @@ function rain_enable(local_client_number, intensity)
 
     switch (intensity)
     {
-        case RAIN_INTENSITY_LOW:
+        case WEATHER_INTENSITY_LOW:
             enable_filter_sgen_sprite_rain_sm(self, ZM_POSTFX_RAIN_DROPS_FILTER_ID);
             break;
-        case RAIN_INTENSITY_MED:
+        case WEATHER_INTENSITY_MED:
             filter::enable_filter_sgen_sprite_rain(self, ZM_POSTFX_RAIN_DROPS_FILTER_ID);
             break;
-        case RAIN_INTENSITY_HIG:
+        case WEATHER_INTENSITY_HIG:
             filter::enable_filter_sprite_rain(self, ZM_POSTFX_RAIN_DROPS_FILTER_ID);
             break;
         default:
@@ -142,37 +131,4 @@ function private enable_filter_sgen_sprite_rain_sm(player, filterid)
     setfilterpassmaterial(player.localClientNum, filterid, 0, filter::mapped_material_id(ZM_POSTFX_SMALL_MATERIAL_NAME));
     setfilterpassenabled(player.localClientNum, filterid, 0, true);
     setfilterpassquads(player.localClientNum, filterid, 0, 2048);
-}
-
-// TODO: use for wind callbacks.
-function startWaterSheeting()
-{
-	self notify("startWaterSheeting_singleton");
-	self endon("startWaterSheeting_singleton");
-	
-	self endon("entityshutdown");
-	
-	// enabled the filter
-	filter::enable_filter_water_sheeting(self, FILTER_INDEX_WATER_SHEET); 
-
-	// start everything revealed and scrolling
-	filter::set_filter_water_sheet_reveal(self, FILTER_INDEX_WATER_SHEET, 1.0);
-	filter::set_filter_water_sheet_speed(self, FILTER_INDEX_WATER_SHEET, 1.0);
-
-	// taper down and hide
-	for (i = WATER_SHEETING_OVERLAY_TIME; i > 0.0; i -= 0.01)
-	{
-		filter::set_filter_water_sheet_reveal(self, FILTER_INDEX_WATER_SHEET, i / 2.0);
-		filter::set_filter_water_sheet_speed(self, FILTER_INDEX_WATER_SHEET, i / 2.0);
-		// reveal the rivulets as well
-		rivulet1 = (i / 2.0) - 0.19;
-		rivulet2 = (i / 2.0) - 0.13;
-		rivulet3 = (i / 2.0) - 0.07;
-		filter::set_filter_water_sheet_rivulet_reveal(self, FILTER_INDEX_WATER_SHEET, rivulet1, rivulet2, rivulet3);
-		// pause
-		wait 0.01;
-	}
-	filter::set_filter_water_sheet_reveal(self, FILTER_INDEX_WATER_SHEET, 0.0);
-	filter::set_filter_water_sheet_speed(self, FILTER_INDEX_WATER_SHEET, 0.0);
-	filter::set_filter_water_sheet_rivulet_reveal(self, FILTER_INDEX_WATER_SHEET, 0.0, 0.0, 0.0);
 }

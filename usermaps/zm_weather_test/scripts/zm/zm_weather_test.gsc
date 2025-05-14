@@ -59,62 +59,54 @@ function main()
 {
 	zm_usermap::main();
 	map_init();
-	thread monitor_power_state();
-	thread monitor_trigger_greater_intensity();
-	thread monitor_trigger_lesser_intensity();
-	thread monitor_trigger_play_pause();
-}
+	zm_weather::play();
 
-function monitor_power_state()
-{
-    level flag::wait_till("initial_blackscreen_passed");
-
-	while(true)
-	{
-		level flag::wait_till("power_on");
-		zm_weather::pause();
-
-		level flag::wait_till_clear("power_on");
-		zm_weather::resume();
-	}
+	// Triggers for testing
+	ent_triggers_greater = GetEntArray("trigger_greater_intensity", "targetname");
+	array::thread_all(ent_triggers_greater, &monitor_trigger_greater_intensity);
+	
+	ent_triggers_lesser = GetEntArray("trigger_lesser_intensity", "targetname");
+	array::thread_all(ent_triggers_lesser, &monitor_trigger_lesser_intensity);
+	
+	ent_triggers_pause = GetEntArray("trigger_play_pause", "targetname");
+	array::thread_all(ent_triggers_pause, &monitor_trigger_play_pause);
 }
 
 function monitor_trigger_greater_intensity()
 {
-	ent_trigger = GetEnt("trigger_greater_intensity", "targetname");
-	ent_trigger SetHintString("Hold ^3[{+activate}]^7 to increase weather intensity");
+	// self == trigger_use
+	self SetHintString("Hold ^3[{+activate}]^7 to increase weather intensity");
 
 	while(true)
 	{
-		ent_trigger waittill("trigger");
+		self waittill("trigger");
 		zm_weather::greater_intensity();
 	}
 }
 
 function monitor_trigger_lesser_intensity()
 {
-	ent_trigger = GetEnt("trigger_lesser_intensity", "targetname");
-	ent_trigger SetHintString("Hold ^3[{+activate}]^7 to lower down weather intensity");
+	// self == trigger_use
+	self SetHintString("Hold ^3[{+activate}]^7 to lower down weather intensity");
 
 	while(true)
 	{
-		ent_trigger waittill("trigger");
+		self waittill("trigger");
 		zm_weather::lesser_intensity();
 	}
 }
 
 function monitor_trigger_play_pause()
 {
-	ent_trigger = GetEnt("trigger_play_pause", "targetname");
-	ent_trigger SetHintString("Hold ^3[{+activate}]^7 to play or pause weather");
+	// self == trigger_use
+	self SetHintString("Hold ^3[{+activate}]^7 to play or pause weather");
 
 	while(true)
 	{
-		ent_trigger waittill("trigger");
+		self waittill("trigger");
 		zm_weather::pause();
-
-		ent_trigger waittill("trigger");
-		zm_weather::resume();
+		self waittill("trigger");
+		zm_weather::play();
 	}
 }
 

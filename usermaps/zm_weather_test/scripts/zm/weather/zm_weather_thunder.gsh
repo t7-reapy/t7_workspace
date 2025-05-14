@@ -1,11 +1,7 @@
-// Back to normal lightstate here (no strike)
+#define THUNDER_DEFAULT_MIN_WAIT array(60000, 60000, 40.0, 25.0)
+#define THUNDER_DEFAULT_MAX_WAIT array(60001, 60001, 60.0, 35.0)
+
 #define THUNDER_DEFAULT_LIGHTSTATE 0
-// Adapt array of possible values for your thunder strikes here
 #define THUNDER_STRIKES_LIGHTSTATE array(1, 2)
-#define THUNDER_SOUNDS array("thunder_close", "thunder_snap", "lightning_strike_lrg_00", "lightning_strike_lrg_01", "lightning_strike_lrg_02", "lightning_strike_lrg_03")
 
-// TODO: thunder FXs
-
-#define DEFAULT_MIN_WAIT_THUNDER 10.0
-#define DEFAULT_MAX_WAIT_THUNDER 30.0
-#define HIGH_FREQUENCY_FACTOR_THUNDER 2.0
+#define THUNDER_EXPLODERS array("thunder_close_1", "thunder_close_2", "thunder_close_3", "thunder_close_4", "thunder_close_5", "thunder_close_6")
