@@ -35,3 +35,7 @@ Every script in `share/raw/scripts/zm` can be overwritten by alimenting scripts 
 ---
 
 `<entity> delete()` to free entity
+
+### Sounds stuff
+
+The `ambient_mod.csv` needs to be configured according ardivee's script `_ambient_room.cs`. There is a specificity regarding the csv file now: never specify column value `EntityContextValue0` for the default ambient sound.

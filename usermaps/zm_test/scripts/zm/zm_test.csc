@@ -40,6 +40,9 @@
 //Traps
 #using scripts\zm\_zm_trap_electric;
 
+// Ambient sounds
+#using scripts\zm\_ambient_room;
+
 #using scripts\zm\zm_usermap;
 #using scripts\zm\zm_rain;
 

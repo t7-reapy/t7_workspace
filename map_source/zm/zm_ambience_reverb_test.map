@@ -5,7 +5,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{D6C59ABF-3105-11F0-B37A-FDD49A6B4203}"
+guid "{2A521EC2-3109-11F0-B37A-FDD49A6B4203}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -293,6 +293,16 @@ guid "{D6C59ABF-3105-11F0-B37A-FDD49A6B4203}"
  ( -80 -192 64 ) ( -80 -64 64 ) ( -80 -64 0 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
  ( 112 -160 64 ) ( 48 -160 64 ) ( 48 -160 0 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
  ( -144 -64 128 ) ( -144 -192 128 ) ( -144 -192 64 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 27
+{
+ guid "{F939BD4E-3109-11F0-B37A-FDD49A6B4203}"
+ ( 400 272 0 ) ( 208 272 0 ) ( 208 224 0 ) $default 0.0625 0.0625 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 208 224 128 ) ( 208 272 128 ) ( 400 272 128 ) $default 0.0625 0.0625 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 208 224 128 ) ( 400 224 128 ) ( 400 224 0 ) $default 0.0625 0.0625 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 304 192 128 ) ( 304 240 128 ) ( 304 240 0 ) $default 0.0625 0.0625 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 400 272 128 ) ( 208 272 128 ) ( 208 272 0 ) $default 0.0625 0.0625 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 208 272 128 ) ( 208 224 128 ) ( 208 224 0 ) $default 0.0625 0.0625 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
 // entity 1
@@ -735,5 +745,26 @@ guid "{D6C59AC5-3105-11F0-B37A-FDD49A6B4203}"
  ( 64 -160 16 ) ( 64 -144 16 ) ( 64 -144 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
  ( 0 32 16 ) ( -16 32 16 ) ( -16 32 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
  ( -16 0 16 ) ( -16 -16 16 ) ( -16 -16 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 35
+{
+guid "{2A521EC8-3109-11F0-B37A-FDD49A6B4203}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "mp_mod_outdoor"
+"targetname" "ambient_room"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{2A521EC7-3109-11F0-B37A-FDD49A6B4203}"
+ ( -160 -224 0 ) ( -176 -224 0 ) ( -176 -240 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -160 -240 128 ) ( -160 -224 128 ) ( -144 -224 128 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 -224 16 ) ( 16 -224 16 ) ( 16 -224 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -48 -352 16 ) ( -48 -336 16 ) ( -48 -336 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -208 -160 16 ) ( -224 -160 16 ) ( -224 -160 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -224 -192 16 ) ( -224 -208 16 ) ( -224 -208 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }

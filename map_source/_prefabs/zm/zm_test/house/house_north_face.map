@@ -4,7 +4,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{BE9AED18-1BD2-11F0-B35E-E7EE7B114163}"
+guid "{17AB7460-310E-11F0-B37A-FDD49A6B4203}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -39231,28 +39231,64 @@ guid "{BE9AED1E-1BD2-11F0-B35E-E7EE7B114163}"
 }
 // entity 765
 {
-guid "{524E966B-22B4-11F0-B366-D71AEE16DC63}"
-"classname" "volume_outdoor"
-"enabled0" "1"
-"enabled1" "1"
-"enabled2" "1"
-"enabled3" "1"
-"pitch0" "20"
-"pitch1" "20"
-"pitch2" "20"
-"pitch3" "20"
-"yaw0" "-90"
-"yaw1" "-90"
-"yaw2" "-90"
-"yaw3" "-90"
+guid "{DF658235-310D-11F0-B37A-FDD49A6B4203}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "zm_test_corridor_outdoor"
+"targetname" "ambient_room"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
 // brush 0
 {
- guid "{524E966A-22B4-11F0-B366-D71AEE16DC63}"
- ( 1844.5 -622 0 ) ( 1824 -622 0 ) ( 1824 -642.5 0 ) outdoorbounds_volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( 1828.25 -642.5 128 ) ( 1828.25 -622 128 ) ( 1848.75 -622 128 ) outdoorbounds_volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( 1821.75 -769 112 ) ( 1842.25 -769 112 ) ( 1842.25 -769 4 ) outdoorbounds_volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( 1824 -639.25 112 ) ( 1824 -618.75 112 ) ( 1824 -618.75 4 ) outdoorbounds_volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( 1797.5 -397 112 ) ( 1777 -397 112 ) ( 1777 -397 4 ) outdoorbounds_volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
- ( 1777 -397 112 ) ( 1777 -417.5 112 ) ( 1777 -417.5 4 ) outdoorbounds_volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ guid "{DF658234-310D-11F0-B37A-FDD49A6B4203}"
+ ( 765 -893 -12 ) ( 2156 -893 -12 ) ( 2156 -785 -12 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 757 -785 112 ) ( 2148 -785 112 ) ( 2148 -893 112 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 753 -893 -20 ) ( 753 -893 91 ) ( 2144 -893 91 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1796 -790 -20 ) ( 1796 -898 -20 ) ( 1796 -898 91 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2144 -785 -20 ) ( 2144 -785 91 ) ( 753 -785 91 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 753 -785 91 ) ( 753 -893 91 ) ( 753 -893 -20 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 766
+{
+guid "{FC280866-310D-11F0-B37A-FDD49A6B4203}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "zm_test_corridor_indoor"
+"targetname" "ambient_room"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{FC280865-310D-11F0-B37A-FDD49A6B4203}"
+ ( 1118 -893 -12 ) ( 2509 -893 -12 ) ( 2509 -785 -12 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1110 -785 112 ) ( 2501 -785 112 ) ( 2501 -893 112 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1108 -885 -20 ) ( 1108 -885 91 ) ( 2499 -885 91 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2149 -790 -20 ) ( 2149 -898 -20 ) ( 2149 -898 91 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2497 -785 -20 ) ( 2497 -785 91 ) ( 1106 -785 91 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1796 -809 91 ) ( 1796 -917 91 ) ( 1796 -917 -20 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 767
+{
+guid "{17AB7466-310E-11F0-B37A-FDD49A6B4203}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "zm_test_corridor_balcony"
+"targetname" "ambient_room"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{17AB7465-310E-11F0-B37A-FDD49A6B4203}"
+ ( 889 -524 -12 ) ( 2280 -524 -12 ) ( 2280 -416 -12 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 881 -416 112 ) ( 2272 -416 112 ) ( 2272 -524 112 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1122 -769 -20 ) ( 1122 -769 91 ) ( 2513 -769 91 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1920 -421 -20 ) ( 1920 -529 -20 ) ( 1920 -529 91 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 2268 -416 -20 ) ( 2268 -416 91 ) ( 877 -416 91 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1796 -697 91 ) ( 1796 -805 91 ) ( 1796 -805 -20 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
