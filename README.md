@@ -74,10 +74,12 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 
 ## ZM_TEST
 
-- once revive is used 3 times and perk is gone, bumper sound is still ON
+- once revive is used 3 times and perk is gone, bumper sound is still ON (**I think I fixed it already ?**)
 
   > might be because trigger is still present, it needs to be deleted in the script resposible where perk is moved out.
 
-- the little elevation on fourth zone is blcking the player if he deosn't run
+- the little elevation on fourth zone is blcking the player if he deosn't run (probably have to use a different clip type, maybe stairs ?)
 
 - the mulekick perk is bugged when 3rd weapon is in hand (icon in hud is bugged)
+
+- perk utility script throws error in splitscreen.

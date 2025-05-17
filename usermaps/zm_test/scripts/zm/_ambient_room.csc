@@ -11,41 +11,59 @@
 #insert scripts\shared\version.gsh;
 
 /*
- * Author: Ardivee
- * Version: 0.6
+ * Author: Ardivee (& Reapy)
+ * Version: 0.6.2
  * Description: Setup ambient rooms to add reverb to weapons, background sounds, and more!
  * Give credit if used
  */
- 
+
+// Adapt to your needs
+#define AMBIENT_FILE_NAME "zm_test_ambient.csv"
+#define AMBIENT_DEBUG 1
+
 #namespace ambient_room;
 
 REGISTER_SYSTEM("ambient_room", &__init__, undefined)
-    
+
 function __init__()
 {
-    level.ambient_room_table = "sound/ambients/ambient_mod.csv"; //the csv table where all the ambient rooms are defined
-    DEFAULT2(level.default_ambient_room, undefined, get_default_ambient_room()); //set the default ambient room, default it grabs the one set in the table, or manually change this by changing undefined!
-    level.ambient_debug = true; //helps with debugging
+    level.ambient_room_table = "sound/ambients/" + AMBIENT_FILE_NAME;
+    DEFAULT2(level.default_ambient_room, undefined, get_default_ambient_room());
+    level.ambient_debug = AMBIENT_DEBUG;
 
-    //DO NOT CHANGE BELOW!
-    level.ambient_rooms = []; //this holds all the ambient room triggers setup in the map
-    level.active_ambient_room = ""; //current active room
+    level.ambient_rooms = [];
+    level.active_ambient_room = "";
 
     callback::on_localclient_connect(&player_amb_connect);
 }
 
 function player_amb_connect(localClientNum)
 {
-    if (IsSplitScreenHost(localClientNum))
+    if (!IsSplitScreen())
+    {
         level thread ambient_room_trigger(localClientNum);
+    }
+    else if (IsSplitScreenHost(localClientNum))
+    {
+        activate_ambient_room(level.default_ambient_room);
+    }
 }
 
 function ambient_room_trigger(localClientNum)
 {
     ambient_rooms = GetEntArray(localClientNum, "ambient_room", "targetname");
 
+    // In case nothing was found in the map, fallback to default.
+    if (!isdefined(ambient_rooms) || ambient_rooms.size == 0)
+    {
+        activate_ambient_room(level.default_ambient_room);
+        return;
+    }
+
     foreach(ambient_room in ambient_rooms)
+    {
         ambient_room thread ambient_room_setup(localClientNum);
+    }
 }
 
 function ambient_room_setup(localClientNum)
