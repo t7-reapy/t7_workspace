@@ -36,6 +36,10 @@ Every script in `share/raw/scripts/zm` can be overwritten by alimenting scripts 
 
 `<entity> delete()` to free entity
 
-### Sounds stuff
+### Ambient stuff
 
-The `ambient_mod.csv` needs to be configured according ardivee's script `_ambient_room.cs`. There is a specificity regarding the csv file now: never specify column value `EntityContextValue0` for the default ambient sound.
+The `ambient_mod.csv` or **any ambient mod csv file** needs to be configured according to ardivee's script `_ambient_room.cs`. 
+> [***not true, I've tested it multiple times, sometimes work, sometimes doesn't, but with current config field value needs to be specified***] => There is a specificity regarding the csv file now: never specify column value `EntityContextValue0` for the default ambient sound.
+
+"Reverb" column config doesn't seem to impact gun sound effects, weirdly, but will affect every other sounds I've been testing.
+At least the context ringoff_plr does affect gun sound. Important! context "water":"over" needs to specified, if not, no gun sounds.

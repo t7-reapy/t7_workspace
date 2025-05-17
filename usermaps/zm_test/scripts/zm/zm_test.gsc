@@ -124,10 +124,7 @@ function add_adjacent_zones()
 
 function remove_players_names()
 {
-    // Remove names
-    SetDvar("cg_overheadNamesSize", "0");
-    SetDvar("cg_overheadIconSize", "0");
-    SetDvar("cg_overheadRankSize", "0");
+	SetDvar("cg_disableplayernames", "1");
 }
 
 function setup_weapons()
@@ -138,7 +135,7 @@ function setup_weapons()
     level.start_weapon = GetWeapon("t9_1911");
     level.laststandpistol = level.start_weapon;
     level.default_laststandpistol = level.start_weapon;
-    level.default_solo_laststandpistol =  GetWeapon("t9_1911_rdw_up");
+    level.default_solo_laststandpistol = GetWeapon("t9_1911_rdw_up");
 }
 
 function monitor_power_state()

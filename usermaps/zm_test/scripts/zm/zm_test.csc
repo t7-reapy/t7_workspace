@@ -1,3 +1,4 @@
+#using scripts\shared\duplicaterender_mgr; 
 #using scripts\codescripts\struct;
 #using scripts\shared\audio_shared;
 #using scripts\shared\callbacks_shared;
@@ -52,10 +53,20 @@ function main()
 
     zm_usermap::main();
 
+	callback::on_localclient_connect(&disable_player_outline);
+
     include_weapons();
 }
 
 function include_weapons()
 {
     zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_test_weapons.csv", 1);
+}
+
+function private disable_player_outline(localClientNum)
+{
+	foreach (player in GetPlayers(localClientNum))
+	{
+		player duplicate_render::set_dr_flag("keyline_active", 0);
+	}
 }
