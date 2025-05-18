@@ -61,6 +61,7 @@ function main()
 	zm_usermap::main();
 	
 	level._zombie_custom_add_weapons =&custom_add_weapons;
+    level.start_weapon = GetWeapon("t9_1911");
 	
 	//Setup the levels Zombie Zone Volumes
 	level.zones = [];
