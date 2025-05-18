@@ -983,5 +983,6 @@ function give_player_loadout( s_loadout, b_remove_player_weapons = 1, b_immediat
 function register_vulture_perk_safe()
 {
 	delay_if_blackscreen_pending();
-	self clientfield::set( "vulture_aid_register_perk", 1 );
+	// Uncomment this to have vulture aid working in the map.
+	// self clientfield::set( "vulture_aid_register_perk", 1 );
 }

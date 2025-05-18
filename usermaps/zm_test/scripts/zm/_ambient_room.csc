@@ -51,6 +51,11 @@ function player_amb_connect(localClientNum)
 
 function ambient_room_trigger(localClientNum)
 {
+	while(!ClientHasSnapshot(localClientNum))
+	{
+		wait(0.25);
+	}
+
     ambient_rooms = GetEntArray(localClientNum, "ambient_room", "targetname");
 
     // In case nothing was found in the map, fallback to default.
@@ -143,7 +148,7 @@ function activate_ambient_room(ambient_room)
             
             SetSoundContext(ctx.ctx_type2, ctx.ctx_value2);
 
-            //SetSoundContext(ctx.global_ctx_type, ctx.global_ctx_value); //not really needed i think, so disabling it for now
+            SetSoundContext(ctx.global_ctx_type, ctx.global_ctx_value);
 
             _IPrintLnBold("EntityContextType0: " + ctx.ctx_type0 + " - EntityContextValue0: " + ctx.ctx_value0);
             _IPrintLnBold("EntityContextType1: " + ctx.ctx_type1 + " - EntityContextValue1: " + ctx.ctx_value1);
