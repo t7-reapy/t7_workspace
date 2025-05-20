@@ -16,7 +16,7 @@
  * Description: Setup ambient rooms to add reverb to weapons, background sounds, and more!
  * Give credit if used
  */
-
+ 
 // Adapt to your needs
 #define AMBIENT_FILE_NAME "ambient_mod.csv"
 #define AMBIENT_DEBUG 1
@@ -24,7 +24,7 @@
 #namespace ambient_room;
 
 REGISTER_SYSTEM("ambient_room", &__init__, undefined)
-
+    
 function __init__()
 {
     level.ambient_room_table = "sound/ambients/" + AMBIENT_FILE_NAME;
@@ -51,19 +51,7 @@ function player_amb_connect(localClientNum)
 
 function ambient_room_trigger(localClientNum)
 {
-	while(!ClientHasSnapshot(localClientNum))
-	{
-		wait(0.25);
-	}
-
     ambient_rooms = GetEntArray(localClientNum, "ambient_room", "targetname");
-
-    // In case nothing was found in the map, fallback to default.
-    if (!isdefined(ambient_rooms) || ambient_rooms.size == 0)
-    {
-        activate_ambient_room(level.default_ambient_room);
-        return;
-    }
 
     foreach(ambient_room in ambient_rooms)
     {
@@ -148,7 +136,7 @@ function activate_ambient_room(ambient_room)
             
             SetSoundContext(ctx.ctx_type2, ctx.ctx_value2);
 
-            SetSoundContext(ctx.global_ctx_type, ctx.global_ctx_value);
+            //SetSoundContext(ctx.global_ctx_type, ctx.global_ctx_value); //not really needed i think, so disabling it for now
 
             _IPrintLnBold("EntityContextType0: " + ctx.ctx_type0 + " - EntityContextValue0: " + ctx.ctx_value0);
             _IPrintLnBold("EntityContextType1: " + ctx.ctx_type1 + " - EntityContextValue1: " + ctx.ctx_value1);
