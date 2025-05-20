@@ -5,7 +5,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{6C8284B0-3296-11F0-B37D-BF4AB32AAF92}"
+guid "{ED65DF68-35C3-11F0-B381-ED911C8C26C2}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -639,8 +639,8 @@ guid "{7FC2BCA1-31C6-11F0-B37C-F3DFA27E77B4}"
 guid "{8461BD19-3296-11F0-B37D-BF4AB32AAF92}"
 "classname" "trigger_multiple"
 "CLIENTSIDE_TRIGGER" "1"
-"script_ambientpriority" "1"
-"script_ambientroom" "mp_mod_indoor"
+"script_ambientpriority" "2"
+"script_ambientroom" "zm_indoor"
 "targetname" "ambient_room"
 "_color" "1 0.3 0.1"
 "spawnflags" "128"
@@ -662,4 +662,25 @@ guid "{58E7D3E8-34F2-11F0-B380-86826CA17377}"
 "angles" "0 270 0"
 "model" "_prefabs/zm/skye_prefabs/t9_rpk_wallbuy.map"
 "origin" "-447 89 0"
+}
+// entity 32
+{
+guid "{ED65DF6E-35C3-11F0-B381-ED911C8C26C2}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "1"
+"script_ambientroom" "zm_outdoor"
+"targetname" "ambient_room"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{ED65DF6D-35C3-11F0-B381-ED911C8C26C2}"
+ ( -896 -704 0 ) ( -704 -704 0 ) ( -704 -512 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -896 -512 128 ) ( -704 -512 128 ) ( -704 -704 128 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -832 -1536 0 ) ( -832 -1536 128 ) ( -640 -1536 128 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1536 -448 0 ) ( 1536 -640 0 ) ( 1536 -640 128 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1408 1536 0 ) ( -1408 1536 128 ) ( -1600 1536 128 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1536 -640 128 ) ( -1536 -832 128 ) ( -1536 -832 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
 }

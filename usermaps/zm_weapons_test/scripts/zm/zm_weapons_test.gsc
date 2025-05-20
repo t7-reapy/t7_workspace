@@ -91,22 +91,6 @@ function custom_add_weapons()
 
 function private configure_weapon_inspection()
 {
-	// TODO : test & remove ?
-	inspectable::add_inspectable_weapon(GetWeapon("iw8_ak74u"), 5.13);
-	inspectable::add_inspectable_weapon(GetWeapon("iw8_ak74u_up"), 5.13);
-	inspectable::add_inspectable_weapon(GetWeapon("iw8_rpk"), 5.13);
-	inspectable::add_inspectable_weapon(GetWeapon("iw8_rpk_up"), 5.13);
-	inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_classic"), 5.13);
-	inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_classic_up"), 5.13);
-	inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_smg"), 5.13);
-	inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_smg_up"), 5.13);
-	inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_sniper"), 5.13);
-	inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_sniper_up"), 5.13);
-	inspectable::add_inspectable_weapon(GetWeapon("iw8_m16a4"), 5.13);
-	inspectable::add_inspectable_weapon(GetWeapon("iw8_m16a4_up"), 5.13);
-	inspectable::add_inspectable_weapon( GetWeapon("iw8_spr208_scope"), 5.26 );
-	inspectable::add_inspectable_weapon( GetWeapon("iw8_spr208_scope_up"), 5.26 );
-
 	// T9
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911"), 3.33);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_rdw_up"), 5);
