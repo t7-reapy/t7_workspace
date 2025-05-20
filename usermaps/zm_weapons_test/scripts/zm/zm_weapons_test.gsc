@@ -69,8 +69,8 @@ function main()
 
 function usermap_test_zone_init()
 {
-	level flag::init( "always_on" );
-	level flag::set( "always_on" );
+	level flag::init("always_on");
+	level flag::set("always_on");
 }	
 
 function setup_weapons()
@@ -91,10 +91,41 @@ function custom_add_weapons()
 
 function private configure_weapon_inspection()
 {
+	// TODO : test & remove ?
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_ak74u"), 5.13);
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_ak74u_up"), 5.13);
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_rpk"), 5.13);
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_rpk_up"), 5.13);
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_classic"), 5.13);
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_classic_up"), 5.13);
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_smg"), 5.13);
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_smg_up"), 5.13);
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_sniper"), 5.13);
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_sniper_up"), 5.13);
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_m16a4"), 5.13);
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_m16a4_up"), 5.13);
+	inspectable::add_inspectable_weapon( GetWeapon("iw8_spr208_scope"), 5.26 );
+	inspectable::add_inspectable_weapon( GetWeapon("iw8_spr208_scope_up"), 5.26 );
+
 	// T9
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911"), 3.33);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_rdw_up"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_ldw_up"), 5);
+
+	inspectable::add_inspectable_weapon(GetWeapon("t9_diamatti"), 6.23);
+	inspectable::add_inspectable_weapon(GetWeapon("t9_diamatti_up"), 6.23);
+
+	inspectable::add_inspectable_weapon(GetWeapon("t9_rpk"), 5.83);
+	inspectable::add_inspectable_weapon(GetWeapon("t9_rpk_up"), 5.83);
+	
+	inspectable::add_inspectable_weapon(GetWeapon("t9_groza"), 6.13);
+	inspectable::add_inspectable_weapon(GetWeapon("t9_groza_up"), 6.13);
+
+	inspectable::add_inspectable_weapon(GetWeapon("t9_m60"), 10);
+	inspectable::add_inspectable_weapon(GetWeapon("t9_m60_up"), 10);
+
+	inspectable::add_inspectable_weapon(GetWeapon("t9_streetsweeper"), 5.6);
+	inspectable::add_inspectable_weapon(GetWeapon("t9_streetsweeper_up"), 5.6);
 
 	// IW8
     inspectable::add_inspectable_weapon(GetWeapon("iw8_asval"), 5.76);
@@ -103,6 +134,29 @@ function private configure_weapon_inspection()
 	inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs"), 4.66);
 	inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs_rdw_up"), 4.66);
 	inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs_ldw_up"), 4.66);
+
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_ak47"), 5.13);
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_ak47_up"), 5.13);
+	
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_iso"), 5.13);
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_iso_up"), 5.13);
+		
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1"), 5.13);
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_up"), 5.13);
+
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_minigun"), 5.26);
+	inspectable::add_inspectable_weapon(GetWeapon("iw8_minigun_up"), 5.26);
+	
+	inspectable::add_inspectable_weapon( GetWeapon("iw8_spr208_irons"), 5.26 );
+	inspectable::add_inspectable_weapon( GetWeapon("iw8_spr208_irons_up"), 5.26 );
+
+	inspectable::add_inspectable_weapon( GetWeapon("iw8_vlkrogue"), 5.33 );
+	inspectable::add_inspectable_weapon( GetWeapon("iw8_vlkrogue_up"), 5.33 );
+
+	// SW2
+	inspectable::add_inspectable_weapon( GetWeapon("s2_vmg1927"), 5 );
+	inspectable::add_inspectable_weapon( GetWeapon("s2_vmg1927_up"), 5 );
+
 }
 
 function private setup_zones()
@@ -111,7 +165,7 @@ function private setup_zones()
 	level.zones = [];
 	level.zone_manager_init_func = &usermap_test_zone_init;
 	init_zones[0] = "start_zone";
-	level thread zm_zonemgr::manage_zones( init_zones );
+	level thread zm_zonemgr::manage_zones(init_zones);
 
 	level.pathdist_type = PATHDIST_ORIGINAL;
 }

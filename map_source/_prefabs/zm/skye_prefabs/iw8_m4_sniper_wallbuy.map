@@ -1,0 +1,71 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{FCDD68E3-E96B-11E9-8671-3C07547E497B}"
+"classname" "worldspawn"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{E18E5EB5-DBE6-11E4-9056-2C27D7EF3DD2}"
+  contents nonColliding;
+ ( -3 -8 0 ) ( 24 -8 0 ) ( 24 -2 0 ) traverse 16 16 -8 -9 180 0 lightmap_gray 16384 16384 -8 -9 180 0
+ ( 22 -2 56 ) ( 22 -8 56 ) ( -5 -8 56 ) traverse 16 16 -8 -9 180 0 lightmap_gray 16384 16384 -8 -9 180 0
+ ( 22 -1 56 ) ( -5 -1 56 ) ( -5 -1 40 ) traverse 16 -16 -8 -4 180 0 lightmap_gray 16384 -16384 -8 -98 180 0
+ ( -6 -2 56 ) ( -6 -8 56 ) ( -6 -8 40 ) traverse 16 -16 9 -4 180 0 lightmap_gray 16384 -16384 9 -98 180 0
+ ( -5 -8 56 ) ( 22 -8 56 ) ( 22 -8 40 ) traverse 16 -16 -8 -4 180 0 lightmap_gray 16384 -16384 -8 -98 180 0
+ ( 24 -8 56 ) ( 24 -2 56 ) ( 24 -2 40 ) traverse 16 -16 9 -4 180 0 lightmap_gray 16384 -16384 9 -98 180 0
+}
+// brush 1
+ {
+  guid "{0DFAA661-0D54-11E5-8961-2C27D7EF3DBE}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   weapon_vm_ar_mike4sniper_wall_chalk
+   lightmap_gray
+   2 2 0 8
+   (
+	v 26.064411 -1.2732926e-011 47.636604 t 0 -0 -1.0001428 -6.7082205
+	v 26.063969 -1.2732926e-011 61.316986 t 0 -1024 -0.99985725 -9.0415535
+   )
+   (
+	v -8.0501528 1.2732926e-011 47.636604 t 1024 -0 0.87485725 -6.7084455
+	v -8.0501528 1.2732926e-011 61.316986 t 1024 -1024 0.87514287 -9.0417786
+   )
+  }
+ }
+}
+// entity 1
+{
+guid "{FCDD68E5-E96B-11E9-8671-3C07547E497B}"
+"classname" "script_struct"
+"model" "wm_iw8_m4sniper_full"
+"origin" "3.87994 0 52.5214"
+"targetname" "auto38"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{FCDD68E4-E96B-11E9-8671-3C07547E497B}"
+"classname" "script_struct"
+"origin" "8 0 54.25"
+"target" "auto38"
+"targetname" "weapon_upgrade"
+"zombie_weapon_upgrade" "iw8_m4a1_sniper"
+"_color" "1 0 0"
+}

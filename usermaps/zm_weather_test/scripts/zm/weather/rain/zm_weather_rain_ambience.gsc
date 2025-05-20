@@ -22,6 +22,9 @@ class RainAmbience {
 }
 
 function init() {
+    // TODO: there is no need for the client to have 3 different flags actually.
+    // We could really only use one and leave trigger management to the client.
+    // The only possible limitation to this is the client side behavior when using splitscreen ...
     clientfield::register("toplayer", RAIN_INTERIOR_TYPE_SFX, VERSION_SHIP, 2, "int");
     clientfield::register("toplayer", RAIN_LIMINAL_TYPE_SFX, VERSION_SHIP, 2, "int");
     clientfield::register("toplayer", RAIN_EXTERIOR_TYPE_SFX, VERSION_SHIP, 2, "int");
