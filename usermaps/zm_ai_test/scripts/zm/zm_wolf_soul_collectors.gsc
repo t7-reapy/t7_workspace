@@ -836,7 +836,9 @@ function soul_catchers_charged()
             level flag::set("soul_catchers_charged");
             level notify("soul_catchers_charged");
             
-            if (IsFunctionPtr(level.soul_catchers_charged_callback)) {
+            if (!level.soul_catchers_abolished 
+                && IsFunctionPtr(level.soul_catchers_charged_callback)) 
+            {
                 level thread [[ level.soul_catchers_charged_callback ]]();
             }
             return;
