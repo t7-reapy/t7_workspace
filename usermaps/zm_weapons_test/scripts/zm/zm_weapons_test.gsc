@@ -82,6 +82,13 @@ function setup_weapons()
     level.laststandpistol = level.start_weapon;
     level.default_laststandpistol = level.start_weapon;
     level.default_solo_laststandpistol = GetWeapon("iw8_50gs_rdw_up");
+
+	// Hellround best camo = 26
+	// Main map best camo = 38
+
+	// Camo PaP
+	level.pack_a_punch_camo_index = 1;
+	level.pack_a_punch_camo_index_number_variants = 36;
 }
 
 function custom_add_weapons()
