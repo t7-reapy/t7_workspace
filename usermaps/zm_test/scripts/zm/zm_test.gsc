@@ -91,11 +91,55 @@ function register_client_fields()
 
 function configure_weapon_inspection()
 {
+    // T9
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911"), 3.33);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_rdw_up"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_ldw_up"), 5);
+
+    inspectable::add_inspectable_weapon(GetWeapon("t9_diamatti"), 6.23);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_diamatti_up"), 6.23);
+
+    inspectable::add_inspectable_weapon(GetWeapon("t9_rpk"), 5.83);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_rpk_up"), 5.83);
+    
+    inspectable::add_inspectable_weapon(GetWeapon("t9_groza"), 6.13);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_groza_up"), 6.13);
+
+    inspectable::add_inspectable_weapon(GetWeapon("t9_m60"), 10);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_m60_up"), 10);
+
+    inspectable::add_inspectable_weapon(GetWeapon("t9_streetsweeper"), 5.6);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_streetsweeper_up"), 5.6);
+
+    // IW8
     inspectable::add_inspectable_weapon(GetWeapon("iw8_asval"), 5.76);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_asval_up"), 5.76);
+    
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs"), 4.66);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs_rdw_up"), 4.66);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs_ldw_up"), 4.66);
+
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_ak47"), 5.13);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_ak47_up"), 5.13);
+    
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_iso"), 5.13);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_iso_up"), 5.13);
+        
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1"), 5.13);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_up"), 5.13);
+
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_minigun"), 5.26);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_minigun_up"), 5.26);
+    
+    inspectable::add_inspectable_weapon( GetWeapon("iw8_spr208_irons"), 5.26 );
+    inspectable::add_inspectable_weapon( GetWeapon("iw8_spr208_irons_up"), 5.26 );
+
+    inspectable::add_inspectable_weapon( GetWeapon("iw8_vlkrogue"), 5.33 );
+    inspectable::add_inspectable_weapon( GetWeapon("iw8_vlkrogue_up"), 5.33 );
+
+    // SW2
+    inspectable::add_inspectable_weapon( GetWeapon("s2_vmg1927"), 5 );
+    inspectable::add_inspectable_weapon( GetWeapon("s2_vmg1927_up"), 5 );
 }
 
 function custom_add_weapons()
@@ -129,6 +173,10 @@ function remove_players_names()
 
 function setup_weapons()
 {
+    // PaP Camo
+    level.pack_a_punch_camo_index = 3;
+    level.pack_a_punch_camo_index_number_variants = 34;
+
     level._zombie_custom_add_weapons = &custom_add_weapons;
 
     // Use CW M1911 as start and laststand pistol
