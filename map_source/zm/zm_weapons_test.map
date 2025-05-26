@@ -5,7 +5,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{039147EF-3738-11F0-B384-D76004CADD12}"
+guid "{9CAA77BF-397E-11F0-B388-B92E4E02DCF0}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -423,6 +423,56 @@ guid "{039147EF-3738-11F0-B384-D76004CADD12}"
  ( 752 1104 -256 ) ( 752 1104 0 ) ( -1552 1104 0 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 -64 0 0
  ( -1552 336 0 ) ( -1552 -2224 0 ) ( -1552 -2224 -256 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 -64 0 0
  ( -1552 336 0 ) ( 752 336 0 ) ( 752 -2224 0 ) script_floor_ceiling 128 128 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 40
+{
+ guid "{B7CB6864-397D-11F0-B388-B92E4E02DCF0}"
+ ( -56 -368 0 ) ( -8 -368 0 ) ( -8 -328 0 ) script_wall 128 128 0 -584 180 0 lightmap_gray 16384 16384 0 -584 180 0
+ ( -16 -328 128 ) ( -16 -368 128 ) ( -64 -368 128 ) script_wall 128 128 0 -584 180 0 lightmap_gray 16384 16384 0 -584 180 0
+ ( -136 -512 88 ) ( -184 -512 88 ) ( -184 -512 0 ) script_wall 128 -128 0 64 180 0 lightmap_gray 16384 -16384 0 64 180 0
+ ( -192 -840 88 ) ( -192 -880 88 ) ( -192 -880 0 ) script_wall 128 -128 584 64 180 0 lightmap_gray 16384 -16384 584 64 180 0
+ ( 8 -576 88 ) ( 56 -576 88 ) ( 56 -576 0 ) script_wall 128 -128 0 64 180 0 lightmap_gray 16384 -16384 0 64 180 0
+ ( 64 -368 88 ) ( 64 -328 88 ) ( 64 -328 0 ) script_wall 128 -128 584 64 180 0 lightmap_gray 16384 -16384 584 64 180 0
+}
+// brush 41
+{
+ guid "{B7CB6865-397D-11F0-B388-B92E4E02DCF0}"
+ ( -184 -560 0 ) ( -136 -560 0 ) ( -136 -520 0 ) script_wall 128 128 0 -584 180 0 lightmap_gray 16384 16384 0 -584 180 0
+ ( -144 -520 128 ) ( -144 -560 128 ) ( -192 -560 128 ) script_wall 128 128 0 -584 180 0 lightmap_gray 16384 16384 0 -584 180 0
+ ( -264 -704 88 ) ( -312 -704 88 ) ( -312 -704 0 ) script_wall 128 -128 0 64 -180 0 lightmap_gray 16384 -16384 0 64 -180 0
+ ( -192 -1032 88 ) ( -192 -1072 88 ) ( -192 -1072 0 ) script_wall 128 -128 584 64 -180 0 lightmap_gray 16384 -16384 584 64 -180 0
+ ( -184 -768 88 ) ( -136 -768 88 ) ( -136 -768 0 ) script_wall 128 -128 0 64 180 0 lightmap_gray 16384 -16384 0 64 180 0
+ ( -128 -560 -40 ) ( -128 -520 -40 ) ( -128 -520 -128 ) script_wall 128 -128 584 64 180 0 lightmap_gray 16384 -16384 584 64 180 0
+}
+// brush 42
+{
+ guid "{B7CB6866-397D-11F0-B388-B92E4E02DCF0}"
+ ( -56 -624 0 ) ( -8 -624 0 ) ( -8 -584 0 ) script_wall 128 128 0 -584 180 0 lightmap_gray 16384 16384 0 -584 180 0
+ ( -16 -584 128 ) ( -16 -624 128 ) ( -64 -624 128 ) script_wall 128 128 0 -584 180 0 lightmap_gray 16384 16384 0 -584 180 0
+ ( -72 -768 88 ) ( -120 -768 88 ) ( -120 -768 0 ) script_wall 128 -128 0 64 180 0 lightmap_gray 16384 -16384 0 64 180 0
+ ( -192 -1096 88 ) ( -192 -1136 88 ) ( -192 -1136 0 ) script_wall 128 -128 584 64 180 0 lightmap_gray 16384 -16384 584 64 180 0
+ ( -56 -832 88 ) ( -8 -832 88 ) ( -8 -832 0 ) script_wall 128 -128 0 64 180 0 lightmap_gray 16384 -16384 0 64 180 0
+ ( 64 -624 88 ) ( 64 -584 88 ) ( 64 -584 0 ) script_wall 128 -128 584 64 180 0 lightmap_gray 16384 -16384 584 64 180 0
+}
+// brush 43
+{
+ guid "{B7CB6867-397D-11F0-B388-B92E4E02DCF0}"
+ ( -56 -560 128 ) ( -8 -560 128 ) ( -8 -520 128 ) script_wall 128 128 0 -584 180 0 lightmap_gray 16384 16384 0 -584 180 0
+ ( -16 -520 192 ) ( -16 -560 192 ) ( -64 -560 192 ) script_wall 128 128 0 -584 -180 0 lightmap_gray 16384 16384 0 -584 -180 0
+ ( -136 -512 24 ) ( -184 -512 24 ) ( -184 -512 -64 ) script_wall 128 -128 0 64 180 0 lightmap_gray 16384 -16384 0 64 180 0
+ ( -192 -1032 24 ) ( -192 -1072 24 ) ( -192 -1072 -64 ) script_wall 128 -128 584 64 180 0 lightmap_gray 16384 -16384 584 64 180 0
+ ( -56 -832 24 ) ( -8 -832 24 ) ( -8 -832 -64 ) script_wall 128 -128 0 64 180 0 lightmap_gray 16384 -16384 0 64 180 0
+ ( 128 -560 24 ) ( 128 -520 24 ) ( 128 -520 -64 ) script_wall 128 -128 584 64 180 0 lightmap_gray 16384 -16384 584 64 180 0
+}
+// brush 44
+{
+ guid "{B7CB6878-397D-11F0-B388-B92E4E02DCF0}"
+ ( 128 -512 0 ) ( 64 -512 0 ) ( 64 -832 0 ) script_wall 128 -128 0 64 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 64 -832 128 ) ( 64 -512 128 ) ( 128 -512 128 ) script_wall 128 -128 0 64 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 64 -832 128 ) ( 128 -832 128 ) ( 128 -832 0 ) script_wall 128 -128 0 64 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 128 -832 128 ) ( 128 -512 128 ) ( 128 -512 0 ) script_wall 128 -128 0 64 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 128 -512 128 ) ( 64 -512 128 ) ( 64 -512 0 ) script_wall 128 -128 0 64 180 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 64 -512 128 ) ( 64 -832 128 ) ( 64 -832 0 ) script_wall 128 -128 0 64 180 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
 // entity 1
@@ -968,459 +1018,604 @@ guid "{461B900A-3731-11F0-B384-D76004CADD12}"
 {
 guid "{03F43CB3-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_t9_1911"
+"SUSPENDED" "1"
 "origin" "-240 176 32"
 "_color" "0.3 0.3 1"
 "displayname" "1911"
 "model" "wm_t9_1911"
 "script" "weapons/t9_1911"
+"spawnflags" "1"
 }
 // entity 49
 {
 guid "{03F43CB6-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_t9_1911_rdw_up_zm"
+"SUSPENDED" "1"
 "origin" "-208 176 32"
 "_color" "0.3 0.3 1"
 "displayname" "Mustang & Sally"
 "model" "wm_t9_1911"
 "script" "weapons/t9_1911_rdw_up_zm"
+"spawnflags" "1"
 }
 // entity 50
 {
 guid "{03F43CB9-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_t9_diamatti"
+"SUSPENDED" "1"
 "origin" "-240 128 32"
 "_color" "0.3 0.3 1"
 "displayname" "Diamatti"
 "model" "wm_t9_diamatti"
 "script" "weapons/t9_diamatti"
+"spawnflags" "1"
 }
 // entity 51
 {
 guid "{03F43CBC-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_t9_diamatti_up"
+"SUSPENDED" "1"
 "origin" "-208 128 32"
 "_color" "0.3 0.3 1"
 "displayname" "Die-A-Lotti"
 "model" "wm_t9_diamatti"
 "script" "weapons/t9_diamatti_up"
+"spawnflags" "1"
 }
 // entity 52
 {
 guid "{03F43CBF-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_50gs"
+"SUSPENDED" "1"
 "origin" "-240 80 32"
 "_color" "0.3 0.3 1"
 "displayname" ".50 GS"
 "model" "wm_iw8_50gs"
 "script" "weapons/iw8_50gs"
+"spawnflags" "1"
 }
 // entity 53
 {
 guid "{03F43CC2-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_50gs_rdw_up_zm"
+"SUSPENDED" "1"
 "origin" "-208 80 32"
 "_color" "0.3 0.3 1"
 "displayname" "Ayres & Haast"
 "model" "wm_iw8_50gs"
 "script" "weapons/iw8_50gs_rdw_up_zm"
+"spawnflags" "1"
 }
 // entity 54
 {
 guid "{13178895-3736-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw7_trencher_up"
+"SUSPENDED" "1"
 "origin" "-128 176 32"
 "_color" "0.3 0.3 1"
 "displayname" "Moody J28"
 "model" "wm_iw7_trencher_up"
 "script" "weapons/iw7_trencher_up"
+"spawnflags" "1"
 }
 // entity 55
 {
 guid "{06CA617C-3736-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw7_trencher"
+"SUSPENDED" "1"
 "origin" "-160 176 32"
 "_color" "0.3 0.3 1"
 "displayname" "Trencher"
 "model" "wm_iw7_trencher"
 "script" "weapons/iw7_trencher"
+"spawnflags" "1"
 }
 // entity 56
 {
 guid "{1D568C25-3736-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_iso"
+"SUSPENDED" "1"
 "origin" "-160 144 32"
 "_color" "0.3 0.3 1"
 "displayname" "ISO"
 "model" "wm_iw8_iso"
 "script" "weapons/iw8_iso"
+"spawnflags" "1"
 }
 // entity 57
 {
 guid "{1D568C30-3736-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_iso_up"
+"SUSPENDED" "1"
 "origin" "-128 144 32"
 "_color" "0.3 0.3 1"
 "displayname" "DSK-IMG"
 "model" "wm_iw8_iso"
 "script" "weapons/iw8_iso_up"
+"spawnflags" "1"
 }
 // entity 58
 {
 guid "{1D568C3B-3736-11F0-B384-D76004CADD12}"
 "classname" "weapon_s4_m1928"
+"SUSPENDED" "1"
 "origin" "-160 112 32"
 "_color" "0.3 0.3 1"
 "displayname" "M1928"
 "model" "wm_s4_m1928"
 "script" "weapons/s4_m1928"
+"spawnflags" "1"
 }
 // entity 59
 {
 guid "{239071BC-3736-11F0-B384-D76004CADD12}"
 "classname" "weapon_s4_m1928_up"
+"SUSPENDED" "1"
 "origin" "-128 112 32"
 "_color" "0.3 0.3 1"
 "displayname" "Annihilator"
 "model" "wm_s4_m1928"
 "script" "weapons/s4_m1928_up"
+"spawnflags" "1"
 }
 // entity 60
 {
 guid "{4183F1D0-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_s4_mp40_up"
+"SUSPENDED" "1"
 "origin" "-128 80 32"
 "_color" "0.3 0.3 1"
 "displayname" "The Afterburner"
 "model" "wm_s4_mp40"
 "script" "weapons/s4_mp40_up"
+"spawnflags" "1"
 }
 // entity 61
 {
 guid "{4183F1CD-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_s4_mp40"
+"SUSPENDED" "1"
 "origin" "-160 80 32"
 "_color" "0.3 0.3 1"
 "displayname" "MP-40"
 "model" "wm_s4_mp40"
 "script" "weapons/s4_mp40"
+"spawnflags" "1"
 }
 // entity 62
 {
 guid "{6BADC78B-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_asval_up"
+"SUSPENDED" "1"
 "origin" "-128 32 32"
 "_color" "0.3 0.3 1"
 "displayname" "Serdyukov's Fabrication"
 "model" "wm_iw8_asval"
 "script" "weapons/iw8_asval_up"
+"spawnflags" "1"
 }
 // entity 63
 {
 guid "{6BADC78E-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_asval"
+"SUSPENDED" "1"
 "origin" "-160 32 32"
 "_color" "0.3 0.3 1"
 "displayname" "AS Val"
 "model" "wm_iw8_asval"
 "script" "weapons/iw8_asval"
+"spawnflags" "1"
 }
 // entity 64
 {
 guid "{6BADC791-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_t9_groza"
+"SUSPENDED" "1"
 "origin" "-160 0 32"
 "_color" "0.3 0.3 1"
 "displayname" "Groza"
 "model" "wm_t9_groza"
 "script" "weapons/t9_groza"
+"spawnflags" "1"
 }
 // entity 65
 {
 guid "{6BADC794-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_t9_groza_up"
+"SUSPENDED" "1"
 "origin" "-128 0 32"
 "_color" "0.3 0.3 1"
 "displayname" "Tugarin"
 "model" "wm_t9_groza+foregrip"
 "script" "weapons/t9_groza_up"
+"spawnflags" "1"
 }
 // entity 66
 {
 guid "{6BADC797-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_ak47"
+"SUSPENDED" "1"
 "origin" "-160 -32 32"
 "_color" "0.3 0.3 1"
 "displayname" "AK-47"
 "model" "wm_iw8_ak47"
 "script" "weapons/iw8_ak47"
+"spawnflags" "1"
 }
 // entity 67
 {
 guid "{6BADC79A-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_ak47_up_zm"
+"SUSPENDED" "1"
 "origin" "-128 -32 32"
 "_color" "0.3 0.3 1"
 "displayname" "Nikolai's Return"
 "model" "wm_iw8_ak47_gp25"
 "script" "weapons/iw8_ak47_up_zm"
+"spawnflags" "1"
 }
 // entity 68
 {
 guid "{6BADC79D-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_m4a1_up_zm"
+"SUSPENDED" "1"
 "origin" "-128 -64 32"
 "_color" "0.3 0.3 1"
 "displayname" "M4-GN1FIC4NT"
 "model" "wm_iw8_m4a1"
 "script" "weapons/iw8_m4a1_up_zm"
+"spawnflags" "1"
 }
 // entity 69
 {
 guid "{6BADC7A0-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_m4a1"
+"SUSPENDED" "1"
 "origin" "-160 -64 32"
 "_color" "0.3 0.3 1"
 "displayname" "M4A1"
 "model" "wm_iw8_m4a1"
 "script" "weapons/iw8_m4a1"
+"spawnflags" "1"
 }
 // entity 70
 {
 guid "{A1DBA6A3-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_spr208_irons"
+"SUSPENDED" "1"
 "origin" "-240 32 32"
 "_color" "0.3 0.3 1"
 "displayname" "SP-R 208"
 "model" "wm_iw8_spr208"
 "script" "weapons/iw8_spr208_irons"
+"spawnflags" "1"
 }
 // entity 71
 {
 guid "{A1DBA6A6-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_spr208_irons_up"
+"SUSPENDED" "1"
 "origin" "-208 32 32"
 "_color" "0.3 0.3 1"
 "displayname" "SUP-R GR8"
 "model" "wm_iw8_spr208_pistolgrip"
 "script" "weapons/iw8_spr208_irons_up"
+"spawnflags" "1"
 }
 // entity 72
 {
 guid "{A1DBA6A9-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_s4_m1garand"
+"SUSPENDED" "1"
 "origin" "-240 -16 32"
 "_color" "0.3 0.3 1"
 "displayname" "M1 Garand"
 "model" "wm_s4_m1garand"
 "script" "weapons/s4_m1garand"
+"spawnflags" "1"
 }
 // entity 73
 {
 guid "{A1DBA6AC-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_s4_m1garand_up"
+"SUSPENDED" "1"
 "origin" "-208 -16 32"
 "_color" "0.3 0.3 1"
 "displayname" "M1000"
 "model" "wm_s4_m1garand"
 "script" "weapons/s4_m1garand_up"
+"spawnflags" "1"
 }
 // entity 74
 {
 guid "{A1DBA6B2-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_s4_stg44_up"
+"SUSPENDED" "1"
 "origin" "-208 -64 32"
 "_color" "0.3 0.3 1"
 "displayname" "Spatz-447 +"
 "model" "wm_s4_stg44"
 "script" "weapons/s4_stg44_up"
+"spawnflags" "1"
 }
 // entity 75
 {
 guid "{A1DBA6AF-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_s4_stg44"
+"SUSPENDED" "1"
 "origin" "-240 -64 32"
 "_color" "0.3 0.3 1"
 "displayname" "STG44"
 "model" "wm_s4_stg44"
 "script" "weapons/s4_stg44"
+"spawnflags" "1"
 }
 // entity 76
 {
 guid "{B92DF4F0-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_s1_mors_up"
+"SUSPENDED" "1"
 "origin" "-208 -128 32"
 "_color" "0.3 0.3 1"
 "displayname" "^3Silver Bullet^7"
 "model" "wm_s1_mors_up"
 "script" "weapons/s1_mors_up"
+"spawnflags" "1"
 }
 // entity 77
 {
 guid "{B92DF4ED-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_s1_mors"
+"SUSPENDED" "1"
 "origin" "-240 -128 32"
 "_color" "0.3 0.3 1"
 "displayname" "MORS"
 "model" "wm_s1_mors"
 "script" "weapons/s1_mors"
+"spawnflags" "1"
 }
 // entity 78
 {
 guid "{B92DF4F3-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw6_vks_up"
+"SUSPENDED" "1"
 "origin" "-208 -184 32"
 "_color" "0.3 0.3 1"
 "displayname" "Vehement Kaleidoscopical Silencer"
 "model" "wm_iw6_vks_up"
 "script" "weapons/iw6_vks_up"
+"spawnflags" "1"
 }
 // entity 79
 {
-guid "{B92DF4F6-3737-11F0-B384-D76004CADD12}"
-"classname" "weapon_iw6_vks"
-"origin" "-240 -184 32"
-"_color" "0.3 0.3 1"
-"displayname" "VKS"
-"model" "wm_iw6_vks"
-"script" "weapons/iw6_vks"
-}
-// entity 80
-{
 guid "{E296E784-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_s2_vmg1927_up"
+"SUSPENDED" "1"
 "origin" "-128 -208 32"
 "_color" "0.3 0.3 1"
 "displayname" "MV 31-AGR"
 "model" "wm_s2_vmg1927"
 "script" "weapons/s2_vmg1927_up"
+"spawnflags" "1"
 }
-// entity 81
+// entity 80
 {
 guid "{E296E787-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_s2_vmg1927"
+"SUSPENDED" "1"
 "origin" "-160 -208 32"
 "_color" "0.3 0.3 1"
 "displayname" "VMG 1927"
 "model" "wm_s2_vmg1927"
 "script" "weapons/s2_vmg1927"
+"spawnflags" "1"
 }
-// entity 82
+// entity 81
 {
 guid "{E296E781-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_t9_rpk_up"
+"SUSPENDED" "1"
 "origin" "-128 -160 32"
 "_color" "0.3 0.3 1"
 "displayname" "R115 Reverberator"
 "model" "wm_t9_ak47"
 "script" "weapons/t9_rpk_up"
+"spawnflags" "1"
 }
-// entity 83
+// entity 82
 {
 guid "{E296E77E-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_t9_rpk"
+"SUSPENDED" "1"
 "origin" "-160 -160 32"
 "_color" "0.3 0.3 1"
 "displayname" "RPK"
 "model" "wm_t9_ak47"
 "script" "weapons/t9_rpk"
+"spawnflags" "1"
 }
-// entity 84
+// entity 83
 {
 guid "{E296E77B-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_t9_m60_up"
+"SUSPENDED" "1"
 "origin" "-128 -112 32"
 "_color" "0.3 0.3 1"
 "displayname" "Gluttonous Titan"
 "model" "wm_t9_m60"
 "script" "weapons/t9_m60_up"
+"spawnflags" "1"
 }
-// entity 85
+// entity 84
 {
 guid "{E296E778-3737-11F0-B384-D76004CADD12}"
 "classname" "weapon_t9_m60"
+"SUSPENDED" "1"
 "origin" "-160 -112 32"
 "_color" "0.3 0.3 1"
 "displayname" "M60"
 "model" "wm_t9_m60"
 "script" "weapons/t9_m60"
+"spawnflags" "1"
 }
-// entity 86
+// entity 85
 {
 guid "{0391481B-3738-11F0-B384-D76004CADD12}"
 "classname" "weapon_t9_streetsweeper"
+"SUSPENDED" "1"
 "origin" "-240 -256 32"
 "_color" "0.3 0.3 1"
 "displayname" "Streetsweeper"
 "model" "wm_t9_streetsweeper"
 "script" "weapons/t9_streetsweeper"
+"spawnflags" "1"
 }
-// entity 87
+// entity 86
 {
 guid "{03914818-3738-11F0-B384-D76004CADD12}"
 "classname" "weapon_t9_streetsweeper_up"
+"SUSPENDED" "1"
 "origin" "-208 -256 32"
 "_color" "0.3 0.3 1"
 "displayname" "Road Rage"
 "model" "wm_t9_streetsweeper"
 "script" "weapons/t9_streetsweeper_up"
+"spawnflags" "1"
 }
-// entity 88
+// entity 87
 {
 guid "{03914812-3738-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_vlkrogue_up"
+"SUSPENDED" "1"
 "origin" "-208 -304 32"
 "_color" "0.3 0.3 1"
 "displayname" "Rogue Vaporizer"
 "model" "wm_iw8_vlk_rogue"
 "script" "weapons/iw8_vlkrogue_up"
+"spawnflags" "1"
 }
-// entity 89
+// entity 88
 {
 guid "{03914815-3738-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_vlkrogue"
+"SUSPENDED" "1"
 "origin" "-240 -304 32"
 "_color" "0.3 0.3 1"
 "displayname" "VLK Rogue"
 "model" "wm_iw8_vlk_rogue"
 "script" "weapons/iw8_vlkrogue"
+"spawnflags" "1"
 }
-// entity 90
-{
-guid "{0391480C-3738-11F0-B384-D76004CADD12}"
-"classname" "weapon_s4_double_barrel_sawn_rdw_up_zm"
-"origin" "-208 -352 32"
-"_color" "0.3 0.3 1"
-"displayname" "Snuff Box & Cigar Case"
-"model" "wm_s4_double_barrel"
-"script" "weapons/s4_double_barrel_sawn_rdw_up_zm"
-}
-// entity 91
+// entity 89
 {
 guid "{0391480F-3738-11F0-B384-D76004CADD12}"
 "classname" "weapon_s4_double_barrel_sawn"
+"SUSPENDED" "1"
 "origin" "-240 -352 32"
 "_color" "0.3 0.3 1"
 "displayname" "Sawed-off Double Barrel"
 "model" "wm_s4_double_barrel"
 "script" "weapons/s4_double_barrel_sawn"
+"spawnflags" "1"
 }
-// entity 92
+// entity 90
 {
 guid "{312C241E-3738-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_minigun"
+"SUSPENDED" "1"
 "origin" "-144 -272 32"
 "_color" "0.3 0.3 1"
 "displayname" "Minigun"
 "model" "wm_iw8_minigun"
 "script" "weapons/iw8_minigun"
+"spawnflags" "1"
 }
-// entity 93
+// entity 91
 {
 guid "{312C2427-3738-11F0-B384-D76004CADD12}"
 "classname" "weapon_iw8_minigun_up"
+"SUSPENDED" "1"
 "origin" "-144 -336 32"
 "_color" "0.3 0.3 1"
 "displayname" "Death's Forebodement"
 "model" "wm_iw8_minigun"
 "script" "weapons/iw8_minigun_up"
+"spawnflags" "1"
+}
+// entity 92
+{
+guid "{B92DF4F6-3737-11F0-B384-D76004CADD12}"
+"classname" "weapon_iw6_vks"
+"SUSPENDED" "1"
+"origin" "-240 -184 32"
+"_color" "0.3 0.3 1"
+"displayname" "VKS"
+"model" "wm_iw6_vks"
+"script" "weapons/iw6_vks"
+"spawnflags" "1"
+}
+// entity 93
+{
+guid "{0391480C-3738-11F0-B384-D76004CADD12}"
+"classname" "weapon_s4_double_barrel_sawn_rdw_up_zm"
+"SUSPENDED" "1"
+"origin" "-208 -352 32"
+"_color" "0.3 0.3 1"
+"displayname" "Snuff Box & Cigar Case"
+"model" "wm_s4_double_barrel"
+"script" "weapons/s4_double_barrel_sawn_rdw_up_zm"
+"spawnflags" "1"
+}
+// entity 94
+{
+guid "{B7CB686A-397D-11F0-B388-B92E4E02DCF0}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "2"
+"script_ambientroom" "zm_indoor"
+"targetname" "ambient_room"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{B7CB6869-397D-11F0-B388-B92E4E02DCF0}"
+ ( -96 -736 0 ) ( -128 -736 0 ) ( -128 -768 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -111 -768 128 ) ( -111 -736 128 ) ( -79 -736 128 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -128 -768 16 ) ( 160 -768 16 ) ( 160 -768 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 64 -770 16 ) ( 64 -610 16 ) ( 64 -610 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 176 -576 16 ) ( -112 -576 16 ) ( -112 -576 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -128 -608 16 ) ( -128 -768 16 ) ( -128 -768 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 95
+{
+guid "{9CAA77B8-397E-11F0-B388-B92E4E02DCF0}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "aac_hotel_host_stand_01"
+"origin" "128 192 0"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 96
+{
+guid "{A2A3E8A2-397E-11F0-B388-B92E4E02DCF0}"
+"classname" "trigger_use"
+"targetname" "switch_camo"
+"_color" "0.3 0.5 0.8"
+"cursorhint" "HINT_ACTIVATE"
+// brush 0
+{
+ guid "{A2A3E8A1-397E-11F0-B388-B92E4E02DCF0}"
+ ( 136 184 32 ) ( 104 184 32 ) ( 104 160 32 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 96 160 56 ) ( 96 184 56 ) ( 128 184 56 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 104 184 48 ) ( 136 184 48 ) ( 136 184 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 128 176 48 ) ( 128 200 48 ) ( 128 200 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 136 200 48 ) ( 104 200 48 ) ( 104 200 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 112 184 48 ) ( 112 160 48 ) ( 112 160 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
 }
