@@ -94,3 +94,5 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - the mulekick perk is bugged when 3rd weapon is in hand (icon in hud is bugged)
 
 - perk utility script throws error in splitscreen.
+
+- AI walk on balcony (north) can be bugged and they can be stuck
