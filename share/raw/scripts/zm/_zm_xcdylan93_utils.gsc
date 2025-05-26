@@ -6,7 +6,7 @@
     Latest update: 2025 05 26
 
     2025 05 26 -- Initial installation.
-    2025 05 26 -- Fixed an instant switch to alt weapon even if main weapon not in hand initially.
+    2025 05 26 -- Removed instant switch to alt weapons.
 */
 
 #using scripts\zm\_zm_weapons; 
