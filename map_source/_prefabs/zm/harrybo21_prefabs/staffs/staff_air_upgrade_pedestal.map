@@ -1,0 +1,75 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{4ABA2763-5154-11E9-BED5-D43D7E278B2C}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_infection_bastogne_night"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{416F309A-53B7-11EB-81F8-0015833D0A57}"
+ ( 32 8 0 ) ( -32 8 0 ) ( -32 0 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 0 376 ) ( 0 8 376 ) ( 64 8 376 ) clip 64 64 32 0 0 0 lightmap_gray 16384 16384 32 0 0 0
+ ( -32 -32 40 ) ( 32 -32 40 ) ( 32 -32 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 0 40 ) ( 32 8 40 ) ( 32 8 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 32 32 64 ) ( -32 32 64 ) ( -32 32 24 ) clip 64 64 0 -24 0 0 lightmap_gray 16384 16384 0 -24 0 0
+ ( -32 8 40 ) ( -32 0 40 ) ( -32 0 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 1
+{
+guid "{416F309D-53B7-11EB-81F8-0015833D0A57}"
+"classname" "misc_model"
+"model" "p7_zm_ori_elm_plinth_base_wind"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 2
+{
+guid "{416F30A0-53B7-11EB-81F8-0015833D0A57}"
+"classname" "script_model"
+"model" "p7_zm_ori_elm_plinth_top_wind"
+"origin" "0 0 48"
+"targetname" "auto17"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 3
+{
+guid "{416F30A3-53B7-11EB-81F8-0015833D0A57}"
+"classname" "script_struct"
+"angles" "0 90 0"
+"model" "wpn_t7_zmb_hd_staff_air_world"
+"origin" "0 0 80"
+"target" "auto17"
+"targetname" "craft_staff_air_upgrade"
+"_color" "1 0 0"
+}

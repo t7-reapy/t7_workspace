@@ -67,6 +67,8 @@ function main()
     setup_camo_trigger();
 
     level.player_starting_points = 500000;
+    
+    callback::on_spawned(&on_player_spawned);
 }
 
 function usermap_test_zone_init()
@@ -139,6 +141,23 @@ function setup_camo_trigger()
 
     switch_camo_trigger thread watch_trigger();
 } 
+
+function on_player_spawned()
+{
+  level endon("end_game");
+  self endon("disconnect");
+  self endon("bled_out");
+
+  while(true)
+  {
+    self waittill("weapon_give", weapon);
+
+    if(weapon.name == "t9_semiauto_cosplay")
+    {
+        PlaySoundAtPosition("mus_raygun_stinger", (0, 0, 0));
+    }
+  }
+}
 
 function watch_trigger() // self == trigger
 {    

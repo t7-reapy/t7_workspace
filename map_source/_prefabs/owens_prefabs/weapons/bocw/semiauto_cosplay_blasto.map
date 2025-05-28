@@ -1,0 +1,85 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{78D3637F-4382-11EE-93FC-86E671B3D95C}"
+"classname" "worldspawn"
+"lutmaterial" "vk_potd2"
+"vbloom" "mp_infection"
+"vcolor" "mp_infection"
+"fsi" "default"
+"gravity" "800"
+"lightingquality" "1024"
+"lodbias" "default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"samplescale" "1"
+"shadowslices" "96"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+"umbraSmallestHole" "16"
+"umbraSmallestOccluder" "96"
+"umbraTileSize" "2"
+"umbra_prime_depth" "1"
+"wsi" "default_day"
+// brush 0
+{
+ guid "{580F5037-4382-11EE-93FC-86E671B3D95C}"
+  contents nonColliding;
+ ( 175 608.75 -8 ) ( 219 608.75 -8 ) ( 219 614.75 -8 ) traverse 16 16 -200 607.75 180 0 lightmap_gray 16384 16384 -200 607.75 180 0
+ ( 219 614.75 48 ) ( 219 608.75 48 ) ( 175 608.75 48 ) traverse 16 16 -200 607.75 180 0 lightmap_gray 16384 16384 -200 607.75 180 0
+ ( 219 614.75 8 ) ( 175 614.75 8 ) ( 175 614.75 -8 ) traverse 16 -16 -200 -8 180 0 lightmap_gray 16384 -16384 -200 0 180 0
+ ( 176 614.75 8 ) ( 176 608.75 8 ) ( 176 608.75 -8 ) traverse 16 -16 -607.75 -8 180 0 lightmap_gray 16384 -16384 -607.75 0 180 0
+ ( 175 608.75 8 ) ( 219 608.75 8 ) ( 219 608.75 -8 ) traverse 16 -16 -200 -8 -180 0 lightmap_gray 16384 -16384 -200 0 -180 0
+ ( 218 608.75 8 ) ( 218 614.75 8 ) ( 218 614.75 -8 ) traverse 16 -16 -607.75 -8 180 0 lightmap_gray 16384 -16384 -607.75 0 180 0
+}
+// brush 1
+ {
+  guid "{580F5036-4382-11EE-93FC-86E671B3D95C}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   semiauto_cosplay_chaulk_new
+   lightmap_gray
+   2 2 0 8
+   (
+	v 168 607.75 40 t 0 -0 -1.1250001 -0.75
+	v 168 607.75 54.5 t 0 -1024 1.5000001 -0.75
+   )
+   (
+	v 223.75 607.75 40 t 1024 -0 -1.1250001 -1.75
+	v 223.75 607.75 54.5 t 1024 -1024 1.5000001 -1.75
+   )
+  }
+ }
+}
+// entity 1
+{
+guid "{580F503A-4382-11EE-93FC-86E671B3D95C}"
+"classname" "script_struct"
+"angles" "0 180 0"
+"origin" "200 607.75 48"
+"target" "auto38"
+"targetname" "weapon_upgrade"
+"zombie_weapon_upgrade" "t9_semiauto_cosplay"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{580F503D-4382-11EE-93FC-86E671B3D95C}"
+"classname" "script_struct"
+"angles" "0 180 0"
+"model" "vm_t9_shotgun_semiauto_cb_cosplay_new_world"
+"origin" "206 607.75 46"
+"targetname" "auto38"
+"_color" "1 0 0"
+}

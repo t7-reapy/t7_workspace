@@ -1,0 +1,46 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{22100DCD-1FB8-11E7-BE9B-0015833D0A57}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_infection_bastogne_night"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{0B5B51C6-1FA8-11E7-BE9B-0015833D0A57}"
+"classname" "trigger_use"
+"angles" "0 90 0"
+"cursorhint" "HINT_NONE"
+"targetname" "slipgun_zm_craftable_trigger"
+"zombie_weapon_upgrade" "slipgun"
+"_color" "0.3 0.5 0.8"
+// brush 0
+{
+ guid "{0B5B51C5-1FA8-11E7-BE9B-0015833D0A57}"
+ ( -27.75 -12 -12 ) ( 4.25 -12 -12 ) ( 4.25 20 -12 ) trigger 64 64 -180.37219 -332.1311 180 0 lightmap_gray 16384.018 16384.01 -180.37151 -332.125 180 0
+ ( 4.25 20 12 ) ( 4.25 -12 12 ) ( -27.75 -12 12 ) trigger 64 64 -180.38019 -332.1355 -180 0 lightmap_gray 16383.953 16383.939 -180.375 -332.125 180 0
+ ( 12.25 12 -12 ) ( -19.75 12 -12 ) ( -19.75 12 -28 ) trigger 64 -64 -188.38068 -28 180 0 lightmap_gray 16384.082 -16384 -188.375 -28 180 0
+ ( -11.75 12 -12 ) ( -11.75 -20 -12 ) ( -11.75 -20 -28 ) trigger 64 -64 340.10974 -28 -180 0 lightmap_gray 16384.188 -16384 340.12912 -28 180 0
+ ( -27.75 -12 -12 ) ( 4.25 -12 -12 ) ( 4.25 -12 -28 ) trigger 64 -64 -180.38062 -28 180 0 lightmap_gray 16384.031 -16384 -180.375 -28 180 0
+ ( 12.25 -4 -20 ) ( 12.25 28 -20 ) ( 12.25 28 -36 ) trigger 64 -64 324.12097 -36 180 0 lightmap_gray 16384.063 -16384 324.125 -36 180 0
+}
+}
