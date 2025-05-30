@@ -1,0 +1,96 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{26E78C2C-515A-11E9-BED5-D43D7E278B2C}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{788277C0-5155-11E9-BED5-D43D7E278B2C}"
+ ( 392 384 0 ) ( -388 384 0 ) ( -388 -376 0 ) script_floor_ceiling 32 32 64 -1664 0 0 lightmap_gray 16384 16384 64 -1664 0 0
+ ( -336 -376 8 ) ( -336 384 8 ) ( 444 384 8 ) script_floor_ceiling 32 32 64 -1664 0 0 lightmap_gray 16384 16384 116 -1664 0 0
+ ( -404 -448 376 ) ( 376 -448 376 ) ( 376 -448 0 ) script_floor_ceiling 32 32 48 0 0 0 lightmap_gray 16384 16384 48 0 0 0
+ ( 448 -380 376 ) ( 448 380 376 ) ( 448 380 0 ) script_floor_ceiling 32 32 1664 0 0 0 lightmap_gray 16384 16384 1660 0 0 0
+ ( 392 448 376 ) ( -388 448 376 ) ( -388 448 0 ) script_floor_ceiling 32 32 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+ ( -448 376 376 ) ( -448 -384 376 ) ( -448 -384 0 ) script_floor_ceiling 32 32 1656 0 0 0 lightmap_gray 16384 16384 1656 0 0 0
+ ( -320 -448 376 ) ( -448 -320 376 ) ( -320 -448 408 ) script_floor_ceiling 32 32 1664 0 0 0 lightmap_gray 16384 16384 1664 0 0 0
+ ( -448 320 376 ) ( -320 448 376 ) ( -448 320 408 ) script_floor_ceiling 32 32 1664 0 0 0 lightmap_gray 16384 16384 1664 0 0 0
+ ( 320 448 376 ) ( 448 320 376 ) ( 320 448 408 ) script_floor_ceiling 32 32 1664 0 0 0 lightmap_gray 16384 16384 1664 0 0 0
+ ( 448 -320 376 ) ( 320 -448 376 ) ( 448 -320 408 ) script_floor_ceiling 32 32 1664 0 0 0 lightmap_gray 16384 16384 1664 0 0 0
+}
+}
+// entity 1
+{
+guid "{97161883-4638-11E9-BED5-D43D7E278B2C}"
+"classname" "misc_prefab"
+"angles" "0 44.9997 0"
+"model" "_prefabs/zm/harrybo21_prefabs/staffs/staff_fire_upgrade_pedestal.map"
+"origin" "256.086 -257.21 8"
+"target" "staff_upgrade_pedestal_soul_volume"
+}
+// entity 2
+{
+guid "{9D4650A6-4638-11E9-BED5-D43D7E278B2C}"
+"classname" "misc_prefab"
+"angles" "0 135 0"
+"model" "_prefabs/zm/harrybo21_prefabs/staffs/staff_water_upgrade_pedestal.map"
+"origin" "258.207 254.09 8"
+"target" "staff_upgrade_pedestal_soul_volume"
+}
+// entity 3
+{
+guid "{8D610807-4638-11E9-BED5-D43D7E278B2C}"
+"classname" "misc_prefab"
+"angles" "0 315 0"
+"model" "_prefabs/zm/harrybo21_prefabs/staffs/staff_air_upgrade_pedestal.map"
+"origin" "-255.207 -255.09 8"
+"target" "staff_upgrade_pedestal_soul_volume"
+}
+// entity 4
+{
+guid "{97161871-4638-11E9-BED5-D43D7E278B2C}"
+"classname" "misc_prefab"
+"angles" "0 224.999 0"
+"model" "_prefabs/zm/harrybo21_prefabs/staffs/staff_bolt_upgrade_pedestal.map"
+"origin" "-253.086 256.21 8"
+"target" "staff_upgrade_pedestal_soul_volume"
+}
+// entity 5
+{
+guid "{1D32E967-515A-11E9-BED5-D43D7E278B2C}"
+"classname" "info_volume"
+"targetname" "staff_upgrade_pedestal_soul_volume"
+// brush 0
+{
+ guid "{1D32E966-515A-11E9-BED5-D43D7E278B2C}"
+ ( -408 448 0 ) ( -448 448 0 ) ( -448 408 0 ) volume 64 64 -152 -1848 0 0 lightmap_gray 16384 16384 -152 -1848 0 0
+ ( -456 408 256 ) ( -456 448 256 ) ( -416 448 256 ) volume 64 64 -160 -1848 0 0 lightmap_gray 16384 16384 -160 -1848 0 0
+ ( 408 -448 384 ) ( 448 -448 384 ) ( 448 -448 8 ) volume 64 64 704 0 0 0 lightmap_gray 16384 16384 704 0 0 0
+ ( 448 -448 384 ) ( 448 -408 384 ) ( 448 -408 8 ) volume 64 64 992 0 0 0 lightmap_gray 16384 16384 992 0 0 0
+ ( -408 448 384 ) ( -448 448 384 ) ( -448 448 8 ) volume 64 64 -152 0 0 0 lightmap_gray 16384 16384 -152 0 0 0
+ ( -448 448 384 ) ( -448 408 384 ) ( -448 408 8 ) volume 64 64 1848 0 0 0 lightmap_gray 16384 16384 1848 0 0 0
+ ( -448 320 384 ) ( -320 448 384 ) ( -448 320 416 ) volume 64 64 1664 0 0 0 lightmap_gray 16384 16384 1664 0 0 0
+ ( 320 448 384 ) ( 448 320 384 ) ( 320 448 416 ) volume 64 64 1664 0 0 0 lightmap_gray 16384 16384 1664 0 0 0
+ ( 448 -320 384 ) ( 320 -448 384 ) ( 448 -320 416 ) volume 64 64 1664 0 0 0 lightmap_gray 16384 16384 1664 0 0 0
+ ( -320 -448 384 ) ( -448 -320 384 ) ( -320 -448 416 ) volume 64 64 1664 0 0 0 lightmap_gray 16384 16384 1664 0 0 0
+}
+}

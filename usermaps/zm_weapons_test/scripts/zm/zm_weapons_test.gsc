@@ -48,6 +48,9 @@
 #using scripts\zm\_zm_powerup_nuke;
 //#using scripts\zm\_zm_powerup_weapon_minigun;
 
+// CNG
+#using scripts\zm\_hb21_madgaz_zm_weap_cng;
+
 //Traps
 #using scripts\zm\_zm_trap_electric;
 
@@ -67,6 +70,8 @@ function main()
     setup_camo_trigger();
 
     level.player_starting_points = 500000;
+    
+    callback::on_spawned(&on_player_spawned);
 }
 
 function usermap_test_zone_init()
@@ -140,6 +145,23 @@ function setup_camo_trigger()
     switch_camo_trigger thread watch_trigger();
 } 
 
+function on_player_spawned()
+{
+  level endon("end_game");
+  self endon("disconnect");
+  self endon("bled_out");
+
+  while(true)
+  {
+    self waittill("weapon_give", weapon);
+
+    if(weapon.name == "t9_semiauto_cosplay")
+    {
+        PlaySoundAtPosition("mus_raygun_stinger", (0, 0, 0));
+    }
+  }
+}
+
 function watch_trigger() // self == trigger
 {    
     while(1)
@@ -186,6 +208,9 @@ function private configure_weapon_inspection()
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_streetsweeper"), 5.6);
     inspectable::add_inspectable_weapon(GetWeapon("t9_streetsweeper_up"), 5.6);
+
+    inspectable::add_inspectable_weapon(GetWeapon("t9_semiauto_cosplay"), 4.33);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_semiauto_cosplay_up"), 4.33);
 
     // IW8
     inspectable::add_inspectable_weapon(GetWeapon("iw8_asval"), 5.76);

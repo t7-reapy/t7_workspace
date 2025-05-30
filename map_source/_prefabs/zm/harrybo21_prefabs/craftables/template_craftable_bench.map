@@ -1,0 +1,66 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{EDAE9A6F-7E02-11E7-BEA9-0015833D0A57}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{2D0BBCEB-1FB7-11E7-BE9B-0015833D0A57}"
+ ( 48 16 0 ) ( -48 16 0 ) ( -48 -16 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -48 -16 96 ) ( -48 16 96 ) ( 48 16 96 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -48 -16 8 ) ( 48 -16 8 ) ( 48 -16 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 48 -16 8 ) ( 48 16 8 ) ( 48 16 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 48 16 8 ) ( -48 16 8 ) ( -48 16 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -48 16 8 ) ( -48 -16 8 ) ( -48 -16 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 1
+{
+guid "{EDAE9A70-7E02-11E7-BEA9-0015833D0A57}"
+"classname" "trigger_use"
+"angles" "0 90 0"
+"cursorhint" "HINT_NONE"
+"target" "auto1"
+"targetname" "craft_template_zm_craftable_trigger"
+"zombie_weapon_upgrade" "dragon_shield"
+"_color" "0.3 0.5 0.8"
+// brush 0
+{
+ guid "{041BC188-88D9-11E6-BE8C-D43D7E278B2C}"
+ ( -11.75 -16 0 ) ( 20.25 -16 0 ) ( 20.25 16 0 ) trigger 64 64 -196.37219 -336.1311 180 0 lightmap_gray 16384.02 16384.012 -196.37134 -336.125 180 0
+ ( 22.25 16 96 ) ( 22.25 -16 96 ) ( -9.75 -16 96 ) trigger 64 64 -198.38019 -336.1355 180 0 lightmap_gray 16383.955 16383.941 -198.375 -336.125 180 0
+ ( 24.25 24 56 ) ( -7.75 24 56 ) ( -7.75 24 40 ) trigger 64 -64 -200.38068 40 -180 0 lightmap_gray 16384.082 -16384 -200.375 40 180 0
+ ( -41.75 8 56 ) ( -41.75 -24 56 ) ( -41.75 -24 40 ) trigger 64 -64 344.10971 40 180 0 lightmap_gray 16384.186 -16384 344.13083 40 180 0
+ ( -15.75 -24 56 ) ( 16.25 -24 56 ) ( 16.25 -24 40 ) trigger 64 -64 -192.38063 40 180 0 lightmap_gray 16384.031 -16384 -192.375 40 180 0
+ ( 42.25 -8 56 ) ( 42.25 24 56 ) ( 42.25 24 40 ) trigger 64 -64 328.12097 40 180 0 lightmap_gray 16384.061 -16384 328.125 40 180 0
+}
+}
+// entity 2
+{
+guid "{EDAE9A75-7E02-11E7-BEA9-0015833D0A57}"
+"classname" "script_struct"
+"angles" "0 90 0"
+"origin" "8 0 80"
+"targetname" "auto1"
+"_color" "1 0 0"
+}

@@ -1,0 +1,73 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{60118B75-2238-11ED-826C-D43D7E278B2C}"
+"classname" "worldspawn"
+"_color" "0.5 0.5 0.7"
+"ambient" "0.1"
+"bouncefraction" "0.3"
+"contrastgain" "0.35"
+"diffusefraction" "0.15"
+"suncolor" "0.64 0.85 1"
+"sundiffusecolor" "0.25 0.55 0.8"
+"sundirection" "-150 17 0"
+"sunisprimarylight" "1"
+"sunlight" "0.75"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+ {
+  guid "{6EF0661E-210C-11E5-8B2C-D89D67F43706}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_zm_chalk_buy_claymore
+   lightmap_gray
+   2 2 0 8
+   (
+	v -9.8143997 0.25 43.443665 t 0 0 0.5 -7.375 f 1
+	v -9.8143997 0.25 59.943672 t 0 -1024 -0.5 -7.375 f 1
+   )
+   (
+	v 5.4384155 0.25 43.443665 t 1023.9999 0 0.5 -8.375 f 1
+	v 5.4384155 0.25 59.943672 t 1023.9999 -1024 -0.5 -8.375 f 1
+   )
+  }
+ }
+}
+// entity 1
+{
+guid "{D6342723-2240-11ED-826C-D43D7E278B2C}"
+"classname" "script_struct"
+"angles" "0 270 0"
+"model" "wpn_t7_claymore_world"
+"origin" "-2 0 48"
+"script_int" "90"
+"targetname" "auto37"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{D6342724-2240-11ED-826C-D43D7E278B2C}"
+"classname" "script_struct"
+"angles" "0 270 0"
+"origin" "0 0 53"
+"target" "auto37"
+"targetname" "claymore_purchase"
+"zombie_weapon_upgrade" "t7_claymore"
+"_color" "1 0 0"
+}
