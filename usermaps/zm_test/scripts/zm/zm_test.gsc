@@ -60,6 +60,9 @@
 #using scripts\zm\_zm_powerup_nuke;
 //#using scripts\zm\_zm_powerup_weapon_minigun;
 
+// CNG
+#using scripts\zm\_hb21_madgaz_zm_weap_cng;
+
 //Traps
 #using scripts\zm\_zm_trap_electric;
 
@@ -79,6 +82,8 @@ function main()
     setup_playable_zones();
     remove_players_names();
     setup_weapons();
+    
+    callback::on_spawned(&on_player_spawned);
 
     //TODO: remove
     level thread monitor_power_state();
@@ -111,6 +116,9 @@ function configure_weapon_inspection()
     inspectable::add_inspectable_weapon(GetWeapon("t9_streetsweeper"), 5.6);
     inspectable::add_inspectable_weapon(GetWeapon("t9_streetsweeper_up"), 5.6);
 
+    inspectable::add_inspectable_weapon(GetWeapon("t9_semiauto_cosplay"), 4.33);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_semiauto_cosplay_up"), 4.33);
+
     // IW8
     inspectable::add_inspectable_weapon(GetWeapon("iw8_asval"), 5.76);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_asval_up"), 5.76);
@@ -131,15 +139,15 @@ function configure_weapon_inspection()
     inspectable::add_inspectable_weapon(GetWeapon("iw8_minigun"), 5.26);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_minigun_up"), 5.26);
     
-    inspectable::add_inspectable_weapon( GetWeapon("iw8_spr208_irons"), 5.26 );
-    inspectable::add_inspectable_weapon( GetWeapon("iw8_spr208_irons_up"), 5.26 );
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_spr208_irons"), 5.26);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_spr208_irons_up"), 5.26);
 
-    inspectable::add_inspectable_weapon( GetWeapon("iw8_vlkrogue"), 5.33 );
-    inspectable::add_inspectable_weapon( GetWeapon("iw8_vlkrogue_up"), 5.33 );
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_vlkrogue"), 5.33);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_vlkrogue_up"), 5.33);
 
     // SW2
-    inspectable::add_inspectable_weapon( GetWeapon("s2_vmg1927"), 5 );
-    inspectable::add_inspectable_weapon( GetWeapon("s2_vmg1927_up"), 5 );
+    inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927"), 5);
+    inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927_up"), 5);
 }
 
 function custom_add_weapons()
@@ -184,6 +192,28 @@ function setup_weapons()
     level.laststandpistol = level.start_weapon;
     level.default_laststandpistol = level.start_weapon;
     level.default_solo_laststandpistol = GetWeapon("t9_1911_rdw_up");
+}
+
+function on_player_spawned() // self == player
+{
+    self thread watch_blastomatic_acquisition();
+}
+
+function private watch_blastomatic_acquisition() // self == player
+{
+    level endon("end_game");
+    self endon("disconnect");
+    self endon("bled_out");
+
+    while(true)
+    {
+        self waittill("weapon_give", weapon);
+
+        if(weapon.name == "t9_semiauto_cosplay")
+        {
+            PlaySoundAtPosition("mus_raygun_stinger", (0, 0, 0));
+        }
+    }
 }
 
 function monitor_power_state()
