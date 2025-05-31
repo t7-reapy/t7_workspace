@@ -97,6 +97,9 @@ function register_client_fields()
 function configure_weapon_inspection()
 {
     // T9
+    inspectable::add_inspectable_weapon(GetWeapon("t9_me_knife_russian"), 4.18);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_me_knife_russian_up"), 4.18);
+    
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911"), 3.33);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_rdw_up"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_ldw_up"), 5);
@@ -192,6 +195,10 @@ function setup_weapons()
     level.laststandpistol = level.start_weapon;
     level.default_laststandpistol = level.start_weapon;
     level.default_solo_laststandpistol = GetWeapon("t9_1911_rdw_up");
+
+    // Override default melee weapon
+    zm_utility::register_melee_weapon_for_level("t8_knife");
+    level.weaponbasemelee = getweapon("t8_knife");
 }
 
 function on_player_spawned() // self == player

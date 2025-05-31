@@ -117,3 +117,5 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
   - exploder lights (lightning)
   - north-east neigbour upper balcony light clip (can be related to quality of light when compiled)
   - the double-tap lighting is borring (on the wall on the left)
+
+- south part can spawn bonus in inaccessible zombies area (player volume)
