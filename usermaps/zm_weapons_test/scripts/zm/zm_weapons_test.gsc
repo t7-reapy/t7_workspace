@@ -93,6 +93,10 @@ function setup_weapons()
     level.laststandpistol = level.start_weapon;
     level.default_laststandpistol = level.start_weapon;
     level.default_solo_laststandpistol = GetWeapon("iw8_50gs_rdw_up");
+
+    // Override default melee weapon
+    zm_utility::register_melee_weapon_for_level("t8_knife");
+    level.weaponbasemelee = getweapon("t8_knife");
 }
 
 function private update_weapons_camo_for_hellround(enable) // self == player
@@ -211,6 +215,9 @@ function private configure_weapon_inspection()
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_semiauto_cosplay"), 4.33);
     inspectable::add_inspectable_weapon(GetWeapon("t9_semiauto_cosplay_up"), 4.33);
+
+    inspectable::add_inspectable_weapon(GetWeapon("t9_me_knife_russian"), 4.18);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_me_knife_russian_up"), 4.18);
 
     // IW8
     inspectable::add_inspectable_weapon(GetWeapon("iw8_asval"), 5.76);

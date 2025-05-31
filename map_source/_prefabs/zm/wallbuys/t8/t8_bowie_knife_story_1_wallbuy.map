@@ -1,0 +1,78 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{DBC1444A-CA01-11EF-9B5E-68545AF9CDFF}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{C39A8157-CA01-11EF-9B5E-68545AF9CDFF}"
+  contents nonColliding;
+ ( 199.75 -96.5 0 ) ( 199.75 -69.5 0 ) ( 193.75 -69.5 0 ) traverse 16 16 85.5 -200.75 -90 0 lightmap_gray 16384 16384 85.5 -200.75 -90 0
+ ( 193.75 -71.5 56 ) ( 199.75 -71.5 56 ) ( 199.75 -98.5 56 ) traverse 16 16 85.5 -200.75 -90 0 lightmap_gray 16384 16384 85.5 -200.75 -90 0
+ ( 192.75 -71.5 56 ) ( 192.75 -98.5 56 ) ( 192.75 -98.5 40 ) traverse 16 -16 85.5 -4 180 0 lightmap_gray 16384 -16384 85.5 -98 180 0
+ ( 193.75 -99.5 56 ) ( 199.75 -99.5 56 ) ( 199.75 -99.5 40 ) traverse 16 16 200.75 4 0 0 lightmap_gray 16384 16384 200.75 98 0 0
+ ( 199.75 -98.5 56 ) ( 199.75 -71.5 56 ) ( 199.75 -71.5 40 ) traverse 16 -16 85.5 -4 180 0 lightmap_gray 16384 -16384 85.5 -98 180 0
+ ( 199.75 -69.5 56 ) ( 193.75 -69.5 56 ) ( 193.75 -69.5 40 ) traverse 16 16 200.75 4 0 0 lightmap_gray 16384 16384 200.75 98 0 0
+}
+// brush 1
+ {
+  guid "{C39A8156-CA01-11EF-9B5E-68545AF9CDFF}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t7_zm_chalk_buy_bowie
+   lightmap_gray
+   2 2 0 8
+   (
+	v 191.75 -102 65.5 t 0 -1024 -0.5 -8.375
+	v 191.75 -102 53 t 0 0 -0.5 -7.375
+   )
+   (
+	v 191.75 -68.25 65.5 t 1024 -1024 0.5 -8.375
+	v 191.75 -68.25 53 t 1024 0 0.5 -7.375
+   )
+  }
+ }
+}
+// entity 1
+{
+guid "{C39A815A-CA01-11EF-9B5E-68545AF9CDFF}"
+"classname" "script_struct"
+"angles" "0 90 0"
+"model" "wpn_t7_zmb_knife_bowie_world"
+"origin" "191.75 -94 60"
+"targetname" "auto37"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{C39A815D-CA01-11EF-9B5E-68545AF9CDFF}"
+"classname" "script_struct"
+"angles" "0 90 0"
+"origin" "191.75 -84.5 60"
+"target" "auto37"
+"targetname" "bowie_upgrade"
+"zombie_weapon_upgrade" "t8_bowie_knife_story_1"
+"_color" "1 0 0"
+}

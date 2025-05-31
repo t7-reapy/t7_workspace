@@ -1,0 +1,72 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{B43907D6-CA00-11EF-9B5E-68545AF9CDFF}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{2E43CB31-CA00-11EF-9B5E-68545AF9CDFF}"
+  contents nonColliding;
+ ( 199.75 -120 0 ) ( 199.75 -93 0 ) ( 193.75 -93 0 ) traverse 16 16 109 -200.75 -90 0 lightmap_gray 16384 16384 109 -200.75 -90 0
+ ( 193.75 -95 56 ) ( 199.75 -95 56 ) ( 199.75 -122 56 ) traverse 16 16 109 -200.75 -90 0 lightmap_gray 16384 16384 109 -200.75 -90 0
+ ( 192.75 -95 56 ) ( 192.75 -122 56 ) ( 192.75 -122 40 ) traverse 16 -16 109 -4 180 0 lightmap_gray 16384 -16384 109 -98 180 0
+ ( 193.75 -123 56 ) ( 199.75 -123 56 ) ( 199.75 -123 40 ) traverse 16 16 200.75 4 0 0 lightmap_gray 16384 16384 200.75 98 0 0
+ ( 199.75 -122 56 ) ( 199.75 -95 56 ) ( 199.75 -95 40 ) traverse 16 -16 109 -4 180 0 lightmap_gray 16384 -16384 109 -98 180 0
+ ( 199.75 -93 56 ) ( 193.75 -93 56 ) ( 193.75 -93 40 ) traverse 16 16 200.75 4 0 0 lightmap_gray 16384 16384 200.75 98 0 0
+}
+}
+// entity 1
+{
+guid "{2E43CB34-CA00-11EF-9B5E-68545AF9CDFF}"
+"classname" "script_struct"
+"angles" "0 90 0"
+"model" "wpn_t8_zm_knife_bowie_world"
+"origin" "191.75 -117.5 60"
+"targetname" "auto37"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{2E43CB37-CA00-11EF-9B5E-68545AF9CDFF}"
+"classname" "script_struct"
+"angles" "0 90 0"
+"origin" "191.75 -108 60"
+"target" "auto37"
+"targetname" "bowie_upgrade"
+"zombie_weapon_upgrade" "t8_bowie_knife"
+"_color" "1 0 0"
+}
+// entity 3
+{
+guid "{0681371E-CA01-11EF-9B5E-68545AF9CDFF}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "p8_zm_esc_chalk_buy_knife_bowie"
+"origin" "191.75 -111.5 60"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
