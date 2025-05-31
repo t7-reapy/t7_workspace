@@ -1,0 +1,77 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{EB33AF47-AA38-11ED-97FB-68545AF9CDFF}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{EBB17372-B2C8-11EC-9633-68545AF9CDFF}"
+  contents nonColliding;
+ ( 15 0 0 ) ( -15 0 0 ) ( -15 -7 0 ) traverse 16 16 -664 119 180 0 lightmap_gray 16384 16384 -664 119 180 0
+ ( 15 -7 56 ) ( -15 -7 56 ) ( -15 0 56 ) traverse 16 16 -664 119 -180 0 lightmap_gray 16384 16384 -664 119 -180 0
+ ( 15 0 56 ) ( -15 0 56 ) ( -15 0 0 ) traverse 16 -16 -664 12 180 0 lightmap_gray 16384 -16384 -664 -82 180 0
+ ( -15 0 0 ) ( -15 0 56 ) ( -15 -7 56 ) traverse 16 -16 -119 12 -180 0 lightmap_gray 16384 -16384 -119 -82 -180 0
+ ( 15 -7 0 ) ( -15 -7 0 ) ( -15 -7 56 ) traverse 16 -16 -664 12 -180 0 lightmap_gray 16384 -16384 -664 -82 -180 0
+ ( 15 -7 0 ) ( 15 -7 56 ) ( 15 0 56 ) traverse 16 -16 -119 12 180 0 lightmap_gray 16384 -16384 -119 -82 180 0
+}
+// brush 1
+ {
+  guid "{EC4815BF-3DB2-11F0-B38E-8119E1A80394}"
+  mesh
+  {
+  contents detail;
+  toolFlags;
+   mtl_t9_zm_chalk_scythe
+   lightmap_gray
+   2 2 0 8
+   (
+	v -31 1 42 t 1024 1024 -1.9375 -2.625
+	v 31 0.99999976 42 t 0.00067138672 1024 1.9375 -2.625
+   )
+   (
+	v -31 1 72 t 1024 0.00024414063 -1.9375 -4.5
+	v 31 0.99999976 72 t 0.00067138672 0.00024414063 1.9375 -4.5
+   )
+  }
+ }
+}
+// entity 1
+{
+guid "{EB33AF48-AA38-11ED-97FB-68545AF9CDFF}"
+"classname" "script_struct"
+"origin" "-1 0 56"
+"target" "auto38"
+"targetname" "weapon_upgrade"
+"zombie_weapon_upgrade" "t9_me_scythe"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{EB33AF49-AA38-11ED-97FB-68545AF9CDFF}"
+"classname" "script_struct"
+"angles" "270 0 -1.53679e-005"
+"model" "wpn_t9_scythe_world"
+"origin" "2 0 52"
+"targetname" "auto38"
+"_color" "1 0 0"
+}

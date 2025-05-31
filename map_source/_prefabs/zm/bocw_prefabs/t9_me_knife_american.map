@@ -1,0 +1,77 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{13943E7E-B2C9-11EC-9633-68545AF9CDFF}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{EBB17372-B2C8-11EC-9633-68545AF9CDFF}"
+  contents nonColliding;
+ ( 653 120 16 ) ( 680 120 16 ) ( 680 126 16 ) traverse 16 16 -664 119 180 0 lightmap_gray 16384 16384 -664 119 180 0
+ ( 678 126 72 ) ( 678 120 72 ) ( 651 120 72 ) traverse 16 16 -664 119 -180 0 lightmap_gray 16384 16384 -664 119 -180 0
+ ( 678 127 72 ) ( 651 127 72 ) ( 651 127 56 ) traverse 16 -16 -664 12 180 0 lightmap_gray 16384 -16384 -664 -82 180 0
+ ( 650 126 72 ) ( 650 120 72 ) ( 650 120 56 ) traverse 16 -16 -119 12 -180 0 lightmap_gray 16384 -16384 -119 -82 -180 0
+ ( 651 120 72 ) ( 678 120 72 ) ( 678 120 56 ) traverse 16 -16 -664 12 -180 0 lightmap_gray 16384 -16384 -664 -82 -180 0
+ ( 680 120 72 ) ( 680 126 72 ) ( 680 126 56 ) traverse 16 -16 -119 12 180 0 lightmap_gray 16384 -16384 -119 -82 180 0
+}
+// brush 1
+ {
+  guid "{EBB17371-B2C8-11EC-9633-68545AF9CDFF}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   mtl_t9_zm_chalk_knife_combat_american
+   lightmap_gray
+   2 2 0 8
+   (
+	v 674.5 128 63.5 t 0 -0 -0.49999955 -7.5
+	v 674.5 128 82.75 t 0 -1024 -0.49999955 -8.25
+   )
+   (
+	v 656.75 128 63.5 t 1024 -0 0.37499949 -7.5
+	v 656.75 128 82.75 t 1024 -1024 0.37499949 -8.25
+   )
+  }
+ }
+}
+// entity 1
+{
+guid "{EBB17378-B2C8-11EC-9633-68545AF9CDFF}"
+"classname" "script_struct"
+"angles" "0 360 0"
+"model" "wpn_t9_knife_combat_american_world"
+"origin" "669 128 79"
+"targetname" "auto38"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{EBB17375-B2C8-11EC-9633-68545AF9CDFF}"
+"classname" "script_struct"
+"origin" "664 128 72"
+"target" "auto38"
+"targetname" "weapon_upgrade"
+"zombie_weapon_upgrade" "t9_me_knife_american"
+"_color" "1 0 0"
+}
