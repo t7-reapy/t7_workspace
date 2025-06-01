@@ -112,6 +112,7 @@ function init()
     level.wolf_heads = [];
     level.wolf_bodies = [];
     level.wolf_runes = [];
+    level.wolf_portals = [];
     level.soul_catchers = [];
     level.soul_catchers_charged = 0;
     level.soul_catchers_vol = [];
@@ -167,51 +168,6 @@ function main()
     level thread get_the_zoms();
 }
 
-function soul_catcher_state_manager(index)
-{
-    level thread wolf_state_0(index);
-    self waittill("first_zombie_killed_in_zone");
-    PRINT_DEBUG_WOLF("first zombie_dead");
-    if (level.soul_catchers_abolished)
-    {
-        return;
-    }
-
-    thread HeadActiveCallbacks(); 
-    if (isdefined(level.soul_catcher_clip[self.script_noteworthy]))
-    {
-        level.soul_catcher_clip[self.script_noteworthy] SetVisibleToAll();
-        level.soul_catcher_clip[self.script_noteworthy] DisconnectPaths();
-    }
-    level thread wolf_state_1(index);
-    anim_length = GetAnimLength(%o_zombie_dreamcatcher_intro);
-    wait anim_length;
-    self util::waittill_any(KILL_WOLF_HEAD_WATCHERS_NOTIFICATION, "finished_eating");
-    
-    while (!self.is_charged && !level.soul_catchers_abolished)
-    {
-        wait 0.05;
-        level thread wolf_state_2(index);
-        self util::waittill_any(KILL_WOLF_HEAD_WATCHERS_NOTIFICATION, "finished_eating");
-        PRINT_DEBUG_WOLF("finished_eating or fully_charged");
-    }
-    PRINT_DEBUG_WOLF("filling done");
-
-    level thread wolf_state_6(index);
-    anim_length = GetAnimLength(%o_zombie_dreamcatcher_outtro);
-    wait anim_length;
-    if (isdefined(level.soul_catcher_clip[self.script_noteworthy]))
-    {
-        level.soul_catcher_clip[self.script_noteworthy] Delete();
-        level.soul_catcher_clip[self.script_noteworthy] ConnectPaths();
-    }
-
-    level thread wolf_state_7(index);
-    thread HeadGoneCallbacks();
-
-    PRINT_DEBUG_WOLF("state manager finished");
-}
-
 function abolish_wolf_heads()
 {
     if (level.soul_catchers_abolished)
@@ -247,8 +203,7 @@ function force_completion()
         {
             level.wolf_runes[i] Show();
             level.wolf_runes[i] SetModel("p6_zm_al_dream_catcher_on");
-            PlayFXOnTag(level._effect["soul_charged"], level.wolf_runes[i], "tag_origin");
-            level.wolf_runes[i] PlayLoopSound("evt_runeglow_loop");
+            level.wolf_runes[i] rune_glow();
         }
 
         level.soul_catchers[i].is_charged = true;
@@ -311,57 +266,6 @@ function HeadGoneCallbacks()
         level thread [[ level.wolf_heads_become_inactive_callback ]]();
     }
 }
-
-function wolf_state_0(index)
-{
-    rune = level.wolf_runes[index];
-    rune_forward = AnglesToForward(rune.angles + VectorScale((0, 1, 0), 90));
-    rune_up = AnglesToUp(rune.angles);
-    level.wolf_heads[index].portal_fx = Spawn("script_model", (rune.origin - rune_forward * 2.5) - rune_up * 24);
-    level.wolf_heads[index].portal_fx SetModel("tag_origin");
-    level.wolf_heads[index] Hide();
-    level.wolf_runes[index] Show();
-    level.wolf_bodies[index] hide_wolf_heads();
-}
-
-function wolf_state_1(index)
-{
-    PRINT_DEBUG_WOLF("first zombie_dead");
-
-    level.wolf_heads[index] Show();
-    level.wolf_runes[index] Hide();
-    level.wolf_bodies[index] hide_wolf_heads();
-    level.wolf_heads[index] thread wolfhead_arrive(level.wolf_runes[index]);
-}
-
-function wolfhead_arrive(rune)
-{
-    rune_forward = AnglesToForward(rune.angles + VectorScale((0, 1, 0), 90));
-    rune_up = AnglesToUp(rune.angles);
-    rune.portal_fx = Spawn("script_model", rune.origin + (0,0,10));
-    rune.portal_fx SetModel("tag_origin");
-    rune.portal_fx.angles = rune.angles + (0,90,0);
-
-    self.portal_fx = PlayFXOnTag(level._effect["hell_portal"], rune.portal_fx, "tag_origin");
-    
-    self PlaySound("evt_wolfhead_spawn");
-    self.wolf_ent = Spawn("script_origin", self.origin);
-    self.wolf_ent PlayLoopSound("evt_wolfhead_fire_loop");
-
-    n_anim_length = GetAnimLength(%o_zombie_dreamcatcher_intro);
-    self AnimScripted("notify", self.origin, self.angles, %o_zombie_dreamcatcher_intro, "normal", %o_zombie_dreamcatcher_intro, 1, 0.3);
-    wait n_anim_length;
-}
-
-function wolf_state_2(index)
-{
-    PRINT_DEBUG_WOLF("wolf_state_2");
-    level.wolf_heads[index] Show();
-    level.wolf_runes[index] Hide();
-    level.wolf_bodies[index] hide_wolf_heads();
-    level.wolf_heads[index] thread wolfhead_idle();
-}
-
 function hide_wolf_heads() // self == level.wolf_bodies[index]
 {
     if (!isdefined(self))
@@ -382,17 +286,156 @@ function hide_wolf_heads() // self == level.wolf_bodies[index]
     }
 }
 
+function soul_catcher_state_manager(index)
+{
+    thread wolf_state_0(index);
+    self waittill("first_zombie_killed_in_zone");
+    PRINT_DEBUG_WOLF("first zombie_dead");
+    if (level.soul_catchers_abolished)
+    {
+        return;
+    }
+
+    thread HeadActiveCallbacks(); 
+    if (isdefined(level.soul_catcher_clip[self.script_noteworthy]))
+    {
+        level.soul_catcher_clip[self.script_noteworthy] SetVisibleToAll();
+        level.soul_catcher_clip[self.script_noteworthy] DisconnectPaths();
+    }
+    thread wolf_state_1(index);
+    anim_length = GetAnimLength(%o_zombie_dreamcatcher_intro);
+    wait anim_length;
+    self util::waittill_any(KILL_WOLF_HEAD_WATCHERS_NOTIFICATION, "finished_eating");
+    
+    while (!self.is_charged && !level.soul_catchers_abolished)
+    {
+        WAIT_SERVER_FRAME;
+        thread wolf_state_2(index);
+        self util::waittill_any(KILL_WOLF_HEAD_WATCHERS_NOTIFICATION, "finished_eating");
+        PRINT_DEBUG_WOLF("finished_eating or fully_charged");
+    }
+    PRINT_DEBUG_WOLF("filling done");
+
+    thread wolf_state_3(index);
+    anim_length = GetAnimLength(%o_zombie_dreamcatcher_outtro);
+    wait anim_length;
+    if (isdefined(level.soul_catcher_clip[self.script_noteworthy]))
+    {
+        level.soul_catcher_clip[self.script_noteworthy] Delete();
+        level.soul_catcher_clip[self.script_noteworthy] ConnectPaths();
+    }
+
+    thread wolf_state_4(index);
+    thread HeadGoneCallbacks();
+
+    PRINT_DEBUG_WOLF("state manager finished");
+}
+
+function wolf_state_0(index)
+{
+    level.wolf_heads[index] Hide();
+    level.wolf_runes[index] Show();
+    level.wolf_bodies[index] hide_wolf_heads();
+}
+
+function wolf_state_1(index)
+{
+    PRINT_DEBUG_WOLF("first zombie_dead");
+
+    level.wolf_heads[index] Show();
+    level.wolf_runes[index] Hide();
+    level.wolf_bodies[index] hide_wolf_heads();
+    thread wolfhead_arrive(index);
+}
+
+function wolf_state_2(index)
+{
+    PRINT_DEBUG_WOLF("wolf_state_2");
+    level.wolf_heads[index] Show();
+    level.wolf_runes[index] Hide();
+    level.wolf_bodies[index] hide_wolf_heads();
+    level.wolf_heads[index] thread wolfhead_idle();
+}
+
+function wolf_state_3(index)
+{
+    level.wolf_heads[index] Show();
+    level.wolf_runes[index] Show();
+    level.wolf_bodies[index] hide_wolf_heads();
+    level.wolf_runes[index] StopLoopSound();
+    thread wolfhead_depart(index);
+}
+
+function wolf_state_4(index)
+{     
+    level.wolf_heads[index] Hide();
+    level.wolf_runes[index] Show();
+    level.wolf_bodies[index] hide_wolf_heads();
+    level.wolf_runes[index] SetModel("p6_zm_al_dream_catcher_on");
+    level.wolf_runes[index] rune_glow();
+    
+    PRINT_DEBUG_WOLF("wolf done setting model to dream catcher on");
+}
+
+function wolfhead_arrive(index)
+{
+    rune = level.wolf_runes[index];
+    head = level.wolf_heads[index];
+
+    rune.portalFxOrg = Spawn("script_model", rune.origin);
+    rune.portalFxOrg SetModel("tag_origin");
+    rune.portalFxOrg.angles = rune.angles + (0, 90, 0);
+    rune.portalFxOrg.origin += (10, 10, 10) * anglesToForward(rune.portalFxOrg.angles);
+
+    PlayFxOnTag(level._effect["hell_portal"], rune.portalFxOrg, "tag_origin");
+    
+    head PlaySound("evt_wolfhead_spawn");
+    head.wolf_ent = Spawn("script_origin", head.origin);
+    head.wolf_ent PlayLoopSound("evt_wolfhead_fire_loop");
+
+    n_anim_length = GetAnimLength(%o_zombie_dreamcatcher_intro);
+    head AnimScripted("notify", head.origin, head.angles, %o_zombie_dreamcatcher_intro, "normal", %o_zombie_dreamcatcher_intro, 1, 0.3);
+    wait n_anim_length;
+}
+
+function wolfhead_depart(index)
+{   
+    rune = level.wolf_runes[index];
+    head = level.wolf_heads[index];
+
+    PRINT_DEBUG_WOLF("now playing " + %o_zombie_dreamcatcher_outtro + " anim");
+    head AnimScripted("notify", head.origin, head.angles, %o_zombie_dreamcatcher_outtro, "normal", %o_zombie_dreamcatcher_outtro, 1, 0.3);
+    rune.portalFxOrg Delete();
+    
+    rune_forward = AnglesToForward(rune.angles + VectorScale((0, 1, 0), 90));
+    rune_up = AnglesToUp(rune.angles);
+    PlayFX(level._effect["hell_portal_close"], rune.origin, rune_forward, rune_up);
+
+    head PlaySound("evt_wolfhead_depart");
+    head.wolf_ent StopLoopSound();
+
+    WAIT_SERVER_FRAME;
+    if (isdefined(head.wolf_ent))
+    {
+        head.wolf_ent Delete();
+    }
+    
+    head notify("wolf_departing");
+}
+
 function wolfhead_idle()
 {
     self endon(KILL_WOLF_HEAD_WATCHERS_NOTIFICATION);
     self endon("wolf_eating");
     self endon("wolf_departing");
     self notify("wolf_idling");
+
     PRINT_DEBUG_WOLF("wolf_idling");
     level.wolf_head_idle_anims = [];
     level.wolf_head_idle_anims[0] = %o_zombie_dreamcatcher_idle;
     level.wolf_head_twitch_anims = [];
     level.wolf_head_twitch_anims[0] = %o_zombie_dreamcatcher_idle_twitch_scan;
+
     while(1)
     {
         random_idle_anim = array::random(level.wolf_head_idle_anims);
@@ -400,6 +443,7 @@ function wolfhead_idle()
         PRINT_DEBUG_WOLF("now playing " + random_idle_anim + " anim");
         self AnimScripted("notify", self.origin, self.angles, random_idle_anim, "normal", random_idle_anim, 1, 0.3);
         wait n_anim_length;
+
         random_twitch_anim = array::random(level.wolf_head_twitch_anims);
         n_anim_length = GetAnimLength(random_twitch_anim);
         PRINT_DEBUG_WOLF("now playing " + random_twitch_anim + " anim");
@@ -408,51 +452,13 @@ function wolfhead_idle()
     }
 }
 
-function wolf_state_6(index)
+
+function private rune_glow() // self == level.wolf_runes[index]
 {
-    level.wolf_heads[index] Show();
-    level.wolf_runes[index] Show();
-    level.wolf_bodies[index] hide_wolf_heads();
-    level.wolf_runes[index] StopLoopSound();
-    level.wolf_heads[index] thread wolfhead_depart(level.wolf_runes[index]);
-}
-
-function wolfhead_depart(rune)
-{   
-    PRINT_DEBUG_WOLF("now playing " + %o_zombie_dreamcatcher_outtro + " anim");
-    self AnimScripted("notify", self.origin, self.angles, %o_zombie_dreamcatcher_outtro, "normal", %o_zombie_dreamcatcher_outtro, 1, 0.3);
-    rune.portal_fx Delete();
-    if (isdefined(self.portal_fx))
-    {
-        self.portal_fx Delete();
-    }
-    
-    rune_forward = AnglesToForward(rune.angles + VectorScale((0, 1, 0), 90));
-    rune_up = AnglesToUp(rune.angles);
-    PlayFX(level._effect["hell_portal_close"], rune.origin, rune_forward, rune_up);
-
-    self PlaySound("evt_wolfhead_depart");
-    self.wolf_ent StopLoopSound();
-
-    WAIT_SERVER_FRAME;
-    if (isdefined(self.wolf_ent))
-    {
-        self.wolf_ent Delete();
-    }
-    
-    self notify("wolf_departing");
-}
-
-function wolf_state_7(index)
-{     
-    level.wolf_heads[index] Hide();
-    level.wolf_runes[index] Show();
-    level.wolf_bodies[index] hide_wolf_heads();
-    level.wolf_runes[index] SetModel("p6_zm_al_dream_catcher_on");
-    PlayFXOnTag(level._effect["soul_charged"], level.wolf_runes[index], "tag_origin");
-    level.wolf_runes[index] PlayLoopSound("evt_runeglow_loop");
-    
-    PRINT_DEBUG_WOLF("wolf done setting model to dream catcher on");
+    rune_forward = anglesToForward(self.angles);
+    rune_charged_glow_location = self.origin + (3, 3, 3) * rune_forward;
+    PlayFX(level._effect["soul_charged"], rune_charged_glow_location, rune_forward);
+    self PlayLoopSound("evt_runeglow_loop");
 }
 
 function wolf_state_eat(index, n_eating_anim, zombie)
@@ -909,7 +915,7 @@ function first_wolf_complete_vo()
     {
         if (isdefined(a_closest[i].dontspeak) && !a_closest[i].dontspeak)
         {
-            a_closest[i] thread zm_utility::do_player_general_vox("general", "wolf_complete");
+            a_closest[i] thread zm_utility::do_player_general_vox("general", "wolf_first_complete");
             return;
         }
         else
@@ -929,6 +935,7 @@ function final_wolf_complete_vo()
     {
         if (isdefined(a_closest[i].dontspeak) && !a_closest[i].dontspeak)
         {
+            a_closest[i] thread zm_utility::do_player_general_vox("general", "wolf_complete");
             return;
         }
         else
