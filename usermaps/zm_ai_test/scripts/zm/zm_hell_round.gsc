@@ -43,6 +43,7 @@ function init()
 
     // Init custom flags
     level flag::init(HELL_ROUND_FLAG);
+    level flag::init(HELL_ROUND_MINOR_FLAG);
 
     level.hell_rounds_abolished = false;
     level.hell_rounds_begin_callbacks = [];

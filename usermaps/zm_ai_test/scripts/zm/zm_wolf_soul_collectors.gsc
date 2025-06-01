@@ -75,7 +75,7 @@ function init_cerberus_fx()
     level._effect["soul_charged"] = "lednors_wolfs/soul_charged";
     level._effect["hell_portal"] = "lednors_wolfs/hell_portal";
     level._effect["wolf_bite_blood"] = "lednors_wolfs/wolf_bite_blood";
-    level._effect["soul_charge_impact"] = undefined; // Not used because not feeling it's visible enough.
+    level._effect["soul_charge_impact"] = undefined; // Not used because not imported from original files given to me.
 }
 
 function create_anim_references_on_server()
@@ -109,6 +109,9 @@ function init()
 
     level flag::init("soul_catchers_charged");
 
+    level.wolf_heads = [];
+    level.wolf_bodies = [];
+    level.wolf_runes = [];
     level.soul_catchers = [];
     level.soul_catchers_charged = 0;
     level.soul_catchers_vol = [];
@@ -318,7 +321,7 @@ function wolf_state_0(index)
     level.wolf_heads[index].portal_fx SetModel("tag_origin");
     level.wolf_heads[index] Hide();
     level.wolf_runes[index] Show();
-    level.wolf_bodies[index] Hide();
+    level.wolf_bodies[index] hide_wolf_heads();
 }
 
 function wolf_state_1(index)
@@ -327,7 +330,7 @@ function wolf_state_1(index)
 
     level.wolf_heads[index] Show();
     level.wolf_runes[index] Hide();
-    level.wolf_bodies[index] Hide();
+    level.wolf_bodies[index] hide_wolf_heads();
     level.wolf_heads[index] thread wolfhead_arrive(level.wolf_runes[index]);
 }
 
@@ -355,10 +358,28 @@ function wolf_state_2(index)
     PRINT_DEBUG_WOLF("wolf_state_2");
     level.wolf_heads[index] Show();
     level.wolf_runes[index] Hide();
-    level.wolf_bodies[index] Hide();
-    level.wolf_bodies[index].head.hat Hide();
-    level.wolf_bodies[index].head Hide();
+    level.wolf_bodies[index] hide_wolf_heads();
     level.wolf_heads[index] thread wolfhead_idle();
+}
+
+function hide_wolf_heads() // self == level.wolf_bodies[index]
+{
+    if (!isdefined(self))
+    {
+        return;
+    }
+    self Hide();
+
+    if (!isdefined(self.head))
+    {
+        return;
+    }
+    self.head Hide();
+    
+    if (isdefined(self.head.hat))
+    {
+        self.head.hat Hide();
+    }
 }
 
 function wolfhead_idle()
@@ -391,10 +412,8 @@ function wolf_state_6(index)
 {
     level.wolf_heads[index] Show();
     level.wolf_runes[index] Show();
-    level.wolf_bodies[index] Hide();
-    level.wolf_bodies[index].head Hide();
+    level.wolf_bodies[index] hide_wolf_heads();
     level.wolf_runes[index] StopLoopSound();
-    level.wolf_bodies[index].head.hat Hide();
     level.wolf_heads[index] thread wolfhead_depart(level.wolf_runes[index]);
 }
 
@@ -403,7 +422,10 @@ function wolfhead_depart(rune)
     PRINT_DEBUG_WOLF("now playing " + %o_zombie_dreamcatcher_outtro + " anim");
     self AnimScripted("notify", self.origin, self.angles, %o_zombie_dreamcatcher_outtro, "normal", %o_zombie_dreamcatcher_outtro, 1, 0.3);
     rune.portal_fx Delete();
-    self.portal_fx Delete();
+    if (isdefined(self.portal_fx))
+    {
+        self.portal_fx Delete();
+    }
     
     rune_forward = AnglesToForward(rune.angles + VectorScale((0, 1, 0), 90));
     rune_up = AnglesToUp(rune.angles);
@@ -411,7 +433,12 @@ function wolfhead_depart(rune)
 
     self PlaySound("evt_wolfhead_depart");
     self.wolf_ent StopLoopSound();
-    self.wolf_ent Delete();
+
+    WAIT_SERVER_FRAME;
+    if (isdefined(self.wolf_ent))
+    {
+        self.wolf_ent Delete();
+    }
     
     self notify("wolf_departing");
 }
@@ -420,9 +447,7 @@ function wolf_state_7(index)
 {     
     level.wolf_heads[index] Hide();
     level.wolf_runes[index] Show();
-    level.wolf_bodies[index] Hide();
-    level.wolf_bodies[index].head Hide();
-    level.wolf_bodies[index].head.hat Hide();
+    level.wolf_bodies[index] hide_wolf_heads();
     level.wolf_runes[index] SetModel("p6_zm_al_dream_catcher_on");
     PlayFXOnTag(level._effect["soul_charged"], level.wolf_runes[index], "tag_origin");
     level.wolf_runes[index] PlayLoopSound("evt_runeglow_loop");
@@ -430,7 +455,7 @@ function wolf_state_7(index)
     PRINT_DEBUG_WOLF("wolf done setting model to dream catcher on");
 }
 
-function wolf_state_eat(index , n_eating_anim ,zombie)
+function wolf_state_eat(index, n_eating_anim, zombie)
 {
     if(n_eating_anim == 3)
     {
@@ -472,32 +497,35 @@ function wolfhead_eat_aligned(zombie, direction, index)
 
     self PlaySound("evt_wolfhead_eat");
     self Unlink();
-    zombie Delete();
+    
     level.wolf_bodies[index] Unlink();
 }
 
 function wolfhead_pre_eat_aligned(zombie, direction)
 {
     s_closest = util::get_array_of_closest(self.origin, level.a_wolf_structs);
+
     m_body = s_closest[0].body;
     m_wolf = s_closest[0].head;
     PRINT_DEBUG_WOLF("now playing " + level.wolfhead_pre_eat_anims[direction] + " anim");
     m_wolf AnimScripted("notify", m_wolf.origin, m_wolf.angles, level.wolfhead_pre_eat_anims[direction], "normal", level.wolfhead_pre_eat_anims[direction], 1, 0.3);
     m_body Unlink();
     m_body Show();
+
     m_body body_moveto_wolf(m_wolf, zombie);
 }
 
 function play_blood_fx_on_bite()
 {
     self waittill("bite", note);
-    PlayFXOnTag(level._effect["soul_charge_impact"], self, "tag_mouth_fx");
+    // PlayFXOnTag(level._effect["soul_charge_impact"], self, "tag_mouth_fx");
     PlayFXOnTag(level._effect["wolf_bite_blood"], self, "tag_mouth_fx");
 }
 
 function body_moveto_wolf(m_wolf, zombie)
 {
-    self.m_soul_fx_player = Spawn(self GetTagOrigin("J_SpineLower"), "script_model");
+    self.m_soul_fx_player = Spawn("script_model", self.origin);
+
     self.m_soul_fx_player SetModel("tag_origin");
     zombie AnimScripted("notify", zombie.origin, zombie.angles, %ai_zombie_dreamcatch_rise, "normal", %ai_zombie_dreamcatch_rise, 1, 0.3);
 
@@ -633,7 +661,7 @@ function watch_for_death()
         clone.my_soul_catcher = level.soul_catchers[i];
         clone pose_dead_body();
         n_eating_anim = clone which_eating_anim();
-        level thread wolf_state_eat(i , n_eating_anim,clone);
+        level thread wolf_state_eat(i, n_eating_anim, clone);
         if (n_eating_anim == 3)
         {
             total_wait_time = 3 + GetAnimLength(%ai_zombie_dreamcatcher_wallconsume_align_f);

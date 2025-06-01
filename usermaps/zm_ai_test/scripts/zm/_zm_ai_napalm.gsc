@@ -110,7 +110,7 @@ function napalm_zombie_do_spawn_rise()
         self.script_parameters = spot.script_parameters;
 
     self thread zm_spawner::do_zombie_rise(spot);
-    playFx(level._effect["napalm_spawn"], spot.origin, anglesToUp(spot.angles), anglesToUp(spot.angles));
+    playFx(level._effect["napalm_spawn"], spot.origin, anglesToForward((0, 0, 0)), anglesToUp(spot.angles));
     thread napalm_zombie_do_player_vo();
 }
 
