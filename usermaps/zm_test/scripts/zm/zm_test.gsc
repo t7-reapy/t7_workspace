@@ -70,6 +70,11 @@
 #using scripts\zm\zm_rain;
 #using scripts\zm\_zm_animated_switch;
 
+// TODO: remove below
+// Sphynx's Console Commands
+#using scripts\Sphynx\commands\_zm_commands;
+#using scripts\Sphynx\commands\_zm_name_checker;
+
 function main()
 {
     register_client_fields();
@@ -85,7 +90,7 @@ function main()
     
     callback::on_spawned(&on_player_spawned);
 
-    //TODO: remove
+    // TODO: remove
     level thread monitor_power_state();
     level.player_starting_points = 500000;
 }

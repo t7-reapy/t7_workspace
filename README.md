@@ -93,6 +93,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 | [*combat and scythe only*] BOCW - Melee weapon     | Pmr360                                                               | [mega](https://mega.nz/folder/Yz4lgCLa#rtY6tDmZIA9pYqLvQkWuhg)                                                                                                                                                                    | [devraw](https://www.devraw.net/approved-assets/pmr360/black-ops-cw---melee-weapon)                                                                                             | [legacy asset spreadsheet](https://docs.google.com/spreadsheets/d/10aQLnuZUgvduFS4zgPNOTBlFbD-pBfpy--Gm9ilIqRg)     |
 | [**not installed**] Slash N' Burn, Fire Axe        | MADGAZ                                                               | [google drive](https://drive.google.com/file/d/1imCwaMxyez0yQSDpGQ69PqJonetiPulX/view)                                                                                                                                            | []()                                                                                                                                                                            | [legacy asset spreadsheet](https://docs.google.com/spreadsheets/d/10aQLnuZUgvduFS4zgPNOTBlFbD-pBfpy--Gm9ilIqRg)     |
 | T9 Playermodels                                    | Logical & WetEgg (+ Spiki, MidgetBlaster, Proventus, TescoValueRice) | [google drive](https://drive.google.com/file/d/1m73yD1H9ACImcwpQe9iwhqg2QlKYW17J/view)                                                                                                                                            | []()                                                                                                                                                                            | [legacy asset spreadsheet](https://docs.google.com/spreadsheets/d/10aQLnuZUgvduFS4zgPNOTBlFbD-pBfpy--Gm9ilIqRg)     |
+| Scripting utilities by Sphynx                      | Sphynx                                                               | [commands](https://drive.google.com/file/d/1tI96FXlcvcrIQqCODhVvbXRkNrDfVrTH/view) [commands (wiki)](https://www.t7wiki.com/add-developer-commands)                                                                               | [utilities](https://drive.google.com/file/d/1C7tTgkeFzqgwKGzczhVARg40AFbbGu9-/view) [utilities (wiki)](https://www.t7wiki.com/sphynx-util-script)                               | []()                                                                                                                |
 
 <!-- | Name | Author | []() | []() | []() | -->
 
@@ -102,21 +103,56 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 
 - umbra bug when jumbing in north exterior corridor <= don't know how to fix this ...
 
-- once revive is used 3 times and perk is gone, bumper sound is still ON (**I think I fixed it already ?**)
-
-  > might be because trigger is still present, it needs to be deleted in the script resposible where perk is moved out.
-
+- once revive is used 3 times and perk is gone, the music (jingle) can still play, and the lights are stil present (blue exploder)
 - the little elevation on fourth zone is blocking the player if he doesn't run (probably have to use a different clip type, maybe stairs ?)
-
 - the mulekick perk is bugged when 3rd weapon is in hand (icon in hud is bugged)
-
 - perk utility script throws error in splitscreen.
-
 - AI walk on balcony (north) can be bugged and they can be stuck
-
 - A couple of lighting issues:
+
   - exploder lights (lightning)
   - north-east neigbour upper balcony light clip (can be related to quality of light when compiled)
   - the double-tap lighting is borring (on the wall on the left)
 
 - south part can spawn bonus in inaccessible zombies area (player volume)
+- the detail brush that was the fix to blocked zombie on south-west baricade is not a clip for explosion (mustand & sally) -> add a clip for weapons here
+- revive takes the mustang and sally from player if revived LOL
+
+
+# Sphynx commands cheat sheet
+
+If Sphynx scripts utilities were installed on a map scripts, here is a recap of the commands possible to be used.
+
+> usage: `/command parameter`
+
+| Command             | Possible parameters                   | Description                                                                 |
+| ------------------- | ------------------------------------- | --------------------------------------------------------------------------- |
+| `/getxuid`          | `1`                                   | Displays your XUID                                                          |
+| `/spawning`         | `on`/`off`                            |                                                                             |
+| `/spawn_dog`        | `<amount>`                            |                                                                             |
+| `/spawn_zombie`     | `<amount>`                            | Spawn zombies and adds them to the zombies spawn list                       |
+| `/perk`             | `<player_index>`/`all`                | Give perks to players                                                       |
+| `/take_perk`        | `<player_index>`/`all`                | Take perks from players                                                     |
+| `/points`           | `[<player_index>]` `<points>`         | Give points to player,/to self if not specified                             |
+| `/give`             | `[<player_index>]` `<weaponname>`     | Better /give                                                                |
+| `/ignore`           | `<player_index>`/`all`                | Make player ignored by AI                                                   |
+| `/infinite_ammo`    | `<player_index>`/`all`                | Give player infinite ammo (no way of turning off now)                       |
+| `/god`              | `<player_index>`/`all`                | Better godmode                                                              |
+| `/camo`             | `[<player_index>]`/`<index>`          | Change camo of currentweapon                                                |
+| `/revive`           | `<player_index>`/`all`                |                                                                             |
+| `/power`            | `on`/`off`                            | Toggle power state                                                          |
+| `/next_round`       | `<increment>`                         |                                                                             |
+| `/previous_round`   | `<decrement>`                         |                                                                             |
+| `/round`            | `<round_number>`                      | between 1 and 255                                                           |
+| `/powerup`          | `<player_index>` `<powerup name>`     | Spawns powerup where player is looking                                      |
+| `/upgrade_weapon`   | `<player_index>`/`all`                | Upgrades current weapon                                                     |
+| `/downgrade_weapon` | `<player_index>`/`all`                | Downgrades current weapon                                                   |
+| `/open`             | `all`                                 | Opens all doors                                                             |
+| `/difficulty`       | `<difficulty>`                        | From 1 to 4. Changes difficulty (Zombie speed, amount of zombies)           |
+| `/lighting`         | `<lightstate>`                        | From 1 to 4. Changes the lightingstate                                      |
+| `/get_coords`       | `1`                                   | Gets the coordinates on your exact location (Origin and Angles)             |
+| `/outline`          | `<struct/model targetname>` `<state>` | State is 0 or 1. Add keylines around a specific model to look for it easier |
+| `/show_zombies`     | `<state>`                             | State is 0 or 1. Shows all zombies through walls - 'Gives Death Perception' |
+| `/teleportz`        | `<player_index>`                      | Teleports zombies to player with index                                      |
+| `/bgb`              | `<bgbname>` `<player_index>`          | Gives the player a gobblegum                                                |
+| `/aimbot`           | `on`/`off`                            | Aimbots zombies                                                             |
