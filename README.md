@@ -104,7 +104,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - umbra bug when jumbing in north exterior corridor <= don't know how to fix this ...
 
 - once revive is used 3 times and perk is gone, the music (jingle) can still play, and the lights are stil present (blue exploder)
-- the little elevation on fourth zone is blocking the player if he doesn't run (probably have to use a different clip type, maybe stairs ?)
 - the mulekick perk is bugged when 3rd weapon is in hand (icon in hud is bugged)
 - perk utility script throws error in splitscreen.
 - AI walk on balcony (north) can be bugged and they can be stuck
