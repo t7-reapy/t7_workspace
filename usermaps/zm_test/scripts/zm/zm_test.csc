@@ -50,6 +50,10 @@
 #using scripts\zm\zm_usermap;
 #using scripts\zm\zm_rain;
 
+// TODO: remove
+// Sphynx's Console Commands
+#using scripts\Sphynx\commands\_zm_commands;
+
 function main()
 {    
 	luiLoad("ui.uieditor.menus.hud.t7hud_zm_custom");

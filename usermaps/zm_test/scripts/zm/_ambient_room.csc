@@ -19,7 +19,7 @@
  
 // Adapt to your needs
 #define AMBIENT_FILE_NAME "zm_test_ambient.csv"
-#define AMBIENT_DEBUG 1
+#define AMBIENT_DEBUG 0
 
 #namespace ambient_room;
 

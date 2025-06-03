@@ -40,10 +40,11 @@ function init()
 function main() 
 {
     level flag::wait_till("initial_blackscreen_passed");
-    level thread watch_power_state();
+    thread watch_power_state();
+    thread watch_revive_solo();
 }
 
-function private sync_exploders() 
+function private sync_exploders()
 {
     if (level.perk_fix_exploding)
     {
@@ -55,31 +56,58 @@ function private sync_exploders()
     }
 }
 
-function private watch_power_state() 
+function private watch_power_state()
 {
     while(1)
     {
-        self flag::wait_till(PERK_EXPLODES_FLAG_NAME);
-        self exploders();
-        self flag::wait_till_clear(PERK_EXPLODES_FLAG_NAME);
-        self stop_exploders();
+        level flag::wait_till(PERK_EXPLODES_FLAG_NAME);
+        level exploders();
+        level flag::wait_till_clear(PERK_EXPLODES_FLAG_NAME);
+        level stop_exploders();
     }
 }
 
 function private exploders()
 {
-    self.perk_fix_exploding = true;
-    for (i = 0; i < self.perk_fix_exploders.size; i++)
+    level.perk_fix_exploding = true;
+    for (i = 0; i < level.perk_fix_exploders.size; i++)
     {
-        exploder::exploder(self.perk_fix_exploders[i]);
+        if (level.perk_fix_exploders[i] == PERK_EXPLODER_NAME_QUICK_REVIVE && solo_lives_gone())
+        {
+            continue;
+        }
+
+        exploder::exploder(level.perk_fix_exploders[i]);
     }
 }
 
 function private stop_exploders()
 {
-    self.perk_fix_exploding = false;
-    for (i = 0; i < self.perk_fix_exploders.size; i++)
+    level.perk_fix_exploding = false;
+    for (i = 0; i < level.perk_fix_exploders.size; i++)
     {
-        exploder::exploder_stop(self.perk_fix_exploders[i]);
+        exploder::exploder_stop(level.perk_fix_exploders[i]);
     }
+}
+
+function private watch_revive_solo()
+{
+    while(true)
+    {
+        if (solo_lives_gone())
+        {
+            exploder::exploder_stop(level.perk_fix_exploders[0]); // PERK_EXPLODER_NAME_QUICK_REVIVE
+            break;
+        }
+
+        wait 1;
+    }
+}
+
+function private solo_lives_gone()
+{
+    return level flag::exists("solo_game") 
+        && level flag::get("solo_game")
+        && level flag::exists("solo_revive")
+        && level flag::get("solo_revive"); // solo_revive is set when perk is gone
 }

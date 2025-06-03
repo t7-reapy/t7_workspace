@@ -99,6 +99,9 @@ function actor_damage_callback_override( str_inflictor, e_attacker, n_damage, b_
 function private solo_revive_perk_expire() {
 	// self == revive_perk_trigger
 	self.bump TriggerEnable(0);
+	self.script_sound = undefined;
+	WAIT_SERVER_FRAME;
+	self StopSounds();
 }
 
 // --------------------------------
