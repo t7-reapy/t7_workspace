@@ -112,7 +112,6 @@ function init()
     level.wolf_heads = [];
     level.wolf_bodies = [];
     level.wolf_runes = [];
-    level.wolf_portals = [];
     level.soul_catchers = [];
     level.soul_catchers_charged = 0;
     level.soul_catchers_vol = [];
