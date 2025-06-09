@@ -47,12 +47,6 @@ function init()
     // hide present volume decals in the map if ENABLE_RAIN_ENVIRONMENT is turned off.
     // Thus, GSC needs to initiate some clientfields.
     zm_weather_rain_environment::init();
-
-    // Bind any callbacks from here...
-    if (ENABLE_RAIN_DROPS_POSTFX && ENABLE_RAIN_DROPLETS)
-    {
-        zm_weather_rain_drops_postfx::add_rain_on_screen_callback(&zm_weather_rain_droplets::splash_rain_on_player);
-    }
 }
 
 function play() 

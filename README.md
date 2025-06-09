@@ -117,6 +117,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - south part can spawn bonus in inaccessible zombies area (player volume)
 - the detail brush that was the fix to blocked zombie on south-west baricade is not a clip for explosion (mustand & sally) -> add a clip for weapons here
 - revive takes the mustang and sally from player if revived LOL
+- rain sounds in splitscreen should only be played once if both players are in same enviromnent (make this adaptable so if one change environment, it updates for both using GetLocalPlayers())
 
 # Sphynx commands cheat sheet
 

@@ -24,7 +24,7 @@
 
 function init()
 {
-    clientfield::register("toplayer", ZM_POSTFX_RAIN_DROPS_CF_NAME, VERSION_SHIP, 2, "int", &rain_drops_toggle, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
+    clientfield::register("toplayer", ZM_POSTFX_RAIN_DROPS_CF_NAME, VERSION_SHIP, 2, "int", &rain_drops_toggle, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
         
     callback::on_localclient_connect(&on_connect);
 }
@@ -39,9 +39,11 @@ function on_connect(local_client_number)
 
 function rain_drops_toggle(local_client_number, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
+    util::waitforclient(local_client_number);
+
     if(new_intensity != WEATHER_INTENSITY_OFF)
     {
-        // self thread rain_enable(local_client_number, new_intensity);
+        self thread rain_enable(local_client_number, new_intensity);
     }
     else
     {

@@ -1,32 +1,6 @@
-// ======================================================================= //
-// The zm_weather_rain_droplets script and namespace was strongly inspired //
-// from Scobalula's bloodsplatter script, credits to him:                  //
-// -----------  https://github.com/Scobalula/Bo3Bloodsplatter ------------ //
-// ======================================================================= //
-
-// -------------------------------------------------------------------------------
-// Player Bloodsplatter for Black Ops III - Bloc Edition
-// Copyright (c) 2022 Philip/Scobalula
-// -------------------------------------------------------------------------------
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-// -------------------------------------------------------------------------------
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-// -------------------------------------------------------------------------------
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-// -------------------------------------------------------------------------------
-
+#using scripts\shared\util_shared; 
+#using scripts\shared\array_shared; 
+#using scripts\shared\callbacks_shared; 
 #using scripts\shared\clientfield_shared;
 #using scripts\zm\_zm;
 
@@ -40,31 +14,106 @@
 
 #namespace zm_weather_rain_droplets;
 
+class RainDroplets
+{
+    var paused;
+    var triggers;
+}
+
 function init()
 {
     // Clientfields
-    clientfield::register("allplayers", "rain_droplets_toggle", VERSION_DLC3, 1, "int");
+    clientfield::register("allplayers", RAIN_VM_CF_NAME, VERSION_DLC3, 1, "int");
+    
+    level.weather.rain.droplets = new RainDroplets();
+    level.weather.rain.droplets.paused = true;
+    level.weather.rain.droplets.triggers = GetEntArray(RAIN_VM_TRIGGER_NAME, "targetname");
+    
+    callback::on_spawned(&on_player_spawned);
+}
+
+function on_player_spawned() // self == player
+{
+    self update_raindrops(level.weather.rain.intensity);
+}
+
+function update_raindrops(intensity) // self == player
+{
+    self.rain_on_viewmodel = (intensity != WEATHER_INTENSITY_OFF);
+    self clientfield::set(RAIN_VM_CF_NAME, self.rain_on_viewmodel);
 }
 
 function play()
 {
-    // TODO
+    level endon("entityshutdown");
+
+    if (!level.weather.rain.droplets.paused)
+    {
+        WEATHER_PRINT_DEBUG("already running rain droplets");
+        return;
+    }
+
+    foreach (player in GetPlayers())
+    {
+        // Resume player viewmodel raindrops, triggers will clear if necessary.
+        player clientfield::set(RAIN_VM_CF_NAME, level.weather.rain.intensity);
+    }
+    
+    array::thread_all(level.weather.rain.droplets.triggers, &rain_trigger_think);
+    level.weather.rain.droplets.paused = false;
 }
 
 function pause()
 {
-    // TODO
+    if (level.weather.rain.droplets.paused)
+    {
+        WEATHER_PRINT_DEBUG("already paused rain droplets");
+        return;
+    }
+
+    // First, stop trigger thinking
+    foreach (trigger in level.weather.rain.droplets.triggers)
+    {
+        trigger notify("trigger_stop_rain_droplets");
+    }
+
+    foreach (player in GetPlayers())
+    {
+        // Second, stop current triggers waiting to not be touched
+        player notify("enter_rain_droplets_trigger");
+
+        // Finally, turn off client fields
+        player clientfield::set(RAIN_VM_CF_NAME, WEATHER_INTENSITY_OFF);
+    }
+    
+    level.weather.rain.droplets.paused = true;
 }
 
-/@
-"Name: splash_rain_on_player(b_enabled)"
-"Summary: Splashers rain onto the player's viewmodel and body.
-"Module: Raindroplets"
-"Example: player zm_weather_rain_droplets::splash_rain_on_player(b_enabled);"
-"SPMP: both"
-@/
-function splash_rain_on_player(b_enabled)
+function rain_trigger_think() // self == trigger_multiple
 {
-    WEATHER_PRINT_DEBUG("splash_rain_on_player callback");
-    self clientfield::set("rain_droplets_toggle", b_enabled);
+    self endon("trigger_stop_rain_droplets");
+    self endon("death");
+
+    while(1)
+    {
+        self waittill("trigger", e_who);
+
+        if(IsPlayer(e_who))
+        {
+            e_who thread rain_trigger_toggle(self);
+        }
+    }
+}
+
+function rain_trigger_toggle(e_trigger) // self == player
+{
+    self notify("enter_rain_droplets_trigger");
+    self endon("disconnect");
+    self endon("enter_rain_droplets_trigger");
+
+    self update_raindrops(WEATHER_INTENSITY_OFF);
+    util::wait_till_not_touching(e_trigger, self);
+    self update_raindrops(level.weather.rain.intensity);
+    
+    self notify("exit_rain_droplets_trigger");
 }

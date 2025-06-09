@@ -4,7 +4,9 @@
 // -----------  https://github.com/Scobalula/Bo3Bloodsplatter ------------ //
 // ======================================================================= //
 
-#define RAIN_SPLASH_TIME 1.0
-#define RAIN_SPLASH_FADE_TIME 3.0
-#define RAIN_INITIAL_OPACITY 0.3
-#define RAIN_MATERIALS array("mc/mtl_rain_droplets_scripted_00", "mc/mtl_rain_droplets_scripted_01", "mc/mtl_rain_droplets_scripted_02", "mc/mtl_rain_droplets_scripted_03")
+// We use triggers used for rain postfx.
+#define RAIN_VM_TRIGGER_NAME "postfx_rain_trigger"
+#define RAIN_VM_CF_NAME "rain_droplets_toggle"
+
+#define RAIN_VM_SPLASH_FADE_TIME 2.0
+#define RAIN_VM_FRAMES_PER_SECONDS 4.0
