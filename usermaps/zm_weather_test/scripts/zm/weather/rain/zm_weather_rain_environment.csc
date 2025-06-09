@@ -41,12 +41,18 @@ function private on_connect(local_client_num)
     {
         level.weather.rain.environment.sounds_origins[i] = GetEntArray(local_client_num, stript_origin_targets[i], "targetname");
     }
+    
+    util::waitforclient(local_client_num);
+    foreach (volume_decal in level.weather.rain.environment.volume_decals)
+    {
+            HideVolumeDecal(volume_decal);
+    }
 }
 
 function private decal_rain_toggle(local_client_number, _oldVal, shouldRain, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump) // self == player
 {
     util::waitforclient(local_client_number);
-    
+
     volume_decals = level.weather.rain.environment.volume_decals;
 
     foreach (volume_decal in volume_decals)
