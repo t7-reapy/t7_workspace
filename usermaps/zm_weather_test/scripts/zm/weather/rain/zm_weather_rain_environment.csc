@@ -1,3 +1,4 @@
+#using scripts\shared\util_shared; 
 #using scripts\shared\callbacks_shared; 
 #using scripts\shared\exploder_shared; 
 #using scripts\shared\clientfield_shared;
@@ -21,8 +22,8 @@ class RainEnvironment {
 
 function init() 
 {
-    clientfield::register("world", DECAL_RAIN_TOGGLE, VERSION_SHIP, 1, "int", &decal_rain_toggle, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
-    clientfield::register("world", RAIN_EXPLODERS_CF_NAME, VERSION_SHIP, 2, "int", &update_rain_pipes, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
+    clientfield::register("world", DECAL_RAIN_TOGGLE, VERSION_SHIP, 1, "int", &decal_rain_toggle, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
+    clientfield::register("world", RAIN_EXPLODERS_CF_NAME, VERSION_SHIP, 2, "int", &update_rain_pipes, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
 
     callback::on_localclient_connect(&on_connect);
 }
@@ -42,8 +43,10 @@ function private on_connect(local_client_num)
     }
 }
 
-function private decal_rain_toggle(_localClientNum, _oldVal, shouldRain, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump) // self == player
+function private decal_rain_toggle(local_client_number, _oldVal, shouldRain, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump) // self == player
 {
+    util::waitforclient(local_client_number);
+    
     volume_decals = level.weather.rain.environment.volume_decals;
 
     foreach (volume_decal in volume_decals)

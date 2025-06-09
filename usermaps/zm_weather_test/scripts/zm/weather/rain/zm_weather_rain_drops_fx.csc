@@ -22,7 +22,7 @@ class RainDropsFx {
 
 function init() 
 {
-    clientfield::register("world", FX_RAIN_CF_NAME, VERSION_SHIP, 2, "int", &fx_rain, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
+    clientfield::register("world", FX_RAIN_CF_NAME, VERSION_SHIP, 2, "int", &fx_rain, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
 
     level.weather.rain.drops_fx = new RainDropsFx();
     level.weather.rain.drops_fx.raining = false;
@@ -42,12 +42,15 @@ function private ensure_players_fx_state()
             players[i].rain_fx_tag SetModel("tag_origin");
 
             players[i] thread rain_player(i);
+            players[i] thread watch_player_death(i);
         }
     }
 }
 
 function private fx_rain(local_client_number, old_intensity, new_intensity, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump) // self == world
 {
+    util::waitforclient(local_client_number);
+
     if(new_intensity != WEATHER_INTENSITY_OFF)
     {
         level._effect[FX_RAIN_LEVEL_NAME] = FX_RAIN_LEVELS[new_intensity];
@@ -97,5 +100,16 @@ function private rain_player(local_client_number) // self == player
         }
 
         self.rain_fx_tag.origin = self.origin;
+    }
+}
+
+function private watch_player_death(local_client_number) // self == player
+{
+    self endon("disconnect");
+
+	self util::waittill_any("entityshutdown", "death");
+    if (isdefined(self.rain_fx))
+    {
+        DeleteFX(local_client_number, self.rain_fx);
     }
 }

@@ -1,6 +1,7 @@
 #using scripts\zm\weather\rain\zm_weather_rain_ambience;
 #using scripts\zm\weather\rain\zm_weather_rain_drops_fx;
 #using scripts\zm\weather\rain\zm_weather_rain_drops_postfx;
+#using scripts\zm\weather\rain\zm_weather_rain_droplets;
 #using scripts\zm\weather\rain\zm_weather_rain_environment;
 
 #insert scripts\zm\weather\zm_weather_shared.gsh;
@@ -32,6 +33,11 @@ function init()
     if (ENABLE_RAIN_DROPS_POSTFX)
     {
         self zm_weather_rain_drops_postfx::init();
+    }
+
+    if (ENABLE_RAIN_DROPLETS)
+    {
+        self zm_weather_rain_droplets::init();
     }
 
     // We don't check for ENABLE_RAIN_ENVIRONMENT here because we certainly want to 

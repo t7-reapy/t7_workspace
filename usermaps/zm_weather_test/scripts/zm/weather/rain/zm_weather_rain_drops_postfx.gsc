@@ -21,8 +21,8 @@
 
 class RainDropsPostFx
 {
-    var triggers;
     var paused;
+    var triggers;
 }
 
 // Init
@@ -56,7 +56,7 @@ function play()
 
         foreach (player in GetPlayers())
         {
-            player update_raindrops(level.weather.rain.intensity);
+            player thread update_raindrops(level.weather.rain.intensity);
         }
     }
 }
@@ -124,6 +124,7 @@ function rain_trigger_toggle(e_trigger) // self == player
 
     self update_raindrops(WEATHER_INTENSITY_OFF);
     util::wait_till_not_touching(e_trigger, self);
+    self update_raindrops(level.weather.rain.intensity);
     
     self notify("exit_rain_trigger");
 }

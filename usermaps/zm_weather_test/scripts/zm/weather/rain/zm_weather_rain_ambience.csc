@@ -1,3 +1,4 @@
+#using scripts\shared\util_shared; 
 #using scripts\shared\callbacks_shared; 
 #using scripts\shared\clientfield_shared; 
 
@@ -30,9 +31,9 @@ class RainAmbience {
 
 function init()
 {
-    clientfield::register("toplayer", RAIN_INTERIOR_TYPE_SFX, VERSION_SHIP, 2, "int", &rain_interior_sound, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
-    clientfield::register("toplayer", RAIN_LIMINAL_TYPE_SFX, VERSION_SHIP, 2, "int", &rain_liminal_sound, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
-    clientfield::register("toplayer", RAIN_EXTERIOR_TYPE_SFX, VERSION_SHIP, 2, "int", &rain_exterior_sound, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
+    clientfield::register("toplayer", RAIN_INTERIOR_TYPE_SFX, VERSION_SHIP, 2, "int", &rain_interior_sound, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
+    clientfield::register("toplayer", RAIN_LIMINAL_TYPE_SFX, VERSION_SHIP, 2, "int", &rain_liminal_sound, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
+    clientfield::register("toplayer", RAIN_EXTERIOR_TYPE_SFX, VERSION_SHIP, 2, "int", &rain_exterior_sound, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
 
     callback::on_localclient_connect(&on_connect);
 }
@@ -70,6 +71,8 @@ function releaseMutex()
 
 function rain_interior_sound(client_num, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
+    util::waitforclient(client_num);
+
     if(isdefined(new_intensity) && new_intensity != WEATHER_INTENSITY_OFF)
     {
         self thread rain_interior_sound_play(client_num, level.weather.rain.ambience.interior_sounds[new_intensity]);
@@ -124,6 +127,8 @@ function rain_interior_sound_stop(client_num, sound_alias)
 
 function rain_liminal_sound(client_num, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
+    util::waitforclient(client_num);
+
     if(isdefined(new_intensity) && new_intensity != WEATHER_INTENSITY_OFF)
     {
         self thread rain_liminal_sound_play(client_num, level.weather.rain.ambience.liminal_sounds[new_intensity]);
@@ -178,6 +183,8 @@ function rain_liminal_sound_stop(client_num, sound_alias)
 
 function rain_exterior_sound(client_num, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump) // self == player
 {
+    util::waitforclient(client_num);
+    
     if(isdefined(new_intensity) && new_intensity != WEATHER_INTENSITY_OFF)
     {
         self thread rain_exterior_sound_play(client_num, level.weather.rain.ambience.exterior_sounds[new_intensity], new_intensity);
