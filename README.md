@@ -149,7 +149,8 @@ If Sphynx scripts utilities were installed on a map scripts, here is a recap of 
 | `/downgrade_weapon` | `<player_index>`/`all`                | Downgrades current weapon                                                   |
 | `/open`             | `all`                                 | Opens all doors                                                             |
 | `/difficulty`       | `<difficulty>`                        | From 1 to 4. Changes difficulty (Zombie speed, amount of zombies)           |
-| `/lighting`         | `<lightstate>`                        | From 1 to 4. Changes the lightingstate                                      |
+| `/lighting`         | `<lightstate>`                        | From 0 to 3. Changes the lightingstate                                      |
+| `/fog`              | `<fogstate>`                          | From 0 to 3. Changes the fog state                                          |
 | `/get_coords`       | `1`                                   | Gets the coordinates on your exact location (Origin and Angles)             |
 | `/outline`          | `<struct/model targetname>` `<state>` | State is 0 or 1. Add keylines around a specific model to look for it easier |
 | `/show_zombies`     | `<state>`                             | State is 0 or 1. Shows all zombies through walls - 'Gives Death Perception' |

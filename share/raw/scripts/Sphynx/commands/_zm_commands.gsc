@@ -105,6 +105,8 @@ function __init__()
 
     SetDvar("sv_cheats", 1);
 
+    clientfield::register("world", "fog_cf_update", VERSION_SHIP, 2, "int");
+
     thread _get_xuid_command_response(); // Gets the player XUID and their playername
     thread _give_weapon_command_response(); //Give weapon (better give) -- OR USE /give random for a random weapon or /give random_up
     thread _points_command_response(); // Give points to player
@@ -124,7 +126,8 @@ function __init__()
     thread _power_command_response(); //Turn power on or off
     thread _infinite_ammo_command_response(); //turn on infinite ammo on player
     thread _change_camo_command_response(); //Change camo on current weapon
-    thread _change_lighting_command_response(); //Change camo on current weapon
+    thread _change_lighting_command_response(); //Change light state
+    thread _change_fog_command_response(); //Change fog state
     thread _open_doors_command_response(); //Open all doors
     thread _godmode_command_response(); //Give godmode to player
     thread _spawning_command_response(); // Turn on/off spawning
@@ -673,6 +676,27 @@ function _change_lighting_command_response(command_args)
             level util::set_lighting_state(Int(dvar_value));
 
             print_subtitle(undefined, "^5Dev: Changed lightingstate to " + dvar_value);        
+        }
+    }
+}
+
+function _change_fog_command_response(command_args)
+{
+    ModVar("fog", "");
+
+    while(true)
+    {
+        WAIT_SERVER_FRAME;
+
+        dvar_value = ToLower(GetDvarString("fog", ""));
+
+        if(isdefined(dvar_value) && dvar_value != "")
+        {
+            ModVar("fog", "");
+
+            level clientfield::set("fog_cf_update", Int(dvar_value));
+
+            print_subtitle(undefined, "^5Dev: Changed fogstate to " + dvar_value);        
         }
     }
 }
