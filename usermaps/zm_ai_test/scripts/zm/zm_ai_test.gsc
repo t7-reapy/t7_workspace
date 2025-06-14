@@ -40,7 +40,7 @@
 #using scripts\zm\_zm_perk_staminup;
 
 //Hell rounds
-#using scripts\zm\zm_hell_round;
+#using scripts\zm\hellround\zm_hellround;
 
 //Powerups
 #using scripts\zm\_zm_powerup_double_points;

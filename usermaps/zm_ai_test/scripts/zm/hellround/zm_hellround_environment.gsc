@@ -19,10 +19,10 @@
 #using scripts\zm\_zm_utility;
 #insert scripts\zm\_zm_utility.gsh;
 
-#insert scripts\zm\zm_bloody_environment.gsh;
-#namespace zm_bloody_environment;
+#insert scripts\zm\hellround\zm_hellround_environment.gsh;
+#namespace zm_hellround_environment;
 
-REGISTER_SYSTEM_EX("zm_bloody_environment", &init, &main, undefined)
+REGISTER_SYSTEM_EX("zm_hellround_environment", &init, &main, undefined)
 
 function init()
 {

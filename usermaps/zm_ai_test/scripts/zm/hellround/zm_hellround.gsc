@@ -12,8 +12,9 @@
 // Involved in Hell rounds
 #using scripts\zm\_hb21_zm_behavior;
 #using scripts\zm\_zm_bloodsplatter;
-#using scripts\zm\zm_bloody_environment;
 #using scripts\zm\zm_wolf_soul_collectors;
+#using scripts\zm\hellround\zm_hellround_environment;
+#using scripts\zm\hellround\zm_hellround_music;
 
 // AIs involved in hell rounds
 #using scripts\shared\ai\zombie_utility;
@@ -24,10 +25,10 @@
 #define APOTHICAN_FURY_DEBUG 0                   // Force disabling fury debug to not have it when not wanted
 #define APOTHICAN_FURY_USE_SPECIAL_FURY_ROUNDS 0 // Force disabling fury rounds to have them when wanted
 
-#insert scripts\zm\zm_hell_round.gsh;
+#insert scripts\zm\hellround\zm_hellround.gsh;
 
-#namespace zm_hell_round;
-REGISTER_SYSTEM_EX("zm_hell_round", &init, &main, undefined)
+#namespace zm_hellround;
+REGISTER_SYSTEM_EX("zm_hellround", &init, &main, undefined)
 
 function void(){}
 
@@ -69,8 +70,8 @@ function configure_callbacks()
 {
     level.hell_round_begin_callback_called = false;
 
-    add_begin_callback(&zm_bloody_environment::toggle_bloody_environment);
-    add_end_callback(&zm_bloody_environment::toggle_bloody_environment);
+    add_begin_callback(&zm_hellround_environment::toggle_bloody_environment);
+    add_end_callback(&zm_hellround_environment::toggle_bloody_environment);
 
     add_begin_callback(&zm_bloodsplatter::toggle_blood_splatter);
     add_end_callback(&zm_bloodsplatter::toggle_blood_splatter);
