@@ -67,10 +67,11 @@
 #using scripts\zm\_zm_trap_electric;
 
 #using scripts\zm\zm_usermap;
-#using scripts\zm\zm_rain;
 #using scripts\zm\_zm_animated_switch;
 
 // TODO: remove below
+#using scripts\zm\hellround\zm_hellround_music;
+#using scripts\zm\zm_rain;
 // Sphynx's Console Commands
 #using scripts\Sphynx\commands\_zm_commands;
 #using scripts\Sphynx\commands\_zm_name_checker;

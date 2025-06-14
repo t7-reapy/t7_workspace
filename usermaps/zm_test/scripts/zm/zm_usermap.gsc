@@ -459,13 +459,15 @@ function sndFunctions()
 #define PLAYTYPE_GAMEEND 5
 function setupMusic()
 {
-    zm_audio::musicState_Create("round_start", PLAYTYPE_ROUND, "roundstart1", "roundstart2", "roundstart3", "roundstart4");
-    zm_audio::musicState_Create("round_start_short", PLAYTYPE_ROUND, "roundstart_short1", "roundstart_short2", "roundstart_short3", "roundstart_short4");
-    zm_audio::musicState_Create("round_start_first", PLAYTYPE_ROUND, "roundstart_first");
-    zm_audio::musicState_Create("round_end", PLAYTYPE_ROUND, "roundend1");
-    zm_audio::musicState_Create("game_over", PLAYTYPE_GAMEEND, "gameover");
-    zm_audio::musicState_Create("dog_start", PLAYTYPE_ROUND, "dogstart1");
-    zm_audio::musicState_Create("dog_end", PLAYTYPE_ROUND, "dogend1");
+	// Commented these music states out to override them in the round sounds script
+	
+	// zm_audio::musicState_Create("round_start", PLAYTYPE_ROUND, "roundstart1", "roundstart2", "roundstart3", "roundstart4" );
+	// zm_audio::musicState_Create("round_start_short", PLAYTYPE_ROUND, "roundstart_short1", "roundstart_short2", "roundstart_short3", "roundstart_short4" );
+	// zm_audio::musicState_Create("round_start_first", PLAYTYPE_ROUND, "roundstart_first" );
+	// zm_audio::musicState_Create("round_end", PLAYTYPE_ROUND, "roundend1" );
+	// zm_audio::musicState_Create("game_over", PLAYTYPE_GAMEEND, "gameover" );
+	// zm_audio::musicState_Create("dog_start", PLAYTYPE_ROUND, "dogstart1" );
+	// zm_audio::musicState_Create("dog_end", PLAYTYPE_ROUND, "dogend1" );
     zm_audio::musicState_Create("timer", PLAYTYPE_ROUND, "timer");
     zm_audio::musicState_Create("power_on", PLAYTYPE_QUEUE, "poweron");
 }
