@@ -54,13 +54,81 @@
 // Sphynx's Console Commands
 #using scripts\Sphynx\commands\_zm_commands;
 
+function autoexec init()
+{
+	level.volumes_show = FindVolumeDecalIndexArray("hellround_volume_show");
+	level.volumes_hide = FindVolumeDecalIndexArray("hellround_volume_hide");
+	level.models_show = FindStaticModelIndexArray("hellround_model_show");
+	level.models_hide = FindStaticModelIndexArray("hellround_model_hide");
+
+    clientfield::register("world", "hellround_debug", VERSION_SHIP, 1, "int", &hellround_debug, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
+}
+
+function private hellround_debug(n_local_client_num, n_old_val, n_new_val, b_new_ent, b_initial_snap, str_field_name, b_was_time_jump)
+{
+	fog_index = (n_new_val ? 3 : 0);
+    fog_bank = 1 << fog_index;
+    lit_fog_bank = fog_index;
+    foreach (player in GetLocalPlayers())
+    {
+		client_number = player GetLocalClientNumber();
+        SetWorldFogActiveBank(client_number, fog_bank);
+        SetLitFogBank(client_number, -1, lit_fog_bank, 0);
+    }
+
+    if(n_new_val)
+    {
+        foreach(volume in level.volumes_show)
+        {
+            UnhideVolumeDecal(volume);
+        }
+
+        foreach(volume in level.volumes_hide)
+        {
+            HideVolumeDecal(volume);
+        }
+
+        foreach(model in level.models_show)
+        {
+            UnhideStaticModel(model);
+        }
+
+        foreach(model in level.models_hide)
+        {
+            HideStaticModel(model);
+        }
+    }
+    else
+    {
+        foreach(volume in level.volumes_show)
+        {
+            HideVolumeDecal(volume);
+        }
+
+        foreach(volume in level.volumes_hide)
+        {
+            UnhideVolumeDecal(volume);
+        }
+
+        foreach(model in level.models_show)
+        {
+            HideStaticModel(model);
+        }
+
+        foreach(model in level.models_hide)
+        {
+            UnhideStaticModel(model);
+        }
+    }
+}
+
 function main()
 {    
 	luiLoad("ui.uieditor.menus.hud.t7hud_zm_custom");
 
     zm_usermap::main();
 
-	callback::on_localclient_connect(&disable_player_outline);
+	callback::on_localclient_connect(&on_connect);
 
     include_weapons();
 }
@@ -70,10 +138,17 @@ function include_weapons()
     zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_test_weapons.csv", 1);
 }
 
-function private disable_player_outline(localClientNum)
+function private on_connect(n_local_client_num)
 {
-	foreach (player in GetPlayers(localClientNum))
+	self thread disable_player_outline(n_local_client_num);
+}
+
+function private disable_player_outline(n_local_client_num)
+{
+	foreach (player in GetPlayers(n_local_client_num))
 	{
 		player duplicate_render::set_dr_flag("keyline_active", 0);
 	}
+	
+	self duplicate_render::update_dr_filters(n_local_client_num);
 }

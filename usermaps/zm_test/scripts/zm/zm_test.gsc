@@ -75,6 +75,55 @@
 #using scripts\Sphynx\commands\_zm_commands;
 #using scripts\Sphynx\commands\_zm_name_checker;
 
+
+function private hellround_command_response(command_args)
+{
+    level.hellround_command = false;
+    ModVar("hellround", "");
+
+    while(true)
+    {
+        WAIT_SERVER_FRAME;
+
+        dvar_value = ToLower(GetDvarString("hellround", ""));
+
+        if(!isdefined(dvar_value) || dvar_value == "")
+        {
+            continue;
+        }
+        ModVar("hellround", "");
+
+        switch(Int(dvar_value))
+        {
+            case 0:
+                level.hellround_command = false;
+                break;
+            case 1:
+                level.hellround_command = true;
+                break;
+            default:
+                level.hellround_command = !level.hellround_command;
+                break;
+        }
+
+        toggle_hellround_environment(level.hellround_command);
+    }
+}
+
+function private toggle_hellround_environment(b_enable)
+{
+    if (IS_TRUE(b_enable))
+    {
+        util::set_lighting_state(3);
+        level clientfield::set("hellround_debug", 1);
+    }
+    else
+    {
+        util::set_lighting_state(0);
+        level clientfield::set("hellround_debug", 0);
+    }
+}
+
 function main()
 {
     register_client_fields();
@@ -91,12 +140,14 @@ function main()
     callback::on_spawned(&on_player_spawned);
 
     // TODO: remove
+    thread hellround_command_response();
     level thread monitor_power_state();
     level.player_starting_points = 500000;
 }
 
 function register_client_fields()
 {
+    clientfield::register("world", "hellround_debug", VERSION_SHIP, 1, "int");
 }
 
 function configure_weapon_inspection()
