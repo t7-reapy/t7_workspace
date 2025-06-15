@@ -140,7 +140,9 @@ function main()
     
     callback::on_spawned(&on_player_spawned);
 
-    // TODO: remove
+    // TODO: remove	
+    zombie_utility::set_zombie_var( "zombie_powerup_drop_increment",		200 );	// lower this to make drop happen more often
+	zombie_utility::set_zombie_var( "zombie_powerup_drop_max_per_round",	8 );	// raise this to make drop happen more often
     thread hellround_command_response();
     level thread monitor_power_state();
     level.player_starting_points = 500000;
