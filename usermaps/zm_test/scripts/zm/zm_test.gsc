@@ -134,15 +134,16 @@ function main()
     level thread zm_animated_switch::MasterSwitchInit();
     level util::set_lighting_state(0);
     
-    setup_playable_zones();
-    remove_players_names();
-    setup_weapons();
+    thread setup_playable_zones();
+    thread remove_players_names();
+    thread setup_weapons();
+    thread setup_players_vox();
     
     callback::on_spawned(&on_player_spawned);
 
     // TODO: remove	
-    zombie_utility::set_zombie_var( "zombie_powerup_drop_increment",		200 );	// lower this to make drop happen more often
-	zombie_utility::set_zombie_var( "zombie_powerup_drop_max_per_round",	8 );	// raise this to make drop happen more often
+    zombie_utility::set_zombie_var("zombie_powerup_drop_increment", 200); // lower this to make drop happen more often
+	zombie_utility::set_zombie_var("zombie_powerup_drop_max_per_round", 8); // raise this to make drop happen more often
     thread hellround_command_response();
     level thread monitor_power_state();
     level.player_starting_points = 500000;
@@ -258,6 +259,11 @@ function setup_weapons()
     // Override default melee weapon
     zm_utility::register_melee_weapon_for_level("t8_knife");
     level.weaponbasemelee = getweapon("t8_knife");
+}
+
+function private setup_players_vox()
+{
+    zm_audio::loadPlayerVoiceCategories("gamedata/audio/zm/zm_usmc_vox.csv");
 }
 
 function on_player_spawned() // self == player

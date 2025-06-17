@@ -63,6 +63,7 @@ function main()
     level._zombie_custom_add_weapons =&custom_add_weapons;
 
     setup_zones();
+    thread add_zm_vox();
     thread setup_triggers();
 }
 
@@ -70,7 +71,7 @@ function usermap_test_zone_init()
 {
     level flag::init( "always_on" );
     level flag::set( "always_on" );
-}	
+}
 
 function custom_add_weapons()
 {
@@ -86,6 +87,11 @@ function private setup_zones()
     level thread zm_zonemgr::manage_zones( init_zones );
 
     level.pathdist_type = PATHDIST_ORIGINAL;
+}
+
+function add_zm_vox()
+{
+	zm_audio::loadPlayerVoiceCategories("gamedata/audio/zm/zm_usmc_vox.csv");
 }
 
 function private setup_triggers()
