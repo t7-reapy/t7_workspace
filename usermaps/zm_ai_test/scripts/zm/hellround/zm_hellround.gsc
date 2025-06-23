@@ -3,6 +3,7 @@
 
 #using scripts\shared\array_shared;
 #using scripts\shared\flag_shared;
+#using scripts\shared\spawner_shared; 
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
 
@@ -14,6 +15,7 @@
 #using scripts\zm\_zm_bloodsplatter;
 #using scripts\zm\zm_wolf_soul_collectors;
 #using scripts\zm\hellround\zm_hellround_environment;
+#using scripts\zm\hellround\zm_hellround_zombies;
 #using scripts\zm\hellround\zm_hellround_music;
 
 // AIs involved in hell rounds
@@ -22,19 +24,29 @@
 #using scripts\zm\_zm_ai_wasp;
 #using scripts\zm\_zm_ai_napalm;
 #using scripts\zm\zm_genesis_apothicon_fury;
-#define APOTHICAN_FURY_DEBUG 0                   // Force disabling fury debug to not have it when not wanted
-#define APOTHICAN_FURY_USE_SPECIAL_FURY_ROUNDS 0 // Force disabling fury rounds to have them when wanted
 
 #insert scripts\zm\hellround\zm_hellround.gsh;
 
 #namespace zm_hellround;
 REGISTER_SYSTEM_EX("zm_hellround", &init, &main, undefined)
 
-function void(){}
-
-function init()
+class hellround
 {
-    // First, disable all custom rounds (can be repetitive with above defines ...)
+    var abolished;
+
+    // Callbacks for hellrounds
+    var begin_callbacks;
+    var end_callbacks;
+
+    // Iterations of hellrounds
+    var current_iteration;
+}
+
+function private void(){}
+
+function private init()
+{
+    // First, disable all custom rounds
     level.dog_rounds_allowed = 0;
     level.apothicon_fury_rounds_enabled = 0;
     level.apothicon_fury_round_track_override = &void;
@@ -42,33 +54,152 @@ function init()
     // Blood splatter happens only during hell rounds enabled
     level.bloodsplatter_disabled = true;
 
-    // Init custom flags
-    level flag::init(HELL_ROUND_FLAG);
-    level flag::init(HELL_ROUND_MINOR_FLAG);
+    level.hellround = new hellround();
+    level.hellround.abolished = false;
+    level.hellround.current_iteration = 0;
+    level.hellround.begin_callbacks = [];
+    level.hellround.end_callbacks = [];
 
-    level.hell_rounds_abolished = false;
-    level.hell_rounds_begin_callbacks = [];
-    level.hell_rounds_end_callbacks = [];
+    // Init custom flags
+    level flag::init(HELLROUND_FLAGS[0]);
+    level flag::init(HELLROUND_FLAGS[1]);
+    level flag::init(HELLROUND_FLAGS[2]);
+    level flag::init(HELLROUND_FLAGS[3]);
+    level flag::init(HELLROUND_FLAGS[HELLROUND_BAD_FLAG_INDEX]);
+
     configure_callbacks();
 
     // Some AI needs to be initiated explicitly
     zm_ai_wasp::init();
 }
 
-function main()
+function private main()
 {
     level.initial_zombie_ai_limit = level.zombie_ai_limit;
     level.initial_zombie_actor_limit = level.zombie_actor_limit;
 
-    level thread power_state_watcher();
-    level thread hell_round_watcher();
-    level thread hell_round_minor_watcher();
-    level thread hell_round_killer_watcher();
+    level thread hellround_bad_iteration_watcher();
+    level thread hellround_iteration_watcher();
 }
 
-function configure_callbacks()
+// #region utility
+
+function is_hellround_running()
 {
-    level.hell_round_begin_callback_called = false;
+    return !level.hellround.abolished
+        && level flag::get(HELLROUND_FLAGS[0]) 
+        || level flag::get(HELLROUND_FLAGS[1]) 
+        || level flag::get(HELLROUND_FLAGS[2]) 
+        || level flag::get(HELLROUND_FLAGS[3])
+        || level flag::get(HELLROUND_BAD_FLAG);
+}
+
+function private is_normal_zombie() // self == actor
+{
+    if (IsDefined(self.animname) && self.animname !== "zombie")
+        return false;
+
+    if (IsDefined(self.archetype) && self.archetype == "zombie")
+        return true;
+
+    return false;
+}
+
+// #endregion
+// #region hellround logic
+
+function private abolish_hellrounds()
+{
+    PRINT_DEBUG_HR("Abolishing hellrounds...");
+    level.hellround.abolished = true;
+
+    // Kill other watchers first
+    level notify(KILL_HELLROUND_WATCHERS_NOTIFICATION);
+
+    // If hellround currently running, end it
+    level hellround_stops();
+}
+
+function private hellround_cerberus_enable()
+{
+    thread hellround_starts();
+}
+
+function private hellround_cerberus_disable()
+{
+    thread hellround_stops(false);
+}
+
+function private hellround_cerberus_fed()
+{
+    thread hellround_stops();
+}
+
+function private hellround_starts()
+{
+    if (is_hellround_running()) {
+        PRINT_DEBUG_HR("Hellrounds already running. Not starting again.");
+        return;
+    }
+    PRINT_DEBUG_HR("Starting hellrounds...");
+
+    level flag::set(HELLROUND_FLAGS[level.hellround.current_iteration]);
+    thread call_begin_callbacks();
+    thread hellround_start_spawns();
+}
+
+function private hellround_stops(should_progress = true) 
+{
+    if (!is_hellround_running()) {
+        PRINT_DEBUG_HR("Hellrounds not running. Not stopping.");
+        return;
+    }
+    PRINT_DEBUG_HR("Ending hellrounds...");
+    
+    hellround_clear_and_update_iteration_index(should_progress);
+    thread call_end_callbacks();
+    thread hellround_stop_spawns();
+    
+}
+
+function private hellround_clear_and_update_iteration_index(should_progress = true, is_bad_version = false)
+{
+    if (level.hellround.abolished) {
+        PRINT_DEBUG_HR("Hellrounds abolished. Not progressing.");
+        return;
+    }
+
+    level flag::clear(HELLROUND_FLAGS[level.hellround.current_iteration]);
+    level.hellround.current_iteration = (is_bad_version 
+        ? HELLROUND_BAD_FLAG_INDEX 
+        : (should_progress 
+            ? level.hellround.current_iteration + 1 
+            : level.hellround.current_iteration));
+}
+
+// #endregion
+// #region callbacks
+
+function add_begin_callback(func) {
+    if (IsFunctionPtr(func)) {
+        array::add(level.hellround.begin_callbacks, func);
+    }
+}
+
+function add_end_callback(func) {
+    if (IsFunctionPtr(func)) {
+        array::add(level.hellround.end_callbacks, func);
+    }
+}
+
+function private configure_callbacks()
+{
+    level.hellround_callback_should_be_begin = true;
+    
+    array::run_all(GetSpawnerArray(), &spawner::add_spawn_function, &zombie_spawn_hellround_logic);
+
+    add_begin_callback(&enable_hellround_zombies);
+    add_end_callback(&disable_hellround_zombies);
 
     add_begin_callback(&zm_hellround_environment::toggle_bloody_environment);
     add_end_callback(&zm_hellround_environment::toggle_bloody_environment);
@@ -76,210 +207,177 @@ function configure_callbacks()
     add_begin_callback(&zm_bloodsplatter::toggle_blood_splatter);
     add_end_callback(&zm_bloodsplatter::toggle_blood_splatter);
 
-    // If the cerberus is fed, we should abolish the hellround
-    level.soul_catchers_charged_callback = &abolish_hell_rounds;
-    // Enable "minor" hellround during cerberus feeding time
-    level.wolf_heads_become_active_callback = &hell_round_minor_begin_request;
-    level.wolf_heads_become_inactive_callback = &hell_round_minor_end_request;
+    level.wolf_heads_become_active_callback = &hellround_cerberus_enable;
+    level.wolf_heads_become_inactive_callback = &hellround_cerberus_disable;
+    level.soul_catchers_charged_callback = &hellround_cerberus_fed;
 }
 
-function add_begin_callback(func) {
-    if (IsFunctionPtr(func)) {
-        array::add(level.hell_rounds_begin_callbacks, func);
-    }
-}
-
-function add_end_callback(func) {
-    if (IsFunctionPtr(func)) {
-        array::add(level.hell_rounds_end_callbacks, func);
-    }
-}
-
-function call_begin_callbacks()
+function private call_begin_callbacks()
 {
-    // If end callback not yet called, don't do anything
-    if (level.hell_round_begin_callback_called) {
+    if (!level.hellround_callback_should_be_begin) {
         return;
     }
-    level.hell_round_begin_callback_called = true;
+    level.hellround_callback_should_be_begin = false;
 
-    for (i = 0; i < level.hell_rounds_begin_callbacks.size; i++)
+    foreach (callback in level.hellround.begin_callbacks)
     {
-        level thread [[ level.hell_rounds_begin_callbacks[i] ]]();
+        level thread [[ callback ]]();
     }
 }
 
-function call_end_callbacks()
+function private call_end_callbacks()
 {
-    hellround_running = flag::get(HELL_ROUND_FLAG) || flag::get(HELL_ROUND_MINOR_FLAG);
-    if (!level.hell_round_begin_callback_called || hellround_running) {
+    if (level.hellround_callback_should_be_begin) {
         return;
     }
-    level.hell_round_begin_callback_called = false;
+    level.hellround_callback_should_be_begin = true;
 
-    for (i = 0; i < level.hell_rounds_end_callbacks.size; i++)
+    foreach (callback in level.hellround.end_callbacks)
     {
-        level thread [[ level.hell_rounds_end_callbacks[i] ]]();
+        level thread [[ callback ]]();
     }
 }
 
-function abolish_hell_rounds()
+// #endregion callbacks
+// #region watchers
+
+function private hellround_bad_iteration_watcher() 
 {
-    PRINT_DEBUG_HR("Abolishing hellrounds ...");
-    level.hell_rounds_abolished = true;
-    // Used to notify hell_round_killer_watcher()
-    level notify(HELL_ROUND_ABOLISHED_FLAG);
+    level endon(KILL_HELLROUND_WATCHERS_NOTIFICATION);
+
+    level flag::wait_till(HELLROUND_BAD_FLAG_TRIGGER);
+    level thread zm_wolf_soul_collectors::force_completion(); // turns off cerberus
+    
+    hellround_clear_and_update_iteration_index(false, true);
+    hellround_starts();
 }
 
-// self = level
-function hell_round_plays()
+function private hellround_iteration_watcher() 
 {
-    call_begin_callbacks();
+    level endon(KILL_HELLROUND_WATCHERS_NOTIFICATION);
+    level endon(HELLROUND_BAD_FLAG);
+
+    level flag::wait_till(HELLROUND_FLAGS[0]); // First cerb started
+    level flag::wait_till(HELLROUND_FLAGS[0]); // Second cerb started
+    level flag::wait_till(HELLROUND_FLAGS[0]); // Third cerb started
+
+    level flag::wait_till(HELLROUND_FLAGS[1]);
+    level flag::wait_till(HELLROUND_FLAGS[2]);
+    level flag::wait_till(HELLROUND_FLAGS[3]);
+}
+
+// #endregion
+// #region spawners
+
+function private hellround_start_spawns()
+{
+    spawn_flag = HELLROUND_FLAGS[level.hellround.current_iteration];
+    switch (level.hellround.current_iteration)
+    {
+        case 0:
+            thread iteration_0_spawns(spawn_flag);
+            break;
+        case 1:
+            thread iteration_1_spawns(spawn_flag);
+            break;
+        case 2:
+            thread iteration_2_spawns(spawn_flag);
+            break;
+        case 3:
+            thread iteration_3_spawns(spawn_flag);
+            break;
+        case HELLROUND_BAD_FLAG_INDEX:
+            thread iteration_bad_spawns();
+            break;
+        default:
+            PRINT_DEBUG_HR("Hellrounds: no spawns for iteration " + level.hellround.current_iteration + " defined.");
+            return;
+    }
     
     // Based on initial values, no real justification here.
-    self.zombie_ai_limit = 120;
-    self.zombie_actor_limit = 127;
-
-    // TODO : add some custom fx for round start like the following one ?
-    // zm_ai_wasp::parasite_round_fx();
-    // TODO: clear old zombies
-    // TODO: disable round logic
-    // TODO: give DEATHMACHINE!!!
-    self thread spawn_dogs_loop(HELL_ROUND_FLAG);
-    self thread spawn_apothicon_furies_loop(HELL_ROUND_FLAG);
-    self thread spawn_wasps_loop(HELL_ROUND_FLAG);
-    self thread spawn_napalm_zombies_loop(HELL_ROUND_FLAG);
-    // TODO: add infinite running zombies (with different model than original)
+    level.zombie_ai_limit = 120;
+    level.zombie_actor_limit = 127;
 }
 
-// self = level
-function hell_round_ends()
+function private hellround_stop_spawns()
 {
-    call_end_callbacks();
+    level.zombie_ai_limit = level.initial_zombie_ai_limit;
+    level.zombie_actor_limit = level.initial_zombie_actor_limit;
 
-    self.zombie_ai_limit = self.initial_zombie_ai_limit;
-    self.zombie_actor_limit = self.initial_zombie_actor_limit;
+    level thread disable_hellround_zombies();
 }
 
-// self = level
-function hell_round_minor_plays()
+function private iteration_0_spawns(spawn_listen_flag) 
 {
-    call_begin_callbacks();
-    
-    // Based on initial values, no real justification here.
-    self.zombie_ai_limit = 120;
-    self.zombie_actor_limit = 127;
-
     // TODO : add some custom fx for round start like the following one ?
     // zm_ai_wasp::parasite_round_fx();
     // TODO: clear old zombies
     // TODO: disable round logic
     // TODO: give blundergate
-    // self thread spawn_dogs_loop(HELL_ROUND_MINOR_FLAG);
-    // self thread spawn_apothicon_furies_loop(HELL_ROUND_MINOR_FLAG);
-    self thread spawn_wasps_loop(HELL_ROUND_MINOR_FLAG);
-    // self thread spawn_napalm_zombies_loop(HELL_ROUND_MINOR_FLAG);
+    level thread spawn_dogs_loop(spawn_listen_flag);
+    // level thread spawn_apothicon_furies_loop(spawn_listen_flag);
+    // level thread spawn_wasps_loop(spawn_listen_flag);
+    // level thread spawn_napalm_zombies_loop(spawn_listen_flag);
     // TODO: add infinite running zombies (with different model than original)
 }
 
-// self = level
-function hell_round_minor_ends()
+function private iteration_1_spawns(spawn_listen_flag) 
 {
-    call_end_callbacks();
-
-    self.zombie_ai_limit = self.initial_zombie_ai_limit;
-    self.zombie_actor_limit = self.initial_zombie_actor_limit;
+    // TODO : add some custom fx for round start like the following one ?
+    // zm_ai_wasp::parasite_round_fx();
+    // TODO: clear old zombies
+    // TODO: disable round logic
+    // TODO: give blundergate
+    // level thread spawn_dogs_loop(spawn_listen_flag);
+    level thread spawn_napalm_zombies_loop(spawn_listen_flag);
+    // level thread spawn_apothicon_furies_loop(spawn_listen_flag);
+    // level thread spawn_wasps_loop(spawn_listen_flag);
+    // TODO: add infinite running zombies (with different model than original)
 }
 
-// self = level
-function power_state_watcher()
+function private iteration_2_spawns(spawn_listen_flag)
 {
-    self endon(KILL_HELL_ROUND_WATCHERS_NOTIFICATION);
-
-    while (1)
-    {
-        self flag::wait_till(HELL_ROUND_TRIGGER_FLAG);
-        self flag::set(HELL_ROUND_FLAG);
-
-        self flag::wait_till_clear(HELL_ROUND_TRIGGER_FLAG);
-        self flag::clear(HELL_ROUND_FLAG);
-
-        WAIT_SERVER_FRAME;
-    }
+    // TODO : add some custom fx for round start like the following one ?
+    // zm_ai_wasp::parasite_round_fx();
+    // TODO: clear old zombies
+    // TODO: disable round logic
+    // TODO: give DEATHMACHINE!!!
+    // level thread spawn_dogs_loop(spawn_listen_flag);
+    level thread spawn_napalm_zombies_loop(spawn_listen_flag);
+    level thread spawn_apothicon_furies_loop(spawn_listen_flag);
+    // level thread spawn_wasps_loop(spawn_listen_flag);
+    // TODO: add infinite running zombies (with different model than original)
 }
 
-// self = level
-function hell_round_watcher()
+function private iteration_3_spawns(spawn_listen_flag)
 {
-    self endon(KILL_HELL_ROUND_WATCHERS_NOTIFICATION);
-
-    while (1)
-    {
-        self flag::wait_till(HELL_ROUND_FLAG);
-        // Hell round overwrites minor one with wolfheads
-        self thread zm_wolf_soul_collectors::force_completion(); //abolish_wolf_heads();
-        self flag::clear(HELL_ROUND_MINOR_FLAG);
-        self hell_round_plays();
-
-        self flag::wait_till_clear(HELL_ROUND_FLAG);
-        self thread zm_wolf_soul_collectors::force_completion();
-        self hell_round_ends();
-
-        WAIT_SERVER_FRAME;
-    }
+    // TODO : add some custom fx for round start like the following one ?
+    // zm_ai_wasp::parasite_round_fx();
+    // TODO: clear old zombies
+    // TODO: disable round logic
+    // TODO: give DEATHMACHINE!!!
+    // level thread spawn_dogs_loop(spawn_listen_flag);
+    level thread spawn_napalm_zombies_loop(spawn_listen_flag);
+    level thread spawn_apothicon_furies_loop(spawn_listen_flag);
+    level thread spawn_wasps_loop(spawn_listen_flag);
+    // TODO: add infinite running zombies (with different model than original)
 }
 
-function hell_round_minor_begin_request()
+function private iteration_bad_spawns(spawn_listen_flag = HELLROUND_BAD_FLAG)
 {
-    level flag::set(HELL_ROUND_MINOR_FLAG);
+    // TODO : add some custom fx for round start like the following one ?
+    // zm_ai_wasp::parasite_round_fx();
+    // TODO: clear old zombies
+    // TODO: disable round logic
+    // TODO: give DEATHMACHINE!!!
+    level thread spawn_dogs_loop(spawn_listen_flag);
+    level thread spawn_apothicon_furies_loop(spawn_listen_flag);
+    level thread spawn_wasps_loop(spawn_listen_flag);
+    level thread spawn_napalm_zombies_loop(spawn_listen_flag);
+    // TODO: add infinite running zombies (with different model than original)
 }
 
-function hell_round_minor_end_request()
-{
-    level flag::clear(HELL_ROUND_MINOR_FLAG);
-}
-
-// self = level
-function hell_round_minor_watcher()
-{
-    self endon(KILL_HELL_ROUND_WATCHERS_NOTIFICATION);
-
-    while (1)
-    {
-        self flag::wait_till(HELL_ROUND_MINOR_FLAG);
-        PRINT_DEBUG_HR("Hellround minor's flag raised");
-        self hell_round_minor_plays();
-
-        self flag::wait_till_clear(HELL_ROUND_MINOR_FLAG);
-        PRINT_DEBUG_HR("Hellround minor's flag lowered");
-        self hell_round_minor_ends();
-
-        WAIT_SERVER_FRAME;
-    }
-}
-
-// self = level
-function hell_round_killer_watcher()
-{
-    self waittill(HELL_ROUND_ABOLISHED_FLAG);
-    PRINT_DEBUG_HR("Stopping/Killing hellrounds ...");
-
-    // Kill other watchers first
-    self notify(KILL_HELL_ROUND_WATCHERS_NOTIFICATION);
-
-    // If hellround currently running, end it
-    if (self flag::get(HELL_ROUND_FLAG)) {
-        self flag::clear(HELL_ROUND_FLAG);
-        self hell_round_ends();
-    }
-
-    if (self flag::get(HELL_ROUND_MINOR_FLAG)) {
-        self flag::clear(HELL_ROUND_MINOR_FLAG);
-        self hell_round_minor_ends();
-    }
-}
-
-function spawn_dogs_loop(flag_str)
+function private spawn_dogs_loop(spawn_flag)
 {
     while (1)
     {
@@ -287,7 +385,7 @@ function spawn_dogs_loop(flag_str)
         PRINT_DEBUG_HR("Spawning wolf ...");
 
         // Don't use endon because it will bug the entities currently spawning
-        if (!flag::get(flag_str))
+        if (!flag::get(spawn_flag))
         {
             PRINT_DEBUG_HR("Spawning wolf ... canceled.");
             return;
@@ -298,7 +396,7 @@ function spawn_dogs_loop(flag_str)
     }
 }
 
-function spawn_apothicon_furies_loop(flag_str)
+function private spawn_apothicon_furies_loop(spawn_flag)
 {
     while (1)
     {
@@ -306,7 +404,7 @@ function spawn_apothicon_furies_loop(flag_str)
         PRINT_DEBUG_HR("Spawning apothicon ...");
 
         // Don't use endon because it will bug the entities currently spawning
-        if (!flag::get(flag_str))
+        if (!flag::get(spawn_flag))
         {
             PRINT_DEBUG_HR("Spawning apothicon ... canceled.");
             return;
@@ -317,7 +415,7 @@ function spawn_apothicon_furies_loop(flag_str)
     }
 }
 
-function spawn_wasps_loop(flag_str)
+function private spawn_wasps_loop(spawn_flag)
 {
     while (1)
     {
@@ -325,7 +423,7 @@ function spawn_wasps_loop(flag_str)
         PRINT_DEBUG_HR("Spawning wasp ...");
 
         // Don't use endon because it will bug the entities currently spawning
-        if (!flag::get(flag_str))
+        if (!flag::get(spawn_flag))
         {
             PRINT_DEBUG_HR("Spawning wasp ... canceled.");
             return;
@@ -336,15 +434,15 @@ function spawn_wasps_loop(flag_str)
     }
 }
 
-function spawn_napalm_zombies_loop(flag_str)
+function private spawn_napalm_zombies_loop(spawn_flag)
 {
     while (1)
     {
-        wait 30;
+        wait 15;
         PRINT_DEBUG_HR("Spawning napalm ...");
 
         // Don't use endon because it will bug the entities currently spawning
-        if (!flag::get(flag_str))
+        if (!flag::get(spawn_flag))
         {
             PRINT_DEBUG_HR("Spawning napalm ... canceled.");
             return;
@@ -354,3 +452,45 @@ function spawn_napalm_zombies_loop(flag_str)
         ai thread zm_bloodsplatter::watch_actor();
     }
 }
+
+// #endregion
+// #region zombie 
+
+function private zombie_spawn_hellround_logic() // self == zombie spawned
+{
+    if (is_hellround_running() && self is_normal_zombie()) {
+        waittillframeend;
+        self thread zm_hellround_zombies::set_zombie_model_to_hellround();
+        self thread zombie_utility::set_zombie_run_cycle("sprint");
+    }
+}
+
+function private enable_hellround_zombies()
+{
+    zombies = GetAiSpeciesArray(level.zombie_team, "all");
+    foreach (zombie in zombies)
+    {
+        if (zombie is_normal_zombie())
+        {
+            zombie thread zm_hellround_zombies::set_zombie_model_to_hellround();
+            zombie thread zombie_utility::set_zombie_run_cycle("sprint");
+        }
+    }
+}
+
+function private disable_hellround_zombies()
+{
+    zombies = GetAiSpeciesArray(level.zombie_team, "all");
+    foreach (zombie in zombies)
+    {
+        if (!zombie is_normal_zombie())
+        {
+            continue;
+        }
+
+        zombie thread zm_hellround_zombies::set_back_to_default_zombie();
+        zombie thread zm_utility::init_zombie_run_cycle();
+    }
+}
+
+// #endregion

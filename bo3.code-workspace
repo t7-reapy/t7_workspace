@@ -6,18 +6,33 @@
   ],
   "settings": {
     "files.associations": {
+      "*.gsc": "gsc",
+      "*.csc": "gsc",
+      "*.gsh": "gsc",
       "*.szc": "json",
       "*.ctx": "json",
       "*.sz": "csv"
     },
     "editor.insertSpaces": true,
-    "workbench.editor.wrapTabs": false
+    "workbench.editor.wrapTabs": false,
+    "maptz.regionfolder": {
+        "[gsc]": {
+            "defaultFoldStartRegex": "^\\s*//\\s*#?region\\b(?<name>.*)",
+
+            "foldEnd": "// #endregion",
+            "foldEndRegex": "^\\s*//\\s*#?endregion\\b",
+            "foldStart": "// #region [NAME]",
+            "foldStartRegex": "^\\s*//\\s*#?region\\b(?<name>.*)"
+        }
+    }
   },
   "extensions": {
     "recommendations": [
       "shiversoftdev.vscode-txgsc",
       "blakintosh.gscode",
-      "ardivee.zoroth"
+      "ardivee.zoroth",
+      "maptz.regionfolder",
+      "region-viewer.markers-overrides"
     ]
   }
 }
