@@ -1,0 +1,51 @@
+iwmap 4
+// entity 0
+{
+guid "{7AEEEF94-6CBA-11EC-82E4-C465162B13D6}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+// brush 0
+{
+ guid "{7D0064B8-869A-11EB-A776-1C1B0D6D3127}"
+ ( 12 -140 -4 ) ( 12 -124 -4 ) ( -20 -124 -4 ) traverse 16 16 444 116 -90 0 lightmap_gray 16384 16384 444 116 -90 0
+ ( -8 -134 0 ) ( 24 -134 0 ) ( 24 -150 0 ) traverse 16 16 454 104 -90 0 lightmap_gray 16384 16384 454 104 -90 0
+ ( -24 -124 -16 ) ( -24 -140 -16 ) ( -24 -140 -48 ) traverse 16 -16 444 -52 180 0 lightmap_gray 16384 -16384 444 -52 180 0
+ ( -16 0 -12 ) ( 16 0 -12 ) ( 16 0 -44 ) traverse 16 16 -112 48 0 0 lightmap_gray 16384 16384 -112 48 0 0
+ ( 24 -140 -16 ) ( 24 -124 -16 ) ( 24 -124 -48 ) traverse 16 -16 444 -52 180 0 lightmap_gray 16384 -16384 444 -52 180 0
+ ( 16 64 -8 ) ( -16 64 -8 ) ( -16 64 -40 ) traverse 16 16 -112 44 0 0 lightmap_gray 16384 16384 -112 44 0 0
+}
+// brush 1
+{
+ guid "{F6251B22-6CB9-11EC-82E4-C465162B13D6}"
+ ( 12 -430 -4 ) ( 12 -414 -4 ) ( -20 -414 -4 ) traverse 16 16 734 116 -90 0 lightmap_gray 16384 16384 734 116 -90 0
+ ( -8 -488 0 ) ( 24 -488 0 ) ( 24 -504 0 ) traverse 16 16 808 104 -90 0 lightmap_gray 16384 16384 808 104 -90 0
+ ( -24 -414 -16 ) ( -24 -430 -16 ) ( -24 -430 -48 ) traverse 16 -16 734 -52 180 0 lightmap_gray 16384 -16384 734 -52 180 0
+ ( -16 -308 -12 ) ( 16 -308 -12 ) ( 16 -308 -44 ) traverse 16 16 -112 48 0 0 lightmap_gray 16384 16384 -112 48 0 0
+ ( 24 -430 -16 ) ( 24 -414 -16 ) ( 24 -414 -48 ) traverse 16 -16 734 -52 -180 0 lightmap_gray 16384 -16384 734 -52 -180 0
+ ( 16 -226 -8 ) ( -16 -226 -8 ) ( -16 -226 -40 ) traverse 16 16 -112 44 0 0 lightmap_gray 16384 16384 -112 44 0 0
+}
+}
+// entity 1
+{
+guid "{629C0E88-6CB9-11EC-82E4-C465162B13D6}"
+"classname" "node_negotiation_end"
+"angles" "0 270 0"
+"origin" "0 -260 40"
+"targetname" "auto3"
+}
+// entity 2
+{
+guid "{629C0E87-6CB9-11EC-82E4-C465162B13D6}"
+"classname" "node_negotiation_begin"
+"angles" "0 270 0"
+"animscript" "run_jump_256"
+"movementtype_require" "zombie_dog"
+"origin" "0 18 40"
+"previewanim1" "ai_zombie_base_dog_run_jump_256"
+"previewmdl1" "zombie_wolf"
+"target" "auto3"
+}

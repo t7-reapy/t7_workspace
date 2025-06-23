@@ -1,6 +1,6 @@
 #define APOTHICAN_FURY_DEBUG 0 // DEBUG FOR IMMEDIATE TESTING, FURYS WILL SPAWN EVERY ROUND AFTER ROUND 1
 
-#define APOTHICAN_FURY_USE_SPECIAL_FURY_ROUNDS 1 // IF YOU WANT FURY "ROUNDS"
+#define APOTHICAN_FURY_USE_SPECIAL_FURY_ROUNDS 0 // IF YOU WANT FURY "ROUNDS"
 #define APOTHICON_FURY_GROUND_TELL_FX          "zombie/fx_meatball_impact_ground_tell_zod_zmb"
 #define APOTHICON_FURY_SPAWN_IN_FX             "dlc4/genesis/fx_apothicon_fury_spawn_in"
 #define APOTHICON_FURY_SPAWN_IN_EXP_FX         "dlc4/genesis/fx_apothicon_fury_spawn_in_exp"
