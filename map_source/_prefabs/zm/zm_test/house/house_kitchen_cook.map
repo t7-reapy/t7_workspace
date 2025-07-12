@@ -4,7 +4,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{BB2B0FC6-9E9A-11EF-B293-F2389CF92877}"
+guid "{A93B7128-55EF-11F0-B3B1-872BA732BF82}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -307,73 +307,21 @@ guid "{3FC8BD08-9E05-11EF-B292-DDE094366BC2}"
 }
 // entity 5
 {
-guid "{8D927130-9E05-11EF-B292-DDE094366BC2}"
-"classname" "misc_model"
-"model" "p7_bottle_glass_liquor_03"
-"origin" "1195.5 -1123 12.5"
-"lightingstate1" "1"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
-"modelscale" "1"
-"static" "1"
-}
-// entity 6
-{
-guid "{8D927144-9E05-11EF-B292-DDE094366BC2}"
-"classname" "misc_model"
-"angles" "0 176.198 0"
-"model" "p7_bottle_glass_liquor_03"
-"origin" "1189.52 -1121 12.5"
-"lightingstate1" "1"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
-"modelscale" "1"
-"static" "1"
-}
-// entity 7
-{
-guid "{C431E40E-9E05-11EF-B292-DDE094366BC2}"
-"classname" "misc_model"
-"angles" "0 44.9997 0"
-"model" "p7_bottle_glass_wine_broken_01"
-"origin" "1177.85 -1102.65 0"
-"lightingstate1" "1"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
-"modelscale" "1"
-"static" "1"
-}
-// entity 8
-{
-guid "{C431E417-9E05-11EF-B292-DDE094366BC2}"
-"classname" "misc_model"
-"angles" "0 54.7987 0"
-"model" "p7_bottle_glass_wine_broken_02"
-"origin" "1176.69 -1110.9 0"
-"lightingstate1" "1"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
-"modelscale" "1"
-"static" "1"
-}
-// entity 9
-{
 guid "{F4E82DDD-9E93-11EF-B293-F2389CF92877}"
-"classname" "misc_model"
+"classname" "dyn_model"
+"DESTROYABLE" "1"
+"destroyEfx" "/destruct/fx_dest_glass_sm.efx"
 "model" "p7_bartop_glass_wine"
 "origin" "1207.5 -1058 41"
-"lightingstate1" "1"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
+"USE_PHYSICS" "1"
+"damping_angular" "1"
+"damping_linear" "1"
+"health" "50"
+"mass" "10"
 "modelscale" "1"
-"static" "1"
+"spawnflags" "96"
 }
-// entity 10
+// entity 6
 {
 guid "{0204CD5C-9E94-11EF-B293-F2389CF92877}"
 "classname" "misc_model"
@@ -387,46 +335,41 @@ guid "{0204CD5C-9E94-11EF-B293-F2389CF92877}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 11
+// entity 7
 {
 guid "{1D255CB8-9E94-11EF-B293-F2389CF92877}"
-"classname" "misc_model"
+"classname" "dyn_model"
+"DESTROYABLE" "1"
+"destroyEfx" "/destruct/fx_dest_glass_sm.efx"
 "model" "p7_jar_glass_tall"
 "origin" "1212 -1154 41"
-"lightingstate1" "1"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
+"physPreset" "glassware"
+"USE_PHYSICS" "1"
+"damping_angular" "1"
+"damping_linear" "1"
+"health" "50"
+"mass" "10"
 "modelscale" "1"
-"static" "1"
+"spawnflags" "96"
 }
-// entity 12
+// entity 8
 {
 guid "{232683A7-9E94-11EF-B293-F2389CF92877}"
-"classname" "misc_model"
+"classname" "dyn_model"
+"DESTROYABLE" "1"
+"destroyEfx" "/destruct/fx_dest_glass_sm.efx"
 "model" "p7_jar_glass_short"
 "origin" "1210 -1146 41"
-"lightingstate1" "1"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
+"physPreset" "glassware"
+"USE_PHYSICS" "1"
+"damping_angular" "1"
+"damping_linear" "1"
+"health" "50"
+"mass" "10"
 "modelscale" "1"
-"static" "1"
+"spawnflags" "96"
 }
-// entity 13
-{
-guid "{29B9C5C5-9E94-11EF-B293-F2389CF92877}"
-"classname" "misc_model"
-"model" "p7_jar_glass_lrg"
-"origin" "1211 -1139 41"
-"lightingstate1" "1"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
-"modelscale" "1"
-"static" "1"
-}
-// entity 14
+// entity 9
 {
 guid "{7A245114-9E94-11EF-B293-F2389CF92877}"
 "classname" "misc_model"
@@ -439,21 +382,7 @@ guid "{7A245114-9E94-11EF-B293-F2389CF92877}"
 "lightingstate4" "1"
 "static" "1"
 }
-// entity 15
-{
-guid "{88E1BE65-9E94-11EF-B293-F2389CF92877}"
-"classname" "misc_model"
-"angles" "71.7914 341.596 -1.32431e-005"
-"model" "p7_medical_bowel_grasper_bloody"
-"modelscale" "0.5"
-"origin" "1207.14 -1138.13 50.1374"
-"lightingstate1" "1"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
-"static" "1"
-}
-// entity 16
+// entity 10
 {
 guid "{D9391912-9E94-11EF-B293-F2389CF92877}"
 "classname" "misc_model"
@@ -467,7 +396,7 @@ guid "{D9391912-9E94-11EF-B293-F2389CF92877}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 17
+// entity 11
 {
 guid "{703646DD-FDEB-11EF-B32F-EB9154FAE387}"
 "classname" "misc_model"
@@ -481,16 +410,18 @@ guid "{703646DD-FDEB-11EF-B32F-EB9154FAE387}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 18
+// entity 12
 {
 guid "{29B9C5D6-9E94-11EF-B293-F2389CF92877}"
-"classname" "misc_model"
+"classname" "dyn_model"
 "model" "p7_jar_glass_lid"
 "origin" "1212 -1154 47.25"
-"lightingstate1" "1"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
+"physPreset" "p7_bucket_plastic_5_gal_lid"
+"USE_PHYSICS" "1"
+"damping_angular" "1"
+"damping_linear" "1"
+"health" "50"
+"mass" "10"
 "modelscale" "1"
-"static" "1"
+"spawnflags" "32"
 }

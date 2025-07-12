@@ -1,0 +1,84 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{EABF959E-2765-11F0-B36D-A007C8437680}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{B2DD8E08-274B-11F0-B36D-A007C8437680}"
+"classname" "fx"
+"delay" "-26321"
+"exploder_count" "1"
+"exploder_index_0" "ver=2 don=0 doff=0 snd= off=0 name=pipe_drain_light_rain"
+"fxdef" "water/fx_water_stream_drip_apt"
+"origin" "0 10 122"
+"fxstate1" "1"
+"fxstate2" "1"
+"fxstate3" "1"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 2
+{
+guid "{EDB4193F-274F-11F0-B36D-A007C8437680}"
+"classname" "fx"
+"delay" "-27076"
+"exploder_count" "1"
+"exploder_index_0" "ver=2 don=0 doff=0 snd= off=0 name=pipe_drain_light_rain"
+"fxdef" "water/fx_water_ground_splashing_sm"
+"origin" "0 10 39"
+"fxstate1" "1"
+"fxstate2" "1"
+"fxstate3" "1"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 3
+{
+guid "{B73B0A38-275B-11F0-B36D-A007C8437680}"
+"classname" "fx"
+"angles" "270 90 180"
+"delay" "-29258"
+"exploder_count" "1"
+"exploder_index_0" "ver=2 don=0 doff=0 snd= off=0 name=pipe_drain_light_rain"
+"fxdef" "dlc5/cosmo/fx_water_splash_stream_sm"
+"origin" "0 10 124"
+"fxstate1" "1"
+"fxstate2" "1"
+"fxstate3" "1"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 4
+{
+guid "{AA82E89E-277E-11F0-B36D-A007C8437680}"
+"classname" "script_origin"
+"origin" "0 10 39"
+"targetname" "pipe_drain_light_water_splash"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}

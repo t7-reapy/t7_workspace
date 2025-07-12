@@ -113,7 +113,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - umbra bug when jumbing in north exterior corridor <= don't know how to fix this ...
   > according to some messages in the MT discord, it could be due to engine optimisations when using brushes. Try using patches instead !
 - the mulekick perk is bugged when 3rd weapon is in hand (icon in hud is bugged)
-- perk utility script throws error in splitscreen.
+- perk utility script throws error in splitscreen. (need developer dvar set to 2)
 - zombie stuck list of place:
   - AI walk on balcony (north)
   - Appartement entrance
@@ -122,7 +122,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
   - exploder lights (lightning)
   - north-east neigbour upper balcony light clip (can be related to quality of light when compiled)
   - the double-tap lighting is borring (on the wall on the left)
-- south part can spawn bonus in inaccessible zombies area (player volume)
 - the detail brush that was the fix to blocked zombie on south-west baricade is not a clip for explosion (mustand & sally) -> add a clip for weapons here
 - revive takes the mustang and sally from player if revived LOL
 - rain sounds in splitscreen should only be played once if both players are in same enviromnent (make this adaptable so if one change environment, it updates for both using GetLocalPlayers())

@@ -1,0 +1,85 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{CA8F85FE-277E-11F0-B36D-A007C8437680}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{A5947749-274B-11F0-B36D-A007C8437680}"
+"classname" "fx"
+"delay" "-18140"
+"exploder_count" "1"
+"exploder_index_0" "ver=2 don=0 doff=0 snd= off=0 name=pipe_drain_regular_rain"
+"fxdef" "water/fx_water_drip_stream_lit"
+"origin" "0 10 122"
+"fxstate1" "1"
+"fxstate2" "1"
+"fxstate3" "1"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 2
+{
+guid "{C65A3245-2759-11F0-B36D-A007C8437680}"
+"classname" "fx"
+"angles" "270 90 180"
+"delay" "-17884"
+"exploder_count" "1"
+"exploder_index_0" "ver=2 don=0 doff=0 snd= off=0 name=pipe_drain_regular_rain"
+"fxdef" "dlc5/cosmo/fx_water_splash_stream_sm"
+"origin" "0 10 124"
+"fxstate1" "1"
+"fxstate2" "1"
+"fxstate3" "1"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 3
+{
+guid "{02DD9439-275F-11F0-B36D-A007C8437680}"
+"classname" "fx"
+"angles" "270 191.488 168.511"
+"delay" "-24688"
+"exploder_count" "1"
+"exploder_index_0" "ver=2 don=0 doff=0 snd= off=0 name=pipe_drain_regular_rain"
+"fxdef" "dlc3/stalingrad/fx_water_stream_falling_splash"
+"origin" "0 19 39"
+"fxstate1" "1"
+"fxstate2" "1"
+"fxstate3" "1"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 4
+{
+guid "{D510F5BE-277E-11F0-B36D-A007C8437680}"
+"classname" "script_origin"
+"origin" "0 20 39"
+"targetname" "pipe_drain_regular_water_splash"
+"_color" "0.4 0 0.8"
+"client_server" "ClientSide"
+}

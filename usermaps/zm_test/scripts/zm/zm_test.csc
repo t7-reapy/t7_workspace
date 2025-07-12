@@ -47,8 +47,10 @@
 // Ambient sounds
 #using scripts\zm\_ambient_room;
 
+// Weather
+#using scripts\zm\weather\zm_weather;
+
 #using scripts\zm\zm_usermap;
-#using scripts\zm\zm_rain;
 
 // TODO: remove
 // Sphynx's Console Commands

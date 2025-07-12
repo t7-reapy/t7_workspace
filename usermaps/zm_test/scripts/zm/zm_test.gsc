@@ -66,12 +66,14 @@
 //Traps
 #using scripts\zm\_zm_trap_electric;
 
+// Weather
+#using scripts\zm\weather\zm_weather;
+
 #using scripts\zm\zm_usermap;
 #using scripts\zm\_zm_animated_switch;
 
 // TODO: remove below
 #using scripts\zm\hellround\zm_hellround_music;
-#using scripts\zm\zm_rain;
 // Sphynx's Console Commands
 #using scripts\Sphynx\commands\_zm_commands;
 #using scripts\Sphynx\commands\_zm_name_checker;
@@ -116,12 +118,52 @@ function private toggle_hellround_environment(b_enable)
     if (IS_TRUE(b_enable))
     {
         util::set_lighting_state(3);
+	    zm_weather::pause();
         level clientfield::set("hellround_debug", 1);
     }
     else
     {
         util::set_lighting_state(0);
+	    zm_weather::play();
         level clientfield::set("hellround_debug", 0);
+    }
+}
+
+function private weather_command_response(command_args)
+{
+    ModVar("weather", "");
+
+    while(true)
+    {
+        WAIT_SERVER_FRAME;
+
+        dvar_value = GetDvarString("weather", "");
+
+        if(!isdefined(dvar_value) || dvar_value == "")
+        {
+            continue;
+        }
+        ModVar("weather", "");
+
+        switch(dvar_value)
+        {
+            case "-":
+                zm_weather::lesser_intensity();
+                break;
+            case "--":
+                zm_weather::lesser_intensity();
+                zm_weather::lesser_intensity();
+                break;
+            case "+":
+                zm_weather::greater_intensity();
+                break;
+            case "++":
+                zm_weather::greater_intensity();
+                zm_weather::greater_intensity();
+                break;
+            default:
+                break;
+        }
     }
 }
 
@@ -133,6 +175,7 @@ function main()
     zm_usermap::main();
     level thread zm_animated_switch::MasterSwitchInit();
     level util::set_lighting_state(0);
+	zm_weather::play();
     
     thread setup_playable_zones();
     thread remove_players_names();
@@ -145,6 +188,7 @@ function main()
     zombie_utility::set_zombie_var("zombie_powerup_drop_increment", 200); // lower this to make drop happen more often
 	zombie_utility::set_zombie_var("zombie_powerup_drop_max_per_round", 8); // raise this to make drop happen more often
     thread hellround_command_response();
+    thread weather_command_response();
     level thread monitor_power_state();
     level.player_starting_points = 500000;
 }
