@@ -36,6 +36,8 @@ function private default_wind_state()
 
 function init() {
     level.weather.wind = default_wind_state();
+
+    thread watch_wind_blow_end();
 }
 
 function play()
@@ -67,20 +69,46 @@ function pause()
     }
 
     level notify("level_stop_wind");
+    level notify("wind_end_current_blow");
     level.weather.wind = default_wind_state();
+}
+
+// This function is used to watch for the end of the wind blow, 
+// It forces exploder to end, just to make sure it's not stuck,
+// especially when notification is fired in middle of it.
+function private watch_wind_blow_end() 
+{
+    while(true)
+    {
+        level waittill("wind_end_current_blow");
+        wait 0.5; // We want to make sure exploders properly started before stopping them.
+
+        // Force exploders to stop.
+        foreach(exploder in level.weather.wind.exploders) 
+        {
+            exploder::exploder_stop(exploder);
+        }
+    }
 }
 
 function private wind_blow() // self == Wind (level.weather.wind)
 {
+    level endon("wind_end_current_blow");
+
     wait RandomFloatRange(self.min_wait, self.max_wait);
 
     foreach(exploder in self.exploders) 
     {
         // Note: wind SFX is included in the FX of the radiant exploder.
         exploder::exploder(exploder);
-        wait WIND_DELAY_FOR_TOSSING_OBJECTS;
-        self thread toss_objects_around();
-        wait WIND_EXPLODER_WAIT_TIME;
+    }
+
+    wait WIND_DELAY_FOR_TOSSING_OBJECTS;
+    self thread toss_objects_around();
+    wait WIND_EXPLODER_WAIT_TIME;
+
+    foreach(exploder in self.exploders) 
+    {
         exploder::exploder_stop(exploder);
     }
 }
@@ -96,7 +124,6 @@ function private toss_objects_around() // self == Wind (level.weather.wind)
     foreach (object in self.objects)
     {
         object PhysicsLaunch(object.origin, wind_force_vectorial);
-        wait 0.001; // Wait a bit to avoid PhysicsLaunch to glitch.
     }
 }
 
@@ -122,6 +149,7 @@ function greater_intensity()
     level.weather.wind.intensity++;
     level.weather.wind.min_wait = WIND_MIN_WAIT[level.weather.wind.intensity];
     level.weather.wind.max_wait = WIND_MAX_WAIT[level.weather.wind.intensity];
+    level notify("wind_end_current_blow");
 }
 
 function lesser_intensity()
@@ -133,4 +161,5 @@ function lesser_intensity()
     level.weather.wind.intensity--;
     level.weather.wind.min_wait = WIND_MIN_WAIT[level.weather.wind.intensity];
     level.weather.wind.max_wait = WIND_MAX_WAIT[level.weather.wind.intensity];
+    level notify("wind_end_current_blow");
 }

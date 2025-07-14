@@ -56,6 +56,7 @@ function pause()
     }
 
     level notify("level_stop_thunder");
+    level notify("thunder_end_current_strike");
     level.weather.thunder = default_thunder_state();
 }
 
@@ -82,6 +83,8 @@ function greater_intensity()
     level.weather.thunder.intensity++;
     level.weather.thunder.min_wait = THUNDER_DEFAULT_MIN_WAIT[level.weather.thunder.intensity];
     level.weather.thunder.max_wait = THUNDER_DEFAULT_MAX_WAIT[level.weather.thunder.intensity];
+    level notify("thunder_end_current_strike");
+    level util::set_lighting_state(level.weather.thunder.lightstate_missing);
 }
 
 function lesser_intensity()
@@ -93,10 +96,14 @@ function lesser_intensity()
     level.weather.thunder.intensity--;
     level.weather.thunder.min_wait = THUNDER_DEFAULT_MIN_WAIT[level.weather.thunder.intensity];
     level.weather.thunder.max_wait = THUNDER_DEFAULT_MAX_WAIT[level.weather.thunder.intensity];
+    level notify("thunder_end_current_strike");
+    level util::set_lighting_state(level.weather.thunder.lightstate_missing);
 }
 
 function private thunder_strike() // self = Thunder (level.weather.thunder)
 {
+    level endon("thunder_end_current_strike");
+
     wait RandomFloatRange(self.min_wait, self.max_wait);
 
     thunder_lightstate = self.lightstate_strikes[RandomIntRange(0, self.lightstate_strikes.size)];
