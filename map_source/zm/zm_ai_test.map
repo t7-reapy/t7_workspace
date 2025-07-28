@@ -6,7 +6,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{C07F4FBB-507A-11F0-B3AB-D0CEF99BBB90}"
+guid "{0844EAC0-64E7-11F0-B3C8-F1E6E946785F}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -281,8 +281,8 @@ guid "{C07F4FBB-507A-11F0-B3AB-D0CEF99BBB90}"
 {
 guid "{DF099812-4801-4E8C-9CC5-45185A9152BD}"
 "classname" "info_player_start"
-"angles" "0 90 0"
-"origin" "0 -448 40"
+"angles" "0 180 0"
+"origin" "849.5 -1112.5 40"
 }
 // entity 2
 {
@@ -733,46 +733,12 @@ guid "{07A174AB-1329-11F0-B352-E5D29EB5FBF0}"
 }
 // entity 38
 {
-guid "{7064E92A-1799-11F0-B359-977C558A58B1}"
-"classname" "misc_volume_decal"
-"angles" "360 360 90.0001"
-"decalLayerSort" "Debris (top)"
-"decalLayerSortEnum" "0"
-"decalsize" "14 263 284"
-"modeloverridematerial" "re_blood18white_nm"
-"origin" "-328 485 -23"
-"targetname" "decal_blood"
-"decalEditorSortEnum" "-1"
-"model" "vol_decal_cube"
-"revealDataSize" "revealAll"
-"textureTiling" "1 1"
-"uvBaseAndScale" "0 0 1 1"
-}
-// entity 39
-{
-guid "{7064E935-1799-11F0-B359-977C558A58B1}"
-"classname" "misc_volume_decal"
-"angles" "360 360 90.0001"
-"decalLayerSort" "Debris (top)"
-"decalLayerSortEnum" "0"
-"decalsize" "14 263 284"
-"modeloverridematerial" "re_blood18white_nm"
-"origin" "-448 61 -23"
-"targetname" "decal_blood"
-"decalEditorSortEnum" "-1"
-"model" "vol_decal_cube"
-"revealDataSize" "revealAll"
-"textureTiling" "1 1"
-"uvBaseAndScale" "0 0 1 1"
-}
-// entity 40
-{
 guid "{3FABCFEF-179C-11F0-B359-977C558A58B1}"
 "classname" "volume_worldfog"
-"BANK_2" "1"
+"BANK_4" "1"
 "DISABLE_FOG" "0"
 "fsi_1" "house_fog_a"
-"fsi_2" "house_hell_fog_a"
+"fsi_4" "house_hell_fog_a"
 "AUTO_PRIORITY" "1"
 "BANK_1" "1"
 "ENABLE_SUN_FOG" "1"
@@ -782,9 +748,9 @@ guid "{3FABCFEF-179C-11F0-B359-977C558A58B1}"
 "LIGHTSTATE_4" "1"
 "fogtime" "1"
 "fsi" "default"
+"fsi_2" "default"
 "fsi_3" "default"
-"fsi_4" "default"
-"spawnflags" "64003"
+"spawnflags" "64009"
 // brush 0
 {
  guid "{3FABCFEE-179C-11F0-B359-977C558A58B1}"
@@ -796,7 +762,7 @@ guid "{3FABCFEF-179C-11F0-B359-977C558A58B1}"
  ( -1856 1744 848 ) ( -1856 1712 848 ) ( -1856 1712 832 ) fog 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 41
+// entity 39
 {
 guid "{B6A8246D-17A1-11F0-B359-977C558A58B1}"
 "classname" "reflection_probe"
@@ -821,13 +787,13 @@ guid "{B6A8246D-17A1-11F0-B359-977C558A58B1}"
 "name" "probe"
 "placement_offset" "72"
 }
-// entity 42
+// entity 40
 {
 guid "{F84FAEAD-17A6-11F0-B359-977C558A58B1}"
 "classname" "volume_litfog"
-"BANK_2" "1"
+"BANK_4" "1"
 "fsi_1" "house_fog_v"
-"fsi_2" "house_hell_fog_v"
+"fsi_4" "house_hell_fog_v"
 "AUTO_PRIORITY" "1"
 "BANK_1" "1"
 "ENABLE_LIGHTS" "1"
@@ -840,9 +806,9 @@ guid "{F84FAEAD-17A6-11F0-B359-977C558A58B1}"
 "ambientIntensity" "1"
 "fogtime" "1"
 "fsi" "default"
+"fsi_2" "default"
 "fsi_3" "default"
-"fsi_4" "default"
-"spawnflags" "63587"
+"spawnflags" "63593"
 // brush 0
 {
  guid "{F84FAEAC-17A6-11F0-B359-977C558A58B1}"
@@ -854,7 +820,7 @@ guid "{F84FAEAD-17A6-11F0-B359-977C558A58B1}"
  ( -1852 1852 896 ) ( -1852 956 896 ) ( -1852 956 -64 ) litfog_volume 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
-// entity 43
+// entity 41
 {
 guid "{0FD9B365-1892-11F0-B35A-EE4B92CB1349}"
 "classname" "script_vehicle"
@@ -875,7 +841,7 @@ guid "{0FD9B365-1892-11F0-B35A-EE4B92CB1349}"
 "vehicletype" "spawner_bo3_parasite_elite_enemy_tool"
 "spawnflags" "2"
 }
-// entity 44
+// entity 42
 {
 guid "{D83D80CC-0FF6-11F0-B34C-ED66F78293AA}"
 "classname" "script_struct"
@@ -885,7 +851,7 @@ guid "{D83D80CC-0FF6-11F0-B34C-ED66F78293AA}"
 "targetname" "start_zone_spawners"
 "_color" "1 0 0"
 }
-// entity 45
+// entity 43
 {
 guid "{93B32358-1002-11F0-B34C-ED66F78293AA}"
 "classname" "script_struct"
@@ -895,7 +861,7 @@ guid "{93B32358-1002-11F0-B34C-ED66F78293AA}"
 "targetname" "start_zone_spawners"
 "_color" "1 0 0"
 }
-// entity 46
+// entity 44
 {
 guid "{93B32366-1002-11F0-B34C-ED66F78293AA}"
 "classname" "script_struct"
@@ -905,7 +871,7 @@ guid "{93B32366-1002-11F0-B34C-ED66F78293AA}"
 "targetname" "start_zone_spawners"
 "_color" "1 0 0"
 }
-// entity 47
+// entity 45
 {
 guid "{79A7132C-1893-11F0-B35A-EE4B92CB1349}"
 "classname" "script_struct"
@@ -915,7 +881,7 @@ guid "{79A7132C-1893-11F0-B35A-EE4B92CB1349}"
 "targetname" "start_zone_spawners"
 "_color" "1 0 0"
 }
-// entity 48
+// entity 46
 {
 guid "{79A7132F-1893-11F0-B35A-EE4B92CB1349}"
 "classname" "script_struct"
@@ -925,7 +891,7 @@ guid "{79A7132F-1893-11F0-B35A-EE4B92CB1349}"
 "targetname" "start_zone_spawners"
 "_color" "1 0 0"
 }
-// entity 49
+// entity 47
 {
 guid "{79A71332-1893-11F0-B35A-EE4B92CB1349}"
 "classname" "script_struct"
@@ -935,7 +901,7 @@ guid "{79A71332-1893-11F0-B35A-EE4B92CB1349}"
 "targetname" "start_zone_spawners"
 "_color" "1 0 0"
 }
-// entity 50
+// entity 48
 {
 guid "{069F3A64-1895-11F0-B35A-EE4B92CB1349}"
 "classname" "nav_volume"
@@ -950,116 +916,88 @@ guid "{069F3A64-1895-11F0-B35A-EE4B92CB1349}"
  ( -1984 2192 16 ) ( -1984 2160 16 ) ( -1984 2160 0 ) volume 64 64 -432 0 0 0 lightmap_gray 16384 16384 -432 0 0 0
 }
 }
-// entity 51
+// entity 49
 {
 guid "{FF474AAD-1965-11F0-B35B-E2083BBB6F2D}"
 "classname" "misc_model"
 "angles" "0 179.999 0"
 "lightingstate1" "0"
+"lightingstate2" "0"
+"lightingstate3" "0"
 "model" "doom_skull_huge_scull_d_pivot"
 "origin" "-1149.23 -1066.06 536"
-"targetname" "model_blood"
-"lightingstate2" "1"
-"lightingstate3" "1"
+"targetname" "hellround_model_show"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 50
+{
+guid "{05851DD5-1966-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"angles" "0 179.999 0"
+"lightingstate1" "0"
+"lightingstate2" "0"
+"lightingstate3" "0"
+"model" "doom_skull_huge_jaw_max"
+"origin" "-1189.23 -1058.06 232"
+"targetname" "hellround_model_show"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 51
+{
+guid "{13035D99-1966-11F0-B35B-E2083BBB6F2D}"
+"classname" "misc_model"
+"angles" "0 239.998 0"
+"lightingstate1" "0"
+"lightingstate2" "0"
+"lightingstate3" "0"
+"model" "doom_prop_hell_monster_skull"
+"origin" "865.122 -990.25 16"
+"targetname" "hellround_model_show"
 "lightingstate4" "1"
 "modelscale" "1"
 "static" "1"
 }
 // entity 52
 {
-guid "{05851DD5-1966-11F0-B35B-E2083BBB6F2D}"
+guid "{69229486-1977-11F0-B35B-E2083BBB6F2D}"
 "classname" "misc_model"
-"angles" "0 179.999 0"
 "lightingstate1" "0"
-"model" "doom_skull_huge_jaw_max"
-"origin" "-1189.23 -1058.06 232"
-"targetname" "model_blood"
-"lightingstate2" "1"
-"lightingstate3" "1"
+"lightingstate2" "0"
+"lightingstate3" "0"
+"model" "doom_gore_props_skull"
+"origin" "361 -1005 0"
+"targetname" "hellround_model_show"
 "lightingstate4" "1"
 "modelscale" "1"
 "static" "1"
 }
 // entity 53
 {
-guid "{13035D99-1966-11F0-B35B-E2083BBB6F2D}"
+guid "{9A5E3876-1977-11F0-B35B-E2083BBB6F2D}"
 "classname" "misc_model"
-"angles" "0 239.998 0"
 "lightingstate1" "0"
-"model" "doom_prop_hell_monster_skull"
-"origin" "865.122 -990.25 16"
-"targetname" "model_blood"
-"lightingstate2" "1"
-"lightingstate3" "1"
+"lightingstate2" "0"
+"lightingstate3" "0"
+"model" "doom_gore_props_floor_gore_pile_full_big_04"
+"origin" "757 -1090 0"
+"targetname" "hellround_model_show"
 "lightingstate4" "1"
 "modelscale" "1"
 "static" "1"
 }
 // entity 54
 {
-guid "{69229486-1977-11F0-B35B-E2083BBB6F2D}"
-"classname" "misc_model"
-"lightingstate1" "0"
-"model" "doom_gore_props_skull"
-"origin" "361 -1005 0"
-"targetname" "model_blood"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
-"modelscale" "1"
-"static" "1"
-}
-// entity 55
-{
-guid "{6922948C-1977-11F0-B35B-E2083BBB6F2D}"
-"classname" "misc_model"
-"lightingstate1" "0"
-"lightingstate2" "0"
-"lightingstate3" "0"
-"model" "doom_gore_totem_01"
-"origin" "47 -1096 0"
-"targetname" "model_blood"
-"lightingstate4" "1"
-"modelscale" "1"
-"static" "1"
-}
-// entity 56
-{
-guid "{69229492-1977-11F0-B35B-E2083BBB6F2D}"
-"classname" "misc_model"
-"lightingstate1" "0"
-"lightingstate2" "0"
-"lightingstate3" "0"
-"model" "doom_gore_totem_02"
-"origin" "-292 -1060 0"
-"targetname" "model_blood"
-"lightingstate4" "1"
-"modelscale" "1"
-"static" "1"
-}
-// entity 57
-{
-guid "{9A5E3876-1977-11F0-B35B-E2083BBB6F2D}"
-"classname" "misc_model"
-"lightingstate1" "0"
-"model" "doom_gore_props_floor_gore_pile_full_big_04"
-"origin" "757 -1090 0"
-"targetname" "model_blood"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
-"modelscale" "1"
-"static" "1"
-}
-// entity 58
-{
 guid "{49C11A93-1980-11F0-B35B-E2083BBB6F2D}"
 "classname" "volume_sun"
 "ssi" "default_day"
 "ssi1" "house"
 "ssi1_runtime_override" "house_override"
-"ssi2" "house_hell"
-"ssi2_runtime_override" "house_hell_override"
+"ssi4" "house_hell"
+"ssi4_runtime_override" "house_hell_override"
 "global_fill_color" "0 0 0"
 "global_fill_intensity" "1"
 "grid_density" "32"
@@ -1079,7 +1017,7 @@ guid "{49C11A93-1980-11F0-B35B-E2083BBB6F2D}"
  ( -1920 2048 1024 ) ( -1920 -2048 1024 ) ( -1920 -2048 0 ) sun_volume 32 32 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
 }
 }
-// entity 59
+// entity 55
 {
 guid "{49C11AA6-1980-11F0-B35B-E2083BBB6F2D}"
 "classname" "misc_volume_decal"
@@ -1089,51 +1027,51 @@ guid "{49C11AA6-1980-11F0-B35B-E2083BBB6F2D}"
 "decalsize" "14 263 284"
 "modeloverridematerial" "re_blood18white_nm"
 "origin" "735 -1085 2"
-"targetname" "decal_blood"
+"targetname" "hellround_volume_show"
 "decalEditorSortEnum" "-1"
 "model" "vol_decal_cube"
 "revealDataSize" "revealAll"
 "textureTiling" "1 1"
 "uvBaseAndScale" "0 0 1 1"
 }
-// entity 60
+// entity 56
 {
 guid "{6E8992F3-1980-11F0-B35B-E2083BBB6F2D}"
 "classname" "misc_model"
 "angles" "0 179.999 0"
 "lightingstate1" "0"
+"lightingstate2" "0"
+"lightingstate3" "0"
 "model" "doom_skull_huge_horne_damaged"
 "origin" "-1057 -806.5 656"
-"targetname" "model_blood"
-"lightingstate2" "1"
-"lightingstate3" "1"
+"targetname" "hellround_model_show"
 "lightingstate4" "1"
 "modelscale" "1"
 "static" "1"
 }
-// entity 61
+// entity 57
 {
 guid "{0431300E-1981-11F0-B35B-E2083BBB6F2D}"
 "classname" "misc_model"
 "angles" "71.6991 134.417 108.373"
 "lightingstate1" "0"
+"lightingstate2" "0"
+"lightingstate3" "0"
 "model" "doom_skull_huge_horne_damaged"
 "origin" "-1603.39 -1495.46 1236.64"
-"targetname" "model_blood"
-"lightingstate2" "1"
-"lightingstate3" "1"
+"targetname" "hellround_model_show"
 "lightingstate4" "1"
 "modelscale" "1"
 "static" "1"
 }
-// entity 62
+// entity 58
 {
 guid "{841951A0-1A32-11F0-B35C-9E91FAE9D08D}"
 "classname" "misc_prefab"
 "model" "_prefabs/zm/harrybo21_prefabs/napalm_zombie/napalm_spawner.map"
 "origin" "473 1110 7"
 }
-// entity 63
+// entity 59
 {
 guid "{9495C706-1A33-11F0-B35C-9E91FAE9D08D}"
 "classname" "script_struct"
@@ -1144,7 +1082,7 @@ guid "{9495C706-1A33-11F0-B35C-9E91FAE9D08D}"
 "targetname" "start_zone_spawners"
 "_color" "1 0 0"
 }
-// entity 64
+// entity 60
 {
 guid "{FD8B46B1-1A3F-11F0-B35C-9E91FAE9D08D}"
 "classname" "script_struct"
@@ -1156,7 +1094,7 @@ guid "{FD8B46B1-1A3F-11F0-B35C-9E91FAE9D08D}"
 "targetname" "start_zone_spawners"
 "_color" "1 0 0"
 }
-// entity 65
+// entity 61
 {
 guid "{FD8B46C2-1A3F-11F0-B35C-9E91FAE9D08D}"
 "classname" "script_struct"
@@ -1168,7 +1106,7 @@ guid "{FD8B46C2-1A3F-11F0-B35C-9E91FAE9D08D}"
 "targetname" "start_zone_spawners"
 "_color" "1 0 0"
 }
-// entity 66
+// entity 62
 {
 guid "{1127295D-213B-11F0-B364-921BBEABE5E5}"
 "classname" "misc_prefab"
@@ -1176,7 +1114,7 @@ guid "{1127295D-213B-11F0-B364-921BBEABE5E5}"
 "model" "_prefabs/zm/mrlednor_cerberus/wolf_2.map"
 "origin" "-286 -1439 0"
 }
-// entity 67
+// entity 63
 {
 guid "{92D6047E-213B-11F0-B364-921BBEABE5E5}"
 "classname" "misc_prefab"
@@ -1184,14 +1122,14 @@ guid "{92D6047E-213B-11F0-B364-921BBEABE5E5}"
 "model" "_prefabs/zm/mrlednor_cerberus/wolf_3.map"
 "origin" "48 -1440 0"
 }
-// entity 68
+// entity 64
 {
 guid "{91CB3C60-1329-11F0-B352-E5D29EB5FBF0}"
 "classname" "misc_prefab"
 "model" "_prefabs/zm/zm_core/spawnable_weapon_bowie.map"
 "origin" "508 469 0"
 }
-// entity 69
+// entity 65
 {
 guid "{17B6C229-49EC-11F0-B3A2-BE99A8F80224}"
 "classname" "misc_prefab"
@@ -1199,35 +1137,7 @@ guid "{17B6C229-49EC-11F0-B3A2-BE99A8F80224}"
 "model" "_prefabs/zm/mrlednor_cerberus/wolf_one.map"
 "origin" "377 -1440 0"
 }
-// entity 70
-{
-guid "{EEEC0C1E-49EE-11F0-B3A2-BE99A8F80224}"
-"classname" "fx"
-"delay" "-21525"
-"fxdef" "dlc1/castle/fx_light_castle_ruinorb_vol"
-"origin" "47 -1086 78"
-"fxstate1" "1"
-"fxstate2" "1"
-"fxstate3" "1"
-"fxstate4" "1"
-"primaryLightFraction" "1"
-"timescale" "1"
-}
-// entity 71
-{
-guid "{4CAA4732-49EF-11F0-B3A2-BE99A8F80224}"
-"classname" "fx"
-"delay" "-20848"
-"fxdef" "dlc4/genesis/fx_corrupteng_orb_discharge"
-"origin" "-291 -1049 368"
-"fxstate1" "1"
-"fxstate2" "1"
-"fxstate3" "1"
-"fxstate4" "1"
-"primaryLightFraction" "1"
-"timescale" "1"
-}
-// entity 72
+// entity 66
 {
 guid "{7375C14E-49F2-11F0-B3A2-BE99A8F80224}"
 "classname" "misc_model"
@@ -1240,7 +1150,7 @@ guid "{7375C14E-49F2-11F0-B3A2-BE99A8F80224}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 73
+// entity 67
 {
 guid "{3519AE66-49F3-11F0-B3A2-BE99A8F80224}"
 "classname" "misc_model"
@@ -1253,33 +1163,7 @@ guid "{3519AE66-49F3-11F0-B3A2-BE99A8F80224}"
 "modelscale" "1"
 "static" "1"
 }
-// entity 74
-{
-guid "{3A8B8B66-49F6-11F0-B3A2-BE99A8F80224}"
-"classname" "fx"
-"fxdef" "souled_out/soulcollect"
-"origin" "47 -1086 78"
-"fxstate1" "1"
-"fxstate2" "1"
-"fxstate3" "1"
-"fxstate4" "1"
-"primaryLightFraction" "1"
-"timescale" "1"
-}
-// entity 75
-{
-guid "{4BEE51BC-49F6-11F0-B3A2-BE99A8F80224}"
-"classname" "fx"
-"fxdef" "souled_out/soulenter"
-"origin" "363 -966 66"
-"fxstate1" "1"
-"fxstate2" "1"
-"fxstate3" "1"
-"fxstate4" "1"
-"primaryLightFraction" "1"
-"timescale" "1"
-}
-// entity 76
+// entity 68
 {
 guid "{44557E81-49F7-11F0-B3A2-BE99A8F80224}"
 "classname" "fx"
@@ -1293,7 +1177,7 @@ guid "{44557E81-49F7-11F0-B3A2-BE99A8F80224}"
 "primaryLightFraction" "1"
 "timescale" "1"
 }
-// entity 77
+// entity 69
 {
 guid "{5404485F-49F7-11F0-B3A2-BE99A8F80224}"
 "classname" "fx"
@@ -1306,7 +1190,7 @@ guid "{5404485F-49F7-11F0-B3A2-BE99A8F80224}"
 "primaryLightFraction" "1"
 "timescale" "1"
 }
-// entity 78
+// entity 70
 {
 guid "{54044867-49F7-11F0-B3A2-BE99A8F80224}"
 "classname" "fx"
@@ -1319,42 +1203,42 @@ guid "{54044867-49F7-11F0-B3A2-BE99A8F80224}"
 "primaryLightFraction" "1"
 "timescale" "1"
 }
-// entity 79
+// entity 71
 {
 guid "{3F1F4E5C-4C78-11F0-B3A6-B1B7CE2DD954}"
 "classname" "misc_prefab"
 "model" "_prefabs/zm/_ninjaman_zombie_spawners/zm_dlchd_origins_soldier_armor_spawners.map"
 "origin" "120 1112 0"
 }
-// entity 80
+// entity 72
 {
 guid "{3F1F4E69-4C78-11F0-B3A6-B1B7CE2DD954}"
 "classname" "misc_prefab"
 "model" "_prefabs/zm/_ninjaman_zombie_spawners/zm_dlchd_origins_soldier_blue_shirtless_spawners.map"
 "origin" "72 1104 0"
 }
-// entity 81
+// entity 73
 {
 guid "{55C28B9D-4C78-11F0-B3A6-B1B7CE2DD954}"
 "classname" "misc_prefab"
 "model" "_prefabs/zm/_ninjaman_zombie_spawners/zm_dlchd_origins_soldier_blue_spawners.map"
 "origin" "-14 1105 0"
 }
-// entity 82
+// entity 74
 {
 guid "{6BD8D577-4C78-11F0-B3A6-B1B7CE2DD954}"
 "classname" "misc_prefab"
 "model" "_prefabs/zm/_ninjaman_zombie_spawners/zm_dlchd_origins_soldier_green_shirtless_spawners.map"
 "origin" "28 1105 0"
 }
-// entity 83
+// entity 75
 {
 guid "{81CD1CE8-4C78-11F0-B3A6-B1B7CE2DD954}"
 "classname" "misc_prefab"
 "model" "_prefabs/zm/_ninjaman_zombie_spawners/zm_dlchd_origins_soldier_green_spawners.map"
 "origin" "-64 1104 0"
 }
-// entity 84
+// entity 76
 {
 guid "{DDD2D4FF-5077-11F0-B3AB-D0CEF99BBB90}"
 "classname" "misc_prefab"
@@ -1362,32 +1246,129 @@ guid "{DDD2D4FF-5077-11F0-B3AB-D0CEF99BBB90}"
 "model" "_prefabs/library/traverse/dogs/ai_dog_jump_down_96.map"
 "origin" "608 -512 -4"
 }
-// entity 85
+// entity 77
 {
 guid "{3411313A-5078-11F0-B3AB-D0CEF99BBB90}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/traverse/dogs/ai_dog_jump_up_48_2way.map"
 "origin" "450 -559 0"
 }
-// entity 86
+// entity 78
 {
 guid "{4AC78A0F-5078-11F0-B3AB-D0CEF99BBB90}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/traverse/dogs/ai_dog_jump_down_48_2way.map"
 "origin" "450 -671 0"
 }
-// entity 87
+// entity 79
 {
 guid "{C07F4FB7-507A-11F0-B3AB-D0CEF99BBB90}"
 "classname" "misc_prefab"
 "model" "_prefabs/library/traverse/dogs/ai_dog_jump_down_48_2way.map"
 "origin" "322 -663 0"
 }
-// entity 88
+// entity 80
 {
 guid "{C07F4FC2-507A-11F0-B3AB-D0CEF99BBB90}"
 "classname" "misc_prefab"
 "angles" "0 180 0"
 "model" "_prefabs/library/traverse/dogs/ai_dog_jump_down_48_2way.map"
 "origin" "322 -575 0"
+}
+// entity 81
+{
+guid "{7064E92A-1799-11F0-B359-977C558A58B1}"
+"classname" "misc_volume_decal"
+"angles" "0 90 90.0001"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "-195.5 -1440.5 209"
+"targetname" "hellround_volume_show"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 82
+{
+guid "{7064E935-1799-11F0-B359-977C558A58B1}"
+"classname" "misc_volume_decal"
+"angles" "0 90 90.0001"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "14 263 284"
+"modeloverridematerial" "re_blood18white_nm"
+"origin" "228.5 -1440.5 -23"
+"targetname" "hellround_volume_show"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 83
+{
+guid "{92C9987E-64DD-11F0-B3C8-F1E6E946785F}"
+"classname" "misc_prefab"
+"angles" "0 240 0"
+"model" "_prefabs/zm/hellround/hellround_collector_02.map"
+"origin" "237.366 -204.634 0"
+}
+// entity 84
+{
+guid "{92C9989D-64DD-11F0-B3C8-F1E6E946785F}"
+"classname" "misc_prefab"
+"model" "_prefabs/zm/hellround/hellround_collector_01.map"
+"origin" "82 0 0"
+}
+// entity 85
+{
+guid "{0844EAD6-64E7-11F0-B3C8-F1E6E946785F}"
+"classname" "misc_prefab"
+"angles" "0 120 0"
+"model" "_prefabs/zm/hellround/hellround_collector_03.map"
+"origin" "-103.268 -207.804 0"
+}
+// entity 86
+{
+guid "{AD3210F6-6674-11F0-B3CA-FC8AF5CBC8C5}"
+"classname" "fx"
+"fxdef" "_reapy/fx_hellround_collector_soul_collect"
+"origin" "477 53 44"
+"fxstate1" "1"
+"fxstate2" "1"
+"fxstate3" "1"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 87
+{
+guid "{B4CFCE3F-6674-11F0-B3CA-FC8AF5CBC8C5}"
+"classname" "fx"
+"delay" "-15121"
+"fxdef" "_reapy/fx_hellround_collector_soul_trail"
+"origin" "505 53 44"
+"fxstate1" "1"
+"fxstate2" "1"
+"fxstate3" "1"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 88
+{
+guid "{80980C7D-6981-11F0-B3CF-8BF49D6F701B}"
+"classname" "fx"
+"fxdef" "_reapy/fx_hellround_collector_depart"
+"origin" "-178 449 56"
+"fxstate1" "1"
+"fxstate2" "1"
+"fxstate3" "1"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
 }

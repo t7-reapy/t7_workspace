@@ -1,9 +1,14 @@
-#using scripts\shared\clientfield_shared; 
+#using scripts\zm\_zm_utility; 
+#using scripts\shared\ai\zombie_utility; 
+#using scripts\shared\spawner_shared; 
+#using scripts\shared\array_shared;
 #using scripts\shared\system_shared;
 
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;
 
+#using scripts\zm\hellround\zm_hellround_shared;
+#insert scripts\zm\hellround\zm_hellround_shared.gsh;
 #insert scripts\zm\hellround\zm_hellround_zombies.gsh;
 
 #namespace zm_hellround_zombies;
@@ -11,13 +16,75 @@
 #precache("model", "c_zom_dlc3_zombie_sentinel_body");
 #precache("model", "c_zom_dlc4_zombie_charred_head");
 
-REGISTER_SYSTEM("zm_hellround_zombies", &init, undefined)
+REGISTER_SYSTEM_EX("zm_hellround_zombies", &init, &main, undefined)
 
 function init() 
 {
     level.original_zombie_bodies = ORIGINAL_ZOMBIE_BODY_MODELS;
     level.original_zombie_hats = ORIGINAL_ZOMBIE_HAT_MODELS;
     level.original_zombie_heads = ORIGINAL_ZOMBIE_HEAD_MODELS;
+}
+
+function private main()
+{
+    array::run_all(GetSpawnerArray(), &spawner::add_spawn_function, &zombie_spawn_hellround_logic);
+}
+
+function is_normal_zombie() // self == actor
+{
+    if (IsDefined(self.animname) && self.animname !== "zombie")
+        return false;
+
+    if (IsDefined(self.archetype) && self.archetype == "zombie")
+        return true;
+
+    return false;
+}
+
+function private zombie_spawn_hellround_logic() // self == zombie spawned
+{
+    if (zm_hellround_shared::is_hellround_running() && self is_normal_zombie()) {
+        waittillframeend;
+        self thread set_zombie_model_to_hellround();
+        self thread zombie_utility::set_zombie_run_cycle(HRZM_ZOMBIE_RUN_STATE);
+    }
+}
+
+function toggle_hellround_zombies(b_enable)
+{
+    if (IS_TRUE(b_enable)) {
+        enable_hellround_zombies();
+    } else {
+        disable_hellround_zombies();
+    }
+}
+
+function enable_hellround_zombies()
+{
+    zombies = GetAiSpeciesArray(level.zombie_team, "all");
+    foreach (zombie in zombies)
+    {
+        if (zombie is_normal_zombie())
+        {
+            zombie thread set_zombie_model_to_hellround();
+            zombie thread zombie_utility::set_zombie_run_cycle(HRZM_ZOMBIE_RUN_STATE);
+        }
+    }
+}
+
+function disable_hellround_zombies()
+{
+    zombies = GetAiSpeciesArray(level.zombie_team, "all");
+    foreach (zombie in zombies)
+    {
+        if (!zombie is_normal_zombie())
+        {
+            continue;
+        }
+
+        zombie thread set_back_to_default_zombie();
+        zombie thread zm_utility::init_zombie_run_cycle();
+    }
 }
 
 // #region original zombie models
@@ -32,16 +99,19 @@ function set_back_to_default_zombie() // self == zombie
     self.voice = "american";
 
     self DetachAll();
+    if (hat_model != "")
+    {
+        self.hatmodel = hat_model;
+        self Attach(self.hatmodel, "", true);
+    }
     self.head = head_model;
-    self.hatmodel = hat_model;
     self Attach(self.head, "", true);
-    self Attach(self.hatmodel, "", true);
     self SetModel(body_style);
 
     self dlchd_origins_zombie_damage_models_from_body_style(body_style);
     self dlchd_origins_zombie_gib_pieces();
     self.gibdef = self dlchd_origins_zombie_gib_def_from_hatmodel(hat_model);
-    self.destructibledef = self.destructibledef_old; //"c_zm_dlchd_origins_soldier_destructible_def"; //  was not exported AFAIK
+    self.destructibledef = self.destructibledef_old; //"c_zm_dlchd_origins_soldier_destructible_def" was not exported AFAIK
     self fix_gibs();
 }
 
@@ -176,7 +246,6 @@ function private dlchd_origins_zombie_damage_model_3a() // self == zombie
 }
 
 // #endregion
-
 // #region charred zombies
 
 function set_zombie_model_to_hellround() // self == zombie
@@ -186,9 +255,7 @@ function set_zombie_model_to_hellround() // self == zombie
 
     self DetachAll();
     self.head = "c_zom_dlc4_zombie_charred_head";
-    self.hatmodel = "";
     self Attach(self.head, "", true);
-    self Attach(self.hatmodel, "", true);
     self SetModel("c_zom_dlc3_zombie_sentinel_body");
 
     self.torsodmg1 = "c_zom_dlc3_zombie_sentinel_g_upclean";

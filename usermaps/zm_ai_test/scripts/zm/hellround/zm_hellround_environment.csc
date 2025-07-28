@@ -1,73 +1,110 @@
-#using scripts\codescripts\struct;
-#using scripts\shared\audio_shared;
-#using scripts\shared\callbacks_shared;
-#using scripts\shared\clientfield_shared;
-#using scripts\shared\exploder_shared;
-#using scripts\shared\scene_shared;
-#using scripts\shared\util_shared;
-#using scripts\shared\system_shared;
+#using scripts\shared\clientfield_shared; 
+#using scripts\shared\util_shared; 
+#using scripts\shared\system_shared; 
 
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;
 
+#insert scripts\zm\hellround\zm_hellround_shared.gsh;
 #insert scripts\zm\hellround\zm_hellround_environment.gsh;
 #namespace zm_hellround_environment;
 
-REGISTER_SYSTEM_EX("zm_hellround_environment", &init, &main, undefined)
+REGISTER_SYSTEM("zm_hellround_environment", &init, undefined)
 
 function init() 
 {
-    level.bloodVolumeDecals = FindVolumeDecalIndexArray("decal_blood");
-    level.bloodStaticModels = FindStaticModelIndexArray("model_blood");
-    clientfield::register("world", BLOODY_TOGGLE_CLIENT_FIELD, VERSION_SHIP, 1, "int", &decal_toggle_blood, !CF_HOST_ONLY, !BLOODY_ENV_SHOW_INIT);
+	level.volumes_show = FindVolumeDecalIndexArray("hellround_volume_show");
+	level.volumes_hide = FindVolumeDecalIndexArray("hellround_volume_hide");
+	level.models_show = FindStaticModelIndexArray("hellround_model_show");
+	level.models_hide = FindStaticModelIndexArray("hellround_model_hide");
+
+    clientfield::register("world", HRENV_TOGGLE_CLIENT_FIELD, VERSION_SHIP, 1, "int", &hellround_environment, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
 }
 
-function main() 
+function hellround_environment(n_client_num, _oldVal, n_new_val, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump)
 {
+    util::waitforclient(n_client_num);
+
+	fog_update(IS_TRUE(n_new_val));
+    show_hellround_models(IS_TRUE(n_new_val));
+    show_hellround_volumes(IS_TRUE(n_new_val));
 }
 
-function decal_toggle_blood(_localClientNum, _oldVal, showBlood, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump)
+// #region fog  
+
+function private fog_update(b_hellfog)
 {
-    if(isdefined(showBlood) && showBlood)
+    fog_index = (b_hellfog ? HRENV_FOG_INDEX_BLOODY : HRENV_FOG_INDEX_NORMAL);
+    fog_bank = 1 << fog_index;
+    lit_fog_bank = fog_index;
+    foreach (player in GetLocalPlayers())
     {
-        blood_fog_start();
-        for(i=0; i < level.bloodVolumeDecals.size; i++)
+		client_number = player GetLocalClientNumber();
+        SetWorldFogActiveBank(client_number, fog_bank);
+        SetLitFogBank(client_number, -1, lit_fog_bank, 0);
+    }
+}
+
+// #endregion
+// #region models
+
+function private show_hellround_models(b_show)
+{
+    if (b_show)
+    {
+        foreach(model in level.models_show)
         {
-            UnhideVolumeDecal(level.bloodVolumeDecals[i]);
+            UnhideStaticModel(model);
         }
-        for(i=0; i < level.bloodStaticModels.size; i++)
+
+        foreach(model in level.models_hide)
         {
-            UnhideStaticModel(level.bloodStaticModels[i]);
+            HideStaticModel(model);
         }
-    } 
+    }
     else
     {
-        blood_fog_stop();
-        for(i=0; i < level.bloodVolumeDecals.size; i++)
+        foreach(model in level.models_show)
         {
-            HideVolumeDecal(level.bloodVolumeDecals[i]);
+            HideStaticModel(model);
         }
-        for(i=0; i < level.bloodStaticModels.size; i++)
+
+        foreach(model in level.models_hide)
         {
-            HideStaticModel(level.bloodStaticModels[i]);
+            UnhideStaticModel(model);
         }
     }
 }
 
-function blood_fog_start()
+// #endregion
+// #region volumes
+
+function private show_hellround_volumes(b_show)
 {
-    for (client_number = 0; client_number < level.localPlayers.size;client_number++)
+    if(b_show)
     {
-        SetWorldFogActiveBank(client_number, FOG_BANK_2);
-        SetLitFogBank(client_number, -1, 1, -1);
+        foreach(volume in level.volumes_show)
+        {
+            UnhideVolumeDecal(volume);
+        }
+
+        foreach(volume in level.volumes_hide)
+        {
+            HideVolumeDecal(volume);
+        }
+    }
+    else
+    {
+        foreach(volume in level.volumes_show)
+        {
+            HideVolumeDecal(volume);
+        }
+
+        foreach(volume in level.volumes_hide)
+        {
+            UnhideVolumeDecal(volume);
+        }
     }
 }
 
-function blood_fog_stop()
-{
-    for (client_number = 0; client_number < level.localPlayers.size;client_number++)
-    {
-        SetWorldFogActiveBank(client_number, FOG_BANK_1);
-        SetLitFogBank(client_number, -1, 0, -1);
-    }
-}
+// #endregion

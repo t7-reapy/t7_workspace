@@ -1,0 +1,194 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{0FC4D0E5-64E7-11F0-B3C8-F1E6E946785F}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{C52D143C-5F58-11F0-B3BD-F2ACC327B5BD}"
+"classname" "fx"
+"angles" "0 270 0"
+"exploder_count" "1"
+"exploder_index_0" "ver=2 don=2500 doff=0 snd= off=0 name=hellround_collector_01_exploder"
+"fxdef" "dlc5/tomb/fx_heat_distortion_fire_lg"
+"fxstate1" "0"
+"fxstate2" "0"
+"fxstate3" "0"
+"origin" "0 31 27"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 2
+{
+guid "{C8AA2E7D-5F59-11F0-B3BD-F2ACC327B5BD}"
+"classname" "fx"
+"angles" "0 180 0"
+"exploder_count" "1"
+"exploder_index_0" "ver=2 don=2500 doff=0 snd= off=0 name=hellround_collector_01_exploder"
+"fxdef" "fire/fx_fire_barrel_factory_zmb"
+"fxstate1" "0"
+"fxstate2" "0"
+"fxstate3" "0"
+"origin" "0 -1 63"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 3
+{
+guid "{53DC17EA-5F57-11F0-B3BD-F2ACC327B5BD}"
+"classname" "fx"
+"exploder_count" "1"
+"exploder_index_0" "ver=2 don=2500 doff=0 snd= off=0 name=hellround_collector_01_exploder"
+"fxdef" "light/fx_light_fire_doa_always_update"
+"fxstate1" "0"
+"fxstate2" "0"
+"fxstate3" "0"
+"origin" "0 -1 63"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 4
+{
+guid "{6E0A76B6-5F5B-11F0-B3BD-F2ACC327B5BD}"
+"classname" "fx"
+"exploder_count" "1"
+"exploder_index_0" "ver=2 don=2500 doff=0 snd= off=0 name=hellround_collector_01_exploder"
+"fxdef" "lednors_wolfs/soul_charge_start"
+"fxstate1" "0"
+"fxstate2" "0"
+"fxstate3" "0"
+"origin" "0 -1 61"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 5
+{
+guid "{A7358351-5F60-11F0-B3BD-F2ACC327B5BD}"
+"classname" "script_brushmodel"
+"lightingstate1" "0"
+"lightingstate2" "0"
+"lightingstate3" "0"
+"script_noteworthy" "clip"
+"targetname" "hellround_collector_01_clip"
+"_color" "0 0.5 0.8"
+"lightingstate4" "1"
+"shadow_casting" "1"
+// brush 0
+{
+ guid "{66533CF1-64DC-11F0-B3C8-F1E6E946785F}"
+ ( 43 -52 0 ) ( 70 -22 0 ) ( 70 2 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 38 -22 73 ) ( 11 -52 73 ) ( -2 -52 73 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4 20 92 ) ( -4 20 92 ) ( -4 20 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -4 -12 92 ) ( 4 -12 92 ) ( 4 -12 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -15 9 92 ) ( -15 -1 92 ) ( -15 -1 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -4 20 92 ) ( -15 9 92 ) ( -15 9 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 17 7 92 ) ( 4 20 92 ) ( 4 20 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4 -12 92 ) ( 17 1 92 ) ( 17 1 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -15 -1 92 ) ( -4 -12 92 ) ( -4 -12 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 15 9 77.25 ) ( 15 0 77.25 ) ( 15 9 109.25 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 6
+{
+guid "{4406D138-5F5A-11F0-B3BD-F2ACC327B5BD}"
+"classname" "misc_volume_decal"
+"angles" "270 359.195 -29.9974"
+"decalLayerSort" "Debris (top)"
+"decalLayerSortEnum" "0"
+"decalsize" "9 94 83"
+"modeloverridematerial" "di2_blood_19"
+"origin" "0 1 -2"
+"targetname" "hellround_collector_01_volume"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 7
+{
+guid "{343D5257-5F5A-11F0-B3BD-F2ACC327B5BD}"
+"classname" "script_model"
+"angles" "330 89.9997 -0.000382705"
+"lightingstate1" "0"
+"lightingstate2" "0"
+"lightingstate3" "0"
+"model" "p7_skulls_bones_head_hellround"
+"modelscale" "1.25"
+"origin" "0 1.13 57.3027"
+"targetname" "hellround_skull_01"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate4" "1"
+"shadow_casting" "1"
+}
+// entity 8
+{
+guid "{4CAA4732-49EF-11F0-B3A2-BE99A8F80224}"
+"classname" "fx"
+"exploder_count" "1"
+"exploder_index_0" "ver=2 don=0 doff=0 snd= off=0 name=hellround_collector_01_exploder"
+"fxdef" "_reapy/fx_hellround_collector_spawn"
+"fxstate1" "0"
+"fxstate2" "0"
+"fxstate3" "0"
+"origin" "1 2 47"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 9
+{
+guid "{FF729BEF-64C5-11F0-B3C8-F1E6E946785F}"
+"classname" "misc_model"
+"angles" "0 150 0"
+"lightingstate1" "0"
+"lightingstate2" "0"
+"lightingstate3" "0"
+"model" "doom_gore_props_skull"
+"origin" "4 4 0"
+"targetname" "hellround_collector_01_model"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 10
+{
+guid "{E00C9B42-6A18-11F0-B3D0-C301CBD17093}"
+"classname" "fx"
+"exploder_count" "1"
+"exploder_index_0" "ver=2 don=0 doff=0 snd= off=0 name=hellround_collector_01_depart_exploder"
+"fxdef" "_reapy/fx_hellround_collector_depart"
+"fxstate1" "0"
+"fxstate2" "0"
+"fxstate3" "0"
+"origin" "1 2 47"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}

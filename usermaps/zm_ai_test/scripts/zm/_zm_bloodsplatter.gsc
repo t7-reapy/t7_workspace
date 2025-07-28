@@ -155,9 +155,9 @@ function watch_actor()
 "Example: zm_bloodsplatter::toggle_blood_splatter();"
 "SPMP: both"
 @/
-function toggle_blood_splatter()
+function toggle_blood_splatter(b_enabled)
 {
-	level.bloodsplatter_disabled = !level.bloodsplatter_disabled;
+	level.bloodsplatter_disabled = !IS_TRUE(b_enabled);
 }
 
 function private bloodsplatter_watcher()

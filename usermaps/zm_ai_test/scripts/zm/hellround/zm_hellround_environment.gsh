@@ -1,2 +1,7 @@
-#define BLOODY_ENV_SHOW_INIT false
-#define BLOODY_TOGGLE_CLIENT_FIELD "toggle_bloody_environment"
+#define HRENV_TOGGLE_CLIENT_FIELD "toggle_hellround_environment"
+
+#define HRENV_FOG_INDEX_BLOODY 3
+#define HRENV_FOG_INDEX_NORMAL 0
+
+#define HRENV_LIGHTSTATE_INDEX_BLOODY 3
+#define HRENV_LIGHTSTATE_INDEX_NORMAL 0

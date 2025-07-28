@@ -1,62 +1,133 @@
-#using scripts\codescripts\struct;
-
-#using scripts\shared\array_shared;
-#using scripts\shared\callbacks_shared;
+#using scripts\shared\flag_shared; 
+#using scripts\shared\callbacks_shared; 
+#using scripts\shared\util_shared; 
 #using scripts\shared\clientfield_shared;
-#using scripts\shared\compass;
-#using scripts\shared\exploder_shared;
-#using scripts\shared\flag_shared;
-#using scripts\shared\laststand_shared;
-#using scripts\shared\math_shared;
-#using scripts\shared\scene_shared;
-#using scripts\shared\util_shared;
 #using scripts\shared\system_shared;
 
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;
 
-#using scripts\zm\_util;
-#using scripts\zm\_zm_utility;
-#insert scripts\zm\_zm_utility.gsh;
-
+#using scripts\zm\hellround\zm_hellround_shared;
+#insert scripts\zm\hellround\zm_hellround_shared.gsh;
 #insert scripts\zm\hellround\zm_hellround_environment.gsh;
 #namespace zm_hellround_environment;
 
 REGISTER_SYSTEM_EX("zm_hellround_environment", &init, &main, undefined)
 
-function init()
+function private init()
 {
-    level.bloody_environment_show = BLOODY_ENV_SHOW_INIT;
-    level.blood_models_show = BLOODY_ENV_SHOW_INIT;
-    clientfield::register("world", BLOODY_TOGGLE_CLIENT_FIELD, VERSION_SHIP, 1, "int");    
+    clientfield::register("world", HRENV_TOGGLE_CLIENT_FIELD, VERSION_SHIP, 1, "int");
+
+    level.clips_show = GetEntArray("hellround_clip_show", "targetname");
+    level.clips_hide = GetEntArray("hellround_clip_hide", "targetname");
+    
+    callback::on_connect(&sync_hellround_environment);
 }
 
-function main()
-{    
-    level flag::wait_till("initial_blackscreen_passed");
-    level clientfield::set(BLOODY_TOGGLE_CLIENT_FIELD, BLOODY_ENV_SHOW_INIT);
+function private sync_hellround_environment() // self == player
+{
+    self toggle_hellround_environment(zm_hellround_shared::is_hellround_running());
 }
 
-function toggle_bloody_environment() {
-    level.bloody_environment_show = !level.bloody_environment_show;
+function private main()
+{
+	zm_hellround_shared::wait_for_map_load();
 
-    if (level.bloody_environment_show)
+    // At first, force lightstate switch to happen once (cleans fx on state outside of HRENV_LIGHTSTATE_INDEX_NORMAL).
+    update_lightstate(true);
+    WAIT_SERVER_FRAME;
+    update_lightstate(false);
+
+    if (DEBUG_HELLROUNDS)
     {
-        enable_red_atmosphere();
+        thread modvar_debug_hellround_environment();
+    }
+}
+
+function toggle_hellround_environment(b_enable) // self == player or undefined
+{
+    PRINT_HR_DEBUG("toggle_hellround_environment: " + b_enable);
+
+    self update_lightstate(b_enable);
+
+    show_hellround_clips(IS_TRUE(b_enable));
+
+    level clientfield::set(HRENV_TOGGLE_CLIENT_FIELD, b_enable);
+}
+
+function private update_lightstate(b_enable) // self == player or undefined
+{
+    lightstate = (IS_TRUE(b_enable) ? HRENV_LIGHTSTATE_INDEX_BLOODY : HRENV_LIGHTSTATE_INDEX_NORMAL);
+    if (isdefined(self) && IsPlayer(self))
+    {
+        self util::set_lighting_state(lightstate);
     }
     else
     {
-        disable_red_atmosphere();
+        level util::set_lighting_state(lightstate);
     }
-    level clientfield::set(BLOODY_TOGGLE_CLIENT_FIELD, level.bloody_environment_show);
 }
 
-function enable_red_atmosphere()
+// #region brush clip
+
+//TODO: if brushmodel clip don't work, try collmaps.
+function private show_hellround_clips(b_show)
 {
-    level util::set_lighting_state(1);
+    if(b_show)
+    {
+        foreach(clip in level.clips_show)
+        {
+            clip Show();
+        }
+
+        foreach(clip in level.clips_hide)
+        {
+            clip Hide();
+        }
+    }
+    else
+    {
+        foreach(clip in level.clips_show)
+        {
+            clip Hide();
+        }
+
+        foreach(clip in level.clips_hide)
+        {
+            clip Show();
+        }
+    }
 }
 
-function disable_red_atmosphere()
+// #endregion
+// #region debug
+
+function private modvar_debug_hellround_environment()
 {
-    level util::set_lighting_state(0);
+    ModVar("hrenv", "");
+
+    while(true)
+    {
+        WAIT_SERVER_FRAME;
+
+        dvar_value = GetDvarString("hrenv", "");
+
+        if(!isdefined(dvar_value) || dvar_value == "")
+        {
+            continue;
+        }
+        ModVar("hrenv", "");
+
+        switch(Int(dvar_value))
+        {
+            case 1:
+                toggle_hellround_environment(true);
+                break;
+            default:
+                toggle_hellround_environment(false);
+                break;
+        }
+    }
 }
+
+// #endregion

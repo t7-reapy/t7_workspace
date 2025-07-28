@@ -55,7 +55,7 @@
 #precache("fx", "lednors_wolfs/soul_charged");
 #precache("fx", "lednors_wolfs/hell_portal");
 #precache("fx", "lednors_wolfs/wolf_bite_blood");
-#precache("script_bundle", "wolf_bundle" );
+#precache("script_bundle", "wolf_bundle");
 
 #using_animtree("generic");  
 
@@ -63,7 +63,7 @@
 
 REGISTER_SYSTEM_EX("zm_wolf_soul_collectors", &init, &main, undefined)
 
-#define ZOMBIE_EATEN_BEFORE_COMPLETION 3
+#define ZOMBIE_EATEN_BEFORE_COMPLETION 1
 #define DEBUG_WOLF 0
 #define PRINT_DEBUG_WOLF(__str) if(DEBUG_WOLF) IPrintLnBold(__str) // Note: don't use comas in __str
 #define KILL_WOLF_HEAD_WATCHERS_NOTIFICATION "kill_wolf_heads_watchers"
@@ -867,7 +867,6 @@ function soul_catchers_charged()
         {
             PRINT_DEBUG_WOLF("there are " + level.soul_catchers.size + " wolves");
             level flag::set("soul_catchers_charged");
-            level notify("soul_catchers_charged");
             
             if (!level.soul_catchers_abolished 
                 && IsFunctionPtr(level.soul_catchers_charged_callback)) 

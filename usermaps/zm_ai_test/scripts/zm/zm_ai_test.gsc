@@ -66,7 +66,6 @@ function main()
     configure_weapon_inspection();
 
     zm_usermap::main();
-    level util::set_lighting_state(0);
 
     // Use CW M1911 as start weapon
     //t9_1911

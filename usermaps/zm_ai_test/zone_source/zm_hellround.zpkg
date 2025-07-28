@@ -1,23 +1,59 @@
-scriptparsetree,scripts/zm/hellround/zm_hellround_announcer.gsc
-scriptparsetree,scripts/zm/hellround/zm_hellround_announcer.gsh
-scriptparsetree,scripts/zm/hellround/zm_hellround_environment.csc
-scriptparsetree,scripts/zm/hellround/zm_hellround_environment.gsc
-scriptparsetree,scripts/zm/hellround/zm_hellround_environment.gsh
-scriptparsetree,scripts/zm/hellround/zm_hellround_zombies.gsc
-scriptparsetree,scripts/zm/hellround/zm_hellround_zombies.gsh
-scriptparsetree,scripts/zm/hellround/zm_hellround_music.gsc
-scriptparsetree,scripts/zm/hellround/zm_hellround_music.gsh
+// Materials
+material,mc/mtl_bloodsplatter_scripted
+rumble,apothicon_fury_land
+
+// Custom AIs
+aitype,spawner_zm_genesis_apothicon_fury
+
+// Scripts
+scriptparsetree,scripts/zm/_zm_ai_dogs.gsc
+scriptparsetree,scripts/zm/zm_genesis_apothicon_fury.gsc
+scriptparsetree,scripts/zm/zm_genesis_apothicon_fury.csc
+scriptparsetree,scripts/zm/zm_genesis_apothicon_fury.gsh
+scriptparsetree,scripts/zm/_zm_ai_wasp.gsc
+scriptparsetree,scripts/zm/_zm_ai_wasp.csc
+scriptparsetree,scripts/zm/_zm_ai_wasp.gsh
+scriptparsetree,scripts/zm/_zm_bloodsplatter.gsc
+scriptparsetree,scripts/zm/_zm_bloodsplatter.csc
+scriptparsetree,scripts/zm/_hb21_zm_behavior.gsc
+scriptparsetree,scripts/zm/zm_wolf_soul_collectors.gsc
+scriptparsetree,scripts/zm/_zm_xcdylan93_utils.gsc
+
 scriptparsetree,scripts/zm/hellround/zm_hellround.csc
 scriptparsetree,scripts/zm/hellround/zm_hellround.gsc
 scriptparsetree,scripts/zm/hellround/zm_hellround.gsh
+scriptparsetree,scripts/zm/hellround/zm_hellround_announcer.gsc
+scriptparsetree,scripts/zm/hellround/zm_hellround_announcer.gsh
+scriptparsetree,scripts/zm/hellround/zm_hellround_collectors.csc
+scriptparsetree,scripts/zm/hellround/zm_hellround_collectors.gsc
+scriptparsetree,scripts/zm/hellround/zm_hellround_collectors.gsh
+scriptparsetree,scripts/zm/hellround/zm_hellround_environment.csc
+scriptparsetree,scripts/zm/hellround/zm_hellround_environment.gsc
+scriptparsetree,scripts/zm/hellround/zm_hellround_environment.gsh
+scriptparsetree,scripts/zm/hellround/zm_hellround_music.gsc
+scriptparsetree,scripts/zm/hellround/zm_hellround_music.gsh
+scriptparsetree,scripts/zm/hellround/zm_hellround_players.gsc
+scriptparsetree,scripts/zm/hellround/zm_hellround_players.gsh
+scriptparsetree,scripts/zm/hellround/zm_hellround_reward.gsc
+scriptparsetree,scripts/zm/hellround/zm_hellround_reward.gsh
+scriptparsetree,scripts/zm/hellround/zm_hellround_shared.gsc
+scriptparsetree,scripts/zm/hellround/zm_hellround_shared.gsh
+scriptparsetree,scripts/zm/hellround/zm_hellround_spawn_manager.gsc
+scriptparsetree,scripts/zm/hellround/zm_hellround_spawn_manager.gsh
+scriptparsetree,scripts/zm/hellround/zm_hellround_zombies.gsc
+scriptparsetree,scripts/zm/hellround/zm_hellround_zombies.gsh
+
+// Cerberus heads
+include,lednors_wolf_souls
+
+// FXs
+fx,_reapy/fx_hellround_collector_soul_trail
+fx,_reapy/fx_hellround_collector_soul_collect
 
 // Charred zombies
 xmodel,c_zom_dlc3_zombie_sentinel_body
 xmodel,c_zom_dlc4_zombie_charred_head
-
-// Charred zombies gibs
 scriptbundle,c_zom_charred_zombie_gib_def
-
 xmodel,c_zom_dlc3_zombie_sentinel_g_behead
 xmodel,c_zom_dlc3_zombie_sentinel_g_blegsoff
 xmodel,c_zom_dlc3_zombie_sentinel_g_larmoff
@@ -30,53 +66,3 @@ xmodel,c_zom_dlc3_zombie_sentinel_s_larmspawn
 xmodel,c_zom_dlc3_zombie_sentinel_s_llegspawn
 xmodel,c_zom_dlc3_zombie_sentinel_s_rarmspawn
 xmodel,c_zom_dlc3_zombie_sentinel_s_rlegspawn
-
-// Origins zombies
-xmodel,c_t7_zm_dlchd_origins_soldiers_body1
-xmodel,c_t7_zm_dlchd_origins_soldiers_body2
-xmodel,c_t7_zm_dlchd_origins_soldiers_body2a
-xmodel,c_t7_zm_dlchd_origins_soldiers_body3
-xmodel,c_t7_zm_dlchd_origins_soldiers_body3a
-
-xmodel,c_t7_zm_dlchd_origins_soldiers_helmet
-xmodel,c_t7_zm_dlchd_origins_soldiers_officer_cap
-xmodel,c_t7_zm_dlchd_origins_soldiers_spiked_helmet
-
-xmodel,c_t7_zm_dlchd_origins_soldiers_head1
-xmodel,c_t7_zm_dlchd_origins_soldiers_head2
-xmodel,c_t7_zm_dlchd_origins_soldiers_head3
-
-// Origins zombies gibs
-scriptbundle,c_zom_dlchd_origins_zombie_helmet_gib_def
-scriptbundle,c_zom_dlchd_origins_zombie_officer_gib_def
-scriptbundle,c_zom_dlchd_origins_zombie_spiked_helmet_gib_def
-scriptbundle,c_zom_dlchd_origins_zombie_none_gib_def
-
-xmodel,c_t7_zm_dlchd_origins_soldiers_body1_beheaded
-xmodel,c_t7_zm_dlchd_origins_soldiers_body1_blegsoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body1_larmoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body1_llegoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body1_lowclean
-xmodel,c_t7_zm_dlchd_origins_soldiers_body1_rarmoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body1_rlegoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body1_upperclean
-xmodel,c_t7_zm_dlchd_origins_soldiers_body2_larmoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body2_llegoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body2_lowclean
-xmodel,c_t7_zm_dlchd_origins_soldiers_body2_rarmoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body2_rlegoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body2_upperclean
-xmodel,c_t7_zm_dlchd_origins_soldiers_body2a_blegsoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body2a_larmoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body2a_llegoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body2a_lowclean
-xmodel,c_t7_zm_dlchd_origins_soldiers_body2a_rarmoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body2a_rlegoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body2a_upperclean
-xmodel,c_t7_zm_dlchd_origins_soldiers_body3_larmoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body3_rarmoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_body3_upperclean
-xmodel,c_t7_zm_dlchd_origins_soldiers_s_rarmoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_s_larmoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_s_rlegoff
-xmodel,c_t7_zm_dlchd_origins_soldiers_s_llegoff

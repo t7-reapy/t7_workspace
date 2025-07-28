@@ -1,0 +1,402 @@
+#using scripts\shared\util_shared; 
+#using scripts\shared\array_shared;
+#using scripts\shared\callbacks_shared; 
+#using scripts\shared\clientfield_shared; 
+#using scripts\shared\exploder_shared; 
+#using scripts\shared\flag_shared;
+#using scripts\shared\system_shared;
+
+#insert scripts\shared\shared.gsh;
+#insert scripts\shared\version.gsh;
+
+#using scripts\zm\hellround\zm_hellround_shared;
+#insert scripts\zm\hellround\zm_hellround_shared.gsh;
+#insert scripts\zm\hellround\zm_hellround_collectors.gsh;
+#namespace zm_hellround_collectors;
+
+REGISTER_SYSTEM_EX("zm_hellround_collectors", &init, &main, undefined)
+
+#precache("fx", HRCOLL_FX_TRAIL);
+#precache("fx", HRCOLL_FX_COLLECT);
+
+class HellroundCollectors
+{
+    var skulls;
+    var exploders;
+    var exploders_depart;
+    var clips;
+
+    var souls;
+}
+
+function private init()
+{
+    clientfield::register("world", HRCOLL_CLIENT_FIELD, VERSION_SHIP, 2, "int");
+
+    level.hellround_collectors = new HellroundCollectors();
+    level.hellround_collectors.exploders = HRCOLL_EXPLODERS;
+    level.hellround_collectors.exploders_depart = HRCOLL_EXPLODERS_DEPART;
+    level.hellround_collectors.skulls = [];
+    level.hellround_collectors.skulls[0] = GetEnt(HRCOLL_SKULLS[0], "targetname");
+    level.hellround_collectors.skulls[1] = GetEnt(HRCOLL_SKULLS[1], "targetname");
+    level.hellround_collectors.skulls[2] = GetEnt(HRCOLL_SKULLS[2], "targetname");
+    level.hellround_collectors.clips = [];
+    level.hellround_collectors.clips[0] = GetEntArray(HRCOLL_CLIPS[0], "targetname");
+    level.hellround_collectors.clips[1] = GetEntArray(HRCOLL_CLIPS[1], "targetname");
+    level.hellround_collectors.clips[2] = GetEntArray(HRCOLL_CLIPS[2], "targetname");
+    level.hellround_collectors.souls = [];
+    level.hellround_collectors.souls[0] = 0;
+    level.hellround_collectors.souls[1] = 0;
+    level.hellround_collectors.souls[2] = 0;
+
+    callback::on_connect(&sync_hellround_collectors);
+    callback::on_ai_spawned(&watch_ai_death_for_collection);
+}
+
+function private main()
+{
+    thread float_skulls();
+    zm_hellround_shared::wait_for_map_load();
+    show_hellround_collectors(HRCOLL_DISABLED);
+    depart_hellround_collector_exploders(HRCOLL_DISABLED);
+
+    if (DEBUG_HELLROUNDS)
+    {
+        thread modvar_debug_show_hellround_collectors();
+    }
+}
+
+function private sync_hellround_collectors() // self == player
+{
+    show_hellround_collectors(HRCOLL_DISABLED);
+
+    WAIT_SERVER_FRAME;
+
+    if (zm_hellround_shared::is_hellround_running())
+    {
+        show_hellround_collectors(zm_hellround_shared::get_current_iteration());
+    }
+}
+
+function bind_completion_callback(callback)
+{
+    if (!isdefined(callback) || !IsFunctionPtr(callback))
+    {
+        PRINT_HR_DEBUG("bind_completion_callback: Invalid callback provided.");
+        return;
+    }
+
+    level.hellround_collector_completion_callback = callback;
+}
+
+function start_hellround_collector_logic()
+{
+    iteration = zm_hellround_shared::get_current_iteration();
+
+    if (!is_collector_iteration(iteration))
+    {
+        PRINT_HR_DEBUG("start_hellround_collector_logic: not a collector iteration.");
+        return;
+    }
+
+    level.hellround_collectors.skulls[iteration - 1] thread collect_souls(iteration);
+}
+
+function show_hellround_collectors(n_iteration)
+{
+    update_hellround_collector_exploders(n_iteration);
+    update_hellround_collector_clips(n_iteration);
+
+    if (n_iteration != HRCOLL_DISABLED)
+    {
+        // Display models and volumes after fx is done.
+        wait HRCOLL_FX_SPAWN_DELAY;
+    }
+
+    update_hellround_collector_skulls(n_iteration);
+    level clientfield::set(HRCOLL_CLIENT_FIELD, n_iteration);
+}
+
+// #region utils
+
+function private is_collector_iteration(n_iteration)
+{
+    return zm_hellround_shared::is_hellround_running() 
+        && n_iteration != HELLROUND_BAD_FLAG_INDEX 
+        && n_iteration != HRCOLL_DISABLED;
+} 
+
+// #endregion
+// #region exploders
+
+function private update_hellround_collector_exploders(n_iteration)
+{
+    foreach(exploder in level.hellround_collectors.exploders)
+    {
+        exploder::kill_exploder(exploder);
+    }
+
+    if (n_iteration == HRCOLL_DISABLED)
+    {
+        return;
+    }
+
+    exploder::exploder(level.hellround_collectors.exploders[n_iteration - 1]);
+}
+
+function private depart_hellround_collector_exploders(n_iteration)
+{
+    foreach(exploder in level.hellround_collectors.exploders_depart)
+    {
+        exploder::kill_exploder(exploder);
+    }
+
+    if (n_iteration == HRCOLL_DISABLED)
+    {
+        return;
+    }
+
+    exploder::exploder(level.hellround_collectors.exploders_depart[n_iteration - 1]);
+}
+
+// #endregion
+// #region clips
+
+function private update_hellround_collector_clips(n_iteration)
+{
+    foreach(clips in level.hellround_collectors.clips)
+    {
+        foreach(clip in clips)
+        {
+            clip Hide();
+        }
+    }
+
+    if (n_iteration == HRCOLL_DISABLED)
+    {
+        return;
+    }
+
+    iteration_index = n_iteration - 1;
+    foreach(clip in level.hellround_collectors.clips[iteration_index])
+    {
+        clip Show();
+    }
+}
+
+// #endregion
+// #region skulls
+
+function private update_hellround_collector_skulls(n_iteration)
+{
+    foreach(skull in level.hellround_collectors.skulls)
+    {
+        skull Hide();
+    }
+
+    if (n_iteration == HRCOLL_DISABLED)
+    {
+        return;
+    }
+
+    level.hellround_collectors.skulls[n_iteration - 1] Show();
+}
+
+function private float_skulls()
+{
+    foreach(skull in level.hellround_collectors.skulls)
+    {
+        skull thread float_skull();
+    }
+}
+
+function private float_skull() // self == skull ent
+{
+    while(true)
+    {
+        self MoveZ(HRCOLL_SKULLS_FLOAT_DELTA, HRCOLL_SKULLS_FLOAT_TIME);
+        wait HRCOLL_SKULLS_FLOAT_TIME;
+
+        self MoveZ(-HRCOLL_SKULLS_FLOAT_DELTA, HRCOLL_SKULLS_FLOAT_TIME);
+        wait HRCOLL_SKULLS_FLOAT_TIME;
+    }
+}
+
+// #endregion
+// #region soul collection
+
+function private collect_souls(n_iteration) // self == collector skull ent
+{
+    PRINT_HR_DEBUG("collecting souls for " + self.targetname + " at iteration " + n_iteration);
+    self PlayLoopSound(HRCOLL_SND_IDLE_LOOP, 0.5);
+    self PlayLoopSound(HRCOLL_SND_IDLE_AMB_LOOP, 1.5);
+
+    self wait_till_all_souls_collected();
+    self PlaySound(HRCOLL_SND_COMPLETED);
+
+    depart_hellround_collector_exploders(n_iteration);
+    self StopLoopSound(0.5);
+    wait HRCOLL_FX_DEPART_DELAY;
+    show_hellround_collectors(HRCOLL_DISABLED);
+
+    wait 1.0; // Wait a second time just for smooth transition
+    notify_completion_callback();
+}
+
+function private wait_till_all_souls_collected() // self == collector skull ent
+{
+    if(!isdefined(self.script_int))
+    {
+        self.script_int = HRCOLL_TOTAL_SOULS;
+    }
+    self.total_souls_left = self.script_int;
+
+    // Use for loop instead of while (on self.total_souls_left > 0) 
+    // to get each and every notifications before exiting the loop.
+    for(i = 0; i > self.total_souls_left; i++)
+    {
+        self waittill("soul_collected");
+    }
+}
+
+function private notify_completion_callback()
+{
+    if (IsFunctionPtr(level.hellround_collector_completion_callback))
+    {
+        [[ level.hellround_collector_completion_callback ]]();
+    }
+}
+
+function private soul_travel(destination_skull)
+{
+    source = self.origin;
+    destination = destination_skull.origin;
+
+    // Update the count of souls collected before the animations.
+    destination_skull soul_collected();
+
+    // Spawn the soul
+	fx_ent = util::spawn_model("tag_origin", source + (0, 0, 30));
+    fx = PlayFxOnTag(HRCOLL_FX_TRAIL, fx_ent, "tag_origin");
+    fx_ent PlaySound(HRCOLL_SND_SPAWN);
+
+    // Make it travel above the collector
+    time = Distance(source, destination) / HRCOLL_SOUL_TRAVEL_SPEED;
+    fx_ent MoveTo(destination + (0, 0, 20), time);
+    fx_ent PlayLoopSound(HRCOLL_SND_TRAVEL, 0.5);
+
+    wait(time - 0.05);
+    
+    // Finish traveling (entering the collector)
+    destination = destination_skull.origin;
+    fx_ent MoveTo(destination, 0.5);
+    fx_ent waittill("movedone");
+
+    // Soul is now collected
+    self PlaySound(HRCOLL_SND_ENTER);
+    PlayFX(HRCOLL_FX_COLLECT, destination);
+    destination_skull notify("soul_collected");
+
+    // Clear the fx
+    fx_ent StopLoopSound();
+    WAIT_SERVER_FRAME;
+    fx_ent Delete();
+}
+
+function private soul_collected() // self == collector skull ent
+{
+    self.total_souls_left--;
+}
+
+// #endregion
+// #region ai death callback
+
+function private watch_ai_death_for_collection() // self == zm actor
+{
+    self waittill("death");
+
+    destination_skull = get_active_collector_skull();
+    if(!isdefined(destination_skull))
+    {
+        return;
+    }
+    
+    if(destination_skull.total_souls_left > 0 && self close_and_in_los_of(destination_skull))
+    {
+        PRINT_HR_DEBUG("soul travels to collector skull: " + destination_skull.targetname);
+        self thread soul_travel(destination_skull);
+    }
+}
+
+function private get_active_collector_skull()
+{
+    iteration = zm_hellround_shared::get_current_iteration();
+
+    if(!is_collector_iteration(iteration))
+    {
+        return undefined;
+    }
+
+    return level.hellround_collectors.skulls[iteration - 1];
+}
+
+function private close_and_in_los_of(collector) // self == zm actor
+{
+    if(Distance(self.origin, collector.origin) > HRCOLL_SOUL_MAX_DISTANCE)
+    {
+        PRINT_HR_DEBUG("actor too far from collector skull");
+        return false;
+    }
+
+    if(!BulletTracePassed(self.origin, collector.origin, false, self, collector) && HRCOLL_LOS_REQUIRED)
+    {
+        PRINT_HR_DEBUG("actor not in LOS from collector skull");
+        return false;
+    }
+    
+    return true;
+}
+
+// #endregion
+// #region debug
+
+function private modvar_debug_show_hellround_collectors()
+{
+    ModVar("hrcoll", "");
+
+    while(true)
+    {
+        WAIT_SERVER_FRAME;
+
+        dvar_value = GetDvarString("hrcoll", "");
+
+        if(!isdefined(dvar_value) || dvar_value == "")
+        {
+            continue;
+        }
+        ModVar("hrcoll", "");
+        
+        PRINT_HR_DEBUG("current hellround iteration: " + level.hellround_current_iteration);
+
+        switch(Int(dvar_value))
+        {
+            case 1:
+                show_hellround_collectors(1);
+                start_hellround_collector_logic();
+                break;
+            case 2:
+                show_hellround_collectors(2);
+                start_hellround_collector_logic();
+                break;
+            case 3:
+                show_hellround_collectors(3);
+                start_hellround_collector_logic();
+                break;
+            default:
+                show_hellround_collectors(HRCOLL_DISABLED);
+                break;
+        }
+    }
+}
+
+// #endregion
