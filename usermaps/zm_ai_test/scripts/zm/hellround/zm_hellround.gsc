@@ -19,6 +19,7 @@
 #using scripts\zm\hellround\zm_hellround_environment;
 #using scripts\zm\hellround\zm_hellround_music;
 #using scripts\zm\hellround\zm_hellround_players;
+#using scripts\zm\hellround\zm_hellround_powerup;
 #using scripts\zm\hellround\zm_hellround_reward;
 #using scripts\zm\hellround\zm_hellround_spawn_manager;
 #using scripts\zm\hellround\zm_hellround_zombies;

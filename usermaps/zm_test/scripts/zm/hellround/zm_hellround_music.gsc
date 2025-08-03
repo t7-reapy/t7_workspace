@@ -22,7 +22,7 @@ function __init__()
     level thread gameover_ending_sounds();
 }
 
-//In MOTD the game over muysic changes depending on what ending you get, we will replicate this here
+// In MOTD the game over music changes depending on what ending you get, we will replicate this here
 function gameover_ending_sounds()
 {
     self endon("end_game"); //Stop changing the gameover sound if the game ends
@@ -30,7 +30,7 @@ function gameover_ending_sounds()
     while(true)
     {
         //To change the ending type, notify the corresponding string as written here
-        endingType = self util::waittill_any_return("hellround_regular_ending","hellround_good_ending","hellround_bad_ending");
+        endingType = self util::waittill_any_return("hellround_regular_ending", "hellround_good_ending", "hellround_bad_ending");
         
         //Now we override the gameover music state with our preferred ending based on which notify we received
         if(endingType == "hellround_regular_ending")

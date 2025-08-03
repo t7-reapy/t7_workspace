@@ -67,6 +67,10 @@ function main()
 
     zm_usermap::main();
 
+    // Tweaks powerups for testing
+    zombie_utility::set_zombie_var("zombie_powerup_drop_increment", 200); // lower this to make drop happen more often
+	zombie_utility::set_zombie_var("zombie_powerup_drop_max_per_round", 8); // raise this to make drop happen more often
+
     // Use CW M1911 as start weapon
     //t9_1911
     level.start_weapon = (getWeapon("iw8_asval"));

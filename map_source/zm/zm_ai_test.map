@@ -6,7 +6,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{0844EAC0-64E7-11F0-B3C8-F1E6E946785F}"
+guid "{327331D0-6CA3-11F0-B3D4-B21805BD407D}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -275,6 +275,99 @@ guid "{0844EAC0-64E7-11F0-B3C8-F1E6E946785F}"
  ( 384 -567 156 ) ( 384 -559 156 ) ( 384 -559 0 ) script_wall 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
  ( 384 -599 156 ) ( 352 -599 156 ) ( 352 -599 0 ) script_wall 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
  ( 256 -559 156 ) ( 256 -567 156 ) ( 256 -567 0 ) script_wall 32 32 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 25
+{
+ guid "{4D434E75-6B0C-11F0-B3D1-8DA198FBEC31}"
+ ( -80 -200 160 ) ( -136 -200 160 ) ( -136 -208 160 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -136 -208 216 ) ( -136 -200 216 ) ( -80 -200 216 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -136 -208 256 ) ( -80 -208 256 ) ( -80 -208 160 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -80 -208 264 ) ( -80 -200 264 ) ( -80 -200 168 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -72 -200 256 ) ( -128 -200 256 ) ( -128 -200 160 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -136 -200 256 ) ( -136 -208 256 ) ( -136 -208 160 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 26
+{
+ guid "{539FBF31-6B0C-11F0-B3D1-8DA198FBEC31}"
+ ( 264 -200 160 ) ( 208 -200 160 ) ( 208 -208 160 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 208 -208 216 ) ( 208 -200 216 ) ( 264 -200 216 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 208 -208 256 ) ( 264 -208 256 ) ( 264 -208 160 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 264 -208 264 ) ( 264 -200 264 ) ( 264 -200 168 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 272 -200 256 ) ( 216 -200 256 ) ( 216 -200 160 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 208 -200 256 ) ( 208 -208 256 ) ( 208 -208 160 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 27
+ {
+  guid "{603B40B4-6B0C-11F0-B3D1-8DA198FBEC31}"
+  mesh
+  {
+  toolFlags;
+   t7_decal_signage_terra_farms_number_02
+   lightmap_gray
+   2 2 0 8
+   (
+	v 207.99997 -199.99997 160 t 0.0078125 -1023.9974 3.5 -6.5
+	v 264.00009 -200.00003 160 t -1023.9915 -1023.9974 7 -6.5
+   )
+   (
+	v 207.99997 -199.99997 216 t 0.0078125 -2047.9872 3.5 -10
+	v 264.00009 -200.00003 216 t -1023.9915 -2047.9872 7 -10
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+// brush 28
+ {
+  guid "{668B6FDF-6B0C-11F0-B3D1-8DA198FBEC31}"
+  mesh
+  {
+  toolFlags;
+   t7_decal_signage_terra_farms_number_03
+   lightmap_gray
+   2 2 0 8
+   (
+	v -136 -200 160 t -0.0012207031 -1024.0048 -8.5 -6.5
+	v -79.999992 -200 160 t -1024.0117 -1024.0048 -5 -6.5
+   )
+   (
+	v -136 -200 216 t -0.0012207031 -2048.0112 -8.5 -10
+	v -79.999992 -200 216 t -1024.0117 -2048.0112 -5 -10
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+// brush 29
+ {
+  guid "{539FBF38-6B0C-11F0-B3D1-8DA198FBEC31}"
+  mesh
+  {
+  toolFlags;
+   t7_decal_signage_terra_farms_number_01
+   lightmap_gray
+   2 2 0 8
+   (
+	v 56 8.0000544 160 t -0.0014038086 -1024.0046 13 -6.5
+	v 112 7.9999604 160 t -1024.0042 -1024.0046 16.5 -6.5
+   )
+   (
+	v 56 8.0000544 216 t -0.0014038086 -2048.0061 13 -10
+	v 112 7.9999604 216 t -1024.0042 -2048.0061 16.5 -10
+   )
+   decalLayerSort "Signage - New"
+   decalEditorSort -1
+  }
+ }
+// brush 30
+{
+ guid "{3B1D0ADE-6B0C-11F0-B3D1-8DA198FBEC31}"
+ ( 112 8 160 ) ( 56 8 160 ) ( 56 0 160 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 56 0 216 ) ( 56 8 216 ) ( 112 8 216 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 56 0 256 ) ( 112 0 256 ) ( 112 0 160 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 112 0 264 ) ( 112 8 264 ) ( 112 8 168 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 120 8 256 ) ( 64 8 256 ) ( 64 8 160 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 56 8 256 ) ( 56 0 256 ) ( 56 0 160 ) script_wall 128 128 0 -64 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
 }
 // entity 1
@@ -1365,6 +1458,33 @@ guid "{80980C7D-6981-11F0-B3CF-8BF49D6F701B}"
 "classname" "fx"
 "fxdef" "_reapy/fx_hellround_collector_depart"
 "origin" "-178 449 56"
+"fxstate1" "1"
+"fxstate2" "1"
+"fxstate3" "1"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 89
+{
+guid "{638F872F-6CA5-11F0-B3D4-B21805BD407D}"
+"classname" "fx"
+"fxdef" "zombie/fx_shdw_spell_charge_zod_zmb"
+"origin" "1072 704 32"
+"fxstate1" "1"
+"fxstate2" "1"
+"fxstate3" "1"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 90
+{
+guid "{0A7BE3BD-6CA6-11F0-B3D4-B21805BD407D}"
+"classname" "fx"
+"delay" "-25955"
+"fxdef" "_reapy/fx_hellround_powerup"
+"origin" "1008 652 36"
 "fxstate1" "1"
 "fxstate2" "1"
 "fxstate3" "1"

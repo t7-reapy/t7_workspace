@@ -1,10 +1,16 @@
 # Script Investigations
 
-In this document, there will be tips and stuff around my investigations and discoveries around tryarch scripts (... or community scripts). I think this effort is worth it considering me starting from scratch, for a later me or newcomer. I won't cover the very basics of programming of course, but I will cover specific stuff about the scripts I read and what is worth to note (to re-use, to overwrite, or to understand).
+In this document, there will be tips and stuff around my investigations and discoveries around treyarch scripts (... or community scripts). I think this effort is worth it considering me starting from scratch, for a later me or newcomer. I won't cover the very basics of programming of course, but I will cover specific stuff about the scripts I read and what is worth to note (to re-use, to overwrite, or to understand).
 
-## Weapons
+## Troubleshoot
 
-If the map include weapons that are not linked (espeically the ones buyable on the walls), the map doesn't run.
+When booting game after a successful linking of the scripts in the tools, and having error: *`Error linking script: "blabla.gsc"`*, usually it means one script file is missing from zone file. It mostly does this because link step does the linkage with zoned files, not files from the folder AFAIK.
+
+If the map includes weapons that are not linked (especially the ones buyable on the walls), the map doesn't run, and crashes instantly with error about zm_weapons or something. There is also a wallbuy limit I think, that makes the map crashes without errors.
+
+## Powerups
+
+Enabling logic is at [`_zm_spawner.gsc`](.\share\raw\scripts\zm\_zm_spawner.gsc#L1545). Zombie's actor variable `zombie.no_powerups` can be configured for specific actor. `level.no_powerups` or flag `flag::set("zombie_drop_powerups", 1)` can be set to true for general decision.
 
 ## AI
 
@@ -47,3 +53,23 @@ The `ambient_mod.csv` or **any ambient mod csv file** needs to be configured acc
 
 "Reverb" column config doesn't seem to impact gun sound effects, weirdly, but will affect every other sounds I've been testing.
 At least the context ringoff_plr does affect gun sound. Important! context "water":"over" needs to specified, if not, no gun sounds.
+
+## Clientfield
+
+**DEBUG CLIENT FIELD WITH: `+set com_clientfieldsdebug 1`**
+
+| Clientfield Type | CSC self          | Free Bits (Starter ZM Map) | Used in Zombies? (Base Game) | General Usage                                                                                                                              |
+| :--------------: | :---------------- | -------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+|      world       | level             | 1917                       | Yes                          | A huge pool of bits to manipulate almost any client-side entity. Can also be useful for toggling LUA UI elements.                          |
+|      actor       | AI                | 59                         | Yes                          | Used widely to play CSC FX and sounds on a basic Zombie AI.                                                                                |
+|     vehicle      | vehicle entity    | 76                         | Sometimes                    | Some AI such as GK drones and SOE wasps use this asset type, along with the Origins tank. Useful to play CSC FX and sounds.                |
+|    allplayers    | player            | 107                        | Yes                          | Gets called on EVERY player. A lot of times this is used to play 3rd-person FX on a player while filtering them from seeing it themselves. |
+|     toplayer     | player            | 79                         | Yes                          | Gets called on A SINGLE player. Can be used to show FX to a specific player(s).                                                            |
+|   playercorpse   | dead player body  | 112                        | No                           | Generally used for playing FX on a player's dead body in Multiplayer.                                                                      |
+|  clientuimodel   | N/A               | 79                         | Yes                          | Used to directly interface with a client's LUA UI Model. No CSC functions are needed, but still needs to be registered in CSC.             |
+|   scriptmover    | basic entity      | 84                         | Yes                          | Can be used to play client-side FX on a server-side entity. This is especially used if the entity is moving.                               |
+|    helicopter    | helicopter entity | 36                         | No                           | Used in BO3 for handling FX and sounds for helicopters and drones.                                                                         |
+|      plane       | plane entity      | 63                         | No                           | Used for Plane assets which are not used much in BO3.                                                                                      |
+|     missile      | missile entity    | 56                         | Sometimes                    | Can help play FX or sounds on a missile coming from things like a launcher, bow, or AI weapon.                                             |
+|     zbarrier     | zbarrier entity   | 44                         | Yes                          | Used to handle FX and sounds for zbarrier assets such as Pack-A-Punch, GobbleGum machines, and zombie barricades.                          |
+|       item       | item entity       | 64                         | No                           | Rarely used for specific scenarios in the Campaign.                                                                                        |
