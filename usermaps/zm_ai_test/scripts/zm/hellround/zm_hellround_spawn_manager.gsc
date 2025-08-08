@@ -1,11 +1,5 @@
-
 #using scripts\shared\flag_shared; 
 #using scripts\shared\system_shared;
-
-// For callbacks
-#using scripts\zm\_zm_bloodsplatter;
-#using scripts\zm\hellround\zm_hellround_collectors;
-#using scripts\zm\zm_wolf_soul_collectors;
 
 // AIs involved in hell rounds
 #using scripts\shared\ai\zombie_utility;
@@ -35,6 +29,12 @@ function private init()
 
     level.hellround_current_iteration = 0;
     level.hellround_callback_should_be_begin = true;
+
+    level.hellround_spawn_manager_ai_spawn_callbacks = [];
+    level.hellround_spawn_manager_bad_iteration_callbacks = [];
+
+    // If hellround ends, ai shouldn't persists, and shall be killed.
+    add_ai_spawn_callback(&watch_if_ai_persists_outside_of_hellrounds);
 }
 
 function private main()
@@ -42,7 +42,6 @@ function private main()
     level.initial_zombie_ai_limit = level.zombie_ai_limit;
     level.initial_zombie_actor_limit = level.zombie_actor_limit;
 
-    zm_hellround_collectors::bind_completion_callback(&hellround_stops);
     level thread hellround_bad_iteration_watcher();
     level thread hellround_iteration_watcher();
 
@@ -57,10 +56,11 @@ function private main()
 function private hellround_bad_iteration_watcher() 
 {
     level endon(KILL_HELLROUND_WATCHERS_NOTIFICATION);
+    level endon(KILL_HELLROUND_BAD_ITERATION_WATCHER_NOTIFICATION);
 
     level flag::wait_till(HELLROUND_BAD_FLAG_TRIGGER);
-    level thread zm_wolf_soul_collectors::force_completion(); // turns off cerberus
-    
+
+    bad_iteration_callbacks();
     hellround_stop_spawns();
     hellround_update_iteration(true);
     hellround_starts();
@@ -71,13 +71,8 @@ function private hellround_iteration_watcher()
     level endon(KILL_HELLROUND_WATCHERS_NOTIFICATION);
     level endon(HELLROUND_BAD_FLAG);
 
-    level flag::wait_till(HELLROUND_FLAGS[0]);
-    PRINT_HR_DEBUG("Cerberus feeding started");
-    level flag::wait_till_clear(HELLROUND_FLAGS[0]);
-    level flag::wait_till_clear(HELLROUND_FLAGS[0]);
-    level flag::wait_till_clear(HELLROUND_FLAGS[0]);
-    PRINT_HR_DEBUG("Final cerb filled");
-    hellround_progress();
+    // Cerberus (iteration 0) is not a real iteration, so we don't wait for it
+    // It is managed through callbacks in zm_hellround.gsc
 
     level flag::wait_till(HELLROUND_FLAGS[1]);
     PRINT_HR_DEBUG("First soul started");
@@ -98,6 +93,28 @@ function private hellround_iteration_watcher()
     hellround_progress();
 }
 
+function private watch_if_ai_persists_outside_of_hellrounds() // self == ai actor
+{
+    self endon("death");
+
+    if (!isdefined(self))
+    {
+        return;
+    }
+
+    while(zm_hellround_shared::is_hellround_running())
+    {
+        WAIT_SERVER_FRAME;
+    }
+
+    if (IsAlive(self))
+    {
+        // TODO: play fx + sfx before kill.
+        wait 1.0;
+        self Kill();
+    }
+}
+
 // #endregion
 // #region hellrounds round start/stop
 
@@ -112,6 +129,11 @@ function abolish_hellrounds()
 
     // If hellround currently running, end it
     level hellround_stops();
+}
+
+function abolish_bad_hellround()
+{
+    level notify(KILL_HELLROUND_BAD_ITERATION_WATCHER_NOTIFICATION);
 }
 
 function hellround_starts()
@@ -266,7 +288,11 @@ function private spawn_dogs_loop(spawn_flag)
         }
 
         ai = zm_ai_dogs::custom_special_dog_spawn();
-        ai thread zm_bloodsplatter::watch_actor();
+        if (!isdefined(ai))
+        {
+            return;
+        }
+        ai ai_spawn_callbacks();
     }
 }
 
@@ -285,7 +311,11 @@ function private spawn_apothicon_furies_loop(spawn_flag)
         }
 
         ai = zm_genesis_apothicon_fury::apothicon_fury_spawn_on_location();
-        ai thread zm_bloodsplatter::watch_actor();
+        if (!isdefined(ai))
+        {
+            return;
+        }
+        ai ai_spawn_callbacks();
     }
 }
 
@@ -304,7 +334,11 @@ function private spawn_wasps_loop(spawn_flag)
         }
 
         ai = zm_ai_wasp::special_wasp_spawn();
-        ai thread zm_bloodsplatter::watch_actor();
+        if (!isdefined(ai))
+        {
+            return;
+        }
+        ai ai_spawn_callbacks();
     }
 }
 
@@ -323,12 +357,53 @@ function private spawn_napalm_zombies_loop(spawn_flag)
         }
 
         ai = zm_ai_napalm::napalm_zombie_spawning();
-        ai thread zm_bloodsplatter::watch_actor();
+        if (!isdefined(ai))
+        {
+            return;
+        }
+        ai ai_spawn_callbacks();
     }
 }
 
 // #endregion
 // #region callbacks
+
+function add_bad_iteration_callback(func_ptr)
+{
+    if (IsFunctionPtr(func_ptr))
+    {
+        level.hellround_spawn_manager_bad_iteration_callbacks[level.hellround_spawn_manager_bad_iteration_callbacks.size] = func_ptr;
+    }
+}
+
+function private bad_iteration_callbacks()
+{
+    foreach(callback in level.hellround_spawn_manager_bad_iteration_callbacks)
+    {
+        level thread [[ callback ]]();
+    }
+}
+
+function add_ai_spawn_callback(func_ptr)
+{
+    if (IsFunctionPtr(func_ptr))
+    {
+        level.hellround_spawn_manager_ai_spawn_callbacks[level.hellround_spawn_manager_ai_spawn_callbacks.size] = func_ptr;
+    }
+}
+
+function private ai_spawn_callbacks() // self == ai actor
+{
+    if (!isdefined(self))
+    {
+        return;
+    }
+
+    foreach(callback in level.hellround_spawn_manager_ai_spawn_callbacks)
+    {
+        self thread [[ callback ]]();
+    }
+}
 
 function private call_toggle_callbacks(b_enabled)
 {

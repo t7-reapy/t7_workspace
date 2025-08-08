@@ -44,6 +44,11 @@ function private bodystyle_back_to_normal() // self == player
 
 function private update_weapons_camo_for_hellround(enable) // self == player
 {
+    if (!HRPLR_HELLROUND_CAMO_ENABLE)
+    {
+        return;
+    }
+
     foreach (weapon in self GetWeaponsListPrimaries())
     {
         self update_weapon_camo_for_hellround(enable, weapon);

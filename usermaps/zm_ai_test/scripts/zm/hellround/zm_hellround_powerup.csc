@@ -1,26 +1,27 @@
-#using scripts\codescripts\struct;
-
 #using scripts\shared\system_shared;
-
 #insert scripts\shared\shared.gsh;
-
-#using scripts\zm\_zm_powerups;
-
-#insert scripts\zm\_zm_powerups.gsh;
-#insert scripts\zm\_zm_utility.gsh;
 
 #insert scripts\zm\hellround\zm_hellround_shared.gsh;
 #insert scripts\zm\hellround\zm_hellround_powerup.gsh;
 
+#precache("client_fx", HRPWRUP_FX);
+#precache("client_fx", HRPWRUP_GRAB_FX);
+
 #namespace zm_hellround_powerup;
 
-REGISTER_SYSTEM("zm_hellround_powerup", &init, undefined)
+REGISTER_SYSTEM_EX("zm_hellround_powerup", &init, &main, undefined)
 	
 function private init()
 {
-	zm_powerups::include_zombie_powerup(HRPWRUP_NAME);
-	if(ToLower(GetDvarString("g_gametype")) != "zcleansed")
-	{
-		zm_powerups::add_zombie_powerup(HRPWRUP_NAME, HRPWRUP_CLIENTFIELD);
-	}
+}
+
+function private main()
+{
+    change_powerup_solo_fx(HRPWRUP_FX, HRPWRUP_GRAB_FX);
+}
+
+function private change_powerup_solo_fx(solo_fx, solo_grab_fx)
+{
+    level._effect["powerup_on_solo"] = solo_fx;
+    level._effect["powerup_grabbed_solo"] = solo_grab_fx;
 }

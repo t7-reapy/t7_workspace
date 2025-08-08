@@ -1,0 +1,2 @@
+#define KILL_HELLROUND_WATCHERS_NOTIFICATION "kill_hellround_watchers"
+#define KILL_HELLROUND_BAD_ITERATION_WATCHER_NOTIFICATION "kill_hellround_bad_iteration_watcher"

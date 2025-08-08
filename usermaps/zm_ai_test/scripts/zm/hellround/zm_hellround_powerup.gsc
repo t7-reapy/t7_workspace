@@ -1,94 +1,50 @@
-#using scripts\zm\gametypes\_globallogic_score; 
 #using scripts\zm\_zm_powerup_fire_sale; 
 #using scripts\zm\_zm_powerup_carpenter; 
-#using scripts\codescripts\struct;
-
-#using scripts\shared\callbacks_shared;
-#using scripts\shared\clientfield_shared;
-#using scripts\shared\laststand_shared;
+#using scripts\zm\_zm_powerups;
 #using scripts\shared\system_shared;
-#using scripts\shared\util_shared;
 
 #insert scripts\shared\shared.gsh;
-#insert scripts\shared\archetype_shared\archetype_shared.gsh;
-#insert scripts\shared\version.gsh;
-
-#using scripts\shared\ai\zombie_death;
-
-#using scripts\zm\_zm;
-#using scripts\zm\_zm_blockers;
-#using scripts\zm\_zm_melee_weapon;
-#using scripts\zm\_zm_pers_upgrades;
-#using scripts\zm\_zm_pers_upgrades_functions;
-#using scripts\zm\_zm_powerups;
-#using scripts\zm\_zm_score;
-#using scripts\zm\_zm_spawner;
-#using scripts\zm\_zm_utility;
-#using scripts\zm\_zm_weapons;
-
-#insert scripts\zm\_zm_powerups.gsh;
-#insert scripts\zm\_zm_utility.gsh;
 
 #using scripts\zm\hellround\zm_hellround_shared;
 #insert scripts\zm\hellround\zm_hellround_shared.gsh;
 #insert scripts\zm\hellround\zm_hellround_powerup.gsh;
 
-#precache("material", "zom_icon_minigun");
 #precache("xmodel", HRPWRUP_MODEL);
-#precache("string", "ZOMBIE_POWERUP_MINIGUN");
-#precache("fx", HRPWRUP_FX);
 
 #namespace zm_hellround_powerup;
 
 REGISTER_SYSTEM_EX("zm_hellround_powerup", &init, &main, undefined)
 
-// #region setup
-
 function private init()
 {
-    zm_powerups::register_powerup(HRPWRUP_NAME, &grab_minigun);
-    zm_powerups::register_powerup_weapon(HRPWRUP_NAME, &minigun_countdown);
-    zm_powerups::powerup_set_prevent_pick_up_if_drinking(HRPWRUP_NAME, true);
-    zm_powerups::set_weapon_ignore_max_ammo(HRPWRUP_NAME);
-
-    if(ToLower(GetDvarString("g_gametype")) != "zcleansed")
-    {
-        zm_powerups::add_zombie_powerup(
-            HRPWRUP_NAME, 
-            HRPWRUP_MODEL, 
-            &"ZOMBIE_POWERUP_MINIGUN", 
-            &func_should_drop_minigun, 
-            POWERUP_ONLY_AFFECTS_GRABBER, 
-            !POWERUP_ANY_TEAM,
-            !POWERUP_ZOMBIE_GRABBABLE, 
-            HRPWRUP_FX, 
-            HRPWRUP_CLIENTFIELD, 
-            HRPWRUP_TIME_NAME, 
-            HRPWRUP_ON_NAME
-        );
-        level.zombie_powerup_weapon[HRPWRUP_NAME] = GetWeapon(HRPWRUP_WEAPON);
-    }
-    
-    callback::on_connect(&init_player_zombie_vars);
-    zm::register_actor_damage_callback(&minigun_damage_adjust);    
+    level.hellround_powerup_minigun_callbacks = [];
+    level._grab_minigun = &grab_minigun;
 }
 
 function private main()
 {
-    // The hellround minigun powerup is the only minigun powerup that should be used.
-    zm_powerups::powerup_remove_from_regular_drops("minigun");
-
+    level.zombie_powerups["minigun"].func_should_drop_with_regular_powerups = &func_should_drop_minigun_powerup;
     level.zombie_powerups["carpenter"].func_should_drop_with_regular_powerups = &func_should_drop_carpenter_powerup;
     level.zombie_powerups["nuke"].func_should_drop_with_regular_powerups = &func_should_drop_nuke_powerup;
     level.zombie_powerups["fire_sale"].func_should_drop_with_regular_powerups = &func_should_drop_fire_sale_powerup;
     level.zombie_powerups["insta_kill"].func_should_drop_with_regular_powerups = &func_should_drop_insta_kill_powerup;
     level.zombie_powerups["double_points"].func_should_drop_with_regular_powerups = &func_should_drop_double_points_powerup;
     level.zombie_powerups["full_ammo"].func_should_drop_with_regular_powerups = &func_should_drop_full_ammo_powerup;
+
+    change_powerup_model("minigun", HRPWRUP_MODEL);
+    change_powerup_weapon("minigun", HRPWRUP_WEAPON);
+    change_powerup_weapon_timeout_logic("minigun", &lose_minigun);
+    change_powerup_solo_fx(HRPWRUP_FX, HRPWRUP_GRAB_FX);
 }
 
 // #region powerup drop functions
 
 // #region powerup specific
+
+function private func_should_drop_minigun_powerup()
+{
+    return self func_should_drop_powerup("minigun");
+}
 
 function private func_should_drop_carpenter_powerup()
 {
@@ -124,9 +80,29 @@ function private func_should_drop_full_ammo_powerup()
 
 function private func_should_drop_powerup(power_up_name)
 {
-    //TODO.
-    return false;
+    // Because a kill can trigger a powerup drop, and the cerberus head, 
+    // a conflict can occur in the same server frame... And because this 
+    // function is called in a while(1) loop, and is_hellround_running() 
+    // will always return false, the server will crash... Therefore, do 
+    // not remove the below line.
+    WAIT_SERVER_FRAME;
+    PRINT_HR_DEBUG("Checking if powerup " + power_up_name + " should drop.");
 
+    // No powerups during hellrounds
+    if (zm_hellround_shared::is_hellround_running())
+    {
+        return false;
+    }
+
+    // If iteration 0 is finished, minigun powerup is available.
+    // If iteration 3 is finished, it's not available anymore.
+    current_iteration = zm_hellround_shared::get_current_iteration();
+    if (power_up_name == "minigun" && current_iteration > 0 && current_iteration <= 3)
+    {
+        return true;
+    }
+
+    // Default behavior for other powerups
     switch (power_up_name)
     {
         case "nuke":
@@ -138,139 +114,80 @@ function private func_should_drop_powerup(power_up_name)
             return self zm_powerup_fire_sale::func_should_drop_fire_sale();
         case "carpenter":
             return self zm_powerup_carpenter::func_should_drop_carpenter();
-        default: // "minigun"
+        default:
             return self zm_powerups::func_should_never_drop();
     }
 }
 
-function func_should_drop_minigun()
+function private change_powerup_model(powerup_name, model_name)
 {
-    // TODO: drop when cerberus is fed. (next iteration is 1)
-    return true;
+    level.zombie_powerups[powerup_name].model_name = model_name;
+}
+
+function private change_powerup_solo_fx(solo_fx, solo_grab_fx)
+{
+    level._effect["powerup_on_solo"] = solo_fx;
+    level._effect["powerup_grabbed_solo"] = solo_grab_fx;
+}
+
+function private change_powerup_weapon(powerup_name, weapon_name)
+{
+    level.zombie_powerup_weapon[powerup_name] = GetWeapon(weapon_name);
+}
+
+function private change_powerup_weapon_timeout_logic(powerup_name, timeout_logic_func)
+{
+    level._custom_powerups[powerup_name].weapon_countdown = timeout_logic_func;
+}
+
+function toggle_powerups(b_enabled)
+{
+    level.no_powerups = b_enabled;
 }
 
 // #endregion
-
-// Creates zombie_vars that need to be tracked on an individual basis rather than as a group.
-function init_player_zombie_vars()
-{    
-    self.zombie_vars[HRPWRUP_ON_NAME] = false; // minigun
-    self.zombie_vars[HRPWRUP_TIME_NAME] = 0;
-    
-	self globallogic_score::initPersStat(HRPWRUP_STATS, false);
-}
-
-// #endregion
-
-function grab_minigun(player)
-{
-    level thread minigun_weapon_powerup(player);
-    player thread zm_powerups::powerup_vo("minigun"); // TODO: change vo?
-
-    if(IsDefined(level._grab_minigun))
-    {
-        level thread [[ level._grab_minigun ]](player);
-    }
-}
 
 // #region powerup logic
 
-function minigun_weapon_powerup(ent_player, time)
+function private grab_minigun(player)
 {
-    ent_player endon("disconnect");
-    ent_player endon("death");
-    ent_player endon("player_downed");
+    foreach(player in GetPlayers())
+    {
+        player DisableWeaponCycling();
+    }
     
-    if (!IsDefined(time))
+    foreach(callback in level.hellround_powerup_minigun_callbacks)
     {
-        time = 30;
+        player thread [[ callback ]] ();
     }
-    if(isDefined(level._minigun_time_override))
-    {
-        time = level._minigun_time_override;
-    }
+}
 
-    // Just replenish the time if it's already active
-    if (ent_player.zombie_vars[HRPWRUP_ON_NAME] 
-    && (level.zombie_powerup_weapon[HRPWRUP_NAME] == ent_player GetCurrentWeapon() || IS_TRUE(ent_player.has_powerup_weapon[HRPWRUP_NAME])))
+function add_minigun_callback(func_ptr)
+{
+    if (IsFunctionPtr(func_ptr))
     {
-        if (ent_player.zombie_vars[HRPWRUP_TIME_NAME] < time)
-        {
-            ent_player.zombie_vars[HRPWRUP_TIME_NAME] = time;
-        }
+        level.hellround_powerup_minigun_callbacks[level.hellround_powerup_minigun_callbacks.size] = func_ptr;
+    }
+}
+
+function private lose_minigun()
+{
+    level waittill("hellround_powerup_ended");
+    foreach(player in GetPlayers())
+    {
+        player EnableWeaponCycling();
+    }
+}
+
+function lose_minigun_callback(b_enable = false)
+{
+    // This function callback is only for removal of minigun powerup, never to start it.
+    if (b_enable)
+    {
         return;
     }
-    
-    // make sure weapons are replaced properly if the player is downed
-    level._zombie_minigun_powerup_last_stand_func = &minigun_powerup_last_stand;
-    
-    stance_disabled = false;
-    //powerup cannot be switched to if player is in prone
-    if(ent_player GetStance() === "prone")
-    {
-        ent_player AllowCrouch(false);
-        ent_player AllowProne(false);
-        stance_disabled = true;
-        
-        while(ent_player GetStance() != "stand")
-        {
-            WAIT_SERVER_FRAME;
-        }
-    }
-    
-    zm_powerups::weapon_powerup(ent_player, time, HRPWRUP_WEAPON, true);
-    
-    if(stance_disabled)
-    {
-        ent_player AllowCrouch(true);
-        ent_player AllowProne(true);
-    }
-}
 
-function minigun_powerup_last_stand()
-{
-    zm_powerups::weapon_watch_gunner_downed(HRPWRUP_WEAPON);
-}
-
-function minigun_countdown(ent_player, str_weapon_time)
-{
-    while (ent_player.zombie_vars[str_weapon_time] > 0)
-    {
-        WAIT_SERVER_FRAME;
-        ent_player.zombie_vars[str_weapon_time] = ent_player.zombie_vars[str_weapon_time] - 0.05;
-    }    
-}
-
-function minigun_weapon_powerup_off()
-{
-    self.zombie_vars[HRPWRUP_TIME_NAME] = 0;
-}
-
-function minigun_damage_adjust( inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, sHitLoc, psOffsetTime, boneIndex, surfaceType ) //self is an enemy
-{
-    if (weapon.name != HRPWRUP_WEAPON)
-    {
-        // Don't affect damage dealt if the weapon isn't the minigun, allow other damage callbacks to be evaluated - mbettelman 1/28/2016
-        return -1;
-    }
-    if (self.archetype == ARCHETYPE_ZOMBIE || self.archetype == ARCHETYPE_ZOMBIE_DOG || self.archetype == ARCHETYPE_ZOMBIE_QUAD)
-    {        
-        n_percent_damage = self.health * (RandomFloatRange(.34, .75));
-    }
-    if (isdefined (level.minigun_damage_adjust_override))
-    {
-        n_override_damage = thread [[ level.minigun_damage_adjust_override ]]( inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, sHitLoc, psOffsetTime, boneIndex, surfaceType );
-        if(isdefined(n_override_damage))
-        {
-            n_percent_damage = n_override_damage;
-        }
-    }
-    
-    if(isdefined(n_percent_damage)) 
-    {
-        damage += n_percent_damage;    
-    }
-    return damage;
+    level notify("hellround_powerup_ended");
 }
 
 // #endregion
