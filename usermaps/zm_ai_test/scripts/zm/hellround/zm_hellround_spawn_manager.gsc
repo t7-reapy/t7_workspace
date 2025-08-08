@@ -232,7 +232,7 @@ function private hellround_update_iteration(is_bad_version = false)
 function private iteration_0_spawns(spawn_listen_flag) 
 {
     PRINT_HR_DEBUG("ITERATION 0 SPAWNS");
-        
+    
     level thread spawn_dogs_loop(spawn_listen_flag);
 }
 
@@ -273,6 +273,11 @@ function private iteration_bad_spawns(spawn_listen_flag = HELLROUND_BAD_FLAG)
 // #endregion
 // #region spawners
 
+function private is_special_spawn_enable()
+{
+    return HRSPAWN_ENABLE_SPECIAL_SPAWNS && !GetDvarInt("ai_disablespawn", 0);
+}
+
 function private spawn_dogs_loop(spawn_flag)
 {
     while (1)
@@ -281,7 +286,7 @@ function private spawn_dogs_loop(spawn_flag)
         PRINT_HR_DEBUG("Spawning wolf ...");
 
         // Don't use endon because it will bug the entities currently spawning
-        if (!flag::get(spawn_flag))
+        if (!flag::get(spawn_flag) || !is_special_spawn_enable())
         {
             PRINT_HR_DEBUG("Spawning wolf ... canceled.");
             return;
@@ -290,6 +295,7 @@ function private spawn_dogs_loop(spawn_flag)
         ai = zm_ai_dogs::custom_special_dog_spawn();
         if (!isdefined(ai))
         {
+            PRINT_HR_DEBUG("Ai wolf was created but is undefined");
             return;
         }
         ai ai_spawn_callbacks();
@@ -304,7 +310,7 @@ function private spawn_apothicon_furies_loop(spawn_flag)
         PRINT_HR_DEBUG("Spawning apothicon ...");
 
         // Don't use endon because it will bug the entities currently spawning
-        if (!flag::get(spawn_flag))
+        if (!flag::get(spawn_flag) || !is_special_spawn_enable())
         {
             PRINT_HR_DEBUG("Spawning apothicon ... canceled.");
             return;
@@ -313,6 +319,7 @@ function private spawn_apothicon_furies_loop(spawn_flag)
         ai = zm_genesis_apothicon_fury::apothicon_fury_spawn_on_location();
         if (!isdefined(ai))
         {
+            PRINT_HR_DEBUG("Ai Fury was created but is undefined");
             return;
         }
         ai ai_spawn_callbacks();
@@ -327,7 +334,7 @@ function private spawn_wasps_loop(spawn_flag)
         PRINT_HR_DEBUG("Spawning wasp ...");
 
         // Don't use endon because it will bug the entities currently spawning
-        if (!flag::get(spawn_flag))
+        if (!flag::get(spawn_flag) || !is_special_spawn_enable())
         {
             PRINT_HR_DEBUG("Spawning wasp ... canceled.");
             return;
@@ -336,6 +343,7 @@ function private spawn_wasps_loop(spawn_flag)
         ai = zm_ai_wasp::special_wasp_spawn();
         if (!isdefined(ai))
         {
+            PRINT_HR_DEBUG("Ai wasp was created but is undefined");
             return;
         }
         ai ai_spawn_callbacks();
@@ -350,7 +358,7 @@ function private spawn_napalm_zombies_loop(spawn_flag)
         PRINT_HR_DEBUG("Spawning napalm ...");
 
         // Don't use endon because it will bug the entities currently spawning
-        if (!flag::get(spawn_flag))
+        if (!flag::get(spawn_flag) || !is_special_spawn_enable())
         {
             PRINT_HR_DEBUG("Spawning napalm ... canceled.");
             return;
@@ -359,6 +367,7 @@ function private spawn_napalm_zombies_loop(spawn_flag)
         ai = zm_ai_napalm::napalm_zombie_spawning();
         if (!isdefined(ai))
         {
+            PRINT_HR_DEBUG("Ai napalm was created but is undefined");
             return;
         }
         ai ai_spawn_callbacks();

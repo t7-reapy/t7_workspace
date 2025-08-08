@@ -59,6 +59,15 @@ function private main()
     zm_hellround_shared::wait_for_map_load();
     show_hellround_collectors(HRCOLL_DISABLED);
     depart_hellround_collector_exploders(HRCOLL_DISABLED);
+    
+    foreach (skull in level.hellround_collectors.skulls)
+    {
+        skull.total_souls_left = HRCOLL_TOTAL_SOULS;
+        skull.idle_sound = Spawn("script_origin", skull.origin);
+        skull.idle_sound LinkTo(skull, "tag_origin");
+        skull.idle_amb_sound = Spawn("script_origin", skull.origin);
+        skull.idle_amb_sound LinkTo(skull, "tag_origin");
+    }
 
     if (DEBUG_HELLROUNDS)
     {
@@ -110,7 +119,8 @@ function cancel_collection_logic()
     {
         collector.is_collecting = false;
         collector notify("cancel_collection");
-        collector StopLoopSound(0.5);
+        collector.idle_sound StopLoopSound(0.5);
+        collector.idle_amb_sound StopLoopSound(0.5);
     }
 
     depart_hellround_collector_exploders(iteration);
@@ -165,10 +175,6 @@ function private get_active_collector_skull()
     }
 
     skull = level.hellround_collectors.skulls[iteration - 1];
-    if(!isdefined(skull.total_souls_left))
-    {
-        skull.total_souls_left = HRCOLL_TOTAL_SOULS;
-    }
 
     return skull;
 }
@@ -283,14 +289,18 @@ function private collect_souls(n_iteration) // self == collector skull ent
     self.is_collecting = true;
 
     PRINT_HR_DEBUG("collecting souls for " + self.targetname + " at iteration " + n_iteration);
-    self PlayLoopSound(HRCOLL_SND_IDLE_LOOP, 0.5);
-    self PlayLoopSound(HRCOLL_SND_IDLE_AMB_LOOP, 1.5);
+
+    self.idle_sound PlayLoopSound(HRCOLL_SND_IDLE_LOOP, 0.5);
+    self.idle_amb_sound PlayLoopSound(HRCOLL_SND_IDLE_AMB_LOOP, 1.5);
 
     self wait_till_all_souls_collected();
     self PlaySound(HRCOLL_SND_COMPLETED);
 
     depart_hellround_collector_exploders(n_iteration);
-    self StopLoopSound(0.5);
+
+    self.idle_sound StopLoopSound(0.5);
+    self.idle_amb_sound StopLoopSound(0.5);
+
     wait HRCOLL_FX_DEPART_DELAY;
     show_hellround_collectors(HRCOLL_DISABLED);
     
