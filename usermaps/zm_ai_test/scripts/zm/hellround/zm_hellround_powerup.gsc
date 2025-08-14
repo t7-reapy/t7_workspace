@@ -143,8 +143,8 @@ function private func_should_drop_powerup(power_up_name)
 function private should_drop_hellround_powerup()
 {
     current_iteration = zm_hellround_shared::get_current_iteration();
-    
-    return current_iteration > 0 && current_iteration <= 3;
+    drop_random_percent = RandomInt(100) < HRPWRUP_DROP_CHANCE_PERCENTAGE;
+    return drop_random_percent && current_iteration > 0 && current_iteration <= 3;
 }
 
 function private change_powerup_model(powerup_name, model_name)

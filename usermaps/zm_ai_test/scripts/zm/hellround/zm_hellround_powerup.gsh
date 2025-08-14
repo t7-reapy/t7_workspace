@@ -1,4 +1,5 @@
 #define HRPWRUP_WEAPON "iw8_minigun"
+#define HRPWRUP_DROP_CHANCE_PERCENTAGE 5 
 
 #define HRPWRUP_MODEL "doom_prop_hell_monster_skull_hellround"
 #define HRPWRUP_FX "_reapy/fx_hellround_powerup"
