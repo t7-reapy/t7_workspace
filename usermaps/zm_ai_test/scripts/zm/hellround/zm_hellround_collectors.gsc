@@ -93,6 +93,7 @@ function private sync_hellround_collectors() // self == player
 
 function start_collection_logic()
 {
+    collection_callback();
     wait HRCOLL_SPAWN_DELAY;
     show_hellround_collectors(zm_hellround_shared::get_current_iteration());
     start_hellround_collector_logic();
@@ -280,7 +281,6 @@ function private collect_souls(n_iteration) // self == collector skull ent
     self endon("cancel_collection");
 
     self.is_collecting = true;
-    collection_callback();
 
     PRINT_HR_DEBUG("collecting souls for " + self.targetname + " at iteration " + n_iteration);
 
