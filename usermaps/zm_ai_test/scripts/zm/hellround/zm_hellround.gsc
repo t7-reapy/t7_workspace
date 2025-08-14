@@ -41,7 +41,7 @@ class hellround
 {
     var abolished; // TODO: still needed?
 
-    // Callbacks for hellrounds
+    // Callbacks when hellrounds is enabled or disabled
     var toggle_callbacks;
 }
 
@@ -53,7 +53,6 @@ function private init()
     level.hellround = new hellround();
     level.hellround.abolished = false;
     level.hellround.toggle_callbacks = [];
-    level.hellround.end_callbacks = [];
 
     // Init hellround iteration flags
     level flag::init(HELLROUND_FLAGS[0]);
@@ -80,6 +79,14 @@ function add_toggle_callback(func) {
     }
 }
 
+function private call_toggle_callbacks(b_enabled)
+{
+    foreach (callback in level.hellround.toggle_callbacks)
+    {
+        level thread [[ callback ]](b_enabled);
+    }
+}
+
 function private bind_callbacks()
 {
     add_toggle_callback(&zm_hellround_powerup::lose_minigun_callback);
@@ -89,36 +96,42 @@ function private bind_callbacks()
     add_toggle_callback(&zm_hellround_environment::toggle_hellround_environment);
     add_toggle_callback(&zm_bloodsplatter::toggle_blood_splatter);
 
-    // Bind bad iteration start to force completion of cerberus heads, collectors, powerups ...
+
+    zm_hellround_spawn_manager::bind_toggle_hellround_callback(&call_toggle_callbacks);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_wolf_soul_collectors::force_completion);
-    // Note: hellround powerup and collector should never be canceled because bad iteration is no more available after feeding cerberus.
+    // Hellround powerup and collector should never be canceled because bad iteration is no more available after feeding cerberus.
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_collectors::cancel_collection_logic);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_powerup::lose_minigun_callback);
     zm_hellround_spawn_manager::add_ai_spawn_callback(&zm_bloodsplatter::watch_actor);
 
-    // Bind collectors to hellround manager
     zm_hellround_collectors::bind_completion_callback(&zm_hellround_spawn_manager::hellround_stops);
+    zm_hellround_collectors::bind_start_collection_callback(&zm_hellround_spawn_manager::iteration_time_management_update);
 
-    // Bind powerup to hellround manager and collectors
     zm_hellround_powerup::add_minigun_callback(&zm_hellround_spawn_manager::hellround_starts);
     zm_hellround_powerup::add_minigun_callback(&zm_hellround_collectors::start_collection_logic);
 
-    // TODO : add some custom fx for hellround start like the following one ?
-    // zm_ai_wasp::parasite_round_fx();
-
-    level.wolf_heads_become_active_callback = &hellround_cerberus_enable;
-    level.wolf_heads_become_inactive_callback = &hellround_cerberus_disable;
+    level.wolf_head_become_active_callback = &hellround_cerberus_enable;
+    level.wolf_head_become_inactive_callback = &hellround_cerberus_disable;
     level.soul_catchers_charged_callback = &hellround_cerberus_fed;
+
+    level.hellround_zombie_callback = &zm_hellround_spawn_manager::disable_point_during_hellrounds;
 }
 
-function private hellround_cerberus_enable()
+function private hellround_cerberus_enable(is_one_head_already_active)
 {
-    thread zm_hellround_spawn_manager::hellround_starts();
+    zm_hellround_spawn_manager::iteration_time_management_update();
+    if (!is_one_head_already_active)
+    {
+        thread zm_hellround_spawn_manager::hellround_starts();
+    }
 }
 
-function private hellround_cerberus_disable()
+function private hellround_cerberus_disable(is_one_head_still_active)
 {
-    thread zm_hellround_spawn_manager::hellround_stops();
+    if (!is_one_head_still_active)
+    {
+        thread zm_hellround_spawn_manager::hellround_stops();
+    }
 }
 
 function private hellround_cerberus_fed()

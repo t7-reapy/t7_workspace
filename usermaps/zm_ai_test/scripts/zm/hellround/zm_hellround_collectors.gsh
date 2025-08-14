@@ -13,10 +13,10 @@
 #define HRCOLL_EXPLODERS array("hellround_collector_01_exploder", "hellround_collector_02_exploder", "hellround_collector_03_exploder")
 #define HRCOLL_EXPLODERS_DEPART array("hellround_collector_01_depart_exploder", "hellround_collector_02_depart_exploder", "hellround_collector_03_depart_exploder")
 
-#define HRCOLL_TOTAL_SOULS 5
+#define HRCOLL_TOTAL_SOULS 50
 #define HRCOLL_SPAWN_DELAY 3.0
 #define HRCOLL_SOUL_TRAVEL_SPEED 150
-#define HRCOLL_SOUL_MAX_DISTANCE 2000
+#define HRCOLL_SOUL_MAX_DISTANCE 500
 #define HRCOLL_LOS_REQUIRED true
 
 #define HRCOLL_FX_TRAIL "_reapy/fx_hellround_collector_soul_trail"

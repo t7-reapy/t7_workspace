@@ -72,8 +72,8 @@ function main()
 	zombie_utility::set_zombie_var("zombie_powerup_drop_max_per_round", 8); // raise this to make drop happen more often
 
     // Use CW M1911 as start weapon
-    //t9_1911
-    level.start_weapon = (getWeapon("iw8_asval"));
+    //t9_1911 iw8_asval
+    level.start_weapon = (getWeapon("t9_1911"));
     
     level._zombie_custom_add_weapons =&custom_add_weapons;
     

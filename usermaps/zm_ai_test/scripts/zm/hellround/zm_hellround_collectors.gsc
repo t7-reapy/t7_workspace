@@ -27,6 +27,8 @@ class HellroundCollectors
     var clips;
 
     var souls;
+    var collection_callback;
+    var completion_callback;
 }
 
 function private init()
@@ -48,6 +50,8 @@ function private init()
     level.hellround_collectors.souls[0] = 0;
     level.hellround_collectors.souls[1] = 0;
     level.hellround_collectors.souls[2] = 0;
+    level.hellround_collectors.collection_callback = undefined;
+    level.hellround_collectors.completion_callback = undefined;
 
     callback::on_connect(&sync_hellround_collectors);
     callback::on_ai_spawned(&watch_ai_death_for_collection);
@@ -85,17 +89,6 @@ function private sync_hellround_collectors() // self == player
     {
         show_hellround_collectors(zm_hellround_shared::get_current_iteration());
     }
-}
-
-function bind_completion_callback(callback)
-{
-    if (!isdefined(callback) || !IsFunctionPtr(callback))
-    {
-        PRINT_HR_DEBUG("bind_completion_callback: Invalid callback provided.");
-        return;
-    }
-
-    level.hellround_collector_completion_callback = callback;
 }
 
 function start_collection_logic()
@@ -287,6 +280,7 @@ function private collect_souls(n_iteration) // self == collector skull ent
     self endon("cancel_collection");
 
     self.is_collecting = true;
+    collection_callback();
 
     PRINT_HR_DEBUG("collecting souls for " + self.targetname + " at iteration " + n_iteration);
 
@@ -316,14 +310,6 @@ function private wait_till_all_souls_collected() // self == collector skull ent
     for(i = 0; i < HRCOLL_TOTAL_SOULS; i++)
     {
         self waittill("soul_collected");
-    }
-}
-
-function private notify_completion_callback()
-{
-    if (IsFunctionPtr(level.hellround_collector_completion_callback))
-    {
-        [[ level.hellround_collector_completion_callback ]]();
     }
 }
 
@@ -370,6 +356,34 @@ function private soul_collected() // self == collector skull ent
 }
 
 // #endregion
+// #region callbacks
+
+function bind_completion_callback(func_ptr)
+{
+    if (IsFunctionPtr(func_ptr))
+    {
+        level.hellround_collectors.completion_callback = func_ptr;
+    }
+}
+
+function private notify_completion_callback()
+{
+    thread [[ level.hellround_collectors.completion_callback ]]();
+}
+
+function bind_start_collection_callback(func_ptr)
+{
+    if (IsFunctionPtr(func_ptr))
+    {
+        level.hellround_collectors.collection_callback = func_ptr;
+    }
+}
+
+function private collection_callback()
+{
+    thread [[ level.hellround_collectors.collection_callback ]]();
+}
+
 // #region ai death callback
 
 function private watch_ai_death_for_collection() // self == zm actor
@@ -407,6 +421,8 @@ function private close_and_in_los_of(collector) // self == zm actor
 }
 
 // #endregion
+
+// #endregion
 // #region debug
 
 function private modvar_debug_show_hellround_collectors()
@@ -424,8 +440,6 @@ function private modvar_debug_show_hellround_collectors()
             continue;
         }
         ModVar("hrcoll", "");
-        
-        PRINT_HR_DEBUG("current hellround iteration: " + level.hellround_current_iteration);
 
         switch(Int(dvar_value))
         {

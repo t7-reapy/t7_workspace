@@ -1,3 +1,4 @@
+#using scripts\shared\array_shared; 
 #using scripts\shared\flag_shared; 
 #using scripts\shared\system_shared;
 
@@ -20,6 +21,18 @@ REGISTER_SYSTEM_EX("zm_hellround_spawn_manager", &init, &main, undefined)
 
 function private void(){}
 
+class HellRoundSpawnManager
+{
+    var current_iteration;
+
+    var hellround_callback;
+    var ai_spawn_callbacks;
+    var bad_iteration_callbacks;
+
+    var collection_start_timestamp;
+    var time_before_max_spawn_rate;
+}
+
 function private init()
 {
     // Disable all custom rounds
@@ -27,14 +40,22 @@ function private init()
     level.apothicon_fury_rounds_enabled = 0;
     level.apothicon_fury_round_track_override = &void;
 
-    level.hellround_current_iteration = 0;
-    level.hellround_callback_should_be_begin = true;
+    // For pausing round logic during hellround
+    level flag::init("world_is_paused");
 
-    level.hellround_spawn_manager_ai_spawn_callbacks = [];
-    level.hellround_spawn_manager_bad_iteration_callbacks = [];
+
+    level.hellround_spawn_manager = new HellRoundSpawnManager();
+
+    level.hellround_spawn_manager.current_iteration = 0;
+    level.hellround_spawn_manager.hellround_callback = undefined;
+    level.hellround_spawn_manager.ai_spawn_callbacks = [];
+    level.hellround_spawn_manager.bad_iteration_callbacks = [];
+    level.hellround_spawn_manager.collection_start_timestamp = undefined;
+    level.hellround_spawn_manager.time_before_max_spawn_rate = undefined;
 
     // If hellround ends, ai shouldn't persists, and shall be killed.
     add_ai_spawn_callback(&watch_if_ai_persists_outside_of_hellrounds);
+    add_ai_spawn_callback(&disable_point_during_hellrounds);
 }
 
 function private main()
@@ -63,6 +84,7 @@ function private hellround_bad_iteration_watcher()
     bad_iteration_callbacks();
     hellround_stop_spawns();
     hellround_update_iteration(true);
+    iteration_time_management_update();
     hellround_starts();
 }
 
@@ -115,6 +137,24 @@ function private watch_if_ai_persists_outside_of_hellrounds() // self == ai acto
     }
 }
 
+function disable_point_during_hellrounds() // self == ai actor
+{
+    self endon("death");
+
+    while(1)
+    {
+        if (zm_hellround_shared::is_hellround_running())
+        {
+            self.deathpoints_already_given = true;
+        }
+        else
+        {
+            self.deathpoints_already_given = false;
+        }
+        WAIT_SERVER_FRAME;
+    }
+}
+
 // #endregion
 // #region hellrounds round start/stop
 
@@ -144,6 +184,8 @@ function hellround_starts()
     }
     PRINT_HR_DEBUG("Starting hellrounds...");
 
+    thread hellround_pause_round_logic();
+    thread hellround_increase_ai_limit();
     thread hellround_start_spawns();
     thread call_toggle_callbacks(true);
 }
@@ -156,8 +198,9 @@ function hellround_stops()
     }
     PRINT_HR_DEBUG("Stopping hellrounds ...");
     
-    hellround_stop_spawns();
+    thread hellround_stop_spawns();
     thread hellround_restore_ai_limit();
+    thread hellround_restore_round_logic();
     thread call_toggle_callbacks(false);
 }
 
@@ -167,15 +210,65 @@ function hellround_progress()
     hellround_update_iteration();
 }
 
+function private hellround_pause_round_logic()
+{
+    level endon("stop_hellround_pause_round_logic");
+
+    // First disable normal zombie spawn
+    level flag::set("world_is_paused");
+
+    // Then, disable round display from HUD
+    level.noRoundNumber = true;
+    SetRoundsPlayed(0);
+    
+    // Finally, disable scoring to prevent player from farming during hellround
+    level.player_score_override = &zero_score;
+    level.team_score_override = &zero_score;
+    foreach(player in GetPlayers())
+    {
+        player.ready_for_score_events = false;
+    }
+
+    // Between round, the round display change in "round_think" (if all zombie died for example)
+    // The following prevent the round number to be displayed.
+    level waittill("between_round_over");
+    SetRoundsPlayed(0);
+}
+
+function private zero_score(arg0 = undefined, arg1 = undefined)
+{
+    return 0;
+}
+
+function private hellround_restore_round_logic()
+{
+    level notify("stop_hellround_pause_round_logic");
+
+    // Restore zombie spawning
+    level flag::clear("world_is_paused");
+
+    // Restore round display in HUD
+    level.noRoundNumber = false;
+    SetRoundsPlayed(level.round_number);
+    
+    // Finally, enable back scoring
+    level.player_score_override = undefined;
+    level.team_score_override = undefined;
+    foreach(player in GetPlayers())
+    {
+        player.ready_for_score_events = true;
+    }
+}
+
 // #endregion
 // #region iteration management
 
 function private hellround_start_spawns()
 {
-    spawn_flag = HELLROUND_FLAGS[level.hellround_current_iteration];
+    spawn_flag = HELLROUND_FLAGS[level.hellround_spawn_manager.current_iteration];
     level flag::set(spawn_flag);
 
-    switch (level.hellround_current_iteration)
+    switch (level.hellround_spawn_manager.current_iteration)
     {
         case 0:
             thread iteration_0_spawns(spawn_flag);
@@ -193,11 +286,30 @@ function private hellround_start_spawns()
             thread iteration_bad_spawns();
             break;
         default:
-            PRINT_HR_DEBUG("Hellrounds: no spawns for iteration " + level.hellround_current_iteration + " defined.");
+            PRINT_HR_DEBUG("Hellrounds: no spawns for iteration " + level.hellround_spawn_manager.current_iteration + " defined.");
             return;
     }
-    
-    // Based on initial values, no real justification here.
+}
+
+function iteration_time_management_update()
+{
+    if (isdefined(level.hellround_spawn_manager.collection_start_timestamp))
+    {
+        // If a collection was already started, we just extend the amount of time before maximum spawn rate is reached.
+        level.hellround_spawn_manager.time_before_max_spawn_rate += HRSPAWN_TIME_BEFORE_MIN_SPAWN_DELAY;
+        PRINT_HR_DEBUG("time_before_max_spawn_rate increased to: " + level.hellround_spawn_manager.time_before_max_spawn_rate);
+    }
+    else
+    {
+        level.hellround_spawn_manager.collection_start_timestamp = GetTime();
+        level.hellround_spawn_manager.time_before_max_spawn_rate = HRSPAWN_TIME_BEFORE_MIN_SPAWN_DELAY;
+        PRINT_HR_DEBUG("time_before_max_spawn_rate defined to: " + level.hellround_spawn_manager.time_before_max_spawn_rate);
+    }
+}
+
+function private hellround_increase_ai_limit()
+{
+    // Based on initial values (24 & 31 respectivelly), no real justification here.
     level.zombie_ai_limit = 120;
     level.zombie_actor_limit = 127;
 }
@@ -216,7 +328,10 @@ function private hellround_stop_spawns()
     }
 
     // Clearing the flags stop the next coming spawns
-    level flag::clear(HELLROUND_FLAGS[level.hellround_current_iteration]);
+    level flag::clear(HELLROUND_FLAGS[level.hellround_spawn_manager.current_iteration]);
+
+    // Clearing collection_start_timestamp will reset it at next collection
+    level.hellround_spawn_manager.collection_start_timestamp = undefined;
 }
 
 function private hellround_update_iteration(is_bad_version = false)
@@ -226,13 +341,14 @@ function private hellround_update_iteration(is_bad_version = false)
         return;
     }
     
-    level.hellround_current_iteration = (is_bad_version ? HELLROUND_BAD_FLAG_INDEX : level.hellround_current_iteration + 1);
+    level.hellround_spawn_manager.current_iteration = (is_bad_version ? HELLROUND_BAD_FLAG_INDEX : level.hellround_spawn_manager.current_iteration + 1);
 }
 
 function private iteration_0_spawns(spawn_listen_flag) 
 {
     PRINT_HR_DEBUG("ITERATION 0 SPAWNS");
     
+    level thread spawn_zombies_loop(spawn_listen_flag);
     level thread spawn_dogs_loop(spawn_listen_flag);
 }
 
@@ -240,6 +356,7 @@ function private iteration_1_spawns(spawn_listen_flag)
 {
     PRINT_HR_DEBUG("ITERATION 1 SPAWNS");
     
+    level thread spawn_zombies_loop(spawn_listen_flag);
     level thread spawn_napalm_zombies_loop(spawn_listen_flag);
 }
 
@@ -247,6 +364,7 @@ function private iteration_2_spawns(spawn_listen_flag)
 {
     PRINT_HR_DEBUG("ITERATION 2 SPAWNS");
     
+    level thread spawn_zombies_loop(spawn_listen_flag);
     level thread spawn_napalm_zombies_loop(spawn_listen_flag);
     level thread spawn_apothicon_furies_loop(spawn_listen_flag);
 }
@@ -255,6 +373,7 @@ function private iteration_3_spawns(spawn_listen_flag)
 {
     PRINT_HR_DEBUG("ITERATION 3 SPAWNS");
     
+    level thread spawn_zombies_loop(spawn_listen_flag);
     level thread spawn_napalm_zombies_loop(spawn_listen_flag);
     level thread spawn_apothicon_furies_loop(spawn_listen_flag);
     level thread spawn_wasps_loop(spawn_listen_flag);
@@ -264,6 +383,7 @@ function private iteration_bad_spawns(spawn_listen_flag = HELLROUND_BAD_FLAG)
 {
     PRINT_HR_DEBUG("ITERATION BAD SPAWNS");
     
+    level thread spawn_zombies_loop(spawn_listen_flag);
     level thread spawn_dogs_loop(spawn_listen_flag);
     level thread spawn_apothicon_furies_loop(spawn_listen_flag);
     level thread spawn_wasps_loop(spawn_listen_flag);
@@ -275,15 +395,134 @@ function private iteration_bad_spawns(spawn_listen_flag = HELLROUND_BAD_FLAG)
 
 function private is_special_spawn_enable()
 {
-    return HRSPAWN_ENABLE_SPECIAL_SPAWNS && !GetDvarInt("ai_disablespawn", 0);
+    return HRSPAWN_ENABLE_SPAWNS && !GetDvarInt("ai_disablespawn", 0);
+}
+
+// #region spawn ditribution
+
+function private get_spawn_delay(min_delay_spawn, max_delay_spawn)
+{
+    ratio = get_time_elapsed_ratio();
+    distribution = get_spawn_ratio_distributed(ratio);
+    spawn_delay = get_delay_internal(distribution, min_delay_spawn, max_delay_spawn);
+
+    return spawn_delay;
+}
+
+function private get_time_elapsed_ratio()
+{
+    if (!isdefined(level.hellround_spawn_manager.collection_start_timestamp))
+    {
+        PRINT_HR_DEBUG("Something is wrong: collection_start_timestamp is undefined");
+        return 0;
+    }
+
+    time_elapsed = GetTime() - level.hellround_spawn_manager.collection_start_timestamp;
+    time_before_max_spawn_rate = level.hellround_spawn_manager.time_before_max_spawn_rate;
+
+    if (time_elapsed > time_before_max_spawn_rate)
+    {
+        time_elapsed = time_before_max_spawn_rate;
+    }
+
+    time_elapsed_ratio = (time_before_max_spawn_rate - time_elapsed) / time_before_max_spawn_rate;
+    return time_elapsed_ratio;
+}
+
+/@
+    Get a distribution, between 0 and 1, with the function f(x) = x²
+    Note: x must be between 0 and 1.
+@/
+function private get_spawn_ratio_distributed(ratio)
+{
+    return ratio * ratio;
+}
+
+function private get_delay_internal(distribution, min_delay_spawn, max_delay_spawn)
+{
+    delay = min_delay_spawn + (max_delay_spawn - min_delay_spawn) * distribution;
+    player_ratio = (1 + HRSPAWN_PLAYER_NUMBER_FACTOR) - level.players.size * HRSPAWN_PLAYER_NUMBER_FACTOR;
+    return delay * player_ratio;
+}
+
+// #endregion
+// #region zombie spawn specific
+
+function private spawn_zombie_internal()
+{
+    if(!isdefined(level.zombie_spawners))
+    {
+        PRINT_HR_DEBUG("No spawners for zombies found in map. No AI created.");
+        return undefined;
+    }
+
+    // Check for custom zombie spawner selection
+    if (isdefined(level.fn_custom_zombie_spawner_selection))
+    {
+        spawner = [[ level.fn_custom_zombie_spawner_selection ]]();
+    }
+
+    // Default zombie spawner selection
+    else
+    {
+        if(IS_TRUE(level.use_multiple_spawns))
+        {
+            if(isdefined(level.spawner_int) && IS_TRUE(level.zombie_spawn[level.spawner_int].size))
+            {
+                spawner = array::random(level.zombie_spawn[level.spawner_int]);
+            }
+            else
+            {
+                spawner = array::random(level.zombie_spawners);
+            }
+        }
+        else
+        {
+            spawner = array::random(level.zombie_spawners);
+        }
+    }
+
+    ai = zombie_utility::spawn_zombie(spawner, spawner.targetname);
+    
+    return ai;
+}
+
+// #endregion
+
+function private spawn_zombies_loop(spawn_flag)
+{
+    while (1)
+    {
+        delay = get_spawn_delay(HRSPAWN_MIN_DELAY_ZOMBIE, HRSPAWN_MAX_DELAY_ZOMBIE);
+
+        PRINT_HR_DEBUG("Spawning zombie in " + delay);
+        wait delay;
+
+        // Don't use endon because it will bug the entities currently spawning
+        if (!flag::get(spawn_flag) || !is_special_spawn_enable())
+        {
+            PRINT_HR_DEBUG("Spawning zombie ... canceled.");
+            return;
+        }
+
+        ai = spawn_zombie_internal();
+        if (!isdefined(ai))
+        {
+            PRINT_HR_DEBUG("Ai zombie was created but is undefined");
+            continue;
+        }
+        ai ai_spawn_callbacks();
+    }
 }
 
 function private spawn_dogs_loop(spawn_flag)
 {
     while (1)
     {
-        wait randomIntRange(4, 8);
-        PRINT_HR_DEBUG("Spawning wolf ...");
+        delay = get_spawn_delay(HRSPAWN_MIN_DELAY_DOG, HRSPAWN_MAX_DELAY_DOG);
+
+        PRINT_HR_DEBUG("Spawning wolf in " + delay);
+        wait delay;
 
         // Don't use endon because it will bug the entities currently spawning
         if (!flag::get(spawn_flag) || !is_special_spawn_enable())
@@ -296,7 +535,7 @@ function private spawn_dogs_loop(spawn_flag)
         if (!isdefined(ai))
         {
             PRINT_HR_DEBUG("Ai wolf was created but is undefined");
-            return;
+            continue;
         }
         ai ai_spawn_callbacks();
     }
@@ -306,8 +545,10 @@ function private spawn_apothicon_furies_loop(spawn_flag)
 {
     while (1)
     {
-        wait randomIntRange(4, 8);
-        PRINT_HR_DEBUG("Spawning apothicon ...");
+        delay = get_spawn_delay(HRSPAWN_MIN_DELAY_FURY, HRSPAWN_MAX_DELAY_FURY);
+
+        PRINT_HR_DEBUG("Spawning apothicon in " + delay);
+        wait delay;
 
         // Don't use endon because it will bug the entities currently spawning
         if (!flag::get(spawn_flag) || !is_special_spawn_enable())
@@ -320,7 +561,7 @@ function private spawn_apothicon_furies_loop(spawn_flag)
         if (!isdefined(ai))
         {
             PRINT_HR_DEBUG("Ai Fury was created but is undefined");
-            return;
+            continue;
         }
         ai ai_spawn_callbacks();
     }
@@ -330,8 +571,10 @@ function private spawn_wasps_loop(spawn_flag)
 {
     while (1)
     {
-        wait randomIntRange(8, 16);
-        PRINT_HR_DEBUG("Spawning wasp ...");
+        delay = get_spawn_delay(HRSPAWN_MIN_DELAY_WASP, HRSPAWN_MAX_DELAY_WASP);
+
+        PRINT_HR_DEBUG("Spawning wasp in " + delay);
+        wait delay;
 
         // Don't use endon because it will bug the entities currently spawning
         if (!flag::get(spawn_flag) || !is_special_spawn_enable())
@@ -344,7 +587,7 @@ function private spawn_wasps_loop(spawn_flag)
         if (!isdefined(ai))
         {
             PRINT_HR_DEBUG("Ai wasp was created but is undefined");
-            return;
+            continue;
         }
         ai ai_spawn_callbacks();
     }
@@ -354,8 +597,10 @@ function private spawn_napalm_zombies_loop(spawn_flag)
 {
     while (1)
     {
-        wait 15;
-        PRINT_HR_DEBUG("Spawning napalm ...");
+        delay = get_spawn_delay(HRSPAWN_MIN_DELAY_NAPALM, HRSPAWN_MAX_DELAY_NAPALM);
+
+        PRINT_HR_DEBUG("Spawning napalm in " + delay);
+        wait delay;
 
         // Don't use endon because it will bug the entities currently spawning
         if (!flag::get(spawn_flag) || !is_special_spawn_enable())
@@ -368,7 +613,7 @@ function private spawn_napalm_zombies_loop(spawn_flag)
         if (!isdefined(ai))
         {
             PRINT_HR_DEBUG("Ai napalm was created but is undefined");
-            return;
+            continue;
         }
         ai ai_spawn_callbacks();
     }
@@ -381,13 +626,13 @@ function add_bad_iteration_callback(func_ptr)
 {
     if (IsFunctionPtr(func_ptr))
     {
-        level.hellround_spawn_manager_bad_iteration_callbacks[level.hellround_spawn_manager_bad_iteration_callbacks.size] = func_ptr;
+        level.hellround_spawn_manager.bad_iteration_callbacks[level.hellround_spawn_manager.bad_iteration_callbacks.size] = func_ptr;
     }
 }
 
 function private bad_iteration_callbacks()
 {
-    foreach(callback in level.hellround_spawn_manager_bad_iteration_callbacks)
+    foreach(callback in level.hellround_spawn_manager.bad_iteration_callbacks)
     {
         level thread [[ callback ]]();
     }
@@ -397,7 +642,7 @@ function add_ai_spawn_callback(func_ptr)
 {
     if (IsFunctionPtr(func_ptr))
     {
-        level.hellround_spawn_manager_ai_spawn_callbacks[level.hellround_spawn_manager_ai_spawn_callbacks.size] = func_ptr;
+        level.hellround_spawn_manager.ai_spawn_callbacks[level.hellround_spawn_manager.ai_spawn_callbacks.size] = func_ptr;
     }
 }
 
@@ -408,17 +653,25 @@ function private ai_spawn_callbacks() // self == ai actor
         return;
     }
 
-    foreach(callback in level.hellround_spawn_manager_ai_spawn_callbacks)
+    foreach(callback in level.hellround_spawn_manager.ai_spawn_callbacks)
     {
         self thread [[ callback ]]();
     }
 }
 
+function bind_toggle_hellround_callback(func_ptr)
+{
+    if (IsFunctionPtr(func_ptr))
+    {
+        level.hellround_spawn_manager.hellround_callback = func_ptr;
+    }
+}
+
 function private call_toggle_callbacks(b_enabled)
 {
-    foreach (callback in level.hellround.toggle_callbacks)
+    if (isdefined(level.hellround_spawn_manager.hellround_callback))
     {
-        level thread [[ callback ]](b_enabled);
+        [[ level.hellround_spawn_manager.hellround_callback ]](b_enabled);
     }
 }
 
@@ -441,7 +694,7 @@ function private modvar_debug_start_stop_hellround()
         }
         ModVar("hrspawn", "");
         
-        PRINT_HR_DEBUG("current hellround iteration: " + level.hellround_current_iteration);
+        PRINT_HR_DEBUG("current hellround iteration: " + level.hellround_spawn_manager.current_iteration);
 
         switch(Int(dvar_value))
         {

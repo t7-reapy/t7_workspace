@@ -45,6 +45,8 @@
 #insert scripts\zm\_zm.gsh;
 #insert scripts\zm\_zm_perks.gsh;
 
+#insert scripts\zm\zm_wolf_soul_collectors.gsh;
+
 #precache("model", "p6_zm_al_dream_catcher");
 #precache("model", "p6_zm_al_dream_catcher_on");
 #precache("model", "c_zom_zombie_mask_head");
@@ -62,11 +64,6 @@
 #namespace zm_wolf_soul_collectors;
 
 REGISTER_SYSTEM_EX("zm_wolf_soul_collectors", &init, &main, undefined)
-
-#define ZOMBIE_EATEN_BEFORE_COMPLETION 1
-#define DEBUG_WOLF 0
-#define PRINT_DEBUG_WOLF(__str) if(DEBUG_WOLF) IPrintLnBold(__str) // Note: don't use comas in __str
-#define KILL_WOLF_HEAD_WATCHERS_NOTIFICATION "kill_wolf_heads_watchers"
 
 function init_cerberus_fx()
 {
@@ -243,9 +240,9 @@ function HeadActiveCallbacks()
     if (level.soul_catchers_abolished)
         return; // It's possible we missed the notification
 
-    if (level.wolf_heads_active == 0 && IsFunctionPtr(level.wolf_heads_become_active_callback)) 
+    if (IsFunctionPtr(level.wolf_head_become_active_callback)) 
     {
-        level thread [[ level.wolf_heads_become_active_callback ]]();
+        level thread [[ level.wolf_head_become_active_callback ]](level.wolf_heads_active > 0);
     }
     level.wolf_heads_active++;
     PRINT_DEBUG_WOLF("wolf head actives: "+level.wolf_heads_active);
@@ -260,9 +257,9 @@ function HeadGoneCallbacks()
 
     level.wolf_heads_active--;
     PRINT_DEBUG_WOLF("wolf head actives: "+level.wolf_heads_active);
-    if (level.wolf_heads_active == 0 && IsFunctionPtr(level.wolf_heads_become_inactive_callback)) 
+    if (IsFunctionPtr(level.wolf_head_become_inactive_callback)) 
     {
-        level thread [[ level.wolf_heads_become_inactive_callback ]]();
+        level thread [[ level.wolf_head_become_inactive_callback ]](level.wolf_heads_active > 0);
     }
 }
 function hide_wolf_heads() // self == level.wolf_bodies[index]

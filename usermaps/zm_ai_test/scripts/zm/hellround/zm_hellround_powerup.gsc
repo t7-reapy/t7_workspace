@@ -86,18 +86,16 @@ function private func_should_drop_powerup(power_up_name)
     // will always return false, the server will crash... Therefore, do 
     // not remove the below line.
     WAIT_SERVER_FRAME;
-    PRINT_HR_DEBUG("Checking if powerup " + power_up_name + " should drop.");
 
     // No powerups during hellrounds
     if (zm_hellround_shared::is_hellround_running())
     {
         return false;
     }
+    
+    PRINT_HR_DEBUG("Checking if powerup " + power_up_name + " should drop.");
 
-    // If iteration 0 is finished, minigun powerup is available.
-    // If iteration 3 is finished, it's not available anymore.
-    current_iteration = zm_hellround_shared::get_current_iteration();
-    if (power_up_name == "minigun" && current_iteration > 0 && current_iteration <= 3)
+    if (power_up_name == "minigun" && should_drop_hellround_powerup())
     {
         return true;
     }
@@ -117,6 +115,13 @@ function private func_should_drop_powerup(power_up_name)
         default:
             return self zm_powerups::func_should_never_drop();
     }
+}
+
+function private should_drop_hellround_powerup()
+{
+    current_iteration = zm_hellround_shared::get_current_iteration();
+    
+    return current_iteration > 0 && current_iteration <= 3;
 }
 
 function private change_powerup_model(powerup_name, model_name)
@@ -146,7 +151,6 @@ function toggle_powerups(b_enabled)
 }
 
 // #endregion
-
 // #region powerup logic
 
 function private grab_minigun(player)

@@ -2,3 +2,4 @@
 
 // possible values are: "walk", "run", "sprint", "super_sprint"
 #define HRZM_ZOMBIE_RUN_STATE "sprint"
+#define HRZM_ZOMBIE_RUN_STATE_ENABLE 0

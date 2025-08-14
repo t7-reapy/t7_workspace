@@ -127,6 +127,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - rain sounds in splitscreen should only be played once if both players are in same enviromnent (make this adaptable so if one change environment, it updates for both using GetLocalPlayers())
 - window curtain holder (inside appartement) doesn't render in game
 - some shadows are too sharp, increase the penumbra radius to 3 on some spot lights
+- hellround minigun is for one player only, this is bad and need fix
 
 # Sphynx commands cheat sheet
 

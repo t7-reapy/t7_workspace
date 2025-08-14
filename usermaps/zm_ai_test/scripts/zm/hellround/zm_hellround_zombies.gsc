@@ -23,6 +23,7 @@ REGISTER_SYSTEM_EX("zm_hellround_zombies", &init, &main, undefined)
 function init() 
 {
     level.original_zombie_bodies = ORIGINAL_ZOMBIE_BODY_MODELS;
+    level.hellround_zombie_callback = undefined;
 }
 
 function private main()
@@ -44,9 +45,10 @@ function is_normal_zombie() // self == actor
 function private zombie_spawn_hellround_logic() // self == zombie spawned
 {
     if (zm_hellround_shared::is_hellround_running() && self is_normal_zombie()) {
+        // Removing the below line will cause the zombie model to not be updated after it spawned.
         waittillframeend;
-        self thread set_zombie_model_to_hellround();
-        self thread zombie_utility::set_zombie_run_cycle(HRZM_ZOMBIE_RUN_STATE);
+
+        self thread apply_hellround_events_to_zombie();
     }
 }
 
@@ -66,8 +68,7 @@ function enable_hellround_zombies()
     {
         if (zombie is_normal_zombie())
         {
-            zombie thread set_zombie_model_to_hellround();
-            zombie thread zombie_utility::set_zombie_run_cycle(HRZM_ZOMBIE_RUN_STATE);
+            zombie thread apply_hellround_events_to_zombie();
         }
     }
 }
@@ -84,6 +85,21 @@ function disable_hellround_zombies()
 
         zombie thread set_back_to_default_zombie();
         zombie thread zm_utility::init_zombie_run_cycle();
+    }
+}
+
+function private apply_hellround_events_to_zombie() // self == zombie actor
+{
+    self thread set_zombie_model_to_hellround();
+
+    if (HRZM_ZOMBIE_RUN_STATE_ENABLE)
+    {
+        self thread zombie_utility::set_zombie_run_cycle(HRZM_ZOMBIE_RUN_STATE);
+    }
+
+    if (isdefined(level.hellround_zombie_callback))
+    {
+        self [[ level.hellround_zombie_callback ]]();
     }
 }
 
@@ -205,7 +221,6 @@ function private dlchd_origins_zombie_damage_model_3a() // self == zombie
 }
 
 // #endregion
-
 // #region charred zombies
 
 function set_zombie_model_to_hellround() // self == zombie
