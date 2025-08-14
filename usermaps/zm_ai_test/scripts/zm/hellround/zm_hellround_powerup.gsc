@@ -1,3 +1,5 @@
+#using scripts\shared\callbacks_shared; 
+#using scripts\zm\_zm_powerup_weapon_minigun; 
 #using scripts\zm\_zm_powerup_fire_sale; 
 #using scripts\zm\_zm_powerup_carpenter; 
 #using scripts\zm\_zm_powerups;
@@ -19,6 +21,8 @@ function private init()
 {
     level.hellround_powerup_minigun_callbacks = [];
     level._grab_minigun = &grab_minigun;
+    
+    callback::on_connect(&sync_hellround_powerup);
 }
 
 function private main()
@@ -35,6 +39,25 @@ function private main()
     change_powerup_weapon("minigun", HRPWRUP_WEAPON);
     change_powerup_weapon_timeout_logic("minigun", &lose_minigun);
     change_powerup_solo_fx(HRPWRUP_FX, HRPWRUP_GRAB_FX);
+}
+
+function private sync_hellround_powerup()
+{
+    foreach(player in GetPlayers())
+    {
+        if (!player.has_powerup_weapon && is_powerup_active())
+        {
+            player DisableWeaponCycling();
+            level thread zm_powerup_weapon_minigun::minigun_weapon_powerup(player);
+            player thread zm_powerups::powerup_vo("minigun");
+        }
+    }
+}
+
+function private is_powerup_active()
+{
+    iteration = zm_hellround_shared::get_current_iteration();
+    return iteration > 0 && iteration <= 3 && zm_hellround_shared::is_hellround_running();
 }
 
 // #region powerup drop functions
@@ -153,16 +176,21 @@ function toggle_powerups(b_enabled)
 // #endregion
 // #region powerup logic
 
-function private grab_minigun(player)
+function private grab_minigun(grabber_player)
 {
     foreach(player in GetPlayers())
     {
         player DisableWeaponCycling();
+        if (player != grabber_player)
+        {
+            level thread zm_powerup_weapon_minigun::minigun_weapon_powerup(player);
+            player thread zm_powerups::powerup_vo("minigun");
+        }
     }
     
     foreach(callback in level.hellround_powerup_minigun_callbacks)
     {
-        player thread [[ callback ]] ();
+        thread [[ callback ]] ();
     }
 }
 
