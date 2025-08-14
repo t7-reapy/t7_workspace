@@ -13,10 +13,10 @@ REGISTER_SYSTEM("zm_hellround_environment", &init, undefined)
 
 function init() 
 {
-	level.volumes_show = FindVolumeDecalIndexArray("hellround_volume_show");
-	level.volumes_hide = FindVolumeDecalIndexArray("hellround_volume_hide");
-	level.models_show = FindStaticModelIndexArray("hellround_model_show");
-	level.models_hide = FindStaticModelIndexArray("hellround_model_hide");
+    level.volumes_show = FindVolumeDecalIndexArray("hellround_volume_show");
+    level.volumes_hide = FindVolumeDecalIndexArray("hellround_volume_hide");
+    level.models_show = FindStaticModelIndexArray("hellround_model_show");
+    level.models_hide = FindStaticModelIndexArray("hellround_model_hide");
 
     clientfield::register("world", HRENV_TOGGLE_CLIENT_FIELD, VERSION_SHIP, 1, "int", &hellround_environment, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
 }
@@ -25,7 +25,7 @@ function hellround_environment(n_client_num, _oldVal, n_new_val, _bNewEnt, _bIni
 {
     util::waitforclient(n_client_num);
 
-	fog_update(IS_TRUE(n_new_val));
+    fog_update(IS_TRUE(n_new_val));
     show_hellround_models(IS_TRUE(n_new_val));
     show_hellround_volumes(IS_TRUE(n_new_val));
 }
@@ -35,13 +35,23 @@ function hellround_environment(n_client_num, _oldVal, n_new_val, _bNewEnt, _bIni
 function private fog_update(b_hellfog)
 {
     fog_index = (b_hellfog ? HRENV_FOG_INDEX_BLOODY : HRENV_FOG_INDEX_NORMAL);
-    fog_bank = 1 << fog_index;
-    lit_fog_bank = fog_index;
+    fog_transition_index = HRENV_FOG_INDEX_TRANSITION;
+
+    set_fog_index(fog_transition_index, HRENV_FOG_RADIANT_TIME);
+    wait HRENV_FOG_TRANSITION_TIME;
+    set_fog_index(fog_index, HRENV_FOG_RADIANT_TIME);
+}
+
+function private set_fog_index(index, transition_time)
+{
+    fog_bank = 1 << index;
+    lit_fog_bank = index;
+    
     foreach (player in GetLocalPlayers())
     {
-		client_number = player GetLocalClientNumber();
+        client_number = player GetLocalClientNumber();
         SetWorldFogActiveBank(client_number, fog_bank);
-        SetLitFogBank(client_number, -1, lit_fog_bank, 0);
+        SetLitFogBank(client_number, -1, lit_fog_bank, transition_time);
     }
 }
 

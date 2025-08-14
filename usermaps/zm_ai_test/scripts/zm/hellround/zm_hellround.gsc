@@ -95,7 +95,7 @@ function private bind_callbacks()
     add_toggle_callback(&zm_hellround_players::toggle_hellround_for_players);
     add_toggle_callback(&zm_hellround_environment::toggle_hellround_environment);
     add_toggle_callback(&zm_bloodsplatter::toggle_blood_splatter);
-
+    add_toggle_callback(&zm_ai_wasp::parasite_round_fx);
 
     zm_hellround_spawn_manager::bind_toggle_hellround_callback(&call_toggle_callbacks);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_wolf_soul_collectors::force_completion);
