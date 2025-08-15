@@ -5,6 +5,7 @@
 #using scripts\zm\_zm_bloodsplatter;
 #using scripts\zm\hellround\zm_hellround_collectors;
 #using scripts\zm\hellround\zm_hellround_environment;
+#using scripts\zm\hellround\zm_hellround_powerup;
 #using scripts\zm\_zm_ai_wasp;
 #using scripts\zm\_zm_ai_napalm;
 #using scripts\zm\zm_genesis_apothicon_fury;

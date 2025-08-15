@@ -1,0 +1,757 @@
+#include "lit_base_mid"
+#include "emissive_base"
+#include "scroll_base"
+#include "flipbook_base"
+#include "flicker_base"
+#include "camo_base"
+
+Globals()
+{
+	category = "Geometry Plus"
+	renderFlags = "lit forward opaque"
+	availablePrefixes = "mc/ mcs/ wc/"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "tintMask" )
+{
+	image = Image( <colorMap10, $white_reveal> )
+	semantic = "revealMap"
+	tweak = Tweak()
+	{
+		category  = "Color"
+		title     = "Tint Mask"
+		sortindex = "20"
+	}
+}
+
+Texture( "wobbleMap" )
+{
+	image = Image( <colorMap11, $normal> )
+	semantic = "normalMap"
+	tweak = Tweak()
+	{
+		category  = "Wobble"
+		title     = "Distortion Map"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Texture( "emissiveMap1" ) : "emissiveMap"
+{
+	semantic = "diffuseMap"
+	tweak = Tweak()
+	{
+		category  = "Layer1"
+		title     = "Emissive Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "emissiveMap2" )
+{
+	ref = true
+	image = Image( <colorMap01, $white> )
+	semantic = "diffuseMap", "HDR"
+	tweak = Tweak()
+	{
+		category  = "Layer2"
+		title     = "Emissive Map"
+		sortindex = "10"
+	}
+}
+
+Texture( "emissiveMap3" )
+{
+	ref = true
+	image = Image( <colorMap02, $white> )
+	semantic = "diffuseMap", "HDR"
+	tweak = Tweak()
+	{
+		category  = "Layer3"
+		title     = "Emissive Map"
+		sortindex = "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float1( "uvMotionToggle1" )
+{
+	x = <uvMotionToggle1>
+	tweak = Tweak()
+	{
+		category	= "UV Toggles (Fipbook - 1, Scroll/Rotate - 0)"
+		title		= "Layer1"
+		sortindex	= "10"
+	}
+}
+float1( "uvMotionToggle2" )
+{
+	x = <uvMotionToggle2>
+	tweak = Tweak()
+	{
+		category	= "UV Toggles (Fipbook - 1, Scroll/Rotate - 0)"
+		title		= "Layer2"
+		sortindex	= "10"
+	}
+}
+float1( "uvMotionToggle3" )
+{
+	x = <uvMotionToggle3>
+	tweak = Tweak()
+	{
+		category	= "UV Toggles (Fipbook - 1, Scroll/Rotate - 0)"
+		title		= "Layer3"
+		sortindex	= "10"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "emissiveTint1" ).tweak = Tweak()
+{
+	category  = "Layer1"
+	title     = "Emissive Tint"
+	sortindex = "20"
+	color = true
+}
+float2( "rotateUVs" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "UV Rotation, Spin Rate"
+	sortindex	= "50"
+}
+float2( "scrollUVs" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "Scroll (U, V)"
+	sortindex	= "40"
+}
+float2( "scaleUVs" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "Scale (U, V)"
+	sortindex	= "60"
+}
+float2( "offsetUVs" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "Offset (U, V)"
+	sortindex	= "70"
+}
+float1( "layerDepth" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "Depth"
+	sortindex	= "30"
+}
+float2( "zoomUVs" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "Zoom (Min, Max)"
+	sortindex	= "80"
+}
+float1( "zoomRate" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "Zoom Rate"
+	sortindex	= "90"
+}
+Bool( "clampU" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "Clamp U"
+	sortindex	= "91"
+}
+Bool( "clampV" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "Clamp V"
+	sortindex	= "92"
+}
+
+float1( "rowCount" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "Flipbook Row Count"
+	sortindex	= "100"
+}
+float1( "columnCount" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "Flipbook Column Count"
+	sortindex	= "110"
+}
+float1( "imageTime" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "Flipbook Image Time"
+	sortindex	= "120"
+}
+
+float2( "flickerSeed" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "Flicker Seed (Style, Time)"
+	sortindex	= "130"
+}
+float1( "flickerSpeed" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "Flicker Speed"
+	sortindex	= "140"
+}
+float2( "flickerRange" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "Flicker Range (Min, Max)"
+	sortindex	= "150"
+}
+float1( "flickerPower" ).tweak = Tweak()
+{
+	category	= "Layer1"
+	title		= "Flicker Harshness"
+	sortindex	= "160"
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "emissiveTint2" )
+{
+	value = "srgb_to_linear( <colorTint2> )"
+	tweak = Tweak()
+	{
+		category  = "Layer2"
+		title     = "Emissive Tint"
+		sortindex = "20"
+		color = true
+	}
+}
+
+float1( "layer2Depth" )
+{
+	x = <cg00_x>
+	tweak = Tweak()
+	{
+		category  = "Layer2"
+		title     = "Depth"
+		sortindex = "30"
+	}
+}
+
+float2( "scrollUVs2" )
+{
+	x = <cg00_y>
+	y = <cg00_z>
+	tweak = Tweak()
+	{
+		category  = "Layer2"
+		title     = "Scroll (U, V)"
+		sortindex = "40"
+	}
+}
+
+float2( "rotateUVs2" )
+{
+	x = <cg00_w>
+	y = <cg01_x>
+	tweak = Tweak()
+	{
+		category	= "Layer2"
+		title		= "UV Rotation, Spin Rate"
+		sortindex	= "50"
+	}
+}
+
+float2( "scaleUVs2" )
+{
+	x = <cg01_y>
+	y = <cg01_z>
+	tweak = Tweak()
+	{
+		category	= "Layer2"
+		title		= "Scale (U, V)"
+		sortindex	= "60"
+	}
+}
+
+float2( "offsetUVs2" )
+{
+	x = <cg01_w>
+	y = <cg02_x>
+	tweak = Tweak()
+	{
+		category	= "Layer2"
+		title		= "Offset (U, V)"
+		sortindex	= "70"
+	}
+}
+
+float2( "zoomUVs2" )
+{
+	x = <cg06_x>
+	y = <cg06_y>
+	tweak = Tweak()
+	{
+		category	= "Layer2"
+		title		= "Zoom (Min, Max)"
+		sortindex	= "80"
+	}
+}
+
+float1( "zoomRate2" )
+{
+	x = <cg06_z>
+	tweak = Tweak()
+	{
+		category	= "Layer2"
+		title		= "Zoom Rate"
+		sortindex	= "90"
+	}
+}
+
+Bool( "clampU2" )
+{
+	value = <gCheckBox00>
+	tweak = Tweak()
+	{
+		category	= "Layer2"
+		title		= "Clamp U"
+		sortindex	= "91"
+	}
+}
+
+Bool( "clampV2" )
+{
+	value = <gCheckBox01>
+	tweak = Tweak()
+	{
+		category	= "Layer2"
+		title		= "Clamp V"
+		sortindex	= "92"
+	}
+}
+
+float1( "rowCount2" )
+{
+	x = <cg04_z>
+	tweak = Tweak()
+	{
+		category	= "Layer2"
+		title		= "Flipbook Row Count"
+		sortindex	= "100"
+	}
+}
+
+float1( "columnCount2" )
+{
+	x = <cg04_w>
+	tweak = Tweak()
+	{
+		category	= "Layer2"
+		title		= "Flipbook Column Count"
+		sortindex	= "110"
+	}
+}
+
+float1( "imageTime2" )
+{
+	x = <cg05_x>
+	tweak = Tweak()
+	{
+		category	= "Layer2"
+		title		= "Flipbook Image Time"
+		sortindex	= "120"
+	}
+}
+
+float2( "flickerSeed2" )
+{
+	x = <cg07_z>
+	y = <cg07_w>
+	tweak = Tweak()
+	{
+		category	= "Layer2"
+		title		= "Flicker Seed (Style, Time)"
+		sortindex	= "130"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.001"
+	}
+}
+
+float1( "flickerSpeed2" )
+{
+	x = <cg08_x>
+	tweak = Tweak()
+	{
+		category	= "Layer2"
+		title		= "Flicker Speed"
+		sortindex	= "140"
+		default		= "0.0"
+		range		= "0.0", "128.0", "0.01"
+	}
+}
+
+float2( "flickerRange2" )
+{
+	x = <cg08_y>
+	y = <cg08_z>
+	tweak = Tweak()
+	{
+		category	= "Layer2"
+		title		= "Flicker Range (Min, Max)"
+		sortindex	= "150"
+		default		= "1.0"
+		range		= "0.0", "1.0", "0.01"
+	}
+}
+
+float1( "flickerPower2" )
+{
+	x = <cg08_w>
+	tweak = Tweak()
+	{
+		category	= "Layer2"
+		title		= "Flicker Harshness"
+		sortindex	= "160"
+		default		= "0.0"
+		range		= "0.0", "128.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Color( "emissiveTint3" )
+{
+	value = "srgb_to_linear( <colorTint3> )"
+	tweak = Tweak()
+	{
+		category  = "Layer3"
+		title     = "Emissive Tint"
+		sortindex = "20"
+		color = true
+	}
+}
+
+float1( "layer3Depth" )
+{
+	x = <cg02_y>
+	tweak = Tweak()
+	{
+		category  = "Layer3"
+		title     = "Depth"
+		sortindex = "30"
+	}
+}
+
+float2( "scrollUVs3" )
+{
+	x = <cg02_z>
+	y = <cg02_w>
+	tweak = Tweak()
+	{
+		category  = "Layer3"
+		title     = "Scroll (U, V)"
+		sortindex = "40"
+	}
+}
+
+float2( "rotateUVs3" )
+{
+	x = <cg03_x>
+	y = <cg03_y>
+	tweak = Tweak()
+	{
+		category	= "Layer3"
+		title		= "UV Rotation, Spin Rate"
+		sortindex	= "50"
+	}
+}
+
+float2( "scaleUVs3" )
+{
+	x = <cg03_z>
+	y = <cg03_w>
+	tweak = Tweak()
+	{
+		category	= "Layer3"
+		title		= "Scale (U, V)"
+		sortindex	= "60"
+	}
+}
+
+float2( "offsetUVs3" )
+{
+	x = <cg04_x>
+	y = <cg04_y>
+	tweak = Tweak()
+	{
+		category	= "Layer3"
+		title		= "Offset (U, V)"
+		sortindex	= "70"
+	}
+}
+
+float2( "zoomUVs3" )
+{
+	x = <cg06_w>
+	y = <cg07_x>
+	tweak = Tweak()
+	{
+		category	= "Layer3"
+		title		= "Zoom (Min, Max)"
+		sortindex	= "80"
+	}
+}
+
+float1( "zoomRate3" )
+{
+	x = <cg07_y>
+	tweak = Tweak()
+	{
+		category	= "Layer3"
+		title		= "Zoom Rate"
+		sortindex	= "90"
+	}
+}
+
+Bool( "clampU3" )
+{
+	value = <gCheckBox02>
+	tweak = Tweak()
+	{
+		category	= "Layer3"
+		title		= "Clamp U"
+		sortindex	= "91"
+	}
+}
+
+Bool( "clampV3" )
+{
+	value = <gCheckBox03>
+	tweak = Tweak()
+	{
+		category	= "Layer3"
+		title		= "Clamp V"
+		sortindex	= "92"
+	}
+}
+
+float1( "rowCount3" )
+{
+	x = <cg05_y>
+	tweak = Tweak()
+	{
+		category	= "Layer3"
+		title		= "Flipbook Row Count"
+		sortindex	= "100"
+	}
+}
+
+float1( "columnCount3" )
+{
+	x = <cg05_z>
+	tweak = Tweak()
+	{
+		category	= "Layer3"
+		title		= "Flipbook Column Count"
+		sortindex	= "110"
+	}
+}
+
+float1( "imageTime3" )
+{
+	x = <cg05_w>
+	tweak = Tweak()
+	{
+		category	= "Layer3"
+		title		= "Flipbook Image Time"
+		sortindex	= "120"
+	}
+}
+
+float2( "flickerSeed3" )
+{
+	x = <cg09_x>
+	y = <cg09_y>
+	tweak = Tweak()
+	{
+		category	= "Layer3"
+		title		= "Flicker Seed (Style, Time)"
+		sortindex	= "130"
+		default		= "0.0"
+		range		= "0.0", "1.0", "0.001"
+	}
+}
+
+float1( "flickerSpeed3" )
+{
+	x = <cg09_z>
+	tweak = Tweak()
+	{
+		category	= "Layer3"
+		title		= "Flicker Speed"
+		sortindex	= "140"
+		default		= "0.0"
+		range		= "0.0", "128.0", "0.01"
+	}
+}
+
+float2( "flickerRange3" )
+{
+	x = <cg09_w>
+	y = <cg10_x>
+	tweak = Tweak()
+	{
+		category	= "Layer3"
+		title		= "Flicker Range (Min, Max)"
+		sortindex	= "150"
+		default		= "1.0"
+		range		= "0.0", "1.0", "0.01"
+	}
+}
+
+float1( "flickerPower3" )
+{
+	x = <cg10_y>
+	tweak = Tweak()
+	{
+		category	= "Layer3"
+		title		= "Flicker Harshness"
+		sortindex	= "160"
+		default		= "0.0"
+		range		= "0.0", "128.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+float2( "wobbleScroll" )
+{
+	x = <cg11_x>
+	y = <cg11_y>
+	tweak = Tweak()
+	{
+		category	= "Wobble"
+		title		= "Scroll (U, V)"
+		sortindex	= "100"
+		default		= "0.0"
+		range		= "-1024.0", "1024.0", "0.01"
+	}
+}
+
+float2( "wobbleScale" )
+{
+	x = <cg11_z>
+	y = <cg11_w>
+	tweak = Tweak()
+	{
+		category	= "Wobble"
+		title		= "Scale (U, V)"
+		sortindex	= "110"
+		default		= "1.0"
+		range		= "1.0", "1024.0", "0.01"
+	}
+}
+
+float1( "layer1Wobble" )
+{
+	x = <cg12_x>
+	tweak = Tweak()
+	{
+		category	= "Wobble"
+		title		= "Layer1 Amount"
+		sortindex	= "120"
+		default		= "0.0"
+		range		= "0.0", "1024.0", "0.01"
+	}
+}
+float1( "layer2Wobble" )
+{
+	x = <cg12_y>
+	tweak = Tweak()
+	{
+		category	= "Wobble"
+		title		= "Layer2 Amount"
+		sortindex	= "130"
+		default		= "0.0"
+		range		= "0.0", "1024.0", "0.01"
+	}
+}
+float1( "layer3Wobble" )
+{
+	x = <cg12_z>
+	tweak = Tweak()
+	{
+		category	= "Wobble"
+		title		= "Layer3 Amount"
+		sortindex	= "140"
+		default		= "0.0"
+		range		= "0.0", "1024.0", "0.01"
+	}
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Technique( "depth prepass" )
+{
+	state = "depthPrepass"
+	source = "techsetdef_prepass.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "depth prepass motion vector" ) : "depth prepass"
+{
+	defines += "GENERATE_MOTION_VECTOR"
+}
+
+Technique( "build shadowmap depth" ) :  "build shadowmap depth base"
+{}
+
+#if TETRAHEDRON_OMNI_SHADOWS=="1"
+Technique( "build shadowmap depth planes" ) : "build shadowmap depth planes base"
+{}
+#endif
+
+Technique( "build shadowmap depth layered" ) :  "build shadowmap depth layered base"
+{}
+
+Technique( "unlit" )
+{
+	state = "replace + depth"
+	defines = "USE_COLOR_TINT"
+	source = "techsetdef_unlit_simple.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "lit" )
+{
+	state = "forward opaque"
+	defines = "BASE_SPEC", "USE_COLOR_TINT", "USE_TINT_MASK", "USE_SCROLL_ROTATE_UVS", "USE_FLIPBOOK_UVS", "THREE_LAYER", "USE_EMISSIVE_FLICKER", "USE_WOBBLE"
+	source = "lit_emissive_layers.hlsl"
+	vs = "vs_generic"
+	ps = "ps_generic"
+}
+
+Technique( "oit" ) : "lit"
+{
+	state = "fallback + depth + rez"
+	defines += "USE_OIT"
+}
+
+Technique( "debug color texel" )
+{
+	state = "replace + depth"
+	source = "ToolsGfx/debug_texeldensity.hlsl"
+	vs = "vs_generic"
+	ps = PixelShader() : "ps_generic"
+	{
+		defines = "DEBUG_COLOR_TEXELS"
+	}
+}

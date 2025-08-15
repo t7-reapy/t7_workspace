@@ -1,3 +1,5 @@
+#using scripts\shared\ai\systems\gib; 
+#using scripts\shared\ai\systems\destructible_character; 
 #using scripts\zm\_zm_utility; 
 #using scripts\shared\ai\zombie_utility; 
 #using scripts\shared\spawner_shared; 
@@ -21,8 +23,7 @@ REGISTER_SYSTEM_EX("zm_hellround_zombies", &init, &main, undefined)
 function init() 
 {
     level.original_zombie_bodies = ORIGINAL_ZOMBIE_BODY_MODELS;
-    level.original_zombie_hats = ORIGINAL_ZOMBIE_HAT_MODELS;
-    level.original_zombie_heads = ORIGINAL_ZOMBIE_HEAD_MODELS;
+    level.hellround_zombie_callback = undefined;
 }
 
 function private main()
@@ -44,9 +45,10 @@ function is_normal_zombie() // self == actor
 function private zombie_spawn_hellround_logic() // self == zombie spawned
 {
     if (zm_hellround_shared::is_hellround_running() && self is_normal_zombie()) {
+        // Removing the below line will cause the zombie model to not be updated after it spawned.
         waittillframeend;
-        self thread set_zombie_model_to_hellround();
-        self thread zombie_utility::set_zombie_run_cycle(HRZM_ZOMBIE_RUN_STATE);
+
+        self thread apply_hellround_events_to_zombie();
     }
 }
 
@@ -66,8 +68,7 @@ function enable_hellround_zombies()
     {
         if (zombie is_normal_zombie())
         {
-            zombie thread set_zombie_model_to_hellround();
-            zombie thread zombie_utility::set_zombie_run_cycle(HRZM_ZOMBIE_RUN_STATE);
+            zombie thread apply_hellround_events_to_zombie();
         }
     }
 }
@@ -87,32 +88,43 @@ function disable_hellround_zombies()
     }
 }
 
+function private apply_hellround_events_to_zombie() // self == zombie actor
+{
+    self thread set_zombie_model_to_hellround();
+
+    if (HRZM_ZOMBIE_RUN_STATE_ENABLE)
+    {
+        self thread zombie_utility::set_zombie_run_cycle(HRZM_ZOMBIE_RUN_STATE);
+    }
+
+    if (isdefined(level.hellround_zombie_callback))
+    {
+        self [[ level.hellround_zombie_callback ]]();
+    }
+}
+
 // #region original zombie models
 
 function set_back_to_default_zombie() // self == zombie
 {
     body_style = level.original_zombie_bodies[RandomInt(level.original_zombie_bodies.size)];
-    head_model = level.original_zombie_heads[RandomInt(level.original_zombie_heads.size)];
-    hat_model = level.original_zombie_hats[RandomInt(level.original_zombie_hats.size)];
-
-    self.skeleton = "base";
-    self.voice = "american";
 
     self DetachAll();
-    if (hat_model != "")
+    if (isdefined(self.hatmodel_old) && self.hatmodel_old != "")
     {
-        self.hatmodel = hat_model;
+        self.hatmodel = self.hatmodel_old;
         self Attach(self.hatmodel, "", true);
     }
-    self.head = head_model;
+    self.head = self.head_old;
     self Attach(self.head, "", true);
     self SetModel(body_style);
 
+    self.destructibledef = self.destructibledef_old;
+    
     self dlchd_origins_zombie_damage_models_from_body_style(body_style);
-    self dlchd_origins_zombie_gib_pieces();
-    self.gibdef = self dlchd_origins_zombie_gib_def_from_hatmodel(hat_model);
-    self.destructibledef = self.destructibledef_old; //"c_zm_dlchd_origins_soldier_destructible_def" was not exported AFAIK
-    self fix_gibs();
+
+    GibServerUtils::ToggleSpawnGibs(self, true);
+    DestructServerUtils::ToggleSpawnGibs(self, true);
 }
 
 function private dlchd_origins_zombie_damage_models_from_body_style(body_style) // self == zombie
@@ -135,43 +147,6 @@ function private dlchd_origins_zombie_damage_models_from_body_style(body_style) 
             self dlchd_origins_zombie_damage_model_3a();
             break;
             
-    }
-}
-
-function private dlchd_origins_zombie_gib_pieces() // self == zombie
-{
-    self.gibspawn1 = "c_t7_zm_dlchd_origins_soldiers_s_rarmoff";
-    self.gibspawntag1 = "j_elbow_ri";
-    self.gibspawn2 = "c_t7_zm_dlchd_origins_soldiers_s_larmoff";
-    self.gibspawntag2 = "j_elbow_le";
-    self.gibspawn3 = "c_t7_zm_dlchd_origins_soldiers_s_rlegoff";
-    self.gibspawntag3 = "j_knee_ri";
-    self.gibspawn4 = "c_t7_zm_dlchd_origins_soldiers_s_llegoff";
-    self.gibspawntag4 = "j_knee_le";
-    
-    self._gib_def = SpawnStruct();
-    self._gib_def.gibspawn1 = "c_t7_zm_dlchd_origins_soldiers_s_rarmoff";
-    self._gib_def.gibspawntag1 = "j_elbow_ri";
-    self._gib_def.gibspawn2 = "c_t7_zm_dlchd_origins_soldiers_s_larmoff";
-    self._gib_def.gibspawntag2 = "j_elbow_le";
-    self._gib_def.gibspawn3 = "c_t7_zm_dlchd_origins_soldiers_s_rlegoff";
-    self._gib_def.gibspawntag3 = "j_knee_ri";
-    self._gib_def.gibspawn4 = "c_t7_zm_dlchd_origins_soldiers_s_llegoff";
-    self._gib_def.gibspawntag4 = "j_knee_le";
-}
-
-function private dlchd_origins_zombie_gib_def_from_hatmodel(hatmodel) // self == zombie
-{
-    switch (hatmodel)
-    {
-        case "c_t7_zm_dlchd_origins_soldiers_helmet":
-            return "c_zom_dlchd_origins_zombie_helmet_gib_def";
-        case "c_t7_zm_dlchd_origins_soldiers_officer_cap":
-            return "c_zom_dlchd_origins_zombie_officer_gib_def";
-        case "c_t7_zm_dlchd_origins_soldiers_spiked_helmet":
-            return "c_zom_dlchd_origins_zombie_spiked_helmet_gib_def";
-        default: // no hatmodel (empty string)
-            return "c_zom_dlchd_origins_zombie_none_gib_def";
     }
 }
 
@@ -250,13 +225,18 @@ function private dlchd_origins_zombie_damage_model_3a() // self == zombie
 
 function set_zombie_model_to_hellround() // self == zombie
 {
-    self.skeleton = "base";
-    self.voice = "american";
+    self.hatmodel_old = self.hatmodel;
+    self.hatmodel = undefined;
+
+    self.head_old = self.head;
+    self.head = "c_zom_dlc4_zombie_charred_head";
 
     self DetachAll();
-    self.head = "c_zom_dlc4_zombie_charred_head";
     self Attach(self.head, "", true);
     self SetModel("c_zom_dlc3_zombie_sentinel_body");
+
+    self.destructibledef_old = self.destructibledef;
+    self.destructibledef = undefined;
 
     self.torsodmg1 = "c_zom_dlc3_zombie_sentinel_g_upclean";
     self.torsodmg2 = "c_zom_dlc3_zombie_sentinel_g_rarmoff";
@@ -269,49 +249,8 @@ function set_zombie_model_to_hellround() // self == zombie
     self.legdmg3 = "c_zom_dlc3_zombie_sentinel_g_llegoff";
     self.legdmg4 = "c_zom_dlc3_zombie_sentinel_g_blegsoff";
 
-    self.gibdef = "c_zom_charred_zombie_gib_def";
-    self.destructibledef_old = self.destructibledef;
-    self.destructibledef = "c_zom_dlc3_zombie_sentinel_destructibledef";
-
-    self.gibspawn1 = "c_zom_dlc3_zombie_sentinel_s_rarmspawn";
-    self.gibspawntag1 = "j_elbow_ri";
-    self.gibspawn2 = "c_zom_dlc3_zombie_sentinel_s_larmspawn";
-    self.gibspawntag2 = "j_elbow_le";
-    self.gibspawn3 = "c_zom_dlc3_zombie_sentinel_s_rlegspawn";
-    self.gibspawntag3 = "j_knee_ri";
-    self.gibspawn4 = "c_zom_dlc3_zombie_sentinel_s_llegspawn";
-    self.gibspawntag4 = "j_knee_le";
-    
-    self._gib_def = SpawnStruct();
-    self._gib_def.gibspawn1 = "c_zom_dlc3_zombie_sentinel_s_rarmspawn";
-    self._gib_def.gibspawntag1 = "j_elbow_ri";
-    self._gib_def.gibspawn2 = "c_zom_dlc3_zombie_sentinel_s_larmspawn";
-    self._gib_def.gibspawntag2 = "j_elbow_le";
-    self._gib_def.gibspawn3 = "c_zom_dlc3_zombie_sentinel_s_rlegspawn";
-    self._gib_def.gibspawntag3 = "j_knee_ri";
-    self._gib_def.gibspawn4 = "c_zom_dlc3_zombie_sentinel_s_llegspawn";
-    self._gib_def.gibspawntag4 = "j_knee_le";
-
-    self fix_gibs();
+    GibServerUtils::ToggleSpawnGibs(self, false);
+    DestructServerUtils::ToggleSpawnGibs(self, false);
 }
 
 // #endregion
-
-function private fix_gibs() // self == zombie
-{
-    self.gib_data = SpawnStruct();
-    self.gib_data.head = self.head;
-    self.gib_data.gibdef = self.gibdef;
-    self.gib_data.legdmg1 = self.legdmg1;
-    self.gib_data.legdmg2 = self.legdmg2;
-    self.gib_data.legdmg3 = self.legdmg3;
-    self.gib_data.legdmg4 = self.legdmg4;
-    self.gib_data.hatmodel = self.hatmodel;
-    self.gib_data.torsodmg1 = self.torsodmg1;
-    self.gib_data.torsodmg2 = self.torsodmg2;
-    self.gib_data.torsodmg3 = self.torsodmg3;
-    self.gib_data.torsodmg4 = self.torsodmg4;
-    self.gib_data.torsodmg5 = self.torsodmg5;
-    self.gib_data.gearmodel = self.gearmodel;
-    self.gib_data.destructibledef = self.destructibledef;
-}

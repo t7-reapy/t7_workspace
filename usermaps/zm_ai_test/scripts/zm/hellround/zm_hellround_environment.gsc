@@ -48,11 +48,18 @@ function toggle_hellround_environment(b_enable) // self == player or undefined
 {
     PRINT_HR_DEBUG("toggle_hellround_environment: " + b_enable);
 
-    self update_lightstate(b_enable);
+    level clientfield::set(HRENV_TOGGLE_CLIENT_FIELD, b_enable);
 
     show_hellround_clips(IS_TRUE(b_enable));
 
-    level clientfield::set(HRENV_TOGGLE_CLIENT_FIELD, b_enable);
+    if (!b_enable)
+    {
+        fog_switch_amount = 2;
+        // In case the hellround environment is disabled, we want the 
+        // lightstate switch happening after fog transition happens.
+        wait HRENV_FOG_TRANSITION_TIME - fog_switch_amount * HRENV_FOG_RADIANT_TIME;
+    }
+    self update_lightstate(b_enable);
 }
 
 function private update_lightstate(b_enable) // self == player or undefined

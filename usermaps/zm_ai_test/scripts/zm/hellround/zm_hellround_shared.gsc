@@ -29,5 +29,10 @@ function wait_for_map_load()
 
 function get_current_iteration()
 {
-    return level.hellround_current_iteration;
+    if (!isdefined(level.hellround_spawn_manager) || !isdefined(level.hellround_spawn_manager.current_iteration))
+    {
+        return 0;
+    }
+
+    return level.hellround_spawn_manager.current_iteration;
 }

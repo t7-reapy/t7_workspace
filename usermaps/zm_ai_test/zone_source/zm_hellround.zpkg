@@ -2,6 +2,18 @@
 material,mc/mtl_bloodsplatter_scripted
 rumble,apothicon_fury_land
 
+// Hellround powerup
+xmodel,doom_prop_hell_monster_skull_hellround
+fx,_reapy/fx_hellround_powerup
+fx,zombie/fx_powerup_grab_red_zmb
+
+// Cerberus heads
+include,lednors_wolf_souls
+
+// FXs
+fx,_reapy/fx_hellround_collector_soul_trail
+fx,_reapy/fx_hellround_collector_soul_collect
+
 // Custom AIs
 aitype,spawner_zm_genesis_apothicon_fury
 
@@ -34,6 +46,9 @@ scriptparsetree,scripts/zm/hellround/zm_hellround_music.gsc
 scriptparsetree,scripts/zm/hellround/zm_hellround_music.gsh
 scriptparsetree,scripts/zm/hellround/zm_hellround_players.gsc
 scriptparsetree,scripts/zm/hellround/zm_hellround_players.gsh
+scriptparsetree,scripts/zm/hellround/zm_hellround_powerup.csc
+scriptparsetree,scripts/zm/hellround/zm_hellround_powerup.gsc
+scriptparsetree,scripts/zm/hellround/zm_hellround_powerup.gsh
 scriptparsetree,scripts/zm/hellround/zm_hellround_reward.gsc
 scriptparsetree,scripts/zm/hellround/zm_hellround_reward.gsh
 scriptparsetree,scripts/zm/hellround/zm_hellround_shared.gsc
@@ -42,13 +57,6 @@ scriptparsetree,scripts/zm/hellround/zm_hellround_spawn_manager.gsc
 scriptparsetree,scripts/zm/hellround/zm_hellround_spawn_manager.gsh
 scriptparsetree,scripts/zm/hellround/zm_hellround_zombies.gsc
 scriptparsetree,scripts/zm/hellround/zm_hellround_zombies.gsh
-
-// Cerberus heads
-include,lednors_wolf_souls
-
-// FXs
-fx,_reapy/fx_hellround_collector_soul_trail
-fx,_reapy/fx_hellround_collector_soul_collect
 
 // Charred zombies
 xmodel,c_zom_dlc3_zombie_sentinel_body
