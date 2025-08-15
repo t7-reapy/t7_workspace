@@ -582,11 +582,6 @@ function wasp_behind_audio()
 function special_wasp_spawn(n_to_spawn = 1, spawn_point, n_radius = 32, n_half_height = 32, b_non_round, spawn_fx = true, b_return_ai = true, spawner_override = undefined)
 {
     wasp = GetEntArray("zombie_wasp", "targetname");
-
-    if (isdefined(wasp) && wasp.size >= 9)
-    {
-        return false;
-    }
     
     count = 0;
     while (count < n_to_spawn)
@@ -652,12 +647,7 @@ function special_wasp_spawn(n_to_spawn = 1, spawn_point, n_radius = 32, n_half_h
         wait level.zombie_vars["zombie_spawn_delay"];
     }
 
-    if (b_return_ai)
-    {
-        return ai;
-    }
-    
-    return true;
+    return ai;
 }
 
 function wasp_run_think()

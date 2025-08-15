@@ -28,6 +28,7 @@ class HellRoundSpawnManager
     var hellround_callback;
     var ai_spawn_callbacks;
     var bad_iteration_callbacks;
+    var reward_callback;
 
     var collection_start_timestamp;
     var time_before_max_spawn_rate;
@@ -50,6 +51,7 @@ function private init()
     level.hellround_spawn_manager.hellround_callback = undefined;
     level.hellround_spawn_manager.ai_spawn_callbacks = [];
     level.hellround_spawn_manager.bad_iteration_callbacks = [];
+    level.hellround_spawn_manager.reward_callback = undefined;
     level.hellround_spawn_manager.collection_start_timestamp = undefined;
     level.hellround_spawn_manager.time_before_max_spawn_rate = undefined;
 
@@ -86,6 +88,9 @@ function private hellround_bad_iteration_watcher()
     hellround_update_iteration(true);
     iteration_time_management_update();
     hellround_starts();
+    wait_for_hellround_max_delay();
+    abolish_hellrounds();
+    give_players_bad_iteration_reward();
 }
 
 function private hellround_iteration_watcher() 
@@ -158,17 +163,17 @@ function disable_point_during_hellrounds() // self == ai actor
 // #endregion
 // #region hellrounds round start/stop
 
-// TODO: remove?
 function abolish_hellrounds()
 {
     PRINT_HR_DEBUG("Abolishing hellrounds...");
+
+    // If hellround currently running, end it
+    level hellround_stops();
+
     level.hellround.abolished = true;
 
     // Kill other watchers first
     level notify(KILL_HELLROUND_WATCHERS_NOTIFICATION);
-
-    // If hellround currently running, end it
-    level hellround_stops();
 }
 
 function abolish_bad_hellround()
@@ -307,11 +312,25 @@ function iteration_time_management_update()
     }
 }
 
+function private wait_for_hellround_max_delay()
+{
+    wait HRSPAWN_TIME_BEFORE_MIN_SPAWN_DELAY / 1000;
+    PRINT_HR_DEBUG("Reached minimum spawn delay. Exiting.");
+}
+
+function private give_players_bad_iteration_reward()
+{
+    if (isdefined(level.hellround_spawn_manager.reward_callback))
+    {
+        [[ level.hellround_spawn_manager.reward_callback ]]();
+    }
+}
+
 function private hellround_increase_ai_limit()
 {
     // Based on initial values (24 & 31 respectivelly), no real justification here.
-    level.zombie_ai_limit = 120;
-    level.zombie_actor_limit = 127;
+    level.zombie_ai_limit = 64;
+    level.zombie_actor_limit = 71;
 }
 
 function private hellround_restore_ai_limit()
@@ -425,22 +444,20 @@ function private get_time_elapsed_ratio()
         time_elapsed = time_before_max_spawn_rate;
     }
 
-    time_elapsed_ratio = (time_before_max_spawn_rate - time_elapsed) / time_before_max_spawn_rate;
+    time_elapsed_ratio = time_elapsed / time_before_max_spawn_rate;
     return time_elapsed_ratio;
 }
 
-/@
-    Get a distribution, between 0 and 1, with the function f(x) = x²
-    Note: x must be between 0 and 1.
-@/
+// Get a distribution, between 0 and 1, ratio must be between 0 and 1.
 function private get_spawn_ratio_distributed(ratio)
 {
+    // Here, we use f(x) = x^2
     return ratio * ratio;
 }
 
 function private get_delay_internal(distribution, min_delay_spawn, max_delay_spawn)
 {
-    delay = min_delay_spawn + (max_delay_spawn - min_delay_spawn) * distribution;
+    delay = max_delay_spawn - (max_delay_spawn - min_delay_spawn) * distribution;
     player_ratio = (1 + HRSPAWN_PLAYER_NUMBER_FACTOR) - level.players.size * HRSPAWN_PLAYER_NUMBER_FACTOR;
     return delay * player_ratio;
 }
@@ -505,6 +522,11 @@ function private spawn_zombies_loop(spawn_flag)
             return;
         }
 
+        if (zombie_utility::get_current_zombie_count() >= level.zombie_ai_limit)
+        {
+            continue;
+        }
+
         ai = spawn_zombie_internal();
         if (!isdefined(ai))
         {
@@ -529,6 +551,11 @@ function private spawn_dogs_loop(spawn_flag)
         {
             PRINT_HR_DEBUG("Spawning wolf ... canceled.");
             return;
+        }
+
+        if (zombie_utility::get_current_zombie_count() >= level.zombie_ai_limit)
+        {
+            continue;
         }
 
         ai = zm_ai_dogs::custom_special_dog_spawn();
@@ -557,6 +584,11 @@ function private spawn_apothicon_furies_loop(spawn_flag)
             return;
         }
 
+        if (zombie_utility::get_current_zombie_count() >= level.zombie_ai_limit)
+        {
+            continue;
+        }
+
         ai = zm_genesis_apothicon_fury::apothicon_fury_spawn_on_location();
         if (!isdefined(ai))
         {
@@ -583,6 +615,11 @@ function private spawn_wasps_loop(spawn_flag)
             return;
         }
 
+        if (zombie_utility::get_current_zombie_count() >= level.zombie_ai_limit)
+        {
+            continue;
+        }
+
         ai = zm_ai_wasp::special_wasp_spawn();
         if (!isdefined(ai))
         {
@@ -607,6 +644,11 @@ function private spawn_napalm_zombies_loop(spawn_flag)
         {
             PRINT_HR_DEBUG("Spawning napalm ... canceled.");
             return;
+        }
+
+        if (zombie_utility::get_current_zombie_count() >= level.zombie_ai_limit)
+        {
+            continue;
         }
 
         ai = zm_ai_napalm::napalm_zombie_spawning();
@@ -672,6 +714,14 @@ function private call_toggle_callbacks(b_enabled)
     if (isdefined(level.hellround_spawn_manager.hellround_callback))
     {
         [[ level.hellround_spawn_manager.hellround_callback ]](b_enabled);
+    }
+}
+
+function bind_reward_callback(func_ptr)
+{
+    if (IsFunctionPtr(func_ptr))
+    {
+        level.hellround_spawn_manager.reward_callback = func_ptr;
     }
 }
 

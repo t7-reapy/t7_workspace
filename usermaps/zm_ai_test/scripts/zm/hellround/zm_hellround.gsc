@@ -39,9 +39,7 @@ REGISTER_SYSTEM_EX("zm_hellround", &init, &main, undefined)
 
 class hellround
 {
-    var abolished; // TODO: still needed?
-
-    // Callbacks when hellrounds is enabled or disabled
+    var abolished;
     var toggle_callbacks;
 }
 
@@ -98,11 +96,13 @@ function private bind_callbacks()
     add_toggle_callback(&zm_ai_wasp::parasite_round_fx);
 
     zm_hellround_spawn_manager::bind_toggle_hellround_callback(&call_toggle_callbacks);
-    zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_wolf_soul_collectors::force_completion);
-    // Hellround powerup and collector should never be canceled because bad iteration is no more available after feeding cerberus.
-    zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_collectors::cancel_collection_logic);
-    zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_powerup::lose_minigun_callback);
     zm_hellround_spawn_manager::add_ai_spawn_callback(&zm_bloodsplatter::watch_actor);
+    zm_hellround_spawn_manager::bind_reward_callback(&zm_hellround_reward::give_reward);
+    // Hellround powerup and collector should never be canceled because bad iteration is no more available after feeding cerberus heads.
+    // I'm not found of that, but we still bind this logic because its part of the hellround overall logic.
+    zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_collectors::cancel_collection_logic);
+    zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_wolf_soul_collectors::force_completion);
+    zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_powerup::lose_minigun_callback);
 
     zm_hellround_collectors::bind_completion_callback(&zm_hellround_spawn_manager::hellround_stops);
     zm_hellround_collectors::bind_start_collection_callback(&zm_hellround_spawn_manager::iteration_time_management_update);
