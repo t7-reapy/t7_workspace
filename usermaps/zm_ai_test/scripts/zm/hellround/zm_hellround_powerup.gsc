@@ -19,6 +19,7 @@ REGISTER_SYSTEM_EX("zm_hellround_powerup", &init, &main, undefined)
 
 function private init()
 {
+    level.hellround_powerup_round_thresholds = HRPWRUP_ROUND_THRESHOLDS;
     level.hellround_powerup_minigun_callbacks = [];
     level._grab_minigun = &grab_minigun;
     
@@ -45,7 +46,7 @@ function private sync_hellround_powerup()
 {
     foreach(player in GetPlayers())
     {
-        if (!player.has_powerup_weapon && is_powerup_active())
+        if (!IS_TRUE(player.has_powerup_weapon) && is_powerup_active())
         {
             player DisableWeaponCycling();
             level thread zm_powerup_weapon_minigun::minigun_weapon_powerup(player);
@@ -146,10 +147,14 @@ function private should_drop_hellround_powerup()
     {
         return false;
     }
-    
+
     current_iteration = zm_hellround_shared::get_current_iteration();
     drop_random_percent = RandomInt(100) < HRPWRUP_DROP_CHANCE_PERCENTAGE;
-    return drop_random_percent && current_iteration > 0 && current_iteration <= 3;
+    minimum_round_reached = level.round_number >= level.hellround_powerup_round_thresholds[current_iteration];
+
+    return minimum_round_reached 
+        && drop_random_percent 
+        && current_iteration > 0 && current_iteration <= 3;
 }
 
 function private change_powerup_model(powerup_name, model_name)
