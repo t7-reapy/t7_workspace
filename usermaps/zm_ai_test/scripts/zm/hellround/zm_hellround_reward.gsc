@@ -1,3 +1,4 @@
+#using scripts\zm\_zm_powerups; 
 
 #using scripts\shared\system_shared;
 
@@ -10,15 +11,28 @@
 
 REGISTER_SYSTEM("zm_hellround_reward", &init, undefined)
 
-function init() { }
+class HellroundReward
+{
+    var index;
+    var rewards;
+}
 
-function give_reward()
+function init() {
+    level.hellround_reward = new HellroundReward();
+    level.hellround_reward.index = 0;
+    level.hellround_reward.rewards = HELLROUND_REWARDS;
+}
+
+function give_reward(location)
 {
     if (IS_TRUE(level.hellround.abolished)) {
         PRINT_HR_DEBUG("Hellrounds abolished. Giving high-tier reward.");
-        //TODO
+
+        //TODO : HELLROUND_HIGHTIER_REWARD
     } else {
-        PRINT_HR_DEBUG("Hellrounds not abolished. Giving normal reward.");
-        //TODO
+        reward = level.hellround_reward.rewards[level.hellround_reward.index];
+        level.hellround_reward.index++;
+        PRINT_HR_DEBUG("Spawning: " + reward + " at " + location);
+        level thread zm_powerups::specific_powerup_drop(reward, GetClosestPointOnNavMesh(location, 50));
     }
 }

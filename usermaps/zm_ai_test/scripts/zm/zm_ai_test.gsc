@@ -86,12 +86,23 @@ function main()
     level.pathdist_type = PATHDIST_ORIGINAL;
     
     level.player_starting_points = 500000;
+
+    // level thread give_player_location();
 }
 
 function usermap_test_zone_init()
 {
     level flag::init( "always_on" );
     level flag::set( "always_on" );
+}
+
+function private give_player_location()
+{
+    while(1)
+    {
+        IPrintLnBold("current_location: " + level.players[0].origin);
+        wait 2;
+    }
 }
 
 function custom_add_weapons()

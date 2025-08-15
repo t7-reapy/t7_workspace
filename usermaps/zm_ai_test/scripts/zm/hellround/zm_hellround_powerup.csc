@@ -1,3 +1,5 @@
+#using scripts\_NSZ\nsz_powerup_empty_bottle;
+
 #using scripts\shared\system_shared;
 #insert scripts\shared\shared.gsh;
 

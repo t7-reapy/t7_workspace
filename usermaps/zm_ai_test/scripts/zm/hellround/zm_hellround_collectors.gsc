@@ -302,6 +302,7 @@ function private collect_souls(n_iteration) // self == collector skull ent
 
     wait 1.0; // Wait a second time just for smooth transition
     notify_completion_callback();
+    give_players_iteration_reward(self.origin + (0, 0, -60));
 }
 
 function private wait_till_all_souls_collected() // self == collector skull ent
@@ -382,6 +383,22 @@ function bind_start_collection_callback(func_ptr)
 function private collection_callback()
 {
     thread [[ level.hellround_collectors.collection_callback ]]();
+}
+
+function bind_reward_callback(func_ptr)
+{
+    if (IsFunctionPtr(func_ptr))
+    {
+        level.hellround_spawn_manager.reward_callback = func_ptr;
+    }
+}
+
+function private give_players_iteration_reward(location)
+{
+    if (isdefined(level.hellround_spawn_manager.reward_callback))
+    {
+        [[ level.hellround_spawn_manager.reward_callback ]](location);
+    }
 }
 
 // #region ai death callback
