@@ -104,6 +104,7 @@ function private bind_callbacks()
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_wolf_soul_collectors::force_completion);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_powerup::lose_minigun_callback);
 
+    zm_hellround_collectors::bind_reward_callback(&zm_hellround_reward::give_reward);
     zm_hellround_collectors::bind_completion_callback(&zm_hellround_spawn_manager::hellround_stops);
     zm_hellround_collectors::bind_start_collection_callback(&zm_hellround_spawn_manager::iteration_time_management_update);
 
@@ -126,12 +127,14 @@ function private hellround_cerberus_enable(is_one_head_already_active)
     }
 }
 
-function private hellround_cerberus_disable(is_one_head_still_active)
+function private hellround_cerberus_disable(is_one_head_still_active, location)
 {
     if (!is_one_head_still_active)
     {
         thread zm_hellround_spawn_manager::hellround_stops();
     }
+
+    thread zm_hellround_reward::give_reward(location);
 }
 
 function private hellround_cerberus_fed()
@@ -139,9 +142,6 @@ function private hellround_cerberus_fed()
     thread zm_hellround_spawn_manager::abolish_bad_hellround();
     thread zm_hellround_spawn_manager::hellround_stops();
     thread zm_hellround_spawn_manager::hellround_progress();
-    
-    // TODO : reward management => might be remove if power can be enabled ?
-    thread zm_hellround_reward::give_reward();
 }
 
 // #endregion callbacks

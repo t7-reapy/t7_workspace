@@ -1,7 +1,8 @@
 #using scripts\shared\callbacks_shared; 
 #using scripts\zm\_zm_powerup_weapon_minigun; 
 #using scripts\zm\_zm_powerup_fire_sale; 
-#using scripts\zm\_zm_powerup_carpenter; 
+#using scripts\zm\_zm_powerup_carpenter;
+#using scripts\_NSZ\nsz_powerup_empty_bottle;
 #using scripts\zm\_zm_powerups;
 #using scripts\shared\system_shared;
 
@@ -35,6 +36,7 @@ function private main()
     level.zombie_powerups["insta_kill"].func_should_drop_with_regular_powerups = &func_should_drop_insta_kill_powerup;
     level.zombie_powerups["double_points"].func_should_drop_with_regular_powerups = &func_should_drop_double_points_powerup;
     level.zombie_powerups["full_ammo"].func_should_drop_with_regular_powerups = &func_should_drop_full_ammo_powerup;
+    level.zombie_powerups["empty_bottle"].func_should_drop_with_regular_powerups = &func_should_drop_empty_bottle_powerup;
 
     change_powerup_model("minigun", HRPWRUP_MODEL);
     change_powerup_weapon("minigun", HRPWRUP_WEAPON);
@@ -100,6 +102,11 @@ function private func_should_drop_full_ammo_powerup()
     return self func_should_drop_powerup("full_ammo");
 }
 
+function private func_should_drop_empty_bottle_powerup()
+{
+    return self func_should_drop_powerup("empty_bottle");
+}
+
 // #endregion
 
 function private func_should_drop_powerup(power_up_name)
@@ -136,6 +143,9 @@ function private func_should_drop_powerup(power_up_name)
             return self zm_powerup_fire_sale::func_should_drop_fire_sale();
         case "carpenter":
             return self zm_powerup_carpenter::func_should_drop_carpenter();
+        case "empty_bottle":
+            // Only for rewards.
+            return self zm_powerups::func_should_never_drop();
         default:
             return self zm_powerups::func_should_never_drop();
     }

@@ -325,7 +325,7 @@ function private give_players_bad_iteration_reward()
 {
     if (isdefined(level.hellround_spawn_manager.reward_callback))
     {
-        [[ level.hellround_spawn_manager.reward_callback ]]();
+        [[ level.hellround_spawn_manager.reward_callback ]](undefined);
     }
 }
 

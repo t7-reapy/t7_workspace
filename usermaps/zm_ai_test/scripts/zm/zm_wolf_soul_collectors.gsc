@@ -248,7 +248,7 @@ function HeadActiveCallbacks()
     PRINT_DEBUG_WOLF("wolf head actives: "+level.wolf_heads_active);
 }
 
-function HeadGoneCallbacks()
+function HeadGoneCallbacks() // self == level.wolf_heads[index]
 {
     level endon(KILL_WOLF_HEAD_WATCHERS_NOTIFICATION);
 
@@ -259,7 +259,8 @@ function HeadGoneCallbacks()
     PRINT_DEBUG_WOLF("wolf head actives: "+level.wolf_heads_active);
     if (IsFunctionPtr(level.wolf_head_become_inactive_callback)) 
     {
-        level thread [[ level.wolf_head_become_inactive_callback ]](level.wolf_heads_active > 0);
+        location = self.origin + VectorScale(AnglesToForward(self.angles), 100) + VectorScale(AnglesToUp(self.angles), -60);
+        level thread [[ level.wolf_head_become_inactive_callback ]](level.wolf_heads_active > 0, location);
     }
 }
 function hide_wolf_heads() // self == level.wolf_bodies[index]
@@ -322,7 +323,7 @@ function soul_catcher_state_manager(index)
     }
 
     thread wolf_state_4(index);
-    thread HeadGoneCallbacks();
+    level.wolf_heads[index] thread HeadGoneCallbacks();
 
     PRINT_DEBUG_WOLF("state manager finished");
 }
