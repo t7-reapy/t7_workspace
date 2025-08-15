@@ -12,6 +12,7 @@
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;
 
+#using scripts\zm\hellround\zm_hellround_music;
 #using scripts\zm\hellround\zm_hellround_shared;
 #insert scripts\zm\hellround\zm_hellround_shared.gsh;
 #insert scripts\zm\hellround\zm_hellround_spawn_manager.gsh;
@@ -44,9 +45,7 @@ function private init()
     // For pausing round logic during hellround
     level flag::init("world_is_paused");
 
-
     level.hellround_spawn_manager = new HellRoundSpawnManager();
-
     level.hellround_spawn_manager.current_iteration = 0;
     level.hellround_spawn_manager.hellround_callback = undefined;
     level.hellround_spawn_manager.ai_spawn_callbacks = [];
@@ -217,14 +216,15 @@ function hellround_progress()
 
 function private hellround_pause_round_logic()
 {
-    level endon("stop_hellround_pause_round_logic");
-
-    // First disable normal zombie spawn
+    // Disable normal zombie spawn
     level flag::set("world_is_paused");
 
-    // Then, disable round display from HUD
+    // Disable round display from HUD
     level.noRoundNumber = true;
     SetRoundsPlayed(0);
+    
+    // Block round sounds during hellrounds (if we have cleared last zombies)
+    zm_hellround_music::disable_round_sounds();
     
     // Finally, disable scoring to prevent player from farming during hellround
     level.player_score_override = &zero_score;
@@ -236,6 +236,7 @@ function private hellround_pause_round_logic()
 
     // Between round, the round display change in "round_think" (if all zombie died for example)
     // The following prevent the round number to be displayed.
+    level endon("stop_hellround_pause_round_logic");
     level waittill("between_round_over");
     SetRoundsPlayed(0);
 }
@@ -248,13 +249,15 @@ function private zero_score(arg0 = undefined, arg1 = undefined)
 function private hellround_restore_round_logic()
 {
     level notify("stop_hellround_pause_round_logic");
-
+    
     // Restore zombie spawning
     level flag::clear("world_is_paused");
 
     // Restore round display in HUD
     level.noRoundNumber = false;
     SetRoundsPlayed(level.round_number);
+    
+    zm_hellround_music::restore_round_sounds();
     
     // Finally, enable back scoring
     level.player_score_override = undefined;

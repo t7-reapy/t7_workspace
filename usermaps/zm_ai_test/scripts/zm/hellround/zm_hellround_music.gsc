@@ -23,7 +23,7 @@ function init()
     level thread gameover_ending_sounds();
 }
 
-// In MOTD the game over muysic changes depending on what ending you get, we will replicate this here
+// In MOTD the game over music changes depending on what ending you get, we will replicate this here
 function gameover_ending_sounds() // self == level
 {
     self endon("end_game"); //Stop changing the gameover sound if the game ends
@@ -47,4 +47,27 @@ function gameover_ending_sounds() // self == level
                 break;
         }
     }
+}
+
+function disable_round_sounds()
+{
+    level.musicSystem.states["round_start"].oldMusArray = level.musicSystem.states["round_start"].musArray;
+    level.musicSystem.states["round_start"].musArray = [];
+
+    level.musicSystem.states["round_start_short"].oldMusArray = level.musicSystem.states["round_start_short"].musArray;
+    level.musicSystem.states["round_start_short"].musArray = [];
+
+    level.musicSystem.states["round_start_first"].oldMusArray = level.musicSystem.states["round_start_first"].musArray;
+    level.musicSystem.states["round_start_first"].musArray = [];
+
+    level.musicSystem.states["round_end"].oldMusArray = level.musicSystem.states["round_end"].musArray;
+    level.musicSystem.states["round_end"].musArray = [];
+}
+
+function restore_round_sounds()
+{
+    level.musicSystem.states["round_start"].musArray = level.musicSystem.states["round_start"].oldMusArray;
+    level.musicSystem.states["round_start_short"].musArray = level.musicSystem.states["round_start_short"].oldMusArray;
+    level.musicSystem.states["round_start_first"].musArray = level.musicSystem.states["round_start_first"].oldMusArray;
+    level.musicSystem.states["round_end"].musArray = level.musicSystem.states["round_end"].oldMusArray;
 }
