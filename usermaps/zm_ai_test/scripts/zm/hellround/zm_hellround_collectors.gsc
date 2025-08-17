@@ -69,8 +69,6 @@ function private main()
         skull.total_souls_left = HRCOLL_TOTAL_SOULS;
         skull.idle_sound = Spawn("script_origin", skull.origin);
         skull.idle_sound LinkTo(skull, "tag_origin");
-        skull.idle_amb_sound = Spawn("script_origin", skull.origin);
-        skull.idle_amb_sound LinkTo(skull, "tag_origin");
     }
 
     if (DEBUG_HELLROUNDS)
@@ -114,7 +112,6 @@ function cancel_collection_logic()
         collector.is_collecting = false;
         collector notify("cancel_collection");
         collector.idle_sound StopLoopSound(0.5);
-        collector.idle_amb_sound StopLoopSound(0.5);
     }
 
     depart_hellround_collector_exploders(iteration);
@@ -285,7 +282,6 @@ function private collect_souls(n_iteration) // self == collector skull ent
     PRINT_HR_DEBUG("collecting souls for " + self.targetname + " at iteration " + n_iteration);
 
     self.idle_sound PlayLoopSound(HRCOLL_SND_IDLE_LOOP, 0.5);
-    self.idle_amb_sound PlayLoopSound(HRCOLL_SND_IDLE_AMB_LOOP, 1.5);
 
     self wait_till_all_souls_collected();
     self PlaySound(HRCOLL_SND_COMPLETED);
@@ -293,7 +289,6 @@ function private collect_souls(n_iteration) // self == collector skull ent
     depart_hellround_collector_exploders(n_iteration);
 
     self.idle_sound StopLoopSound(0.5);
-    self.idle_amb_sound StopLoopSound(0.5);
 
     wait HRCOLL_FX_DEPART_DELAY;
     show_hellround_collectors(HRCOLL_DISABLED);
@@ -325,12 +320,12 @@ function private soul_travel(destination_skull) // self == zm actor
     // Spawn the soul
 	fx_ent = util::spawn_model("tag_origin", source + (0, 0, 30));
     fx = PlayFxOnTag(HRCOLL_FX_TRAIL, fx_ent, "tag_origin");
-    fx_ent PlaySound(HRCOLL_SND_SPAWN);
+    fx_ent PlaySound(HRCOLL_SND_SOUL_SPAWN);
 
     // Make it travel above the collector
     time = Distance(source, destination) / HRCOLL_SOUL_TRAVEL_SPEED;
     fx_ent MoveTo(destination + (0, 0, 20), time);
-    fx_ent PlayLoopSound(HRCOLL_SND_TRAVEL, 0.5);
+    fx_ent PlayLoopSound(HRCOLL_SND_SOUL_TRAVEL, 0.5);
 
     wait(time - 0.05);
     
@@ -340,7 +335,7 @@ function private soul_travel(destination_skull) // self == zm actor
     fx_ent waittill("movedone");
 
     // Soul is now collected
-    destination_skull PlaySound(HRCOLL_SND_ENTER);
+    destination_skull PlaySound(HRCOLL_SND_SOUL_ENTER);
     PlayFX(HRCOLL_FX_COLLECT, destination);
     destination_skull notify("soul_collected");
 
@@ -369,7 +364,10 @@ function bind_completion_callback(func_ptr)
 
 function private notify_completion_callback()
 {
-    thread [[ level.hellround_collectors.completion_callback ]]();
+    if (isdefined(level.hellround_collectors.completion_callback))
+    {
+        thread [[ level.hellround_collectors.completion_callback ]]();
+    }
 }
 
 function bind_start_collection_callback(func_ptr)

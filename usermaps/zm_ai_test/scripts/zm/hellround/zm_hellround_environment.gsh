@@ -8,3 +8,6 @@
 
 #define HRENV_LIGHTSTATE_INDEX_BLOODY 3
 #define HRENV_LIGHTSTATE_INDEX_NORMAL 0
+
+#define HRENV_AMBIANCE_SOUND_1 "hr_environment_amb_1"
+#define HRENV_AMBIANCE_SOUND_2 "hr_environment_amb_2"

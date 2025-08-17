@@ -511,6 +511,8 @@ function private spawn_zombie_internal()
 
 function private spawn_zombies_loop(spawn_flag)
 {
+    level endon("end_game");
+
     while (1)
     {
         delay = get_spawn_delay(HRSPAWN_MIN_DELAY_ZOMBIE, HRSPAWN_MAX_DELAY_ZOMBIE);
@@ -542,6 +544,8 @@ function private spawn_zombies_loop(spawn_flag)
 
 function private spawn_dogs_loop(spawn_flag)
 {
+    level endon("end_game");
+
     while (1)
     {
         delay = get_spawn_delay(HRSPAWN_MIN_DELAY_DOG, HRSPAWN_MAX_DELAY_DOG);
@@ -573,6 +577,8 @@ function private spawn_dogs_loop(spawn_flag)
 
 function private spawn_apothicon_furies_loop(spawn_flag)
 {
+    level endon("end_game");
+    
     while (1)
     {
         delay = get_spawn_delay(HRSPAWN_MIN_DELAY_FURY, HRSPAWN_MAX_DELAY_FURY);
@@ -604,6 +610,8 @@ function private spawn_apothicon_furies_loop(spawn_flag)
 
 function private spawn_wasps_loop(spawn_flag)
 {
+    level endon("end_game");
+    
     while (1)
     {
         delay = get_spawn_delay(HRSPAWN_MIN_DELAY_WASP, HRSPAWN_MAX_DELAY_WASP);
@@ -635,6 +643,8 @@ function private spawn_wasps_loop(spawn_flag)
 
 function private spawn_napalm_zombies_loop(spawn_flag)
 {
+    level endon("end_game");
+    
     while (1)
     {
         delay = get_spawn_delay(HRSPAWN_MIN_DELAY_NAPALM, HRSPAWN_MAX_DELAY_NAPALM);

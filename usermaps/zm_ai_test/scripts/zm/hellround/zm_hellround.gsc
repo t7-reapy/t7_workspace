@@ -94,6 +94,7 @@ function private bind_callbacks()
     add_toggle_callback(&zm_hellround_environment::toggle_hellround_environment);
     add_toggle_callback(&zm_bloodsplatter::toggle_blood_splatter);
     add_toggle_callback(&zm_ai_wasp::parasite_round_fx);
+    add_toggle_callback(&zm_hellround_music::toggle_hellround_music);
 
     zm_hellround_spawn_manager::bind_toggle_hellround_callback(&call_toggle_callbacks);
     zm_hellround_spawn_manager::add_ai_spawn_callback(&zm_bloodsplatter::watch_actor);
@@ -103,10 +104,13 @@ function private bind_callbacks()
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_collectors::cancel_collection_logic);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_wolf_soul_collectors::force_completion);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_powerup::lose_minigun_callback);
+    zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_music::enable_bad_ending);
 
-    zm_hellround_collectors::bind_reward_callback(&zm_hellround_reward::give_reward);
-    zm_hellround_collectors::bind_completion_callback(&zm_hellround_spawn_manager::hellround_stops);
     zm_hellround_collectors::bind_start_collection_callback(&zm_hellround_spawn_manager::iteration_time_management_update);
+    zm_hellround_collectors::bind_completion_callback(&zm_hellround_spawn_manager::hellround_stops);
+    zm_hellround_collectors::bind_reward_callback(&zm_hellround_reward::give_reward);
+
+    // TODO: move good ending music to buyable ending
 
     zm_hellround_powerup::add_minigun_callback(&zm_hellround_spawn_manager::hellround_starts);
     zm_hellround_powerup::add_minigun_callback(&zm_hellround_collectors::start_collection_logic);

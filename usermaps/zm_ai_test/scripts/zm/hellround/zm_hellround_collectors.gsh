@@ -26,8 +26,7 @@
 #define HRCOLL_REWARDS array()
 
 #define HRCOLL_SND_IDLE_LOOP "hr_collector_idle"
-#define HRCOLL_SND_IDLE_AMB_LOOP "hr_collector_idle_amb"
-#define HRCOLL_SND_SPAWN "hr_soul_spawn"
-#define HRCOLL_SND_TRAVEL "hr_soul_travel"
-#define HRCOLL_SND_ENTER "hr_soul_enter"
+#define HRCOLL_SND_SOUL_SPAWN "hr_soul_spawn"
+#define HRCOLL_SND_SOUL_TRAVEL "hr_soul_travel"
+#define HRCOLL_SND_SOUL_ENTER "hr_soul_enter"
 #define HRCOLL_SND_COMPLETED "hr_collector_completed"
