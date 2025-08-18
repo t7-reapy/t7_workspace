@@ -69,112 +69,23 @@
 // Weather
 #using scripts\zm\weather\zm_weather;
 
+//Hell rounds
+#using scripts\zm\hellround\zm_hellround;
+
 #using scripts\zm\zm_usermap;
 #using scripts\zm\_zm_animated_switch;
 
-// TODO: remove below
-#using scripts\zm\hellround\zm_hellround_music;
 // Sphynx's Console Commands
 #using scripts\Sphynx\commands\_zm_commands;
 #using scripts\Sphynx\commands\_zm_name_checker;
 
-
-function private hellround_command_response(command_args)
-{
-    level.hellround_command = false;
-    ModVar("hellround", "");
-
-    while(true)
-    {
-        WAIT_SERVER_FRAME;
-
-        dvar_value = ToLower(GetDvarString("hellround", ""));
-
-        if(!isdefined(dvar_value) || dvar_value == "")
-        {
-            continue;
-        }
-        ModVar("hellround", "");
-
-        switch(Int(dvar_value))
-        {
-            case 0:
-                level.hellround_command = false;
-                break;
-            case 1:
-                level.hellround_command = true;
-                break;
-            default:
-                level.hellround_command = !level.hellround_command;
-                break;
-        }
-
-        toggle_hellround_environment(level.hellround_command);
-    }
-}
-
-function private toggle_hellround_environment(b_enable)
-{
-    if (IS_TRUE(b_enable))
-    {
-        util::set_lighting_state(3);
-	    zm_weather::pause();
-        level clientfield::set("hellround_debug", 1);
-    }
-    else
-    {
-        util::set_lighting_state(0);
-	    zm_weather::play();
-        level clientfield::set("hellround_debug", 0);
-    }
-}
-
-function private weather_command_response(command_args)
-{
-    ModVar("weather", "");
-
-    while(true)
-    {
-        WAIT_SERVER_FRAME;
-
-        dvar_value = GetDvarString("weather", "");
-
-        if(!isdefined(dvar_value) || dvar_value == "")
-        {
-            continue;
-        }
-        ModVar("weather", "");
-
-        switch(dvar_value)
-        {
-            case "-":
-                zm_weather::lesser_intensity();
-                break;
-            case "--":
-                zm_weather::lesser_intensity();
-                zm_weather::lesser_intensity();
-                break;
-            case "+":
-                zm_weather::greater_intensity();
-                break;
-            case "++":
-                zm_weather::greater_intensity();
-                zm_weather::greater_intensity();
-                break;
-            default:
-                break;
-        }
-    }
-}
-
 function main()
 {
-    register_client_fields();
     configure_weapon_inspection();
+    bind_hellround_and_weather();
     
     zm_usermap::main();
     level thread zm_animated_switch::MasterSwitchInit();
-    level util::set_lighting_state(0);
 	zm_weather::play();
     
     thread setup_playable_zones();
@@ -183,22 +94,9 @@ function main()
     thread setup_players_vox();
     
     callback::on_spawned(&on_player_spawned);
-
-    // TODO: remove	
-    zombie_utility::set_zombie_var("zombie_powerup_drop_increment", 200); // lower this to make drop happen more often
-	zombie_utility::set_zombie_var("zombie_powerup_drop_max_per_round", 8); // raise this to make drop happen more often
-    thread hellround_command_response();
-    thread weather_command_response();
-    level thread monitor_power_state();
-    level.player_starting_points = 500000;
 }
 
-function register_client_fields()
-{
-    clientfield::register("world", "hellround_debug", VERSION_SHIP, 1, "int");
-}
-
-function configure_weapon_inspection()
+function private configure_weapon_inspection()
 {
     // T9
     inspectable::add_inspectable_weapon(GetWeapon("t9_me_knife_russian"), 4.18);
@@ -257,12 +155,29 @@ function configure_weapon_inspection()
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927_up"), 5);
 }
 
-function custom_add_weapons()
+function private bind_hellround_and_weather()
+{
+    zm_hellround::add_toggle_callback(&toggle_weather);
+}
+
+function private toggle_weather(b_enable_hellround)
+{
+    if (IS_TRUE(b_enable_hellround))
+    {
+        zm_weather::pause();
+    }
+    else
+    {
+        zm_weather::play();
+    }
+}
+
+function private custom_add_weapons()
 {
     zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_test_weapons.csv", 1);
 }
 
-function setup_playable_zones()
+function private setup_playable_zones()
 {
     //Setup the levels Zombie Zone Volumes
     level.zones = [];
@@ -274,19 +189,19 @@ function setup_playable_zones()
     level.pathdist_type = PATHDIST_ORIGINAL;
 }
 
-function add_adjacent_zones()
+function private add_adjacent_zones()
 {
     zm_zonemgr::add_adjacent_zone("start_zone", "second_zone", "enter_second_zone");
     zm_zonemgr::add_adjacent_zone("second_zone", "third_zone", "enter_third_zone");
     zm_zonemgr::add_adjacent_zone("third_zone", "fourth_zone", "enter_fourth_zone");
 } 
 
-function remove_players_names()
+function private remove_players_names()
 {
 	SetDvar("cg_disableplayernames", "1");
 }
 
-function setup_weapons()
+function private setup_weapons()
 {
     // PaP Camo
     level.pack_a_punch_camo_index = 3;
@@ -310,7 +225,7 @@ function private setup_players_vox()
     zm_audio::loadPlayerVoiceCategories("gamedata/audio/zm/zm_usmc_vox.csv");
 }
 
-function on_player_spawned() // self == player
+function private on_player_spawned() // self == player
 {
     self thread watch_blastomatic_acquisition();
 }
@@ -330,12 +245,4 @@ function private watch_blastomatic_acquisition() // self == player
             PlaySoundAtPosition("mus_raygun_stinger", (0, 0, 0));
         }
     }
-}
-
-function monitor_power_state()
-{
-    level flag::wait_till("initial_blackscreen_passed");
-    level flag::wait_till("power_on");
-
-    // TODO: still needed ?
 }

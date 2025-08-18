@@ -50,79 +50,16 @@
 // Weather
 #using scripts\zm\weather\zm_weather;
 
+//Hell rounds
+#using scripts\zm\hellround\zm_hellround;
+
 #using scripts\zm\zm_usermap;
 
 // TODO: remove
 // Sphynx's Console Commands
 #using scripts\Sphynx\commands\_zm_commands;
 
-function autoexec init()
-{
-	level.volumes_show = FindVolumeDecalIndexArray("hellround_volume_show");
-	level.volumes_hide = FindVolumeDecalIndexArray("hellround_volume_hide");
-	level.models_show = FindStaticModelIndexArray("hellround_model_show");
-	level.models_hide = FindStaticModelIndexArray("hellround_model_hide");
-
-    clientfield::register("world", "hellround_debug", VERSION_SHIP, 1, "int", &hellround_debug, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
-}
-
-function private hellround_debug(n_local_client_num, n_old_val, n_new_val, b_new_ent, b_initial_snap, str_field_name, b_was_time_jump)
-{
-	fog_index = (n_new_val ? 3 : 0);
-    fog_bank = 1 << fog_index;
-    lit_fog_bank = fog_index;
-    foreach (player in GetLocalPlayers())
-    {
-		client_number = player GetLocalClientNumber();
-        SetWorldFogActiveBank(client_number, fog_bank);
-        SetLitFogBank(client_number, -1, lit_fog_bank, 0);
-    }
-
-    if(n_new_val)
-    {
-        foreach(volume in level.volumes_show)
-        {
-            UnhideVolumeDecal(volume);
-        }
-
-        foreach(volume in level.volumes_hide)
-        {
-            HideVolumeDecal(volume);
-        }
-
-        foreach(model in level.models_show)
-        {
-            UnhideStaticModel(model);
-        }
-
-        foreach(model in level.models_hide)
-        {
-            HideStaticModel(model);
-        }
-    }
-    else
-    {
-        foreach(volume in level.volumes_show)
-        {
-            HideVolumeDecal(volume);
-        }
-
-        foreach(volume in level.volumes_hide)
-        {
-            UnhideVolumeDecal(volume);
-        }
-
-        foreach(model in level.models_show)
-        {
-            HideStaticModel(model);
-        }
-
-        foreach(model in level.models_hide)
-        {
-            UnhideStaticModel(model);
-        }
-    }
-}
+function autoexec init() {}
 
 function main()
 {    

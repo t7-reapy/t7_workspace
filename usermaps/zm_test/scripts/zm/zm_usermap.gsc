@@ -105,7 +105,6 @@ function main()
     level._uses_default_wallbuy_fx = 1;
 
     zm::init_fx();
-    level util::set_lighting_state(1);
 
     level._effect["eye_glow"] = "zombie/fx_glow_eye_orange";
     level._effect["headshot"] = "zombie/fx_bul_flesh_head_fatal_zmb";

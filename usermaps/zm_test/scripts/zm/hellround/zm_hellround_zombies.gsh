@@ -1,0 +1,5 @@
+#define ORIGINAL_ZOMBIE_BODY_MODELS array("c_t7_zm_dlchd_origins_soldiers_body1", "c_t7_zm_dlchd_origins_soldiers_body2", "c_t7_zm_dlchd_origins_soldiers_body2a", "c_t7_zm_dlchd_origins_soldiers_body3", "c_t7_zm_dlchd_origins_soldiers_body3a")
+
+// possible values are: "walk", "run", "sprint", "super_sprint"
+#define HRZM_ZOMBIE_RUN_STATE "sprint"
+#define HRZM_ZOMBIE_RUN_STATE_ENABLE 0
