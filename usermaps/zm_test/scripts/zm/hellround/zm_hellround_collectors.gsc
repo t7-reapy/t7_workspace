@@ -25,6 +25,7 @@ class HellroundCollectors
     var exploders;
     var exploders_depart;
     var clips;
+    var models;
 
     var souls;
     var collection_callback;
@@ -46,6 +47,10 @@ function private init()
     level.hellround_collectors.clips[0] = GetEntArray(HRCOLL_CLIPS[0], "targetname");
     level.hellround_collectors.clips[1] = GetEntArray(HRCOLL_CLIPS[1], "targetname");
     level.hellround_collectors.clips[2] = GetEntArray(HRCOLL_CLIPS[2], "targetname");
+    level.hellround_collectors.models = [];
+    level.hellround_collectors.models[0] = GetEntArray(HRCOLL_MODELS[0], "targetname");
+    level.hellround_collectors.models[1] = GetEntArray(HRCOLL_MODELS[1], "targetname");
+    level.hellround_collectors.models[2] = GetEntArray(HRCOLL_MODELS[2], "targetname");
     level.hellround_collectors.souls = [];
     level.hellround_collectors.souls[0] = 0;
     level.hellround_collectors.souls[1] = 0;
@@ -136,6 +141,7 @@ function private show_hellround_collectors(n_iteration)
 {
     update_hellround_collector_exploders(n_iteration);
     update_hellround_collector_clips(n_iteration);
+    update_hellround_collector_models(n_iteration);
 
     if (n_iteration != HRCOLL_DISABLED)
     {
@@ -213,6 +219,7 @@ function private update_hellround_collector_clips(n_iteration)
         foreach(clip in clips)
         {
             clip Hide();
+            clip NotSolid();
         }
     }
 
@@ -225,6 +232,36 @@ function private update_hellround_collector_clips(n_iteration)
     foreach(clip in level.hellround_collectors.clips[iteration_index])
     {
         clip Show();
+        clip Solid();
+    }
+}
+
+// #endregion
+// #region models
+
+function private update_hellround_collector_models(n_iteration)
+{
+    foreach(models in level.hellround_collectors.models)
+    {
+        foreach(model in models)
+        {
+            model Hide();
+            model NotSolid();
+        }
+    }
+
+    if (n_iteration == HRCOLL_DISABLED)
+    {
+        return;
+    }
+
+    models_index = n_iteration - 1;
+    models_to_show = level.hellround_collectors.models[models_index];
+
+    foreach(model in models_to_show)
+    {
+        model Show();
+        model Solid();
     }
 }
 

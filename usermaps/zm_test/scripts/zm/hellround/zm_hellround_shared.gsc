@@ -20,7 +20,7 @@ function is_hellround_running()
 function wait_for_map_load()
 {
     level flag::wait_till("all_players_connected");
-    wait 5.0;
+    wait 5.0; // delay taken from zm::onAllPlayersReady()
     while (!AreTexturesLoaded())
     {
         WAIT_SERVER_FRAME;

@@ -124,10 +124,11 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
   > according to some messages in the MT discord, it could be due to engine optimisations when using brushes. Try using patches instead !
 - the mulekick perk is bugged when 3rd weapon is in hand (icon in hud is bugged)
 - perk utility script throws error in splitscreen. (need developer dvar set to 2)
-- zombie stuck list of place:
+- zombie stuck list of places:
   - AI walk on balcony (north)
   - Appartement entrance
   - Appartement balcony exit towards south (too steep)
+  - Appartement spawn in the dip (neighbor room)
 - A couple of lighting issues:
   - exploder lights (lightning)
   - north-east neigbour upper balcony light clip (can be related to quality of light when compiled)
@@ -138,8 +139,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - window curtain holder (inside appartement) doesn't render in game
 - some shadows are too sharp, increase the penumbra radius to 3 on some spot lights
 - hellround bugs:
-  - collectors have zombie collisions when disabled
-  - collectors have player prone collision when disabled
   - if player is downed with minigun, and revived, minigun is gone from player's hand and bonus as well (bonus needs to be given back to player)
 
 # Sphynx commands cheat sheet

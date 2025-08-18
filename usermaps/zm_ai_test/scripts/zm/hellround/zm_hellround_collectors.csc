@@ -14,7 +14,6 @@ REGISTER_SYSTEM("zm_hellround_collectors", &init, undefined)
 class HellroundCollectors
 {
     var volumes;
-    var models;
 }
 
 function private init() 
@@ -23,52 +22,18 @@ function private init()
 
     level.hellround_collectors = new HellroundCollectors();
     level.hellround_collectors.volumes = [];
-    level.hellround_collectors.models = [];
-
     level.hellround_collectors.volumes[0] = FindVolumeDecalIndexArray(HRCOLL_VOLUMES[0]);
     level.hellround_collectors.volumes[1] = FindVolumeDecalIndexArray(HRCOLL_VOLUMES[1]);
     level.hellround_collectors.volumes[2] = FindVolumeDecalIndexArray(HRCOLL_VOLUMES[2]);
-
-    level.hellround_collectors.models[0] = FindStaticModelIndexArray(HRCOLL_MODELS[0]);
-    level.hellround_collectors.models[1] = FindStaticModelIndexArray(HRCOLL_MODELS[1]);
-    level.hellround_collectors.models[2] = FindStaticModelIndexArray(HRCOLL_MODELS[2]);
 }
 
 function hellround_collector(n_client_num, _oldVal, n_iteration, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump)
 {
     util::waitforclient(n_client_num);
 
-    update_hellround_collector_models(n_iteration);
     update_hellround_collector_volumes(n_iteration);
 }
 
-// #region models
-
-function private update_hellround_collector_models(n_iteration)
-{
-    foreach(models in level.hellround_collectors.models)
-    {
-        foreach(model in models)
-        {
-            HideStaticModel(model);
-        }
-    }
-
-    if (n_iteration <= 0) // iteration 0 is for disabling collectors
-    {
-        return;
-    }
-
-    models_index = n_iteration - 1;
-    models_to_show = level.hellround_collectors.models[models_index];
-
-    foreach(model in models_to_show)
-    {
-        UnhideStaticModel(model);
-    }
-}
-
-// #endregion
 // #region volumes
 
 function private update_hellround_collector_volumes(n_iteration)
@@ -81,7 +46,7 @@ function private update_hellround_collector_volumes(n_iteration)
         }
     }
 
-    if (n_iteration <= 0) // iteration 0 is for disabling collectors
+    if (n_iteration == HRCOLL_DISABLED)
     {
         return;
     }

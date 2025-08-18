@@ -259,7 +259,7 @@ function HeadGoneCallbacks() // self == level.wolf_heads[index]
     PRINT_DEBUG_WOLF("wolf head actives: "+level.wolf_heads_active);
     if (IsFunctionPtr(level.wolf_head_become_inactive_callback)) 
     {
-        location = self.origin + VectorScale(AnglesToForward(self.angles), 100) + VectorScale(AnglesToUp(self.angles), -60);
+        location = self.origin + VectorScale(AnglesToForward(self.angles), 125) + VectorScale(AnglesToUp(self.angles), -60);
         level thread [[ level.wolf_head_become_inactive_callback ]](level.wolf_heads_active > 0, location);
     }
 }

@@ -14,12 +14,24 @@
 
 REGISTER_SYSTEM_EX("zm_hellround_environment", &init, &main, undefined)
 
+class HellroundEnvironment
+{
+    var clips_show;
+    var clips_hide;
+
+    var models_show;
+    var models_hide;
+}
+
 function private init()
 {
     clientfield::register("world", HRENV_TOGGLE_CLIENT_FIELD, VERSION_SHIP, 1, "int");
 
-    level.clips_show = GetEntArray("hellround_clip_show", "targetname");
-    level.clips_hide = GetEntArray("hellround_clip_hide", "targetname");
+    level.hellround_environment = new HellroundEnvironment();
+    level.hellround_environment.clips_show = GetEntArray("hellround_clip_show", "targetname");
+    level.hellround_environment.clips_hide = GetEntArray("hellround_clip_hide", "targetname");
+    level.hellround_environment.models_show = GetEntArray("hellround_model_show", "targetname");
+    level.hellround_environment.models_hide = GetEntArray("hellround_model_hide", "targetname");
     
     callback::on_connect(&sync_hellround_environment);
 }
@@ -50,6 +62,7 @@ function toggle_hellround_environment(b_enable) // self == player or undefined
 
     level clientfield::set(HRENV_TOGGLE_CLIENT_FIELD, b_enable);
 
+    show_hellround_models(IS_TRUE(b_enable))
     show_hellround_clips(IS_TRUE(b_enable));
 
     if (!b_enable)
@@ -77,31 +90,65 @@ function private update_lightstate(b_enable) // self == player or undefined
 
 // #region brush clip
 
-//TODO: if brushmodel clip don't work, try collmaps.
 function private show_hellround_clips(b_show)
 {
     if(b_show)
     {
-        foreach(clip in level.clips_show)
+        foreach(clip in level.hellround_environment.clips_show)
         {
             clip Show();
         }
 
-        foreach(clip in level.clips_hide)
+        foreach(clip in level.hellround_environment.clips_hide)
         {
             clip Hide();
         }
     }
     else
     {
-        foreach(clip in level.clips_show)
+        foreach(clip in level.hellround_environment.clips_show)
         {
             clip Hide();
         }
 
-        foreach(clip in level.clips_hide)
+        foreach(clip in level.hellround_environment.clips_hide)
         {
             clip Show();
+        }
+    }
+}
+
+// #endregion
+// #region models
+
+function private show_hellround_models(b_show)
+{
+    if (b_show)
+    {
+        foreach(model in level.hellround_environment.models_show)
+        {
+            model Show();
+            model Solid();
+        }
+
+        foreach(model in level.hellround_environment.models_hide)
+        {
+            model Hide();
+            model NotSolid();
+        }
+    }
+    else
+    {
+        foreach(model in level.hellround_environment.models_show)
+        {
+            model Hide();
+            model NotSolid();
+        }
+
+        foreach(model in level.hellround_environment.models_hide)
+        {
+            model Show();
+            model Solid();
         }
     }
 }
