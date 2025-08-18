@@ -213,7 +213,11 @@ function private setup_weapons()
     level.start_weapon = GetWeapon("t9_1911");
     level.laststandpistol = level.start_weapon;
     level.default_laststandpistol = level.start_weapon;
+    level.pistol_values[0] = level.default_laststandpistol;
+
+    // For solo games
     level.default_solo_laststandpistol = GetWeapon("t9_1911_rdw_up");
+    level.pistol_values[3] = level.default_solo_laststandpistol;
 
     // Override default melee weapon
     zm_utility::register_melee_weapon_for_level("t8_knife");
