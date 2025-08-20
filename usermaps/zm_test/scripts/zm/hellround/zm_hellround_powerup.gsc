@@ -144,7 +144,6 @@ function private func_should_drop_powerup(power_up_name)
         case "carpenter":
             return self zm_powerups::func_should_never_drop(); // self zm_powerup_carpenter::func_should_drop_carpenter();
         case "empty_bottle": // Only for rewards.
-            return self zm_powerups::func_should_never_drop();
         default:
             return self zm_powerups::func_should_never_drop();
     }
@@ -199,12 +198,13 @@ function private grab_minigun(grabber_player)
 {
     foreach(player in GetPlayers())
     {
-        player DisableWeaponCycling();
         if (player != grabber_player)
         {
             level thread zm_powerup_weapon_minigun::minigun_weapon_powerup(player);
             player thread zm_powerups::powerup_vo("minigun");
         }
+        
+        player DisableWeaponCycling();
     }
     
     foreach(callback in level.hellround_powerup_minigun_callbacks)

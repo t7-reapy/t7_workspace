@@ -14,7 +14,7 @@
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
 #using scripts\zm\_zm_perk_utility;
-#using scripts\zm\_zm_powerup_ww_grenade;
+//#using scripts\zm\_zm_powerup_ww_grenade;
 #insert scripts\shared\archetype_shared\archetype_shared.gsh;
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;

@@ -2,8 +2,8 @@
 // ======================================================================================================
 #define WIDOWS_WINE_VERSION										"3.1.0"
 #define WIDOWS_WINE_LEVEL_USE_PERK							1
-#define WIDOWS_WINE_PERK_COST									4000
-#define WIDOWS_WINE_PERK_COST_STRING						"4000"
+#define WIDOWS_WINE_PERK_COST									3000
+#define WIDOWS_WINE_PERK_COST_STRING						"3000"
 #define WIDOWS_WINE_RADIANT_MACHINE_NAME				"vending_widowswine"	
 #define WIDOWS_WINE_ALIAS											"widows_wine"
 #define WIDOWS_WINE_SCRIPT_STRING							"widowswine_perk"

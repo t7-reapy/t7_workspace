@@ -3,7 +3,7 @@
 #using scripts\shared\system_shared;
 #using scripts\zm\_zm_perks;
 #using scripts\zm\_zm_perk_utility;
-#using scripts\zm\_zm_powerup_ww_grenade;
+//#using scripts\zm\_zm_powerup_ww_grenade;
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;
 #insert scripts\zm\_zm_perk_widows_wine.gsh;
