@@ -135,7 +135,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - A couple of lighting issues:
   - exploder lights (lightning)
   - north-east neigbour upper balcony light clip (can be related to quality of light when compiled)
-- the detail brush that was the fix to blocked zombie on south-west baricade is not a clip for explosion (mustand & sally) -> add a clip for weapons here
 - rain sounds in splitscreen should only be played once if both players are in same enviromnent (make this adaptable so if one change environment, it updates for both using GetLocalPlayers())
 - hellround bugs:
   - if player is downed with minigun, and revived, minigun is gone from player's hand and bonus as well (bonus needs to be given back to player)
