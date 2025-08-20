@@ -61,8 +61,6 @@ function toggle_hellround_environment(b_enable) // self == player or undefined
     PRINT_HR_DEBUG("toggle_hellround_environment: " + b_enable);
 
     level clientfield::set(HRENV_TOGGLE_CLIENT_FIELD, b_enable);
-
-    show_hellround_models(IS_TRUE(b_enable))
     show_hellround_clips(IS_TRUE(b_enable));
 
     if (!b_enable)
@@ -72,6 +70,7 @@ function toggle_hellround_environment(b_enable) // self == player or undefined
         // lightstate switch happening after fog transition happens.
         wait HRENV_FOG_TRANSITION_TIME - fog_switch_amount * HRENV_FOG_RADIANT_TIME;
     }
+    show_hellround_models(IS_TRUE(b_enable));
     self update_lightstate(b_enable);
 }
 

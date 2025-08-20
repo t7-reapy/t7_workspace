@@ -116,16 +116,18 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 
 <!-- | Name | Author | []() | []() | []() | -->
 
-# Knowns bugs spotted on map
+# Known bugs spotted on map
 
 ## ZM_TEST
 
+- dvar developer 2 errors:
+  - perk utility script throws error in splitscreen.
+  - 64 buffer limit for postfx shader array.
 - sometimes, the player inspection of weapon is stuck and impossible to disable
 - umbra bug when jumbing in north exterior corridor <= don't know how to fix this ...
   > according to some messages in the MT discord, it could be due to engine optimisations when using brushes. Try using patches instead !
-- the mulekick perk is bugged when 3rd weapon is in hand (icon in hud is bugged)
-- perk utility script throws error in splitscreen. (need developer dvar set to 2)
-- zombie stuck list of places:
+- the mulekick perk is bugged when 3rd weapon is in hand (icon in hud is bugged) <= probably will be fixed with another LUA HUD
+- zombie stuck in a list of places:
   - AI walk on balcony (north)
   - Appartement entrance
   - Appartement balcony exit towards south (too steep)
@@ -133,7 +135,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - A couple of lighting issues:
   - exploder lights (lightning)
   - north-east neigbour upper balcony light clip (can be related to quality of light when compiled)
-  - the double-tap lighting is borring (on the wall on the left)
 - the detail brush that was the fix to blocked zombie on south-west baricade is not a clip for explosion (mustand & sally) -> add a clip for weapons here
 - rain sounds in splitscreen should only be played once if both players are in same enviromnent (make this adaptable so if one change environment, it updates for both using GetLocalPlayers())
 - hellround bugs:
