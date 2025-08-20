@@ -156,6 +156,10 @@ function phdflopper_main()
 	callback::on_connect( &phdflopper_register_stat );
 
 	// zm_perks::register_perk_damage_override_func( &phdflopper_damage_override );
+	if (!isdefined(level.perk_damage_override))
+	{
+		level.perk_damage_override = [];
+	}
 	array::push( level.perk_damage_override, &phdflopper_damage_override, 0 );
 	
 	

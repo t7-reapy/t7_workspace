@@ -42,12 +42,9 @@
 #using scripts\zm\_zm_perk_staminup;
 #using scripts\zm\_zm_perk_light_fix;
 
-// Needed for harrybo21 perks to work
-#using scripts\zm\_zm_perk_widows_wine;
-
 // Harrybo21 additional perks
+#using scripts\zm\_zm_perk_widows_wine;
 #using scripts\zm\_zm_perk_electric_cherry;
-#using scripts\zm\_zm_perk_tombstone;
 #using scripts\zm\_zm_perk_phdflopper;
 
 //Powerups
