@@ -132,12 +132,14 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
   - Appartement entrance
   - Appartement balcony exit towards south (too steep)
   - Appartement spawn in the dip (neighbor room)
+  - Basically apohicon get stuck everywhere it's crazy (check unit size in GSH ?)
 - A couple of lighting issues:
   - exploder lights (lightning)
   - north-east neigbour upper balcony light clip (can be related to quality of light when compiled)
 - rain sounds in splitscreen should only be played once if both players are in same enviromnent (make this adaptable so if one change environment, it updates for both using GetLocalPlayers())
 - hellround bugs:
   - if player is downed with minigun, and revived, minigun is gone from player's hand and bonus as well (bonus needs to be given back to player)
+  - weapon can cycle with minigun (sometimes only...)
 
 # Sphynx commands cheat sheet
 
