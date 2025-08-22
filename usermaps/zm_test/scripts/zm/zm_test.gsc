@@ -89,6 +89,7 @@ function main()
     thread remove_players_names();
     thread setup_weapons();
     thread setup_players_vox();
+    thread watch_power_state();
     
     callback::on_spawned(&on_player_spawned);
 }
@@ -246,4 +247,15 @@ function private watch_blastomatic_acquisition() // self == player
             PlaySoundAtPosition("mus_raygun_stinger", (0, 0, 0));
         }
     }
+}
+
+function private watch_power_state()
+{
+    level.power_on_lightstate = undefined;
+    
+    level flag::wait_till("power_on");
+    
+    level.power_on_lightstate = 1;
+    util::set_lighting_state(level.power_on_lightstate);
+    zm_weather::update_default_lightstate();
 }

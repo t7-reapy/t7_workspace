@@ -67,11 +67,21 @@ function private default_thunder_state()
     thunder.intensity = WEATHER_INTENSITY_DEFAULT;
     thunder.min_wait = THUNDER_DEFAULT_MIN_WAIT[thunder.intensity];
     thunder.max_wait = THUNDER_DEFAULT_MAX_WAIT[thunder.intensity];
-    thunder.lightstate_missing = THUNDER_DEFAULT_LIGHTSTATE;
+    thunder.lightstate_missing = get_default_lightstate();
     thunder.lightstate_strikes = THUNDER_STRIKES_LIGHTSTATE;
     thunder.exploders = THUNDER_EXPLODERS;
 
     return thunder;
+}
+
+function private get_default_lightstate()
+{
+    return (isdefined(level.power_on_lightstate) ? level.power_on_lightstate : THUNDER_DEFAULT_LIGHTSTATE);
+}
+
+function update_default_lightstate()
+{
+    level.weather.thunder.lightstate_missing = get_default_lightstate();
 }
 
 function greater_intensity()

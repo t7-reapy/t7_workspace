@@ -170,3 +170,8 @@ function lesser_intensity()
     if (ENABLE_WIND)
         zm_weather_wind::lesser_intensity();
 }
+
+function update_default_lightstate()
+{
+    zm_weather_thunder::update_default_lightstate();
+}

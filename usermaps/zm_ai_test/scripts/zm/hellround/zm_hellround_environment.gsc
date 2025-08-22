@@ -76,7 +76,7 @@ function toggle_hellround_environment(b_enable) // self == player or undefined
 
 function private update_lightstate(b_enable) // self == player or undefined
 {
-    lightstate = (IS_TRUE(b_enable) ? HRENV_LIGHTSTATE_INDEX_BLOODY : HRENV_LIGHTSTATE_INDEX_NORMAL);
+    lightstate = (IS_TRUE(b_enable) ? HRENV_LIGHTSTATE_INDEX_BLOODY : get_default_lightstate());
     if (isdefined(self) && IsPlayer(self))
     {
         self util::set_lighting_state(lightstate);
@@ -85,6 +85,11 @@ function private update_lightstate(b_enable) // self == player or undefined
     {
         level util::set_lighting_state(lightstate);
     }
+}
+
+function private get_default_lightstate()
+{
+    return (isdefined(level.power_on_lightstate) ? level.power_on_lightstate : HRENV_LIGHTSTATE_INDEX_NORMAL);
 }
 
 // #region brush clip
