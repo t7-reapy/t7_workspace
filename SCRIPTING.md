@@ -6,7 +6,8 @@ In this document, there will be tips and stuff around my investigations and disc
 
 When booting game after a successful linking of the scripts in the tools, and having error: *`Error linking script: "blabla.gsc"`*, usually it means one script file is missing from zone file. It mostly does this because link step does the linkage with zoned files, not files from the folder AFAIK.
 
-If the map includes weapons that are not linked (especially the ones buyable on the walls), the map doesn't run, and crashes instantly with error about zm_weapons or something. There is also a wallbuy limit I think, that makes the map crashes without errors.
+If the map includes weapons that are not linked (especially the ones buyable on the walls), the map doesn't run, and crashes instantly with error about zm_weapons or something. 
+There is also a wallbuy limit around 20 (depends of the guns used on the walls it seems), that makes the map crashes without errors when using PAP.
 
 ## Powerups
 
