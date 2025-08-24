@@ -1,5 +1,5 @@
 #define HRPWRUP_WEAPON "iw8_minigun"
-#define HRPWRUP_ROUND_THRESHOLDS array(255, 15, 20, 25)
+#define HRPWRUP_ROUND_THRESHOLDS array(255, 1, 1, 1)
 #define HRPWRUP_DROP_CHANCE_PERCENTAGE 100
 
 #define HRPWRUP_MODEL "doom_prop_hell_monster_skull_hellround"
