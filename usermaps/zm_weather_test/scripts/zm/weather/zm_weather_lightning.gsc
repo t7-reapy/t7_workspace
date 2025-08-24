@@ -37,7 +37,7 @@ function play()
 
     if (level.weather.lightning.intensity == WEATHER_INTENSITY_OFF)
     {
-        level.weather.lightning.intensity = WEATHER_INTENSITY_DEFAULT;
+        level.weather.lightning.intensity = level.weather.intensity;
         level.weather.lightning.min_wait = LIGHTNING_BASE_MIN_WAIT[level.weather.lightning.intensity];
         level.weather.lightning.max_wait = LIGHTNING_BASE_MAX_WAIT[level.weather.lightning.intensity];
     }

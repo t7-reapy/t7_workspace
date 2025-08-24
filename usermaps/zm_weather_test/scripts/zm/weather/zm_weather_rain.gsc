@@ -52,7 +52,7 @@ function init()
 function play() 
 {
     level endon("entityshutdown");
-    level.weather.rain.intensity = WEATHER_INTENSITY_DEFAULT;
+    level.weather.rain.intensity = level.weather.intensity;
 
     if (ENABLE_RAIN_AMBIENCE)
     {

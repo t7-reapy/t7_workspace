@@ -39,6 +39,8 @@ function play()
         return;
     }
     level.weather.thunder.paused = false;
+    level.weather.thunder.intensity = level.weather.intensity;
+    thunder_intensity_update();
 
     while(true)
     {
@@ -64,7 +66,7 @@ function private default_thunder_state()
 {
     thunder = new Thunder();
     thunder.paused = true;
-    thunder.intensity = WEATHER_INTENSITY_DEFAULT;
+    thunder.intensity = WEATHER_INTENSITY_OFF;
     thunder.min_wait = THUNDER_DEFAULT_MIN_WAIT[thunder.intensity];
     thunder.max_wait = THUNDER_DEFAULT_MAX_WAIT[thunder.intensity];
     thunder.lightstate_missing = get_default_lightstate();
@@ -91,10 +93,7 @@ function greater_intensity()
         return;
     }
     level.weather.thunder.intensity++;
-    level.weather.thunder.min_wait = THUNDER_DEFAULT_MIN_WAIT[level.weather.thunder.intensity];
-    level.weather.thunder.max_wait = THUNDER_DEFAULT_MAX_WAIT[level.weather.thunder.intensity];
-    level notify("thunder_end_current_strike");
-    level util::set_lighting_state(level.weather.thunder.lightstate_missing);
+    thunder_intensity_update();
 }
 
 function lesser_intensity()
@@ -104,6 +103,11 @@ function lesser_intensity()
         return;
     }
     level.weather.thunder.intensity--;
+    thunder_intensity_update();
+}
+
+function private thunder_intensity_update()
+{
     level.weather.thunder.min_wait = THUNDER_DEFAULT_MIN_WAIT[level.weather.thunder.intensity];
     level.weather.thunder.max_wait = THUNDER_DEFAULT_MAX_WAIT[level.weather.thunder.intensity];
     level notify("thunder_end_current_strike");

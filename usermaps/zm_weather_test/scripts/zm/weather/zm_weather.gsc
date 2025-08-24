@@ -28,7 +28,7 @@ class Weather{
 function private init() 
 {
     level.weather = new Weather();
-    level.weather.intensity = WEATHER_INTENSITY_DEFAULT;
+    level.weather.intensity = undefined;
 
     if (ENABLE_LIGHTNING)
     {
@@ -53,6 +53,8 @@ function private init()
 
 function play()
 {
+    level.weather.intensity = RandomInt(WEATHER_INTENSITY_HIG) + 1;
+    
     if (ENABLE_LIGHTNING)
         thread zm_weather_lightning::play();
     if (ENABLE_RAIN)

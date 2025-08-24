@@ -51,7 +51,7 @@ function play()
         return;
     }
     level.weather.wind.paused = false;
-    level.weather.wind.intensity = WEATHER_INTENSITY_DEFAULT;
+    level.weather.wind.intensity = level.weather.intensity;
 
     while(true)
     {
