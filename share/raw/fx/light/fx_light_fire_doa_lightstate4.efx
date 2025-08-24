@@ -463,19 +463,22 @@ iwfx 3
 	{
 		zm_factory_barrel_fire
 		{
-			PRIMARY_NOSHADOWMAP 1
 			PRIMARY_TYPE OMNI
 			_color 0 0 0
 			falloffdistance 60
 			far_edge 0.35
+			lightingstate1 0
+			lightingstate2 0
+			lightingstate3 0
 			penumbraRadius 3
 			radius 400
-			shadowUpdate Always
+			shadowUpdate Never
 			spec_comp 1
 			volumetric 1
 			volumetricIntensityBoost -1
 			ENABLE_FALLOFF 1
 			NO_CULL 0
+			PRIMARY_NOSHADOWMAP 1
 			PROBE_ONLY 0
 			angles 0 0 0
 			bake_intensity_scale 1
@@ -496,9 +499,6 @@ iwfx 3
 			def_tile 1 1
 			excludeDedicated Off
 			fov_outer 90
-			lightingstate1 1
-			lightingstate2 1
-			lightingstate3 1
 			lightingstate4 1
 			min_light_cutoff 0
 			name light
