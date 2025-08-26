@@ -84,6 +84,8 @@ function main()
     level thread zm_zonemgr::manage_zones( init_zones );
 
     level.pathdist_type = PATHDIST_ORIGINAL;
+
+    callback::on_connect(&disable_hitmarkers);
     
     level.player_starting_points = 500000;
 
@@ -94,6 +96,17 @@ function usermap_test_zone_init()
 {
     level flag::init( "always_on" );
     level flag::set( "always_on" );
+}
+
+function private disable_hitmarkers() // self == player
+{
+    while(!isdefined(self.hud_damagefeedback) && !isdefined(self.hud_damagefeedback_additional))
+    {
+        WAIT_SERVER_FRAME;
+    }
+
+    self.hud_damagefeedback = undefined;
+    self.hud_damagefeedback_additional = undefined;
 }
 
 function private give_player_location()

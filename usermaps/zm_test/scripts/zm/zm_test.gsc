@@ -97,8 +97,9 @@ function main()
     thread setup_players_vox();
     thread watch_power_state();
     
-    callback::on_laststand(&onlaststand);
+    callback::on_connect(&disable_hitmarkers);
     callback::on_spawned(&on_player_spawned);
+    callback::on_laststand(&onlaststand);
     
     thread end_game();
 
@@ -187,6 +188,17 @@ function private setup_weapons()
 function private setup_players_vox()
 {
     zm_audio::loadPlayerVoiceCategories("gamedata/audio/zm/zm_usmc_vox.csv");
+}
+
+function private disable_hitmarkers() // self == player
+{
+    while(!isdefined(self.hud_damagefeedback) && !isdefined(self.hud_damagefeedback_additional))
+    {
+        WAIT_SERVER_FRAME;
+    }
+
+    self.hud_damagefeedback = undefined;
+    self.hud_damagefeedback_additional = undefined;
 }
 
 function private on_player_spawned() // self == player
