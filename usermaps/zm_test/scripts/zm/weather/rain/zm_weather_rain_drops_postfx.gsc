@@ -85,6 +85,14 @@ function pause()
 
 function on_player_spawned() // self == player
 {
+    foreach (trigger in level.weather.rain.drops_postfx.triggers)
+    {
+        if (self IsTouching(trigger))
+        {
+            return;
+        }
+    }
+    
     self update_raindrops(level.weather.rain.intensity);
 }
 

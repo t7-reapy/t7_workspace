@@ -11,3 +11,5 @@
 
 #define HRENV_AMBIANCE_SOUND_1 "hr_environment_amb_1"
 #define HRENV_AMBIANCE_SOUND_2 "hr_environment_amb_2"
+
+#define HRENV_FX_EXPLODER_NAME "hr_environment_fx_exploder"

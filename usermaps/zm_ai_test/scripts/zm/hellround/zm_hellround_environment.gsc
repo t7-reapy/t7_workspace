@@ -1,3 +1,4 @@
+#using scripts\shared\exploder_shared; 
 #using scripts\shared\flag_shared; 
 #using scripts\shared\callbacks_shared; 
 #using scripts\shared\util_shared; 
@@ -21,6 +22,8 @@ class HellroundEnvironment
 
     var models_show;
     var models_hide;
+
+    var fx_exploder;
 }
 
 function private init()
@@ -32,6 +35,7 @@ function private init()
     level.hellround_environment.clips_hide = GetEntArray("hellround_clip_hide", "targetname");
     level.hellround_environment.models_show = GetEntArray("hellround_model_show", "targetname");
     level.hellround_environment.models_hide = GetEntArray("hellround_model_hide", "targetname");
+    level.hellround_environment.fx_exploder = HRENV_FX_EXPLODER_NAME;
     
     callback::on_connect(&sync_hellround_environment);
 }
@@ -44,11 +48,8 @@ function private sync_hellround_environment() // self == player
 function private main()
 {
 	zm_hellround_shared::wait_for_map_load();
-
-    // At first, force lightstate switch to happen once (cleans fx on state outside of HRENV_LIGHTSTATE_INDEX_NORMAL).
-    update_lightstate(true);
-    WAIT_SERVER_FRAME;
     update_lightstate(false);
+    show_hellround_fxs(false);
 
     if (DEBUG_HELLROUNDS)
     {
@@ -61,17 +62,25 @@ function toggle_hellround_environment(b_enable) // self == player or undefined
     PRINT_HR_DEBUG("toggle_hellround_environment: " + b_enable);
 
     level clientfield::set(HRENV_TOGGLE_CLIENT_FIELD, b_enable);
-    show_hellround_clips(IS_TRUE(b_enable));
+
+    if (b_enable)
+    {
+        // In case the hellround environment is enabled, we want the 
+        // lightstate switch happening immediatly.
+        self update_lightstate(b_enable);
+    }
+
+    fog_switch_amount = 2;
+    wait HRENV_FOG_TRANSITION_TIME - fog_switch_amount * HRENV_FOG_RADIANT_TIME;
 
     if (!b_enable)
     {
-        fog_switch_amount = 2;
-        // In case the hellround environment is disabled, we want the 
-        // lightstate switch happening after fog transition happens.
-        wait HRENV_FOG_TRANSITION_TIME - fog_switch_amount * HRENV_FOG_RADIANT_TIME;
+        self update_lightstate(b_enable);
     }
+
+    show_hellround_fxs(IS_TRUE(b_enable));
+    show_hellround_clips(IS_TRUE(b_enable));
     show_hellround_models(IS_TRUE(b_enable));
-    self update_lightstate(b_enable);
 }
 
 function private update_lightstate(b_enable) // self == player or undefined
@@ -185,6 +194,21 @@ function private modvar_debug_hellround_environment()
                 toggle_hellround_environment(false);
                 break;
         }
+    }
+}
+
+// #endregion
+// #region fxs
+
+function private show_hellround_fxs(b_enable)
+{
+    if (b_enable)
+    {
+        exploder::exploder(level.hellround_environment.fx_exploder);
+    }
+    else
+    {
+        exploder::kill_exploder(level.hellround_environment.fx_exploder);
     }
 }
 
