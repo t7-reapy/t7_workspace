@@ -60,11 +60,11 @@ function autoexec init() {}
 
 function main()
 {    
-	luiLoad("ui.uieditor.menus.hud.t7hud_zm_custom");
+    luiLoad("ui.uieditor.menus.hud.t7hud_zm_custom");
 
     zm_usermap::main();
 
-	callback::on_localclient_connect(&on_connect);
+    callback::on_localclient_connect(&on_connect);
 
     include_weapons();
 }
@@ -76,15 +76,15 @@ function include_weapons()
 
 function private on_connect(n_local_client_num)
 {
-	self thread disable_player_outline(n_local_client_num);
+    self thread disable_player_outline(n_local_client_num);
 }
 
 function private disable_player_outline(n_local_client_num)
 {
-	foreach (player in GetPlayers(n_local_client_num))
-	{
-		player duplicate_render::set_dr_flag("keyline_active", 0);
-	}
-	
-	self duplicate_render::update_dr_filters(n_local_client_num);
+    foreach (player in GetPlayers(n_local_client_num))
+    {
+        player duplicate_render::set_dr_flag("keyline_active", 0);
+    }
+    
+    self duplicate_render::update_dr_filters(n_local_client_num);
 }

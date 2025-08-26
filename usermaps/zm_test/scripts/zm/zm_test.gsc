@@ -72,6 +72,12 @@
 #using scripts\zm\zm_usermap;
 #using scripts\zm\_zm_animated_switch;
 
+// Player last stand sounds taken from MystifiedTulips scripts
+#define PLAYER_DOWNED_SOUND "zc_player_down"
+#define PLAYER_REVIVED_SOUND "zc_player_revive"
+#define BLEEDOUT_LOOP_SOUND "cw_laststand_loop"
+#define PLAYER_NEAR_DEATH_SOUND "zc_player_near_death"
+
 // Sphynx's Console Commands
 #using scripts\Sphynx\commands\_zm_commands;
 #using scripts\Sphynx\commands\_zm_name_checker;
@@ -83,7 +89,7 @@ function main()
     
     zm_usermap::main();
     level thread zm_animated_switch::MasterSwitchInit();
-	zm_weather::play();
+    zm_weather::play();
     
     thread setup_playable_zones();
     thread remove_players_names();
@@ -91,7 +97,191 @@ function main()
     thread setup_players_vox();
     thread watch_power_state();
     
+    callback::on_laststand(&onlaststand);
     callback::on_spawned(&on_player_spawned);
+    
+    thread end_game();
+
+    level.player_starting_points = 500000;
+}
+
+function private end_game()
+{
+    level waittill("end_game");
+
+    foreach(player in GetPlayers())
+    {
+        player StopLocalSound(PLAYER_NEAR_DEATH_SOUND);
+    }
+}
+
+function private bind_hellround_and_weather()
+{
+    zm_hellround::add_toggle_callback(&toggle_weather);
+}
+
+function private toggle_weather(b_enable_hellround)
+{
+    if (IS_TRUE(b_enable_hellround))
+    {
+        zm_weather::pause();
+    }
+    else
+    {
+        zm_weather::play();
+    }
+}
+
+function private custom_add_weapons()
+{
+    zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_test_weapons.csv", 1);
+}
+
+function private setup_playable_zones()
+{
+    //Setup the levels Zombie Zone Volumes
+    level.zones = [];
+    level.zone_manager_init_func = &add_adjacent_zones;
+    init_zones[0] = "start_zone";
+    level thread zm_zonemgr::manage_zones(init_zones);
+
+    // Must be defined for AI pathing
+    level.pathdist_type = PATHDIST_ORIGINAL;
+}
+
+function private add_adjacent_zones()
+{
+    zm_zonemgr::add_adjacent_zone("start_zone", "second_zone", "enter_second_zone");
+    zm_zonemgr::add_adjacent_zone("second_zone", "third_zone", "enter_third_zone");
+    zm_zonemgr::add_adjacent_zone("third_zone", "fourth_zone", "enter_fourth_zone");
+} 
+
+function private remove_players_names()
+{
+    SetDvar("cg_disableplayernames", "1");
+}
+
+function private setup_weapons()
+{
+    // PaP Camo
+    level.pack_a_punch_camo_index = 3;
+    level.pack_a_punch_camo_index_number_variants = 34;
+
+    level._zombie_custom_add_weapons = &custom_add_weapons;
+
+    // Use CW M1911 as start and laststand pistol
+    level.start_weapon = GetWeapon("t9_1911");
+    level.laststandpistol = level.start_weapon;
+    level.default_laststandpistol = level.start_weapon;
+    level.pistol_values[0] = level.default_laststandpistol;
+
+    // For solo games
+    level.default_solo_laststandpistol = GetWeapon("t9_1911_rdw_up");
+    level.pistol_values[3] = level.default_solo_laststandpistol;
+
+    // Override default melee weapon
+    zm_utility::register_melee_weapon_for_level("t8_knife");
+    level.weaponbasemelee = getweapon("t8_knife");
+}
+
+function private setup_players_vox()
+{
+    zm_audio::loadPlayerVoiceCategories("gamedata/audio/zm/zm_usmc_vox.csv");
+}
+
+function private on_player_spawned() // self == player
+{
+    self thread watch_blastomatic_acquisition();
+    self thread on_player_damage();
+}
+
+function private watch_blastomatic_acquisition() // self == player
+{
+    level endon("end_game");
+    self endon("disconnect");
+    self endon("bled_out");
+
+    while(true)
+    {
+        self waittill("weapon_give", weapon);
+
+        if(weapon.name == "t9_semiauto_cosplay")
+        {
+            PlaySoundAtPosition("mus_raygun_stinger", (0, 0, 0));
+        }
+    }
+}
+
+function private watch_power_state()
+{
+    level.power_on_lightstate = undefined;
+    
+    level flag::wait_till("power_on");
+    
+    level.power_on_lightstate = 1;
+    util::set_lighting_state(level.power_on_lightstate);
+    zm_weather::update_default_lightstate();
+}
+
+function private on_player_damage() // self == player
+{
+    level endon("end_game");
+    self endon("disconnect");
+    self endon("spawned_player");
+
+    while(isdefined(self))
+    {
+        self util::waittill_any("damage", "death", "bled_out");
+
+        if(!isdefined(self))
+        {
+            return;
+        }
+
+        if (IsPlayer(self) && IsAlive(self) && self.health <= 30)
+        {
+            self PlayLocalSound(PLAYER_NEAR_DEATH_SOUND);
+            while(self.health <= 30 && IsAlive(self) && !self laststand::player_is_in_laststand())
+            {
+                Earthquake(0.15, 0.1, self.origin, 32);
+                wait 0.1;
+            }
+        }
+    }
+}
+
+function private onlaststand() //callback on player laststand
+{
+    level endon("end_game");
+    self endon("death");
+    self endon("bled_out");
+    self endon("disconnect");
+    
+    self StopLocalSound(PLAYER_NEAR_DEATH_SOUND);
+    self PlayLocalSound(PLAYER_DOWNED_SOUND);
+    self thread play_bleedout_sound();
+    self waittill("player_revived");
+    self StopSound(BLEEDOUT_LOOP_SOUND);
+    self PlayLocalSound(PLAYER_REVIVED_SOUND);
+}
+
+function private play_bleedout_sound()
+{
+    level endon("end_game");
+    self endon("death");
+    self endon("bled_out");
+    self endon("disconnect");
+
+    // We need to a bit for self.laststand to be updated.
+    wait 0.5;
+    
+    //check if bleedout_loop_sound exists to advoid a potential fast loop.
+    while(self laststand::player_is_in_laststand() && isdefined(BLEEDOUT_LOOP_SOUND) && SoundExists(BLEEDOUT_LOOP_SOUND))
+    {
+        self PlaySoundWithNotify(BLEEDOUT_LOOP_SOUND, "bleedout_sound");
+        self waittill("bleedout_sound");
+        WAIT_SERVER_FRAME;                                 
+    }
 }
 
 function private configure_weapon_inspection()
@@ -110,8 +300,8 @@ function private configure_weapon_inspection()
     inspectable::add_inspectable_weapon(GetWeapon("t9_rpk"), 5.83);
     inspectable::add_inspectable_weapon(GetWeapon("t9_rpk_up"), 5.83);
 
-	inspectable::add_inspectable_weapon(GetWeapon("t9_ffar1"), 4.83);
-	inspectable::add_inspectable_weapon(GetWeapon("t9_ffar1_up"), 4.83);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_ffar1"), 4.83);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_ffar1_up"), 4.83);
     
     inspectable::add_inspectable_weapon(GetWeapon("t9_groza"), 6.13);
     inspectable::add_inspectable_weapon(GetWeapon("t9_groza_up"), 6.13);
@@ -160,111 +350,4 @@ function private configure_weapon_inspection()
     // SW2
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927_up"), 5);
-}
-
-function private bind_hellround_and_weather()
-{
-    zm_hellround::add_toggle_callback(&toggle_weather);
-}
-
-function private toggle_weather(b_enable_hellround)
-{
-    if (IS_TRUE(b_enable_hellround))
-    {
-        zm_weather::pause();
-    }
-    else
-    {
-        zm_weather::play();
-    }
-}
-
-function private custom_add_weapons()
-{
-    zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_test_weapons.csv", 1);
-}
-
-function private setup_playable_zones()
-{
-    //Setup the levels Zombie Zone Volumes
-    level.zones = [];
-    level.zone_manager_init_func = &add_adjacent_zones;
-    init_zones[0] = "start_zone";
-    level thread zm_zonemgr::manage_zones(init_zones);
-
-    // Must be defined for AI pathing
-    level.pathdist_type = PATHDIST_ORIGINAL;
-}
-
-function private add_adjacent_zones()
-{
-    zm_zonemgr::add_adjacent_zone("start_zone", "second_zone", "enter_second_zone");
-    zm_zonemgr::add_adjacent_zone("second_zone", "third_zone", "enter_third_zone");
-    zm_zonemgr::add_adjacent_zone("third_zone", "fourth_zone", "enter_fourth_zone");
-} 
-
-function private remove_players_names()
-{
-	SetDvar("cg_disableplayernames", "1");
-}
-
-function private setup_weapons()
-{
-    // PaP Camo
-    level.pack_a_punch_camo_index = 3;
-    level.pack_a_punch_camo_index_number_variants = 34;
-
-    level._zombie_custom_add_weapons = &custom_add_weapons;
-
-    // Use CW M1911 as start and laststand pistol
-    level.start_weapon = GetWeapon("t9_1911");
-    level.laststandpistol = level.start_weapon;
-    level.default_laststandpistol = level.start_weapon;
-    level.pistol_values[0] = level.default_laststandpistol;
-
-    // For solo games
-    level.default_solo_laststandpistol = GetWeapon("t9_1911_rdw_up");
-    level.pistol_values[3] = level.default_solo_laststandpistol;
-
-    // Override default melee weapon
-    zm_utility::register_melee_weapon_for_level("t8_knife");
-    level.weaponbasemelee = getweapon("t8_knife");
-}
-
-function private setup_players_vox()
-{
-    zm_audio::loadPlayerVoiceCategories("gamedata/audio/zm/zm_usmc_vox.csv");
-}
-
-function private on_player_spawned() // self == player
-{
-    self thread watch_blastomatic_acquisition();
-}
-
-function private watch_blastomatic_acquisition() // self == player
-{
-    level endon("end_game");
-    self endon("disconnect");
-    self endon("bled_out");
-
-    while(true)
-    {
-        self waittill("weapon_give", weapon);
-
-        if(weapon.name == "t9_semiauto_cosplay")
-        {
-            PlaySoundAtPosition("mus_raygun_stinger", (0, 0, 0));
-        }
-    }
-}
-
-function private watch_power_state()
-{
-    level.power_on_lightstate = undefined;
-    
-    level flag::wait_till("power_on");
-    
-    level.power_on_lightstate = 1;
-    util::set_lighting_state(level.power_on_lightstate);
-    zm_weather::update_default_lightstate();
 }
