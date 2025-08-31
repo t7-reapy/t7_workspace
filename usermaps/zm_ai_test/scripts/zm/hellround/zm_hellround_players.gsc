@@ -10,6 +10,8 @@
 
 function toggle_hellround_for_players(b_enable)
 {
+    wait HRPLR_TIME_BEFORE_TOGGLE;
+
     if (IS_TRUE(b_enable))
     {
         PRINT_HR_DEBUG("Hellround players enabled");

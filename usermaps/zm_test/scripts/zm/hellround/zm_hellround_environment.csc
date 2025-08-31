@@ -9,6 +9,8 @@
 #insert scripts\zm\hellround\zm_hellround_environment.gsh;
 #namespace zm_hellround_environment;
 
+#precache("client_fx", HRENV_FX_TRANSITION);
+
 REGISTER_SYSTEM("zm_hellround_environment", &init, undefined)
 
 function init() 
@@ -24,11 +26,25 @@ function hellround_environment(n_client_num, _oldVal, n_new_val, _bNewEnt, _bIni
 {
     util::waitforclient(n_client_num);
 
+    play_transition_fx(n_client_num);
     fog_update(IS_TRUE(n_new_val));
     show_hellround_volumes(IS_TRUE(n_new_val));
     play_environment_sounds(n_client_num, IS_TRUE(n_new_val));
 }
 
+// #region fx
+
+function private play_transition_fx(n_client_num)
+{
+    foreach (player in GetLocalPlayers())
+    {
+        PlayFXOnCamera(n_client_num, HRENV_FX_TRANSITION);
+    }
+
+    PlayFXOnCamera(n_client_num, level._effect["parasite_round"]);
+}
+
+// #endregion
 // #region fog  
 
 function private fog_update(b_hellfog)

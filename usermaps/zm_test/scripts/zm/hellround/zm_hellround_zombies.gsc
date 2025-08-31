@@ -54,6 +54,8 @@ function private zombie_spawn_hellround_logic() // self == zombie spawned
 
 function toggle_hellround_zombies(b_enable)
 {
+    wait HRZM_ZOMBIE_TIME_BEFORE_TOGGLE;
+    
     if (IS_TRUE(b_enable)) {
         enable_hellround_zombies();
     } else {
