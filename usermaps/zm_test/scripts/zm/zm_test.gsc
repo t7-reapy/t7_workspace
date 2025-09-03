@@ -197,8 +197,8 @@ function private disable_hitmarkers() // self == player
         WAIT_SERVER_FRAME;
     }
 
-    self.hud_damagefeedback = undefined;
-    self.hud_damagefeedback_additional = undefined;
+    self.hud_damagefeedback Destroy();
+    self.hud_damagefeedback_additional Destroy();
 }
 
 function private on_player_spawned() // self == player

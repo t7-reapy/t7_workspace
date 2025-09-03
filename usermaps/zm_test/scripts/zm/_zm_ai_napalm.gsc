@@ -335,8 +335,11 @@ function napalm_zombie_death(einflictor, attacker, idamage, smeansofdeath, weapo
 
     level notify("napalm_death", self.explosive_volume);
     self thread napalm_delay_delete();
-    if (!self napalm_standing_in_water(1))
+    if (!self napalm_standing_in_water(1) 
+    && (is_funcptr_or_true(level.napalm_should_spawn_fire)))
+    {
         level thread napalm_fire_trigger(self, 80, 20, 0);
+    }
 
     self thread _napalm_damage_zombies(zombies);
     napalm_clear_radius_fx_all_players();
@@ -352,6 +355,16 @@ function napalm_zombie_death(einflictor, attacker, idamage, smeansofdeath, weapo
         }
     }
     return self zm_spawner::zombie_death_animscript();
+}
+
+function private is_funcptr_or_true(func_ptr)
+{
+    if (!IsFunctionPtr(func_ptr))
+    {
+        return true;
+    }
+
+    return [[ func_ptr ]]();
 }
 
 function napalm_delay_delete()

@@ -1,5 +1,5 @@
 // APOTHICON SIZE
-#define FURY_RADIUS                    30
+#define FURY_RADIUS                    15
 
 // APOTHICON JUKE BEHAVIOR
 #define FURY_JUKE_MAX_DIST          1500

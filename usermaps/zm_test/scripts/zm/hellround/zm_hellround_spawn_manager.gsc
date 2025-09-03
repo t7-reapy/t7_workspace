@@ -54,9 +54,12 @@ function private init()
     level.hellround_spawn_manager.collection_start_timestamp = undefined;
     level.hellround_spawn_manager.time_before_max_spawn_rate = undefined;
 
+    level.napalm_should_spawn_fire = &napalm_should_spawn_fire;
+
     // If hellround ends, ai shouldn't persists, and shall be killed.
     add_ai_spawn_callback(&watch_if_ai_persists_outside_of_hellrounds);
     add_ai_spawn_callback(&disable_point_during_hellrounds);
+    add_ai_spawn_callback(&disable_actor_push_during_hellrounds);
 }
 
 function private main()
@@ -156,6 +159,25 @@ function disable_point_during_hellrounds() // self == ai actor
             self.deathpoints_already_given = false;
         }
         WAIT_SERVER_FRAME;
+    }
+}
+
+function disable_actor_push_during_hellrounds() // self == ai actor
+{
+    self endon("death");
+
+    while(1)
+    {
+        wait 2; // It seems a delay needs to be added before updating PushActors
+
+        if (zm_hellround_shared::is_hellround_running())
+        {
+            self PushActors(false);
+        }
+        else
+        {
+            self PushActors(true);
+        }
     }
 }
 
@@ -319,6 +341,13 @@ function private wait_for_hellround_max_delay()
 {
     wait HRSPAWN_TIME_BEFORE_MIN_SPAWN_DELAY / 1000;
     PRINT_HR_DEBUG("Reached minimum spawn delay. Exiting.");
+}
+
+function private napalm_should_spawn_fire()
+{
+    // No fire outside of hellround (when hellround ends for example)
+    // Neither during bad iteration (it saves the player from potential overwhelming situations)
+    return zm_hellround_shared::is_hellround_running() && !level flag::get(HELLROUND_BAD_FLAG);
 }
 
 function private give_players_bad_iteration_reward()

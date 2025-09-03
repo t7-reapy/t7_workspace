@@ -117,7 +117,8 @@ function set_back_to_default_zombie() // self == zombie
         self.hatmodel = self.hatmodel_old;
         self Attach(self.hatmodel, "", true);
     }
-    self.head = self.head_old;
+    // Seems like self.head_old isn't defined everytime...
+    self.head = (isdefined(self.head_old) ? self.head_old : array::random(ORIGINAL_ZOMBIE_HEAD_MODELS));
     self Attach(self.head, "", true);
     self SetModel(body_style);
 
