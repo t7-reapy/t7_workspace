@@ -69,6 +69,9 @@
 //Hell rounds
 #using scripts\zm\hellround\zm_hellround;
 
+// End game camera
+#using scripts\zm\_zm_gameover_camera;
+
 #using scripts\zm\zm_usermap;
 #using scripts\zm\_zm_animated_switch;
 
