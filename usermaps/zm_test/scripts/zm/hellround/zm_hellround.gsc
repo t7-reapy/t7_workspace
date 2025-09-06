@@ -34,6 +34,8 @@
 #insert scripts\zm\hellround\zm_hellround_shared.gsh;
 #insert scripts\zm\hellround\zm_hellround.gsh;
 
+#precache("fx", HELLROUND_DOG_EYE_GLOW_FX);
+
 #namespace zm_hellround;
 REGISTER_SYSTEM_EX("zm_hellround", &init, &main, undefined)
 
@@ -67,6 +69,7 @@ function private init()
 
 function private main()
 {
+    level._effect["dog_eye_glow"] = HELLROUND_DOG_EYE_GLOW_FX; 
 }
 
 // #region callbacks

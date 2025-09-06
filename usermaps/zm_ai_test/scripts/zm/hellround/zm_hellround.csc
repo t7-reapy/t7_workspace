@@ -11,13 +11,20 @@
 #using scripts\zm\_zm_ai_napalm;
 #using scripts\zm\zm_genesis_apothicon_fury;
 
+#insert scripts\zm\hellround\zm_hellround.gsh;
 #insert scripts\zm\hellround\zm_hellround_shared.gsh;
+
+#precache("client_fx", HELLROUND_DOG_EYE_GLOW_FX);
+
 #namespace zm_hellround;
 
-REGISTER_SYSTEM("zm_hellround", &init, undefined)
+REGISTER_SYSTEM_EX("zm_hellround", &init, &main, undefined)
 
 function init() 
 {
-    // We need client side for other dependencies to be taken in account.
-    // For now, nothing additional on client side ...
+}
+
+function main()
+{
+    level._effect["dog_eye_glow"] = HELLROUND_DOG_EYE_GLOW_FX; 
 }
