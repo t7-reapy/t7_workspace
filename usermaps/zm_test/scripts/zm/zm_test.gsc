@@ -81,9 +81,14 @@
 #define BLEEDOUT_LOOP_SOUND "cw_laststand_loop"
 #define PLAYER_NEAR_DEATH_SOUND "zc_player_near_death"
 
+// TODO: remove
 // Sphynx's Console Commands
 #using scripts\Sphynx\commands\_zm_commands;
 #using scripts\Sphynx\commands\_zm_name_checker;
+
+// Custom powerups FX
+#define FX_POWERUP_BLUE "_reapy/fx_powerup_blue"
+#precache("fx", FX_POWERUP_BLUE);
 
 function main()
 {
@@ -99,6 +104,7 @@ function main()
     thread setup_weapons();
     thread setup_players_vox();
     thread watch_power_state();
+    thread change_powerups_color();
     
     callback::on_connect(&disable_hitmarkers);
     callback::on_spawned(&on_player_spawned);
@@ -297,6 +303,12 @@ function private play_bleedout_sound()
         self waittill("bleedout_sound");
         WAIT_SERVER_FRAME;                                 
     }
+}
+
+function private change_powerups_color()
+{
+    level._effect["powerup_on"] = FX_POWERUP_BLUE;
+    level._effect["powerup_grabbed"] = "zombie/fx_powerup_grab_solo_zmb";
 }
 
 function private configure_weapon_inspection()

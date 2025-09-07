@@ -56,6 +56,10 @@
 // Sphynx's Console Commands
 #using scripts\Sphynx\commands\_zm_commands;
 
+// Custom powerups FX
+#define FX_POWERUP_BLUE "_reapy/fx_powerup_blue"
+#precache("client_fx", FX_POWERUP_BLUE);
+
 function autoexec init() {}
 
 function main()
@@ -66,6 +70,7 @@ function main()
 
     callback::on_localclient_connect(&on_connect);
 
+    change_powerups_color();
     include_weapons();
 }
 
@@ -87,4 +92,10 @@ function private disable_player_outline(n_local_client_num)
     }
     
     self duplicate_render::update_dr_filters(n_local_client_num);
+}
+
+function private change_powerups_color()
+{
+    level._effect["powerup_on"] = FX_POWERUP_BLUE;
+    level._effect["powerup_grabbed"] = "zombie/fx_powerup_grab_solo_zmb";
 }
