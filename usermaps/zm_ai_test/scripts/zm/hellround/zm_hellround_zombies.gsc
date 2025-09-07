@@ -1,3 +1,4 @@
+#using scripts\shared\clientfield_shared; 
 #using scripts\shared\ai\systems\gib; 
 #using scripts\shared\ai\systems\destructible_character; 
 #using scripts\zm\_zm_utility; 
@@ -15,6 +16,8 @@
 
 #namespace zm_hellround_zombies;
 
+#precache("fx", HRZM_ZOMBIE_EYE_GLOW_HELLROUND);
+#precache("fx", HRZM_ZOMBIE_EYE_GLOW_NORMAL);
 #precache("model", "c_zom_dlc3_zombie_sentinel_body");
 #precache("model", "c_zom_dlc4_zombie_charred_head");
 
@@ -28,6 +31,7 @@ function init()
 
 function private main()
 {
+    clientfield::register("world", HRZM_ZOMBIE_EYE_GLOW_CF, VERSION_SHIP, 1, "int");
     array::run_all(GetSpawnerArray(), &spawner::add_spawn_function, &zombie_spawn_hellround_logic);
 }
 
@@ -85,6 +89,7 @@ function disable_hellround_zombies()
             continue;
         }
 
+        zombie set_back_to_default_eye_glow();
         zombie thread set_back_to_default_zombie();
         zombie thread zm_utility::init_zombie_run_cycle();
     }
@@ -92,6 +97,7 @@ function disable_hellround_zombies()
 
 function private apply_hellround_events_to_zombie() // self == zombie actor
 {
+    self set_eye_glow_to_hellround();
     self thread set_zombie_model_to_hellround();
 
     if (HRZM_ZOMBIE_RUN_STATE_ENABLE)
@@ -107,8 +113,33 @@ function private apply_hellround_events_to_zombie() // self == zombie actor
 
 // #region original zombie models
 
+function set_back_to_default_eye_glow() // self == zombie
+{
+    if (!isdefined(self) || !IsAlive(self))
+    {
+        return;
+    }
+    self clientfield::set("zombie_has_eyes", 0);
+
+    WAIT_SERVER_FRAME;
+    level._effect["eye_glow"] = HRZM_ZOMBIE_EYE_GLOW_NORMAL;
+    level clientfield::set(HRZM_ZOMBIE_EYE_GLOW_CF, 0);
+    WAIT_SERVER_FRAME;
+    
+    if (!isdefined(self) || !IsAlive(self))
+    {
+        return;
+    }
+    self clientfield::set("zombie_has_eyes", 1);
+}
+
 function set_back_to_default_zombie() // self == zombie
 {
+    if (!isdefined(self) || !IsAlive(self))
+    {
+        return;
+    }
+
     body_style = level.original_zombie_bodies[RandomInt(level.original_zombie_bodies.size)];
 
     self DetachAll();
@@ -226,8 +257,33 @@ function private dlchd_origins_zombie_damage_model_3a() // self == zombie
 // #endregion
 // #region charred zombies
 
+function set_eye_glow_to_hellround() // self == zombie
+{
+    if (!isdefined(self) || !IsAlive(self))
+    {
+        return;
+    }
+    self clientfield::set("zombie_has_eyes", 0);
+
+    WAIT_SERVER_FRAME;
+    level._effect["eye_glow"] = HRZM_ZOMBIE_EYE_GLOW_HELLROUND;
+    level clientfield::set(HRZM_ZOMBIE_EYE_GLOW_CF, 1);
+    WAIT_SERVER_FRAME;
+    
+    if (!isdefined(self) || !IsAlive(self))
+    {
+        return;
+    }
+    self clientfield::set("zombie_has_eyes", 1);
+}
+
 function set_zombie_model_to_hellround() // self == zombie
 {
+    if (!isdefined(self) || !IsAlive(self))
+    {
+        return;
+    }
+
     self.hatmodel_old = self.hatmodel;
     self.hatmodel = undefined;
 

@@ -6,3 +6,7 @@
 // possible values are: "walk", "run", "sprint", "super_sprint"
 #define HRZM_ZOMBIE_RUN_STATE "sprint"
 #define HRZM_ZOMBIE_RUN_STATE_ENABLE 0
+
+#define HRZM_ZOMBIE_EYE_GLOW_CF "hrzm_zombie_eye_glow_cf"
+#define HRZM_ZOMBIE_EYE_GLOW_HELLROUND "zombie/fx_glow_eye_white"
+#define HRZM_ZOMBIE_EYE_GLOW_NORMAL "zombie/fx_glow_eye_blue"
