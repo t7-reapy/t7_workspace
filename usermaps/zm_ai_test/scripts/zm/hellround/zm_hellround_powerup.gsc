@@ -64,9 +64,9 @@ function private is_powerup_active()
     return iteration > 0 && iteration <= 3 && zm_hellround_shared::is_hellround_running();
 }
 
-// #region powerup drop functions
+/* region powerup drop functions */
 
-// #region powerup specific
+/* region powerup specific */
 
 function private func_should_drop_minigun_powerup()
 {
@@ -113,7 +113,7 @@ function private func_should_drop_widows_wine_powerup()
     return self func_should_drop_powerup("ww_grenade");
 }
 
-// #endregion
+/* endregion */
 
 function private func_should_drop_powerup(power_up_name)
 {
@@ -198,8 +198,8 @@ function toggle_powerups(b_enabled)
     level.no_powerups = b_enabled;
 }
 
-// #endregion
-// #region powerup logic
+/* endregion */
+/* region powerup logic */
 
 function private grab_minigun(grabber_player)
 {
@@ -248,4 +248,4 @@ function lose_minigun_callback(b_enable = false)
     level notify("hellround_powerup_ended");
 }
 
-// #endregion
+/* endregion */

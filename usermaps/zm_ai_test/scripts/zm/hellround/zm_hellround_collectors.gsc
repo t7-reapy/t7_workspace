@@ -153,7 +153,7 @@ function private show_hellround_collectors(n_iteration)
     level clientfield::set(HRCOLL_CLIENT_FIELD, n_iteration);
 }
 
-// #region utils
+/* region utils */
 
 function private is_collector_iteration(n_iteration)
 {
@@ -176,8 +176,8 @@ function private get_active_collector_skull()
     return skull;
 }
 
-// #endregion
-// #region exploders
+/* endregion */
+/* region exploders */
 
 function private update_hellround_collector_exploders(n_iteration)
 {
@@ -209,8 +209,8 @@ function private depart_hellround_collector_exploders(n_iteration)
     exploder::exploder(level.hellround_collectors.exploders_depart[n_iteration - 1]);
 }
 
-// #endregion
-// #region clips
+/* endregion */
+/* region clips */
 
 function private update_hellround_collector_clips(n_iteration)
 {
@@ -236,8 +236,8 @@ function private update_hellround_collector_clips(n_iteration)
     }
 }
 
-// #endregion
-// #region models
+/* endregion */
+/* region models */
 
 function private update_hellround_collector_models(n_iteration)
 {
@@ -265,8 +265,8 @@ function private update_hellround_collector_models(n_iteration)
     }
 }
 
-// #endregion
-// #region skulls
+/* endregion */
+/* region skulls */
 
 function private update_hellround_collector_skulls(n_iteration)
 {
@@ -303,8 +303,8 @@ function private float_skull() // self == skull ent
     }
 }
 
-// #endregion
-// #region soul collection
+/* endregion */
+/* region soul collection */
 
 function private get_total_souls_to_collect()
 {
@@ -394,8 +394,8 @@ function private soul_collected() // self == collector skull ent
     PRINT_HR_DEBUG("Soul collected for " + self.targetname + ". Total souls left: " + self.total_souls_left);
 }
 
-// #endregion
-// #region callbacks
+/* endregion */
+/* region callbacks */
 
 function bind_completion_callback(func_ptr)
 {
@@ -442,7 +442,7 @@ function private give_players_iteration_reward(location)
     }
 }
 
-// #region ai death callback
+/* region ai death callback */
 
 function private watch_ai_death_for_collection() // self == zm actor
 {
@@ -478,10 +478,10 @@ function private close_and_in_los_of(collector) // self == zm actor
     return true;
 }
 
-// #endregion
+/* endregion */
 
-// #endregion
-// #region debug
+/* endregion */
+/* region debug */
 
 function private modvar_debug_show_hellround_collectors()
 {
@@ -520,4 +520,4 @@ function private modvar_debug_show_hellround_collectors()
     }
 }
 
-// #endregion
+/* endregion */

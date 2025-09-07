@@ -67,7 +67,7 @@ function releaseMutex()
     level.weather.rain.ambience.mutex_sound = 1;
 }
 
-// #region interior
+/* region interior */
 
 function rain_interior_sound(client_num, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
@@ -122,8 +122,8 @@ function rain_interior_sound_stop(client_num, sound_alias)
     releaseMutex();
 }
 
-// #endregion
-// #region liminal
+/* endregion */
+/* region liminal */
 
 function rain_liminal_sound(client_num, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump)
 {
@@ -178,8 +178,8 @@ function rain_liminal_sound_stop(client_num, sound_alias)
     releaseMutex();
 }
 
-// #endregion liminal
-// #region exterior
+/* endregion */
+/* region exterior */
 
 function rain_exterior_sound(client_num, old_intensity, new_intensity, b_new_ent, b_initial_snap, s_field_name, b_was_time_jump) // self == player
 {
@@ -234,4 +234,4 @@ function rain_exterior_sound_stop(client_num, sound_alias) // self == player
     releaseMutex();
 }
 
-// #endregion exterior
+/* endregion */

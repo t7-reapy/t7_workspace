@@ -111,7 +111,7 @@ function private apply_hellround_events_to_zombie() // self == zombie actor
     }
 }
 
-// #region original zombie models
+/* region original zombie models */
 
 function set_back_to_default_eye_glow() // self == zombie
 {
@@ -254,8 +254,8 @@ function private dlchd_origins_zombie_damage_model_3a() // self == zombie
     self.legdmg4 = "c_t7_zm_dlchd_origins_soldiers_body2a_blegsoff";
 }
 
-// #endregion
-// #region charred zombies
+/* endregion */
+/* region charred zombies */
 
 function set_eye_glow_to_hellround() // self == zombie
 {
@@ -312,4 +312,4 @@ function set_zombie_model_to_hellround() // self == zombie
     DestructServerUtils::ToggleSpawnGibs(self, false);
 }
 
-// #endregion
+/* endregion */

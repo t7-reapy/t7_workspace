@@ -76,7 +76,7 @@ function private main()
     }
 }
 
-// #region watchers
+/* region watchers */
 
 function private hellround_bad_iteration_watcher() 
 {
@@ -181,8 +181,8 @@ function disable_actor_push_during_hellrounds() // self == ai actor
     }
 }
 
-// #endregion
-// #region hellrounds round start/stop
+/* endregion */
+/* region hellrounds round start/stop */
 
 function abolish_hellrounds()
 {
@@ -290,8 +290,8 @@ function private hellround_restore_round_logic()
     }
 }
 
-// #endregion
-// #region iteration management
+/* endregion */
+/* region iteration management */
 
 function private hellround_start_spawns()
 {
@@ -441,15 +441,15 @@ function private iteration_bad_spawns(spawn_listen_flag = HELLROUND_BAD_FLAG)
     level thread spawn_napalm_zombies_loop(spawn_listen_flag);
 }
 
-// #endregion
-// #region spawners
+/* endregion */
+/* region spawners */
 
 function private is_special_spawn_enable()
 {
     return HRSPAWN_ENABLE_SPAWNS && !GetDvarInt("ai_disablespawn", 0);
 }
 
-// #region spawn ditribution
+/* region spawn ditribution */
 
 function private get_spawn_delay(min_delay_spawn, max_delay_spawn)
 {
@@ -494,8 +494,8 @@ function private get_delay_internal(distribution, min_delay_spawn, max_delay_spa
     return delay * player_ratio;
 }
 
-// #endregion
-// #region zombie spawn specific
+/* endregion */
+/* region zombie spawn specific */
 
 function private spawn_zombie_internal()
 {
@@ -536,7 +536,7 @@ function private spawn_zombie_internal()
     return ai;
 }
 
-// #endregion
+/* endregion */
 
 function private spawn_zombies_loop(spawn_flag)
 {
@@ -703,8 +703,8 @@ function private spawn_napalm_zombies_loop(spawn_flag)
     }
 }
 
-// #endregion
-// #region callbacks
+/* endregion */
+/* region callbacks */
 
 function add_bad_iteration_callback(func_ptr)
 {
@@ -767,8 +767,8 @@ function bind_reward_callback(func_ptr)
     }
 }
 
-// #endregion
-// #region debug
+/* endregion */
+/* region debug */
 
 function private modvar_debug_start_stop_hellround()
 {
@@ -800,4 +800,4 @@ function private modvar_debug_start_stop_hellround()
     }
 }
 
-// #endregion
+/* endregion */

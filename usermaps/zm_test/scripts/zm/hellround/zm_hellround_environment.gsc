@@ -90,7 +90,7 @@ function private get_default_lightstate()
     return (isdefined(level.power_on_lightstate) ? level.power_on_lightstate : HRENV_LIGHTSTATE_INDEX_NORMAL);
 }
 
-// #region brush clip
+/* region brush clip */
 
 function private show_hellround_clips(b_show)
 {
@@ -120,8 +120,8 @@ function private show_hellround_clips(b_show)
     }
 }
 
-// #endregion
-// #region models
+/* endregion */
+/* region models */
 
 function private show_hellround_models(b_show)
 {
@@ -155,8 +155,8 @@ function private show_hellround_models(b_show)
     }
 }
 
-// #endregion
-// #region debug
+/* endregion */
+/* region debug */
 
 function private modvar_debug_hellround_environment()
 {
@@ -186,8 +186,8 @@ function private modvar_debug_hellround_environment()
     }
 }
 
-// #endregion
-// #region fxs
+/* endregion */
+/* region fxs */
 
 function private show_hellround_fxs(b_enable)
 {
@@ -201,4 +201,4 @@ function private show_hellround_fxs(b_enable)
     }
 }
 
-// #endregion
+/* endregion */

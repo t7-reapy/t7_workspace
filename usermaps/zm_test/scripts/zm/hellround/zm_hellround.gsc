@@ -72,7 +72,7 @@ function private main()
     level._effect["dog_eye_glow"] = HELLROUND_DOG_EYE_GLOW_FX; 
 }
 
-// #region callbacks
+/* region callbacks */
 
 function add_toggle_callback(func) {
     if (IsFunctionPtr(func)) {
@@ -150,4 +150,4 @@ function private hellround_cerberus_fed()
     thread zm_hellround_spawn_manager::hellround_progress();
 }
 
-// #endregion callbacks
+/* endregion */

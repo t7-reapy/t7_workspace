@@ -32,7 +32,7 @@ function hellround_environment(n_client_num, _oldVal, n_new_val, _bNewEnt, _bIni
     play_environment_sounds(n_client_num, IS_TRUE(n_new_val));
 }
 
-// #region fx
+/* region fx */
 
 function private play_transition_fx(n_client_num)
 {
@@ -44,8 +44,8 @@ function private play_transition_fx(n_client_num)
     PlayFXOnCamera(n_client_num, level._effect["parasite_round"]);
 }
 
-// #endregion
-// #region fog  
+/* endregion */
+/* region fog */
 
 function private fog_update(b_hellfog)
 {
@@ -70,8 +70,8 @@ function private set_fog_index(index, transition_time)
     }
 }
 
-// #endregion
-// #region volumes
+/* endregion */
+/* region volumes */
 
 function private show_hellround_volumes(b_show)
 {
@@ -101,8 +101,8 @@ function private show_hellround_volumes(b_show)
     }
 }
 
-// #endregion
-// #region sounds
+/* endregion */
+/* region sounds */
 
 function private play_environment_sounds(n_client_num, b_enable)
 {
@@ -129,4 +129,4 @@ function private stop_loop_sounds() // self == player
     }
 }
 
-// #endregion
+/* endregion */

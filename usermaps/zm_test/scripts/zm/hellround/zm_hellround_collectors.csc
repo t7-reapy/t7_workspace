@@ -34,7 +34,7 @@ function hellround_collector(n_client_num, _oldVal, n_iteration, _bNewEnt, _bIni
     update_hellround_collector_volumes(n_iteration);
 }
 
-// #region volumes
+/* region volumes */
 
 function private update_hellround_collector_volumes(n_iteration)
 {
@@ -60,4 +60,4 @@ function private update_hellround_collector_volumes(n_iteration)
     }
 }
 
-// #endregion
+/* endregion */
