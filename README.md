@@ -137,7 +137,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
   - note: [audio_shared](share/raw/scripts/shared/audio_shared.csc#l73) client script uses localhost to host sounds
 - hellround bugs:
   - if player is downed with minigun, and revived, minigun is gone from player's hand and bonus as well (bonus needs to be given back to player)
-  - weapon can cycle with minigun (sometimes only...)
+  - weapon can cycle with minigun (sometimes only...) <= still the case ?
   - cerberus fed icons border is visible from far away
 
 # Sphynx commands cheat sheet

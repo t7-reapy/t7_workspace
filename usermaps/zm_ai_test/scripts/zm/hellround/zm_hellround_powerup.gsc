@@ -51,6 +51,7 @@ function private sync_hellround_powerup()
     {
         if (!IS_TRUE(player.has_powerup_weapon) && is_powerup_active())
         {
+            player DisableOffhandWeapons();
             player DisableWeaponCycling();
             level thread zm_powerup_weapon_minigun::minigun_weapon_powerup(player);
             player thread zm_powerups::powerup_vo("minigun");
@@ -211,6 +212,7 @@ function private grab_minigun(grabber_player)
             player thread zm_powerups::powerup_vo("minigun");
         }
         
+        player DisableOffhandWeapons();
         player DisableWeaponCycling();
     }
     
@@ -233,6 +235,7 @@ function private lose_minigun()
     level waittill("hellround_powerup_ended");
     foreach(player in GetPlayers())
     {
+        player EnableOffhandWeapons();
         player EnableWeaponCycling();
     }
 }
