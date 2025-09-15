@@ -55,6 +55,10 @@ The `ambient_mod.csv` or **any ambient mod csv file** needs to be configured acc
 "Reverb" column config doesn't seem to impact gun sound effects, weirdly, but will affect every other sounds I've been testing.
 At least the context ringoff_plr does affect gun sound. Important! context "water":"over" needs to specified, if not, no gun sounds.
 
+### VS Code searching
+
+CoD mod files extensions: `*csc,*.gsc,*.gsh,*.szc,*.zpkg,*.zone,*csv,*gdt,*.map,*.str`
+
 ## Clientfield
 
 **DEBUG CLIENT FIELD WITH: `+set com_clientfieldsdebug 1`**

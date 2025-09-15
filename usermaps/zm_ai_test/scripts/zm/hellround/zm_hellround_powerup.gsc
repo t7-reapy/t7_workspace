@@ -37,7 +37,7 @@ function private main()
     level.zombie_powerups["double_points"].func_should_drop_with_regular_powerups = &func_should_drop_double_points_powerup;
     level.zombie_powerups["full_ammo"].func_should_drop_with_regular_powerups = &func_should_drop_full_ammo_powerup;
     level.zombie_powerups["empty_bottle"].func_should_drop_with_regular_powerups = &func_should_drop_empty_bottle_powerup;
-    level.zombie_powerups["ww_grenade"].func_should_drop_with_regular_powerups = &func_should_drop_widows_wine_powerup;
+    //level.zombie_powerups["ww_grenade"].func_should_drop_with_regular_powerups = &func_should_drop_widows_wine_powerup;
 
     change_powerup_model("minigun", HRPWRUP_MODEL);
     change_powerup_weapon("minigun", HRPWRUP_WEAPON);

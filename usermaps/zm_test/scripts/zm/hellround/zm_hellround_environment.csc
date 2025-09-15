@@ -27,6 +27,7 @@ function hellround_environment(n_client_num, _oldVal, n_new_val, _bNewEnt, _bIni
     util::waitforclient(n_client_num);
 
     play_transition_fx(n_client_num);
+    play_transition_sounds(n_client_num);
     fog_update(IS_TRUE(n_new_val));
     show_hellround_volumes(IS_TRUE(n_new_val));
     play_environment_sounds(n_client_num, IS_TRUE(n_new_val));
@@ -34,7 +35,7 @@ function hellround_environment(n_client_num, _oldVal, n_new_val, _bNewEnt, _bIni
 
 /* region fx */
 
-function private play_transition_fx(n_client_num)
+function play_transition_fx(n_client_num)
 {
     foreach (player in GetLocalPlayers())
     {
@@ -53,7 +54,7 @@ function private fog_update(b_hellfog)
     fog_transition_index = HRENV_FOG_INDEX_TRANSITION;
 
     set_fog_index(fog_transition_index, HRENV_FOG_RADIANT_TIME);
-    wait HRENV_FOG_TRANSITION_TIME;
+    waitrealtime(HRENV_FOG_TRANSITION_TIME);
     set_fog_index(fog_index, HRENV_FOG_RADIANT_TIME);
 }
 
@@ -103,6 +104,12 @@ function private show_hellround_volumes(b_show)
 
 /* endregion */
 /* region sounds */
+
+function play_transition_sounds(n_client_num)
+{
+    player = GetLocalPlayer(n_client_num);
+    player PlaySound(n_client_num, HRENV_SND_TRANSITION);
+}
 
 function private play_environment_sounds(n_client_num, b_enable)
 {

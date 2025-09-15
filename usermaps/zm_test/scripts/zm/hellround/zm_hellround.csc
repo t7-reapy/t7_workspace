@@ -5,8 +5,9 @@
 #using scripts\zm\_zm_bloodsplatter;
 #using scripts\zm\hellround\zm_hellround_collectors;
 #using scripts\zm\hellround\zm_hellround_environment;
-#using scripts\zm\hellround\zm_hellround_powerup;
+#using scripts\zm\hellround\zm_hellround_meteor;
 #using scripts\zm\hellround\zm_hellround_music;
+#using scripts\zm\hellround\zm_hellround_powerup;
 #using scripts\zm\hellround\zm_hellround_zombies;
 #using scripts\zm\_zm_ai_wasp;
 #using scripts\zm\_zm_ai_napalm;

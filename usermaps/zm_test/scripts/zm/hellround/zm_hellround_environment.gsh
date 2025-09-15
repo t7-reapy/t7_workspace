@@ -11,6 +11,7 @@
 
 #define HRENV_AMBIANCE_SOUND_1 "hr_environment_amb_1"
 #define HRENV_AMBIANCE_SOUND_2 "hr_environment_amb_2"
+#define HRENV_SND_TRANSITION "hr_environment_evt_transition"
 
 #define HRENV_FX_EXPLODER_NAME "hr_environment_fx_exploder"
 #define HRENV_FX_TRANSITION "_reapy/fx_hellround_transition"
