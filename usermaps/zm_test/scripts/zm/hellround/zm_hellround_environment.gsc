@@ -70,6 +70,7 @@ function toggle_hellround_environment(b_enable) // self == player or undefined
     thread show_hellround_fxs(IS_TRUE(b_enable));
     thread show_hellround_clips(IS_TRUE(b_enable));
     thread show_hellround_models(IS_TRUE(b_enable));
+    thread rotate_sky(IS_TRUE(b_enable));
 }
 
 function private update_lightstate(b_enable) // self == player or undefined
@@ -198,6 +199,33 @@ function private show_hellround_fxs(b_enable)
     else
     {
         exploder::kill_exploder(level.hellround_environment.fx_exploder);
+    }
+}
+
+/* endregion */
+/* region skybox */
+
+/@ Credits to Gmzorz and IceGrenade @/
+function private rotate_sky(b_enable)
+{
+    if (!b_enable)
+    {
+        level notify("stop_rotate_sky");
+        setDvar("r_skyrotation", 0);
+        return;
+    }
+
+    level endon("stop_rotate_sky");
+    degree = 0;
+    while(true)
+    {
+        degree += 0.05;
+        if (degree >= 359)
+        {
+            degree = 0;
+        }
+        setDvar("r_skyrotation", degree);
+        WAIT_SERVER_FRAME;
     }
 }
 
