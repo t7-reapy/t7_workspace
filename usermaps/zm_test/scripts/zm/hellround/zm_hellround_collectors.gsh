@@ -28,3 +28,6 @@
 #define HRCOLL_SND_SOUL_TRAVEL "hr_soul_travel"
 #define HRCOLL_SND_SOUL_ENTER "hr_soul_enter"
 #define HRCOLL_SND_COMPLETED "hr_collector_completed"
+
+// Delay applied before notifying the game that collection was completed by players
+#define HRCOLL_DELAY_BEFORE_COMPLETION 10.0

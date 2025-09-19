@@ -110,8 +110,9 @@ function private bind_callbacks()
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_music::enable_bad_ending);
 
     zm_hellround_collectors::bind_start_collection_callback(&zm_hellround_spawn_manager::iteration_time_management_update);
-    zm_hellround_collectors::bind_completion_callback(&zm_hellround_spawn_manager::hellround_stops);
+    zm_hellround_collectors::bind_stop_collection_callback(&zm_hellround_spawn_manager::hellround_stops);
     zm_hellround_collectors::bind_reward_callback(&zm_hellround_reward::give_reward);
+    zm_hellround_collectors::bind_completion_callback(&zm_hellround_meteor::hellround_meteor_logic);
 
     // TODO: move good ending music to buyable ending
 

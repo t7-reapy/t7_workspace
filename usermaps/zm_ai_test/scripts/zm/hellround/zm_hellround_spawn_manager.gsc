@@ -25,6 +25,7 @@ function private void(){}
 class HellRoundSpawnManager
 {
     var current_iteration;
+    var iterations_completed;
 
     var hellround_callback;
     var ai_spawn_callbacks;
@@ -47,6 +48,7 @@ function private init()
 
     level.hellround_spawn_manager = new HellRoundSpawnManager();
     level.hellround_spawn_manager.current_iteration = 0;
+    level.hellround_spawn_manager.iterations_completed = false;
     level.hellround_spawn_manager.hellround_callback = undefined;
     level.hellround_spawn_manager.ai_spawn_callbacks = [];
     level.hellround_spawn_manager.bad_iteration_callbacks = [];
@@ -120,6 +122,7 @@ function private hellround_iteration_watcher()
     level flag::wait_till_clear(HELLROUND_FLAGS[3]);
     PRINT_HR_DEBUG("Finished filling souls");
     hellround_progress();
+    level.hellround_spawn_manager.iterations_completed = true;
 }
 
 function private watch_if_ai_persists_outside_of_hellrounds() // self == ai actor
@@ -348,14 +351,6 @@ function private napalm_should_spawn_fire()
     // No fire outside of hellround (when hellround ends for example)
     // Neither during bad iteration (it saves the player from potential overwhelming situations)
     return zm_hellround_shared::is_hellround_running() && !level flag::get(HELLROUND_BAD_FLAG);
-}
-
-function private give_players_bad_iteration_reward()
-{
-    if (isdefined(level.hellround_spawn_manager.reward_callback))
-    {
-        [[ level.hellround_spawn_manager.reward_callback ]](undefined);
-    }
 }
 
 function private hellround_increase_ai_limit()
@@ -764,6 +759,14 @@ function bind_reward_callback(func_ptr)
     if (IsFunctionPtr(func_ptr))
     {
         level.hellround_spawn_manager.reward_callback = func_ptr;
+    }
+}
+
+function private give_players_bad_iteration_reward()
+{
+    if (isdefined(level.hellround_spawn_manager.reward_callback))
+    {
+        [[ level.hellround_spawn_manager.reward_callback ]](undefined);
     }
 }
 

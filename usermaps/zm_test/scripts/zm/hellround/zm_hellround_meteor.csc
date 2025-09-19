@@ -48,6 +48,7 @@ function hellround_meteor(n_client_num, _oldVal, n_new_val, _bNewEnt, _bInitialS
         case HRMETEOR_CLIENT_FIELD_TRIGGER:
             thread zm_hellround_environment::play_transition_fx(n_client_num);
             thread zm_hellround_environment::play_transition_sounds(n_client_num);
+            thread zm_hellround_environment::fog_update(false);
             break;
         default:
             PRINT_HR_DEBUG("unexpected call to meteor client field with value: " + n_new_val);

@@ -13,8 +13,8 @@
 #define HRCOLL_EXPLODERS array("hellround_collector_01_exploder", "hellround_collector_02_exploder", "hellround_collector_03_exploder")
 #define HRCOLL_EXPLODERS_DEPART array("hellround_collector_01_depart_exploder", "hellround_collector_02_depart_exploder", "hellround_collector_03_depart_exploder")
 
-#define HRCOLL_TOTAL_SOULS 25
-#define HRCOLL_TOTAL_SOULS_PER_PLAYER 25
+#define HRCOLL_TOTAL_SOULS 2
+#define HRCOLL_TOTAL_SOULS_PER_PLAYER 2
 #define HRCOLL_SPAWN_DELAY 3.0
 #define HRCOLL_SOUL_TRAVEL_SPEED 150
 #define HRCOLL_SOUL_MAX_DISTANCE 500
@@ -28,3 +28,6 @@
 #define HRCOLL_SND_SOUL_TRAVEL "hr_soul_travel"
 #define HRCOLL_SND_SOUL_ENTER "hr_soul_enter"
 #define HRCOLL_SND_COMPLETED "hr_collector_completed"
+
+// Delay applied before notifying the game that collection was completed by players
+#define HRCOLL_DELAY_BEFORE_COMPLETION 1.0

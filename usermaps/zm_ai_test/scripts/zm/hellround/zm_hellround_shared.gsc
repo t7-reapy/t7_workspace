@@ -36,3 +36,8 @@ function get_current_iteration()
 
     return level.hellround_spawn_manager.current_iteration;
 }
+
+function is_last_iteration_completed()
+{
+    return level.hellround_spawn_manager.iterations_completed;
+}

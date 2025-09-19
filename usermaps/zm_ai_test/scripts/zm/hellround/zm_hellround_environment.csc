@@ -48,7 +48,7 @@ function play_transition_fx(n_client_num)
 /* endregion */
 /* region fog */
 
-function private fog_update(b_hellfog)
+function fog_update(b_hellfog)
 {
     fog_index = (b_hellfog ? HRENV_FOG_INDEX_BLOODY : HRENV_FOG_INDEX_NORMAL);
     fog_transition_index = HRENV_FOG_INDEX_TRANSITION;
