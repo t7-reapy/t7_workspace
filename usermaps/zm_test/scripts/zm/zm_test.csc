@@ -50,6 +50,9 @@
 //Hell rounds
 #using scripts\zm\hellround\zm_hellround;
 
+//Room of thanks
+#using scripts\zm\room_of_thanks\zm_room_of_thanks;
+
 #using scripts\zm\zm_usermap;
 
 // TODO: remove
