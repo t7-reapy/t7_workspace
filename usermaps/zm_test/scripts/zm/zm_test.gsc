@@ -156,6 +156,7 @@ function private setup_playable_zones()
     level.zones = [];
     level.zone_manager_init_func = &add_adjacent_zones;
     init_zones[0] = "start_zone";
+    init_zones[1] = "thanks_zone";
     level thread zm_zonemgr::manage_zones(init_zones);
 
     // Must be defined for AI pathing
