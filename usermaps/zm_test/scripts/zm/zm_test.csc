@@ -11,6 +11,7 @@
 #insert scripts\shared\version.gsh;
 
 #using scripts\zm\_load;
+#using scripts\zm\_rotating_object;
 #using scripts\zm\_zm_weapons;
 
 //Perks
