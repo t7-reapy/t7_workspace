@@ -71,6 +71,7 @@
 
 //Room of thanks
 #using scripts\zm\room_of_thanks\zm_room_of_thanks;
+#using scripts\zm\_auto_closable_door;
 
 // End game camera
 #using scripts\zm\_zm_gameover_camera;
