@@ -14,7 +14,7 @@ REGISTER_SYSTEM_EX("auto_closable_door", &init, &main, undefined)
 
 function private init()
 {
-	level._closable_doors = GetEntArray("closable_door", "targetname");
+    level._closable_doors = GetEntArray("closable_door", "targetname");
     array::thread_all(level._closable_doors, &door_init);
 }
 
@@ -42,14 +42,14 @@ function private end_game()
 
 function private door_init() // self == door trigger
 {
-	self SetCursorHint("HINT_NOICON");
-	self SetHintString("TOREMOVE");
-	self SetHintLowPriority(true);
+    self SetCursorHint("HINT_NOICON");
+    self SetHintString("");
+    self SetHintLowPriority(true);
     
     self.targets = GetEntArray(self.target, "targetname");
     array::thread_all(self.targets, &classify, self);
 
-	self thread door_think();
+    self thread door_think();
 }
 
 function private classify(door_trig) // self == door target
@@ -59,8 +59,8 @@ function private classify(door_trig) // self == door target
     self DisconnectPaths();
 
     // If it's the model part of the door, it should contain all the necessary stuff.
-	if (self.classname == "script_model")
-	{
+    if (self.classname == "script_model")
+    {
         DEFAULT(self.script_string, "rotate");
         DEFAULT(self.script_angles, "0 90 0");
         DEFAULT(self.script_transition_time, DEFAULT_DOOR_OPEN_TIME);
@@ -81,35 +81,35 @@ function private classify(door_trig) // self == door target
             self.open_sound = (sounds.size > 0 ? sounds[0] : undefined);
             self.close_sound = (sounds.size > 1 ? sounds[1] : self.open_sound);
         }
-	}
+    }
 }
 
 function private door_think()
 {
-	self endon("kill_door_think");
-	
-	while(true)
-	{
+    self endon("kill_door_think");
+    
+    while(true)
+    {
         if (!self door_buy())
         {
             continue;
         }
         PRINT_DOOR_DEBUG("door has been bought");
 
-		self door_opened();
+        self door_opened();
     }
 }
 
 function private door_buy() // self == door trigger
 {
-	self waittill("trigger", who);
-	
-	if(!who UseButtonPressed())
-	{
-		return false;
-	}
+    self waittill("trigger", who);
     
-	return true;
+    if(!who UseButtonPressed())
+    {
+        return false;
+    }
+    
+    return true;
 }
 
 function private door_opened() // self == door trigger
@@ -151,8 +151,8 @@ function private target_activate(open, transition_time) // self == door target
         self thread disconnect_paths_when_done(transition_time);
     }
 
-	switch(self.script_string)
-	{
+    switch(self.script_string)
+    {
         case "rotate":
             rot_angle = (open ? self.og_angles + self.script_angles : self.og_angles);
             self RotateTo(rot_angle, transition_time, 0, 0); 
@@ -162,28 +162,28 @@ function private target_activate(open, transition_time) // self == door target
             // For now, only support rotating doors
             // Take examples from _zm_blockers for other types.
             break;
-	}
+    }
 }
 
 function private door_solid_thread(transition_time) // self == door target
 {
-	wait transition_time;
+    wait transition_time;
 
     player_touching = false; 
     do {
         player_touching = false; 
-		foreach (player in GetPlayers())
-		{
-			if(player IsTouching(self))
-			{
-				player_touching = true; 
-				break; 
-			}
-		}
+        foreach (player in GetPlayers())
+        {
+            if(player IsTouching(self))
+            {
+                player_touching = true; 
+                break; 
+            }
+        }
 
         WAIT_SERVER_FRAME;
-	}
-	while(player_touching);
+    }
+    while(player_touching);
 
     self Solid();
     PRINT_DOOR_DEBUG("door closed");
@@ -191,7 +191,7 @@ function private door_solid_thread(transition_time) // self == door target
 
 function private disconnect_paths_when_done(transition_time) // self == door target
 {
-	wait transition_time;
-	self DisconnectPaths();
+    wait transition_time;
+    self DisconnectPaths();
     PRINT_DOOR_DEBUG("path disconnected");
 }
