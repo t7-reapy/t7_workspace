@@ -1,4 +1,7 @@
 iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
 // entity 0
 {
 guid "{9F5543AF-963E-11F0-B40E-A08BF6481C59}"
@@ -8,6 +11,18 @@ guid "{9F5543AF-963E-11F0-B40E-A08BF6481C59}"
 "skyboxmodel" "skybox_default_day"
 "ssi" "default_day"
 "wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
 // brush 0
 {
  guid "{B8244C3F-963A-11F0-B40E-A08BF6481C59}"
@@ -175,6 +190,20 @@ guid "{9F5543AF-963E-11F0-B40E-A08BF6481C59}"
  ( 4731 1667 356 ) ( 4731 1668 357 ) ( 4763 1667 356 ) t7_metal_painted_clean_black_glossy 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
  ( 4731 1693 356 ) ( 4730 1693 357 ) ( 4730 1725 357 ) t7_metal_painted_clean_black_glossy 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
+// brush 10
+{
+ guid "{43218EA4-B27A-11F0-B433-93CB3FC9848B}"
+ ( 4731 1719 357 ) ( 4707 1719 357 ) ( 4707 1640 357 ) rock_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4710 1640 499 ) ( 4710 1719 499 ) ( 4734 1719 499 ) rock_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4706 1672 386 ) ( 4730 1672 386 ) ( 4730 1672 353 ) rock_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4726 1640 387 ) ( 4726 1719 387 ) ( 4726 1719 354 ) rock_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4730 1688 389 ) ( 4706 1688 389 ) ( 4706 1688 356 ) rock_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4710 1719 387 ) ( 4710 1640 387 ) ( 4710 1640 354 ) rock_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4723 1688 499 ) ( 4726 1685 499 ) ( 4723 1688 531 ) rock_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4726 1675 499 ) ( 4723 1672 499 ) ( 4723 1672 531 ) rock_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4713 1672 499 ) ( 4710 1675 499 ) ( 4713 1672 531 ) rock_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4710 1685 499 ) ( 4714 1689 499 ) ( 4710 1685 531 ) rock_clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
 }
 // entity 1
 {
@@ -183,6 +212,11 @@ guid "{B8244C42-963A-11F0-B40E-A08BF6481C59}"
 "model" "par_column_capital_01"
 "modelscale" "0.620000002905726"
 "origin" "4718 1680 447.75"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
 }
 // entity 2
 {
@@ -191,6 +225,11 @@ guid "{B8244C45-963A-11F0-B40E-A08BF6481C59}"
 "model" "aac_theater_column_02_mp"
 "modelscale" "0.349999994039536"
 "origin" "4718 1680 354"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
 }
 // entity 3
 {
@@ -200,4 +239,9 @@ guid "{B8244C48-963A-11F0-B40E-A08BF6481C59}"
 "model" "par_column_capital_02"
 "modelscale" "0.75"
 "origin" "4718 1680 459"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
 }
