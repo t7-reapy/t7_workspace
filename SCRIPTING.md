@@ -2,6 +2,13 @@
 
 In this document, there will be tips and stuff around my investigations and discoveries around treyarch scripts (... or community scripts). I think this effort is worth it considering me starting from scratch, for a later me or newcomer. I won't cover the very basics of programming of course, but I will cover specific stuff about the scripts I read and what is worth to note (to re-use, to overwrite, or to understand).
 
+## Sound format
+
+- Wav file
+- 48000 Hz
+- Signed 16-bit PCM
+- Stereo or Mono channel
+
 ## Troubleshoot
 
 When booting game after a successful linking of the scripts in the tools, and having error: *`Error linking script: "blabla.gsc"`*, usually it means one script file is missing from zone file. It mostly does this because link step does the linkage with zoned files, not files from the folder AFAIK.
