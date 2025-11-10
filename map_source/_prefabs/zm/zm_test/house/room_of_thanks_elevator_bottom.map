@@ -4,7 +4,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{39CAAC69-B7DC-11F0-B43E-C3127354CF7A}"
+guid "{3EF563A4-BDBC-11F0-B447-EB18B12E3BDF}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -78,11 +78,18 @@ guid "{EC43451F-B749-11F0-B43D-E05470442869}"
 // entity 4
 {
 guid "{B8DB25A5-B759-11F0-B43D-E05470442869}"
-"classname" "script_origin"
+"classname" "script_model"
 "_color" "0.9412 1 0"
-"origin" "4831 1277 336"
+"model" "$default_xmodel"
+"origin" "4831 1275 331"
 "targetname" "bottom_elevator_light"
-"client_server" "ClientSide"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
 }
 // entity 5
 {
@@ -181,4 +188,84 @@ guid "{39CAAC6F-B7DC-11F0-B43E-C3127354CF7A}"
  ( 4840 1348 208 ) ( 4840 1348 224 ) ( 4824 1348 224 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
  ( 4802 1340 360 ) ( 4802 1332 360 ) ( 4802 1332 344 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
+}
+// entity 10
+{
+guid "{6D79E796-B908-11F0-B43F-F12DEEB6EEAD}"
+"classname" "script_model"
+"_color" "0.4902 0.4902 0.4902"
+"model" "$default_xmodel"
+"origin" "4831 1338 327"
+"targetname" "bottom_elevator_grid_sound"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 11
+{
+guid "{DD5463E1-B908-11F0-B43F-F12DEEB6EEAD}"
+"classname" "script_model"
+"_color" "0.4902 0.4902 0.4902"
+"model" "$default_xmodel"
+"origin" "4822 1326 266"
+"targetname" "bottom_elevator_left_door_sound"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 12
+{
+guid "{114F6DC3-B909-11F0-B43F-F12DEEB6EEAD}"
+"classname" "script_model"
+"_color" "0.4902 0.4902 0.4902"
+"model" "$default_xmodel"
+"origin" "4831 1275 319"
+"targetname" "bottom_elevator_sound"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 13
+{
+guid "{F6C5C80A-B908-11F0-B43F-F12DEEB6EEAD}"
+"classname" "script_model"
+"_color" "0.4902 0.4902 0.4902"
+"model" "$default_xmodel"
+"origin" "4839 1326 266"
+"targetname" "bottom_elevator_right_door_sound"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 14
+{
+guid "{700568DA-BDBB-11F0-B447-EB18B12E3BDF}"
+"classname" "script_model"
+"model" "p7_light_chandelier_vintage_02"
+"origin" "4831 1275 349"
+"targetname" "bottom_elevator_light_model"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
 }

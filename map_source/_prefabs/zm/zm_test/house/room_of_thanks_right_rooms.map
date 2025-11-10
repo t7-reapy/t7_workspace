@@ -4,7 +4,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{11D8EE93-B842-11F0-B43E-C3127354CF7A}"
+guid "{4F798B75-BDC0-11F0-B447-EB18B12E3BDF}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -7207,7 +7207,8 @@ guid "{FEFF83A6-AD0C-11F0-B42D-F654D554A06D}"
 "KvpMetaData05" "KvpName clickedPlane05 type vec3d exportMeta true toolsOnly true hidden true"
 "name" "probe_002"
 "origin" "5015.99 1492.02 284"
-"size_max" "71.9902 188.02 52"
+"override" "1"
+"size_max" "63.9902 188.02 52"
 "size_min" "56.0098 163.98 59.9999"
 "adaptive_quality_boost" "Off"
 "ao_range" "8"
@@ -7245,7 +7246,8 @@ guid "{FEFF83A9-AD0C-11F0-B42D-F654D554A06D}"
 "KvpMetaData05" "KvpName clickedPlane05 type vec3d exportMeta true toolsOnly true hidden true"
 "name" "probe_003"
 "origin" "5015.99 2052.02 284"
-"size_max" "71.9902 124.02 52"
+"override" "1"
+"size_max" "63.9902 124.02 52"
 "size_min" "56.0098 195.98 59.9999"
 "targetPlane0" "0 0 1 368.25"
 "adaptive_quality_boost" "Off"
@@ -7284,7 +7286,8 @@ guid "{FEFF834A-AD0C-11F0-B42D-F654D554A06D}"
 "KvpMetaData05" "KvpName clickedPlane05 type vec3d exportMeta true toolsOnly true hidden true"
 "name" "probe_001"
 "origin" "5015.99 1792.02 284"
-"size_max" "71.9902 112.02 52"
+"override" "1"
+"size_max" "63.9902 112.02 52"
 "size_min" "56.0098 111.98 60"
 "adaptive_quality_boost" "Off"
 "ao_range" "8"
@@ -7300,4 +7303,44 @@ guid "{FEFF834A-AD0C-11F0-B42D-F654D554A06D}"
 "inpaint_occluded_rays" "1"
 "placement_offset" "72"
 "resolution" "4x"
+}
+// entity 274
+{
+guid "{2D66E095-BDC0-11F0-B447-EB18B12E3BDF}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_sound" "chain_fence"
+"targetname" "audio_bump_trigger"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{2D66E094-BDC0-11F0-B447-EB18B12E3BDF}"
+ ( 5118 2065 226 ) ( 5102 2065 226 ) ( 5102 2057 226 ) sound_trigger 65.398972 64 -1065.7656 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 5103 2056 332 ) ( 5103 2064 332 ) ( 5119 2064 332 ) sound_trigger 65.398972 64 -1065.7656 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 5705 1935 84 ) ( 5721 1935 84 ) ( 5721 1935 -4 ) sound_trigger 65.398972 64 -1065.7656 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 5166 2244 84 ) ( 5150 2244 84 ) ( 5150 2244 -4 ) sound_trigger 65.398972 64 -1065.7656 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 5065 2064 84 ) ( 5065 2056 84 ) ( 5065 2056 -4 ) sound_trigger 65.398972 64 -1065.7656 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 5072 1958 256 ) ( 5072 1956 256 ) ( 5072 1958 288 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 275
+{
+guid "{4F798B7B-BDC0-11F0-B447-EB18B12E3BDF}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_sound" "chain_fence"
+"targetname" "audio_bump_trigger"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{4F798B7A-BDC0-11F0-B447-EB18B12E3BDF}"
+ ( 5024 2058 226 ) ( 5008 2058 226 ) ( 5008 2050 226 ) sound_trigger 65.398972 64 -1065.7656 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 5009 2049 332 ) ( 5009 2057 332 ) ( 5025 2057 332 ) sound_trigger 65.398972 64 -1065.7656 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 5611 1928 84 ) ( 5627 1928 84 ) ( 5627 1928 -4 ) sound_trigger 65.398972 64 -1065.7656 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 5150 1934 84 ) ( 5134 1934 84 ) ( 5134 1934 -4 ) sound_trigger 65.398972 64 -1065.7656 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4966 2057 84 ) ( 4966 2049 84 ) ( 4966 2049 -4 ) sound_trigger 65.398972 64 -1065.7656 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 5064 1666 256 ) ( 5064 1664 256 ) ( 5064 1666 288 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
 }
