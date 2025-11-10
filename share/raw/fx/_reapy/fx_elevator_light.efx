@@ -216,20 +216,20 @@ iwfx 3
 			1 1
 		}
 	};
-	lightIntensityGraph 2048
+	lightIntensityGraph 512
 	{
 		{
 			0 1
-			0.5 0.916424
+			0.5 1
 			1 1
 		}
 		{
 			0 1
-			0.5 0.317916
+			0.423319 0.3132
 			1 1
 		}
 	};
-	lightRadiusGraph 120
+	lightRadiusGraph 100
 	{
 		{
 			0 1
@@ -323,16 +323,18 @@ iwfx 3
 	{
 		zm_factory_trap_electric1251820407
 		{
-			PRIMARY_NOSHADOWMAP 0
+			PRIMARY_NOSHADOWMAP 1
 			PRIMARY_TYPE OMNI
 			_color 1 0.9658 0.8471
+			cut_on 0
 			falloffdistance 2
 			far_edge 0.1
 			fov_outer 75.000008
 			penumbraRadius 2
-			radius 150
 			shadowUpdate Always
-			volumetric 0
+			stops 11
+			volumetric 1
+			volumetricIntensityBoost 3
 			ENABLE_FALLOFF 1
 			NO_CULL 0
 			PROBE_ONLY 0
@@ -345,7 +347,6 @@ iwfx 3
 			culling_cutoff 0
 			culling_falloff 0
 			culling_use_pure_radius 0
-			cut_on 0
 			def_angle 0
 			def_center 0 0
 			def_offset 0 0
@@ -363,14 +364,13 @@ iwfx 3
 			near_edge 0
 			origin 0 0 0
 			ortho_effect 0
+			radius 100
 			roundness 0.5
 			scriptable 0
 			shadowmapScale 1
 			spec_comp 0
-			stops 11
 			superellipse 0.75 1 0.75 1
 			volumetricCookies 0
-			volumetricIntensityBoost 0
 			volumetricSampleCount 8
 		};
 	};
