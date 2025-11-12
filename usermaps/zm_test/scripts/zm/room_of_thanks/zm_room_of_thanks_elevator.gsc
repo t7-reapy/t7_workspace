@@ -21,10 +21,27 @@ function teleport_player_and_start_elevator()
     level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR] notify(PLAYER_TP_NOTIFICATION);
 }
 
+function add_enter_room_of_thanks_callback(func_ptr)
+{
+    if (IsFunctionPtr(func_ptr))
+    {
+        ARRAY_ADD(level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR].travel_callbacks, func_ptr);
+    }
+}
+
+function add_exit_room_of_thanks_callback(func_ptr)
+{
+    if (IsFunctionPtr(func_ptr))
+    {
+        ARRAY_ADD(level.thanks_elevators[TOP_FLOOR_ELEVATOR].travel_callbacks, func_ptr);
+    }
+}
+
 /* endregion */
 
 class ThanksElevator {
     var is_bottom_floor;
+    var travel_callbacks;
 
     var ent_elevator;
     var ent_platform_clipbrush;
@@ -51,6 +68,7 @@ function private init()
     level.thanks_elevators = array(new ThanksElevator(), new ThanksElevator());
 
     level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR].is_bottom_floor = true;
+    level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR].travel_callbacks = [];
     level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR].ent_elevator = GetEnt(ELEVATOR_ENT[BOTTOM_FLOOR_ELEVATOR], "targetname");
     level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR].ent_platform_clipbrush = GetEnt(ELEVATOR_PLATFORM_ENT[BOTTOM_FLOOR_ELEVATOR], "targetname");
     level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR].ent_left_door = GetEnt(ELEVATOR_LEFT_DOOR_ENT[BOTTOM_FLOOR_ELEVATOR], "targetname");
@@ -68,6 +86,7 @@ function private init()
 	level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR].snd_ent_grid_door = GetEnt(ELEVATOR_SOUND_GRID_ENT[BOTTOM_FLOOR_ELEVATOR], "targetname");
     
     level.thanks_elevators[TOP_FLOOR_ELEVATOR].is_bottom_floor = false;
+    level.thanks_elevators[TOP_FLOOR_ELEVATOR].travel_callbacks = [];
     level.thanks_elevators[TOP_FLOOR_ELEVATOR].ent_elevator = GetEnt(ELEVATOR_ENT[TOP_FLOOR_ELEVATOR], "targetname");
     level.thanks_elevators[TOP_FLOOR_ELEVATOR].ent_platform_clipbrush = GetEnt(ELEVATOR_PLATFORM_ENT[TOP_FLOOR_ELEVATOR], "targetname");
     level.thanks_elevators[TOP_FLOOR_ELEVATOR].ent_left_door = GetEnt(ELEVATOR_LEFT_DOOR_ENT[TOP_FLOOR_ELEVATOR], "targetname");
@@ -149,6 +168,7 @@ function private elevator_think() // self == elevator
     if (self.is_bottom_floor)
     {
         self waittill(PLAYER_TP_NOTIFICATION);
+        self thread elevator_travel_callbacks();
         self teleport_players_inside_elevator();
 
         self thread elevator_lift_sounds();
@@ -169,6 +189,7 @@ function private elevator_think() // self == elevator
     {
         level flag::wait_till("initial_blackscreen_passed");
         self elevator_enter();
+        self thread elevator_travel_callbacks();
 
         self thread elevator_arrive_sounds();
         self thread doors_activate_sounds(CLOSE);
@@ -283,6 +304,17 @@ function private elevator_enter() // self == elevator
     while(!self are_players_inside_elevator() || self is_any_player_in_door_way()) 
     {
         WAIT_SERVER_FRAME;
+    }
+}
+
+function private elevator_travel_callbacks() // self == elevator
+{
+    if (IsArray(self.travel_callbacks))
+    {
+        foreach (callback in self.travel_callbacks)
+        {
+            level thread [[ callback ]]();
+        }
     }
 }
 

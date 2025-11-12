@@ -1,5 +1,5 @@
+#using scripts\shared\lui_shared; 
 #using scripts\codescripts\struct;
-
 #using scripts\shared\array_shared;
 #using scripts\shared\callbacks_shared;
 #using scripts\shared\clientfield_shared;
@@ -68,9 +68,11 @@
 
 //Hell rounds
 #using scripts\zm\hellround\zm_hellround;
+#using scripts\zm\hellround\zm_hellround_meteor;
 
 //Room of thanks
 #using scripts\zm\room_of_thanks\zm_room_of_thanks;
+#using scripts\zm\room_of_thanks\zm_room_of_thanks_elevator;
 #using scripts\zm\_auto_closable_door;
 
 // End game camera
@@ -98,6 +100,8 @@ function main()
 {
     configure_weapon_inspection();
     bind_hellround_and_weather();
+    bind_meteor_to_enter_room_of_thanks();
+    bind_room_of_thanks_callbacks();
     
     zm_usermap::main();
     level thread zm_animated_switch::MasterSwitchInit();
@@ -129,91 +133,18 @@ function private end_game()
     }
 }
 
-function private bind_hellround_and_weather()
+function private watch_power_state()
 {
-    zm_hellround::add_toggle_callback(&toggle_weather);
+    level.power_on_lightstate = undefined;
+    
+    level flag::wait_till("power_on");
+    
+    level.power_on_lightstate = 1;
+    util::set_lighting_state(level.power_on_lightstate);
+    zm_weather::update_default_lightstate();
 }
 
-function private toggle_weather(b_enable_hellround)
-{
-    if (IS_TRUE(b_enable_hellround))
-    {
-        zm_weather::pause();
-    }
-    else
-    {
-        zm_weather::play();
-    }
-}
-
-function private custom_add_weapons()
-{
-    zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_test_weapons.csv", 1);
-}
-
-function private setup_playable_zones()
-{
-    //Setup the levels Zombie Zone Volumes
-    level.zones = [];
-    level.zone_manager_init_func = &add_adjacent_zones;
-    init_zones[0] = "start_zone";
-    init_zones[1] = "thanks_zone";
-    level thread zm_zonemgr::manage_zones(init_zones);
-
-    // Must be defined for AI pathing
-    level.pathdist_type = PATHDIST_ORIGINAL;
-}
-
-function private add_adjacent_zones()
-{
-    zm_zonemgr::add_adjacent_zone("start_zone", "second_zone", "enter_second_zone");
-    zm_zonemgr::add_adjacent_zone("second_zone", "third_zone", "enter_third_zone");
-    zm_zonemgr::add_adjacent_zone("third_zone", "fourth_zone", "enter_fourth_zone");
-} 
-
-function private remove_players_names()
-{
-    SetDvar("cg_disableplayernames", "1");
-}
-
-function private setup_weapons()
-{
-    // PaP Camo
-    level.pack_a_punch_camo_index = 3;
-    level.pack_a_punch_camo_index_number_variants = 34;
-
-    level._zombie_custom_add_weapons = &custom_add_weapons;
-
-    // Use CW M1911 as start and laststand pistol
-    level.start_weapon = GetWeapon("t9_1911");
-    level.laststandpistol = level.start_weapon;
-    level.default_laststandpistol = level.start_weapon;
-    level.pistol_values[0] = level.default_laststandpistol;
-
-    // For solo games
-    level.default_solo_laststandpistol = GetWeapon("t9_1911_rdw_up");
-    level.pistol_values[3] = level.default_solo_laststandpistol;
-
-    // Override default melee weapon
-    zm_utility::register_melee_weapon_for_level("t8_knife");
-    level.weaponbasemelee = getweapon("t8_knife");
-}
-
-function private setup_players_vox()
-{
-    zm_audio::loadPlayerVoiceCategories("gamedata/audio/zm/zm_usmc_vox.csv");
-}
-
-function private disable_hitmarkers() // self == player
-{
-    while(!isdefined(self.hud_damagefeedback) && !isdefined(self.hud_damagefeedback_additional))
-    {
-        WAIT_SERVER_FRAME;
-    }
-
-    self.hud_damagefeedback Destroy();
-    self.hud_damagefeedback_additional Destroy();
-}
+/* region callbacks */
 
 function private on_player_spawned() // self == player
 {
@@ -236,17 +167,6 @@ function private watch_blastomatic_acquisition() // self == player
             PlaySoundAtPosition("mus_raygun_stinger", (0, 0, 0));
         }
     }
-}
-
-function private watch_power_state()
-{
-    level.power_on_lightstate = undefined;
-    
-    level flag::wait_till("power_on");
-    
-    level.power_on_lightstate = 1;
-    util::set_lighting_state(level.power_on_lightstate);
-    zm_weather::update_default_lightstate();
 }
 
 function private on_player_damage() // self == player
@@ -310,10 +230,107 @@ function private play_bleedout_sound()
     }
 }
 
-function private change_powerups_color()
+function private bind_hellround_and_weather()
 {
-    level._effect["powerup_on"] = FX_POWERUP_BLUE;
-    level._effect["powerup_grabbed"] = "zombie/fx_powerup_grab_solo_zmb";
+    zm_hellround::add_toggle_callback(&toggle_weather);
+}
+
+function private toggle_weather(b_enable_hellround)
+{
+    if (IS_TRUE(b_enable_hellround))
+    {
+        zm_weather::pause();
+    }
+    else
+    {
+        zm_weather::play();
+    }
+}
+
+function private bind_meteor_to_enter_room_of_thanks()
+{
+    zm_hellround_meteor::bind_meteor_trigger_callback(&zm_room_of_thanks_elevator::teleport_player_and_start_elevator);
+}
+
+function private bind_room_of_thanks_callbacks()
+{
+    // Enter room of thanks
+    zm_room_of_thanks_elevator::add_enter_room_of_thanks_callback(&zm_weather::pause);
+    zm_room_of_thanks_elevator::add_enter_room_of_thanks_callback(&set_lighting_state_clear);
+    zm_room_of_thanks_elevator::add_enter_room_of_thanks_callback(&remove_ui);
+
+    // Exit room of thanks
+    zm_room_of_thanks_elevator::add_exit_room_of_thanks_callback(&transition_screen);
+    zm_room_of_thanks_elevator::add_exit_room_of_thanks_callback(&zm_weather::play);
+    zm_room_of_thanks_elevator::add_exit_room_of_thanks_callback(&set_lighting_state_normal);
+    zm_room_of_thanks_elevator::add_exit_room_of_thanks_callback(&restore_ui);
+
+    // TODO: end the game
+}
+
+function private set_lighting_state_clear()
+{
+    util::set_lighting_state(2);
+}
+
+function private set_lighting_state_normal()
+{
+    util::set_lighting_state(VAL(level.power_on_lightstate, 0));
+}
+
+function private remove_ui()
+{
+    foreach(player in GetPlayers())
+    {
+        player setClientUIVisibilityFlag("hud_visible", 0);
+        player setClientUIVisibilityFlag("weapon_hud_visible", 0);
+    }
+}
+
+function private restore_ui()
+{
+    foreach(player in GetPlayers())
+    {
+        player setClientUIVisibilityFlag("hud_visible", 1);
+        player setClientUIVisibilityFlag("weapon_hud_visible", 1);
+    }
+}
+
+function private transition_screen()
+{
+    self thread lui::screen_flash(0.5, 1.25, 0.5, 1, "black");
+}
+
+/* endregion */
+
+/* region weapons */
+
+function private custom_add_weapons()
+{
+    zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_test_weapons.csv", 1);
+}
+
+function private setup_weapons()
+{
+    // PaP Camo
+    level.pack_a_punch_camo_index = 3;
+    level.pack_a_punch_camo_index_number_variants = 34;
+
+    level._zombie_custom_add_weapons = &custom_add_weapons;
+
+    // Use CW M1911 as start and laststand pistol
+    level.start_weapon = GetWeapon("t9_1911");
+    level.laststandpistol = level.start_weapon;
+    level.default_laststandpistol = level.start_weapon;
+    level.pistol_values[0] = level.default_laststandpistol;
+
+    // For solo games
+    level.default_solo_laststandpistol = GetWeapon("t9_1911_rdw_up");
+    level.pistol_values[3] = level.default_solo_laststandpistol;
+
+    // Override default melee weapon
+    zm_utility::register_melee_weapon_for_level("t8_knife");
+    level.weaponbasemelee = getweapon("t8_knife");
 }
 
 function private configure_weapon_inspection()
@@ -383,3 +400,61 @@ function private configure_weapon_inspection()
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927_up"), 5);
 }
+
+/* endregion */
+
+/* region zones */
+
+function private setup_playable_zones()
+{
+    //Setup the levels Zombie Zone Volumes
+    level.zones = [];
+    level.zone_manager_init_func = &add_adjacent_zones;
+    init_zones[0] = "start_zone";
+    init_zones[1] = "thanks_zone";
+    level thread zm_zonemgr::manage_zones(init_zones);
+
+    // Must be defined for AI pathing
+    level.pathdist_type = PATHDIST_ORIGINAL;
+}
+
+function private add_adjacent_zones()
+{
+    zm_zonemgr::add_adjacent_zone("start_zone", "second_zone", "enter_second_zone");
+    zm_zonemgr::add_adjacent_zone("second_zone", "third_zone", "enter_third_zone");
+    zm_zonemgr::add_adjacent_zone("third_zone", "fourth_zone", "enter_fourth_zone");
+} 
+
+/* endregion */
+
+/* region tweakings */
+
+function private remove_players_names()
+{
+    SetDvar("cg_disableplayernames", "1");
+}
+
+function private disable_hitmarkers() // self == player
+{
+    while(!isdefined(self.hud_damagefeedback) && !isdefined(self.hud_damagefeedback_additional))
+    {
+        WAIT_SERVER_FRAME;
+    }
+
+    self.hud_damagefeedback Destroy();
+    self.hud_damagefeedback_additional Destroy();
+}
+
+function private setup_players_vox()
+{
+    zm_audio::loadPlayerVoiceCategories("gamedata/audio/zm/zm_usmc_vox.csv");
+}
+
+function private change_powerups_color()
+{
+    level._effect["powerup_on"] = FX_POWERUP_BLUE;
+    level._effect["powerup_grabbed"] = "zombie/fx_powerup_grab_solo_zmb";
+}
+
+/* endregion */
+

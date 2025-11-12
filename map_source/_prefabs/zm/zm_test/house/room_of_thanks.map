@@ -4,7 +4,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{ED902CBA-B9D7-11F0-B440-A86160732B56}"
+guid "{7D645830-BE1B-11F0-B448-E28744B0EE47}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -4512,4 +4512,70 @@ guid "{ED902CCB-B9D7-11F0-B440-A86160732B56}"
 "lightingstate3" "1"
 "lightingstate4" "1"
 "shadow_casting" "1"
+}
+// entity 96
+{
+guid "{F9D864D7-BE1A-11F0-B448-E28744B0EE47}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "2"
+"script_ambientroom" "zm_test_room_of_thanks"
+"targetname" "ambient_room"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{00204D2B-BE1B-11F0-B448-E28744B0EE47}"
+  contents detail;
+ ( 4631 2196 -352 ) ( 4615 2196 -352 ) ( 4615 2180 -352 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4611 2180 552 ) ( 4611 2196 552 ) ( 4627 2196 552 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4195 1169 16 ) ( 4211 1169 16 ) ( 4211 1169 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 5120 1549 20 ) ( 5120 1565 20 ) ( 5120 1565 4 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4544 2230 12 ) ( 4544 2214 12 ) ( 4544 2214 -4 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4827 2417 384 ) ( 4987 2417 384 ) ( 4827 2417 416 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 97
+{
+guid "{583FA5E9-BE1B-11F0-B448-E28744B0EE47}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "3"
+"script_ambientroom" "zm_test_elevator"
+"targetname" "ambient_room"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{583FA5E8-BE1B-11F0-B448-E28744B0EE47}"
+  contents detail;
+ ( 4750 1146 -352 ) ( 5326 1146 -352 ) ( 5326 2394 -352 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4750 2394 552 ) ( 5326 2394 552 ) ( 5326 1146 552 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4348 2256 -352 ) ( 4348 2256 552 ) ( 4924 2256 552 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4912 3500 -352 ) ( 4912 2252 -352 ) ( 4912 2252 552 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4750 2394 552 ) ( 4750 1146 552 ) ( 4750 1146 -352 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 5326 2394 -352 ) ( 5326 2394 552 ) ( 4750 2394 552 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 98
+{
+guid "{7D645836-BE1B-11F0-B448-E28744B0EE47}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_ambientpriority" "3"
+"script_ambientroom" "zm_test_elevator"
+"targetname" "ambient_room"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{7D645835-BE1B-11F0-B448-E28744B0EE47}"
+  contents detail;
+ ( 4752 82 -352 ) ( 5328 82 -352 ) ( 5328 1330 -352 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4752 1330 552 ) ( 5328 1330 552 ) ( 5328 82 552 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4350 1192 -352 ) ( 4350 1192 552 ) ( 4926 1192 552 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4914 2436 -352 ) ( 4914 1188 -352 ) ( 4914 1188 552 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4752 1330 552 ) ( 4752 82 552 ) ( 4752 82 -352 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 5328 1330 -352 ) ( 5328 1330 552 ) ( 4752 1330 552 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
 }
