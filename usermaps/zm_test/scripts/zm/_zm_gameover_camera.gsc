@@ -131,6 +131,8 @@ function specific_custom_intermission(intermission, speed)
 
     foreach (player in players)
     {
+        // We move the player so if intermission is outside, we still see outside FXs normally.
+        player thread move_progressively(camera_position_ent.origin, destination.origin, speed);
         player StartCameraTween(0.1);
         player CameraActivate(true);
         player CameraSetPosition(camera_position_ent);
@@ -151,4 +153,16 @@ function end_game_player_setup()
     self setClientUIVisibilityFlag( "hud_visible", 0 );
     wait(0.5);
     self Ghost();
+}
+
+function private move_progressively(source, destination, time, steps = 20.0) // self == player
+{
+    offset = (destination - source) / steps;
+    delay = time/steps;
+    for (step = 0; step < steps - 1; step++)
+    {
+        location = source + (offset * step);
+        self SetOrigin(location);
+        wait delay;
+    }
 }
