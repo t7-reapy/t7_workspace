@@ -56,7 +56,7 @@ function play()
     foreach (player in GetPlayers())
     {
         // Resume player viewmodel raindrops, triggers will clear if necessary.
-        player clientfield::set(RAIN_VM_CF_NAME, level.weather.rain.intensity);
+        player update_raindrops(level.weather.rain.intensity);
     }
     
     array::thread_all(level.weather.rain.droplets.triggers, &rain_trigger_think);
@@ -83,7 +83,7 @@ function pause()
         player notify("enter_rain_droplets_trigger");
 
         // Finally, turn off client fields
-        player clientfield::set(RAIN_VM_CF_NAME, WEATHER_INTENSITY_OFF);
+        player update_raindrops(WEATHER_INTENSITY_OFF);
     }
     
     level.weather.rain.droplets.paused = true;

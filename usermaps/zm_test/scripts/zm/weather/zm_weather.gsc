@@ -14,7 +14,7 @@
 
 #namespace zm_weather;
 
-REGISTER_SYSTEM("zm_weather", &init, undefined)
+REGISTER_SYSTEM_EX("zm_weather", &init, &main, undefined)
 
 class Weather{
     var intensity;
@@ -48,6 +48,14 @@ function private init()
     if (ENABLE_WIND)
     {
         zm_weather_wind::init();
+    }
+}
+
+function private main()
+{
+    if (WEATHER_DEBUG)
+    {
+        thread modvar_debug_weather();
     }
 }
 
@@ -189,3 +197,35 @@ function update_default_lightstate()
 {
     zm_weather_thunder::update_default_lightstate();
 }
+
+function private modvar_debug_weather()
+{
+    ModVar("weather", "");
+
+    while(true)
+    {
+        WAIT_SERVER_FRAME;
+
+        dvar_value = GetDvarString("weather", "");
+
+        if(!isdefined(dvar_value) || dvar_value == "")
+        {
+            continue;
+        }
+        ModVar("weather", "");
+
+        switch(Int(dvar_value))
+        {
+            case 0:
+                pause();
+                break;
+            case 1:
+                play();
+                break;
+            default:
+                WEATHER_PRINT_DEBUG("Unsupported");
+                break;
+        }
+    }
+}
+
