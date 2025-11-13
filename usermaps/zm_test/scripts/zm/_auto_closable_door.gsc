@@ -151,6 +151,11 @@ function private target_activate(open, transition_time) // self == door target
         self thread disconnect_paths_when_done(transition_time);
     }
 
+    if (!isdefined(self.script_string))
+    {
+        return;
+    }
+    
     switch(self.script_string)
     {
         case "rotate":

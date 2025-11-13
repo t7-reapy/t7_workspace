@@ -1,4 +1,4 @@
-#define DEBUG_DOORS 1
+#define DEBUG_DOORS 0
 #define PRINT_DOOR_DEBUG(__str) if(DEBUG_DOORS) IPrintLnBold(__str) // Note: don't use comas in __str
 
 #define DEFAULT_DOOR_OPEN_TIME 1.0
