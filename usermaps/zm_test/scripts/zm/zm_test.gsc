@@ -68,12 +68,11 @@
 
 //Hell rounds
 #using scripts\zm\hellround\zm_hellround;
-#using scripts\zm\hellround\zm_hellround_meteor;
 
 //Room of thanks
 #using scripts\zm\room_of_thanks\zm_room_of_thanks;
-#using scripts\zm\room_of_thanks\zm_room_of_thanks_elevator;
 #using scripts\zm\_auto_closable_door;
+#define DELAY_BEFORE_ROT_CALLBACK_APPLY 12.0
 
 // End game camera
 #using scripts\zm\_zm_gameover_camera;
@@ -100,7 +99,7 @@ function main()
 {
     configure_weapon_inspection();
     bind_hellround_and_weather();
-    bind_meteor_to_enter_room_of_thanks();
+    bind_hellround_meteor_to_enter_room_of_thanks();
     bind_room_of_thanks_callbacks();
     
     zm_usermap::main();
@@ -247,23 +246,58 @@ function private toggle_weather(b_enable_hellround)
     }
 }
 
-function private bind_meteor_to_enter_room_of_thanks()
+function private bind_hellround_meteor_to_enter_room_of_thanks()
 {
-    zm_hellround_meteor::bind_meteor_trigger_callback(&zm_room_of_thanks_elevator::teleport_player_and_start_elevator);
+    zm_hellround::add_meteor_trigger_callback(&zm_room_of_thanks::teleport_players_and_start_elevator);
+    zm_hellround::add_meteor_trigger_callback(&pause_game);
+    zm_hellround::add_meteor_trigger_callback(&clear_zombies);
+    zm_hellround::add_meteor_trigger_callback(&stop_round_sounds);
+}
+
+function private pause_game()
+{
+    level flag::set("world_is_paused");
+}
+
+function private clear_zombies()
+{
+    wait 0.2; // Give a bit of time.
+    zombies = GetAiTeamArray(level.zombie_team);
+    array::thread_all(zombies, &kill_zombie);
+}
+
+function private kill_zombie()
+{
+    if (isdefined(self) && IsActor(self))
+    {
+        self Kill();
+    }
+}
+
+function private stop_round_sounds()
+{
+    // It's certainly a hard way of doing it, but unfortunatelly I didn't find an easier way.
+    // And we don't want to restore it afterwards. 
+    level.musicSystem.states["round_start"].musArray = [];
+    level.musicSystem.states["round_start_short"].musArray = [];
+    level.musicSystem.states["round_start_first"].musArray = [];
+    level.musicSystem.states["round_end"].musArray = [];
 }
 
 function private bind_room_of_thanks_callbacks()
 {
     // Enter room of thanks
-    zm_room_of_thanks_elevator::add_enter_room_of_thanks_callback(&zm_weather::pause);
-    zm_room_of_thanks_elevator::add_enter_room_of_thanks_callback(&set_lighting_state_clear);
-    zm_room_of_thanks_elevator::add_enter_room_of_thanks_callback(&remove_ui);
+    zm_room_of_thanks::add_enter_room_of_thanks_callback(&weather_pause_with_delay);
+    zm_room_of_thanks::add_enter_room_of_thanks_callback(&set_lighting_state_clear);
+    zm_room_of_thanks::add_enter_room_of_thanks_callback(&remove_ui);
+    zm_room_of_thanks::add_enter_room_of_thanks_callback(&player_invulnerability);
 
     // Exit room of thanks
-    zm_room_of_thanks_elevator::add_exit_room_of_thanks_callback(&transition_screen);
-    zm_room_of_thanks_elevator::add_exit_room_of_thanks_callback(&zm_weather::play);
-    zm_room_of_thanks_elevator::add_exit_room_of_thanks_callback(&set_lighting_state_normal);
-    zm_room_of_thanks_elevator::add_exit_room_of_thanks_callback(&restore_ui);
+    zm_room_of_thanks::add_exit_room_of_thanks_callback(&transition_screen);
+    zm_room_of_thanks::add_exit_room_of_thanks_callback(&weather_resume_with_delay);
+    zm_room_of_thanks::add_exit_room_of_thanks_callback(&set_lighting_state_normal);
+    zm_room_of_thanks::add_exit_room_of_thanks_callback(&restore_ui);
+    zm_room_of_thanks::add_exit_room_of_thanks_callback(&end_the_game);
 
     // TODO: end the game
 }
@@ -275,6 +309,7 @@ function private set_lighting_state_clear()
 
 function private set_lighting_state_normal()
 {
+    wait DELAY_BEFORE_ROT_CALLBACK_APPLY;
     util::set_lighting_state(VAL(level.power_on_lightstate, 0));
 }
 
@@ -288,15 +323,49 @@ function private remove_ui()
 
 function private restore_ui()
 {
+    wait DELAY_BEFORE_ROT_CALLBACK_APPLY;
     foreach(player in GetPlayers())
     {
         player setClientUIVisibilityFlag("weapon_hud_visible", 1);
     }
 }
 
+function private player_invulnerability()
+{
+    foreach(player in GetPlayers())
+    {
+        player EnableInvulnerability();
+    }
+}
+
 function private transition_screen()
 {
-    self thread lui::screen_flash(0.5, 1.25, 0.5, 1, "black");
+    screen_flash_fadein = 3.0;
+    wait DELAY_BEFORE_ROT_CALLBACK_APPLY - screen_flash_fadein;
+    self thread lui::screen_flash(screen_flash_fadein, 5.0, 0.0, 1, "black");
+}
+
+function private weather_resume_with_delay()
+{
+    wait DELAY_BEFORE_ROT_CALLBACK_APPLY;
+    zm_weather::play();
+    zm_weather::pause_player_features();
+    zm_weather::greater_intensity();
+    zm_weather::greater_intensity();
+}
+
+function private weather_pause_with_delay()
+{
+    // It seems that pausing the weather on same server frame as other stuff 
+    // creates a weird issue and don't really pause some weather features...
+    wait 2;
+    zm_weather::pause();
+}
+
+function private end_the_game()
+{
+    wait DELAY_BEFORE_ROT_CALLBACK_APPLY;
+    level notify("end_game");
 }
 
 /* endregion */

@@ -89,6 +89,11 @@ function private call_toggle_callbacks(b_enabled)
     }
 }
 
+function add_meteor_trigger_callback(func_ptr)
+{
+    zm_hellround_meteor::add_meteor_trigger_callback(func_ptr);
+}
+
 function private bind_callbacks()
 {
     add_toggle_callback(&zm_hellround_powerup::lose_minigun_callback);
@@ -103,7 +108,7 @@ function private bind_callbacks()
     zm_hellround_spawn_manager::add_ai_spawn_callback(&zm_bloodsplatter::watch_actor);
     zm_hellround_spawn_manager::bind_reward_callback(&zm_hellround_reward::give_reward);
     // Hellround powerup and collector should never be canceled because bad iteration is no more available after feeding cerberus heads.
-    // I'm not found of that, but we still bind this logic because its part of the hellround overall logic.
+    // I'm not fond of that, but we still bind this logic because its part of the hellround overall logic.
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_collectors::cancel_collection_logic);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_wolf_soul_collectors::force_completion);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_powerup::lose_minigun_callback);
@@ -114,7 +119,7 @@ function private bind_callbacks()
     zm_hellround_collectors::bind_reward_callback(&zm_hellround_reward::give_reward);
     zm_hellround_collectors::bind_completion_callback(&zm_hellround_meteor::hellround_meteor_logic);
 
-    // TODO: move good ending music to buyable ending
+    zm_hellround_meteor::add_meteor_trigger_callback(&zm_hellround_music::enable_good_ending);
 
     zm_hellround_powerup::add_minigun_callback(&zm_hellround_spawn_manager::hellround_starts);
     zm_hellround_powerup::add_minigun_callback(&zm_hellround_collectors::start_collection_logic);

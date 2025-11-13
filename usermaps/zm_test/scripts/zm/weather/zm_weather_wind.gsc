@@ -75,6 +75,11 @@ function pause()
     level.weather.wind = default_wind_state();
 }
 
+function pause_player_features()
+{
+    // No player specific features yet.
+}
+
 // This function is used to watch for the end of the wind blow, 
 // It forces exploder to end, just to make sure it's not stuck,
 // especially when notification is fired in middle of it.

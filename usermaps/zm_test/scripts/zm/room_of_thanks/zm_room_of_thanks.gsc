@@ -9,7 +9,6 @@
 #insert scripts\shared\version.gsh;
 
 #using scripts\zm\room_of_thanks\zm_room_of_thanks_elevator;
-
 #insert scripts\zm\room_of_thanks\zm_room_of_thanks.gsh;
 
 #namespace zm_room_of_thanks;
@@ -40,4 +39,19 @@ function private setup_sound_trigger() // self == trigger
         waitrealtime(ROTSND_SOUND_TRIGGER_DELAY);
         self SetHintString(&ROTSND_TRIGGER_LOCALIZED);
     }
+}
+
+function add_enter_room_of_thanks_callback(func_ptr)
+{
+    zm_room_of_thanks_elevator::add_enter_room_of_thanks_callback(func_ptr);
+}
+
+function add_exit_room_of_thanks_callback(func_ptr)
+{
+    zm_room_of_thanks_elevator::add_exit_room_of_thanks_callback(func_ptr);
+}
+
+function teleport_players_and_start_elevator()
+{
+    zm_room_of_thanks_elevator::teleport_players_and_start_elevator();
 }

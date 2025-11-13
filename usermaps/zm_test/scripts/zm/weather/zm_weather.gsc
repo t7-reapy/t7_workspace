@@ -127,6 +127,18 @@ function pause()
     level notify("kill_meteo_manager");
 }
 
+function pause_player_features()
+{
+    if (ENABLE_LIGHTNING)
+        thread zm_weather_lightning::pause_player_features();
+    if (ENABLE_RAIN)
+        thread zm_weather_rain::pause_player_features();
+    if (ENABLE_THUNDER)
+        thread zm_weather_thunder::pause_player_features();
+    if (ENABLE_WIND)
+        thread zm_weather_wind::pause_player_features();
+}
+
 function greater_intensity() 
 {
     if (level.weather.intensity >= WEATHER_INTENSITY_HIG)

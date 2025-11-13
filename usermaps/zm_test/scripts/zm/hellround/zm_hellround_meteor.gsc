@@ -34,7 +34,7 @@ class HellroundMeteor
     var falldown_exploder;
 
     var meteor_trigger;
-    var meteor_trigger_callback;
+    var meteor_trigger_callbacks;
 }
 
 function private init()
@@ -51,7 +51,7 @@ function private init()
     level.hellround_meteor.falldown_exploder = HRMETEOR_FALLDOWN_FX_EXPLODER_NAME;
     level.hellround_meteor.meteor_trigger = GetEnt("meteor_trigger", "targetname");
     level.hellround_meteor.meteor_trigger setup_meteor_trigger();
-    level.hellround_meteor.meteor_trigger_callback = undefined;
+    level.hellround_meteor.meteor_trigger_callbacks = [];
 
     MAKE_ARRAY(level.hellround_meteor.brush_show);
     MAKE_ARRAY(level.hellround_meteor.brush_hide);
@@ -240,10 +240,7 @@ function private setup_meteor_trigger() // self == trigger
     }
 
     level clientfield::set(HRMETEOR_CLIENT_FIELD, HRMETEOR_CLIENT_FIELD_TRIGGER);
-    if (isdefined(level.hellround_meteor.meteor_trigger_callback))
-    {
-        player thread [[ level.hellround_meteor.meteor_trigger_callback ]]();
-    }
+    thread meteor_trigger_callbacks();
     PRINT_HR_DEBUG("meteor event is finished");
 }
 
@@ -256,7 +253,6 @@ function private try_to_buy_meteor(meteor) // self == player
     }
 
     cost = Int(HRMETEOR_TRIGGER_PRICE_STR);
-    PRINT_HR_DEBUG("cost is " + cost);
     if (player zm_score::can_player_purchase(cost))
     {
         PRINT_HR_DEBUG("meteor was bought");
@@ -276,11 +272,19 @@ function private try_to_buy_meteor(meteor) // self == player
 /* endregion */
 /* region callback */
 
-function bind_meteor_trigger_callback(func_ptr)
+function add_meteor_trigger_callback(func_ptr)
 {
     if (IsFunctionPtr(func_ptr))
     {
-        level.hellround_meteor.meteor_trigger_callback = func_ptr;
+        ARRAY_ADD(level.hellround_meteor.meteor_trigger_callbacks, func_ptr);
+    }
+}
+
+function private meteor_trigger_callbacks()
+{
+    foreach (callback in level.hellround_meteor.meteor_trigger_callbacks)
+    {
+        thread [[ callback ]]();
     }
 }
 

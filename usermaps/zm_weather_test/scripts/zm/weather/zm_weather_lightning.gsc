@@ -62,6 +62,11 @@ function pause()
     level.weather.lightning = default_lightning_state();
 }
 
+function pause_player_features()
+{
+    // No player specific features yet.
+}
+
 function private default_lightning_state() 
 {
     lightning = new Lightning();
