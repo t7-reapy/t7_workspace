@@ -282,7 +282,6 @@ function private remove_ui()
 {
     foreach(player in GetPlayers())
     {
-        player setClientUIVisibilityFlag("hud_visible", 0);
         player setClientUIVisibilityFlag("weapon_hud_visible", 0);
     }
 }
@@ -291,7 +290,6 @@ function private restore_ui()
 {
     foreach(player in GetPlayers())
     {
-        player setClientUIVisibilityFlag("hud_visible", 1);
         player setClientUIVisibilityFlag("weapon_hud_visible", 1);
     }
 }
