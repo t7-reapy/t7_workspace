@@ -1,4 +1,4 @@
-#define DEBUG_HELLROUNDS 1
+#define DEBUG_HELLROUNDS 0
 #define PRINT_HR_DEBUG(__str) if(DEBUG_HELLROUNDS) IPrintLnBold(__str) // Note: don't use comas in __str
 
 // Flag and notification definitions for bad version of Hellrounds

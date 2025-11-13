@@ -16,7 +16,7 @@ REGISTER_SYSTEM_EX("zm_room_of_thanks_elevator", &init, &main, undefined)
 
 /* region public */
 
-function teleport_player_and_start_elevator()
+function teleport_players_and_start_elevator()
 {
     level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR] notify(PLAYER_TP_NOTIFICATION);
 }
@@ -158,7 +158,6 @@ function private end_game()
 }
 
 /* endregion */
-
 /* region elevator logic */
 
 function private elevator_think() // self == elevator
@@ -172,6 +171,7 @@ function private elevator_think() // self == elevator
         self teleport_players_inside_elevator();
 
         self thread elevator_lift_sounds();
+        self thread elevator_earthquake();
         self elevator_lift();
 
         wait DELAY_BEFORE_DOOR_OPEN;
@@ -181,7 +181,6 @@ function private elevator_think() // self == elevator
 
         self elevator_exit();
 
-        self thread elevator_arrive_sounds();
         self thread doors_activate_sounds(CLOSE);
         self doors_activate(CLOSE);
     }
@@ -201,7 +200,6 @@ function private elevator_think() // self == elevator
 }
 
 /* endregion */
-
 /* region methods */
 
 function private teleport_players_inside_elevator() // self == elevator
@@ -217,7 +215,6 @@ function private elevator_lift() // self == elevator
 {
     PRINT_ELEV_DEBUG("elevator lifting");
     
-    thread elevator_earthquake(ELEVATOR_EARTHQUAKE_INTENSITY, 0, ELEVATOR_TRANSITION_TIME);
     if (self.is_bottom_floor)
     {
         self move_elevator((0, 0, BOTTOM_FLOOR_OFFSET), ELEVATOR_TRANSITION_TIME, ELEVATOR_TRANSITION_ACCELARATION_TIME, ELEVATOR_TRANSITION_DECELARATION_TIME);
@@ -354,17 +351,12 @@ function private is_any_player_in_door_way() // self == elevator
     return false;
 }
 
-function elevator_earthquake(intensity, delay, duration)
+function elevator_earthquake()
 {
-    if (delay > 0.0)
-    {
-        wait delay;
-    }
-    Earthquake(intensity, duration, (0, 0, 0), 50000);
+    Earthquake(ELEVATOR_EARTHQUAKE_INTENSITY, ELEVATOR_TRANSITION_TIME, (0, 0, 0), 50000);
 }
 
 /* endregion */
-
 /* region sounds */
 
 function private doors_activate_sounds(open) // self == elevator
@@ -387,7 +379,6 @@ function private elevator_arrive_sounds() // self == elevator
 }
 
 /* endregion */
-
 /* region debug */
 
 function private modvar_debug_elevator()
@@ -421,7 +412,7 @@ function private modvar_debug_elevator()
                 }
                 break;
             case 4:
-                thread teleport_player_and_start_elevator();
+                thread teleport_players_and_start_elevator();
                 break;
             case 5:
                 thread debug_ents_check();

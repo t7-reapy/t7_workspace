@@ -130,6 +130,11 @@ function private end_game()
     {
         player StopLocalSound(PLAYER_NEAR_DEATH_SOUND);
     }
+    
+    zm_weather::play();
+    zm_weather::pause_player_features();
+    zm_weather::greater_intensity();
+    zm_weather::greater_intensity();
 }
 
 function private watch_power_state()
@@ -294,12 +299,9 @@ function private bind_room_of_thanks_callbacks()
 
     // Exit room of thanks
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&transition_screen);
-    zm_room_of_thanks::add_exit_room_of_thanks_callback(&weather_resume_with_delay);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&set_lighting_state_normal);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&restore_ui);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&end_the_game);
-
-    // TODO: end the game
 }
 
 function private set_lighting_state_clear()
@@ -343,15 +345,6 @@ function private transition_screen()
     screen_flash_fadein = 3.0;
     wait DELAY_BEFORE_ROT_CALLBACK_APPLY - screen_flash_fadein;
     self thread lui::screen_flash(screen_flash_fadein, 5.0, 0.0, 1, "black");
-}
-
-function private weather_resume_with_delay()
-{
-    wait DELAY_BEFORE_ROT_CALLBACK_APPLY;
-    zm_weather::play();
-    zm_weather::pause_player_features();
-    zm_weather::greater_intensity();
-    zm_weather::greater_intensity();
 }
 
 function private weather_pause_with_delay()
