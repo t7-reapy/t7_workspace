@@ -296,6 +296,7 @@ function private bind_room_of_thanks_callbacks()
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&set_lighting_state_clear);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&remove_ui);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&player_invulnerability);
+    zm_room_of_thanks::add_enter_room_of_thanks_callback(&change_player_skins);
 
     // Exit room of thanks
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&transition_screen);
@@ -340,6 +341,14 @@ function private player_invulnerability()
     }
 }
 
+function private change_player_skins()
+{
+    foreach (player in GetPlayers())
+    {
+        player SetCharacterBodyStyle(2);
+    }
+}
+
 function private transition_screen()
 {
     screen_flash_fadein = 3.0;
@@ -362,7 +371,6 @@ function private end_the_game()
 }
 
 /* endregion */
-
 /* region weapons */
 
 function private custom_add_weapons()
@@ -462,7 +470,6 @@ function private configure_weapon_inspection()
 }
 
 /* endregion */
-
 /* region zones */
 
 function private setup_playable_zones()
@@ -486,7 +493,6 @@ function private add_adjacent_zones()
 } 
 
 /* endregion */
-
 /* region tweakings */
 
 function private remove_players_names()

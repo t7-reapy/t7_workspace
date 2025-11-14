@@ -1,3 +1,4 @@
+#using scripts\shared\callbacks_shared; 
 #using scripts\shared\array_shared;
 #using scripts\shared\flag_shared;
 #using scripts\shared\system_shared;
@@ -42,6 +43,7 @@ function add_exit_room_of_thanks_callback(func_ptr)
 class ThanksElevator {
     var is_bottom_floor;
     var travel_callbacks;
+    var should_manage_respawns;
 
     var ent_elevator;
     var ent_platform_clipbrush;
@@ -69,6 +71,7 @@ function private init()
 
     level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR].is_bottom_floor = true;
     level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR].travel_callbacks = [];
+    level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR].should_manage_respawns = false;
     level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR].ent_elevator = GetEnt(ELEVATOR_ENT[BOTTOM_FLOOR_ELEVATOR], "targetname");
     level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR].ent_platform_clipbrush = GetEnt(ELEVATOR_PLATFORM_ENT[BOTTOM_FLOOR_ELEVATOR], "targetname");
     level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR].ent_left_door = GetEnt(ELEVATOR_LEFT_DOOR_ENT[BOTTOM_FLOOR_ELEVATOR], "targetname");
@@ -87,6 +90,7 @@ function private init()
     
     level.thanks_elevators[TOP_FLOOR_ELEVATOR].is_bottom_floor = false;
     level.thanks_elevators[TOP_FLOOR_ELEVATOR].travel_callbacks = [];
+    level.thanks_elevators[TOP_FLOOR_ELEVATOR].should_manage_respawns = false;
     level.thanks_elevators[TOP_FLOOR_ELEVATOR].ent_elevator = GetEnt(ELEVATOR_ENT[TOP_FLOOR_ELEVATOR], "targetname");
     level.thanks_elevators[TOP_FLOOR_ELEVATOR].ent_platform_clipbrush = GetEnt(ELEVATOR_PLATFORM_ENT[TOP_FLOOR_ELEVATOR], "targetname");
     level.thanks_elevators[TOP_FLOOR_ELEVATOR].ent_left_door = GetEnt(ELEVATOR_LEFT_DOOR_ENT[TOP_FLOOR_ELEVATOR], "targetname");
@@ -104,6 +108,7 @@ function private init()
 	level.thanks_elevators[TOP_FLOOR_ELEVATOR].snd_ent_grid_door = GetEnt(ELEVATOR_SOUND_GRID_ENT[TOP_FLOOR_ELEVATOR], "targetname");
 
     array::thread_all(level.thanks_elevators, &elevator_init);
+    callback::on_spawned(&on_player_spawned);
 }
 
 function private elevator_init() // self == elevator
@@ -134,6 +139,18 @@ function private elevator_init() // self == elevator
     self.touch_door_trigger SetHintString("");
     self.touch_door_trigger SetHintLowPriority(true);
     self.touch_door_trigger TriggerEnable(false);
+}
+
+function private on_player_spawned()
+{
+    elevator = level.thanks_elevators[BOTTOM_FLOOR_ELEVATOR];
+
+    if (!elevator.should_manage_respawns)
+    {
+        return;
+    }
+
+    elevator thread elevator_player_spawn(self);
 }
 
 function private main()
@@ -167,6 +184,7 @@ function private elevator_think() // self == elevator
     if (self.is_bottom_floor)
     {
         self waittill(PLAYER_TP_NOTIFICATION);
+        self.should_manage_respawns = true;
         self thread elevator_travel_callbacks();
         self teleport_players_inside_elevator();
 
@@ -199,6 +217,22 @@ function private elevator_think() // self == elevator
     }
 }
 
+function private elevator_player_spawn(player) // self == elevator
+{
+    self thread elevator_travel_callbacks();
+    self teleport_player_inside_elevator(player);
+
+    wait DELAY_BEFORE_DOOR_OPEN;
+    self thread elevator_arrive_sounds();
+    self thread doors_activate_sounds(OPEN);
+    self doors_activate(OPEN);
+
+    self elevator_exit();
+
+    self thread doors_activate_sounds(CLOSE);
+    self doors_activate(CLOSE);
+}
+
 /* endregion */
 /* region methods */
 
@@ -206,9 +240,14 @@ function private teleport_players_inside_elevator() // self == elevator
 {
     foreach(player in GetPlayers())
     {
-        player SetOrigin(self.ent_platform_clipbrush.origin + (0, 0, PLAYER_TP_OFFSET));
-        player SetPlayerAngles(VectorToAngles(AnglesToForward(self.ent_elevator.angles)));
+        self teleport_player_inside_elevator(player);
     }
+}
+
+function private teleport_player_inside_elevator(player) // self == elevator
+{
+    player SetOrigin(self.ent_platform_clipbrush.origin + (0, 0, PLAYER_TP_OFFSET));
+    player SetPlayerAngles(VectorToAngles(AnglesToForward(self.ent_elevator.angles)));
 }
 
 function private elevator_lift() // self == elevator
