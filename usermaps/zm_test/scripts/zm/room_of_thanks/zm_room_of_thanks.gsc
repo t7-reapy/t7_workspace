@@ -36,7 +36,7 @@ function private setup_sound_trigger() // self == trigger
         self SetHintString("");
         level clientfield::set(ROTSND_CLIENTFIELD, true);
         
-        waitrealtime(ROTSND_SOUND_TRIGGER_DELAY);
+        waitrealtime(ROTSND_SOUND_TRIGGER_INIT_DELAY);
         self SetHintString(&ROTSND_TRIGGER_LOCALIZED);
     }
 }
