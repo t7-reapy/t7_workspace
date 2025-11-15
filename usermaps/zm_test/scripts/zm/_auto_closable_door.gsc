@@ -128,6 +128,8 @@ function private target_activate(open, transition_time) // self == door target
     
     if (open)
     {
+        self notify(CANCEL_CLOSE_DOOR_NOTIFY);
+
         if(isdefined(self.open_sound))
         {
             playsoundatposition(self.open_sound, self.origin);
@@ -172,8 +174,9 @@ function private target_activate(open, transition_time) // self == door target
 
 function private door_solid_thread(transition_time) // self == door target
 {
-    wait transition_time;
+    self endon(CANCEL_CLOSE_DOOR_NOTIFY);
 
+    wait transition_time;
     player_touching = false; 
     do {
         player_touching = false; 
@@ -196,6 +199,8 @@ function private door_solid_thread(transition_time) // self == door target
 
 function private disconnect_paths_when_done(transition_time) // self == door target
 {
+    self endon(CANCEL_CLOSE_DOOR_NOTIFY);
+    
     wait transition_time;
     self DisconnectPaths();
     PRINT_DOOR_DEBUG("path disconnected");

@@ -3,3 +3,4 @@
 
 #define DEFAULT_DOOR_OPEN_TIME 1.0
 #define DELAY_BEFORE_DOOR_AUTOCLOSE 5.0
+#define CANCEL_CLOSE_DOOR_NOTIFY "cancel_close_door"
