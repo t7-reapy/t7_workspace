@@ -22,13 +22,17 @@ function init()
     clientfield::register("world", HRENV_TOGGLE_CLIENT_FIELD, VERSION_SHIP, 1, "int", &hellround_environment, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
 }
 
-function hellround_environment(n_client_num, _oldVal, n_new_val, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump)
+function hellround_environment(n_client_num, _oldVal, n_new_val, b_new_ent, _bInitialSnap, _fieldName, _bWasTimeJump)
 {
     util::waitforclient(n_client_num);
+    PRINT_HR_DEBUG("Called hellround environment update with: " + n_new_val);
 
-    play_transition_fx(n_client_num);
-    play_transition_sounds(n_client_num);
-    fog_update(IS_TRUE(n_new_val));
+    if (!b_new_ent)
+    {
+        play_transition_fx(n_client_num);
+        play_transition_sounds(n_client_num);
+    }
+    fog_update(IS_TRUE(n_new_val), b_new_ent);
     show_hellround_volumes(IS_TRUE(n_new_val));
     play_environment_sounds(n_client_num, IS_TRUE(n_new_val));
 }
@@ -48,13 +52,14 @@ function play_transition_fx(n_client_num)
 /* endregion */
 /* region fog */
 
-function fog_update(b_hellfog)
+function fog_update(b_hellfog, skip_transition)
 {
     fog_index = (b_hellfog ? HRENV_FOG_INDEX_BLOODY : HRENV_FOG_INDEX_NORMAL);
-    fog_transition_index = HRENV_FOG_INDEX_TRANSITION;
-
-    set_fog_index(fog_transition_index, HRENV_FOG_RADIANT_TIME);
-    waitrealtime(HRENV_FOG_TRANSITION_TIME);
+    if (!skip_transition)
+    {
+        set_fog_index(HRENV_FOG_INDEX_TRANSITION, HRENV_FOG_RADIANT_TIME);
+        waitrealtime(HRENV_FOG_TRANSITION_TIME);
+    }
     set_fog_index(fog_index, HRENV_FOG_RADIANT_TIME);
 }
 
@@ -107,19 +112,25 @@ function private show_hellround_volumes(b_show)
 
 function play_transition_sounds(n_client_num)
 {
-    player = GetLocalPlayer(n_client_num);
-    player PlaySound(n_client_num, HRENV_SND_TRANSITION);
+    if (!IsSplitScreen() || IsSplitScreenHost(n_client_num))
+    {
+        player = GetLocalPlayer(n_client_num);
+        player PlaySound(n_client_num, HRENV_SND_TRANSITION);
+    }
 }
 
 function private play_environment_sounds(n_client_num, b_enable)
 {
-    player = GetLocalPlayer(n_client_num);
-
-    player stop_loop_sounds();
-    if (b_enable)
+    if (!IsSplitScreen() || IsSplitScreenHost(n_client_num))
     {
-        level.hellround_environment_sounds[HRENV_AMBIANCE_SOUND_1] = player PlayLoopSound(HRENV_AMBIANCE_SOUND_1, 1);
-        level.hellround_environment_sounds[HRENV_AMBIANCE_SOUND_2] = player PlayLoopSound(HRENV_AMBIANCE_SOUND_2, 1);
+        player = GetLocalPlayer(n_client_num);
+
+        player stop_loop_sounds();
+        if (b_enable)
+        {
+            level.hellround_environment_sounds[HRENV_AMBIANCE_SOUND_1] = player PlayLoopSound(HRENV_AMBIANCE_SOUND_1, 1);
+            level.hellround_environment_sounds[HRENV_AMBIANCE_SOUND_2] = player PlayLoopSound(HRENV_AMBIANCE_SOUND_2, 1);
+        }
     }
 }
 
