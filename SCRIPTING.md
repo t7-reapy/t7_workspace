@@ -11,6 +11,11 @@ In this document, there will be tips and stuff around my investigations and disc
 
 ## Troubleshoot
 
+If when playing MKV videos, the game crashes, then the version of the software use to make the MKV is too recent:
+ - Use handbrake 1.0.3
+ - Remove audio tracks
+ - Remove subtitle tracks 
+
 When booting game after a successful linking of the scripts in the tools, and having error: *`Error linking script: "blabla.gsc"`*, usually it means one script file is missing from zone file. It mostly does this because link step does the linkage with zoned files, not files from the folder AFAIK.
 
 If the map includes weapons that are not linked (especially the ones buyable on the walls), the map doesn't run, and crashes instantly with error about zm_weapons or something. 

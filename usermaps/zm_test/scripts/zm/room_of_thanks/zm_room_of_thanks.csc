@@ -8,6 +8,7 @@
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;
 
+#using scripts\zm\room_of_thanks\zm_room_of_thanks_board;
 #insert scripts\zm\room_of_thanks\zm_room_of_thanks.gsh;
 #namespace zm_room_of_thanks;
 

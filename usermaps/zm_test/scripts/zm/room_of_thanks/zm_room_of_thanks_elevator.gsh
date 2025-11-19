@@ -1,4 +1,4 @@
-#define DEBUG_ELEVATORS 1
+#define DEBUG_ELEVATORS 0
 #define PRINT_ELEV_DEBUG(__str) if(DEBUG_ELEVATORS) IPrintLnBold(__str) // Note: don't use comas in __str
 
 #define BOTTOM_FLOOR_ELEVATOR 0

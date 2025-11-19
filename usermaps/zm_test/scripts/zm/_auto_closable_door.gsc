@@ -42,7 +42,7 @@ function private end_game()
 
 function private door_init() // self == door trigger
 {
-    self SetCursorHint("HINT_NOICON");
+    self SetCursorHint("HINT_DOOR");
     self SetHintString("");
     self SetHintLowPriority(true);
     
