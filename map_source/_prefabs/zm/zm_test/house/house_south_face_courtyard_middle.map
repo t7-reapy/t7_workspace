@@ -1917,8 +1917,9 @@ guid "{2E63A9E2-90E5-11F0-B406-EF4C106B2503}"
 "angles" "0 114.998 -180"
 "model" "p7_barrier_block_concrete_dam_02"
 "modelscale" "0.25"
-"origin" "735 -2082 -119"
+"origin" "745 -2077 -119"
 "shadow_casting" "1"
+"static" "1"
 "targetname" "hellround_meteor_model_show"
 "_color" "1 0 0"
 "client_server" "ServerSide"
@@ -1970,6 +1971,7 @@ guid "{2E63A9EB-90E5-11F0-B406-EF4C106B2503}"
 "model" "p7_concrete_block_dmg_01_single_a"
 "origin" "750 -2128 -124"
 "shadow_casting" "1"
+"static" "1"
 "targetname" "hellround_meteor_model_show"
 "_color" "1 0 0"
 "client_server" "ServerSide"
@@ -2005,6 +2007,7 @@ guid "{2E63A9F1-90E5-11F0-B406-EF4C106B2503}"
 "model" "p7_concrete_block_dmg_01_single_a"
 "origin" "748 -2096 -125"
 "shadow_casting" "1"
+"static" "1"
 "targetname" "hellround_meteor_model_show"
 "_color" "1 0 0"
 "client_server" "ServerSide"
@@ -2057,6 +2060,7 @@ guid "{64B04C97-90E5-11F0-B406-EF4C106B2503}"
 "model" "p7_concrete_block_dmg_01_single_d"
 "origin" "720 -2127 -125"
 "shadow_casting" "1"
+"static" "1"
 "targetname" "hellround_meteor_model_show"
 "_color" "1 0 0"
 "client_server" "ServerSide"
@@ -2164,6 +2168,26 @@ guid "{8E53CDF5-90E2-11F0-B406-EF4C106B2503}"
 "lightingstate4" "1"
 // brush 0
 {
+ guid "{FF40EAF6-A9D5-11EF-B2A4-AE5CB306EE9F}"
+ ( 828 -2077 -112 ) ( 828 -2021 -112 ) ( 824 -2021 -112 ) t7_concrete_wall_weathered_01_dark 128.00562 128 1261.646 -4265.0591 180 -5.4315497e-005 lightmap_gray 16383.969 16384.506 -3764.4624 -1458.5828 90 5.4294582e-005
+ ( 824 -2077 -92 ) ( 824 -2021 -92 ) ( 828 -2021 -92 ) t7_concrete_wall_weathered_01_dark 128.0056 128 1261.6521 -4265.0591 180 -6.3176594e-005 lightmap_gray 16383.961 16384.504 -3764.4343 -1458.5806 90 6.3313644e-005
+ ( 828 -2077 -92 ) ( 828 -2021 -92 ) ( 828 -2021 -112 ) t7_concrete_wall_weathered_01_dark 128 -128 7526.5015 16 -180 0 lightmap_gray 16383.666 16384 -3764.467 0 0 0
+ ( 824 -2077 -112 ) ( 828 -2077 -112 ) ( 828 -2077 -92 ) t7_concrete_wall_weathered_01_dark 128.00197 -128 1261.5298 16 180 0 lightmap_gray 16384.252 -16384 1481.535 16 180 0
+ ( 824 -2077 -112 ) ( 824 -2021 -112 ) ( 824 -2021 -92 ) t7_concrete_wall_weathered_01_dark 128 -128 7526.502 16 -180 0 lightmap_gray 16383.961 16384 -3762.4958 -16 0 0
+ ( 824 -2081 -92 ) ( 828 -2081 -92 ) ( 828 -2081 -112 ) t7_concrete_wall_weathered_01_dark 128.00394 -128 1261.5614 16 180 0 lightmap_gray 16384.504 -16384 1474.5704 17 180 0
+}
+// brush 1
+{
+ guid "{FF40EAEF-A9D5-11EF-B2A4-AE5CB306EE9F}"
+ ( 768 -2141 -112 ) ( 828 -2141 -112 ) ( 828 -2077 -112 ) t7_concrete_wall_weathered_01_dark 128 128 1317.4926 -4265.0059 -180 0 lightmap_gray 16384 16383.75 -3764.4985 -1514.472 90 0
+ ( 824 -2141 -108 ) ( 764 -2141 -108 ) ( 764 -2077 -108 ) t7_concrete_wall_weathered_01_dark 128 128 1321.4917 -4265.0029 -180 0 lightmap_gray 16384 16383.766 -3764.4949 -1518.4736 90 0
+ ( 832 -2141 -128 ) ( 832 -2141 -108 ) ( 832 -2077 -108 ) t7_concrete_wall_weathered_01_dark 128 -128 7586.4858 0 180 0 lightmap_gray 16383.824 16384 -3824.4834 16 0 0
+ ( 824 -2073 -128 ) ( 824 -2073 -108 ) ( 764 -2073 -108 ) t7_concrete_wall_weathered_01_dark 128 -128 1321.5 0 180 0 lightmap_gray 16384.018 -16384 1541.5027 0 180 0
+ ( 768 -2142 -108 ) ( 768 -2142 -128 ) ( 768 -2078 -128 ) t7_concrete_wall_weathered_01_dark 128 -128 7527.498 0 -180 0 lightmap_gray 16384 16384 -3763.5 0 0 0
+ ( 824 -2145 -108 ) ( 824 -2145 -128 ) ( 764 -2145 -128 ) t7_concrete_wall_weathered_01_dark 128 -128 1265.4917 0 180 0 lightmap_gray 16384.117 -16384 1478.5159 1 180 0
+}
+// brush 2
+{
  guid "{FF40EAF2-A9D5-11EF-B2A4-AE5CB306EE9F}"
  ( 768 -2141 -92 ) ( 828 -2141 -92 ) ( 828 -2077 -92 ) t7_concrete_wall_weathered_01_dark 128 128 1317.4926 -4265.0059 -180 0 lightmap_gray 16384 16383.75 -3764.4985 -1514.472 90 0
  ( 824 -2141 -88 ) ( 764 -2141 -88 ) ( 764 -2077 -88 ) t7_concrete_wall_weathered_01_dark 128 128 1321.4917 -4265.0029 -180 0 lightmap_gray 16384 16383.766 -3764.4949 -1518.4736 90 0
@@ -2172,7 +2196,17 @@ guid "{8E53CDF5-90E2-11F0-B406-EF4C106B2503}"
  ( 760 -2141 -88 ) ( 760 -2141 -108 ) ( 760 -2077 -108 ) t7_concrete_wall_weathered_01_dark 128 -128 7526.4858 20 180 0 lightmap_gray 16384.125 16384 -3762.5127 -20 0 0
  ( 824 -2145 -88 ) ( 824 -2145 -108 ) ( 764 -2145 -108 ) t7_concrete_wall_weathered_01_dark 128 -128 1265.4917 20 180 0 lightmap_gray 16384.117 -16384 1478.5159 21 180 0
 }
-// brush 1
+// brush 3
+{
+ guid "{FF40EAF1-A9D5-11EF-B2A4-AE5CB306EE9F}"
+ ( 764 -2137 -112 ) ( 816 -2137 -112 ) ( 816 -2133 -112 ) t7_metal_dark_trim 32 32 -1955.9828 -4309.0054 180 -1.931843e-005 lightmap_gray 16384.117 16383.75 -925.02161 -150.97391 0 0
+ ( 764 -2133 -92 ) ( 816 -2133 -92 ) ( 816 -2137 -92 ) t7_metal_dark_trim 32 32 -1955.9711 -4309.0024 180 -1.8970368e-005 lightmap_gray 16384.035 16383.752 -925.01587 -150.97755 0 0
+ ( 769 -2139 -92 ) ( 821 -2139 -92 ) ( 821 -2139 -112 ) t7_metal_dark_trim 32 -32 -1957.0063 0 180 0 lightmap_gray 16383.883 16384 -919.98962 0 0 0
+ ( 826 -2137 -112 ) ( 826 -2137 -92 ) ( 826 -2133 -92 ) t7_metal_dark_trim 31.998047 -32 4308.8667 0 180 0 lightmap_gray 16383 16384 173.85812 -16 0 0
+ ( 764 -2079 -112 ) ( 816 -2079 -112 ) ( 816 -2079 -92 ) t7_metal_dark_trim 32 -32 -1955.998 0 180 0 lightmap_gray 16384.057 16384 -923.00549 -16 0 0
+ ( 766 -2133 -112 ) ( 766 -2133 -92 ) ( 766 -2137 -92 ) t7_metal_dark_trim 32.001953 -32 4309.1328 0 -180 0 lightmap_gray 16385.248 16384 167.17329 -17 0 0
+}
+// brush 4
 {
  guid "{FF40EAF3-A9D5-11EF-B2A4-AE5CB306EE9F}"
  ( 768 -2137 -112 ) ( 768 -2081 -112 ) ( 764 -2081 -112 ) t7_concrete_wall_weathered_01_dark 128 128 1321.4919 -4324.9541 180 -5.9731541e-005 lightmap_gray 16384.074 16383.75 -3824.4592 -1518.4725 90 5.9728271e-005
@@ -2181,36 +2215,6 @@ guid "{8E53CDF5-90E2-11F0-B406-EF4C106B2503}"
  ( 764 -2137 -112 ) ( 768 -2137 -112 ) ( 768 -2137 -92 ) t7_concrete_wall_weathered_01_dark 128.00394 -128 1321.5631 16 180 0 lightmap_gray 16384.504 -16384 1541.5708 16 180 0
  ( 764 -2137 -112 ) ( 764 -2081 -112 ) ( 764 -2081 -92 ) t7_concrete_wall_weathered_01_dark 128 -128 7586.4907 16 180 0 lightmap_gray 16384.072 16384 -3822.5073 -16 0 0
  ( 764 -2141 -92 ) ( 768 -2141 -92 ) ( 768 -2141 -112 ) t7_concrete_wall_weathered_01_dark 128.00197 -128 1321.5302 16 180 0 lightmap_gray 16384.252 -16384 1534.5354 17 180 0
-}
-// brush 2
-{
- guid "{FF40EAF0-A9D5-11EF-B2A4-AE5CB306EE9F}"
- ( 768 -2141 -108 ) ( 828 -2141 -108 ) ( 828 -2077 -108 ) t7_concrete_wall_weathered_01_dark 128 128 1317.4926 -4265.0059 -180 0 lightmap_gray 16384 16383.75 -3764.4985 -1514.472 90 0
- ( 824 -2141 -106 ) ( 764 -2141 -106 ) ( 764 -2077 -106 ) t7_concrete_wall_weathered_01_dark 128 128 1321.4917 -4265.0029 -180 0 lightmap_gray 16384 16383.766 -3764.4949 -1518.4736 90 0
- ( 830 -2141 -124 ) ( 830 -2141 -104 ) ( 830 -2077 -104 ) t7_concrete_wall_weathered_01_dark 128 -128 7586.4985 4 180 0 lightmap_gray 16383.699 16384 -3824.4697 12 0 0
- ( 823 -2075 -124 ) ( 823 -2075 -104 ) ( 763 -2075 -104 ) t7_concrete_wall_weathered_01_dark 128 -128 1322.4988 4 -180 0 lightmap_gray 16384.018 -16384 1542.5024 4 180 0
- ( 762 -2141 -104 ) ( 762 -2141 -124 ) ( 762 -2077 -124 ) t7_concrete_wall_weathered_01_dark 128 -128 7526.5 4 180 0 lightmap_gray 16384 16384 -3762.5 -4 0 0
- ( 824 -2143 -104 ) ( 824 -2143 -124 ) ( 764 -2143 -124 ) t7_concrete_wall_weathered_01_dark 128 -128 1265.5062 4 180 0 lightmap_gray 16383.914 -16384 1478.489 5 180 0
-}
-// brush 3
-{
- guid "{FF40EAF5-A9D5-11EF-B2A4-AE5CB306EE9F}"
- ( 828 -2137 -112 ) ( 828 -2081 -112 ) ( 824 -2081 -112 ) t7_concrete_wall_weathered_01_dark 128.00368 128 1261.6216 -4325.1001 180 -6.3176325e-005 lightmap_gray 16384.076 16384.254 -3824.4526 -1458.5504 90 6.3215142e-005
- ( 824 -2137 -92 ) ( 824 -2081 -92 ) ( 828 -2081 -92 ) t7_concrete_wall_weathered_01_dark 128.00368 128 1261.6262 -4325.1045 180 -6.5382912e-005 lightmap_gray 16384.074 16384.254 -3824.4397 -1458.5433 90 6.5467233e-005
- ( 828 -2137 -92 ) ( 828 -2081 -92 ) ( 828 -2081 -112 ) t7_concrete_wall_weathered_01_dark 128 -128 7586.4902 16 180 0 lightmap_gray 16383.771 16384 -3824.478 0 0 0
- ( 824 -2137 -112 ) ( 828 -2137 -112 ) ( 828 -2137 -92 ) t7_concrete_wall_weathered_01_dark 128 -128 1261.4974 16 180 0 lightmap_gray 16384 -16384 1481.5 16 -180 0
- ( 824 -2137 -112 ) ( 824 -2081 -112 ) ( 824 -2081 -92 ) t7_concrete_wall_weathered_01_dark 128 -128 7586.4932 16 180 0 lightmap_gray 16384.072 16384 -3822.5078 -16 0 0
- ( 824 -2141 -92 ) ( 828 -2141 -92 ) ( 828 -2141 -112 ) t7_concrete_wall_weathered_01_dark 128 -128 1261.4983 16 180 0 lightmap_gray 16384 -16384 1474.5 17 180 0
-}
-// brush 4
-{
- guid "{FF40EAF6-A9D5-11EF-B2A4-AE5CB306EE9F}"
- ( 828 -2077 -112 ) ( 828 -2021 -112 ) ( 824 -2021 -112 ) t7_concrete_wall_weathered_01_dark 128.00562 128 1261.646 -4265.0591 180 -5.4315497e-005 lightmap_gray 16383.969 16384.506 -3764.4624 -1458.5828 90 5.4294582e-005
- ( 824 -2077 -92 ) ( 824 -2021 -92 ) ( 828 -2021 -92 ) t7_concrete_wall_weathered_01_dark 128.0056 128 1261.6521 -4265.0591 180 -6.3176594e-005 lightmap_gray 16383.961 16384.504 -3764.4343 -1458.5806 90 6.3313644e-005
- ( 828 -2077 -92 ) ( 828 -2021 -92 ) ( 828 -2021 -112 ) t7_concrete_wall_weathered_01_dark 128 -128 7526.5015 16 -180 0 lightmap_gray 16383.666 16384 -3764.467 0 0 0
- ( 824 -2077 -112 ) ( 828 -2077 -112 ) ( 828 -2077 -92 ) t7_concrete_wall_weathered_01_dark 128.00197 -128 1261.5298 16 180 0 lightmap_gray 16384.252 -16384 1481.535 16 180 0
- ( 824 -2077 -112 ) ( 824 -2021 -112 ) ( 824 -2021 -92 ) t7_concrete_wall_weathered_01_dark 128 -128 7526.502 16 -180 0 lightmap_gray 16383.961 16384 -3762.4958 -16 0 0
- ( 824 -2081 -92 ) ( 828 -2081 -92 ) ( 828 -2081 -112 ) t7_concrete_wall_weathered_01_dark 128.00394 -128 1261.5614 16 180 0 lightmap_gray 16384.504 -16384 1474.5704 17 180 0
 }
 // brush 5
 {
@@ -2224,23 +2228,23 @@ guid "{8E53CDF5-90E2-11F0-B406-EF4C106B2503}"
 }
 // brush 6
 {
- guid "{FF40EAEF-A9D5-11EF-B2A4-AE5CB306EE9F}"
- ( 768 -2141 -112 ) ( 828 -2141 -112 ) ( 828 -2077 -112 ) t7_concrete_wall_weathered_01_dark 128 128 1317.4926 -4265.0059 -180 0 lightmap_gray 16384 16383.75 -3764.4985 -1514.472 90 0
- ( 824 -2141 -108 ) ( 764 -2141 -108 ) ( 764 -2077 -108 ) t7_concrete_wall_weathered_01_dark 128 128 1321.4917 -4265.0029 -180 0 lightmap_gray 16384 16383.766 -3764.4949 -1518.4736 90 0
- ( 832 -2141 -128 ) ( 832 -2141 -108 ) ( 832 -2077 -108 ) t7_concrete_wall_weathered_01_dark 128 -128 7586.4858 0 180 0 lightmap_gray 16383.824 16384 -3824.4834 16 0 0
- ( 824 -2073 -128 ) ( 824 -2073 -108 ) ( 764 -2073 -108 ) t7_concrete_wall_weathered_01_dark 128 -128 1321.5 0 180 0 lightmap_gray 16384.018 -16384 1541.5027 0 180 0
- ( 768 -2142 -108 ) ( 768 -2142 -128 ) ( 768 -2078 -128 ) t7_concrete_wall_weathered_01_dark 128 -128 7527.498 0 -180 0 lightmap_gray 16384 16384 -3763.5 0 0 0
- ( 824 -2145 -108 ) ( 824 -2145 -128 ) ( 764 -2145 -128 ) t7_concrete_wall_weathered_01_dark 128 -128 1265.4917 0 180 0 lightmap_gray 16384.117 -16384 1478.5159 1 180 0
+ guid "{FF40EAF0-A9D5-11EF-B2A4-AE5CB306EE9F}"
+ ( 768 -2141 -108 ) ( 828 -2141 -108 ) ( 828 -2077 -108 ) t7_concrete_wall_weathered_01_dark 128 128 1317.4926 -4265.0059 -180 0 lightmap_gray 16384 16383.75 -3764.4985 -1514.472 90 0
+ ( 824 -2141 -106 ) ( 764 -2141 -106 ) ( 764 -2077 -106 ) t7_concrete_wall_weathered_01_dark 128 128 1321.4917 -4265.0029 -180 0 lightmap_gray 16384 16383.766 -3764.4949 -1518.4736 90 0
+ ( 830 -2141 -124 ) ( 830 -2141 -104 ) ( 830 -2077 -104 ) t7_concrete_wall_weathered_01_dark 128 -128 7586.4985 4 180 0 lightmap_gray 16383.699 16384 -3824.4697 12 0 0
+ ( 823 -2075 -124 ) ( 823 -2075 -104 ) ( 763 -2075 -104 ) t7_concrete_wall_weathered_01_dark 128 -128 1322.4988 4 -180 0 lightmap_gray 16384.018 -16384 1542.5024 4 180 0
+ ( 762 -2141 -104 ) ( 762 -2141 -124 ) ( 762 -2077 -124 ) t7_concrete_wall_weathered_01_dark 128 -128 7526.5 4 180 0 lightmap_gray 16384 16384 -3762.5 -4 0 0
+ ( 824 -2143 -104 ) ( 824 -2143 -124 ) ( 764 -2143 -124 ) t7_concrete_wall_weathered_01_dark 128 -128 1265.5062 4 180 0 lightmap_gray 16383.914 -16384 1478.489 5 180 0
 }
 // brush 7
 {
- guid "{FF40EAF1-A9D5-11EF-B2A4-AE5CB306EE9F}"
- ( 764 -2137 -112 ) ( 816 -2137 -112 ) ( 816 -2133 -112 ) t7_metal_dark_trim 32 32 -1955.9828 -4309.0054 180 -1.931843e-005 lightmap_gray 16384.117 16383.75 -925.02161 -150.97391 0 0
- ( 764 -2133 -92 ) ( 816 -2133 -92 ) ( 816 -2137 -92 ) t7_metal_dark_trim 32 32 -1955.9711 -4309.0024 180 -1.8970368e-005 lightmap_gray 16384.035 16383.752 -925.01587 -150.97755 0 0
- ( 769 -2139 -92 ) ( 821 -2139 -92 ) ( 821 -2139 -112 ) t7_metal_dark_trim 32 -32 -1957.0063 0 180 0 lightmap_gray 16383.883 16384 -919.98962 0 0 0
- ( 826 -2137 -112 ) ( 826 -2137 -92 ) ( 826 -2133 -92 ) t7_metal_dark_trim 31.998047 -32 4308.8667 0 180 0 lightmap_gray 16383 16384 173.85812 -16 0 0
- ( 764 -2079 -112 ) ( 816 -2079 -112 ) ( 816 -2079 -92 ) t7_metal_dark_trim 32 -32 -1955.998 0 180 0 lightmap_gray 16384.057 16384 -923.00549 -16 0 0
- ( 766 -2133 -112 ) ( 766 -2133 -92 ) ( 766 -2137 -92 ) t7_metal_dark_trim 32.001953 -32 4309.1328 0 -180 0 lightmap_gray 16385.248 16384 167.17329 -17 0 0
+ guid "{FF40EAF5-A9D5-11EF-B2A4-AE5CB306EE9F}"
+ ( 828 -2137 -112 ) ( 828 -2081 -112 ) ( 824 -2081 -112 ) t7_concrete_wall_weathered_01_dark 128.00368 128 1261.6216 -4325.1001 180 -6.3176325e-005 lightmap_gray 16384.076 16384.254 -3824.4526 -1458.5504 90 6.3215142e-005
+ ( 824 -2137 -92 ) ( 824 -2081 -92 ) ( 828 -2081 -92 ) t7_concrete_wall_weathered_01_dark 128.00368 128 1261.6262 -4325.1045 180 -6.5382912e-005 lightmap_gray 16384.074 16384.254 -3824.4397 -1458.5433 90 6.5467233e-005
+ ( 828 -2137 -92 ) ( 828 -2081 -92 ) ( 828 -2081 -112 ) t7_concrete_wall_weathered_01_dark 128 -128 7586.4902 16 180 0 lightmap_gray 16383.771 16384 -3824.478 0 0 0
+ ( 824 -2137 -112 ) ( 828 -2137 -112 ) ( 828 -2137 -92 ) t7_concrete_wall_weathered_01_dark 128 -128 1261.4974 16 180 0 lightmap_gray 16384 -16384 1481.5 16 -180 0
+ ( 824 -2137 -112 ) ( 824 -2081 -112 ) ( 824 -2081 -92 ) t7_concrete_wall_weathered_01_dark 128 -128 7586.4932 16 180 0 lightmap_gray 16384.072 16384 -3822.5078 -16 0 0
+ ( 824 -2141 -92 ) ( 828 -2141 -92 ) ( 828 -2141 -112 ) t7_concrete_wall_weathered_01_dark 128 -128 1261.4983 16 180 0 lightmap_gray 16384 -16384 1474.5 17 180 0
 }
 }
 // entity 96
@@ -2300,40 +2304,6 @@ guid "{6EC0FD8F-90EB-11F0-B406-EF4C106B2503}"
 }
 // entity 98
 {
-guid "{6BC1AF41-90E8-11F0-B406-EF4C106B2503}"
-"classname" "misc_volume_decal"
-"angles" "270 197.651 162.349"
-"decalLayerSort" "Damage - Old"
-"decalLayerSortEnum" "15"
-"decalsize" "22 51 46"
-"modeloverridematerial" "t7_decal_damage_crater_01"
-"origin" "799 -2110 -128"
-"targetname" "hellround_meteor_volume"
-"decalEditorSortEnum" "-1"
-"model" "vol_decal_cube"
-"revealDataSize" "revealAll"
-"textureTiling" "1 1"
-"uvBaseAndScale" "0 0 1 1"
-}
-// entity 99
-{
-guid "{A419A98E-90E8-11F0-B406-EF4C106B2503}"
-"classname" "misc_volume_decal"
-"angles" "270 197.651 162.349"
-"decalLayerSort" "Damage - New"
-"decalLayerSortEnum" "1"
-"decalsize" "22 51 46"
-"modeloverridematerial" "t7_decal_damage_burn_impact_01a"
-"origin" "788 -2110 -128"
-"targetname" "hellround_meteor_volume"
-"decalEditorSortEnum" "-1"
-"model" "vol_decal_cube"
-"revealDataSize" "revealAll"
-"textureTiling" "1 1"
-"uvBaseAndScale" "0 0 1 1"
-}
-// entity 100
-{
 guid "{27639055-90EE-11F0-B406-EF4C106B2503}"
 "classname" "script_model"
 "model" "p7_foliage_coral_sea_table_01"
@@ -2348,7 +2318,7 @@ guid "{27639055-90EE-11F0-B406-EF4C106B2503}"
 "lightingstate4" "1"
 "shadow_casting" "1"
 }
-// entity 101
+// entity 99
 {
 guid "{57362999-9167-11F0-B407-CBC50D4314FE}"
 "classname" "trigger_use"
@@ -2365,4 +2335,38 @@ guid "{57362999-9167-11F0-B407-CBC50D4314FE}"
  ( 787 -2094 -108 ) ( 773 -2094 -108 ) ( 773 -2094 -128 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
  ( 773 -2094 -108 ) ( 773 -2107 -108 ) ( 773 -2107 -128 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
+}
+// entity 100
+{
+guid "{A419A98E-90E8-11F0-B406-EF4C106B2503}"
+"classname" "misc_volume_decal"
+"angles" "270 197.651 162.349"
+"decalLayerSort" "Damage - New"
+"decalLayerSortEnum" "1"
+"decalsize" "22 51 46"
+"modeloverridematerial" "t7_decal_damage_burn_impact_01a"
+"origin" "788 -2110 -128"
+"targetname" "hellround_meteor_volume"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
+}
+// entity 101
+{
+guid "{6BC1AF41-90E8-11F0-B406-EF4C106B2503}"
+"classname" "misc_volume_decal"
+"angles" "270 197.651 162.349"
+"decalLayerSort" "Damage - Old"
+"decalLayerSortEnum" "15"
+"decalsize" "22 51 46"
+"modeloverridematerial" "t7_decal_damage_crater_01"
+"origin" "799 -2110 -128"
+"targetname" "hellround_meteor_volume"
+"decalEditorSortEnum" "-1"
+"model" "vol_decal_cube"
+"revealDataSize" "revealAll"
+"textureTiling" "1 1"
+"uvBaseAndScale" "0 0 1 1"
 }
