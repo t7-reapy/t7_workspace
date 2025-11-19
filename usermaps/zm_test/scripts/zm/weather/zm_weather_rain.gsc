@@ -102,12 +102,25 @@ function pause()
 
     if (ENABLE_RAIN_DROPLETS)
     {
-        zm_weather_rain_droplets::pause();
+        thread zm_weather_rain_droplets::pause();
     }
 
     if (ENABLE_RAIN_ENVIRONMENT)
     {
         thread zm_weather_rain_environment::pause();
+    }
+}
+
+function pause_player_features()
+{
+    if (ENABLE_RAIN_DROPS_POSTFX)
+    {
+        thread zm_weather_rain_drops_postfx::pause();
+    }
+
+    if (ENABLE_RAIN_DROPLETS)
+    {
+        thread zm_weather_rain_droplets::pause();
     }
 }
 

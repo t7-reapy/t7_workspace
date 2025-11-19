@@ -118,8 +118,7 @@ function private splash_rain_cf(n_local_client, n_old, shouldRainOnPlayer, b_new
 
 function private on_connect(n_local_client)
 {
-    player = GetLocalPlayer(n_local_client);
-    player.vm_rain_on_player = false;
+    self.vm_rain_on_player = false;
 }
 
 function private rain_splash_on_player(n_local_client)
@@ -137,7 +136,7 @@ function private rain_splash_on_player(n_local_client)
     self MapShaderConstant(n_local_client, 0, SHADER_VECTOR_NAME, 0.0); 
 
     rain_index = 0;
-    while(true)
+    while(!isdefined(self) || self.vm_rain_on_player)
     {
         wait 1.0 / RAIN_VM_FRAMES_PER_SECONDS;
 
@@ -209,6 +208,7 @@ function private rain_splash_fade_out(n_local_client)
     }
 
     self MapShaderConstant(n_local_client, 0, SHADER_VECTOR_NAME, 0.0);
+    self.vm_rain_on_player = false;
 }
 
 function private lerp(start_time, end_time, reverse)

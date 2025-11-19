@@ -1,0 +1,271 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{61869C0F-B7DC-11F0-B43E-C3127354CF7A}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{DE7F2011-9598-11F0-B40D-C9E630C4FCD6}"
+"classname" "script_model"
+"angles" "0 180 0"
+"model" "par_elevator_car_door_left_01"
+"origin" "4832 1326 225"
+"targetname" "top_elevator_door_right"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 2
+{
+guid "{E4B8B845-9598-11F0-B40D-C9E630C4FCD6}"
+"classname" "script_model"
+"angles" "0 180 0"
+"model" "par_elevator_car_door_right_01"
+"origin" "4831 1326 225"
+"targetname" "top_elevator_door_left"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 3
+{
+guid "{98D4A80F-9598-11F0-B40D-C9E630C4FCD6}"
+"classname" "script_model"
+"angles" "0 180 0"
+"model" "par_elevator_car_01"
+"origin" "4831 1277 225"
+"targetname" "top_elevator"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 4
+{
+guid "{02B882B8-B503-11F0-B438-8D57E2AF34D4}"
+"classname" "script_model"
+"angles" "360 89.9999 -90"
+"model" "p7_cai_security_gate"
+"modelscale" "0.499999999552965"
+"origin" "4866 1338 254"
+"targetname" "top_elevator_grid"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"shadow_casting" "1"
+}
+// entity 5
+{
+guid "{0E98BC23-B75A-11F0-B43D-E05470442869}"
+"classname" "trigger_use_touch"
+"targetname" "top_elevator_trigger"
+"_color" "0.3 0.5 0.8"
+"cursorhint" "HINT_ACTIVATE"
+// brush 0
+{
+ guid "{0E98BC22-B75A-11F0-B43D-E05470442869}"
+ ( 4816 1331 208 ) ( 4832 1331 208 ) ( 4832 1339 208 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4816 1211 360 ) ( 4832 1211 360 ) ( 4832 1203 360 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4817 1203 344 ) ( 4817 1203 360 ) ( 4833 1203 360 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4896 1209 344 ) ( 4896 1201 344 ) ( 4896 1201 360 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4832 1331 208 ) ( 4832 1331 224 ) ( 4816 1331 224 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4768 1212 360 ) ( 4768 1204 360 ) ( 4768 1204 344 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 6
+{
+guid "{E0CC41D8-B760-11F0-B43D-E05470442869}"
+"classname" "script_brushmodel"
+"targetname" "top_elevator_clipbrush"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"shadow_casting" "1"
+// brush 0
+{
+ guid "{6A0D54F2-B760-11F0-B43D-E05470442869}"
+ ( 4830 1348 227 ) ( 4802 1348 227 ) ( 4802 1331 227 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4803 1331 324 ) ( 4803 1348 324 ) ( 4831 1348 324 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4802 1331 332 ) ( 4830 1331 332 ) ( 4830 1331 233 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4860 1332 332 ) ( 4860 1349 332 ) ( 4860 1349 233 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4830 1348 332 ) ( 4802 1348 332 ) ( 4802 1348 233 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4802 1348 332 ) ( 4802 1331 332 ) ( 4802 1331 233 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 7
+{
+guid "{02E10F4B-B761-11F0-B43D-E05470442869}"
+"classname" "script_brushmodel"
+"moving_platform_enabled" "1"
+"targetname" "top_elevator_platform"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"shadow_casting" "1"
+// brush 0
+{
+ guid "{02E10F4A-B761-11F0-B43D-E05470442869}"
+ ( 4852 1331 205 ) ( 4824 1331 205 ) ( 4824 1314 205 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4781 1314 221 ) ( 4781 1331 221 ) ( 4809 1331 221 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4781 1203 237 ) ( 4809 1203 237 ) ( 4809 1203 138 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4896 1316 310 ) ( 4896 1333 310 ) ( 4896 1333 211 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4808 1331 229 ) ( 4780 1331 229 ) ( 4780 1331 130 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4768 1332 229 ) ( 4768 1315 229 ) ( 4768 1315 130 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 8
+{
+guid "{61869C15-B7DC-11F0-B43E-C3127354CF7A}"
+"classname" "trigger_use_touch"
+"targetname" "top_elevator_door_trigger"
+"_color" "0.3 0.5 0.8"
+"cursorhint" "HINT_ACTIVATE"
+// brush 0
+{
+ guid "{61869C14-B7DC-11F0-B43E-C3127354CF7A}"
+ ( 4816 1459 227 ) ( 4832 1459 227 ) ( 4832 1467 227 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4825 1339 324 ) ( 4841 1339 324 ) ( 4841 1331 324 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4817 1331 344 ) ( 4817 1331 360 ) ( 4833 1331 360 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4860 1337 344 ) ( 4860 1329 344 ) ( 4860 1329 360 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4832 1348 208 ) ( 4832 1348 224 ) ( 4816 1348 224 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4802 1340 360 ) ( 4802 1332 360 ) ( 4802 1332 344 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 9
+{
+guid "{F88E9620-B909-11F0-B43F-F12DEEB6EEAD}"
+"classname" "script_model"
+"_color" "0.4902 0.4902 0.4902"
+"model" "$default_xmodel"
+"origin" "4831 1338 327"
+"targetname" "top_elevator_grid_sound"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 10
+{
+guid "{F88E9623-B909-11F0-B43F-F12DEEB6EEAD}"
+"classname" "script_model"
+"_color" "0.4902 0.4902 0.4902"
+"model" "$default_xmodel"
+"origin" "4822 1326 266"
+"targetname" "top_elevator_left_door_sound"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 11
+{
+guid "{F88E9626-B909-11F0-B43F-F12DEEB6EEAD}"
+"classname" "script_model"
+"_color" "0.4902 0.4902 0.4902"
+"model" "$default_xmodel"
+"origin" "4839 1326 266"
+"targetname" "top_elevator_right_door_sound"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 12
+{
+guid "{4E6F21F0-BDBC-11F0-B447-EB18B12E3BDF}"
+"classname" "script_model"
+"_color" "0.9412 1 0"
+"model" "$default_xmodel"
+"origin" "4831 1275 331"
+"targetname" "top_elevator_light"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 13
+{
+guid "{4E6F21F3-BDBC-11F0-B447-EB18B12E3BDF}"
+"classname" "script_model"
+"_color" "0.4902 0.4902 0.4902"
+"model" "$default_xmodel"
+"origin" "4831 1275 319"
+"targetname" "top_elevator_sound"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 14
+{
+guid "{4E6F21F6-BDBC-11F0-B447-EB18B12E3BDF}"
+"classname" "script_model"
+"model" "p7_light_chandelier_vintage_02"
+"origin" "4831 1275 349"
+"targetname" "top_elevator_light_model"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}

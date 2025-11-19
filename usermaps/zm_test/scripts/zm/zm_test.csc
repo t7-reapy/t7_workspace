@@ -11,6 +11,7 @@
 #insert scripts\shared\version.gsh;
 
 #using scripts\zm\_load;
+#using scripts\zm\_rotating_object;
 #using scripts\zm\_zm_weapons;
 
 //Perks
@@ -50,6 +51,9 @@
 //Hell rounds
 #using scripts\zm\hellround\zm_hellround;
 
+//Room of thanks
+#using scripts\zm\room_of_thanks\zm_room_of_thanks;
+
 #using scripts\zm\zm_usermap;
 
 // TODO: remove
@@ -69,6 +73,7 @@ function main()
     zm_usermap::main();
 
     callback::on_localclient_connect(&on_connect);
+    callback::on_localplayer_spawned(&on_spawned);
 
     change_powerups_color();
     include_weapons();
@@ -81,17 +86,45 @@ function include_weapons()
 
 function private on_connect(n_local_client_num)
 {
-    self thread disable_player_outline(n_local_client_num);
+    self thread disable_players_outline(n_local_client_num);
 }
 
-function private disable_player_outline(n_local_client_num)
+function private on_spawned(n_local_client_num)
 {
-    foreach (player in GetPlayers(n_local_client_num))
+    self thread disable_players_outline(n_local_client_num);
+}
+
+function private disable_players_outline(n_local_client_num)
+{
+    self notify("disable_players_outline");
+    self endon("disable_players_outline");
+
+    // We have to keep it in a loop because once player dies and re-spawns, we have to remove its keyline again...
+    while(true)
     {
-        player duplicate_render::set_dr_flag("keyline_active", 0);
+        wait 5;
+        
+        // Check for player dead or respawning
+        if (!isdefined(self))
+        {
+            continue;
+        }
+
+        players = GetPlayers(n_local_client_num);
+
+        if (!IsArray(players))
+        {
+            continue;
+        }
+
+        foreach (player in players)
+        {
+            player duplicate_render::set_dr_flag("keyline_active", 0);
+            WAIT_CLIENT_FRAME;
+        }
+
+        self duplicate_render::update_dr_filters(n_local_client_num);
     }
-    
-    self duplicate_render::update_dr_filters(n_local_client_num);
 }
 
 function private change_powerups_color()

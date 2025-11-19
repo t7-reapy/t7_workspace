@@ -62,6 +62,11 @@ function pause()
     level.weather.thunder = default_thunder_state();
 }
 
+function pause_player_features()
+{
+    // No player specific features yet.
+}
+
 function private default_thunder_state() 
 {
     thunder = new Thunder();

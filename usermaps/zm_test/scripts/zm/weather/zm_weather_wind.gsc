@@ -52,6 +52,8 @@ function play()
     }
     level.weather.wind.paused = false;
     level.weather.wind.intensity = level.weather.intensity;
+    level.weather.wind.min_wait = WIND_MIN_WAIT[level.weather.wind.intensity];
+    level.weather.wind.max_wait = WIND_MAX_WAIT[level.weather.wind.intensity];
 
     while(true)
     {
@@ -71,6 +73,11 @@ function pause()
     level notify("level_stop_wind");
     level notify("wind_end_current_blow");
     level.weather.wind = default_wind_state();
+}
+
+function pause_player_features()
+{
+    // No player specific features yet.
 }
 
 // This function is used to watch for the end of the wind blow, 
@@ -103,7 +110,6 @@ function private wind_blow() // self == Wind (level.weather.wind)
         exploder::exploder(exploder);
     }
 
-    wait WIND_DELAY_FOR_TOSSING_OBJECTS;
     self thread toss_objects_around();
     wait WIND_EXPLODER_WAIT_TIME;
 
@@ -123,6 +129,7 @@ function private toss_objects_around() // self == Wind (level.weather.wind)
     WEATHER_PRINT_DEBUG("Wind force vectorial: " + wind_force_vectorial);
     foreach (object in self.objects)
     {
+        wait WIND_DELAY_FOR_TOSSING_OBJECTS;
         object PhysicsLaunch(object.origin, wind_force_vectorial);
     }
 }
