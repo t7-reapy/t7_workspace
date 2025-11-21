@@ -43,6 +43,8 @@ It seems that original script can be overwritten/customized in some places. Exam
 
 ## Tips
 
+GDT modifications on weapons (and maybe other properties in GDT) can be live tested with `NevisX` tool.
+
 Every script in `share/raw/scripts/zm` can be overwritten by alimenting scripts with the same name by putting it in the `usermaps/zm_ai_test/scripts/zm`. 
 > Note: if it's coming from folder `share/raw/scripts/shared`, it seems it's also better to overwrite in `usermaps/zm_ai_test/scripts/shared`, so I should respect relative pathing when overwriting script files...
 
