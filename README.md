@@ -132,7 +132,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
   - perk utility script throws error in splitscreen.
   - 64 buffer limit for postfx shader array. <= I don't think I will fix this one...
   - when AI is killed sometime it gives pathing error.
-- sometimes, the player inspection of weapon is stuck and impossible to disable
 - on player death during hellround the environment glitches (lightstate is wrong and hellround environment disappear)
 - umbra bug when jumbing in north exterior corridor <= don't know how to fix this ...
   > according to some messages in the MT discord, it could be due to engine optimisations when using brushes. Try using patches instead !
