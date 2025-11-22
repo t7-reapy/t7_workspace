@@ -73,6 +73,11 @@ function private main()
     level._effect["dog_eye_glow"] = HELLROUND_DOG_EYE_GLOW_FX; 
 }
 
+function is_hellround_running()
+{
+    return zm_hellround_shared::is_hellround_running();
+}
+
 /* region callbacks */
 
 function add_toggle_callback(func) {

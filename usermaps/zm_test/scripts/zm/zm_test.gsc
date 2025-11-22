@@ -131,10 +131,13 @@ function private end_game()
         player StopLocalSound(PLAYER_NEAR_DEATH_SOUND);
     }
     
-    zm_weather::play();
-    zm_weather::pause_player_features();
-    zm_weather::greater_intensity();
-    zm_weather::greater_intensity();
+    if (!zm_hellround::is_hellround_running())
+    {
+        zm_weather::play();
+        zm_weather::pause_player_features();
+        zm_weather::greater_intensity();
+        zm_weather::greater_intensity();
+    }
 }
 
 function private watch_power_state()
@@ -144,8 +147,11 @@ function private watch_power_state()
     level flag::wait_till("power_on");
     
     level.power_on_lightstate = 1;
-    util::set_lighting_state(level.power_on_lightstate);
     zm_weather::update_default_lightstate();
+    if (!zm_hellround::is_hellround_running())
+    {
+        util::set_lighting_state(level.power_on_lightstate);
+    }
 }
 
 /* region callbacks */
@@ -345,6 +351,7 @@ function private change_player_skins()
 {
     foreach (player in GetPlayers())
     {
+        // Here index 2 is for DevRaw skins
         player SetCharacterBodyStyle(2);
     }
 }

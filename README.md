@@ -135,14 +135,11 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - umbra bug when jumbing in north exterior corridor <= don't know how to fix this ...
   > according to some messages in the MT discord, it could be due to engine optimisations when using brushes. Try using patches instead !
 - the mulekick perk is bugged when 3rd weapon is in hand (icon in hud is bugged) <= probably will be fixed with another LUA HUD
-- zombie stuck in a list of places:
-  - Appartement balcony exit towards south (too steep)
 - rain sounds in splitscreen should only be played once if both players are in same enviromnent (make this adaptable so if one change environment, it updates for both using GetLocalPlayers())
   - note: [audio_shared](share/raw/scripts/shared/audio_shared.csc#l73) client script uses localhost to host sounds
 - splitscreen bugs:
   - wind exploder is stuck in animation in splitscreen (sometimes)
 - hellround bugs:
-  - if player is enabling power during hellround, lightstate glitches
   - if player is downed with minigun, and revived, minigun is gone from player's hand and bonus as well (bonus needs to be given back to player)
   - weapon can cycle with minigun (sometimes only...) <= still the case ?
   - cerberus fed icons border is visible from far away => change to volume decal instead of script model ?
