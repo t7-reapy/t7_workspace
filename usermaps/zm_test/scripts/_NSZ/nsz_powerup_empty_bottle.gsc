@@ -31,55 +31,56 @@ REGISTER_SYSTEM("zm_powerup_empty_bottle", &__init__, undefined)
 //-----------------------------------------------------------------------------------
 function __init__()
 {
-	level.get_player_perk_purchase_limit = &new_perk_check; 
-	
-	zm_powerups::register_powerup("empty_bottle", &grab_bottle);
-	if(ToLower(GetDvarString("g_gametype")) != "zcleansed")
-	{
-		zm_powerups::add_zombie_powerup(
-			"empty_bottle", 
-			"empty_bottle", 
-			"", 
-			&func_should_drop_empty_bottle, 
-			!POWERUP_ONLY_AFFECTS_GRABBER, 
-			!POWERUP_ANY_TEAM, 
-			!POWERUP_ZOMBIE_GRABBABLE);
-	}
+    level.get_player_perk_purchase_limit = &new_perk_check; 
+    
+    zm_powerups::register_powerup("empty_bottle", &grab_bottle);
+    if(ToLower(GetDvarString("g_gametype")) != "zcleansed")
+    {
+        zm_powerups::add_zombie_powerup(
+            "empty_bottle", 
+            "empty_bottle", 
+            "", 
+            &func_should_drop_empty_bottle, 
+            !POWERUP_ONLY_AFFECTS_GRABBER, 
+            !POWERUP_ANY_TEAM, 
+            !POWERUP_ZOMBIE_GRABBABLE);
+    }
 
 }
 
 function new_perk_check() // self == player
 {
-	n_perk_purchase_limit_override = level.perk_purchase_limit;
+    n_perk_purchase_limit_override = level.perk_purchase_limit;
 
-	if(isDefined(self.num_of_empty_bottles))
-	{
-		n_perk_purchase_limit_override += self.num_of_empty_bottles;
-	}
+    if(isDefined(self.num_of_empty_bottles))
+    {
+        n_perk_purchase_limit_override += self.num_of_empty_bottles;
+    }
 
-	return n_perk_purchase_limit_override; 
+    return n_perk_purchase_limit_override; 
 }
 
 function func_should_drop_empty_bottle()
 {
-	return true;
+    return true;
 }
 
 function grab_bottle()
 {
-	foreach (player in GetPlayers())
-	{
-		if(!isDefined(player.num_of_empty_bottles))
-		{
-			player.num_of_empty_bottles = 0; 
-		}
-		player.num_of_empty_bottles++; 
-		player thread adjust_amount_when_downed(); 
-	}
+    foreach (player in GetPlayers())
+    {
+        if(!isDefined(player.num_of_empty_bottles))
+        {
+            player.num_of_empty_bottles = 0; 
+        }
+        player.num_of_empty_bottles++; 
+        player thread adjust_amount_when_downed(); 
+    }
 }
 
 function adjust_amount_when_downed()
 {
-	self util::waittill_any_return("fake_death", "death", "player_downed"); 
-	self.num_of_empty_bottles--; 
+    self util::waittill_any_return("fake_death", "death", "player_downed");
+
+    // Nothing happens here, but adaptin self.num_of_empty_bottles could be done here if necessary.
 }
