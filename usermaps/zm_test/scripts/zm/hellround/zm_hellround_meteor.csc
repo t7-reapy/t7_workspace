@@ -82,8 +82,11 @@ function private show_meteor_volumes(b_show)
 
 function private play_siren_sound(n_client_num)
 {
-    player = GetLocalPlayer(n_client_num);
-    player PlaySound(n_client_num, HRMETEOR_SND_METEOR_SIREN);
+    if (!IsSplitScreen() || IsSplitScreenHost(n_client_num))
+    {
+        player = GetLocalPlayer(n_client_num);
+        player PlaySound(n_client_num, HRMETEOR_SND_METEOR_SIREN);
+    }
 }
 
 function private play_meteor_sounds(n_client_num, skip_meteor_falldown = false)

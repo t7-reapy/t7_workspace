@@ -15,6 +15,7 @@
 #define HRMETEOR_TIME_BEFORE_METEORS 25.0
 #define HRMETEOR_EXPLODER_TIME 15.0
 #define HRMETEOR_FX_EXPLODER_NAME "hellround_meteor_exploder"
+#define HRMETEOR_CRUMBLE_FX_EXPLODER_NAME "hellround_meteor_crumble_exploder"
 #define HRMETEOR_FALLDOWN_FX_EXPLODER_NAME "hellround_meteor_falldown_exploder"
 
 #define HRMETEOR_SND_RAIN_ON_FIRE "toggle_meteor_rain_on_fire_sound"

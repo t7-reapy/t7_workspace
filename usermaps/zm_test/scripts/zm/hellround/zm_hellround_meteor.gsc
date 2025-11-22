@@ -31,6 +31,7 @@ class HellroundMeteor
     var models_hide;
 
     var fx_exploder;
+    var crumble_exploder;
     var falldown_exploder;
 
     var meteor_trigger;
@@ -48,6 +49,7 @@ function private init()
     level.hellround_meteor.models_show = GetEntArray("hellround_meteor_model_show", "targetname");
     level.hellround_meteor.models_hide = GetEntArray("hellround_meteor_model_hide", "targetname");
     level.hellround_meteor.fx_exploder = HRMETEOR_FX_EXPLODER_NAME;
+    level.hellround_meteor.crumble_exploder = HRMETEOR_CRUMBLE_FX_EXPLODER_NAME;
     level.hellround_meteor.falldown_exploder = HRMETEOR_FALLDOWN_FX_EXPLODER_NAME;
     level.hellround_meteor.meteor_trigger = GetEnt("meteor_trigger", "targetname");
     level.hellround_meteor.meteor_trigger setup_meteor_trigger();
@@ -215,6 +217,7 @@ function play_meteor_earthquake(intensity, delay, duration)
         wait delay;
     }
     Earthquake(intensity, duration, (0, 0, 0), 50000);
+    exploder::exploder(level.hellround_meteor.crumble_exploder);
 }
 
 /* endregion */
