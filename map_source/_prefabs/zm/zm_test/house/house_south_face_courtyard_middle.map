@@ -1918,7 +1918,6 @@ guid "{2E63A9E2-90E5-11F0-B406-EF4C106B2503}"
 "model" "p7_barrier_block_concrete_dam_02"
 "modelscale" "0.25"
 "origin" "745 -2077 -119"
-"shadow_casting" "1"
 "static" "1"
 "targetname" "hellround_meteor_model_show"
 "_color" "1 0 0"
@@ -1927,6 +1926,7 @@ guid "{2E63A9E2-90E5-11F0-B406-EF4C106B2503}"
 "lightingstate2" "1"
 "lightingstate3" "1"
 "lightingstate4" "1"
+"shadow_casting" "1"
 }
 // entity 84
 {
@@ -1970,7 +1970,6 @@ guid "{2E63A9EB-90E5-11F0-B406-EF4C106B2503}"
 "angles" "0 120 0"
 "model" "p7_concrete_block_dmg_01_single_a"
 "origin" "750 -2128 -124"
-"shadow_casting" "1"
 "static" "1"
 "targetname" "hellround_meteor_model_show"
 "_color" "1 0 0"
@@ -1980,6 +1979,7 @@ guid "{2E63A9EB-90E5-11F0-B406-EF4C106B2503}"
 "lightingstate3" "1"
 "lightingstate4" "1"
 "modelscale" "1"
+"shadow_casting" "1"
 }
 // entity 87
 {
@@ -2006,7 +2006,6 @@ guid "{2E63A9F1-90E5-11F0-B406-EF4C106B2503}"
 "angles" "360 73.599 -90.0005"
 "model" "p7_concrete_block_dmg_01_single_a"
 "origin" "748 -2096 -125"
-"shadow_casting" "1"
 "static" "1"
 "targetname" "hellround_meteor_model_show"
 "_color" "1 0 0"
@@ -2016,6 +2015,7 @@ guid "{2E63A9F1-90E5-11F0-B406-EF4C106B2503}"
 "lightingstate3" "1"
 "lightingstate4" "1"
 "modelscale" "1"
+"shadow_casting" "1"
 }
 // entity 89
 {
@@ -2059,7 +2059,6 @@ guid "{64B04C97-90E5-11F0-B406-EF4C106B2503}"
 "angles" "8.32429e-005 16.401 89.9994"
 "model" "p7_concrete_block_dmg_01_single_d"
 "origin" "720 -2127 -125"
-"shadow_casting" "1"
 "static" "1"
 "targetname" "hellround_meteor_model_show"
 "_color" "1 0 0"
@@ -2069,6 +2068,7 @@ guid "{64B04C97-90E5-11F0-B406-EF4C106B2503}"
 "lightingstate3" "1"
 "lightingstate4" "1"
 "modelscale" "1"
+"shadow_casting" "1"
 }
 // entity 92
 {
@@ -2369,4 +2369,28 @@ guid "{6BC1AF41-90E8-11F0-B406-EF4C106B2503}"
 "revealDataSize" "revealAll"
 "textureTiling" "1 1"
 "uvBaseAndScale" "0 0 1 1"
+}
+// entity 102
+{
+guid "{CADF3BE5-C7D2-11F0-B457-F9C0930AF629}"
+"classname" "script_brushmodel"
+"DYNAMICPATH" "1"
+"targetname" "hellround_meteor_clip"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"shadow_casting" "1"
+"spawnflags" "1"
+// brush 0
+{
+ guid "{5FABD2F3-C7CD-11F0-B457-F9C0930AF629}"
+ ( 792 -2073 -128 ) ( 769 -2073 -128 ) ( 769 -2094 -128 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 760 -2094 -88 ) ( 760 -2073 -88 ) ( 783 -2073 -88 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 809 -2145 -88 ) ( 832 -2145 -88 ) ( 832 -2145 -92 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 832 -2145 -88 ) ( 832 -2124 -88 ) ( 832 -2124 -92 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 783 -2073 -88 ) ( 760 -2073 -88 ) ( 760 -2073 -92 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 760 -2073 -88 ) ( 760 -2094 -88 ) ( 760 -2094 -92 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
 }

@@ -24,6 +24,8 @@ class HellroundMeteor
 {
     var meteor_has_fallen;
 
+    var meteor_clip;
+
     var brush_show;
     var brush_hide;
 
@@ -44,6 +46,7 @@ function private init()
 
     level.hellround_meteor = new HellroundMeteor();
     level.hellround_meteor.meteor_has_fallen = false;
+    level.hellround_meteor.meteor_clip = GetEntArray("hellround_meteor_clip", "targetname");
     level.hellround_meteor.brush_show = GetEntArray("hellround_meteor_brush_show", "targetname");
     level.hellround_meteor.brush_hide = GetEntArray("hellround_meteor_brush_hide", "targetname");
     level.hellround_meteor.models_show = GetEntArray("hellround_meteor_model_show", "targetname");
@@ -138,6 +141,12 @@ function private show_meteor_brushs(b_show = true)
             brush Hide();
             brush NotSolid();
         }
+
+        foreach(clip in level.hellround_meteor.meteor_clip)
+        {
+            clip NotSolid();
+            clip ConnectPaths();
+        }
     }
     else
     {
@@ -151,6 +160,12 @@ function private show_meteor_brushs(b_show = true)
         {
             brush Show();
             brush Solid();
+        }
+
+        foreach(clip in level.hellround_meteor.meteor_clip)
+        {
+            clip Solid();
+            clip DisconnectPaths();
         }
     }
 }

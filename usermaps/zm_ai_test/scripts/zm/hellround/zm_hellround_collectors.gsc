@@ -230,6 +230,7 @@ function private update_hellround_collector_clips(n_iteration)
         {
             clip Hide();
             clip NotSolid();
+            clip ConnectPaths();
         }
     }
 
@@ -243,6 +244,7 @@ function private update_hellround_collector_clips(n_iteration)
     {
         clip Show();
         clip Solid();
+        clip DisconnectPaths();
     }
 }
 
