@@ -96,6 +96,7 @@ function add_meteor_trigger_callback(func_ptr)
 
 function private bind_callbacks()
 {
+    add_toggle_callback(&temporary_invulnerability);
     add_toggle_callback(&zm_hellround_powerup::lose_minigun_callback);
     add_toggle_callback(&zm_hellround_powerup::toggle_powerups);
     add_toggle_callback(&zm_hellround_zombies::toggle_hellround_zombies);
@@ -129,6 +130,21 @@ function private bind_callbacks()
     level.soul_catchers_charged_callback = &hellround_cerberus_fed;
 
     level.hellround_zombie_callback = &zm_hellround_spawn_manager::disable_point_during_hellrounds;
+}
+
+function private temporary_invulnerability(b_enabled)
+{
+    foreach(player in GetPlayers())
+    {
+        player EnableInvulnerability();
+    }
+
+    wait 2;
+
+    foreach(player in GetPlayers())
+    {
+        player DisableInvulnerability();
+    }
 }
 
 function private hellround_cerberus_enable(is_one_head_already_active)
