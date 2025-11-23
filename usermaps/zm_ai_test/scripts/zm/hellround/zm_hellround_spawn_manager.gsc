@@ -536,6 +536,8 @@ function private spawn_zombie_internal()
 function private spawn_zombies_loop(spawn_flag)
 {
     level endon("end_game");
+    level notify("spawn_zombies_loop");
+    level endon("spawn_zombies_loop");
 
     while (1)
     {
@@ -569,6 +571,8 @@ function private spawn_zombies_loop(spawn_flag)
 function private spawn_dogs_loop(spawn_flag)
 {
     level endon("end_game");
+    level notify("spawn_dogs_loop");
+    level endon("spawn_dogs_loop");
 
     while (1)
     {
@@ -602,6 +606,8 @@ function private spawn_dogs_loop(spawn_flag)
 function private spawn_apothicon_furies_loop(spawn_flag)
 {
     level endon("end_game");
+    level notify("spawn_apothicon_furies_loop");
+    level endon("spawn_apothicon_furies_loop");
     
     while (1)
     {
@@ -635,6 +641,8 @@ function private spawn_apothicon_furies_loop(spawn_flag)
 function private spawn_wasps_loop(spawn_flag)
 {
     level endon("end_game");
+    level notify("spawn_wasps_loop");
+    level endon("spawn_wasps_loop");
     
     while (1)
     {
@@ -668,6 +676,8 @@ function private spawn_wasps_loop(spawn_flag)
 function private spawn_napalm_zombies_loop(spawn_flag)
 {
     level endon("end_game");
+    level notify("spawn_napalm_zombies_loop");
+    level endon("spawn_napalm_zombies_loop");
     
     while (1)
     {
