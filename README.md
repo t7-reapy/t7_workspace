@@ -139,9 +139,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
   - note: [audio_shared](share/raw/scripts/shared/audio_shared.csc#l73) client script uses localhost to host sounds
 - splitscreen bugs:
   - wind exploder is stuck in animation in splitscreen (sometimes)
-- hellround bugs:
-  - weapon can cycle with minigun (sometimes only...) <= still the case ?
-  - cerberus fed icons border is visible from far away => change to volume decal instead of script model ?
 
 # Sphynx commands cheat sheet
 

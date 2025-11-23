@@ -252,9 +252,8 @@ function wasp_spawn_logic(favorite_enemy)
 {
 	wasp_locs = level.zm_loc_types["wasp_location"];
 
-	if (wasp_locs.size == 0)
+	if (!isdefined(wasp_locs) || wasp_locs.size == 0)
 	{
-		IPrintLnBold("NO WASP LOCATION FOUND IN CURRENT ZONES");
 		return undefined;
 	}
 

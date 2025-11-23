@@ -109,6 +109,7 @@ function init()
     level.wolf_heads = [];
     level.wolf_bodies = [];
     level.wolf_runes = [];
+    level.wolf_runes_completed = [];
     level.soul_catchers = [];
     level.soul_catchers_charged = 0;
     level.soul_catchers_vol = [];
@@ -133,6 +134,7 @@ function init()
         level.wolf_bodies[i] Hide();
         level.soul_catchers[i].body = level.wolf_bodies[i];
         level.wolf_runes[i] = GetEnt(level.soul_catchers[i].script_noteworthy, "targetname");
+        level.wolf_runes_completed[i] = GetEnt(level.soul_catchers[i].script_noteworthy + "_completed", "targetname");
         level.soul_catchers[i].rune = level.wolf_runes[i];
     }
     level flag::wait_till("all_players_connected");
@@ -197,8 +199,8 @@ function force_completion()
     {
         if (!level.soul_catchers[i].is_charged) 
         {
-            level.wolf_runes[i] Show();
-            level.wolf_runes[i] SetModel("p6_zm_al_dream_catcher_on");
+            level.wolf_runes[i] Hide();
+            level.wolf_runes_completed[i] Show();
             level.wolf_runes[i] rune_glow();
         }
 
@@ -332,6 +334,7 @@ function wolf_state_0(index)
 {
     level.wolf_heads[index] Hide();
     level.wolf_runes[index] Show();
+    level.wolf_runes_completed[index] Hide();
     level.wolf_bodies[index] hide_wolf_heads();
 }
 
@@ -366,9 +369,9 @@ function wolf_state_3(index)
 function wolf_state_4(index)
 {     
     level.wolf_heads[index] Hide();
-    level.wolf_runes[index] Show();
+    level.wolf_runes[index] Hide();
     level.wolf_bodies[index] hide_wolf_heads();
-    level.wolf_runes[index] SetModel("p6_zm_al_dream_catcher_on");
+    level.wolf_runes_completed[index] Show();
     level.wolf_runes[index] rune_glow();
     
     PRINT_DEBUG_WOLF("wolf done setting model to dream catcher on");
@@ -852,9 +855,12 @@ function which_eating_anim()
 function wolf_head_removal(wolf_head_model_string)
 {
     wolf_head_model = GetEnt(wolf_head_model_string, "targetname");
-    wolf_head_model SetModel("p6_zm_al_dream_catcher");
+    wolf_head_model_completed = GetEnt(wolf_head_model_string + "_completed", "targetname");
+    wolf_head_model Show();
+    wolf_head_model_completed Hide();
     self waittill("fully_charged");
-    wolf_head_model SetModel("p6_zm_al_dream_catcher_on");
+    wolf_head_model Hide();
+    wolf_head_model_completed Show();
 }
 
 function soul_catchers_charged()

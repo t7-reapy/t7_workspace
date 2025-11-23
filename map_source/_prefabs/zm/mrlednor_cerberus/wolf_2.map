@@ -43,25 +43,6 @@ guid "{08E0F6A6-AD15-11EB-A325-D45D647F3272}"
 }
 // entity 2
 {
-guid "{68212E1B-AD10-11EB-A325-D45D647F3272}"
-"classname" "script_model"
-"angles" "0 180 0"
-"guid" "DE1EB8E8"
-"model" "p6_zm_ai_dream_catcher"
-"origin" "0 0 88"
-"target" "pf3718_auto1112"
-"targetname" "rune_2"
-"_color" "1 0 0"
-"client_server" "ServerSide"
-"lightingstate1" "1"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
-"modelscale" "1"
-"shadow_casting" "1"
-}
-// entity 3
-{
 guid "{68212E23-AD10-11EB-A325-D45D647F3272}"
 "classname" "script_model"
 "angles" "0 270 0"
@@ -78,7 +59,7 @@ guid "{68212E23-AD10-11EB-A325-D45D647F3272}"
 "modelscale" "1"
 "shadow_casting" "1"
 }
-// entity 4
+// entity 3
 {
 guid "{68212E3B-AD10-11EB-A325-D45D647F3272}"
 "classname" "script_model"
@@ -96,25 +77,7 @@ guid "{68212E3B-AD10-11EB-A325-D45D647F3272}"
 "modelscale" "1"
 "shadow_casting" "1"
 }
-// entity 5
-{
-guid "{705A5F77-AF5F-11EB-A328-D45D647F3272}"
-"classname" "script_model"
-"angles" "0 180 0"
-"guid" "DE1EB8E8"
-"model" "p6_zm_ai_dream_catcher"
-"origin" "0 0 192"
-"targetname" "tomahawk_door_sign_2"
-"_color" "1 0 0"
-"client_server" "ServerSide"
-"lightingstate1" "1"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
-"modelscale" "1"
-"shadow_casting" "1"
-}
-// entity 6
+// entity 4
 {
 guid "{68212E21-AD10-11EB-A325-D45D647F3272}"
 "classname" "script_origin"
@@ -129,4 +92,95 @@ guid "{68212E21-AD10-11EB-A325-D45D647F3272}"
 "target" "pf3718_auto1112"
 "targetname" "wolf_position"
 "_color" "0.4 0 0.8"
+}
+// entity 5
+{
+guid "{99782238-C885-11F0-B457-F9C0930AF629}"
+"classname" "script_brushmodel"
+"guid" "DE1EB8E8"
+"shadow_casting" "0"
+"target" "pf3718_auto1112"
+"targetname" "rune_2"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+// brush 0
+{
+ guid "{99782237-C885-11F0-B457-F9C0930AF629}"
+ ( -15 4 70 ) ( -15 0 70 ) ( 17 0 70 ) caulk -3.9999986 -32 -3.9999979 -15 90 0 lightmap_gray 16384 16384 -18 22 -90 0
+ ( 17 4 102 ) ( 17 0 102 ) ( -15 0 102 ) caulk -3.9999986 -32 -3.9999979 -15 90 0 lightmap_gray 16384 16384 -18 22 -90 0
+ ( -15 4 102 ) ( -15 0 102 ) ( -15 0 70 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 -16384 -18 0 180 0
+ ( 17 0 70 ) ( -15 0 70 ) ( -15 0 102 ) mtl_p6_zm_al_dream_catcher_off 31.999996 -32 15.000006 -26 -180 0 lightmap_gray 16384 16384 -22 0 0 0 decalLayerSort "Debris (top)" decalEditorSort -1
+ ( 17 4 70 ) ( 17 0 70 ) ( 17 0 102 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 -16384 -18 0 180 0
+ ( 17 4 102 ) ( -15 4 102 ) ( -15 4 70 ) caulk 31.999996 -32 14.999991 -26 180 0 lightmap_gray 16384 16384 -22 0 0 0
+}
+}
+// entity 6
+{
+guid "{9978223B-C885-11F0-B457-F9C0930AF629}"
+"classname" "script_brushmodel"
+"shadow_casting" "0"
+"targetname" "rune_2_completed"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+// brush 0
+{
+ guid "{9978223A-C885-11F0-B457-F9C0930AF629}"
+ ( -15 4 70 ) ( -15 0 70 ) ( 17 0 70 ) caulk -3.9999986 -32 -3.9999979 -15 90 0 lightmap_gray 16384 16384 -18 22 -90 0
+ ( 17 4 102 ) ( 17 0 102 ) ( -15 0 102 ) caulk -3.9999986 -32 -3.9999979 -15 90 0 lightmap_gray 16384 16384 -18 22 -90 0
+ ( -15 4 102 ) ( -15 0 102 ) ( -15 0 70 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 -16384 -18 0 180 0
+ ( 17 0 70 ) ( -15 0 70 ) ( -15 0 102 ) mtl_p6_zm_al_dream_catcher 31.999996 -32 15.000006 -26 -180 0 lightmap_gray 16384 16384 -22 0 0 0 decalLayerSort "Debris (top)" decalEditorSort -1
+ ( 17 4 70 ) ( 17 0 70 ) ( 17 0 102 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 -16384 -18 0 180 0
+ ( 17 4 102 ) ( -15 4 102 ) ( -15 4 70 ) caulk 31.999996 -32 14.999991 -26 180 0 lightmap_gray 16384 16384 -22 0 0 0
+}
+}
+// entity 7
+{
+guid "{9978223E-C885-11F0-B457-F9C0930AF629}"
+"classname" "script_brushmodel"
+"guid" "DE1EB8E8"
+"shadow_casting" "0"
+"targetname" "tomahawk_door_sign_2"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+// brush 0
+{
+ guid "{9978223D-C885-11F0-B457-F9C0930AF629}"
+ ( 25 4 134 ) ( 25 0 134 ) ( 57 0 134 ) caulk -3.9999988 -32 -1.0927847e-006 -7 90 0 lightmap_gray 16384.035 16384 -18 22 -90 0
+ ( 57 4 166 ) ( 57 0 166 ) ( 25 0 166 ) caulk -3.9999988 -32 -1.0927847e-006 -7 90 0 lightmap_gray 16384.035 16384 -18 22 -90 0
+ ( 25 4 166 ) ( 25 0 166 ) ( 25 0 134 ) caulk -4 32 0 26 0 0 lightmap_gray 16383.969 -16384 -18 0 180 0
+ ( 57 0 134 ) ( 25 0 134 ) ( 25 0 166 ) mtl_p6_zm_al_dream_catcher_off 31.999996 -32 6.9999809 -26 180 0 lightmap_gray 16384 16384 -22 0 0 0 decalLayerSort "Debris (top)" decalEditorSort -1
+ ( 57 4 134 ) ( 57 0 134 ) ( 57 0 166 ) caulk -4 32 0 26 0 0 lightmap_gray 16384.031 -16384 -18 0 -180 0
+ ( 57 4 166 ) ( 25 4 166 ) ( 25 4 134 ) caulk 31.999996 -32 7.0000076 -26 -180 0 lightmap_gray 16384 16384 -22 0 0 0
+}
+}
+// entity 8
+{
+guid "{99782241-C885-11F0-B457-F9C0930AF629}"
+"classname" "script_brushmodel"
+"shadow_casting" "0"
+"targetname" "tomahawk_door_sign_2_completed"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+// brush 0
+{
+ guid "{99782240-C885-11F0-B457-F9C0930AF629}"
+ ( 25 4 134 ) ( 25 0 134 ) ( 57 0 134 ) caulk -3.9999988 -32 -1.0927847e-006 -7 90 0 lightmap_gray 16384.035 16384 -18 22 -90 0
+ ( 57 4 166 ) ( 57 0 166 ) ( 25 0 166 ) caulk -3.9999988 -32 -1.0927847e-006 -7 90 0 lightmap_gray 16384.035 16384 -18 22 -90 0
+ ( 25 4 166 ) ( 25 0 166 ) ( 25 0 134 ) caulk -4 32 0 26 0 0 lightmap_gray 16383.969 -16384 -18 0 180 0
+ ( 57 0 134 ) ( 25 0 134 ) ( 25 0 166 ) mtl_p6_zm_al_dream_catcher 31.999996 -32 6.9999809 -26 180 0 lightmap_gray 16384 16384 -22 0 0 0 decalLayerSort "Debris (top)" decalEditorSort -1
+ ( 57 4 134 ) ( 57 0 134 ) ( 57 0 166 ) caulk -4 32 0 26 0 0 lightmap_gray 16384.031 -16384 -18 0 -180 0
+ ( 57 4 166 ) ( 25 4 166 ) ( 25 4 134 ) caulk 31.999996 -32 7.0000076 -26 -180 0 lightmap_gray 16384 16384 -22 0 0 0
+}
 }

@@ -4,7 +4,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{3EF9D1C1-AF60-11EB-A328-D45D647F3272}"
+guid "{DE4DB404-C883-11F0-B457-F9C0930AF629}"
 "classname" "worldspawn"
 "fsi" "zm_alcatraz"
 "guid" "1D2D59BC"
@@ -27,25 +27,6 @@ guid "{3EF9D1C1-AF60-11EB-A328-D45D647F3272}"
 }
 // entity 1
 {
-guid "{68212E2D-AD10-11EB-A325-D45D647F3272}"
-"classname" "script_model"
-"angles" "0 270 0"
-"guid" "A7132727"
-"model" "p6_zm_ai_dream_catcher"
-"origin" "0 0 86"
-"target" "pf3718_auto1111"
-"targetname" "rune_1"
-"_color" "1 0 0"
-"client_server" "ServerSide"
-"lightingstate1" "1"
-"lightingstate2" "1"
-"lightingstate3" "1"
-"lightingstate4" "1"
-"modelscale" "1"
-"shadow_casting" "1"
-}
-// entity 2
-{
 guid "{68212E2F-AD10-11EB-A325-D45D647F3272}"
 "classname" "script_origin"
 "guid" "5FD4F526"
@@ -59,7 +40,7 @@ guid "{68212E2F-AD10-11EB-A325-D45D647F3272}"
 "_color" "0.4 0 0.8"
 "client_server" "ClientSide"
 }
-// entity 3
+// entity 2
 {
 guid "{68212E31-AD10-11EB-A325-D45D647F3272}"
 "classname" "script_model"
@@ -76,7 +57,7 @@ guid "{68212E31-AD10-11EB-A325-D45D647F3272}"
 "modelscale" "1"
 "shadow_casting" "1"
 }
-// entity 4
+// entity 3
 {
 guid "{68212E3F-AD10-11EB-A325-D45D647F3272}"
 "classname" "script_model"
@@ -93,7 +74,7 @@ guid "{68212E3F-AD10-11EB-A325-D45D647F3272}"
 "modelscale" "1"
 "shadow_casting" "1"
 }
-// entity 5
+// entity 4
 {
 guid "{733DA651-AD86-11EB-A326-D45D647F3272}"
 "classname" "trigger_multiple"
@@ -112,21 +93,94 @@ guid "{733DA651-AD86-11EB-A326-D45D647F3272}"
  ( 0 139 95 ) ( 0 -130 95 ) ( 0 -130 0 ) trigger 64 64 -278 -66 0 0 lightmap_gray 16384 16384 -278 -66 0 0
 }
 }
-// entity 6
+// entity 5
 {
-guid "{3EF9D1C8-AF60-11EB-A328-D45D647F3272}"
-"classname" "script_model"
-"angles" "0 270 0"
+guid "{31E5C456-C882-11F0-B457-F9C0930AF629}"
+"classname" "script_brushmodel"
 "guid" "A7132727"
-"model" "p6_zm_ai_dream_catcher"
-"origin" "0 61 145"
-"targetname" "tomahawk_door_sign_1"
-"_color" "1 0 0"
-"client_server" "ServerSide"
+"shadow_casting" "0"
+"target" "pf3718_auto1111"
+"targetname" "rune_1"
+"_color" "0 0.5 0.8"
 "lightingstate1" "1"
 "lightingstate2" "1"
 "lightingstate3" "1"
 "lightingstate4" "1"
-"modelscale" "1"
-"shadow_casting" "1"
+// brush 0
+{
+ guid "{D20CFD85-C881-11F0-B457-F9C0930AF629}"
+ ( 0 16 70 ) ( -1 16 70 ) ( -1 -12 70 ) caulk -4 32 0 16 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 -12 102 ) ( -1 16 102 ) ( 0 16 102 ) caulk -4 32 0 16 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 -16 102 ) ( 0 -16 102 ) ( 0 -16 70 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 -12 102 ) ( 0 16 102 ) ( 0 16 70 ) mtl_p6_zm_al_dream_catcher_off -32 32 -16 26 0 0 lightmap_gray 16384 16384 0 0 0 0 decalLayerSort "Debris (top)" decalEditorSort -1
+ ( 0 16 102 ) ( -1 16 102 ) ( -1 16 70 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -4 12 102 ) ( -4 -16 102 ) ( -4 -16 70 ) caulk -32 32 -16 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 6
+{
+guid "{68D03A9A-C882-11F0-B457-F9C0930AF629}"
+"classname" "script_brushmodel"
+"shadow_casting" "0"
+"targetname" "rune_1_completed"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+// brush 0
+{
+ guid "{68D03A99-C882-11F0-B457-F9C0930AF629}"
+ ( 0 16 70 ) ( -1 16 70 ) ( -1 -12 70 ) caulk -4 32 0 16 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 -12 102 ) ( -1 16 102 ) ( 0 16 102 ) caulk -4 32 0 16 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 -16 102 ) ( 0 -16 102 ) ( 0 -16 70 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 -12 102 ) ( 0 16 102 ) ( 0 16 70 ) mtl_p6_zm_al_dream_catcher -32 32 -16 26 0 0 lightmap_gray 16384 16384 0 0 0 0 decalLayerSort "Debris (top)" decalEditorSort -1
+ ( 0 16 102 ) ( -1 16 102 ) ( -1 16 70 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -4 12 102 ) ( -4 -16 102 ) ( -4 -16 70 ) caulk -32 32 -16 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 7
+{
+guid "{DE4DB40B-C883-11F0-B457-F9C0930AF629}"
+"classname" "script_brushmodel"
+"guid" "A7132727"
+"shadow_casting" "0"
+"targetname" "tomahawk_door_sign_1"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+// brush 0
+{
+ guid "{DE4DB40A-C883-11F0-B457-F9C0930AF629}"
+ ( 0 80 134 ) ( -1 80 134 ) ( -1 52 134 ) caulk -4 32 0 16 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 52 166 ) ( -1 80 166 ) ( 0 80 166 ) caulk -4 32 0 16 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 48 166 ) ( 0 48 166 ) ( 0 48 134 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 52 166 ) ( 0 80 166 ) ( 0 80 134 ) mtl_p6_zm_al_dream_catcher_off -32 32 -16 26 0 0 lightmap_gray 16384 16384 0 0 0 0 decalLayerSort "Debris (top)" decalEditorSort -1
+ ( 0 80 166 ) ( -1 80 166 ) ( -1 80 134 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -4 76 166 ) ( -4 48 166 ) ( -4 48 134 ) caulk -32 32 -16 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 8
+{
+guid "{DE4DB40E-C883-11F0-B457-F9C0930AF629}"
+"classname" "script_brushmodel"
+"shadow_casting" "0"
+"targetname" "tomahawk_door_sign_1_completed"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+// brush 0
+{
+ guid "{DE4DB40D-C883-11F0-B457-F9C0930AF629}"
+ ( 0 80 134 ) ( -1 80 134 ) ( -1 52 134 ) caulk -4 32 0 16 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 52 166 ) ( -1 80 166 ) ( 0 80 166 ) caulk -4 32 0 16 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 48 166 ) ( 0 48 166 ) ( 0 48 134 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 52 166 ) ( 0 80 166 ) ( 0 80 134 ) mtl_p6_zm_al_dream_catcher -32 32 -16 26 0 0 lightmap_gray 16384 16384 0 0 0 0 decalLayerSort "Debris (top)" decalEditorSort -1
+ ( 0 80 166 ) ( -1 80 166 ) ( -1 80 134 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -4 84 166 ) ( -4 56 166 ) ( -4 56 134 ) caulk -32 32 -16 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
 }

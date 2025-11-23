@@ -93,38 +93,92 @@ guid "{68212E41-AD10-11EB-A325-D45D647F3272}"
 }
 // entity 5
 {
-guid "{6764E0B0-AF60-11EB-A328-D45D647F3272}"
-"classname" "script_model"
-"angles" "0 270 0"
+guid "{1BA4B485-C885-11F0-B457-F9C0930AF629}"
+"classname" "script_brushmodel"
 "guid" "12583021"
-"model" "p6_zm_ai_dream_catcher"
-"origin" "0 0 169"
-"targetname" "tomahawk_door_sign_3"
-"_color" "1 0 0"
-"client_server" "ServerSide"
+"shadow_casting" "0"
+"target" "pf3718_auto1113"
+"targetname" "rune_3"
+"_color" "0 0.5 0.8"
 "lightingstate1" "1"
 "lightingstate2" "1"
 "lightingstate3" "1"
 "lightingstate4" "1"
-"modelscale" "1"
-"shadow_casting" "1"
+// brush 0
+{
+ guid "{1BA4B484-C885-11F0-B457-F9C0930AF629}"
+ ( 0 16 70 ) ( -1 16 70 ) ( -1 -12 70 ) caulk -4 32 0 16 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 -12 102 ) ( -1 16 102 ) ( 0 16 102 ) caulk -4 32 0 16 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 -16 102 ) ( 0 -16 102 ) ( 0 -16 70 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 -12 102 ) ( 0 16 102 ) ( 0 16 70 ) mtl_p6_zm_al_dream_catcher_off -32 32 -16 26 0 0 lightmap_gray 16384 16384 0 0 0 0 decalLayerSort "Debris (top)" decalEditorSort -1
+ ( 0 16 102 ) ( -1 16 102 ) ( -1 16 70 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -4 12 102 ) ( -4 -16 102 ) ( -4 -16 70 ) caulk -32 32 -16 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
 }
 // entity 6
 {
-guid "{68212E27-AD10-11EB-A325-D45D647F3272}"
-"classname" "script_model"
-"angles" "0 270.073 0"
-"guid" "12583021"
-"model" "p6_zm_ai_dream_catcher"
-"origin" "0 0 88"
-"target" "pf3718_auto1113"
-"targetname" "rune_3"
-"_color" "1 0 0"
-"client_server" "ServerSide"
+guid "{1BA4B488-C885-11F0-B457-F9C0930AF629}"
+"classname" "script_brushmodel"
+"shadow_casting" "0"
+"targetname" "rune_3_completed"
+"_color" "0 0.5 0.8"
 "lightingstate1" "1"
 "lightingstate2" "1"
 "lightingstate3" "1"
 "lightingstate4" "1"
-"modelscale" "1"
-"shadow_casting" "1"
+// brush 0
+{
+ guid "{1BA4B487-C885-11F0-B457-F9C0930AF629}"
+ ( 0 16 70 ) ( -1 16 70 ) ( -1 -12 70 ) caulk -4 32 0 16 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 -12 102 ) ( -1 16 102 ) ( 0 16 102 ) caulk -4 32 0 16 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 -16 102 ) ( 0 -16 102 ) ( 0 -16 70 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 -12 102 ) ( 0 16 102 ) ( 0 16 70 ) mtl_p6_zm_al_dream_catcher -32 32 -16 26 0 0 lightmap_gray 16384 16384 0 0 0 0 decalLayerSort "Debris (top)" decalEditorSort -1
+ ( 0 16 102 ) ( -1 16 102 ) ( -1 16 70 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -4 12 102 ) ( -4 -16 102 ) ( -4 -16 70 ) caulk -32 32 -16 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 7
+{
+guid "{1BA4B48B-C885-11F0-B457-F9C0930AF629}"
+"classname" "script_brushmodel"
+"guid" "12583021"
+"shadow_casting" "0"
+"targetname" "tomahawk_door_sign_3"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+// brush 0
+{
+ guid "{1BA4B48A-C885-11F0-B457-F9C0930AF629}"
+ ( 0 56 134 ) ( -1 56 134 ) ( -1 28 134 ) caulk -4 32 0 8 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 28 166 ) ( -1 56 166 ) ( 0 56 166 ) caulk -4 32 0 8 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 24 166 ) ( 0 24 166 ) ( 0 24 134 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 28 166 ) ( 0 56 166 ) ( 0 56 134 ) mtl_p6_zm_al_dream_catcher_off -32 32 -8 26 0 0 lightmap_gray 16384 16384 0 0 0 0 decalLayerSort "Debris (top)" decalEditorSort -1
+ ( 0 56 166 ) ( -1 56 166 ) ( -1 56 134 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -4 52 166 ) ( -4 24 166 ) ( -4 24 134 ) caulk -32 32 -8 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 8
+{
+guid "{1BA4B48E-C885-11F0-B457-F9C0930AF629}"
+"classname" "script_brushmodel"
+"shadow_casting" "0"
+"targetname" "tomahawk_door_sign_3_completed"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+// brush 0
+{
+ guid "{1BA4B48D-C885-11F0-B457-F9C0930AF629}"
+ ( 0 56 134 ) ( -1 56 134 ) ( -1 28 134 ) caulk -4 32 0 8 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 28 166 ) ( -1 56 166 ) ( 0 56 166 ) caulk -4 32 0 8 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -1 24 166 ) ( 0 24 166 ) ( 0 24 134 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 28 166 ) ( 0 56 166 ) ( 0 56 134 ) mtl_p6_zm_al_dream_catcher -32 32 -8 26 0 0 lightmap_gray 16384 16384 0 0 0 0 decalLayerSort "Debris (top)" decalEditorSort -1
+ ( 0 56 166 ) ( -1 56 166 ) ( -1 56 134 ) caulk -4 32 0 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -4 52 166 ) ( -4 24 166 ) ( -4 24 134 ) caulk -32 32 -8 26 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
 }
