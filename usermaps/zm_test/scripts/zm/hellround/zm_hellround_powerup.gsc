@@ -1,3 +1,4 @@
+#using scripts\zm\_zm_laststand; 
 #using scripts\shared\callbacks_shared; 
 #using scripts\zm\_zm_powerup_weapon_minigun; 
 #using scripts\zm\_zm_powerup_fire_sale; 
@@ -24,7 +25,8 @@ function private init()
     level.hellround_powerup_minigun_callbacks = [];
     level._grab_minigun = &grab_minigun;
     
-    callback::on_connect(&sync_hellround_powerup);
+    callback::on_spawned(&give_hellround_minigun);
+    callback::on_connect(&revive_gives_back_minigun); // Because callback on_laststand doesn't include a "self", we use this instead.
 }
 
 function private main()
@@ -37,6 +39,7 @@ function private main()
     level.zombie_powerups["double_points"].func_should_drop_with_regular_powerups = &func_should_drop_double_points_powerup;
     level.zombie_powerups["full_ammo"].func_should_drop_with_regular_powerups = &func_should_drop_full_ammo_powerup;
     level.zombie_powerups["empty_bottle"].func_should_drop_with_regular_powerups = &func_should_drop_empty_bottle_powerup;
+    level.zombie_powerups["ww_grenade"].func_should_drop_with_regular_powerups = &func_should_drop_widows_wine_powerup;
 
     change_powerup_model("minigun", HRPWRUP_MODEL);
     change_powerup_weapon("minigun", HRPWRUP_WEAPON);
@@ -44,17 +47,23 @@ function private main()
     change_powerup_solo_fx(HRPWRUP_FX, HRPWRUP_GRAB_FX);
 }
 
-function private sync_hellround_powerup()
+function private give_hellround_minigun() // self == player
 {
-    foreach(player in GetPlayers())
+    self notify("no_double_hellround_minigun");
+    self endon("no_double_hellround_minigun");
+    level endon("hellround_powerup_ended");
+
+    // Revive can cycle weapons once, let's wait 1 server frame to wait for other scripts interfering to complete their stuff.
+    wait 1;
+
+    player = self;
+    if (!isdefined(player.laststand) && is_powerup_active())
     {
-        if (!IS_TRUE(player.has_powerup_weapon) && is_powerup_active())
-        {
-            player DisableOffhandWeapons();
-            player DisableWeaponCycling();
-            level thread zm_powerup_weapon_minigun::minigun_weapon_powerup(player);
-            player thread zm_powerups::powerup_vo("minigun");
-        }
+        player thread zm_powerups::powerup_vo("minigun");
+        level zm_powerup_weapon_minigun::minigun_weapon_powerup(player);
+        
+        player DisableOffhandWeapons();
+        player DisableWeaponCycling();
     }
 }
 
@@ -64,8 +73,46 @@ function private is_powerup_active()
     return iteration > 0 && iteration <= 3 && zm_hellround_shared::is_hellround_running();
 }
 
-/* region powerup drop functions */
+/* region laststand */
 
+function private revive_gives_back_minigun() // self == player in laststand
+{
+	level endon("end_game");
+	self endon("disconnect");
+	self endon("death");
+	
+    while(1)
+    {
+        self waittill("player_revived", reviver);
+        self thread give_hellround_minigun();
+    }
+}
+
+function private register_custom_hellround_revive() // self == player
+{
+    self.hellround_revive_struct = self zm_laststand::register_revive_override(&player_is_reviving, &player_can_revive, HRPWRUP_REVIVING_GIVES_REVIVE_TOOL);
+}
+
+function private deregister_custom_hellround_revive() // self == player
+{
+    self zm_laststand::deregister_revive_override(self.hellround_revive_struct);
+}
+
+function private player_is_reviving(e_revivee) // self == reviver player
+{
+    // Inspired from _zm_laststand.gsc:1129 
+    return self UseButtonPressed() && self player_can_revive(e_revivee);
+}
+
+function private player_can_revive(e_revivee) // self == reviver player
+{
+    // Inspired from _zm_laststand.gsc:865
+    return is_powerup_active() && self IsTouching(e_revivee.revivetrigger);
+}
+
+/* endregion */
+
+/* region powerup drop functions */
 /* region powerup specific */
 
 function private func_should_drop_minigun_powerup()
@@ -108,6 +155,11 @@ function private func_should_drop_empty_bottle_powerup()
     return self func_should_drop_powerup("empty_bottle");
 }
 
+function private func_should_drop_widows_wine_powerup()
+{
+    return self func_should_drop_powerup("ww_grenade");
+}
+
 /* endregion */
 
 function private func_should_drop_powerup(power_up_name)
@@ -145,6 +197,7 @@ function private func_should_drop_powerup(power_up_name)
         case "carpenter":
             return self zm_powerups::func_should_never_drop(); // self zm_powerup_carpenter::func_should_drop_carpenter();
         case "empty_bottle": // Only for rewards.
+        case "ww_grenade": // Disable this messy powerup.
         default:
             return self zm_powerups::func_should_never_drop();
     }
@@ -199,6 +252,11 @@ function private grab_minigun(grabber_player)
 {
     foreach(player in GetPlayers())
     {
+        if (!IsAlive(player) || isdefined(player.laststand))
+        {
+            continue;
+        }
+
         if (player != grabber_player)
         {
             level thread zm_powerup_weapon_minigun::minigun_weapon_powerup(player);
@@ -207,6 +265,7 @@ function private grab_minigun(grabber_player)
         
         player DisableOffhandWeapons();
         player DisableWeaponCycling();
+        player register_custom_hellround_revive();
     }
     
     foreach(callback in level.hellround_powerup_minigun_callbacks)
@@ -230,6 +289,7 @@ function private lose_minigun()
     {
         player EnableOffhandWeapons();
         player EnableWeaponCycling();
+        player deregister_custom_hellround_revive();
     }
 }
 

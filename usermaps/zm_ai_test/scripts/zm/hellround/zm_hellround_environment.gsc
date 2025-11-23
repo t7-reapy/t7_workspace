@@ -220,9 +220,9 @@ function private rotate_sky(b_enable)
     while(true)
     {
         degree += HRENV_SKY_ROTATION_PER_FRAME;
-        if (degree >= 359)
+        if (degree >= 359.9)
         {
-            degree = 0;
+            degree -= 359.9;
         }
         setDvar("r_skyrotation", degree);
         WAIT_SERVER_FRAME;

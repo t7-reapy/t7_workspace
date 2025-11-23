@@ -1,34 +1,51 @@
+#using scripts\shared\callbacks_shared; 
+#using scripts\shared\system_shared;
+
 #using scripts\zm\_zm_xcdylan93_utils; 
 #using scripts\zm\_zm_weapons; 
 
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;
 
+#using scripts\zm\hellround\zm_hellround_shared;
+
 #insert scripts\zm\hellround\zm_hellround_shared.gsh;
 #insert scripts\zm\hellround\zm_hellround_players.gsh;
 #namespace zm_hellround_players;
 
-function toggle_hellround_for_players(b_enable)
+REGISTER_SYSTEM("zm_hellround_players", &init, undefined)
+
+function private init()
+{
+    callback::on_spawned(&sync_hellround_players);
+}
+
+function private sync_hellround_players() // self == player
+{
+    self toggle_hellround_for_player(zm_hellround_shared::is_hellround_running());
+}
+
+function private toggle_hellround_for_player(b_enable) // self == player
 {
     wait HRPLR_TIME_BEFORE_TOGGLE;
 
     if (IS_TRUE(b_enable))
     {
-        PRINT_HR_DEBUG("Hellround players enabled");
-        foreach (player in GetPlayers())
-        {
-            player bodystyle_for_hellround();
-            player update_weapons_camo_for_hellround(true);
-        }
+        self bodystyle_for_hellround();
+        self update_weapons_camo_for_hellround(true);
     }
     else
     {
-        PRINT_HR_DEBUG("Hellround players disabled");
-        foreach (player in GetPlayers())
-        {
-            player bodystyle_back_to_normal();
-            player update_weapons_camo_for_hellround(false);
-        }
+        self bodystyle_back_to_normal();
+        self update_weapons_camo_for_hellround(false);
+    }
+}
+
+function toggle_hellround_for_players(b_enable)
+{
+    foreach (player in GetPlayers())
+    {
+        player thread toggle_hellround_for_player(b_enable);
     }
 }
 

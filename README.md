@@ -140,7 +140,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - splitscreen bugs:
   - wind exploder is stuck in animation in splitscreen (sometimes)
 - hellround bugs:
-  - if player is downed with minigun, and revived, minigun is gone from player's hand and bonus as well (bonus needs to be given back to player)
   - weapon can cycle with minigun (sometimes only...) <= still the case ?
   - cerberus fed icons border is visible from far away => change to volume decal instead of script model ?
 

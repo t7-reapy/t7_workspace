@@ -1,3 +1,4 @@
+#using scripts\zm\_zm; 
 #using scripts\zm\_util;
 #using scripts\zm\_zm_utility;
 
@@ -102,6 +103,7 @@ function add_meteor_trigger_callback(func_ptr)
 
 function private bind_callbacks()
 {
+    add_toggle_callback(&respawn_players);
     add_toggle_callback(&temporary_invulnerability);
     add_toggle_callback(&zm_hellround_powerup::lose_minigun_callback);
     add_toggle_callback(&zm_hellround_powerup::toggle_powerups);
@@ -138,7 +140,18 @@ function private bind_callbacks()
     level.hellround_zombie_callback = &zm_hellround_spawn_manager::disable_point_during_hellrounds;
 }
 
-function private temporary_invulnerability(b_enabled)
+function private respawn_players(b_enable)
+{
+    foreach (player in GetPlayers())
+    {
+        if (player.sessionstate == "spectator" && isdefined(player.spectator_respawn))
+        {
+            player zm::spectator_respawn_player();
+        }
+    }
+}
+
+function private temporary_invulnerability(b_enable)
 {
     foreach(player in GetPlayers())
     {
