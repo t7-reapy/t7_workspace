@@ -10,7 +10,6 @@
 #using scripts\shared\math_shared;
 #using scripts\shared\scene_shared;
 #using scripts\shared\util_shared;
-
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;
 
@@ -29,6 +28,9 @@
 #using scripts\zm\_zm_equipment;
 
 #using scripts\shared\ai\zombie_utility;
+
+// Custom UI
+#using scripts\zm\_zm_h1_hud;
 
 //Perks
 #using scripts\zm\_zm_pack_a_punch;

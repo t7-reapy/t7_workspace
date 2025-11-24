@@ -1,0 +1,86 @@
+#include "state"
+#include "renderFlags"
+
+Globals()
+{
+	category = "2d"
+	renderFlags = "none"
+}
+
+Sampler( "colorSampler" )
+{
+	tile = <tileColor>
+	filter = <filterColor>
+	tweak = Tweak()
+	{
+		category  = "Color"
+		sortindex = "10"
+	}
+}
+
+Technique( "unlit" )
+{
+	state = "blend + nocull"
+	vs = VertexShader()
+	{
+		source = "uie/uie_bullet_bar_wave.hlsl"
+	}
+	ps = PixelShader()
+	{
+		source = "uie/uie_bullet_bar_wave.hlsl"
+		colorMap = CodeTexture( "codeTexture0" )
+	}
+}
+
+
+float1( "clipAmmo" )
+{
+	x     = <cg00_x>
+	tweak = Tweak()
+	{
+		category  = "Ammo Configuration"
+		title     = "Clip Ammo"
+		sortindex = "25"
+		default   = "32"
+		range     = "0", "1024", "1"
+	}
+}
+
+float1( "clipMaxAmmo" )
+{
+	x     = <cg00_y>
+	tweak = Tweak()
+	{
+		category  = "Ammo Configuration"
+		title     = "Clip Max Ammo"
+		sortindex = "25"
+		default   = "1"
+		range     = "1", "1024", "1"
+	}
+}
+
+float1( "bulletsInRow" )
+{
+	x     = <cg00_z>
+	tweak = Tweak()
+	{
+		category  = "Ammo Configuration"
+		title     = "Bullets Per Row"
+		sortindex = "25"
+		default   = "1"
+		range     = "1", "1024", "1"
+	}
+}
+
+float1( "darkness" )
+{
+	x     = <cg00_w>
+	tweak = Tweak()
+	{
+		category  = "Ammo Configuration"
+		title     = "Empty Bullet Darkness"
+		sortindex = "25"
+		default   = "1"
+		range     = "0", "1", "0.4"
+	}
+}

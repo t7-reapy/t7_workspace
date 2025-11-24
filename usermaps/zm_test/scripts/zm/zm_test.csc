@@ -14,6 +14,9 @@
 #using scripts\zm\_rotating_object;
 #using scripts\zm\_zm_weapons;
 
+// Custom UI
+#using scripts\zm\_zm_h1_hud;
+
 //Perks
 #using scripts\zm\_zm_pack_a_punch;
 #using scripts\zm\_zm_perk_additionalprimaryweapon;
@@ -68,8 +71,6 @@ function autoexec init() {}
 
 function main()
 {    
-    luiLoad("ui.uieditor.menus.hud.t7hud_zm_custom");
-
     zm_usermap::main();
 
     callback::on_localclient_connect(&on_connect);
