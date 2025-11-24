@@ -217,7 +217,8 @@ function zombie_damage_override_callback( death, inflictor, attacker, damage, fl
 			player_points = zm_score::get_zombie_death_player_points();
 			kill_bonus = get_points_kill_bonus( mod, sHitLoc, weapon, player_points );
 			points = kill_bonus[0];
-			text = kill_bonus[1];
+			// Send an empty text so the UI does not display the kill-reason string.
+			text = ""; // Instead of kill_bonus[1]
 
 			if( level.zombie_vars[attacker.team]["zombie_powerup_insta_kill_on"] == 1 && mod == "MOD_UNKNOWN" )
 			{
@@ -227,7 +228,8 @@ function zombie_damage_override_callback( death, inflictor, attacker, damage, fl
 			player_points += points;
 			player_points *= level.zombie_vars[attacker.team]["zombie_point_scalar"];
 
-			attacker luinotifyevent( &"score_event", 2, text, player_points );
+			// Use notification type 1 to force player-name popup.
+			attacker luinotifyevent( &"score_event", 1, &"", player_points );
 		}
 	}
 	
