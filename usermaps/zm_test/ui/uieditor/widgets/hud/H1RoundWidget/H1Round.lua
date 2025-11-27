@@ -25,8 +25,15 @@ CoD.H1Round.new = function ( menu, controller )
 	self.RoundsTextShadow:subscribeToModel( Engine.GetModel( Engine.GetModelForController( controller ), "gameScore.roundsPlayed" ), function ( model )
 		local roundsPlayed = Engine.GetModelValue( model )
 
-		if roundsPlayed then
+		-- Hide the displayed round when roundsPlayed is 1 or less.
+		-- roundsPlayed is 1 when the in-game round index is 0, so we
+		-- only show text for roundsPlayed > 1 (which displays roundsPlayed - 1).
+		if roundsPlayed and roundsPlayed > 1 then
 			self.RoundsTextShadow:setText( Engine.Localize( roundsPlayed - 1 ) )
+			self.RoundsTextShadow:setAlpha( 1 )
+		else
+			self.RoundsTextShadow:setText( "" )
+			self.RoundsTextShadow:setAlpha( 0 )
 		end
 	end )
 	self:addElement( self.RoundsTextShadow )
@@ -41,8 +48,13 @@ CoD.H1Round.new = function ( menu, controller )
 	self.RoundsText:subscribeToModel( Engine.GetModel( Engine.GetModelForController( controller ), "gameScore.roundsPlayed" ), function ( model )
 		local roundsPlayed = Engine.GetModelValue( model )
 
-		if roundsPlayed then
+		-- Same handling as shadow: only show when roundsPlayed > 1
+		if roundsPlayed and roundsPlayed > 1 then
 			self.RoundsText:setText( Engine.Localize( roundsPlayed - 1 ) )
+			self.RoundsText:setAlpha( 1 )
+		else
+			self.RoundsText:setText( "" )
+			self.RoundsText:setAlpha( 0 )
 		end
 	end )
 	self:addElement( self.RoundsText )
