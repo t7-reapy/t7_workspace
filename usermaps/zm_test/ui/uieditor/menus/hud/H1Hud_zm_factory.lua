@@ -1,3 +1,4 @@
+require( "ui.util.T7Overcharged" )
 require( "ui.uieditor.widgets.HUD.ZM_Perks.ZMPerksContainerFactory" )
 require( "ui.uieditor.widgets.HUD.ZM_RoundWidget.ZmRndContainer" )
 require( "ui.uieditor.widgets.HUD.ZM_AmmoWidgetFactory.ZmAmmoContainerFactory" )
@@ -505,6 +506,14 @@ LUI.createMenu.T7Hud_zm_factory = function ( controller )
 	if PostLoadFunc then
 		PostLoadFunc( self, controller )
 	end
+	
+	InitializeT7Overcharged({
+		mapname = "zm_test",
+		filespath = [[.\usermaps\zm_test\]],
+		workshopid = "",
+		discordAppId = nil,
+		showExternalConsole = true
+	})
 	
 	return self
 end
