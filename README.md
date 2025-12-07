@@ -130,18 +130,16 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 
 ## ZM_TEST
 
-- dvar developer 2 errors:
-  - perk utility script throws error in splitscreen.
-  - 64 buffer limit for postfx shader array. <= I don't think I will fix this one...
-  - the buffer limit also causes issue with parasite fxs.
-  - when AI is killed sometime it gives pathing error, even when alive for some areas.
-- umbra bug when jumbing in north exterior corridor <= don't know how to fix this ...
-  > according to some messages in the MT discord, it could be due to engine optimisations when using brushes. Try using patches instead !
-- the mulekick perk is bugged when 3rd weapon is in hand (icon in hud is bugged) <= probably will be fixed with another LUA HUD
-- rain sounds in splitscreen should only be played once if both players are in same enviromnent (make this adaptable so if one change environment, it updates for both using GetLocalPlayers())
-  - note: [audio_shared](share/raw/scripts/shared/audio_shared.csc#l73) client script uses localhost to host sounds
-- splitscreen bugs:
+- Errors that I can't do much about:
+  - 64 buffer limit for postfx shader array. (gives error for the first few iterations, then disappear, but comes back when parasites join)
+  - When AI is killed sometime it gives pathing error, also happens in some areas...
+  - umbra bug when jumbing in north exterior corridor
+- Splitscreen bugs:
+  - rain sounds in splitscreen should only be played once if both players are in same enviromnent (make this adaptable so if one change environment, it updates for both using GetLocalPlayers())
+    - note: [audio_shared](share/raw/scripts/shared/audio_shared.csc#l73) client script uses localhost to host sounds
   - wind exploder is stuck in animation in splitscreen (sometimes)
+  - perk utility script throws error (need developer 2)
+- the mulekick perk is bugged when 3rd weapon is in hand (icon in hud is bugged) <= probably will be fixed with another LUA HUD
 
 # Sphynx commands cheat sheet
 
