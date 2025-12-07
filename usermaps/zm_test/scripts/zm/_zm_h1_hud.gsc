@@ -210,6 +210,8 @@ function ui_powerup_monitor()
 
 function zombie_damage_override_callback( death, inflictor, attacker, damage, flags, mod, weapon, vpoint, vdir, sHitLoc, psOffsetTime, boneIndex, surfaceType )
 {
+	return; // I don't want to see kill details on screen. 
+
 	if( IS_EQUAL( self.archetype, "zombie" ) && IS_EQUAL( self.team, level.zombie_team ) )
 	{
 		if( death && isdefined( attacker ) && isplayer( attacker ) )
@@ -217,8 +219,7 @@ function zombie_damage_override_callback( death, inflictor, attacker, damage, fl
 			player_points = zm_score::get_zombie_death_player_points();
 			kill_bonus = get_points_kill_bonus( mod, sHitLoc, weapon, player_points );
 			points = kill_bonus[0];
-			// Send an empty text so the UI does not display the kill-reason string.
-			text = ""; // Instead of kill_bonus[1]
+			text = kill_bonus[1];
 
 			if( level.zombie_vars[attacker.team]["zombie_powerup_insta_kill_on"] == 1 && mod == "MOD_UNKNOWN" )
 			{
@@ -228,8 +229,7 @@ function zombie_damage_override_callback( death, inflictor, attacker, damage, fl
 			player_points += points;
 			player_points *= level.zombie_vars[attacker.team]["zombie_point_scalar"];
 
-			// Use notification type 1 to force player-name popup.
-			attacker luinotifyevent( &"score_event", 1, &"", player_points );
+			attacker luinotifyevent( &"score_event", 2, &"", player_points );
 		}
 	}
 	
