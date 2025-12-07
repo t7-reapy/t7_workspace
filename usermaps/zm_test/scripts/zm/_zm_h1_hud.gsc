@@ -210,6 +210,8 @@ function ui_powerup_monitor()
 
 function zombie_damage_override_callback( death, inflictor, attacker, damage, flags, mod, weapon, vpoint, vdir, sHitLoc, psOffsetTime, boneIndex, surfaceType )
 {
+	return; // I don't want to see kill details on screen. 
+
 	if( IS_EQUAL( self.archetype, "zombie" ) && IS_EQUAL( self.team, level.zombie_team ) )
 	{
 		if( death && isdefined( attacker ) && isplayer( attacker ) )
@@ -227,7 +229,7 @@ function zombie_damage_override_callback( death, inflictor, attacker, damage, fl
 			player_points += points;
 			player_points *= level.zombie_vars[attacker.team]["zombie_point_scalar"];
 
-			attacker luinotifyevent( &"score_event", 2, text, player_points );
+			attacker luinotifyevent( &"score_event", 2, &"", player_points );
 		}
 	}
 	

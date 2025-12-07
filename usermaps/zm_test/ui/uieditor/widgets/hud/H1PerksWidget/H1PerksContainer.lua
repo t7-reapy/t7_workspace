@@ -77,7 +77,7 @@ CoD.ZMPerks = {
 	},
 	{
 		name = "^9WIDOWS WINE",
-		cost = 4000,
+		cost = 3000, -- Yes, I reduced the price because removed the power up associated to it.
 		description = "Zombies are slowed when they attack you",
 		image = "h1_perk_widows_wine",
 		specialty = "specialty_widowswine",
@@ -90,6 +90,14 @@ CoD.ZMPerks = {
 		image = "h1_perk_electric_cherry",
 		specialty = "specialty_electriccherry",
 		clientFieldName = "electric_cherry"
+	},
+	{
+		name = "^6PHD FLOPPER",
+		cost = 2000,
+		description = "Protection from explosions and makes you explode if falling from high enough",
+		image = "h1_perk_phdflopper",
+		specialty = "specialty_phdflopper",
+		clientFieldName = "phdflopper"
 	}
 }
 

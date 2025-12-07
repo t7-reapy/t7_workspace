@@ -133,7 +133,8 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - dvar developer 2 errors:
   - perk utility script throws error in splitscreen.
   - 64 buffer limit for postfx shader array. <= I don't think I will fix this one...
-  - when AI is killed sometime it gives pathing error.
+  - the buffer limit also causes issue with parasite fxs.
+  - when AI is killed sometime it gives pathing error, even when alive for some areas.
 - umbra bug when jumbing in north exterior corridor <= don't know how to fix this ...
   > according to some messages in the MT discord, it could be due to engine optimisations when using brushes. Try using patches instead !
 - the mulekick perk is bugged when 3rd weapon is in hand (icon in hud is bugged) <= probably will be fixed with another LUA HUD

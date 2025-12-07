@@ -20,14 +20,55 @@ CoD.H1Round.new = function ( menu, controller )
 	self.RoundsTextShadow:setTTF( "fonts/defaultbold.otf" )
 	self.RoundsTextShadow:setText( Engine.Localize( "" ) )
 	self.RoundsTextShadow:setRGB( 0, 0, 0 )
-	self.RoundsTextShadow:setScale( 0.5 )
+	self.RoundsTextShadow:setScale( 0.75 )
 	self.RoundsTextShadow:setAlignment( Enum.LUIAlignment.LUI_ALIGNMENT_CENTER )
+
+	-- Helper: update element text after a fade-out transition completes
+	local function animateTextUpdate( element, newText )
+		local current = element:getText() or ""
+
+		if newText == "" then
+			local fadeOutTime = 1500
+			element:setText( "" )
+			element:beginAnimation( "keyframe", fadeOutTime, false, false, CoD.TweenType.Linear )
+			element:setAlpha( 0 )
+			element:registerEventHandler( "transition_complete_keyframe", function ( e )
+				if e then
+					-- cleanup a no-op handler to avoid leaving closures
+					e:registerEventHandler( "transition_complete_keyframe", function ( ) end )
+				end
+			end )
+			return
+		end
+
+		if current == newText then
+			element:setAlpha( 1 )
+			return
+		end
+
+		local fadeOutTime = 10000
+		local fadeInTime = 5000
+
+		element:beginAnimation( "keyframe", fadeOutTime, false, false, CoD.TweenType.Linear )
+		element:setAlpha( 0 )
+		element:registerEventHandler( "transition_complete_keyframe", function ( e )
+			if e then
+				e:setText( newText )
+				e:beginAnimation( "keyframe", fadeInTime, false, false, CoD.TweenType.Linear )
+				e:setAlpha( 1 )
+				-- cleanup a no-op handler to avoid leaving closures
+				e:registerEventHandler( "transition_complete_keyframe", function ( ) end )
+			end
+		end )
+	end
+
 	self.RoundsTextShadow:subscribeToModel( Engine.GetModel( Engine.GetModelForController( controller ), "gameScore.roundsPlayed" ), function ( model )
 		local roundsPlayed = Engine.GetModelValue( model )
-
-		if roundsPlayed then
-			self.RoundsTextShadow:setText( Engine.Localize( roundsPlayed - 1 ) )
+		local newText = ""
+		if roundsPlayed and roundsPlayed > 1 then
+			newText = Engine.Localize( roundsPlayed - 1 )
 		end
+		animateTextUpdate( self.RoundsTextShadow, newText )
 	end )
 	self:addElement( self.RoundsTextShadow )
 
@@ -36,59 +77,23 @@ CoD.H1Round.new = function ( menu, controller )
 	self.RoundsText:setTopBottom( true, false, 30, 100 )
 	self.RoundsText:setTTF( "fonts/defaultbold.otf" )
 	self.RoundsText:setText( Engine.Localize( "" ) )
-	self.RoundsText:setScale( 0.5 )
+	self.RoundsText:setScale( 0.75 )
 	self.RoundsText:setAlignment( Enum.LUIAlignment.LUI_ALIGNMENT_CENTER )
 	self.RoundsText:subscribeToModel( Engine.GetModel( Engine.GetModelForController( controller ), "gameScore.roundsPlayed" ), function ( model )
 		local roundsPlayed = Engine.GetModelValue( model )
-
-		if roundsPlayed then
-			self.RoundsText:setText( Engine.Localize( roundsPlayed - 1 ) )
+		local newText = ""
+		if roundsPlayed and roundsPlayed > 1 then
+			newText = Engine.Localize( roundsPlayed - 1 )
 		end
+		animateTextUpdate( self.RoundsText, newText )
 	end )
 	self:addElement( self.RoundsText )
 
-	self.WaveCompletedShadow = LUI.UIText.new()
-	self.WaveCompletedShadow:setLeftRight( true, true, self.RoundsText:getTextWidth() - 321.5, 0 )
-	self.WaveCompletedShadow:setTopBottom( true, false, 31.5, 101.5 )
-	self.WaveCompletedShadow:setTTF( "fonts/defaultbold.otf" )
-	self.WaveCompletedShadow:setText( "WAVE COMPLETED" )
-	self.WaveCompletedShadow:setRGB( 0, 0, 0 )
-	self.WaveCompletedShadow:setScale( 0.5 )
-	self.WaveCompletedShadow:setAlignment( Enum.LUIAlignment.LUI_ALIGNMENT_LEFT )
-	self:addElement( self.WaveCompletedShadow )
-
-	self.WaveCompleted = LUI.UIText.new()
-	self.WaveCompleted:setLeftRight( true, true, self.RoundsText:getTextWidth() - 320, 0 )
-	self.WaveCompleted:setTopBottom( true, false, 30, 100 )
-	self.WaveCompleted:setTTF( "fonts/defaultbold.otf" )
-	self.WaveCompleted:setText( "WAVE COMPLETED" )
-	self.WaveCompleted:setScale( 0.5 )
-	self.WaveCompleted:setAlignment( Enum.LUIAlignment.LUI_ALIGNMENT_LEFT )
-	self:addElement( self.WaveCompleted )
-
-	self.NextWaveShadow = LUI.UIText.new()
-	self.NextWaveShadow:setLeftRight( true, true, self.RoundsText:getTextWidth() - 320.5, 0 )
-	self.NextWaveShadow:setTopBottom( true, false, 70.5, 105.5 )
-	self.NextWaveShadow:setTTF( "fonts/defaultbold.otf" )
-	self.NextWaveShadow:setText( "Next wave in 10s" )
-	self.NextWaveShadow:setRGB( 0, 0, 0 )
-	self.NextWaveShadow:setScale( 0.5 )
-	self.NextWaveShadow:setAlignment( Enum.LUIAlignment.LUI_ALIGNMENT_LEFT )
-	self:addElement( self.NextWaveShadow )
-	
-	self.NextWave = LUI.UIText.new()
-	self.NextWave:setLeftRight( true, true, self.RoundsText:getTextWidth() - 320, 0 )
-	self.NextWave:setTopBottom( true, false, 70, 105 )
-	self.NextWave:setTTF( "fonts/defaultbold.otf" )
-	self.NextWave:setText( "Next wave in 10s" )
-	self.NextWave:setScale( 0.5 )
-	self.NextWave:setAlignment( Enum.LUIAlignment.LUI_ALIGNMENT_LEFT )
-	self:addElement( self.NextWave )
 
 	self.clipsPerState = {
 		DefaultState = {
 			DefaultClip = function ()
-				self:setupElementClipCounter( 6 )
+				self:setupElementClipCounter( 2 )
 
 				self.RoundsTextShadow:completeAnimation()
 				self.RoundsTextShadow:setAlpha( 1 )
@@ -97,22 +102,6 @@ CoD.H1Round.new = function ( menu, controller )
 				self.RoundsText:completeAnimation()
 				self.RoundsText:setAlpha( 1 )
 				self.clipFinished( self.RoundsText, {} )
-
-				self.WaveCompletedShadow:completeAnimation()
-				self.WaveCompletedShadow:setAlpha( 0 )
-				self.clipFinished( self.WaveCompletedShadow, {} )
-
-				self.WaveCompleted:completeAnimation()
-				self.WaveCompleted:setAlpha( 0 )
-				self.clipFinished( self.WaveCompleted, {} )
-
-				self.NextWaveShadow:completeAnimation()
-				self.NextWaveShadow:setAlpha( 0 )
-				self.clipFinished( self.NextWaveShadow, {} )
-
-				self.NextWave:completeAnimation()
-				self.NextWave:setAlpha( 0 )
-				self.clipFinished( self.NextWave, {} )
 			end,
 			Invisible = function ()
 				self:setupElementClipCounter( 2 )
@@ -140,226 +129,13 @@ CoD.H1Round.new = function ( menu, controller )
 				InvisibleStateTransition( self.RoundsText, {} )
 			end,
 			Update = function ()
-				self:setupElementClipCounter( 4 )
-
-				local RoundsTransitionStage11 = function ( element, event )
-					if not event.interrupted then
-						element:beginAnimation( "keyframe", 1000, false, false, CoD.TweenType.Linear )
-					end
-
-					if string.find( element:getText(), "Next wave in" ) then
-						element:setText( "Next wave in 0s" )
-					end
-
-					element:setAlpha( 0 )
-
-					if event.interrupted then
-						self.clipFinished( element, event )
-					else
-						element:registerEventHandler( "transition_complete_keyframe", self.clipFinished )
-					end
-				end
-
-				local RoundsTransitionStage10 = function ( element, event )
-					if event.interrupted then
-						RoundsTransitionStage11( element, event )
-
-						return 
-					else
-						element:beginAnimation( "keyframe", 1000, false, false, CoD.TweenType.Linear )
-
-						if string.find( element:getText(), "Next wave in" ) then
-							element:setText( "Next wave in 1s" )
-						end
-
-						element:setAlpha( 1 )
-						
-						element:registerEventHandler( "transition_complete_keyframe", RoundsTransitionStage11 )
-					end
-				end
-
-				local RoundsTransitionStage9 = function ( element, event )
-					if event.interrupted then
-						RoundsTransitionStage10( element, event )
-
-						return 
-					else
-						element:beginAnimation( "keyframe", 1000, false, false, CoD.TweenType.Linear )
-
-						if string.find( element:getText(), "Next wave in" ) then
-							element:setText( "Next wave in 2s" )
-						end
-
-						element:setAlpha( 1 )
-						
-						element:registerEventHandler( "transition_complete_keyframe", RoundsTransitionStage10 )
-					end
-				end
-
-				local RoundsTransitionStage8 = function ( element, event )
-					if event.interrupted then
-						RoundsTransitionStage9( element, event )
-
-						return 
-					else
-						element:beginAnimation( "keyframe", 1000, false, false, CoD.TweenType.Linear )
-
-						if string.find( element:getText(), "Next wave in" ) then
-							element:setText( "Next wave in 3s" )
-						end
-
-						element:setAlpha( 1 )
-						
-						element:registerEventHandler( "transition_complete_keyframe", RoundsTransitionStage9 )
-					end
-				end
-
-				local RoundsTransitionStage7 = function ( element, event )
-					if event.interrupted then
-						RoundsTransitionStage8( element, event )
-
-						return 
-					else
-						element:beginAnimation( "keyframe", 1000, false, false, CoD.TweenType.Linear )
-
-						if string.find( element:getText(), "Next wave in" ) then
-							element:setText( "Next wave in 4s" )
-						end
-
-						element:setAlpha( 1 )
-						
-						element:registerEventHandler( "transition_complete_keyframe", RoundsTransitionStage8 )
-					end
-				end
-
-				local RoundsTransitionStage6 = function ( element, event )
-					if event.interrupted then
-						RoundsTransitionStage7( element, event )
-
-						return 
-					else
-						element:beginAnimation( "keyframe", 1000, false, false, CoD.TweenType.Linear )
-
-						if string.find( element:getText(), "Next wave in" ) then
-							element:setText( "Next wave in 5s" )
-						end
-
-						element:setAlpha( 1 )
-						
-						element:registerEventHandler( "transition_complete_keyframe", RoundsTransitionStage7 )
-					end
-				end
-
-				local RoundsTransitionStage5 = function ( element, event )
-					if event.interrupted then
-						RoundsTransitionStage6( element, event )
-
-						return 
-					else
-						element:beginAnimation( "keyframe", 1000, false, false, CoD.TweenType.Linear )
-
-						if string.find( element:getText(), "Next wave in" ) then
-							element:setText( "Next wave in 6s" )
-						end
-						
-						element:setAlpha( 1 )
-						
-						element:registerEventHandler( "transition_complete_keyframe", RoundsTransitionStage6 )
-					end
-				end
-
-				local RoundsTransitionStage4 = function ( element, event )
-					if event.interrupted then
-						RoundsTransitionStage5( element, event )
-
-						return 
-					else
-						element:beginAnimation( "keyframe", 1000, false, false, CoD.TweenType.Linear )
-
-						if string.find( element:getText(), "Next wave in" ) then
-							element:setText( "Next wave in 7s" )
-						end
-
-						element:setAlpha( 1 )
-						
-						element:registerEventHandler( "transition_complete_keyframe", RoundsTransitionStage5 )
-					end
-				end
-
-				local RoundsTransitionStage3 = function ( element, event )
-					if event.interrupted then
-						RoundsTransitionStage4( element, event )
-
-						return 
-					else
-						element:beginAnimation( "keyframe", 1000, false, false, CoD.TweenType.Linear )
-
-						if string.find( element:getText(), "Next wave in" ) then
-							element:setText( "Next wave in 8s" )
-						end
-
-						element:setAlpha( 1 )
-						
-						element:registerEventHandler( "transition_complete_keyframe", RoundsTransitionStage4 )
-					end
-				end
-
-				local RoundsTransitionStage2 = function ( element, event )
-					if event.interrupted then
-						RoundsTransitionStage3( element, event )
-
-						return 
-					else
-						element:beginAnimation( "keyframe", 1000, false, false, CoD.TweenType.Linear )
-
-						if string.find( element:getText(), "Next wave in" ) then
-							element:setText( "Next wave in 9s" )
-						end
-						
-						element:setAlpha( 1 )
-						
-						element:registerEventHandler( "transition_complete_keyframe", RoundsTransitionStage3 )
-					end
-				end
-
-				local RoundsTransitionStage1 = function ( element, event )
-					if event.interrupted then
-						RoundsTransitionStage2( element, event )
-
-						return 
-					else
-						element:beginAnimation( "keyframe", 1000, false, false, CoD.TweenType.Linear )
-
-						if string.find( element:getText(), "Next wave in" ) then
-							element:setText( "Next wave in 10s" )
-						end
-						
-						element:setAlpha( 1 )
-						
-						element:registerEventHandler( "transition_complete_keyframe", RoundsTransitionStage2 )
-					end
-				end
-
-				self.WaveCompletedShadow:completeAnimation()
-				self.WaveCompletedShadow:setAlpha( 0 )
-				RoundsTransitionStage1( self.WaveCompletedShadow, {} )
-
-				self.WaveCompleted:completeAnimation()
-				self.WaveCompleted:setAlpha( 0 )
-				RoundsTransitionStage1( self.WaveCompleted, {} )
-
-				self.NextWaveShadow:completeAnimation()
-				self.NextWaveShadow:setAlpha( 0 )
-				RoundsTransitionStage1( self.NextWaveShadow, {} )
-
-				self.NextWave:completeAnimation()
-				self.NextWave:setAlpha( 0 )
-				RoundsTransitionStage1( self.NextWave, {} )
+				-- Countdown / WaveCompleted logic removed. No-op update clip.
+				self:setupElementClipCounter( 0 )
 			end
 		},
 		Invisible = {
 			DefaultClip = function ()
-				self:setupElementClipCounter( 6 )
+				self:setupElementClipCounter( 2 )
 
 				self.RoundsTextShadow:completeAnimation()
 				self.RoundsTextShadow:setAlpha( 0 )
@@ -368,22 +144,6 @@ CoD.H1Round.new = function ( menu, controller )
 				self.RoundsText:completeAnimation()
 				self.RoundsText:setAlpha( 0 )
 				self.clipFinished( self.RoundsText, {} )
-
-				self.WaveCompletedShadow:completeAnimation()
-				self.WaveCompletedShadow:setAlpha( 0 )
-				self.clipFinished( self.WaveCompletedShadow, {} )
-
-				self.WaveCompleted:completeAnimation()
-				self.WaveCompleted:setAlpha( 0 )
-				self.clipFinished( self.WaveCompleted, {} )
-
-				self.NextWaveShadow:completeAnimation()
-				self.NextWaveShadow:setAlpha( 0 )
-				self.clipFinished( self.NextWaveShadow, {} )
-
-				self.NextWave:completeAnimation()
-				self.NextWave:setAlpha( 0 )
-				self.clipFinished( self.NextWave, {} )
 			end,
 			DefaultState = function ()
 				self:setupElementClipCounter( 2 )
@@ -570,17 +330,11 @@ CoD.H1Round.new = function ( menu, controller )
 		} )
 	end )
 
-	self:subscribeToGlobalModel( controller, "PerController", "gameScore.roundsPlayed", function ( model )
-		PlayClip( self, "Update", controller )
-	end )
+
 
 	LUI.OverrideFunction_CallOriginalSecond( self, "close", function ( element )
 		element.RoundsTextShadow:close()
 		element.RoundsText:close()
-		element.WaveCompletedShadow:close()
-		element.WaveCompleted:close()
-		element.NextWaveShadow:close()
-		element.NextWave:close()
 	end )
 	
 	if PostLoadFunc then
