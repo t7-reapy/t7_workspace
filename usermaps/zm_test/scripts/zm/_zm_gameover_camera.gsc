@@ -19,9 +19,8 @@ REGISTER_SYSTEM_EX("gameover_camera", &__init__, &__main__, undefined)
 
 // I would recommend localizing strings
 #define CUSTOM_GAME_OVER_TEXT "GAME OVER"
-#define CUSTOM_GAME_OVER_TEXT_COLOR (1.0, 0.0, 0.0) // red default
-
-#define ROUNDS_SURVIVED_TEXT_COLOR (1.0, 1.0, 1.0) // white default
+#define CUSTOM_GAME_OVER_TEXT_COLOR RED
+#define ROUNDS_SURVIVED_TEXT_COLOR WHITE
 
 #define DEFAULT_INTERMISSION_SPEED 8.0
 #define INTERMISSION_TRANSITIONS 3

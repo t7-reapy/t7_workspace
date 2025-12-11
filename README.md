@@ -138,8 +138,8 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
   - rain sounds in splitscreen should only be played once if both players are in same enviromnent (make this adaptable so if one change environment, it updates for both using GetLocalPlayers())
     - note: [audio_shared](share/raw/scripts/shared/audio_shared.csc#l73) client script uses localhost to host sounds
   - wind exploder is stuck in animation in splitscreen (sometimes)
-  - perk utility script throws error (need developer 2)
-- the mulekick perk is bugged when 3rd weapon is in hand (icon in hud is bugged) <= probably will be fixed with another LUA HUD
+  - perk utility script throws error (need developer 2) <= still the case ?
+- the round number shadow remains in the room of thanks
 
 # Sphynx commands cheat sheet
 
