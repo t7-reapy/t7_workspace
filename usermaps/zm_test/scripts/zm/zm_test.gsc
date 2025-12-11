@@ -114,6 +114,7 @@ function main()
     thread setup_players_vox();
     thread watch_power_state();
     thread change_powerups_color();
+    thread prepare_end_game();
     
     callback::on_connect(&disable_hitmarkers);
     callback::on_spawned(&on_player_spawned);
@@ -221,6 +222,11 @@ function private onlaststand() //callback on player laststand
     self waittill("player_revived");
     self StopSound(BLEEDOUT_LOOP_SOUND);
     self PlayLocalSound(PLAYER_REVIVED_SOUND);
+}
+
+function private prepare_end_game()
+{
+    level.custom_game_over_hud_elem_color_function = &zm_hellround::get_ending_associated_color;
 }
 
 function private play_bleedout_sound()

@@ -43,6 +43,7 @@ REGISTER_SYSTEM_EX("zm_hellround", &init, &main, undefined)
 
 class hellround
 {
+    var ending;
     var abolished;
     var toggle_callbacks;
 }
@@ -53,6 +54,7 @@ function private init()
     level.bloodsplatter_disabled = true;
 
     level.hellround = new hellround();
+    level.hellround.ending = NEUTRAL_ENDING;
     level.hellround.abolished = false;
     level.hellround.toggle_callbacks = [];
 
@@ -100,6 +102,21 @@ function add_meteor_trigger_callback(func_ptr)
     zm_hellround_meteor::add_meteor_trigger_callback(func_ptr);
 }
 
+function private enable_good_ending()
+{
+    level.hellround.ending = GOOD_ENDING;
+}
+
+function private enable_bad_ending()
+{
+    level.hellround.ending = BAD_ENDING;
+}
+
+function get_ending_associated_color()
+{
+    return ENDING_COLORS[level.hellround.ending];
+}
+
 function private bind_callbacks()
 {
     add_toggle_callback(&respawn_players);
@@ -120,6 +137,7 @@ function private bind_callbacks()
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_collectors::cancel_collection_logic);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_wolf_soul_collectors::force_completion);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_powerup::lose_minigun_callback);
+    zm_hellround_spawn_manager::add_bad_iteration_callback(&enable_bad_ending);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_music::enable_bad_ending);
 
     zm_hellround_collectors::bind_start_collection_callback(&zm_hellround_spawn_manager::iteration_time_management_update);
@@ -127,6 +145,7 @@ function private bind_callbacks()
     zm_hellround_collectors::bind_reward_callback(&zm_hellround_reward::give_reward);
     zm_hellround_collectors::bind_completion_callback(&zm_hellround_meteor::hellround_meteor_logic);
 
+    zm_hellround_meteor::add_meteor_trigger_callback(&enable_good_ending);
     zm_hellround_meteor::add_meteor_trigger_callback(&zm_hellround_music::enable_good_ending);
 
     zm_hellround_powerup::add_minigun_callback(&zm_hellround_spawn_manager::hellround_starts);

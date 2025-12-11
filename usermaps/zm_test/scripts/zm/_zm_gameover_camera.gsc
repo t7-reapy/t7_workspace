@@ -19,7 +19,9 @@ REGISTER_SYSTEM_EX("gameover_camera", &__init__, &__main__, undefined)
 
 // I would recommend localizing strings
 #define CUSTOM_GAME_OVER_TEXT "GAME OVER"
-#define CUSTOM_GAME_OVER_TEXT_COLOR RED
+#define CUSTOM_GAME_OVER_TEXT_COLOR_GOOD GREEN
+#define CUSTOM_GAME_OVER_TEXT_COLOR_NEUTRAL ORANGE
+#define CUSTOM_GAME_OVER_TEXT_COLOR_BAD RED
 #define ROUNDS_SURVIVED_TEXT_COLOR WHITE
 
 #define DEFAULT_INTERMISSION_SPEED 8.0
@@ -49,7 +51,7 @@ function custom_game_over_hud(player, game_over_hud, survived_hud)
     game_over_hud.foreground = true;
     game_over_hud.fontScale = 3;
     game_over_hud.alpha = 0;
-    game_over_hud.color = (CUSTOM_GAME_OVER_TEXT_COLOR);
+    game_over_hud.color = get_game_over_color();
     game_over_hud.hidewheninmenu = true;
     game_over_hud SetText(CUSTOM_GAME_OVER_TEXT);
 
@@ -76,6 +78,16 @@ function custom_game_over_hud(player, game_over_hud, survived_hud)
         survived_hud.fontScale = 1.5;
         survived_hud.y += 40;
     }
+}
+
+function private get_game_over_color()
+{
+    if (IsFunctionPtr(level.custom_game_over_hud_elem_color_function))
+    {
+        return [[ level.custom_game_over_hud_elem_color_function ]]();
+    }
+
+    return CUSTOM_GAME_OVER_TEXT_COLOR_BAD;
 }
 
 function custom_intermission()
