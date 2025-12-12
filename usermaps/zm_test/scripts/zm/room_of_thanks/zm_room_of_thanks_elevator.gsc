@@ -247,7 +247,7 @@ function private teleport_players_inside_elevator() // self == elevator
 function private teleport_player_inside_elevator(player) // self == elevator
 {
     player SetOrigin(self.ent_platform_clipbrush.origin + (0, 0, PLAYER_TP_OFFSET));
-    player SetPlayerAngles(VectorToAngles(AnglesToForward(self.ent_elevator.angles)));
+    player SetPlayerAngles(self.ent_elevator.angles + (0, -90, 0));
 }
 
 function private elevator_lift() // self == elevator

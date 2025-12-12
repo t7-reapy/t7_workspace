@@ -16,7 +16,7 @@
 
 #precache("triggerstring", ROTSND_TRIGGER_LOCALIZED);
 
-REGISTER_SYSTEM("zm_room_of_thanks", &init, undefined)
+REGISTER_SYSTEM_EX("zm_room_of_thanks", &init, &main, undefined)
 
 function private init()
 {
@@ -24,6 +24,11 @@ function private init()
 
     sound_trigger = GetEnt(ROTSND_TRIGGER_TARGETNAME, "targetname");
     sound_trigger setup_sound_trigger();
+}
+
+function private main()
+{
+    add_exit_room_of_thanks_callback(&zm_room_of_thanks_board::stop_video);
 }
 
 function private setup_sound_trigger() // self == trigger

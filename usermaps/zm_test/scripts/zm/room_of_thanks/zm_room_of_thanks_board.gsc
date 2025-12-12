@@ -91,8 +91,10 @@ function private play_video()
     thread print_video_subtitles();
 }
 
-function private stop_video()
+function stop_video()
 {
+    PRINT_BOARD_DEBUG("STOP VIDEO");
+
     // Secret timed display
     if (!level.thanks_board.secret_code_unlocked)
     {
