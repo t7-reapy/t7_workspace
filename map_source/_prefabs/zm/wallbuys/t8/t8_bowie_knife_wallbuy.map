@@ -4,7 +4,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{B43907D6-CA00-11EF-9B5E-68545AF9CDFF}"
+guid "{274CE222-D8C5-11F0-B46A-EDD2D7A38DDC}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -34,6 +34,46 @@ guid "{B43907D6-CA00-11EF-9B5E-68545AF9CDFF}"
  ( 199.75 -122 56 ) ( 199.75 -95 56 ) ( 199.75 -95 40 ) traverse 16 -16 109 -4 180 0 lightmap_gray 16384 -16384 109 -98 180 0
  ( 199.75 -93 56 ) ( 193.75 -93 56 ) ( 193.75 -93 40 ) traverse 16 16 200.75 4 0 0 lightmap_gray 16384 16384 200.75 98 0 0
 }
+// brush 1
+ {
+  guid "{A0EBCEFF-D8C4-11F0-B46A-EDD2D7A38DDC}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t8_bowie_knife_wall_chalk
+   lightmap_gray
+   2 2 0 8
+   (
+	v 192 -89.5 49.25 t 0 -0 -5.5625 -3.0625
+	v 192 -89.5 70 t 0 -1024 -5.5625 -4.3125
+   )
+   (
+	v 192 -127.5 49.25 t 1024 -0 -8 -3.0625
+	v 192 -127.5 70 t 1024 -1024 -8 -4.3125
+   )
+  }
+ }
+// brush 2
+ {
+  guid "{274CE227-D8C5-11F0-B46A-EDD2D7A38DDC}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   t8_bowie_knife_starfield
+   lightmap_gray
+   2 2 0 8
+   (
+	v 192 -89.5 49.25 t 0 -0 -5.5625 -3.0625
+	v 192 -89.5 70 t 0 -1024 -5.5625 -4.3125
+   )
+   (
+	v 192 -127.5 49.25 t 1024 -0 -8 -3.0625
+	v 192 -127.5 70 t 1024 -1024 -8 -4.3125
+   )
+  }
+ }
 }
 // entity 1
 {
@@ -58,11 +98,39 @@ guid "{2E43CB37-CA00-11EF-9B5E-68545AF9CDFF}"
 }
 // entity 3
 {
-guid "{0681371E-CA01-11EF-9B5E-68545AF9CDFF}"
+guid "{C50CA6CA-D8C4-11F0-B46A-EDD2D7A38DDC}"
 "classname" "misc_model"
 "angles" "0 90 0"
-"model" "p8_zm_esc_chalk_buy_knife_bowie"
-"origin" "191.75 -111.5 60"
+"model" "r8_zm_wall_buy_symbol_red_01_top"
+"origin" "192 -108 60"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 4
+{
+guid "{CB2FF70D-D8C4-11F0-B46A-EDD2D7A38DDC}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "r8_zm_wall_buy_symbol_red_01_middle"
+"origin" "192 -108 60"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 5
+{
+guid "{D134380A-D8C4-11F0-B46A-EDD2D7A38DDC}"
+"classname" "misc_model"
+"angles" "0 90 0"
+"model" "r8_zm_wall_buy_symbol_red_01"
+"origin" "192 -108 60"
 "lightingstate1" "1"
 "lightingstate2" "1"
 "lightingstate3" "1"

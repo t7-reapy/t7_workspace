@@ -1,0 +1,130 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{19D235BD-D835-11F0-B469-D231EAF5E936}"
+"classname" "worldspawn"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{E18E5EB5-DBE6-11E4-9056-2C27D7EF3DD2}"
+  contents nonColliding;
+ ( -3 -8 0 ) ( 24 -8 0 ) ( 24 -2 0 ) traverse 16 16 -8 -9 180 0 lightmap_gray 16384 16384 -8 -9 180 0
+ ( 22 -2 56 ) ( 22 -8 56 ) ( -5 -8 56 ) traverse 16 16 -8 -9 180 0 lightmap_gray 16384 16384 -8 -9 180 0
+ ( 22 -1 56 ) ( -5 -1 56 ) ( -5 -1 40 ) traverse 16 -16 -8 -4 180 0 lightmap_gray 16384 -16384 -8 -98 180 0
+ ( -6 -2 56 ) ( -6 -8 56 ) ( -6 -8 40 ) traverse 16 -16 9 -4 180 0 lightmap_gray 16384 -16384 9 -98 180 0
+ ( -5 -8 56 ) ( 22 -8 56 ) ( 22 -8 40 ) traverse 16 -16 -8 -4 180 0 lightmap_gray 16384 -16384 -8 -98 180 0
+ ( 24 -8 56 ) ( 24 -2 56 ) ( 24 -2 40 ) traverse 16 -16 9 -4 180 0 lightmap_gray 16384 -16384 9 -98 180 0
+}
+// brush 1
+ {
+  guid "{FCFFAAAF-D834-11F0-B469-D231EAF5E936}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   iw8_iso_wall_chalk
+   lightmap_gray
+   2 2 0 8
+   (
+	v 22.498783 3.5445919e-007 46.588299 t 0 -0 -1.0001428 -6.7082205
+	v 22.49872 3.5450375e-007 61.01865 t 0 -1024 -0.99985725 -9.0415535
+   )
+   (
+	v -5.8433914 -3.5445919e-007 46.588306 t 1024 -0 0.87485725 -6.7084455
+	v -5.8433914 -3.5445919e-007 61.01865 t 1024 -1024 0.87514287 -9.0417786
+   )
+  }
+ }
+// brush 2
+ {
+  guid "{19D235C2-D835-11F0-B469-D231EAF5E936}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   iw8_iso_starfield
+   lightmap_gray
+   2 2 0 8
+   (
+	v 22.498783 -5.9920967e-007 46.588299 t 0 -0 -1.0001428 -6.7082205
+	v 22.498718 -5.9916329e-007 61.018646 t 0 -1024 -0.99985725 -9.0415535
+   )
+   (
+	v -5.8433847 5.9920967e-007 46.588306 t 1024 -0 0.87485725 -6.7084455
+	v -5.8433847 5.9920967e-007 61.018646 t 1024 -1024 0.87514287 -9.0417786
+   )
+  }
+ }
+}
+// entity 1
+{
+guid "{8D6BADC8-BE49-11EA-86C1-3C07547E497B}"
+"classname" "script_struct"
+"origin" "8 0 54.25"
+"target" "auto38"
+"targetname" "weapon_upgrade"
+"zombie_weapon_upgrade" "iw8_iso"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{8D6BADC9-BE49-11EA-86C1-3C07547E497B}"
+"classname" "script_struct"
+"model" "wm_iw8_iso"
+"origin" "8.6134 0 52.2936"
+"targetname" "auto38"
+"_color" "1 0 0"
+}
+// entity 3
+{
+guid "{79D30E36-D829-11F0-B469-D231EAF5E936}"
+"classname" "misc_model"
+"model" "r8_zm_wall_buy_symbol_red_01_middle"
+"origin" "8 0 54"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 4
+{
+guid "{83286CD2-D829-11F0-B469-D231EAF5E936}"
+"classname" "misc_model"
+"model" "r8_zm_wall_buy_symbol_red_01"
+"origin" "8 0 54"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 5
+{
+guid "{96311A11-D829-11F0-B469-D231EAF5E936}"
+"classname" "misc_model"
+"model" "r8_zm_wall_buy_symbol_red_01_top"
+"origin" "8 0 54"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
