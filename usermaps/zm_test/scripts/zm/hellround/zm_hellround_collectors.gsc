@@ -22,6 +22,7 @@ REGISTER_SYSTEM_EX("zm_hellround_collectors", &init, &main, undefined)
 class HellroundCollectors
 {
     var skulls;
+    var rings;
     var exploders;
     var exploders_depart;
     var clips;
@@ -45,6 +46,10 @@ function private init()
     level.hellround_collectors.skulls[0] = GetEnt(HRCOLL_SKULLS[0], "targetname");
     level.hellround_collectors.skulls[1] = GetEnt(HRCOLL_SKULLS[1], "targetname");
     level.hellround_collectors.skulls[2] = GetEnt(HRCOLL_SKULLS[2], "targetname");
+    level.hellround_collectors.rings = [];
+    level.hellround_collectors.rings[0] = GetEntArray(HRCOLL_RINGS[0], "targetname");
+    level.hellround_collectors.rings[1] = GetEntArray(HRCOLL_RINGS[1], "targetname");
+    level.hellround_collectors.rings[2] = GetEntArray(HRCOLL_RINGS[2], "targetname");
     level.hellround_collectors.clips = [];
     level.hellround_collectors.clips[0] = GetEntArray(HRCOLL_CLIPS[0], "targetname");
     level.hellround_collectors.clips[1] = GetEntArray(HRCOLL_CLIPS[1], "targetname");
@@ -68,6 +73,7 @@ function private init()
 function private main()
 {
     thread float_skulls();
+    thread float_rings();
     zm_hellround_shared::wait_for_map_load();
     show_hellround_collectors(HRCOLL_DISABLED);
     depart_hellround_collector_exploders(HRCOLL_DISABLED);
@@ -153,6 +159,7 @@ function private show_hellround_collectors(n_iteration)
 
     update_hellround_collector_models(n_iteration);
     update_hellround_collector_skulls(n_iteration);
+    update_hellround_collector_rings(n_iteration);
     level clientfield::set(HRCOLL_CLIENT_FIELD, n_iteration);
 }
 
@@ -295,6 +302,27 @@ function private update_hellround_collector_skulls(n_iteration)
     level.hellround_collectors.skulls[n_iteration - 1] Show();
 }
 
+function private update_hellround_collector_rings(n_iteration)
+{
+    foreach(rings in level.hellround_collectors.rings)
+    {
+        foreach (ring in rings)
+        {
+            ring Hide();
+        }
+    }
+
+    if (n_iteration == HRCOLL_DISABLED)
+    {
+        return;
+    }
+
+    foreach (ring in level.hellround_collectors.rings[n_iteration - 1])
+    {
+        ring Show();
+    }
+}
+
 function private float_skulls()
 {
     foreach(skull in level.hellround_collectors.skulls)
@@ -305,15 +333,60 @@ function private float_skulls()
 
 function private float_skull() // self == skull ent
 {
+    self endon("end_game");
+
+    offset = HRCOLL_SKULLS_FLOAT_DELTA;
     while(true)
     {
-        self MoveZ(HRCOLL_SKULLS_FLOAT_DELTA, HRCOLL_SKULLS_FLOAT_TIME);
-        wait HRCOLL_SKULLS_FLOAT_TIME;
-
-        self MoveZ(-HRCOLL_SKULLS_FLOAT_DELTA, HRCOLL_SKULLS_FLOAT_TIME);
-        wait HRCOLL_SKULLS_FLOAT_TIME;
+        self MoveZ(offset, HRCOLL_SKULLS_FLOAT_TIME, HRCOLL_SKULLS_FLOAT_TIME/2, HRCOLL_SKULLS_FLOAT_TIME/2);
+        self waittill("movedone");
+        offset *= -1;
     }
 }
+
+/* endregion */
+/* region rings */
+
+function private float_rings()
+{
+    foreach(rings in level.hellround_collectors.rings)
+    {
+        foreach (ring in rings)
+        {
+            ring thread float_ring();
+            ring thread rotate_ring();
+        }
+    }
+}
+
+function private float_ring() // self == ring ent
+{
+    self endon("end_game");
+    
+    offset = HRCOLL_RING_FLOAT_DELTA;
+    while(true)
+    {
+        self MoveZ(offset, HRCOLL_RING_FLOAT_TIME, HRCOLL_RING_FLOAT_TIME/2, HRCOLL_RING_FLOAT_TIME/2);
+        self waittill("movedone");
+        offset *= -1;
+    }
+}
+
+
+function private rotate_ring() // self == ring ent
+{
+    self endon("end_game");
+
+    angles = self.angles;
+    while(true)
+    {
+        self RotateYaw(360 * 100, HRCOLL_RING_ROTATE_TIME * 100);
+	    self waittill("rotatedone");
+        self.angles = angles;
+    }
+}
+
+
 
 /* endregion */
 /* region soul collection */
