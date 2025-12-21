@@ -4,7 +4,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{FA38F4A7-D8C3-11F0-B46A-EDD2D7A38DDC}"
+guid "{B92FF252-D92F-11F0-B46A-EDD2D7A38DDC}"
 "classname" "worldspawn"
 "fsi" "default"
 "gravity" "800"
@@ -31,26 +31,6 @@ guid "{FA38F4A7-D8C3-11F0-B46A-EDD2D7A38DDC}"
 }
 // brush 1
  {
-  guid "{0DFAA661-0D54-11E5-8961-2C27D7EF3DBE}"
-  mesh
-  {
-  contents nonColliding;
-  toolFlags;
-   s4_m1garand_wall_chalk
-   lightmap_gray
-   2 2 0 8
-   (
-	v 41 0.24999967 38.75 t -6.1035156e-005 -0.00012207031 -1.0001428 -6.7082205
-	v 41 0.24999967 66.5 t -6.1035156e-005 -1024 -0.99985725 -9.0415535
-   )
-   (
-	v -21.25 0.25000033 38.75 t 1024 -0.00012207031 0.87485725 -6.7084455
-	v -21.25 0.25000033 66.5 t 1024 -1024 0.87514287 -9.0417786
-   )
-  }
- }
-// brush 2
- {
   guid "{DFF1B662-D8C3-11F0-B46A-EDD2D7A38DDC}"
   mesh
   {
@@ -60,12 +40,32 @@ guid "{FA38F4A7-D8C3-11F0-B46A-EDD2D7A38DDC}"
    lightmap_gray
    2 2 0 8
    (
-	v 41 0.24999967 38.75 t -6.1035156e-005 -0.00012207031 -1.0001428 -6.7082205
-	v 41 0.24999967 66.5 t -6.1035156e-005 -1024 -0.99985725 -9.0415535
+	v 41 0.49999967 38.75 t 0 -0 -1.0001428 -6.7082205
+	v 41 0.49999967 66.5 t 0 -1024 -0.99985725 -9.0415535
    )
    (
-	v -21.25 0.25000033 38.75 t 1024 -0.00012207031 0.87485725 -6.7084455
-	v -21.25 0.25000033 66.5 t 1024 -1024 0.87514287 -9.0417786
+	v -21.25 0.50000036 38.75 t 1024 -0 0.87485725 -6.7084455
+	v -21.25 0.50000036 66.5 t 1024 -1024 0.87514287 -9.0417786
+   )
+  }
+ }
+// brush 2
+ {
+  guid "{0DFAA661-0D54-11E5-8961-2C27D7EF3DBE}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   s4_m1garand_wall_chalk
+   lightmap_gray
+   2 2 0 8
+   (
+	v 41 0.49999967 38.75 t 0 -0 -1.0001428 -6.7082205
+	v 41 0.49999967 66.5 t 0 -1024 -0.99985725 -9.0415535
+   )
+   (
+	v -21.25 0.50000036 38.75 t 1024 -0 0.87485725 -6.7084455
+	v -21.25 0.50000036 66.5 t 1024 -1024 0.87514287 -9.0417786
    )
   }
  }
@@ -75,7 +75,7 @@ guid "{FA38F4A7-D8C3-11F0-B46A-EDD2D7A38DDC}"
 guid "{4E924556-D854-11F0-B469-D231EAF5E936}"
 "classname" "script_struct"
 "model" "wm_s4_m1garand"
-"origin" "-0.925508 0 53.2289"
+"origin" "-0.925508 0.25 53.2289"
 "targetname" "auto38"
 "_color" "1 0 0"
 }
@@ -83,7 +83,7 @@ guid "{4E924556-D854-11F0-B469-D231EAF5E936}"
 {
 guid "{4E924557-D854-11F0-B469-D231EAF5E936}"
 "classname" "script_struct"
-"origin" "8 0 54.25"
+"origin" "8 0.25 54.25"
 "target" "auto38"
 "targetname" "weapon_upgrade"
 "zombie_weapon_upgrade" "s4_m1garand"
@@ -91,40 +91,103 @@ guid "{4E924557-D854-11F0-B469-D231EAF5E936}"
 }
 // entity 3
 {
-guid "{F3E05E9C-D8C3-11F0-B46A-EDD2D7A38DDC}"
-"classname" "misc_model"
+guid "{AF7B130A-D92F-11F0-B46A-EDD2D7A38DDC}"
+"classname" "script_model"
+"angles" "0 360 0"
 "model" "r8_zm_wall_buy_symbol_red_01_top"
-"origin" "8 0 54"
+"origin" "10 0 54"
+"targetname" "hellround_model_show"
+"_color" "1 0 0"
+"client_server" "ServerSide"
 "lightingstate1" "1"
 "lightingstate2" "1"
 "lightingstate3" "1"
 "lightingstate4" "1"
 "modelscale" "1"
-"static" "1"
+"shadow_casting" "1"
 }
 // entity 4
 {
-guid "{FA38F4A0-D8C3-11F0-B46A-EDD2D7A38DDC}"
-"classname" "misc_model"
+guid "{AF7B130D-D92F-11F0-B46A-EDD2D7A38DDC}"
+"classname" "script_model"
+"angles" "0 360 0"
 "model" "r8_zm_wall_buy_symbol_red_01_middle"
-"origin" "8 0 54"
+"origin" "10 0 54"
+"targetname" "hellround_model_show"
+"_color" "1 0 0"
+"client_server" "ServerSide"
 "lightingstate1" "1"
 "lightingstate2" "1"
 "lightingstate3" "1"
 "lightingstate4" "1"
 "modelscale" "1"
-"static" "1"
+"shadow_casting" "1"
 }
 // entity 5
 {
-guid "{FA38F4AE-D8C3-11F0-B46A-EDD2D7A38DDC}"
-"classname" "misc_model"
+guid "{AF7B1310-D92F-11F0-B46A-EDD2D7A38DDC}"
+"classname" "script_model"
+"angles" "0 360 0"
 "model" "r8_zm_wall_buy_symbol_red_01"
-"origin" "8 0 54"
+"origin" "10 0 54"
+"targetname" "hellround_model_show"
+"_color" "1 0 0"
+"client_server" "ServerSide"
 "lightingstate1" "1"
 "lightingstate2" "1"
 "lightingstate3" "1"
 "lightingstate4" "1"
 "modelscale" "1"
-"static" "1"
+"shadow_casting" "1"
+}
+// entity 6
+{
+guid "{AF7B1313-D92F-11F0-B46A-EDD2D7A38DDC}"
+"classname" "script_model"
+"angles" "0 360 0"
+"model" "r8_zm_wall_buy_symbol_01_top"
+"origin" "10 0 54"
+"targetname" "hellround_model_hide"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 7
+{
+guid "{AF7B1316-D92F-11F0-B46A-EDD2D7A38DDC}"
+"classname" "script_model"
+"angles" "0 360 0"
+"model" "r8_zm_wall_buy_symbol_01_middle"
+"origin" "10 0 54"
+"targetname" "hellround_model_hide"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 8
+{
+guid "{AF7B1319-D92F-11F0-B46A-EDD2D7A38DDC}"
+"classname" "script_model"
+"angles" "0 360 0"
+"model" "r8_zm_wall_buy_symbol_01"
+"origin" "10 0 54"
+"targetname" "hellround_model_hide"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
 }

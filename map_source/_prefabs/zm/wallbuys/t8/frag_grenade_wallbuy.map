@@ -30,26 +30,6 @@ guid "{E6431D0C-D8C5-11F0-B46A-EDD2D7A38DDC}"
 "state_alias_4" "State 4"
 // brush 0
  {
-  guid "{6EF0661E-210C-11E5-8B2C-D89D67F43706}"
-  mesh
-  {
-  contents nonColliding;
-  toolFlags;
-   frag_grenade_wall_chalk
-   lightmap_gray
-   2 2 0 8
-   (
-	v 8.4999962 -4 57.75 t 0 -0 -0.5 -7.375
-	v 8.4999962 -4 63 t 0 -1024 -0.5 -8.375
-   )
-   (
-	v -1.5000072 -4 57.75 t 1024 -0 0.5 -7.375
-	v -1.5000072 -4 63 t 1024 -1024 0.5 -8.375
-   )
-  }
- }
-// brush 1
- {
   guid "{D38447F8-D8C5-11F0-B46A-EDD2D7A38DDC}"
   mesh
   {
@@ -59,71 +39,154 @@ guid "{E6431D0C-D8C5-11F0-B46A-EDD2D7A38DDC}"
    lightmap_gray
    2 2 0 8
    (
-	v 8.4999962 -3.9999998 57.75 t 0 -0 -0.5 -7.375
-	v 8.4999962 -3.9999998 63 t 0 -1024 -0.5 -8.375
+	v 4.9999962 0.25000024 57.75 t 0.00021362305 -0.0009765625 -0.5 -7.375
+	v 4.9999962 0.25000024 63 t 0.00021362305 -1024 -0.5 -8.375
    )
    (
-	v -1.5000074 -3.9999998 57.75 t 1024 -0 0.5 -7.375
-	v -1.5000074 -3.9999998 63 t 1024 -1024 0.5 -8.375
+	v -5.0000076 0.25000024 57.75 t 1024 -0.0009765625 0.5 -7.375
+	v -5.0000076 0.25000024 63 t 1024 -1024 0.5 -8.375
+   )
+  }
+ }
+// brush 1
+ {
+  guid "{6EF0661E-210C-11E5-8B2C-D89D67F43706}"
+  mesh
+  {
+  contents nonColliding;
+  toolFlags;
+   frag_grenade_wall_chalk
+   lightmap_gray
+   2 2 0 8
+   (
+	v 4.9999962 0.25 57.75 t 0.00021362305 -0.0009765625 -0.5 -7.375
+	v 4.9999962 0.25 63 t 0.00021362305 -1024 -0.5 -8.375
+   )
+   (
+	v -5.0000076 0.25 57.75 t 1024 -0.0009765625 0.5 -7.375
+	v -5.0000076 0.25 63 t 1024 -1024 0.5 -8.375
    )
   }
  }
 }
 // entity 1
 {
-guid "{6EF06617-210C-11E5-8B2C-D89D67F43706}"
+guid "{6EF06618-210C-11E5-8B2C-D89D67F43706}"
 "classname" "script_struct"
-"origin" "3.5 -2.5 60"
-"target" "auto37"
-"targetname" "weapon_upgrade"
-"zombie_weapon_upgrade" "frag_grenade"
+"model" "wpn_h1_grn_m67_vm"
+"origin" "0 1.5 59"
+"targetname" "auto37"
 "_color" "1 0 0"
 }
 // entity 2
 {
-guid "{6EF06618-210C-11E5-8B2C-D89D67F43706}"
-"classname" "script_struct"
-"model" "wpn_h1_grn_m67_vm"
-"origin" "3.5 -2.5 59"
-"targetname" "auto37"
+guid "{FE96E48D-D92F-11F0-B46A-EDD2D7A38DDC}"
+"classname" "script_model"
+"angles" "0 360 0"
+"model" "r8_zm_wall_buy_symbol_red_01_top"
+"modelscale" "0.5"
+"origin" "0 0.25 60.25"
+"targetname" "hellround_model_show"
 "_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"shadow_casting" "1"
 }
 // entity 3
 {
-guid "{DDDDA3A1-D8C5-11F0-B46A-EDD2D7A38DDC}"
-"classname" "misc_model"
-"model" "r8_zm_wall_buy_symbol_red_01_top"
+guid "{FE96E490-D92F-11F0-B46A-EDD2D7A38DDC}"
+"classname" "script_model"
+"angles" "0 360 0"
+"model" "r8_zm_wall_buy_symbol_red_01_middle"
 "modelscale" "0.5"
-"origin" "3.5 -4 60.5"
+"origin" "0 0.25 60.25"
+"targetname" "hellround_model_show"
+"_color" "1 0 0"
+"client_server" "ServerSide"
 "lightingstate1" "1"
 "lightingstate2" "1"
 "lightingstate3" "1"
 "lightingstate4" "1"
-"static" "1"
+"shadow_casting" "1"
 }
 // entity 4
 {
-guid "{E6431D13-D8C5-11F0-B46A-EDD2D7A38DDC}"
-"classname" "misc_model"
+guid "{FE96E493-D92F-11F0-B46A-EDD2D7A38DDC}"
+"classname" "script_model"
+"angles" "0 360 0"
 "model" "r8_zm_wall_buy_symbol_red_01"
 "modelscale" "0.5"
-"origin" "3.5 -4 60.5"
+"origin" "0 0.25 60.25"
+"targetname" "hellround_model_show"
+"_color" "1 0 0"
+"client_server" "ServerSide"
 "lightingstate1" "1"
 "lightingstate2" "1"
 "lightingstate3" "1"
 "lightingstate4" "1"
-"static" "1"
+"shadow_casting" "1"
 }
 // entity 5
 {
-guid "{E6431D05-D8C5-11F0-B46A-EDD2D7A38DDC}"
-"classname" "misc_model"
-"model" "r8_zm_wall_buy_symbol_red_01_middle"
+guid "{FE96E496-D92F-11F0-B46A-EDD2D7A38DDC}"
+"classname" "script_model"
+"angles" "0 360 0"
+"model" "r8_zm_wall_buy_symbol_01_top"
 "modelscale" "0.5"
-"origin" "3.5 -4 60.5"
+"origin" "0 0.25 60.25"
+"targetname" "hellround_model_hide"
+"_color" "1 0 0"
+"client_server" "ServerSide"
 "lightingstate1" "1"
 "lightingstate2" "1"
 "lightingstate3" "1"
 "lightingstate4" "1"
-"static" "1"
+"shadow_casting" "1"
+}
+// entity 6
+{
+guid "{FE96E499-D92F-11F0-B46A-EDD2D7A38DDC}"
+"classname" "script_model"
+"angles" "0 360 0"
+"model" "r8_zm_wall_buy_symbol_01_middle"
+"modelscale" "0.5"
+"origin" "0 0.25 60.25"
+"targetname" "hellround_model_hide"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"shadow_casting" "1"
+}
+// entity 7
+{
+guid "{FE96E49C-D92F-11F0-B46A-EDD2D7A38DDC}"
+"classname" "script_model"
+"angles" "0 360 0"
+"model" "r8_zm_wall_buy_symbol_01"
+"modelscale" "0.5"
+"origin" "0 0.25 60.25"
+"targetname" "hellround_model_hide"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"shadow_casting" "1"
+}
+// entity 8
+{
+guid "{6EF06617-210C-11E5-8B2C-D89D67F43706}"
+"classname" "script_struct"
+"origin" "0 1.5 60"
+"target" "auto37"
+"targetname" "weapon_upgrade"
+"zombie_weapon_upgrade" "frag_grenade"
+"_color" "1 0 0"
 }
