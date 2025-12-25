@@ -279,6 +279,8 @@ function private bind_hellround_meteor_to_enter_room_of_thanks()
 function private pause_game()
 {
     level flag::set("world_is_paused");
+    level waittill("between_round_over");
+    SetRoundsPlayed(0);
 }
 
 function private clear_zombies()

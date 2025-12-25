@@ -141,7 +141,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
     - note: [audio_shared](share/raw/scripts/shared/audio_shared.csc#l73) client script uses localhost to host sounds
   - wind exploder is stuck in animation in splitscreen (sometimes)
   - perk utility script throws error (need developer 2) <= still the case ?
-- the round number shadow remains in the room of thanks
 
 # Sphynx commands cheat sheet
 

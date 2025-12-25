@@ -333,7 +333,7 @@ function private float_skulls()
 
 function private float_skull() // self == skull ent
 {
-    self endon("end_game");
+    level endon("end_game");
 
     offset = HRCOLL_SKULLS_FLOAT_DELTA;
     while(true)
@@ -361,7 +361,7 @@ function private float_rings()
 
 function private float_ring() // self == ring ent
 {
-    self endon("end_game");
+    level endon("end_game");
     
     offset = HRCOLL_RING_FLOAT_DELTA;
     while(true)
@@ -375,7 +375,7 @@ function private float_ring() // self == ring ent
 
 function private rotate_ring() // self == ring ent
 {
-    self endon("end_game");
+    level endon("end_game");
 
     angles = self.angles;
     while(true)
