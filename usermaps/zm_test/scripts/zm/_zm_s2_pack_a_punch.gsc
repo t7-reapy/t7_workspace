@@ -1,6 +1,6 @@
+#using scripts\zm\_zm_xcdylan93_utils; 
 #using scripts\codescripts\struct;
 
-#using scripts\shared\aat_shared;
 #using scripts\shared\array_shared;
 #using scripts\shared\callbacks_shared;
 #using scripts\shared\clientfield_shared;
@@ -16,7 +16,6 @@
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_equipment;
 #using scripts\zm\_zm_magicbox;
-#using scripts\zm\_zm_pack_a_punch_util;
 #using scripts\zm\_zm_score;
 #using scripts\zm\_zm_utility;
 #using scripts\zm\_zm_weapons;
@@ -35,30 +34,28 @@ REGISTER_SYSTEM_EX("zm_s2_pack_a_punch", &__init__, &__main__, undefined)
 
 function __init__()
 {
-    pack_a_punch_entities = GetEntArray("zm_s2_pack_a_punch", "targetname");
+    weapon_holder_entities = GetEntArray("zm_s2_pack_a_punch", "targetname");
 
-    if(pack_a_punch_entities.size < 1)
+    if(weapon_holder_entities.size < 1)
         return;
 
-    DEFAULT(level.s2_pack_a_punch_triggers, []);
+    DEFAULT(level.weapon_holder_triggers, []);
 
-    array::run_all(pack_a_punch_entities, &pack_a_punch_spawn_init);
+    array::run_all(weapon_holder_entities, &weapon_holder_spawn_init);
 }
 
 function __main__()
 {
-    if(!isdefined(level.s2_pack_a_punch_triggers))
+    if(!isdefined(level.weapon_holder_triggers))
         return;
 
-    array::run_all(level.s2_pack_a_punch_triggers, &flag::init, "pack_machine_in_use");
-    array::run_all(level.s2_pack_a_punch_triggers, &flag::init, "pap_offering_gun");
-    array::thread_all(level.s2_pack_a_punch_triggers, &pack_a_punch_set_cost);
-    array::thread_all(level.s2_pack_a_punch_triggers, &pack_a_punch_hint_string);
-    array::thread_all(level.s2_pack_a_punch_triggers, &pack_a_punch_weapon_upgrade);
-    array::thread_all(level.s2_pack_a_punch_triggers, &pack_a_punch_machine_trigger_think);
+    array::run_all(level.weapon_holder_triggers, &flag::init, "weapon_holder_holding");
+    array::thread_all(level.weapon_holder_triggers, &weapon_holder_set_cost);
+    array::thread_all(level.weapon_holder_triggers, &weapon_holder_hint_string);
+    array::thread_all(level.weapon_holder_triggers, &weapon_holder_think);
 }
 
-function pack_a_punch_spawn_init()
+function weapon_holder_spawn_init()
 {
     if(!isdefined(self.model))
         return;
@@ -74,28 +71,17 @@ function pack_a_punch_spawn_init()
     self.use_trigger SetCursorHint("HINT_NOICON");
     self.use_trigger.owner = self;
 
-    level.s2_pack_a_punch_triggers[level.s2_pack_a_punch_triggers.size] = self.use_trigger;
+    level.weapon_holder_triggers[level.weapon_holder_triggers.size] = self.use_trigger;
 }
 
-function pack_a_punch_set_cost()
+function weapon_holder_set_cost()
 {
-    level endon("end_game");
-
-    while(true)
-    {
-        self.cost = Int(WEAPON_HOLDER_PRICE_SET);
-        self.aat_cost = Int(WEAPON_HOLDER_PRICE_GET);
-
-        level waittill("powerup bonfire sale");
-
-        self.cost = 1000;
-        self.aat_cost = 500;
-
-        level waittill("bonfire_sale_off");
-    }
+    self.set_cost = Int(WEAPON_HOLDER_PRICE_SET);
+    self.get_cost = Int(WEAPON_HOLDER_PRICE_GET);
+    self.swap_cost = Int(WEAPON_HOLDER_PRICE_SWAP);
 }
 
-function pack_a_punch_hint_string()
+function weapon_holder_hint_string()
 {
     level endon("end_game");
 
@@ -107,7 +93,7 @@ function pack_a_punch_hint_string()
         {
             if(player IsTouching(self))
             {
-                self zm_pap_util::update_hint_string(player);
+                self update_hint_string_for_player(player);
             }
         }
         
@@ -115,140 +101,93 @@ function pack_a_punch_hint_string()
     }
 }
 
-function pack_a_punch_weapon_upgrade()
+function update_hint_string_for_player(player) // self == trigger
+{
+    weapon_limit = zm_utility::get_player_weapon_limit(player);
+    primaries = player GetWeaponsListPrimaries();
+
+    if (self flag::get("weapon_holder_holding") && isdefined(primaries) && primaries.size >= weapon_limit)
+    {
+        self SetHintStringForPlayer(player, &WEAPON_HOLDER_LOCALIZE_SWAP, self.swap_cost);
+    }
+    else if (self flag::get("weapon_holder_holding"))
+    {
+        self SetHintStringForPlayer(player, &WEAPON_HOLDER_LOCALIZE_GET, self.get_cost);
+    }
+    else
+    {
+        self SetHintStringForPlayer(player, &WEAPON_HOLDER_LOCALIZE_SET, self.set_cost);
+    }
+}
+
+function weapon_holder_think()
 {
     level endon("end_game");
 
     level flag::wait_till("power_on");
+    PRINT_WH_DEBUG("Power on!");
 
     while(true)
     {
-        self.pack_player = undefined;
-
         self waittill("trigger", player);
+        PRINT_WH_DEBUG("Player trigger!");
 
-        if(!player pack_a_punch_player_can_use_trigger(self))
+        if(!player weapon_holder_player_can_use_trigger())
         {
+            PRINT_WH_DEBUG("Player cannot use the weapon holder!");
             continue;
         }
-            
+
         current_weapon = player zm_weapons::switch_from_alt_weapon(player GetCurrentWeapon());
+        alt_weapon = player GetCurrentWeaponAltWeapon();
 
         if(!zm_weapons::is_weapon_or_base_included(current_weapon))
         {
+            PRINT_WH_DEBUG("is_weapon_or_base_included returned false!");
             continue;
         }
 
-            current_cost = self.cost;
-            player.restore_ammo = undefined;
-            player.restore_clip = undefined;
-            player.restore_stock = undefined;
-            player_restore_clip_size = undefined;
-            player.restore_max = undefined;
-            
-            weapon_supports_aat = zm_weapons::weapon_supports_aat(current_weapon);
-
-            if(weapon_supports_aat)
-            {
-                current_cost = self.aat_cost;
-                player.restore_ammo = true;
-                player.restore_clip = player GetWeaponAmmoClip(current_weapon);
-                player.restore_clip_size = current_weapon.clipSize;
-                player.restore_stock = player GetWeaponAmmoStock(current_weapon);
-                player.restore_max = current_weapon.maxAmmo;
-            }
-
+        current_cost = self get_weapon_holder_cost_for_player(player);
         if(!player zm_score::can_player_purchase(current_cost))
         {
-            self playsound("zmb_perks_packa_deny");
-
-            if(isdefined(level.pack_a_punch.custom_deny_func))
-            {
-                player [[level.pack_a_punch.custom_deny_func]]();
-            }
-            else
-            {
-                player zm_audio::create_and_play_dialog("general", "outofmoney", 0);
-            }
+            PRINT_WH_DEBUG("Player does not have the money!");
+            self playsound("zmb_trap_deny"); // door_deny zmb_trap_deny evt_perk_deny zmb_perks_packa_deny
+            player zm_audio::create_and_play_dialog("general", "outofmoney", 0);
 
             continue;
         }
         
-        self.pack_player = player;
-        self flag::set("pack_machine_in_use");
         player zm_score::minus_to_player_score(current_cost);
         player zm_audio::create_and_play_dialog("general", "pap_wait");
         self TriggerEnable(false);
 
-        upgrade_weapon = zm_weapons::get_upgrade_weapon(current_weapon, weapon_supports_aat);
-        upgrade_weapon.pap_camo_to_use = zm_weapons::get_pack_a_punch_camo_index(upgrade_weapon.pap_camo_to_use);
-        self.upgrade_weapon = upgrade_weapon;
-
-        self pack_a_punch_spawn_weapon_model(player, current_weapon, upgrade_weapon);
+        self weapon_holder_spawn_weapon_model(player, current_weapon, alt_weapon);
         
+        wait 3.0;
+
         self TriggerEnable(true);
-        self SetCursorHint("HINT_WEAPON", upgrade_weapon);
-        self flag::set("pap_offering_gun");
+        self SetCursorHint("HINT_WEAPON", current_weapon);
+        self flag::set("weapon_holder_holding");
 
-        if(isdefined(player))
-        {
-            self SetInvisibleToAll();
-            self SetVisibleToPlayer(player);
-        
-            self thread pack_a_punch_wait_for_take(player, self.upgrade_weapon, weapon_supports_aat);
-            self thread pack_a_punch_wait_for_timeout(player);
-            
-            self util::waittill_any("pap_timeout", "pap_taken", "pap_player_disconnected");
-        }
-        else
-        {
-            self pack_a_punch_wait_for_timeout(player);
-        }
-        
+        self SetInvisibleToAll();
+        self SetVisibleToPlayer(player);
+        self thread weapon_holder_wait_for_take_or_swap(current_weapon, alt_weapon);
+        self waittill("weapon_holder_taken");
+
+        self TriggerEnable(false);
         self SetCursorHint("HINT_NOICON");
-        self.upgrade_weapon = level.weaponNone;
-        self pack_a_punch_delete_weapon_model();
-        self flag::clear("pap_offering_gun");
-        self thread pack_a_punch_machine_trigger_think();
-        self.pack_player = undefined;
-        self flag::clear("pack_machine_in_use");
+        self weapon_holder_delete_weapon_model();
+        self flag::clear("weapon_holder_holding");
+        
+        wait 3.0;
+
+        self TriggerEnable(true);
     }
 }
 
-function pack_a_punch_machine_trigger_think()
-{
-    level endon("end_game");
-    self notify("pack_a_punch_trigger_think");
-    self endon("pack_a_punch_trigger_think");
-
-    while(true)
-    {
-        players = GetPlayers();
-        
-        for(i = 0; i < players.size; i++)
-        {
-            if((isdefined(self.pack_player) && self.pack_player != players[i]) || !players[i] pack_a_punch_player_can_use_trigger(self) || players[i] bgb::is_active("zm_bgb_ephemeral_enhancement"))
-            {
-                self SetInvisibleToPlayer(players[i], true);
-            }
-            else
-            {
-                self SetInvisibleToPlayer(players[i], false);
-            }        
-        }
-        
-        wait(0.1);
-    }
-}
-
-function pack_a_punch_player_can_use_trigger(trigger)
+function weapon_holder_player_can_use_trigger() // self == player
 {
     if(self laststand::player_is_in_laststand() || IS_TRUE(self.intermission) || self IsThrowingGrenade() || self IsSwitchingWeapons())
-    {
-        return false;
-    }
-
-    if(!self zm_magicbox::can_buy_weapon() || self bgb::is_enabled("zm_bgb_disorderly_combat"))
     {
         return false;
     }
@@ -259,7 +198,7 @@ function pack_a_punch_player_can_use_trigger(trigger)
     }
 
     current_weapon = self GetCurrentWeapon();
-    if(!self pack_a_punch_player_can_pack_weapon(current_weapon, trigger) && !zm_weapons::weapon_supports_aat(current_weapon))
+    if(!self weapon_holder_player_can_deposit_weapon(current_weapon))
     {
         return false;
     }
@@ -267,16 +206,30 @@ function pack_a_punch_player_can_use_trigger(trigger)
     return true;
 }
 
-function pack_a_punch_player_can_pack_weapon(weapon, trigger)
+function get_weapon_holder_cost_for_player(player) // self == trigger
+{    
+    weapon_limit = zm_utility::get_player_weapon_limit(player);
+    primaries = player GetWeaponsListPrimaries();
+
+    if (self flag::get("weapon_holder_holding") && isdefined(primaries) && primaries.size >= weapon_limit)
+    {
+        return self.swap_cost;
+    }
+    else if (self flag::get("weapon_holder_holding"))
+    {
+        return self.get_cost;
+    }
+    else
+    {
+        return self.set_cost;
+    }
+}
+
+function weapon_holder_player_can_deposit_weapon(weapon)
 {
     if(weapon.isriotshield)
     {
         return false;
-    }
-
-    if(trigger flag::get("pack_machine_in_use"))
-    {
-        return true;
     }
 
     weapon = self zm_weapons::get_nonalternate_weapon(weapon);
@@ -285,173 +238,114 @@ function pack_a_punch_player_can_pack_weapon(weapon, trigger)
         return false;
     }
 
-    if(!self zm_weapons::can_upgrade_weapon(weapon))
-    {
-        return false;
-    }
-
     return true;
 }
 
-function pack_a_punch_spawn_weapon_model(player, current_weapon, upgrade_weapon)
+function weapon_holder_spawn_weapon_model(player, current_weapon, alt_weapon, skip_animations = false) // self == trigger
 {
     level endon("end_game");
-    self endon("pap_player_disconnected");
-
+    
     weapon_model_origin = self.owner.machine GetTagOrigin("lathe_02");
     weapon_model_angles = self.owner.machine GetTagAngles("lathe_02") + (0, 180, 0);
 
+    zm_xcdylan93_utils::save_weapon_ammo_state(player, current_weapon, alt_weapon);
     player zm_weapons::weapon_take(current_weapon);
     self.owner.machine playsound("zmb_buildable_piece_add");
 
-    self.weapon_model = zm_utility::spawn_buildkit_weapon_model(player, current_weapon, undefined, weapon_model_origin, weapon_model_angles);
+    camo_index = (zm_weapons::is_weapon_upgraded(current_weapon) ? current_weapon.pap_camo_to_use : 0);
+    self.weapon_model = zm_utility::spawn_buildkit_weapon_model(player, current_weapon, camo_index, weapon_model_origin, weapon_model_angles);
 
-    dweapon = undefined;
-
-    if(current_weapon.isDualWield || upgrade_weapon.isDualWield)
+    if(current_weapon.isDualWield)
     {
-        dweapon = current_weapon;
-        
-        if(isdefined(current_weapon.dualwieldweapon) && current_weapon.dualwieldweapon != level.weaponNone)
-        {
-            dweapon = current_weapon.dualwieldweapon;
-        }
-
-        self.weapon_model_dw = zm_utility::spawn_buildkit_weapon_model(player, dweapon, undefined, self.weapon_model.origin - (3, 3, 3), self.weapon_model.angles);
+        self.weapon_model_dw = zm_utility::spawn_buildkit_weapon_model(player, current_weapon, camo_index, weapon_model_origin - (3, 3, 3), weapon_model_angles);
     }
 
-    self thread pack_a_punch_change_weapon_model(player, current_weapon, upgrade_weapon, dweapon);
+    if (skip_animations)
+    {
+        return;
+    }
 
-    self.owner.machine scene::play("zmb_pack_a_punch_01_bundle");
+    // self.owner.machine thread scene::play("zmb_pack_a_punch_01_bundle");
+    self.owner.machine PlaySound(WEAPON_HOLDER_SOUND_START);
+    self.owner.machine PlayLoopSound(WEAPON_HOLDER_SOUND_LOOP, 3.0);
+    exploder::exploder(WEAPON_HOLDER_EXPLODER);
 }
 
-function pack_a_punch_change_weapon_model(player, current_weapon, upgrade_weapon, dweapon)
+function weapon_holder_wait_for_take_or_swap(held_weapon, alt_weapon) // self == trigger
 {
     level endon("end_game");
-    self endon("pap_player_disconnected");
 
-    self.owner.machine waittill("pack_a_punch_change_weapon_model");
-
-    self.weapon_model UseBuildKitWeaponModel(player, current_weapon, upgrade_weapon.pap_camo_to_use, true);
-
-    if(isdefined(dweapon) && isdefined(self.weapon_model_dw))
+    while(true)
     {
-        self.weapon_model_dw UseBuildKitWeaponModel(player, dweapon, upgrade_weapon.pap_camo_to_use, true);
-    }
-}
-
-function pack_a_punch_delete_weapon_model()
-{
-    if(isdefined(self.weapon_model))
-    {
-        self.weapon_model Delete();
-        self.weapon_model = undefined;
-    }
-
-    if(isdefined(self.weapon_model_dw))
-    {
-        self.weapon_model_dw Delete();
-        self.weapon_model_dw = undefined;
-    }
-}
-
-function pack_a_punch_wait_for_timeout(player)
-{
-    self endon("pap_taken");
-    self endon("pap_player_disconnected");
-
-    self thread pack_a_punch_wait_for_disconnect(player);
-
-    wait(level.pack_a_punch.timeout);
-
-    self notify("pap_timeout");
-}
-
-function pack_a_punch_wait_for_disconnect(player)
-{
-    self endon("pap_taken");
-    self endon("pap_timeout");
-
-    while(isdefined(player))
-    {
-        wait(0.1);
-    }
-
-    self notify("pap_player_disconnected");
-}
-
-function pack_a_punch_wait_for_take(player, upgrade_weapon, weapon_supports_aat)
-{
-    level endon("end_game");
-    self endon("pap_timeout");
-
-    while(isdefined(player))
-    {
-        self waittill("trigger", trigger_player);
-        
-        if(IS_EQUAL(trigger_player, player))
-        {
-            current_weapon = player GetCurrentWeapon();
-
-            if(pack_a_punch_player_can_take_weapon(player, current_weapon))
-            {
-                self notify("pap_taken");
-                player notify("pap_taken");
-
-                weapon_limit = zm_utility::get_player_weapon_limit(player);
-
-                player zm_weapons::take_fallback_weapon();
-
-                primaries = player GetWeaponsListPrimaries();
-
-                if(isdefined(primaries) && primaries.size >= weapon_limit)
-                {
-                    upgrade_weapon = player zm_weapons::weapon_give(upgrade_weapon);
-                }
-                else
-                {
-                    upgrade_weapon = player zm_weapons::give_build_kit_weapon(upgrade_weapon);
-                    player GiveStartAmmo(upgrade_weapon);
-                }
-
-                player notify("weapon_give", upgrade_weapon);
-
-                if(IS_TRUE(weapon_supports_aat))
-                {
-                    player thread aat::acquire(upgrade_weapon);
-                }
-                else
-                {
-                    player thread aat::remove(upgrade_weapon);
-                }
-                
-                player SwitchToWeapon(upgrade_weapon);
-
-                if(IS_TRUE(player.restore_ammo))
-                {
-                    new_clip = player.restore_clip + (upgrade_weapon.clipSize - player.restore_clip_size);
-                    new_stock = player.restore_stock + (upgrade_weapon.maxAmmo - player.restore_max);
-                    player SetWeaponAmmoStock(upgrade_weapon, new_stock);
-                    player SetWeaponAmmoClip(upgrade_weapon, new_clip);
-                }
-
-                    player.restore_ammo = undefined;
-                    player.restore_clip = undefined;
-                    player.restore_stock = undefined;
-                    player.restore_max = undefined;
-                    player.restore_clip_size = undefined;
-                    
-                player zm_weapons::play_weapon_vo(upgrade_weapon);
-
-                return;
-            }
-        }
-
         WAIT_SERVER_FRAME;
+        self waittill("trigger", player);
+        
+        current_weapon = player GetCurrentWeapon();
+        current_alt_weapon = player GetCurrentWeaponAltWeapon();
+        if(!weapon_holder_player_can_take_weapon(player, current_weapon, held_weapon))
+        {
+            continue;
+        }
+
+        current_cost = self get_weapon_holder_cost_for_player(player);
+        if(!player zm_score::can_player_purchase(current_cost))
+        {
+            PRINT_WH_DEBUG("Player does not have the money!");
+            self playsound("zmb_trap_deny"); // door_deny zmb_trap_deny evt_perk_deny zmb_perks_packa_deny
+            player zm_audio::create_and_play_dialog("general", "outofmoney", 0);
+
+            continue;
+        }
+
+        weapon_limit = zm_utility::get_player_weapon_limit(player);
+        player zm_weapons::take_fallback_weapon();
+        primaries = player GetWeaponsListPrimaries();
+
+        new_weapon_held = false;
+        if(isdefined(primaries) && primaries.size >= weapon_limit)
+        {
+            if(!player weapon_holder_player_can_use_trigger())
+            {
+                PRINT_WH_DEBUG("Player cannot use the weapon holder!");
+                continue;
+            }
+
+            if(!zm_weapons::is_weapon_or_base_included(current_weapon))
+            {
+                PRINT_WH_DEBUG("is_weapon_or_base_included returned false!");
+                continue;
+            }
+
+            self weapon_holder_delete_weapon_model();
+            self weapon_holder_spawn_weapon_model(player, current_weapon, current_alt_weapon, true);
+
+            new_weapon_held = true;
+        }
+
+        held_weapon = player zm_weapons::give_build_kit_weapon(held_weapon); //player zm_weapons::weapon_give(held_weapon);
+        zm_xcdylan93_utils::restore_weapon_ammo_state(player, held_weapon, alt_weapon);
+        player zm_score::minus_to_player_score(current_cost);
+        player notify("weapon_give", held_weapon);
+        player SwitchToWeapon(held_weapon);
+        player zm_weapons::play_weapon_vo(held_weapon);
+
+        if (new_weapon_held)
+        {
+            held_weapon = current_weapon;
+            alt_weapon = current_alt_weapon;
+            continue; // A new weapon is in place, skip animations and flag updates/notifications.
+        }
+
+        self notify("weapon_holder_taken");
+        player notify("weapon_holder_taken");
+        self.owner.machine StopLoopSound(1.5);
+        self.owner.machine PlaySound(WEAPON_HOLDER_SOUND_STOP);
+        exploder::exploder_stop(WEAPON_HOLDER_EXPLODER);
+        break;
     }
 }
 
-function pack_a_punch_player_can_take_weapon(player, current_weapon)
+function weapon_holder_player_can_take_weapon(player, current_weapon, held_weapon)
 {
     if(!zm_utility::is_player_valid(player))
     {
@@ -488,5 +382,30 @@ function pack_a_punch_player_can_take_weapon(player, current_weapon)
         return false;
     }
 
+    foreach(weapon in player GetWeaponsListPrimaries())
+    {
+        weapon_name = zm_weapons::get_nonalternate_weapon(weapon).name;
+        if (weapon_name == held_weapon.name)
+        {
+            return false;
+        }
+    }
+
     return true;
 }
+
+function weapon_holder_delete_weapon_model() // self == trigger
+{
+    if(isdefined(self.weapon_model))
+    {
+        self.weapon_model Delete();
+        self.weapon_model = undefined;
+    }
+
+    if(isdefined(self.weapon_model_dw))
+    {
+        self.weapon_model_dw Delete();
+        self.weapon_model_dw = undefined;
+    }
+}
+
