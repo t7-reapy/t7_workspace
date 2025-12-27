@@ -79,6 +79,7 @@ function private end_game()
 function private play_video()
 {
     // Secret timed display
+    level.thanks_board thread delayed_board_model_udpate();
     level.thanks_board.code_display_trigger thread code_showup_trigger_think();
 
     // Video
@@ -117,7 +118,7 @@ function stop_video()
 
 function private video_trigger_think() // self == trigger
 {
-    self endon("end_game");
+    level endon("end_game");
 
     self waittill("trigger");
     PRINT_BOARD_DEBUG("player stepped into the trigger once");
@@ -126,13 +127,13 @@ function private video_trigger_think() // self == trigger
 
 function private video_controller_trigger_think() // self == trigger
 {
-    self endon("end_game");
+    level endon("end_game");
     self SetCursorHint("HINT_NOICON");
 
     while(true)
     {
         self SetHintString(&VIDEO_TRIGGER_STOP_LOCALIZED);
-        self waittill("trigger");
+        self util::waittill_any("trigger", VIDEO_ENDED_NOTIFY);
         PRINT_BOARD_DEBUG("video stop");
         thread stop_video();
 
@@ -143,19 +144,30 @@ function private video_controller_trigger_think() // self == trigger
     }
 }
 
-function private code_showup_trigger_think() // self == trigger
+function private delayed_board_model_udpate() // self == thanks_board
 {
-    self endon("end_game");
+    level endon("end_game");
     level endon(VIDEO_CANCEL_SECRET_DISPLAY_NOTIFY);
 
-    ensure_hud_elements_created();
-    if (!level.thanks_board.secret_code_unlocked)
+    if (!self.secret_code_unlocked)
     {
         wait CODE_SHOWUP_DELAY_BEFORE;
     }
-    level.thanks_board.secret_code_unlocked = true;
-    level.thanks_board.board_code_missing_model Hide();
-    level.thanks_board.board_code_present_model Show();
+    self.secret_code_unlocked = true;
+    self.board_code_missing_model Hide();
+    self.board_code_present_model Show();
+}
+
+function private code_showup_trigger_think() // self == trigger
+{
+    level endon("end_game");
+    level endon(VIDEO_CANCEL_SECRET_DISPLAY_NOTIFY);
+    
+    ensure_hud_elements_created();
+    while (!level.thanks_board.secret_code_unlocked)
+    {
+        WAIT_SERVER_FRAME;
+    }
 
     while(true)
     {
@@ -209,6 +221,7 @@ function private create_hidden_hud_element(alignX, alignY, horzAlign, vertAlign,
 
 function private display_secret_code(trigger) // self == player
 {
+    PRINT_BOARD_DEBUG("displaying secret code!");
     secret_code = self get_secret_code();
     self fadein_secret_in_hud(secret_code);
 }
@@ -232,11 +245,6 @@ function private get_secret_code() // self == player
 
 function private fadein_secret_in_hud(secret_code) // self == player
 {
-    if (IS_TRUE(self.is_next_to_board))
-    {
-        return;
-    }
-    self.is_next_to_board = true;
     self.secret_hud_element SetText(secret_code);
     self.secret_hud_element FadeOverTime(CODE_SHOWUP_FADING_TIME);
     self.secret_hud_element.alpha = 1;
@@ -251,12 +259,14 @@ function private hide_secret_code(trigger) // self == player
     self.waiting_to_get_away_from_board = true;
     trigger wait_for_player_exits(self);
     self.waiting_to_get_away_from_board = false;
-    self.is_next_to_board = false;
     self fadeout_secret_in_hud();
 }
 
 function private wait_for_player_exits(player) // self == trigger
 {
+    level endon("end_game");
+
+    PRINT_BOARD_DEBUG("waiting for player exit ...");
     while (player IsTouching(self))
     {
         WAIT_SERVER_FRAME;
@@ -302,6 +312,8 @@ function private print_video_subtitles()
         level.thanks_board.subtitle_hud_element = print_subtitle(subtitle);
         waitrealtime(duration);
     }
+
+    level.thanks_board.video_controller_trigger notify(VIDEO_ENDED_NOTIFY);
 }
 
 function private push_away_subtitle() // self == hud element
@@ -317,7 +329,7 @@ function private push_away_subtitle() // self == hud element
 
 function private print_subtitle(subtitle)
 {
-    hud_element = create_hidden_hud_element("center", "bottom", "center", "bottom", 0, -55, 1.5, (1.0, 1.0, 1.0));
+    hud_element = create_hidden_hud_element("center", "bottom", "center", "bottom", 0, -55, 1.25, (1.0, 1.0, 1.0));
     hud_element SetText(subtitle);
     hud_element FadeOverTime(VIDEO_SUBTITLE_FADEIN_TIME);
     hud_element MoveOverTime(VIDEO_SUBTITLE_MOVE_TIME);

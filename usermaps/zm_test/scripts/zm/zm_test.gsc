@@ -49,6 +49,9 @@
 #using scripts\zm\_zm_perk_electric_cherry;
 #using scripts\zm\_zm_perk_phdflopper;
 
+// WW2 Pack a punch
+#using scripts\zm\_zm_s2_pack_a_punch;
+
 //Powerups
 #using scripts\zm\_zm_powerup_double_points;
 #using scripts\zm\_zm_powerup_carpenter;
@@ -276,6 +279,8 @@ function private bind_hellround_meteor_to_enter_room_of_thanks()
 function private pause_game()
 {
     level flag::set("world_is_paused");
+    level waittill("between_round_over");
+    SetRoundsPlayed(0);
 }
 
 function private clear_zombies()

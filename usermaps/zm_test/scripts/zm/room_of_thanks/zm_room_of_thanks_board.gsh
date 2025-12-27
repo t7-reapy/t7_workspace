@@ -12,6 +12,7 @@
 
 #define VIDEO_CANCEL_SECRET_DISPLAY_NOTIFY "rot_stop_secret_display"
 #define VIDEO_CANCEL_SUBTITLES_NOTIFY "rot_stop_subtitles_display"
+#define VIDEO_ENDED_NOTIFY "rot_video_ended"
 #define VIDEO_TRIGGER_NAME "rot_video_trigger"
 #define VIDEO_CONTROLLER_TRIGGER_NAME "rot_video_controller"
 #define VIDEO_NAME "room_of_thanks_video"

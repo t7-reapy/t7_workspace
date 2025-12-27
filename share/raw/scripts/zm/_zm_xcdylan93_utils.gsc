@@ -123,3 +123,63 @@ function update_altweapon_camo(camo, weapon, altweapon, options)
     self EnableWeaponCycling();
     self EnableOffhandWeapons();
 }
+
+function save_weapon_ammo_state(player, weapon, altweapon)
+{
+    if (!IsPlayer(player))
+    {
+        return;
+    }
+
+    if (IsWeapon(weapon))
+    {
+        weapon.save_clip = player GetWeaponAmmoClip(weapon);
+        weapon.save_stock = player GetWeaponAmmoStock(weapon);
+
+        if (IsWeapon(weapon.dualwieldweapon) && weapon.dualwieldweapon.name != "none")
+        {
+            weapon.dualwieldweapon.save_clip = player GetWeaponAmmoClip(weapon.dualwieldweapon);
+        }
+    }
+
+    if (IsWeapon(altweapon))
+    {
+        altweapon.save_clip = player GetWeaponAmmoClip(altweapon);
+        altweapon.save_stock = player GetWeaponAmmoStock(altweapon);
+
+        if (IsWeapon(altweapon.dualwieldweapon) && altweapon.dualwieldweapon.name != "none")
+        {
+            altweapon.dualwieldweapon.save_clip = player GetWeaponAmmoClip(altweapon.dualwieldweapon);
+        }
+    }
+}
+
+function restore_weapon_ammo_state(player, weapon, altweapon)
+{
+    if (!IsPlayer(player))
+    {
+        return;
+    }
+
+    if (IsWeapon(weapon))
+    {
+        player SetWeaponAmmoClip(weapon, weapon.save_clip);
+        player SetWeaponAmmoStock(weapon, weapon.save_stock);
+
+        if (IsWeapon(weapon.dualwieldweapon) && weapon.dualwieldweapon.name != "none")
+        {
+            player SetWeaponAmmoClip(weapon.dualwieldweapon, weapon.dualwieldweapon.save_clip);
+        }
+    }
+
+    if (IsWeapon(altweapon))
+    {
+        player SetWeaponAmmoClip(altweapon, altweapon.save_clip);
+        player SetWeaponAmmoStock(altweapon, altweapon.save_stock);
+
+        if (IsWeapon(altweapon.dualwieldweapon) && altweapon.dualwieldweapon.name != "none")
+        {
+            player SetWeaponAmmoClip(altweapon.dualwieldweapon, altweapon.dualwieldweapon.save_clip);
+        }
+    }
+}
