@@ -62,9 +62,6 @@
 #using scripts\zm\_zm_powerup_nuke;
 //#using scripts\zm\_zm_powerup_weapon_minigun;
 
-// CNG
-#using scripts\zm\_hb21_madgaz_zm_weap_cng;
-
 //Traps
 #using scripts\zm\_zm_trap_electric;
 

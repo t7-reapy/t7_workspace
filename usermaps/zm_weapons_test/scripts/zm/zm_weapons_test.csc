@@ -31,9 +31,6 @@
 #using scripts\zm\_zm_powerup_insta_kill;
 #using scripts\zm\_zm_powerup_nuke;
 
-// CNG
-#using scripts\zm\_hb21_madgaz_zm_weap_cng;
-
 //Traps
 #using scripts\zm\_zm_trap_electric;
 
