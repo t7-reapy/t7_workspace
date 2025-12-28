@@ -94,6 +94,7 @@ function disable_hellround_zombies()
         zombie thread set_back_to_default_zombie();
         zombie thread zm_utility::init_zombie_run_cycle();
         zombie clientfield::set("corvus_body_fx", 0);
+        zombie notify(HRZM_BLOODBATH_NOTIFY);
     }
 }
 
@@ -102,6 +103,7 @@ function private apply_hellround_events_to_zombie() // self == zombie actor
     self set_eye_glow_to_hellround();
     self thread set_zombie_model_to_hellround();
     self clientfield::set("corvus_body_fx", 1);
+    self thread bloodbath_on_death();
 
     if (HRZM_ZOMBIE_RUN_STATE_ENABLE)
     {
@@ -111,6 +113,16 @@ function private apply_hellround_events_to_zombie() // self == zombie actor
     if (isdefined(level.hellround_zombie_callback))
     {
         self [[ level.hellround_zombie_callback ]]();
+    }
+}
+
+function private bloodbath_on_death()
+{
+    self endon(HRZM_BLOODBATH_NOTIFY);
+    self waittill("death");
+    if (isdefined(self))
+    {
+        self thread zombie_utility::zombie_gut_explosion();
     }
 }
 
