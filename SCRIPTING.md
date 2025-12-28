@@ -71,7 +71,7 @@ At least the context ringoff_plr does affect gun sound. Important! context "wate
 
 ### VS Code searching
 
-CoD mod files extensions: `*csc,*.gsc,*.gsh,*.szc,*.zpkg,*.zone,*csv,*gdt,*.map,*.str`
+CoD mod files extensions: `*.csc,*.gsc,*.gsh,*.szc,*.zpkg,*.zone,*.csv,*.gdt,*.map,*.str,*.lua`
 
 ## Clientfield
 

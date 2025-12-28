@@ -123,7 +123,7 @@ CoD.H1Notification.new = function ( menu, controller )
 	self.text:setLeftRight( true, true, 0, 0 )
 	self.text:setTopBottom( true, false, 537 + 10, 603 - 10 )
 	self.text:setText( Engine.Localize( "" ) )
-	self.text:setTTF( "fonts/defaultbold.otf" )
+	self.text:setTTF( "fonts/defaultbold.ttf" )
 	self.text:setScale( 0.5 )
 	self:addElement( self.text )
 	
