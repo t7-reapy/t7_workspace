@@ -31,6 +31,7 @@
 
 // Custom UI
 #using scripts\zm\_zm_h1_hud;
+#using scripts\zm\_typewriter;
 
 //Perks
 #using scripts\zm\_zm_pack_a_punch;
@@ -115,6 +116,7 @@ function main()
     thread watch_power_state();
     thread power_on_sfx_override();
     thread change_powerups_color();
+    thread mission_briefing();
     thread prepare_end_game();
     
     callback::on_connect(&disable_hitmarkers);
@@ -166,6 +168,19 @@ function private power_on_sfx_override()
     {
         player PlaySound("power_on_event");
     }
+}
+
+function private mission_briefing()
+{
+    level flag::wait_till("initial_blackscreen_passed");
+
+    // A bit of delay before typing
+    wait 5;
+
+    typewriter::type(
+        "Date: December 20th, 2025",
+        "Location: Grenoble - France",
+        "Mission Objective: ^1Survive");
 }
 
 /* region callbacks */

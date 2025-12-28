@@ -144,6 +144,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
   - perk utility script throws error (need developer 2) <= still the case ?
 - minigun timer in HUD
 - shredder is too powerful: speed, upgrade too much damage, no self explosion damage
+- shredder climbing sound is triggering the initial pickup sound
 
 # Sphynx commands cheat sheet
 
