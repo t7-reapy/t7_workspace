@@ -32,6 +32,7 @@ function init()
 function private main()
 {
     clientfield::register("world", HRZM_ZOMBIE_EYE_GLOW_CF, VERSION_SHIP, 1, "int");
+	clientfield::register("actor", "corvus_body_fx", VERSION_SHIP, 1, "int");
     array::run_all(GetSpawnerArray(), &spawner::add_spawn_function, &zombie_spawn_hellround_logic);
 }
 
@@ -92,6 +93,7 @@ function disable_hellround_zombies()
         zombie set_back_to_default_eye_glow();
         zombie thread set_back_to_default_zombie();
         zombie thread zm_utility::init_zombie_run_cycle();
+        zombie clientfield::set("corvus_body_fx", 0);
     }
 }
 
@@ -99,6 +101,7 @@ function private apply_hellround_events_to_zombie() // self == zombie actor
 {
     self set_eye_glow_to_hellround();
     self thread set_zombie_model_to_hellround();
+    self clientfield::set("corvus_body_fx", 1);
 
     if (HRZM_ZOMBIE_RUN_STATE_ENABLE)
     {
