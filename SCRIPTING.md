@@ -2,7 +2,7 @@
 
 In this document, there will be tips and stuff around my investigations and discoveries around treyarch scripts (... or community scripts). I think this effort is worth it considering me starting from scratch, for a later me or newcomer. I won't cover the very basics of programming of course, but I will cover specific stuff about the scripts I read and what is worth to note (to re-use, to overwrite, or to understand).
 
-## Sound format
+## Sound/Audio format
 
 - Wav file
 - 48000 Hz

@@ -113,6 +113,7 @@ function main()
     thread setup_weapons();
     thread setup_players_vox();
     thread watch_power_state();
+    thread power_on_sfx_override();
     thread change_powerups_color();
     thread prepare_end_game();
     
@@ -154,6 +155,16 @@ function private watch_power_state()
     if (!zm_hellround::is_hellround_running())
     {
         util::set_lighting_state(level.power_on_lightstate);
+    }
+}
+
+function private power_on_sfx_override()
+{
+    master_switch = GetEnt("use_master_switch", "targetname");
+    master_switch waittill("trigger");
+    foreach (player in GetPlayers())
+    {
+        player PlaySound("power_on_event");
     }
 }
 
