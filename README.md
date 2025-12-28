@@ -142,6 +142,8 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
     - note: [audio_shared](share/raw/scripts/shared/audio_shared.csc#l73) client script uses localhost to host sounds
   - wind exploder is stuck in animation in splitscreen (sometimes)
   - perk utility script throws error (need developer 2) <= still the case ?
+- minigun timer in HUD
+- shredder is too powerful: speed, upgrade too much damage, no self explosion damage
 
 # Sphynx commands cheat sheet
 

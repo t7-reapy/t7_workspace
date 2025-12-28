@@ -213,8 +213,8 @@ function private on_player_damage() // self == player
             self PlayLocalSound(PLAYER_NEAR_DEATH_SOUND);
             while(self.health <= 30 && IsAlive(self) && !self laststand::player_is_in_laststand())
             {
-                Earthquake(0.15, 0.1, self.origin, 32);
-                wait 0.1;
+                ScreenShake(self.origin, 3, 3, 3, 2, 1, 1, 25000, 1, 1, 1, 1, self);
+                wait 1.0;
             }
         }
     }
