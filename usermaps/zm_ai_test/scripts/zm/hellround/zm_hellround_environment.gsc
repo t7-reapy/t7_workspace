@@ -211,12 +211,13 @@ function private rotate_sky(b_enable)
     if (!b_enable)
     {
         level notify("stop_rotate_sky");
-        setDvar("r_skyrotation", 0);
+        SetDvar("r_skyrotation", 0.0);
         return;
     }
 
+    level notify("stop_rotate_sky");
     level endon("stop_rotate_sky");
-    degree = 0;
+    degree = GetDvarFloat("r_skyrotation", 0.0);
     while(true)
     {
         degree += HRENV_SKY_ROTATION_PER_FRAME;
@@ -224,7 +225,7 @@ function private rotate_sky(b_enable)
         {
             degree -= 359.9;
         }
-        setDvar("r_skyrotation", degree);
+        SetDvar("r_skyrotation", degree);
         WAIT_SERVER_FRAME;
     }
 }
