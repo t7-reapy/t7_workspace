@@ -180,6 +180,7 @@ function private end_game()
 function private elevator_think() // self == elevator
 {
     self endon("kill_elevator_think");
+    level flag::wait_till("initial_blackscreen_passed");
     
     if (self.is_bottom_floor)
     {
@@ -204,7 +205,6 @@ function private elevator_think() // self == elevator
     }
     else
     {
-        level flag::wait_till("initial_blackscreen_passed");
         self elevator_enter();
         self thread elevator_travel_callbacks();
 
