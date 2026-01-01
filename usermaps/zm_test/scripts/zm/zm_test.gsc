@@ -109,6 +109,7 @@ function main()
     level thread zm_animated_switch::MasterSwitchInit();
     zm_weather::play();
     
+    thread player_knuckle_crack_on_start();
     thread setup_playable_zones();
     thread remove_players_names();
     thread setup_weapons();
@@ -146,6 +147,45 @@ function private end_game()
     }
 }
 
+function private player_knuckle_crack_on_start()
+{
+    level flag::wait_till("all_players_connected");
+    while (!AreTexturesLoaded())
+    {
+        WAIT_SERVER_FRAME;
+    }
+    wait 5.0;
+
+    knuckle_crack_players();
+}
+
+function private knuckle_crack_players()
+{
+    foreach(player in GetPlayers())
+    {
+        player thread knuckle_crack();
+    }
+}
+
+function private knuckle_crack() // self == player
+{
+    while(self.sessionstate != "playing")
+    {
+        WAIT_SERVER_FRAME;
+    }
+
+    hands = GetWeapon("zombie_knuckle_crack");
+
+    self DisableWeaponCycling();
+    self GiveWeapon(hands);
+    self SwitchToWeapon(hands);
+
+    wait(2.2);
+
+    self takeWeapon(hands);
+    self EnableWeaponCycling();
+}
+
 function private watch_power_state()
 {
     level.power_on_lightstate = undefined;
@@ -180,7 +220,8 @@ function private mission_briefing()
     typewriter::type(
         "Date: December 20th, 2025",
         "Location: Grenoble - France",
-        "Mission Objective: ^1Survive");
+        "Mission Objective: ^1Survive",
+        "Secondary Objective: Turn on power");
 }
 
 /* region callbacks */
@@ -339,8 +380,10 @@ function private bind_room_of_thanks_callbacks()
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&remove_ui);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&player_invulnerability);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&change_player_skins);
+    zm_room_of_thanks::add_enter_room_of_thanks_callback(&type_room_of_thanks_briefing);
 
     // Exit room of thanks
+    zm_room_of_thanks::add_exit_room_of_thanks_callback(&knuckle_crack_players);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&transition_screen);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&set_lighting_state_normal);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&restore_ui);
@@ -390,6 +433,15 @@ function private change_player_skins()
         // Here index 2 is for DevRaw skins
         player SetCharacterBodyStyle(2);
     }
+}
+
+function private type_room_of_thanks_briefing()
+{
+    typewriter::type(
+        "Date: ?? ??, ????",
+        "Location: ?? - ??",
+        "Mission Objective: Find an exit",
+        "Secondary Objective: Check the area");
 }
 
 function private transition_screen()
