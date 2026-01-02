@@ -4,7 +4,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{B1F54F1D-D92E-11F0-B46A-EDD2D7A38DDC}"
+guid "{1237B7C1-E6FB-11F0-B477-956DE7EDD203}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -35,26 +35,6 @@ guid "{B1F54F1D-D92E-11F0-B46A-EDD2D7A38DDC}"
  ( 199.75 -93 56 ) ( 193.75 -93 56 ) ( 193.75 -93 40 ) traverse 16 16 200.75 4 0 0 lightmap_gray 16384 16384 200.75 98 0 0
 }
 // brush 1
- {
-  guid "{A0EBCEFF-D8C4-11F0-B46A-EDD2D7A38DDC}"
-  mesh
-  {
-  contents nonColliding;
-  toolFlags;
-   t8_bowie_knife_wall_chalk
-   lightmap_gray
-   2 2 0 8
-   (
-	v 191.5 -89.5 49.25 t 0 0 -5.5625 -3.0625
-	v 191.5 -89.5 70 t 0 -1024 -5.5625 -4.3125
-   )
-   (
-	v 191.5 -127.5 49.25 t 1024 0 -8 -3.0625
-	v 191.5 -127.5 70 t 1024 -1024 -8 -4.3125
-   )
-  }
- }
-// brush 2
  {
   guid "{274CE227-D8C5-11F0-B46A-EDD2D7A38DDC}"
   mesh
@@ -197,4 +177,52 @@ guid "{B1F54F2E-D92E-11F0-B46A-EDD2D7A38DDC}"
 "lightingstate4" "1"
 "modelscale" "1"
 "shadow_casting" "1"
+}
+// entity 9
+{
+guid "{5BC6F379-E6F6-11F0-B477-956DE7EDD203}"
+"classname" "script_brushmodel"
+"lightingstate1" "0"
+"lightingstate2" "0"
+"lightingstate3" "0"
+"script_noteworthy" "clip"
+"shadow_casting" "0"
+"targetname" "hellround_clip_hide"
+"_color" "0 0.5 0.8"
+"lightingstate4" "1"
+// brush 0
+{
+ guid "{5BC6F378-E6F6-11F0-B477-956DE7EDD203}"
+  contents detail;
+ ( -331 -995 49.25 ) ( -304 -965 49.25 ) ( -304 -941 49.25 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -326 -948 70 ) ( -353 -978 70 ) ( -366 -978 70 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 293 -89.5 2557 ) ( 301 -89.5 2557 ) ( 293 -89.5 2589 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 199.5 -30 2566.25 ) ( 199.5 -46 2566.25 ) ( 199.5 -30 2598.25 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 191.5 -158.75 73.5 ) ( 191.5 -134.75 73.5 ) ( 191.5 -134.75 105.5 ) t8_bowie_knife_wall_chalk -38 20.75 -13.5 13 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 259 -127.5 73 ) ( 219 -127.5 73 ) ( 219 -127.5 105 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 10
+{
+guid "{9C93113D-E6F8-11F0-B477-956DE7EDD203}"
+"classname" "script_brushmodel"
+"lightingstate4" "0"
+"script_noteworthy" "clip"
+"shadow_casting" "0"
+"targetname" "hellround_clip_show"
+"_color" "0 0.5 0.8"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+// brush 0
+{
+ guid "{9C93113C-E6F8-11F0-B477-956DE7EDD203}"
+  contents detail;
+ ( -331 -995 49.25 ) ( -304 -965 49.25 ) ( -304 -941 49.25 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -326 -948 70 ) ( -353 -978 70 ) ( -366 -978 70 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 293 -89.5 2557 ) ( 301 -89.5 2557 ) ( 293 -89.5 2589 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 199.5 -30 2566.25 ) ( 199.5 -46 2566.25 ) ( 199.5 -30 2598.25 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 191.5 -158.75 73.5 ) ( 191.5 -134.75 73.5 ) ( 191.5 -134.75 105.5 ) t8_bowie_knife_wall_chalk_hr -38 20.75 -13.5 13 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 259 -127.5 73 ) ( 219 -127.5 73 ) ( 219 -127.5 105 ) caulk 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
 }
