@@ -168,7 +168,7 @@ function private show_hellround_collectors(n_iteration)
 function private is_collector_iteration(n_iteration)
 {
     return zm_hellround_shared::is_hellround_running() 
-        && n_iteration != HELLROUND_BAD_FLAG_INDEX 
+        && n_iteration != HELLROUND_BAD_ITERATION 
         && n_iteration != HRCOLL_DISABLED;
 }
 

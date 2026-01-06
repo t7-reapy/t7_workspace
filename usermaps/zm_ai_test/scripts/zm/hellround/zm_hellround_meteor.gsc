@@ -97,6 +97,11 @@ function hellround_meteor_logic(skip_meteor_animation = false) // self == player
         return;
     }
     level.hellround_meteor.meteor_has_fallen = true;
+    
+    if (!skip_meteor_animation)
+    {
+        wait HRMETEOR_TIME_BEFORE_SIRENS;
+    }
     level clientfield::set(HRMETEOR_CLIENT_FIELD, (skip_meteor_animation ? HRMETEOR_CLIENT_FIELD_FALLDOWN_SKIP : HRMETEOR_CLIENT_FIELD_FALLDOWN));
 
     if (!skip_meteor_animation)

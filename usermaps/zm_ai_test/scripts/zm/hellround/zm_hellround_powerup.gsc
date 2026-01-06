@@ -70,7 +70,9 @@ function private give_hellround_minigun() // self == player
 function private is_powerup_active()
 {
     iteration = zm_hellround_shared::get_current_iteration();
-    return iteration > 0 && iteration <= 3 && zm_hellround_shared::is_hellround_running();
+    return iteration > 0 
+        && iteration != HELLROUND_BAD_ITERATION 
+        && zm_hellround_shared::is_hellround_running();
 }
 
 /* region laststand */
@@ -216,7 +218,9 @@ function private should_drop_hellround_powerup()
 
     return minimum_round_reached 
         && drop_random_percent 
-        && current_iteration > 0 && current_iteration <= 3;
+        && !zm_hellround_shared::is_last_iteration_completed()
+        && current_iteration > 0 
+        && current_iteration != HELLROUND_BAD_ITERATION;
 }
 
 function private change_powerup_model(powerup_name, model_name)

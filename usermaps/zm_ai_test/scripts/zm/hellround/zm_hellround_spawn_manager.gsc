@@ -315,7 +315,7 @@ function private hellround_start_spawns()
         case 3:
             thread iteration_3_spawns(spawn_flag);
             break;
-        case HELLROUND_BAD_FLAG_INDEX:
+        case HELLROUND_BAD_ITERATION:
             thread iteration_bad_spawns();
             break;
         default:
@@ -386,8 +386,15 @@ function private hellround_update_iteration(is_bad_version = false)
         PRINT_HR_DEBUG("Hellrounds abolished. Not progressing.");
         return;
     }
+
+    current_iteration = level.hellround_spawn_manager.current_iteration;
+    if ((current_iteration + 1) == HELLROUND_BAD_ITERATION && !is_bad_version)
+    {
+        PRINT_HR_DEBUG("Can not progress to bad iteration without explicitely asking for it");
+        return;
+    }
     
-    level.hellround_spawn_manager.current_iteration = (is_bad_version ? HELLROUND_BAD_FLAG_INDEX : level.hellround_spawn_manager.current_iteration + 1);
+    level.hellround_spawn_manager.current_iteration = (is_bad_version ? HELLROUND_BAD_ITERATION : current_iteration + 1);
 }
 
 function private iteration_0_spawns(spawn_listen_flag) 
