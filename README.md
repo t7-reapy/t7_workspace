@@ -134,7 +134,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 ## ZM_TEST
 
 - Errors that I can't do much about:
-  - 64 buffer limit for postfx shader array. (gives error for the first few iterations, then disappear, but comes back when parasites join)
   - When AI is killed sometime it gives pathing error, also happens in some areas...
   - umbra bug when jumbing in north exterior corridor
 - Splitscreen bugs:
