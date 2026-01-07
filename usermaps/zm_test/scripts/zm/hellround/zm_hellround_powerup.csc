@@ -1,5 +1,9 @@
 #using scripts\_NSZ\nsz_powerup_empty_bottle;
 
+// Sword powerup
+#using scripts\zm\sword_powerup;
+#using scripts\zm\_glaive;
+
 #using scripts\shared\system_shared;
 #insert scripts\shared\shared.gsh;
 

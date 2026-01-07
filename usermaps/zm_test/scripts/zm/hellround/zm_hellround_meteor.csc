@@ -35,7 +35,8 @@ function hellround_meteor(n_client_num, _oldVal, n_new_val, _bNewEnt, _bInitialS
             thread show_meteor_volumes(false);
             break;
         case HRMETEOR_CLIENT_FIELD_FALLDOWN:
-            thread play_siren_sound(n_client_num);
+            waitrealtime(HRMETEOR_TIME_BEFORE_SIRENS);
+            thread play_sirens_sound(n_client_num);
             waitrealtime(HRMETEOR_TIME_BEFORE_METEORS);
             thread play_meteor_sounds(n_client_num);
             waitrealtime(HRMETEOR_EXPLODER_TIME);
@@ -80,7 +81,7 @@ function private show_meteor_volumes(b_show)
 /* endregion */
 /* region sounds */
 
-function private play_siren_sound(n_client_num)
+function private play_sirens_sound(n_client_num)
 {
     if (!IsSplitScreen() || IsSplitScreenHost(n_client_num))
     {

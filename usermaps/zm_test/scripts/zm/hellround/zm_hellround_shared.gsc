@@ -41,3 +41,9 @@ function is_last_iteration_completed()
 {
     return level.hellround_spawn_manager.iterations_completed;
 }
+
+function is_bad_iteration_survived()
+{
+    return get_current_iteration() == HELLROUND_BAD_ITERATION 
+        && !is_hellround_running();
+}

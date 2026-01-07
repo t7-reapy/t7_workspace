@@ -11,4 +11,8 @@
 #define HRZM_ZOMBIE_EYE_GLOW_HELLROUND "zombie/fx_glow_eye_white"
 #define HRZM_ZOMBIE_EYE_GLOW_NORMAL "zombie/fx_glow_eye_blue"
 
+#define HRZM_ZOMBIE_BLOODBATH_CF "corvus_body_fx"
+#define HRZM_ZOMBIE_BLOODBATH_FX "zombie/fx_keeper_death_zod_zmb"
+#define HRZM_ZOMBIE_BLOODBATH_DEFAULT_FX "zombie/fx_blood_torso_explo_lg_zmb"
+
 #define HRZM_BLOODBATH_NOTIFY "bloodbath_notify"

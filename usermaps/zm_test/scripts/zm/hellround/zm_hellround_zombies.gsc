@@ -32,7 +32,7 @@ function init()
 function private main()
 {
     clientfield::register("world", HRZM_ZOMBIE_EYE_GLOW_CF, VERSION_SHIP, 1, "int");
-	clientfield::register("actor", "corvus_body_fx", VERSION_SHIP, 1, "int");
+	clientfield::register("actor", HRZM_ZOMBIE_BLOODBATH_CF, VERSION_SHIP, 1, "int");
     array::run_all(GetSpawnerArray(), &spawner::add_spawn_function, &zombie_spawn_hellround_logic);
 }
 
@@ -93,8 +93,7 @@ function disable_hellround_zombies()
         zombie set_back_to_default_eye_glow();
         zombie thread set_back_to_default_zombie();
         zombie thread zm_utility::init_zombie_run_cycle();
-        zombie clientfield::set("corvus_body_fx", 0);
-        zombie notify(HRZM_BLOODBATH_NOTIFY);
+        zombie enable_zombie_bloodbath(false);
     }
 }
 
@@ -102,8 +101,7 @@ function private apply_hellround_events_to_zombie() // self == zombie actor
 {
     self set_eye_glow_to_hellround();
     self thread set_zombie_model_to_hellround();
-    self clientfield::set("corvus_body_fx", 1);
-    self thread bloodbath_on_death();
+    self enable_zombie_bloodbath(true);
 
     if (HRZM_ZOMBIE_RUN_STATE_ENABLE)
     {
@@ -116,6 +114,22 @@ function private apply_hellround_events_to_zombie() // self == zombie actor
     }
 }
 
+function private enable_zombie_bloodbath(is_enabled) // self == zombie actor
+{
+    is_enabled = IS_TRUE(is_enabled);
+    level._effect["zombie_guts_explosion"] = (is_enabled ? HRZM_ZOMBIE_BLOODBATH_FX : HRZM_ZOMBIE_BLOODBATH_DEFAULT_FX);
+    self clientfield::set(HRZM_ZOMBIE_BLOODBATH_CF, is_enabled);
+
+    if (!is_enabled)
+    {
+        self notify(HRZM_BLOODBATH_NOTIFY);
+    }
+    else
+    {
+        self thread bloodbath_on_death();
+    }
+}
+
 function private bloodbath_on_death()
 {
     self endon(HRZM_BLOODBATH_NOTIFY);
@@ -123,6 +137,7 @@ function private bloodbath_on_death()
     if (isdefined(self))
     {
         self thread zombie_utility::zombie_gut_explosion();
+	    self clientfield::set("zombie_gut_explosion", 1);
     }
 }
 
