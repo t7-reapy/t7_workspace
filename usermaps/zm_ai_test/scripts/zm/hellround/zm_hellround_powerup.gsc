@@ -7,6 +7,10 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\shared\system_shared;
 
+// Sword powerup
+#using scripts\zm\sword_powerup;
+#using scripts\zm\_glaive;
+
 #insert scripts\shared\shared.gsh;
 
 #using scripts\zm\hellround\zm_hellround_shared;
@@ -40,7 +44,8 @@ function private main()
     level.zombie_powerups["full_ammo"].func_should_drop_with_regular_powerups = &func_should_drop_full_ammo_powerup;
     level.zombie_powerups["empty_bottle"].func_should_drop_with_regular_powerups = &func_should_drop_empty_bottle_powerup;
     //level.zombie_powerups["ww_grenade"].func_should_drop_with_regular_powerups = &func_should_drop_widows_wine_powerup;
-
+    level.zombie_powerups["sword_powerup"].func_should_drop_with_regular_powerups = &func_should_drop_sword_powerup;
+    
     change_powerup_model("minigun", HRPWRUP_MODEL);
     change_powerup_weapon("minigun", HRPWRUP_WEAPON);
     change_powerup_weapon_timeout_logic("minigun", &lose_minigun);
@@ -162,6 +167,11 @@ function private func_should_drop_widows_wine_powerup()
     return self func_should_drop_powerup("ww_grenade");
 }
 
+function private func_should_drop_sword_powerup()
+{
+    return self func_should_drop_powerup("sword_powerup");
+}
+
 /* endregion */
 
 function private func_should_drop_powerup(power_up_name)
@@ -181,14 +191,13 @@ function private func_should_drop_powerup(power_up_name)
     
     PRINT_HR_DEBUG("Checking if powerup " + power_up_name + " should drop.");
 
-    if (power_up_name == "minigun" && should_drop_hellround_powerup())
-    {
-        return true;
-    }
-
     // Default behavior for other powerups
     switch (power_up_name)
     {
+        case "minigun":
+            return should_drop_hellround_powerup();
+        case "sword_powerup":
+            return should_drop_sword_powerup();
         case "nuke":
         case "insta_kill":
         case "double_points":
@@ -221,6 +230,11 @@ function private should_drop_hellround_powerup()
         && !zm_hellround_shared::is_last_iteration_completed()
         && current_iteration > 0 
         && current_iteration != HELLROUND_BAD_ITERATION;
+}
+
+function private should_drop_sword_powerup()
+{
+    return zm_hellround_shared::is_bad_iteration_survived();
 }
 
 function private change_powerup_model(powerup_name, model_name)
