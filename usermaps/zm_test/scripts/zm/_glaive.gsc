@@ -489,6 +489,11 @@ function go_back_on_navvolume()
 			{
 				self util::waittill_any( "goal", "near_goal" );
 			}
+			else
+			{
+				//fallback: if SetVehGoalPos fails, teleport to the best nav point
+				self last_resort_fallback( self.current_pathto_pos );
+			}
 			
 			self SetNearGoalNotifyDist( GLAIVE_NEAR_GOAL_DIST );
 		}
@@ -624,7 +629,7 @@ function go_to_near_owner()
 		{
 			queryResult = PositionQuery_Source_Navigation( searchCenter, 0, GLAIVE_MOVE_DIST_MAX + GLAIVE_FOLLOW_DIST, GLAIVE_MOVE_DIST_HEIGHT * 0.5, GLAIVE_RADIUS * 0.6, self );
 	
-			foundPath = false;
+			foundpath = false;
 	
 			foreach ( point in queryResult.data )
 			{	
@@ -647,8 +652,18 @@ function go_to_near_owner()
 			if( !foundpath )
 			{
 				self.current_pathto_pos = searchCenter;
-				self SetVehGoalPos( self.current_pathto_pos, true, true );
+				foundpath = self SetVehGoalPos( self.current_pathto_pos, true, true );
+				if( !foundpath )
+				{
+					//last resort: if all pathfinding fails, teleport near owner
+					self last_resort_fallback( searchCenter );
+				}
 			}
+		}
+		else if( !IsDefined( searchCenter ) )
+		{
+			//fallback if no nav volume found, teleport to owner position offset
+			self last_resort_fallback( self.owner.origin + ( 0, 0, GLAIVE_FOLLOW_DIST ) );
 		}
 		
 		wait 1;
@@ -714,6 +729,12 @@ function go_to_owner()
 					break;
 				}
 			}
+			
+			//if still no path found, use fallback teleport to first query result
+			if( !foundpath && IsDefined( queryResult.data ) && queryResult.data.size > 0 )
+			{
+				self last_resort_fallback( queryResult.data[0].origin );
+			}
 		}
 
 		wait 1;
@@ -762,4 +783,15 @@ function glaive_AllowFriendlyFireDamage( eInflictor, eAttacker, sMeansOfDeath, w
 function glaive_callback_damage( eInflictor, eAttacker, iDamage, iDFlags, sMeansOfDeath, weapon, vPoint, vDir, sHitLoc, vDamageOrigin, psOffsetTime, damageFromUnderneath, modelIndex, partName, vSurfaceNormal )
 {
 	return 1;
+}
+
+function last_resort_fallback(origin) // self == ai vehicle
+{
+	if (!isdefined(self))
+	{
+		return;
+	}
+
+	self SetOrigin(origin);
+	self.origin = origin;
 }
