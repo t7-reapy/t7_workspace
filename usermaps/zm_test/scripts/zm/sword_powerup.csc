@@ -8,11 +8,10 @@
 #insert scripts\zm\_zm_powerups.gsh;
 #insert scripts\zm\_zm_utility.gsh;
 
-
-REGISTER_SYSTEM( "sword_powerup", &__init__, undefined )
+REGISTER_SYSTEM("sword_powerup", &__init__, undefined)
 	
 function __init__()
 {
-	zm_powerups::include_zombie_powerup( "sword_powerup" );
-	zm_powerups::add_zombie_powerup( "sword_powerup" );
+	zm_powerups::include_zombie_powerup("sword_powerup");
+	zm_powerups::add_zombie_powerup("sword_powerup", "powerup_sword_powerup");
 }

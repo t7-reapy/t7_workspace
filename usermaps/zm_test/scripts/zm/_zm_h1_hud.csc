@@ -28,6 +28,7 @@ function __init__()
     clientfield::register( "clientuimodel", "powerup_double_points.time", VERSION_SHIP, 8, "int", undefined, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT );
     clientfield::register( "clientuimodel", "powerup_fire_sale.time", VERSION_SHIP, 8, "int", undefined, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT );
     clientfield::register( "clientuimodel", "powerup_mini_gun.time", VERSION_SHIP, 8, "int", undefined, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT );
+    clientfield::register( "clientuimodel", "powerup_sword_powerup.time", VERSION_SHIP, 8, "int", undefined, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT );
 
     LuiLoad( "ui.uieditor.menus.hud.H1Hud_zm_factory" );
 }

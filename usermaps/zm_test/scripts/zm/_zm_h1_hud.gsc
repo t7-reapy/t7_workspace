@@ -25,6 +25,8 @@
 #precache( "string", "ZOMBIE CRITICAL KILL" );
 #precache( "string", "ZOMBIE MELEE KILL" );
 
+#define TIMED_POWERUPS array("powerup_instant_kill", "powerup_double_points", "powerup_fire_sale", "powerup_mini_gun", "powerup_sword_powerup")
+
 REGISTER_SYSTEM_EX( "zm_h1_hud", &__init__, &__main__, undefined )
 
 function __init__()
@@ -36,10 +38,10 @@ function __init__()
 		clientfield::register( "world", "h1_shield_health_" + i, VERSION_SHIP, 7, "float" );
 	}
 
-	clientfield::register( "clientuimodel", "powerup_instant_kill.time", VERSION_SHIP, 8, "int" );
-	clientfield::register( "clientuimodel", "powerup_double_points.time", VERSION_SHIP, 8, "int" );
-	clientfield::register( "clientuimodel", "powerup_fire_sale.time", VERSION_SHIP, 8, "int" );
-	clientfield::register( "clientuimodel", "powerup_mini_gun.time", VERSION_SHIP, 8, "int" );
+	foreach(clientfield in TIMED_POWERUPS)
+	{
+		clientfield::register( "clientuimodel", clientfield + ".time", VERSION_SHIP, 8, "int" );
+	}
 
 	zm::register_zombie_damage_override_callback( &zombie_damage_override_callback );
 }
@@ -156,7 +158,7 @@ function ui_powerup_monitor()
     self endon( "disconnect" );
     self endon( "spawned_player" );
 
-	powerup_cfs = array( "powerup_instant_kill", "powerup_double_points", "powerup_fire_sale", "powerup_mini_gun" );
+	powerup_cfs = TIMED_POWERUPS;
 
 	while( true )
 	{
