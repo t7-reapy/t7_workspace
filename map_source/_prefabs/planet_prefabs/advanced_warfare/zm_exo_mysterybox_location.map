@@ -1,0 +1,74 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{B3A96788-3064-11EA-82C5-B42E99937ADA}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{76593BCA-3191-11EA-82C6-B42E99937ADA}"
+ ( 16 28 0 ) ( -16 28 0 ) ( -16 -28 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -20 -28 120 ) ( -20 28 120 ) ( 12 28 120 ) clip 64 64 -4 0 0 0 lightmap_gray 16384 16384 -4 0 0 0
+ ( -16 -32 44 ) ( 16 -32 44 ) ( 16 -32 32 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 18 -28 44 ) ( 18 28 44 ) ( 18 28 32 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 16 32 44 ) ( -16 32 44 ) ( -16 32 32 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -20 28 44 ) ( -20 -28 44 ) ( -20 -28 32 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 1
+{
+guid "{1C4E146A-3064-11EA-82C5-B42E99937ADA}"
+"classname" "misc_model"
+"model" "dlc_weapon_mystery_box_01_static"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 2
+{
+guid "{1C4E1470-3064-11EA-82C5-B42E99937ADA}"
+"classname" "script_model"
+"model" "dlc_weapon_mystery_box_01"
+"targetname" "auto66"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 3
+{
+guid "{32E14E12-3064-11EA-82C5-B42E99937ADA}"
+"classname" "script_struct"
+"angles" "0 90 0"
+"model" "wpn_t7_smg_ap9_world"
+"origin" "4 -4 38"
+"target" "auto66"
+"targetname" "aw_exo_mysterybox_location"
+"_color" "1 0 0"
+}
