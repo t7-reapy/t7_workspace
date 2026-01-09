@@ -1,0 +1,115 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{76C727D8-7A4C-11EF-A89B-6C5D3A0AF892}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"fogtime" "1"
+"fsi" "zm_factory"
+"lightingquality" "1000"
+"maxlightgridcolors" "32000"
+"newsun" "1"
+"skyboxmodel" "skybox_zm_factory"
+"wsi" "zm_factory"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{56298A0E-798B-11EF-A899-6C5D3A0AF892}"
+ ( -32 26 0 ) ( -50 26 0 ) ( -50 -8 0 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -58 -16 128 ) ( -58 18 128 ) ( -40 18 128 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 -8 8 0 0
+ ( -46 -26 24 ) ( -28 -26 24 ) ( -28 -26 8 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 4 0 0 0
+ ( 50 -20 24 ) ( 50 14 24 ) ( 50 14 8 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 -12 0 0 0
+ ( -32 26 24 ) ( -50 26 24 ) ( -50 26 8 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -50 26 24 ) ( -50 -8 24 ) ( -50 -8 8 ) clip 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 1
+{
+guid "{F0783F42-D481-4EB0-99F2-82196CE8C36D}"
+"classname" "zbarrier_s2_magicbox"
+"angles" "0 180 0"
+"barrieranimtime" "0"
+"origin" "0 0 16"
+"script_noteworthy" "chest_8_zbarrier"
+"showalternatemodel" "0"
+"showupgradedmodel" "0"
+"zbarrierboardanim1" "o_zombie_magic_box_fake_idle_twitch_a"
+"zbarrierboardanim2" "o_zombie_magic_box_leave"
+"zbarrierboardanim3" "o_zombie_magic_box_close"
+"zbarrierboardanim4" "o_zombie_magic_box_teddy_rise"
+"zbarrierboardanim5" "o_zombie_magic_box_teddy_rise"
+"zbarrierboardmodel1" "p6_anim_zm_magic_box_fake"
+"zbarrierboardmodel2" "p6_anim_zm_magic_box"
+"zbarrierboardmodel3" "p6_anim_zm_magic_box"
+"zbarrierboardmodel4" "tag_origin"
+"zbarrierboardmodel5" "tag_origin"
+"zbarriernumboards" "5"
+"zbarriertearanim1" "o_zombie_magic_box_fake_idle_twitch_b"
+"zbarriertearanim2" "o_zombie_magic_box_arrive"
+"zbarriertearanim3" "o_zombie_magic_box_open"
+"zbarriertearanim4" "o_zombie_magic_box_weapon_rise"
+"zbarriertearanim5" "o_zombie_magic_box_weapon_dual_rise"
+"_color" "0.3 0.3 1"
+"type" "s2_magicbox"
+"zbarrierNumBoards" "5"
+"zbarrierboardAnim1" "o_zombie_magic_box_fake_idle_twitch_a"
+"zbarrierboardAnim2" "zmb_mystery_box_2_open_idle"
+"zbarrierboardAnim3" "zmb_mystery_box_2_close"
+"zbarrierboardAnim4" "o_zombie_magic_box_teddy_rise"
+"zbarrierboardAnim5" "o_zombie_magic_box_teddy_rise"
+"zbarrierboardModel1" "zmb_mystery_box_02_fake"
+"zbarrierboardModel2" "zmb_mystery_box_02"
+"zbarrierboardModel3" "zmb_mystery_box_02"
+"zbarrierboardModel4" "tag_origin"
+"zbarrierboardModel5" "tag_origin"
+"zbarriertearAnim1" "o_zombie_magic_box_fake_idle_twitch_b"
+"zbarriertearAnim2" "zmb_mystery_box_2_close"
+"zbarriertearAnim3" "zmb_mystery_box_2_open"
+"zbarriertearAnim4" "o_zombie_magic_box_weapon_rise"
+"zbarriertearAnim5" "o_zombie_magic_box_weapon_dual_rise"
+}
+// entity 2
+{
+guid "{1BE0C22A-56BA-4EA3-9ED5-2DBE1AC79F9D}"
+"classname" "script_struct"
+"angles" "0 90 0"
+"origin" "0 0 16"
+"script_noteworthy" "chest_8"
+"targetname" "treasure_chest_use"
+"zombie_cost" "1000"
+"_color" "1 0 0"
+}
+// entity 3
+{
+guid "{38DBCCCE-79E2-11EF-A89A-6C5D3A0AF892}"
+"classname" "fx"
+"delay" "-26564"
+"fxdef" "kingslayer_kyle/s2_mystery_box_idle"
+"origin" "0 0 16"
+"fxstate1" "1"
+"fxstate2" "1"
+"fxstate3" "1"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}
+// entity 4
+{
+guid "{76C727DF-7A4C-11EF-A89B-6C5D3A0AF892}"
+"classname" "misc_prefab"
+"model" "_prefabs/kingslayer_kyle/mystery_box/s2/zm_s2_mystery_box_stone_slab.map"
+}

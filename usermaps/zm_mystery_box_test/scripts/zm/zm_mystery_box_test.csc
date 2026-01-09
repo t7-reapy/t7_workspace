@@ -36,8 +36,9 @@
 
 #using scripts\zm\zm_usermap;
 
-#using scripts\zm\trinket_box_scripts\trinket_box_main;
-#using scripts\zm\trinket_box_scripts\trinket_box_custom;
+// #using scripts\zm\trinket_box_scripts\trinket_box_main;
+// #using scripts\zm\trinket_box_scripts\trinket_box_custom;
+#using scripts\zm\_zm_s2_mystery_box;
 
 function main()
 {
