@@ -25,6 +25,7 @@
 #using scripts\zm\hellround\zm_hellround_shared;
 #using scripts\zm\hellround\zm_hellround_spawn_manager;
 #using scripts\zm\hellround\zm_hellround_zombies;
+#using scripts\zm\_hb21_zm_magicbox;
 
 // AIs involved in hell rounds
 #using scripts\shared\ai\zombie_utility;

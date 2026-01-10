@@ -12,6 +12,7 @@
 #using scripts\zm\_zm_ai_wasp;
 #using scripts\zm\_zm_ai_napalm;
 #using scripts\zm\zm_genesis_apothicon_fury;
+#using scripts\zm\_hb21_zm_magicbox;
 
 #insert scripts\zm\hellround\zm_hellround.gsh;
 #insert scripts\zm\hellround\zm_hellround_shared.gsh;
