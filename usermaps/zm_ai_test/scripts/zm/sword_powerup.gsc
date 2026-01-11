@@ -48,9 +48,9 @@ function __init__()
 			&func_should_drop, 
 			!POWERUP_ONLY_AFFECTS_GRABBER, 
 			!POWERUP_ANY_TEAM, 
-			!POWERUP_ZOMBIE_GRABBABLE,
+			!POWERUP_ZOMBIE_GRABBABLE/*,
 			undefined,
-			"sword_powerup");
+			"sword_powerup"*/);
     }
 }
 

@@ -173,6 +173,11 @@ function disable_actor_push_during_hellrounds() // self == ai actor
     {
         wait 2; // It seems a delay needs to be added before updating PushActors
 
+        if (!IsActor(self))
+        {
+            continue;
+        }
+
         if (zm_hellround_shared::is_hellround_running())
         {
             self PushActors(false);
