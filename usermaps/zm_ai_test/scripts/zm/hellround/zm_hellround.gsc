@@ -17,6 +17,7 @@
 #using scripts\zm\zm_wolf_soul_collectors;
 #using scripts\zm\hellround\zm_hellround_collectors;
 #using scripts\zm\hellround\zm_hellround_environment;
+#using scripts\zm\hellround\zm_hellround_mysterybox;
 #using scripts\zm\hellround\zm_hellround_meteor;
 #using scripts\zm\hellround\zm_hellround_music;
 #using scripts\zm\hellround\zm_hellround_players;
@@ -25,7 +26,6 @@
 #using scripts\zm\hellround\zm_hellround_shared;
 #using scripts\zm\hellround\zm_hellround_spawn_manager;
 #using scripts\zm\hellround\zm_hellround_zombies;
-#using scripts\zm\_hb21_zm_magicbox;
 
 // AIs involved in hell rounds
 #using scripts\shared\ai\zombie_utility;
@@ -128,6 +128,7 @@ function private bind_callbacks()
     add_toggle_callback(&zm_hellround_zombies::toggle_hellround_zombies);
     add_toggle_callback(&zm_hellround_players::toggle_hellround_for_players);
     add_toggle_callback(&zm_hellround_environment::toggle_hellround_environment);
+    add_toggle_callback(&zm_hellround_mysterybox::toggle_hellround_mysteryboxes);
     add_toggle_callback(&zm_bloodsplatter::toggle_blood_splatter);
     add_toggle_callback(&zm_hellround_music::toggle_hellround_music);
 

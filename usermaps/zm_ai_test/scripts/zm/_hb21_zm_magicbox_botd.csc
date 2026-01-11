@@ -49,13 +49,6 @@ function motd_magicbox_amb_fx( n_local_client_num, n_old_val, n_new_val, b_new_e
 		self.fx_obj.curr_amb_sound = undefined;
 	}
 
-
-	if (b_initial_snap || b_new_ent)
-	{
-		self.fx_obj.curr_amb_fx = playFXOnTag( n_local_client_num, level._effect[ "motd_box_amb" ], self.fx_obj, "tag_origin" );
-	}
-
-
 	if ( n_new_val == 1 )
 		self.fx_obj.curr_amb_sound = self.fx_obj playLoopSound( "zmb_motd_magicbox_loop_low" );
 	else if ( n_new_val == 2 )

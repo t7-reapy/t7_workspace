@@ -1,0 +1,2 @@
+#define HRMB_NORMAL_CHESTS array("start_chest", "chest_1", "chest_2", "chest_3", "chest_4", "chest_5", "chest_6") // Must be same size of HRMB_HELLROUND_CHESTS
+#define HRMB_HELLROUND_CHESTS array("chest_7", "chest_8", "chest_9",  "chest_10", "chest_11", "chest_12", "chest_13") // Must be same size of HRMB_NORMAL_CHESTS

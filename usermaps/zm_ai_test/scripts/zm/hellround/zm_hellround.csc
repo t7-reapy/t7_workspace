@@ -5,6 +5,7 @@
 #using scripts\zm\_zm_bloodsplatter;
 #using scripts\zm\hellround\zm_hellround_collectors;
 #using scripts\zm\hellround\zm_hellround_environment;
+#using scripts\zm\hellround\zm_hellround_mysterybox;
 #using scripts\zm\hellround\zm_hellround_meteor;
 #using scripts\zm\hellround\zm_hellround_music;
 #using scripts\zm\hellround\zm_hellround_powerup;
@@ -12,7 +13,6 @@
 #using scripts\zm\_zm_ai_wasp;
 #using scripts\zm\_zm_ai_napalm;
 #using scripts\zm\zm_genesis_apothicon_fury;
-#using scripts\zm\_hb21_zm_magicbox;
 
 #insert scripts\zm\hellround\zm_hellround.gsh;
 #insert scripts\zm\hellround\zm_hellround_shared.gsh;

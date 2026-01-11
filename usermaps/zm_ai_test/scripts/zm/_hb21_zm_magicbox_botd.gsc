@@ -51,6 +51,29 @@ function __main__()
 {
 }
 
+function botd_force_show_box(b_show) // self == chest struct
+{
+	b_show = IS_TRUE(b_show);
+	chest = self;
+	
+	if (b_show)
+	{
+		chest.zbarrier ShowZBarrierPiece(0);
+	}
+	else
+	{
+		for (piece_number = 0; piece_number < chest.zbarrier GetNumZBarrierPieces(); piece_number++)
+		{
+			chest.zbarrier HideZBarrierPiece(piece_number);
+		}
+		chest.zbarrier clientfield::set("motd_magicbox_amb_fx", 0);
+		if (isdefined(chest.pandora_light)) 
+		{
+			chest.pandora_light delete();
+		}
+	}
+}
+
 function botd_show_box( b_hide )
 {
 	if ( b_hide )
