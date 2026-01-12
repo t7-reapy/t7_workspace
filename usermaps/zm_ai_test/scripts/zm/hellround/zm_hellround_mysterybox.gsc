@@ -1,3 +1,4 @@
+#using scripts\zm\_zm_weapons; 
 #using scripts\shared\clientfield_shared; 
 #using scripts\zm\_zm_unitrigger; 
 #using scripts\zm\_zm_magicbox; 
@@ -34,6 +35,8 @@ class HellroundMysteryBox {
 
 function private init()
 {
+    clientfield::register("world", "add_extra_weapons_to_box", VERSION_SHIP, 1, "int");
+
     level.hellround_mystery_box = new HellroundMysteryBox();
     level.hellround_mystery_box.original_chests = [];
     level.hellround_mystery_box.hellround_chests = [];
@@ -49,6 +52,7 @@ function private main()
     }
 
     wait_for_chest_initialized();
+    add_all_extra_weapons_to_mysterybox(false);
     overwrite_level_chests_and_register_hellround_chests();
     build_chests_lookup_tables();
     zm_hellround_shared::wait_for_map_load();
@@ -60,9 +64,15 @@ function private main()
 function private overwrite_level_chests_and_register_hellround_chests()
 {
     previous_chest = level.chests[level.chest_index];
-
+    
     level.hellround_mystery_box.hellround_chests = get_hellround_mysteryboxes();
     level.hellround_mystery_box.original_chests = get_standard_mysteryboxes();
+
+    foreach (chest in level.hellround_mystery_box.hellround_chests)
+    {
+        chest.zombie_cost = HRMB_CHEST_COST;
+        
+    }
 
     level.chests = [];
     i = 0; // since original_chests is indexed by string we need to compute int index here
@@ -217,6 +227,8 @@ function toggle_hellround_mysteryboxes(b_enabled)
         hellround_chest thread hb21_zm_magicbox_botd::botd_force_show_box(b_enabled);
     }
 
+    thread add_all_extra_weapons_to_mysterybox(b_enabled);
+
     if (b_enabled)
     {
         thread overwrite_active_box();
@@ -368,6 +380,40 @@ function private is_mysterybox_from_array(mysterybox_array) // self == chest str
         PRINT_HR_DEBUG("chest script_noteworthy equals " + self.script_noteworthy);
     }
     return isdefined(self.script_noteworthy) && array::contains(mysterybox_array, self.script_noteworthy);
+}
+
+/* endregion */
+/* region weapon management (inspired from MystifiedTulips scripts) */
+
+function private add_all_extra_weapons_to_mysterybox(b_add)
+{
+    b_add = IS_TRUE(b_add);
+
+    foreach (weapon_name in HRMB_EXTRA_WEAPONS)
+    {
+        thread temporarily_add_weapon_to_box(weapon_name, b_add);
+    }
+
+    foreach (weapon_name in HRMB_REGULAR_WEAPONS)
+    {
+        thread temporarily_add_weapon_to_box(weapon_name, !b_add);
+    }
+
+    level clientfield::set("add_extra_weapons_to_box", b_add);
+}
+
+function private temporarily_add_weapon_to_box(weapon_name, b_include_weapon)
+{
+    b_include_weapon = IS_TRUE(b_include_weapon);
+    weapon = getWeapon(weapon_name);
+    if (!zm_weapons::is_weapon_included(weapon))
+    {
+        PRINT_HR_DEBUG("weapon of name '" + weapon_name + "' is not registered in level weapons");
+        return;
+    }
+
+    level.zombie_weapons[weapon].is_in_box = b_include_weapon;
+    PRINT_HR_DEBUG("weapon " + weapon_name + " was " + ( b_include_weapon ? "added to" : "removed_from" ) + " box");
 }
 
 /* endregion */
