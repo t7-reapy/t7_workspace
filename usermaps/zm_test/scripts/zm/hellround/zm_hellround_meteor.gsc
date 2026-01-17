@@ -89,6 +89,8 @@ function private main()
 
 function hellround_meteor_logic(skip_meteor_animation = false) // self == player or undefined
 {
+    level endon("end_game");
+    
     skip_meteor_animation = IS_TRUE(skip_meteor_animation);
     PRINT_HR_DEBUG("hellround_meteor_logic: skip_meteor_animation " + skip_meteor_animation);
     if (level.hellround_meteor.meteor_has_fallen && !skip_meteor_animation)
