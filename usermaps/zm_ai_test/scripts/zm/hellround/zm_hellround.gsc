@@ -17,6 +17,7 @@
 #using scripts\zm\zm_wolf_soul_collectors;
 #using scripts\zm\hellround\zm_hellround_collectors;
 #using scripts\zm\hellround\zm_hellround_environment;
+#using scripts\zm\hellround\zm_hellround_mysterybox;
 #using scripts\zm\hellround\zm_hellround_meteor;
 #using scripts\zm\hellround\zm_hellround_music;
 #using scripts\zm\hellround\zm_hellround_players;
@@ -127,12 +128,16 @@ function private bind_callbacks()
     add_toggle_callback(&zm_hellround_zombies::toggle_hellround_zombies);
     add_toggle_callback(&zm_hellround_players::toggle_hellround_for_players);
     add_toggle_callback(&zm_hellround_environment::toggle_hellround_environment);
+    add_toggle_callback(&zm_hellround_mysterybox::toggle_hellround_mysteryboxes);
     add_toggle_callback(&zm_bloodsplatter::toggle_blood_splatter);
     add_toggle_callback(&zm_hellround_music::toggle_hellround_music);
 
     zm_hellround_spawn_manager::bind_toggle_hellround_callback(&call_toggle_callbacks);
     zm_hellround_spawn_manager::add_ai_spawn_callback(&zm_bloodsplatter::watch_actor);
     zm_hellround_spawn_manager::bind_reward_callback(&zm_hellround_reward::give_reward);
+    
+    zm_hellround_reward::bind_high_tier_reward_callback(&zm_hellround_mysterybox::permanent_unlock);
+
     // Hellround powerup and collector should never be canceled because bad iteration is no more available after feeding cerberus heads.
     // I'm not fond of that, but we still bind this logic because its part of the hellround overall logic.
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_collectors::cancel_collection_logic);

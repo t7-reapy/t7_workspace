@@ -114,7 +114,7 @@ function start_collection_logic()
 function cancel_collection_logic()
 {
     iteration = zm_hellround_shared::get_current_iteration();
-    if (!is_collector_iteration(iteration))
+    if (!zm_hellround_shared::is_collector_iteration(iteration))
     {
         PRINT_HR_DEBUG("cancel_collection_logic: not a collector iteration.");
         return;
@@ -137,7 +137,7 @@ function private start_hellround_collector_logic()
 {
     iteration = zm_hellround_shared::get_current_iteration();
 
-    if (!is_collector_iteration(iteration))
+    if (!zm_hellround_shared::is_collector_iteration(iteration))
     {
         PRINT_HR_DEBUG("start_hellround_collector_logic: not a collector iteration.");
         return;
@@ -165,18 +165,10 @@ function private show_hellround_collectors(n_iteration)
 
 /* region utils */
 
-function private is_collector_iteration(n_iteration)
-{
-    return zm_hellround_shared::is_hellround_running() 
-        && n_iteration != HELLROUND_BAD_ITERATION 
-        && n_iteration != HRCOLL_DISABLED;
-}
-
 function private get_active_collector_skull()
 {
     iteration = zm_hellround_shared::get_current_iteration();
-
-    if(!is_collector_iteration(iteration))
+    if(!zm_hellround_shared::is_collector_iteration(iteration))
     {
         return undefined;
     }

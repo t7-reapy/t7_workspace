@@ -1,0 +1,75 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{ED647024-7E2A-11E7-BEA9-0015833D0A57}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{5B5F2B55-B75C-11E7-BEB4-0015833D0A57}"
+ ( 0 48 0 ) ( -16 48 0 ) ( -16 -8 0 ) clip 64 64 0 -992 0 0 lightmap_gray 16384 16384 0 -992 0 0
+ ( -16 -8 128 ) ( -16 48 128 ) ( 0 48 128 ) clip 64 64 0 -992 0 0 lightmap_gray 16384 16384 0 -992 0 0
+ ( -8 -16 56 ) ( 8 -16 56 ) ( 8 -16 0 ) clip 64 64 8 0 0 0 lightmap_gray 16384 16384 8 0 0 0
+ ( 48 -8 48 ) ( 48 48 48 ) ( 48 48 -8 ) clip 64 64 992 8 0 0 lightmap_gray 16384 16384 992 8 0 0
+ ( -8 16 56 ) ( -24 16 56 ) ( -24 16 0 ) clip 64 64 -8 0 0 0 lightmap_gray 16384 16384 -8 0 0 0
+ ( -48 48 48 ) ( -48 -8 48 ) ( -48 -8 -8 ) clip 64 64 992 8 0 0 lightmap_gray 16384 16384 992 8 0 0
+}
+}
+// entity 1
+{
+guid "{6725BE1A-7E2C-11E7-BEA9-0015833D0A57}"
+"classname" "script_struct"
+"angles" "0 270 0"
+"origin" "0 0 16"
+"script_noteworthy" "chest_8"
+"targetname" "treasure_chest_use"
+"zombie_cost" "950"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{6AF44D0F-6838-11EB-8204-0015833D0A57}"
+"classname" "zbarrier_zmcore_magicbox_botd"
+"angles" "0 180 0"
+"script_noteworthy" "chest_8_zbarrier"
+"_color" "0.3 0.3 1"
+"type" "zmcore_magicbox_botd"
+"zbarrierNumBoards" "6"
+"zbarrierboardAnim1" "o_zombie_al_magic_box_fake_idle_twitch_b"
+"zbarrierboardAnim2" "o_zombie_al_magic_box_leave"
+"zbarrierboardAnim3" "o_zombie_al_magic_box_close"
+"zbarrierboardAnim4" "o_zombie_magic_box_teddy_rise"
+"zbarrierboardAnim5" "o_zombie_magic_box_teddy_rise"
+"zbarrierboardAnim6" "o_zombie_al_magic_box_lock"
+"zbarrierboardModel1" "p8_anim_zm_al_magic_box_mod"
+"zbarrierboardModel2" "p8_anim_zm_al_magic_box_mod"
+"zbarrierboardModel3" "p8_anim_zm_al_magic_box_mod"
+"zbarrierboardModel4" "tag_origin"
+"zbarrierboardModel5" "tag_origin"
+"zbarrierboardModel6" "p8_anim_zm_al_magic_box_mod"
+"zbarriertearAnim1" "o_zombie_al_magic_box_fake_idle_twitch_b"
+"zbarriertearAnim2" "o_zombie_al_magic_box_arrive"
+"zbarriertearAnim3" "o_zombie_al_magic_box_open"
+"zbarriertearAnim4" "o_zombie_magic_box_weapon_rise"
+"zbarriertearAnim5" "o_zombie_magic_box_weapon_dual_rise"
+"zbarriertearAnim6" "o_zombie_al_magic_box_unlock"
+}
