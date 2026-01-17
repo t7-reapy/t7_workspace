@@ -37,6 +37,13 @@ function get_current_iteration()
     return level.hellround_spawn_manager.current_iteration;
 }
 
+function is_collector_iteration(n_iteration)
+{
+    return zm_hellround_shared::is_hellround_running() 
+        && n_iteration != HELLROUND_BAD_ITERATION 
+        && n_iteration != 0;
+}
+
 function is_last_iteration_completed()
 {
     return level.hellround_spawn_manager.iterations_completed;

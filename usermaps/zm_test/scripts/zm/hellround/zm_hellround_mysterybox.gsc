@@ -108,7 +108,7 @@ function toggle_hellround_mysteryboxes(b_enabled)
     if (b_enabled)
     {
         thread watch_for_post_hellround_firesale_start();
-        overwrite_active_box();
+        overwrite_active_box(zm_hellround_shared::is_collector_iteration(zm_hellround_shared::get_current_iteration()));
     }
     else
     {
@@ -216,8 +216,25 @@ function private fix_moving_chest_state()
     }
 } 
 
-function private overwrite_active_box()
+function private overwrite_active_box(is_collector_iteration)
 {
+    if (IS_TRUE(is_collector_iteration))
+    {
+        PRINT_HR_DEBUG("Hidding all mystery boxes on collector rounds");
+
+        foreach(chest in level.chests)
+        {
+            chest custom_hide_chest();
+            chest thread force_show_standard_box(false);
+            chest thread restore_standard_box_after_collector_iteration();
+            hellround_chest = level.hellround_mystery_box.hellround_chests[level.hellround_mystery_box.chests_lookuptable[chest.script_noteworthy]];
+            hellround_chest thread hb21_zm_magicbox_botd::botd_force_show_box(true);
+            hellround_chest thread hide_box_after_collector_iteration();
+        }
+
+        return;
+    }
+
     current_chest = level.chests[level.chest_index];
 
     if (!isdefined(current_chest))
@@ -241,7 +258,7 @@ function private overwrite_active_box()
     current_chest waittill_chest_idle();
     if (level flag::get("moving_chest_now"))
     {
-        thread overwrite_active_box();
+        thread overwrite_active_box(is_collector_iteration);
         return;
     }
 
@@ -259,8 +276,26 @@ function private overwrite_active_box()
     PRINT_HR_DEBUG("hellround chest is: " + new_chest.script_noteworthy);
 }
 
+function private restore_standard_box_after_collector_iteration() // self == chest
+{
+    level waittill("restore_chests_after_collector_iteration");
+    self force_show_standard_box(true);
+    if (self == level.chests[level.chest_index])
+    {
+        self zm_magicbox::show_chest();
+    }
+}
+
+function private hide_box_after_collector_iteration() // self == chest
+{
+    level waittill("restore_chests_after_collector_iteration");
+    self hb21_zm_magicbox_botd::botd_force_show_box(false);
+}
+
 function private restore_active_box()
 {
+    level notify("restore_chests_after_collector_iteration");
+
     if (level.hellround_mystery_box.permanent_unlock)
     {
         PRINT_HR_DEBUG("Permanent unlocked set. No restoring.");
