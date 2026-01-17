@@ -13,6 +13,7 @@
 
 #insert scripts\shared\shared.gsh;
 
+#using scripts\zm\hellround\zm_hellround_mysterybox;
 #using scripts\zm\hellround\zm_hellround_shared;
 #insert scripts\zm\hellround\zm_hellround_shared.gsh;
 #insert scripts\zm\hellround\zm_hellround_powerup.gsh;
@@ -204,7 +205,7 @@ function private func_should_drop_powerup(power_up_name)
         case "full_ammo":
             return self zm_powerups::func_should_always_drop();
         case "fire_sale":
-            return self zm_powerup_fire_sale::func_should_drop_fire_sale();
+            return self zm_hellround_mysterybox::func_should_drop_fire_sale();
         case "carpenter":
             return self zm_powerup_carpenter::func_should_drop_carpenter();
         case "empty_bottle": // Only for rewards.

@@ -1,3 +1,4 @@
+#using scripts\zm\_zm_powerup_fire_sale; 
 #using scripts\zm\_zm_weapons; 
 #using scripts\shared\clientfield_shared; 
 #using scripts\zm\_zm_unitrigger; 
@@ -30,7 +31,9 @@ class HellroundMysteryBox {
     var original_chests; // indexed by script_noteworthy
     var hellround_chests; // indexed by script_noteworthy
 
+    var mysterybox_models;
     var chests_lookuptable;
+    var permanent_unlock;
 }
 
 function private init()
@@ -40,7 +43,9 @@ function private init()
     level.hellround_mystery_box = new HellroundMysteryBox();
     level.hellround_mystery_box.original_chests = [];
     level.hellround_mystery_box.hellround_chests = [];
+    level.hellround_mystery_box.mysterybox_models = GetEntArray(HRMB_MODEL_TO_HIDE, "targetname");
     level.hellround_mystery_box.chests_lookuptable = [];
+    level.hellround_mystery_box.permanent_unlock = false;
 }
 
 function private main()
@@ -57,8 +62,87 @@ function private main()
     build_chests_lookup_tables();
     zm_hellround_shared::wait_for_map_load();
     hide_all_hellround_chests();
+    override_box_prices_for_hellround();
+
+    thread fix_moving_chest_state();
 }
 
+/* region public */
+
+function toggle_hellround_mysteryboxes(b_enabled)
+{
+    b_enabled = IS_TRUE(b_enabled);
+
+    if (level.hellround_mystery_box.permanent_unlock)
+    {
+        PRINT_HR_DEBUG("Permanent unlocked set. No toggling.");
+        return;
+    }
+
+    waittill_all_chests_idle();
+
+    foreach (model in level.hellround_mystery_box.mysterybox_models)
+    {
+        if (b_enabled)
+        {
+            model Hide();
+        }
+        else
+        {
+            model Show();
+        }
+    }
+
+    foreach(chest in level.chests)
+    {
+        if (chest == level.chests[level.chest_index])
+        {
+            continue;
+        }
+        chest thread force_show_standard_box(!b_enabled);
+        hellround_chest = level.hellround_mystery_box.hellround_chests[level.hellround_mystery_box.chests_lookuptable[chest.script_noteworthy]];
+        hellround_chest thread hb21_zm_magicbox_botd::botd_force_show_box(b_enabled);
+    }
+
+    thread toggle_firesale(!b_enabled);
+    if (b_enabled)
+    {
+        thread watch_for_post_hellround_firesale_start();
+        overwrite_active_box();
+    }
+    else
+    {
+        restore_active_box();
+    }
+
+    thread add_all_extra_weapons_to_mysterybox(b_enabled);
+}
+
+function permanent_unlock()
+{
+    level notify("cancel_custom_waittill_mysterybox_transitions");
+    wait DELAY_BEFORE_PERMANENT_UNLOCK;
+    // TODO: vox for completion? or in the spawn manager ?
+    toggle_hellround_mysteryboxes(true);
+    level.hellround_mystery_box.permanent_unlock = true;
+
+    for (i = 0 ; i < level.chests.size; i++)
+    {
+        chest = level.chests[i];
+        chest.no_fly_away = undefined;
+
+        // Current chest is hellround one, skip it. 
+        if (chest == level.chests[level.chest_index])
+        {
+            continue;
+        }
+        
+        hellround_chest = level.hellround_mystery_box.hellround_chests[level.hellround_mystery_box.chests_lookuptable[chest.script_noteworthy]];
+        level.chests[i] = hellround_chest;
+    }
+}
+
+/* endregion */
 /* region setup */
 
 function private overwrite_level_chests_and_register_hellround_chests()
@@ -67,12 +151,6 @@ function private overwrite_level_chests_and_register_hellround_chests()
     
     level.hellround_mystery_box.hellround_chests = get_hellround_mysteryboxes();
     level.hellround_mystery_box.original_chests = get_standard_mysteryboxes();
-
-    foreach (chest in level.hellround_mystery_box.hellround_chests)
-    {
-        chest.zombie_cost = HRMB_CHEST_COST;
-        
-    }
 
     level.chests = [];
     i = 0; // since original_chests is indexed by string we need to compute int index here
@@ -121,13 +199,25 @@ function private build_chests_lookup_tables()
 /* endregion */
 /* region main logic */
 
+function private fix_moving_chest_state()
+{
+    level endon("end_game");
+    while(true)
+    {
+        level flag::wait_till("moving_chest_now");
+        previous_chest = level.chests[level.chest_index];
+        level flag::wait_till_clear("moving_chest_now");
+        // The chest, even when not used, can get stuck into this state for piece 2 after moving
+        if (previous_chest.zbarrier GetZBarrierPieceState(2) == "open")
+        {
+            // Force the chest to have proper state for next idle checks.
+            previous_chest.zbarrier SetZBarrierPieceState(2, "closed");
+        }
+    }
+} 
+
 function private overwrite_active_box()
 {
-    while (level flag::get("moving_chest_now"))
-    {
-        WAIT_SERVER_FRAME;
-    }
-
     current_chest = level.chests[level.chest_index];
 
     if (!isdefined(current_chest))
@@ -171,9 +261,10 @@ function private overwrite_active_box()
 
 function private restore_active_box()
 {
-    while (level flag::get("moving_chest_now"))
+    if (level.hellround_mystery_box.permanent_unlock)
     {
-        WAIT_SERVER_FRAME;
+        PRINT_HR_DEBUG("Permanent unlocked set. No restoring.");
+        return;
     }
 
     current_chest = level.chests[level.chest_index];
@@ -202,7 +293,7 @@ function private restore_active_box()
         thread restore_active_box();
         return;
     }
-    current_chest.no_fly_away = false;
+    current_chest.no_fly_away = undefined;
     current_chest custom_hide_chest();
     current_chest hb21_zm_magicbox_botd::botd_force_show_box(false);
 
@@ -212,40 +303,57 @@ function private restore_active_box()
     new_chest zm_magicbox::show_chest();
 }
 
-function toggle_hellround_mysteryboxes(b_enabled)
+function private remove_chest_now()
 {
-    b_enabled = IS_TRUE(b_enabled);
-
-    foreach(chest in level.chests)
-    {
-        if (chest == level.chests[level.chest_index])
-        {
-            continue;
-        }
-        chest thread force_show_standard_box(!b_enabled);
-        hellround_chest = level.hellround_mystery_box.hellround_chests[level.hellround_mystery_box.chests_lookuptable[chest.script_noteworthy]];
-        hellround_chest thread hb21_zm_magicbox_botd::botd_force_show_box(b_enabled);
-    }
-
-    thread add_all_extra_weapons_to_mysterybox(b_enabled);
-
-    if (b_enabled)
-    {
-        thread overwrite_active_box();
-    }
-    else
-    {
-        thread restore_active_box();
-    }
+    self custom_hide_chest();
+    self force_show_standard_box(false);
+    PRINT_HR_DEBUG("Hidden the chest " + self.script_noteworthy);
 }
 
 /* endregion */
 /* region util */
 
+function private waittill_all_chests_idle()
+{
+    chest_active = true;
+    while (chest_active)
+    {
+        chest_active = false;
+        foreach (chest in level.chests)
+        {
+            if (!chest is_chest_idle())
+            {
+                PRINT_HR_DEBUG(chest.script_noteworthy + " is still active");
+                chest_active = true;
+            }
+        }
+        WAIT_SERVER_FRAME;
+    }
+}
+
+function private is_chest_idle() // self == chest
+{
+    return !level flag::get("moving_chest_now")
+        && self.zbarrier GetZBarrierPieceState(1) != "opening" // Chest is not arriving...
+        && self.zbarrier GetZBarrierPieceState(2) != "opening" // Chest is not opening...
+        && self.zbarrier GetZBarrierPieceState(2) != "closing" // Chest is not closing...
+        && self.zbarrier GetZBarrierPieceState(1) != "closing" // Chest is not leaving...
+        && self.zbarrier GetZBarrierPieceState(2) != "open"; // Chest is not being used...
+}
+
 function private waittill_chest_idle() // self == chest
 {
+    self notify("cancel_custom_waittill_mysterybox_transitions");
+    self endon("cancel_custom_waittill_mysterybox_transitions");
+
     // If chest moves, state doesn't change and get stuck.
     level endon("moving_chest_now");
+
+    if(self.zbarrier GetZBarrierPieceState(1) == "opening")
+    {
+        PRINT_HR_DEBUG("Chest is arriving...");
+	    self.zbarrier waittill("arrived");
+    }
 
     if(self.zbarrier GetZBarrierPieceState(2) == "opening")
     {
@@ -267,8 +375,12 @@ function private waittill_chest_idle() // self == chest
 
     while (self.zbarrier GetZBarrierPieceState(2) == "open")
     {
+        // Chest is being used...
         WAIT_SERVER_FRAME;
     }
+
+    PRINT_HR_DEBUG("Chest now IDLE");
+    waittillframeend;
 }
 
 function private force_show_standard_box(b_show) // self == chest struct
@@ -278,14 +390,7 @@ function private force_show_standard_box(b_show) // self == chest struct
     
     if (b_show)
     {
-        for (piece_number = 0; piece_number < chest.zbarrier GetNumZBarrierPieces(); piece_number++)
-        {
-            if (piece_number == 2)
-            {
-                continue;
-            }
-            chest.zbarrier ShowZBarrierPiece(piece_number);
-        }
+        chest.zbarrier ShowZBarrierPiece(0); // Idle disabled chest.
     }
     else
     {
@@ -413,11 +518,155 @@ function private temporarily_add_weapon_to_box(weapon_name, b_include_weapon)
     }
 
     level.zombie_weapons[weapon].is_in_box = b_include_weapon;
-    PRINT_HR_DEBUG("weapon " + weapon_name + " was " + ( b_include_weapon ? "added to" : "removed_from" ) + " box");
+}
+
+/* endregion */
+/* region firesale management */
+
+function func_should_drop_fire_sale()
+{
+    // _zombiemode_check_firesale_loc_valid_func is used in this script has a global yes/no for firesale.
+    if (self [[ level._zombiemode_check_firesale_loc_valid_func ]]())
+    {
+        return self zm_powerup_fire_sale::func_should_drop_fire_sale();
+    }
+
+    return false;
+}
+
+function private override_box_prices_for_hellround()
+{
+    foreach (chest in level.hellround_mystery_box.hellround_chests)
+    {
+        chest thread force_override_firesale_price();
+        chest thread force_override_default_price();
+    }
+}
+
+function private force_override_firesale_price()
+{
+    level endon("end_game");
+
+    while (true)
+    {
+        WAIT_SERVER_FRAME;
+
+        if (self.zombie_cost == 10)
+        {
+            self.zombie_cost = HRMB_OVERRIDE_FIRESALE_PRICE;
+        }
+    }
+}
+
+function private force_override_default_price()
+{
+    level endon("end_game");
+
+    while (true)
+    {
+        WAIT_SERVER_FRAME;
+
+        if (self.zombie_cost == 950)
+        {
+            self.zombie_cost = HRMB_OVERRIDE_DEFAULT_PRICE;
+        }
+    }
+}
+
+function private toggle_firesale(b_enabled)
+{
+    level notify("hrmb_toggle_firesale");
+    level endon("hrmb_toggle_firesale");
+    PRINT_HR_DEBUG("toggle_firesale: " + b_enabled);
+
+    if (b_enabled || level.hellround_mystery_box.permanent_unlock)
+    {
+        level._zombiemode_check_firesale_loc_valid_func = &firesale_enabled;
+        level notify("hrmb_watch_for_post_hellround_firesale_start");
+        PRINT_HR_DEBUG("Firesale enabled");
+    }
+    else
+    {
+        level._zombiemode_check_firesale_loc_valid_func = &firesale_disabled;
+        PRINT_HR_DEBUG("Firesale disabled");
+        
+        foreach (chest in level.chests)
+        {
+            if(isdefined(chest.sndEnt))
+            {
+                chest.sndEnt StopLoopSound();
+                chest.sndEnt Delete();
+                chest.sndEnt = undefined;
+            }
+
+            if (chest == level.chests[level.chest_index])
+            {
+                continue;
+            }
+
+            chest remove_chest_now();
+        }
+
+        level.zombie_vars["zombie_powerup_fire_sale_time"] = 0;
+        level.zombie_vars["zombie_powerup_fire_sale_on"] = false;
+
+        foreach (chest in level.hellround_mystery_box.original_chests)
+        {
+            chest.zombie_cost = 950;
+        }
+    }
+}
+
+function private firesale_enabled()
+{
+    return true;
+}
+
+function private firesale_disabled()
+{
+    return false;
+}
+
+function private watch_for_post_hellround_firesale_start()
+{
+    level notify("hrmb_watch_for_post_hellround_firesale_start");
+    level endon("hrmb_watch_for_post_hellround_firesale_start");
+
+    while(!IS_TRUE(level.zombie_vars["zombie_powerup_fire_sale_on"]) || level.zombie_vars["zombie_powerup_fire_sale_time"] == 0)
+    {
+        WAIT_SERVER_FRAME;
+    }
+    PRINT_HR_DEBUG("Firesale grabbed");
+
+    thread toggle_firesale(false);
+
+    if ( ![[level._zombiemode_check_firesale_loc_valid_func]]() )
+    {
+        thread watch_for_post_hellround_firesale_start();
+    }
 }
 
 /* endregion */
 /* region debug */
+
+function private list_temp() // self == chest
+{
+    level notify("hrmb_list_temp_" + self.script_noteworthy);
+    level endon("hrmb_list_temp_" + self.script_noteworthy);
+    level endon("end_game");
+
+    zbarrier = self.zbarrier;
+    while (true)
+    {
+        IPrintLnBold("zbarrier GetZBarrierPieceState(0) :" + zbarrier GetZBarrierPieceState(0));
+        IPrintLnBold("zbarrier GetZBarrierPieceState(1) :" + zbarrier GetZBarrierPieceState(1));
+        IPrintLnBold("zbarrier GetZBarrierPieceState(2) :" + zbarrier GetZBarrierPieceState(2));
+        IPrintLnBold("zbarrier GetZBarrierPieceState(3) :" + zbarrier GetZBarrierPieceState(3));
+        IPrintLnBold("zbarrier GetZBarrierPieceState(4) :" + zbarrier GetZBarrierPieceState(4));
+        IPrintLnBold("zbarrier GetZBarrierPieceState(5) :" + zbarrier GetZBarrierPieceState(5));
+        wait 1.0;
+    }
+}
 
 function private modvar_debug_hellround_mysterybox()
 {
@@ -443,6 +692,17 @@ function private modvar_debug_hellround_mysterybox()
             case 2:
                 toggle_hellround_mysteryboxes(false);
                 break;
+            case 3:
+                permanent_unlock();
+                break;
+            case 4:
+                PRINT_HR_DEBUG("Current chest is:" + level.chests[level.chest_index].script_noteworthy);
+                PRINT_HR_DEBUG("Current isdefined(no_fly_away) is:" + isdefined(level.chests[level.chest_index].no_fly_away));
+                PRINT_HR_DEBUG("Current !treasure_chest_firesale_active() is:" + !zm_magicbox::treasure_chest_firesale_active());
+                PRINT_HR_DEBUG("Current chest_min_move_usage count is:" + level.chest_min_move_usage);
+                PRINT_HR_DEBUG("Current chest_accessed count is:" + level.chest_accessed);
+                PRINT_HR_DEBUG("Current chest_moves count is:" + level.chest_moves);                
+                break;
             default:
                 PRINT_HR_DEBUG("The actual active chest are at the number of:" + level.chests.size);
                 PRINT_HR_DEBUG("The registered standard ones are of:" + level.hellround_mystery_box.original_chests.size);
@@ -466,6 +726,9 @@ function private modvar_debug_hellround_mysterybox()
 
 function private box_always_move(original_joker_chance)
 {
+    PRINT_HR_DEBUG("original_joker_chance is " + original_joker_chance);
+    PRINT_HR_DEBUG("level.chests[level.chest_index].no_fly_away is defined" + isdefined(level.chests[level.chest_index].no_fly_away));
+
     return original_joker_chance;
     //return 100; // joker_chance = 100%, means box always move.
 }

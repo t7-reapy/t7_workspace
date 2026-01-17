@@ -39,6 +39,9 @@
 
 #using scripts\zm\zm_usermap;
 
+// Sphynx's Console Commands
+#using scripts\Sphynx\commands\_zm_commands;
+
 function main()
 {
     zm_usermap::main();
