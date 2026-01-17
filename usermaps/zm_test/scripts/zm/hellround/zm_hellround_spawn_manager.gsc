@@ -82,7 +82,6 @@ function private main()
 
 function private hellround_bad_iteration_watcher() 
 {
-    level endon(KILL_HELLROUND_WATCHERS_NOTIFICATION);
     level endon(KILL_HELLROUND_BAD_ITERATION_WATCHER_NOTIFICATION);
 
     level flag::wait_till(HELLROUND_BAD_FLAG_TRIGGER);
