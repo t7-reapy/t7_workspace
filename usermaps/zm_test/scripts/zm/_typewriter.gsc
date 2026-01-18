@@ -33,7 +33,7 @@ function type(...)
     {
         intro_hud[i] = NewHudElem();
         intro_hud[i].x = 20;
-        intro_hud[i].y = -250 + (10 * i);
+        intro_hud[i].y = -150 + (10 * i);
         intro_hud[i].fontscale = (IsSplitScreen() ? 2.00 : 1.00);
         intro_hud[i].alignx = "LEFT";
         intro_hud[i].aligny = "BOTTOM";
