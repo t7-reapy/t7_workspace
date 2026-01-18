@@ -263,7 +263,7 @@ function should_go_to_owner()
 		return false;
 	}
 	
-	if( self.owner.sword_power <= SWORD_MODE_MINPOWER)
+	if(isdefined(self.owner.sword_power) && self.owner.sword_power <= SWORD_MODE_MINPOWER)
 	{
 		return false;
 	}
@@ -453,13 +453,13 @@ function go_back_on_navvolume()
 	queryResult = PositionQuery_Source_Navigation( self.origin, 0, 100, GLAIVE_MOVE_DIST_HEIGHT, GLAIVE_RADIUS * 0.4, self );
 
 	multiplier = 2;
-	while ( queryResult.data.size < 1 )
+	while (IsArray(queryResult.data) && queryResult.data.size < 1)
 	{
 		queryResult = PositionQuery_Source_Navigation( self.origin, 0, 100 * multiplier, GLAIVE_MOVE_DIST_HEIGHT * multiplier, GLAIVE_RADIUS * multiplier, self );
 		multiplier += 2;
 	}
 
-	if ( queryResult.data.size && !queryResult.centerOnNav )
+	if (IsArray(queryResult.data) &&  queryResult.data.size && !queryResult.centerOnNav)
 	{
 		best_point = undefined;
 		best_score = 999999;
@@ -731,7 +731,7 @@ function go_to_owner()
 			}
 			
 			//if still no path found, use fallback teleport to first query result
-			if( !foundpath && IsDefined( queryResult.data ) && queryResult.data.size > 0 )
+			if( !foundpath && IsArray( queryResult.data ) && queryResult.data.size > 0 )
 			{
 				self last_resort_fallback( queryResult.data[0].origin );
 			}
@@ -787,11 +787,8 @@ function glaive_callback_damage( eInflictor, eAttacker, iDamage, iDFlags, sMeans
 
 function last_resort_fallback(origin) // self == ai vehicle
 {
-	if (!isdefined(self))
+	if (IsVehicle(self))
 	{
-		return;
+		self.origin = origin;
 	}
-
-	self SetOrigin(origin);
-	self.origin = origin;
 }

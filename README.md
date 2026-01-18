@@ -149,6 +149,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - minigun timer in HUD
 - shredder is too powerful: speed, upgrade too much damage, no self explosion damage
 - shredder climbing sound is triggering the initial pickup sound
+- sword powerup can crash the map (if the sword goes out of playable zone ???)
 
 # Sphynx commands cheat sheet
 
