@@ -163,6 +163,7 @@ function private configure_weapon_inspection()
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_ffar1"), 4.83);
     inspectable::add_inspectable_weapon(GetWeapon("t9_ffar1_up"), 4.83);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_ffar1_up_up"), 4.83);
     
     inspectable::add_inspectable_weapon(GetWeapon("t9_groza"), 6.13);
     inspectable::add_inspectable_weapon(GetWeapon("t9_groza_up"), 6.13);
