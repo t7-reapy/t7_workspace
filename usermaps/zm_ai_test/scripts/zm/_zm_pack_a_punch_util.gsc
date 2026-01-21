@@ -108,16 +108,14 @@ function update_hint_string( player )
 		self SetHintString( &"ZOMBIE_GET_UPGRADED_FILL" );
 		return;
 	}
-	
+
 	// Checks to see if player is holding an upgraded weapon
 	w_curr_player_weapon = player GetCurrentWeapon();
-	
 	if ( zm_weapons::is_weapon_upgraded( w_curr_player_weapon ) )
 	{
-		self SetHintString( &"ZOMBIE_PERK_PACKAPUNCH_AAT", self.aat_cost );
+		self SetHintString( &"ZOMBIE_PERK_PACKAPUNCH_AAT", self.second_upgrade_cost);
 	}
-	// If not, display string to pack non-upgraded weapon
-	else 
+	else
 	{
 		self SetHintString( &"ZOMBIE_PERK_PACKAPUNCH", self.cost );
 	}

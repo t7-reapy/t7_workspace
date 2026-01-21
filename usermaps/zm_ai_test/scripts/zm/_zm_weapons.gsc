@@ -12,7 +12,7 @@
 #using scripts\zm\gametypes\_weapons;
 
 #using scripts\zm\_util;
-#using scripts\zm\_bb;
+// #using scripts\zm\_bb;
 #using scripts\zm\_zm_audio;
 #using scripts\zm\_zm_bgb;
 #using scripts\zm\_zm_equipment;
@@ -1644,7 +1644,7 @@ function get_upgrade_weapon( weapon, add_attachment )
 	newWeapon = rootWeapon;
 	baseWeapon = get_base_weapon( weapon );
 	
-	if ( !is_weapon_upgraded( rootWeapon ) )
+	if ( !is_weapon_upgraded( rootWeapon ) || isdefined(level.zombie_weapons[rootWeapon].upgrade) )
 	{
 		newWeapon = level.zombie_weapons[rootWeapon].upgrade;
 	}
@@ -1683,9 +1683,9 @@ function can_upgrade_weapon( weapon )
 
 	rootWeapon = weapon.rootWeapon;
 
-	if ( !is_weapon_upgraded( rootWeapon ) )
+	if ( IsDefined( level.zombie_weapons[rootWeapon].upgrade ) )
 	{
-		return IsDefined( level.zombie_weapons[rootWeapon].upgrade );
+		return true;
 	}
 
 	if ( zm_pap_util::can_swap_attachments() && weapon_supports_attachments( rootWeapon ) )
@@ -1699,25 +1699,7 @@ function can_upgrade_weapon( weapon )
 // Check to see if weapon can be equipped with an AAT
 function weapon_supports_aat( weapon )
 {
-	if ( weapon == level.weaponNone || weapon == level.weaponZMFists )
-	{
-		return false;
-	}
-	
-	weaponToPack = get_nonalternate_weapon( weapon );
-	
-	rootWeapon = weaponToPack.rootWeapon;
-
-	if ( !is_weapon_upgraded( rootWeapon ) )
-	{
-		return false;
-	}
-
-	if ( !aat::is_exempt_weapon( weaponToPack ) )
-	{
-		return true;
-	}
-
+	// Just fuck AAT upgrades, honestly ...
 	return false;
 }
 

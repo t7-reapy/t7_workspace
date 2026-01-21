@@ -452,6 +452,10 @@ function private vending_weapon_upgrade()
 	 		player.restore_max = current_weapon.maxAmmo;
 	 		isRepack = true;
  		}
+		else if (zm_weapons::is_weapon_upgraded(current_weapon))
+		{
+			current_cost = self.second_upgrade_cost;
+		}
 
 		// If the persistent upgrade "double_points" is active, the cost is halved
 		if( player zm_pers_upgrades_functions::is_pers_double_points_active() )
@@ -582,10 +586,12 @@ function private vending_weapon_upgrade_cost()
 	{
 		self.cost = 5000;
 		self.aat_cost = 2500;
+		self.second_upgrade_cost = 11500;
 		level waittill( "powerup bonfire sale" );
 
 		self.cost = 1000;
 		self.aat_cost = 500;
+		self.second_upgrade_cost = 11500;
 		level waittill( "bonfire_sale_off" );
 	}
 }
