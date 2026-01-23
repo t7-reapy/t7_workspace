@@ -180,6 +180,7 @@ function private configure_weapon_inspection()
     // IW8
     inspectable::add_inspectable_weapon(GetWeapon("iw8_asval"), 5.76);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_asval_up"), 5.76);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_asval_up_up"), 5.76);
     
     inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs"), 4.66);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs_rdw_up"), 4.66);
