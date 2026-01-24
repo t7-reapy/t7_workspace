@@ -187,6 +187,8 @@ function private configure_weapon_inspection()
     inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs"), 4.66);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs_rdw_up"), 4.66);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs_ldw_up"), 4.66);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs_rdw_up_up"), 4.66);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs_ldw_up_up"), 4.66);
 
     inspectable::add_inspectable_weapon(GetWeapon("iw8_ak47"), 5.13);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_ak47_up"), 5.13);
