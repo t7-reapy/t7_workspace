@@ -157,6 +157,7 @@ function private configure_weapon_inspection()
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_diamatti"), 6.23);
     inspectable::add_inspectable_weapon(GetWeapon("t9_diamatti_up"), 6.23);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_diamatti_up_up"), 6.23);
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_rpk"), 5.83);
     inspectable::add_inspectable_weapon(GetWeapon("t9_rpk_up"), 5.83);
