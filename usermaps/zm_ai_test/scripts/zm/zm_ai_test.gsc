@@ -150,6 +150,7 @@ function private configure_weapon_inspection()
     // T9
     inspectable::add_inspectable_weapon(GetWeapon("t9_me_knife_russian"), 4.18);
     inspectable::add_inspectable_weapon(GetWeapon("t9_me_knife_russian_up"), 4.18);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_me_knife_russian_up_up"), 4.18);
     
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911"), 3.33);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_rdw_up"), 5);
