@@ -17,6 +17,8 @@
 #insert scripts\zm\_zm_utility.gsh;
 
 #using scripts\lilrobot\_inspectable_weapons;
+#using scripts\zm\_hb21_zm_weap_staff_fire;
+#using scripts\zm\_hb21_zm_weap_staff_lightning;
 
 #using scripts\zm\_load;
 #using scripts\zm\_zm;
@@ -155,6 +157,8 @@ function private configure_weapon_inspection()
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911"), 3.33);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_rdw_up"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_ldw_up"), 5);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_1911_rdw_up_up"), 5);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_1911_ldw_up_up"), 5);
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_diamatti"), 6.23);
     inspectable::add_inspectable_weapon(GetWeapon("t9_diamatti_up"), 6.23);
