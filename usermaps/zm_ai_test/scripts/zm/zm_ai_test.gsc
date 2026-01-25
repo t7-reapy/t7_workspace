@@ -199,6 +199,7 @@ function private configure_weapon_inspection()
     
     inspectable::add_inspectable_weapon(GetWeapon("iw8_iso"), 5.13);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_iso_up"), 5.13);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_iso_up_up"), 5.13);
         
     inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1"), 5.13);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_up"), 5.13);
