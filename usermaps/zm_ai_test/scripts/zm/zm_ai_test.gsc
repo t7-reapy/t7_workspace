@@ -214,6 +214,7 @@ function private configure_weapon_inspection()
     
     inspectable::add_inspectable_weapon(GetWeapon("iw8_mp5k"), 5.16);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_mp5sd_up"), 5.16);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_mp5sd_up_up"), 5.16);
     
     inspectable::add_inspectable_weapon(GetWeapon("iw8_model680"), 5.16);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_model680_up"), 5.16);
