@@ -173,6 +173,7 @@ function private configure_weapon_inspection()
     
     inspectable::add_inspectable_weapon(GetWeapon("t9_groza"), 6.13);
     inspectable::add_inspectable_weapon(GetWeapon("t9_groza_up"), 6.13);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_groza_up_up"), 6.13);
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_m60"), 10);
     inspectable::add_inspectable_weapon(GetWeapon("t9_m60_up"), 10);
