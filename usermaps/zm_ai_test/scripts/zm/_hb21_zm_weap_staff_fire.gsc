@@ -13,6 +13,8 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_spawner;
 #using scripts\zm\_zm_utility;
+
+#using scripts\zm\_hb21_zm_weap_utility;
 #using scripts\zm\_hb21_zm_weap_staff_utility;
 
 #insert scripts\shared\shared.gsh;
@@ -56,7 +58,8 @@ function __init__()
 {    
     level.a_staff_fire_weaponfiles = [];
     
-    staff_fire_register_weapon_for_level(FIRESTAFF_WEAPON, undefined, &staff_fire_fired); // or staff_fire_upgrade_fired
+    staff_fire_register_weapon_for_level("t9_1911_rdw_up_up", undefined, undefined); // don't use staff_fire_fired if not on a projectile ...
+    staff_fire_register_weapon_for_level("iw8_ak47_up_up", undefined, &staff_fire_upgrade_fired);
     
     clientfield::register("scriptmover", FIRESTAFF_VOLCANO_CF, VERSION_SHIP, 1, "int");
     clientfield::register("actor", FIRESTAFF_ZOMBIE_BURN_CF, VERSION_SHIP, 1, "int");
@@ -244,7 +247,7 @@ STAFF FIRE FIRED
 Description : This function handles when a player fires a Staff of Fire
 Notes : None
 */
-function staff_fire_fired(e_projectile, w_weapon, n_charge_level)
+function staff_fire_fired(w_weapon)
 {
     self thread staff_fire_spread_shots(w_weapon);
 }
@@ -256,8 +259,8 @@ Notes : None
 */
 function staff_fire_upgrade_fired(e_projectile, w_weapon, n_charge_level)
 {
-    e_projectile thread staff_fire_find_source(self, w_weapon, n_charge_level);
-    self thread staff_fire_additional_shots(w_weapon, n_charge_level);
+    e_projectile thread staff_fire_find_source(self, w_weapon);
+    self thread staff_fire_additional_shots(w_weapon);
 }
 
 /* 
@@ -343,30 +346,25 @@ STAFF FIRE ADDITIONAL SHOTS
 Description : This function handles firing the extra shots for the Staff of Fire's upgraded 'charged' triple / double shot
 Notes : None
 */
-function staff_fire_additional_shots(w_weapon, n_charge_level)
+function staff_fire_additional_shots(w_weapon)
 {
     self endon("disconnect");
     self endon("death");
     self endon("weapon_change");
     
-    for (i = 1; i < n_charge_level; i++)
-    {
-        wait FIRESTAFF_DELAY_BETWEEN_SHOTS;        
-        
-        v_player_angles = vectorToAngles(self getWeaponForwardDir());
-        n_player_pitch = v_player_angles[0] + 5 * i;
-        n_player_yaw = v_player_angles[1] + randomFloatRange(-15, 15);
-        v_shot_angles = (n_player_pitch, n_player_yaw, v_player_angles[2]);
-        
-        v_shot_start = self getWeaponMuzzlePoint();
-        v_shot_end = v_shot_start + anglesToForward(v_shot_angles);
-        
-        e_projectile = magicBullet(w_weapon, v_shot_start, v_shot_end, self);
-        e_projectile.b_additional_shot = 1;
-        
-        e_projectile thread staff_fire_find_source(self, w_weapon, n_charge_level);
-        util::wait_network_frame();
-    }
+    v_player_angles = vectorToAngles(self getWeaponForwardDir());
+    n_player_pitch = v_player_angles[0] + 5;
+    n_player_yaw = v_player_angles[1] + randomFloatRange(-15, 15);
+    v_shot_angles = (n_player_pitch, n_player_yaw, v_player_angles[2]);
+    
+    v_shot_start = self getWeaponMuzzlePoint();
+    v_shot_end = v_shot_start + anglesToForward(v_shot_angles);
+    
+    e_projectile = magicBullet(w_weapon, v_shot_start, v_shot_end, self);
+    e_projectile.b_additional_shot = 1;
+    
+    e_projectile thread staff_fire_find_source(self, w_weapon);
+    util::wait_network_frame();
 }
 
 function waittill_not_moving()
@@ -410,7 +408,7 @@ STAFF FIRE FIND SOURCE
 Description : This function handles logic for the Staff of Fire's upgraded charged attack
 Notes : None
 */
-function staff_fire_find_source(e_player, w_weapon, n_charge_level)
+function staff_fire_find_source(e_player, w_weapon)
 {
     e_player endon("disconnect");
     
@@ -418,7 +416,7 @@ function staff_fire_find_source(e_player, w_weapon, n_charge_level)
     
     self waittill("explode", v_impact_origin);
     
-    e_player thread staff_fire_position_volcano(v_impact_origin, w_weapon, n_charge_level);
+    e_player thread staff_fire_position_volcano(v_impact_origin, w_weapon);
 }
 
 /* 
@@ -426,14 +424,14 @@ STAFF FIRE POSITION VOLCANO
 Description : This function handles logic for the upgraded Staff of Fire's area of effect charge attack
 Notes : None
 */
-function staff_fire_position_volcano(v_impact_origin, w_weapon, n_charge_level)
+function staff_fire_position_volcano(v_impact_origin, w_weapon)
 {
     e_fx_model = util::spawn_model("tag_origin", v_impact_origin);
     e_fx_model endon("death");
     
     e_fx_model clientfield::set(FIRESTAFF_VOLCANO_CF, 1);
     
-    e_fx_model staff_fire_volcano_kill_zombies(w_weapon, self, n_charge_level);
+    e_fx_model staff_fire_volcano_kill_zombies(w_weapon, self);
     
     e_fx_model clientfield::set(FIRESTAFF_VOLCANO_CF, 0);
     
@@ -446,7 +444,7 @@ STAFF FIRE VOLCANO KILL ZOMBIES
 Description : This function handles logic for the Staff of Fire's upgraded charged attack area of effect effecting zombies
 Notes : None
 */
-function staff_fire_volcano_kill_zombies(w_weapon, e_player, n_charge_level)
+function staff_fire_volcano_kill_zombies(w_weapon, e_player)
 {
     e_player endon("death_or_disconnect");
     self endon("death");

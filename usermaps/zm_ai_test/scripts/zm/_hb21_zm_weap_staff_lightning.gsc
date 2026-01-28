@@ -11,6 +11,8 @@
 #using scripts\zm\_zm_powerups;
 #using scripts\zm\_zm_spawner;
 #using scripts\zm\_zm_utility;
+
+#using scripts\zm\_hb21_zm_weap_utility;
 #using scripts\zm\_hb21_zm_weap_staff_utility;
 
 #insert scripts\shared\shared.gsh;

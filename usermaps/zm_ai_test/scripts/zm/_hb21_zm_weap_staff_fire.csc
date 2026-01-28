@@ -25,7 +25,8 @@ function __init__()
 {
     level.a_staff_fire_weaponfiles = [];
     
-    staff_fire_register_weapon_for_level(FIRESTAFF_WEAPON);
+    staff_fire_register_weapon_for_level("t9_1911_rdw_up_up");
+    staff_fire_register_weapon_for_level("iw8_ak47_up_up");
     
     clientfield::register("scriptmover", FIRESTAFF_VOLCANO_CF, VERSION_SHIP, 1, "int", &staff_fire_volcano_fx, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
     clientfield::register("actor", FIRESTAFF_ZOMBIE_BURN_CF, VERSION_SHIP, 1, "int", &staff_fire_burn_zombie, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);

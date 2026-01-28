@@ -9,6 +9,7 @@
 #using scripts\zm\_zm_weapons;
 #using scripts\zm\_zm_unitrigger;
 #using scripts\zm\_zm_utility;
+#using scripts\zm\_hb21_zm_weap_utility;
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;
 #insert scripts\zm\_zm_utility.gsh;
@@ -61,7 +62,7 @@ function register_staff_weapon_for_level(ut_weapon, ptr_weapon_fired_cb = undefi
     w_weapon.ptr_weapon_charge_cb = ptr_weapon_charge_cb;
     
     zombie_utility::add_zombie_gib_weapon_callback(w_weapon.name, undefined, &staff_head_gib_nullify);
-    register_weapon_exclude_for_explode_death_anims(w_weapon);
+    hb21_zm_weap_utility::register_weapon_exclude_for_explode_death_anims(w_weapon);
     
     ARRAY_ADD(level.a_staff_weaponfiles, w_weapon);
 }
@@ -74,13 +75,6 @@ Notes : None
 function on_player_spawned()
 {
     self thread staff_watch_charge_level();
-}
-
-
-function register_weapon_exclude_for_explode_death_anims(w_weapon)
-{
-    DEFAULT(level.a_explode_death_excluded_weapons, []);
-    ARRAY_ADD(level.a_explode_death_excluded_weapons, w_weapon);
 }
 
 /* 

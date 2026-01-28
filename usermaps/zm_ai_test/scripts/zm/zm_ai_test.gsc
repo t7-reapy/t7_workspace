@@ -17,6 +17,7 @@
 #insert scripts\zm\_zm_utility.gsh;
 
 #using scripts\lilrobot\_inspectable_weapons;
+#using scripts\zm\_hb21_zm_weap_utility;
 #using scripts\zm\_hb21_zm_weap_staff_fire;
 #using scripts\zm\_hb21_zm_weap_staff_lightning;
 
@@ -200,6 +201,7 @@ function private configure_weapon_inspection()
 
     inspectable::add_inspectable_weapon(GetWeapon("iw8_ak47"), 5.13);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_ak47_up"), 5.13);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_ak47_up_up"), 5.13);
     
     inspectable::add_inspectable_weapon(GetWeapon("iw8_iso"), 5.13);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_iso_up"), 5.13);
