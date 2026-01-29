@@ -180,6 +180,7 @@ function private configure_weapon_inspection()
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_streetsweeper"), 5.6);
     inspectable::add_inspectable_weapon(GetWeapon("t9_streetsweeper_up"), 5.6);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_streetsweeper_up_up"), 5.6);
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_semiauto_cosplay"), 4.33);
     inspectable::add_inspectable_weapon(GetWeapon("t9_semiauto_cosplay_up"), 4.33);
