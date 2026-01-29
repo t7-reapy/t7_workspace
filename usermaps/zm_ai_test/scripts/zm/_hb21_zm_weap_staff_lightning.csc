@@ -30,7 +30,8 @@ function __init__()
 {
     level.a_staff_lightning_weaponfiles = [];
     
-    staff_lightning_register_weapon_for_level(LIGHTNINGSTAFF_WEAPON);
+    staff_lightning_register_weapon_for_level("t9_1911_ldw_up_up");
+    staff_lightning_register_weapon_for_level("iw8_m4a1_up_up");
     
     clientfield::register("scriptmover", LIGHTNINGSTAFF_BALL_CF, VERSION_SHIP, 1, "int", &staff_lightning_ball_fx_cb, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
     clientfield::register("actor", LIGHTNINGSTAFF_IMPACT_FX_CF, VERSION_SHIP, 1, "counter", &staff_lightning_impact_play_fx_cb, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);

@@ -27,8 +27,8 @@
 #precache("model", LIGHTNINGSTAFF_PLINTH_MODEL);
 #precache("model", LIGHTNINGSTAFF_PLINTH_BASE_MODEL);
 
-#precache("fx",             LIGHTNINGSTAFF_UPGRADE_GLOW);
-#precache("fx",             LIGHTNINGSTAFF_TRAIL_FX);
+#precache("fx", LIGHTNINGSTAFF_UPGRADE_GLOW);
+#precache("fx", LIGHTNINGSTAFF_TRAIL_FX);
 
 #namespace hb21_zm_weap_staff_lightning; 
 
@@ -55,7 +55,8 @@ function __init__()
 {    
     level.a_staff_lightning_weaponfiles = [];
     
-    staff_lightning_register_weapon_for_level(LIGHTNINGSTAFF_WEAPON, undefined, &staff_lightning_fired); // or staff_lightning_upgrade_fired
+    staff_lightning_register_weapon_for_level("t9_1911_ldw_up_up");
+    staff_lightning_register_weapon_for_level("iw8_m4a1_up_up", undefined, &staff_lightning_upgrade_fired);
 
     clientfield::register("scriptmover", LIGHTNINGSTAFF_BALL_CF, VERSION_SHIP, 1, "int");
     clientfield::register("actor", LIGHTNINGSTAFF_IMPACT_FX_CF, VERSION_SHIP, 1, "counter");
