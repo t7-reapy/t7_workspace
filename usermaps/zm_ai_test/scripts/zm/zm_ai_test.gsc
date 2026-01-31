@@ -19,6 +19,7 @@
 #using scripts\lilrobot\_inspectable_weapons;
 #using scripts\zm\_hb21_zm_weap_staff_fire;
 #using scripts\zm\_hb21_zm_weap_staff_lightning;
+#using scripts\zm\_hb21_zm_weap_black_hole_projectile;
 
 #using scripts\zm\_load;
 #using scripts\zm\_zm;
@@ -219,6 +220,7 @@ function private configure_weapon_inspection()
 
     inspectable::add_inspectable_weapon(GetWeapon("iw8_vlkrogue"), 5.33);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_vlkrogue_up"), 5.33);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_vlkrogue_up_up"), 5.33);
     
     inspectable::add_inspectable_weapon(GetWeapon("iw8_mp5k"), 5.16);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_mp5sd_up"), 5.16);
