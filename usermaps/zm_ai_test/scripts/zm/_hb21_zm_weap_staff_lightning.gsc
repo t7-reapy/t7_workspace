@@ -56,6 +56,8 @@ function __init__()
     level.a_staff_lightning_weaponfiles = [];
     
     staff_lightning_register_weapon_for_level("t9_1911_ldw_up_up");
+    staff_lightning_register_weapon_for_level("s4_double_barrel_sawn_rdw_up_up");
+    staff_lightning_register_weapon_for_level("s4_double_barrel_sawn_ldw_up_up");
     staff_lightning_register_weapon_for_level("iw8_m4a1_up_up", undefined, &staff_lightning_upgrade_fired);
 
     clientfield::register("scriptmover", LIGHTNINGSTAFF_BALL_CF, VERSION_SHIP, 1, "int");
