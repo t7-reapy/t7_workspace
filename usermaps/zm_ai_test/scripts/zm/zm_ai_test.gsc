@@ -185,6 +185,7 @@ function private configure_weapon_inspection()
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_semiauto_cosplay"), 4.33);
     inspectable::add_inspectable_weapon(GetWeapon("t9_semiauto_cosplay_up"), 4.33);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_semiauto_cosplay_up_up"), 4.33);
 
     // IW8
     inspectable::add_inspectable_weapon(GetWeapon("iw8_asval"), 5.76);
