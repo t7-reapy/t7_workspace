@@ -218,6 +218,7 @@ function private configure_weapon_inspection()
     
     inspectable::add_inspectable_weapon(GetWeapon("iw8_spr208_irons"), 5.26);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_spr208_irons_up"), 5.26);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_spr208_irons_up_up"), 5.26);
 
     inspectable::add_inspectable_weapon(GetWeapon("iw8_vlkrogue"), 5.33);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_vlkrogue_up"), 5.33);
