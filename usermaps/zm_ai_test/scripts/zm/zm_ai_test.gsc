@@ -237,4 +237,5 @@ function private configure_weapon_inspection()
     // SW2
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927_up"), 5);
+    inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927_up_up"), 5);
 }
