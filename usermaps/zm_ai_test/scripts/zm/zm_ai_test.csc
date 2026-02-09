@@ -11,6 +11,10 @@
 
 #using scripts\zm\_load;
 #using scripts\zm\_zm_weapons;
+#using scripts\zm\_hb21_zm_weap_staff_fire;
+#using scripts\zm\_hb21_zm_weap_staff_lightning;
+#using scripts\zm\_hb21_zm_weap_black_hole_projectile;
+#using scripts\zm\_hb21_zm_weap_magmagat;
 
 //Perks
 #using scripts\zm\_zm_pack_a_punch;

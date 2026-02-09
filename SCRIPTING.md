@@ -12,13 +12,13 @@ In this document, there will be tips and stuff around my investigations and disc
 ## Troubleshoot
 
 If when playing MKV videos, the game crashes, then the version of the software use to make the MKV is too recent:
- - Use handbrake 1.0.3
- - Remove audio tracks
- - Remove subtitle tracks 
+- Use handbrake 1.0.3
+- Remove audio tracks
+- Remove subtitle tracks
 
 When booting game after a successful linking of the scripts in the tools, and having error: *`Error linking script: "blabla.gsc"`*, usually it means one script file is missing from zone file. It mostly does this because link step does the linkage with zoned files, not files from the folder AFAIK.
 
-If the map includes weapons that are not linked (especially the ones buyable on the walls), the map doesn't run, and crashes instantly with error about zm_weapons or something. 
+If the map includes weapons that are not linked (especially the ones buyable on the walls), the map doesn't run, and crashes instantly with error about zm_weapons or something.
 There is also a wallbuy limit around 20 (depends of the guns used on the walls it seems), that makes the map crashes without errors when using PAP.
 
 ## Powerups
@@ -45,7 +45,7 @@ It seems that original script can be overwritten/customized in some places. Exam
 
 GDT modifications on weapons (and maybe other properties in GDT) can be live tested with `NevisX` tool.
 
-Every script in `share/raw/scripts/zm` can be overwritten by alimenting scripts with the same name by putting it in the `usermaps/zm_ai_test/scripts/zm`. 
+Every script in `share/raw/scripts/zm` can be overwritten by alimenting scripts with the same name by putting it in the `usermaps/zm_ai_test/scripts/zm`.
 > Note: if it's coming from folder `share/raw/scripts/shared`, it seems it's also better to overwrite in `usermaps/zm_ai_test/scripts/shared`, so I should respect relative pathing when overwriting script files...
 
 > Note 2: to override certains basic scripts like _zm_ai_dogs.gsc, it needs to be commented with `//` in `zone_source\all\assetlist\zm_patch.csv`, otherwise, previous version is still linked into the map.
@@ -63,7 +63,7 @@ Every script in `share/raw/scripts/zm` can be overwritten by alimenting scripts 
 
 ### Ambient stuff
 
-The `ambient_mod.csv` or **any ambient mod csv file** needs to be configured according to ardivee's script `_ambient_room.cs`. 
+The `ambient_mod.csv` or **any ambient mod csv file** needs to be configured according to ardivee's script `_ambient_room.cs`.
 > [***not true, I've tested it multiple times, sometimes work, sometimes doesn't, but with current config field value needs to be specified***] => There is a specificity regarding the csv file now: never specify column value `EntityContextValue0` for the default ambient sound.
 
 "Reverb" column config doesn't seem to impact gun sound effects, weirdly, but will affect every other sounds I've been testing.
@@ -92,3 +92,18 @@ CoD mod files extensions: `*.csc,*.gsc,*.gsh,*.szc,*.zpkg,*.zone,*.csv,*.gdt,*.m
 |     missile      | missile entity    | 56                         | Sometimes                    | Can help play FX or sounds on a missile coming from things like a launcher, bow, or AI weapon.                                             |
 |     zbarrier     | zbarrier entity   | 44                         | Yes                          | Used to handle FX and sounds for zbarrier assets such as Pack-A-Punch, GobbleGum machines, and zombie barricades.                          |
 |       item       | item entity       | 64                         | No                           | Rarely used for specific scenarios in the Campaign.                                                                                        |
+
+## Text colors
+
+| Code | Color     |
+| ---- | --------- |
+| ^0   | Black     |
+| ^1   | Red       |
+| ^2   | Green     |
+| ^3   | Yellow    |
+| ^4   | Blue      |
+| ^5   | Cyan      |
+| ^6   | Pink      |
+| ^7   | White     |
+| ^8   | Grey      |
+| ^9   | Light red |

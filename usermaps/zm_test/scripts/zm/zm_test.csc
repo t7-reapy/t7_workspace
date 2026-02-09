@@ -14,6 +14,12 @@
 #using scripts\zm\_rotating_object;
 #using scripts\zm\_zm_weapons;
 
+// Weapon extensions
+#using scripts\zm\_hb21_zm_weap_staff_fire;
+#using scripts\zm\_hb21_zm_weap_staff_lightning;
+#using scripts\zm\_hb21_zm_weap_black_hole_projectile;
+#using scripts\zm\_hb21_zm_weap_magmagat;
+
 // Custom UI
 #using scripts\zm\_zm_h1_hud;
 

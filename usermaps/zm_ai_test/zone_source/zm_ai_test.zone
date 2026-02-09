@@ -2,16 +2,8 @@
 >group,modtools
 
 // Custom weapons
-stringtable,gamedata/weapons/zm/zm_test_weapons.csv
-scriptparsetree,scripts/lilrobot/_inspectable_weapons.gsc
-weapon,t9_1911
-weapon,t9_1911_rdw_up_zm
-weapon,t9_1911_ldw_up_zm
-weapon,iw8_asval
-weapon,iw8_asval_up
-weapon,iw8_vintorez
-weapon,iw8_vintorez_up
-weapon,iw8_minigun
+include,zm_test_weapons
+include,upgraded_weapon_extras
 
 // Scripts
 scriptparsetree,scripts/zm/zm_ai_test.gsc
@@ -35,9 +27,6 @@ include,zm_hellround
 
 // Player models, including easter and hellround
 include,zm_playersmodels
-
-// Weapons camo (extract from zm_weapons.zpkg)
-stringtable,gamedata/weapons/common/weaponoptions.csv
 
 // gfx blood
 fx,blood/fx_blood_gib_arm_sever_burst_rt
