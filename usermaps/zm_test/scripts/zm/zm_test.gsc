@@ -18,6 +18,12 @@
 // Weapon inspection
 #using scripts\lilrobot\_inspectable_weapons;
 
+// Weapon extensions
+#using scripts\zm\_hb21_zm_weap_staff_fire;
+#using scripts\zm\_hb21_zm_weap_staff_lightning;
+#using scripts\zm\_hb21_zm_weap_black_hole_projectile;
+#using scripts\zm\_hb21_zm_weap_magmagat;
+
 #using scripts\zm\_load;
 #using scripts\zm\_zm;
 #using scripts\zm\_zm_audio;
@@ -501,67 +507,91 @@ function private configure_weapon_inspection()
     // T9
     inspectable::add_inspectable_weapon(GetWeapon("t9_me_knife_russian"), 4.18);
     inspectable::add_inspectable_weapon(GetWeapon("t9_me_knife_russian_up"), 4.18);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_me_knife_russian_up_up"), 4.18);
     
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911"), 3.33);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_rdw_up"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("t9_1911_ldw_up"), 5);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_1911_rdw_up_up"), 5);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_1911_ldw_up_up"), 5);
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_diamatti"), 6.23);
     inspectable::add_inspectable_weapon(GetWeapon("t9_diamatti_up"), 6.23);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_diamatti_up_up"), 6.23);
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_rpk"), 5.83);
     inspectable::add_inspectable_weapon(GetWeapon("t9_rpk_up"), 5.83);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_rpk_up_up"), 5.83);
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_ffar1"), 4.83);
     inspectable::add_inspectable_weapon(GetWeapon("t9_ffar1_up"), 4.83);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_ffar1_up_up"), 4.83);
     
     inspectable::add_inspectable_weapon(GetWeapon("t9_groza"), 6.13);
     inspectable::add_inspectable_weapon(GetWeapon("t9_groza_up"), 6.13);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_groza_up_up"), 6.13);
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_m60"), 10);
     inspectable::add_inspectable_weapon(GetWeapon("t9_m60_up"), 10);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_m60_up_up"), 10);
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_streetsweeper"), 5.6);
     inspectable::add_inspectable_weapon(GetWeapon("t9_streetsweeper_up"), 5.6);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_streetsweeper_up_up"), 5.6);
 
     inspectable::add_inspectable_weapon(GetWeapon("t9_semiauto_cosplay"), 4.33);
     inspectable::add_inspectable_weapon(GetWeapon("t9_semiauto_cosplay_up"), 4.33);
+    inspectable::add_inspectable_weapon(GetWeapon("t9_semiauto_cosplay_up_up"), 4.33);
 
     // IW8
     inspectable::add_inspectable_weapon(GetWeapon("iw8_asval"), 5.76);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_asval_up"), 5.76);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_asval_up_up"), 5.76);
     
     inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs"), 4.66);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs_rdw_up"), 4.66);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs_ldw_up"), 4.66);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs_rdw_up_up"), 4.66);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_50gs_ldw_up_up"), 4.66);
+
+    inspectable::add_inspectable_weapon(GetWeapon("shredder_rdw_up_up"), 4.66);
+    inspectable::add_inspectable_weapon(GetWeapon("shredder_ldw_up_up"), 4.66);
 
     inspectable::add_inspectable_weapon(GetWeapon("iw8_ak47"), 5.13);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_ak47_up"), 5.13);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_ak47_up_up"), 5.13);
     
     inspectable::add_inspectable_weapon(GetWeapon("iw8_iso"), 5.13);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_iso_up"), 5.13);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_iso_up_up"), 5.13);
         
     inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1"), 5.13);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_up"), 5.13);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_up_up"), 5.13);
 
     inspectable::add_inspectable_weapon(GetWeapon("iw8_minigun"), 5.26);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_minigun_up"), 5.26);
     
     inspectable::add_inspectable_weapon(GetWeapon("iw8_spr208_irons"), 5.26);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_spr208_irons_up"), 5.26);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_spr208_irons_up_up"), 5.26);
 
     inspectable::add_inspectable_weapon(GetWeapon("iw8_vlkrogue"), 5.33);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_vlkrogue_up"), 5.33);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_vlkrogue_up_up"), 5.33);
     
     inspectable::add_inspectable_weapon(GetWeapon("iw8_mp5k"), 5.16);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_mp5sd_up"), 5.16);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_mp5sd_up_up"), 5.16);
     
     inspectable::add_inspectable_weapon(GetWeapon("iw8_model680"), 5.16);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_model680_up"), 5.16);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_model680_up_up"), 5.16);
 
     // SW2
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927_up"), 5);
+    inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927_up_up"), 5);
 }
 
 /* endregion */

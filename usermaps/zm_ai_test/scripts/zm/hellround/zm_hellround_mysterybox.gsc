@@ -614,7 +614,7 @@ function private toggle_firesale(b_enabled)
     level endon("hrmb_toggle_firesale");
     PRINT_HR_DEBUG("toggle_firesale: " + b_enabled);
 
-    if (b_enabled || level.hellround_mystery_box.permanent_unlock)
+    if (b_enabled)
     {
         level._zombiemode_check_firesale_loc_valid_func = &firesale_enabled;
         level notify("hrmb_watch_for_post_hellround_firesale_start");
@@ -659,6 +659,12 @@ function private firesale_enabled()
 
 function private firesale_disabled()
 {
+    if (level.hellround_mystery_box.permanent_unlock)
+    {
+        PRINT_HR_DEBUG("Permanently unlocked. Firesale enabled.");
+        return true;
+    }
+
     return false;
 }
 
@@ -693,12 +699,12 @@ function private list_temp() // self == chest
     zbarrier = self.zbarrier;
     while (true)
     {
-        IPrintLnBold("zbarrier GetZBarrierPieceState(0) :" + zbarrier GetZBarrierPieceState(0));
-        IPrintLnBold("zbarrier GetZBarrierPieceState(1) :" + zbarrier GetZBarrierPieceState(1));
-        IPrintLnBold("zbarrier GetZBarrierPieceState(2) :" + zbarrier GetZBarrierPieceState(2));
-        IPrintLnBold("zbarrier GetZBarrierPieceState(3) :" + zbarrier GetZBarrierPieceState(3));
-        IPrintLnBold("zbarrier GetZBarrierPieceState(4) :" + zbarrier GetZBarrierPieceState(4));
-        IPrintLnBold("zbarrier GetZBarrierPieceState(5) :" + zbarrier GetZBarrierPieceState(5));
+        PRINT_HR_DEBUG("zbarrier GetZBarrierPieceState(0) :" + zbarrier GetZBarrierPieceState(0));
+        PRINT_HR_DEBUG("zbarrier GetZBarrierPieceState(1) :" + zbarrier GetZBarrierPieceState(1));
+        PRINT_HR_DEBUG("zbarrier GetZBarrierPieceState(2) :" + zbarrier GetZBarrierPieceState(2));
+        PRINT_HR_DEBUG("zbarrier GetZBarrierPieceState(3) :" + zbarrier GetZBarrierPieceState(3));
+        PRINT_HR_DEBUG("zbarrier GetZBarrierPieceState(4) :" + zbarrier GetZBarrierPieceState(4));
+        PRINT_HR_DEBUG("zbarrier GetZBarrierPieceState(5) :" + zbarrier GetZBarrierPieceState(5));
         wait 1.0;
     }
 }

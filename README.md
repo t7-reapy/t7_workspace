@@ -150,6 +150,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - shredder is too powerful: speed, upgrade too much damage, no self explosion damage
 - shredder climbing sound is triggering the initial pickup sound
 - sword powerup can crash the map (if the sword goes out of playable zone ???)
+- After a map restart, the fog can glitch and be thicker unless reset to state 0
 
 # Sphynx commands cheat sheet
 
