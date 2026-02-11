@@ -482,8 +482,8 @@ function private custom_add_weapons()
 function private setup_weapons()
 {
     // PaP Camo
-    level.pack_a_punch_camo_index = 3;
-    level.pack_a_punch_camo_index_number_variants = 34;
+    level.pack_a_punch_camo_index = 2;
+    level.pack_a_punch_camo_index_number_variants = 2;
 
     level._zombie_custom_add_weapons = &custom_add_weapons;
 
