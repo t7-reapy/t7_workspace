@@ -64,7 +64,7 @@ function main()
     zm_usermap::main();
     setup_weapons();
     setup_zones();
-    setup_camo_trigger();
+    setup_camo_triggers();
 
     level.player_starting_points = 500000;
     
@@ -80,8 +80,8 @@ function usermap_test_zone_init()
 function setup_weapons()
 {
     // PaP Camo
-    level.pack_a_punch_camo_index = 3;
-    level.pack_a_punch_camo_index_number_variants = 34;
+    level.pack_a_punch_camo_index = 2;
+    level.pack_a_punch_camo_index_number_variants = 2;
 
     level._zombie_custom_add_weapons = &custom_add_weapons;
 
@@ -138,12 +138,15 @@ function private update_weapon_camo_for_hellround(enable, weapon) // self == pla
     }
 }
 
-function setup_camo_trigger()
+function setup_camo_triggers()
 {
     switch_camo_trigger = GetEnt("switch_camo", "targetname");
     switch_camo_trigger SetHintString("Hold ^3[{+activate}]^7 to switch camo");
+    upgrade_camo_trigger = GetEnt("upgrade_camo", "targetname");
+    upgrade_camo_trigger SetHintString("Hold ^3[{+activate}]^7 to increase camo index");
 
-    switch_camo_trigger thread watch_trigger();
+    switch_camo_trigger thread switch_trigger_thinks();
+    upgrade_camo_trigger thread upgrade_trigger_thinks();
 } 
 
 function on_player_spawned()
@@ -163,7 +166,7 @@ function on_player_spawned()
   }
 }
 
-function watch_trigger() // self == trigger
+function switch_trigger_thinks() // self == trigger
 {    
     while(1)
     {
@@ -182,6 +185,45 @@ function watch_trigger() // self == trigger
         }
     }
 }
+
+function upgrade_trigger_thinks() // self == trigger
+{    
+    while(1)
+    {
+        self waittill("trigger", ent);
+        foreach (player in GetPlayers())
+        {
+            player update_weapons_camo_index();
+        }
+    }
+}
+
+function private update_weapons_camo_index() // self == player
+{
+    foreach (weapon in self GetWeaponsListPrimaries())
+    {
+        self update_weapons_camo(weapon);
+    }
+}
+
+function private update_weapons_camo(weapon) // self == player
+{
+    if (!(self HasWeapon(weapon, true)))
+    {
+        return;
+    }
+
+    weapon = zm_weapons::get_nonalternate_weapon(weapon);
+
+    camo_index = zm_weapons::get_pack_a_punch_camo_index(weapon.pap_camo_to_use);
+    weapon.pap_camo_to_use = camo_index;
+    IPrintLnBold("camo index is: " + camo_index);
+    if (isdefined(camo_index))
+    {
+        zm_xcdylan93_utils::update_weapon_camo(camo_index, weapon, weapon.altWeapon, 0);
+    }
+}
+
 
 function custom_add_weapons()
 {
