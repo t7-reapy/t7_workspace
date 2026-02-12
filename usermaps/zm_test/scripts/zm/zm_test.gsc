@@ -103,6 +103,7 @@
 // Custom powerups FX
 #define FX_POWERUP_BLUE "_reapy/fx_powerup_blue"
 #precache("fx", FX_POWERUP_BLUE);
+#precache( "string", "ZOMBIE_POWERUP_NUKE" );
 
 function main()
 {
@@ -127,6 +128,7 @@ function main()
     thread prepare_end_game();
     
     callback::on_connect(&disable_hitmarkers);
+    callback::on_connect(&notify_ui_for_nuke_powerup);
     callback::on_spawned(&on_player_spawned);
     callback::on_laststand(&onlaststand);
     
@@ -163,6 +165,17 @@ function private player_knuckle_crack_on_start()
     wait 5.0;
 
     knuckle_crack_players();
+}
+
+function private notify_ui_for_nuke_powerup()
+{
+    level endon("end_game");
+
+    while(true)
+    {
+        self waittill("nuke_triggered");
+        LUINotifyEvent( &"zombie_notification", 1, &"ZOMBIE_POWERUP_NUKE" );
+    }
 }
 
 function private knuckle_crack_players()

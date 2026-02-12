@@ -76,11 +76,24 @@ local PostLoadFunc = function ( self, controller )
 	-- Max ammo has no clientfield so we'll use the scriptNotify since we already have access to it
 	self:subscribeToGlobalModel( controller, "PerController", "scriptNotify", function ( model )
 		if IsParamModelEqualToString( model, "zombie_notification" ) then
-			if Engine.Localize( Engine.GetIString( CoD.GetScriptNotifyData( model )[1], "CS_LOCALIZED_STRINGS" ) ):find( "Max Ammo" ) then
+			if Engine.GetIString( CoD.GetScriptNotifyData( model )[1], "CS_LOCALIZED_STRINGS" ) == "ZOMBIE_POWERUP_MAX_AMMO" then
 				self:appendNotification( {
 					clip = "Powerup",
 					title = "MAX AMMO",
 					image = "h1_powerup_maxammo"
+				} )
+			end
+		end
+	end )
+
+	-- Nuke no clientfield so we'll use the scriptNotify since we already have access to it
+	self:subscribeToGlobalModel( controller, "PerController", "scriptNotify", function ( model )
+		if IsParamModelEqualToString( model, "zombie_notification" ) then
+			if Engine.GetIString( CoD.GetScriptNotifyData( model )[1], "CS_LOCALIZED_STRINGS" ) == "ZOMBIE_POWERUP_NUKE" then
+				self:appendNotification( {
+					clip = "Powerup",
+					title = "KABOOM",
+					image = "h1_powerup_nuke"
 				} )
 			end
 		end
