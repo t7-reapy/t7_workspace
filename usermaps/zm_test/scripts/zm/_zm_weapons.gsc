@@ -2436,24 +2436,28 @@ function weapon_show( player )
 	}
 }
 
-function get_pack_a_punch_camo_index( prev_pap_index )
+function get_pack_a_punch_camo_index( prev_pap_index, is_second_upgrade = false )
 {
 	if( isdefined(level.pack_a_punch_camo_index_number_variants) )
 	{
-		if( isdefined( prev_pap_index ) )
+		if( !isdefined( prev_pap_index ) )
 		{
-			camo_variant = prev_pap_index + 1;
-			if( camo_variant >= (level.pack_a_punch_camo_index+level.pack_a_punch_camo_index_number_variants) )
-			{
-				camo_variant = level.pack_a_punch_camo_index;
-			}
-			return camo_variant;
+			prev_pap_index = level.pack_a_punch_camo_index - 1;
 		}
-		else
-		{ 
-			camo_variant = randomIntRange( 0, level.pack_a_punch_camo_index_number_variants );
-			return level.pack_a_punch_camo_index +  camo_variant;
+
+		camo_variant = prev_pap_index + 1;
+
+		if (is_second_upgrade)
+		{
+			camo_variant++;
 		}
+		
+		if( camo_variant >= (level.pack_a_punch_camo_index+level.pack_a_punch_camo_index_number_variants) )
+		{
+			camo_variant = level.pack_a_punch_camo_index;
+		}
+
+		return camo_variant;
 	}
 	else
 	{

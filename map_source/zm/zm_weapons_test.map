@@ -5,7 +5,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{ED6250E0-80E5-11F0-B3F3-D5AF92DA4185}"
+guid "{94DB52F8-067A-11F1-B48E-9AA7F6FC5E93}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -928,4 +928,36 @@ guid "{5565D4A2-3CA6-11F0-B38C-9E1711927E19}"
 "fxstate4" "1"
 "primaryLightFraction" "1"
 "timescale" "1"
+}
+// entity 33
+{
+guid "{94DB5300-067A-11F1-B48E-9AA7F6FC5E93}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "aac_hotel_host_stand_01"
+"origin" "128 136 0"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}
+// entity 34
+{
+guid "{94DB5303-067A-11F1-B48E-9AA7F6FC5E93}"
+"classname" "trigger_use"
+"targetname" "upgrade_camo"
+"_color" "0.3 0.5 0.8"
+"cursorhint" "HINT_ACTIVATE"
+// brush 0
+{
+ guid "{94DB5302-067A-11F1-B48E-9AA7F6FC5E93}"
+ ( 136 128 32 ) ( 104 128 32 ) ( 104 104 32 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 96 104 56 ) ( 96 128 56 ) ( 128 128 56 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 104 128 48 ) ( 136 128 48 ) ( 136 128 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 128 120 48 ) ( 128 144 48 ) ( 128 144 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 136 144 48 ) ( 104 144 48 ) ( 104 144 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 112 128 48 ) ( 112 104 48 ) ( 112 104 0 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
 }
