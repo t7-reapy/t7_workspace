@@ -2,6 +2,10 @@
 
 In this document, there will be tips and stuff around my investigations and discoveries around treyarch scripts (... or community scripts). I think this effort is worth it considering me starting from scratch, for a later me or newcomer. I won't cover the very basics of programming of course, but I will cover specific stuff about the scripts I read and what is worth to note (to re-use, to overwrite, or to understand).
 
+## Wtf
+
+If blackhole script used to teleport player on a tilted entities, the player world axis is tilted as well, making it like the world has been tilted upside down lol 
+
 ## Sound/Audio format
 
 - Wav file
