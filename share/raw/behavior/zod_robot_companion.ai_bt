@@ -1,0 +1,464 @@
+{
+    "id": "soldier",
+    "type": "selector",
+    "children": [
+        {
+            "id": "combatbehaviormain",
+            "type": "parallel",
+            "children": [
+                {
+                    "id": "zodcompanioncollisionservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "zodcompanioncollisionservice",
+                    "cooldownMin": 250,
+                    "cooldownMax": 500
+                },
+                {
+                    "id": "manage_companion_movement",
+                    "type": "condition_service_script",
+                    "scriptFunction": "manage_companion_movement"
+                },
+                {
+                    "id": "combatbehaviorselector",
+                    "type": "selector",
+                    "children": [
+                        {
+                            "id": "deathbehaviors",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "deathcondition",
+                                    "type": "condition_script",
+                                    "interruptName": "death"
+                                },
+                                {
+                                    "id": "selector",
+                                    "type": "selector",
+                                    "children": [
+                                        {
+                                            "id": "tacticalwalkdeathbehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "zodcompanionshouldtacticalwalk",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "zodcompanionshouldtacticalwalk",
+                                                    "interruptName": "death"
+                                                },
+                                                {
+                                                    "id": "tacticalwalkdeathselector",
+                                                    "type": "selector",
+                                                    "children": [
+                                                        {
+                                                            "id": "explosivetacticalwalkdeathbehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "hasbeenexplosivekilledwhiletacticalwalking",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "explosivekilled"
+                                                                },
+                                                                {
+                                                                    "id": "tacticalwalkexplosivedeathaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "explosive_exposed@death",
+                                                                    "actionNotify": "death"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "electrifiedtacticalwalkdeathbehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "hasbeenelectrifiedkilledwhiletacticalwalking",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "electrifiedkilled"
+                                                                },
+                                                                {
+                                                                    "id": "tacticalwalkelectrifieddeathaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "electrified_exposed@death",
+                                                                    "actionNotify": "death"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "tacticalwalkdeathaction",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "exposed@death",
+                                                            "actionNotify": "death"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "exposeddeathbehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "hasbeenkilledinexposed",
+                                                    "type": "condition_script",
+                                                    "interruptName": "death"
+                                                },
+                                                {
+                                                    "id": "coverdeathselector",
+                                                    "type": "selector",
+                                                    "children": [
+                                                        {
+                                                            "id": "explosivecoverdeathbehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "hasbeenexplosivekilledwhileincover",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "explosivekilled"
+                                                                },
+                                                                {
+                                                                    "id": "explosiveexposeddeath",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "explosive_exposed@death",
+                                                                    "actionNotify": "death"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "electrifiedexposeddeathbehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "hasbeenelectrifiedkilledwhileincover",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "electrifiedkilled"
+                                                                },
+                                                                {
+                                                                    "id": "electrifiedexposeddeath",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "electrified_exposed@death",
+                                                                    "actionNotify": "death"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "exposeddeath",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "exposed@death",
+                                                            "actionNotify": "death"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "proceduraltraversebehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldtraverse",
+                                    "type": "condition_script",
+                                    "scriptFunction": "locomotionshouldtraverse",
+                                    "interruptName": "traverse"
+                                },
+                                {
+                                    "id": "shouldproceduraltraverse",
+                                    "type": "condition_script",
+                                    "scriptFunction": "zombieshouldproceduraltraverse",
+                                    "interruptName": "traverse"
+                                },
+                                {
+                                    "id": "disablerepath",
+                                    "type": "condition_service_script",
+                                    "scriptFunction": "disablerepath"
+                                },
+                                {
+                                    "id": "traversejump",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "jump@traversal",
+                                    "actionNotify": "attack_melee",
+                                    "StartFunction": "robotcalcproceduraltraversal"
+                                },
+                                {
+                                    "id": "traverseair",
+                                    "type": "action",
+                                    "ActionName": "robotproceduraltraversal",
+                                    "ASMStateName": "air@traversal"
+                                },
+                                {
+                                    "id": "enablerepath",
+                                    "type": "condition_service_script",
+                                    "scriptFunction": "enablerepath"
+                                },
+                                {
+                                    "id": "traverseland",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "land@traversal",
+                                    "actionNotify": "teardown",
+                                    "TerminateFunction": "robottraverseend",
+                                    "UpdateFunction": "robotprocedurallanding"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "locomotiontraversebehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldtraverse",
+                                    "type": "condition_script",
+                                    "scriptFunction": "locomotionshouldtraverse",
+                                    "interruptName": "traverse"
+                                },
+                                {
+                                    "id": "traverseaction",
+                                    "type": "action",
+                                    "ActionName": "traverseactionstart",
+                                    "ASMStateName": "combat_traverse@traversal"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "movebehaviorselector",
+                            "type": "selector",
+                            "children": [
+                                {
+                                    "id": "movebehaviorparallel",
+                                    "type": "parallel",
+                                    "children": [
+                                        {
+                                            "id": "zodcompanioncanpreemptivejuke",
+                                            "type": "condition_script_negate",
+                                            "scriptFunction": "zodcompanioncanpreemptivejuke"
+                                        },
+                                        {
+                                            "id": "zodcompanionabletoshoot",
+                                            "type": "condition_script",
+                                            "scriptFunction": "zodcompanionabletoshoot"
+                                        },
+                                        {
+                                            "id": "locomotionbehaviorcondition",
+                                            "type": "condition_script",
+                                            "scriptFunction": "locomotionbehaviorcondition"
+                                        },
+                                        {
+                                            "id": "refillammoifneededservice",
+                                            "type": "condition_service_script",
+                                            "scriptFunction": "refillammoifneededservice"
+                                        },
+                                        {
+                                            "id": "trystoppingservice",
+                                            "type": "condition_service_script",
+                                            "scriptFunction": "trystoppingservice"
+                                        },
+                                        {
+                                            "id": "movebehaviorselector",
+                                            "type": "selector",
+                                            "children": [
+                                                {
+                                                    "id": "sprinttransitionbehavior",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "zodcompanionkeepscurrentmovementmode",
+                                                            "type": "condition_script_negate",
+                                                            "scriptFunction": "zodcompanionkeepscurrentmovementmode"
+                                                        },
+                                                        {
+                                                            "id": "sprinttransition",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "sprint_transition@tactical_locomotion",
+                                                            "TerminateFunction": "zodcompanionfinishedsprinttransition"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "id": "tacticalwalkbehavior",
+                                                    "type": "parallel",
+                                                    "children": [
+                                                        {
+                                                            "id": "zodcompanionkeepscurrentmovementmode",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "zodcompanionkeepscurrentmovementmode"
+                                                        },
+                                                        {
+                                                            "id": "zodcompanionsprinttransitioning",
+                                                            "type": "condition_script_negate",
+                                                            "scriptFunction": "zodcompanionsprinttransitioning"
+                                                        },
+                                                        {
+                                                            "id": "zodcompanionshouldtacticalwalk",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "zodcompanionshouldtacticalwalk"
+                                                        },
+                                                        {
+                                                            "id": "tacticalwalkaction",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "walk@tactical_locomotion",
+                                                            "StartFunction": "zodcompaniontacticalwalkactionstart",
+                                                            "loopingAction": 1
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "exposedbehaviorselector",
+                            "type": "selector",
+                            "children": [
+                                {
+                                    "id": "exposedbehaviors",
+                                    "type": "parallel",
+                                    "children": [
+                                        {
+                                            "id": "zodcompanioncanpreemptivejuke",
+                                            "type": "condition_script_negate",
+                                            "scriptFunction": "zodcompanioncanpreemptivejuke"
+                                        },
+                                        {
+                                            "id": "locomotionbehaviorcondition",
+                                            "type": "condition_script_negate",
+                                            "scriptFunction": "locomotionbehaviorcondition"
+                                        },
+                                        {
+                                            "id": "zodcompaniontryreacquireservice",
+                                            "type": "condition_service_script",
+                                            "scriptFunction": "zodcompaniontryreacquireservice",
+                                            "cooldownMin": 200,
+                                            "cooldownMax": 200
+                                        },
+                                        {
+                                            "id": "selector",
+                                            "type": "selector",
+                                            "children": [
+                                                {
+                                                    "id": "exposedreloadbehavior",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "haslowammo",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "haslowammo"
+                                                        },
+                                                        {
+                                                            "id": "defaultaction",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "reload@exposed",
+                                                            "actionNotify": "reload",
+                                                            "TerminateFunction": "refillammoifneededservice"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "id": "exposedshootbehavior",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "hasenemy",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "hasenemy"
+                                                        },
+                                                        {
+                                                            "id": "parallel",
+                                                            "type": "parallel",
+                                                            "children": [
+                                                                {
+                                                                    "id": "hasammo",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "hasammo"
+                                                                },
+                                                                {
+                                                                    "id": "selector",
+                                                                    "type": "selector",
+                                                                    "children": [
+                                                                        {
+                                                                            "id": "parallel",
+                                                                            "type": "parallel",
+                                                                            "children": [
+                                                                                {
+                                                                                    "id": "shouldstopmoving",
+                                                                                    "type": "condition_script",
+                                                                                    "scriptFunction": "shouldstopmoving"
+                                                                                },
+                                                                                {
+                                                                                    "id": "shootatenemydontmoveaction",
+                                                                                    "type": "action",
+                                                                                    "ActionName": "defaultaction",
+                                                                                    "ASMStateName": "shoot@exposed",
+                                                                                    "StartFunction": "setpathmovedelayedrandom"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "id": "shootenemyaction",
+                                                                            "type": "action",
+                                                                            "ActionName": "defaultaction",
+                                                                            "ASMStateName": "shoot@exposed",
+                                                                            "StartFunction": "releaseclaimnode"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "id": "exposedidlebehavior",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "parallel",
+                                                            "type": "parallel",
+                                                            "children": [
+                                                                {
+                                                                    "id": "hasenemy",
+                                                                    "type": "condition_script_negate",
+                                                                    "scriptFunction": "hasenemy"
+                                                                },
+                                                                {
+                                                                    "id": "defaultaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "idle@exposed",
+                                                                    "StartFunction": "releaseclaimnode"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "debugvoidaction",
+            "type": "action",
+            "ActionName": "defaultaction",
+            "ASMStateName": "void@debug"
+        }
+    ]
+}

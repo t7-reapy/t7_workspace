@@ -1,0 +1,73 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{D9E01B1A-64BB-11EC-8254-D43D7E278B2C}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{219AB654-63F2-11EC-8254-D43D7E278B2C}"
+ ( -16 -38 -124 ) ( 16 -38 -124 ) ( 16 -6 -124 ) traverse 32 32 0 -38 180 0 lightmap_gray 16384 16384 0 -38 180 0
+ ( 16 -6 -116 ) ( 16 -38 -116 ) ( -16 -38 -116 ) traverse 32 32 0 -38 180 0 lightmap_gray 16384 16384 0 -38 180 0
+ ( 16 -22 -116 ) ( -16 -22 -116 ) ( -16 -22 -124 ) traverse 32 -32 0 -116 180 0 lightmap_gray 16384 -16384 0 -116 180 0
+ ( -16 -6 -116 ) ( -16 -38 -116 ) ( -16 -38 -124 ) traverse 32 -32 38 -116 180 0 lightmap_gray 16384 -16384 38 -116 180 0
+ ( 16 -86 -116 ) ( 16 -54 -116 ) ( 16 -54 -124 ) traverse 32 -32 38 -116 -180 0 lightmap_gray 16384 -16384 38 -116 -180 0
+ ( 16 -54 -124 ) ( 16 -54 -116 ) ( 48 -54 -116 ) traverse 16 16 0 -124 0 0 lightmap_gray 16384 16384 0 -124 0 0
+}
+// brush 1
+{
+ guid "{219AB655-63F2-11EC-8254-D43D7E278B2C}"
+ ( -16 29 107 ) ( 16 29 107 ) ( 16 61 107 ) traverse 32 32 0 -11 180 0 lightmap_gray 16384 16384 0 -11 180 0
+ ( 16 53 115 ) ( 16 21 115 ) ( -16 21 115 ) traverse 32 32 0 -11 180 0 lightmap_gray 16384 16384 0 -11 180 0
+ ( 14 54 117 ) ( -18 54 117 ) ( -18 54 109 ) traverse 32 -32 0 19 180 0 lightmap_gray 16384 -16384 0 19 180 0
+ ( -16 61 115 ) ( -16 29 115 ) ( -16 29 107 ) traverse 32 -32 11 19 180 0 lightmap_gray 16384 -16384 11 19 180 0
+ ( -16 22 115 ) ( 16 22 115 ) ( 16 22 107 ) traverse 32 -32 0 19 180 0 lightmap_gray 16384 -16384 0 19 180 0
+ ( 16 29 115 ) ( 16 61 115 ) ( 16 61 107 ) traverse 32 -32 11 19 180 0 lightmap_gray 16384 -16384 11 19 180 0
+}
+}
+// entity 1
+{
+guid "{D9E01B1B-64BB-11EC-8254-D43D7E278B2C}"
+"classname" "node_negotiation_end"
+"PROCEDURAL" "1"
+"angles" "0 90 0"
+"origin" "3.8147e-006 -38 -100"
+"targetname" "auto2108"
+"_color" "0.6 0.5 0.5"
+"spawnflags" "1024"
+}
+// entity 2
+{
+guid "{D9E01B1C-64BB-11EC-8254-D43D7E278B2C}"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 270 0"
+"animscript" "jump_down_church"
+"movementtype_require" "zombie_boss"
+"origin" "0 38 131"
+"previewanim1" "ai_zm_dlc5_zombie_mech_jump_down_church"
+"previewmdl1" "c_zom_mech_body"
+"target" "auto2108"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}

@@ -1,0 +1,76 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{579EF123-6ECF-11E5-861C-8CDCD456035B}"
+"classname" "worldspawn"
+"lutmaterial" "luts_t7_default"
+"fsi" "default"
+"gravity" "800"
+"lightingquality" "1024"
+"lodbias" "default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"samplescale" "1"
+"shadowslices" "96"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+"umbraSmallestHole" "16"
+"umbraSmallestOccluder" "96"
+"umbraTileSize" "2"
+"umbra_prime_depth" "1"
+"vbloom" "none"
+"vcolor" "none"
+"wsi" "default_day"
+}
+// entity 1
+{
+guid "{579EF124-6ECF-11E5-861C-8CDCD456035B}"
+"classname" "script_struct"
+"angles" "0 270 0"
+"model" "t10_zm_machine_deadshot_on"
+"script_noteworthy" "specialty_deadshot"
+"targetname" "zm_perk_machine"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{1CC1149D-4517-11F0-9A90-309C23A208D5}"
+"classname" "trigger_multiple"
+"CLIENTSIDE_TRIGGER" "1"
+"script_sound" "zmb_perks_bump_bottle"
+"targetname" "audio_bump_trigger"
+"_color" "1 0.3 0.1"
+"spawnflags" "128"
+// brush 0
+{
+ guid "{1CC1149C-4517-11F0-9A90-309C23A208D5}"
+ ( 28 12 0 ) ( -4 12 0 ) ( -4 -20 0 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -8 -20 22 ) ( -8 12 22 ) ( 24 12 22 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -4 -28 10 ) ( 28 -28 10 ) ( 28 -28 -6 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 12 -20 16 ) ( 12 12 16 ) ( 12 12 0 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 28 -12 16 ) ( -4 -12 16 ) ( -4 -12 0 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -10 20 16 ) ( -10 -12 16 ) ( -10 -12 0 ) sound_trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 3
+{
+guid "{A08972E1-4520-11F0-9A90-309C23A208D5}"
+"classname" "fx"
+"delay" "-19783"
+"fxdef" "dlc5/zmhd/fx_perk_daiquiri"
+"fxstate1" "0"
+"fxstate2" "1"
+"fxstate3" "1"
+"fxstate4" "1"
+"primaryLightFraction" "1"
+"timescale" "1"
+}

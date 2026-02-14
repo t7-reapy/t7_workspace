@@ -1,0 +1,105 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{79DAD006-6E3B-11EA-BEE2-0015833D0A57}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{BBABDC4F-6E2F-11EA-BEE2-0015833D0A57}"
+  contents nonColliding;
+ ( 16 24 -256 ) ( -16 24 -256 ) ( -16 16 -256 ) traverse 16 16 0 -16 0 0 lightmap_gray 16384 16384 0 -16 0 0
+ ( -16 16 280 ) ( -16 24 280 ) ( 16 24 280 ) traverse 16 16 0 -16 0 0 lightmap_gray 16384 16384 0 -16 0 0
+ ( -16 16 128 ) ( 16 16 128 ) ( 16 16 0 ) traverse 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 16 16 128 ) ( 16 24 128 ) ( 16 24 0 ) traverse 16 16 16 0 0 0 lightmap_gray 16384 16384 16 0 0 0
+ ( 16 24 256 ) ( -16 24 256 ) ( -16 24 128 ) traverse 16 16 0 -128 0 0 lightmap_gray 16384 16384 0 -128 0 0
+ ( -16 24 128 ) ( -16 16 128 ) ( -16 16 0 ) traverse 16 16 16 0 0 0 lightmap_gray 16384 16384 16 0 0 0
+}
+// brush 1
+{
+ guid "{34FBFAAF-6E30-11EA-BEE2-0015833D0A57}"
+  contents nonColliding;
+ ( 16 24 248 ) ( -16 24 248 ) ( -16 -8 248 ) traverse 16 16 0 -8 0 0 lightmap_gray 16384 16384 0 -8 0 0
+ ( -16 -8 280 ) ( -16 24 280 ) ( 16 24 280 ) traverse 16 16 0 -8 0 0 lightmap_gray 16384 16384 0 -8 0 0
+ ( -16 0 280 ) ( 16 0 280 ) ( 16 0 272 ) traverse 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 16 -8 280 ) ( 16 24 280 ) ( 16 24 272 ) traverse 16 16 8 0 0 0 lightmap_gray 16384 16384 8 0 0 0
+ ( 16 16 280 ) ( -16 16 280 ) ( -16 16 272 ) traverse 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -16 24 280 ) ( -16 -8 280 ) ( -16 -8 272 ) traverse 16 16 8 0 0 0 lightmap_gray 16384 16384 8 0 0 0
+}
+// brush 2
+{
+ guid "{7073401B-6E30-11EA-BEE2-0015833D0A57}"
+  contents nonColliding;
+ ( 16 28 208 ) ( -16 28 208 ) ( -16 -4 208 ) traverse 16 16 0 -12 0 0 lightmap_gray 16384 16384 0 -12 0 0
+ ( -16 0 248 ) ( -16 32 248 ) ( 16 32 248 ) traverse 16 16 0 -16 0 0 lightmap_gray 16384 16384 0 -16 0 0
+ ( -16 8 248 ) ( 16 8 248 ) ( 16 8 240 ) traverse 16 16 0 32 0 0 lightmap_gray 16384 16384 0 32 0 0
+ ( 16 0 248 ) ( 16 32 248 ) ( 16 32 240 ) traverse 16 16 16 32 0 0 lightmap_gray 16384 16384 16 32 0 0
+ ( 16 16 248 ) ( -16 16 248 ) ( -16 16 240 ) traverse 16 16 0 32 0 0 lightmap_gray 16384 16384 0 32 0 0
+ ( -16 32 248 ) ( -16 0 248 ) ( -16 0 240 ) traverse 16 16 16 32 0 0 lightmap_gray 16384 16384 16 32 0 0
+}
+// brush 3
+{
+ guid "{491C0065-6E36-11EA-BEE2-0015833D0A57}"
+  contents nonColliding;
+ ( 16 20 224 ) ( -16 20 224 ) ( -16 -12 224 ) traverse 16 16 0 -4 0 0 lightmap_gray 16384 16384 0 -4 0 0
+ ( -16 -4 248 ) ( -16 28 248 ) ( 16 28 248 ) traverse 16 16 0 -12 0 0 lightmap_gray 16384 16384 0 -12 0 0
+ ( -16 4 248 ) ( 16 4 248 ) ( 16 4 240 ) traverse 16 16 0 32 0 0 lightmap_gray 16384 16384 0 32 0 0
+ ( 16 -4 248 ) ( 16 28 248 ) ( 16 28 240 ) traverse 16 16 12 32 0 0 lightmap_gray 16384 16384 12 32 0 0
+ ( 16 8 248 ) ( -16 8 248 ) ( -16 8 240 ) traverse 16 16 0 32 0 0 lightmap_gray 16384 16384 0 32 0 0
+ ( -16 28 248 ) ( -16 -4 248 ) ( -16 -4 240 ) traverse 16 16 12 32 0 0 lightmap_gray 16384 16384 12 32 0 0
+}
+// brush 4
+{
+ guid "{6664901A-6E36-11EA-BEE2-0015833D0A57}"
+  contents nonColliding;
+ ( 16 12 228 ) ( -16 12 228 ) ( -16 -20 228 ) traverse 16 16 0 4 0 0 lightmap_gray 16384 16384 0 4 0 0
+ ( -16 -8 248 ) ( -16 24 248 ) ( 16 24 248 ) traverse 16 16 0 -8 0 0 lightmap_gray 16384 16384 0 -8 0 0
+ ( -16 -4 248 ) ( 16 -4 248 ) ( 16 -4 240 ) traverse 16 16 0 32 0 0 lightmap_gray 16384 16384 0 32 0 0
+ ( 16 -8 248 ) ( 16 24 248 ) ( 16 24 240 ) traverse 16 16 8 32 0 0 lightmap_gray 16384 16384 8 32 0 0
+ ( 16 4 248 ) ( -16 4 248 ) ( -16 4 240 ) traverse 16 16 0 32 0 0 lightmap_gray 16384 16384 0 32 0 0
+ ( -16 24 248 ) ( -16 -8 248 ) ( -16 -8 240 ) traverse 16 16 8 32 0 0 lightmap_gray 16384 16384 8 32 0 0
+}
+}
+// entity 1
+{
+guid "{79DAD007-6E3B-11EA-BEE2-0015833D0A57}"
+"classname" "node_negotiation_begin"
+"PROCEDURAL" "1"
+"angles" "0 270 0"
+"animscript" "zm_wall_crawl_drop"
+"origin" "0 8 272"
+"previewanim1" "rtrg_ai_zm_dlc5_hd_theater_quad_crawl_sprint_wall_intro_starting_area"
+"previewmdl1" "c_zom_dlchd_kino_quad_body"
+"target" "auto1"
+"_color" "0.5 0.6 0.5"
+"cost_modifier" "1"
+"spawnflags" "1024"
+}
+// entity 2
+{
+guid "{79DAD008-6E3B-11EA-BEE2-0015833D0A57}"
+"classname" "node_negotiation_end"
+"angles" "0 270 0"
+"origin" "0 -16 -240"
+"targetname" "auto1"
+"_color" "0.6 0.5 0.5"
+}

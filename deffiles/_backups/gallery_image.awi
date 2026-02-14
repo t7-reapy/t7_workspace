@@ -1,0 +1,10 @@
+void GenerateUI( asset Asset )
+{
+	// this stuff is intentionally hidden and are script bundle items
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false ).SetValue( "SCRIPTBUNDLE" );
+	Asset.AddEntry_String( "type", "gallery_image" ).Show( false ).SetValue( "gallery_image" );
+	Asset.AddEntry_Combo( "vmType", "Client" ).Show( false ).SetValue( "Client" );
+	
+	Asset.AddEntry_String( "xstring_displayName", "" ).SetTitle( "Display Name" );
+	Asset.AddEntry_AssetCombo("image_image", "image").SetTitle( "Image" );
+}

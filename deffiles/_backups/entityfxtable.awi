@@ -1,0 +1,19 @@
+
+void GenerateUI( asset Asset )
+{
+	// Effect table
+	
+	Asset.BeginCategory( "Entity FX Table" );
+	{
+		Asset.AddEntry_Path( "zombie", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Zombie").SetToolTip( "Effect to use for Zombie.");
+		Asset.AddEntry_Path( "flesh", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Flesh").SetToolTip( "Effect to use for Flesh.");
+		Asset.AddEntry_Path( "fleshCorpse", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Flesh Corpse").SetToolTip( "Effect to use for Flesh.");
+		Asset.AddEntry_Path( "armorLight", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Armor Light").SetToolTip( "Effect to use for Armor Light.");
+		Asset.AddEntry_Path( "armorHeavy", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Armor Heavy").SetToolTip( "Effect to use for Armor Heavy.");
+		Asset.AddEntry_Path( "robotLight", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Light").SetToolTip( "Effect to use for Robot Light.");
+		Asset.AddEntry_Path( "robotHeavy", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Heavy").SetToolTip( "Effect to use for Robot Heavy.");
+		Asset.AddEntry_Path( "robotBoss", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Boss").SetToolTip( "Effect to use for Robot Boss.");
+		Asset.AddEntry_Path( "powerArmor", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Power Armor").SetToolTip( "Effect to use for Power Armor.");
+		Asset.AddEntry_Path( "skeleton", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Skeleton").SetToolTip( "Effect to use for Bone.");
+	}
+}

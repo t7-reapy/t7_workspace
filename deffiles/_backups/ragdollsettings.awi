@@ -1,0 +1,31 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+
+	Asset.AddEntry_Combo( "type", "ragdollsettings" ).Show( false );
+	
+	Asset.AddEntry_Combo( "vmType", "None" ).Show( false );
+
+	// TODO: Move all of the ragdoll.cfg data into here and create one of these per archetype
+
+
+	array<string> archetypes =
+	{
+		"player",
+		"human",
+		"robot",
+		"zombie",
+		"warlord",
+		"female",
+		"zombie_quad",
+		"monkey"
+	};
+
+	for ( int i = 0; i < archetypes.length(); i++ )
+	{
+		Asset.AddEntry_AssetCombo( archetypes[i] + "IdleAnim", "xanim" ).SetTitle( archetypes[i] + " Idle Anim" ).SetToolTip( "Play this animation on non-ragdoll bones when ragdoll is coming to rest" );
+	}
+}

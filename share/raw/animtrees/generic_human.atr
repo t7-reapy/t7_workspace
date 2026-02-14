@@ -1,0 +1,385 @@
+//---------------------------------
+// Initial test animations
+//---------------------------------
+
+//---------------------------------
+// (Prototype) Real animations
+//---------------------------------
+
+faces : client separate
+{
+	// Death
+	f_death_v1
+	f_death_v2
+	f_death_v3
+	f_death_v4
+	f_death_v5
+	f_death_v6
+	f_death_v7
+	f_death_v8
+	
+	// Single Firing
+	f_firing_v8
+	f_firing_v10
+	f_firing_v11
+	f_firing_v13
+	f_firing_v14
+
+	// Burst Firing
+	f_firing_v2
+	f_firing_v3
+	f_firing_v7
+	f_firing_v9
+	f_firing_v12
+
+	// Idle Alert
+	f_idle_alert_v2
+	f_idle_alert_v4
+	f_idle_alert_v6
+	f_idle_alert_v8
+	f_idle_alert_v9
+	f_idle_alert_v10
+	
+	// CQB
+	f_idle_alert_v1
+	f_idle_alert_v3
+	
+	// Idle Casual
+	f_idle_casual_v1
+	f_idle_casual_v2
+	f_idle_casual_v3
+	
+	// Talk
+	f_im_reloading
+	
+	// Melee
+	f_melee_v1
+	f_melee_v2
+	f_melee_v3
+	f_melee_v4
+	f_melee_v5
+	f_melee_v6
+	f_melee_v7
+	f_melee_v8
+	
+	// Pain
+	f_pain_v1
+	f_pain_v2
+	f_pain_v4
+	f_pain_v5
+	f_pain_v6
+	f_pain_v7
+	
+	// React
+	f_react_v3
+	f_react_v4
+	f_react_v6
+	
+	// Running
+	f_running_v1
+	f_running_v2
+}
+
+body
+{
+	void
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+/* Taken from vehicles.atr
+*/
+//////////////////////////////////////////////////////////////////////////////////
+vehicles
+{
+	blackhawk_vehicle
+	{
+		v_crew_blackhawk_hover_idle
+		v_crew_blackhawk_unload
+	}
+	
+	claw_vehicle
+	{
+		int_claw_idle
+		int_claw_stun_fall_b
+		int_claw_turn_l
+		int_claw_turn_r
+		int_claw_walk_f
+		int_claw_walk_b
+		int_claw_walk_limp_f
+		ai_claw_mk2_stun_fall_l
+		
+		ai_claw_mk2_warmode_touchdown
+	}
+	
+	cobra_vehicle
+	{
+		cobra_copilot_idle
+		cobra_copilot_idle_l
+		cobra_copilot_idle_r	
+	}
+	
+	cougar_player_vehicle : client
+	{
+		v_la_04_01_drive_leftturn_cougar
+	}
+	
+	gaz_vehicle
+	{
+		v_gaz_tigr_driver_door_enter
+		v_gaz_tigr_passenger_door_enter
+		v_gaz_tigr_rear_door_enter
+		v_gaz_tigr_driver_door_exit
+		v_gaz_tigr_passenger_door_exit
+		v_gaz_tigr_rear_door_exit
+		
+		v_gaz63_driver_door_open
+		v_gaz63_passenger_door_open	
+	}
+	
+	horse_vehicle
+	{
+		// horse
+		v_horse_idle1
+		v_horse_idle2
+		v_horse_run_forward
+		v_horse_run_left
+		v_horse_run_right
+		v_horse_sprint_forward
+		v_horse_sprint_left
+		v_horse_sprint_right
+		v_horse_walk_forward
+		v_horse_walk_left
+		v_horse_walk_right
+		v_horse_jump
+		v_horse_pullback
+		
+		// Neversoft Horse
+		ai_horse_idle
+		ai_horse_idle_turn_l
+		ai_horse_idle_turn_r
+		ai_horse_idle_graze
+		ai_horse_jump_takeoff
+		ai_horse_jump_land
+		
+		ai_horse_walk_b
+		ai_horse_walk_f
+		ai_horse_trot_f
+		ai_horse_run_f
+		ai_horse_sprint_f
+		
+		ai_horse_run_f_lean_l
+		ai_horse_run_f_lean_r
+		ai_horse_walk_f_lean_l
+		ai_horse_walk_f_lean_r
+		ai_horse_sprint_f_lean_l
+		ai_horse_sprint_f_lean_r
+		ai_horse_trot_f_lean_l
+		ai_horse_trot_f_lean_r	
+	}
+	
+	jetwing_vehicle
+	{
+		v_crew_jetpack_flight_idle
+		v_crew_vtol_1_jetpack
+		v_crew_vtol_2_jetpack
+		v_crew_vtol_3_jetpack
+		v_crew_vtol_4_jetpack
+		v_crew_vtol_5_jetpack
+		v_crew_vtol_6_jetpack	
+	}	
+	
+	metalstorm_vehicle
+	{
+		o_drone_tank_missile_fire_sp
+	}
+	
+	mi8_hip_vehicle
+	{
+		v_mi8_hip_hover_idle
+		v_mi8_hip_backdoor_open
+	}
+	
+	motorcycle_player_vehicle
+	{
+		player_motorcycle_left_arm
+		{
+			player_motorcycle_drive_left_arm
+			{
+				int_bike_m72_drive_turn_left2right_L
+				int_bike_m72_drive_turn_right2left_L
+			}
+	
+			player_motorcycle_shoot_left_arm
+			{
+				int_bike_m72_gun_fire
+				int_bike_m72_gun_idle
+				
+				player_motorcycle_gun_pullout_root
+				{
+					int_bike_m72_gun_pullout_L
+					int_bike_m72_gun_pullout
+					int_bike_m72_gun_pullout_R
+				}
+				
+				player_motorcycle_gun_putaway_root
+				{
+					int_bike_m72_gun_putaway_L
+					int_bike_m72_gun_putaway
+					int_bike_m72_gun_putaway_R
+				}
+				
+				int_bike_m72_gun_reload
+				int_bike_m72_gun_rechamber
+			}
+		}
+			
+		player_motorcycle_right_arm
+		{
+			int_bike_m72_drive_turn_left2right_R
+			int_bike_m72_drive_turn_right2left_R
+		}
+		
+		police_car_vehicle
+		{
+			v_police_driver_door_open
+			v_police_passenger_door_open
+			v_crew_police_car_driver_door
+			v_crew_police_car_passenger_door
+			v_police_car_driver_door_open_to_windowguard
+			v_police_car_passenger_door_open_to_windowguard		
+		}
+	
+	    motorcycle_shotgun
+	    {
+	        viewmodel_bike_m72_shotgun_fire
+	        viewmodel_bike_m72_shotgun_last_fire
+	        viewmodel_bike_m72_shotgun_reload
+			viewmodel_bike_m72_shotgun_rechamber
+	    }
+	
+		player_motorcycle_drive_throttle_add : additive
+		{
+			int_bike_m72_drive_throttle
+		}
+		
+		player_motorcycle_drive_throttle_add_left : additive
+		{
+			int_bike_m72_drive_throttle_left
+		}
+		
+		player_motorcycle_drive_throttle_add_right : additive
+		{
+			int_bike_m72_drive_throttle_right
+		}
+	
+	}	
+	
+	osprey_vehicle
+	{
+		v_vtol_doors_open
+		v_vtol_doors_close
+		v_vtol_hover_idle	
+		v_vtol_flight_idle
+		v_vtol_gear_up
+		v_vtol_gear_down
+	
+		osprey_engine : client
+		{
+			veh_anim_v78_vtol_engine_left
+			veh_anim_v78_vtol_engine_right
+		}
+	}
+
+	pavelow_vehicle
+	{
+		v_crew_pavelow_doors_open	
+		v_crew_pavelow_doors_close
+	}
+	
+	pickup_vehicle
+	{
+		v_crew_pickup_truck_left_frontdoor_open
+		v_crew_pickup_truck_right_frontdoor_open
+		v_crew_pickup_truck_driver_door_enter
+	}
+	
+	soct_vehicle : client
+	{
+		v_soct_wheels_up
+		v_soct_wheels_down
+	}	
+	
+	spiderbot_vehicle
+	{
+		ai_spider_walk_b
+		ai_spider_walk_f
+		ai_spider_run_f
+		ai_spider_sprint_f
+		ai_spider_idle_turn_l
+		ai_spider_idle_turn_r
+		ai_spider_idle
+		ai_spider_strafe_l
+		ai_spider_strafe_r
+		ai_spider_strafe_run_l
+		ai_spider_strafe_run_r
+	}
+	
+	// super car
+	sportscar_vehicle : client
+	{
+		v_steering_sportscar
+	}
+	
+	uaz_vehicle
+	{
+		v_uaz_driver_door_open
+		v_uaz_passenger_door_open
+		v_uaz_passenger2_door_open
+		v_uaz_passenger3_door_open	
+	}
+	
+	van_vehicle
+	{
+		v_crew_van_left_backdoor_open
+		v_crew_van_left_frontdoor_open
+		v_crew_van_left_slidingdoor_open
+		v_crew_van_right_backdoor_open
+		v_crew_van_right_frontdoor_open
+		v_crew_van_right_slidingdoor_open	
+	}
+	
+	veh_car_destroy
+}
+
+custom_traversals
+{
+	ai_fall_into_ice
+}
+
+cybercom
+{
+	ai_base_rifle_crc_exposed_cybercom_activate
+	ai_base_rifle_stn_exposed_cybercom_activate
+
+}
+///////////////////////////////////////////////////////////////////////////////////
+/* Taken from turret.atr
+*/
+//////////////////////////////////////////////////////////////////////////////////
+
+turret
+{
+	additive_idle
+	{
+		saw_gunner_idle_mg
+		saw_gunner_lowwall_idle_mg
+		saw_gunner_prone_idle_mg
+	}
+	
+	additive_fire
+	{
+		saw_gunner_firing_mg_add
+		saw_gunner_lowwall_firing_mg
+		saw_gunner_prone_firing_mg
+	}	
+}

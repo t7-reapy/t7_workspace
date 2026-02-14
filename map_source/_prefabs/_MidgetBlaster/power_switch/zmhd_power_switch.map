@@ -1,0 +1,49 @@
+iwmap 4
+// entity 0
+{
+guid "{6D5F1E6A-7FDB-11F0-9AE2-309C23A208D5}"
+"classname" "worldspawn"
+"script_noteworthy" "elec_switch"
+}
+// entity 1
+{
+guid "{8CE1ADD2-7FDA-11F0-9AE2-309C23A208D5}"
+"classname" "script_struct"
+"angles" "0 90 0"
+"guid" "811ACAB0"
+"origin" "0.600006 -8.30005 58.3"
+"script_noteworthy" "elec_switch_fx"
+"targetname" "auto1"
+}
+// entity 2
+{
+guid "{263B8113-A14C-468C-90CD-A0ED67835009}"
+layer "000_Global/buyable"
+"classname" "trigger_use"
+"target" "auto1"
+"targetname" "use_elec_switch"
+// brush 0
+{
+ guid "{5DE2006F-91C9-44AE-953B-7ACD692C7AA8}"
+layer "000_Global/buyable"
+ ( -8 -2.5 46.5 ) ( -8 -21.5 46.5 ) ( 9 -21.5 46.5 ) trigger 64.035347 63.979385 560.37817 -397.78375 179.76033 -9.0432746e-005 lightmap_gray 16390.078 16383.975 559.88708 -399.39325 179.75 0.00042284987
+ ( 9 -2.5 68.5 ) ( 9 -21.5 68.5 ) ( -8 -21.5 68.5 ) trigger 64.038841 63.990639 560.06348 -400.91467 179.75 0.0001822191 lightmap_gray 16389.506 16381.211 560.00183 -399.90057 179.75 -0.00028774497
+ ( -7 -2.5 46.5 ) ( 9 -2.5 46.5 ) ( 8 -2.5 68.5 ) trigger 64.010963 -63.98753 560.08435 -228.62935 -179.74049 0.00028775778 lightmap_gray 16390.627 -16382.189 559.91907 -228.59747 -179.73465 0.0010292989
+ ( -8 -21.5 46.5 ) ( -8 -2.5 46.5 ) ( -8 -2.5 68.5 ) trigger 64.013565 -64 398.76016 -229.17191 -178.81345 0.00018145109 lightmap_gray 16372.379 -16383.984 399.0563 -229.17741 -178.81932 0.00067271903
+ ( 9 -21.5 46.5 ) ( -7 -21.5 46.5 ) ( -8 -21.5 68.5 ) trigger 64.022827 -63.984943 559.76764 -228.85275 -179.72484 -0.00038298449 lightmap_gray 16389.621 -16380.403 559.66248 -228.82652 -179.72356 -0.0001831149
+ ( 9 -21.5 68.5 ) ( 9 -2.5 68.5 ) ( 9 -2.5 46.5 ) trigger 64.01178 -64.002548 397.1857 -228.69397 -178.81964 5.5690067e-005 lightmap_gray 16385.998 -16384.48 398.53726 -228.53471 -178.8125 -0.0001075722
+}
+}
+// entity 3
+{
+guid "{8CE1ADD5-7FDA-11F0-9AE2-309C23A208D5}"
+"classname" "scriptbundle_scene"
+"angles" "0 360 0"
+"auto-run" "init"
+"guid" "49116873"
+"origin" "0 2 -1"
+"script_noteworthy" "elec_switch"
+"targetname" "power_switch"
+"spawnflags" "1"
+"scriptbundlename" "p7_fxanim_zmhd_power_switch_bundle"
+}

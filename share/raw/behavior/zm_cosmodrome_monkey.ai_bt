@@ -1,0 +1,255 @@
+{
+    "id": "zombie",
+    "type": "selector",
+    "children": [
+        {
+            "id": "zombiedeathbehavior",
+            "type": "sequence",
+            "children": [
+                {
+                    "id": "waskilled",
+                    "type": "condition_script",
+                    "interruptName": "death"
+                },
+                {
+                    "id": "deathaction",
+                    "type": "action",
+                    "ActionName": "defaultaction",
+                    "ASMStateName": "death@zombie",
+                    "actionNotify": "death",
+                    "StartFunction": "zombiedeathaction",
+                    "TerminateFunction": "startragdoll"
+                }
+            ]
+        },
+        {
+            "id": "idlespawnbehavior",
+            "type": "parallel",
+            "children": [
+                {
+                    "id": "isspawndone",
+                    "type": "condition_script_negate",
+                    "scriptFunction": "zombieisthinkdone"
+                },
+                {
+                    "id": "idleaction",
+                    "type": "action",
+                    "ActionName": "zombieidleaction",
+                    "ASMStateName": "idle@zombie",
+                    "loopingAction": 1
+                }
+            ]
+        },
+        {
+            "id": "playableareabehavior",
+            "type": "parallel",
+            "children": [
+                {
+                    "id": "monkeytargetservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "monkeytargetservice"
+                },
+                {
+                    "id": "playableareaselector",
+                    "type": "selector",
+                    "children": [
+                        {
+                            "id": "groundhitbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "monkeyshouldgroundhit",
+                                    "type": "condition_script",
+                                    "scriptFunction": "monkeyshouldgroundhit"
+                                },
+                                {
+                                    "id": "groundhitaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "ground_hit@zombie",
+                                    "StartFunction": "monkeygroundhitstart",
+                                    "TerminateFunction": "monkeygroundhitterminate"
+                                },
+                                {
+                                    "id": "tauntaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "taunt@zombie"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "grenadethrowbackrunbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "monkeyshouldthrowbackrun",
+                                    "type": "condition_script",
+                                    "scriptFunction": "monkeyshouldthrowbackrun"
+                                },
+                                {
+                                    "id": "grenadethrowbackrun",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "grenade_throw_back_run@zombie",
+                                    "TerminateFunction": "monkeythrowbackterminate"
+                                },
+                                {
+                                    "id": "tauntaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "taunt@zombie",
+                                    "TerminateFunction": "monkeygrenadetauntterminate"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "grenadethrowbackstillbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "monkeyshouldthrowbackstill",
+                                    "type": "condition_script",
+                                    "scriptFunction": "monkeyshouldthrowbackstill"
+                                },
+                                {
+                                    "id": "grenadethrowbackstill",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "grenade_throw_back_still@zombie",
+                                    "TerminateFunction": "monkeythrowbackterminate"
+                                },
+                                {
+                                    "id": "tauntaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "taunt@zombie",
+                                    "TerminateFunction": "monkeygrenadetauntterminate"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "meleeattackbehavior",
+                            "type": "parallel",
+                            "children": [
+                                {
+                                    "id": "shouldmeleeattack",
+                                    "type": "condition_script",
+                                    "scriptFunction": "zombieshouldmelee"
+                                },
+                                {
+                                    "id": "shouldmoveaway",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "zombieshouldmoveaway"
+                                },
+                                {
+                                    "id": "meleeattackaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "melee@zombie",
+                                    "actionNotify": "attack_melee"
+                                }
+                            ]
+                        },
+						
+                        {
+                            "id": "traversebehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldtraverse",
+                                    "type": "condition_script",
+                                    "scriptFunction": "locomotionshouldtraverse",
+                                    "interruptName": "traverse"
+                                },
+                                {
+                                    "id": "traverseaction",
+                                    "type": "action",
+                                    "ActionName": "traverseactionstart",
+                                    "ASMStateName": "traverse@zombie"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "movebehavior",
+                            "type": "parallel",
+                            "children": [
+                                {
+                                    "id": "shouldmove",
+                                    "type": "condition_script",
+                                    "scriptFunction": "locomotionbehaviorcondition"
+                                },
+                                {
+                                    "id": "monkeyshouldthrowbackrun",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "monkeyshouldthrowbackrun"
+                                },
+                                {
+                                    "id": "monkeyshouldthrowbackstill",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "monkeyshouldthrowbackstill"
+                                },
+                                {
+                                    "id": "monkeyshouldgroundhit",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "monkeyshouldgroundhit"
+                                },
+                                {
+                                    "id": "shouldmoveaway",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "zombieshouldmoveaway"
+                                },
+                                {
+                                    "id": "shouldmeleeattack",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "zombieshouldmelee"
+                                },
+                                {
+                                    "id": "moveaction",
+                                    "type": "action",
+                                    "ActionName": "zombiemoveaction",
+                                    "ASMStateName": "move@zombie",
+                                    "loopingAction": 1
+                                }
+                            ]
+                        },
+                        {
+                            "id": "idlebehavior",
+                            "type": "parallel",
+                            "children": [
+                                {
+                                    "id": "shouldmoveaway",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "zombieshouldmoveaway"
+                                },
+                                {
+                                    "id": "shouldmeleeattack",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "zombieshouldmelee"
+                                },
+                                {
+                                    "id": "shouldmove",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "locomotionbehaviorcondition"
+                                },
+                                {
+                                    "id": "idleaction",
+                                    "type": "action",
+                                    "ActionName": "zombieidleaction",
+                                    "ASMStateName": "idle@zombie",
+                                    "loopingAction": 1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "debugvoidaction",
+            "type": "action",
+            "ActionName": "defaultaction",
+            "ASMStateName": "void@debug"
+        }
+    ]
+}

@@ -1,0 +1,116 @@
+{
+    "id": "civilian",
+    "type": "selector",
+    "children": [
+        {
+            "id": "death",
+            "type": "sequence",
+            "children": [
+                {
+                    "id": "waskilled",
+                    "type": "condition_script",
+                    "interruptName": "death"
+                },
+                {
+                    "id": "choosedeath",
+                    "type": "selector",
+                    "children": [
+                        {
+                            "id": "electrifieddeath",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "electrifieddied",
+                                    "type": "condition_script",
+                                    "scriptFunction": "electrifiedkilled"
+                                },
+                                {
+                                    "id": "electrifieddeath",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "electrified_death@civilian",
+                                    "actionNotify": "death",
+                                    "TerminateFunction": "startragdoll"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "death",
+                            "type": "action",
+                            "ActionName": "defaultaction",
+                            "ASMStateName": "death@civilian",
+                            "actionNotify": "death",
+                            "TerminateFunction": "startragdoll"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "move",
+            "type": "parallel",
+            "children": [
+                {
+                    "id": "shouldmove",
+                    "type": "condition_script",
+                    "scriptFunction": "locomotionbehaviorcondition"
+                },
+                {
+                    "id": "locomotionstatemachine",
+                    "type": "behavior_state_machine"
+                }
+            ]
+        },
+        {
+            "id": "sequence",
+            "type": "sequence",
+            "children": [
+                {
+                    "id": "shouldmove",
+                    "type": "condition_script_negate",
+                    "scriptFunction": "locomotionbehaviorcondition"
+                },
+                {
+                    "id": "civilianispanicked",
+                    "type": "condition_script",
+                    "scriptFunction": "civilianispanicked"
+                },
+                {
+                    "id": "notcrouchingcondition",
+                    "type": "condition_script",
+                    "scriptFunction": "notcrouchingcondition"
+                },
+                {
+                    "id": "tocrouch",
+                    "type": "action",
+                    "ActionName": "defaultaction",
+                    "ASMStateName": "stand_to_crouch@civilian"
+                }
+            ]
+        },
+        {
+            "id": "parallel",
+            "type": "parallel",
+            "children": [
+                {
+                    "id": "shouldmove",
+                    "type": "condition_script_negate",
+                    "scriptFunction": "locomotionbehaviorcondition"
+                },
+                {
+                    "id": "idle",
+                    "type": "action",
+                    "ActionName": "civiliancoweraction",
+                    "ASMStateName": "idle@civilian",
+                    "loopingAction": 1
+                }
+            ]
+        },
+        {
+            "id": "debugvoidaction",
+            "type": "action",
+            "ActionName": "defaultaction",
+            "ASMStateName": "void@debug"
+        }
+    ]
+}

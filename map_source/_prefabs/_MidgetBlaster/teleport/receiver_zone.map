@@ -1,0 +1,528 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"000_Global/Special Items" flags 
+"000_Global/Special Items/Teleporter" flags 
+"The Map" flags expanded 
+// entity 0
+{
+guid "{09D8A1EB-7F3A-11F0-9AE2-309C23A208D5}"
+"classname" "worldspawn"
+"origin" "1940 -2113 136"
+"umbraVisGrp" "1"
+"fsi" "default"
+"gravity" "800"
+"lightingquality" "1024"
+"lodbias" "default"
+"lutmaterial" "3a_common"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"samplescale" "1"
+"shadowslices" "96"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+"umbraSmallestHole" "16"
+"umbraSmallestOccluder" "96"
+"umbraTileSize" "2"
+"umbra_prime_depth" "1"
+"vbloom" "none"
+"vcolor" "none"
+"wsi" "default_day"
+// brush 0
+{
+ guid "{76781590-7EB3-11F0-9AE2-309C23A208D5}"
+  contents nonColliding;
+ ( -384 128 0 ) ( -640 128 0 ) ( -640 0 0 ) global_black 2 2 -288 0 0 0 lightmap_gray 16384 16384 -288 0 0 0
+ ( -640 0 352 ) ( -640 128 352 ) ( -384 128 352 ) global_black 2 2 -288 0 0 0 lightmap_gray 16384 16384 -288 0 0 0
+ ( -640 -192 256 ) ( -384 -192 256 ) ( -384 -192 128 ) global_black 2 2 -288 0 0 0 lightmap_gray 16383.975 16384 -287.99667 0 0 0
+ ( -384 192 256 ) ( -640 192 256 ) ( -640 192 128 ) global_black 2 2 -288 0 0 0 lightmap_gray 16384 16384 -288 0 0 0
+ ( -640 128 256 ) ( -640 0 256 ) ( -640 0 128 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -636 -128 192 ) ( -636 0 192 ) ( -636 -128 64 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{76781591-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( -352 192 0 ) ( -608 192 0 ) ( -608 64 0 ) global_black 2 2 -256 -64 0 0 lightmap_gray 16384 16384 -256 -64 0 0
+ ( -608 64 352 ) ( -608 192 352 ) ( -352 192 352 ) global_black 2 2 -256 -64 0 0 lightmap_gray 16384 16384 -256 -64 0 0
+ ( -320 64 256 ) ( -320 192 256 ) ( -320 192 128 ) global_black 2 2 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+ ( -352 192 256 ) ( -608 192 256 ) ( -608 192 128 ) global_black 2 2 -256 0 0 0 lightmap_gray 16384 16384 -256 0 0 0
+ ( -640 192 256 ) ( -640 64 256 ) ( -640 64 128 ) global_black 2 2 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+ ( -640 188 256 ) ( -384 188 256 ) ( -640 188 128 ) global_black 2 2 -256 0 0 0 lightmap_gray 16383.973 16384 -255.99634 0 0 0
+}
+// brush 2
+{
+ guid "{76781592-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( -608 0 352 ) ( -608 128 352 ) ( -352 128 352 ) global_black 2 2 -256 0 0 0 lightmap_gray 16384 16384 -256 0 0 0
+ ( -608 -192 320 ) ( -352 -192 320 ) ( -352 -192 192 ) global_black 2 2 -256 -64 0 0 lightmap_gray 16383.973 16384 -255.99634 -64 0 0
+ ( -324 0 320 ) ( -324 128 320 ) ( -324 128 192 ) global_black 2 2 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( -352 192 320 ) ( -608 192 320 ) ( -608 192 192 ) global_black 2 2 -256 -64 0 0 lightmap_gray 16384 16384 -256 -64 0 0
+ ( -636 128 320 ) ( -636 0 320 ) ( -636 0 192 ) global_black 2 2 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( -608 128 348 ) ( -608 0 348 ) ( -352 128 348 ) global_black 2 2 -256 0 0 0 lightmap_gray 16384 16384 -256 0 0 0
+}
+// brush 3
+{
+ guid "{76781593-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( -352 -64 0 ) ( -608 -64 0 ) ( -608 -192 0 ) global_black 2 2 -256 192 0 0 lightmap_gray 16384 16384 -256 192 0 0
+ ( -608 -192 352 ) ( -608 -64 352 ) ( -352 -64 352 ) global_black 2 2 -256 192 0 0 lightmap_gray 16384 16384 -256 192 0 0
+ ( -608 -192 256 ) ( -352 -192 256 ) ( -352 -192 128 ) global_black 2 2 -256 0 0 0 lightmap_gray 16383.973 16384 -255.99634 0 0 0
+ ( -320 -192 256 ) ( -320 -64 256 ) ( -320 -64 128 ) global_black 2 2 -192 0 0 0 lightmap_gray 16384 16384 -192 0 0 0
+ ( -640 -64 256 ) ( -640 -192 256 ) ( -640 -192 128 ) global_black 2 2 -192 0 0 0 lightmap_gray 16384 16384 -192 0 0 0
+ ( -352 -188 256 ) ( -608 -188 256 ) ( -352 -188 128 ) global_black 2 2 -256 0 0 0 lightmap_gray 16384 16384 -256 0 0 0
+}
+// brush 4
+{
+ guid "{76781594-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( -32 -64 0 ) ( -288 -64 0 ) ( -288 -192 0 ) global_black 2 2 64 192 0 0 lightmap_gray 16384 16384 64 192 0 0
+ ( -288 -192 352 ) ( -288 -64 352 ) ( -32 -64 352 ) global_black 2 2 64 192 0 0 lightmap_gray 16384 16384 64 192 0 0
+ ( -288 -192 256 ) ( -32 -192 256 ) ( -32 -192 128 ) global_black 2 2 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+ ( 0 -192 256 ) ( 0 -64 256 ) ( 0 -64 128 ) global_black 2 2 -192 0 0 0 lightmap_gray 16384 16384 -192 0 0 0
+ ( -320 -64 256 ) ( -320 -192 256 ) ( -320 -192 128 ) global_black 2 2 -192 0 0 0 lightmap_gray 16384 16384 -192 0 0 0
+ ( -32 -188 256 ) ( -288 -188 256 ) ( -32 -188 128 ) global_black 2 2 63.998596 0 0 0 lightmap_gray 16384.01 16384 63.998634 0 0 0
+}
+// brush 5
+{
+ guid "{76781595-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( -288 0 352 ) ( -288 128 352 ) ( -32 128 352 ) global_black 2 2 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+ ( -288 -192 320 ) ( -32 -192 320 ) ( -32 -192 192 ) global_black 2 2 64 -64 0 0 lightmap_gray 16384 16384 64 -64 0 0
+ ( -4 0 320 ) ( -4 128 320 ) ( -4 128 192 ) global_black 2 2 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( -32 192 320 ) ( -288 192 320 ) ( -288 192 192 ) global_black 2 2 63.998596 -64 0 0 lightmap_gray 16384.01 16384 63.998634 -64 0 0
+ ( -316 128 320 ) ( -316 0 320 ) ( -316 0 192 ) global_black 2 2 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( -288 128 348 ) ( -288 0 348 ) ( -32 128 348 ) global_black 2 2 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+}
+// brush 6
+{
+ guid "{76781596-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( -352 128 0 ) ( -608 128 0 ) ( -608 0 0 ) global_black 2 2 -256 0 0 0 lightmap_gray 16384 16384 -256 0 0 0
+ ( -640 -192 128 ) ( -384 -192 128 ) ( -384 -192 0 ) global_black 2 2 -256 128 0 0 lightmap_gray 16383.965 16384 -255.99535 128 0 0
+ ( -324 0 128 ) ( -324 128 128 ) ( -324 128 0 ) global_black 2 2 0 128 0 0 lightmap_gray 16384 16384 0 128 0 0
+ ( -352 192 128 ) ( -608 192 128 ) ( -608 192 0 ) global_black 2 2 -256 128 0 0 lightmap_gray 16384 16384 -256 128 0 0
+ ( -636 128 128 ) ( -636 0 128 ) ( -636 0 0 ) global_black 2 2 0 128 0 0 lightmap_gray 16384 16384 0 128 0 0
+ ( -608 128 4 ) ( -352 128 4 ) ( -608 0 4 ) global_black 2 2 -256 0 0 0 lightmap_gray 16384 16384 -256 0 0 0
+}
+// brush 7
+{
+ guid "{76781597-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( -320 128 0 ) ( -576 128 0 ) ( -576 0 0 ) global_black 2 2 -224 0 0 0 lightmap_gray 16384 16384 -224 0 0 0
+ ( -576 0 352 ) ( -576 128 352 ) ( -320 128 352 ) global_black 2 2 -224 0 0 0 lightmap_gray 16384 16384 -224 0 0 0
+ ( -576 -192 256 ) ( -320 -192 256 ) ( -320 -192 128 ) global_black 2 2 -224 0 0 0 lightmap_gray 16383.963 16384 -223.9951 0 0 0
+ ( -320 -64 256 ) ( -320 64 256 ) ( -320 64 128 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -320 192 256 ) ( -576 192 256 ) ( -576 192 128 ) global_black 2 2 -224 0 0 0 lightmap_gray 16384 16384 -224 0 0 0
+ ( -324 64 192 ) ( -324 -64 192 ) ( -324 64 64 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 8
+{
+ guid "{76781598-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( -32 192 0 ) ( -288 192 0 ) ( -288 64 0 ) global_black 2 2 64 -64 0 0 lightmap_gray 16384 16384 64 -64 0 0
+ ( -288 64 352 ) ( -288 192 352 ) ( -32 192 352 ) global_black 2 2 64 -64 0 0 lightmap_gray 16384 16384 64 -64 0 0
+ ( 0 64 256 ) ( 0 192 256 ) ( 0 192 128 ) global_black 2 2 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+ ( -32 192 256 ) ( -288 192 256 ) ( -288 192 128 ) global_black 2 2 63.998596 0 0 0 lightmap_gray 16384.01 16384 63.998634 0 0 0
+ ( -320 192 256 ) ( -320 64 256 ) ( -320 64 128 ) global_black 2 2 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+ ( -320 188 256 ) ( -64 188 256 ) ( -320 188 128 ) global_black 2 2 63.998871 0 0 0 lightmap_gray 16383.961 16384 64.005219 0 0 0
+}
+// brush 9
+{
+ guid "{76781599-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( 0 128 0 ) ( -256 128 0 ) ( -256 0 0 ) global_black 2 2 96 0 0 0 lightmap_gray 16384 16384 96 0 0 0
+ ( -256 0 352 ) ( -256 128 352 ) ( 0 128 352 ) global_black 2 2 96 0 0 0 lightmap_gray 16384 16384 96 0 0 0
+ ( -256 -192 256 ) ( 0 -192 256 ) ( 0 -192 128 ) global_black 2 2 96 0 0 0 lightmap_gray 16383.982 16384 96.00209 0 0 0
+ ( 0 -64 256 ) ( 0 64 256 ) ( 0 64 128 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 0 192 256 ) ( -256 192 256 ) ( -256 192 128 ) global_black 2 2 96.001709 0 0 0 lightmap_gray 16383.988 16384 96.00164 0 0 0
+ ( -4 64 192 ) ( -4 -64 192 ) ( -4 64 64 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 10
+{
+ guid "{7678159A-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( -64 128 0 ) ( -320 128 0 ) ( -320 0 0 ) global_black 2 2 32 0 0 0 lightmap_gray 16384 16384 32 0 0 0
+ ( -320 0 352 ) ( -320 128 352 ) ( -64 128 352 ) global_black 2 2 32 0 0 0 lightmap_gray 16384 16384 32 0 0 0
+ ( -320 -192 256 ) ( -64 -192 256 ) ( -64 -192 128 ) global_black 2 2 32 0 0 0 lightmap_gray 16383.98 16384 32.002495 0 0 0
+ ( -64 192 256 ) ( -320 192 256 ) ( -320 192 128 ) global_black 2 2 32 0 0 0 lightmap_gray 16384 16384 32 0 0 0
+ ( -320 128 256 ) ( -320 0 256 ) ( -320 0 128 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -316 -128 192 ) ( -316 0 192 ) ( -316 -128 64 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 11
+{
+ guid "{7678159B-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( -32 128 0 ) ( -288 128 0 ) ( -288 0 0 ) global_black 2 2 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+ ( -320 -192 128 ) ( -64 -192 128 ) ( -64 -192 0 ) global_black 2 2 63.998871 128 0 0 lightmap_gray 16383.961 16384 64.005219 128 0 0
+ ( -4 0 128 ) ( -4 128 128 ) ( -4 128 0 ) global_black 2 2 0 128 0 0 lightmap_gray 16384 16384 0 128 0 0
+ ( -32 192 128 ) ( -288 192 128 ) ( -288 192 0 ) global_black 2 2 63.998596 128 0 0 lightmap_gray 16384.01 16384 63.998634 128 0 0
+ ( -316 128 128 ) ( -316 0 128 ) ( -316 0 0 ) global_black 2 2 0 128 0 0 lightmap_gray 16384 16384 0 128 0 0
+ ( -288 128 4 ) ( -32 128 4 ) ( -288 0 4 ) global_black 2 2 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+}
+// brush 12
+{
+ guid "{7678159C-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( 288 192 0 ) ( 32 192 0 ) ( 32 64 0 ) global_black 2 2 384 -64 0 0 lightmap_gray 16384 16384 384 -64 0 0
+ ( 32 64 352 ) ( 32 192 352 ) ( 288 192 352 ) global_black 2 2 384 -64 0 0 lightmap_gray 16384 16384 384 -64 0 0
+ ( 320 64 256 ) ( 320 192 256 ) ( 320 192 128 ) global_black 2 2 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+ ( 288 192 256 ) ( 32 192 256 ) ( 32 192 128 ) global_black 2 2 383.99829 0 0 0 lightmap_gray 16384.018 16384 383.99893 0 0 0
+ ( 0 192 256 ) ( 0 64 256 ) ( 0 64 128 ) global_black 2 2 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+ ( 0 188 256 ) ( 256 188 256 ) ( 0 188 128 ) global_black 2 2 383.99875 0 0 0 lightmap_gray 16383.93 16384 384.00955 0 0 0
+}
+// brush 13
+{
+ guid "{7678159D-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( 320 128 0 ) ( 64 128 0 ) ( 64 0 0 ) global_black 2 2 415.99854 0 0 0 lightmap_gray 16384 16384 415.99854 0 0 0
+ ( 64 0 352 ) ( 64 128 352 ) ( 320 128 352 ) global_black 2 2 415.99854 0 0 0 lightmap_gray 16384 16384 415.99854 0 0 0
+ ( 64 -192 256 ) ( 320 -192 256 ) ( 320 -192 128 ) global_black 2 2 416 0 0 0 lightmap_gray 16384 16384 416 0 0 0
+ ( 320 -64 256 ) ( 320 64 256 ) ( 320 64 128 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 320 192 256 ) ( 64 192 256 ) ( 64 192 128 ) global_black 2 2 415.99805 0 0 0 lightmap_gray 16384.027 16384 415.99603 0 0 0
+ ( 316 64 192 ) ( 316 -64 192 ) ( 316 64 64 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 14
+{
+ guid "{7678159E-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( 256 128 0 ) ( 0 128 0 ) ( 0 0 0 ) global_black 2 2 352 0 0 0 lightmap_gray 16383.988 16384 352 0 0 0
+ ( 0 0 352 ) ( 0 128 352 ) ( 256 128 352 ) global_black 2 2 352 0 0 0 lightmap_gray 16383.988 16384 352 0 0 0
+ ( 0 -192 256 ) ( 256 -192 256 ) ( 256 -192 128 ) global_black 2 2 352 0 0 0 lightmap_gray 16384 16384 352 0 0 0
+ ( 256 192 256 ) ( 0 192 256 ) ( 0 192 128 ) global_black 2 2 351.99829 0 0 0 lightmap_gray 16384.043 16384 351.99408 0 0 0
+ ( 0 128 256 ) ( 0 0 256 ) ( 0 0 128 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4 -128 192 ) ( 4 0 192 ) ( 4 -128 64 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 15
+{
+ guid "{7678159F-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( 288 -64 0 ) ( 32 -64 0 ) ( 32 -192 0 ) global_black 2 2 384 192 0 0 lightmap_gray 16384 16384 384 192 0 0
+ ( 32 -192 352 ) ( 32 -64 352 ) ( 288 -64 352 ) global_black 2 2 384 192 0 0 lightmap_gray 16384 16384 384 192 0 0
+ ( 32 -192 256 ) ( 288 -192 256 ) ( 288 -192 128 ) global_black 2 2 384 0 0 0 lightmap_gray 16384.037 16384 383.995 0 0 0
+ ( 320 -192 256 ) ( 320 -64 256 ) ( 320 -64 128 ) global_black 2 2 -192 0 0 0 lightmap_gray 16384 16384 -192 0 0 0
+ ( 0 -64 256 ) ( 0 -192 256 ) ( 0 -192 128 ) global_black 2 2 -192 0 0 0 lightmap_gray 16384 16384 -192 0 0 0
+ ( 288 -188 256 ) ( 32 -188 256 ) ( 288 -188 128 ) global_black 2 2 383.99829 0 0 0 lightmap_gray 16384.018 16384 383.99893 0 0 0
+}
+// brush 16
+{
+ guid "{767815A0-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( 288 128 0 ) ( 32 128 0 ) ( 32 0 0 ) global_black 2 2 384 0 0 0 lightmap_gray 16384 16384 384 0 0 0
+ ( 0 -192 128 ) ( 256 -192 128 ) ( 256 -192 0 ) global_black 2 2 383.99875 128 0 0 lightmap_gray 16383.93 16384 384.00955 128 0 0
+ ( 316 0 128 ) ( 316 128 128 ) ( 316 128 0 ) global_black 2 2 0 128 0 0 lightmap_gray 16384 16384 0 128 0 0
+ ( 288 192 128 ) ( 32 192 128 ) ( 32 192 0 ) global_black 2 2 383.99829 128 0 0 lightmap_gray 16384.02 16384 383.99875 128 0 0
+ ( 4 128 128 ) ( 4 0 128 ) ( 4 0 0 ) global_black 2 2 0 128 0 0 lightmap_gray 16384 16384 0 128 0 0
+ ( 32 128 4 ) ( 288 128 4 ) ( 32 0 4 ) global_black 2 2 384 0 0 0 lightmap_gray 16384 16384 384 0 0 0
+}
+// brush 17
+{
+ guid "{767815A1-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( 32 0 352 ) ( 32 128 352 ) ( 288 128 352 ) global_black 2 2 384 0 0 0 lightmap_gray 16384 16384 384 0 0 0
+ ( 32 -192 320 ) ( 288 -192 320 ) ( 288 -192 192 ) global_black 2 2 384 -64 0 0 lightmap_gray 16384.037 16384 383.995 -64 0 0
+ ( 316 0 320 ) ( 316 128 320 ) ( 316 128 192 ) global_black 2 2 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 288 192 320 ) ( 32 192 320 ) ( 32 192 192 ) global_black 2 2 383.99829 -64 0 0 lightmap_gray 16384.02 16384 383.99875 -64 0 0
+ ( 4 128 320 ) ( 4 0 320 ) ( 4 0 192 ) global_black 2 2 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 32 128 348 ) ( 32 0 348 ) ( 288 128 348 ) global_black 2 2 384 0 0 0 lightmap_gray 16384 16384 384 0 0 0
+}
+// brush 18
+{
+ guid "{767815A2-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( 608 192 0 ) ( 352 192 0 ) ( 352 64 0 ) global_black 2 2 703.9975 -64 0 0 lightmap_gray 16384.014 16384 703.99811 -64 0 0
+ ( 352 64 352 ) ( 352 192 352 ) ( 608 192 352 ) global_black 2 2 703.9975 -64 0 0 lightmap_gray 16384.014 16384 703.99811 -64 0 0
+ ( 640 64 256 ) ( 640 192 256 ) ( 640 192 128 ) global_black 2 2 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+ ( 608 192 256 ) ( 352 192 256 ) ( 352 192 128 ) global_black 2 2 703.99512 0 0 0 lightmap_gray 16384 16384 703.99805 0 0 0
+ ( 320 192 256 ) ( 320 64 256 ) ( 320 64 128 ) global_black 2 2 64 0 0 0 lightmap_gray 16384 16384 64 0 0 0
+ ( 320 188 256 ) ( 576 188 256 ) ( 320 188 128 ) global_black 2 2 703.9931 0 0 0 lightmap_gray 16383.947 16384 704.00726 0 0 0
+}
+// brush 19
+{
+ guid "{767815A3-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( 640 128 0 ) ( 384 128 0 ) ( 384 0 0 ) global_black 2 2 736 0 0 0 lightmap_gray 16383.984 16384 736.0022 0 0 0
+ ( 384 0 352 ) ( 384 128 352 ) ( 640 128 352 ) global_black 2 2 736 0 0 0 lightmap_gray 16383.984 16384 736.0022 0 0 0
+ ( 384 -192 256 ) ( 640 -192 256 ) ( 640 -192 128 ) global_black 2 2 735.99817 0 0 0 lightmap_gray 16384.01 16384 735.9986 0 0 0
+ ( 640 -64 256 ) ( 640 64 256 ) ( 640 64 128 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 640 192 256 ) ( 384 192 256 ) ( 384 192 128 ) global_black 2 2 735.99805 0 0 0 lightmap_gray 16384.012 16384 735.99866 0 0 0
+ ( 636 64 192 ) ( 636 -64 192 ) ( 636 64 64 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 20
+{
+ guid "{767815A4-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( 576 128 0 ) ( 320 128 0 ) ( 320 0 0 ) global_black 2 2 672.0025 0 0 0 lightmap_gray 16383.986 16384 672.00195 0 0 0
+ ( 320 0 352 ) ( 320 128 352 ) ( 576 128 352 ) global_black 2 2 672.0025 0 0 0 lightmap_gray 16383.986 16384 672.00195 0 0 0
+ ( 320 -192 256 ) ( 576 -192 256 ) ( 576 -192 128 ) global_black 2 2 672 0 0 0 lightmap_gray 16384 16384 672 0 0 0
+ ( 576 192 256 ) ( 320 192 256 ) ( 320 192 128 ) global_black 2 2 671.99805 0 0 0 lightmap_gray 16384.074 16384 671.99005 0 0 0
+ ( 320 128 256 ) ( 320 0 256 ) ( 320 0 128 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 324 -128 192 ) ( 324 0 192 ) ( 324 -128 64 ) global_black 2 2 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 21
+{
+ guid "{767815A5-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( 608 -64 0 ) ( 352 -64 0 ) ( 352 -192 0 ) global_black 2 2 704 192 0 0 lightmap_gray 16384 16384 704 192 0 0
+ ( 352 -192 352 ) ( 352 -64 352 ) ( 608 -64 352 ) global_black 2 2 704 192 0 0 lightmap_gray 16384 16384 704 192 0 0
+ ( 352 -192 256 ) ( 608 -192 256 ) ( 608 -192 128 ) global_black 2 2 704.00146 0 0 0 lightmap_gray 16384.072 16384 703.99066 0 0 0
+ ( 640 -192 256 ) ( 640 -64 256 ) ( 640 -64 128 ) global_black 2 2 -192 0 0 0 lightmap_gray 16384 16384 -192 0 0 0
+ ( 320 -64 256 ) ( 320 -192 256 ) ( 320 -192 128 ) global_black 2 2 -192 0 0 0 lightmap_gray 16384 16384 -192 0 0 0
+ ( 608 -188 256 ) ( 352 -188 256 ) ( 608 -188 128 ) global_black 2 2 703.99512 0 0 0 lightmap_gray 16383.994 16384 704 0 0 0
+}
+// brush 22
+{
+ guid "{767815A6-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( 608 128 0 ) ( 352 128 0 ) ( 352 0 0 ) global_black 2 2 703.99799 0 0 0 lightmap_gray 16384.014 16384 703.9986 0 0 0
+ ( 320 -192 128 ) ( 576 -192 128 ) ( 576 -192 0 ) global_black 2 2 703.9931 128 0 0 lightmap_gray 16383.932 16384 704.00952 128 0 0
+ ( 636 0 128 ) ( 636 128 128 ) ( 636 128 0 ) global_black 2 2 0 128 0 0 lightmap_gray 16384 16384 0 128 0 0
+ ( 608 192 128 ) ( 352 192 128 ) ( 352 192 0 ) global_black 2 2 703.99493 128 0 0 lightmap_gray 16384 16384 703.99805 128 0 0
+ ( 324 128 128 ) ( 324 0 128 ) ( 324 0 0 ) global_black 2 2 0 128 0 0 lightmap_gray 16384 16384 0 128 0 0
+ ( 352 128 4 ) ( 608 128 4 ) ( 352 0 4 ) global_black 2 2 703.99799 0 0 0 lightmap_gray 16384.014 16384 703.9986 0 0 0
+}
+// brush 23
+{
+ guid "{767815A7-7EB3-11F0-9AE2-309C23A208D5}"
+layer "000_Global/Special Items/Teleporter"
+  contents nonColliding;
+ ( 352 0 352 ) ( 352 128 352 ) ( 608 128 352 ) global_black 2 2 703.99799 0 0 0 lightmap_gray 16384.014 16384 703.9986 0 0 0
+ ( 352 -192 320 ) ( 608 -192 320 ) ( 608 -192 192 ) global_black 2 2 704.00146 -64 0 0 lightmap_gray 16384.059 16384 703.99274 -64 0 0
+ ( 636 0 320 ) ( 636 128 320 ) ( 636 128 192 ) global_black 2 2 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 608 192 320 ) ( 352 192 320 ) ( 352 192 192 ) global_black 2 2 703.99512 -64 0 0 lightmap_gray 16384 16384 703.99805 -64 0 0
+ ( 324 128 320 ) ( 324 0 320 ) ( 324 0 192 ) global_black 2 2 0 -64 0 0 lightmap_gray 16384 16384 0 -64 0 0
+ ( 352 128 348 ) ( 352 0 348 ) ( 608 128 348 ) global_black 2 2 703.99799 0 0 0 lightmap_gray 16384.014 16384 703.9986 0 0 0
+}
+// brush 24
+{
+ guid "{44A144F4-6DE6-11F0-9AC9-309C23A208D5}"
+  contents umbraTarget;
+ ( -297 656 208 ) ( -297 336 208 ) ( -281 336 208 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( -281 656 336 ) ( -281 336 336 ) ( -297 336 336 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( -297 656 336 ) ( -297 336 336 ) ( -297 336 208 ) global_diffuse_black 0.5 -0.5 624 160 -180 0 lightmap_gray 16384 -16384 624 160 -180 0
+ ( -281 336 208 ) ( -297 336 208 ) ( -297 336 336 ) global_diffuse_black 0.5 0.5 -1616 -160 0 0 lightmap_gray 16384 16384 -1616 -160 0 0
+ ( -281 656 208 ) ( -281 336 208 ) ( -281 336 336 ) global_diffuse_black 0.5 -0.5 624 160 -180 0 lightmap_gray 16384 -16384 624 160 -180 0
+ ( -281 656 336 ) ( -297 656 336 ) ( -297 656 208 ) global_diffuse_black 0.5 0.5 -1616 -160 0 0 lightmap_gray 16384 16384 -1616 -160 0 0
+}
+// brush 25
+{
+ guid "{44A144F2-6DE6-11F0-9AC9-309C23A208D5}"
+  contents umbraTarget;
+ ( -297 656 208 ) ( -297 336 208 ) ( -41 336 208 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( -41 656 224 ) ( -41 336 224 ) ( -297 336 224 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( -297 656 224 ) ( -297 336 224 ) ( -297 336 208 ) global_diffuse_black 0.5 -0.5 625 185 180 0 lightmap_gray 16384 -16384 625 185 180 0
+ ( -41 336 208 ) ( -297 336 208 ) ( -297 336 224 ) global_diffuse_black 0.5 0.5 -1615 -185 0 0 lightmap_gray 16384 16384 -1615 -185 0 0
+ ( -41 656 208 ) ( -41 336 208 ) ( -41 336 224 ) global_diffuse_black 0.5 -0.5 624 185 -180 0 lightmap_gray 16384 -16384 624 185 -180 0
+ ( -41 656 224 ) ( -297 656 224 ) ( -297 656 208 ) global_diffuse_black 0.5 0.5 -1613 -185 0 0 lightmap_gray 16384 16384 -1613 -185 0 0
+}
+// brush 26
+{
+ guid "{44A144F5-6DE6-11F0-9AC9-309C23A208D5}"
+  contents umbraTarget;
+ ( -297 656 208 ) ( -297 640 208 ) ( -41 640 208 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( -41 656 336 ) ( -41 640 336 ) ( -297 640 336 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( -297 656 336 ) ( -297 640 336 ) ( -297 640 208 ) global_diffuse_black 0.5 -0.5 624 160 180 0 lightmap_gray 16384 -16384 624 160 180 0
+ ( -41 640 208 ) ( -297 640 208 ) ( -297 640 336 ) global_diffuse_black 0.5 0.5 -1616 -272 0 0 lightmap_gray 16384 16384 -1616 -272 0 0
+ ( -41 656 208 ) ( -41 640 208 ) ( -41 640 336 ) global_diffuse_black 0.5 -0.5 624 160 180 0 lightmap_gray 16384 -16384 624 160 180 0
+ ( -41 656 336 ) ( -297 656 336 ) ( -297 656 208 ) global_diffuse_black 0.5 0.5 -1616 -160 0 0 lightmap_gray 16384 16384 -1616 -160 0 0
+}
+// brush 27
+{
+ guid "{44A144F6-6DE6-11F0-9AC9-309C23A208D5}"
+  contents umbraTarget;
+ ( -297 352 208 ) ( -297 336 208 ) ( -41 336 208 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( -41 352 336 ) ( -41 336 336 ) ( -297 336 336 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( -297 352 336 ) ( -297 336 336 ) ( -297 336 208 ) global_diffuse_black 0.5 -0.5 624 160 180 0 lightmap_gray 16384 -16384 624 160 180 0
+ ( -41 336 208 ) ( -297 336 208 ) ( -297 336 336 ) global_diffuse_black 0.5 0.5 -1616 -160 0 0 lightmap_gray 16384 16384 -1616 -160 0 0
+ ( -41 352 208 ) ( -41 336 208 ) ( -41 336 336 ) global_diffuse_black 0.5 -0.5 624 160 180 0 lightmap_gray 16384 -16384 624 160 180 0
+ ( -41 352 336 ) ( -297 352 336 ) ( -297 352 208 ) global_diffuse_black 0.5 0.5 -1616 -272 0 0 lightmap_gray 16384 16384 -1616 -272 0 0
+}
+// brush 28
+{
+ guid "{44A144F7-6DE6-11F0-9AC9-309C23A208D5}"
+  contents umbraTarget;
+ ( -297 656 320 ) ( -297 336 320 ) ( -41 336 320 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( -41 656 336 ) ( -41 336 336 ) ( -297 336 336 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( -297 656 336 ) ( -297 336 336 ) ( -297 336 320 ) global_diffuse_black 0.5 -0.5 625 297 -180 0 lightmap_gray 16384 -16384 625 297 -180 0
+ ( -41 336 320 ) ( -297 336 320 ) ( -297 336 336 ) global_diffuse_black 0.5 0.5 -1615 -297 0 0 lightmap_gray 16384 16384 -1615 -297 0 0
+ ( -41 656 320 ) ( -41 336 320 ) ( -41 336 336 ) global_diffuse_black 0.5 -0.5 624 297 -180 0 lightmap_gray 16384 -16384 624 297 -180 0
+ ( -41 656 336 ) ( -297 656 336 ) ( -297 656 320 ) global_diffuse_black 0.5 0.5 -1613 -297 0 0 lightmap_gray 16384 16384 -1613 -297 0 0
+}
+// brush 29
+{
+ guid "{44A144F3-6DE6-11F0-9AC9-309C23A208D5}"
+  contents umbraTarget;
+ ( -57 656 208 ) ( -57 352 208 ) ( -41 352 208 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( -41 656 336 ) ( -41 352 336 ) ( -57 352 336 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( -57 656 336 ) ( -57 352 336 ) ( -57 352 208 ) global_diffuse_black 0.5 -0.5 624 160 180 0 lightmap_gray 16384 -16384 624 160 180 0
+ ( -41 352 208 ) ( -57 352 208 ) ( -57 352 336 ) global_diffuse_black 0.5 0.5 -1616 -272 0 0 lightmap_gray 16384 16384 -1616 -272 0 0
+ ( -41 656 208 ) ( -41 352 208 ) ( -41 352 336 ) global_diffuse_black 0.5 -0.5 624 160 -180 0 lightmap_gray 16384 -16384 624 160 -180 0
+ ( -41 656 336 ) ( -57 656 336 ) ( -57 656 208 ) global_diffuse_black 0.5 0.5 -1616 -160 0 0 lightmap_gray 16384 16384 -1616 -160 0 0
+}
+// brush 30
+{
+ guid "{67DBEF1C-76E7-11ED-B718-4CCC6A25C4E9}"
+  contents umbraTarget;
+ ( 39 656 208 ) ( 39 336 208 ) ( 295 336 208 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( 295 656 224 ) ( 295 336 224 ) ( 39 336 224 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( 39 656 224 ) ( 39 336 224 ) ( 39 336 208 ) global_diffuse_black 0.5 -0.5 625 185 180 0 lightmap_gray 16384 -16384 625 185 180 0
+ ( 295 336 208 ) ( 39 336 208 ) ( 39 336 224 ) global_diffuse_black 0.5 0.5 -1615 -185 0 0 lightmap_gray 16384 16384 -1615 -185 0 0
+ ( 295 656 208 ) ( 295 336 208 ) ( 295 336 224 ) global_diffuse_black 0.5 -0.5 624 185 -180 0 lightmap_gray 16384 -16384 624 185 -180 0
+ ( 295 656 224 ) ( 39 656 224 ) ( 39 656 208 ) global_diffuse_black 0.5 0.5 -1613 -185 0 0 lightmap_gray 16384 16384 -1613 -185 0 0
+}
+// brush 31
+{
+ guid "{B9938F7D-76E7-11ED-B718-4CCC6A25C4E9}"
+  contents umbraTarget;
+ ( 279 656 208 ) ( 279 352 208 ) ( 295 352 208 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( 295 656 336 ) ( 295 352 336 ) ( 279 352 336 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( 279 656 336 ) ( 279 352 336 ) ( 279 352 208 ) global_diffuse_black 0.5 -0.5 624 160 180 0 lightmap_gray 16384 -16384 624 160 180 0
+ ( 295 352 208 ) ( 279 352 208 ) ( 279 352 336 ) global_diffuse_black 0.5 0.5 -1616 -272 0 0 lightmap_gray 16384 16384 -1616 -272 0 0
+ ( 295 656 208 ) ( 295 352 208 ) ( 295 352 336 ) global_diffuse_black 0.5 -0.5 624 160 -180 0 lightmap_gray 16384 -16384 624 160 -180 0
+ ( 295 656 336 ) ( 279 656 336 ) ( 279 656 208 ) global_diffuse_black 0.5 0.5 -1616 -160 0 0 lightmap_gray 16384 16384 -1616 -160 0 0
+}
+// brush 32
+{
+ guid "{B9938F77-76E7-11ED-B718-4CCC6A25C4E9}"
+  contents umbraTarget;
+ ( 39 656 208 ) ( 39 336 208 ) ( 55 336 208 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( 55 656 336 ) ( 55 336 336 ) ( 39 336 336 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( 39 656 336 ) ( 39 336 336 ) ( 39 336 208 ) global_diffuse_black 0.5 -0.5 624 160 -180 0 lightmap_gray 16384 -16384 624 160 -180 0
+ ( 55 336 208 ) ( 39 336 208 ) ( 39 336 336 ) global_diffuse_black 0.5 0.5 -1616 -160 0 0 lightmap_gray 16384 16384 -1616 -160 0 0
+ ( 55 656 208 ) ( 55 336 208 ) ( 55 336 336 ) global_diffuse_black 0.5 -0.5 624 160 -180 0 lightmap_gray 16384 -16384 624 160 -180 0
+ ( 55 656 336 ) ( 39 656 336 ) ( 39 656 208 ) global_diffuse_black 0.5 0.5 -1616 -160 0 0 lightmap_gray 16384 16384 -1616 -160 0 0
+}
+// brush 33
+{
+ guid "{B9938F7B-76E7-11ED-B718-4CCC6A25C4E9}"
+  contents umbraTarget;
+ ( 39 656 208 ) ( 39 640 208 ) ( 295 640 208 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( 295 656 336 ) ( 295 640 336 ) ( 39 640 336 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( 39 656 336 ) ( 39 640 336 ) ( 39 640 208 ) global_diffuse_black 0.5 -0.5 624 160 180 0 lightmap_gray 16384 -16384 624 160 180 0
+ ( 295 640 208 ) ( 39 640 208 ) ( 39 640 336 ) global_diffuse_black 0.5 0.5 -1616 -272 0 0 lightmap_gray 16384 16384 -1616 -272 0 0
+ ( 295 656 208 ) ( 295 640 208 ) ( 295 640 336 ) global_diffuse_black 0.5 -0.5 624 160 180 0 lightmap_gray 16384 -16384 624 160 180 0
+ ( 295 656 336 ) ( 39 656 336 ) ( 39 656 208 ) global_diffuse_black 0.5 0.5 -1616 -160 0 0 lightmap_gray 16384 16384 -1616 -160 0 0
+}
+// brush 34
+{
+ guid "{B1F9FB73-76E7-11ED-B718-4CCC6A25C4E9}"
+  contents umbraTarget;
+ ( 39 352 208 ) ( 39 336 208 ) ( 295 336 208 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( 295 352 336 ) ( 295 336 336 ) ( 39 336 336 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( 39 352 336 ) ( 39 336 336 ) ( 39 336 208 ) global_diffuse_black 0.5 -0.5 624 160 180 0 lightmap_gray 16384 -16384 624 160 180 0
+ ( 295 336 208 ) ( 39 336 208 ) ( 39 336 336 ) global_diffuse_black 0.5 0.5 -1616 -160 0 0 lightmap_gray 16384 16384 -1616 -160 0 0
+ ( 295 352 208 ) ( 295 336 208 ) ( 295 336 336 ) global_diffuse_black 0.5 -0.5 624 160 180 0 lightmap_gray 16384 -16384 624 160 180 0
+ ( 295 352 336 ) ( 39 352 336 ) ( 39 352 208 ) global_diffuse_black 0.5 0.5 -1616 -272 0 0 lightmap_gray 16384 16384 -1616 -272 0 0
+}
+// brush 35
+{
+ guid "{C2C8A0B9-76E7-11ED-B718-4CCC6A25C4E9}"
+  contents umbraTarget;
+ ( 39 656 320 ) ( 39 336 320 ) ( 295 336 320 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( 295 656 336 ) ( 295 336 336 ) ( 39 336 336 ) global_diffuse_black 0.5 0.5 624 1616 -90 0 lightmap_gray 16384 16384 624 1616 -90 0
+ ( 39 656 336 ) ( 39 336 336 ) ( 39 336 320 ) global_diffuse_black 0.5 -0.5 625 297 -180 0 lightmap_gray 16384 -16384 625 297 -180 0
+ ( 295 336 320 ) ( 39 336 320 ) ( 39 336 336 ) global_diffuse_black 0.5 0.5 -1615 -297 0 0 lightmap_gray 16384 16384 -1615 -297 0 0
+ ( 295 656 320 ) ( 295 336 320 ) ( 295 336 336 ) global_diffuse_black 0.5 -0.5 624 297 -180 0 lightmap_gray 16384 -16384 624 297 -180 0
+ ( 295 656 336 ) ( 39 656 336 ) ( 39 656 320 ) global_diffuse_black 0.5 0.5 -1613 -297 0 0 lightmap_gray 16384 16384 -1613 -297 0 0
+}
+}
+// entity 1
+{
+guid "{81A0B076-7309-11ED-B70F-4CCC6A25C4E9}"
+"classname" "script_struct"
+"angles" "0 270 0"
+"origin" "121 400 238"
+"targetname" "teleport_room_1"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{81A0B073-7309-11ED-B70F-4CCC6A25C4E9}"
+"classname" "script_struct"
+"angles" "0 270 0"
+"origin" "121 463 238"
+"targetname" "teleport_room_0"
+"_color" "1 0 0"
+}
+// entity 3
+{
+guid "{81A0B079-7309-11ED-B70F-4CCC6A25C4E9}"
+"classname" "script_struct"
+"angles" "0 270 0"
+"origin" "119 572 238"
+"targetname" "teleport_room_3"
+"_color" "1 0 0"
+}
+// entity 4
+{
+guid "{81A0B07C-7309-11ED-B70F-4CCC6A25C4E9}"
+"classname" "script_struct"
+"angles" "0 270 0"
+"origin" "121 511 238"
+"targetname" "teleport_room_2"
+"_color" "1 0 0"
+}
+// entity 5
+{
+guid "{44A144FA-6DE6-11F0-9AC9-309C23A208D5}"
+"classname" "script_struct"
+"angles" "0 360 0"
+"origin" "-125 524 232"
+"targetname" "teleport_room_zombies"
+"_color" "1 0 0"
+}
+// entity 6
+{
+guid "{44A144FD-6DE6-11F0-9AC9-309C23A208D5}"
+"classname" "script_struct"
+"angles" "0 360 0"
+"origin" "-213 524 232"
+"targetname" "teleport_room_zombies"
+"_color" "1 0 0"
+}
+// entity 7
+{
+guid "{44A14500-6DE6-11F0-9AC9-309C23A208D5}"
+"classname" "script_struct"
+"angles" "0 360 0"
+"origin" "-213 428 232"
+"targetname" "teleport_room_zombies"
+"_color" "1 0 0"
+}
+// entity 8
+{
+guid "{44A14503-6DE6-11F0-9AC9-309C23A208D5}"
+"classname" "script_struct"
+"angles" "0 360 0"
+"origin" "-125 428 232"
+"targetname" "teleport_room_zombies"
+"_color" "1 0 0"
+}

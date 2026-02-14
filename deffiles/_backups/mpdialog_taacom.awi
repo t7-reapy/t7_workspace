@@ -1,0 +1,146 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	
+	Asset.AddEntry_Combo( "type", "mpdialog_taacom" ).Show( false );
+	Asset.AddEntry_Combo( "vmType", "Both" ).SetTitle( "Script Type" ).Show( false ).SetValue("Both");
+
+	Asset.BeginCategory( "TAACOM MP Dialog" );
+	{
+		Asset.AddEntry_String( "voicePrefix", "" ).SetTitle( "Voice Prefix" );
+		Asset.AddEntry_String( "airspaceFull", "" ).SetTitle( "Airspace Full" );
+		Asset.AddEntry_String( "confirmHit", "" ).SetTitle( "Confirm Hit" );
+		Asset.AddEntry_String( "confirmMiss", "" ).SetTitle( "Confirm Miss" );
+		Asset.AddEntry_String( "equipmentDestroyed", "" ).SetTitle( "Equipment Destroyed" );
+		Asset.AddEntry_String( "equipmentHacked", "" ).SetTitle( "Equipment Hacked" );
+		Asset.AddEntry_String( "genericCopy", "" ).SetTitle( "Generic Copy" );
+	}
+
+	Asset.BeginCategory( "Control" );
+	{
+		Asset.AddEntry_String( "acknowledgePlayerControl", "" ).SetTitle( "Drone Ops Acknowledge Player Control" );
+		Asset.AddEntry_String( "droneControlResume", "" ).SetTitle( "Drone Control Resume" );
+	}
+
+	Asset.BeginCategory( "Scorestreaks" );
+	{
+		Asset.AddEntry_AssetCombo( "empDialogBundle", "mpdialog_scorestreak" ).SetTitle( "EMP Core" );
+		Asset.AddEntry_AssetCombo( "rcBombDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Hover RC-XD" );
+		Asset.AddEntry_AssetCombo( "droneStrikeDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Rolling Thunder" );
+		Asset.AddEntry_AssetCombo( "turretDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Sentry Gun" );
+		Asset.AddEntry_AssetCombo( "satelliteDialogBundle", "mpdialog_scorestreak" ).SetTitle( "VSAT" );
+		Asset.AddEntry_AssetCombo( "microwaveTurretDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Guardian" );
+	}	
+	
+	Asset.BeginCategory( "Scorestreaks.AGR" );
+	{
+		Asset.AddEntry_AssetCombo( "aiTankDialogBundle", "mpdialog_scorestreak" ).SetTitle( "AGR" );
+		
+		Asset.AddEntry_AssetCombo( "aiTankPilotDialogBundle0", "mpdialog_scorestreak" ).SetTitle( "DroneOp 0" );
+		Asset.AddEntry_AssetCombo( "aiTankPilotDialogBundle1", "mpdialog_scorestreak" ).SetTitle( "DroneOp 1" );
+	}
+	
+	Asset.BeginCategory( "Scorestreaks.Care Package" );
+	{
+		Asset.AddEntry_AssetCombo( "supplyDropDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Taacom" );
+		
+		Asset.AddEntry_AssetCombo( "supplyDropPilotDialogBundle0", "mpdialog_scorestreak" ).SetTitle( "DroneOp 0" );
+		Asset.AddEntry_AssetCombo( "supplyDropPilotDialogBundle1", "mpdialog_scorestreak" ).SetTitle( "DroneOp 1" );
+	}
+	
+	Asset.BeginCategory( "Scorestreaks.Counter UAV" );
+	{
+		Asset.AddEntry_AssetCombo( "counterUavDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Taacom" );
+		
+		Asset.AddEntry_AssetCombo( "counterUavPilotDialogBundle0", "mpdialog_scorestreak" ).SetTitle( "DroneOp 0" );
+		Asset.AddEntry_AssetCombo( "counterUavPilotDialogBundle1", "mpdialog_scorestreak" ).SetTitle( "DroneOp 1" );
+	}
+	
+	Asset.BeginCategory( "Scorestreaks.Combat Robot" );
+	{
+		Asset.AddEntry_AssetCombo( "combatRobotDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Taacom" );
+		
+		Asset.AddEntry_AssetCombo( "combatRobotPilotDialogBundle0", "mpdialog_scorestreak" ).SetTitle( "DroneOp 0" );
+		Asset.AddEntry_AssetCombo( "combatRobotPilotDialogBundle1", "mpdialog_scorestreak" ).SetTitle( "DroneOp 1" );
+		Asset.AddEntry_AssetCombo( "combatRobotPilotDialogBundle2", "mpdialog_scorestreak" ).SetTitle( "DroneOp 2" );
+		Asset.AddEntry_AssetCombo( "combatRobotPilotDialogBundle3", "mpdialog_scorestreak" ).SetTitle( "DroneOp 3" );
+	}
+	
+	Asset.BeginCategory( "Scorestreaks.Dart" );
+	{
+		Asset.AddEntry_AssetCombo( "dartDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Taacom" );
+		Asset.AddEntry_AssetCombo( "dartPilotDialogBundle0", "mpdialog_scorestreak" ).SetTitle( "DroneOp 0" );
+		Asset.AddEntry_AssetCombo( "dartPilotDialogBundle1", "mpdialog_scorestreak" ).SetTitle( "DroneOp 1" );
+	}
+	
+	Asset.BeginCategory( "Scorestreaks.Escort Drone" );
+	{
+		Asset.AddEntry_AssetCombo( "sentinelDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Taacom" );
+		
+		Asset.AddEntry_AssetCombo( "sentinelPilotDialogBundle0", "mpdialog_scorestreak" ).SetTitle( "DroneOp 0" );
+		Asset.AddEntry_AssetCombo( "sentinelPilotDialogBundle1", "mpdialog_scorestreak" ).SetTitle( "DroneOp 1" );
+	}
+
+	
+	Asset.BeginCategory( "Scorestreaks.Lightning Strike" );
+	{
+		Asset.AddEntry_AssetCombo( "planeMortarDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Taacom" );
+		
+		Asset.AddEntry_AssetCombo( "planeMortarPilotDialogBundle0", "mpdialog_scorestreak" ).SetTitle( "Pilot 0" );
+		Asset.AddEntry_AssetCombo( "planeMortarPilotDialogBundle1", "mpdialog_scorestreak" ).SetTitle( "Pilot 1" );
+		Asset.AddEntry_AssetCombo( "planeMortarPilotDialogBundle2", "mpdialog_scorestreak" ).SetTitle( "Pilot 2" );
+		Asset.AddEntry_AssetCombo( "planeMortarPilotDialoBundleg3", "mpdialog_scorestreak" ).SetTitle( "Pilot 3" );
+	}
+	
+	Asset.BeginCategory( "Scorestreaks.VTOL Mothership" );
+	{
+		Asset.AddEntry_AssetCombo( "helicopterGunnerDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Taacom" );
+		
+		Asset.AddEntry_AssetCombo( "helicopterGunnerPilotDialogBundle0", "mpdialog_scorestreak" ).SetTitle( "Pilot 0" );
+		Asset.AddEntry_AssetCombo( "helicopterGunnerPilotDialogBundle1", "mpdialog_scorestreak" ).SetTitle( "Pilot 1" );
+		Asset.AddEntry_AssetCombo( "helicopterGunnerPilotDialogBundle2", "mpdialog_scorestreak" ).SetTitle( "Pilot 2" );
+		Asset.AddEntry_AssetCombo( "helicopterGunnerPilotDialogBundle3", "mpdialog_scorestreak" ).SetTitle( "Pilot 3" );
+	}
+		
+	Asset.BeginCategory( "Scorestreaks.RAPS" );
+	{
+		Asset.AddEntry_AssetCombo( "rapsHelicopterDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Taacom Deployship" );
+		Asset.AddEntry_AssetCombo( "rapsDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Taacom RAPS" );
+		
+		Asset.AddEntry_AssetCombo( "rapsHelicopterPilotDialogBundle0", "mpdialog_scorestreak" ).SetTitle( "Pilot 0" );
+		Asset.AddEntry_AssetCombo( "rapsHelicopterPilotDialogBundle1", "mpdialog_scorestreak" ).SetTitle( "Pilot 1" );
+		Asset.AddEntry_AssetCombo( "rapsHelicopterPilotDialogBundle2", "mpdialog_scorestreak" ).SetTitle( "Pilot 2" );
+		Asset.AddEntry_AssetCombo( "rapsHelicopterPilotDialogBundle3", "mpdialog_scorestreak" ).SetTitle( "Pilot 3" );
+	}
+	
+	Asset.BeginCategory( "Scorestreaks.Hellstorm" );
+	{
+		Asset.AddEntry_AssetCombo( "remoteMissileDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Hellstorm" );
+		
+		Asset.AddEntry_AssetCombo( "remoteMissilePilotDialogBundle0", "mpdialog_scorestreak" ).SetTitle( "DroneOp 0" );
+		Asset.AddEntry_AssetCombo( "remoteMissilePilotDialogBundle1", "mpdialog_scorestreak" ).SetTitle( "DroneOp 1" );
+	}
+
+	Asset.BeginCategory( "Scorestreaks.Stealth Drone" );
+	{
+		Asset.AddEntry_AssetCombo( "helicopterDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Taacom" );
+		
+		Asset.AddEntry_AssetCombo( "helicopterPilotDialogBundle0", "mpdialog_scorestreak" ).SetTitle( "DroneOp 0" );
+		Asset.AddEntry_AssetCombo( "helicopterPilotDialogBundle1", "mpdialog_scorestreak" ).SetTitle( "DroneOp 1" );
+		Asset.AddEntry_AssetCombo( "helicopterPilotDialogBundle2", "mpdialog_scorestreak" ).SetTitle( "DroneOp 2" );
+		Asset.AddEntry_AssetCombo( "helicopterPilotDialogBundle3", "mpdialog_scorestreak" ).SetTitle( "DroneOp 3" );
+	}
+	
+	Asset.BeginCategory( "Scorestreaks.UAV" );
+	{
+			Asset.AddEntry_AssetCombo( "uavDialogBundle", "mpdialog_scorestreak" ).SetTitle( "Taacom" );
+			
+			Asset.AddEntry_AssetCombo( "uavPilotDialogBundle0", "mpdialog_scorestreak" ).SetTitle( "DroneOp 0" );
+			Asset.AddEntry_AssetCombo( "uavPilotDialogBundle1", "mpdialog_scorestreak" ).SetTitle( "DroneOp 1" );
+			Asset.AddEntry_AssetCombo( "uavPilotDialogBundle2", "mpdialog_scorestreak" ).SetTitle( "DroneOp 2" );
+			Asset.AddEntry_AssetCombo( "uavPilotDialogBundle3", "mpdialog_scorestreak" ).SetTitle( "DroneOp 3" );
+	}
+}

@@ -1,0 +1,24 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+#include "gfx_bundle.h"
+
+void GenerateUI( asset Asset )
+{
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	Asset.AddEntry_String( "vmType", "Client" ).Show( false );
+	Asset.AddEntry_String( "type", "postfxbundle" ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	GfxBundle( Asset, 10, 4 );
+}
+
+void GfxBundleSpecific( asset Asset, string StageName, string stageString, bool show )
+{
+	Asset.AddEntry_CheckBox( stageString + "spriteFilter", false ).SetTitle( "Sprite based material" ).SetToolTip( "Allows a sprite based filter material to be used." ).Show(show).UpdateOnChange(true);
+	Asset.AddEntry_CheckBox( stageString + "thermal", false ).SetTitle( "Draw thermal geometry" ).SetToolTip( "Draw thermal geometry into the stencil buffer." ).Show(show).UpdateOnChange(true);
+	Asset.AddEntry_AssetCombo( stageString + "material", "material" ).SetTitle("Material").Show(show).UpdateOnChange(true);
+}

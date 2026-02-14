@@ -1,0 +1,65 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	 
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Global variables 
+
+	Asset.AddEntry_Combo( "type", "sentient_events" ).Show( false );
+	
+	string vm_type = "Server | Client";
+	Asset.AddEntry_Combo( "vmType", vm_type ).SetTitle( "Script Type" ).SetToolTip( "Spawn this object in server script or client script?" );
+
+	GenerateSentientEvents( Asset );
+}
+
+void GenerateSentientEvents( asset Asset )
+{
+	Asset.BeginCategory( "Sentient Events" );
+	{
+		for ( int i = 0; i < 22; i++ )
+		{
+			string name = "";
+			string label = "";
+			switch( i )
+			{
+			case 0:		name = "footstep";			label = "Footstep";				break;
+			case 1:		name = "footstepwalk";		label = "Footstep (Walk)";		break;
+			case 2:		name = "footsteprun";		label = "Footstep (Run)";		break;
+			case 3:		name = "footstepsprint";	label = "Footstep (Sprint)";	break;
+			case 4:		name = "new_enemy";			label = "New Enemy";			break;
+			case 5:		name = "pain";				label = "Pain";					break;
+			case 6:		name = "react";				label = "React";				break;
+			case 7:		name = "death";				label = "Death";				break;
+			case 8:		name = "explosion";			label = "Explosion";			break;
+			case 9:		name = "grenade_ping";		label = "Grenade Ping";			break;
+			case 10:	name = "projectile_ping";	label = "Projectile Ping";		break;
+			case 11:	name = "gunshot";			label = "Gunshot";				break;
+			case 12:	name = "gunshot_teammate";	label = "Gunshot Teammate";		break;
+			case 13:	name = "silenced_shot";		label = "Silenced Shot";		break;
+			case 14:	name = "radio_low";			label = "Radio Low";			break;
+			case 15:	name = "radio_high";		label = "Radio High";			break;
+			case 16:	name = "radio_found_enemy";	label = "Radio Found Enemy";	break;
+			case 17:	name = "script";			label = "Script";				break;
+			case 18:	name = "bullet";			label = "Bullet";				break;
+			case 19:	name = "block_friendlies";	label = "Block Friendlies";		break;
+			case 20:	name = "bullet_react";		label = "Bullet React";			break;
+			case 21:	name = "projectile_impact";	label = "Projectile Impact";	break;
+			}
+
+			Asset.BeginCategory( "Sentient Events." + label );
+			{
+				Asset.AddEntry_Float( name + "_default_distance", 512, 0, 30000 ).SetStep( 1 ).SetTitle( "Default Distance" ).SetToolTip( "Default distance of the event." );
+				Asset.AddEntry_Float( name + "_alert_distance", 512, 0, 30000 ).SetStep( 1 ).SetTitle( "Alert Distance" ).SetToolTip( "Distance of the event when the sentient is in an alerted state." );
+				Asset.AddEntry_Float( name + "_default_height", 0, 0, 300 ).SetStep( 1 ).SetTitle( "Default Height" ).SetToolTip( "Default height of the event." );
+				Asset.AddEntry_Int( name + "_pool_value", 0, 0, 10000 ).SetStep( 1 ).SetTitle( "Interest Pool Value" ).SetToolTip( "How much interest generated from the event." );
+				Asset.AddEntry_Int( name + "_priority", 0, 0, 10000 ).SetStep( 1 ).SetTitle( "Priority" ).SetToolTip( "How important is the event." );
+				Asset.AddEntry_Float( name + "_lifespan", 0, 0, 10000 ).SetStep( 1 ).SetTitle( "Lifespan" ).SetToolTip( "How long the event stays in the interest pool." );
+			}
+		}
+	}
+}

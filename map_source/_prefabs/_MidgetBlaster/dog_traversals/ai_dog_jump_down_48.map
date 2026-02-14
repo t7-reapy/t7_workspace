@@ -1,0 +1,51 @@
+iwmap 4
+// entity 0
+{
+guid "{E26A247F-6CB8-11EC-82E4-C465162B13D6}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+// brush 0
+{
+ guid "{CC31CCE8-869A-11EB-A776-1C1B0D6D3127}"
+ ( -16 80 0 ) ( -16 64 0 ) ( 16 64 0 ) traverse 16 16 384 240 90 0 lightmap_gray 16384 16384 384 240 90 0
+ ( 8 74 48 ) ( -24 74 48 ) ( -24 90 48 ) traverse 16 16 394 232 90 0 lightmap_gray 16384 16384 394 232 90 0
+ ( 24 64 32 ) ( 24 80 32 ) ( 24 80 0 ) traverse 16 16 384 4 0 0 lightmap_gray 16384 16384 384 4 0 0
+ ( 16 64 32 ) ( -16 64 32 ) ( -16 64 0 ) traverse 16 -16 -240 -4 180 0 lightmap_gray 16384 -16384 -240 -4 180 0
+ ( -24 80 32 ) ( -24 64 32 ) ( -24 64 0 ) traverse 16 16 384 4 0 0 lightmap_gray 16384 16384 384 4 0 0
+ ( -16 0 36 ) ( 16 0 36 ) ( 16 0 4 ) traverse 16 -16 -240 0 180 0 lightmap_gray 16384 -16384 -240 0 180 0
+}
+// brush 1
+{
+ guid "{CC31CCE9-869A-11EB-A776-1C1B0D6D3127}"
+ ( -12 132 -4 ) ( -12 116 -4 ) ( 20 116 -4 ) traverse 16 16 436 244 90 0 lightmap_gray 16384 16384 436 244 90 0
+ ( 8 120 0 ) ( -24 120 0 ) ( -24 136 0 ) traverse 16 16 440 232 90 0 lightmap_gray 16384 16384 440 232 90 0
+ ( 24 116 -16 ) ( 24 132 -16 ) ( 24 132 -48 ) traverse 16 16 436 52 0 0 lightmap_gray 16384 16384 436 52 0 0
+ ( 16 64 -12 ) ( -16 64 -12 ) ( -16 64 -44 ) traverse 16 -16 -240 -48 180 0 lightmap_gray 16384 -16384 -240 -48 180 0
+ ( -24 132 -16 ) ( -24 116 -16 ) ( -24 116 -48 ) traverse 16 16 436 52 0 0 lightmap_gray 16384 16384 436 52 0 0
+ ( -16 -68 -12 ) ( 16 -68 -12 ) ( 16 -68 -44 ) traverse 16 -16 -240 -48 180 0 lightmap_gray 16384 -16384 -240 -48 180 0
+}
+}
+// entity 1
+{
+guid "{954B5FEA-6CB8-11EC-82E4-C465162B13D6}"
+"classname" "node_negotiation_begin"
+"angles" "0 270 0"
+"animscript" "zm_jump_down_48"
+"movementtype_require" "zombie_dog"
+"origin" "0 28 76"
+"previewanim1" "ai_zombie_base_dog_traverse_down_48"
+"previewmdl1" "zombie_wolf"
+"target" "auto3"
+}
+// entity 2
+{
+guid "{954B5FEB-6CB8-11EC-82E4-C465162B13D6}"
+"classname" "node_negotiation_end"
+"angles" "0 90 0"
+"origin" "0 -44 40"
+"targetname" "auto3"
+}

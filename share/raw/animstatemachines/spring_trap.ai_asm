@@ -1,0 +1,30 @@
+{
+    "states": {
+        "debug": {
+            "substates": {
+                "void": {
+                    "animation_selector": "void@debug"
+                }
+            }
+        },
+        "spring_trap": {
+            "substates": {
+                "death": {
+                    "animation_selector": "death@spring_trap",
+                    "terminal": true
+                },
+                "idle": {
+                    "animation_selector": "idle@spring_trap"
+                },
+                "attack": {
+                    "animation_selector": "attack@spring_trap"
+                },
+                "locomotion": {
+                    "animation_selector": "locomotion@spring_trap",
+                    "loopsync": true,
+                    "multipledelta": true
+                }
+            }
+        }
+    }
+}

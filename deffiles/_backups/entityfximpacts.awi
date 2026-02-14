@@ -1,0 +1,80 @@
+
+void GenerateUI( asset Asset )
+{
+	// Effect table
+	
+	Asset.BeginCategory( "Entity FX Impacts" );
+	{
+		Asset.AddEntry_Path( "zombieHead", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Zombie Head").SetToolTip( "Effect to use for Zombie Head impact.");
+		Asset.AddEntry_Path( "zombieHeadFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Zombie Head Fatal").SetToolTip( "Effect to use for Zombie Head Fatal impact.");
+		Asset.AddEntry_Path( "zombieBody", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Zombie Body").SetToolTip( "Effect to use for Zombie Body impact.");
+		Asset.AddEntry_Path( "zombieBodyFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Zombie Body Fatal").SetToolTip( "Effect to use for Zombie Body Fatal impact.");
+		Asset.AddEntry_Path( "zombieLimb", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Zombie Limb").SetToolTip( "Effect to use for Zombie Limb impact.");
+		Asset.AddEntry_Path( "zombieLimbFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Zombie Limb Fatal").SetToolTip( "Effect to use for Zombie Limb Fatal impact.");
+
+		Asset.AddEntry_Path( "fleshHead", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Flesh Head").SetToolTip( "Effect to use for Flesh Head impact.");
+		Asset.AddEntry_Path( "fleshHeadFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Flesh Head Fatal").SetToolTip( "Effect to use for Flesh Head Fatal impact.");
+		Asset.AddEntry_Path( "fleshBody", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Flesh Body").SetToolTip( "Effect to use for Flesh Body impact.");
+		Asset.AddEntry_Path( "fleshBodyFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Flesh Body Fatal").SetToolTip( "Effect to use for Flesh Body Fatal impact.");
+		Asset.AddEntry_Path( "fleshLimb", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Flesh Limb").SetToolTip( "Effect to use for Flesh Limb impact.");
+		Asset.AddEntry_Path( "fleshLimbFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Flesh Limb Fatal").SetToolTip( "Effect to use for Flesh Limb Fatal impact.");
+		
+		Asset.AddEntry_Path( "fleshCorpseHead", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Flesh Corpse Head").SetToolTip( "Effect to use for Flesh Head impact.");
+		Asset.AddEntry_Path( "fleshCorpseHeadFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Flesh Corpse Head Fatal").SetToolTip( "Effect to use for Flesh Head Fatal impact.");
+		Asset.AddEntry_Path( "fleshCorpseBody", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Flesh Corpse Body").SetToolTip( "Effect to use for Flesh Body impact.");
+		Asset.AddEntry_Path( "fleshCorpseBodyFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Flesh Corpse Body Fatal").SetToolTip( "Effect to use for Flesh Body Fatal impact.");
+		Asset.AddEntry_Path( "fleshCorpseLimb", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Flesh Corpse Limb").SetToolTip( "Effect to use for Flesh Limb impact.");
+		Asset.AddEntry_Path( "fleshCorpseLimbFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Flesh Corpse Limb Fatal").SetToolTip( "Effect to use for Flesh Limb Fatal impact.");
+		
+		Asset.AddEntry_Path( "armorLightHead", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Armor Light Head").SetToolTip( "Effect to use for Armor Light Head impact.");
+		Asset.AddEntry_Path( "armorLightHeadFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Armor Light Head Fatal").SetToolTip( "Effect to use for Armor Light Head Fatal impact.");
+		Asset.AddEntry_Path( "armorLightBody", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Armor Light Body").SetToolTip( "Effect to use for Armor Light Body impact.");
+		Asset.AddEntry_Path( "armorLightBodyFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Armor Light Body Fatal").SetToolTip( "Effect to use for Armor Light Body Fatal impact.");
+		Asset.AddEntry_Path( "armorLightLimb", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Armor Light Limb").SetToolTip( "Effect to use for Armor Light Limb impact.");
+		Asset.AddEntry_Path( "armorLightLimbFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Armor Light Limb Fatal").SetToolTip( "Effect to use for Armor Light Limb Fatal impact.");
+		
+		Asset.AddEntry_Path( "armorHeavyHead", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Armor Heavy Head").SetToolTip( "Effect to use for Armor Heavy Head impact.");
+		Asset.AddEntry_Path( "armorHeavyHeadFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Armor Heavy Head Fatal").SetToolTip( "Effect to use for Armor Heavy Head Fatal impact.");
+		Asset.AddEntry_Path( "armorHeavyBody", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Armor Heavy Body").SetToolTip( "Effect to use for Armor Heavy Body impact.");
+		Asset.AddEntry_Path( "armorHeavyBodyFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Armor Heavy Body Fatal").SetToolTip( "Effect to use for Armor Heavy Body Fatal impact.");
+		Asset.AddEntry_Path( "armorHeavyLimb", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Armor Heavy Limb").SetToolTip( "Effect to use for Armor Heavy Limb impact.");
+		Asset.AddEntry_Path( "armorHeavyLimbFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Armor Heavy Limb Fatal").SetToolTip( "Effect to use for Armor Heavy Limb Fatal impact.");
+		
+		Asset.AddEntry_Path( "robotLightHead", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Light Head").SetToolTip( "Effect to use for Robot Light Head impact.");
+		Asset.AddEntry_Path( "robotLightHeadFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Light Head Fatal").SetToolTip( "Effect to use for Robot Light Head Fatal impact.");
+		Asset.AddEntry_Path( "robotLightBody", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Light Body").SetToolTip( "Effect to use for Robot Light Body impact.");
+		Asset.AddEntry_Path( "robotLightBodyFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Light Body Fatal").SetToolTip( "Effect to use for Robot Light Body Fatal impact.");
+		Asset.AddEntry_Path( "robotLightLimb", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Light Limb").SetToolTip( "Effect to use for Robot Light Limb impact.");
+		Asset.AddEntry_Path( "robotLightLimbFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Light Limb Fatal").SetToolTip( "Effect to use for Robot Light Limb Fatal impact.");
+		
+		Asset.AddEntry_Path( "robotHeavyHead", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Heavy Head").SetToolTip( "Effect to use for Robot Heavy Head impact.");
+		Asset.AddEntry_Path( "robotHeavyHeadFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Heavy Head Fatal").SetToolTip( "Effect to use for Robot Heavy Head Fatal impact.");
+		Asset.AddEntry_Path( "robotHeavyBody", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Heavy Body").SetToolTip( "Effect to use for Robot Heavy Body impact.");
+		Asset.AddEntry_Path( "robotHeavyBodyFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Heavy Body Fatal").SetToolTip( "Effect to use for Robot Heavy Body Fatal impact.");
+		Asset.AddEntry_Path( "robotHeavyLimb", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Heavy Limb").SetToolTip( "Effect to use for Robot Heavy Limb impact.");
+		Asset.AddEntry_Path( "robotHeavyLimbFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Heavy Limb Fatal").SetToolTip( "Effect to use for Robot Heavy Limb Fatal impact.");
+		
+		Asset.AddEntry_Path( "robotBossHead", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Boss Head").SetToolTip( "Effect to use for Robot Boss Head impact.");
+		Asset.AddEntry_Path( "robotBossHeadFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Boss Head Fatal").SetToolTip( "Effect to use for Robot Boss Head Fatal impact.");
+		Asset.AddEntry_Path( "robotBossBody", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Boss Body").SetToolTip( "Effect to use for Robot Boss Body impact.");
+		Asset.AddEntry_Path( "robotBossBodyFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Boss Body Fatal").SetToolTip( "Effect to use for Robot Boss Body Fatal impact.");
+		Asset.AddEntry_Path( "robotBossLimb", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Boss Limb").SetToolTip( "Effect to use for Robot Boss Limb impact.");
+		Asset.AddEntry_Path( "robotBossLimbFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Robot Boss Limb Fatal").SetToolTip( "Effect to use for Robot Boss Limb Fatal impact.");
+
+		Asset.AddEntry_Path( "powerArmorHead", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Power Armor Head").SetToolTip( "Effect to use for Power Armor Head impact.");
+		Asset.AddEntry_Path( "powerArmorHeadFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Power Armor Head Fatal").SetToolTip( "Effect to use for Power Armor Head Fatal impact.");
+		Asset.AddEntry_Path( "powerArmorBody", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Power Armor Body").SetToolTip( "Effect to use for Power Armor Body impact.");
+		Asset.AddEntry_Path( "powerArmorBodyFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Power Armor Body Fatal").SetToolTip( "Effect to use for Power Armor Body Fatal impact.");
+		Asset.AddEntry_Path( "powerArmorLimb", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Power Armor Limb").SetToolTip( "Effect to use for Power Armor Limb impact.");
+		Asset.AddEntry_Path( "powerArmorLimbFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Power Armor Limb Fatal").SetToolTip( "Effect to use for Power Armor Limb Fatal impact.");
+
+		Asset.AddEntry_Path( "skeletonHead", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Skeleton Head").SetToolTip( "Effect to use for Bone Head impact.");
+		Asset.AddEntry_Path( "skeletonHeadFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Skeleton Head Fatal").SetToolTip( "Effect to use for Bone Head Fatal impact.");
+		Asset.AddEntry_Path( "skeletonBody", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Skeleton Body").SetToolTip( "Effect to use for Bone Body impact.");
+		Asset.AddEntry_Path( "skeletonBodyFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Skeleton Body Fatal").SetToolTip( "Effect to use for Bone Body Fatal impact.");
+		Asset.AddEntry_Path( "skeletonLimb", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Skeleton Limb").SetToolTip( "Effect to use for Bone Limb impact.");
+		Asset.AddEntry_Path( "skeletonLimbFatal", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Skeleton Limb Fatal").SetToolTip( "Effect to use for Bone Limb Fatal impact.");
+
+
+	}
+}

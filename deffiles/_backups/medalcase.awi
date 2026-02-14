@@ -1,0 +1,7 @@
+#include "asset_list_helper.h"
+const int MAX_MEDAL_CASE_ITEMS = 20; // changing this does not require updating anything else
+
+void GenerateUI( asset Asset )
+{
+	GenerateItemList( Asset, "medalcaseentry", "Medal Entry", "medalcaseentry", MAX_MEDAL_CASE_ITEMS );
+}

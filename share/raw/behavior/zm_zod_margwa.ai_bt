@@ -1,0 +1,415 @@
+{
+    "id": "margwa",
+    "type": "selector",
+    "children": [
+        {
+            "id": "margwabehaviormain",
+            "type": "parallel",
+            "children": [
+                {
+                    "id": "zoneservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "zmmargwazoneservice",
+                    "cooldownMin": 500,
+                    "cooldownMax": 1000
+                },
+                {
+                    "id": "targetservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "zmmargwatargetservice",
+                    "cooldownMin": 500,
+                    "cooldownMax": 1000
+                },
+                {
+                    "id": "teleportservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "zmmargwateleportservice",
+                    "cooldownMin": 250,
+                    "cooldownMax": 500
+                },
+                {
+                    "id": "pushservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "zmmargwapushservice",
+                    "cooldownMin": 250,
+                    "cooldownMax": 500
+                },
+                {
+                    "id": "octobombservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "zmmargwaoctobombservice",
+                    "cooldownMin": 500,
+                    "cooldownMax": 1000
+                },
+                {
+                    "id": "vortexservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "zmmargwavortexservice",
+                    "cooldownMin": 50,
+                    "cooldownMax": 100
+                },
+                {
+                    "id": "margwabehaviorselector",
+                    "type": "selector",
+                    "children": [
+                        {
+                            "id": "margwadeathbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "waskilled",
+                                    "type": "condition_script",
+                                    "interruptName": "death"
+                                },
+                                {
+                                    "id": "deathaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "death@margwa",
+                                    "actionNotify": "death",
+                                    "TerminateFunction": "startragdoll"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "margwatraversebehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldtraverse",
+                                    "type": "condition_script",
+                                    "scriptFunction": "locomotionshouldtraverse",
+                                    "interruptName": "traverse"
+                                },
+                                {
+                                    "id": "traverseaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "traverse@margwa",
+                                    "StartFunction": "margwatraverseactionstart"
+                                },
+                                {
+                                    "id": "waiting",
+                                    "type": "parallel",
+                                    "children": [
+                                        {
+                                            "id": "shouldwait",
+                                            "type": "condition_script",
+                                            "scriptFunction": "margwashouldwait"
+                                        },
+                                        {
+                                            "id": "action",
+                                            "type": "action",
+                                            "ActionName": "defaultaction",
+                                            "ASMStateName": "idle@margwa",
+                                            "loopingAction": 1
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "margwapainbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldshowpain",
+                                    "type": "condition_script",
+                                    "scriptFunction": "margwashouldshowpain"
+                                },
+                                {
+                                    "id": "defaultaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "pain@margwa",
+                                    "StartFunction": "margwapainstart",
+                                    "TerminateFunction": "margwapainterminate"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "margwareactstunbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldreactstun",
+                                    "type": "condition_script",
+                                    "scriptFunction": "margwashouldreactstun"
+                                },
+                                {
+                                    "id": "margwareactstunaction",
+                                    "type": "action",
+                                    "ActionName": "margwareactstunaction",
+                                    "ASMStateName": "react_stun@margwa",
+                                    "StartFunction": "margwareactstunstart",
+                                    "TerminateFunction": "margwareactstunterminate"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "margwareactidgunbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldreactidgun",
+                                    "type": "condition_script",
+                                    "scriptFunction": "margwashouldreactidgun"
+                                },
+                                {
+                                    "id": "defaultaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "react_idgun@margwa",
+                                    "StartFunction": "margwareactidgunstart",
+                                    "TerminateFunction": "margwareactidgunterminate"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "margwareactswordbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldreactsword",
+                                    "type": "condition_script",
+                                    "scriptFunction": "margwashouldreactsword"
+                                },
+                                {
+                                    "id": "defaultaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "react_sword@margwa",
+                                    "StartFunction": "margwareactswordstart",
+                                    "TerminateFunction": "margwareactswordterminate"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "margwaspawnbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldspawn",
+                                    "type": "condition_script",
+                                    "scriptFunction": "margwashouldspawn"
+                                },
+                                {
+                                    "id": "defaultaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "spawn@margwa",
+                                    "StartFunction": "margwaspawnstart"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "margwafreezebehavior",
+                            "type": "parallel",
+                            "children": [
+                                {
+                                    "id": "shouldfreeze",
+                                    "type": "condition_script",
+                                    "scriptFunction": "margwashouldfreeze"
+                                },
+                                {
+                                    "id": "freezeaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "idle@margwa",
+                                    "loopingAction": 1
+                                }
+                            ]
+                        },
+                        {
+                            "id": "margwateleportoutbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldteleportout",
+                                    "type": "condition_script",
+                                    "scriptFunction": "margwashouldteleportout"
+                                },
+                                {
+                                    "id": "teleportout",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "teleport@margwa",
+                                    "StartFunction": "margwateleportoutstart",
+                                    "TerminateFunction": "margwateleportoutterminate"
+                                },
+                                {
+                                    "id": "waiting",
+                                    "type": "parallel",
+                                    "children": [
+                                        {
+                                            "id": "shouldwait",
+                                            "type": "condition_script",
+                                            "scriptFunction": "margwashouldwait"
+                                        },
+                                        {
+                                            "id": "action",
+                                            "type": "action",
+                                            "ActionName": "defaultaction",
+                                            "ASMStateName": "idle@margwa",
+                                            "loopingAction": 1
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "margwateleportinbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldteleportin",
+                                    "type": "condition_script",
+                                    "scriptFunction": "margwashouldteleportin"
+                                },
+                                {
+                                    "id": "teleportin",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "teleport@margwa",
+                                    "StartFunction": "margwateleportinstart",
+                                    "TerminateFunction": "zmmargwateleportinterminate"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "margwabehavior",
+                            "type": "parallel",
+                            "children": [
+                                {
+                                    "id": "shouldreset",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "margwashouldreset"
+                                },
+                                {
+                                    "id": "margwaselector",
+                                    "type": "selector",
+                                    "children": [
+                                        {
+                                            "id": "movebehavior",
+                                            "type": "parallel",
+                                            "children": [
+                                                {
+                                                    "id": "zmshouldmove",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "zmmargwashouldmove"
+                                                },
+                                                {
+                                                    "id": "moveaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "move@margwa",
+                                                    "StartFunction": "margwamovestart",
+                                                    "loopingAction": 1
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "octobombattackbehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "zmshouldoctobombattack",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "zmmargwashouldoctobombattack"
+                                                },
+                                                {
+                                                    "id": "octobombattackaction",
+                                                    "type": "action",
+                                                    "ActionName": "zmmargwaoctobombattackaction",
+                                                    "ASMStateName": "octobomb_attack@margwa"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "swipeattackbehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "zmshouldswipeattack",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "zmmargwashouldswipeattack"
+                                                },
+                                                {
+                                                    "id": "swipeattackaction",
+                                                    "type": "action",
+                                                    "ActionName": "zmmargwaswipeattackaction",
+                                                    "ASMStateName": "swipe_attack@margwa",
+                                                    "TerminateFunction": "zmmargwaswipeattackterminate"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "smashattackbehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "zmshouldsmashattack",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "zmmargwashouldsmashattack"
+                                                },
+                                                {
+                                                    "id": "smashattackaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "smash_attack@margwa",
+                                                    "actionNotify": "smash_attack",
+                                                    "StartFunction": "margwasmashattackstart",
+                                                    "TerminateFunction": "zmmargwasmashattackterminate"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "idlebehavior",
+                                            "type": "parallel",
+                                            "children": [
+                                                {
+                                                    "id": "shouldteleportout",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "margwashouldteleportout"
+                                                },
+                                                {
+                                                    "id": "shouldmove",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "locomotionbehaviorcondition"
+                                                },
+                                                {
+                                                    "id": "zmshouldswipeattack",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "zmmargwashouldswipeattack"
+                                                },
+                                                {
+                                                    "id": "zmshouldsmashattack",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "zmmargwashouldsmashattack"
+                                                },
+                                                {
+                                                    "id": "idleaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "idle@margwa",
+                                                    "StartFunction": "margwaidlestart",
+                                                    "loopingAction": 1
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "debugvoidaction",
+            "type": "action",
+            "ActionName": "defaultaction",
+            "ASMStateName": "void@debug"
+        }
+    ]
+}

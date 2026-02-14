@@ -1,0 +1,593 @@
+const float ARCH_R = 1.0;
+const float ARCH_G = 0.5;
+const float ARCH_B = 0.3;
+
+const float VAR_R = 0.3;
+const float VAR_G = 0.5;
+const float VAR_B = 1.0;
+
+const float SPAWN_R = 0.0;
+const float SPAWN_G = 0.7;
+const float SPAWN_B = 0.1;
+
+const float MISC_R = 0.7;
+const float MISC_G = 0.2;
+const float MISC_B = 0.7;
+
+const array<string> COVERS = {
+	"Crouch",
+	"Exposed",
+	"Left",
+	"Pillar",
+	"Right",
+	"Stand"
+};
+
+const array<string> STEERING = {
+	"Normal",
+	"Slow",
+	"Vignette"
+};
+
+const array<string> STEERING_PARAM = {
+	"TurnRate",
+	"MaxTurnRateAngle",
+	"SensorSize",
+	"CollisionPenalty",
+	"DodgingPenalty",
+	"PenetrationPenalty",
+	"SidednessChangingPenalty",
+	"VelocityHysteresis"
+};
+
+array<float> STEERING_DEFAULTS = {
+	220.0,
+	35.0,
+	300.0,
+	3.0,
+	0.7,
+	0.0,
+	1.0,
+	0.1
+};
+
+const int MAX_MELEE_BUNDLES = 5;
+
+void MeleeBundleRemoveButtonClicked(asset Asset, const string& ID)
+{
+	if (MessageBox("Are you sure you want to remove Melee Bundle " + ( ID.ToInt() + 1 ) + "?", "YESNO") == "NO")
+		return;
+
+	for (int i = ID.ToInt(); i < MAX_MELEE_BUNDLES; i++)
+	{
+		Asset.GetEntryVariable( "aivsaiMeleeBundle" + i ).SetValue(Asset.GetEntryValue( "aivsaiMeleeBundle" + (i + 1) ));
+	}
+}
+
+void GenerateUI( asset Asset )
+{
+	string assetName = Asset.GetName(); 
+	assetName.MakeLower();
+	
+	// Archetype
+	int isArchetypeAsset = assetName.Find("archetype", 0);
+	bool isArchetypeAssetBool;
+	if( isArchetypeAsset == -1 )
+		isArchetypeAssetBool = false;
+	else
+		isArchetypeAssetBool = true;
+	
+	// Variant/Spawner
+	int isVariantAsset = assetName.Find("variant", 0);
+	
+	bool isVariantAssetBool = false;
+	if( isVariantAsset != -1 )
+		isVariantAssetBool = true;	
+				
+	Asset.BeginCategory( "Archetype Attributes", ARCH_R, ARCH_G, ARCH_B, "archetype.png" );
+	{
+		Asset.AddEntry_Label( "archetypeInfo", "Archetype level attributes are inherited and cannot be overridden by variants or spawners, \nreserved for high level attributes tied to assets, code, and animation.\n" ).SetTitle( " " );
+	
+		Asset.AddEntry_Combo( "archetype", "none | human_clone | human_riotshield | human_rpg | robot | warlord | zombie | zombie_dog | skeleton | direwolf | civilian | zod_companion | margwa | mechz | mannequin | thrasher | raz | zombie_quad | keeper_companion | apothicon_fury | keeper | monkey | astronaut" ).SetTitle( "Archetype" ).Enable( isArchetypeAssetBool ).SetToolTip( "Available in script as self.archetype" );
+
+		Asset.AddEntry_Combo( "type", "human | dog | robot | zombie | zombie_dog" ).SetTitle( "Species" ).Enable( isArchetypeAssetBool );
+		
+		Asset.AddEntry_Path( "csvInclude", "" ).SetRelativePath( "share/zone_source/" ).SetTitle( "ZPKG/CSV Include" ).SetToolTip( "Any additional assets that this vehicle type might need" ).Enable( isArchetypeAssetBool );
+
+		Asset.BeginCategory( "Archetype Attributes" + ".Behavior and ASM Assets", ARCH_R, ARCH_G, ARCH_B, "archetype.png" );
+		{
+			Asset.AddEntry_Path( "behaviorTreeName", "" ).SetRelativePath( "share/raw/behavior/" ).SetTitle( "Behavior Tree" ).SetToolTip( "Behavior tree for this AI." ).Enable( isArchetypeAssetBool );
+			Asset.AddEntry_Path( "animStateMachineName", "" ).SetRelativePath( "share/raw/animstatemachines/" ).SetTitle( "Animation State Machine" ).SetToolTip( "Animation state machine for this AI." ).Enable( isArchetypeAssetBool );
+			Asset.AddEntry_Path( "animSelectorTableName", "" ).SetRelativePath( "share/raw/animtables/" ).SetTitle( "Animation Selector Table" ).SetToolTip( "Animation Selector Table for this AI." ).Enable( isArchetypeAssetBool );
+			Asset.AddEntry_AssetCombo( "aimTable", "aimtable" ).SetToolTip("AI will use this aim table to determine aim extents.").SetTitle( "Aim Table" ).Enable( isArchetypeAssetBool );
+		}
+
+		Asset.BeginCategory( "Archetype Attributes" + ".Melee Bundles", ARCH_R, ARCH_G, ARCH_B, "archetype.png" );
+		{
+			Asset.AddEntry_AssetCombo( "assassinationBundle", "aiassassination" ).SetTitle( "Assassination Bundle" ).SetToolTip( "Use this script bundle when this AI gets assassinated." ).Enable( isArchetypeAssetBool );
+			for ( int i = 0; i < MAX_MELEE_BUNDLES; i++ )
+			{
+				bool show = i == 0 || Asset.GetEntryValue( "aivsaiMeleeBundle" + (i-1) ) != "";
+								
+				Asset.AddEntry_AssetCombo( "aivsaiMeleeBundle" + i, "aiassassination" ).SetTitle( "AI vs AI Melee Bundle " + ( i + 1 ) ).SetToolTip( "Use this script bundle when this AI gets sync meleed." ).Enable( isArchetypeAssetBool ).Show( show ).UpdateOnChange(true);
+				if (show)
+					Asset.AddEntry_ButtonGroup("buttonGroup" + i).SetTitle("Edit").AddButton("Remove", "", "void MeleeBundleRemoveButtonClicked(asset Asset, const string& ID)", "" + i);
+			}
+		}
+		
+		Asset.BeginCategory( "Archetype Attributes" + ".FX Bundles", ARCH_R, ARCH_G, ARCH_B, "Icon_FX.png" );
+		{
+			Asset.AddEntry_AssetCombo( "aiFxBundle", "aifxtable").SetTitle("AI FX Bundle" ).Enable( isArchetypeAssetBool );
+		}
+		
+		Asset.BeginCategory( "Archetype Attributes" + ".Size", ARCH_R, ARCH_G, ARCH_B, "archetype.png" );
+		{
+			Asset.AddEntry_Float( "physRadius", 15.0, 15.0, 100.0 ).SetTitle( "Physics Radius" ).SetToolTip( "Actor Physics radius." ).Enable( isArchetypeAssetBool );
+			Asset.AddEntry_Float( "physHeight", 72.0, 15.0, 100.0 ).SetTitle( "Physics Height" ).SetToolTip( "Actor Physics height." ).Enable( isArchetypeAssetBool );
+		}
+						
+		Asset.BeginCategory( "Archetype Attributes" + ".Behaviors", ARCH_R, ARCH_G, ARCH_B, "archetype.png" );
+		{	
+			Asset.AddEntry_CheckBox( "usesCovernodes", true ).SetTitle( "Cover Behavior" ).SetToolTip( "When set to true, AI will display cover behavior when at cover node, otherwise it will act as standing exposed." ).Enable( isArchetypeAssetBool );
+			Asset.AddEntry_CheckBox( "ignoresDamageHitLocations", false ).SetTitle( "Ignore Damage Hit Locations" ).Enable( isArchetypeAssetBool );
+			Asset.AddEntry_CheckBox( "ignoreVortex", false ).SetTitle( "Ignore Vortex" ).Enable( isArchetypeAssetBool );
+		}
+		
+		Asset.BeginCategory( "Archetype Attributes" + ".Cover", ARCH_R, ARCH_G, ARCH_B, "archetype.png" );
+		{
+			bool overrideCover = Asset.AddEntry_CheckBox( "overrideCover", false ).Show( false ).GetBool();
+			string overrideText = ( overrideCover ) ? "Clear Cover Overrides" : "Add Cover Overrides";
+			
+			Asset.AddEntry_Label( "overrideInfo", "Specify archetype specific node offsets etc." ).SetTitle( " " ).Enable( isArchetypeAssetBool );
+			Asset.AddEntry_ButtonGroup( "overrideCoverButton" ).SetTitle( "\n\n" ).AddButton( overrideText, "", "void OverrideCover( asset Asset, const string& param )", "" ).Enable( isArchetypeAssetBool );
+		
+			if ( overrideCover )
+			{
+				Asset.AddEntry_Label( "coverPositionOffsetInfo", "The \"x\" and \"y\" inches to offset what the archetype considers to be the nodes origin." ).SetTitle( "Position Offset <small>(x, y)</small>" ).Enable( isArchetypeAssetBool );
+				Asset.AddEntry_Label( "coverPositionOffsetInfo2", "    ex: \"x\" = -10, will cause the archetype to treat 10 inches to the left of the node as the origin." ).SetTitle( " " ).Enable( isArchetypeAssetBool );
+				Asset.AddEntry_Label( "coverPositionOffsetInfo3", "    ex: \"y\" = -10, will cause the archetype to treat 10 inches behind the node as the origin." ).SetTitle( " " ).Enable( isArchetypeAssetBool );
+				Asset.AddEntry_Label( "coverRotationOffsetInfo", "The number of degrees to rotate the node's forward vector by counter clockwise.  A rotation " ).SetTitle( "Rotation Offset <small>(yaw)</small>" ).Enable( isArchetypeAssetBool );
+				Asset.AddEntry_Label( "coverRotationOffsetInfo2", "offset is applied after the position offset in calculations." ).SetTitle( " " ).Enable( isArchetypeAssetBool );
+				Asset.AddEntry_Label( "coverRotationOffsetInfo3", "    ex: \"yaw\" = 180, will flip the node's forward direction to the archetype." ).SetTitle( " " ).Enable( isArchetypeAssetBool );
+			}
+		
+			for ( int index = 0; index < COVERS.length(); index++ )
+			{
+				Asset.BeginCategory( "Archetype Attributes" + ".Cover" + ".Cover " + COVERS[index], ARCH_R, ARCH_G, ARCH_B, "" );
+				{
+					const string xName = "cover" + COVERS[index] + "PosOffsetX";
+					const string yName = "cover" + COVERS[index] + "PosOffsetY";
+					const string rotName = "cover" + COVERS[index] + "RotOffset";
+					
+					Asset.AddEntry_Vector2( xName, yName, 0, 0, -15, 15 ).SetStep( 1 ).SetTitle( "Position Offset <small>(x,y)</small>" ).SetToolTip( "" ).Enable( isArchetypeAssetBool ).Show( overrideCover ).Enable( isArchetypeAssetBool );
+					entryControl@ rotation = Asset.AddEntry_Float( rotName, 0, -180, 180 ).SetStep( 0.5 ).SetTitle( "Rotation Offset <small>(yaw)</small>" ).SetToolTip( "" ).Enable( isArchetypeAssetBool ).Show( overrideCover ).Enable( isArchetypeAssetBool );
+					
+					if ( !overrideCover )
+					{
+						Asset.GetEntryVariable( xName ).SetInt( 0 );
+						Asset.GetEntryVariable( yName ).SetInt( 0 );
+						rotation.SetFloat( 0 );
+					}
+				}
+			}
+		}
+		
+		Asset.BeginCategory( "Archetype Attributes" + ".Steering", ARCH_R, ARCH_G, ARCH_B, "archetype.png" );
+		{
+			array<bool> overrideSteering;
+			bool hasOverrideSteering = false;
+			
+			Asset.AddEntry_Label( "steeringInfo", "Attributes which control how AI's move around the environment and interact with other AI's." ).SetTitle( " " );
+			
+			for ( int index = 0; index < STEERING.length(); index++ )
+			{
+				string prefix = STEERING[index];
+				
+				overrideSteering.insertLast( Asset.AddEntry_CheckBox( "override" + prefix + "Steering", false ).Show( false ).GetBool() );
+				string overrideText = ( overrideSteering[index] ) ? "Clear " + prefix + " Customization" : "Customize " + prefix + " Steering";
+				
+				hasOverrideSteering = hasOverrideSteering || overrideSteering[index];
+				
+				Asset.AddEntry_ButtonGroup( "overrideSteeringButton" ).SetTitle( "\n\n" ).AddButton( overrideText, "", "void OverrideSteering( asset Asset, const string& param )", prefix ).Enable( isArchetypeAssetBool );
+			}
+			
+			if ( hasOverrideSteering )
+			{
+				Asset.AddEntry_Label( "steeringMaxTurnRateInfo1", "Degrees per second that code will change an AI's orientation." ).SetTitle( "Turn Rate <small>(degrees / sec)</small>" );
+				Asset.AddEntry_Label( "steeringMaxTurnRateInfo2", "Lower values will smooth movement, but can make AI unable to take sharp turns." ).SetTitle( " " );
+				Asset.AddEntry_Label( "steeringMaxTurnAngleInfo1", "Maximum motion angle that AI's will apply their 'Turn Rate' when moving along their path." ).SetTitle( "Max Turn Rate Angle <small>(degrees)</small>" );
+				Asset.AddEntry_Label( "steeringMaxTurnAngleInfo2", "Higher values allow AI's to smoothly follow their path, but can allow the AI to hit walls.").SetTitle( " " );
+				Asset.AddEntry_Label( "steeringSensorSizeInfo1", "Character's sensor volume size.  Higher values increase the distance objects will be" ).SetTitle( "Sensor Size <small>(inches)</small>" );
+				Asset.AddEntry_Label( "steeringSensorSizeInfo2", "considered for avoidance." ).SetTitle( " " );
+				Asset.AddEntry_Label( "steeringCollisionPenaltyInfo1", "Higher values will cause AI's to react earlier, but become unable to push through crowds." ).SetTitle( "Collision Penalty Multiplier" );
+				Asset.AddEntry_Label( "steeringDodgingPenaltyInfo1", "Higher values cause AI's to avoid collisions by speeding up or slowing down; lower values" ).SetTitle( "Dodging Penalty Multiplier" );
+				Asset.AddEntry_Label( "steeringDodgingPenaltyInfo2", "cause AI's to turn to avoid collisions." ).SetTitle( " " );
+				Asset.AddEntry_Label( "steeringPenetrationPenaltyInfo1", "Higher values will cause AI's to veer off quickly when colliding; lower values can result in" ).SetTitle( "Penetration Penalty Multiplier" );
+				Asset.AddEntry_Label( "steeringPenetrationPenaltyInfo2", "smoother locomotion." ).SetTitle( " " );
+				Asset.AddEntry_Label( "steeringSidednessPenaltyInfo1", "Higher values can resolve reciprocal oscillations but cause AI's to wander far from their" ).SetTitle( "Sidedness Penalty Multiplier" );
+				Asset.AddEntry_Label( "steeringSidednessPenaltyInfo2", "desired trajectory." ).SetTitle( " " );
+				Asset.AddEntry_Label( "steeringVelocityHysteresisInfo1", "Higher values can prevent velocity twitches but cause AI's to follow inefficient trajectories." ).SetTitle( "Velocity Hysteresis Multiplier" );
+			}
+			
+			for ( int index = 0; index < STEERING.length(); index++ )
+			{
+				string prefix = STEERING[index];
+				
+				if ( overrideSteering[index] )
+				{
+					Asset.BeginCategory( "Archetype Attributes.Steering." + prefix + " Steering", ARCH_R, ARCH_G, ARCH_B, "");
+					{
+						int param = 0;
+					
+						Asset.AddEntry_Float( "steering" + prefix + STEERING_PARAM[param], STEERING_DEFAULTS[param], 0.0, 360.0 ).SetStep( 0.5 ).SetTitle( "Turn Rate <small>(degrees / sec)</small>" ).Enable( isArchetypeAssetBool );
+						param++;
+						Asset.AddEntry_Float( "steering" + prefix + STEERING_PARAM[param], STEERING_DEFAULTS[param], 0.0, 180.0 ).SetStep( 0.5 ).SetTitle( "Max Turn Rate Angle <small>(degrees)</small>" ).Enable( isArchetypeAssetBool );
+						param++;
+						Asset.AddEntry_Float( "steering" + prefix + STEERING_PARAM[param], STEERING_DEFAULTS[param], 0.0, 1000.0 ).SetStep( 0.5 ).SetTitle( "Sensor Size <small>(inches)</small>" ).Enable( isArchetypeAssetBool );
+						param++;
+						Asset.AddEntry_Float( "steering" + prefix + STEERING_PARAM[param], STEERING_DEFAULTS[param], 0.0, 30.0 ).SetStep( 0.5 ).SetTitle( "Collision Penalty Multiplier" ).Enable( isArchetypeAssetBool );
+						param++;
+						Asset.AddEntry_Float( "steering" + prefix + STEERING_PARAM[param], STEERING_DEFAULTS[param], 0.0, 1.0 ).SetStep( 0.1 ).SetTitle( "Dodging Penalty Multiplier" ).Enable( isArchetypeAssetBool );
+						param++;
+						Asset.AddEntry_Float( "steering" + prefix + STEERING_PARAM[param], STEERING_DEFAULTS[param], 0.0, 1000.0 ).SetStep( 0.5 ).SetTitle( "Penetration Penalty Multiplier" ).Enable( isArchetypeAssetBool );
+						param++;
+						Asset.AddEntry_Float( "steering" + prefix + STEERING_PARAM[param], STEERING_DEFAULTS[param], 0.0, 5.0 ).SetStep( 0.01 ).SetTitle( "Sidedness Penalty Multiplier" ).Enable( isArchetypeAssetBool );
+						param++;
+						Asset.AddEntry_Float( "steering" + prefix + STEERING_PARAM[param], STEERING_DEFAULTS[param], 0.0, 5.0 ).SetStep( 0.01 ).SetTitle( "Velocity Hysteresis Multiplier" ).Enable( isArchetypeAssetBool );
+					}
+				}
+			}
+		}
+
+		Asset.BeginCategory( "Archetype Attributes" + ".Content Settings", ARCH_R, ARCH_G, ARCH_B, "archetype.png" );
+		
+		Asset.AddEntry_Label( "matureGibInfo", "When checked, gibbing will not happen if mature content is disabled." ).SetTitle( " " );
+		Asset.AddEntry_CheckBox( "matureGib", false ).SetTitle( "Mature Gib" ).SetToolTip( "" ).Enable( isArchetypeAssetBool );
+		
+		Asset.AddEntry_Label( "restrictedGibInfo", "When checked, gibbing will not happen on gib restricted localizations." ).SetTitle( " " );
+		Asset.AddEntry_CheckBox( "restrictedGib", true ).SetTitle( "Restricted Gib" ).SetToolTip( "" ).Enable( isArchetypeAssetBool );
+		
+		Asset.AddEntry_Label( "proceduralTraversalsInfo", "When checked, AI will path across procedural traversals.  The AI's behavior tree must\nhandle actually taking the procedural traversal." ).SetTitle( " " );
+		Asset.AddEntry_CheckBox( "proceduralTraversals", false ).SetTitle( "Procedural Traversals" ).SetToolTip( "" ).Enable( isArchetypeAssetBool );
+	}
+
+	// Variant
+	Asset.BeginCategory( "Variant Attributes", VAR_R, VAR_G, VAR_B, "variant.png"  );
+	{
+		Asset.AddEntry_Label( "variantInfo", "Variant level attributes are inherited and cannot be overridden by spawners, \ntypically reserved for large variations of the same base AI type.\n" ).SetTitle( " " );
+	
+		Asset.BeginCategory( "Variant Attributes" + ".Animation Maps", VAR_R, VAR_G, VAR_B, "variant.png" );
+		{
+			Asset.AddEntry_Label( "animMappingTableDefaultInfo", "Initial Animation Mapping Table the AI will select animations from." ).SetTitle( " " );
+			Asset.AddEntry_Combo( "animMappingTableDefault", "table1 | table2 | table3" ).SetTitle( "Default Anim Mapping Table" ).Enable( isArchetypeAssetBool || isVariantAssetBool );
+		
+			Asset.AddEntry_Path( "animMappingTableName", "" ).SetRelativePath( "share/raw/animtables/" ).SetTitle( "Animation Mapping Table 1" ).SetToolTip( "Animation Mapping Table for this AI." ).Enable( isArchetypeAssetBool || isVariantAssetBool );
+			Asset.AddEntry_Path( "animMappingTableName2", "" ).SetRelativePath( "share/raw/animtables/" ).SetTitle( "Animation Mapping Table 2" ).SetToolTip( "Second Animation Mapping Table for this AI." ).Enable( isArchetypeAssetBool || isVariantAssetBool );
+			Asset.AddEntry_Path( "animMappingTableName3", "" ).SetRelativePath( "share/raw/animtables/" ).SetTitle( "Animation Mapping Table 3" ).SetToolTip( "Third Animation Mapping Table for this AI." ).Enable( isArchetypeAssetBool || isVariantAssetBool );
+		}
+
+		Asset.BeginCategory( "Variant Attributes" + ".Definitions", VAR_R, VAR_G, VAR_B, "variant.png" );
+		{
+			Asset.AddEntry_Label( "variantShootAtTagInfo", "Tag other AI's should shoot at to hit this AI, defaults to \"tag_eye\"." ).SetTitle( " " );
+			Asset.AddEntry_BoneCombo( "shootAtTag", "radiantModel" ).SetTitle( "Shoot at Tag" ).SetToolTip( "" ).Enable( isArchetypeAssetBool || isVariantAssetBool );
+			
+			Asset.AddEntry_Label( "variantAimAtTagInfo", "Tag the player will aim at when ADS'ing, defaults to \"j_spine4\"." ).SetTitle( " " );
+			Asset.AddEntry_BoneCombo( "aimAtTag", "radiantModel" ).SetTitle( "Aim at Tag" ).SetToolTip( "" ).Enable( isArchetypeAssetBool || isVariantAssetBool );
+			
+			Asset.AddEntry_Label( "variantHeroInfo", "Flags the AI as a hero, exposed to code/script for specialized logic." ).SetTitle( " " );
+			Asset.AddEntry_CheckBox( "hero", false ).SetTitle( "Hero" ).SetToolTip( "" ).Enable( isArchetypeAssetBool || isVariantAssetBool );
+			
+			Asset.AddEntry_Label( "allowFriendlyFireInfo", "Allow the player to shoot this AI even if they are on team \"allies\" or \"neutral\"." ).SetTitle( " " );
+			Asset.AddEntry_CheckBox( "allowFriendlyFire", false ).SetTitle( "Allow Friendly Fire" ).SetToolTip( "" ).Enable( isArchetypeAssetBool || isVariantAssetBool );
+		}
+		
+		Asset.BeginCategory( "Variant Attributes" + ".Team" , VAR_R, VAR_G, VAR_B, "variant.png" );
+		{
+			Asset.AddEntry_Combo( "team", "axis | allies | team3 | neutral" ).SetTitle( "Team" ).Enable( isArchetypeAssetBool || isVariantAssetBool );
+		}
+		
+		Asset.BeginCategory( "Variant Attributes" + ".Tunables", VAR_R, VAR_G, VAR_B, "variant.png" );
+		{
+			Asset.AddEntry_Label( "tunableInfo", "" ).SetTitle( " " );
+			
+			Asset.BeginCategory( "Variant Attributes" + ".Tunables" + ".Awareness Attributes", VAR_R, VAR_G, VAR_B, "" );
+			{
+				Asset.AddEntry_Int( "sightDistance", 8192, 256, 8192 ).SetTitle( "Sight Awareness Radius" ).SetToolTip( "Sight distance" ).Enable( isArchetypeAssetBool || isVariantAssetBool );
+			}
+
+			Asset.BeginCategory( "Variant Attributes" + ".Tunables" + ".Engagement Distances", VAR_R, VAR_G, VAR_B, "" );
+			{
+				Asset.AddEntry_Float( "engageMinDist", 256.0, 0.0, 4096.0 ).SetStep( 0.001 ).SetTitle( "Min Distance" );
+				Asset.AddEntry_Float( "engageMinFalloffDist", 0.0, 0.0, 4096.0 ).SetStep( 0.001 ).SetTitle( "Min Falloff Distance" );
+				Asset.AddEntry_Float( "engageMaxDist", 768.0, 0.0, 4096.0f ).SetStep( 0.001 ).SetTitle( "Max Distance" );
+				Asset.AddEntry_Float( "engageMaxFalloffDist", 1024.0, 0.0, 4096.0 ).SetStep( 0.001 ).SetTitle( "Max Falloff Distance" );    		
+			}
+			
+			Asset.BeginCategory( "Variant Attributes" + ".Tunables" + ".Tactical Walk Quadrants", VAR_R, VAR_G, VAR_B, "" );
+			{
+				Asset.AddEntry_Float( "frontQuadrantDegrees", 90.0, 0.0, 360.0 ).SetStep( 0.1 ).SetTitle( "Forward Degrees" );
+				Asset.AddEntry_Float( "backQuadrantDegrees", 90.0, 0.0, 360.0 ).SetStep( 0.1 ).SetTitle( "Backward Degrees" );
+				Asset.AddEntry_Float( "leftQuadrantDegrees", 90.0, 0.0, 360.0 ).SetStep( 0.1 ).SetTitle( "Left Degrees" );
+				Asset.AddEntry_Float( "rightQuadrantDegrees", 90.0, 0.0, 360.0 ).SetStep( 0.1 ).SetTitle( "Right Degrees" );
+			}
+			
+			Asset.BeginCategory( "Variant Attributes" + ".Tunables" + ".Combat Attributes", VAR_R, VAR_G, VAR_B, "" );
+			{
+				Asset.AddEntry_Label( "pathEnemyFightDistInfo", "AI's will stop moving when their enemy is within this distance and turn to engage them." ).SetTitle( " " );
+				Asset.AddEntry_Int( "pathEnemyFightDist", 192, 0, 512 ).SetTitle( "Path Enemy Fight Distance" ).SetToolTip( "" );
+				Asset.AddEntry_Int( "runAndGunDist", 192, 1, 2000 ).SetTitle( "Run and Gun Distance" ).SetToolTip( "AI will sprint when it is not within this range from the enemy." );
+				Asset.AddEntry_Int( "faceenemyfightdist", 512, 0, 5000 ).SetTitle( "Face Enemy Distance" ).SetToolTip( "At this distance from enemy, AI will face and shoot the enemy while moving towards its goal." );
+				Asset.AddEntry_Int( "coversearchinterval", 2000, 2000, 10000 ).SetTitle( "Cover Search Interval" ).SetToolTip( "Interval between cover node evaluation. The bigger the interval, less reactive (or more static) the AI will become." );
+				Asset.AddEntry_Label( "newthreatdelayInfo", "Delay between selecting a new enemy once the current enemy has been killed." ).SetTitle( " " );
+				Asset.AddEntry_Int( "newthreatdelay", 500, 0, 10000 ).SetTitle( "New Threat Delay (ms)" ).SetToolTip( "" );
+				
+				Asset.AddEntry_Label( "newpaindelayInfo", "Delay between when the actor will react to another pain." ).SetTitle( " " );
+				Asset.AddEntry_Int( "newpaindelay", 875, 0, 10000 ).SetTitle( "New Pain Delay (ms)" ).SetToolTip( "" );
+			}
+			
+			Asset.BeginCategory( "Variant Attributes" + ".Tunables" + ".Shooting Attributes", VAR_R, VAR_G, VAR_B, "" );
+			{
+				Asset.AddEntry_Label( "shootanglethresholdInfo", "How many degrees the AI's bullet can deviate from where the weapon muzzle is pointing." ).SetTitle( " " );
+				Asset.AddEntry_Int( "shootanglethreshold", 5, 0, 180 ).SetTitle( "Shoot Angle Threshold" ).SetToolTip( "" );
+				
+				Asset.AddEntry_Label( "closeshootangledistanceInfo", "Enemies closer than this distance will have the \"Close Shoot Angle Threshold\" applied." ).SetTitle( " " );
+				Asset.AddEntry_Int( "closeshootangledistance", 120, 0, 2000 ).SetTitle( "Close Shoot Angle Distance" ).SetToolTip( "" );
+				
+				Asset.AddEntry_Label( "closeshootanglethresholdInfo", "How many degrees the AI's bullet can deviate from the muzzle at close range." ).SetTitle( " " );
+				Asset.AddEntry_Int( "closeshootanglethreshold", 15, 0, 180 ).SetTitle( "Close Shoot Angle Threshold" ).SetToolTip( "" );
+			}
+			
+            Asset.BeginCategory( "Variant Attributes" + ".Tunables" + ".Movement Attributes", VAR_R, VAR_G, VAR_B, "" );
+			{
+				Asset.AddEntry_CheckBox( "fixedNode", false ).SetTitle( "Fixed Node" ).SetToolTip( "When Set to true, AI will not evaluate cover nodes, no matter what the goal radius is. Use for keeping AI moving by themselves." ).Enable( isArchetypeAssetBool || isVariantAssetBool );				
+				Asset.AddEntry_CheckBox( "pacifist", false ).SetTitle( "Pacifist" ).SetToolTip( "When Set to true, AI will not fire until fired upon." ).Enable( isArchetypeAssetBool || isVariantAssetBool );
+				Asset.AddEntry_Int( "defaultGoalRadius", 2048, 16, 2048 ).SetToolTip( "Starting goal radius of AI." ).SetTitle( "Default Goalradius" ).Enable( isArchetypeAssetBool || isVariantAssetBool );
+			}
+            
+			Asset.BeginCategory( "Variant Attributes" + ".Tunables" + ".Magic Bullet Shield Attributes", VAR_R, VAR_G, VAR_B, "" );
+			{
+				Asset.AddEntry_Int( "painTolerance", 0, 5000, 10000 ).SetToolTip( "Milliseconds before another pain can play on an actor with magic bullet shield." ).SetTitle( "Pain Tolerance" ).Enable( isArchetypeAssetBool || isVariantAssetBool );
+			}
+		}
+		
+		Asset.BeginCategory( "Variant Attributes" + ".Traversals", VAR_R, VAR_G, VAR_B, "variant.png");
+		{
+			Asset.AddEntry_Combo( "movementtype", "human | bot | civilian | hero | advanced | robot | riotshield | dog | gorilla | vehicle | zombie | zombie_no_legs | zombie_keeper | zombie_dog | zombie_boss | mannequin | monkey | zombie_quad" ).SetTitle( "Movement Type" ).SetToolTip( "Movement type used to filter the traversal nodes while finding a path." ).Enable( isArchetypeAssetBool || isVariantAssetBool );;
+			Asset.AddEntry_Float( "favorTraversalFactor", 1.0, 0.1, 10.0 ).SetStep( 0.1 ).SetTitle( "Traversal Favoring" ).SetToolTip( "How much the AI will favor traversals over regular locomotion" ).Enable(  isArchetypeAssetBool || isVariantAssetBool );
+			Asset.AddEntry_Float( "favorSpecialTraversalFactor", 1.0, 0.1, 10.0 ).SetStep( 0.1 ).SetTitle( "Special Traversal Favoring" ).SetToolTip( "How much the AI will favor special traversals that match their movementtype" ).Enable(  isArchetypeAssetBool || isVariantAssetBool );
+		}
+		
+		Asset.BeginCategory( "Variant Attributes"+ ".Behaviors", VAR_R, VAR_G, VAR_B, "variant.png" );
+		{
+			Asset.AddEntry_Combo( "category", "None{0} | Civilian{1} | Assault{2} | CQB{3} | RPG{4} | Sniper{5} | Suppressor{6} | Riot Shield{7}" ).SetTitle( "Tactical Mode Category" ).Enable( isArchetypeAssetBool || isVariantAssetBool ).UpdateOnChange( true );
+		
+			Asset.AddEntry_CheckBox( "canFlank", false ).SetToolTip( "If set to true, AI will try to choose covernodes, which will flank the enemy." ).SetTitle( "Flank Behavior" ).Enable( isArchetypeAssetBool || isVariantAssetBool ).UpdateOnChange( true );						
+			
+			Asset.AddEntry_Int( "flankingScoreScale", 1, 1, 5 ).SetTitle( "Flank Score Scale" ).SetToolTip( "Scalar to modify the flanking score of 50 that gets added to the node, bigger the scalar, the more the AI will favor flank." ).Enable( isArchetypeAssetBool || isVariantAssetBool ).Show( Asset.GetEntryBool( "canFlank" ) );				
+			Asset.AddEntry_Float( "flankingAngle", 70.0, 50.0, 100.0 ).SetStep( 10.0 ).SetTitle( "Flank Angle" ).SetToolTip( "Unimplemented - The nodes at this angle will be considered for flanking." ).Enable( false ).Show(false);					
+						
+			Asset.AddEntry_CheckBox( "aggressiveMode", false ).SetToolTip( "If set to true, AI will be aggressive by flushing out the player and throw grenades on the move." ).SetTitle( "Aggressive Behavior" );
+			Asset.AddEntry_CheckBox( "accurateFire", false ).SetToolTip( "If set to true, AI will be not blindfire or do any related behaviors." ).SetTitle( "Accurate Fire" );
+			Asset.AddEntry_Path( "sniperGlintFX", "" ).SetTitle( "Sniper Glint FX" ).SetToolTip( "Effect to play as a glint on the scope just before the sniper fires" ).SetRelativePath( "share/raw/fx/" ).Enable( isArchetypeAssetBool || isVariantAssetBool ).Show(Asset.GetEntryBool( "accurateFire" ));			
+		}
+		
+		Asset.BeginCategory( "Variant Attributes"+ ".Weapons", VAR_R, VAR_G, VAR_B, "variant.png" );
+		{
+			Asset.AddEntry_Combo( "primaryWeaponType", "rifle | mg | smg | pistol | spread | sniper | projectile" ).SetTitle( "Primary Weapon Type" ).SetToolTip( "Set the allowed weapon type for this archetype." );
+		
+			Asset.BeginCategory( "Variant Attributes" + ".Weapons" + ".Weapon Settings", VAR_R, VAR_G, VAR_B, "Icon_weapon.png" );
+			{
+				Asset.AddEntry_Combo( "fireMode", "fullauto | burst |  singleshot" ).SetTitle( "Fire mode" ).SetToolTip( "Set the fireType for primary weapon" ).UpdateOnChange( true );
+				Asset.AddEntry_Combo( "burstCountMin", "3 | 4 | 5 | 6" ).SetTitle( "Burst Count Min" ).SetToolTip( "AI will choose randomly between min and max burst count." ).Enable( isArchetypeAssetBool || isVariantAssetBool ).Show( Asset.GetEntryValue( "fireMode" ) == "burst" ? true : false );				
+				Asset.AddEntry_Combo( "burstCountMax", "6 | 5 | 4 | 3" ).SetTitle( "Burst Count Max" ).SetToolTip( "AI will choose randomly between min and max burst count." ).Enable( isArchetypeAssetBool || isVariantAssetBool ).Show( Asset.GetEntryValue( "fireMode" ) == "burst" ? true : false );						
+				
+				Asset.AddEntry_Float( "fireIntervalmin", 0.1, 0.1, 10.0 ).SetStep( 0.1 ).SetTitle( "Fire Interval Min" ).SetToolTip( "Random interval (min) between two fire volleys." ).Enable( isArchetypeAssetBool || isVariantAssetBool ).Show( ( Asset.GetEntryValue( "fireMode" ) == "burst" || Asset.GetEntryValue( "fireMode" ) == "singleshot" ) ? true : false );
+				Asset.AddEntry_Float( "fireIntervalmax", 0.1, 0.1, 10.0 ).SetStep( 0.1 ).SetTitle( "Fire Interval Max" ).SetToolTip( "Random interval (max) between two fire volleys." ).Enable( isArchetypeAssetBool || isVariantAssetBool ).Show( ( Asset.GetEntryValue( "fireMode" ) == "burst" || Asset.GetEntryValue( "fireMode" ) == "singleshot" ) ? true : false );						
+			}
+		}
+	}
+			
+	// Spawner	
+	Asset.BeginCategory( "Spawner Attributes", SPAWN_R, SPAWN_G, SPAWN_B, "spawner.png" );
+	{
+		Asset.AddEntry_Label( "spawnerInfo", "Spawner level attributes are not inherited and typically reserved for level specifics.\n" ).SetTitle( " " );
+	
+		Asset.BeginCategory( "Spawner Attributes" + ".Footsteps", SPAWN_R, SPAWN_G, SPAWN_B, "spawner.png" );
+		{
+			Asset.AddEntry_AssetCombo( "footstepTable", "footsteptable").SetTitle("Footstep Sound Table" );
+			Asset.AddEntry_CheckBox( "footstepScriptCallback", false ).SetTitle( "Footstep script callback" );
+			// Asset.AddEntry_AssetCombo( "footstepFXTable", "footstepfxtable" ).SetTitle( "Footstep FX Table" );
+		}
+
+		Asset.BeginCategory( "Spawner Attributes" + ".Naming", SPAWN_R, SPAWN_G, SPAWN_B, "spawner.png" );
+		{
+			Asset.AddEntry_Label( "nameInfo", "Controls the name shown above friendly AI when pointed at.\n" ).SetTitle( " " );
+		
+			Asset.AddEntry_Label( "properNameInfo", "If specified, will override all name selection to this specific name." ).SetTitle( " " );
+			Asset.AddEntry_String( "properName", "" ).SetTitle( "Proper Name" ).SetToolTip( "" );
+			
+			Asset.AddEntry_Label( "randomNameInfo", "If a proper name isn't specified, AI will randomly select a name from this list." ).SetTitle( " " );
+			Asset.AddEntry_AssetCombo( "randomName", "ainames" ).SetTitle( "Random Name" ).SetToolTip( "" );
+		}
+	
+		Asset.BeginCategory( "Spawner Attributes" + ".Definitions", SPAWN_R, SPAWN_G, SPAWN_B, "spawner.png" );
+		{
+			Asset.AddEntry_String( "scoretype", "none" ).SetTitle( "Score Type" ).SetToolTip( "Should match the entries in the scoreevents table." );
+		}
+
+		Asset.BeginCategory( "Spawner Attributes" + ".Tunables", SPAWN_R, SPAWN_G, SPAWN_B, "spawner.png" );
+		{
+			Asset.AddEntry_Label( "spawnerTunablesInfo", "" ).SetTitle( " " );
+		
+			Asset.BeginCategory( "Spawner Attributes" + ".Tunables" +".Accuracy", SPAWN_R, SPAWN_G, SPAWN_B, "Icon_asset_attachment.png" );
+			{
+				Asset.AddEntry_Float( "accuracy", 0.2, 0.01, 3.0 ).SetStep( 0.001 ).SetTitle( "Accuracy" ).SetToolTip( "Percent accuracy of AI within effective range of weapon" );
+			}
+				
+			Asset.BeginCategory( "Spawner Attributes" + ".Tunables" + ".Health", SPAWN_R, SPAWN_G, SPAWN_B, "Icon_Health.png" );
+			{
+				Asset.AddEntry_Int( "health", 100, 1, 10000 ).SetTitle( "Health" ).SetToolTip( "Starting health of the AI." );
+			}
+		}
+		
+		Asset.BeginCategory( "Spawner Attributes" + ".Weapons", SPAWN_R, SPAWN_G, SPAWN_B, "spawner.png" );
+		{
+			Asset.AddEntry_Label( "spawnerWeaponInfo", "" ).SetTitle( " " );
+		
+			Asset.BeginCategory( "Spawner Attributes" + ".Weapons" + ".Primary Weapons", SPAWN_R, SPAWN_G, SPAWN_B, "Icon_weapon.png" );
+			{
+				Asset.AddEntry_AssetCombo( "primaryweapon1", "bulletweapon | projectileweapon" ).SetToolTip("AI will choose a random primary weapon from this pool.").SetTitle( "Primary Weapon 1" );
+				Asset.AddEntry_AssetCombo( "primaryweapon2", "bulletweapon | projectileweapon" ).SetToolTip("AI will choose a random primary weapon from this pool.").SetTitle( "Primary Weapon 2" );
+				Asset.AddEntry_AssetCombo( "primaryweapon3", "bulletweapon | projectileweapon" ).SetToolTip("AI will choose a random primary weapon from this pool.").SetTitle( "Primary Weapon 3" );
+				Asset.AddEntry_AssetCombo( "primaryweapon4", "bulletweapon | projectileweapon" ).SetToolTip("AI will choose a random primary weapon from this pool.").SetTitle( "Primary Weapon 4" );
+			}
+			
+			Asset.BeginCategory( "Spawner Attributes" + ".Weapons" + ".Primary Weapons.Attachment Chance", SPAWN_R, SPAWN_G, SPAWN_B, "" );
+			{
+				string toolTip = "Percentage chance that this many attachments will be attached to the AI's weapon.";
+			
+				Asset.AddEntry_Float( "primaryAttach1", 0.0, 0.0, 1.0 ).SetStep( 0.01 ).SetTitle( "One Attachment" ).SetToolTip( toolTip );
+				Asset.AddEntry_Float( "primaryAttach2", 0.0, 0.0, 1.0 ).SetStep( 0.01 ).SetTitle( "Two Attachments" ).SetToolTip( toolTip );
+				Asset.AddEntry_Float( "primaryAttach3", 0.0, 0.0, 1.0 ).SetStep( 0.01 ).SetTitle( "Three Attachments" ).SetToolTip( toolTip );
+				Asset.AddEntry_Float( "primaryAttach4", 0.0, 0.0, 1.0 ).SetStep( 0.01 ).SetTitle( "Four Attachments" ).SetToolTip( toolTip );
+				Asset.AddEntry_Float( "primaryAttach5", 0.0, 0.0, 1.0 ).SetStep( 0.01 ).SetTitle( "Five Attachments" ).SetToolTip( toolTip );
+				Asset.AddEntry_Float( "primaryAttach6", 0.0, 0.0, 1.0 ).SetStep( 0.01 ).SetTitle( "Six Attachments" ).SetToolTip( toolTip );
+			}
+			Asset.BeginCategory( "Spawner Attributes" + ".Weapons" + ".Primary Weapons.Banned Attachments", SPAWN_R, SPAWN_G, SPAWN_B, "" );
+			{
+				Asset.AddEntry_Text( "primaryBannedAttachments", "" ).SetHints( "NOWARNINGS" ).SetTitle( "Attachment Name" ).SetToolTip( "Name of attachment.  one per line" );	
+			}
+			Asset.BeginCategory( "Spawner Attributes" + ".Weapons" + ".Primary Weapons.Allowed Camos", SPAWN_R, SPAWN_G, SPAWN_B, "" );
+			{
+				Asset.AddEntry_Text( "primaryAllowedCamos", "" ).SetHints( "NOWARNINGS" ).SetTitle( "Camo Name" ).SetToolTip( "Name of camo.  one per line" );	
+			}
+			
+			Asset.BeginCategory( "Spawner Attributes" + ".Weapons" + ".SideArm Weapons", SPAWN_R, SPAWN_G, SPAWN_B, "Icon_weapon.png" );
+			{
+				Asset.AddEntry_AssetCombo( "sidearm", "bulletweapon" ).SetTitle( "SideArm" );
+			}
+				
+			Asset.BeginCategory( "Spawner Attributes" + ".Weapons" + ".Melee Weapons", SPAWN_R, SPAWN_G, SPAWN_B, "Icon_weapon.png" );
+			{
+				Asset.AddEntry_AssetCombo( "meleeweapon", "meleeweapon" ).SetTitle( "Melee" );
+			}
+				
+			Asset.BeginCategory( "Spawner Attributes" + ".Weapons" + ".Grenade Weapons", SPAWN_R, SPAWN_G, SPAWN_B, "Icon_asset_grenadeweapon.png" );
+			{
+				Asset.AddEntry_AssetCombo( "grenadeWeapon", "grenadeweapon" ).SetTitle( "Grenade Weapon" );
+				Asset.AddEntry_Int( "grenadeAmmo", 0, 0, 100 ).SetTitle( "Grenade Count" );
+			}
+			
+			Asset.BeginCategory( "Spawner Attributes" + ".Weapons" + ".Ammo Pouch", SPAWN_R, SPAWN_G, SPAWN_B, "" );
+			{
+				Asset.AddEntry_AssetCombo( "ammoPouch", "grenadeweapon" ).SetTitle( "Ammo Pouch" );
+			}
+		}
+		
+		Asset.BeginCategory( "Spawner Attributes" + ".Character Models", SPAWN_R, SPAWN_G, SPAWN_B, "spawner.png" );
+		{
+			Asset.AddEntry_AssetCombo( "character1", "character" ).SetTitle( "Character 1" ); 
+			Asset.AddEntry_AssetCombo( "character2", "character" ).SetTitle( "Character 2" );
+			Asset.AddEntry_AssetCombo( "character3", "character" ).SetTitle( "Character 3" ); 
+			Asset.AddEntry_AssetCombo( "character4", "character" ).SetTitle( "Character 4" );
+			Asset.AddEntry_AssetCombo( "character5", "character" ).SetTitle( "Character 5" );
+			Asset.AddEntry_AssetCombo( "character6", "character" ).SetTitle( "Character 6" );  
+			Asset.AddEntry_AssetCombo( "character7", "character" ).SetTitle( "Character 7" );
+			Asset.AddEntry_AssetCombo( "character8", "character" ).SetTitle( "Character 8" );            
+		}
+		
+		Asset.BeginCategory( "Spawner Attributes" + ".Female Version", SPAWN_R, SPAWN_G, SPAWN_B, "spawner.png" );
+		{
+			Asset.AddEntry_AssetCombo( "femaleVersion", "aitype" ).SetTitle( "Female Spawner" ).SetToolTip( "Spawner that will be used when code determines a female version of this AI should spawn in, if left blank, no female version of this AI will spawn" );
+		}
+		
+		Asset.BeginCategory( "Spawner Attributes" + ".Radiant Model", SPAWN_R, SPAWN_G, SPAWN_B, "spawner.png" );
+		{
+			Asset.AddEntry_AssetCombo( "radiantModel", "xmodel" ).SetTitle( "Radiant Model File" );
+		}
+		
+		Asset.BeginCategory( "Spawner Attributes" + ".Sound Attributes", SPAWN_R, SPAWN_G, SPAWN_B, "Icon_Sound.png" );
+		{
+			Asset.AddEntry_String( "voicePrefix", "").SetTitle("Voice Prefix" );
+		}
+	}
+	
+
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+		
+	// Miscellaneous
+	Asset.BeginCategory( "Miscellaneous", MISC_R, MISC_G, MISC_B, "" );
+	{
+		Asset.AddEntry_Label( "miscInfo", "Miscellaneous AI settings used by external systems.\n" ).SetTitle( " " );
+	
+		Asset.BeginCategory( "Miscellaneous" + ".AI Validation Tests", MISC_R, MISC_G, MISC_B, "" );
+		{
+			Asset.AddEntry_Label( "validationNoCosmeticBonesInfo", "AI animations may not contain cosmetic bones." ).SetTitle( " " );
+			Asset.AddEntry_CheckBox( "validationNoCosmeticBones", true ).SetTitle( "No Cosmetic Bones" );
+			
+			Asset.AddEntry_Label( "validationRequiredBonesInfo", "Any possible combination of xmodels an AI character can be built out of must contain these bones." ).SetTitle( " " );
+			Asset.AddEntry_Text( "validationRequiredBones", "tag_origin" ).SetTitle( "Required Bones" ).SetToolTip( "" );
+		}
+	
+		Asset.BeginCategory( "Miscellaneous" + ".Demo LockOn Values", MISC_R, MISC_G, MISC_B, "" );
+		{
+			Asset.AddEntry_Float( "demoLockOnHighlightDistance", 100.0, 1.0, 1024.0 ).SetStep( 0.1 ).SetTitle( "Highlight Distance" ).SetToolTip( "In theater lockOn Camera, adjusts the range the AI can be highlighted from" );
+			Asset.AddEntry_Int( "demoLockOnViewHeightOffset1", 8, -1024, 1024 ).SetTitle( "View Height Offset 1" ).SetToolTip( "In theater lockOn Camera, offsets the camera view height" );
+			Asset.AddEntry_Float( "demoLockOnViewPitchMin1", 0.0, -180.0, 180.0 ).SetStep( 0.1 ).SetTitle( "View Pitch Min 1" ).SetToolTip( "In theater lockOn Camera, clamps the view pitch to this minimum" );
+			Asset.AddEntry_Float( "demoLockOnViewPitchMax1", 60.0, -180.0, 180.0 ).SetStep( 0.1 ).SetTitle( "View Pitch Max 1" ).SetToolTip( "In theater lockOn Camera, clamps the view pitch to this maximum" );
+			Asset.AddEntry_Int( "demoLockOnViewHeightOffset2", 8, -1024, 1024 ).SetTitle( "View Height Offset 2" ).SetToolTip( "In theater lockOn Camera, offsets the camera view height" );
+			Asset.AddEntry_Float( "demoLockOnViewPitchMin2", 0.0, -180.0, 180.0 ).SetStep( 0.1 ).SetTitle( "View Pitch Min 2" ).SetToolTip( "In theater lockOn Camera, clamps the view pitch to this minimum" );
+			Asset.AddEntry_Float( "demoLockOnViewPitchMax2", 60.0, -180.0, 180.0 ).SetStep( 0.1 ).SetTitle( "View Pitch Max 2" ).SetToolTip( "In theater lockOn Camera, clamps the view pitch to this maximum" );
+		}			
+			
+		Asset.BeginCategory( "Miscellaneous" + ".Compass", MISC_R, MISC_G, MISC_B, "" );
+		{
+			Asset.AddEntry_String( "compassIcon", "").SetTitle("Compass Icon" );
+		}
+		
+		Asset.BeginCategory( "Miscellaneous" + ".Tactical Mode", MISC_R, MISC_G, MISC_B, "" );
+		{
+			Asset.AddEntry_AssetCombo( "tacticalModeIcon", "image" ).SetTitle( "Tactical Mode Icon" );
+		}
+	}	
+}
+
+void OverrideCover( asset Asset, const string& param )
+{
+	entryControl@ overrideCover = Asset.GetEntryVariable( "overrideCover" );
+	
+	if ( overrideCover.GetBool() )
+	{
+		if ( MessageBox( "Are you sure you want to clear cover overrides?", "YESNO" ) == "YES" )
+		{
+			overrideCover.SetBool( !overrideCover.GetBool() );
+		}
+	}
+	else
+	{
+		overrideCover.SetBool( !overrideCover.GetBool() );
+	}
+}
+
+void OverrideSteering( asset Asset, const string& param )
+{
+	entryControl@ overrideSteering = Asset.GetEntryVariable( "override" + param + "Steering" );
+	
+	if ( overrideSteering.GetBool() )
+	{
+		if ( MessageBox( "Are you sure you want to clear " + param + " Steering Customizations?", "YESNO" ) == "YES" )
+		{
+			overrideSteering.SetBool( !overrideSteering.GetBool() );
+			
+			for ( int index = 0; index < STEERING_PARAM.length(); index++)
+			{
+				Asset.GetEntryControl( "steering" + param + STEERING_PARAM[index] ).SetFloat( STEERING_DEFAULTS[index] );
+			}
+		}
+	}
+	else
+	{
+		overrideSteering.SetBool( !overrideSteering.GetBool() );
+	}
+}

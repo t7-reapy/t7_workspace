@@ -1,0 +1,222 @@
+
+void GenerateUI( asset Asset )
+{
+	// Unused
+	
+	Asset.AddEntry_AssetCombo( "gibSpawn1_Alias", "xmodelalias" ).Show( false );
+	Asset.AddEntry_AssetCombo( "gibSpawn2_Alias", "xmodelalias" ).Show( false );
+	Asset.AddEntry_AssetCombo( "gibSpawn3_Alias", "xmodelalias" ).Show( false );
+	Asset.AddEntry_AssetCombo( "gibSpawn4_Alias", "xmodelalias" ).Show( false );
+	Asset.AddEntry_AssetCombo( "gibSpawn5_Alias", "xmodelalias" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Skeleton 
+	
+	Asset.BeginCategory( "Skeleton" );
+	{
+		Asset.AddEntry_Combo( "skeleton", "base | scaled80 | prop80" ).SetTitle( "Skeleton" ).SetToolTip( "Specify what skeleton this character uses" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Voice 
+	
+	Asset.BeginCategory( "Voice" );	
+	{
+		Asset.AddEntry_Combo( "voice", "american | russian | unita | cuban | mujahideen | pdf | pmc | isi | digbat | yemeni | terrorist | lapd | secretservice | mp | chinese" ).SetTitle( "Voice" ).SetToolTip( "Determines nationality 'voice' to use" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Destructible
+	
+	Asset.BeginCategory( "Destructible Character", 1, 0.5, 0.3, "Icon_asset_scriptbundle.png" );	
+	{
+		Asset.AddEntry_Label( "destructDefInfo", "Defines the rigid pieces that can be shot off the character." ).SetTitle( " " );
+		Asset.AddEntry_AssetCombo( "destructDef", "destructiblecharacterdef" ).SetTitle( "Destructible Definition:" );
+	}
+	
+	Asset.BeginCategory( " Gibbable Character", 1, 0.5, 0.3, "Icon_asset_scriptbundle.png" );	
+	{
+		Asset.AddEntry_Label( "gibDefInfo", "Defines the gibbable dynent pieces of the character.  ex: head, arms, legs, etc." ).SetTitle( " " );
+		Asset.AddEntry_AssetCombo( "gibDef", "gibcharacterdef" ).SetTitle( "Gib Definition:" );
+	}
+	
+	Asset.BeginCategory( "Character FX", 1, 0.5, 0.3, "Icon_FX.png" );	
+	{
+		Asset.AddEntry_Label( "fxDefInfo", "The base, default list of FX to attach to the character." ).SetTitle( " " );
+		Asset.AddEntry_AssetCombo( "fxDef", "fxcharacterdef" ).SetTitle( "Base FX Definition:" );
+		Asset.AddEntry_AssetCombo( "deathFxDef", "fxcharacterdef" ).SetTitle( "Death FX Definition:" );
+		
+		Asset.BeginCategory( "Character FX" + ".Alt Character FX", 1, 0.5, 0.3, "Icon_FX.png" );	
+		{
+			Asset.AddEntry_Label( "altFxDefInfo", "Alternate lists of FX to attach to the character, typically used by script." ).SetTitle( " " );
+			Asset.AddEntry_AssetCombo( "altFxDef1", "fxcharacterdef" ).SetTitle( "FX Definition 1:" );
+			Asset.AddEntry_AssetCombo( "altFxDef2", "fxcharacterdef" ).SetTitle( "FX Definition 2:" );
+			Asset.AddEntry_AssetCombo( "altFxDef3", "fxcharacterdef" ).SetTitle( "FX Definition 3:" );
+			Asset.AddEntry_AssetCombo( "altFxDef4", "fxcharacterdef" ).SetTitle( "FX Definition 4:" );
+			Asset.AddEntry_AssetCombo( "altFxDef5", "fxcharacterdef" ).SetTitle( "FX Definition 5:" );
+			Asset.AddEntry_AssetCombo( "altFxDef6", "fxcharacterdef" ).SetTitle( "FX Definition 6:" );
+		}
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Models 
+	
+	Asset.BeginCategory( "Models" );
+	{
+		Asset.AddEntry_AssetCombo( "body", "xmodel" ).SetTitle( "Body Model:" );
+		Asset.AddEntry_AssetCombo( "bodyAlias", "xmodelalias" ).SetTitle( "Body Model Alias:" );
+		Asset.AddEntry_AssetCombo( "head", "xmodel" ).SetTitle( "Head Model:" );
+		Asset.AddEntry_AssetCombo( "headAlias", "xmodelalias" ).SetTitle( "Head Model Alias:" );
+		Asset.AddEntry_AssetCombo( "hat", "xmodel" ).SetTitle( "Hat Model:" );
+		Asset.AddEntry_AssetCombo( "hatAlias", "xmodelalias" ).SetTitle( "Hat Model Alias:" );
+		Asset.AddEntry_AssetCombo( "gear", "xmodel" ).SetTitle( "Gear Model:" );
+		Asset.AddEntry_AssetCombo( "gearAlias", "xmodelalias" ).SetTitle( "Gear Model Alias:" );
+		Asset.AddEntry_AssetCombo( "viewmodel", "xmodel" ).SetTitle( "View Model:" );
+		Asset.AddEntry_AssetCombo( "shadowCharacter", "xmodel" ).SetTitle( "Shadow Character:" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Damaged Torso Models 
+	
+	Asset.BeginCategory( "Damaged Torso Models" );
+	{
+		Asset.AddEntry_AssetCombo( "torsoDmg1", "xmodel" ).SetTitle( "Clean:" );
+		Asset.AddEntry_AssetCombo( "torsoDmg1_Alias", "xmodelalias" ).SetTitle( "Clean (Model Alias):" );
+		Asset.AddEntry_AssetCombo( "torsoDmg2", "xmodel" ).SetTitle( "Right Arm Gone:" );
+		Asset.AddEntry_AssetCombo( "torsoDmg2_Alias", "xmodelalias" ).SetTitle( "Right Arm Gone (Model Alias):" );
+		Asset.AddEntry_AssetCombo( "torsoDmg3", "xmodel" ).SetTitle( "Left Arm Gone:" );
+		Asset.AddEntry_AssetCombo( "torsoDmg3_Alias", "xmodelalias" ).SetTitle( "Left Arm Gone (Model Alias):" );
+		Asset.AddEntry_AssetCombo( "torsoDmg4", "xmodel" ).SetTitle( "Guts Gone:" );
+		Asset.AddEntry_AssetCombo( "torsoDmg4_Alias", "xmodelalias" ).SetTitle( "Guts Gone (Model Alias):" );	
+		Asset.AddEntry_AssetCombo( "torsoDmg5", "xmodel" ).SetTitle( "Head Gone:" );
+		Asset.AddEntry_AssetCombo( "torsoDmg5_Alias", "xmodelalias" ).SetTitle( "Head Gone (Model Alias):" );	
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Damaged Legs Models 
+	
+	Asset.BeginCategory( "Damaged Legs Models" );	
+	{
+		Asset.AddEntry_AssetCombo( "legDmg1", "xmodel" ).SetTitle( "Clean:" );
+		Asset.AddEntry_AssetCombo( "legDmg1_Alias", "xmodelalias" ).SetTitle( "Clean (Model Alias):" );
+		Asset.AddEntry_AssetCombo( "legDmg2", "xmodel" ).SetTitle( "Right Leg Gone:" );
+		Asset.AddEntry_AssetCombo( "legDmg2_Alias", "xmodelalias" ).SetTitle( "Right Leg Gone (Model Alias):" );
+		Asset.AddEntry_AssetCombo( "legDmg3", "xmodel" ).SetTitle( "Left Leg Gone:" );
+		Asset.AddEntry_AssetCombo( "legDmg3_Alias", "xmodelalias" ).SetTitle( "Left Leg Gone (Model Alias):" );
+		Asset.AddEntry_AssetCombo( "legDmg4", "xmodel" ).SetTitle( "No legs:" );
+		Asset.AddEntry_AssetCombo( "legDmg4_Alias", "xmodelalias" ).SetTitle( "No legs (Model Alias):" );		
+	}
+	
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Attached Models (to the listed bones)
+	
+	Asset.BeginCategory( "Attached Models (to the listed bones)" );		
+	{
+		Asset.AddEntry_AssetCombo( "J_ChestGear_RI", "xmodel" ).SetTitle( "Chest Gear Right" );
+		Asset.AddEntry_CheckBox( "J_ChestGear_RI_required", false ).SetTitle( "Chest Gear Right required" );
+		Asset.AddEntry_AssetCombo( "J_ChestGear_LE", "xmodel" ).SetTitle( "Chest Gear Left" );
+		Asset.AddEntry_CheckBox( "J_ChestGear_LE_required", false ).SetTitle( "Chest Gear Left required" );	
+		Asset.AddEntry_AssetCombo( "J_FrontPack", "xmodel" ).SetTitle( "Front Pack" );
+		Asset.AddEntry_CheckBox( "J_FrontPack_required", false ).SetTitle( "Front Pack required" );	
+		Asset.AddEntry_AssetCombo( "J_FrontPackLow", "xmodel" ).SetTitle( "Front Pack Low" );
+		Asset.AddEntry_CheckBox( "J_FrontPackLow_required", false ).SetTitle( "Front Pack Low required" );		
+		Asset.AddEntry_AssetCombo( "J_Backpack", "xmodel" ).SetTitle( "Backpack" );
+		Asset.AddEntry_CheckBox( "J_Backpack_required", false ).SetTitle( "Backpack required" );		
+		Asset.AddEntry_AssetCombo( "J_GearRear_LE", "xmodel" ).SetTitle( "Rear Gear Left" );
+		Asset.AddEntry_CheckBox( "J_GearRear_LE_required", false ).SetTitle( "Rear Gear Left required" );	
+		Asset.AddEntry_AssetCombo( "J_GearRear_RI", "xmodel" ).SetTitle( "Rear Gear Right" );
+		Asset.AddEntry_CheckBox( "J_GearRear_RI_required", false ).SetTitle( "Rear Gear Right required" );	
+		Asset.AddEntry_AssetCombo( "J_GearSideRear_LE", "xmodel" ).SetTitle( "Rear Gear Side Left" );
+		Asset.AddEntry_CheckBox( "J_GearSideRear_LE_required", false ).SetTitle( "Rear Gear Side Left required" );		
+		Asset.AddEntry_AssetCombo( "J_GearSideRear_RI", "xmodel" ).SetTitle( "Rear Gear Side Right" );
+		Asset.AddEntry_CheckBox( "J_GearSideRear_RI_required", false ).SetTitle( "Rear Gear Side Right required" );	
+		Asset.AddEntry_AssetCombo( "J_GearSide_LE", "xmodel" ).SetTitle( "Side Gear Left" );
+		Asset.AddEntry_CheckBox( "J_GearSide_LE_required", false ).SetTitle( "Side Gear Left required" );		
+		Asset.AddEntry_AssetCombo( "J_GearSide_RI", "xmodel" ).SetTitle( "Side Gear Right" );
+		Asset.AddEntry_CheckBox( "J_GearSide_RI_required", false ).SetTitle( "Side Gear Right required" );	
+		Asset.AddEntry_AssetCombo( "J_GearFront_LE", "xmodel" ).SetTitle( "Front Gear Left" );
+		Asset.AddEntry_CheckBox( "J_GearFront_LE_required", false ).SetTitle( "Front Gear Left required" );		
+		Asset.AddEntry_AssetCombo( "J_GearFront_RI", "xmodel" ).SetTitle( "Front Gear Right" );
+		Asset.AddEntry_CheckBox( "J_GearFront_RI_required", false ).SetTitle( "Front Gear Right required" );	
+		Asset.AddEntry_AssetCombo( "J_Helmet", "xmodel" ).SetTitle( "Helmet" );
+		Asset.AddEntry_CheckBox( "J_Helmet_required", false ).SetTitle( "Helmet required" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Misc. Attached Models (not linked to any bones, just to the origin)
+	
+	Asset.BeginCategory( "Attached Models (not linked to any bones, just to the origin)" );		
+	{
+		Asset.AddEntry_AssetCombo( "misc1", "xmodel" ).SetTitle( "Misc1" );
+		Asset.AddEntry_CheckBox( "misc1_required", false ).SetTitle( "Misc1 required" );	
+		Asset.AddEntry_AssetCombo( "misc2", "xmodel" ).SetTitle( "Misc2" );
+		Asset.AddEntry_CheckBox( "misc2_required", false ).SetTitle( "Misc2 required" );		
+		Asset.AddEntry_AssetCombo( "misc3", "xmodel" ).SetTitle( "Misc3" );
+		Asset.AddEntry_CheckBox( "misc3_required", false ).SetTitle( "Misc3 required" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Zombie 
+	Asset.BeginCategory( "Zombie Specific Modifications" );
+	{
+		
+		Asset.BeginCategory( "Zombie Specific Modifications.Campaign Zombies" );
+		{			
+			Asset.AddEntry_AssetCombo( "headAliasZombie", "xmodelalias" ).SetTitle( "Head Model Alias Override:" ).SetToolTip("Do not change this until you talk to Sumeet Jakatdar.");			
+		}
+
+		Asset.BeginCategory( "Zombie Specific Modifications.Zombie FX" );
+		{
+			Asset.AddEntry_Path( "eyeGlowFX", "" ).SetRelativePath( "share/raw/fx/" ).SetTitle( "Eye glow FX" ).SetToolTip( "Effect to use for zombie eye glow" );
+			Asset.AddEntry_String( "eyeGlowBone", "" ).SetTitle( "Eye glow bone" );
+		}
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Impact types
+
+	Asset.BeginCategory( "Impacts" );
+	{
+		Asset.AddEntry_Combo( "headImpactType", "none | flesh | zombie | armorlight | armorheavy | robotlight | robotheavy | robotboss | skeleton" ).SetTitle( "Head Impact Type" );
+		Asset.AddEntry_Combo( "bodyImpactType", "none | flesh | zombie | armorlight | armorheavy | robotlight | robotheavy | robotboss | skeleton" ).SetTitle( "Body Impact Type" );
+	}
+	
+	//Preview for Radiant/APE/Asset Viewer
+	Asset.BeginCategory( "Preview" );
+	{
+		string previewOptions = "generichuman | genericrobot | custom";
+		string previewTypeKey = "previewType";
+		string previewXModelKey = "previewxmodel";
+		string robotPreviewModel = "c_54i_robot_1";
+		string humanPreviewModel = "c_gen_soldier_1_fb";
+		
+		Asset.AddEntry_Combo( previewTypeKey, previewOptions ).SetTitle( "Model Type" ).SetToolTip( "Specify what model to preview with" ).UpdateOnChange( true );
+		string previewType = Asset.GetEntryValue( previewTypeKey );
+		string previewModel = Asset.GetEntryValue( previewXModelKey );
+		bool enable = false;
+		if (previewType == "generichuman")
+		{
+			previewModel = humanPreviewModel;
+		}
+		else if ( previewType == "genericrobot" )
+		{
+			previewModel = robotPreviewModel;
+		}
+		else if ( previewType == "custom" )
+		{
+			enable = true;
+		}
+		Asset.AddEntry_AssetCombo( previewXModelKey, "xmodel" ).SetTitle( "XModel" ).Enable(enable).SetValue(previewModel);
+	}
+}

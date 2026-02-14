@@ -1,0 +1,30 @@
+{
+    "states": {
+        "debug": {
+            "substates": {
+                "void": {
+                    "animation_selector": "void@debug"
+                }
+            }
+        },
+        "john_doe": {
+            "substates": {
+                "death": {
+                    "animation_selector": "death@john_doe",
+                    "terminal": true
+                },
+                "idle": {
+                    "animation_selector": "idle@john_doe"
+                },
+                "attack": {
+                    "animation_selector": "attack@john_doe"
+                },
+                "locomotion": {
+                    "animation_selector": "locomotion@john_doe",
+                    "loopsync": true,
+                    "multipledelta": true
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+#include "asset_list_helper.h"
+const int MAX_ACCOLADE_ENTRIES = 40; // changing this does not require updating anything else
+
+void GenerateUI( asset Asset )
+{
+	GenerateItemList( Asset, "accolade", "Accolade", "accolade", MAX_ACCOLADE_ENTRIES );
+}

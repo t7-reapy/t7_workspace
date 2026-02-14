@@ -1,0 +1,91 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{CACE9221-7DF5-11EC-8255-D43D7E278B2C}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{CACE9222-7DF5-11EC-8255-D43D7E278B2C}"
+"classname" "trigger_multiple"
+"AI_AXIS" "1"
+"NOTPLAYER" "1"
+"VEHICLE" "1"
+"script_string" "spider_web_trigger"
+"target" "auto2"
+"_color" "1 0.3 0.1"
+"spawnflags" "25"
+// brush 0
+{
+ guid "{D3C68333-793F-11EC-8255-D43D7E278B2C}"
+ ( 16 16 0 ) ( -16 16 0 ) ( -16 -16 0 ) trigger 64 64 -208 184 0 0 lightmap_gray 16384 16384 -208 184 0 0
+ ( -32 -16 128 ) ( -32 16 128 ) ( 0 16 128 ) trigger 64 64 -224 184 0 0 lightmap_gray 16384 16384 -224 184 0 0
+ ( -16 -16 16 ) ( 16 -16 16 ) ( 16 -16 0 ) trigger 64 64 -208 96 0 0 lightmap_gray 16384 16384 -208 96 0 0
+ ( 73 -15 24 ) ( 73 17 24 ) ( 73 17 8 ) trigger 64 64 -183 88 0 0 lightmap_gray 16384 16384 -183 88 0 0
+ ( 16 16 16 ) ( -16 16 16 ) ( -16 16 0 ) trigger 64 64 -208 96 0 0 lightmap_gray 16384 16384 -208 96 0 0
+ ( -73 16 24 ) ( -73 -16 24 ) ( -73 -16 8 ) trigger 64 64 -184 88 0 0 lightmap_gray 16384 16384 -184 88 0 0
+}
+}
+// entity 2
+{
+guid "{CACE9223-7DF5-11EC-8255-D43D7E278B2C}"
+"classname" "script_struct"
+"origin" "0 0 64"
+"script_string" "spider_web_particle_doorbuy"
+"targetname" "auto2"
+"_color" "1 0 0"
+}
+// entity 3
+{
+guid "{CACE9224-7DF5-11EC-8255-D43D7E278B2C}"
+"classname" "script_model"
+"model" "p7_zm_isl_web_buy_door_146"
+"script_string" "spider_web_visual"
+"targetname" "auto2"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 4
+{
+guid "{CACE9225-7DF5-11EC-8255-D43D7E278B2C}"
+"classname" "script_struct"
+"angles" "270.798 269.834 -174.639"
+"model" "c_zom_dlc2_spider"
+"origin" "0 0 40"
+"_color" "1 0 0"
+}
+// entity 5
+{
+guid "{CACE9226-7DF5-11EC-8255-D43D7E278B2C}"
+"classname" "script_struct"
+"angles" "270.798 269.838 5.35708"
+"model" "c_zom_dlc2_spider"
+"origin" "-0.000748634 0.0108643 39.2205"
+"_color" "1 0 0"
+}

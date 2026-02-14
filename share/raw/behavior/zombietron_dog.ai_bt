@@ -1,0 +1,130 @@
+{
+    "id": "zombiedog",
+    "type": "selector",
+    "children": [
+        {
+            "id": "zombiedogbehaviormain",
+            "type": "parallel",
+            "children": [
+                {
+                    "id": "update goal",
+                    "type": "condition_service_script",
+                    "scriptFunction": "doaupdatetogoal",
+                    "cooldownMin": 100,
+                    "cooldownMax": 100
+                },
+                {
+                    "id": "targetservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "zombiedogtargetservice"
+                },
+                {
+                    "id": "zombiedogbehaviorselector",
+                    "type": "selector",
+                    "children": [
+                        {
+                            "id": "deathbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "waskilled",
+                                    "type": "condition_script",
+                                    "interruptName": "death"
+                                },
+                                {
+                                    "id": "defaultaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "death@zombie_dog",
+                                    "actionNotify": "death",
+                                    "TerminateFunction": "startragdoll"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "traversebehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldtraverse",
+                                    "type": "condition_script",
+                                    "scriptFunction": "locomotionshouldtraverse",
+                                    "interruptName": "traverse"
+                                },
+                                {
+                                    "id": "traverseaction",
+                                    "type": "action",
+                                    "ActionName": "traverseactionstart",
+                                    "ASMStateName": "traverse@zombie_dog"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "locomotionbehavior",
+                            "type": "parallel",
+                            "children": [
+                                {
+                                    "id": "haspath",
+                                    "type": "condition_script",
+                                    "scriptFunction": "locomotionbehaviorcondition"
+                                },
+                                {
+                                    "id": "shouldmelee",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "zombiedogshouldmelee"
+                                },
+                                {
+                                    "id": "moveaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "locomotion@zombie_dog",
+                                    "loopingAction": 1
+                                }
+                            ]
+                        },
+                        {
+                            "id": "meleebehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldmelee",
+                                    "type": "condition_script",
+                                    "scriptFunction": "zombiedogshouldmelee"
+                                },
+                                {
+                                    "id": "meleeaction",
+                                    "type": "action",
+                                    "ActionName": "zombiedogmeleeaction",
+                                    "ASMStateName": "melee@zombie_dog"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "idlebehavior",
+                            "type": "parallel",
+                            "children": [
+                                {
+                                    "id": "haspath",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "locomotionbehaviorcondition"
+                                },
+                                {
+                                    "id": "idleaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "idle@zombie_dog"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "debugvoidaction",
+            "type": "action",
+            "ActionName": "defaultaction",
+            "ASMStateName": "void@debug"
+        }
+    ]
+}

@@ -1,0 +1,63 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{95C97D07-93A6-11F0-9AEC-309C23A208D5}"
+"classname" "worldspawn"
+"lutmaterial" "luts_t7_default"
+"fsi" "default"
+"gravity" "800"
+"lightingquality" "1024"
+"lodbias" "default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"samplescale" "1"
+"shadowslices" "96"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+"umbraSmallestHole" "16"
+"umbraSmallestOccluder" "96"
+"umbraTileSize" "2"
+"umbra_prime_depth" "1"
+"vbloom" "none"
+"vcolor" "none"
+"wsi" "default_day"
+}
+// entity 1
+{
+guid "{95C97D08-93A6-11F0-9AEC-309C23A208D5}"
+"classname" "script_struct"
+"angles" "0 270 0"
+"model" ""
+"origin" "0 0 16"
+"targetname" "auto5"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{95C97D09-93A6-11F0-9AEC-309C23A208D5}"
+"classname" "trigger_use"
+"cursorhint" "HINT_NOICON"
+"script_string" "glaive_apothicon_1"
+"target" "auto5"
+"targetname" "specialist_weapons"
+"_color" "0.3 0.5 0.8"
+// brush 0
+{
+ guid "{4373193B-FD04-11EA-81EF-0015833D0A57}"
+ ( 16 16 0 ) ( -16 16 0 ) ( -16 -16 0 ) trigger -32 32 -16 16 0 0 lightmap_gray 16384 16384 -144 -560 0 0
+ ( -16 -16 32 ) ( -16 16 32 ) ( 16 16 32 ) trigger -32 32 -16 16 0 0 lightmap_gray 16384 16384 -144 -560 0 0
+ ( -16 -16 16 ) ( 16 -16 16 ) ( 16 -16 0 ) trigger -32 32 -16 0 0 0 lightmap_gray 16384 16384 -144 -32 0 0
+ ( 16 -16 16 ) ( 16 16 16 ) ( 16 16 0 ) trigger -32 32 -16 0 0 0 lightmap_gray 16384 16384 560 -32 0 0
+ ( 16 16 16 ) ( -16 16 16 ) ( -16 16 0 ) trigger -32 32 -16 0 0 0 lightmap_gray 16384 16384 -144 -32 0 0
+ ( -16 16 16 ) ( -16 -16 16 ) ( -16 -16 0 ) trigger -32 32 -16 0 0 0 lightmap_gray 16384 16384 560 -32 0 0
+}
+}

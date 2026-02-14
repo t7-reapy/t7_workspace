@@ -1,0 +1,33 @@
+
+void GenerateUI( asset Asset )
+{
+	// Hidden
+	
+ 
+	Asset.AddEntry_String( "configstringFileType", "RUMBLE" ).Show( false );	
+	
+	Asset.BeginCategory( "Rumble Settings" );
+	{
+		Asset.AddEntry_FileCombo( "highRumbleFile", "share/raw/rumble/", "" ).SetTitle( "High Rumble File" );
+		Asset.AddEntry_FileCombo( "lowRumbleFile", "share/raw/rumble/", "" ).SetTitle( "Low Rumble File" );
+	
+		Asset.AddEntry_CheckBox( "broadcast", false ).SetTitle( "Broadcast to World" ).SetToolTip( "If checked, this rumble will broadcast to any entities in range.  Otherwise, it only affects the player it is applied to directly." );
+		Asset.AddEntry_CheckBox( "fadeWithDistance", true ).SetTitle( "Fade Intensity With Distance" ).SetToolTip( "If checked, rumble intensity will lerp from full (at the origin) to nothing (at the extent of it's range)." );
+		Asset.AddEntry_Float( "duration", 0, 0, 100 ).SetTitle( "Duration" ).SetStep( 0.25 ).SetToolTip( "Time in seconds" );
+		Asset.AddEntry_Float( "range", 1, 1, 10000 ).SetTitle( "Range" ).SetStep( 50 );
+	}
+
+	Asset.BeginCategory( "Camera Shake" );
+	{
+		Asset.AddEntry_Float( "camShakeScale", 0, 0, 100 ).SetTitle( "Scale" ).SetStep( 0.1 );
+		Asset.AddEntry_Float( "camShakeDuration", 0, 0, 100 ).SetTitle( "Duration" ).SetStep( 0.25 );
+		Asset.AddEntry_Float( "camShakeRange", 100, 0, 4000 ).SetTitle( "Range" ).SetStep( 50 );
+	}
+	
+	Asset.BeginCategory( "Physics Pulse" );
+	{
+		Asset.AddEntry_Float( "pulseRadiusOuter", 0, 0, 10000).SetTitle( "Outer Radius" ).SetStep( 50 );
+		Asset.AddEntry_Float( "pulseScale", 1, 0, 10).SetTitle( "Scale" ).SetStep( .1 );
+		Asset.AddEntry_String( "pulseBoneTag", "" ).SetTitle( "Bone Tag" ).SetToolTip( "Pulse will originate at the specified bone if found" );
+	}
+}

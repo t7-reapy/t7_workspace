@@ -1,0 +1,476 @@
+
+void GenerateUI( asset Asset )
+{
+	// Hidden
+	
+	Asset.AddEntry_Combo( "configstringFileType", "WEAPONFILE" ).Show( false );
+	Asset.AddEntry_Float( "duckedSprintOfsF", -3, -300, 300 ).Show( false );
+	Asset.AddEntry_Float( "duckedSprintOfsR", -5, -300, 300 ).Show( false );
+	Asset.AddEntry_Float( "duckedSprintOfsU", -5, -300, 300 ).Show( false );
+	Asset.AddEntry_Float( "duckedSprintRotP", 0, -300, 300 ).Show( false );
+	Asset.AddEntry_Float( "duckedSprintRotY", 0, -300, 300 ).Show( false );
+	Asset.AddEntry_Float( "duckedSprintRotR", 0, -300, 300 ).Show( false );
+	Asset.AddEntry_Float( "duckedSprintScale", 1, 0.01, 10 ).Show( false );
+	Asset.AddEntry_Int( "adsIdleAmount", 25, 0, 150 ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Misc 
+
+	Asset.BeginCategory( "Misc" );
+	{
+		Asset.AddEntry_String( "displayName", "" ).SetTitle( "Display Name" ).SetToolTip( "Localization alias for weapon name displayed on HUD in game." );
+		Asset.AddEntry_String( "parentWeaponName", "" ).SetTitle( "Stat Name" ).SetToolTip( "Name of parent weapon for weapon stats e.g. parent weapons for dogs_bite_mp is dogs_mp." );
+		Asset.AddEntry_Combo( "inventoryType", "melee" ).SetTitle( "Inventory" ).SetToolTip( "Select what sort of inventory this weapon is." );
+		Asset.AddEntry_Combo( "weaponType", "melee" ).SetTitle( "Type" ).SetToolTip( "Select a weapon type." );
+		Asset.AddEntry_Combo( "weaponClass", "melee" ).SetTitle( "Class" ).SetToolTip( "Select an appropriate class for this weapon." );		
+		Asset.AddEntry_Combo( "playerAnimType", "default | none | other | dualwield | turned | sword" ).SetTitle( "Player Anim Type" ).SetToolTip( "Select an Player Anim Type - specifies 'playerAnimType' in playeranim.script" );
+		Asset.AddEntry_CheckBox( "dualWield", false ).SetTitle( "Dual Wield" ).SetToolTip( "This a dual wield weapon." );
+		Asset.AddEntry_String( "DualWieldWeapon", "" ).SetTitle( "Dual Wield Weapon Name" ).SetToolTip( "Weapon that is dual wielded with this one." );
+		Asset.AddEntry_CheckBox( "nonStowedWeapon", false ).SetTitle( "Non Stowed Weapon" ).SetToolTip( "This weapon will not be drawn when it is stowed (basic knife for example)" );
+		Asset.AddEntry_CheckBox( "skipBattlechatterKill", false ).SetTitle( "Skip Battlechatter Kill" ).SetToolTip( "This weapon will not 'kill' battlechatter to play" );
+		Asset.AddEntry_CheckBox( "skipBattlechatterReload", false ).SetTitle( "Skip Battlechatter Reload" ).SetToolTip( "This weapon will not 'reload' battlechatter to play" );
+		Asset.AddEntry_CheckBox( "skipLowAmmoVox", false ).SetTitle( "skip Low Ammo Vox" ).SetToolTip( "This weapon should skip playing low ammo warning voiceovers" );
+		Asset.AddEntry_Float( "knockbackScaler", 0.0, 0.0, 20.0 ).SetTitle( "Knockback Scaler" ).SetToolTip( "Scales the knockback after it was calculated and capped based on the damage value" );
+		Asset.AddEntry_CheckBox( "doGibbing", false ).SetTitle( "Do Gibbing" ).SetToolTip( "This gun will gib enemy if checked" );
+		Asset.AddEntry_CheckBox( "doGibbingOnMelee", false ).SetTitle( "Do Gibbing On Melee" ).SetToolTip( "This gun melee will gib enemy if checked" );
+		Asset.AddEntry_CheckBox( "isNotDroppable", false ).SetTitle( "Is Not Droppable" ).SetToolTip( "This weapon will never be dropped if the player is killed, or swaps weapons" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Ammo Options ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Type Options ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	// Range
+	
+	Asset.BeginCategory( "Range" );
+	{
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	// Melee Fields
+
+	Asset.BeginCategory( "Melee Fields" );
+	{
+		Asset.AddEntry_Float( "meleeChargeRange", 0.0, 0.0, 255.0 ).SetTitle( "Melee Assist Range" ).SetToolTip( "Range away from the target melee assist will occur. If zero defualt dvar will be used." );
+		Asset.AddEntry_Float( "meleeTime", 0.7, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee" ).SetToolTip( "Rate of fire in seconds per melee attack." );
+		Asset.AddEntry_Float( "meleeDelay", 0.25, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Delay" ).SetToolTip( "Delay in seconds between pressing the fire button and the melee attack actually happening." );
+		Asset.AddEntry_Float( "meleeChargeTime", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge" ).SetToolTip( "Rate of fire in seconds per melee charge attack." );
+		Asset.AddEntry_Float( "meleeChargeDelay", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge Delay" ).SetToolTip( "Delay in seconds between pressing the fire button and the melee charge attack actually happening." );
+		Asset.AddEntry_Float( "meleeChargeTimeAbove", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge Above" ).SetToolTip( "Rate of fire in seconds per melee charge attack." );
+		Asset.AddEntry_Float( "meleeChargeDelayAbove", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge Delay Above" ).SetToolTip( "Delay in seconds between pressing the fire button and the melee charge attack actually happening." );
+		Asset.AddEntry_Float( "meleeChargeFatalTime", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge Fatal" ).SetToolTip( "Rate of fire in seconds per melee charge attack." );
+		Asset.AddEntry_Float( "meleeChargeFatalCloseTime", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge Fatal Close" ).SetToolTip( "Rate of fire in seconds per melee charge attack." );
+		Asset.AddEntry_Float( "meleeChargeMissTime", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge Miss" ).SetToolTip( "Rate of fire in seconds per melee charge attack." );
+		Asset.AddEntry_Float( "meleeCharge2Time", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge 2" ).SetToolTip( "Rate of fire in seconds per melee charge attack." );
+		Asset.AddEntry_Float( "meleeCharge2FatalTime", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge 2 Fatal" ).SetToolTip( "Rate of fire in seconds per melee charge attack." );
+		Asset.AddEntry_Float( "meleeCharge2FatalCloseTime", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge 2 Fatal Close" ).SetToolTip( "Rate of fire in seconds per melee charge attack." );
+		Asset.AddEntry_Float( "meleeCharge2MissTime", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge 2 Miss" ).SetToolTip( "Rate of fire in seconds per melee charge attack." );
+		Asset.AddEntry_Float( "meleeCharge3Time", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge 3" ).SetToolTip( "Rate of fire in seconds per melee charge attack." );
+		Asset.AddEntry_Float( "meleeCharge3FatalTime", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge 3 Fatal" ).SetToolTip( "Rate of fire in seconds per melee charge attack." );
+		Asset.AddEntry_Float( "meleeCharge3FatalCloseTime", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge 3 Fatal Close" ).SetToolTip( "Rate of fire in seconds per melee charge attack." );
+		Asset.AddEntry_Float( "meleeCharge3MissTime", 0.0, 0.0, 10.0 ).SetStep( 0.05 ).SetTitle( "Melee Charge 3 Miss" ).SetToolTip( "Rate of fire in seconds per melee charge attack." );
+		Asset.AddEntry_Int( "meleeDamage", 25, 0, 10000 ).SetTitle( "Melee" ).SetToolTip( "Damage done to player when hit by an AI" );
+		Asset.AddEntry_Int( "meleeFromBehindDamage", 0, 0, 20000 ).SetTitle( "Melee From Behind Damage" ).SetToolTip( "Damage when you hit another player from behind.  If less than meleeDamage, meleeDamage will be used." );
+		Asset.AddEntry_Int( "playerDamage", 30, 0, 1000 ).SetTitle( "AI-player damage" ).SetToolTip( "Damage per melee hit." );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Reload Options ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// ADS Options ( unused ) 
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Miscellaneous Options ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Attachment Perks ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Crosshair Options ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Heatseeking specific ( unused )
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Movement, Sprint, Turning
+	
+	Asset.BeginCategory( "Movement, Sprint, Turning" );
+	{
+		Asset.AddEntry_Float( "moveSpeedScale", 1.0, 0.0, 5.0 ).SetTitle( "Move Speed Scale" ).SetToolTip( "When using this weapon, player movement speed is multiplied by this amount." );
+		Asset.AddEntry_Float( "adsMoveSpeedScale", 1.0, 0.0, 5.0 ).SetTitle( "ADS Move Speed Scale" ).SetToolTip( "When using this weapon and in ADS, player movement speed is multiplied by this amount." );
+		Asset.AddEntry_Float( "jumpMoveSpeedScale", 1.0, 0.0, 5.0 ).SetTitle( "Jump Move Speed Scale" ).SetToolTip( "When using this weapon and jumping, player movement speed is multiplied by this amount." );
+		Asset.AddEntry_Float( "firingSpeedScale", 0.0, 0.0, 5.0 ).SetTitle( "Firing Speed Scale" ).SetToolTip( "When firing this weapon, player movement speed is multiplied by this amount (if non-zero, normal scalars are used otherwise)." );
+		Asset.AddEntry_Float( "adsFiringSpeedScale", 0.0, 0.0, 5.0 ).SetTitle( "ADS Firing Speed Scale" ).SetToolTip( "When firing this weapon and in ADS, player movement speed is multiplied by this amount (if non-zero, normal scalars are used otherwise)." );
+		Asset.AddEntry_Float( "sprintFiringSpeedScale", 0.0, 0.0, 5.0 ).SetTitle( "Sprint Firing Speed Scale" ).SetToolTip( "When firing this weapon and in sprint, player movement speed is multiplied by this amount (if non-zero, normal scalars are used otherwise)." );
+		Asset.AddEntry_Float( "adsMoveSpeedTransitionTimeIn", 0.0, 0.0, 5.0 ).SetTitle( "ADS Move Speed Transition Time In" ).SetToolTip( "Time to lerp from regular MoveSpeedScale to ADS MoveSpeedScale (or the Firing variants when firing). 0 will behave like games previous to BO3" );
+		Asset.AddEntry_Float( "adsMoveSpeedTransitionTimeOut", 0.0, 0.0, 5.0 ).SetTitle( "ADS Move Speed Transition Time Out" ).SetToolTip( "Time to lerp to regular MoveSpeedScale from ADS MoveSpeedScale (or the Firing variants when firing). 0 will behave like games previous to BO3" );
+		Asset.AddEntry_Float( "sprintDurationScale", 0, 0, 5 ).SetTitle( "Sprint Duration Scale" ).SetToolTip( "When sprinting with this weapon, sprint duration is multiplied by this amount." );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Flamethrower Details ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Aim Assist ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Ammunition ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Stack Fire ( unused )	
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Reloadable Fuel Tank ( unused )	
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Overheating ( unused )
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Auto turret scanning ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Damage ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Indicators ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Projectile ( unused )	
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Location Damage ( unused )
+		
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// State Timers ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Sprint Movement Settings
+	
+	Asset.BeginCategory( "Sprint Movement Settings" );
+	{
+		bool Visible = true;
+		Asset.AddEntry_Float( "sprintOfsF", 0, -300, 300 ).SetStep( 0.1 ).SetTitle( "Offset Forward" ).SetToolTip( "When the player changes to this stance, the viewmodel will slide forward by this amount. (-ive for backward)" ).Show( Visible );
+		Asset.AddEntry_Float( "sprintOfsR", 0, -300, 300 ).SetStep( 0.1 ).SetTitle( "Offset Right" ).SetToolTip( "When the player changes to this stance, the viewmodel will translate horizontally by this amount. (+/- for left/right respectively)" ).Show( Visible );
+		Asset.AddEntry_Float( "sprintOfsU", 0, -300, 300 ).SetStep( 0.1 ).SetTitle( "Offset Up" ).SetToolTip( "When the player changes to this stance, the viewmodel will translate vertically by this amount. (+/- for up/down respectively)" ).Show( Visible );
+		Asset.AddEntry_Float( "sprintRotP", 0, -300, 300 ).SetStep( 0.1 ).SetTitle( "Rot Pitch" ).SetToolTip( "Viewmodel will pitch by this amount if the player is moving in this stance. (+/- for down/up respectively)" ).Show( Visible );
+		Asset.AddEntry_Float( "sprintRotY", 0, -300, 300 ).SetStep( 0.1 ).SetTitle( "Rot Yaw" ).SetToolTip( "Viewmodel will yaw by this amount if the player is moving in this stance. (+/- for left/right respectively)" ).Show( Visible );
+		Asset.AddEntry_Float( "sprintRotR", 0, -300, 300 ).SetStep( 0.1 ).SetTitle( "Rot Roll" ).SetToolTip( "Viewmodel will roll by this amount if the player is moving in this stance. (+/- for left/right respectively)" ).Show( Visible );
+		Asset.AddEntry_Float( "sprintScale", 1, 0.01, 10 ).SetStep( 0.01 ).SetTitle( "MoveSpeed Scale" ).SetToolTip( "A multiplier applied to xy movement of the viewmodel during sprint higher is faster" ).Show( Visible );
+		Asset.AddEntry_Float( "sprintInTime", 0.5, 0, 10 ).SetStep( 0.05 ).SetTitle( "Sprint In" ).SetToolTip( "How long this weapon state will last. The viewmodel animations will get scaled to match the times set." ).Show( Visible );
+		Asset.AddEntry_Float( "sprintLoopTime", 0.5, 0, 10 ).SetStep( 0.05 ).SetTitle( "Sprint Loop" ).SetToolTip( "How long this weapon state will last. The viewmodel animations will get scaled to match the times set." ).Show( Visible );
+		Asset.AddEntry_Float( "sprintOutTime", 0.5, 0, 10 ).SetStep( 0.05 ).SetTitle( "Sprint Out" ).SetToolTip( "How long this weapon state will last. The viewmodel animations will get scaled to match the times set." ).Show( Visible );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// LowReady Movement Settings ( unused )
+		
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Dive to Prone Movement Settings ( unused )
+	
+	Asset.BeginCategory( "Dive to Prone Movement Settings" );
+	{
+		Asset.AddEntry_Float( "dtpOfsF", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "dtpOfsR", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "dtpOfsU", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "dtpRotP", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "dtpRotY", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "dtpRotR", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "dtpScale", 1, 0.01, 10 ).Show( false );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Mantle Movement Settings
+	
+	Asset.BeginCategory( "Mantle Movement Settings" );
+	{
+		Asset.AddEntry_Float( "mantleRotP", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "mantleRotY", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "mantleRotR", 0, -300, 300 ).Show( false );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Player Slide Movement Settings
+	
+	Asset.BeginCategory( "Player Slide Movement Settings" );
+	{
+		Asset.AddEntry_Float( "slideOfsF", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "slideOfsR", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "slideOfsU", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "slideRotP", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "slideRotY", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "slideRotR", 0, -300, 300 ).Show( false );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Strafe Movement Settings
+	
+	Asset.BeginCategory( "Strafe Movement Settings" );	
+	{
+		Asset.AddEntry_Float( "strafeMoveF", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "strafeMoveR", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "strafeMoveU", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "strafeRotP", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "strafeRotY", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "strafeRotR", 0, -300, 300 ).Show( false );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Stand Movement Settings
+	
+	Asset.BeginCategory( "Stand Movement Settings" );
+	{
+		Asset.AddEntry_Float( "standMoveF", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "standMoveR", 1, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "standMoveU", -1.5, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "standRotP", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "standRotY", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "standRotR", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "standMoveMinSpeed", 110, 0, 3000 ).Show( false );
+		Asset.AddEntry_Float( "posMoveRate", 4, 0, 300 ).Show( false );
+		Asset.AddEntry_Float( "standRotMinSpeed", 110, 0, 1000 ).Show( false );
+		Asset.AddEntry_Float( "posRotRate", 5, 0, 300 ).Show( false );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Crouch Movement Settings
+
+	Asset.BeginCategory( "Crouch Movement Settings" );	
+	{
+		Asset.AddEntry_Float( "duckedMoveF", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "duckedMoveR", 1, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "duckedMoveU", -1.5, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "duckedRotP", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "duckedRotY", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "duckedRotR", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "duckedOfsF", -2, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "duckedOfsR", 2, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "duckedOfsU", -0.2, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "duckedMoveMinSpeed", 60, 0, 3000 ).Show( false );
+		Asset.AddEntry_Float( "duckedRotMinSpeed", 60, 0, 1000 ).Show( false );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Prone Movement Settings
+
+	Asset.BeginCategory( "Prone Movement Settings" );
+	{
+		Asset.AddEntry_Float( "proneMoveF", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "proneMoveR", 1, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "proneMoveU", -1.5, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "proneRotP", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "proneRotY", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "proneRotR", 0, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "proneOfsF", -6, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "proneOfsR", 3.5, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "proneOfsU", 0.8, -300, 300 ).Show( false );
+		Asset.AddEntry_Float( "proneMoveMinSpeed", 0, 0, 3000 ).Show( false );
+		Asset.AddEntry_Float( "posProneMoveRate", 10, 0, 300 ).Show( false );
+		Asset.AddEntry_Float( "proneRotMinSpeed", 0, 0, 1000 ).Show( false );
+		Asset.AddEntry_Float( "posProneRotRate", 10, 0, 300 ).Show( false );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Idle Settings // Check this...
+	
+	Asset.BeginCategory( "Idle Settings" );
+	{
+		Asset.AddEntry_Int( "hipIdleAmount", 80, 0, 150 ).Show( false );
+		Asset.AddEntry_Float( "hipIdleSpeed", 1, 0, 100 ).Show( false );
+		Asset.AddEntry_Float( "adsIdleSpeed", 1, 0, 100 ).Show( false );
+		Asset.AddEntry_Float( "idleSpeedFromFireTransitionTime", 0, 0, 10 ).Show( false );
+		Asset.AddEntry_Float( "idleCrouchFactor", 0.5, 0, 1 ).Show( false );
+		Asset.AddEntry_Float( "idleProneFactor", 0.15, 0, 1 ).Show( false );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// ADS Settings ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Hip Spread Settings ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Gun Kick Settings ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// View Kick Settings ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Sway Settings ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Mountable Weaponry ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// AI Settings ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Reticle Settings ( unused )
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// ADS Overlay Settings ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// XModels
+	
+	Asset.BeginCategory( "XModels" );
+	{
+		Asset.AddEntry_AssetCombo( "gunModel", "xmodel" ).SetTitle( "Melee Model" );
+		Asset.AddEntry_String( "viewmodelTag", "" ).SetTitle( "Melee Model Tag" ).SetToolTip( "Name of the tag you want the viewmodel to be attached at. If blank, the default will be used (tag_weapon1 for left hand DW weapons, tag_knife_attach for melee weapons, tag_weapon otherwise)." );
+		Asset.AddEntry_AssetCombo( "worldModel", "xmodel" ).SetTitle( "World Melee Model" );
+		Asset.AddEntry_String( "worldModelTagRight", "" ).SetTitle( "World Model Tag (First Gun)" ).SetToolTip( "This is the tag the gun will get attached. In a situation where there are two guns this is the first gun" );
+		Asset.AddEntry_String( "worldModelTagLeft", "" ).SetTitle( "World Model Tag (Second Gun)" ).SetToolTip( "This is the tag the second or dual wield gun will get attached." );
+		Asset.AddEntry_AssetCombo( "handModel", "xmodel" ).SetTitle( "Default view Hand" );
+		Asset.AddEntry_AssetCombo( "hideTags", "xmodel" ).SetTitle( "Hide Tags" ).SetToolTip( "name of tags to hide on this model.  one per line" );	
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Camo
+	
+	Asset.BeginCategory( "Camo" );
+	{
+		Asset.AddEntry_AssetCombo( "camo", "weaponcamo" ).SetTitle( "Weapon Camo" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Alternate Models
+	
+	Asset.BeginCategory( "Alternate Models" );
+	{
+		Asset.AddEntry_AssetCombo( "gunModel2", "xmodel" ).SetTitle( "View Gun 2" );
+		Asset.AddEntry_AssetCombo( "gunModel3", "xmodel" ).SetTitle( "View Gun 3" );
+		Asset.AddEntry_AssetCombo( "worldModel3", "xmodel" ).SetTitle( "World Gun 3" );
+		Asset.AddEntry_AssetCombo( "gunModel4", "xmodel" ).SetTitle( "View Gun 4" );
+		Asset.AddEntry_AssetCombo( "worldModel4", "xmodel" ).SetTitle( "World Gun 4" );
+	}
+
+	// XAnims
+	
+	Asset.BeginCategory( "XAnims" );
+	{
+		Asset.AddEntry_AssetCombo( "idleAnim", "xanim" ).SetTitle( "Idle" );	
+		Asset.AddEntry_AssetCombo( "meleeAnim", "xanim" ).SetTitle( "Melee" );
+		Asset.AddEntry_AssetCombo( "meleeAnim1", "xanim" ).SetTitle( "Melee1" );
+		Asset.AddEntry_AssetCombo( "meleeAnim2", "xanim" ).SetTitle( "Melee2" );
+		Asset.AddEntry_AssetCombo( "meleeAnim3", "xanim" ).SetTitle( "Melee3" );
+		Asset.AddEntry_AssetCombo( "meleeChargeAnim", "xanim" ).SetTitle( "Melee Charge" ).SetToolTip( "The anim played for a melee charge" );
+		Asset.AddEntry_AssetCombo( "adsUpAnim", "xanim" ).SetTitle( "ADS Up" );
+		Asset.AddEntry_AssetCombo( "adsDownAnim", "xanim" ).SetTitle( "ADS Down" );
+		Asset.AddEntry_AssetCombo( "sprintInAnim", "xanim" ).SetTitle( "Sprint In" );
+		Asset.AddEntry_AssetCombo( "sprintLoopAnim", "xanim" ).SetTitle( "Sprint Loop" );
+		Asset.AddEntry_AssetCombo( "sprintOutAnim", "xanim" ).SetTitle( "Sprint Out" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Effects
+	
+	Asset.BeginCategory( "FX" );
+	{
+		Asset.AddEntry_Path( "meleeSwipeEffect", "" ).SetTitle( "Swipe FX" ).SetRelativePath( "share/raw" ).SetToolTip( "Effect to be played when the player uses the melee weapon but does not make impact" );
+		Asset.AddEntry_Path( "meleeImpactEffect", "" ).SetTitle( "Impact FX" ).SetRelativePath( "share/raw" ).SetToolTip( "Effect to be played when the player uses the melee weapon and makes impact" );
+		Asset.AddEntry_Path( "meleeImpactNoBloodEffect", "" ).SetTitle( "Impact FX No Blood" ).SetRelativePath( "share/raw" ).SetToolTip( "Effect to be played when the player uses the melee weapon and makes impact and the player has No Blood selected in their profile" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	// Sounds ( unused )
+	
+	Asset.BeginCategory( "Sounds" );
+	{
+		Asset.AddEntry_AssetCombo( "sharedWeaponSounds", "sharedweaponsounds" ).SetTitle( "sharedWeaponSounds" ).SetToolTip( "Use this to specify the sharedWeaponSounds asset for this weapon." );
+	}
+	
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Rumbles
+	
+	Asset.BeginCategory( "Rumbles" );
+	{
+		Asset.AddEntry_AssetCombo( "fireRumble", "rumble" ).SetTitle( "Fire Rumble" );
+		Asset.AddEntry_AssetCombo( "meleeImpactRumble", "rumble" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// User Interface ( unused )
+
+	Asset.BeginCategory( "User Interface" );
+	{
+		Asset.AddEntry_AssetCombo( "hudIcon", "image" ).SetTitle( "Hud Icon" );
+		Asset.AddEntry_Combo( "hudIconRatio", "4:1 | 1:1 | 2:1" ).SetTitle( " Aspect:" );
+		Asset.AddEntry_AssetCombo( "killIcon", "image" ).SetTitle( "Kill Icon" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Parallel Bounce Factors
+		
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+		
+	// Perpendicular Bounce Factors ( not used )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	// Depth of Field Settings ( unused )
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Grenade Preparation Effects ( unused )
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	// Left-Hand Grip Adjustment ( unused )
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+}

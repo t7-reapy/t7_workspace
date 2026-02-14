@@ -1,0 +1,8 @@
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_Texture( "emblemMap", "" ).SetTitle( "Emblem Image" );
+	Asset.AddEntry_String( "referencePalette", "" ).SetTitle( "Reference Palette" );
+	Asset.AddEntry_CheckBox( "highDetail", false ).SetTitle( "High Detail" ).SetToolTip( "Generate a higher detail emblem icon, use sparingly." );
+	Asset.AddEntry_Float( "spread", 1, 0, 100 ).SetStep( 0.1 ).SetTitle( "Spread" );
+}

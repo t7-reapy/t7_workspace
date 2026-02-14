@@ -1,0 +1,362 @@
+{
+    "id": "thrasher",
+    "type": "selector",
+    "children": [
+        {
+            "id": "thrasherbehaviormain",
+            "type": "parallel",
+            "children": [
+                {
+                    "id": "thrasherattackableobjectservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "thrasherattackableobjectservice",
+                    "cooldownMin": 250,
+                    "cooldownMax": 500
+                },
+                {
+                    "id": "thrasherrageservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "thrasherrageservice",
+                    "cooldownMin": 1000,
+                    "cooldownMax": 1000
+                },
+                {
+                    "id": "thrashertargetservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "thrashertargetservice",
+                    "cooldownMin": 300,
+                    "cooldownMax": 500
+                },
+                {
+                    "id": "thrasherknockdownservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "thrasherknockdownservice",
+                    "cooldownMin": 200,
+                    "cooldownMax": 200
+                },
+                {
+                    "id": "thrasherbehaviorselector",
+                    "type": "selector",
+                    "children": [
+                        {
+                            "id": "thrasherdeathbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "waskilled",
+                                    "type": "condition_script",
+                                    "interruptName": "death"
+                                },
+                                {
+                                    "id": "deathaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "death@thrasher",
+                                    "actionNotify": "death",
+                                    "StartFunction": "thrasherdeath",
+                                    "TerminateFunction": "startragdoll"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "thrashertraversebehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldtraverse",
+                                    "type": "condition_script",
+                                    "scriptFunction": "locomotionshouldtraverse",
+                                    "interruptName": "traverse"
+                                },
+                                {
+                                    "id": "traverseaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "traverse@thrasher",
+                                    "StartFunction": "thrasherstarttraverse",
+                                    "TerminateFunction": "thrasherterminatetraverse"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "thrasherstunbehavior",
+                            "type": "parallel",
+                            "children": [
+                                {
+                                    "id": "shouldbestunned",
+                                    "type": "condition_script",
+                                    "scriptFunction": "thrashershouldbestunned"
+                                },
+                                {
+                                    "id": "stunaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "stun@thrasher",
+                                    "StartFunction": "thrasherstuninitialize",
+                                    "UpdateFunction": "thrasherstunupdate",
+                                    "loopingAction": 1
+                                }
+                            ]
+                        },
+                        {
+                            "id": "thrashergoberserkbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldshowpain",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "thrashershouldshowpain"
+                                },
+                                {
+                                    "id": "thrashershouldturnberserk",
+                                    "type": "condition_script",
+                                    "scriptFunction": "thrashershouldturnberserk"
+                                },
+                                {
+                                    "id": "playturnberserkanimation",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "berserk@thrasher",
+                                    "TerminateFunction": "thrasherplayedberserkintro"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "thrasherpainbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldshowpain",
+                                    "type": "condition_script",
+                                    "scriptFunction": "thrashershouldshowpain"
+                                },
+                                {
+                                    "id": "painaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "pain@thrasher"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "thrasherbehavior",
+                            "type": "parallel",
+                            "children": [
+                                {
+                                    "id": "shouldshowpain",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "thrashershouldshowpain"
+                                },
+                                {
+                                    "id": "shouldbestunned",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "thrashershouldbestunned"
+                                },
+                                {
+                                    "id": "thrashershouldturnberserk",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "thrashershouldturnberserk"
+                                },
+                                {
+                                    "id": "thrasherselector",
+                                    "type": "selector",
+                                    "children": [
+                                        {
+                                            "id": "movebehavior",
+                                            "type": "parallel",
+                                            "children": [
+                                                {
+                                                    "id": "shouldmove",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "locomotionbehaviorcondition"
+                                                },
+                                                {
+                                                    "id": "shouldconsumezombie",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "thrashershouldconsumezombie"
+                                                },
+                                                {
+                                                    "id": "shouldconsumeplayer",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "thrashershouldconsumeplayer"
+                                                },
+                                                {
+                                                    "id": "shouldmelee",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "thrashershouldmelee"
+                                                },
+                                                {
+                                                    "id": "shouldteleport",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "thrashershouldteleport"
+                                                },
+                                                {
+                                                    "id": "moveaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "move@thrasher",
+                                                    "loopingAction": 1
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "teleportbehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "shouldteleport",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "thrashershouldteleport"
+                                                },
+                                                {
+                                                    "id": "shouldconsumezombie",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "thrashershouldconsumezombie"
+                                                },
+                                                {
+                                                    "id": "shouldconsumeplayer",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "thrashershouldconsumeplayer"
+                                                },
+                                                {
+                                                    "id": "shouldmelee",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "thrashershouldmelee"
+                                                },
+                                                {
+                                                    "id": "teleportout",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "out@teleport",
+                                                    "StartFunction": "thrasherteleportout"
+                                                },
+                                                {
+                                                    "id": "teleportaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "in@teleport",
+                                                    "StartFunction": "thrasherteleport"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "consumeplayerbehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "shouldconsumeplayer",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "thrashershouldconsumeplayer"
+                                                },
+                                                {
+                                                    "id": "consumeplayeraction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "consume@thrasher",
+                                                    "StartFunction": "thrasherconsumeplayer"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "consumezombiebehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "shouldconsumezombie",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "thrashershouldconsumezombie"
+                                                },
+                                                {
+                                                    "id": "consumezombieaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "consume_zombie@thrasher",
+                                                    "StartFunction": "thrasherconsumezombie"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "attackobjectbehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "isatattackobject",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "isatattackobject"
+                                                },
+                                                {
+                                                    "id": "parallel",
+                                                    "type": "parallel",
+                                                    "children": [
+                                                        {
+                                                            "id": "shouldattackobject",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "shouldattackobject"
+                                                        },
+                                                        {
+                                                            "id": "attackobject",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "attack_object@thrasher",
+                                                            "actionNotify": "attack_melee",
+                                                            "loopingAction": 1
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "meleebehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "shouldmelee",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "thrashershouldmelee"
+                                                },
+                                                {
+                                                    "id": "meleeaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "melee@thrasher"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "idlebehavior",
+                                            "type": "parallel",
+                                            "children": [
+                                                {
+                                                    "id": "shouldmove",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "locomotionbehaviorcondition"
+                                                },
+                                                {
+                                                    "id": "shouldmelee",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "thrashershouldmelee"
+                                                },
+                                                {
+                                                    "id": "idleaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "idle@thrasher"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "debugvoidaction",
+            "type": "action",
+            "ActionName": "defaultaction",
+            "ASMStateName": "void@debug"
+        }
+    ]
+}

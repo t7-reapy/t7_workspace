@@ -1,0 +1,66 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{05848CA7-1B2B-11EB-81EF-0015833D0A57}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{43731914-FD04-11EA-81EF-0015833D0A57}"
+ ( 8 8 0 ) ( -8 8 0 ) ( -8 -8 0 ) script_floor_ceiling 32 32 -144 -560 0 0 lightmap_gray 16384 16384 -144 -560 0 0
+ ( -8 -8 32 ) ( -8 8 32 ) ( 8 8 32 ) script_floor_ceiling 32 32 -144 -560 0 0 lightmap_gray 16384 16384 -144 -560 0 0
+ ( -8 -8 32 ) ( 8 -8 32 ) ( 8 -8 16 ) script_floor_ceiling 32 32 -144 8 0 0 lightmap_gray 16384 16384 -144 48 0 0
+ ( 8 -8 32 ) ( 8 8 32 ) ( 8 8 16 ) script_floor_ceiling 32 32 560 8 0 0 lightmap_gray 16384 16384 560 48 0 0
+ ( 8 8 32 ) ( -8 8 32 ) ( -8 8 16 ) script_floor_ceiling 32 32 -144 8 0 0 lightmap_gray 16384 16384 -144 48 0 0
+ ( -8 8 32 ) ( -8 -8 32 ) ( -8 -8 16 ) script_floor_ceiling 32 32 560 8 0 0 lightmap_gray 16384 16384 560 48 0 0
+}
+}
+// entity 1
+{
+guid "{43731919-FD04-11EA-81EF-0015833D0A57}"
+"classname" "script_struct"
+"angles" "0 270 0"
+"model" ""
+"origin" "0 8 48"
+"targetname" "auto1"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{43731930-FD04-11EA-81EF-0015833D0A57}"
+"classname" "trigger_use"
+"cursorhint" "HINT_NOICON"
+"script_string" "hero_annihilator"
+"target" "auto1"
+"targetname" "hb21_hero_weapons"
+"_color" "0.3 0.5 0.8"
+// brush 0
+{
+ guid "{4373192F-FD04-11EA-81EF-0015833D0A57}"
+ ( 16 16 32 ) ( -16 16 32 ) ( -16 -16 32 ) trigger 64 64 -144 -560 0 0 lightmap_gray 16384 16384 -144 -560 0 0
+ ( -16 -16 64 ) ( -16 16 64 ) ( 16 16 64 ) trigger 64 64 -144 -560 0 0 lightmap_gray 16384 16384 -144 -560 0 0
+ ( -16 -16 48 ) ( 16 -16 48 ) ( 16 -16 32 ) trigger 64 64 -144 -32 0 0 lightmap_gray 16384 16384 -144 -32 0 0
+ ( 16 -16 48 ) ( 16 16 48 ) ( 16 16 32 ) trigger 64 64 560 -32 0 0 lightmap_gray 16384 16384 560 -32 0 0
+ ( 16 16 48 ) ( -16 16 48 ) ( -16 16 32 ) trigger 64 64 -144 -32 0 0 lightmap_gray 16384 16384 -144 -32 0 0
+ ( -16 16 48 ) ( -16 -16 48 ) ( -16 -16 32 ) trigger 64 64 560 -32 0 0 lightmap_gray 16384 16384 560 -32 0 0
+}
+}

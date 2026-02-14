@@ -1,0 +1,12 @@
+void GenerateUI( asset Asset )
+{
+	Asset.BeginCategory( "Medal Info" );
+	{
+		Asset.AddEntry_Combo( "widget", "BadasseryMedal" ).SetDefaultValue("BadasseryMedal").SetTitle("Widget");
+		
+		Asset.AddEntry_AssetCombo("iconSmall", "image").SetTitle("Icon Small");
+		Asset.AddEntry_AssetCombo("backingSmall", "image").SetTitle("Backing Small");
+		Asset.AddEntry_AssetCombo("iconLarge", "image").SetTitle("Icon Large");
+		Asset.AddEntry_AssetCombo("backingLarge", "image").SetTitle("Backing Large");
+	}
+}

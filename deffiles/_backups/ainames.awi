@@ -1,0 +1,157 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+const string SPACE = "    ";
+const int MAX_NAMES = 128;
+const int MAX_RANKS = 32;
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	
+	Asset.AddEntry_Combo( "type", "ainames" ).Show( false );
+	Asset.AddEntry_Combo( "vmType", "None" ).SetTitle( "Script Type" ).Show( false ).SetValue("None");
+	
+	Asset.AddEntry_Int( "ignore_rankCount", 0, 0, MAX_RANKS ).SetToolTip( "The number of possible ranks." ).Show( false );
+	Asset.AddEntry_Int( "ignore_nameCount", 0, 0, MAX_NAMES ).SetToolTip( "The number of possible ranks." ).Show( false );
+
+	Asset.BeginCategory( "Possible Ranks", 0.3, 0.5, 1, "Icon_asset_character.png" );
+	{
+		Asset.AddEntry_Label( "ignore_rankInfo1", "List of all possible \"Ranks\" the AI will randomly select from when choosing a name. To increase the " ).SetTitle( " " );
+		Asset.AddEntry_Label( "ignore_rankInfo2", "probability of selecting a certain rank, add duplicate entries.  Empty fields indicate the chance " ).SetTitle( " " );
+		Asset.AddEntry_Label( "ignore_rankInfo3", "the AI will not have a rank assigned.\n" ).SetTitle( " " );
+		Asset.AddEntry_Label( "ignore_rankInfo4", "The rank of an AI precedes their name, for example the rank Pvt. (ex: \"Pvt. John Doe\")\n" ).SetTitle( " " );
+	
+		const int rankCount = Asset.GetEntryValue( "ignore_rankCount" ).ToInt();
+	
+		Asset.AddEntry_ButtonGroup( "rankButtons" ).SetTitle( "Edit:" ).AddButton( "Add Rank", "", "void AddRank( asset Asset, const string& param )", "" ).SetToolTip( "" );
+		
+		if ( rankCount > 0 )
+		{
+			Asset.AddEntry_ButtonGroup( "rankButtons" ).SetTitle( "Edit:" ).AddButton( "Remove Rank", "", "void RemoveRank( asset Asset, const string& param )", "" ).SetToolTip( "" );
+			Asset.AddEntry_ButtonGroup( "rankButtons" ).SetTitle( "Edit:" ).AddButton( "Clear Ranks", "", "void ClearRanks( asset Asset, const string& param )", "" ).SetToolTip( "" );
+		}
+		
+		Asset.AddEntry_Label( "ignore_rankCountNumber", "" ).SetTitle( "Number of Ranks ( " + rankCount + " )" );
+		
+		for ( int index = 0; index < MAX_RANKS; index++ )
+		{
+			entryControl rank = Asset.AddEntry_String( "xstring_rank" + index, "" ).SetTitle( SPACE + "" + ( index + 1 ) + ":" ).Show( false );
+			if ( index < rankCount )
+			{
+				rank.Show( true );
+			}
+		}
+	}
+	
+	Asset.BeginCategory( "Possible Names", 0.3, 0.5, 1, "Icon_asset_character.png" );
+	{
+		Asset.AddEntry_Label( "ignore_nameInfo1", "List of all possible \"Names\" the AI will randomly select from when choosing a name. To increase the " ).SetTitle( " " );
+		Asset.AddEntry_Label( "ignore_nameInfo2", "probability of selecting a certain name, add duplicate entries.  Empty fields indicate the chance " ).SetTitle( " " );
+		Asset.AddEntry_Label( "ignore_nameInfo3", "the AI will not have a name assigned.\n" ).SetTitle( " " );
+		Asset.AddEntry_Label( "ignore_nameInfo4", "The name of an AI follows their rank, for example the rank Pvt. (ex: \"Pvt. John Doe\")\n" ).SetTitle( " " );
+	
+		const int nameCount = Asset.GetEntryValue( "ignore_nameCount" ).ToInt();
+	
+		Asset.AddEntry_ButtonGroup( "nameButtons" ).SetTitle( "Edit:" ).AddButton( "Add Name", "", "void AddName( asset Asset, const string& param )", "" ).SetToolTip( "" );
+		
+		if ( nameCount > 0 )
+		{
+			Asset.AddEntry_ButtonGroup( "nameButtons" ).SetTitle( "Edit:" ).AddButton( "Remove Name", "", "void RemoveName( asset Asset, const string& param )", "" ).SetToolTip( "" );
+			Asset.AddEntry_ButtonGroup( "nameButtons" ).SetTitle( "Edit:" ).AddButton( "Clear Names", "", "void ClearNames( asset Asset, const string& param )", "" ).SetToolTip( "" );
+		}
+		
+		Asset.AddEntry_Label( "ignore_nameCountNumber", "" ).SetTitle( "Number of Names ( " + nameCount + " )" );
+		
+		for ( int index = 0; index < MAX_NAMES; index++ )
+		{
+			entryControl name = Asset.AddEntry_String( "xstring_name" + index, "" ).SetTitle( SPACE + "" + ( index + 1 ) + ":" ).Show( false );
+			if ( index < nameCount )
+			{
+				name.Show( true );
+			}
+		}
+	}
+}
+
+void AddName( asset Asset, const string& param )
+{
+	const int nameCount = Asset.GetEntryValue( "ignore_nameCount" ).ToInt();
+
+	if ( nameCount < MAX_NAMES )
+	{
+		Asset.GetEntryVariable( "ignore_nameCount" ).SetValue( "" + ( nameCount + 1 ) );
+	}
+	
+	if ( Asset.GetEntryValue( "ignore_nameCount" ).ToInt() >= MAX_NAMES )
+	{
+		MessageBox( "Maximum number of possible names \"" + MAX_NAMES + "\"", "OK");
+	}
+}
+
+void ClearNames( asset Asset, const string& param )
+{
+	const int nameCount = Asset.GetEntryValue( "ignore_nameCount" ).ToInt();
+	
+	Asset.GetEntryVariable( "ignore_nameCount" ).SetValue( "" + ( nameCount - 1 ) );
+	
+	for ( int index = 0; index < nameCount; index++ )
+	{
+		Asset.GetEntryVariable( "xstring_name" + index ).SetValue( "" );
+	}
+	
+	Asset.GetEntryVariable( "ignore_nameCount" ).SetValue( "" + 0 );
+}
+
+void RemoveName( asset Asset, const string& param )
+{
+	const int nameCount = Asset.GetEntryValue( "ignore_nameCount" ).ToInt();
+	
+	Asset.GetEntryVariable( "ignore_nameCount" ).SetValue( "" + ( nameCount - 1 ) );
+	
+	for ( int index = ( nameCount - 1 ); index < MAX_NAMES; index++ )
+	{
+		Asset.GetEntryVariable( "xstring_name" + index ).SetValue( "" );
+	}
+}
+
+void AddRank( asset Asset, const string& param )
+{
+	const int rankCount = Asset.GetEntryValue( "ignore_rankCount" ).ToInt();
+
+	if ( rankCount < MAX_RANKS )
+	{
+		Asset.GetEntryVariable( "ignore_rankCount" ).SetValue( "" + ( rankCount + 1 ) );
+	}
+	
+	if ( Asset.GetEntryValue( "ignore_rankCount" ).ToInt() >= MAX_RANKS )
+	{
+		MessageBox( "Maximum number of possible ranks \"" + MAX_RANKS + "\"", "OK");
+	}
+}
+
+void ClearRanks( asset Asset, const string& param )
+{
+	const int rankCount = Asset.GetEntryValue( "ignore_rankCount" ).ToInt();
+	
+	Asset.GetEntryVariable( "ignore_rankCount" ).SetValue( "" + ( rankCount - 1 ) );
+	
+	for ( int index = 0; index < rankCount; index++ )
+	{
+		Asset.GetEntryVariable( "xstring_rank" + index ).SetValue( "" );
+	}
+	
+	Asset.GetEntryVariable( "ignore_rankCount" ).SetValue( "" + 0 );
+}
+
+void RemoveRank( asset Asset, const string& param )
+{
+	const int rankCount = Asset.GetEntryValue( "ignore_rankCount" ).ToInt();
+	
+	Asset.GetEntryVariable( "ignore_rankCount" ).SetValue( "" + ( rankCount - 1 ) );
+	
+	for ( int index = ( rankCount - 1 ); index < MAX_RANKS; index++ )
+	{
+		Asset.GetEntryVariable( "xstring_rank" + index ).SetValue( "" );
+	}
+}

@@ -1,0 +1,42 @@
+
+void GenerateUI( asset Asset )
+{
+	for ( int variantIndex = 0; variantIndex < 3; variantIndex++ )
+	{
+		string prefix = "acv" + variantIndex + "_";
+		string category = "Cosmetic Variant #" + (variantIndex + 1);
+
+		Asset.BeginCategory( category );
+		{
+			for ( int modelIndex = 0; modelIndex < 2; modelIndex++ )
+			{
+				string suffix = "_model" + modelIndex;
+
+				Asset.BeginCategory( category + ".View Model #" + (modelIndex + 1) );
+				{
+					Asset.AddEntry_AssetCombo( prefix + "viewModel" + suffix, "xmodel" ).SetTitle( "View Model" ).SetToolTip( "Variant for the view model." );
+					Asset.AddEntry_AssetCombo( prefix + "viewModelADS" + suffix, "xmodel" ).SetTitle( "ADS View Model" ).SetToolTip( "Variant for the view model when in ADS if specified." );
+					Asset.AddEntry_String( prefix + "viewModelTag" + suffix, "" ).SetTitle( "View Model Tag" );
+					Asset.AddEntry_Vector3( prefix + "viewModelOffsetX" + suffix, prefix + "viewModelOffsetY" + suffix, prefix + "viewModelOffsetZ" + suffix, 0, 0, 0, -10000, 10000 ).SetTitle( "View Model Offset Position" ).SetStep( 0.01f ).SetHints( "NOWARNINGS" ).SetLabels( "Forward", "Right", "Up", "" );
+					Asset.AddEntry_Vector3( prefix + "viewModelOffsetPitch" + suffix, prefix + "viewModelOffsetYaw" + suffix, prefix + "viewModelOffsetRoll" + suffix, 0, 0, 0, -180, 180 ).SetTitle( "View Model Offset Angles" ).SetStep( 0.01f ).SetHints( "NOWARNINGS" ).SetLabels( "Pitch  ", "Yaw", "Roll", "" );
+				}
+
+				Asset.BeginCategory( category + ".World Model #" + (modelIndex + 1) );
+				{
+					Asset.AddEntry_AssetCombo( prefix + "worldModel" + suffix, "xmodel" ).SetTitle( "World Model" ).SetToolTip( "Variant for the world model." );
+					Asset.AddEntry_String( prefix + "worldModelTag" + suffix, "" ).SetTitle( "World Model Tag" );
+					Asset.AddEntry_Vector3( prefix + "worldModelOffsetX" + suffix, prefix + "worldModelOffsetY" + suffix, prefix + "worldModelOffsetZ" + suffix, 0, 0, 0, -10000, 10000 ).SetTitle( "World Model Offset Position" ).SetStep( 0.01f ).SetHints( "NOWARNINGS" ).SetLabels( "Forward", "Right", "Up", "" );
+					Asset.AddEntry_Vector3( prefix + "worldModelOffsetPitch" + suffix, prefix + "worldModelOffsetYaw" + suffix, prefix + "worldModelOffsetRoll" + suffix, 0, 0, 0, -180, 180 ).SetTitle( "World Model Offset Angles" ).SetStep( 0.01f ).SetHints( "NOWARNINGS" ).SetLabels( "Pitch  ", "Yaw", "Roll", "" );
+				}
+			}
+
+			Asset.BeginCategory( category + ".UI" );
+			{
+				Asset.AddEntry_String( prefix + "displayNameShort", "" ).SetTitle( "Display Name (Short)" ).SetHints( "NOWARNINGS" ).SetToolTip( "Short localization alias" );
+				Asset.AddEntry_String( prefix + "displayNameLong", "" ).SetTitle( "Display Name (Long)" ).SetHints( "NOWARNINGS" ).SetToolTip( "Long localization alias" );
+				Asset.AddEntry_String( prefix + "description", "" ).SetTitle( "Description" ).SetHints( "NOWARNINGS" ).SetToolTip( "Description localization alias" );
+				Asset.AddEntry_AssetCombo( prefix + "uiMaterial", "image" ).SetTitle( "2D Material" ).SetToolTip( "Define the 2D material to be used in the UI." );;
+			}
+		}
+	}
+}

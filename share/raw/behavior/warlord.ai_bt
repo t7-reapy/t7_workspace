@@ -1,0 +1,378 @@
+{
+    "id": "warlord",
+    "type": "selector",
+    "children": [
+        {
+            "id": "behaviorselector",
+            "type": "selector",
+            "children": [
+                {
+                    "id": "warlorddeathbehavior",
+                    "type": "selector",
+                    "children": [
+                        {
+                            "id": "specialdeathbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldspecialdeath",
+                                    "type": "condition_script",
+                                    "scriptFunction": "shouldchoosespecialdeath",
+                                    "interruptName": "death"
+                                },
+                                {
+                                    "id": "specialdeathaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "death@special_death",
+                                    "actionNotify": "death",
+                                    "TerminateFunction": "startragdoll"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "deathbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "hasbeenkilled",
+                                    "type": "condition_script",
+                                    "interruptName": "death"
+                                },
+                                {
+                                    "id": "defaultaction",
+                                    "type": "action",
+                                    "ActionName": "warlorddeathaction",
+                                    "ASMStateName": "death@recharge",
+                                    "actionNotify": "death"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "painbehaviors",
+                    "type": "selector",
+                    "children": [
+                        {
+                            "id": "special weapon pain",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldspecialpain",
+                                    "type": "condition_script",
+                                    "scriptFunction": "shouldchoosespecialpain",
+                                    "interruptName": "pain"
+                                },
+                                {
+                                    "id": "specialpainaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "pain@special_pain",
+                                    "actionNotify": "specialpain"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "angrypainbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldbeangry",
+                                    "type": "condition_script",
+                                    "scriptFunction": "warlordshouldbeangrycondition",
+                                    "interruptName": "pain"
+                                },
+                                {
+                                    "id": "angryaction",
+                                    "type": "condition_service_script",
+                                    "scriptFunction": "warlordangryattack"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "warlordjukepainbehavior",
+                            "type": "selector",
+                            "children": [
+                                {
+                                    "id": "jukemovepainbehavior",
+                                    "type": "sequence",
+                                    "children": [
+                                        {
+                                            "id": "shouldtacticaljuke",
+                                            "type": "condition_script",
+                                            "scriptFunction": "warlordcantacticaljukecondition",
+                                            "interruptName": "pain"
+                                        },
+                                        {
+                                            "id": "jukeaction",
+                                            "type": "action",
+                                            "ActionName": "warlordjukeaction",
+                                            "ASMStateName": "juke@tactical_locomotion",
+                                            "actionNotify": "warlord_juke"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "jukepainbehavior",
+                                    "type": "sequence",
+                                    "children": [
+                                        {
+                                            "id": "shouldjuke",
+                                            "type": "condition_script",
+                                            "scriptFunction": "warlordcanjukecondition",
+                                            "interruptName": "pain"
+                                        },
+                                        {
+                                            "id": "jukeaction",
+                                            "type": "action",
+                                            "ActionName": "warlordjukeaction",
+                                            "ASMStateName": "juke@exposed",
+                                            "actionNotify": "warlord_juke"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "tacticalwalkpainbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "tookdamagewhiletacticalwalking",
+                                    "type": "condition_script",
+                                    "scriptFunction": "shouldtacticalwalk",
+                                    "interruptName": "pain"
+                                },
+                                {
+                                    "id": "tacticalwalkpainaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "pain@tactical_locomotion",
+                                    "actionTimeMax": 160
+                                }
+                            ]
+                        },
+                        {
+                            "id": "exposedpainbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldtakepain",
+                                    "type": "condition_script",
+                                    "scriptFunction": "warlordcantakepaincondition",
+                                    "interruptName": "pain"
+                                },
+                                {
+                                    "id": "exposedpainaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "pain@exposed",
+                                    "actionNotify": "pain",
+                                    "StartFunction": "warlordexposedpainactionstart",
+                                    "TerminateFunction": "releaseclaimnode"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "locomotiontraversebehavior",
+                    "type": "sequence",
+                    "children": [
+                        {
+                            "id": "shouldtraverse",
+                            "type": "condition_script",
+                            "scriptFunction": "locomotionshouldtraverse",
+                            "interruptName": "traverse"
+                        },
+                        {
+                            "id": "traverseaction",
+                            "type": "action",
+                            "ActionName": "traverseactionstart",
+                            "ASMStateName": "combat_traverse@traversal"
+                        }
+                    ]
+                },
+                {
+                    "id": "combatbehaviorselector",
+                    "type": "selector",
+                    "children": [
+                        {
+                            "id": "meleebehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldnormalmelee",
+                                    "type": "condition_script",
+                                    "scriptFunction": "warlordshouldnormalmelee"
+                                },
+                                {
+                                    "id": "meleeenemyaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "melee@exposed",
+                                    "actionNotify": "attack_melee",
+                                    "StartFunction": "prepareforexposedmelee",
+                                    "TerminateFunction": "cleanupmelee"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "parallel",
+                            "type": "parallel",
+                            "children": [
+                                {
+                                    "id": "warlordshouldnormalmelee",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "warlordshouldnormalmelee"
+                                },
+                                {
+                                    "id": "selector",
+                                    "type": "selector",
+                                    "children": [
+                                        {
+                                            "id": "tacticalbehaviorparallel",
+                                            "type": "parallel",
+                                            "children": [
+                                                {
+                                                    "id": "choosebetterpositionservice",
+                                                    "type": "condition_service_script",
+                                                    "scriptFunction": "choosebetterpositionservice"
+                                                },
+                                                {
+                                                    "id": "locomotionbehaviorcondition",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "locomotionbehaviorcondition"
+                                                },
+                                                {
+                                                    "id": "refillammoifneededservice",
+                                                    "type": "condition_service_script",
+                                                    "scriptFunction": "refillammoifneededservice"
+                                                },
+                                                {
+                                                    "id": "tacticalwalkstatemachine",
+                                                    "type": "behavior_state_machine"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "exposedbehaviors",
+                                            "type": "parallel",
+                                            "children": [
+                                                {
+                                                    "id": "refillammoifneededservice",
+                                                    "type": "condition_service_script",
+                                                    "scriptFunction": "refillammoifneededservice"
+                                                },
+                                                {
+                                                    "id": "choosebetterpositionservice",
+                                                    "type": "condition_service_script",
+                                                    "scriptFunction": "choosebetterpositionservice"
+                                                },
+                                                {
+                                                    "id": "locomotionbehaviorcondition",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "locomotionbehaviorcondition"
+                                                },
+                                                {
+                                                    "id": "selector",
+                                                    "type": "selector",
+                                                    "children": [
+                                                        {
+                                                            "id": "exposedshootbehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "hasenemy",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "hasenemy"
+                                                                },
+                                                                {
+                                                                    "id": "parallel",
+                                                                    "type": "parallel",
+                                                                    "children": [
+                                                                        {
+                                                                            "id": "hasammo",
+                                                                            "type": "condition_script",
+                                                                            "scriptFunction": "hasammo"
+                                                                        },
+                                                                        {
+                                                                            "id": "selector",
+                                                                            "type": "selector",
+                                                                            "children": [
+                                                                                {
+                                                                                    "id": "parallel",
+                                                                                    "type": "parallel",
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "id": "shouldstopmoving",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "shouldstopmoving"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "shootatenemydontmoveaction",
+                                                                                            "type": "action",
+                                                                                            "ActionName": "defaultaction",
+                                                                                            "ASMStateName": "shoot@exposed",
+                                                                                            "StartFunction": "setpathmovedelayedrandom"
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "id": "shootenemyaction",
+                                                                                    "type": "action",
+                                                                                    "ActionName": "defaultaction",
+                                                                                    "ASMStateName": "shoot@exposed",
+                                                                                    "StartFunction": "releaseclaimnode"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "exposedidlebehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "parallel",
+                                                                    "type": "parallel",
+                                                                    "children": [
+                                                                        {
+                                                                            "id": "hasenemy",
+                                                                            "type": "condition_script_negate",
+                                                                            "scriptFunction": "hasenemy"
+                                                                        },
+                                                                        {
+                                                                            "id": "defaultaction",
+                                                                            "type": "action",
+                                                                            "ActionName": "defaultaction",
+                                                                            "ASMStateName": "idle@exposed",
+                                                                            "StartFunction": "releaseclaimnode"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "debugvoidaction",
+            "type": "action",
+            "ActionName": "defaultaction",
+            "ASMStateName": "void@debug"
+        }
+    ]
+}
