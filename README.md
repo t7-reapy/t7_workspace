@@ -152,6 +152,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - the minigun inspection resumes the weapon rotation
 - sword powerup can crash the map (if the sword goes out of playable zone ???)
 - After a map restart, the fog can glitch and be thicker unless reset to state 0
+- Hellround finish did not restor camo of gun in the secondary slot
 
 # Sphynx commands cheat sheet
 
