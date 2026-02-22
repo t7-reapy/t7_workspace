@@ -1,0 +1,28 @@
+{
+    "states": {
+        "death": {
+            "substates": {
+                "exposed": {
+                    "animation_selector": "idle@exposed",
+                    "terminal": true
+                }
+            }
+        },
+        "exposed": {
+            "substates": {
+                "idle": {
+                    "animation_selector": "idle@exposed",
+                    "transition_decorator": "idle@exposed>idle@exposed"
+                }
+            }
+        },
+        "locomotion": {
+            "substates": {
+                "move": {
+                    "animation_selector": "move@locomotion",
+                    "loopsync": true
+                }
+            }
+        }
+    }
+}

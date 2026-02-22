@@ -1,0 +1,8 @@
+#include "asset_list_helper.h"
+const int MAX_IMAGE_LIST_ENTRIES = 10; // changing this does not require updating anything else
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_Combo( "vmType", "Both | Server | Client" ).Show( true );
+	GenerateItemList( Asset, "gallery_image", "Gallery_Image", "gallery_image", MAX_IMAGE_LIST_ENTRIES );
+}

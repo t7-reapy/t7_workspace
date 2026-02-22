@@ -1,0 +1,79 @@
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_Combo( "size", "SMALL{0} | MEDIUM{1} | LARGE{2}" ).SetTitle("Map Size");
+
+	Asset.AddEntry_String( "mapName", "" ).SetTitle( "Map Name" );
+	Asset.AddEntry_String( "mapNameCaps", "" ).SetTitle( "Map Name (Caps)" );
+	Asset.AddEntry_String( "rootMapName", "" ).SetTitle( "Root Map Name" );
+	Asset.AddEntry_String( "missionName", "" ).SetTitle( "Mission Name" );
+	Asset.AddEntry_String( "mapDescription", "" ).SetTitle( "Map Description" );
+	Asset.AddEntry_String( "mapLocation", "" ).SetTitle( "Map Location" );
+	Asset.AddEntry_String( "mapDateTime", "" ).SetTitle( "Map Date Time" );
+	Asset.AddEntry_String( "presenceString", "" ).SetTitle( "Presence String" );
+
+	Asset.AddEntry_AssetCombo( "streamedimage_bigPreviewImage", "image" ).SetTitle("Big ZM Preview Image");
+	Asset.AddEntry_AssetCombo( "previewImage", "image" ).SetTitle("Preview Image");
+	Asset.AddEntry_AssetCombo( "loadingImage", "image" ).SetTitle("Loadscreen Image");
+
+	Asset.AddEntry_AssetCombo( "compassMap", "image" ).SetTitle("Compass Map");
+	Asset.AddEntry_AssetCombo( "compassMapCorrupt", "image" ).SetTitle("Compass Map Corrupt");
+	
+	Asset.BeginCategory ("Campaign");
+	{
+		Asset.AddEntry_CheckBox("showCPOptions", false).SetTitle("Use CP Options").UpdateOnChange(true);
+		Asset.AddEntry_CheckBox("isSafeHouse", false).SetTitle("Is a safehouse Map").UpdateOnChange(true);
+		Asset.AddEntry_CheckBox("isSubLevel", false).SetTitle("Sub Level").UpdateOnChange(true).SetToolTip( "When set to true, the level will not show up in the UI front end as a selectable level." );
+		bool showCPOptions = (Asset.GetEntryValue( "showCPOptions" ) == "1");
+
+		Asset.AddEntry_String( "mapDescriptionShort", "" ).SetTitle( "Map Description Short" ).Show(showCPOptions);
+
+		Asset.AddEntry_String( "Safehouse", "" ).SetTitle( "Safehouse" ).Show(showCPOptions);
+		Asset.AddEntry_CheckBox( "bool_fadeToWhite", false).SetTitle( "White Screen Before Movie" ).Show(showCPOptions);
+		Asset.AddEntry_String( "introMovie", "" ).SetTitle( "Intro Movie" ).Show(showCPOptions);
+		Asset.AddEntry_String( "outroMovie", "" ).SetTitle( "Outro Movie" ).Show(showCPOptions);
+
+		Asset.AddEntry_AssetCombo( "objectives", "objectivelist" ).SetTitle( "Objectives" ).Show(false);
+		Asset.AddEntry_AssetCombo( "collectibles", "collectiblelist" ).SetTitle( "Collectibles" ).Show(showCPOptions);
+		Asset.AddEntry_AssetCombo( "accoladelist", "accoladelist" ).SetTitle( "Accolades" ).Show(showCPOptions);
+
+		Asset.AddEntry_String( "mapObjective", "" ).SetTitle( "Map Objective" ).Show(showCPOptions);
+
+		Asset.AddEntry_Float("engageClose", 0.5, 0, 1).SetStep( 0.1 ).SetTitle("Close Range").Show(showCPOptions);
+		Asset.AddEntry_Float("engageMedium", 0.5, 0, 1).SetStep( 0.1 ).SetTitle("Medium Range").Show(showCPOptions);
+		Asset.AddEntry_Float("engageLong", 0.5, 0, 1).SetStep( 0.1 ).SetTitle("Long Range").Show(showCPOptions);
+
+		Asset.AddEntry_String( "resistanceText", "" ).SetTitle( "Resistance (deprecated)" ).Show(showCPOptions);
+
+		Asset.AddEntry_String("xstring_resisttitle1", "").SetTitle("Resistance Title 1").Show(showCPOptions);
+		Asset.AddEntry_String("xstring_resist1", "").SetTitle("Resistance Text 1").Show(showCPOptions);
+		Asset.AddEntry_String("xstring_resist1short", "").SetTitle("Resistance Text 1 Short").Show(showCPOptions);
+		Asset.AddEntry_String("xstring_resisttitle2", "").SetTitle("Resistance Title 2").Show(showCPOptions);
+		Asset.AddEntry_String("xstring_resist2", "").SetTitle("Resistance Text 2").Show(showCPOptions);
+		Asset.AddEntry_String("xstring_resist2short", "").SetTitle("Resistance Text 2 Short").Show(showCPOptions);
+		Asset.AddEntry_String("xstring_resisttitle3", "").SetTitle("Resistance Title 3").Show(showCPOptions);
+		Asset.AddEntry_String("xstring_resist3", "").SetTitle("Resistance Text 3").Show(showCPOptions);
+		Asset.AddEntry_String("xstring_resist3short", "").SetTitle("Resistance Text 3 Short").Show(showCPOptions);
+
+		Asset.AddEntry_AssetCombo( "operationsBackground", "image" ).SetTitle("Area Of Ops BG Image").Show(showCPOptions);
+
+		Asset.AddEntry_AssetCombo( "xstring_chyron", "image" ).SetTitle("Chyron Text Image").Show(showCPOptions);
+	}
+	Asset.BeginCategory ("Multiplayer");
+	{
+		Asset.AddEntry_CheckBox("isFreeRunMap", false).SetTitle("Is MP Freerun Map").UpdateOnChange(true);
+		Asset.AddEntry_Int( "freerunTrackIndex", 0, 0, 10000 ).SetTitle( "Freerun Track Index" ).SetToolTip( "Freerun track index for stats" );
+		Asset.AddEntry_Int( "mapVersion", 0, 0, 10000 ).SetTitle( "Map Version" ).SetToolTip( "Version for the map" );
+	}
+	Asset.BeginCategory ("Zombie");
+	{
+		Asset.AddEntry_CheckBox("showZMOptions", false).SetTitle("Use ZM Options").UpdateOnChange(true);
+		bool showZMOptions = (Asset.GetEntryValue( "showZMOptions" ) == "1");
+		Asset.AddEntry_AssetCombo( "image_player1", "image" ).SetTitle("Player 1 Image").Show(showZMOptions);
+		Asset.AddEntry_AssetCombo( "image_player2", "image" ).SetTitle("Player 2 Image").Show(showZMOptions);
+		Asset.AddEntry_AssetCombo( "image_player3", "image" ).SetTitle("Player 3 Image").Show(showZMOptions);
+		Asset.AddEntry_AssetCombo( "image_player4", "image" ).SetTitle("Player 4 Image").Show(showZMOptions);
+	}
+
+	Asset.AddEntry_String( "postShipString", "" ).SetTitle( "Post-Ship String" ).Show(false);
+}

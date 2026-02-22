@@ -1,0 +1,1958 @@
+{
+    "id": "soldierrootselector",
+    "type": "selector",
+    "children": [
+        {
+            "id": "soldierbehavior",
+            "type": "parallel",
+            "children": [
+                {
+                    "id": "trackcoverparamsservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "trackcoverparamsservice"
+                },
+                {
+                    "id": "choosesafecovernodeasneeded",
+                    "type": "condition_service_script",
+                    "scriptFunction": "choosebettercoverservice"
+                },
+                {
+                    "id": "updatefrustrationlevel",
+                    "type": "condition_service_script",
+                    "scriptFunction": "updatefrustrationlevel",
+                    "cooldownMin": 2000,
+                    "cooldownMax": 4500
+                },
+                {
+                    "id": "soldierbehaviormainselector",
+                    "type": "selector",
+                    "children": [
+                        {
+                            "id": "deathbehaviors",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "deathcondition",
+                                    "type": "condition_script",
+                                    "interruptName": "death"
+                                },
+                                {
+                                    "id": "vengeanceservice",
+                                    "type": "condition_service_script",
+                                    "scriptFunction": "vengeanceservice"
+                                },
+                                {
+                                    "id": "deathbehaviorselector",
+                                    "type": "selector",
+                                    "children": [
+                                        {
+                                            "id": "specialdeathbehavior",
+                                            "type": "selector",
+                                            "children": [
+                                                {
+                                                    "id": "burneddeathbehavior",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "hasbeenburnedkilled",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "burnedkilled",
+                                                            "interruptName": "death"
+                                                        },
+                                                        {
+                                                            "id": "burneddeathaction",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "burned_exposed@death",
+                                                            "actionNotify": "death",
+                                                            "TerminateFunction": "startragdoll"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "id": "balconydeathbehavior",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "locomotionbehaviorcondition",
+                                                            "type": "condition_script_negate",
+                                                            "scriptFunction": "locomotionbehaviorcondition"
+                                                        },
+                                                        {
+                                                            "id": "hasbeenbalconykilled",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "isbalconydeath",
+                                                            "interruptName": "death"
+                                                        },
+                                                        {
+                                                            "id": "balconydeathaction",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "balcony@death",
+                                                            "actionNotify": "death",
+                                                            "StartFunction": "balconydeath",
+                                                            "TerminateFunction": "startragdoll"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "id": "rapsdeathbehavior",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "hasbeenrapskilled",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "rapskilled",
+                                                            "interruptName": "death"
+                                                        },
+                                                        {
+                                                            "id": "rapsdeathaction",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "raps@death",
+                                                            "actionNotify": "death",
+                                                            "TerminateFunction": "startragdoll"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "id": "special death",
+                                                    "type": "selector",
+                                                    "children": [
+                                                        {
+                                                            "id": "special death",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "shouldspecialdeath",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "shouldchoosespecialdeath",
+                                                                    "interruptName": "death"
+                                                                },
+                                                                {
+                                                                    "id": "specialdeathaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "death@special_death",
+                                                                    "actionNotify": "death",
+                                                                    "TerminateFunction": "startragdoll"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "prone death",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "shouldpronedeath",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "shouldchoosespecialpronedeath",
+                                                                    "interruptName": "death"
+                                                                },
+                                                                {
+                                                                    "id": "specialdeathaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "death@special_death",
+                                                                    "actionNotify": "death",
+                                                                    "TerminateFunction": "startragdoll"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "tacticalwalkdeathbehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "hasbeenkilledwhiletacticalwalking",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "shouldtacticalwalk",
+                                                    "interruptName": "death"
+                                                },
+                                                {
+                                                    "id": "tacticalwalkdeathtypeselector",
+                                                    "type": "selector",
+                                                    "children": [
+                                                        {
+                                                            "id": "tacticalwalkelectrifieddeathbehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "hasbeenelectrifiedkilledwhiletacticalwalking",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "electrifiedkilled"
+                                                                },
+                                                                {
+                                                                    "id": "tacticalwalkelectrifieddeathaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "electrified_exposed@death",
+                                                                    "actionNotify": "death",
+                                                                    "TerminateFunction": "startragdoll"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "tacticalwalkexplosivedeathbehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "hasbeenexplosivekilledwhiletacticalwalking",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "explosivekilled"
+                                                                },
+                                                                {
+                                                                    "id": "tacticalwalkexplosivedeathaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "explosive_exposed@death",
+                                                                    "actionNotify": "death",
+                                                                    "TerminateFunction": "startragdoll"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "tacticalwalkdeathaction",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "exposed@death",
+                                                            "actionNotify": "death",
+                                                            "TerminateFunction": "startragdoll"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "locomotiondeathsequence",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "hasbeenkilledwhileinlocomotion",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "locomotionbehaviorcondition",
+                                                    "interruptName": "death"
+                                                },
+                                                {
+                                                    "id": "selector",
+                                                    "type": "selector",
+                                                    "children": [
+                                                        {
+                                                            "id": "explosivedeathlocomotionbehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "hasexplosivedied",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "explosivekilled"
+                                                                },
+                                                                {
+                                                                    "id": "locomotionexplosivedeathaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "explosive_locomotion@death",
+                                                                    "actionNotify": "death",
+                                                                    "TerminateFunction": "startragdoll"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "electrifieddeathlocomotionbehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "haselectrifieddied",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "electrifiedkilled"
+                                                                },
+                                                                {
+                                                                    "id": "locomotionelectrifieddeathaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "electrified_exposed@death",
+                                                                    "actionNotify": "death",
+                                                                    "TerminateFunction": "startragdoll"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "locomotiondeathaction",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "locomotion@death",
+                                                            "actionNotify": "death",
+                                                            "TerminateFunction": "startragdoll"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "coverdeathbehaviorselector",
+                                            "type": "selector",
+                                            "children": [
+                                                {
+                                                    "id": "coverdeathbehaviorsequence",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "isatcover",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "isatcovercondition",
+                                                            "interruptName": "death"
+                                                        },
+                                                        {
+                                                            "id": "coverdeathtypeselector",
+                                                            "type": "selector",
+                                                            "children": [
+                                                                {
+                                                                    "id": "coverexplosivedeathbehavior",
+                                                                    "type": "sequence",
+                                                                    "children": [
+                                                                        {
+                                                                            "id": "hasbeenexplosivekilled",
+                                                                            "type": "condition_script",
+                                                                            "scriptFunction": "explosivekilled"
+                                                                        },
+                                                                        {
+                                                                            "id": "coverexplosivedeathaction",
+                                                                            "type": "action",
+                                                                            "ActionName": "defaultaction",
+                                                                            "ASMStateName": "explosive_exposed@death",
+                                                                            "actionNotify": "death"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "id": "coverelectrifieddeathbehavior",
+                                                                    "type": "sequence",
+                                                                    "children": [
+                                                                        {
+                                                                            "id": "hasbeenelectrifiedkilled",
+                                                                            "type": "condition_script",
+                                                                            "scriptFunction": "electrifiedkilled"
+                                                                        },
+                                                                        {
+                                                                            "id": "coverelectrifieddeathaction",
+                                                                            "type": "action",
+                                                                            "ActionName": "defaultaction",
+                                                                            "ASMStateName": "electrified_exposed@death",
+                                                                            "actionNotify": "death",
+                                                                            "TerminateFunction": "startragdoll"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "id": "normalcoverdeathbehavior",
+                                                                    "type": "sequence",
+                                                                    "children": [
+                                                                        {
+                                                                            "id": "shouldadjusttocovercondition",
+                                                                            "type": "condition_script_negate",
+                                                                            "scriptFunction": "shouldadjusttocover"
+                                                                        },
+                                                                        {
+                                                                            "id": "coverdeath",
+                                                                            "type": "action",
+                                                                            "ActionName": "defaultaction",
+                                                                            "ASMStateName": "cover@death",
+                                                                            "actionNotify": "death"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "id": "exposeddeathatcoveraction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "exposed@death",
+                                                                    "actionNotify": "death",
+                                                                    "TerminateFunction": "startragdoll"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "exposeddeathbehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "hasbeenkilledinexposed",
+                                                    "type": "condition_script",
+                                                    "interruptName": "death"
+                                                },
+                                                {
+                                                    "id": "selector",
+                                                    "type": "selector",
+                                                    "children": [
+                                                        {
+                                                            "id": "explosiveexposeddeathbehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "hasbeenexplosivekilledexposed",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "explosivekilled"
+                                                                },
+                                                                {
+                                                                    "id": "explosiveexposeddeathaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "explosive_exposed@death",
+                                                                    "actionNotify": "death",
+                                                                    "TerminateFunction": "startragdoll"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "electrifiedexposeddeathbehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "hasbeenelectrifiedkilledexposed",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "electrifiedkilled"
+                                                                },
+                                                                {
+                                                                    "id": "electrifiedexposeddeathaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "electrified_exposed@death",
+                                                                    "actionNotify": "death",
+                                                                    "TerminateFunction": "startragdoll"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "defaultaction",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "exposed@death",
+                                                            "actionNotify": "death",
+                                                            "TerminateFunction": "startragdoll"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "painbehaviorselector",
+                            "type": "selector",
+                            "children": [
+                                {
+                                    "id": "specialpainbehavior",
+                                    "type": "selector",
+                                    "children": [
+                                        {
+                                            "id": "special prone pain",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "shouldspecialpronepain",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "shouldchoosespecialpronepain",
+                                                    "interruptName": "pain"
+                                                },
+                                                {
+                                                    "id": "specialpronepainaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "pronepain@special_pain",
+                                                    "actionNotify": "pain"
+                                                },
+                                                {
+                                                    "id": "resetcoverparameters",
+                                                    "type": "condition_service_script",
+                                                    "scriptFunction": "resetcoverparameters"
+                                                },
+                                                {
+                                                    "id": "recovertocrouch",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "painrecovery@special_pain"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "special weapon pain",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "shouldspecialpain",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "shouldchoosespecialpain",
+                                                    "interruptName": "pain"
+                                                },
+                                                {
+                                                    "id": "resetcoverparameters",
+                                                    "type": "condition_service_script",
+                                                    "scriptFunction": "resetcoverparameters"
+                                                },
+                                                {
+                                                    "id": "specialpainaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "pain@special_pain",
+                                                    "actionNotify": "specialpain"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "flashbangpainbehavior",
+                                    "type": "sequence",
+                                    "children": [
+                                        {
+                                            "id": "tookflashbangdamage",
+                                            "type": "condition_script",
+                                            "scriptFunction": "tookflashbangdamage",
+                                            "interruptName": "pain"
+                                        },
+                                        {
+                                            "id": "flashbangintroaction",
+                                            "type": "action",
+                                            "ActionName": "defaultaction",
+                                            "ASMStateName": "intro@flashbang",
+                                            "StartFunction": "keepclaimnode",
+                                            "TerminateFunction": "releaseclaimnode"
+                                        },
+                                        {
+                                            "id": "flashbangidleaction",
+                                            "type": "action",
+                                            "ActionName": "defaultaction",
+                                            "ASMStateName": "idle@flashbang",
+                                            "actionTimeMax": 500
+                                        },
+                                        {
+                                            "id": "flashbangoutroaction",
+                                            "type": "action",
+                                            "ActionName": "defaultaction",
+                                            "ASMStateName": "outro@flashbang"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "coverpainbehaviorselector",
+                                    "type": "sequence",
+                                    "children": [
+                                        {
+                                            "id": "isatcoverstrict",
+                                            "type": "condition_script",
+                                            "scriptFunction": "isatcoverstrictcondition",
+                                            "interruptName": "pain"
+                                        },
+                                        {
+                                            "id": "isatcovermodenone",
+                                            "type": "condition_script_negate",
+                                            "scriptFunction": "isatcovermodenone"
+                                        },
+                                        {
+                                            "id": "coverpain",
+                                            "type": "action",
+                                            "ActionName": "defaultaction",
+                                            "ASMStateName": "pain@cover",
+                                            "actionNotify": "pain",
+                                            "StartFunction": "keepclaimnode",
+                                            "TerminateFunction": "resetcoverparameters"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "exposedpainbehavior",
+                                    "type": "sequence",
+                                    "children": [
+                                        {
+                                            "id": "tookdamageinexposed",
+                                            "type": "condition_script",
+                                            "interruptName": "pain"
+                                        },
+                                        {
+                                            "id": "locomotionbehaviorcondition",
+                                            "type": "condition_script_negate",
+                                            "scriptFunction": "locomotionbehaviorcondition"
+                                        },
+                                        {
+                                            "id": "resetcoverparameters",
+                                            "type": "condition_service_script",
+                                            "scriptFunction": "resetcoverparameters"
+                                        },
+                                        {
+                                            "id": "defaultaction",
+                                            "type": "action",
+                                            "ActionName": "defaultaction",
+                                            "ASMStateName": "pain@exposed",
+                                            "actionNotify": "pain",
+                                            "StartFunction": "keepclaimnode",
+                                            "TerminateFunction": "releaseclaimnode"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "combatbehaviorselector",
+                            "type": "selector",
+                            "children": [
+                                {
+                                    "id": "stealthrootbehavior",
+                                    "type": "parallel",
+                                    "children": [
+                                        {
+                                            "id": "shouldstealth",
+                                            "type": "condition_script",
+                                            "scriptFunction": "shouldstealth"
+                                        },
+                                        {
+                                            "id": "selector",
+                                            "type": "selector",
+                                            "children": [
+                                                {
+                                                    "id": "stealthreact",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "stealthreactcondition",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "stealthreactcondition",
+                                                            "interruptName": "react"
+                                                        },
+                                                        {
+                                                            "id": "stealthreactaction",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "react@stealth",
+                                                            "actionNotify": "react",
+                                                            "StartFunction": "stealthreactstart",
+                                                            "TerminateFunction": "stealthreactterminate"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "id": "stealthresume",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "shouldstealthresume",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "shouldstealthresume"
+                                                        },
+                                                        {
+                                                            "id": "stealthresumeaction",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "resume@stealth"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "id": "stealthidle",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "not_locomotionshouldstealth",
+                                                            "type": "condition_script_negate",
+                                                            "scriptFunction": "locomotionshouldstealth"
+                                                        },
+                                                        {
+                                                            "id": "stealthidleaction",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "idle@stealth",
+                                                            "TerminateFunction": "stealthidleterminate"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "reactionbehaviorsequence",
+                                    "type": "selector",
+                                    "children": [
+                                        {
+                                            "id": "reactiontoenemybehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "shouldreacttonewenemycondition",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "shouldreacttonewenemy"
+                                                },
+                                                {
+                                                    "id": "resetreactiontoenemy",
+                                                    "type": "condition_service_script"
+                                                },
+                                                {
+                                                    "id": "resetcoverparameters",
+                                                    "type": "condition_service_script",
+                                                    "scriptFunction": "resetcoverparameters"
+                                                },
+                                                {
+                                                    "id": "newenemyreactionaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "react@exposed",
+                                                    "actionNotify": "enemycontact",
+                                                    "StartFunction": "preparetoreacttoenemy"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "reactiontoweaponmalfunction",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "hasweaponmalfunctioned",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "hasweaponmalfunctioned"
+                                                },
+                                                {
+                                                    "id": "resetreactiontoenemy",
+                                                    "type": "condition_service_script"
+                                                },
+                                                {
+                                                    "id": "resetcoverparameters",
+                                                    "type": "condition_service_script",
+                                                    "scriptFunction": "resetcoverparameters"
+                                                },
+                                                {
+                                                    "id": "parallel",
+                                                    "type": "parallel",
+                                                    "children": [
+                                                        {
+                                                            "id": "shouldmelee",
+                                                            "type": "condition_script_negate",
+                                                            "scriptFunction": "shouldmelee"
+                                                        },
+                                                        {
+                                                            "id": "malfunctionreactionaction",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "malfunction@exposed",
+                                                            "actionNotify": "weaponmalfunction",
+                                                            "StartFunction": "preparetoreacttoenemy"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "locomotionbehaviorsequence",
+                                    "type": "sequence",
+                                    "children": [
+                                        {
+                                            "id": "shouldstopmoving",
+                                            "type": "condition_script_negate",
+                                            "scriptFunction": "shouldstopmoving"
+                                        },
+                                        {
+                                            "id": "shouldmelee",
+                                            "type": "condition_script_negate",
+                                            "scriptFunction": "shouldmelee"
+                                        },
+                                        {
+                                            "id": "shouldreacttonewenemycondition",
+                                            "type": "condition_script_negate",
+                                            "scriptFunction": "shouldreacttonewenemy"
+                                        },
+                                        {
+                                            "id": "locomotionbehaviorcondition",
+                                            "type": "condition_script",
+                                            "scriptFunction": "locomotionbehaviorcondition"
+                                        },
+                                        {
+                                            "id": "parallel",
+                                            "type": "parallel",
+                                            "children": [
+                                                {
+                                                    "id": "refillammoifneededservice",
+                                                    "type": "condition_service_script",
+                                                    "scriptFunction": "refillammoifneededservice"
+                                                },
+                                                {
+                                                    "id": "runlocomotionstatemachine",
+                                                    "type": "behavior_state_machine",
+                                                    "ActionName": "locomotionbehavior"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "coverbehaviorsmain",
+                                    "type": "selector",
+                                    "children": [
+                                        {
+                                            "id": "adjusttocoverbehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "isatcover",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "isatcovercondition"
+                                                },
+                                                {
+                                                    "id": "shouldadjusttocovercondition",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "shouldadjusttocover"
+                                                },
+                                                {
+                                                    "id": "adjusttocoveraction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "adjust_to_cover@cover",
+                                                    "StartFunction": "prepareforadjusttocover",
+                                                    "TerminateFunction": "cleanupcovermode"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "coveridlebehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "isatcover",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "isatcovercondition"
+                                                },
+                                                {
+                                                    "id": "shouldcoveridleonly",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "shouldcoveridleonly"
+                                                },
+                                                {
+                                                    "id": "coveridleaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "alert@cover",
+                                                    "StartFunction": "coveridleinitialize",
+                                                    "TerminateFunction": "coveridleterminate",
+                                                    "UpdateFunction": "coveridleupdate"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "coverbehaviors",
+                                            "type": "parallel",
+                                            "children": [
+                                                {
+                                                    "id": "isatcover",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "isatcovercondition"
+                                                },
+                                                {
+                                                    "id": "sensenearbyplayers",
+                                                    "type": "condition_service_script",
+                                                    "scriptFunction": "sensenearbyplayers",
+                                                    "cooldownMin": 200,
+                                                    "cooldownMax": 500
+                                                },
+                                                {
+                                                    "id": "coverbehaviorssequence",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "selector",
+                                                            "type": "selector",
+                                                            "children": [
+                                                                {
+                                                                    "id": "reloadcoverbehavior",
+                                                                    "type": "sequence",
+                                                                    "children": [
+                                                                        {
+                                                                            "id": "haslowammo",
+                                                                            "type": "condition_script",
+                                                                            "scriptFunction": "haslowammo"
+                                                                        },
+                                                                        {
+                                                                            "id": "coverreloadaction",
+                                                                            "type": "action",
+                                                                            "ActionName": "defaultaction",
+                                                                            "ASMStateName": "reload@cover",
+                                                                            "actionNotify": "reload",
+                                                                            "StartFunction": "coverreloadinitialize",
+                                                                            "TerminateFunction": "refillammoandcleanupcovermode"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "id": "changestancecoverbehavior",
+                                                                    "type": "sequence",
+                                                                    "children": [
+                                                                        {
+                                                                            "id": "canchangestanceatcover",
+                                                                            "type": "condition_script",
+                                                                            "scriptFunction": "canchangestanceatcovercondition"
+                                                                        },
+                                                                        {
+                                                                            "id": "timer decorator",
+                                                                            "type": "decorator_timer",
+                                                                            "children": [
+                                                                                {
+                                                                                    "id": "random decorator",
+                                                                                    "type": "decorator_random",
+                                                                                    "percentChance": 20.0,
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "id": "coverchangestanceaction",
+                                                                                            "type": "action",
+                                                                                            "ActionName": "defaultaction",
+                                                                                            "ASMStateName": "changestance@cover",
+                                                                                            "actionNotify": "cover_stance",
+                                                                                            "StartFunction": "coverchangestanceactionstart",
+                                                                                            "TerminateFunction": "cleanupcovermode"
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "id": "coveridleaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "alert@cover",
+                                                                    "StartFunction": "coveridleinitialize",
+                                                                    "TerminateFunction": "coveridleterminate",
+                                                                    "UpdateFunction": "coveridleupdate"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "selector",
+                                                            "type": "selector",
+                                                            "children": [
+                                                                {
+                                                                    "id": "frustratedatcoverbehavior",
+                                                                    "type": "sequence",
+                                                                    "children": [
+                                                                        {
+                                                                            "id": "isfrustrated",
+                                                                            "type": "condition_script",
+                                                                            "scriptFunction": "isfrustrated"
+                                                                        },
+                                                                        {
+                                                                            "id": "timer decorator",
+                                                                            "type": "decorator_timer",
+                                                                            "children": [
+                                                                                {
+                                                                                    "id": "frustratedbehavior",
+                                                                                    "type": "selector",
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "id": "trygoingtoclosestnodetoenemybehavior",
+                                                                                            "type": "sequence",
+                                                                                            "children": [
+                                                                                                {
+                                                                                                    "id": "coveridleaction",
+                                                                                                    "type": "action",
+                                                                                                    "ActionName": "defaultaction",
+                                                                                                    "ASMStateName": "alert@cover",
+                                                                                                    "StartFunction": "coveridleinitialize",
+                                                                                                    "TerminateFunction": "coveridleterminate",
+                                                                                                    "UpdateFunction": "coveridleupdate"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "trygoingtoclosestnodetoenemybehavior",
+                                                                                                    "type": "condition_script_negate",
+                                                                                                    "scriptFunction": "trygoingtoclosestnodetoenemybehavior"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "flagenemyunattackableservice",
+                                                                                                    "type": "condition_service_script",
+                                                                                                    "scriptFunction": "flagenemyunattackableservice"
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "id": "shootfromcoverbehaviors",
+                                                                    "type": "selector",
+                                                                    "children": [
+                                                                        {
+                                                                            "id": "suppressedbehaviors",
+                                                                            "type": "selector",
+                                                                            "children": [
+                                                                                {
+                                                                                    "id": "suppressedcovergrenadethrowbehaviorsequence",
+                                                                                    "type": "sequence",
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "id": "hasenemy",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "hasenemy"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "issuppressedatcover",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "issuppressedatcovercondition"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "shouldthrowgrenadeatcovercondition",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "shouldthrowgrenadeatcovercondition"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "covergrenadethrowaction",
+                                                                                            "type": "action",
+                                                                                            "ActionName": "defaultaction",
+                                                                                            "ASMStateName": "throw_grenade@cover",
+                                                                                            "actionNotify": "grenade",
+                                                                                            "StartFunction": "coverpreparetothrowgrenade",
+                                                                                            "TerminateFunction": "covercleanuptothrowgrenade"
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "id": "suppressedchangestancecoverbehavior",
+                                                                                    "type": "sequence",
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "id": "canchangestanceatcover",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "canchangestanceatcovercondition"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "issuppressedatcover",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "issuppressedatcovercondition"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "timer decorator",
+                                                                                            "type": "decorator_timer",
+                                                                                            "children": [
+                                                                                                {
+                                                                                                    "id": "random decorator",
+                                                                                                    "type": "decorator_random",
+                                                                                                    "percentChance": 20.0,
+                                                                                                    "children": [
+                                                                                                        {
+                                                                                                            "id": "coverchangestanceaction",
+                                                                                                            "type": "action",
+                                                                                                            "ActionName": "defaultaction",
+                                                                                                            "ASMStateName": "changestance@cover",
+                                                                                                            "actionNotify": "cover_stance",
+                                                                                                            "StartFunction": "coverchangestanceactionstart",
+                                                                                                            "TerminateFunction": "cleanupcovermode"
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "id": "suppressedblindfirecoverbehaviorselector",
+                                                                                    "type": "selector",
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "id": "suppressedblindfirecoverbehavior",
+                                                                                            "type": "sequence",
+                                                                                            "children": [
+                                                                                                {
+                                                                                                    "id": "shouldonlyfireaccurately",
+                                                                                                    "type": "condition_script_negate",
+                                                                                                    "scriptFunction": "shouldonlyfireaccurately"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "hasenemy",
+                                                                                                    "type": "condition_script",
+                                                                                                    "scriptFunction": "hasenemy"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "issuppressedatcover",
+                                                                                                    "type": "condition_script",
+                                                                                                    "scriptFunction": "issuppressedatcovercondition"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "shouldleanatcover",
+                                                                                                    "type": "condition_script",
+                                                                                                    "scriptFunction": "shouldleanatcovercondition"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "timer decorator",
+                                                                                                    "type": "decorator_timer",
+                                                                                                    "children": [
+                                                                                                        {
+                                                                                                            "id": "parallel",
+                                                                                                            "type": "parallel",
+                                                                                                            "children": [
+                                                                                                                {
+                                                                                                                    "id": "shouldleanatcover",
+                                                                                                                    "type": "condition_script",
+                                                                                                                    "scriptFunction": "shouldleanatcovercondition"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "id": "hasammo",
+                                                                                                                    "type": "condition_script",
+                                                                                                                    "scriptFunction": "hasammo"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "id": "shouldreturntosuppressedcover",
+                                                                                                                    "type": "condition_script_negate",
+                                                                                                                    "scriptFunction": "shouldreturntosuppressedcover"
+                                                                                                                },
+                                                                                                                {
+                                                                                                                    "id": "coverblindfireshootaction",
+                                                                                                                    "type": "action",
+                                                                                                                    "ActionName": "defaultaction",
+                                                                                                                    "ASMStateName": "blindfire@cover",
+                                                                                                                    "actionNotify": "blindfire",
+                                                                                                                    "StartFunction": "coverblindfireshootstart",
+                                                                                                                    "TerminateFunction": "resetcoverparameters",
+                                                                                                                    "loopingAction": 1,
+                                                                                                                    "actionTimeMax": 4500
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "suppressedblindfireovercoverbehavior",
+                                                                                            "type": "sequence",
+                                                                                            "children": [
+                                                                                                {
+                                                                                                    "id": "shouldonlyfireaccurately",
+                                                                                                    "type": "condition_script_negate",
+                                                                                                    "scriptFunction": "shouldonlyfireaccurately"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "hasenemy",
+                                                                                                    "type": "condition_script",
+                                                                                                    "scriptFunction": "hasenemy"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "issuppressedatcover",
+                                                                                                    "type": "condition_script",
+                                                                                                    "scriptFunction": "issuppressedatcovercondition"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "coversupportsover",
+                                                                                                    "type": "condition_script",
+                                                                                                    "scriptFunction": "supportsovercovercondition"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "shouldoveratcover",
+                                                                                                    "type": "condition_script",
+                                                                                                    "scriptFunction": "shouldoveratcovercondition"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "parallel",
+                                                                                                    "type": "parallel",
+                                                                                                    "children": [
+                                                                                                        {
+                                                                                                            "id": "hasammo",
+                                                                                                            "type": "condition_script",
+                                                                                                            "scriptFunction": "hasammo"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "id": "continueoveratcover",
+                                                                                                            "type": "condition_script",
+                                                                                                            "scriptFunction": "shouldoveratcovercondition"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "id": "shouldreturntosuppressedcover",
+                                                                                                            "type": "condition_script_negate",
+                                                                                                            "scriptFunction": "shouldreturntosuppressedcover"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "id": "coverblindfireoveraction",
+                                                                                                            "type": "action",
+                                                                                                            "ActionName": "defaultaction",
+                                                                                                            "ASMStateName": "blindfire_over@cover",
+                                                                                                            "actionNotify": "blindfire",
+                                                                                                            "StartFunction": "coveroverinitialize",
+                                                                                                            "TerminateFunction": "coveroverterminate"
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "id": "suppressedpeekcoverbehavior",
+                                                                                    "type": "sequence",
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "id": "supportspeekcover",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "supportspeekcovercondition"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "issuppressedatcover",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "issuppressedatcovercondition"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "random decorator",
+                                                                                            "type": "decorator_random",
+                                                                                            "percentChance": 50.0,
+                                                                                            "children": [
+                                                                                                {
+                                                                                                    "id": "coverpeekaction",
+                                                                                                    "type": "action",
+                                                                                                    "ActionName": "defaultaction",
+                                                                                                    "ASMStateName": "peek@cover",
+                                                                                                    "actionNotify": "peek",
+                                                                                                    "StartFunction": "coverpeekinitialize",
+                                                                                                    "TerminateFunction": "coverpeekterminate"
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "id": "attackbehaviorselector",
+                                                                            "type": "selector",
+                                                                            "children": [
+                                                                                {
+                                                                                    "id": "grenadethrowcoverbehaviorsequence",
+                                                                                    "type": "sequence",
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "id": "hasenemy",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "hasenemy"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "shouldthrowgrenadeatcovercondition",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "shouldthrowgrenadeatcovercondition"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "covergrenadethrowaction",
+                                                                                            "type": "action",
+                                                                                            "ActionName": "defaultaction",
+                                                                                            "ASMStateName": "throw_grenade@cover",
+                                                                                            "actionNotify": "grenade",
+                                                                                            "StartFunction": "coverpreparetothrowgrenade",
+                                                                                            "TerminateFunction": "covercleanuptothrowgrenade"
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "id": "peekcoverbehavior",
+                                                                                    "type": "sequence",
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "id": "supportspeekcover",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "supportspeekcovercondition"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "timer decorator",
+                                                                                            "type": "decorator_timer",
+                                                                                            "children": [
+                                                                                                {
+                                                                                                    "id": "random decorator",
+                                                                                                    "type": "decorator_random",
+                                                                                                    "percentChance": 25.0,
+                                                                                                    "children": [
+                                                                                                        {
+                                                                                                            "id": "coverpeekaction",
+                                                                                                            "type": "action",
+                                                                                                            "ActionName": "defaultaction",
+                                                                                                            "ASMStateName": "peek@cover",
+                                                                                                            "actionNotify": "peek",
+                                                                                                            "StartFunction": "coverpeekinitialize",
+                                                                                                            "TerminateFunction": "coverpeekterminate"
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "id": "leancoverbehavior",
+                                                                                    "type": "sequence",
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "id": "coversupportslean",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "supportsleancovercondition"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "hasenemy",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "hasenemy"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "shouldleanatcover",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "shouldleanatcovercondition"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "parallel",
+                                                                                            "type": "parallel",
+                                                                                            "children": [
+                                                                                                {
+                                                                                                    "id": "hasammo",
+                                                                                                    "type": "condition_script",
+                                                                                                    "scriptFunction": "hasammo"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "continueleaningatcover",
+                                                                                                    "type": "condition_script",
+                                                                                                    "scriptFunction": "continueleaningatcovercondition"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "shouldreturntocover",
+                                                                                                    "type": "condition_script_negate",
+                                                                                                    "scriptFunction": "shouldreturntocovercondition"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "coverleanshootaction",
+                                                                                                    "type": "action",
+                                                                                                    "ActionName": "defaultaction",
+                                                                                                    "ASMStateName": "lean@cover",
+                                                                                                    "actionNotify": "cover_shoot",
+                                                                                                    "StartFunction": "coverleaninitialize",
+                                                                                                    "TerminateFunction": "coverleanterminate",
+                                                                                                    "loopingAction": 1,
+                                                                                                    "actionTimeMax": 6500
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "id": "overcoverbehavior",
+                                                                                    "type": "sequence",
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "id": "coversupportsover",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "supportsovercovercondition"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "hasenemy",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "hasenemy"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "shouldoveratcover",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "shouldoveratcovercondition"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "parallel",
+                                                                                            "type": "parallel",
+                                                                                            "children": [
+                                                                                                {
+                                                                                                    "id": "hasammo",
+                                                                                                    "type": "condition_script",
+                                                                                                    "scriptFunction": "hasammo"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "continueoveratcover",
+                                                                                                    "type": "condition_script",
+                                                                                                    "scriptFunction": "shouldoveratcovercondition"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "shouldreturntocover",
+                                                                                                    "type": "condition_script_negate",
+                                                                                                    "scriptFunction": "shouldreturntocovercondition"
+                                                                                                },
+                                                                                                {
+                                                                                                    "id": "coveroveraction",
+                                                                                                    "type": "action",
+                                                                                                    "ActionName": "defaultaction",
+                                                                                                    "ASMStateName": "over@cover",
+                                                                                                    "actionNotify": "cover_shoot",
+                                                                                                    "StartFunction": "coveroverinitialize",
+                                                                                                    "TerminateFunction": "coveroverterminate",
+                                                                                                    "loopingAction": 1,
+                                                                                                    "actionTimeMax": 6500
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "id": "randomleancoverbehavior",
+                                                                                    "type": "sequence",
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "id": "coversupportslean",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "supportsleancovercondition"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "random decorator",
+                                                                                            "type": "decorator_random",
+                                                                                            "percentChance": 25.0,
+                                                                                            "children": [
+                                                                                                {
+                                                                                                    "id": "parallel",
+                                                                                                    "type": "parallel",
+                                                                                                    "children": [
+                                                                                                        {
+                                                                                                            "id": "hasammo",
+                                                                                                            "type": "condition_script",
+                                                                                                            "scriptFunction": "hasammo"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "id": "shouldreturntocover",
+                                                                                                            "type": "condition_script_negate",
+                                                                                                            "scriptFunction": "shouldreturntocovercondition"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "id": "coverleanshootaction",
+                                                                                                            "type": "action",
+                                                                                                            "ActionName": "defaultaction",
+                                                                                                            "ASMStateName": "lean@cover",
+                                                                                                            "actionNotify": "cover_shoot",
+                                                                                                            "StartFunction": "coverleaninitialize",
+                                                                                                            "TerminateFunction": "coverleanterminate",
+                                                                                                            "loopingAction": 1,
+                                                                                                            "actionTimeMax": 6500
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "id": "randomovercoverbehavior",
+                                                                                    "type": "sequence",
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "id": "coversupportsover",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "supportsovercovercondition"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "random decorator",
+                                                                                            "type": "decorator_random",
+                                                                                            "percentChance": 25.0,
+                                                                                            "children": [
+                                                                                                {
+                                                                                                    "id": "parallel",
+                                                                                                    "type": "parallel",
+                                                                                                    "children": [
+                                                                                                        {
+                                                                                                            "id": "hasammo",
+                                                                                                            "type": "condition_script",
+                                                                                                            "scriptFunction": "hasammo"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "id": "shouldreturntocover",
+                                                                                                            "type": "condition_script_negate",
+                                                                                                            "scriptFunction": "shouldreturntocovercondition"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "id": "coveroveraction",
+                                                                                                            "type": "action",
+                                                                                                            "ActionName": "defaultaction",
+                                                                                                            "ASMStateName": "over@cover",
+                                                                                                            "actionNotify": "cover_shoot",
+                                                                                                            "StartFunction": "coveroverinitialize",
+                                                                                                            "TerminateFunction": "coveroverterminate",
+                                                                                                            "loopingAction": 1,
+                                                                                                            "actionTimeMax": 6500
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "id": "randompeekcoverbehavior",
+                                                                                    "type": "sequence",
+                                                                                    "children": [
+                                                                                        {
+                                                                                            "id": "supportspeekcover",
+                                                                                            "type": "condition_script",
+                                                                                            "scriptFunction": "supportspeekcovercondition"
+                                                                                        },
+                                                                                        {
+                                                                                            "id": "random decorator",
+                                                                                            "type": "decorator_random",
+                                                                                            "percentChance": 25.0,
+                                                                                            "children": [
+                                                                                                {
+                                                                                                    "id": "coverpeekaction",
+                                                                                                    "type": "action",
+                                                                                                    "ActionName": "defaultaction",
+                                                                                                    "ASMStateName": "peek@cover",
+                                                                                                    "actionNotify": "peek",
+                                                                                                    "StartFunction": "coverpeekinitialize",
+                                                                                                    "TerminateFunction": "coverpeekterminate"
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "exposedbehaviorselector",
+                                    "type": "selector",
+                                    "children": [
+                                        {
+                                            "id": "adjusttoexposednodebehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "hascloseenemy",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "hascloseenemy"
+                                                },
+                                                {
+                                                    "id": "notcrouchingcondition",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "notcrouchingcondition"
+                                                },
+                                                {
+                                                    "id": "isatcrouchnode",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "isatcrouchnode"
+                                                },
+                                                {
+                                                    "id": "defaultaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "changestance@exposed",
+                                                    "actionNotify": "exposed",
+                                                    "StartFunction": "preparetochangestancetocrouch",
+                                                    "TerminateFunction": "cleanupchangestancetocrouch"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "exposedstandupfornearbyenemybehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "isatcoverstrictcondition",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "isatcoverstrictcondition"
+                                                },
+                                                {
+                                                    "id": "hasenemy",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "hasenemy"
+                                                },
+                                                {
+                                                    "id": "hascloseenemy",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "hascloseenemy"
+                                                },
+                                                {
+                                                    "id": "notstandingcondition",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "notstandingcondition"
+                                                },
+                                                {
+                                                    "id": "defaultaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "changestance@exposed",
+                                                    "actionNotify": "exposed",
+                                                    "StartFunction": "preparetochangestancetostand",
+                                                    "TerminateFunction": "cleanupchangestancetostand"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "aivsaimeleesharedbehavior",
+                                            "type": "selector",
+                                            "children": [
+                                                {
+                                                    "id": "aivsaimeleebehavior",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "hasaivsaienemy",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "hasaivsaienemy"
+                                                        },
+                                                        {
+                                                            "id": "decideinitiator",
+                                                            "type": "condition_service_script",
+                                                            "scriptFunction": "decideinitiator"
+                                                        },
+                                                        {
+                                                            "id": "isinitiator",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "isinitiator"
+                                                        },
+                                                        {
+                                                            "id": "chooseaivsaimeleeanimations",
+                                                            "type": "condition_service_script",
+                                                            "scriptFunction": "chooseaivsaimeleeanimations"
+                                                        },
+                                                        {
+                                                            "id": "hascloseaivsaienemy",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "hascloseaivsaienemy"
+                                                        },
+                                                        {
+                                                            "id": "aivsaimeleeaction",
+                                                            "type": "action",
+                                                            "ActionName": "aivsaimeleeaction",
+                                                            "ASMStateName": "void@debug"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "id": "getinpositionforaivsaimelee",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "haspotentalaivsaimeleeenemy",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "haspotentalaivsaimeleeenemy"
+                                                        },
+                                                        {
+                                                            "id": "shouldchargemelee",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "shouldchargemelee"
+                                                        },
+                                                        {
+                                                            "id": "parallel",
+                                                            "type": "parallel",
+                                                            "children": [
+                                                                {
+                                                                    "id": "iscloseenoughforaivsaimelee",
+                                                                    "type": "condition_script_negate",
+                                                                    "scriptFunction": "iscloseenoughforaivsaimelee"
+                                                                },
+                                                                {
+                                                                    "id": "getinpostionformeleeaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "charge_melee@exposed",
+                                                                    "actionNotify": "charge",
+                                                                    "StartFunction": "setupchargemeleeattack",
+                                                                    "TerminateFunction": "cleanupchargemelee"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "exposedmutexmeleebehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "shouldmelee",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "shouldmelee"
+                                                },
+                                                {
+                                                    "id": "exposedmeleetypeselector",
+                                                    "type": "selector",
+                                                    "children": [
+                                                        {
+                                                            "id": "exposedmutexmeleebehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "shouldnormalmelee",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "shouldnormalmelee"
+                                                                },
+                                                                {
+                                                                    "id": "meleeenemyaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "melee@exposed",
+                                                                    "actionNotify": "attack_melee",
+                                                                    "StartFunction": "prepareforexposedmelee",
+                                                                    "TerminateFunction": "cleanupchargemeleeattack"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "exposedchargemutexmeleebehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "shouldchargemelee",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "shouldchargemelee"
+                                                                },
+                                                                {
+                                                                    "id": "exposedchargemeleeaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "charge_melee@exposed",
+                                                                    "actionNotify": "charge",
+                                                                    "StartFunction": "setupchargemeleeattack",
+                                                                    "TerminateFunction": "cleanupchargemelee"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "reacttogrenadebehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "issafefromgrenadescondition",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "issafefromgrenades"
+                                                },
+                                                {
+                                                    "id": "defaultaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "shoot@exposed",
+                                                    "StartFunction": "releaseclaimnode",
+                                                    "UpdateFunction": "choosebestcovernodeasap"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "exposedstopnearbyenemybehavior",
+                                            "type": "parallel",
+                                            "children": [
+                                                {
+                                                    "id": "hasammo",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "hasammo"
+                                                },
+                                                {
+                                                    "id": "shouldmelee",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "shouldmelee"
+                                                },
+                                                {
+                                                    "id": "tryreacquireifneeded",
+                                                    "type": "condition_service_script",
+                                                    "scriptFunction": "tryreacquireservice",
+                                                    "cooldownMin": 200,
+                                                    "cooldownMax": 200
+                                                },
+                                                {
+                                                    "id": "sequence",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "refillammoifneededservice",
+                                                            "type": "condition_service_script",
+                                                            "scriptFunction": "refillammoifneededservice"
+                                                        },
+                                                        {
+                                                            "id": "preparetostopnearenemy",
+                                                            "type": "condition_service_script",
+                                                            "scriptFunction": "preparetostopnearenemy"
+                                                        },
+                                                        {
+                                                            "id": "shouldstopmoving",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "shouldstopmoving"
+                                                        },
+                                                        {
+                                                            "id": "shootatenemydontmoveaction",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "shoot@exposed",
+                                                            "TerminateFunction": "preparetomoveawayfromnearbyenemy"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "exposedbehaviors",
+                                            "type": "parallel",
+                                            "children": [
+                                                {
+                                                    "id": "issafefromgrenadescondition",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "issafefromgrenades"
+                                                },
+                                                {
+                                                    "id": "shouldreacttonewenemycondition",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "shouldreacttonewenemy"
+                                                },
+                                                {
+                                                    "id": "locomotionbehaviorcondition",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "locomotionbehaviorcondition"
+                                                },
+                                                {
+                                                    "id": "shouldmelee",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "shouldmelee"
+                                                },
+                                                {
+                                                    "id": "tryreacquireifneeded",
+                                                    "type": "condition_service_script",
+                                                    "scriptFunction": "tryreacquireservice",
+                                                    "cooldownMin": 200,
+                                                    "cooldownMax": 200
+                                                },
+                                                {
+                                                    "id": "selector",
+                                                    "type": "selector",
+                                                    "children": [
+                                                        {
+                                                            "id": "exposedthrowgrenadebehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "shouldstealth",
+                                                                    "type": "condition_script_negate",
+                                                                    "scriptFunction": "shouldstealth"
+                                                                },
+                                                                {
+                                                                    "id": "hasenemy",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "hasenemy"
+                                                                },
+                                                                {
+                                                                    "id": "shouldthrowgrenadecondition",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "shouldthrowgrenadeatcovercondition"
+                                                                },
+                                                                {
+                                                                    "id": "covergrenadethrowaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "throw_grenade@exposed",
+                                                                    "actionNotify": "grenade",
+                                                                    "StartFunction": "coverpreparetothrowgrenade",
+                                                                    "TerminateFunction": "covercleanuptothrowgrenade"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "exposedreloadbehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "haslowammo",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "haslowammo"
+                                                                },
+                                                                {
+                                                                    "id": "defaultaction",
+                                                                    "type": "action",
+                                                                    "ActionName": "defaultaction",
+                                                                    "ASMStateName": "reload@exposed",
+                                                                    "actionNotify": "reload",
+                                                                    "TerminateFunction": "refillammoifneededservice"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "exposedshootbehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "hasenemy",
+                                                                    "type": "condition_script",
+                                                                    "scriptFunction": "hasenemy"
+                                                                },
+                                                                {
+                                                                    "id": "parallel",
+                                                                    "type": "parallel",
+                                                                    "children": [
+                                                                        {
+                                                                            "id": "hasammo",
+                                                                            "type": "condition_script",
+                                                                            "scriptFunction": "hasammo"
+                                                                        },
+                                                                        {
+                                                                            "id": "shootenemyaction",
+                                                                            "type": "action",
+                                                                            "ActionName": "defaultaction",
+                                                                            "ASMStateName": "shoot@exposed",
+                                                                            "actionNotify": "enemycontact",
+                                                                            "StartFunction": "releaseclaimnode"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "id": "exposedidlebehavior",
+                                                            "type": "sequence",
+                                                            "children": [
+                                                                {
+                                                                    "id": "parallel",
+                                                                    "type": "parallel",
+                                                                    "children": [
+                                                                        {
+                                                                            "id": "hasenemy",
+                                                                            "type": "condition_script_negate",
+                                                                            "scriptFunction": "hasenemy"
+                                                                        },
+                                                                        {
+                                                                            "id": "defaultaction",
+                                                                            "type": "action",
+                                                                            "ActionName": "defaultaction",
+                                                                            "ASMStateName": "idle@exposed",
+                                                                            "StartFunction": "releaseclaimnode"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "somethingbadhappenedbehavior",
+            "type": "action",
+            "ActionName": "defaultaction",
+            "ASMStateName": "void@debug"
+        }
+    ]
+}

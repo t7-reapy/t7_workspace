@@ -1,0 +1,92 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{F8D001D5-22DF-11EC-8240-D43D7E278B2C}"
+"classname" "worldspawn"
+"bloom" "zm_factory"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{647DB5E1-22DE-11EC-8240-D43D7E278B2C}"
+"classname" "volume_litfog"
+"BANK_2" "1"
+"LIGHTSTATE_3" "0"
+"LIGHTSTATE_4" "0"
+"fogtime" "2.5"
+"fsi" "zm_factory_volumetric"
+"fsi_1" "zm_factory_volumetric"
+"fsi_2" "zm_apothicon_fury_volumetric"
+"AUTO_PRIORITY" "1"
+"BANK_1" "1"
+"ENABLE_LIGHTS" "1"
+"ENABLE_SUN" "1"
+"LIGHTSTATE_1" "1"
+"LIGHTSTATE_2" "1"
+"ambientColor" "0 0 0"
+"ambientIntensity" "1"
+"fsi_3" "default"
+"fsi_4" "default"
+"spawnflags" "14435"
+// brush 0
+{
+ guid "{647DB5E0-22DE-11EC-8240-D43D7E278B2C}"
+ ( 1593.25 1081.25 -45 ) ( 1295.25 1081.25 -45 ) ( 1295.25 783.25 -45 ) litfog_volume 16 16 1881.687 39.765625 0 0 lightmap_gray 16384 16384 1881.687 39.765625 0 0
+ ( 1111.25 783.25 971 ) ( 1111.25 1081.25 971 ) ( 1409.25 1081.25 971 ) litfog_volume 16 16 1697.687 39.765625 0 0 lightmap_gray 16384 16384 1697.687 39.765625 0 0
+ ( 1781.75 -2007.5 955 ) ( 2079.75 -2007.5 955 ) ( 2079.75 -2007.5 -2117 ) litfog_volume 16 16 1697.6868 2117 0 0 lightmap_gray 16384 16384 1697.6868 2117 0 0
+ ( 1991 643.5 971 ) ( 1991 941.5 971 ) ( 1991 941.5 -2101 ) litfog_volume 16 16 -39.765625 2101 0 0 lightmap_gray 16384 16384 -39.765625 2101 0 0
+ ( 1383.25 1976.75 771 ) ( 1085.25 1976.75 771 ) ( 1085.25 1976.75 -2301 ) litfog_volume 16 16 1697.6868 2301 0 0 lightmap_gray 16384 16384 1697.6868 2301 0 0
+ ( -1998.75 540.5 971 ) ( -1998.75 242.5 971 ) ( -1998.75 242.5 -2101 ) litfog_volume 16 16 -39.765625 2101 0 0 lightmap_gray 16384 16384 -39.765625 2101 0 0
+}
+}
+// entity 2
+{
+guid "{647DB5E4-22DE-11EC-8240-D43D7E278B2C}"
+"classname" "volume_worldfog"
+"BANK_2" "1"
+"DISABLE_FOG" "0"
+"LIGHTSTATE_3" "0"
+"LIGHTSTATE_4" "0"
+"fsi" "zm_factory_afog"
+"fsi_1" "zm_factory_afog"
+"fsi_2" "zm_apothicon_fury_afog"
+"fsi_3" "zm_factory_afog"
+"fsi_4" "zm_factory_afog"
+"priority" "2"
+"AUTO_PRIORITY" "1"
+"BANK_1" "1"
+"ENABLE_SUN_FOG" "1"
+"LIGHTSTATE_1" "1"
+"LIGHTSTATE_2" "1"
+"fogtime" "1"
+"spawnflags" "14851"
+// brush 0
+{
+ guid "{647DB5E3-22DE-11EC-8240-D43D7E278B2C}"
+ ( 435 -888 -7.5 ) ( 403 -888 -7.5 ) ( 403 -920 -7.5 ) fog 64 64 -1376 1976 0 0 lightmap_gray 16384 16384 -1376 1976 0 0
+ ( 451.5 1920 977.5 ) ( 451.5 1952 977.5 ) ( 483.5 1952 977.5 ) fog 64 64 -1376 -864 0 0 lightmap_gray 16384 16384 -1376 -864 0 0
+ ( 372 -1993.5 16 ) ( 404 -1993.5 16 ) ( 404 -1993.5 0 ) fog 64 64 -1376 1168 0 0 lightmap_gray 16384 16384 -1376 1168 0 0
+ ( 1904 -1080 16 ) ( 1904 -1048 16 ) ( 1904 -1048 0 ) fog 64 64 -2104 1168 0 0 lightmap_gray 16384 16384 -2104 1168 0 0
+ ( 432 1952 800 ) ( 400 1952 800 ) ( 400 1952 784 ) fog 64 64 -1376 384 0 0 lightmap_gray 16384 16384 -1376 384 0 0
+ ( -1900 -932.5 16 ) ( -1900 -964.5 16 ) ( -1900 -964.5 0 ) fog 64 64 -1920 1168 0 0 lightmap_gray 16384 16384 -1920 1168 0 0
+}
+}

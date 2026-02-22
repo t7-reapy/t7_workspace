@@ -1,0 +1,1474 @@
+//---------------------------------
+// Initial test animations
+//---------------------------------
+
+//---------------------------------
+// (Prototype) Real animations
+//---------------------------------
+
+faces : client separate
+{
+	// Death
+	f_death_v1
+	f_death_v2
+	f_death_v3
+	f_death_v4
+	f_death_v5
+	f_death_v6
+	f_death_v7
+	f_death_v8
+	
+	// Single Firing
+	f_firing_v8
+	f_firing_v10
+	f_firing_v11
+	f_firing_v13
+	f_firing_v14
+
+	// Burst Firing
+	f_firing_v2
+	f_firing_v3
+	f_firing_v7
+	f_firing_v9
+	f_firing_v12
+
+	// Idle Alert
+	f_idle_alert_v2
+	f_idle_alert_v4
+	f_idle_alert_v6
+	f_idle_alert_v8
+	f_idle_alert_v9
+	f_idle_alert_v10
+	
+	// CQB
+	f_idle_alert_v1
+	f_idle_alert_v3
+	
+	// Idle Casual
+	f_idle_casual_v1
+	f_idle_casual_v2
+	f_idle_casual_v3
+	
+	// Talk
+	f_im_reloading
+	
+	// Melee
+	f_melee_v1
+	f_melee_v2
+	f_melee_v3
+	f_melee_v4
+	f_melee_v5
+	f_melee_v6
+	f_melee_v7
+	f_melee_v8
+	
+	// Pain
+	f_pain_v1
+	f_pain_v2
+	f_pain_v4
+	f_pain_v5
+	f_pain_v6
+	f_pain_v7
+	
+	// React
+	f_react_v3
+	f_react_v4
+	f_react_v6
+	
+	// Running
+	f_running_v1
+	f_running_v2
+
+	// Cybercom Pain/Death
+	ai_face_male_death_pukey
+	ai_face_male_death_electro_prox
+	ai_face_male_pain_overload
+	ai_face_male_pain_overload_death
+	ai_face_male_pain_wpn_malfunction
+	ai_face_male_pain_immolate_death
+
+  // vehicle ambient anims
+	veh_t7_anim_drone_quadtank_lidar_spin
+	ai_quadtank_mlrs_rocket_doors_open
+	ai_quadtank_mlrs_rocket_doors_close
+	ai_siegebot_base_rocket_doors_open
+	ai_siegebot_base_rocket_doors_close
+	ai_siegebot_base_mp_left_arm_extend
+	ai_siegebot_base_mp_left_arm_retract
+	ai_siegebot_base_mp_left_arm_retracted_pose
+	ai_siegebot_base_mp_right_arm_extend
+	ai_siegebot_base_mp_right_arm_retract
+	ai_siegebot_base_mp_right_arm_retracted_pose
+	veh_t7_mil_boat_fan_blade_spin
+	veh_t7_mil_boat_fan_blade_spin_slow
+	ai_zm_dlc3_russian_mech_heat_vent_l
+	ai_zm_dlc3_russian_mech_heat_vent_r
+	ai_zm_dlc3_sentinel_antenna_twitch
+	ai_zm_dlc3_sentinel_arms_broken_top
+	ai_zm_dlc3_sentinel_arms_broken_left
+	ai_zm_dlc3_sentinel_arms_broken_right
+	ai_zm_dlc3_russian_mech_shoot_gunbarrel
+	
+	// temp facial t7
+	ai_face_male_death_1
+	ai_face_male_aim_idle_1
+	ai_face_male_aim_fire_1
+	ai_face_male_generic_idle_1
+	ai_face_male_death_2
+	ai_face_male_aim_idle_2
+	ai_face_male_aim_fire_2
+	ai_face_male_generic_idle_2
+	ai_face_male_death_3
+	ai_face_male_aim_idle_3
+	ai_face_male_aim_fire_3
+	ai_face_male_generic_idle_3
+	ai_face_male_melee_1
+	ai_face_male_pain_1
+	
+	ai_face_zombie_generic_idle_1
+	ai_face_zombie_generic_attack_1
+	ai_face_zombie_generic_pain_1
+	ai_face_zombie_generic_death_1
+
+	ai_zm_dlc3_face_armored_zombie_generic_idle_1
+
+	//AI ambient animations
+	ai_margwa_head_l_open_add
+	ai_margwa_head_l_closed_add
+	ai_margwa_head_r_open_add
+	ai_margwa_head_r_closed_add
+	ai_margwa_head_m_open_add
+	ai_margwa_head_m_closed_add
+	ai_margwa_head_l_smash_attack_1
+	ai_margwa_head_m_smash_attack_1
+	ai_margwa_head_r_smash_attack_1
+
+	ai_margwa_tentacle_l_01
+	ai_margwa_tentacle_l_02
+	ai_margwa_tentacle_l_03
+	ai_margwa_tentacle_l_04
+	ai_margwa_tentacle_l_05
+	ai_margwa_tentacle_l_06
+	ai_margwa_tentacle_l_07
+	ai_margwa_tentacle_r_01
+	ai_margwa_tentacle_r_02
+	ai_margwa_tentacle_r_03
+	ai_margwa_tentacle_r_04
+	ai_margwa_tentacle_r_05
+	ai_margwa_tentacle_r_06
+	ai_margwa_tentacle_r_07
+
+	ai_margwa_jaw_l_idle_1
+	ai_margwa_jaw_l_idle_pain_body
+	ai_margwa_jaw_l_idle_pain_head_l_explode
+	ai_margwa_jaw_l_idle_pain_head_m_explode
+	ai_margwa_jaw_l_idle_pain_head_r_explode
+	ai_margwa_jaw_l_react_stun
+	ai_margwa_jaw_l_react_idgun
+	ai_margwa_jaw_l_react_idgun_pack
+	ai_margwa_jaw_l_run_charge_f
+	ai_margwa_jaw_l_run_charge_turn_135_l
+	ai_margwa_jaw_l_run_charge_turn_135_r
+	ai_margwa_jaw_l_run_charge_turn_180
+	ai_margwa_jaw_l_run_charge_turn_90_l
+	ai_margwa_jaw_l_run_charge_turn_90_r
+	ai_margwa_jaw_l_run_f
+	ai_margwa_jaw_l_smash_attack_1
+	ai_margwa_jaw_l_swipe
+	ai_margwa_jaw_l_swipe_player
+	ai_margwa_jaw_l_teleport_in
+	ai_margwa_jaw_l_teleport_out
+	ai_margwa_jaw_l_trv_jump_across_256
+	ai_margwa_jaw_l_trv_jump_down_128
+	ai_margwa_jaw_l_trv_jump_down_36
+	ai_margwa_jaw_l_trv_jump_down_96
+	ai_margwa_jaw_l_trv_jump_up_128
+	ai_margwa_jaw_l_trv_jump_up_36
+	ai_margwa_jaw_l_trv_jump_up_96
+	ai_margwa_jaw_l_turn_135_l
+	ai_margwa_jaw_l_turn_135_r
+	ai_margwa_jaw_l_turn_180_l
+	ai_margwa_jaw_l_turn_180_r
+	ai_margwa_jaw_l_turn_90_l
+	ai_margwa_jaw_l_turn_90_r
+
+	ai_margwa_jaw_m_idle_1
+	ai_margwa_jaw_m_idle_pain_body
+	ai_margwa_jaw_m_idle_pain_head_l_explode
+	ai_margwa_jaw_m_idle_pain_head_m_explode
+	ai_margwa_jaw_m_idle_pain_head_r_explode
+	ai_margwa_jaw_m_react_stun
+	ai_margwa_jaw_m_react_idgun
+	ai_margwa_jaw_m_react_idgun_pack
+	ai_margwa_jaw_m_run_charge_f
+	ai_margwa_jaw_m_run_charge_turn_135_l
+	ai_margwa_jaw_m_run_charge_turn_135_r
+	ai_margwa_jaw_m_run_charge_turn_180
+	ai_margwa_jaw_m_run_charge_turn_90_l
+	ai_margwa_jaw_m_run_charge_turn_90_r
+	ai_margwa_jaw_m_run_f
+	ai_margwa_jaw_m_smash_attack_1
+	ai_margwa_jaw_m_swipe
+	ai_margwa_jaw_m_swipe_player
+	ai_margwa_jaw_m_teleport_in
+	ai_margwa_jaw_m_teleport_out
+	ai_margwa_jaw_m_trv_jump_across_256
+	ai_margwa_jaw_m_trv_jump_down_128
+	ai_margwa_jaw_m_trv_jump_down_36
+	ai_margwa_jaw_m_trv_jump_down_96
+	ai_margwa_jaw_m_trv_jump_up_128
+	ai_margwa_jaw_m_trv_jump_up_36
+	ai_margwa_jaw_m_trv_jump_up_96
+	ai_margwa_jaw_m_turn_135_l
+	ai_margwa_jaw_m_turn_135_r
+	ai_margwa_jaw_m_turn_180_l
+	ai_margwa_jaw_m_turn_180_r
+	ai_margwa_jaw_m_turn_90_l
+	ai_margwa_jaw_m_turn_90_r
+
+	ai_margwa_jaw_r_idle_1
+	ai_margwa_jaw_r_idle_pain_body
+	ai_margwa_jaw_r_idle_pain_head_l_explode
+	ai_margwa_jaw_r_idle_pain_head_m_explode
+	ai_margwa_jaw_r_idle_pain_head_r_explode
+	ai_margwa_jaw_r_react_stun
+	ai_margwa_jaw_r_react_idgun
+	ai_margwa_jaw_r_react_idgun_pack
+	ai_margwa_jaw_r_run_charge_f
+	ai_margwa_jaw_r_run_charge_turn_135_l
+	ai_margwa_jaw_r_run_charge_turn_135_r
+	ai_margwa_jaw_r_run_charge_turn_180
+	ai_margwa_jaw_r_run_charge_turn_90_l
+	ai_margwa_jaw_r_run_charge_turn_90_r
+	ai_margwa_jaw_r_run_f
+	ai_margwa_jaw_r_smash_attack_1
+	ai_margwa_jaw_r_swipe
+	ai_margwa_jaw_r_swipe_player
+	ai_margwa_jaw_r_teleport_in
+	ai_margwa_jaw_r_teleport_out
+	ai_margwa_jaw_r_trv_jump_across_256
+	ai_margwa_jaw_r_trv_jump_down_128
+	ai_margwa_jaw_r_trv_jump_down_36
+	ai_margwa_jaw_r_trv_jump_down_96
+	ai_margwa_jaw_r_trv_jump_up_128
+	ai_margwa_jaw_r_trv_jump_up_36
+	ai_margwa_jaw_r_trv_jump_up_96
+	ai_margwa_jaw_r_turn_135_l
+	ai_margwa_jaw_r_turn_135_r
+	ai_margwa_jaw_r_turn_180_l
+	ai_margwa_jaw_r_turn_180_r
+	ai_margwa_jaw_r_turn_90_l
+	ai_margwa_jaw_r_turn_90_r
+	ai_zm_dlc3_armored_zombie_mangler_spin_delta3d
+	
+	ai_zm_dlc4_chomper_shadow_margwa_projectile
+}
+
+body
+{
+	scripted
+	{
+		//cp_proto_narrative
+		headlook_left : additive
+		{
+			p_t7_01_02_intro_idle_look_left_player
+		}
+		
+		headlook_right : additive
+		{
+			p_t7_01_02_intro_idle_look_right_player
+		}
+		
+		headlook_up : additive
+		{
+			p_t7_01_02_intro_idle_look_up_player
+		}
+		
+		headlook_down : additive
+		{
+			p_t7_01_02_intro_idle_look_down_player
+		}
+		
+		p_t7_01_02_intro_player_reach_table_player
+		p_t7_01_02_intro_idle_player
+		p_t7_01_01_intro_swing_l_pose
+		p_t7_01_01_intro_swing_r_pose
+		p_t7_01_02_intro_situp_start
+		p_t7_01_02_intro_situp_fail
+		p_t7_01_02_intro_situp_hold
+		p_t7_01_03_intro_player_attack_a
+		p_t7_01_03_intro_player_idle_a
+		p_t7_01_03_intro_player_cut_free_b
+		p_t7_01_03_intro_player_idle_b
+		p_t7_01_04_intro_take_shiv_player
+		p_t7_01_04_intro_hold_shiv_idle_player
+		p_t7_01_04_intro_hold_shiv_reach_feet_player
+		p_t7_01_04_intro_hold_shiv_idle_feet_player
+		p_t7_01_04_intro_cut_loose_player
+
+		// for cp_moving_platform_test
+		ch_lot_12_01_minigun_vign_invade_robot01
+
+
+		//////////////////////////////////////////////////////////
+		//DOA2
+		ai_zombie_boss_enrage_start
+		ai_wrlrd_stn_combat_doa_plant_mine
+		ai_zombie_doa_simianaut_chestbeat
+		ai_zombie_doa_simianaut_taunt
+		ai_zombie_doa_simianaut_attack_v1
+		ai_zombie_doa_simianaut_ground_pound
+		ai_zombie_doa_simianaut_attack_swing_overhead
+		ai_zombie_doa_simianaut_mech_idle
+		ai_zombie_doa_simianaut_mech_idle_taunt
+		ai_zombie_doa_simianaut_mech_idle_eject		
+		ch_ram_05_02_block_nrc_vign_cheering_d_loop
+		ch_new_06_01_chase_vign_sitting_civs_right_civ01_loop
+		ai_civ_base_alert_stn_idle_twitch_02
+		ai_civ_base_cover_stn_pointidle
+		ai_civ_base_standidle_officer
+		ai_zombie_base_idle_ad_v1
+		ai_zombie_base_idle_au_v1
+		bo3_ai_zombie_attack_v1
+		bo3_ai_zombie_attack_v2
+		bo3_ai_zombie_attack_v3
+		bo3_ai_zombie_attack_v4
+		bo3_ai_zombie_attack_v6
+		ai_zombie_doa_cheer_v1
+		ai_zombie_doa_cheer_v2
+		ai_zombie_doa_cheer_v3
+		//////////////////////////////////////////////////////////
+
+		//Zombies
+		ai_zombie_traverse_ground_v1_walk
+		ai_zombie_traverse_ground_v2_walk_altA
+		ai_zombie_traverse_ground_v1_run
+		ai_zombie_traverse_ground_climbout_fast
+
+		ai_zm_dlc2_zombie_quick_rise_v1
+		ai_zm_dlc2_zombie_quick_rise_v2
+		ai_zm_dlc2_zombie_quick_rise_v3
+
+		ai_zombie_window_attack_arm_l_out
+		ai_zombie_window_attack_arm_r_out
+
+		ai_zombie_taunts_4
+		ai_zombie_taunts_7
+		ai_zombie_taunts_9
+		ai_zombie_taunts_5b
+		ai_zombie_taunts_5c
+		ai_zombie_taunts_5d
+		ai_zombie_taunts_5e
+		ai_zombie_taunts_5f
+
+		ai_zombie_boardtear_aligned_m_1_grab
+		ai_zombie_boardtear_aligned_m_2_grab
+		ai_zombie_boardtear_aligned_m_3_grab
+		ai_zombie_boardtear_aligned_m_4_grab
+		ai_zombie_boardtear_aligned_m_5_grab
+		ai_zombie_boardtear_aligned_m_6_grab
+		ai_zombie_boardtear_aligned_r_1_grab
+		ai_zombie_boardtear_aligned_r_2_grab
+		ai_zombie_boardtear_aligned_r_3_grab
+		ai_zombie_boardtear_aligned_r_4_grab
+		ai_zombie_boardtear_aligned_r_5_grab
+		ai_zombie_boardtear_aligned_r_6_grab
+		ai_zombie_boardtear_aligned_l_1_grab
+		ai_zombie_boardtear_aligned_l_2_grab
+		ai_zombie_boardtear_aligned_l_3_grab
+		ai_zombie_boardtear_aligned_l_4_grab
+		ai_zombie_boardtear_aligned_l_5_grab
+		ai_zombie_boardtear_aligned_l_6_grab
+
+		ai_zombie_boardtear_aligned_m_1_hold
+		ai_zombie_boardtear_aligned_m_2_hold
+		ai_zombie_boardtear_aligned_m_3_hold
+		ai_zombie_boardtear_aligned_m_4_hold
+		ai_zombie_boardtear_aligned_m_5_hold
+		ai_zombie_boardtear_aligned_m_6_hold
+		ai_zombie_boardtear_aligned_r_1_hold
+		ai_zombie_boardtear_aligned_r_2_hold
+		ai_zombie_boardtear_aligned_r_3_hold
+		ai_zombie_boardtear_aligned_r_4_hold
+		ai_zombie_boardtear_aligned_r_5_hold
+		ai_zombie_boardtear_aligned_r_6_hold
+		ai_zombie_boardtear_aligned_l_1_hold
+		ai_zombie_boardtear_aligned_l_2_hold
+		ai_zombie_boardtear_aligned_l_3_hold
+		ai_zombie_boardtear_aligned_l_4_hold
+		ai_zombie_boardtear_aligned_l_5_hold
+		ai_zombie_boardtear_aligned_l_6_hold
+
+		ai_zombie_boardtear_aligned_m_1_pull
+		ai_zombie_boardtear_aligned_m_2_pull
+		ai_zombie_boardtear_aligned_m_3_pull
+		ai_zombie_boardtear_aligned_m_4_pull
+		ai_zombie_boardtear_aligned_m_5_pull
+		ai_zombie_boardtear_aligned_m_6_pull
+		ai_zombie_boardtear_aligned_r_1_pull
+		ai_zombie_boardtear_aligned_r_2_pull
+		ai_zombie_boardtear_aligned_r_3_pull
+		ai_zombie_boardtear_aligned_r_4_pull
+		ai_zombie_boardtear_aligned_r_5_pull
+		ai_zombie_boardtear_aligned_r_6_pull
+		ai_zombie_boardtear_aligned_l_1_pull
+		ai_zombie_boardtear_aligned_l_2_pull
+		ai_zombie_boardtear_aligned_l_3_pull
+		ai_zombie_boardtear_aligned_l_4_pull
+		ai_zombie_boardtear_aligned_l_5_pull
+		ai_zombie_boardtear_aligned_l_6_pull
+
+		ai_zombie_crawl_boardtear_aligned_m_1_grab
+		ai_zombie_crawl_boardtear_aligned_m_2_grab
+		ai_zombie_crawl_boardtear_aligned_m_3_grab
+		ai_zombie_crawl_boardtear_aligned_m_4_grab
+		ai_zombie_crawl_boardtear_aligned_m_5_grab
+		ai_zombie_crawl_boardtear_aligned_m_6_grab
+		ai_zombie_crawl_boardtear_aligned_r_1_grab
+		ai_zombie_crawl_boardtear_aligned_r_2_grab
+		ai_zombie_crawl_boardtear_aligned_r_3_grab
+		ai_zombie_crawl_boardtear_aligned_r_4_grab
+		ai_zombie_crawl_boardtear_aligned_r_5_grab
+		ai_zombie_crawl_boardtear_aligned_r_6_grab
+		ai_zombie_crawl_boardtear_aligned_l_1_grab
+		ai_zombie_crawl_boardtear_aligned_l_2_grab
+		ai_zombie_crawl_boardtear_aligned_l_3_grab
+		ai_zombie_crawl_boardtear_aligned_l_4_grab
+		ai_zombie_crawl_boardtear_aligned_l_5_grab
+		ai_zombie_crawl_boardtear_aligned_l_6_grab
+
+		ai_zombie_crawl_boardtear_aligned_m_1_hold
+		ai_zombie_crawl_boardtear_aligned_m_2_hold
+		ai_zombie_crawl_boardtear_aligned_m_3_hold
+		ai_zombie_crawl_boardtear_aligned_m_4_hold
+		ai_zombie_crawl_boardtear_aligned_m_5_hold
+		ai_zombie_crawl_boardtear_aligned_m_6_hold
+		ai_zombie_crawl_boardtear_aligned_r_1_hold
+		ai_zombie_crawl_boardtear_aligned_r_2_hold
+		ai_zombie_crawl_boardtear_aligned_r_3_hold
+		ai_zombie_crawl_boardtear_aligned_r_4_hold
+		ai_zombie_crawl_boardtear_aligned_r_5_hold
+		ai_zombie_crawl_boardtear_aligned_r_6_hold
+		ai_zombie_crawl_boardtear_aligned_l_1_hold
+		ai_zombie_crawl_boardtear_aligned_l_2_hold
+		ai_zombie_crawl_boardtear_aligned_l_3_hold
+		ai_zombie_crawl_boardtear_aligned_l_4_hold
+		ai_zombie_crawl_boardtear_aligned_l_5_hold
+		ai_zombie_crawl_boardtear_aligned_l_6_hold
+
+		ai_zombie_crawl_boardtear_aligned_m_1_pull
+		ai_zombie_crawl_boardtear_aligned_m_2_pull
+		ai_zombie_crawl_boardtear_aligned_m_3_pull
+		ai_zombie_crawl_boardtear_aligned_m_4_pull
+		ai_zombie_crawl_boardtear_aligned_m_5_pull
+		ai_zombie_crawl_boardtear_aligned_m_6_pull
+		ai_zombie_crawl_boardtear_aligned_r_1_pull
+		ai_zombie_crawl_boardtear_aligned_r_2_pull
+		ai_zombie_crawl_boardtear_aligned_r_3_pull
+		ai_zombie_crawl_boardtear_aligned_r_4_pull
+		ai_zombie_crawl_boardtear_aligned_r_5_pull
+		ai_zombie_crawl_boardtear_aligned_r_6_pull
+		ai_zombie_crawl_boardtear_aligned_l_1_pull
+		ai_zombie_crawl_boardtear_aligned_l_2_pull
+		ai_zombie_crawl_boardtear_aligned_l_3_pull
+		ai_zombie_crawl_boardtear_aligned_l_4_pull
+		ai_zombie_crawl_boardtear_aligned_l_5_pull
+		ai_zombie_crawl_boardtear_aligned_l_6_pull
+
+		ai_zombie_barricade_enter_m_v1
+		ai_zombie_barricade_enter_m_v2
+		ai_zombie_barricade_enter_m_v5
+		ai_zombie_barricade_enter_m_v6
+		ai_zombie_barricade_enter_m_v7
+
+		ai_zombie_barricade_enter_r
+		ai_zombie_barricade_enter_run_r
+		ai_zombie_barricade_enter_sprint_r
+
+		ai_zombie_barricade_enter_l
+		ai_zombie_barricade_enter_run_l
+		ai_zombie_barricade_enter_sprint_l
+
+		ai_zombie_barricade_enter_m_nolegs
+		ai_zombie_barricade_enter_m_v4
+		//ai_zombie_barricade_enter_m_nolegs
+		//ai_zombie_barricade_enter_m_nolegs
+
+		ai_zombie_crawl_barricade_enter_r
+		ai_zombie_crawl_barricade_enter_run_r
+		ai_zombie_crawl_barricade_enter_sprint_r
+
+		ai_zombie_crawl_barricade_enter_l
+		ai_zombie_crawl_barricade_enter_run_l
+		ai_zombie_crawl_barricade_enter_sprint_l
+		
+		//jump_pad
+		ai_zm_dlc1_rifle_jump_pad_air_loop
+		ai_zm_dlc1_rifle_jump_pad_air_in
+		
+		//Elemental
+		ai_zombie_zod_insanity_elemental_idle
+		ai_zombie_zod_raps_dth_f_id_gun_crush
+		
+		//cybercom
+		ai_base_rifle_crc_exposed_cybercom_activate
+		ai_base_rifle_stn_exposed_cybercom_activate		
+		ai_robot_base_stn_exposed_pain_juiced_ammo
+		ai_robot_base_stn_shutdown
+		ai_robot_base_stn_shutdown_2_alert
+		ai_robot_base_stn_shutdown_idle
+		ai_robot_base_crc_shutdown
+		ai_robot_base_crc_shutdown_2_alert
+		ai_robot_base_crc_shutdown_idle
+
+
+		//exosuit breakdown
+		ai_base_rifle_crc_exposed_suit_overload_react_intro
+		ai_base_rifle_crc_exposed_suit_overload_react_intro_1
+		ai_base_rifle_crc_exposed_suit_overload_react_intro_2
+		ai_base_rifle_crc_exposed_suit_overload_react_outro
+		ai_base_rifle_crc_exposed_suit_overload_react_outro_1
+		ai_base_rifle_crc_exposed_suit_overload_react_outro_2
+		ai_fem_rifle_crc_exposed_suit_overload_react_intro
+		ai_fem_rifle_crc_exposed_suit_overload_react_intro_1
+		ai_fem_rifle_crc_exposed_suit_overload_react_intro_2
+		ai_fem_rifle_crc_exposed_suit_overload_react_outro
+		ai_fem_rifle_crc_exposed_suit_overload_react_outro_1
+		ai_fem_rifle_crc_exposed_suit_overload_react_outro_2
+
+		ai_base_rifle_stn_exposed_suit_overload_react_intro
+		ai_base_rifle_stn_exposed_suit_overload_react_intro_1
+		ai_base_rifle_stn_exposed_suit_overload_react_intro_2
+		ai_base_rifle_stn_exposed_suit_overload_react_intro_3
+		ai_base_rifle_stn_exposed_suit_overload_react_intro_4
+		ai_base_rifle_stn_exposed_suit_overload_react_intro_5
+		ai_base_rifle_stn_exposed_suit_overload_react_intro_6
+		ai_base_rifle_stn_exposed_suit_overload_react_intro_7
+		ai_base_rifle_stn_exposed_suit_overload_react_intro_8
+		ai_base_rifle_stn_exposed_suit_overload_react_outro
+		ai_base_rifle_stn_exposed_suit_overload_react_outro_1
+		ai_base_rifle_stn_exposed_suit_overload_react_outro_2
+		ai_base_rifle_stn_exposed_suit_overload_react_outro_3
+		ai_base_rifle_stn_exposed_suit_overload_react_outro_4
+		ai_base_rifle_stn_exposed_suit_overload_react_outro_5
+		ai_base_rifle_stn_exposed_suit_overload_react_outro_6
+		ai_base_rifle_stn_exposed_suit_overload_react_outro_7
+		ai_base_rifle_stn_exposed_suit_overload_react_outro_8
+		ai_fem_rifle_stn_exposed_suit_overload_react_intro
+		ai_fem_rifle_stn_exposed_suit_overload_react_intro_1
+		ai_fem_rifle_stn_exposed_suit_overload_react_intro_2
+		ai_fem_rifle_stn_exposed_suit_overload_react_intro_3
+		ai_fem_rifle_stn_exposed_suit_overload_react_intro_4
+		ai_fem_rifle_stn_exposed_suit_overload_react_intro_5
+		ai_fem_rifle_stn_exposed_suit_overload_react_intro_6
+		ai_fem_rifle_stn_exposed_suit_overload_react_intro_7
+		ai_fem_rifle_stn_exposed_suit_overload_react_intro_8
+		ai_fem_rifle_stn_exposed_suit_overload_react_outro
+		ai_fem_rifle_stn_exposed_suit_overload_react_outro_1
+		ai_fem_rifle_stn_exposed_suit_overload_react_outro_2
+		ai_fem_rifle_stn_exposed_suit_overload_react_outro_3
+		ai_fem_rifle_stn_exposed_suit_overload_react_outro_4
+		ai_fem_rifle_stn_exposed_suit_overload_react_outro_5
+		ai_fem_rifle_stn_exposed_suit_overload_react_outro_6
+		ai_fem_rifle_stn_exposed_suit_overload_react_outro_7
+		ai_fem_rifle_stn_exposed_suit_overload_react_outro_8
+		
+		ai_riotshield_stn_exposed_suit_overload_react_intro
+		ai_riotshield_stn_exposed_suit_overload_react_loop
+		ai_riotshield_stn_exposed_suit_overload_react_outro
+	
+		ai_riotshield_stn_exposed_suit_overload_react_intro_1
+		ai_riotshield_stn_exposed_suit_overload_react_loop_1
+		ai_riotshield_stn_exposed_suit_overload_react_outro_1
+
+		ai_riotshield_stn_exposed_suit_overload_react_intro_2
+		ai_riotshield_stn_exposed_suit_overload_react_loop_2
+		ai_riotshield_stn_exposed_suit_overload_react_outro_2
+
+
+		//sensory overload		
+		ai_base_rifle_crc_exposed_sens_overload_react_intro
+		ai_base_rifle_crc_exposed_sens_overload_react_intro_1
+		ai_base_rifle_crc_exposed_sens_overload_react_intro_2
+		ai_base_rifle_crc_exposed_sens_overload_react_loop
+		ai_base_rifle_crc_exposed_sens_overload_react_loop_1
+		ai_base_rifle_crc_exposed_sens_overload_react_loop_2
+		ai_base_rifle_crc_exposed_sens_overload_react_outro
+		ai_base_rifle_crc_exposed_sens_overload_react_outro_1
+		ai_base_rifle_crc_exposed_sens_overload_react_outro_2
+
+		ai_base_rifle_stn_exposed_sens_overload_react_intro
+		ai_base_rifle_stn_exposed_sens_overload_react_intro_1
+		ai_base_rifle_stn_exposed_sens_overload_react_intro_2
+		ai_base_rifle_stn_exposed_sens_overload_react_intro_3
+		ai_base_rifle_stn_exposed_sens_overload_react_intro_4
+		ai_base_rifle_stn_exposed_sens_overload_react_intro_5
+		ai_base_rifle_stn_exposed_sens_overload_react_intro_6
+		ai_base_rifle_stn_exposed_sens_overload_react_intro_7
+		ai_base_rifle_stn_exposed_sens_overload_react_intro_8
+		ai_base_rifle_stn_exposed_sens_overload_react_loop
+		ai_base_rifle_stn_exposed_sens_overload_react_loop_1
+		ai_base_rifle_stn_exposed_sens_overload_react_loop_2
+		ai_base_rifle_stn_exposed_sens_overload_react_loop_3
+		ai_base_rifle_stn_exposed_sens_overload_react_loop_4
+		ai_base_rifle_stn_exposed_sens_overload_react_loop_5
+		ai_base_rifle_stn_exposed_sens_overload_react_loop_6
+		ai_base_rifle_stn_exposed_sens_overload_react_loop_7
+		ai_base_rifle_stn_exposed_sens_overload_react_loop_8
+		ai_base_rifle_stn_exposed_sens_overload_react_outro
+		ai_base_rifle_stn_exposed_sens_overload_react_outro_1
+		ai_base_rifle_stn_exposed_sens_overload_react_outro_2
+		ai_base_rifle_stn_exposed_sens_overload_react_outro_3
+		ai_base_rifle_stn_exposed_sens_overload_react_outro_4
+		ai_base_rifle_stn_exposed_sens_overload_react_outro_5
+		ai_base_rifle_stn_exposed_sens_overload_react_outro_6
+		ai_base_rifle_stn_exposed_sens_overload_react_outro_7
+		ai_base_rifle_stn_exposed_sens_overload_react_outro_8
+
+		ai_fem_rifle_crc_exposed_sens_overload_react_intro
+		ai_fem_rifle_crc_exposed_sens_overload_react_intro_1
+		ai_fem_rifle_crc_exposed_sens_overload_react_intro_2
+		ai_fem_rifle_crc_exposed_sens_overload_react_loop
+		ai_fem_rifle_crc_exposed_sens_overload_react_loop_1
+		ai_fem_rifle_crc_exposed_sens_overload_react_loop_2
+		ai_fem_rifle_crc_exposed_sens_overload_react_outro
+		ai_fem_rifle_crc_exposed_sens_overload_react_outro_1
+		ai_fem_rifle_crc_exposed_sens_overload_react_outro_2
+
+		ai_fem_rifle_stn_exposed_sens_overload_react_intro
+		ai_fem_rifle_stn_exposed_sens_overload_react_intro_1
+		ai_fem_rifle_stn_exposed_sens_overload_react_intro_2
+		ai_fem_rifle_stn_exposed_sens_overload_react_intro_3
+		ai_fem_rifle_stn_exposed_sens_overload_react_intro_4
+		ai_fem_rifle_stn_exposed_sens_overload_react_intro_5
+		ai_fem_rifle_stn_exposed_sens_overload_react_intro_6
+		ai_fem_rifle_stn_exposed_sens_overload_react_intro_7
+		ai_fem_rifle_stn_exposed_sens_overload_react_intro_8
+		ai_fem_rifle_stn_exposed_sens_overload_react_loop
+		ai_fem_rifle_stn_exposed_sens_overload_react_loop_1
+		ai_fem_rifle_stn_exposed_sens_overload_react_loop_2
+		ai_fem_rifle_stn_exposed_sens_overload_react_loop_3
+		ai_fem_rifle_stn_exposed_sens_overload_react_loop_4
+		ai_fem_rifle_stn_exposed_sens_overload_react_loop_5
+		ai_fem_rifle_stn_exposed_sens_overload_react_loop_6
+		ai_fem_rifle_stn_exposed_sens_overload_react_loop_7
+		ai_fem_rifle_stn_exposed_sens_overload_react_loop_8
+		ai_fem_rifle_stn_exposed_sens_overload_react_outro
+		ai_fem_rifle_stn_exposed_sens_overload_react_outro_1
+		ai_fem_rifle_stn_exposed_sens_overload_react_outro_2
+		ai_fem_rifle_stn_exposed_sens_overload_react_outro_3
+		ai_fem_rifle_stn_exposed_sens_overload_react_outro_4
+		ai_fem_rifle_stn_exposed_sens_overload_react_outro_5
+		ai_fem_rifle_stn_exposed_sens_overload_react_outro_6
+		ai_fem_rifle_stn_exposed_sens_overload_react_outro_7
+		ai_fem_rifle_stn_exposed_sens_overload_react_outro_8
+		
+		//forced malfunction
+		ai_base_rifle_stn_exposed_rifle_malfunction
+		ai_base_rifle_stn_exposed_rifle_malfunction_1
+		ai_base_rifle_stn_exposed_rifle_malfunction_2
+		ai_base_rifle_stn_exposed_rifle_malfunction_3
+		ai_base_rifle_stn_exposed_rifle_malfunction_4
+		ai_base_rifle_stn_exposed_rifle_malfunction_5
+		ai_base_rifle_crc_exposed_rifle_malfunction
+		ai_base_rifle_crc_exposed_rifle_malfunction_1
+		ai_base_rifle_crc_exposed_rifle_malfunction_2
+		ai_base_rifle_crc_exposed_rifle_malfunction_3
+		ai_base_rifle_crc_exposed_rifle_malfunction_4
+		ai_base_rifle_crc_exposed_rifle_malfunction_5
+		ai_fem_rifle_stn_exposed_rifle_malfunction
+		ai_fem_rifle_stn_exposed_rifle_malfunction_1
+		ai_fem_rifle_stn_exposed_rifle_malfunction_2
+		ai_fem_rifle_stn_exposed_rifle_malfunction_3
+		ai_fem_rifle_crc_exposed_rifle_malfunction	
+		ai_fem_rifle_crc_exposed_rifle_malfunction_1
+		ai_fem_rifle_crc_exposed_rifle_malfunction_2
+		ai_fem_rifle_crc_exposed_rifle_malfunction_3
+		ai_riotshield_crc_exposed_rifle_malfunction
+		ai_riotshield_crc_exposed_rifle_malfunction_1
+		ai_riotshield_crc_exposed_rifle_malfunction_2
+		ai_riotshield_stn_exposed_rifle_malfunction
+		ai_riotshield_stn_exposed_rifle_malfunction_1
+		ai_riotshield_stn_exposed_rifle_malfunction_2 
+
+		//firefly		
+		ai_base_rifle_crc_exposed_swarm_react_intro
+		ai_base_rifle_crc_exposed_swarm_react_intro_1
+		ai_base_rifle_crc_exposed_swarm_react_intro_2
+		ai_base_rifle_crc_exposed_swarm_react_outro
+		ai_base_rifle_crc_exposed_swarm_react_outro_1
+		ai_base_rifle_crc_exposed_swarm_react_outro_2
+		ai_base_rifle_stn_exposed_swarm_react_intro
+		ai_base_rifle_stn_exposed_swarm_react_intro_1
+		ai_base_rifle_stn_exposed_swarm_react_intro_2
+		ai_base_rifle_stn_exposed_swarm_react_outro
+		ai_base_rifle_stn_exposed_swarm_react_outro_1
+		ai_base_rifle_stn_exposed_swarm_react_outro_2
+
+		ai_fem_rifle_crc_exposed_swarm_react_intro
+		ai_fem_rifle_crc_exposed_swarm_react_intro_1
+		ai_fem_rifle_crc_exposed_swarm_react_intro_2
+		ai_fem_rifle_crc_exposed_swarm_react_outro
+		ai_fem_rifle_crc_exposed_swarm_react_outro_1
+		ai_fem_rifle_crc_exposed_swarm_react_outro_2
+		ai_fem_rifle_stn_exposed_swarm_react_intro
+		ai_fem_rifle_stn_exposed_swarm_react_intro_1
+		ai_fem_rifle_stn_exposed_swarm_react_intro_2
+		ai_fem_rifle_stn_exposed_swarm_react_outro
+		ai_fem_rifle_stn_exposed_swarm_react_outro_1
+		ai_fem_rifle_stn_exposed_swarm_react_outro_2
+		//firebug		
+		ai_base_rifle_crc_exposed_swarm_upg_react_intro
+		ai_base_rifle_crc_exposed_swarm_upg_react_intro_1
+		ai_base_rifle_crc_exposed_swarm_upg_react_intro_2
+		ai_base_rifle_stn_exposed_swarm_upg_react_intro
+		ai_base_rifle_stn_exposed_swarm_upg_react_intro_1
+		ai_base_rifle_stn_exposed_swarm_upg_react_intro_2
+		ai_riotshield_crc_exposed_swarm_upg_react_intro
+		ai_riotshield_crc_exposed_swarm_upg_react_intro_1
+		ai_riotshield_crc_exposed_swarm_upg_react_intro_2
+		ai_riotshield_stn_exposed_swarm_upg_react_intro
+		ai_riotshield_stn_exposed_swarm_upg_react_intro_1
+		ai_riotshield_stn_exposed_swarm_upg_react_intro_2
+		ai_fem_rifle_crc_exposed_swarm_upg_react_intro
+		ai_fem_rifle_crc_exposed_swarm_upg_react_intro_1
+		ai_fem_rifle_crc_exposed_swarm_upg_react_intro_2
+		ai_fem_rifle_stn_exposed_swarm_upg_react_intro
+		ai_fem_rifle_stn_exposed_swarm_upg_react_intro_1
+		ai_fem_rifle_stn_exposed_swarm_upg_react_intro_2
+		
+
+		//immolation
+		ai_base_rifle_stn_exposed_immolate_explode_midthrow
+
+		//aquifer
+		ch_ram_03_02_defend_vign_last_stand_loop_guy01
+		
+		//epic taunt props
+		t7_loot_taunt_e_spectre_ext_03
+		t7_loot_taunt_e_nomad_ext_03
+	}
+}
+
+
+///////////////////////////////////////////////////////////////////////////////////
+/* Taken from vehicles.atr
+*/
+//////////////////////////////////////////////////////////////////////////////////
+vehicles
+{
+	blackhawk_vehicle
+	{
+		v_crew_blackhawk_hover_idle
+		v_crew_blackhawk_unload
+	}
+	
+	claw_vehicle
+	{
+		int_claw_idle
+		int_claw_stun_fall_b
+		int_claw_turn_l
+		int_claw_turn_r
+		int_claw_walk_f
+		int_claw_walk_b
+		int_claw_walk_limp_f
+		ai_claw_mk2_stun_fall_l
+		
+		ai_claw_mk2_warmode_touchdown
+	}
+	
+	cobra_vehicle
+	{
+		cobra_copilot_idle
+		cobra_copilot_idle_l
+		cobra_copilot_idle_r	
+	}
+	
+	cougar_player_vehicle : client
+	{
+		v_la_04_01_drive_leftturn_cougar
+	}
+	
+	gaz_vehicle
+	{
+		v_gaz_tigr_driver_door_enter
+		v_gaz_tigr_passenger_door_enter
+		v_gaz_tigr_rear_door_enter
+		v_gaz_tigr_driver_door_exit
+		v_gaz_tigr_passenger_door_exit
+		v_gaz_tigr_rear_door_exit
+		
+		v_gaz63_driver_door_open
+		v_gaz63_passenger_door_open	
+	}
+	
+	horse_vehicle
+	{
+		// horse
+		v_horse_idle1
+		v_horse_idle2
+		v_horse_run_forward
+		v_horse_run_left
+		v_horse_run_right
+		v_horse_sprint_forward
+		v_horse_sprint_left
+		v_horse_sprint_right
+		v_horse_walk_forward
+		v_horse_walk_left
+		v_horse_walk_right
+		v_horse_jump
+		v_horse_pullback
+		
+		// Neversoft Horse
+		ai_horse_idle
+		ai_horse_idle_turn_l
+		ai_horse_idle_turn_r
+		ai_horse_idle_graze
+		ai_horse_jump_takeoff
+		ai_horse_jump_land
+		
+		ai_horse_walk_b
+		ai_horse_walk_f
+		ai_horse_trot_f
+		ai_horse_run_f
+		ai_horse_sprint_f
+		
+		ai_horse_run_f_lean_l
+		ai_horse_run_f_lean_r
+		ai_horse_walk_f_lean_l
+		ai_horse_walk_f_lean_r
+		ai_horse_sprint_f_lean_l
+		ai_horse_sprint_f_lean_r
+		ai_horse_trot_f_lean_l
+		ai_horse_trot_f_lean_r	
+	}
+	
+	jetwing_vehicle
+	{
+		v_crew_jetpack_flight_idle
+		v_crew_vtol_1_jetpack
+		v_crew_vtol_2_jetpack
+		v_crew_vtol_3_jetpack
+		v_crew_vtol_4_jetpack
+		v_crew_vtol_5_jetpack
+		v_crew_vtol_6_jetpack	
+	}	
+	
+	metalstorm_vehicle
+	{
+		o_drone_tank_missile_fire_sp
+	}
+	
+	mi8_hip_vehicle
+	{
+		v_mi8_hip_hover_idle
+		v_mi8_hip_backdoor_open
+	}
+	
+	motorcycle_player_vehicle
+	{
+		player_motorcycle_left_arm
+		{
+			player_motorcycle_drive_left_arm
+			{
+				int_bike_m72_drive_turn_left2right_L
+				int_bike_m72_drive_turn_right2left_L
+			}
+	
+			player_motorcycle_shoot_left_arm
+			{
+				int_bike_m72_gun_fire
+				int_bike_m72_gun_idle
+				
+				player_motorcycle_gun_pullout_root
+				{
+					int_bike_m72_gun_pullout_L
+					int_bike_m72_gun_pullout
+					int_bike_m72_gun_pullout_R
+				}
+				
+				player_motorcycle_gun_putaway_root
+				{
+					int_bike_m72_gun_putaway_L
+					int_bike_m72_gun_putaway
+					int_bike_m72_gun_putaway_R
+				}
+				
+				int_bike_m72_gun_reload
+				int_bike_m72_gun_rechamber
+			}
+		}
+			
+		player_motorcycle_right_arm
+		{
+			int_bike_m72_drive_turn_left2right_R
+			int_bike_m72_drive_turn_right2left_R
+		}
+		
+		police_car_vehicle
+		{
+			v_police_driver_door_open
+			v_police_passenger_door_open
+			v_crew_police_car_driver_door
+			v_crew_police_car_passenger_door
+			v_police_car_driver_door_open_to_windowguard
+			v_police_car_passenger_door_open_to_windowguard		
+		}
+	
+	    motorcycle_shotgun
+	    {
+	        viewmodel_bike_m72_shotgun_fire
+	        viewmodel_bike_m72_shotgun_last_fire
+	        viewmodel_bike_m72_shotgun_reload
+			viewmodel_bike_m72_shotgun_rechamber
+	    }
+	
+		player_motorcycle_drive_throttle_add : additive
+		{
+			int_bike_m72_drive_throttle
+		}
+		
+		player_motorcycle_drive_throttle_add_left : additive
+		{
+			int_bike_m72_drive_throttle_left
+		}
+		
+		player_motorcycle_drive_throttle_add_right : additive
+		{
+			int_bike_m72_drive_throttle_right
+		}
+	
+	}	
+	
+	osprey_vehicle
+	{
+		v_vtol_doors_open
+		v_vtol_doors_close
+		v_vtol_hover_idle	
+		v_vtol_flight_idle
+		v_vtol_gear_up
+		v_vtol_gear_down
+	
+		osprey_engine : client
+		{
+			veh_anim_v78_vtol_engine_left
+			veh_anim_v78_vtol_engine_right
+		}
+	}
+
+	pavelow_vehicle
+	{
+		v_crew_pavelow_doors_open	
+		v_crew_pavelow_doors_close
+	}
+	
+	pickup_vehicle
+	{
+		v_crew_pickup_truck_left_frontdoor_open
+		v_crew_pickup_truck_right_frontdoor_open
+		v_crew_pickup_truck_driver_door_enter
+	}
+	
+	soct_vehicle : client
+	{
+		v_soct_wheels_up
+		v_soct_wheels_down
+	}	
+	
+	spiderbot_vehicle
+	{
+		ai_spider_walk_b
+		ai_spider_walk_f
+		ai_spider_run_f
+		ai_spider_sprint_f
+		ai_spider_idle_turn_l
+		ai_spider_idle_turn_r
+		ai_spider_idle
+		ai_spider_strafe_l
+		ai_spider_strafe_r
+		ai_spider_strafe_run_l
+		ai_spider_strafe_run_r
+	}
+	
+	// super car
+	sportscar_vehicle : client
+	{
+		v_steering_sportscar
+	}
+	
+	uaz_vehicle
+	{
+		v_uaz_driver_door_open
+		v_uaz_passenger_door_open
+		v_uaz_passenger2_door_open
+		v_uaz_passenger3_door_open	
+	}
+	
+	van_vehicle
+	{
+		v_crew_van_left_backdoor_open
+		v_crew_van_left_frontdoor_open
+		v_crew_van_left_slidingdoor_open
+		v_crew_van_right_backdoor_open
+		v_crew_van_right_frontdoor_open
+		v_crew_van_right_slidingdoor_open	
+	}
+	
+	veh_car_destroy
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+/* Taken from turret.atr
+*/
+//////////////////////////////////////////////////////////////////////////////////
+
+turret
+{
+	additive_idle
+	{
+		saw_gunner_idle_mg
+		saw_gunner_lowwall_idle_mg
+		saw_gunner_prone_idle_mg
+	}
+	
+	additive_fire
+	{
+		saw_gunner_firing_mg_add
+		saw_gunner_lowwall_firing_mg
+		saw_gunner_prone_firing_mg
+	}	
+}
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+/* LEVELS */
+//////////////////////////////////////////////////////////////////////////////////
+
+core_frontend
+{
+	o_loot_crate_open
+	o_loot_crate_idle
+	
+	o_black_marketeer_tumbler_1st_time_greeting_01
+	o_black_marketeer_pistol_1st_time_greeting_01
+	
+	o_black_marketeer_tumbler_greeting_00
+	o_black_marketeer_tumbler_greeting_01
+	o_black_marketeer_tumbler_greeting_02
+	o_black_marketeer_tumbler_greeting_03
+	o_black_marketeer_tumbler_greeting_04
+	o_black_marketeer_tumbler_greeting_05
+	o_black_marketeer_tumbler_greeting_06
+	o_black_marketeer_tumbler_greeting_07
+	o_black_marketeer_tumbler_greeting_08
+	o_black_marketeer_tumbler_greeting_09
+	o_black_marketeer_tumbler_greeting_10
+	
+	o_black_marketeer_pistol_greeting_00
+	o_black_marketeer_pistol_greeting_01
+	o_black_marketeer_pistol_greeting_02
+	o_black_marketeer_pistol_greeting_03
+	o_black_marketeer_pistol_greeting_04
+	o_black_marketeer_pistol_greeting_05
+	o_black_marketeer_pistol_greeting_06
+	o_black_marketeer_pistol_greeting_07
+	o_black_marketeer_pistol_greeting_08
+	o_black_marketeer_pistol_greeting_09
+	o_black_marketeer_pistol_greeting_10
+	
+	o_black_marketeer_tumbler_insufficient_funds_00
+	o_black_marketeer_tumbler_insufficient_funds_01
+	o_black_marketeer_tumbler_insufficient_funds_02
+	o_black_marketeer_tumbler_insufficient_funds_03
+	o_black_marketeer_tumbler_insufficient_funds_04
+	o_black_marketeer_tumbler_insufficient_funds_05
+	o_black_marketeer_tumbler_insufficient_funds_06
+	o_black_marketeer_tumbler_insufficient_funds_07
+	o_black_marketeer_tumbler_insufficient_funds_08
+	o_black_marketeer_tumbler_insufficient_funds_09
+	
+	o_black_marketeer_pistol_insufficient_funds_00
+	o_black_marketeer_pistol_insufficient_funds_01
+	o_black_marketeer_pistol_insufficient_funds_02
+	o_black_marketeer_pistol_insufficient_funds_03
+	o_black_marketeer_pistol_insufficient_funds_04
+	o_black_marketeer_pistol_insufficient_funds_05
+	o_black_marketeer_pistol_insufficient_funds_06
+	o_black_marketeer_pistol_insufficient_funds_07
+	o_black_marketeer_pistol_insufficient_funds_08
+	o_black_marketeer_pistol_insufficient_funds_09
+	
+	
+	o_black_marketeer_tumbler_burn_dupes_00
+	o_black_marketeer_tumbler_burn_dupes_01
+	o_black_marketeer_tumbler_burn_dupes_02
+	o_black_marketeer_tumbler_burn_dupes_03
+	o_black_marketeer_tumbler_burn_dupes_04
+	o_black_marketeer_tumbler_burn_dupes_05
+	
+	o_black_marketeer_pistol_burn_dupes_00
+	o_black_marketeer_pistol_burn_dupes_01
+	o_black_marketeer_pistol_burn_dupes_02
+	o_black_marketeer_pistol_burn_dupes_03
+	o_black_marketeer_pistol_burn_dupes_04
+	o_black_marketeer_pistol_burn_dupes_05
+}
+
+cp_mi_sing_chinatown_intro
+{
+	p7_fxanim_cp_blackstation_igc_truck_tarp_anim
+}
+
+cp_mi_cairo_lotus2
+{
+	ch_lot_10_03_skybridge_aie_climbinfast_robot01
+}
+
+cp_mi_cairo_aquifer
+{
+	v_aqu_vtol_cockpit_close
+	v_aqu_vtol_cockpit_open
+	v_aqu_vtol_engine_hover
+	v_aqu_vtol_engine_fly
+	v_aqu_vtol_engine_idle
+}
+
+cp_mi_cairo_infection
+{
+	ai_zombie_inf_boardtear_aligned_m_1_pull
+	ai_zombie_inf_boardtear_aligned_m_2_pull
+	ai_zombie_inf_boardtear_aligned_m_3_pull
+	ai_zombie_inf_boardtear_aligned_m_4_pull
+	ai_zombie_inf_boardtear_aligned_m_5_pull
+	ai_zombie_inf_boardtear_aligned_m_6_pull
+	ai_zombie_inf_ceiling_aligned_m_1_pull
+	ai_zombie_inf_ceiling_aligned_m_2_pull
+	ai_zombie_inf_ceiling_aligned_m_3_pull
+	ai_zombie_inf_ceiling_aligned_m_4_pull
+	ai_zombie_inf_ceiling_aligned_m_5_pull
+	ai_zombie_inf_ceiling_aligned_m_6_pull
+	ai_zombie_inf_furniture_aligned_m_1_pull
+	ai_zombie_inf_furniture_aligned_m_2_pull
+	ai_zombie_inf_furniture_aligned_m_3_pull
+	ai_zombie_inf_furniture_aligned_m_4_pull
+	ai_zombie_inf_furniture_aligned_m_5_pull
+	ai_zombie_inf_furniture_aligned_m_6_pull
+	ai_zombie_inf_wallbreak_aligned_m_1_pull
+	ai_zombie_inf_wallbreak_aligned_m_2_pull
+	ai_zombie_inf_wallbreak_aligned_m_3_pull
+	ai_zombie_inf_wallbreak_aligned_m_4_pull
+	ai_zombie_inf_wallbreak_aligned_m_5_pull
+	ai_zombie_inf_wallbreak_aligned_m_6_pull
+	ai_zombie_inf_window_aligned_m_1_pull
+	ai_zombie_inf_window_aligned_m_2_pull
+	ai_zombie_inf_window_aligned_m_3_pull
+	ai_zombie_inf_window_aligned_m_4_pull
+	ai_zombie_inf_window_aligned_m_5_pull
+	ai_zombie_inf_window_aligned_m_6_pull
+}
+
+zm_zod
+{
+	ai_zombie_zod_sword_pain_reaction
+	ai_zombie_zod_train_win_trav_from_roof_b
+	ai_zombie_zod_train_win_trav_from_roof_f
+	ai_zombie_zod_train_win_trav_from_roof_l
+	ai_zombie_zod_train_win_trav_from_roof_r
+	
+	// bridges
+	p7_fxanim_zm_zod_gate_scissor_short_open_anim
+	p7_fxanim_zm_zod_beast_bridge_open_anim
+	
+	// transformer
+	p7_fxanim_zm_zod_beast_transformer_open_anim
+	
+	// chain trap
+	p7_fxanim_zm_zod_chain_trap_start_anim
+	p7_fxanim_zm_zod_chain_trap_on_anim
+	p7_fxanim_zm_zod_chain_trap_end_anim
+	p7_fxanim_zm_zod_chain_trap_end_idle_anim
+
+	// idle anim for the summoning key as it waits to be picked up
+	p7_fxanim_zm_zod_summoning_key_idle_anim
+
+	// main quest rituals (same anim set for each of the 4 for the player characters)
+	p7_fxanim_zm_zod_redemption_key_ritual_start_anim // things lift off the ritual table, ritual begins
+	p7_fxanim_zm_zod_redemption_key_ritual_loop_anim // slow orbit, ritual in progress
+	p7_fxanim_zm_zod_redemption_key_ritual_loop_fast_anim // fast orbit, ritual continues
+	p7_fxanim_zm_zod_redemption_key_ritual_end_anim // pieces fly to center, result drops to table, ritual ends
+	p7_fxanim_zm_zod_redemption_key_ritual_end_idle_anim // relic hovers in place, waiting for player to pick it up
+
+	// ritual victim squirming around in the air (plays independently on ritual victim model)
+	ai_zombie_zod_ritual_sacrifice_intro
+	ai_zombie_zod_ritual_sacrifice_loop
+	ai_zombie_zod_ritual_sacrifice_outro
+
+	// pap room frieze anims
+	p7_fxanim_zm_zod_frieze_anim
+	p7_fxanim_zm_zod_frieze_fall_anim
+
+	// pap room bridge anims
+	p7_fxanim_zm_zod_pap_bridge_01_rise_anim
+	p7_fxanim_zm_zod_pap_bridge_02_rise_anim
+	p7_fxanim_zm_zod_pap_bridge_01_fall_anim
+	p7_fxanim_zm_zod_pap_bridge_02_fall_anim
+
+	// pap gatestone
+	p7_fxanim_zm_zod_gatestone_anim
+
+	// apothicon god anims
+	p7_fxanim_zm_zod_apothicons_god_loop_anim
+	p7_fxanim_zm_zod_apothicons_god_end_anim
+	p7_fxanim_zm_zod_apothicons_god_start_anim
+	// apothicon god body
+	p7_fxanim_zm_zod_apothicons_god_body_death_anim
+	p7_fxanim_zm_zod_apothicons_god_body_idle_anim
+	// apothicon god mouth
+	p7_fxanim_zm_zod_apothicons_god_mouth_death_anim
+	p7_fxanim_zm_zod_apothicons_god_mouth_idle_anim
+	p7_fxanim_zm_zod_apothicons_god_mouth_roar_anim
+
+	// PaP machine tentacle
+	o_zombie_zod_packapunch_tentacle_gun_take
+	o_zombie_zod_packapunch_tentacle_worldgun_taken
+	o_zombie_zod_packapunch_tentacle_gun_deliver
+	o_zombie_zod_packapunch_tentacle_worldgun_ejected
+	o_zombie_zod_packapunch_tentacle_extend
+	o_zombie_zod_packapunch_tentacle_extended_loop
+	o_zombie_zod_packapunch_tentacle_retract
+
+	// Shadowman idle animations
+	ai_zombie_zod_shadowman_human_stand_idle_loop
+	ai_zombie_zod_shadowman_stand_idle_loop
+	ai_zombie_zod_shadowman_float_idle_loop
+
+	// Shadowman combat anims
+	ai_zombie_zod_shadowman_float_attack_projectile_charge_intro
+	ai_zombie_zod_shadowman_float_attack_projectile_charge_loop
+	ai_zombie_zod_shadowman_float_attack_projectile_throw
+	ai_zombie_zod_shadowman_float_attack_aoe_charge_intro
+	ai_zombie_zod_shadowman_float_attack_aoe_charge_loop
+	ai_zombie_zod_shadowman_float_attack_aoe_deploy
+
+	// Shadowman captured anims
+	ai_zombie_zod_shadowman_captured_intro
+	ai_zombie_zod_shadowman_captured_loop
+	ai_zombie_zod_shadowman_captured_outro
+
+	///////////////////////////
+	// SWORD QUEST PART 2
+	///////////////////////////
+	
+	// keeper egg
+	ai_zombie_zod_keeper_give_egg_intro // (from idle, reaches back, pulls out egg)
+	ai_zombie_zod_keeper_give_egg_loop // (holds out egg)
+	ai_zombie_zod_keeper_give_egg_outro // (retracts arms after egg is taken, back to idle)
+
+	// sword statue active animations
+	p7_fxanim_zm_zod_statue_apothicon_idle_anim
+	p7_fxanim_zm_zod_statue_apothicon_start_anim
+
+	// keeper sword upgrade
+	ai_zombie_zod_keeper_give_me_sword_intro // (from idle, reaches arms out)
+	ai_zombie_zod_keeper_give_me_sword_loop // (holds arms out)
+	ai_zombie_zod_keeper_give_me_sword_outro // (arms return to idle – can be used if player goes out of ‘range’)
+	ai_zombie_zod_keeper_idle
+	ai_zombie_zod_keeper_upgrade_sword // (takes sword, does small motion with it, returns to give_me_sword_loop)
+
+	// floating egg during magic circle charge
+	p7_fxanim_zm_zod_egg_keeper_rise_anim
+	p7_fxanim_zm_zod_egg_keeper_idle_anim
+
+	// bubble gum buff machine
+	p7_fxanim_zm_zod_bubblegum_machine_start_anim // (start of gumballs circling around)
+	p7_fxanim_zm_zod_bubblegum_machine_active_loop_anim // (loop of gumballs circling around)
+	p7_fxanim_zm_zod_bubblegum_machine_hover_loop_anim // (loop of gumballs hovering)
+	p7_fxanim_zm_zod_bubblegum_machine_presenting_anim // (chosen gumball goes up and out of lions mouth)
+	p7_fxanim_zm_zod_bubblegum_machine_end_anim // (gumball goes back in mouth and drops back inside or hide gumball_01_jnt when player takes gumball)
+	p7_fxanim_zm_zod_bubblegum_machine_depart_anim // (top part of gumball machine departs hide and show bone sphere_base_jnt)
+	p7_fxanim_zm_zod_bubblegum_machine_arriving_anim // (top part of gumball machine arrives hide and show bone sphere_base_jnt)
+	
+	// Shadow Man boss fight - Keeper animations
+	ai_zombie_zod_keeper_sword_quest_intro_idle
+	ai_zombie_zod_keeper_sword_quest_take_sword
+	ai_zombie_zod_keeper_sword_quest_ready_idle
+	ai_zombie_zod_keeper_sword_quest_attack_intro
+	ai_zombie_zod_keeper_sword_quest_attack_idle
+	ai_zombie_zod_keeper_sword_quest_injured_intro
+	ai_zombie_zod_keeper_sword_quest_injured_idle
+	ai_zombie_zod_keeper_sword_quest_revived
+	
+	// GATEWORMS
+	ai_zombie_zod_gateworm_idle_loop
+	
+	// SUPERWORM
+	ai_zombie_zod_gateworm_large_idle_loop
+	ai_zombie_zod_gateworm_large_idle_loop_active
+}
+
+zm_castle
+{
+	// Boss Keeper anims
+	ai_zm_dlc1_archon_float_emerge
+	ai_zm_dlc1_archon_float_idle
+	ai_zm_dlc1_archon_float_roar
+	ai_zm_dlc1_archon_float_cleanse_ending
+	ai_zm_dlc1_archon_float_spell_demongate_charge_intro
+	ai_zm_dlc1_archon_float_spell_demongate_charge_loop
+	ai_zm_dlc1_archon_float_spell_demongate_deploy
+	ai_zm_dlc1_archon_float_spell_elemental_charge_intro
+	ai_zm_dlc1_archon_float_spell_elemental_charge_loop
+	ai_zm_dlc1_archon_float_spell_elemental_charge_outro
+	ai_zm_dlc1_archon_float_spell_elemental_pain_hitspike
+	ai_zm_dlc1_archon_float_spell_elemental_pain_hitspike_idle
+	ai_zm_dlc1_archon_float_spell_elemental_pain_hitspike_2_float
+	ai_zm_dlc1_archon_float_spell_runeprison_charge_intro
+	ai_zm_dlc1_archon_float_spell_runeprison_charge_loop
+	ai_zm_dlc1_archon_float_spell_runeprison_deploy
+	ai_zm_dlc1_archon_float_spell_wolfhowl_charge_intro
+	ai_zm_dlc1_archon_float_spell_wolfhowl_charge_loop
+	ai_zm_dlc1_archon_float_spell_wolfhowl_deploy
+	
+	// Keeper MPD anims
+	ai_zm_dlc1_corrupted_keeper_float_emerge
+	ai_zm_dlc1_corrupted_keeper_float_idle
+	ai_zm_dlc1_corrupted_keeper_roar
+}
+
+zm_island
+{
+	// Thrasher stomach anims
+	p7_fxanim_zm_island_thrasher_stomach_open_anim
+	p7_fxanim_zm_island_thrasher_stomach_idle_anim
+	p7_fxanim_zm_island_thrasher_stomach_close_anim
+	ai_zm_dlc2_zombie_pacified_by_skullgun_1
+	ai_zm_dlc2_zombie_pacified_by_skullgun_2
+	ai_zm_dlc2_zombie_pacified_by_skullgun_3
+	ai_zm_dlc2_zombie_pacified_by_skullgun_4
+	ai_zm_dlc2_zombie_pacified_by_skullgun_5
+	ai_zm_dlc2_zombie_pacified_by_skullgun_6
+}
+
+zm_stalingrad
+{
+	// Dragon Strike anims
+	ai_zm_dlc3_dragon_strike_1
+	o_zm_dlc3_dragon_boss_fight_lance_pain_shoulder_a
+	o_zm_dlc3_dragon_boss_fight_lance_pain_neck_b
+	o_zm_dlc3_dragon_boss_fight_lance_pain_belly_c
+}
+
+
+megachew_factory
+{
+	// MegaChew Factory anims
+	
+	// result tube anim
+	p7_fxanim_zm_bgb_tube_front_drop_anim
+	p7_fxanim_zm_bgb_tube_front_flush_anim
+
+	// ambient idle
+	p7_fxanim_zm_bgb_gears_idle_anim
+	p7_fxanim_zm_bgb_gear_01_idle_anim
+
+	// ambient active
+	p7_fxanim_zm_bgb_gears_active_anim
+	p7_fxanim_zm_bgb_gear_01_active_anim
+
+	// dome idle
+	p7_fxanim_zm_bgb_dome_01_idle_anim
+	p7_fxanim_zm_bgb_dome_02_idle_anim
+	p7_fxanim_zm_bgb_dome_03_idle_anim
+	
+	// button push anim
+	p7_fxanim_zm_bgb_button_push_anim
+	
+	// dome activation anim (part 1)
+	p7_fxanim_zm_bgb_dome_01_active_anim
+	p7_fxanim_zm_bgb_dome_02_active_anim
+	p7_fxanim_zm_bgb_dome_03_active_anim
+	
+	// carousel activation anim (part 1)
+	p7_fxanim_zm_bgb_carousel_loop_anim
+	
+	// door anims (network fails)
+	p7_fxanim_zm_bgb_door_close_anim
+	p7_fxanim_zm_bgb_door_open_anim
+	
+	// end anims (part 2)
+	p7_fxanim_zm_bgb_carousel_end_anim // carousel
+	p7_fxanim_zm_bgb_gears_end_anim // gearbox
+	p7_fxanim_zm_bgb_gear_01_end_anim // gear
+	
+	// dome end anim (part 2)
+	p7_fxanim_zm_bgb_dome_01_turn_anim
+	p7_fxanim_zm_bgb_dome_02_turn_anim
+	p7_fxanim_zm_bgb_dome_03_turn_anim
+	p7_fxanim_zm_bgb_dome_01_turn_select_anim
+	p7_fxanim_zm_bgb_dome_02_turn_select_anim
+	p7_fxanim_zm_bgb_dome_03_turn_select_anim
+	p7_fxanim_zm_bgb_dome_01_turn_reverse_anim
+	p7_fxanim_zm_bgb_dome_02_turn_reverse_anim
+	p7_fxanim_zm_bgb_dome_03_turn_reverse_anim
+	
+	// ball drop (part 3.1) - drop into place
+	p7_fxanim_zm_bgb_tube_ball_0_drop_anim
+	p7_fxanim_zm_bgb_tube_ball_1_drop_anim
+	p7_fxanim_zm_bgb_tube_ball_2_drop_anim
+	p7_fxanim_zm_bgb_tube_ball_3_drop_anim
+	p7_fxanim_zm_bgb_tube_ball_4_drop_anim
+	p7_fxanim_zm_bgb_tube_ball_5_drop_anim
+
+	// ball idle (part 3.2) - loop until ready to flush
+	p7_fxanim_zm_bgb_tube_ball_0_idle_anim
+	p7_fxanim_zm_bgb_tube_ball_1_idle_anim
+	p7_fxanim_zm_bgb_tube_ball_2_idle_anim
+	p7_fxanim_zm_bgb_tube_ball_3_idle_anim
+	p7_fxanim_zm_bgb_tube_ball_4_idle_anim
+	p7_fxanim_zm_bgb_tube_ball_5_idle_anim
+
+	// ball flush (part 3.3) - gumballs exit
+	p7_fxanim_zm_bgb_tube_ball_0_flush_anim
+	p7_fxanim_zm_bgb_tube_ball_1_flush_anim
+	p7_fxanim_zm_bgb_tube_ball_2_flush_anim
+	p7_fxanim_zm_bgb_tube_ball_3_flush_anim
+	p7_fxanim_zm_bgb_tube_ball_4_flush_anim
+	p7_fxanim_zm_bgb_tube_ball_5_flush_anim
+	
+	// body active and end anims
+	p7_fxanim_zm_bgb_body_active_powered_anim
+	p7_fxanim_zm_bgb_body_active_unpowered_anim
+	p7_fxanim_zm_bgb_body_end_powered_anim
+	p7_fxanim_zm_bgb_body_end_unpowered_anim
+	
+	// carousel active and end anims
+	p7_fxanim_zm_bgb_carousel_active_powered_anim
+	p7_fxanim_zm_bgb_carousel_active_unpowered_anim
+	p7_fxanim_zm_bgb_carousel_end_powered_anim
+	p7_fxanim_zm_bgb_carousel_end_unpowered_anim
+	
+	// dome 01 active and end anims
+	p7_fxanim_zm_bgb_dome_01_active_powered_anim
+	p7_fxanim_zm_bgb_dome_01_active_unpowered_anim
+	p7_fxanim_zm_bgb_dome_01_end_powered_anim
+	p7_fxanim_zm_bgb_dome_01_end_unpowered_anim
+	
+	// dome 02 active and end anims
+	p7_fxanim_zm_bgb_dome_02_active_powered_anim
+	p7_fxanim_zm_bgb_dome_02_active_unpowered_anim
+	p7_fxanim_zm_bgb_dome_02_end_powered_anim
+	p7_fxanim_zm_bgb_dome_02_end_unpowered_anim
+	
+	// dome 03 active and end anims
+	p7_fxanim_zm_bgb_dome_03_active_powered_anim
+	p7_fxanim_zm_bgb_dome_03_active_unpowered_anim
+	p7_fxanim_zm_bgb_dome_03_end_powered_anim
+	p7_fxanim_zm_bgb_dome_03_end_unpowered_anim
+	
+	// dial anims
+	p7_fxanim_zm_bgb_dial_lrg_active_anim
+	p7_fxanim_zm_bgb_dial_sml_active_anim
+	p7_fxanim_zm_bgb_dial_lrg_idle_anim
+	p7_fxanim_zm_bgb_dial_sml_idle_anim
+}

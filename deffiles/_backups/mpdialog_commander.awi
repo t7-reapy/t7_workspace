@@ -1,0 +1,342 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+void GenerateUI( asset Asset )
+{	
+
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	
+	Asset.AddEntry_Combo( "type", "mpdialog_commander" ).Show( false );
+	Asset.AddEntry_Combo( "vmType", "Both" ).SetTitle( "Script Type" ).Show( false ).SetValue("Both");
+	
+	Asset.BeginCategory( "Faction Commander MP Dialog" );
+	{
+		Asset.AddEntry_String( "voicePrefix", "" ).SetTitle( "Voice Prefix" );
+	}
+		
+	Asset.BeginCategory( "Game.Match Start" );
+	{	
+		Asset.AddEntry_String( "startCtf", "" ).SetTitle( "CTF" );
+		Asset.AddEntry_String( "startDemolition", "" ).SetTitle( "Demolition" );
+		Asset.AddEntry_String( "startDomination", "" ).SetTitle( "Domination" );
+		Asset.AddEntry_String( "startFreeForAll", "" ).SetTitle( "Free For All" );
+		Asset.AddEntry_String( "startFreeRun", "" ).SetTitle( "Free Run" );
+		Asset.AddEntry_String( "startGunGame", "" ).SetTitle( "Gun Game" );
+		Asset.AddEntry_String( "startHardpoint", "" ).SetTitle( "Hardpoint" );
+		Asset.AddEntry_String( "startKillConfirmed", "" ).SetTitle( "Kill Confirmed" );
+		Asset.AddEntry_String( "startOneInTheChamber", "" ).SetTitle( "One in the Chamber" );
+		Asset.AddEntry_String( "startPurgatory", "" ).SetTitle( "Purgatory" );
+		Asset.AddEntry_String( "startResistance", "" ).SetTitle( "Resistance" );
+		Asset.AddEntry_String( "startSafeguard", "" ).SetTitle( "Safeguard" );
+		Asset.AddEntry_String( "startSearchAndDestroy", "" ).SetTitle( "Search and Destroy" );
+		Asset.AddEntry_String( "startSearchAndRescue", "" ).SetTitle( "Search and Rescue" );
+		Asset.AddEntry_String( "startStockpile", "" ).SetTitle( "Stockpile" );
+		Asset.AddEntry_String( "startSharpshooter", "" ).SetTitle( "Sharpshooter" );
+		Asset.AddEntry_String( "startTeamDeathmatch", "" ).SetTitle( "Team Deathmatch" );
+		Asset.AddEntry_String( "startUplink", "" ).SetTitle( "Uplink" );
+	}
+	
+	Asset.BeginCategory( "Game.Hardcore Match Start" );
+	{
+		Asset.AddEntry_String( "hcStartCtf", "" ).SetTitle( "CTF" );
+		Asset.AddEntry_String( "hcStartDemolition", "" ).SetTitle( "Demolition" );
+		Asset.AddEntry_String( "hcStartDomination", "" ).SetTitle( "Domination" );
+		Asset.AddEntry_String( "hcStartFreeForAll", "" ).SetTitle( "Free For All" );
+		Asset.AddEntry_String( "hcStartFreeRun", "" ).SetTitle( "Free Run" );
+		Asset.AddEntry_String( "hcStartGunGame", "" ).SetTitle( "Gun Game" );
+		Asset.AddEntry_String( "hcStartHardpoint", "" ).SetTitle( "Hardpoint" );
+		Asset.AddEntry_String( "hcStartKillConfirmed", "" ).SetTitle( "Kill Confirmed" );
+		Asset.AddEntry_String( "hcStartOneInTheChamber", "" ).SetTitle( "One in the Chamber" );
+		Asset.AddEntry_String( "hcStartPurgatory", "" ).SetTitle( "Purgatory" );
+		Asset.AddEntry_String( "hcStartResistance", "" ).SetTitle( "Resistance" );
+		Asset.AddEntry_String( "hcStartSafeguard", "" ).SetTitle( "Safeguard" );
+		Asset.AddEntry_String( "hcStartSearchAndDestroy", "" ).SetTitle( "Search and Destroy" );
+		Asset.AddEntry_String( "hcStartSearchAndRescue", "" ).SetTitle( "Search and Rescue" );
+		Asset.AddEntry_String( "hcStartStockpile", "" ).SetTitle( "Stockpile" );
+		Asset.AddEntry_String( "hcStartSharpshooter", "" ).SetTitle( "Sharpshooter" );
+		Asset.AddEntry_String( "hcStartTeamDeathmatch", "" ).SetTitle( "Team Deathmatch" );
+		Asset.AddEntry_String( "hcStartUplink", "" ).SetTitle( "Uplink" );
+	}
+	
+	Asset.BeginCategory( "Game.Old School Match Start" );
+	{
+		Asset.AddEntry_String( "osStartCtf", "" ).SetTitle( "CTF" );
+		Asset.AddEntry_String( "osStartFfa", "" ).SetTitle( "Free For All" );
+		Asset.AddEntry_String( "osStart", "" ).SetTitle( "Old School" );
+		Asset.AddEntry_String( "osStartTdm", "" ).SetTitle( "Team Deathmatch" );
+		
+	}
+	
+	Asset.BeginCategory( "Game.Match" );
+	{		
+		Asset.AddEntry_String( "gameLost", "" ).SetTitle( "Lost" );
+		Asset.AddEntry_String( "gameDraw", "" ).SetTitle( "Draw" );
+		Asset.AddEntry_String( "gameWon", "" ).SetTitle( "Won" );
+		Asset.AddEntry_String( "gameLosing", "" ).SetTitle( "Losing" );
+		Asset.AddEntry_String( "gameWinning", "" ).SetTitle( "Winning" );
+		Asset.AddEntry_String( "gameLeadLost", "" ).SetTitle( "Lead Lost" );
+		Asset.AddEntry_String( "gameLeadTaken", "" ).SetTitle( "Lead Taken" );
+		Asset.AddEntry_String( "gameBoost", "" ).SetTitle( "Boost" );
+		Asset.AddEntry_String( "gamePlayerKicked", "" ).SetTitle( "Player Kicked" );
+	}
+	
+	Asset.BeginCategory( "Game.Round" );
+	{
+		Asset.AddEntry_String( "roundDraw", "" ).SetTitle( "Draw" );
+		Asset.AddEntry_String( "roundEncourageLastPlayer", "" ).SetTitle( "Last Player Encouragement" );
+		Asset.AddEntry_String( "roundEncourageLost", "" ).SetTitle( "Lost Encouragement" );
+		Asset.AddEntry_String( "roundEncourageWon", "" ).SetTitle( "Won Encouragement" );
+		Asset.AddEntry_String( "roundHalftime", "" ).SetTitle( "Halftime" );
+		Asset.AddEntry_String( "roundSwitchSides", "" ).SetTitle( "Switching Sides" );
+		Asset.AddEntry_String( "roundTimeWarning", "" ).SetTitle( "Time Warning" );
+		Asset.AddEntry_String( "roundOvertime", "" ).SetTitle( "Overtime" );
+		Asset.AddEntry_String( "roundSuddenDeath", "" ).SetTitle( "Sudden Death" );
+	}
+	
+	Asset.BeginCategory( "Game.Objective Orders" );
+	{	
+		Asset.AddEntry_String( "objKill", "" ).SetTitle( "Kill" );
+		Asset.AddEntry_String( "objCapture", "" ).SetTitle( "Capture" );
+		Asset.AddEntry_String( "objDefend", "" ).SetTitle( "Defend" );
+		Asset.AddEntry_String( "objDestroy", "" ).SetTitle( "Destroy" );
+		
+		Asset.AddEntry_String( "objLosing", "" ).SetTitle( "Losing" );
+		Asset.AddEntry_String( "objLost", "" ).SetTitle( "Lost" );
+		Asset.AddEntry_String( "objSecuring", "" ).SetTitle( "Securing" );
+		Asset.AddEntry_String( "objSecured", "" ).SetTitle( "Secured" );
+	}
+
+	Asset.BeginCategory( "Gametypes.CTF" );
+	
+	Asset.BeginCategory( "Gametypes.CTF.Friendly Flag" );
+	{
+		Asset.AddEntry_String( "ctfFriendlyFlagCaptured", "" ).SetTitle( "Captured" );
+		Asset.AddEntry_String( "ctfFriendlyFlagDropped", "" ).SetTitle( "Dropped" );
+		Asset.AddEntry_String( "ctfFriendlyFlagReturned", "" ).SetTitle( "Returned" );
+		Asset.AddEntry_String( "ctfFriendlyFlagTaken", "" ).SetTitle( "Taken" );
+	}	
+	
+		Asset.BeginCategory( "Gametypes.CTF.Enemy Flag" );
+	{
+		Asset.AddEntry_String( "ctfEnemyFlagCaptured", "" ).SetTitle( "Captured"  );
+		Asset.AddEntry_String( "ctfEnemyFlagDropped", "" ).SetTitle( "Dropped" );
+		Asset.AddEntry_String( "ctfEnemyFlagReturned", "" ).SetTitle( "Returned" );
+		Asset.AddEntry_String( "ctfEnemyFlagTaken", "" ).SetTitle( "Taken" );
+	}	
+	
+	Asset.BeginCategory( "Gametypes.Domination" );
+
+	Asset.BeginCategory( "Gametypes.Domination.Nuetral" );
+	{
+		Asset.AddEntry_String( "nearWinning", "" ).SetTitle( "Near Winning" );
+		Asset.AddEntry_String( "nearWinningFinal", "" ).SetTitle( "Near Winning Final" );
+		Asset.AddEntry_String( "nearLosing", "" ).SetTitle( "Near Losing" );
+		Asset.AddEntry_String( "nearLosingFinal", "" ).SetTitle( "Near Losing Final" );
+		Asset.AddEntry_String( "nearDrawing", "" ).SetTitle( "Near Drawing" );
+	}
+	
+	Asset.BeginCategory( "Gametypes.Domination.Friendly" );
+	{
+		Asset.AddEntry_String( "domFriendlySecuringA", "" ).SetTitle( "Securing A" );
+		Asset.AddEntry_String( "domFriendlySecuringB", "" ).SetTitle( "Securing B" );
+		Asset.AddEntry_String( "domFriendlySecuringC", "" ).SetTitle( "Securing C" );
+		Asset.AddEntry_String( "domFriendlySecuredA", "" ).SetTitle( "Secured A" );
+		Asset.AddEntry_String( "domFriendlySecuredB", "" ).SetTitle( "Secured B" );
+		Asset.AddEntry_String( "domFriendlySecuredC", "" ).SetTitle( "Secured C" );
+		
+		Asset.AddEntry_String( "domFriendlySecuredAll", "" ).SetTitle( "Secured All" );
+	}
+	Asset.BeginCategory( "Gametypes.Domination.Enemy" );
+	{
+		Asset.AddEntry_String( "domEnemyHasA", "" ).SetTitle( "Took Neutral A" );
+		Asset.AddEntry_String( "domEnemyHasB", "" ).SetTitle( "Took Neutral B" );
+		Asset.AddEntry_String( "domEnemyHasC", "" ).SetTitle( "Took Neutral C" );
+		
+		Asset.AddEntry_String( "domEnemySecuringA", "" ).SetTitle( "Taking Friendly A" );
+		Asset.AddEntry_String( "domEnemySecuringB", "" ).SetTitle( "Taking Friendly B" );
+		Asset.AddEntry_String( "domEnemySecuringC", "" ).SetTitle( "Taking Friendly C" );
+		Asset.AddEntry_String( "domEnemySecuredA", "" ).SetTitle( "Took Friendly A" );
+		Asset.AddEntry_String( "domEnemySecuredB", "" ).SetTitle( "Took Friendly B" );
+		Asset.AddEntry_String( "domEnemySecuredC", "" ).SetTitle( "Took Friendly C" );
+	
+		Asset.AddEntry_String( "domEnemySecuredAll", "" ).SetTitle( "Secured All" );
+	}
+	
+	Asset.BeginCategory( "Gametypes.Hardpoint" );
+	{
+		Asset.AddEntry_String( "kothCaptured", "" ).SetTitle( "Captured" );
+		Asset.AddEntry_String( "kothContested", "" ).SetTitle( "Contested" );
+		Asset.AddEntry_String( "kothLocated", "" ).SetTitle( "Located" );
+		Asset.AddEntry_String( "kothLost", "" ).SetTitle( "Lost" );
+		Asset.AddEntry_String( "kothOnline", "" ).SetTitle( " Active" );
+		Asset.AddEntry_String( "kothSecured", "" ).SetTitle( "Secured" );
+	}
+	
+	Asset.BeginCategory( "Gametypes.Safeguard" );
+	{
+		Asset.AddEntry_String( "sfgStartAttack", "" ).SetTitle( "Start Attacker" );
+		Asset.AddEntry_String( "sfgStartDefend", "" ).SetTitle( "Start Defender" );
+		Asset.AddEntry_String( "sfgStartTow", "" ).SetTitle( "Start Tow" );
+		Asset.AddEntry_String( "sfgStartHrAttack", "" ).SetTitle( "Start HR Attacker" );
+		Asset.AddEntry_String( "sfgStartHrDefend", "" ).SetTitle( "Start HR Defender" );
+		Asset.AddEntry_String( "sfgRobotDisabledAttacker", "" ).SetTitle( "Robot Disabled Attacker" );
+		Asset.AddEntry_String( "sfgRobotDisabledDefender", "" ).SetTitle( "Robot Disabled Defender" );
+		Asset.AddEntry_String( "sfgRobotUnderFire", "" ).SetTitle( "Robot Under Fire" );
+		Asset.AddEntry_String( "sfgRobotUnderFireNeutral", "" ).SetTitle( "Robot Under Fire Neutral" );
+		Asset.AddEntry_String( "sfgRobotNeedReboot", "" ).SetTitle( "Robot Needs Reboot" );
+		Asset.AddEntry_String( "sfgRobotRebootedAttacker", "" ).SetTitle( "Robot Rebooted Attacker" );
+		Asset.AddEntry_String( "sfgRobotRebootedDefender", "" ).SetTitle( "Robot Rebooted Defender" );
+		Asset.AddEntry_String( "sfgRobotRebootedTowAttacker", "" ).SetTitle( "Robot Rebooted Tow Attacker" );
+		Asset.AddEntry_String( "sfgRobotRebootedTowDefender", "" ).SetTitle( "Robot Rebooted Tow Defender" );
+		Asset.AddEntry_String( "sfgRobotCloseAttacker", "" ).SetTitle( "Robot Close Attacker" );
+		Asset.AddEntry_String( "sfgRobotCloseDefender", "" ).SetTitle( "Robot Close Defender" );
+		Asset.AddEntry_String( "sfgTheyReturn", "" ).SetTitle( "They Return" );
+		Asset.AddEntry_String( "sfgWeReturn", "" ).SetTitle( "We Return" );
+	}
+	
+	Asset.BeginCategory( "Gametypes.Search and Destroy / Rescue" );
+	{
+		Asset.AddEntry_String( "bombDefused", "" ).SetTitle( "Bomb Defused" );
+		Asset.AddEntry_String( "bombPlanted", "" ).SetTitle( "Bomb Planted" );
+		Asset.AddEntry_String( "bombFriendlyDropped", "" ).SetTitle( "Friendly Dropped the Bomb" );
+		Asset.AddEntry_String( "bombFriendlyTaken", "" ).SetTitle( "Friendly Has the Bomb" );
+		Asset.AddEntry_String( "bombEnemyTaken", "" ).SetTitle( "Enemy Has the Bomb" );
+	}
+
+	Asset.BeginCategory( "Gametypes.Stockpile" );
+	{
+		Asset.AddEntry_String( "stockpileOrders", "" ).SetTitle( "Mode Orders" );
+		Asset.AddEntry_String( "hubOnline", "" ).SetTitle( "Deposit Hub Online" );
+		Asset.AddEntry_String( "hubOffline", "" ).SetTitle( "Deposit Hub Offline" );
+		Asset.AddEntry_String( "hubsOnline", "" ).SetTitle( "eposit Hub Online" );
+		Asset.AddEntry_String( "hubsOffline", "" ).SetTitle( "Deposit Hubs Offline" );
+		Asset.AddEntry_String( "hubMoved", "" ).SetTitle( "Deposit Hub Moved" );
+		Asset.AddEntry_String( "hubsMoved", "" ).SetTitle( "Deposit Hubs Moved" );
+	}
+	
+	Asset.BeginCategory( "Gametypes.Uplink" );
+	{
+		Asset.AddEntry_String( "uplOrders", "" ).SetTitle( "Mode Orders" );
+		Asset.AddEntry_String( "uplWeTake", "" ).SetTitle( "We Take" );
+		Asset.AddEntry_String( "uplTheyTake", "" ).SetTitle( "They Take" );
+		Asset.AddEntry_String( "uplTheyDrop", "" ).SetTitle( "They Drop" );
+		Asset.AddEntry_String( "uplWeDrop", "" ).SetTitle( "We Drop" );
+		Asset.AddEntry_String( "uplWeUplink", "" ).SetTitle( "We Uplink" );
+		Asset.AddEntry_String( "uplTheyUplink", "" ).SetTitle( "They Uplink" );
+		Asset.AddEntry_String( "uplWeUplinkRemote", "" ).SetTitle( "We Uplink Remote" );
+		Asset.AddEntry_String( "uplTheyUplinkRemote", "" ).SetTitle( "They Uplink Remote" );
+		Asset.AddEntry_String( "uplTransferred", "" ).SetTitle( "Transferred" );
+		Asset.AddEntry_String( "uplReset", "" ).SetTitle( "Reset" );
+	}
+
+	Asset.BeginCategory( "Scorestreaks.Friendly Inbound" );
+	{	
+		Asset.AddEntry_String( "friendlyAiTank", "" ).SetTitle( "AGR" );
+		Asset.AddEntry_String( "friendlySupplyDrop", "" ).SetTitle( "Care Package" );
+		Asset.AddEntry_String( "friendlyCombatRobot", "" ).SetTitle( "Combat Robot" );
+		Asset.AddEntry_String( "friendlyCounterUav", "" ).SetTitle( "Counter UAV" );
+		Asset.AddEntry_String( "friendlyDart", "" ).SetTitle( "Dart" );
+		Asset.AddEntry_String( "friendlyEmp", "" ).SetTitle( "EMP Core" );
+		Asset.AddEntry_String( "friendlySentinel", "" ).SetTitle( "Escort Drone"  );
+		Asset.AddEntry_String( "friendlyMicrowaveTurret", "" ).SetTitle( "Guardian" );
+		Asset.AddEntry_String( "friendlyRemoteMissile", "" ).SetTitle( "Hellstorm" );
+		Asset.AddEntry_String( "friendlyRcBomb", "" ).SetTitle( "Hover RC-XD" );
+		Asset.AddEntry_String( "friendlyPlaneMortar", "" ).SetTitle( "LightningStrike" );
+		Asset.AddEntry_String( "friendlyHelicopterGunner", "" ).SetTitle( "Mothership" );
+		Asset.AddEntry_String( "friendlyRaps", "" ).SetTitle( "RAPS" );
+		Asset.AddEntry_String( "friendlyDroneStrike", "" ).SetTitle( "Rolling Thunder" );
+		Asset.AddEntry_String( "friendlyTurret", "" ).SetTitle( "Sentry Gun" );
+		Asset.AddEntry_String( "friendlyHelicopter", "" ).SetTitle( "Stealth Drone" );
+		Asset.AddEntry_String( "friendlyUav", "" ).SetTitle( "UAV" );
+		Asset.AddEntry_String( "friendlySatellite", "" ).SetTitle( "VSAT" );
+	}
+	
+	Asset.BeginCategory( "Scorestreaks.Enemy Inbound" );
+	{
+		Asset.AddEntry_String( "enemyAiTank", "" ).SetTitle( "AGR" );
+		Asset.AddEntry_String( "enemySupplyDrop", "" ).SetTitle( "Care Package" );
+		Asset.AddEntry_String( "enemyCombatRobot", "" ).SetTitle( "Combat Robot" );
+		Asset.AddEntry_String( "enemyCounterUav", "" ).SetTitle( "Counter UAV" );
+		Asset.AddEntry_String( "enemyDart", "" ).SetTitle( "Dart" );
+		Asset.AddEntry_String( "enemyEmp", "" ).SetTitle( "EMP Core" );
+		Asset.AddEntry_String( "enemySentinel", "" ).SetTitle( "Escort Drone"  );
+		Asset.AddEntry_String( "enemyMicrowaveTurret", "" ).SetTitle( "Guardian" );
+		Asset.AddEntry_String( "enemyRemoteMissile", "" ).SetTitle( "Hellstorm" );
+		Asset.AddEntry_String( "enemyRcBomb", "" ).SetTitle( "Hover RC-XD" );
+		Asset.AddEntry_String( "enemyPlaneMortar", "" ).SetTitle( "LightningStrike" );
+		Asset.AddEntry_String( "enemyPlaneMortarUsed", "" ).SetTitle( "LightningStrike Used" );
+		Asset.AddEntry_String( "enemyHelicopterGunner", "" ).SetTitle( "Mothership" );
+		Asset.AddEntry_String( "enemyRaps", "" ).SetTitle( "RAPS" );
+		Asset.AddEntry_String( "enemyDroneStrike", "" ).SetTitle( "Rolling Thunder" );
+		Asset.AddEntry_String( "enemyTurret", "" ).SetTitle( "Sentry Gun" );
+		Asset.AddEntry_String( "enemyHelicopter", "" ).SetTitle( "Stealth Drone" );
+		Asset.AddEntry_String( "enemyUav", "" ).SetTitle( "UAV" );
+		Asset.AddEntry_String( "enemySatellite", "" ).SetTitle( "VSAT" );
+	}
+	
+	Asset.BeginCategory( "Scorestreaks.Multiple Enemy Inbound" );
+	{
+		Asset.AddEntry_String( "enemyAiTankMultiple", "" ).SetTitle( "AGR" );
+		Asset.AddEntry_String( "enemySupplyDropMultiple", "" ).SetTitle( "Care Package" );
+		Asset.AddEntry_String( "enemyCombatRobotMultiple", "" ).SetTitle( "Combat Robot" );
+		Asset.AddEntry_String( "enemyCounterUavMultiple", "" ).SetTitle( "Counter UAV" );
+		Asset.AddEntry_String( "enemyDartMultiple", "" ).SetTitle( "Dart" );
+		Asset.AddEntry_String( "enemyEmpMultiple", "" ).SetTitle( "EMP Core" );
+		Asset.AddEntry_String( "enemySentinelMultiple", "" ).SetTitle( "Escort Drone"  );
+		Asset.AddEntry_String( "enemyMicrowaveTurretMultiple", "" ).SetTitle( "Guardian" );
+		Asset.AddEntry_String( "enemyRemoteMissileMultiple", "" ).SetTitle( "Hellstorm" );
+		Asset.AddEntry_String( "enemyRcBombMultiple", "" ).SetTitle( "Hover RC-XD" );
+		Asset.AddEntry_String( "enemyPlaneMortarMultiple", "" ).SetTitle( "LightningStrike" );
+		Asset.AddEntry_String( "enemyHelicopterGunnerMultiple", "" ).SetTitle( "Mothership" );
+		Asset.AddEntry_String( "enemyRapsMultiple", "" ).SetTitle( "RAPS" );
+		Asset.AddEntry_String( "enemyDroneStrikeMultiple", "" ).SetTitle( "Rolling Thunder" );
+		Asset.AddEntry_String( "enemyTurretMultiple", "" ).SetTitle( "Sentry Gun" );
+		Asset.AddEntry_String( "enemyHelicopterMultiple", "" ).SetTitle( "Stealth Drone" );
+		Asset.AddEntry_String( "enemyUavMultiple", "" ).SetTitle( "UAV" );
+		Asset.AddEntry_String( "enemySatelliteMultiple", "" ).SetTitle( "VSAT" );
+	}
+
+	Asset.BeginCategory( "Scorestreaks.Hacked" );
+	{
+		Asset.AddEntry_String( "friendlyAiTankHacked", "" ).SetTitle( "AGR" );
+		Asset.AddEntry_String( "friendlySupplyDropHacked", "" ).SetTitle( "Care Package" );
+		Asset.AddEntry_String( "friendlyCombatRobotHacked", "" ).SetTitle( "Combat Robot" );
+		Asset.AddEntry_String( "friendlyCounterUavHacked", "" ).SetTitle( "Counter UAV" );
+		Asset.AddEntry_String( "friendlyDartHacked", "" ).SetTitle( "Dart" );
+		Asset.AddEntry_String( "friendlyEmpHacked", "" ).SetTitle( "EMP Core" );
+		Asset.AddEntry_String( "friendlySentinelHacked", "" ).SetTitle( "Escort Drone"  );
+		Asset.AddEntry_String( "friendlyMicrowaveTurretHacked", "" ).SetTitle( "Guardian" );
+		Asset.AddEntry_String( "friendlyRemoteMissileHacked", "" ).SetTitle( "Hellstorm" );
+		Asset.AddEntry_String( "friendlyRcBombHacked", "" ).SetTitle( "Hover RC-XD" );
+		Asset.AddEntry_String( "friendlyPlaneMortarHacked", "" ).SetTitle( "LightningStrike" );
+		Asset.AddEntry_String( "friendlyHelicopterGunnerHacked", "" ).SetTitle( "Mothership" );
+		Asset.AddEntry_String( "friendlyRapsHacked", "" ).SetTitle( "RAPS" );
+		Asset.AddEntry_String( "friendlyDroneStrikeHacked", "" ).SetTitle( "Rolling Thunder" );
+		Asset.AddEntry_String( "friendlyTurretHacked", "" ).SetTitle( "Sentry Gun" );
+		Asset.AddEntry_String( "friendlyHelicopterHacked", "" ).SetTitle( "Stealth Drone" );
+		Asset.AddEntry_String( "friendlyUavHacked", "" ).SetTitle( "UAV" );
+		Asset.AddEntry_String( "friendlySatelliteHacked", "" ).SetTitle( "VSAT" );
+	}
+	
+	Asset.BeginCategory( "Scorestreaks.We Hacked" );
+	{
+		Asset.AddEntry_String( "enemyAiTankHacked", "" ).SetTitle( "AGR" );
+		Asset.AddEntry_String( "enemySupplyDropHacked", "" ).SetTitle( "Care Package" );
+		Asset.AddEntry_String( "enemyCombatRobotHacked", "" ).SetTitle( "Combat Robot" );
+		Asset.AddEntry_String( "enemyCounterUavHacked", "" ).SetTitle( "Counter UAV" );
+		Asset.AddEntry_String( "enemyDartHacked", "" ).SetTitle( "Dart" );
+		Asset.AddEntry_String( "enemyEmpHacked", "" ).SetTitle( "EMP Core" );
+		Asset.AddEntry_String( "enemySentinelHacked", "" ).SetTitle( "Escort Drone"  );
+		Asset.AddEntry_String( "enemyMicrowaveTurretHacked", "" ).SetTitle( "Guardian" );
+		Asset.AddEntry_String( "enemyRemoteMissileHacked", "" ).SetTitle( "Hellstorm" );
+		Asset.AddEntry_String( "enemyRcBombHacked", "" ).SetTitle( "Hover RC-XD" );
+		Asset.AddEntry_String( "enemyPlaneMortarHacked", "" ).SetTitle( "LightningStrike" );
+		Asset.AddEntry_String( "enemyHelicopterGunnerHacked", "" ).SetTitle( "Mothership" );
+		Asset.AddEntry_String( "enemyRapsHacked", "" ).SetTitle( "RAPS" );
+		Asset.AddEntry_String( "enemyDroneStrikeHacked", "" ).SetTitle( "Rolling Thunder" );
+		Asset.AddEntry_String( "enemyTurretHacked", "" ).SetTitle( "Sentry Gun" );
+		Asset.AddEntry_String( "enemyHelicopterHacked", "" ).SetTitle( "Stealth Drone" );
+		Asset.AddEntry_String( "enemyUavHacked", "" ).SetTitle( "UAV" );
+		Asset.AddEntry_String( "enemySatelliteHacked", "" ).SetTitle( "VSAT" );
+	}
+}

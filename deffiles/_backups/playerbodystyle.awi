@@ -1,0 +1,69 @@
+const int MAX_BODY_ACCENT_COLORS = 1;
+const int MAX_BODY_ACCENT_COLOR_OPTIONS = 6;
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "displayName", "" ).SetTitle( "Display Name" );
+	Asset.AddEntry_AssetCombo( "iconImage", "image" ).SetTitle( "Icon" );
+	
+	Asset.BeginCategory( "Models" );
+	{
+		Asset.AddEntry_AssetCombo( "xmodel", "xmodel" ).SetTitle( "Third Person" ).SetToolTip( "Full body. Used for third person and first person shadow" );
+		Asset.AddEntry_AssetCombo( "viewArmsModel", "xmodel" ).SetTitle( "View Arms" );
+		Asset.AddEntry_AssetCombo( "firstPersonLegsModel", "xmodel" ).SetTitle( "First Person Legs" ).SetToolTip( "Legs while in first person" );
+		Asset.AddEntry_AssetCombo( "firstPersonCinematicModel", "xmodel" ).SetTitle( "First Person Cinematic" ).SetToolTip( "Body model used for first person cinematics.  Model has full body but no head." );
+	}
+	
+	Asset.AddEntry_Text( "hideTags", "" ).SetTitle( "Hide Tags " ).Enable(false).SetHints( "NOWARNINGS" ).SetToolTip( "(not yet implemented) name of tags to hide on this model. one per line" );
+
+	Asset.BeginCategory( "FX" );
+	{
+		Asset.AddEntry_Combo( "impactType", "flesh | zombie | armor light | armor heavy | robot light | robot heavy | power armor | skeleton | flesh corpse" ).SetTitle( "Impact Type" ).SetToolTip( "Type of impact effects to use on the body." );
+		Asset.AddEntry_Combo( "impactTypeCorpse", "flesh | zombie | armor light | armor heavy | robot light | robot heavy | power armor | skeleton | flesh corpse" ).SetTitle( "Impact Type Corpse" ).SetToolTip( "Type of impact effects to use on the body." );
+		
+		Asset.AddEntry_Label( "characterMovementFxOverrideInfo", "If present, will override the \"characterMovementFx\" table specified in the \"playerbodytype\" asset." ).SetTitle( " " );
+		Asset.AddEntry_AssetCombo( "characterMovementFxOverride", "playerfxtable" ).SetTitle( "characterMovementFxOverride" );
+	}
+	
+	Asset.BeginCategory( "Variants" );
+	{
+		// keeping this as an array in case we bring back color options
+		Asset.AddEntry_Int("accentColorCount", 0, 0, MAX_BODY_ACCENT_COLORS).SetTitle ("Num Variant Sets").UpdateOnChange(true);
+		int colorsCount = Asset.GetEntryInt("accentColorCount");
+	
+		for ( int j = 1; j <= MAX_BODY_ACCENT_COLORS; j++ )
+		{
+			Asset.BeginCategory( "Variants.Variant Set " + j );
+			{
+				Asset.AddEntry_Int("accentColor"+j+"OptionsCount", 3, 1, MAX_BODY_ACCENT_COLOR_OPTIONS).Show(colorsCount >= j).SetTitle ("Variant Set "+j+" Count").UpdateOnChange(true);
+				int optionsCount = Asset.GetEntryInt("accentColor"+j+"OptionsCount");
+	
+				for ( int k = 1; k <= MAX_BODY_ACCENT_COLOR_OPTIONS; k++ )
+				{
+					Asset.AddEntry_AssetCombo( "color_"+j+"_"+k, "customizationcolor" ).SetTitle( "Variant Set "+j+" Option "+k ).Show(colorsCount >= j && optionsCount >= k);
+				}
+			}
+		}
+	}
+
+	Asset.BeginCategory( "Gibbable Character", 1, 0.5, 0.3, "Icon_asset_scriptbundle.png" );	
+	{
+		Asset.AddEntry_Label( "gibDefInfo", "Defines the gibbable dynent pieces of the character.  ex: head, arms, legs, etc." ).SetTitle( " " );
+		Asset.AddEntry_AssetCombo( "gibDef", "gibcharacterdef" ).SetTitle( "Gib Definition:" );
+	}
+
+	Asset.BeginCategory( "Damaged Torso Models" );
+	{
+		Asset.AddEntry_AssetCombo( "gibTorsoClean", "xmodel" ).SetTitle( "Clean" ).SetToolTip( "Torso model both arms intact." );
+		Asset.AddEntry_AssetCombo( "gibTorsoRight", "xmodel" ).SetTitle( "Right Arm Gone" ).SetToolTip( "Torso model right arm gone." );
+		Asset.AddEntry_AssetCombo( "gibTorsoLeft", "xmodel" ).SetTitle( "Left Arm Gone" ).SetToolTip( "Torso model left arm gone." );
+	}
+
+	Asset.BeginCategory( "Damaged Legs Models" );
+	{
+		Asset.AddEntry_AssetCombo( "gibLegsClean", "xmodel" ).SetTitle( "Clean" ).SetToolTip( "Legs model both legs intact." );
+		Asset.AddEntry_AssetCombo( "gibLegsRight", "xmodel" ).SetTitle( "Right Leg Gone" ).SetToolTip( "Legs model right leg gone." );
+		Asset.AddEntry_AssetCombo( "gibLegsLeft", "xmodel" ).SetTitle( "Left Leg Gone" ).SetToolTip( "Legs model left leg gone." );
+		Asset.AddEntry_AssetCombo( "gibLegsBoth", "xmodel" ).SetTitle( "Both Legs Gone" ).SetToolTip( "Legs model both legs gone." );
+	}
+}

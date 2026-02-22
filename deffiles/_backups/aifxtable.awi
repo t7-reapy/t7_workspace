@@ -1,0 +1,52 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+const string footStepNotetracks = "\"footstep_left\", \"footstep_left_large\", \"footstep_left_small\", \"footstep_left_forward\", \"footstep_left_back\"," + 
+	"\n\t\"footstep_right\", \"footstep_right_large\", \"footstep_right_small\", \"footstep_right_forward\", \"footstep_right_back\"";
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	
+	Asset.AddEntry_Combo( "type", "aifxtable" ).Show( false );
+	Asset.AddEntry_Combo( "vmType", "Client" ).SetTitle( "Script Type" ).Show( false ).SetValue("Client");
+	
+	Asset.BeginCategory( "FX Table Information", 0.3, 0.5, 1, "Icon_FX.png" );
+	{
+		Asset.AddEntry_Label( "aiFxTableInfo", "An AI FX table defines multiple sets of FX an AI will play when certain notetracks are triggered." ).SetTitle( " " );
+	
+		Asset.BeginCategory( "FX Table Information" + ".FX Surface Tables", 0.3, 0.5, 1, "Icon_FX.png" );
+		{
+			Asset.AddEntry_Label( "surfacefxtable_footstepInfo", "Triggered by one of these notetracks: \n\t" + footStepNotetracks ).SetTitle( " " );
+			Asset.AddEntry_AssetCombo( "surfacefxtable_footstep", "surfacefxtable" ).SetTitle( "Footstep Table:" ).SetToolTip( "" );
+			
+			Asset.AddEntry_Label( "surfacefxtable_jumpingInfo", "Triggered by notetrack \"self notify#jumping\"" ).SetTitle( " " );
+			Asset.AddEntry_AssetCombo( "surfacefxtable_jumping", "surfacefxtable" ).SetTitle( "Jumping Table:" ).SetToolTip( "" );
+			
+			Asset.AddEntry_Label( "surfacefxtable_landingInfo", "Triggered by notetrack \"self notify#landing\"" ).SetTitle( " " );
+			Asset.AddEntry_AssetCombo( "surfacefxtable_landing", "surfacefxtable" ).SetTitle( "Landing Table:" ).SetToolTip( "" );
+			
+			Asset.AddEntry_Label( "surfacefxtable_vtollandingInfo", "Triggered by notetrack \"self notify#vtol_landing\"" ).SetTitle( " " );
+			Asset.AddEntry_AssetCombo( "surfacefxtable_vtollanding", "surfacefxtable" ).SetTitle( "VTOL Landing Table:" ).SetToolTip( "" );
+		}
+		
+		// Currently no unique FX's are supported.
+		Asset.BeginCategory( "FX Table Information" + ".Unique FX", 0.3, 0.5, 1, "Icon_FX.png" );
+		{
+			Asset.AddEntry_Label( "aiUniqueFxInfo", "" ).SetTitle( " " ).Show( false );
+		
+			Asset.BeginCategory( "FX Table Information.Unique FX" + ".Water FX", 0.3, 0.5, 1, "Icon_FX.png" );
+			{
+				Asset.AddEntry_Path( "fx_splashSmall", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Splash Small:").SetToolTip( "").Show( false );
+				Asset.AddEntry_Path( "fx_splashMedium", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Splash Medium:").SetToolTip( "").Show( false );
+				Asset.AddEntry_Path( "fx_splashLarge", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Splash Large:").SetToolTip( "").Show( false );
+				Asset.AddEntry_Path( "fx_splashMassive", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Splash Massive:").SetToolTip( "").Show( false );
+			}
+			
+			Asset.BeginCategory( "FX Table Information.Unique FX" + ".Wallrun FX", 0.3, 0.5, 1, "Icon_FX.png" );
+			{
+				Asset.AddEntry_Path( "fx_splashSmall", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Hand:").SetToolTip( "").Show( false );
+			}
+		}
+	}
+}

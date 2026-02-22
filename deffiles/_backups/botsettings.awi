@@ -1,0 +1,178 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+// Registered for live update from APE
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	
+	Asset.AddEntry_Combo( "type", "botsettings" ).Show( false );
+	Asset.AddEntry_Combo( "vmType", "server" ).Show( false );
+	
+	Asset.BeginCategory( "Bot Settings" );
+	
+	Asset.AddEntry_Float( "thinkInterval", 0.25, 0.1, 1 ).SetTitle( "Think Interval" ).SetToolTip( "How often the bot updates" );
+	
+	Asset.AddEntry_CheckBox( "allowGrenades", true).SetTitle( "Allow Grenades");
+	Asset.AddEntry_CheckBox( "allowMelee", true).SetTitle( "Allow Melee");
+	Asset.AddEntry_CheckBox( "allowKillstreaks", true).SetTitle( "Allow Scorestreaks");
+	Asset.AddEntry_CheckBox( "allowHeroGadgets", true).SetTitle( "Allow Hero Gadgets");
+	
+	Asset.BeginCategory( "Combat" );
+	{
+		Asset.AddEntry_Int( "fov", 70, 0, 360 ).SetTitle( "Field of View" ).SetToolTip( "Field of view in degrees" );
+		Asset.AddEntry_Int( "fovAds", 50, 0, 360 ).SetTitle( "ADS Field of View" ).SetToolTip( "ADS field of view in degrees" );
+		
+		Asset.AddEntry_Int( "headshotWeight", 20, 0, 100 ).SetTitle( "Headshot Chance" ).SetToolTip( "Chance to aim for the head when acquiring a target" );
+		
+		Asset.AddEntry_Int( "lethalWeight", 20, 0, 100 ).SetTitle( "Lethal Chance" ).SetToolTip( "Chance to throw a lethal grenade when acquiring a target" );
+		Asset.AddEntry_Int( "tacticalWeight", 20, 0, 100 ).SetTitle( "Tactical Chance" ).SetToolTip( "Chance to throw a tactical grenade when acquiring a target" );
+		
+		Asset.AddEntry_Int( "lethalDistanceMin", 550, 0, 1024 ).SetTitle( "Lethal Min Distance" ).SetToolTip( "Minimum distance from threat before throwing lethal is allowed" );
+		Asset.AddEntry_Int( "lethalDistanceMax", 800, 0, 1024 ).SetTitle( "Lethal Max Distance" ).SetToolTip( "Maximum distance from threat before throwing lethal is allowed" );
+		
+		Asset.AddEntry_Int( "tacticalDistanceMin", 550, 0, 1024 ).SetTitle( "Tactical Min Distance" ).SetToolTip( "Minimum distance from threat before throwing tactical is allowed" );
+		Asset.AddEntry_Int( "tacticalDistanceMax", 800, 0, 1024 ).SetTitle( "Tactical Max Distance" ).SetToolTip( "Maximum distance from threat before throwing tactical is allowed" );
+		
+		Asset.AddEntry_Int( "threatRadiusMin", 200, 0, 1024 ).SetTitle( "Threat Min Radius" ).SetToolTip( "Minimum radius used when finding a point around the current threat" );
+		Asset.AddEntry_Int( "threatRadiusMax", 550, 0, 1024 ).SetTitle( "Threat Max Radius" ).SetToolTip( "Maxium radius used when finding a point around the current threat" );
+		
+		Asset.AddEntry_Float( "meleeRangeMultiplier", 1, 0, 2 ).SetTitle( "Melee Range Multiplier" ).SetToolTip( "Multiplier to apply to player_defaultMeleeRange" );
+		Asset.AddEntry_Float( "meleeDot", 0.939, 0, 1 ).SetTitle( "Melee Dot" ).SetToolTip( "Cosine of angle to do a melee attack" );
+		
+		Asset.AddEntry_Int( "changeClassWeight", 20, 0, 100 ).SetTitle( "Change Class Chance" ).SetToolTip( "Chance to change class after death" );
+	}
+	
+	Asset.BeginCategory( "Combat Strafe" );
+	{
+		Asset.AddEntry_Int( "strafeMin", 200, 0, 3000 ).SetTitle( "Min Radius" ).SetToolTip( "Min radius to look for a strafe point" );
+		Asset.AddEntry_Int( "strafeMax", 400, 0, 3000 ).SetTitle( "Max Radius" ).SetToolTip( "Max radius to look for a strafe point" );
+		Asset.AddEntry_Int( "strafeSpacing", 64, 0, 1000 ).SetTitle( "Spacing" ).SetToolTip( "Space between points to check" );
+		Asset.AddEntry_Float( "strafeSideDotMin", -0.174, -1, 1 ).SetTitle( "Side Dot Min" ).SetToolTip( "Minimum Cosine of angle for weighting left/right points" );
+		Asset.AddEntry_Float( "strafeSideDotMax", 0.5, -1, 1 ).SetTitle( "Side Dot Max" ).SetToolTip( "Maximum Cosine of angle for weighting left/right points" );
+	}
+	
+	Asset.BeginCategory( "Threat Chase" );
+	{
+		Asset.AddEntry_Float( "chaseThreatTime", 3.5, 0, 10 ).SetTitle( "Chase Time" ).SetToolTip( "Maximum time to chase an out of view threat" );
+	
+		Asset.AddEntry_Int( "chaseWanderMin", 256, 0, 3000 ).SetTitle( "Min Radius" ).SetToolTip( "Min radius to look for a wander point" );
+		Asset.AddEntry_Int( "chaseWanderMax", 512, 0, 3000 ).SetTitle( "Max Radius" ).SetToolTip( "Max radius to look for a wander point" );
+		Asset.AddEntry_Int( "chaseWanderSpacing", 64, 0, 1000 ).SetTitle( "Spacing" ).SetToolTip( "Space between points to check" );
+		Asset.AddEntry_Float( "chaseWanderFwdDot", 0.87, -1, 1 ).SetTitle( "Forward Dot" ).SetToolTip( "Cosine of angle for weighting forward points" );
+	}
+	
+	Asset.BeginCategory( "Damaged Wander" );
+	{
+		Asset.AddEntry_Int( "damageWanderMin", 256, 0, 3000 ).SetTitle( "Min Radius" ).SetToolTip( "Min radius to look for a wander point" );
+		Asset.AddEntry_Int( "damageWanderMax", 512, 0, 3000 ).SetTitle( "Max Radius" ).SetToolTip( "Max radius to look for a wander point" );
+		Asset.AddEntry_Int( "damageWanderSpacing", 64, 0, 1000 ).SetTitle( "Spacing" ).SetToolTip( "Space between points to check" );
+		Asset.AddEntry_Float( "damageWanderFwdDot", 0.87, -1, 1 ).SetTitle( "Forward Dot" ).SetToolTip( "Cosine of angle for weighting forward points" );
+	}
+	
+	Asset.BeginCategory( "Idle Wander" );
+	{
+		Asset.AddEntry_Int( "wanderMin", 256, 0, 3000 ).SetTitle( "Min Radius" ).SetToolTip( "Min radius to look for a wander point" );
+		Asset.AddEntry_Int( "wanderMax", 1500, 0, 3000 ).SetTitle( "Max Radius" ).SetToolTip( "Max radius to look for a wander point" );
+		Asset.AddEntry_Int( "wanderSpacing", 128, 0, 1000 ).SetTitle( "Spacing" ).SetToolTip( "Space between points to check" );
+		Asset.AddEntry_Float( "wanderFwdDot", 0.87, -1, 1 ).SetTitle( "Forward Dot" ).SetToolTip( "Cosine of angle for weighting forward points" );
+	}
+	
+	Asset.BeginCategory( "Weapons.Pistol" );
+	{
+		Asset.AddEntry_Int( "pistolRange", 1000, 1, 10000 ).SetTitle( "Range" ).SetToolTip( "Maximum range" );
+		Asset.AddEntry_Int( "pistolRangeClose", 300, 1, 10000 ).SetTitle( "Close Range" ).SetToolTip( "Maximum hip fire range" );
+		Asset.AddEntry_Float( "pistolAds", 0.94, 0.001, 1 ).SetTitle( "ADS Dot" ).SetToolTip( "Cosine of angle to begin ADS" );
+		Asset.AddEntry_Float( "pistolFire", 0.985, 0.001, 1 ).SetTitle( "Fire Dot" ).SetToolTip( "Cosine of angle to begin Firing" );
+	}
+	
+	Asset.BeginCategory( "Weapons.Assault Rifle" );
+	{
+		Asset.AddEntry_Int( "rifleRange", 1500,  1, 10000 ).SetTitle( "Range" ).SetToolTip( "Maximum range" );
+		Asset.AddEntry_Int( "rifleRangeClose", 300, 1, 10000 ).SetTitle( "Close Range" ).SetToolTip( "Maximum hip fire range" );
+		Asset.AddEntry_Float( "rifleAds", 0.94, 0.001, 1 ).SetTitle( "ADS Dot" ).SetToolTip( "Cosine of angle to begin ADS" );
+		Asset.AddEntry_Float( "rifleFire", 0.985, 0.001, 1 ).SetTitle( "Fire Dot" ).SetToolTip( "Cosine of angle to begin Firing" );
+	}
+	
+	Asset.BeginCategory( "Weapons.Submachine Gun" );
+	{	
+		Asset.AddEntry_Int( "smgRange", 800,  1, 10000 ).SetTitle( "Range" ).SetToolTip( "Maximum range" );
+		Asset.AddEntry_Int( "smgRangeClose", 300, 1, 10000 ).SetTitle( "Close Range" ).SetToolTip( "Maximum hip fire range" );
+		Asset.AddEntry_Float( "smgAds", 0.94, 0.001, 1 ).SetTitle( "ADS Dot" ).SetToolTip( "Cosine of angle to begin ADS" );
+		Asset.AddEntry_Float( "smgFire", 0.985, 0.001, 1 ).SetTitle( "Fire Dot" ).SetToolTip( "Cosine of angle to begin Firing" );
+	}
+	
+	Asset.BeginCategory( "Weapons.Machine Gun" );
+	{
+		Asset.AddEntry_Int( "mgRange", 5000,  1, 10000 ).SetTitle( "Range" ).SetToolTip( "Maximum range" );
+		Asset.AddEntry_Int( "mgRangeClose", 300, 1, 10000 ).SetTitle( "Close Range" ).SetToolTip( "Maximum hip fire range" );
+		Asset.AddEntry_Float( "mgAds", 0.94, 0.001, 1 ).SetTitle( "ADS Dot" ).SetToolTip( "Cosine of angle to begin ADS" );
+		Asset.AddEntry_Float( "mgFire", 0.985, 0.001, 1 ).SetTitle( "Fire Dot" ).SetToolTip( "Cosine of angle to begin Firing" );
+	}
+	
+	Asset.BeginCategory( "Weapons.Shotgun" );
+	{	
+		Asset.AddEntry_Int( "spreadRange", 600,  1, 10000 ).SetTitle( "Range" ).SetToolTip( "Maximum range" );
+		Asset.AddEntry_Int( "spreadRangeClose", 300, 1, 10000 ).SetTitle( "Close Range" ).SetToolTip( "Maximum hip fire range" );
+		Asset.AddEntry_Float( "spreadAds", 0.94, 0.001, 1 ).SetTitle( "ADS Dot" ).SetToolTip( "Cosine of angle to begin ADS" );
+		Asset.AddEntry_Float( "spreadFire", 0.985, 0.001, 1 ).SetTitle( "Fire Dot" ).SetToolTip( "Cosine of angle to begin Firing" );
+	}
+	
+	Asset.BeginCategory( "Weapons.Sniper Rifle" );
+	{
+		Asset.AddEntry_Int( "sniperRange", 5000,  1, 10000 ).SetTitle( "Range" ).SetToolTip( "Maximum range" );
+		Asset.AddEntry_Int( "sniperRangeClose", 300, 1, 10000 ).SetTitle( "Close Range" ).SetToolTip( "Maximum hip fire range" );
+		Asset.AddEntry_Float( "sniperAds", 0.94, 0.001, 1 ).SetTitle( "ADS Dot" ).SetToolTip( "Cosine of angle to begin ADS" );
+		Asset.AddEntry_Float( "sniperFire", 0.985, 0.001, 1 ).SetTitle( "Fire Dot" ).SetToolTip( "Cosine of angle to begin Firing" );
+	}
+	
+	Asset.BeginCategory( "Weapons.Rocket Launcher" );
+	{
+		Asset.AddEntry_Int( "rocketLauncherRange", 900, 1, 10000 ).SetTitle( "Range" ).SetToolTip( "Maximum range" );
+		Asset.AddEntry_Int( "rocketLauncherRangeClose", 300, 1, 10000 ).SetTitle( "Close Range" ).SetToolTip( "Maximum hip fire range" );
+		Asset.AddEntry_Float( "rocketLauncherAds", 0.766, 0.001, 1 ).SetTitle( "ADS Dot" ).SetToolTip( "Cosine of angle to begin ADS" );
+		Asset.AddEntry_Float( "rocketLauncherFire", 0.985, 0.001, 1 ).SetTitle( "Fire Dot" ).SetToolTip( "Cosine of angle to begin Firing" );
+	}
+	
+	Asset.BeginCategory( "Weapons.Default" );
+	{
+		Asset.AddEntry_Int( "defaultRange", 900, 1, 10000 ).SetTitle( "Range" ).SetToolTip( "Maximum range" );
+		Asset.AddEntry_Int( "defaultRangeClose", 300, 1, 10000 ).SetTitle( "Close Range" ).SetToolTip( "Maximum hip fire range" );
+		Asset.AddEntry_Float( "defaultAds", 0.766, 0.001, 1 ).SetTitle( "ADS Dot" ).SetToolTip( "Cosine of angle to begin ADS" );
+		Asset.AddEntry_Float( "defaultFire", 0.985, 0.001, 1 ).SetTitle( "Fire Dot" ).SetToolTip( "Cosine of angle to begin Firing" );
+	}
+	
+	Asset.BeginCategory( "Aiming" );
+	{
+		Asset.AddEntry_Float( "pitchSensitivity", 1, 0.4, 4 ).SetTitle( "Pitch Sensitivity" ).SetToolTip( "Pitch speed multiplier" );
+		Asset.AddEntry_Float( "yawSensitivity", 1, 0.4, 4 ).SetTitle( "Yaw Sensitivity" ).SetToolTip( "Yaw speed multiplier" );
+		
+		Asset.AddEntry_Float( "aimDelay", 0.2, 0, 3 ).SetTitle( "Aim Delay" ).SetToolTip( "Seconds to wait before aiming at a target" );
+		Asset.AddEntry_Float( "aimTime", 0.4, 0, 3 ).SetTitle( "Aim Time" ).SetToolTip( "Time to go from the initial error aim, to being on target" );
+		
+		Asset.AddEntry_Float( "aimErrorMinPitch", 2, 0, 45.0 ).SetTitle( "Pitch Min Aim Error" ).SetToolTip( "Minimum +/- pitch angle error when aiming at a target" );
+		Asset.AddEntry_Float( "aimErrorMaxPitch", 5, 0, 45.0 ).SetTitle( "Pitch Max Aim Error" ).SetToolTip( "Maximum +/- pitch angle error when aiming at a target" );
+		
+		Asset.AddEntry_Float( "aimErrorMinYaw", 5, 0, 45.0 ).SetTitle( "Yaw Min Aim Error" ).SetToolTip( "Minimum +/- yaw angle error when aiming at a target" );
+		Asset.AddEntry_Float( "aimErrorMaxYaw", 15, 0, 45.0 ).SetTitle( "Yaw Max Aim Error" ).SetToolTip( "Maximum +/- yaw angle error when aiming at a target" );
+	}
+	
+	Asset.BeginCategory( "Look" );
+	{		
+		Asset.AddEntry_Float( "pitchSpeed", 90, 0.0, 1080 ).SetTitle( "Pitch Speed" ).SetToolTip( "Base pitch speed" );
+		Asset.AddEntry_Float( "pitchSpeedAds", 55, 0.0, 1080 ).SetTitle( "Pitch Speed ADS" ).SetToolTip( "Base pitch speed when Aiming Down Sights" );
+		
+		Asset.AddEntry_Float( "yawSpeed", 260, 0.0, 1080 ).SetTitle( "Yaw Speed" ).SetToolTip( "Base yaw speed" );
+		Asset.AddEntry_Float( "yawSpeedAds", 90, 0.0, 1080 ).SetTitle( "Yaw Speed ADS" ).SetToolTip( "Base yaw speed when Aiming Down Sights" );
+	}
+	
+	Asset.BeginCategory( "Look.Smoothing" );
+	{
+		Asset.AddEntry_Float( "pitchAccelerationTime", 0.4, 0, 2 ).SetTitle( "Pitch Acceleration Time" ).SetToolTip( "Time to accelerate to full pitch speed from zero" );
+		Asset.AddEntry_Float( "yawAccelerationTime", 0.4, 0, 2 ).SetTitle( "Yaw Acceleration Time" ).SetToolTip( "Time to accelerate to full yaw speed from zero" );
+		
+		Asset.AddEntry_Float( "pitchDecelerationThreshold", 15, 0, 90 ).SetTitle( "Pitch Deceleration Threshold" ).SetToolTip( "Angle to begin lerping the pitch velocity to zero" );
+		Asset.AddEntry_Float( "yawDecelerationThreshold", 15, 0, 90 ).SetTitle( "Yaw Deceleration Threshold" ).SetToolTip( "Angle to begin lerping the yaw velocity to zero" );
+	}
+}

@@ -1,0 +1,48 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+#include "gfx_bundle.h"
+
+void GenerateUI( asset Asset )
+{
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	Asset.AddEntry_String( "vmType", "Client" ).Show( false );
+	Asset.AddEntry_String( "type", "duprenderbundle" ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	GfxBundle( Asset, 10, 4 );
+}
+
+void GfxBundleSpecific( asset Asset, string StageName, string stageString, bool show )
+{
+	AddDupMaterial( Asset, StageName + ".Materials.Frame Buffer", stageString + "fb_", show, "default material" );
+	AddDupMaterial( Asset, StageName + ".Materials.Duplicated Frame Buffer", stageString + "dupfb_", show, "off" );
+	AddDupMaterial( Asset, StageName + ".Materials.Offscreen (Sonar)", stageString + "sonar_", show, "off" );
+}
+
+void AddDupMaterial( asset Asset, string StageName, string stageString, bool show, string defaulState )
+{
+	string renderMethod = 
+	"""
+		off |
+		default material |
+		custom material |
+		force custom material |
+		thermal |
+		enemy material
+	""";
+
+	Asset.BeginCategory( StageName );
+
+	Asset.AddEntry_Combo( stageString + "method", renderMethod ).SetTitle( "Render Method" ).Show( show ).SetDefaultValue( defaulState ).UpdateOnChange( true );
+
+	string method = Asset.GetEntryValue( stageString + "method" );
+	
+	bool showMaterial = show && ( method == "custom material" || method == "force custom material" );
+	Asset.AddEntry_AssetCombo( stageString + "mc_material", "material" ).SetTitle( "Custom Material" ).Show( showMaterial ).UpdateOnChange( true );
+
+
+}

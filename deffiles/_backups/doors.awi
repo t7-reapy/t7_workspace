@@ -1,0 +1,139 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	 
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Global variables 
+
+	bool bXmodelUI = true;
+
+	Asset.AddEntry_Combo( "type", "doors" ).Show( false );
+	
+	string vm_type = "Server | Client";
+	Asset.AddEntry_Combo( "vmType", vm_type ).SetTitle( "Script Type" ).SetToolTip( "Spawn this object in server script or client script?" );
+
+	// MODEL: The model field is shared by multiple Script Bundle Types
+	//		   - Set the Bool bXmodelUI to include this UI element
+	Asset.AddEntry_AssetCombo( "model", "xmodel" ).SetTitle( "XModel" ).SetToolTip( "The XModel, will be visible in Radiant.  NOTE: Xmodel needs a collmap for Collision" ).Show( bXmodelUI ).SetSave( bXmodelUI ).UpdateOnChange( true );
+	
+	// If its a DOOR, generate the Door UI
+	// *** NOTE: A syntax issue means you can't call functions within IF statements ***
+	GenerateDoorObject( Asset, true );
+}
+
+
+void GenerateDoorObject( asset Asset, bool isDoors )
+{
+	// Hide fields depending on door open method (slide, swing or animated)
+	string	str_door_type  = Asset.GetEntryValue( "door_open_method" );
+	string	str_unlock_type = Asset.GetEntryValue( "door_unlock_method" );
+	bool	bDoorSlide = false;
+	bool	bDoorSwing = false;
+	bool	bDoorAnimated = false;
+	bool	bDoorKey = false;
+	bool	bDoorHack = false;
+	
+	if( str_door_type == "slide" )
+	{
+		bDoorSlide = true;
+	}
+	else if( str_door_type == "swing" )
+	{
+		bDoorSwing = true;
+	}
+	else if( str_door_type == "animated" )
+	{
+		bDoorAnimated = true;
+	}
+	
+	if ( str_unlock_type == "key" )
+	{
+		bDoorKey = true;
+	}
+	else if ( str_unlock_type == "hack" )
+	{
+		bDoorHack = true;
+	}
+	
+// This syntax doesn't work
+//	if( !isDoors )
+//	{
+//		return;
+//	}
+	
+	Asset.BeginCategory( "Movement" );
+	{
+		Asset.AddEntry_Vector3( "door_triggerOffsetX", "door_triggerOffsetY", "door_triggerOffsetZ", 0, 0, 0, -1000, 1000 ).SetTitle( "Door Trigger Offset" ).SetToolTip( "Use this Offset to position the Doors Trigger in the center of the Door.  Trigger Origin = Door Xmodel Origin + This Offset" ).Show( isDoors ).SetLabels( "side", "forward", "up", "" ).SetSave( isDoors );
+		Asset.AddEntry_Float( "door_trigger_radius", 80, 40, 10000 ).SetToolTip( "Door opens when player within this Radius of the Doors Trigger" ).Show( isDoors ).SetTitle( "Door Trigger Radius" ).SetSave( isDoors );
+		Asset.AddEntry_Combo( "door_open_method", "slide | swing | animated" ).SetTitle( "Door Open Method" ).SetToolTip( "How does the Door Open?  NOTE: Animations not yet supported." ).Show( isDoors ).SetSave( isDoors ).UpdateOnChange( true );
+		Asset.AddEntry_CheckBox( "door_slide_horizontal", true ).SetTitle( "Door Slide: Horizontal Movement" ).SetToolTip( "If a SLIDE Door, does the door open Horizontally or Vetrically?" ).Show( isDoors ).SetSave( isDoors ).UpdateOnChange( true ).Enable( bDoorSlide );
+		Asset.AddEntry_Float( "door_slide_open_units", 50, -1000, 1000 ).SetTitle( "Door Slide: Open Amount (units)" ).SetToolTip( "If a SLIDE Door, how many units the door opens, use positive or negative values for different movement directions" ).Show( isDoors ).SetSave( isDoors ).UpdateOnChange( true ).Enable( bDoorSlide );
+		Asset.AddEntry_Float( "door_swing_angle", 120, -180, 180 ).SetTitle( "Door Swing: Open Angle" ).SetToolTip( "Door Swing Only: The open angle amount" ).Show( isDoors ).SetSave( isDoors ).UpdateOnChange( true ).Enable( bDoorSwing );
+		Asset.AddEntry_Float( "door_open_time", 0.5, 0.1, 5 ).SetTitle( "Door Open Time" ).SetToolTip( "The time it takes the door to open" ).Show( isDoors ).SetSave( isDoors );
+	}
+	
+	Asset.BeginCategory( "Behavior & Interaction" );
+	{
+		Asset.AddEntry_CheckBox( "door_closes", true ).SetTitle( "Door Closes" ).SetToolTip( "Does the door close when its trigger is clear of entities?" ).Show( isDoors ).SetSave( isDoors );
+		Asset.AddEntry_CheckBox( "door_start_open", false ).SetTitle( "Door Starts Open" ).SetToolTip( "Does this door start in the open state?" ).Show( isDoors ).SetSave( isDoors );
+		Asset.AddEntry_CheckBox( "door_use_trigger", true ).SetTitle( "Door Player USE Button" ).SetToolTip( "Does the door reaquire the player to press the USE Button to open?" ).Show( isDoors ).SetSave( isDoors );
+		Asset.AddEntry_CheckBox( "door_use_hold", false ).SetTitle( "Door Hold USE" ).SetToolTip( "Does the door require the player to HOLD the USE Button to open?" ).Show( isDoors ).SetSave( isDoors );
+		Asset.AddEntry_CheckBox( "door_connect_paths", false ).SetTitle( "Door connects paths" ).SetToolTip( "If checked door will connect or disconnect paths." ).Show( isDoors ).SetSave( isDoors );
+		Asset.AddEntry_CheckBox( "door_trigger_at_target", false ).SetTitle( "Door Trigger at Target" ).SetToolTip( "Create the door trigger at the door's target object, rather than at the door." ).Show( isDoors ).SetSave( isDoors );
+		Asset.AddEntry_String( "door_open_message", "" ).SetTitle( "Open Door Message" ).SetToolTip( "Override Open Door Message" ).Show( isDoors ).SetSave( isDoors );
+	}
+	
+	Asset.BeginCategory( "Locks & Hacking" );
+	{
+		Asset.AddEntry_CheckBox( "door_locked", false ).SetTitle( "Door requires unlocking" ).SetToolTip( "Door requires a notify to unlock" ).Show( isDoors ).SetSave( isDoors ).UpdateOnChange(true);
+		Asset.AddEntry_Combo( "door_unlock_method", "default | hack | key" ).SetTitle( "Unlock Method" ).SetToolTip( "How does the Door unlock?" ).Show( isDoors ).SetSave( isDoors ).UpdateOnChange( true );
+		Asset.AddEntry_AssetCombo( "door_key_model", "xmodel" ).SetTitle( "Key Model" ).SetToolTip( "The model used to show the key." ).Show( bDoorKey ).SetSave( bDoorKey ).UpdateOnChange( true );
+		Asset.AddEntry_AssetCombo( "door_key_icon", "material" ).SetTitle( "Key Icon" ).SetToolTip( "The icon used to show posession of the key." ).Show( bDoorKey ).SetSave( bDoorKey ).UpdateOnChange( true );
+		Asset.AddEntry_Path( "door_key_fx", "" ).SetTitle( "Key Glow" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( "Effect played on the key to make it stand out." ).SetSave(bDoorKey).Show(bDoorKey).UpdateOnChange(true);
+		Asset.AddEntry_Float( "door_hack_time", 5.0, 1.0, 120.0 ).SetTitle( "Hack Time" ).SetToolTip( "How long should it take to hack this door?" ).Show( bDoorHack ).SetSave( bDoorHack ).UpdateOnChange( true ).Enable( bDoorHack );
+		Asset.AddEntry_Path( "door_locked_fx", "" ).SetTitle( "Door Locked Effect" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( "Effect played at the door's origin to show that the door is locked" );
+		Asset.AddEntry_Path( "door_unlocked_fx", "" ).SetTitle( "Door Unlocked Effect" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( "Effect played at the door's origin to show that the door is unlocked" );
+	}
+	
+	Asset.BeginCategory( "Audio" );
+	{
+		Asset.AddEntry_String( "door_start_sound", "" ).SetTitle( "Door Start/Open Sound" ).SetToolTip( "If loopsound is not defined: Oneshot that plays when door opens." ).Show( isDoors ).SetSave( isDoors );
+		Asset.AddEntry_String( "door_loop_sound", "" ).SetTitle( "Door Loop Sound" ).SetToolTip( "Loopsound will play for duration of Door Open Time above, or animation length" ).Show( isDoors ).SetSave( isDoors );
+		Asset.AddEntry_String( "door_stop_sound", "" ).SetTitle( "Door Stop/Close Sound" ).SetToolTip( "If loopsound is not defined: Oneshot that plays when door closes." ).Show( isDoors ).SetSave( isDoors );
+	}
+}
+
+
+
+
+/*
+void GeneratePlayerInteractObject( asset Asset, bool isPlayerInteract )
+{
+	Asset.AddEntry_AssetCombo( "player_interact_animation", "xanim" ).SetTitle( "Object Used Animation" ).SetToolTip( "The animation played on the object when Used" ).Show( isPlayerInteract ).SetSave( isPlayerInteract );	
+	
+	Asset.AddEntry_AssetCombo( "player_interact_fx", "" ).SetTitle( "Object Used Particle Effect" ).SetToolTip( "Particle Effect played when used" ).Show( isPlayerInteract ).SetSave( isPlayerInteract ).UpdateOnChange( true );
+
+	//Asset.AddEntry_Path( "player_interact_fx", "" ).SetRelativePath( "share/raw/fx/" ).SetTitle( "Object Used Particle Effect" ).SetToolTip( "Particle Effect played when used" ).Show( isPlayerInteract ).SetSave( isPlayerInteract ).UpdateOnChange( true );
+	
+	Asset.BeginCategory( "Screen_Shake" );
+	{
+		bool bPlayerInteractEarthquake = Asset.GetEntryBool( "player_interact_earthquake" );
+		
+		Asset.AddEntry_CheckBox( "player_interact_earthquake", false ).SetTitle( "Use Screen Shake" ).SetToolTip( "Do you want the Interaction to trigger an earthquake Effect?" ).Show( isPlayerInteract ).SetSave( isPlayerInteract ).UpdateOnChange( true );
+		Asset.AddEntry_Float( "player_interact_earthquake_size", 0.5, 0.01, 10 ).SetTitle( "Screen Shake Size" ).SetToolTip( "How Strongly the screen shakes" ).Show( isPlayerInteract ).SetSave( isPlayerInteract ).Enable( bPlayerInteractEarthquake ).UpdateOnChange( true );
+		Asset.AddEntry_Float( "player_interact_earthquake_time", 1, 0.01, 10 ).SetTitle( "Screen Shake Time" ).SetToolTip( "How long the screen shake lasts for" ).Show( isPlayerInteract ).SetSave( isPlayerInteract ).Enable( bPlayerInteractEarthquake ).UpdateOnChange( true );
+		Asset.AddEntry_Float( "player_interact_earthquake_radius", 600, 1, 10000 ).SetTitle( "Screen Shake Radius" ).SetToolTip( "The screen shake influence Radius" ).Show( isPlayerInteract ).SetSave( isPlayerInteract ).Enable( bPlayerInteractEarthquake ).UpdateOnChange( true );
+	}
+	
+	Asset.BeginCategory( "Pad_Rumble" );
+	{
+		bool bPlayerInteractVibrate = Asset.GetEntryBool( "player_interact_vibrate" );
+		Asset.AddEntry_CheckBox( "player_interact_vibrate", false ).SetTitle( "Use Pad Rumble" ).SetToolTip( "Do you want the Interaction to trigger a Pad Rumble?" ).Show( isPlayerInteract ).SetSave( isPlayerInteract ).UpdateOnChange( true );
+		Asset.AddEntry_AssetCombo( "player_interact_vibrate_asset", "rumble" ).SetTitle( "Rumble" ).SetToolTip( "The rumble file to play on the object when Used" ).Show( isPlayerInteract ).SetSave( isPlayerInteract ).Enable( bPlayerInteractVibrate ).UpdateOnChange( true );
+	}
+}
+*/

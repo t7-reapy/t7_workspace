@@ -1,0 +1,33 @@
+
+void GenerateUI( asset Asset )
+{
+	// Effect table
+	
+	Asset.BeginCategory( "PLAYERFX TABLE" );
+	{
+		Asset.AddEntry_Path( "wallRunHand", "").SetRelativePath( "share/raw/fx/" ).SetTitle("wallRunHand").SetToolTip( "Effect to use for wallRunHand.");
+		
+		Asset.AddEntry_AssetCombo( "footstep", "surfacefxtable" ).SetTitle( "footstep" ).SetToolTip( "Use this to specify the surfacefxtable asset for the footstep." );
+		Asset.AddEntry_AssetCombo( "footstepTracker", "surfacefxtable" ).SetTitle( "footstepTracker" ).SetToolTip( "Use this to specify the surfacefxtable asset for the footsteps seen with the Tracker perk." );
+		Asset.AddEntry_AssetCombo( "land", "surfacefxtable" ).SetTitle( "land" ).SetToolTip( "Use this to specify the surfacefxtable asset for the land." );
+		
+		Asset.AddEntry_AssetCombo( "jumpStart", "surfacefxtable" ).SetTitle( "jumpStart" ).SetToolTip( "Use this to specify the surfacefxtable asset for the jumpStart." );
+		Asset.AddEntry_AssetCombo( "leapStart", "surfacefxtable" ).SetTitle( "leapStart" ).SetToolTip( "Use this to specify the surfacefxtable asset for the leapStart." );
+		Asset.AddEntry_AssetCombo( "doubleJumpStart", "surfacefxtable" ).SetTitle( "doubleJumpStart" ).SetToolTip( "Use this to specify the surfacefxtable asset for the doubleJumpStart." );
+		
+		Asset.AddEntry_AssetCombo( "slideLeftKnee", "surfacefxtable" ).SetTitle( "slideLeftKnee" ).SetToolTip( "Use this to specify the surfacefxtable asset for the slideLeftKnee." );
+		Asset.AddEntry_AssetCombo( "slideRightKnee", "surfacefxtable" ).SetTitle( "slideRightKnee" ).SetToolTip( "Use this to specify the surfacefxtable asset for the slideRightKnee." );
+		Asset.AddEntry_AssetCombo( "slideLeftFoot", "surfacefxtable" ).SetTitle( "slideLeftFoot" ).SetToolTip( "Use this to specify the surfacefxtable asset for the slideLeftFoot." );
+		
+		Asset.AddEntry_Path( "playerJet", "").SetRelativePath( "share/raw/fx/" ).SetTitle("playerJet").SetToolTip( "Effect to use for playerJet.");
+		Asset.AddEntry_Path( "playerJetWeak", "").SetRelativePath( "share/raw/fx/" ).SetTitle("playerJetWeak").SetToolTip( "Effect to use for playerJetWeak.");
+		Asset.AddEntry_Path( "playerJetEMP", "").SetRelativePath( "share/raw/fx/" ).SetTitle("playerJetEMP").SetToolTip( "Effect to use for playerJetEMP. these play on the player while they are emped.");
+
+		Asset.AddEntry_Path( "underWaterBreathing", "").SetRelativePath( "share/raw/fx/" ).SetTitle("Under Water").SetToolTip( "Effect to use for when player is under water.");
+		
+		Asset.AddEntry_Path( "splashSmall", "").SetRelativePath( "share/raw/fx/" ).SetTitle("splashSmall").SetToolTip( "Effect to use for splashSmall.");
+		Asset.AddEntry_Path( "splashMed", "").SetRelativePath( "share/raw/fx/" ).SetTitle("splashMed").SetToolTip( "Effect to use for splashMed.");
+		Asset.AddEntry_Path( "splashLarge", "").SetRelativePath( "share/raw/fx/" ).SetTitle("splashLarge").SetToolTip( "Effect to use for splashLarge.");
+		Asset.AddEntry_Path( "splashMassive", "").SetRelativePath( "share/raw/fx/" ).SetTitle("splashMassive").SetToolTip( "Effect to use for splashMassive.");
+	}
+}

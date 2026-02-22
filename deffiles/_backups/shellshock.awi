@@ -1,0 +1,73 @@
+
+void GenerateUI( asset Asset )
+{
+	// Hidden
+ 
+	Asset.AddEntry_String( "configstringFileType", "SHELLSHOCK" ).Show( false );	
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Misc
+	
+	Asset.BeginCategory( "Screen Blend" );
+	{
+		Asset.AddEntry_Combo( "screenType", "none | blurred | flashed | concussed | shocked" ).SetTitle( "Type" );
+		Asset.AddEntry_Float( "screenBlurBlendTime", 0.4, 0.001, 10 ).SetTitle( "Blur Effect Time (in sec)" );
+		Asset.AddEntry_Float( "screenBlurFadeTime", 1, 0.001, 1000 ).SetTitle( "Blur Fade Time (in sec)" );
+		Asset.AddEntry_Float( "screenFlashShotFadeTime", 1, 0, 1000 ).SetTitle( "Flash Shot Fade Time (in sec)" );
+		Asset.AddEntry_Float( "screenFlashWhiteFadeTime", 1, 0, 1000 ).SetTitle( "Flash White Fade Time (in sec)" );
+	}
+
+	Asset.BeginCategory( "View Kick" );
+	{
+		Asset.AddEntry_Float( "viewKickFadeTime", 3, 0.001, 1000 ).SetTitle( "Fade Time (in sec)" );
+		Asset.AddEntry_Float( "viewKickPeriod", 0.75, 0.001, 1000 ).SetTitle( "Period (in sec)" );
+		Asset.AddEntry_Float( "viewKickRadius", 0.05, 0, 1 ).SetTitle( "Radius" );
+	}
+
+	Asset.BeginCategory( "Sound" );
+	{
+		Asset.AddEntry_CheckBox( "sound", true ).SetTitle( "Enabled" );
+		Asset.AddEntry_String( "soundLoop", "" ).SetTitle( "Loop Alias" );
+		Asset.AddEntry_String( "soundLoopSilent", "" ).SetTitle( "Loop Silent Alias" );
+		Asset.AddEntry_String( "soundEnd", "" ).SetTitle( "End Alias" );
+		Asset.AddEntry_String( "soundEndAbort", "" ).SetTitle( "End Abort Alias" );
+		Asset.AddEntry_String( "soundRoomType", "default" ).SetTitle( "Room Type" );
+		Asset.AddEntry_String( "soundSnapshot", "" ).SetTitle( "Snapshot" );
+
+
+		Asset.AddEntry_Float( "soundFadeInTime", 0.25, 0.001, 1000 ).SetTitle( "Fade In Time (in sec)" );
+		Asset.AddEntry_Float( "soundFadeOutTime", 2.5, 0, 100 ).SetTitle( "Fade Out Time (in sec)" );
+		Asset.AddEntry_Float( "soundLoopFadeTime", 1.5, 0, 1000 ).SetTitle( "Loop Fade Time (in sec)" );
+		Asset.AddEntry_Float( "soundLoopEndDelay", -3, -10, 1000 ).SetTitle( "Loop End Delay (in sec)" );
+		Asset.AddEntry_Float( "soundModEndDelay", 2, -1000, 1000 ).SetTitle( "Mod End Delay (in sec)" );
+		Asset.AddEntry_Float( "soundWetLevel", 0.5, 0, 1 ).SetTitle( "Wet Level" );
+		Asset.AddEntry_Float( "soundDryLevel", 1.0, 0, 1 ).SetTitle( "Dry Level" );
+	}
+
+	Asset.BeginCategory( "Look Control" );
+	{
+		Asset.AddEntry_CheckBox( "lookControl", true ).SetTitle( "Enabled" );
+		Asset.AddEntry_CheckBox( "lookDisableAimAssistLockOn", false ).SetTitle( "Disable Aim Assist Lock On" );
+		Asset.AddEntry_CheckBox( "lookDisableAimAssistSlowDown", false ).SetTitle( "Disable Aim Assist Slow Down" );
+		Asset.AddEntry_Float( "lookControlFadeTime", 2, 0.001, 1000 ).SetTitle( "Fade Time (in sec)" );
+		Asset.AddEntry_Float( "lookControlMaxPitchSpeed", 90, 0, 100000 ).SetTitle( "Max Pitch Speed" );
+		Asset.AddEntry_Float( "lookControlMaxYawSpeed", 90, 0, 100000 ).SetTitle( "Max Yaw Speed" );
+		Asset.AddEntry_Float( "lookControlMouseSensitivity", 0.5, 0, 2 ).SetTitle( "Mouse Sensitivity" );
+	}
+
+	Asset.BeginCategory( "Vision Set" );
+	{
+		Asset.AddEntry_String( "visionSetName", "" ).SetTitle( "Name" );
+		Asset.AddEntry_Float( "visionSetFadeInTime", 0, 0, 30 ).SetTitle( "Fade In Time (in sec)" );
+		Asset.AddEntry_Float( "visionSetFadeOutTime", 0, 0, 30 ).SetTitle( "Fade Out Time (in sec)" );
+	}
+
+	Asset.BeginCategory( "Misc" );
+	{
+		Asset.AddEntry_CheckBox( "animation", false ).SetTitle( "Play 3rd person Animation" );
+		Asset.AddEntry_Float( "movement", 1, 0, 1 ).SetTitle( "Movement Speed Scale" );
+		Asset.AddEntry_CheckBox( "cancelsMovement", true ).SetTitle( "Cancel Movement" ).SetToolTip( "Cancel Movement" );
+	}
+}
+

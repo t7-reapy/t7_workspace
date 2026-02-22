@@ -1,0 +1,553 @@
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_Combo( "attachmenttype", "none | acog | damage | dualclip | dualoptic | dw | dynzoom | extbarrel | extclip | fastads | fastreload | fmj | gmod0 | gmod1 | gmod2 | gmod3 | gmod4 | gmod5 | gmod6 | gmod7 | gl | grip | holo | ir | is | mk | mms | notracer | precision | quickdraw | rangefinder | recon | reddot | reflex | rf | sf | stackfire | stalker | steadyaim | supply | suppressed | swayreduc | tacknife | vzoom"	 );
+	Asset.AddEntry_String( "displayName", "" ).SetTitle( "Display Name" ).SetToolTip( "Name of the mod to display for unique weapon attachments." );
+	Asset.AddEntry_String( "displayDesc", "" ).SetTitle( "Display Description" ).SetToolTip( "Description of the mod to display for unique weapon attachments." );
+	Asset.AddEntry_AssetCombo( "modHudIcon", "image" ).SetTitle( "Mod Hud Icon" ).SetToolTip( "Icon for the mod to display for unique weapon attachments." );
+	Asset.AddEntry_AssetCombo( "attachmentImage", "image" ).SetTitle( "CAC Attachment Icon" ).SetToolTip( "Image for the unique attachment to be displayed in the CAC." );
+	Asset.AddEntry_Combo( "configstringFileType", "ATTACHMENTUNIQUEFILE" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Type Alt Mode Options
+
+	Asset.BeginCategory( "Alt Mode Options" );
+	{
+		Asset.AddEntry_String( "altWeapon", "" ).SetHints( "NOWARNINGS" ).SetTitle( "Alt Weapon Name" ).SetToolTip( "Weapon to switch to when this weapon's selective fire mode is switched in the game." );
+		Asset.AddEntry_String( "DualWieldWeapon", "" ).SetTitle( "Dual Wield Weapon Name" ).SetToolTip( "Weapon that is dual wielded with this one." );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Reload Options
+	
+	Asset.BeginCategory( "Reload Options" );
+	{
+		Asset.AddEntry_CheckBox( "segmentedReload", false ).SetTitle( "Segmented Reload" ).SetToolTip( "Turn on for weapons that reload X rounds at a time (Lee-Enfield, bolt-action sniper rifles), set reload amounts in Reload Ammo Add and Reload Start Add." );	
+		Asset.AddEntry_Int( "reloadAmmoAdd", 0, 0, 999 ).SetTitle( "Reload Ammo Add" ).SetToolTip( "For weapons with Segmented Reload turned on. Amount to add when reloading with some amount of bullets still remaining in the weapon." );	
+		Asset.AddEntry_Int( "reloadStartAdd", 0, 0, 999 ).SetTitle( "Reload Start Add" ).SetToolTip( "For weapons with Segmented Reload turned on. Amount to add for the first reload segment (ie: when weapon is empty.)" );	
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Location Damage
+	
+	Asset.BeginCategory( "Location Damage", 0.7, 0.1, 0.1, "Icon_health.png" );
+	{
+		Asset.AddEntry_Float( "locNone", 1, 0, 10 ).SetStep( 0.1 ).SetTitle( "None" ).SetToolTip( "Unrelated to weapon. Used for damage that's not location based, such as grenades or falling.  Included here for completeness." );
+		Asset.AddEntry_Float( "locHelmet", 4, 0, 10 ).SetStep( 0.1 ).SetTitle( "Helmet" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locHead", 4, 0, 10 ).SetStep( 0.1 ).SetTitle( "Head" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locNeck", 5, 0, 10 ).SetStep( 0.1 ).SetTitle( "Neck" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locTorsoUpper", 1, 0, 10 ).SetStep( 0.1 ).SetTitle( "Upper Torso" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locTorsoMid", 1, 0, 10 ).SetStep( 0.1 ).SetTitle( "Mid Torso" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locTorsoLower", 0.9, 0, 10 ).SetStep( 0.1 ).SetTitle( "Lower Torso" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locLeftArmUpper", 0.8, 0, 10 ).SetStep( 0.1 ).SetTitle( "Left Upper Arm" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locRightArmUpper", 0.8, 0, 10 ).SetStep( 0.1 ).SetTitle( "Right Upper Arm" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locLeftArmLower", 0.6, 0, 10 ).SetStep( 0.1 ).SetTitle( "Left Lower Arm" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locRightArmLower", 0.6, 0, 10 ).SetStep( 0.1 ).SetTitle( "Right Lower Arm" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locLeftHand", 0.4, 0, 10 ).SetStep( 0.1 ).SetTitle( "Left Hand" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locRightHand", 0.4, 0, 10 ).SetStep( 0.1 ).SetTitle( "Right Hand" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locLeftLegUpper", 0.8, 0, 10 ).SetStep( 0.1 ).SetTitle( "Left Upper Leg" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locRightLegUpper", 0.8, 0, 10 ).SetStep( 0.1 ).SetTitle( "Right Upper Leg" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locLeftLegLower", 0.6, 0, 10 ).SetStep( 0.1 ).SetTitle( "Left Lower Leg" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locRightLegLower", 0.6, 0, 10 ).SetStep( 0.1 ).SetTitle( "Right Lower Leg" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locLeftFoot", 0.4, 0, 10 ).SetStep( 0.1 ).SetTitle( "Left Foot" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locRightFoot", 0.4, 0, 10 ).SetStep( 0.1 ).SetTitle( "Right Foot" ).SetToolTip( "Damage per-bullet multiplier." );
+		Asset.AddEntry_Float( "locGun", 0, 0, 10 ).SetStep( 0.1 ).SetTitle( "Gun" ).SetToolTip( "Damage per-bullet multiplier." );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Depth of Field Settings
+	
+	Asset.BeginCategory( "Depth of Field Settings" );
+	{
+		Asset.AddEntry_Float( "adsDofStart", 0, 0, 100 ).SetTitle( "ADS Start" ).SetStep( 0.1 );
+		Asset.AddEntry_Float( "adsDofEnd", 0, 0, 100 ).SetTitle( "ADS End" ).SetStep( 0.1 );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Additional Models
+	
+	Asset.BeginCategory( "Attachment Models" );
+	{
+
+		Asset.AddEntry_AssetCombo( "camo", "weaponcamo" ).SetTitle( "Weapon Camo" );
+
+		Asset.AddEntry_Text( "hideTags", "" ).SetTitle( "Hide Tags" ).SetHints( "NOWARNINGS" ).SetToolTip( "name of tags to hide on this model. one per line" );
+
+		array<string> attachmentNames =
+		{
+			"none",
+			"acog",
+			"damage",
+			"dualclip",
+			"dualoptic",
+			"dw",
+			"dynzoom",
+			"extbarrel",
+			"extclip",
+			"fastads",
+			"fastreload",
+			"fmj",
+			"gl",
+//			"gmod0",
+//			"gmod1",
+//			"gmod2",
+//			"gmod3",
+//			"gmod4",
+//			"gmod5",
+			"gmod6",
+			"gmod7",
+			"grip",
+			"holo",
+			"ir",
+			"is",
+			"mk",
+			"mms",
+			"notracer",
+			"precision",
+			"quickdraw",
+			"rangefinder",
+			"recon",
+			"reddot",
+			"reflex",
+			"rf",
+			"sf",
+			"stackfire",
+			"stalker",
+			"steadyaim",
+			"supply",
+			"suppressed",
+			"swayreduc",
+			"tacknife",
+			"vzoom"
+		};
+		
+		string attachmentNamesString = attachmentNames[0];
+		for ( int i = 1; i < attachmentNames.length(); i++ )
+		{
+			attachmentNamesString += " | ";
+			attachmentNamesString += attachmentNames[i];
+		}
+
+		for ( int attachmentIndex = 0; attachmentIndex < 2; attachmentIndex++ )
+		{
+			string prefix = "attachment" + attachmentIndex + "_";
+			string category = "Attachment #" + (attachmentIndex + 1);
+
+			Asset.BeginCategory( category );
+			{
+				Asset.AddEntry_Combo( prefix + "ModelAssociation", attachmentNamesString ).SetTitle( "Attachment Association" ).SetToolTip( "Attachment type these models are associated with" );
+				Asset.AddEntry_AssetCombo( prefix + "CosmeticVariantOverride", "attachmentcosmeticvariant" ).SetHints( "NOWARNINGS" ).SetTitle( "Attachment Cosmetic Variant Override" ).SetToolTip( "Override the base weapon's Attachment Cosmetic Variant for this associated attachment" );
+
+				for ( int modelIndex = 0; modelIndex < 2; modelIndex++ )
+				{
+					string suffix = "_model" + modelIndex;
+
+					Asset.BeginCategory( category + ".View Model #" + (modelIndex + 1) );
+					{
+						Asset.AddEntry_AssetCombo( prefix + "ViewModel" + suffix, "xmodel" ).SetTitle( "Attachment View Model" );
+						Asset.AddEntry_AssetCombo( prefix + "ViewModelADS" + suffix, "xmodel" ).SetTitle( "ADS View Model" ).SetToolTip( "Attachment View model used when ADS if specified." );
+						Asset.AddEntry_String( prefix + "ViewModelTag" + suffix, "" ).SetTitle( "Attachment View Model Tag" );
+						Asset.AddEntry_Vector3( prefix + "ViewModelOffsetX" + suffix, prefix + "ViewModelOffsetY" + suffix, prefix + "ViewModelOffsetZ" + suffix, 0, 0, 0, -10000, 10000 ).SetTitle( "Attachment View Offset" ).SetStep( 0.01f ).SetLabels( "Forward", "Right", "Up", "" );
+						Asset.AddEntry_Vector3( prefix + "ViewModelOffsetPitch" + suffix, prefix + "ViewModelOffsetYaw" + suffix, prefix + "ViewModelOffsetRoll" + suffix, 0, 0, 0, -180, 180 ).SetTitle( "Attachment View Model Offset Angles" ).SetStep( 0.01f ).SetHints( "NOWARNINGS" ).SetLabels( "Pitch  ", "Yaw", "Roll", "" );
+					}
+
+					Asset.BeginCategory( category + ".World Model #" + (modelIndex + 1) );
+					{
+						Asset.AddEntry_AssetCombo( prefix + "WorldModel" + suffix, "xmodel" ).SetTitle( "Attachment World Model" );
+						Asset.AddEntry_String( prefix + "WorldModelTag" + suffix, "" ).SetTitle( "Attachment World Model Tag" );
+						Asset.AddEntry_Vector3( prefix + "WorldModelOffsetX" + suffix, prefix + "WorldModelOffsetY" + suffix, prefix + "WorldModelOffsetZ" + suffix, 0, 0, 0, -10000, 10000 ).SetTitle( "Attachment World Offset" ).SetStep( 0.01f ).SetLabels( "Forward", "Right", "Up", "" );
+						Asset.AddEntry_Vector3( prefix + "WorldModelOffsetPitch" + suffix, prefix + "WorldModelOffsetYaw" + suffix, prefix + "WorldModelOffsetRoll" + suffix, 0, 0, 0, -180, 180 ).SetTitle( "Attachment World Model Offset Angles" ).SetStep( 0.01f ).SetHints( "NOWARNINGS" ).SetLabels( "Pitch  ", "Yaw", "Roll", "" );
+					}
+				}
+
+				Asset.BeginCategory( category + ".UI" );
+				{
+					Asset.AddEntry_String( prefix + "displayNameShort", "" ).SetTitle( "Display Name (Short)" ).SetHints( "NOWARNINGS" ).SetToolTip( "Short localization alias" );
+					Asset.AddEntry_String( prefix + "displayNameLong", "" ).SetTitle( "Display Name (Long)" ).SetHints( "NOWARNINGS" ).SetToolTip( "Long localization alias" );
+					Asset.AddEntry_String( prefix + "description", "" ).SetTitle( "Description" ).SetHints( "NOWARNINGS" ).SetToolTip( "Description localization alias" );
+					Asset.AddEntry_AssetCombo( prefix + "uiMaterial", "image" ).SetTitle( "2D Material" ).SetToolTip( "Define the 2D material to be used in the UI." );;
+				}
+			}
+		}
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Attachements
+
+	Asset.BeginCategory( "Attachments" );
+	{
+		for ( int i = 1; i <= 5; i++ )
+		{
+			string Title;
+			string tagName;
+			bool Visible = true;
+			bool AutoAddEnabled = true;
+			switch ( i-1 )
+			{
+				case 0:		Title = "Optic 1";			tagName = "tag_optic_1";									break;
+				case 1:		Title = "Optic 1 ADS";		tagName = "tag_optic_1_ads";		Visible = false;		break;
+				case 2:		Title = "Optic 2";			tagName = "tag_optic_2";									break;
+				case 3:		Title = "Iron Sights";		tagName = "tag_iron_sights";								break;
+				case 4:		Title = "Clip";				tagName = "tag_clip";										break;
+			}
+
+			Asset.BeginCategory( "Attachments." + Title );
+			{
+				string modelVal = Asset.AddEntry_AssetCombo( "attachViewModel" + i, "xmodel" ).SetHints( "NOWARNINGS" ).SetTitle( "Attachment View Model" ).UpdateOnChange( true ).GetValue();
+				Asset.AddEntry_BoneCombo( "attachViewModelTag" + i, "gunModel" ).SetHints( "NOWARNINGS" ).SetTitle( "View Model Tag" );
+				Asset.AddEntry_Vector3( "attachViewModelOffsetX" + i, "attachViewModelOffsetY" + i, "attachViewModelOffsetZ" + i, 0, 0, 0, -10000, 10000 ).SetTitle( "View Offset Position" ).SetStep( 0.01f ).SetHints( "NOWARNINGS" ).SetLabels( "Forward", "Right", "Up", "" );
+				Asset.AddEntry_Vector3( "attachViewModelOffsetPitch" + i, "attachViewModelOffsetYaw" + i, "attachViewModelOffsetRoll" + i, 0, 0, 0, -180, 180 ).SetTitle( "View Offset Angles" ).SetStep( 0.01f ).SetHints( "NOWARNINGS" ).SetLabels( "Pitch  ", "Yaw", "Roll", "" );
+
+				Asset.AddEntry_AssetCombo( "attachWorldModel" + i, "xmodel" ).SetTitle( "Attachment World Model" ).SetHints( "NOWARNINGS" ).SetStep( 0.01f ).Show( Visible );
+				Asset.AddEntry_BoneCombo( "attachWorldModelTag" + i, "worldModel" ).SetTitle( "World Model Tag" ).SetHints( "NOWARNINGS" ).Show( Visible );
+				Asset.AddEntry_Vector3( "attachWorldModelOffsetX" + i, "attachWorldModelOffsetY" + i, "attachWorldModelOffsetZ" + i, 0, 0, 0, -10000, 10000 ).SetTitle( "World Offset Position" ).SetStep( 0.01f ).SetHints( "NOWARNINGS" ).Show( Visible ).SetLabels( "Forward", "Right", "Up", "" );
+				Asset.AddEntry_Vector3( "attachWorldModelOffsetPitch" + i, "attachWorldModelOffsetYaw" + i, "attachWorldModelOffsetRoll" + i, 0, 0, 0, -180, 180 ).SetTitle( "World Offset Angles" ).SetStep( 0.01f ).SetHints( "NOWARNINGS" ).Show( Visible ).SetLabels( "Pitch  ", "Yaw", "Roll", "" );
+			}
+		}
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Base Weapon Attachment Overrides
+	
+	Asset.BeginCategory( "Base Weapon Attachment Overrides" );
+	{
+		Asset.AddEntry_CheckBox( "disableBaseWeaponAttachment", false ).SetTitle( "Disable Weapon Attachment (Optic1)" ).SetToolTip( "Disables the base weapon attachment in optic1 slot" );
+		Asset.AddEntry_CheckBox( "disableBaseWeaponClip", false ).SetTitle( "Disable Weapon Clip Attachment" ).SetToolTip( "Disables the base weapon attachment in clip slot" );
+		Asset.AddEntry_CheckBox( "overrideBaseWeaponAttachmentOffsets", false ).SetTitle( "Override Weapon Attachment Offsets" ).SetToolTip( "Allows overriding the base weapon attachment offsets in optic1 slot" );
+		Asset.AddEntry_Vector3( "viewModelOffsetBaseAttachmentX", "viewModelOffsetBaseAttachmentY", "viewModelOffsetBaseAttachmentZ", 0, 0, 0, -10000, 10000 ).SetTitle( "View Offset Override" ).SetStep( 0.01f );
+		Asset.AddEntry_Vector3( "worldModelOffsetBaseAttachmentX", "worldModelOffsetBaseAttachmentY", "worldModelOffsetBaseAttachmentZ", 0, 0, 0, -10000, 10000 ).SetTitle( "World Offset Override" ).SetStep( 0.01f );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// State Timers
+	
+	Asset.BeginCategory( "State Timers" );
+	{
+		Asset.AddEntry_Float( "firstRaiseTime", 0, 0, 10 ).SetStep( 0.05 ).SetTitle( "First Raise" ).SetToolTip( "How long this weapon state will last. The viewmodel animations will get scaled to match the times set." );
+		Asset.AddEntry_Float( "altRaiseTime", 0, 0, 10 ).SetStep( 0.05 ).SetTitle( "Alt Raise" ).SetToolTip( "How long this weapon state will last. The viewmodel animations will get scaled to match the times set." );
+		Asset.AddEntry_Float( "altDropTime", 0, 0, 10 ).SetStep( 0.05 ).SetTitle( "Alt Drop" ).SetToolTip( "How long this weapon state will last. The viewmodel animations will get scaled to match the times set." );
+		Asset.AddEntry_Float( "adsAltRaiseTime", 0, 0, 10 ).SetStep( 0.05 ).SetTitle( "Ads Alt Raise" ).SetToolTip( "How long this weapon state will last. The viewmodel animations will get scaled to match the times set." );
+		Asset.AddEntry_Float( "adsAltDropTime", 0, 0, 10 ).SetStep( 0.05 ).SetTitle( "Ads Alt Drop" ).SetToolTip( "How long this weapon state will last. The viewmodel animations will get scaled to match the times set." );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// ADS Overlay Settings
+	
+	Asset.BeginCategory( "ADS Overlay Settings" );
+	{
+		Asset.AddEntry_String( "adsOverlayShader", "" ).SetTitle( "Shader" ).SetToolTip( "Overlay for sniper rifles in ADS. Uses a quarter circle image to construct a full scope view." );
+		Asset.AddEntry_String( "adsOverlayShaderLowRes", "" ).SetTitle( "Shader Low Res" ).SetToolTip( "Low resolution verision of the overlay for sniper rifles in ADS. Uses a quarter circle image to construct a full scope view.  The image is used for 480 verticle resolution or lower and for split screen." );
+		Asset.AddEntry_Combo( "adsOverlayReticle", "none | crosshair | FG42 | Springfield | binoculars" ).SetTitle( "Reticle" ).SetToolTip( "Selects a preset image?" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Tracer
+	
+	Asset.BeginCategory( "Tracer" );
+	{
+		Asset.AddEntry_AssetCombo( "tracerType", "tracer" ).SetTitle( "Tracer Type" );
+		Asset.AddEntry_AssetCombo( "enemyTracerType", "tracer" ).SetTitle( "Enemy tracer Type" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Laser
+	
+	Asset.BeginCategory( "Laser" );
+	{
+		Asset.AddEntry_AssetCombo( "laserType", "laser" ).SetTitle( "Laser Type Viewmodel" );
+		Asset.AddEntry_AssetCombo( "laserTypeWorld", "laser" ).SetTitle( "Laser Type World" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Damage
+	
+	Asset.BeginCategory( "Damage Ranges", 0.7, 0.1, 0.1, "Icon_health.png" );
+	{
+		Asset.AddEntry_Int( "damage", 0, 0, 1000 ).SetTitle( "Damage 1 (MAX)" ).SetToolTip( "Damage per-bullet, applied up to range distance. Damage is constant from 0 to range distance" );
+		Asset.AddEntry_Float( "maxDamageRange", 15000, 1, 15000 ).SetStep( 120 ).SetTitle( "Range 1" ).SetToolTip( "Range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Int( "damage2", 0, 0, 1000 ).SetTitle( "Damage 2" ).SetToolTip( "Damage per-bullet, applied up to range distance. Damage is linear from previous damage range to this damage range." );
+		Asset.AddEntry_Float( "damageRange2", 0, 0, 15000 ).SetStep( 120 ).SetTitle( "Range 2" ).SetToolTip( "Range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Int( "damage3", 0, 0, 1000 ).SetTitle( "Damage 3" ).SetToolTip( "Damage per-bullet, applied up to range distance. Damage is linear from previous damage range to this damage range." );
+		Asset.AddEntry_Float( "damageRange3", 0, 0, 15000 ).SetStep( 120 ).SetTitle( "Range 3" ).SetToolTip( "Range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Int( "damage4", 0, 0, 1000 ).SetTitle( "Damage 4" ).SetToolTip( "Damage per-bullet, applied up to range distance. Damage is linear from previous damage range to this damage range." );
+		Asset.AddEntry_Float( "damageRange4", 0, 0, 15000 ).SetStep( 120 ).SetTitle( "Range 4" ).SetToolTip( "Range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Int( "damage5", 0, 0, 1000 ).SetTitle( "Damage 5" ).SetToolTip( "Damage per-bullet, applied up to range distance. Damage is linear from previous damage range to this damage range." );
+		Asset.AddEntry_Float( "damageRange5", 0, 0, 15000 ).SetStep( 120 ).SetTitle( "Range 5" ).SetToolTip( "Range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Int( "minDamage", 0, 0, 1000 ).SetTitle( "Damage 6 (MIN)" ).SetToolTip( "Damage per-bullet, applied up to and beyond range distance. Damage is constant past range distance" );
+		Asset.AddEntry_Float( "minDamageRange", 16000, 1, 16000 ).SetStep( 120 ).SetTitle( "Range 6" ).SetToolTip( "Range in world units, up to and beyond which the range damage is applied. (1 world unit = 1 inch)" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// XAnims
+	
+	Asset.BeginCategory( "XAnims", 0.1, 0.2, 0.8, "Icon_animation.png" );
+	{
+		Asset.AddEntry_AssetCombo( "idleAnim", "xanim" ).SetTitle( "Idle" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "emptyIdleAnim", "xanim" ).SetTitle( "Empty Idle" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "fireIntroAnim", "xanim" ).SetTitle( "Fire Intro" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "fireAnim", "xanim" ).SetTitle( "Fire" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "fireDelayAnim", "xanim" ).SetTitle( "Fire Delay" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "lastShotAnim", "xanim" ).SetTitle( "Last Shot" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "holdFireAnim", "xanim" ).SetTitle( "Hold Fire" );
+		Asset.AddEntry_AssetCombo( "rechamberAnim", "xanim" ).SetTitle( "Rechamber" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "reloadAnim", "xanim" ).SetTitle( "Reload" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "reloadEmptyAnim", "xanim" ).SetTitle( "Reload Empty Anim" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "reloadStartAnim", "xanim" ).SetTitle( "Reload Start" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "reloadEndAnim", "xanim" ).SetTitle( "Reload End" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "reloadQuickAnim", "xanim" ).SetTitle( "Reload Quick" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "reloadQuickEmptyAnim", "xanim" ).SetTitle( "Reload Quick Empty" ).SetHints( "NOWARNINGS" ).SetToolTip( "Dual Magazine empty reload animation" );
+		Asset.AddEntry_AssetCombo( "raiseAnim", "xanim" ).SetTitle( "Raise" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "dropAnim", "xanim" ).SetTitle( "Drop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "firstRaiseAnim", "xanim" ).SetTitle( "First Raise" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "altRaiseAnim", "xanim" ).SetTitle( "Alt Raise" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "altDropAnim", "xanim" ).SetTitle( "Alt Drop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "adsAltRaiseAnim", "xanim" ).SetTitle( "Ads Alt Raise" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "adsAltDropAnim", "xanim" ).SetTitle( "Ads Alt Drop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "quickRaiseAnim", "xanim" ).SetTitle( "Quick Raise" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "quickDropAnim", "xanim" ).SetTitle( "Quick Drop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "emptyRaiseAnim", "xanim" ).SetTitle( "Empty Raise" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "emptyDropAnim", "xanim" ).SetTitle( "Empty Drop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "sprintInAnim", "xanim" ).SetTitle( "Sprint In" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "sprintLoopAnim", "xanim" ).SetTitle( "Sprint Loop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "sprintOutAnim", "xanim" ).SetTitle( "Sprint Out" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "sprintInEmptyAnim", "xanim" ).SetTitle( "SprintInEmpty" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "sprintLoopEmptyAnim", "xanim" ).SetTitle( "SprintLoopEmpty" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "sprintOutEmptyAnim", "xanim" ).SetTitle( "SprintOutEmpty" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "lowReadyInAnim", "xanim" ).SetTitle( "Low Ready In" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "lowReadyLoopAnim", "xanim" ).SetTitle( "Low Ready Loop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "lowReadyOutAnim", "xanim" ).SetTitle( "Low Ready Out" ).SetHints( "NOWARNINGS" );		
+		Asset.AddEntry_AssetCombo( "contFireInAnim", "xanim" ).SetTitle( "Cont. Fire In" ).SetHints( "NOWARNINGS" ).SetToolTip( "In to fire anim used by continuous fire weapons" );
+		Asset.AddEntry_AssetCombo( "contFireLoopAnim", "xanim" ).SetTitle( "Cont. Fire Loop" ).SetHints( "NOWARNINGS" ).SetToolTip( "Looping fire anim used by continuous fire weapons" );
+		Asset.AddEntry_AssetCombo( "crawlInAnim", "xanim" ).SetTitle( "Crawl In" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "crawlForwardAnim", "xanim" ).SetTitle( "Crawl Forward" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "crawlBackAnim", "xanim" ).SetTitle( "Crawl Back" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "crawlRightAnim", "xanim" ).SetTitle( "Crawl Right" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "crawlLeftAnim", "xanim" ).SetTitle( "Crawl Left" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "crawlOutAnim", "xanim" ).SetTitle( "Crawl Out" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "crawlEmptyInAnim", "xanim" ).SetTitle( "Crawl Empty In" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "crawlEmptyForwardAnim", "xanim" ).SetTitle( "Crawl Empty Forward" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "crawlEmptyBackAnim", "xanim" ).SetTitle( "Crawl Empty Back" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "crawlEmptyRightAnim", "xanim" ).SetTitle( "Crawl Empty Right" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "crawlEmptyLeftAnim", "xanim" ).SetTitle( "Crawl Empty Left" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "crawlEmptyOutAnim", "xanim" ).SetTitle( "Crawl Empty Out" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "trmInAnim", "xanim" ).SetTitle( "TRM Drop to Reach High" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "trmOutAnim", "xanim" ).SetTitle( "TRM Hand Contact to Mantle High" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "trmInLowAnim", "xanim" ).SetTitle( "TRM Drop to Reach Low" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "trmOutLowAnim", "xanim" ).SetTitle( "TRM Hand Contact to Mantle Low" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "trmOverAnim", "xanim" ).SetTitle( "TRM Over" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "trmOverLeftAnim", "xanim" ).SetTitle( "TRM Over Left" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "trmOverRightAnim", "xanim" ).SetTitle( "TRM Over Right" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "contFireOutAnim", "xanim" ).SetTitle( "Cont. Fire Out" ).SetHints( "NOWARNINGS" ).SetToolTip( "Out of fire anim used by continuous fire weapons" );
+		Asset.AddEntry_AssetCombo( "adsFireAnim", "xanim" ).SetTitle( "ADS Fire" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "adsFireIntroAnim", "xanim" ).SetTitle( "ADS Fire Intro" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "adsLastShotAnim", "xanim" ).SetTitle( "ADS Last Shot" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "adsRechamberAnim", "xanim" ).SetTitle( "ADS Rechamber" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "adsUpAnim", "xanim" ).SetTitle( "ADS Up" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "adsDownAnim", "xanim" ).SetTitle( "ADS Down" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "adsUpOtherScopeAnim", "xanim" ).SetTitle( "ADS Up - Other Scope" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "walkAnim", "xanim" ).SetTitle( "Additive Walk" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "jumpAnim", "xanim" ).SetTitle( "Additive Jump" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "jumpLandAnim", "xanim" ).SetTitle( "Additive Jump Land" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "jukeLeftAnim", "xanim" ).SetTitle( "Additive Juke Left" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "jukeRightAnim", "xanim" ).SetTitle( "Additive Juke Right" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "jukeForwardAnim", "xanim" ).SetTitle( "Additive Juke Forward" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "jukeBackwardAnim", "xanim" ).SetTitle( "Additive Juke Backward" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "jukeLeftADSAnim", "xanim" ).SetTitle( "Additive Juke Left ADS" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "jukeRightADSAnim", "xanim" ).SetTitle( "Additive Juke Right ADS" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "jukeForwardADSAnim", "xanim" ).SetTitle( "Additive Juke Forward ADS" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "jukeBackwardADSAnim", "xanim" ).SetTitle( "Additive Juke Backward ADS" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "fallAnim", "xanim" ).SetTitle( "Additive Fall" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "slide_in", "xanim" ).SetTitle( "Slide In" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "slide_in_air", "xanim" ).SetTitle( "Slide In Air" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "slide_loop", "xanim" ).SetTitle( "Slide Loop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "slide_out", "xanim" ).SetTitle( "Slide Out" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "leap_in", "xanim" ).SetTitle( "Leap In" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "leap_loop", "xanim" ).SetTitle( "Leap Loop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "leap_cancel", "xanim" ).SetTitle( "Leap Cancel" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "leap_out", "xanim" ).SetTitle( "Leap Out" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "wallRunInAnim", "xanim" ).SetTitle( "Wall Run In" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "wallRunLoopAnim", "xanim" ).SetTitle( "Wall Run Loop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "wallRunOutAnim", "xanim" ).SetTitle( "Wall Run Out" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "doubleJumpIn", "xanim" ).SetTitle( "DoubleJump In" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "doubleJumpLoop", "xanim" ).SetTitle( "DoubleJump Loop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "doubleJumpCancel", "xanim" ).SetTitle( "DoubleJump Cancel" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "doubleJumpOut", "xanim" ).SetTitle( "DoubleJump Out" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "meleeAnim", "xanim" ).SetTitle( "Melee" );
+		Asset.AddEntry_AssetCombo( "meleeAltAnim", "xanim" ).SetTitle( "Melee Alt Anim" );
+		Asset.AddEntry_AssetCombo( "meleeMissAnim", "xanim" ).SetTitle( "Melee Miss" ).SetToolTip( "This is played on a basic melee attack miss." );
+		Asset.AddEntry_AssetCombo( "meleeAnimEmpty", "xanim" ).SetTitle( "Melee Empty" );
+		Asset.AddEntry_AssetCombo( "meleePowerAnim", "xanim" ).SetTitle( "Melee Power" ).SetToolTip( "The anim played for a melee power attack (right trigger)" );
+		Asset.AddEntry_AssetCombo( "meleeChargeAnim", "xanim" ).SetTitle( "Melee Charge" ).SetToolTip( "The anim played for a melee charge" );
+		Asset.AddEntry_AssetCombo( "meleeChargeAltAnim", "xanim" ).SetTitle( "Melee Charge Alt Anim" ).SetToolTip( "The alt anim played for a melee charge" );
+		Asset.AddEntry_AssetCombo( "meleeChargeAnimAbove", "xanim" ).SetTitle( "Melee Charge Above" ).SetToolTip( "The anim played for a melee charge from Above" );
+		Asset.AddEntry_AssetCombo( "meleeChargeAnimHit", "xanim" ).SetTitle( "Melee Charge Hit" ).SetToolTip( "The anim played for a melee charge non-fatal hit (Default or from the front)" );
+		Asset.AddEntry_AssetCombo( "meleeChargeAnimFatal", "xanim" ).SetTitle( "Melee Charge Fatal" ).SetToolTip( "The anim played for a melee charge fatal hit (Default or from the front)" );
+		Asset.AddEntry_AssetCombo( "meleeChargeAnimMiss", "xanim" ).SetTitle( "Melee Charge Miss" ).SetToolTip( "The anim played for a melee charge miss (Default or from the front)" );
+		Asset.AddEntry_AssetCombo( "meleeChainStrike0", "xanim" ).SetTitle( "Chain Melee Strike 0" ).SetToolTip( "The anim played for a chain melee strike 0" );
+		Asset.AddEntry_AssetCombo( "meleeChainStrike1", "xanim" ).SetTitle( "Chain Melee Strike 1" ).SetToolTip( "The anim played for a chain melee strike 1" );
+		Asset.AddEntry_AssetCombo( "meleeChainStrike2", "xanim" ).SetTitle( "Chain Melee Strike 2" ).SetToolTip( "The anim played for a chain melee strike 2" );
+		Asset.AddEntry_AssetCombo( "swimTransitionFromLand", "xanim" ).SetTitle( "Swim Transition From Land" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimIdleLoop", "xanim" ).SetTitle( "Swim Idle Loop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimCombatIdleIn", "xanim" ).SetTitle( "Swim Combat Idle In" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimCombatIdle", "xanim" ).SetTitle( "Swim Combat Idle" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimCombatOut", "xanim" ).SetTitle( "Swim Combat Out" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimCombatFire", "xanim" ).SetTitle( "Swim Combat Fire" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimCombatAdsFire", "xanim" ).SetTitle( "Swim Combat ADS Fire" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimMovingIn", "xanim" ).SetTitle( "Swim Moving In" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimMovingForward", "xanim" ).SetTitle( "Swim Moving Forward" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimMovingBackward", "xanim" ).SetTitle( "Swim Moving Backward" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimMovingRight", "xanim" ).SetTitle( "Swim Moving Right" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimMovingLeft", "xanim" ).SetTitle( "Swim Moving Left" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimMovingOut", "xanim" ).SetTitle( "Swim Moving Out" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimSprintIn", "xanim" ).SetTitle( "Swim Sprint In" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimSprintLoop", "xanim" ).SetTitle( "Swim Sprint Loop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimSprintSurfaceLoop", "xanim" ).SetTitle( "Swim Sprint Surface Loop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimSprintOut", "xanim" ).SetTitle( "Swim Sprint Out" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimTransitionToLand", "xanim" ).SetTitle( "Swim Transition To Land" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimRaise", "xanim" ).SetTitle( "Swim Pullout" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimQuickRaise", "xanim" ).SetTitle( "Swim Quick Pullout" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimDrop", "xanim" ).SetTitle( "Swim Putaway" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimDiveIn", "xanim" ).SetTitle( "Swim Dive In" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimDiveLoop", "xanim" ).SetTitle( "Swim Dive Loop" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "swimDiveOut", "xanim" ).SetTitle( "Swim Dive Out" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "castIn", "xanim" ).SetTitle( "Cast Ability In Anim" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "castLoop", "xanim" ).SetTitle( "Cast Ability Loop Anim" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "castOut", "xanim" ).SetTitle( "Cast Ability Out Anim" ).SetHints( "NOWARNINGS" );
+		Asset.AddEntry_AssetCombo( "castAbility", "xanim" ).SetTitle( "Cast Ability Anim" ).SetHints( "NOWARNINGS" );
+	}
+
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Effects
+	
+	Asset.BeginCategory( "FX" );
+	{
+		Asset.AddEntry_Path( "viewFlashEffect", "" ).SetTitle( "View Flash FX" ).SetRelativePath( "share/raw" );
+		Asset.AddEntry_Vector3( "viewFlashOffsetF", "viewFlashOffsetR", "viewFlashOffsetU", 0, 0, 0, -10000, 10000 ).SetTitle( "FX View Flash Offset" ).SetStep( 0.01 );
+		Asset.AddEntry_Path( "worldFlashEffect", "" ).SetTitle( "World Flash FX" ).SetRelativePath( "share/raw" );
+		Asset.AddEntry_Vector3( "worldFlashOffsetF", "worldFlashOffsetR", "worldFlashOffsetU", 0, 0, 0, -10000, 10000 ).SetTitle( "FX World Flash Offset" ).SetStep( 0.01 );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Sounds
+	
+	Asset.BeginCategory( "Sounds", 0, 0.5, 0, "Icon_Sound.png" );
+	{
+		Asset.AddEntry_String( "fireSound", "" ).SetTitle( "Fire" );
+		Asset.AddEntry_String( "fireSoundPlayer", "" ).SetTitle( "Fire (Player)" ).SetToolTip( "Fire sound used by player. If not defined, player will play normal 'Fire' that is used by the AI." );
+		Asset.AddEntry_String( "fireBurstSound", "" ).SetTitle( "Fire Burst NPC" );
+		Asset.AddEntry_String( "fireBurstSoundPlayer", "" ).SetTitle( "Fire Burst(Player)" ).SetToolTip( "Burst fire sound used by player." );
+		Asset.AddEntry_String( "lastShotSound", "" ).SetTitle( "Last Shot (Player)" );
+		Asset.AddEntry_String( "lastShotSoundPlayer", "" ).SetTitle( "Last Shot (Player)" ).SetToolTip( "Last Shot sound used by player. If not defined, player will play normal 'Last Shot' that is used by the AI." );
+		Asset.AddEntry_String( "startFireSound", "" ).SetTitle( "Start Fire" );
+		Asset.AddEntry_String( "startFireSoundPlayer", "" ).SetTitle( "Start Fire (Player)" );
+		Asset.AddEntry_String( "loopFireSound", "" ).SetTitle( "Loop Fire" );
+		Asset.AddEntry_String( "loopFireSoundPlayer", "" ).SetTitle( "Loop Fire (Player)" );
+		Asset.AddEntry_String( "loopFireSoundLeft", "" ).SetTitle( "Loop Fire Left Hand" );
+		Asset.AddEntry_String( "loopFireSoundPlayerLeft", "" ).SetTitle( "Loop Fire (Player) Left Hand" );
+		Asset.AddEntry_String( "loopFireEndSound", "" ).SetTitle( "Loop Fire End" );
+		Asset.AddEntry_String( "loopFireEndSoundPlayer", "" ).SetTitle( "Loop Fire End (Player)" );
+		Asset.AddEntry_String( "killcamStartFireSound", "" ).SetTitle( "Killcam Start Fire" );
+		Asset.AddEntry_String( "killcamStartFireSoundPlayer", "" ).SetTitle( "Killcam Start Fire (Player)" );
+		Asset.AddEntry_String( "crackSound", "" ).SetTitle( "Crack" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Left-Hand Grip Adjustment
+	
+	Asset.BeginCategory( "Left-Hand Grip Adjustment" );
+	{
+		Asset.AddEntry_CheckBox( "overrideLeftHandIK", false ).SetTitle( "Override IK" ).SetToolTip( "Overrides the left hand IK in the base weapon." );
+		Asset.AddEntry_Float( "ikLeftHandOffsetF", 0, -180, 180 ).SetTitle( "Offset Fwd" ).SetStep( 0.1 );
+		Asset.AddEntry_Float( "ikLeftHandOffsetR", 0, -180, 180 ).SetTitle( "Offset Right" ).SetStep( 0.1 );
+		Asset.AddEntry_Float( "ikLeftHandOffsetU", 0, -180, 180 ).SetTitle( "Offset Up" ).SetStep( 0.1 );
+		Asset.AddEntry_Float( "ikLeftHandRotationP", 0, -180, 180 ).SetTitle( "Offset Pitch" );
+		Asset.AddEntry_Float( "ikLeftHandRotationY", 0, -180, 180 ).SetTitle( "Offset Yaw" );
+		Asset.AddEntry_Float( "ikLeftHandRotationR", 0, -180, 180 ).SetTitle( "Offset Roll" );
+
+		Asset.AddEntry_CheckBox( "overrideLeftHandProneIK", false ).SetTitle( "Override Prone IK" ).SetToolTip( "Overrides the left hand prone IK in the base weapon." );
+		Asset.AddEntry_Float( "ikLeftHandProneOffsetF", 0, -180, 180 ).SetTitle( "Prone Offset Fwd" ).SetStep( 0.1 );
+		Asset.AddEntry_Float( "ikLeftHandProneOffsetR", 0, -180, 180 ).SetTitle( "Prone Offset Right" ).SetStep( 0.1 );
+		Asset.AddEntry_Float( "ikLeftHandProneOffsetU", 0, -180, 180 ).SetTitle( "Prone Offset Up" ).SetStep( 0.1 );
+		Asset.AddEntry_Float( "ikLeftHandProneRotationP", 0, -180, 180 ).SetTitle( "Prone Offset Pitch" );
+		Asset.AddEntry_Float( "ikLeftHandProneRotationY", 0, -180, 180 ).SetTitle( "Prone Offset Yaw" );
+		Asset.AddEntry_Float( "ikLeftHandProneRotationR", 0, -180, 180 ).SetTitle( "Prone Offset Roll" );
+	}
+
+	// Mods
+	Asset.BeginCategory( "Mods" );
+	{
+		Asset.AddEntry_Int( "iCanDoQuickToss", -1, -1, 1 ).SetTitle( "Allow Quick Grenade Toss" ).SetToolTip( "Use -1 to ignore attachment. 0 for False, 1 for True." );
+		Asset.AddEntry_Combo( "stickiness", "Ignore | Don't stick | Stick to all | Stick to all, except ai and clients | Stick to ground | Stick to ground, maintain yaw | Stick to flesh" ).SetTitle( "Stickiness" ).SetToolTip( "Stickiness of the projectile, if not explode on impact. Use 'Ignore' to ignore attachment." );
+		Asset.AddEntry_Int( "startAmmo", -1, -1, 999 ).SetTitle( "Start Ammo" ).SetToolTip( "How much ammo the player gets when starting with this weapon. One clip/magazine from this amount will be already in the weapon. No effect on AI.  Affected by 'Ammo Clip Count Relative' field. Use -1 to ignore attachment." );
+		Asset.AddEntry_Int( "maxAmmo", -1, -1, 999 ).SetStep( 10 ).SetTitle( "Max Stock Ammo" ).SetToolTip( "Max stock ammo the player can collect for this weapon, clip isn't reflected in this number. No effect on AI.  Affected by 'Ammo Clip Count Relative' field. Use -1 to ignore attachment." );
+		Asset.AddEntry_Int( "explodeWhenStationary", -1, -1, 1 ).SetTitle( "Explodes when the grenade stops moving, regardless of cook time remaining." ).SetToolTip( "Use -1 to ignore attachment. 0 for False, 1 for True." );
+		Asset.AddEntry_Int( "lockonspeed", -1, -1, 10000 ).SetTitle( "Lock On Speed" ).SetToolTip( "Lock on speed in miliseconds. Use -1 to ignore attachment." );
+		Asset.AddEntry_Int( "lockOnMaxRange", -1, -1, 10000 ).SetTitle( "Lock On Max Range" ).SetToolTip( "Max range for locking on. Use -1 to ignore attachment." );
+		Asset.AddEntry_Int( "lockOnMaxRangeNoLineOfSight", -1, -1, 10000 ).SetTitle( "Lock On Max Range No Line of Sight" ).SetToolTip( "Max range for locking on when there is no line of sight. Use -1 to ignore attachment." );
+		Asset.AddEntry_Float( "fuseTime", -1, -1, 100 ).SetStep( 0.1 ).SetTitle( "Fuse Time" ).SetToolTip( "The length of time from when the grenade is thrown to when it explodes. Use -1 to ignore attachment. Use 0 to disable timed detonation." );
+		Asset.AddEntry_Int( "explosionRadius", -1, -1, 10000 ).SetStep( 10 ).SetTitle( "Explosion Radius" ).SetToolTip( "Damage radius override. Use -1 to ignore attachment" );
+		Asset.AddEntry_Float( "explosionRadiusMultiplier", -1, -1, 100 ).SetTitle( "Explosion Radius Multiplier." ).SetToolTip( "Damage radius multiplier. Use -1 to ignore attachment" );
+		Asset.AddEntry_Int( "proximityDetonation", -1, -1, 10000 ).SetTitle( "Proximity Detonation Distance" ).SetToolTip( "The grenade detones when a target is within this distance. Use -1 to ignore attachment, 0 to disable proximity, > 0 to enable" );
+		Asset.AddEntry_Int( "proximityAlarmInnerRadius", -1, -1, 10000 ).SetTitle( "Proximity Alarm Inner Radius" ).SetToolTip( "Proximity Amalrm radius on. Use -1 to ignore attachment" );
+		Asset.AddEntry_Int( "proximityAlarmOuterRadius", -1, -1, 10000 ).SetTitle( "Proximity Alarm Outer Radius" ).SetToolTip( "Proximity Amalrm radius off. Use -1 to ignore attachment" );
+		Asset.AddEntry_Float( "proximityAlarmActivationDelay", -1, -1, 5 ).SetStep( 0.1 ).SetTitle( "Proximity Alarm Activation Delay" ).SetToolTip( "The length of time from when the grenade is thrown to when it's proximity alarm is activated. Use -1 to ignore attachment." );
+		Asset.AddEntry_Int( "chainEventRadius", -1, -1, 10000 ).SetTitle( "Chain Event Radius" ).SetToolTip( "The radius of the chain event. Use 0 to disable, > 0 to enable. Use -1 to ignore attachment" );
+		Asset.AddEntry_Float( "chainEventTime", -1, -1, 15 ).SetStep( 0.1 ).SetTitle( "Chain Event Time" ).SetToolTip( "The time a chain node looks for more nodes to continue the chain. Use -1 to ignore attachment" );
+		Asset.AddEntry_Int( "chainEventMax", -1, -1, 8 ).SetTitle( "Chain Event Max" ).SetToolTip( "The max number of nodes one chain can have. Use -1 to ignore attachment" );
+		Asset.AddEntry_Int( "multiDetonation", -1, -1, 10000 ).SetTitle( "Multi Detonation Instances" ).SetToolTip( "The grenade detones and spawns multiple grenade. Use -1 to ignore attachment, 0 to disable multi, > 0 for the number of instances to spawn" );
+		Asset.AddEntry_Int( "multiDetonationFragmentSpeed", -1, -1, 10000 ).SetTitle( "Multi Detonation Fragemnt Speed" ).SetToolTip( "When the grenade detones and spawns multiple grenade fragment, this is the speed at which they are launched. Use -1 to ignore attachment, > 0 for the the speed" );
+		Asset.AddEntry_Float( "curveballForce", -1, -1, 1000 ).SetTitle( "Curve Ball Force Scalar." ).SetToolTip( "Curve Ball force scalar towards the target. Use < 0 to ignore attachment, 0 to disable, > 0 for force scalar" );
+		Asset.AddEntry_Int( "curveballMaxRadius", -1, -1, 10000 ).SetTitle( "Curve Ball Max Radius" ).SetToolTip( "Curve Ball effects when target is within this radius. Use -1 to ignore attachment, > 0 for the the speed" );
+		Asset.AddEntry_Int( "ammoCountEquipment", -1, -1, 999 ).SetTitle( "Equipment Start Ammo" ).SetToolTip( "How much ammo spawned equipment starts with. Use -1 to ignore attachment." );
+	}
+
+	// Gadget
+	Asset.BeginCategory( "Gadget" );
+	{
+		Asset.AddEntry_Float( "movement_multiplier", -1, -1, 5 ).SetTitle( "movement_multiplier" ).SetToolTip( "The movement_multiplier property" );
+		Asset.AddEntry_Float( "sprint_multiplier", -1, -1, 5 ).SetTitle( "sprint_multiplier" ).SetToolTip( "The sprint_multiplier property" );
+		Asset.AddEntry_Int( "flicker_on_damage", -1, -1, 10000 ).SetTitle( "flicker_on_damage" ).SetToolTip( "The flicker_on_damage property" );
+		Asset.AddEntry_Int( "flicker_on_power_loss", -1, -1, 10000 ).SetTitle( "flicker_on_power_loss" ).SetToolTip( "The flicker_on_power_loss property" );
+		Asset.AddEntry_Int( "flicker_on_power_low", -1, -1, 10000 ).SetTitle( "flicker_on_power_low" ).SetToolTip( "The flicker_on_power_low property" );
+		Asset.AddEntry_Int( "flicker_on_whizby", -1, -1, 10000 ).SetTitle( "flicker_on_whizby" ).SetToolTip( "The flicker_on_whizby property" );
+		Asset.AddEntry_Int( "power_attack_loss", -1, -1, 100 ).SetTitle( "power_attack_loss" ).SetToolTip( "The power_attack_loss property" );
+		Asset.AddEntry_Float( "power_damage_factor", -1, -1, 10 ).SetTitle( "power_damage_factor" ).SetToolTip( "The power_damage_factor property" );
+		Asset.AddEntry_Float( "power_flicker_chance", -1, -1, 1 ).SetTitle( "power_flicker_chance" ).SetToolTip( "The power_flicker_chance property" );
+		Asset.AddEntry_Int( "power_flicker_frequency", -1, -1, 10000 ).SetTitle( "power_flicker_frequency" ).SetToolTip( "The power_flicker_frequency property" );
+		Asset.AddEntry_Int( "power_flicker_threshold", -1, -1, 100 ).SetTitle( "power_flicker_threshold" ).SetToolTip( "The power_flicker_threshold property" );
+		Asset.AddEntry_Int( "power_move_loss", -1, -1, 100 ).SetTitle( "power_move_loss" ).SetToolTip( "The power_move_loss property" );
+		Asset.AddEntry_Int( "power_move_loss_speed", -1, -1, 500 ).SetTitle( "power_move_loss_speed" ).SetToolTip( "The power_move_loss_speed property" );
+		Asset.AddEntry_Float( "power_on_damage_factor", -1, -1, 10 ).SetTitle( "power_on_damage_factor" ).SetToolTip( "The power_on_damage_factor property" );
+		Asset.AddEntry_Int( "power_power_bonus", -1, -1, 100 ).SetTitle( "power_power_bonus" ).SetToolTip( "The power_power_bonus property" );
+		Asset.AddEntry_Int( "power_recharge_delay", -1, -1, 10000 ).SetTitle( "power_recharge_delay" ).SetToolTip( "The power_recharge_delay property" );
+		Asset.AddEntry_Int( "power_recharge_delay_max", -1, -1, 10000 ).SetTitle( "power_recharge_delay_max" ).SetToolTip( "The power_recharge_delay_max property" );
+		Asset.AddEntry_Float( "power_recharge_rate", -1, -1, 100 ).SetTitle( "power_recharge_rate" ).SetToolTip( "The power_recharge_rate property" );
+		Asset.AddEntry_Int( "power_sprint_loss", -1, -1, 100 ).SetTitle( "power_sprint_loss" ).SetToolTip( "The power_sprint_loss property" );
+		Asset.AddEntry_Int( "power_turn_off_penalty", -1, -1, 100 ).SetTitle( "power_turn_off_penalty" ).SetToolTip( "The power_turn_off_penalty property" );
+		Asset.AddEntry_Int( "power_usable_threshold", -1, -1, 100 ).SetTitle( "power_usable_threshold" ).SetToolTip( "The power_usable_threshold property" );
+		Asset.AddEntry_Float( "power_usage_rate", -1, -1, 100 ).SetTitle( "power_usage_rate" ).SetToolTip( "The power_usage_rate property" );
+		Asset.AddEntry_Int( "pulse_duration", -1, -1, 30000 ).SetTitle( "pulse_duration" ).SetToolTip( "The pulse_duration property" );
+		Asset.AddEntry_Int( "pulse_margin", -1, -1, 30000 ).SetTitle( "pulse_margin" ).SetToolTip( "The pulse_margin property" );
+		Asset.AddEntry_Int( "pulse_reveal_time", -1, -1, 30000 ).SetTitle( "pulse_reveal_time" ).SetToolTip( "The pulse_reveal_time property" );
+		Asset.AddEntry_Combo( "pulse_share_type", "default | none | minimap |	viewport | both" ).SetTitle( "pulse_share_type" ).SetToolTip( "The pulse_share_type property" );
+		Asset.AddEntry_Int( "pulse_share_radius", -1, -1, 30000 ).SetTitle( "pulse_share_radius" ).SetToolTip( "The pulse_share_radius property" );
+		Asset.AddEntry_Float( "pulse_speed", -1, -1, 5 ).SetTitle( "pulse_speed" ).SetToolTip( "The pulse_speed property" );
+	}
+}

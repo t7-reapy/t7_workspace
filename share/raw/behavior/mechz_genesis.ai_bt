@@ -1,0 +1,504 @@
+{
+    "id": "mechz",
+    "type": "selector",
+    "children": [
+        {
+            "id": "mechzbehaviormain",
+            "type": "parallel",
+            "children": [
+                {
+                    "id": "mechztargetservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "zmmechztargetservice",
+                    "cooldownMin": 500,
+                    "cooldownMax": 1000
+                },
+                {
+                    "id": "mechzgrenadeservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "mechzgrenadeservice"
+                },
+                {
+                    "id": "mechzberserkknockdownservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "mechzberserkknockdownservice",
+                    "cooldownMin": 200,
+                    "cooldownMax": 200
+                },
+                {
+                    "id": "mechzvortexservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "genesisvortexservice",
+                    "cooldownMin": 50,
+                    "cooldownMax": 100
+                },
+                {
+                    "id": "mechzoctobombservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "genesismechzoctobombservice",
+                    "cooldownMin": 500,
+                    "cooldownMax": 1000
+                },
+                {
+                    "id": "mechzbehaviorselector",
+                    "type": "selector",
+                    "children": [
+                        {
+                            "id": "mechzdeathbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "waskilled",
+                                    "type": "condition_script",
+                                    "interruptName": "death"
+                                },
+                                {
+                                    "id": "deathaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "death@mechz",
+                                    "actionNotify": "death",
+                                    "StartFunction": "mechzdeathstart",
+                                    "TerminateFunction": "startragdoll"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "proceduraltraversebehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldtraverse",
+                                    "type": "condition_script",
+                                    "scriptFunction": "locomotionshouldtraverse",
+                                    "interruptName": "traverse"
+                                },
+                                {
+                                    "id": "shouldproceduraltraverse",
+                                    "type": "condition_script",
+                                    "scriptFunction": "zombieshouldproceduraltraverse",
+                                    "interruptName": "traverse"
+                                },
+                                {
+                                    "id": "disablerepath",
+                                    "type": "condition_service_script",
+                                    "scriptFunction": "disablerepath"
+                                },
+                                {
+                                    "id": "traversejump",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "jump@traversal",
+                                    "actionNotify": "attack_melee",
+                                    "StartFunction": "robotcalcproceduraltraversal"
+                                },
+                                {
+                                    "id": "traverseair",
+                                    "type": "action",
+                                    "ActionName": "robotproceduraltraversal",
+                                    "ASMStateName": "air@traversal"
+                                },
+                                {
+                                    "id": "enablerepath",
+                                    "type": "condition_service_script",
+                                    "scriptFunction": "enablerepath"
+                                },
+                                {
+                                    "id": "traverseland",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "land@traversal",
+                                    "actionNotify": "teardown",
+                                    "TerminateFunction": "robottraverseend",
+                                    "UpdateFunction": "robotprocedurallanding"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "mechztraversebehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldtraverse",
+                                    "type": "condition_script",
+                                    "scriptFunction": "locomotionshouldtraverse",
+                                    "interruptName": "traverse"
+                                },
+                                {
+                                    "id": "traverseaction",
+                                    "type": "action",
+                                    "ActionName": "traverseactionstart",
+                                    "ASMStateName": "traverse@mechz"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "mechzpainbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldshowpain",
+                                    "type": "condition_script",
+                                    "scriptFunction": "mechzshouldshowpain"
+                                },
+                                {
+                                    "id": "painaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "pain@mechz",
+                                    "StartFunction": "mechzpainstart",
+                                    "TerminateFunction": "mechzpainterminate"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "mechzstunbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldshowpain",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "mechzshouldshowpain"
+                                },
+                                {
+                                    "id": "shouldstun",
+                                    "type": "condition_script",
+                                    "scriptFunction": "mechzshouldstun"
+                                },
+                                {
+                                    "id": "stuninaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "stun_in@mechz"
+                                },
+                                {
+                                    "id": "stunloopaction",
+                                    "type": "action",
+                                    "ActionName": "mechzstunloop",
+                                    "ASMStateName": "stun_loop@mechz"
+                                },
+                                {
+                                    "id": "stunoutaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "stun_out@mechz"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "mechzstumblebehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldshowpain",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "mechzshouldshowpain"
+                                },
+                                {
+                                    "id": "shouldstumble",
+                                    "type": "condition_script",
+                                    "scriptFunction": "mechzshouldstumble"
+                                },
+                                {
+                                    "id": "stumbleinaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "stumble_in@mechz"
+                                },
+                                {
+                                    "id": "stumbleloopaction",
+                                    "type": "action",
+                                    "ActionName": "mechzstumbleloop",
+                                    "ASMStateName": "stumble_loop@mechz"
+                                },
+                                {
+                                    "id": "stumbleoutaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "stumble_out@mechz"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "mechzgoberserkbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldshowpain",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "mechzshouldshowpain"
+                                },
+                                {
+                                    "id": "shouldturnberserk",
+                                    "type": "condition_script",
+                                    "scriptFunction": "mechzshouldturnberserk"
+                                },
+                                {
+                                    "id": "playberserkintroanimation",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "berserk@mechz",
+                                    "TerminateFunction": "mechzplayedberserkintro"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "mechzbehavior",
+                            "type": "parallel",
+                            "children": [
+                                {
+                                    "id": "shouldshowpain",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "mechzshouldshowpain"
+                                },
+                                {
+                                    "id": "shouldstun",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "mechzshouldstun"
+                                },
+                                {
+                                    "id": "shouldstumble",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "mechzshouldstumble"
+                                },
+                                {
+                                    "id": "shouldturnberserk",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "mechzshouldturnberserk"
+                                },
+                                {
+                                    "id": "mechzselector",
+                                    "type": "selector",
+                                    "children": [
+                                        {
+                                            "id": "movebehavior",
+                                            "type": "parallel",
+                                            "children": [
+                                                {
+                                                    "id": "shouldmove",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "locomotionbehaviorcondition"
+                                                },
+                                                {
+                                                    "id": "shouldmelee",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "mechzshouldmelee"
+                                                },
+                                                {
+                                                    "id": "mechzshouldshootflame",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "mechzshouldshootflame"
+                                                },
+                                                {
+                                                    "id": "mechzshouldshootgrenade",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "mechzshouldshootgrenade"
+                                                },
+                                                {
+                                                    "id": "genesismechzshouldoctobombattack",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "genesismechzshouldoctobombattack"
+                                                },
+                                                {
+                                                    "id": "moveaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "move@mechz",
+                                                    "loopingAction": 1
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "octobombattackbehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "genesismechzshouldoctobombattack",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "genesismechzshouldoctobombattack"
+                                                },
+                                                {
+                                                    "id": "mechzshootflame",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "shoot_flame_sweep@mechz",
+                                                    "StartFunction": "mechzshootflame",
+                                                    "TerminateFunction": "genesismechzdestoryoctobomb",
+                                                    "UpdateFunction": "mechzupdateflame"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "meleebehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "shouldmelee",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "mechzshouldmelee"
+                                                },
+                                                {
+                                                    "id": "meleeaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "melee@mechz",
+                                                    "StartFunction": "mechzattackstart"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "shootflamebehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "shouldmelee",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "mechzshouldmelee"
+                                                },
+                                                {
+                                                    "id": "mechzshouldshootflame",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "mechzshouldshootflame"
+                                                },
+                                                {
+                                                    "id": "mechzshootflame",
+                                                    "type": "action",
+                                                    "ActionName": "mechzshootflameaction",
+                                                    "ASMStateName": "shoot_flame_run@mechz"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "shootflamesweepbehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "shouldmelee",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "mechzshouldmelee"
+                                                },
+                                                {
+                                                    "id": "mechzshouldshootflamesweep",
+                                                    "type": "condition_script",
+                                                    "scriptFunction": "mechzshouldshootflamesweep"
+                                                },
+                                                {
+                                                    "id": "mechzshootflamesweep",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "shoot_flame_sweep@mechz",
+                                                    "StartFunction": "mechzshootflame",
+                                                    "TerminateFunction": "mechzstopflame",
+                                                    "UpdateFunction": "mechzupdateflame"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "shootgrenadebehavior",
+                                            "type": "sequence",
+                                            "children": [
+                                                {
+                                                    "id": "preptoshootgrenade",
+                                                    "type": "sequence",
+                                                    "children": [
+                                                        {
+                                                            "id": "shouldmelee",
+                                                            "type": "condition_script_negate",
+                                                            "scriptFunction": "mechzshouldmelee"
+                                                        },
+                                                        {
+                                                            "id": "mechzshouldshootgrenade",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "mechzshouldshootgrenade"
+                                                        },
+                                                        {
+                                                            "id": "mechzpreptoshootgrenade",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "prep_grenade@mechz"
+                                                        },
+                                                        {
+                                                            "id": "mechzshootgrenade",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "shoot_grenade@mechz",
+                                                            "StartFunction": "mechzshootgrenade"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "id": "shootgrenade",
+                                                    "type": "parallel",
+                                                    "children": [
+                                                        {
+                                                            "id": "shouldmelee",
+                                                            "type": "condition_script_negate",
+                                                            "scriptFunction": "mechzshouldmelee"
+                                                        },
+                                                        {
+                                                            "id": "mechzshouldshootgrenade",
+                                                            "type": "condition_script",
+                                                            "scriptFunction": "mechzshouldshootgrenade"
+                                                        },
+                                                        {
+                                                            "id": "mechzshootgrenade",
+                                                            "type": "action",
+                                                            "ActionName": "defaultaction",
+                                                            "ASMStateName": "shoot_grenade@mechz",
+                                                            "StartFunction": "mechzshootgrenade",
+                                                            "loopingAction": 1
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "idlebehavior",
+                                            "type": "parallel",
+                                            "children": [
+                                                {
+                                                    "id": "mechzshouldshootgrenade",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "mechzshouldshootgrenade"
+                                                },
+                                                {
+                                                    "id": "shouldmove",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "locomotionbehaviorcondition"
+                                                },
+                                                {
+                                                    "id": "shouldmelee",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "mechzshouldmelee"
+                                                },
+                                                {
+                                                    "id": "genesismechzshouldoctobombattack",
+                                                    "type": "condition_script_negate",
+                                                    "scriptFunction": "genesismechzshouldoctobombattack"
+                                                },
+                                                {
+                                                    "id": "idleaction",
+                                                    "type": "action",
+                                                    "ActionName": "defaultaction",
+                                                    "ASMStateName": "idle@mechz",
+                                                    "StartFunction": "mechzidlestart",
+                                                    "loopingAction": 1
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "debugvoidaction",
+            "type": "action",
+            "ActionName": "defaultaction",
+            "ASMStateName": "void@debug"
+        }
+    ]
+}

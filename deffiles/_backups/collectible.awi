@@ -1,0 +1,25 @@
+void GenerateUI( asset Asset )
+{
+	// this stuff is intentionally hidden and are script bundle items
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false ).SetValue( "SCRIPTBUNDLE" );
+	Asset.AddEntry_String( "type", "collectible" ).Show( false ).SetValue( "collectible" );
+	Asset.AddEntry_Combo( "vmType", "Client" ).Show( false ).SetValue( "Client" );
+	
+	Asset.BeginCategory( "Player Data Vault UI" );
+	{
+		Asset.AddEntry_String( "xstring_displayNameShort", "" ).SetTitle( "Display Name (Short)" ).SetHints( "NOWARNINGS" ).SetToolTip( "Short localization alias for collectible in the Player Data Vault UI." );
+		Asset.AddEntry_String( "xstring_displayNameLong", "" ).SetTitle( "Display Name (Long)" ).SetHints( "NOWARNINGS" ).SetToolTip( "Long localization alias for collectible in the Player Data Vault UI." );
+		Asset.AddEntry_String( "xstring_description", "" ).SetTitle( "Description" ).SetHints( "NOWARNINGS" ).SetToolTip( "Description localization alias for collectible in the Player Data Vault UI." );
+		
+		Asset.AddEntry_String( "xstring_codexurldesc", "" ).SetTitle( "Codex Description" ).SetHints( "NOWARNINGS" ).SetToolTip( "User display  name of the codex file bookmark for this collectible." );
+		Asset.AddEntry_String( "xstring_codexurl", "" ).SetTitle( "Codex File" ).SetHints( "NOWARNINGS" ).SetToolTip( "Name of the codex file associated with this collectible." );
+
+		Asset.AddEntry_AssetCombo( "xmodel_uiModel", "xmodel" ).SetTitle( "Model" ).SetToolTip( "Define the model to be used in the Player Data Vault UI." );
+		Asset.AddEntry_AssetCombo( "xmodel_uiModelWithStand", "xmodel" ).SetTitle( "Model With Stand" ).SetToolTip( "Define the model with a stand to be used in the Player Data Vault UI." );
+		Asset.AddEntry_AssetCombo( "image_uiMaterial", "image" ).SetTitle( "2D Material" ).SetToolTip( "Define the 2D material to be used in the Player Data Vault UI." );
+		Asset.AddEntry_AssetCombo( "image_uiMaterialLarge", "image" ).SetTitle( "Large 2D Material" ).SetToolTip( "Define the large 2D material to be used in the Player Data Vault UI." );
+		
+		Asset.AddEntry_Combo( "enum_slotSize", "Small {0} | Medium {1} | Large {2}" ).SetTitle( "Size" ).SetToolTip( "Which size slot this asset uses in the UI." );
+		Asset.AddEntry_String( "xstring_audiolog_sound", "" ).SetTitle( "Audio Log" );
+	}
+}

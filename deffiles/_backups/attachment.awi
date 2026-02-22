@@ -1,0 +1,307 @@
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_Combo( "attachmenttype", "none | acog | damage | dualclip | dualoptic | dw | dynzoom | extbarrel | extclip | fastads | fastreload | fmj | gmod0 | gmod1 | gmod2 | gmod3 | gmod4 | gmod5 | gmod6 | gmod7 | gl | grip | holo | ir | is | mk | mms | notracer | precision | quickdraw | rangefinder | recon | reddot | reflex | rf | sf | stackfire | stalker | steadyaim | supply | suppressed | swayreduc | tacknife | vzoom"	 );
+	Asset.AddEntry_Combo( "configstringFileType", "ATTACHMENTFILE" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Misc 
+	Asset.BeginCategory( "Misc" );
+	{
+		Asset.AddEntry_String( "displayName", "" ).SetTitle( "Display Name" ).SetToolTip( "Localization alias for weapon name displayed on HUD in game." );
+		Asset.AddEntry_Combo( "penetrateType", "none | small | medium | large" ).SetTitle( "Penetration" ).SetToolTip( "Type of bullet penetration." );
+		Asset.AddEntry_Combo( "fireType", "Full Auto | Single Shot | Burst | Auto Burst | Stacked Fire" ).SetTitle( "Fire Type" ).SetToolTip( "Behavior of the weapon when the trigger is held down." );				
+	}
+
+		
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+
+	// Attachment Perks
+	
+	Asset.BeginCategory( "Attachment Perks" );
+	{
+		Asset.AddEntry_CheckBox( "silenced", false ).SetTitle( "Silenced" ).SetToolTip( "This weapon is considered silenced." );
+		Asset.AddEntry_CheckBox( "DualMag", false ).SetTitle( "Dual Mag" ).SetToolTip( "This weapon uses dual magazines." );
+		Asset.AddEntry_CheckBox( "laserSight", false ).SetTitle( "Draw Laser Sight" ).SetToolTip( "Draw a laser indicator effect where the weapon is aiming at." );
+		Asset.AddEntry_CheckBox( "infraRed", false ).SetTitle( "InfraRed" ).SetToolTip( "This weapon uses Infra-Red vision." );
+	}
+	
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Weapon Perks
+	
+	Asset.AddEntry_Text( "mods", "" ).SetTitle( "Weapon Perks" ).SetToolTip( "specialties that this weapon will have, one per line" ).Show( false );
+	
+	Asset.BeginCategory( "Weapon Perks" );
+	{
+		Asset.ShowEntry( "mods" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Damage
+	
+	Asset.BeginCategory( "Damage Range Scales", 0.7, 0.1, 0.1, "Icon_health.png" );
+	{
+		Asset.AddEntry_Float( "damageRangeScale", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Master Range Scale" ).SetToolTip( "Scale on range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Float( "damageScale1", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Damage Scale 1 (MAX)" ).SetToolTip( "Scale on damage per-bullet, applied up to range distance." );
+		Asset.AddEntry_Float( "damageRangeScale1", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Range Scale 1" ).SetToolTip( "Scale on range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Float( "damageScale2", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Damage Scale 2" ).SetToolTip( "Scale on damage per-bullet, applied up to range distance." );
+		Asset.AddEntry_Float( "damageRangeScale2", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Range Scale 2" ).SetToolTip( "Scale on range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Float( "damageScale3", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Damage Scale 3" ).SetToolTip( "Scale on damage per-bullet, applied up to range distance." );
+		Asset.AddEntry_Float( "damageRangeScale3", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Range Scale 3" ).SetToolTip( "Scale on range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Float( "damageScale4", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Damage Scale 4" ).SetToolTip( "Scale on damage per-bullet, applied up to range distance." );
+		Asset.AddEntry_Float( "damageRangeScale4", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Range Scale 4" ).SetToolTip( "Scale on range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Float( "damageScale5", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Damage Scale 5" ).SetToolTip( "Scale on damage per-bullet, applied up to range distance." );
+		Asset.AddEntry_Float( "damageRangeScale5", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Range Scale 5" ).SetToolTip( "Scale on range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Float( "damageScale6", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Damage Scale 6 (MIN)" ).SetToolTip( "Scale on damage per-bullet, applied up to range distance." );
+		Asset.AddEntry_Float( "damageRangeScale6", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Range Scale 6" ).SetToolTip( "Scale on range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Multishot Damage
+	
+	Asset.BeginCategory( "Multishot Base Damage Range Scales", 0.7, 0.1, 0.1, "Icon_health.png" );
+	{
+		Asset.AddEntry_Float( "multishotBaseDamageScale1", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Multishot Base Damage Scale 1 (MAX)" ).SetToolTip( "Base damage applied when hit with a multishot projectile (shotgun). Applied once no matter how many pellets hit, added to individual shot damage, applied up to range distance. Damage is constant from 0 to range distance" );
+		Asset.AddEntry_Float( "multishotBaseDamageRangeScale1", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Multishot Base Range Scale 1" ).SetToolTip( "Range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Float( "multishotBaseDamageScale2", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Multishot Base Damage Scale 2" ).SetToolTip( "Base damage applied when hit with a multishot projectile (shotgun). Applied once no matter how many pellets hit, added to individual shot damage, applied up to range distance. Damage is linear from previous damage range to this damage range." );
+		Asset.AddEntry_Float( "multishotBaseDamageRangeScale2", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Multishot Base Range Scale 2" ).SetToolTip( "Range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Float( "multishotBaseDamageScale3", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Multishot Base Damage Scale 3" ).SetToolTip( "Base damage applied when hit with a multishot projectile (shotgun). Applied once no matter how many pellets hit, added to individual shot damage, applied up to range distance. Damage is linear from previous damage range to this damage range." );
+		Asset.AddEntry_Float( "multishotBaseDamageRangeScale3", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Multishot Base Range Scale 3" ).SetToolTip( "Range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Float( "multishotBaseDamageScale4", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Multishot Base Damage Scale 4" ).SetToolTip( "Base damage applied when hit with a multishot projectile (shotgun). Applied once no matter how many pellets hit, added to individual shot damage, applied up to range distance. Damage is linear from previous damage range to this damage range." );
+		Asset.AddEntry_Float( "multishotBaseDamageRangeScale4", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Multishot Base Range Scale 4" ).SetToolTip( "Range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Float( "multishotBaseDamageScale5", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Multishot Base Damage Scale 5" ).SetToolTip( "Base damage applied when hit with a multishot projectile (shotgun). Applied once no matter how many pellets hit, added to individual shot damage, applied up to range distance. Damage is linear from previous damage range to this damage range." );
+		Asset.AddEntry_Float( "multishotBaseDamageRangeScale5", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Multishot Base Range Scale 5" ).SetToolTip( "Range in world units, up to which range damage is applied. (1 world unit = 1 inch)" );
+		Asset.AddEntry_Float( "multishotBaseDamageScale6", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Multishot Base Damage Scale 6 (MIN)" ).SetToolTip( "Base damage applied when hit with a multishot projectile (shotgun). Applied once no matter how many pellets hit, added to individual shot damage, applied up to and beyond range distance. Damage is constant past range distance" );
+		Asset.AddEntry_Float( "multishotBaseDamageRangeScale6", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Multishot Base Range Scale 6" ).SetToolTip( "Range in world units, up to and beyond which the range damage is applied. (1 world unit = 1 inch)" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Ammunition
+	
+	Asset.BeginCategory( "Ammunition" );
+	{
+		Asset.AddEntry_Int( "burstCount", 1, 1, 7 ).SetTitle( "Burst Count" ).SetToolTip( "Specifies how many bullets shot by either regular or auto burst fire." );
+		Asset.AddEntry_CheckBox( "sharedAmmo", false ).SetTitle( "Shared Ammo" ).SetToolTip( "Sets this gun to use a shared ammo pool" );
+		Asset.AddEntry_Float( "clipSizeScale", 1, 0.01, 999 ).SetTitle( "Clip Size Scale" ).SetToolTip( "Scales how many bullets per clip/magazine." );
+		Asset.AddEntry_Int( "clipSize", 10, 0, 2147483647 ).SetTitle( "Clip Size" ).SetToolTip( "Specifies how many bullets per clip/magazine." );
+	}
+		
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Type Alt Mode Options
+
+	Asset.BeginCategory( "Alt Mode Options" );
+	{
+		Asset.AddEntry_CheckBox( "altWeaponAdsOnly", false ).SetTitle( "Ads Only Alt Weapon" ).SetToolTip( "Use for weapons that can only be switched while in ADS" );
+		Asset.AddEntry_CheckBox( "altWeaponDisableSwitching", false ).SetTitle( "Disable Toggle Weapon Switching" ).SetToolTip( "Does not allow you to switch the alt mode with the toggle weapon button" );
+		Asset.AddEntry_Float( "altScopeADSTransInTime", 0, 0, 90 ).SetStep( 0.01 ).SetTitle( "Alt scope transition time IN" ).SetToolTip( "Transition time when switching to the alt scope while in ADS." );	
+		Asset.AddEntry_Float( "altScopeADSTransOutTime", 0, 0, 90 ).SetStep( 0.01 ).SetTitle( "Alt scope transition time OUT" ).SetToolTip( "Transition time when switching away from the alt scope while in ADS." );	
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Aim Assist
+	
+	Asset.BeginCategory( "Aim Assist Settings" );
+	{
+		Asset.AddEntry_Float( "aimAssistRangeScale", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Aim Assist Range Scale" ).SetToolTip( "Scale on the aim assist range value in the weapon" );
+		Asset.AddEntry_Float( "aimAssistRangeAdsScale", 1, 0.01, 10 ).SetStep( 0.1 ).SetTitle( "Aim Assist ADS Range Scale" ).SetToolTip( "Scale on the aim assist ads range value in the weapon." );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// ADS Settings
+
+	Asset.BeginCategory( "ADS Settings" );
+	{
+		Asset.AddEntry_Float( "adsFlinchScalar", 1, 0.01, 10 ).SetTitle( "ADS Flinch Scalar" ).SetToolTip( "Scalar to the Damage Flinch that is applied when in ADS." );
+		Asset.AddEntry_Float( "adsFiringFlinchScalar", 1, 0.01, 10 ).SetTitle( "ADS Firing Flinch Scalar" ).SetToolTip( "Scalar to the Damage Flinch that is applied when in ADS and firing." );
+		Asset.AddEntry_Float( "adsTurnRateScalar", 1, 0.01, 10 ).SetTitle( "ADS Turn Rate Scalar" ).SetToolTip( "Scalar to turn rate that is applied when in ADS." );
+		Asset.AddEntry_Float( "adsWallRunBobScalar", 1, 0.01, 10 ).SetTitle( "ADS Wall Run Bob Scalar" ).SetToolTip( "Scalar to wall run bob that is applied when in ADS." );
+
+		Asset.AddEntry_Float( "adsAdditiveFallScalar", 1, 0.01, 10 ).SetTitle( "ADS Additive Fall Scalar" ).SetToolTip( "Scalar to additive fall anim that is applied when in ADS." );
+		Asset.AddEntry_Float( "adsAdditiveJumpScalar", 1, 0.01, 10 ).SetTitle( "ADS Additive Jump Scalar" ).SetToolTip( "Scalar to additive jump anim that is applied when in ADS." );
+		Asset.AddEntry_Float( "adsAdditiveJumpLandScalar", 1, 0.01, 10 ).SetTitle( "ADS Additive Jump Land Scalar" ).SetToolTip( "Scalar to additive jump land anim that is applied when in ADS." );
+
+		Asset.AddEntry_Float( "adsZoom1_focalLength", 20, 15, 300 ).SetTitle( "High Zoom Focal Length" ).SetToolTip( "High Zoom Focal length when in ADS." );
+		Asset.AddEntry_Float( "adsZoom2_focalLength", 20, 15, 300 ).SetTitle( "Med Zoom Focal Length" ).SetToolTip( "Med Zoom Focal length when in ADS." );
+		Asset.AddEntry_Float( "adsZoom3_focalLength", 20, 15, 300 ).SetTitle( "Low Zoom Focal Length" ).SetToolTip( "Low Zoom Focal length when in ADS." );
+
+		Asset.AddEntry_Float( "adsZoom1_fStop", 24, 1.2, 120 ).SetTitle( "High Zoom F-Stop" ).SetToolTip( "High Zoom F-Stop when in ADS." );
+		Asset.AddEntry_Float( "adsZoom2_fStop", 24, 1.2, 120 ).SetTitle( "Med Zoom F-Stop" ).SetToolTip( "Med Zoom F-Stop when in ADS." );
+		Asset.AddEntry_Float( "adsZoom3_fStop", 24, 1.2, 120 ).SetTitle( "Low Zoom F-Stop" ).SetToolTip( "Low Zoom F-Stop when in ADS." );
+
+		Asset.AddEntry_Float( "adsZoomInFrac", 0, 0, 1 ).SetStep( 0.05 ).SetTitle( "Zoom In Frac" ).SetToolTip( "Fraction of the hipfire-to-ADS transition time over which the FOV zoom-in effect happens." );
+		Asset.AddEntry_Float( "adsZoomOutFrac", 0, 0, 1 ).SetStep( 0.05 ).SetTitle( "Zoom Out Frac" ).SetToolTip( "Fraction of the ADS-to-hipfire transition time over which the FOV zoom-out effect happens." );
+		Asset.AddEntry_Float( "adsTransInTimeScale", 1.0, 0.01, 10 ).SetStep( 0.05 ).SetTitle( "Trans In Time Scale" ).SetToolTip( "Scales time it will take to switch from hipfire to ADS." );
+		Asset.AddEntry_Float( "adsTransOutTimeScale", 1.0, 0.01, 10 ).SetStep( 0.05 ).SetTitle( "Trans Out Time Scale" ).SetToolTip( "Scales time it will take to switch from ADS to hipfire." );
+		Asset.AddEntry_Float( "adsRecoilReductionRate", 0, 0, 1 ).SetStep( 0.05 ).SetTitle( "ADS Recoil Reduction Rate" ).SetToolTip( "The view kick reduces by this rate (of original kick) every time a shot it fired. " );
+		Asset.AddEntry_Float( "adsRecoilReductionLimit", 0, 0, 1 ).SetStep( 0.05 ).SetTitle( "ADS Recoil Reduction Limit" ).SetToolTip( "The maximum reduction allowed." );
+		Asset.AddEntry_Float( "adsIdleAmountScale", 1.0, 0, 150 ).SetStep( 0.1 ).SetTitle( "ADS Amount Scale" ).SetToolTip( "Scales the strength of range of viewmodel (or sniper rifle overlay) wavering motion when in ADS." );
+
+		Asset.AddEntry_Float( "adsScopeBlurRadius", 0, 0, 1 ).SetStep( 0.01f ).SetTitle( "ADS Scope Blur Radius [DEPRECATED]" );
+		Asset.AddEntry_Float( "adsScopeBlurAmount", 0, 0, 1 ).SetStep( 0.01f ).SetTitle( "ADS Scope Blur Amount" ).SetToolTip( "Amount of scene blur (0 == off)" );
+		Asset.AddEntry_Float( "adsScopeBlurStart", 0, 0, 1 ).SetStep( 0.01f ).SetTitle( "ADS Scope Blur Start" ).SetToolTip( "Amount of ADS (0..1) where the scope blur starts" );
+
+		Asset.AddEntry_CheckBox( "adsSwayViewInsteadOfGun", false ).SetTitle( "ADS Sway View Instead of Gun" ).SetToolTip( "Makes the view sway with the gun locked to it, instead of the view locked and the gun swaying like a typical weapons. This is the old behavior from overlay based sniper rifles, but without requiring an overlay" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Sway Settings
+	
+	Asset.BeginCategory( "Sway Settings" );
+	{
+		Asset.AddEntry_CheckBox( "swayOverride", false ).SetTitle( "Override Sway Settings" ).SetToolTip( "The sway settings below are overridden.  Values are not used if this is not set." );
+		Asset.AddEntry_Float( "swayMaxAngle", 0, 0, 180 ).SetTitle( "Max Angle" ).SetToolTip( "Max angle change that will be applied to the hipfire viewmodel sway." ).SetStep( 0.05 );
+		Asset.AddEntry_Float( "swayLerpSpeed", 1, 1, 50 ).SetTitle( "Lerp Speed" ).SetToolTip( "Speed at which the sway will lerp in hipfire." ).SetStep( 0.05 );
+		Asset.AddEntry_Float( "swayPitchScale", -2, -2, 2 ).SetTitle( "Pitch Scale" ).SetToolTip( "Amount of pitch change in the viewmodel to apply to the sway pitch in hipfire." ).SetStep( 0.05 );
+		Asset.AddEntry_Float( "swayYawScale",  -2, -2, 2 ).SetTitle( "Yaw Scale" ).SetToolTip( "ADS Yaw Scale" ).SetStep( 0.05 );
+		Asset.AddEntry_Float( "swayHorizScale", -2, -2, 2 ).SetTitle( "Horiz Scale" ).SetToolTip( "Amount of yaw change in the viewmodel to apply to the sway horizontal offset in hipfire." ).SetStep( 0.05 );
+		Asset.AddEntry_Float( "swayVertScale", -2, -2, 2 ).SetTitle( "Vert Scale" ).SetToolTip( "Amount of pitch change in the view model to apply to the sway vertical offset in hipfire." ).SetStep( 0.05 );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Sway Settings
+	
+	Asset.BeginCategory( "ADS Sway Settings" );
+	{
+		Asset.AddEntry_CheckBox( "adsSwayOverride", false ).SetTitle( "Override ADS Sway Settings" ).SetToolTip( "The sway settings below are overridden.  Values are not used if this is not set." );
+		Asset.AddEntry_Float( "adsSwayMaxAngle", 0, 0, 180 ).SetTitle( "ADS Max Angle" ).SetToolTip( "Max angle change that will be applied to the ADS viewmodel sway." ).SetStep( 0.05 );
+		Asset.AddEntry_Float( "adsSwayLerpSpeed", 1, 1, 50 ).SetTitle( "ADS Lerp Speed" ).SetToolTip( "Speed at which the sway will lerp in ADS." ).SetStep( 0.05 );
+		Asset.AddEntry_Float( "adsSwayTransitionLerpSpeed", 0, 0, 50 ).SetTitle( "ADS Transition Lerp Speed" ).SetToolTip( "Speed at which the sway will lerp during ADS transition. Zero means unused." ).SetStep( 0.05 );
+		Asset.AddEntry_Float( "adsSwayPitchScale", -2, -2, 2 ).SetTitle( "ADS Pitch Scale" ).SetToolTip( "Amount of yaw change in the viewmodel to apply to the sway yaw in hipfire." ).SetStep( 0.05 );
+		Asset.AddEntry_Float( "adsSwayYawScale",  -2, -2, 2 ).SetTitle( "ADS Yaw Scale" ).SetToolTip( "Amount of yaw change in the viewmodel to apply to the sway yaw in ADS." ).SetStep( 0.05 );
+		Asset.AddEntry_Float( "adsSwayHorizScale", -2, -2, 2 ).SetTitle( "ADS Horiz Scale" ).SetToolTip( "Amount of yaw change in the viewmodel to apply to the sway horizontal offset in ADS." ).SetStep( 0.05 );
+		Asset.AddEntry_Float( "adsSwayVertScale", -2, -2, 2 ).SetTitle( "ADS Vert Scale" ).SetToolTip( "Amount of pitch change in the view model to apply to the sway vertical offset in ADS." ).SetStep( 0.05 );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// View Kick Settings
+	
+	Asset.BeginCategory( "View Kick Settings" );
+	{
+		Asset.AddEntry_Float( "adsViewKickCenterSpeedScale", 1.0, 0, 10 ).SetStep( 10 ).SetTitle( "ADS Center Speed Scale" ).SetToolTip( "Scales the speed with which the view continuously attempts to recenter in ADS." );
+
+		Asset.AddEntry_Float( "kickAlignedInputScalar", 1, 0.1, 10 ).SetTitle( "Kick Aligned Input Scalar" ).SetToolTip( "Scales the gun and view kick if the user's view input is aligned to the kick direction." ).SetStep( 0.1 );
+		Asset.AddEntry_Float( "kickOpposedInputScalar", 1, 0.1, 10 ).SetTitle( "Kick Opposed Input Scalar" ).SetToolTip( "Scales the gun and view kick if the user's view input is opposed to the kick direction." ).SetStep( 0.1 );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Movement, Sprint, Turning
+	
+	Asset.BeginCategory( "Movement, Sprint, Turning" );
+	{
+		Asset.AddEntry_Float( "adsMoveSpeedScale", 1.0, 0.0, 5.0 ).SetTitle( "ADS Move Speed Scale" ).SetToolTip( "When using this weapon and in ADS, player movement speed is multiplied by this amount." );
+		Asset.AddEntry_Float( "adsFiringSpeedScale", 1.0, 0.0, 5.0 ).SetTitle( "ADS Firing Speed Scale" ).SetToolTip( "When firing this weapon and in ADS, player movement speed is multiplied by this amount (if non-zero, normal scalars are used otherwise)." );
+		Asset.AddEntry_Float( "adsMoveSpeedTransitionTimeIn", 0.0, 0.0, 5.0 ).SetTitle( "ADS Move Speed Transition Time In" ).SetToolTip( "Time to lerp from regular MoveSpeedScale to ADS MoveSpeedScale (or the Firing variants when firing). 0 will behave like games previous to BO3" );
+		Asset.AddEntry_Float( "adsMoveSpeedTransitionTimeOut", 0.0, 0.0, 5.0 ).SetTitle( "ADS Move Speed Transition Time Out" ).SetToolTip( "Time to lerp to regular MoveSpeedScale from ADS MoveSpeedScale (or the Firing variants when firing). 0 will behave like games previous to BO3" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Hip Spread Settings
+	
+	Asset.BeginCategory( "Hip Spread Settings" );
+	{
+		Asset.AddEntry_Float( "hipSpreadMinScale", 1, 0, 10 ).SetStep( 0.1 ).SetTitle( "Hip Spread Min Scale" ).SetToolTip( "Applies scaling to all hipSpread min values (stand, crouch, prone)" );
+		Asset.AddEntry_Float( "hipSpreadMaxScale", 1, 0, 10 ).SetStep( 0.1 ).SetTitle( "Hip Spread Max Scale" ).SetToolTip( "Applies scaling to all hipSpread max values (stand, crouch, prone)" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Strafe Movement Settings
+	
+	Asset.BeginCategory( "Strafe Movement Settings" );	
+	{
+		Asset.AddEntry_Float( "strafeRotR", -300, -300, 300 ).SetStep( 0.1 ).SetTitle( "Rot Roll" ).SetToolTip( "Viewmodel will roll by this amount if the player is strafing. (+/- for left/right respectively)" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Stand Movement Settings
+	
+	Asset.BeginCategory( "Stand Movement Settings" );
+	{
+		Asset.AddEntry_Float( "standMoveF", -300, -300, 300 ).SetStep( 0.1 ).SetTitle( "Move Forward" ).SetToolTip( "Viewmodel will translate forward/backward by this amount if the player is moving in this stance. (+/- for forward/backward respectively)" );
+		Asset.AddEntry_Float( "standRotP", -300, -300, 300 ).SetStep( 0.1 ).SetTitle( "Rot Pitch" ).SetToolTip( "Viewmodel will pitch by this amount if the player is moving in this stance. (+/- for down/up respectively)" );
+		Asset.AddEntry_Float( "standRotR", -300, -300, 300 ).SetStep( 0.1 ).SetTitle( "Rot Roll" ).SetToolTip( "Viewmodel will roll by this amount if the player is moving in this stance. (+/- for left/right respectively)" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Idle Settings // Check this...
+		
+	Asset.BeginCategory( "Idle Settings" );
+	{
+		Asset.AddEntry_Int( "hipIdleAmount", 0, 0, 150 ).SetStep( 0.1 ).SetTitle( "Hip Amount" ).SetToolTip( "Strength of viewmodel wavering motion when in hipfire position." );
+		Asset.AddEntry_Int( "adsIdleAmount", 25, 0, 150 ).SetStep( 0.1 ).SetTitle( "ADS Amount" ).SetToolTip( "Strength of range of viewmodel (or sniper rifle overlay) wavering motion when in ADS." );
+		Asset.AddEntry_Float( "idleSpeedFromFireTransitionTime", 0, 0, 10 ).SetStep( 0.05 ).SetTitle( "Idle Speed From Fire Transition Time" ).SetToolTip( "The time it takes to lerp back up to full idle speed after firing, the EF_FIRING flag, is done" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// State Timers
+	
+	Asset.BeginCategory( "State Timers" );
+	{	
+		Asset.AddEntry_Float( "fireTimeScale", 1, 0.01, 10 ).SetStep( 0.05 ).SetTitle( "Fire Scale" ).SetToolTip( "Scales the rate of fire in seconds per round. It's good to keep this in multiples of 0.016 for sound. If 0.016 then it's 3750 rounds a minute." );
+		Asset.AddEntry_Float( "burstDelayTimeScale", 1, 0.01, 10 ).SetStep( 0.05 ).SetTitle( "Burst Delay Scale" ).SetToolTip( "Scales the rate of the burst delay." );
+		Asset.AddEntry_Float( "reloadTimeScale", 1, 0.01, 10 ).SetStep( 0.05 ).SetTitle( "Reload Scale" ).SetToolTip( "Scales the number of seconds over which the non-empty reload animation will be played.  In segmented reload weapons, this is the animation that loops to give the player ammo." );
+		Asset.AddEntry_Float( "reloadEmptyTimeScale", 1, 0.01, 10 ).SetStep( 0.05 ).SetTitle( "Reload Empty Time Scale" ).SetToolTip( "Scales the number of seconds over which the empty reload animation will be played." );
+		Asset.AddEntry_Float( "reloadAddTimeScale", 1, 0.01, 10 ).SetStep( 0.05 ).SetTitle( "Reload Add Scale" ).SetToolTip( "During an partial reload, when the gun will literally get more ammo (ammo counter fills up)." );
+		Asset.AddEntry_Float( "reloadEmptyAddTimeScale", 1, 0.01, 10 ).SetStep( 0.05 ).SetTitle( "Reload Empty Add Scale" ).SetToolTip( "During an empty reload, when the gun will literally get more ammo (ammo counter fills up)." );
+		Asset.AddEntry_Float( "reloadQuickTimeScale", 1, 0.01, 10 ).SetStep( 0.05 ).SetTitle( "Reload Quick Scale" ).SetToolTip( "Dual Magazine reload animation will be scaled by this time." );
+		Asset.AddEntry_Float( "reloadQuickEmptyTimeScale", 1, 0.01, 10 ).SetStep( 0.05 ).SetTitle( "Reload Quick Empty Scale"  ).SetToolTip( "Dual Magazine empty reload animation will be scaled by this time." );
+		Asset.AddEntry_Float( "reloadQuickAddTimeScale", 1, 0.01, 10 ).SetStep( 0.05 ).SetTitle( "Reload Quick Add Scale" ).SetToolTip( "During a quick partial reload, when the gun will literally get more ammo (ammo counter fills up)." );
+		Asset.AddEntry_Float( "reloadQuickEmptyAddTimeScale", 1, 0.01, 10 ).SetStep( 0.05 ).SetTitle( "Reload Quick Empty Add Scale" ).SetToolTip( "During a quick empty reload, when the gun will literally get more ammo (ammo counter fills up)." );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 	
+	// Animation Misc
+	
+	Asset.BeginCategory( "Animation Misc" );
+	{
+		Asset.AddEntry_Int( "firstRaisePriority", 0, 0, 99 ).SetTitle( "First Raise Priority" ).SetToolTip( "Determines which attachement we get the first raise anim from. Higher takes precidence over lower." );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	// Melee Fields
+
+	Asset.BeginCategory( "Melee Fields" );
+	{
+		Asset.AddEntry_CheckBox( "useAsMelee", false ).SetTitle( "Use As Melee" ).SetToolTip( "This weapon will be used for melee attacks, ensure melee animation fields are filled in this weapon." );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	// Stack Fire	
+
+	Asset.BeginCategory( "Stack Fire" );
+	{
+		Asset.AddEntry_Int( "stackFire", 0, 0, 8 ).SetTitle( "Stack Fire" ).SetToolTip( "Specifies the number of rounds this weapon can fire at once" );
+		Asset.AddEntry_Float( "stackFireAccuracyDecay", 0, 0, 10 ).SetTitle( "Accuracy Decay" ).SetToolTip( "Specifies the amount that each round reduces accuraccy by:  spread*=[n]^[number of rounds-1]" );
+		Asset.AddEntry_Float( "stackFireSpread", 15, 0, 90 ).SetTitle( "Spread Angle" ).SetToolTip( "Specifies the spread in degrees for stacked fire" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+ 
+	// UI
+	
+	Asset.BeginCategory( "UI" );
+	{
+		Asset.AddEntry_String( "luiReticle", "" ).SetTitle( "LUI Reticle" ).SetToolTip( "The name of the LUI widget to use as a weapon reticle when attached" );
+	}
+}

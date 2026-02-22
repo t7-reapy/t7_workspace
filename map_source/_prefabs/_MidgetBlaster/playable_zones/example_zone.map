@@ -1,0 +1,100 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"000_Global/Assets" flags 
+"000_Global/Volumes" flags 
+"000_Global/Volumes/Zone Volume" flags 
+"The Map" flags expanded 
+// entity 0
+{
+guid "{0EEF826E-6823-11F0-9AC2-309C23A208D5}"
+"classname" "worldspawn"
+"lutmaterial" "luts_t7_default"
+"vbloom" "mp_infection"
+"vcolor" "mp_infection"
+"fsi" "default"
+"gravity" "800"
+"lightingquality" "1024"
+"lodbias" "default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"samplescale" "1"
+"shadowslices" "96"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+"umbraSmallestHole" "16"
+"umbraSmallestOccluder" "96"
+"umbraTileSize" "2"
+"umbra_prime_depth" "1"
+"wsi" "default_day"
+}
+// entity 1
+{
+guid "{6D36822E-6820-11F0-9AC2-309C23A208D5}"
+layer "000_Global/Assets"
+"classname" "script_struct"
+"_color" "0.1177 1 0"
+"origin" "-24 24 0"
+"script_noteworthy" "dog_location"
+"targetname" "zone_01_spawners"
+}
+// entity 2
+{
+guid "{3720D0C6-6822-11F0-9AC2-309C23A208D5}"
+layer "000_Global/Assets"
+"classname" "script_struct"
+"_color" "1 0.9882 0"
+"angles" "0 180 0"
+"origin" "24 -24 0"
+"script_noteworthy" "riser_location"
+"script_string" "receiver_set_entry_replacemedaddy"
+"targetname" "zone_01_spawners"
+}
+// entity 3
+{
+guid "{0EEF8275-6823-11F0-9AC2-309C23A208D5}"
+"classname" "script_struct"
+"_color" "0 0.4942 1"
+"angles" "0 90 0"
+"origin" "-24 -24 0"
+"script_noteworthy" "spawn_location"
+"script_string" "find_flesh"
+"targetname" "zone_01_spawners"
+}
+// entity 4
+{
+guid "{E71D92A1-6822-11F0-9AC2-309C23A208D5}"
+"classname" "script_struct"
+"angles" "0 270 0"
+"origin" "24 24 0"
+"script_noteworthy" "riser_location"
+"script_string" "find_flesh"
+"targetname" "zone_01_spawners"
+"_color" "1 0 0"
+}
+// entity 5
+{
+guid "{4F5F27D5-67A1-11F0-9AC1-309C23A208D5}"
+layer "000_Global/Volumes/Zone Volume"
+"classname" "info_volume"
+"script_noteworthy" "player_volume"
+"target" "zone_01_spawners"
+"targetname" "zone_01"
+// brush 0
+{
+ guid "{4F5F27D4-67A1-11F0-9AC1-309C23A208D5}"
+layer "000_Global/Volumes/Zone Volume"
+ ( 80 -280 0 ) ( 2768 -280 0 ) ( 2768 152 0 ) volume -80 80 -40 40 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 128 48 ) ( 2624 128 48 ) ( 2624 -304 48 ) volume -80 80 -40 40 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -112 -40 24 ) ( -112 -40 40 ) ( 2576 -40 40 ) volume -80 48 -40 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 40 56 16 ) ( 40 -376 16 ) ( 40 -376 32 ) volume -80 48 -40 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 3208 40 8 ) ( 3208 40 24 ) ( 520 40 24 ) volume -80 48 -40 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -40 128 32 ) ( -40 -304 32 ) ( -40 -304 16 ) volume -80 48 -40 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}

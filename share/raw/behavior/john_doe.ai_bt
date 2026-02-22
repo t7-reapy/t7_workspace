@@ -1,0 +1,117 @@
+{
+    "type": "selector",
+    "id": "JohnDoe",
+    "children": [
+        {
+            "type": "parallel",
+            "id": "JohnDoeBehaviorMain",
+            "children": [
+                {
+                    "type": "condition_service_script",
+                    "id": "TargetService",
+                    "scriptFunction": "JohnDoeTargetService",
+                    "cooldownMin": 0,
+                    "cooldownMax": 0
+                },
+                {
+                    "type": "selector",
+                    "id": "JohnDoeBehaviorSelector",
+                    "children": [
+                        {
+                            "type": "sequence",
+                            "id": "DeathBehavior",
+                            "children": [
+                                {
+                                    "type": "condition_script",
+                                    "id": "wasKilled",
+                                    "interruptName": "death"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "defaultAction",
+                                    "ActionName": "defaultAction",
+                                    "ASMStateName": "death@john_doe",
+                                    "TerminateFunction": "startRagdoll",
+                                    "loopingAction": 0,
+                                    "actionTimeMax": 0,
+                                    "actionNotify": "death"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "parallel",
+                            "id": "AttackBehavior",
+                            "children": [
+                                {
+                                    "type": "condition_script",
+                                    "id": "ShouldAttack",
+                                    "scriptFunction": "JohnDoeShouldAttack"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "AttackAction",
+                                    "ActionName": "defaultAction",
+                                    "ASMStateName": "attack@john_doe",
+                                    "loopingAction": 0,
+                                    "actionTimeMax": 0,
+                                    "actionNotify": "attack_melee"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "parallel",
+                            "id": "LocomotionBehavior",
+                            "children": [
+                                {
+                                    "type": "condition_script",
+                                    "id": "hasPath",
+                                    "scriptFunction": "JohnDoeLocomotionBehaviorCondition"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "ShouldAttack",
+                                    "scriptFunction": "JohnDoeShouldAttack"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "LocomotionAction",
+                                    "ActionName": "defaultAction",
+                                    "ASMStateName": "locomotion@john_doe",
+                                    "loopingAction": 1,
+                                    "actionTimeMax": 0
+                                }
+                            ]
+                        },
+                        {
+                            "type": "parallel",
+                            "id": "IdleBehavior",
+                            "children": [
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "hasPath",
+                                    "scriptFunction": "JohnDoeLocomotionBehaviorCondition"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "idleAction",
+                                    "ActionName": "defaultAction",
+                                    "ASMStateName": "idle@john_doe",
+                                    "loopingAction": 0,
+                                    "actionTimeMax": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "action",
+            "id": "DebugVoidAction",
+            "ActionName": "defaultAction",
+            "ASMStateName": "void@debug",
+            "loopingAction": 0,
+            "actionTimeMax": 0
+        }
+    ]
+}

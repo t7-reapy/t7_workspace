@@ -1,0 +1,90 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{C7362180-4511-11F0-9A90-309C23A208D5}"
+"classname" "worldspawn"
+"evmax" "31"
+"evmin" "-32"
+"lutmaterial" "luts_t7_default"
+"secondsLerpToDarker" "1"
+"secondsLerpToLighter" "1"
+"fsi" "default"
+"gravity" "800"
+"lightingquality" "1024"
+"lodbias" "default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"samplescale" "1"
+"shadowslices" "96"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+"umbraSmallestHole" "16"
+"umbraSmallestOccluder" "96"
+"umbraTileSize" "2"
+"umbra_prime_depth" "1"
+"vbloom" "none"
+"vcolor" "none"
+"wsi" "default_day"
+// brush 0
+{
+ guid "{2A25E1DE-2723-11E4-BCD9-2C27D7F07CCE}"
+ ( 1.75 17 -6 ) ( -5.25 17 -6 ) ( -5.25 12 -6 ) shadowcaster 16 16 0 0 0 0 lightmap_gray 16384 16384 0 -1.8307701 0 0
+ ( -3 12 42.75 ) ( -3 17 42.75 ) ( 4 17 42.75 ) shadowcaster 16 16 0 0 0 0 lightmap_gray 16384 16384 0 -1.8307701 0 0
+ ( -4 12 44 ) ( 3 12 44 ) ( 3 12 7.25 ) shadowcaster 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 18.75 11 44 ) ( 18.75 15.75 44 ) ( 18.75 15.75 7.25 ) shadowcaster 16 16 0 0 0 0 lightmap_gray 16384 16384 1.8307594 0 0 0
+ ( 3 17 44 ) ( -4 17 44 ) ( -4 17 7.25 ) shadowcaster 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -19.25 16.25 44 ) ( -19.25 11.25 44 ) ( -19.25 11.25 7.25 ) shadowcaster 16 16 0 0 0 0 lightmap_gray 16384 16384 1.8307594 0 0 0
+}
+}
+// entity 1
+{
+guid "{00D76799-084D-11E7-A7E6-645106423E12}"
+"classname" "script_struct"
+"angles" "0 90 0"
+"origin" "-30 -30 0"
+"script_int" "1"
+"script_noteworthy" "attack_spot"
+"targetname" "auto1"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{00D7679C-084D-11E7-A7E6-645106423E12}"
+"classname" "script_struct"
+"angles" "0 90 0"
+"origin" "0 -38 0"
+"script_int" "2"
+"script_noteworthy" "attack_spot"
+"targetname" "auto1"
+"_color" "1 0 0"
+}
+// entity 3
+{
+guid "{00D7679F-084D-11E7-A7E6-645106423E12}"
+"classname" "script_struct"
+"angles" "0 90 0"
+"origin" "30 -30 0"
+"script_int" "3"
+"script_noteworthy" "attack_spot"
+"targetname" "auto1"
+"_color" "1 0 0"
+}
+// entity 4
+{
+guid "{F338C03C-FFF5-4978-A00D-9CA79FB234F1}"
+"classname" "script_struct"
+"model" "p7_zm_vending_revive"
+"script_noteworthy" "specialty_quickrevive"
+"target" "auto1"
+"targetname" "zm_perk_machine"
+"_color" "1 0 0"
+}

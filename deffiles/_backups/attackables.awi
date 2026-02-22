@@ -1,0 +1,25 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+	 
+	Asset.AddEntry_Combo( "type", "attackables" ).Show( false );
+	Asset.AddEntry_Combo( "vmType", "Server" ).SetTitle( "Script Type" ).Show( false ).SetValue("Server");
+	
+	Asset.BeginCategory( "Attackable properties" );
+	{
+		Asset.AddEntry_Int( "aggro_distance", 256, 0, 100000 ).SetTitle( "Aggro Distance Override" ).SetToolTip( "How far away the tagged entity can force cause zombies to attack it." ).UpdateOnChange(true);					
+		Asset.AddEntry_Int( "attack_distance", 32, 0, 100000 ).SetTitle( "Attack Distance" ).SetToolTip( "How close zombies need to be to the object to attack it." ).UpdateOnChange(true);					
+		Asset.AddEntry_Int( "max_attackers", 3, 1, 24 ).SetTitle( "Max Attackers" ).SetToolTip( "Maximum amount of enemies the tagged entity can aggro. Once this is reached zombies will ignore this target until an attacker dies." ).UpdateOnChange(true);					
+		Asset.AddEntry_Int( "max_health", 100, 1, 100000 ).SetTitle( "Max Health" ).SetToolTip( "Maximum amount of object's health." ).UpdateOnChange(true);					
+		Asset.AddEntry_Combo( "speed", "default | walk | run | sprint" ).SetTitle( "Speed Override" ).SetToolTip( "If a zombie aggro’s the tagged entity this will override the zombie’s speed to the designated speed" ).UpdateOnChange( true );
+		Asset.AddEntry_CheckBox( "ignore_player", false ).SetTitle( "Ignore Player Override" ).SetToolTip( "If this is true anything attacking the tagged entity will completely ignore players." ).UpdateOnChange( true );
+		Asset.AddEntry_CheckBox( "no_cleanup", false ).SetTitle( "Remove from Cleanup" ).SetToolTip( "If this is true the zombies will NOT be cleaned up by the cleanup manager." ).UpdateOnChange( true );
+	}
+}
+
+
+
+

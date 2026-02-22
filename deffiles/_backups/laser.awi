@@ -1,0 +1,39 @@
+
+void GenerateUI( asset Asset )
+{
+	// Hidden
+	
+	Asset.AddEntry_Combo( "configstringFileType", "LASER" ).Show( false );
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	
+	// Misc 
+
+	Asset.BeginCategory( "Base Settings" );
+	{
+		Asset.AddEntry_AssetCombo( "material", "material" ).SetTitle( "Base Material" ).SetToolTip( "Base texture used by the laser. Default is 'gfx_laser'." ).ShowJumpTo (true);
+		Asset.AddEntry_Float( "width", 1.0, 0.1, 100000.0 ).SetTitle( "Width" ).SetToolTip( "The initial width of the laser.  It will 'flare' towards the end based on view angle" );
+		Asset.AddEntry_Float( "uvRepeatLength", 100000.0, 0.001, 100000.0 ).SetTitle( "Texture repeat length" ).SetToolTip( "The length over which the UVs will repeat along the laser." );
+		Asset.AddEntry_Float( "firstSegmentLength", -1.0, -1.0, 10000.0 ).SetTitle( "First segment's length" ).SetToolTip( "The laser can have two segments; the first segment will use colors R0 and R1; the second segment will use R1 and R2 and fade out.  If the laser is less than one segment long, the end will lerp between R0 and R1.  A negative or zero value indicates use one segment for the whole length, ignoring R1." );
+		Asset.AddEntry_Float( "flarePct", 0.25, 0.0, 10000.0 ).SetTitle( "Flare Pct" ).SetToolTip( "Percentage laser second segment widens over distance from viewer." );
+		Asset.AddEntry_Float( "flarePctAlt", 0.0, 0.0, 10000.0 ).SetTitle( "Flare Pct Alt" ).SetToolTip( "Percentage laser second segment widens over distance from viewer in alternate view." );
+		Asset.AddEntry_Float( "range", 1500.0, 0.0, 100000.0 ).SetTitle( "Range" ).SetToolTip( "Maximum distance the laser will draw out to." );
+		Asset.AddEntry_Float( "rangeAlt", 5000.0, 0.0, 100000.0 ).SetTitle( "Range Alt" ).SetToolTip( "Maximum distance the laser will draw out to in alternate view." );
+		Asset.AddEntry_Float( "rangePlayer", 2000.0, 0.0, 100000.0 ).SetTitle( "Range for Player" ).SetToolTip( "Maximum distance the laser will draw out to for the player's laser." );
+		Asset.AddEntry_Float( "endOffset", -2.0, -10000.0, 10000.0 ).SetTitle( "End Offset" ).SetToolTip( "How far from the point of collision the end of the beam is." );
+		Asset.AddEntry_CheckBox( "noCollision", false ).SetTitle( "Disable Collision" ).SetToolTip( "Does not do any collision with the world" );
+		Asset.AddEntry_Path( "impactEffect", "" ).SetTitle( "Impact Effect" ).SetToolTip( "This effect is played where the laser hits geo." ).SetRelativePath( "share/raw/fx" );		
+	}
+	
+ 
+	// Range
+	
+	Asset.BeginCategory( "Colors (RGBA) ( Beginning of laser, end of first segment, end of laser )" );
+	{
+		for ( int i = 0; i < 3; i++ )
+		{
+			string Digit = i;	
+			Asset.AddEntry_Vector4( "colorR" + Digit, "colorG" + Digit, "colorB" + Digit, "colorA" + Digit, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0 );
+		}
+	}
+}

@@ -25,6 +25,9 @@ When booting game after a successful linking of the scripts in the tools, and ha
 If the map includes weapons that are not linked (especially the ones buyable on the walls), the map doesn't run, and crashes instantly with error about zm_weapons or something.
 There is also a wallbuy limit around 20 (depends of the guns used on the walls it seems), that makes the map crashes without errors when using PAP.
 
+You fucking can't use animations prefixed with `%` in CSC. If you do, the game doesn't **FUCKING** boot (even if it exists in other scripts, I just don't know why ...), use raw string instead...
+Oh and yeah... Trible/Quadruple check the model is clearly set to "animated" :)
+
 ## Powerups
 
 Enabling logic is at [`_zm_spawner.gsc`](.\share\raw\scripts\zm\_zm_spawner.gsc#L1545). Zombie's actor variable `zombie.no_powerups` can be configured for specific actor. `level.no_powerups` or flag `flag::set("zombie_drop_powerups", 1)` can be set to true for general decision.
@@ -75,7 +78,7 @@ At least the context ringoff_plr does affect gun sound. Important! context "wate
 
 ### VS Code searching
 
-CoD mod files extensions: `*.csc,*.gsc,*.gsh,*.szc,*.zpkg,*.zone,*.csv,*.gdt,*.map,*.str,*.lua,*.techsetdef`
+CoD mod files extensions: `*.csc,*.gsc,*.gsh,*.szc,*.zpkg,*.zone,*.csv,*.gdt,*.atr,*.map,*.str,*.lua,*.techsetdef`
 
 ## Clientfield
 

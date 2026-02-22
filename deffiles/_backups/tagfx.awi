@@ -1,0 +1,44 @@
+const int MAX_NUM_FX_ITEMS = 8;
+
+#include "asset_list_helper.h"
+
+void GenerateUI( asset Asset )
+{
+	//GenerateItemList( Asset, "tagfxitem", "Tag FX Item", "tagFXItem", MAX_NUM_FX_ITEMS, "Items" );
+	
+	Asset.BeginCategory( "TagFxItems" );
+	{
+		Asset.AddEntry_Int(  "tagFXItemCount", 0, 0, MAX_NUM_FX_ITEMS ).SetTitle( "fx" + " Count" ).Show( false ).SetToolTip( "Hidden value containing the list count." ).UpdateOnChange(true);
+		int count = Asset.GetEntryInt( "tagFXItemCount" );
+
+		int countItems = 1;
+		for ( int i = 1; i <= MAX_NUM_FX_ITEMS; i++ )
+		{
+			Asset.BeginCategory( "TagFx Item "+i );
+			{
+				bool fxChosen = false;
+				bool fxImpactChosen = false;
+				if( Asset.GetEntryValue( "fx"+ ( i ) ) != "" )
+				{
+					fxChosen = true;
+				}
+				else if( Asset.GetEntryValue( "entityFxTable"+ ( i ) ) != "" )
+				{
+					fxImpactChosen = true;
+				}
+				
+				if( ( fxChosen || fxImpactChosen ) && i < MAX_NUM_FX_ITEMS )
+				{
+					count = countItems = i + 1;
+				}
+				Asset.AddEntry_Path( "fx"+i, "").SetRelativePath( "share/raw/fx/" ).SetTitle("FX Name" ).SetToolTip( "FX to use for this item.").Show( ( i <= count ) && !fxImpactChosen ).UpdateOnChange( true ).SetSave( i <= count );
+				Asset.AddEntry_AssetCombo( "entityFxTable" + i, "entityfxtable").SetTitle( "Entity Fx Table Name" ).SetToolTip( "Use this to specify the entity impact asset for the Entity Fx Table." ).Show( ( i <= count ) && !fxChosen ).UpdateOnChange( true ).SetSave( i <= count );
+				Asset.AddEntry_String( "tag"+i, "" ).SetTitle( "FX Tag" ).SetToolTip( "Name of the tag/bone you want the FX to use for attaching, leave blank for origin" ).Show( i <= count ).UpdateOnChange( true ).SetSave( i <= count );
+				Asset.AddEntry_Int( "timeDelay"+i, 0, 0, 10000 ).SetTitle( "timeDelay" ).SetToolTip( "The delay in ( ms ) that this effect should be played at" ).Show( i <= count ).UpdateOnChange( true ).SetSave( i <= count );
+				Asset.AddEntry_CheckBox( "bolted"+i, false ).SetTitle( "Bolted" ).SetToolTip( "If this effect should be bolted to the bone" ).Show( i <= count ).UpdateOnChange( true ).SetSave( i <= count );
+			}
+		}
+		
+		Asset.GetEntryVariable( "tagFXItemCount" ).SetInt( countItems );
+	}
+}

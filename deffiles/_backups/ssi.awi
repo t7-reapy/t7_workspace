@@ -1,0 +1,41 @@
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_Combo( "type", "ssi" ).Show( false );
+	bool enableSun = Asset.AddEntry_CheckBox( "enablesun", true ).SetTitle( "Enable the Sun" ).UpdateOnChange( true ).GetBool();
+
+	if ( enableSun )
+	{
+		Asset.AddEntry_Color( "colorSRGB", 0, 0, 0, 1.0 ).SetTitle( "Color" ).SetToolTip( "the default color is (0, 0, 0)." ).SetShowAlpha( false );
+		Asset.AddEntry_Float( "pitch", 0.0, -180.0, 180.0 ).SetTitle( "Pitch" ).SetToolTip( "Controls the pitch" );
+		Asset.AddEntry_Float( "yaw", 0.0, 0.0, 360.0 ).SetTitle( "Yaw" ).SetToolTip( "Controls the yaw" );
+		Asset.AddEntry_Float( "lensFlarePitchOffset", 0.0, -180.0, 180.0 ).SetTitle( "Lens flare pitch offset" ).SetToolTip( "Controls the lens flare pitch offset" );
+		Asset.AddEntry_Float( "lensFlareYawOffset", 0.0, -360.0, 360.0 ).SetTitle( "Lens flare yaw offset" ).SetToolTip( "Controls the lens flare yaw offset" );	
+
+		Asset.AddEntry_Float( "stops", 15.0, -32.0, 32.0 ).SetTitle( "Stops" ).SetToolTip( "Controls the stops of light" );
+		Asset.AddEntry_Float( "spec_comp", 0.0, -14.0, 14.0 ).SetTitle( "Specular Comp" ).SetToolTip( "Specular boost (in stops)" );
+		Asset.AddEntry_Float( "penumbra_inches", 1.0, 0.0, 8.0 ).SetTitle( "Penumbra inches" ).SetToolTip( "Controls the sun shadow penumbra size" );
+		Asset.AddEntry_CheckBox( "dynamicShadow", true ).SetTitle( "Enable dynamic shadows" ).UpdateOnChange( true ).GetBool();
+
+		Asset.AddEntry_Float( "sunCookieIntensity", 0.0, 0.0, 1.0 ).SetTitle( "Sun Cookie Intensity" ).SetToolTip( "Controls the sun cookie intensity" );
+		Asset.AddEntry_AssetCombo( "sunCookieLightDefName", "light" ).SetTitle( "Sun Cookie Lightdef Name" ).SetToolTip( "Sets the sun cookie lightdef name" ).Show( true ).ShowJumpTo (true);
+		Asset.AddEntry_Float( "sunCookieScale", 0.0, 0.0, 1.0 ).SetTitle( "Sun Cookie Scale" ).SetToolTip( "Controls the sun cookie scale" );
+		Asset.AddEntry_Float( "sunCookieAngle", 0.0, -360.0, 360.0 ).SetTitle( "Sun Cookie Angle" ).SetToolTip( "Controls the sun cookie angle" );
+
+		Asset.AddEntry_Float( "sunCookieRotation", 0.0, -360.0, 360.0 ).SetTitle( "Sun Cookie Rotation" ).SetToolTip( "Controls the sun cookie rotation" );
+		Asset.AddEntry_Vector2( "sunCookieOffsetX", "sunCookieOffsetY", 0.0, 0.0, -1000.0, 1000.0 ).SetTitle( "Sun Cookie Offset" ).SetToolTip( "Controls the sun cookie offset" );
+		Asset.AddEntry_Vector2( "sunCookieScrollX", "sunCookieScrollY", 0.0, 0.0, -1000.0, 1000.0 ).SetTitle( "Sun Cookie Scroll" ).SetToolTip( "Controls the sun cookie scroll" );
+
+		Asset.AddEntry_CheckBox( "sunVolumetricCookie", false ).SetTitle( "Enable the Sun Volumetric Cookie" ).UpdateOnChange( true ).GetBool();
+
+		Asset.AddEntry_LensFlare( "lensFlare", "" ).SetTitle( "Lens Flare" );
+	}
+
+	Asset.AddEntry_AssetCombo( "skyboxmodel", "xmodel" ).SetTitle( "SkyBox Model" ).SetToolTip( "Sets the skybox model" );
+
+	Asset.AddEntry_Float( "ev", 0.0, 0.0, 20.0 ).SetTitle( "Ev" ).SetToolTip( "Controls the global exposure" ).Show( false ); // REMOVE
+	Asset.AddEntry_Float( "evcmp",   0.0, -32.0, 31.0 ).SetTitle( "Ev Comp" ).SetToolTip( "Controls the exposure compensation" );
+	Asset.AddEntry_Float( "evmin", -32.0, -32.0, 31.0 ).SetTitle( "Ev Min" ).SetToolTip( "Sets the minimum exposure" );
+	Asset.AddEntry_Float( "evmax",  31.0, -32.0, 31.0 ).SetTitle( "Ev Max" ).SetToolTip( "Sets the maximum exposure" );
+
+	Asset.AddEntry_Int( "bounceCount", 4, 1, 10 ).SetTitle( "Bounce Count" ).SetToolTip( "Controls the number of light bounces" );
+}

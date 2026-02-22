@@ -1,0 +1,75 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"000_Global/buyable" flags 
+"The Map" flags expanded 
+// entity 0
+{
+guid "{BD29468D-AB1A-11E7-BEB2-0015833D0A57}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+// brush 0
+{
+ guid "{04C9E0E1-B75E-11E7-BEB4-0015833D0A57}"
+ ( 0 48 0 ) ( -16 48 0 ) ( -16 -8 0 ) clip 64 64 0 -992 0 0 lightmap_gray 16384 16384 0 -992 0 0
+ ( -16 -8 128 ) ( -16 48 128 ) ( 0 48 128 ) clip 64 64 0 -992 0 0 lightmap_gray 16384 16384 0 -992 0 0
+ ( -8 -24 56 ) ( 8 -24 56 ) ( 8 -24 0 ) clip 64 64 8 0 0 0 lightmap_gray 16384 16384 8 0 0 0
+ ( 56 -8 48 ) ( 56 48 48 ) ( 56 48 -8 ) clip 64 64 992 8 0 0 lightmap_gray 16384 16384 992 8 0 0
+ ( -8 24 56 ) ( -24 24 56 ) ( -24 24 0 ) clip 64 64 -8 0 0 0 lightmap_gray 16384 16384 -8 0 0 0
+ ( -56 48 48 ) ( -56 -8 48 ) ( -56 -8 -8 ) clip 64 64 992 8 0 0 lightmap_gray 16384 16384 992 8 0 0
+}
+}
+// entity 1
+{
+guid "{BD294690-AB1A-11E7-BEB2-0015833D0A57}"
+"classname" "script_struct"
+"angles" "0 270 0"
+"origin" "0 0 16"
+"script_noteworthy" "chest_8"
+"targetname" "treasure_chest_use"
+"zombie_cost" "950"
+"_color" "1 0 0"
+}
+// entity 2
+{
+guid "{87E09226-BA9A-11E7-BEB5-0015833D0A57}"
+"classname" "zbarrier_zmcore_zod_magicbox"
+"script_noteworthy" "chest_8_zbarrier"
+"_color" "0.3 0.3 1"
+"type" "zmcore_zod_magicbox"
+"zbarrierNumBoards" "6"
+"zbarrierboardAnim1" "zm_zod_magic_box_fake_idle_twitch_a"
+"zbarrierboardAnim2" "zm_zod_magic_box_leave"
+"zbarrierboardAnim3" "zm_zod_magic_box_close"
+"zbarrierboardAnim4" "o_zombie_magic_box_teddy_rise"
+"zbarrierboardAnim5" "o_zombie_magic_box_teddy_rise"
+"zbarrierboardAnim6" "zm_zod_magic_box_open_idle"
+"zbarrierboardModel1" "p7_zm_zod_magic_box"
+"zbarrierboardModel2" "p7_zm_zod_magic_box"
+"zbarrierboardModel3" "p7_zm_zod_magic_box"
+"zbarrierboardModel4" "tag_origin"
+"zbarrierboardModel5" "tag_origin"
+"zbarrierboardModel6" "p7_zm_zod_magic_box"
+"zbarriertearAnim1" "zm_zod_magic_box_fake_idle_twitch_b"
+"zbarriertearAnim2" "zm_zod_magic_box_arrive"
+"zbarriertearAnim3" "zm_zod_magic_box_open"
+"zbarriertearAnim4" "o_zombie_magic_box_weapon_rise"
+"zbarriertearAnim5" "o_zombie_magic_box_weapon_dual_rise"
+"zbarriertearAnim6" "zm_zod_magic_box_open_idle"
+}

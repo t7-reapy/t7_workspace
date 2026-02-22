@@ -1,0 +1,7 @@
+#include "asset_list_helper.h"
+const int MAX_OBJECTIVE_ENTRIES = 21; // changing this does not require updating anything else
+
+void GenerateUI( asset Asset )
+{
+	GenerateItemList( Asset, "objective", "Objective", "objective", MAX_OBJECTIVE_ENTRIES );
+}

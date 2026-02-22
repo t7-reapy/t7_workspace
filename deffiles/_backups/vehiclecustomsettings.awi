@@ -1,0 +1,556 @@
+// MUST READ SCRIPT BUNDLE DOCUMENTATION BEFORE CREATING A NEW SCRIPT BUNDLE
+// http://tawiki/display/EN/Script+Bundles
+
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "configstringFileType", "SCRIPTBUNDLE" ).Show( false );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Global variables
+
+	Asset.AddEntry_Combo( "type", "vehiclecustomsettings" ).Show( false );
+
+	Asset.AddEntry_Combo( "vehicletype", "none | artillery | quadtank | hunter | amws | wasp | raps | parasite | siegebot | glaive | gunship | spider | sentinel_drone | dragon" ).SetTitle( "Vehicle Settings Type" ).Show( true ).UpdateOnChange( true );
+
+	string type = Asset.GetEntryValue( "vehicletype" );
+
+	bool isFlying = ( type == "hunter" || type == "wasp" || type == "parasite" || type == "glaive" || type == "gunship" || type == "sentinel_drone" || type == "dragon" );
+	bool isHunter = ( type == "hunter" );
+	bool useRocketCooldown = ( type == "amws" || type == "siegebot" || type == "spider" );
+	bool useEngagmentDist = ( type != "raps" && type != "artillery" );
+	bool useThreatEvasion = ( type == "amws" );
+	bool useAcceleration = ( type == "amws" );
+
+	string vm_type = "Both | Server | Client";
+
+	Asset.AddEntry_Combo( "vmType", vm_type ).SetTitle( "Script Type" ).SetToolTip( "Spawn this object in server script or client script?" ).Show( false );
+
+	Asset.AddEntry_AssetCombo( "previewInclude", "xmodel" ).SetTitle( "Preview Tag Model" ).SetToolTip( "Set this to get tag dropdown working" );
+
+	Asset.AddEntry_Float( "defaultmovespeed", 5, 1, 200 ).SetTitle( "Default move speed" );
+	Asset.AddEntry_Float( "default_move_acceleration", 0, 0, 1000 ).SetTitle( "Default move acceleration" ).SetToolTip( "If 0, will use to 10.0 instead." ).Show( useAcceleration ).SetSave( useAcceleration );
+
+	Asset.AddEntry_Path( "weakspotfx", "" ).SetTitle( "Weak Spot Dmg FX" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( "" );
+	Asset.AddEntry_Path( "spotlightfx", "" ).SetTitle( "Spot Light FX" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( "" ).Show( isHunter ).SetSave( isHunter );
+	Asset.AddEntry_Float( "rocketcooldown", 5, 1, 100 ).SetTitle( "Rocket Cool Down" ).Show( useRocketCooldown ).SetSave( useRocketCooldown );
+
+	LightFxGroups_Entries( Asset );
+	AmbientAnim_Entries( Asset );
+
+	Artillery_Entries( Asset, type );
+	AMWS_Entries( Asset, type );
+	Wasp_Entries( Asset, type );
+	Quadtank_Entries( Asset, type );
+	Raps_Entries( Asset, type );
+	Siegebot_Entries( Asset, type );
+	Parasite_Entries( Asset, type );
+	Glaive_Entries( Asset, type );
+	Spider_Entries( Asset, type );
+	Sentinel_Drone_Entries( Asset, type );
+
+	Engagement_Entries( Asset, useEngagmentDist, isFlying );
+	Threat_Evasion_Entries( Asset, useThreatEvasion );
+	Cybercom_Entries( Asset, type );
+
+	DamageState_Entries( Asset );
+	Death_DynEnts( Asset );
+	AbnormalStatus( Asset );
+}
+
+void FxSlot( asset Asset, string name, string title, bool hasDelay, bool isEnabled, bool hasSound = false, int i = 1, string appendix = "" )
+{
+	Asset.AddEntry_Path( name + "_fx_" + i, "" ).SetTitle( title + " FX" + appendix ).SetRelativePath( "share/raw/fx/" ).Show( isEnabled ).SetSave( isEnabled );
+	Asset.AddEntry_BoneCombo( name + "_tag_" + i, "previewInclude" ).SetTitle( title + " Tag" + appendix ).Show( isEnabled ).SetSave( isEnabled );
+	Asset.AddEntry_Float( name + "_delay_" + i, 0, 0, 100 ).SetTitle( title + " Delay" + appendix ).Show( hasDelay && isEnabled ).SetSave( hasDelay && isEnabled );
+	Asset.AddEntry_String( name + "_sound_" + i, "" ).SetTitle( title + " Sound" + appendix ).Show( hasSound && isEnabled ).SetSave( hasSound && isEnabled );
+}
+
+void FxBundle( asset Asset, string name, string title, bool hasDelay, bool isEnabled, bool hasSound = false )
+{
+	const int MAX_NUM_SLOTS = 8;
+	Asset.AddEntry_Int( name + "_numslots", 0, 0, MAX_NUM_SLOTS ).SetTitle( title + " Number of Slots" ).Show( isEnabled ).SetSave( isEnabled ).UpdateOnChange( isEnabled );
+	int numOfSlots = Asset.GetEntryInt( name + "_numslots" );
+	for ( int i = 1; i <= MAX_NUM_SLOTS; i++ )
+	{
+		string appendix = " " + i;
+		bool isValid = ( i <= numOfSlots );
+		FxSlot( Asset, name, title, hasDelay, isEnabled && isValid, isEnabled && isValid && hasSound, i, appendix );
+	}
+}
+
+void AbnormalStatus( asset Asset )
+{
+	bool isEnabled = true;
+
+	Asset.BeginCategory( "EMP" );
+	{
+		Asset.BeginCategory( "EMP.Base FX" );
+		{
+			FxBundle( Asset, "emp_base", "EMP", true, isEnabled );
+		}
+		Asset.BeginCategory( "EMP.Other Values" );
+		{
+			FxSlot( Asset, "emp_startup", "Startup", false, isEnabled );
+			Asset.AddEntry_Int( "empdowntime", 10, 0, 100 ).SetTitle( "Down Time" ).SetToolTip( "How long the vehicle is down due to emp damage/cybercom system overload if it survives" );
+			FxSlot( Asset, "emp_death", "Death", false, isEnabled, true );
+		}
+	}
+
+	Asset.BeginCategory( "Burn" );
+	{
+		Asset.AddEntry_Int( "burn_damagepersecond", 0, 0, 1000 ).SetTitle( "Damage Per Second" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Float( "burn_lastingtime", 0, 0, 30 ).SetTitle( "Lasting Time Seconds" ).Show( isEnabled ).SetSave( isEnabled );
+		FxSlot( Asset, "burn_death", "Death", false, isEnabled, true );
+		FxBundle( Asset, "burn_base", "Burn", true, isEnabled );
+	}
+	
+	Asset.BeginCategory( "Timed Out" );
+	{
+		FxSlot( Asset, "timed_out_death", "Death", false, isEnabled, true );
+	}
+}
+
+void LightFxGroups_Entries( asset Asset )
+{
+	const int MAX_LIGHTFX_GROUPS = 4;
+	const int MAX_LIGHTFX_PER_GROUP = 4;
+	Asset.BeginCategory( "Light FX Groups" );
+	{
+		Asset.AddEntry_Int( "lightgroups_numGroups", 0, 0, MAX_LIGHTFX_GROUPS ).SetTitle( "Number of Groups" ).UpdateOnChange( true );
+		int numGroups = Asset.GetEntryInt( "lightgroups_numGroups" );
+
+		for ( int i = 1; i <= MAX_LIGHTFX_GROUPS; i++ )
+		{
+			bool isValid = ( i <= numGroups );
+			Asset.BeginCategory( "Light FX Groups.Group " + i );
+			{
+				Asset.AddEntry_Int( "lightgroups_" + i + "_numslots", 0, 0, MAX_LIGHTFX_PER_GROUP ).SetTitle( "Number of Slots" ).Show( isValid ).SetSave( isValid ).UpdateOnChange( isValid );
+				Asset.AddEntry_CheckBox( "lightgroups_" + i + "_always_on", false ).SetTitle( "Group lights always on" ).SetToolTip( "If the group is always on, regular lights_on and lights_off in script won't affect it. It can still be toggled with toggle_lights_group script." ).Show( isValid ).SetSave( isValid );
+
+				int numSlots = Asset.GetEntryInt( "lightgroups_" + i + "_numslots" );
+				for ( int j = 1; j <= MAX_LIGHTFX_PER_GROUP; j++ )
+				{
+					bool isSlotValid = isValid && ( j <= numSlots );
+					Asset.AddEntry_Path( "lightgroups_" + i + "_fx" + j, "" ).SetTitle( "Fx " + j ).SetRelativePath( "share/raw/fx/" ).Show( isSlotValid ).SetSave( isSlotValid );
+					Asset.AddEntry_BoneCombo( "lightgroups_" + i + "_tag" + j, "previewInclude" ).SetTitle( "Tag " + j ).Show( isSlotValid ).SetSave( isSlotValid );
+				}
+			}
+		}
+	}
+}
+
+void AmbientAnim_Entries( asset Asset )
+{
+	const int MAX_AMBIENT_ANIM_GROUPS = 3;
+	const int MAX_AMBIENT_ANIM_PER_GROUP = 4;
+	Asset.BeginCategory( "Ambient Anim Groups" );
+	{
+		Asset.AddEntry_Int( "ambient_numGroups", 0, 0, MAX_AMBIENT_ANIM_GROUPS ).SetTitle( "Number of Groups" ).UpdateOnChange( true );
+		int numGroups = Asset.GetEntryInt( "ambient_numGroups" );
+
+		for ( int i = 1; i <= MAX_AMBIENT_ANIM_GROUPS; i++ )
+		{
+			bool isValid = ( i <= numGroups );
+			Asset.BeginCategory( "Ambient Anim Groups.Group " + i );
+			{
+				Asset.AddEntry_Int( "ambient_group" + i + "_numslots", 0, 0, MAX_AMBIENT_ANIM_PER_GROUP ).SetTitle( "Number of Slots" ).Show( isValid ).SetSave( isValid ).UpdateOnChange( isValid );
+				int numSlots = Asset.GetEntryInt( "ambient_group" + i + "_numslots" );
+				for ( int j = 1; j <= MAX_AMBIENT_ANIM_PER_GROUP; j++ )
+				{
+					bool isSlotValid = isValid && ( j <= numSlots );
+					Asset.AddEntry_AssetCombo( "ambient_group" + i + "_anim" + j, "xanim" ).SetTitle( "Anim " + j ).Show( isSlotValid ).SetSave( isSlotValid );
+					Asset.AddEntry_CheckBox( "ambient_group" + i + "_off" + j, false ).SetTitle( "Play Anim " + j + " as off state" ).Show( isSlotValid ).SetSave( isSlotValid );
+
+				}
+			}
+		}
+	}
+}
+
+void Engagement_Entries( asset Asset, bool isEnabled, bool isFlying )
+{
+	Asset.BeginCategory( "Engagement" );
+	{
+		Asset.BeginCategory( "Engagement.Distance" );
+		{
+			Asset.AddEntry_Float( "engagementdistmin", 500, 50, 10000 ).SetTitle( "min" ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_Float( "engagementdistmax", 1000, 50, 10000 ).SetTitle( "max" ).Show( isEnabled ).SetSave( isEnabled );
+		}
+		Asset.BeginCategory( "Engagement.Height" );
+		{
+			Asset.AddEntry_Float( "engagementheightmin", 0, -10000, 10000 ).SetTitle( "min" ).SetToolTip( "Preferred height relative to enemy. Only for flying vehicles." ).Show( isEnabled && isFlying ).SetSave( isEnabled && isFlying );
+			Asset.AddEntry_Float( "engagementheightmax", 300, -10000, 10000 ).SetTitle( "max" ).SetToolTip( "Preferred height relative to enemy. Only for flying vehicles." ).Show( isEnabled && isFlying ).SetSave( isEnabled && isFlying );
+		}
+
+		Asset.AddEntry_Float( "turret_fire_burst_min", 0, -10000, 10000 ).SetTitle( "Turret Fire Burst Min Time" ).Show( isEnabled && isFlying ).SetSave( isEnabled && isFlying );
+		Asset.AddEntry_Float( "turret_fire_burst_max", 5, -10000, 10000 ).SetTitle( "Turret Fire Burst Max Time" ).Show( isEnabled && isFlying ).SetSave( isEnabled && isFlying );
+
+		Asset.AddEntry_Float( "turret_cooldown_min", 0, -10000, 10000 ).SetTitle( "Turret Cooldown Min Time" ).Show( isEnabled && isFlying ).SetSave( isEnabled && isFlying );
+		Asset.AddEntry_Float( "turret_cooldown_max", 5, -10000, 10000 ).SetTitle( "Turret Cooldown Max Time" ).Show( isEnabled && isFlying ).SetSave( isEnabled && isFlying );
+
+		Asset.AddEntry_Float( "turret_enemy_detect_freq", 0, -10000, 10000 ).SetTitle( "Turret Enemy Detect Frequency" ).Show( isEnabled && isFlying ).SetSave( isEnabled && isFlying );
+	}
+}
+
+void Threat_Evasion_Entries( asset Asset, bool isEnabled )
+{
+	Asset.BeginCategory( "Threat Evasion" );
+	{
+		Asset.BeginCategory( "Threat Evasion.Enemies Locking On To Me" );
+		{
+			Asset.AddEntry_CheckBox( "evade_enemies_locking_on_me", false ).SetTitle( "Evade Enemies Locking On Me" ).SetToolTip( "Whether the vehicle should evade enemies that are locking on to it." ).SetSave( isEnabled ).Show( isEnabled );
+			Asset.AddEntry_CheckBox( "engage_enemies_locking_on_me", false ).SetTitle( "Engage Enemies Locking On Me" ).SetToolTip( "Whether the vehicle should engage enemies that are locking on to it with additional bias." ).SetSave( isEnabled ).Show( isEnabled );
+			Asset.AddEntry_Float( "enemies_locking_on_me_threat_bias", 0, 0, 90000 ).SetStep(100).SetTitle( "Threat Bias" ).Show( isEnabled ).SetToolTip( "Bias == 0 defaults to 2000" ).SetSave( isEnabled ).Show( isEnabled );
+			Asset.AddEntry_Float( "enemies_locking_on_me_threat_bias_duration", 0.0, 0.0, 100.0 ).SetStep(0.1).SetTitle( "Threat Bias Duration" ).Show( isEnabled ).SetToolTip( "Duration == 0 defaults to 1.0" ).SetSave( isEnabled ).Show( isEnabled );
+		}
+		Asset.BeginCategory( "Threat Evasion.Enemies Locked On To Me" );
+		{
+			Asset.AddEntry_CheckBox( "evade_enemies_locked_on_me", false ).SetTitle( "Evade Enemies Locked On Me" ).SetToolTip( "Whether the vehicle should evade enemies that are locked on to it." ).SetSave( isEnabled ).Show( isEnabled );
+			Asset.AddEntry_CheckBox( "engage_enemies_locked_on_me", false ).SetTitle( "Engage Enemies Locked On Me" ).SetToolTip( "Whether the vehicle should engage enemies that are locked on to it with additional bias." ).SetSave( isEnabled ).Show( isEnabled );
+			Asset.AddEntry_Float( "enemies_locked_on_me_threat_bias", 0, 0, 90000 ).SetStep(100).SetTitle( "Threat Bias" ).Show( isEnabled ).SetToolTip( "Bias == 0 defaults to 5000" ).SetSave( isEnabled ).Show( isEnabled );
+			Asset.AddEntry_Float( "enemies_locked_on_me_threat_bias_duration", 0.0, 0.0, 100.0 ).SetStep(0.1).SetTitle( "Threat Bias Duration" ).Show( isEnabled ).SetToolTip( "Duration == 0 defaults to 1.0" ).SetSave( isEnabled ).Show( isEnabled );
+		}
+		
+		Asset.BeginCategory( "Threat Evasion.Reaction Time and Behavior" );
+		{
+			Asset.AddEntry_Vector2( "enemy_evasion_reaction_time_min", "enemy_evasion_reaction_time_max", 0.0, 0.0, 0.0, 60 ).SetTitle( "Evade Reaction Time" ).SetLabels( "Min", "Max", "", "" ).Show( isEnabled ).SetToolTip( "Reaction Time when evading locks. Min == 0 defaults to 0.1. Max == 0 defaults to 0.2." ).SetSave( isEnabled );	
+			Asset.AddEntry_Float( "lock_evade_speed_boost", 0, 0, 1000.0 ).SetTitle( "Evade Speed Boost" ).SetStep(0.1).Show( isEnabled ).SetToolTip( "When evading a lock, the speed is scaled by this boost faster.  Evade Speed Boost == 0 defaults to 2.0" ).SetSave( isEnabled );
+			Asset.AddEntry_Float( "lock_evade_acceleration_boost", 0, 0, 1000.0 ).SetTitle( "Evade Acceleration Boost" ).SetStep(0.1).Show( isEnabled ).SetToolTip( "When evading a lock, the acceleration is scaled by this boost faster.  Evade Acceleration Boost == 0 defaults to 2.0" ).SetSave( isEnabled );
+		}
+		
+		Asset.BeginCategory( "Threat Evasion.Evasion Point Selection" );
+		{
+			Asset.AddEntry_Vector2( "lock_evade_dist_min", "lock_evade_dist_max", 0.0, 0.0, 0.0, 1000.0 ).SetStep(10).SetTitle( "Distance Range" ).SetLabels( "Min", "Max", "", "" ).Show( isEnabled ).SetToolTip( "When picking a evade point, the selection will pick points from between min and max distances from the vehicle. Min == 0 defaults to 120. Max == 0 defaults to 360." ).SetSave( isEnabled );	
+			Asset.AddEntry_Float( "lock_evade_dist_half_height", 0, 0, 90000 ).SetTitle( "Half Height" ).SetStep(10).Show( isEnabled ).SetToolTip( "When picking evade points, this is the max height the selected point is within, both up and down. Half Height == 0 defaults to 250." ).SetSave( isEnabled );
+			Asset.AddEntry_Float( "lock_evade_enemy_line_of_sight_directness", 0, 0.0, 1.0 ).SetTitle( "Enemy LoS Directness" ).SetStep(0.05).Show( isEnabled ).SetToolTip( "When picking evade points, the enemy line of sight is scored less when the absolute value of the directness is greater than this amount. Closer to 1.0 is narrow. Closer to 0.0 is wide. Enemy LoS Directness == 0 defaults to 0.9." ).SetSave( isEnabled );
+			Asset.AddEntry_Float( "lock_evade_point_spacing_factor", 0, 0, 10.0 ).SetTitle( "Spacing Factor" ).SetStep(0.1).Show( isEnabled ).SetToolTip( "When picking evade points, this is the spacing between points in multiples of the vehicle radius. Spacing Factor == 0 defaults to 1.5." ).SetSave( isEnabled );
+		}
+	}
+}
+
+void DamageState_Entries( asset Asset )
+{
+	const int MAX_DAMAGESTATES = 4;
+	const int MAX_FX_PER_DAMAGESTATE = 4;
+	Asset.BeginCategory( "Damage States" );
+	{
+		Asset.AddEntry_Int( "damagestate_numStates", 0, 0, MAX_DAMAGESTATES ).SetTitle( "Number of States" ).UpdateOnChange( true );
+		int numStates = Asset.GetEntryInt( "damagestate_numStates" );
+
+		for ( int i = 1; i <= MAX_DAMAGESTATES; i++ )
+		{
+			bool isValid = ( i <= numStates );
+			Asset.BeginCategory( "Damage States.Health Lv" + i );
+			{
+				Asset.AddEntry_Float( "damagestate_lv" + i + "_ratio", 0.75, 0, 1 ).SetTitle( "Health Ratio" ).SetToolTip( "When health fall below this threshold percentage, trigger this damage state and remove other states. It is assumed this ratio will be higher than the other states below." ).Show( isValid ).SetSave( isValid );
+				Asset.AddEntry_String( "damagestate_lv" + i + "_sound", "" ).SetTitle( "Sound" ).Show( isValid ).SetSave( isValid );
+				Asset.AddEntry_Int( "damagestate_lv" + i + "_numslots", 0, 0, MAX_FX_PER_DAMAGESTATE ).SetTitle( "Number of FX Slots" ).Show( isValid ).SetSave( isValid ).UpdateOnChange( isValid );
+				int numSlots = Asset.GetEntryInt( "damagestate_lv" + i + "_numslots" );
+				for ( int j = 1; j <= MAX_FX_PER_DAMAGESTATE; j++ )
+				{
+					bool isSlotValid = isValid && ( j <= numSlots );
+					Asset.AddEntry_Path( "damagestate_lv" + i + "_fx" + j, "" ).SetTitle( "Fx " + j ).SetRelativePath( "share/raw/fx/" ).Show( isSlotValid ).SetSave( isSlotValid );
+					Asset.AddEntry_BoneCombo( "damagestate_lv" + i + "_tag" + j, "previewInclude" ).SetTitle( "Tag " + j ).Show( isSlotValid ).SetSave( isSlotValid );
+				}
+			}
+		}
+	}
+}
+
+void Death_DynEnts( asset Asset )
+{
+	const int MAX_DYNENTS = 6;
+	Asset.BeginCategory( "Death DynEnts" );
+	{
+		Asset.AddEntry_Int( "death_dynent_count", 0, 0, MAX_DYNENTS ).SetTitle( "Number of Spawn Models" ).UpdateOnChange( true );
+
+		int numModels = Asset.GetEntryInt( "death_dynent_count" );
+
+		for( int i = 0; i < MAX_DYNENTS; i++ )
+		{
+			bool isValid = ( i < numModels );
+			Asset.BeginCategory( "Death DynEnts.DynEnt " + (i+1) );
+			Asset.AddEntry_AssetCombo( "death_dynmodel" + i, "xmodel" ).SetTitle( "Spawn Model" ).Show( isValid ).SetSave( isValid );
+			Asset.AddEntry_Vector4( "death_dynent_force_pitch" + i, "death_dynent_force_yaw" + i, "death_dynent_force_minscale" + i, "death_dynent_force_maxscale" + i, 0, 0, 0, 0, -10000, 10000 ).SetStep(1).SetTitle( "Launch Force" ).Show( isValid ).SetSave( isValid ).SetLabels( "Pitch", "Yaw", "MinScale", "MaxScale" ).SetToolTip( "Amount of force to add to this model in addition to the velocity of the vehicle." );
+			//Asset.AddEntry_BoneCombo( "death_dynent_spawntag" + i, "" ).SetTitle( "Spawn Tag" ).Show( isValid ).SetSave( isValid );
+			Asset.AddEntry_Vector3( "death_dynent_offsetX" + i, "death_dynent_offsetY" + i, "death_dynent_offsetZ" + i, 0, 0, 0, -10000, 10000 ).SetStep(5).SetTitle( "Spawn Offset" ).Show( isValid ).SetSave( isValid ).SetLabels( "Forward", "Right", "Up", "" ).SetToolTip( "Amount of force to add to this model in addition to the velocity of the vehicle." );
+			Asset.AddEntry_Path( "death_dynent_fx" + i, "" ).SetTitle( "FX" ).SetRelativePath( "share/raw/fx/" ).Show( isValid ).SetSave( isValid );
+			Asset.AddEntry_Path( "death_dynent_elec_fx" + i, "" ).SetTitle( "EMP FX" ).SetRelativePath( "share/raw/fx/" ).Show( isValid ).SetSave( isValid );
+			Asset.AddEntry_Path( "death_dynent_fire_fx" + i, "" ).SetTitle( "Burn FX" ).SetRelativePath( "share/raw/fx/" ).Show( isValid ).SetSave( isValid );
+			Asset.AddEntry_CheckBox( "death_dynent_gib" + i, false ).SetTitle( "Gib parts" ).SetToolTip( "If checked, this part won't spawn if the vehicle is gibbed" ).Show( isValid ).SetSave( isValid );
+		}
+	}
+}
+
+void Cybercom_Entries( asset Asset, string type )
+{
+	bool isEnabled = ( type != "spider");
+
+	Asset.BeginCategory( "Cybercom" );
+	{
+		Asset.BeginCategory( "Cybercom.Servo" );
+		{
+			for ( int i = 0; i < 2; i++ )
+			{
+				Asset.BeginCategory( "Cybercom.Servo.DynEnt " + (i+1) );
+				{
+					Asset.AddEntry_AssetCombo( "servo_gib_model" + i, "xmodel" ).SetTitle( "Model" ).Show( isEnabled ).SetSave( isEnabled );
+					Asset.AddEntry_BoneCombo( "servo_gib_tag" + i, "previewInclude" ).SetTitle( "Hide Tag" ).Show( isEnabled ).SetSave( isEnabled );
+					Asset.AddEntry_Vector4( "servo_gib_force_pitch" + i, "servo_gib_force_yaw" + i, "servo_gib_force_minscale" + i, "servo_gib_force_maxscale" + i, 0, 0, 0, 0, -10000, 10000 ).SetStep(1).SetTitle( "Launch Force" ).Show( isEnabled ).SetSave( isEnabled ).SetLabels( "Pitch", "Yaw", "MinScale", "MaxScale" ).SetToolTip( "Amount of force to add to this model in addition to the velocity of the vehicle." );
+					Asset.AddEntry_Vector3( "servo_gib_offsetX" + i, "servo_gib_offsetY" + i, "servo_gib_offsetZ" + i, 0, 0, 0, -10000, 10000 ).SetStep(5).SetTitle( "Spawn Offset" ).Show( isEnabled ).SetSave( isEnabled ).SetLabels( "Forward", "Right", "Up", "" ).SetToolTip( "Amount of force to add to this model in addition to the velocity of the vehicle." );
+					Asset.AddEntry_Path( "servo_gib_fx" + i, "" ).SetTitle( "FX" ).SetRelativePath( "share/raw/fx/" ).Show( isEnabled ).SetSave( isEnabled );
+				}
+			}
+		}
+		Asset.BeginCategory( "Cybercom.Surge" );
+		{
+			Asset.AddEntry_Int( "surgetimetolive", 10, 0, 30 ).SetTitle( "Surge Time to Live" ).SetToolTip( "The time before the vehicle explodes" ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_Int( "surgedamageradius", 150, 10, 500 ).SetTitle( "Surge Damage Radius" ).SetToolTip( "The area that will receive damage from surge" ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_Float( "surgespeedmultiplier", 1, 1, 20 ).SetTitle( "Surge Speed Multiplier" ).SetToolTip( "The factor by which speed should be changed when surged" ).Show( isEnabled ).SetSave( isEnabled );
+		}
+		Asset.BeginCategory( "Cybercom.IFF Override" );
+		{
+			Asset.AddEntry_CheckBox( "iffshouldrevertteam", true ).SetTitle( "Should Revert Team" ).SetToolTip( "Whether the vehicle should swap back" ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_Int( "ifftimetillrevert", 15, 1, 500 ).SetTitle( "Time Till Revert" ).SetToolTip( "The duration after which the vehicle will swap back" ).Show( isEnabled ).SetSave( isEnabled );
+		}
+	}
+}
+
+void Artillery_Entries( asset Asset, string type )
+{
+	bool isEnabled = ( type == "artillery" );
+
+	Asset.BeginCategory( "Artillery" );
+	{
+		Asset.AddEntry_CheckBox( "ignoreme", false ).SetTitle( "Ignored by AI" ).SetToolTip( "Won't be picked as target by other AI. It still tracks enemy." ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_CheckBox( "disconnectpaths", false ).SetTitle( "Disconnect Paths" ).SetToolTip( "Block Navigation so other AI will path around it." ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_CheckBox( "laseron", false ).SetTitle( "Laser On" ).SetToolTip( "Turn on laser." ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_CheckBox( "disablefiring", false ).SetTitle( "Disable Firing" ).SetToolTip( "Won't shoot. It still tracks enemy. Useful to setup 'spot light' etc." ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Float( "scanning_arc", 0, 0, 180 ).SetTitle( "Scanning Arc" ).SetToolTip( "The scanning arc starting from the rest position. 0 disables scanning, and 180 means full circling scanning if turret physical limitation allows." ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Float( "scanning_speedscale", 0, 0.01, 10 ).SetTitle( "Scanning Speed Scale" ).SetToolTip( "Scaling the turret rotation speed when scanning" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Float( "scanning_pitch", 0, -90, 90 ).SetTitle( "Scanning Pitch" ).SetToolTip( "The pitch when it is scanning." ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Float( "resting_pitch", 0, -90, 90 ).SetTitle( "Resting Pitch" ).SetToolTip( "The pitch when it is disabled or off." ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Float( "sightfov", 0, 0, 90 ).SetTitle( "Sight Field of View Angle" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Path( "lensflare_fx", "" ).SetTitle( "Lensflare FX" ).SetRelativePath( "share/raw/fx/" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_BoneCombo( "lensflare_tag", "previewInclude" ).SetTitle( "Lensflare Tag" ).Show( isEnabled ).SetSave( isEnabled );
+	}
+}
+
+void AMWS_Entries( asset Asset, string type )
+{
+	bool isEnabled = ( type == "amws" );
+
+	Asset.BeginCategory( "" );
+	{
+		FxSlot( Asset, "cobra", "Turret Transform", false, isEnabled );
+	}
+
+	Asset.BeginCategory( "AI Burst Fire Settings" );
+	{
+		Asset.AddEntry_Vector2( "burstfiredurationmin", "burstfiredurationmax", 0, 0, 0, 60 ).SetTitle( "Burst Fire Duration" ).SetLabels( "Min", "Max", "", "" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Vector2( "burstfiredelaymin", "burstfiredelaymax", 0, 0, 0, 60 ).SetTitle( "Burst Fire Delay vs Player" ).SetLabels( "Min", "Max", "", "" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Vector2( "burstfireaidelaymin", "burstfireaidelaymax", 0, 0, 0, 60 ).SetTitle( "Burst Fire Delay vs AI" ).SetLabels( "Min", "Max", "", "" ).Show( isEnabled ).SetSave( isEnabled );
+	}
+	
+	Asset.BeginCategory( "AI Minigun Options" );
+	{
+		Asset.AddEntry_CheckBox( "ai_uses_minigun", false ).SetTitle( "AI Uses Minigun" ).SetToolTip( "Set this when the vehicle's AI is using a minigun. Mainly used for spinning the weapon." ).Show( isEnabled ).SetSave( isEnabled );
+	}
+}
+
+void Wasp_Entries( asset Asset, string type )
+{
+	bool isEnabled = ( type == "wasp" );
+
+	Asset.BeginCategory( "EMP" );
+	{
+		Asset.AddEntry_Float( "killonimpact_speed", 0, 0, 2000 ).SetTitle( "Kill on impact speed" ).SetToolTip( "if the vehicle is falling faster than this, it will be killed on impact" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Float( "killonimpact_time", 0, 0, 10 ).SetTitle( "Kill on impact seconds" ).SetToolTip( "if the vehicle is falling longer than this since last impact (and speed is more than 80% of kill on impact speed), it will be killed on impact" ).Show( isEnabled ).SetSave( isEnabled );
+	}
+}
+
+void Quadtank_Entries( asset Asset, string type )
+{
+	bool isEnabled = ( type == "quadtank" );
+
+	Asset.BeginCategory( "" );
+	{
+		Asset.AddEntry_Path( "meleefx", "" ).SetTitle( "Melee FX" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( "" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Float( "sideturrethealth", 200, 10, 10000 ).SetTitle( "Side Turret Health" ).SetToolTip( "Health for the side turrets on the quadtank" ).Show( isEnabled && false ).SetSave( isEnabled );
+	}
+
+	Asset.BeginCategory( "Trophy System" );
+	{
+		Asset.AddEntry_Float( "trophysystemdisablethreshold", 0, 0, 10000 ).SetTitle( "Trophy System Disable Threshold" ).SetToolTip( "Damage re" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Float( "trophysystemhealth", 0, 0, 10000 ).SetTitle( "Trophy System Health" ).SetToolTip( "Health for the trophy system on the quadtank" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Float( "trophysystemrange", 0, 0, 10000 ).SetTitle( "Trophy System Range" ).SetToolTip( "Range at which the trophy system will destroy projectiles" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Float( "trophysystemdowntime", 0, 0, 10000 ).SetTitle( "Trophy System Down Time" ).SetToolTip( "How long the trophy system will go down when destroyed before coming back" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Float( "trophywarmup", 0, 0, 10000 ).SetTitle( "Trophy System Warm Up Time" ).Show( isEnabled ).SetSave( isEnabled );		
+		Asset.AddEntry_Path( "trophydestroyfx", "" ).SetTitle( "Trophy Destroyed FX" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( "" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Path( "trophydetonationfx", "" ).SetTitle( "Trophy Detonation FX" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( "" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Path( "trophyrepulsefx", "" ).SetTitle( "Trophy Repulse FX" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( "" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Path( "trophyrepulsefx_ground", "" ).SetTitle( "Trophy Repulse Ground FX" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( "" ).Show( isEnabled ).SetSave( isEnabled );
+    FxSlot( Asset, "trophylight", "Trophy FX", false, isEnabled );
+    Asset.AddEntry_AssetCombo( "trophyanim", "xanim" ).SetTitle( "Trophy Anim" ).Show( isEnabled ).SetSave( isEnabled );
+	}
+}
+
+void Raps_Entries( asset Asset, string type )
+{
+	bool isEnabled = ( type == "raps" );
+
+	Asset.BeginCategory( "Raps" );
+	{
+		Asset.AddEntry_Int( "spawn_count", 4, 0, 6 ).SetTitle( "Spawn Count" ).SetToolTip( "How many raps to spawn for MP Killstreak" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Int( "max_kill_count", 3, 0, 999 ).SetTitle( "Max Kill Count" ).SetToolTip( "How many kills each raps can accumulate before self destructing." ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Int( "max_duration", 30, 0, 999999 ).SetTitle( "Max Duration Seconds" ).SetToolTip( "Duration in seconds before self destructing." ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Int( "max_move_dist", 100, 0, 999 ).SetTitle( "Max Move Distance" ).SetToolTip( "Maximum distance to search for a path to target." ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Int( "repath_range", 60, 0, 999 ).SetTitle( "Repath Range" ).SetToolTip( "Repath Range." ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Float( "jump_chance", 0, 0, 1 ).SetTitle( "Jump Chance" ).SetToolTip( "The chance that the Raps will jump" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Int( "spawn_separation_dist", 50, 0, 999 ).SetTitle( "Spawn Separation Distance" ).SetToolTip( "Distance between each spawned raps for MP Killstreak." ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Int( "detonation_distance", 64, 0, 9999999 ).SetTitle( "Detonation Distance" ).SetToolTip( "Distance to player before detonation." ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Int( "max_path_fail_count", 10, 0, 9999999 ).SetTitle( "Max Path Fail Count" ).SetToolTip( "Amount of attempts to try to find a path to enemy before detonation." ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Int( "near_goal_notify_dist", 80, 0, 80 ).SetTitle( "Near Goal Notify Dist" ).SetToolTip( "Near Goal Notify Distance" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_CheckBox( "all_knowing", true ).SetTitle( "All Knowing" ).SetToolTip( "Always Knows where All Enemies Are" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_CheckBox( "aim_assist", true ).SetTitle( "Aim Assist" ).SetToolTip( "Enables Aim Assist while targeting RAPS" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_CheckBox( "friendly_fire", true ).SetTitle( "Friendly Fire" ).SetToolTip( "Enables Player to hurt owned raps." ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Path( "sideexplosionfx", "" ).SetTitle( "Killed Side Explosion FX" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( "Side Explosion FX" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Path( "killedexplosionfx", "" ).SetTitle( "Killed Explosion FX" ).SetRelativePath( "share/raw/fx/" ).SetToolTip( "Side Explosion FX" ).Show( isEnabled ).SetSave( isEnabled );
+	}
+}
+
+void Siegebot_Entries( asset Asset, string type )
+{
+	bool isEnabled = ( type == "siegebot" );
+
+	Asset.BeginCategory( "SiegeBot" );
+	{
+		Asset.BeginCategory( "SiegeBot.Awareness FX" );
+		{
+			Asset.AddEntry_Path( "alertlightfx1", "" ).SetTitle( "Alert FX" ).SetRelativePath( "share/raw/fx/" ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_Path( "combatlightfx1", "" ).SetTitle( "Combat FX" ).SetRelativePath( "share/raw/fx/" ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_BoneCombo( "lighttag1", "previewInclude" ).SetTitle( "Fx Tag" ).Show( isEnabled ).SetSave( isEnabled );
+		}
+
+		Asset.BeginCategory( "SiegeBot.Jump FX" );
+		{
+			Asset.AddEntry_Path( "takeofffx1", "" ).SetTitle( "Takeoff FX" ).SetRelativePath( "share/raw/fx/" ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_Path( "landingfx1", "" ).SetTitle( "Landing FX" ).SetRelativePath( "share/raw/fx/" ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_Path( "startupfx1", "" ).SetTitle( "Startup FX" ).SetRelativePath( "share/raw/fx/" ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_Path( "jetfx1", "" ).SetTitle( "Jet FX 1" ).SetRelativePath( "share/raw/fx/" ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_BoneCombo( "jettag1", "previewInclude" ).SetTitle( "Fx Tag Jet 1" ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_Path( "jetfx2", "" ).SetTitle( "Jet FX 2" ).SetRelativePath( "share/raw/fx/" ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_BoneCombo( "jettag2", "previewInclude" ).SetTitle( "Fx Tag Jet 2" ).Show( isEnabled ).SetSave( isEnabled );
+		}
+
+		Asset.BeginCategory( "SiegeBot.Decision" );
+		{
+			Asset.AddEntry_Float( "steptoenemysize", 40, 0, 1000 ).SetTitle( "Step To Enemy Size" ).Show( isEnabled ).SetSave( isEnabled );
+		}
+
+		Asset.BeginCategory( "SiegeBot.Weapon" );
+		{
+			Asset.BeginCategory( "SiegeBot.Weapon.Rocket Launcher" );
+			{
+				Asset.AddEntry_Int( "rocketmindist", 350, 0, 1000 ).SetTitle( "Min Distance" ).Show( isEnabled ).SetSave( isEnabled );
+				Asset.AddEntry_Int( "rocketspread", 150, 0, 5000 ).SetTitle( "Rocket Spread" ).Show( isEnabled ).SetSave( isEnabled );
+			}
+
+			Asset.BeginCategory( "SiegeBot.Weapon.Minigun" );
+			{
+				Asset.AddEntry_Float( "gunner_turret_on_target_range", 5, 1, 180 ).SetTitle( "Gunner Turret on Target Range" ).Show( isEnabled ).SetSave( isEnabled );
+				Asset.AddEntry_Float( "miniguncooldown", 5, 1, 100 ).SetTitle( "Cool Down" ).Show( isEnabled ).SetSave( isEnabled );
+				Asset.AddEntry_Int( "minigunmaxdist", 1000, 0, 30000 ).SetTitle( "Max Distance" ).Show( isEnabled ).SetSave( isEnabled );
+				Asset.AddEntry_Int( "minigunduration", 5, 0, 100 ).SetTitle( "Attack Duration" ).Show( isEnabled ).SetSave( isEnabled );
+				Asset.AddEntry_Int( "minigunattackspread", 150, 0, 10000 ).SetTitle( "Attack Spread" ).Show( isEnabled ).SetSave( isEnabled );
+				Asset.AddEntry_Path( "fx_spin", "" ).SetTitle( "FX Spin" ).SetRelativePath( "share/raw/fx/" ).Show( isEnabled ).SetSave( isEnabled );
+				Asset.AddEntry_BoneCombo( "tag_spin", "previewInclude" ).SetTitle( "FX Spin Tag" ).Show( isEnabled ).SetSave( isEnabled );
+			}
+
+			Asset.BeginCategory( "SiegeBot.Weapon.Javelin" );
+			{
+				Asset.AddEntry_Float( "javelincooldown", 5, 1, 100 ).SetTitle( "Cool Down" ).Show( isEnabled ).SetSave( isEnabled );
+			}
+		}
+	}
+}
+
+void Parasite_Entries( asset Asset, string type )
+{
+	bool isEnabled = ( type == "parasite" );
+
+	Asset.BeginCategory( "Parasite or spider" );
+	{
+		Asset.AddEntry_Int( "meleedamage", 10, 0, 100 ).SetTitle( "Melee bite damage" ).SetToolTip( "How much damage the parasite's bite does" ).Show( isEnabled ).SetSave( isEnabled );
+		FxSlot( Asset, "secondary_death", "Secondary Death", false, isEnabled );
+	}
+	
+	Asset.BeginCategory( "Engagement" );
+	{
+		Asset.AddEntry_Int( "jukeprobability", 0, 0, 100 ).SetTitle( "juke chance" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.BeginCategory( "Engagement.Distance" );
+		{
+			Asset.AddEntry_Float( "forwardjukeengagementdistmin", 500, 50, 10000 ).SetTitle( "forward juke min" ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_Float( "forwardjukeengagementdistmax", 1000, 50, 10000 ).SetTitle( "forward juke max" ).Show( isEnabled  ).SetSave( isEnabled );
+		}
+		Asset.BeginCategory( "Engagement.Height" );
+		{
+			Asset.AddEntry_Float( "forwardjukeengagementheightmin", 0, -10000, 10000 ).SetTitle( "forward juke min" ).SetToolTip( "Preferred height relative to enemy when parasite swoops in." ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_Float( "forwardjukeengagementheightmax", 300, -10000, 10000 ).SetTitle( "forward juke max" ).SetToolTip( "Preferred height relative to enemy." ).Show( isEnabled ).SetSave( isEnabled );
+		}
+	}
+}
+
+void Glaive_Entries( asset Asset, string type )
+{
+	bool isEnabled = ( type == "glaive" || type == "dragon" );
+
+	Asset.BeginCategory( "" );
+	{
+		Asset.AddEntry_Int( "attackdamage", 1000, 1, 10000 ).SetTitle( "Attack Damage" ).SetToolTip( "slash attack damage" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Int( "guardradius", 500, 1, 10000 ).SetTitle( "Guard Radius" ).SetToolTip( "How far away it is allowed to go from the player" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.AddEntry_Float( "lifetime", 5.0, 0.1, 1000 ).SetTitle( "Life Time" ).SetToolTip( "how long does it lives after being thrown out" ).Show( isEnabled ).SetSave( isEnabled );
+	}
+}
+
+void Spider_Entries( asset Asset, string type )
+{
+    bool isEnabled = ( type == "spider" );
+		Asset.BeginCategory( "Engagement.Melee" );
+		{
+      Asset.AddEntry_Float( "meleedist", 50, 10, 10000 ).SetTitle( "Distance" ).Show( isEnabled ).SetSave( isEnabled );
+      Asset.AddEntry_Float( "meleereach", 30, 10, 10000 ).SetTitle( "Reach" ).Show( isEnabled ).SetSave( isEnabled );
+		}
+
+		Asset.BeginCategory( "Parasite or spider" );
+		{
+      Asset.GetEntryVariable( "meleedamage" ).Show( isEnabled || type == "parasite" ).SetSave( isEnabled || type == "parasite" );
+		}
+}
+
+void Sentinel_Drone_Entries( asset Asset, string type )
+{
+	bool isEnabled = ( type == "sentinel_drone" );
+
+	Asset.BeginCategory( "Sentinel_Drone" );
+	{
+		Asset.AddEntry_Int( "drone_meleedamage", 10, 0, 100 ).SetTitle( "Melee bite damage" ).SetToolTip( "How much damage the parasite's bite does" ).Show( isEnabled ).SetSave( isEnabled );
+		FxSlot( Asset, "drone_secondary_death", "Secondary Death", false, isEnabled );
+	}
+	
+	Asset.BeginCategory( "Engagement" );
+	{
+		Asset.AddEntry_Int( "drone_jukeprobability", 0, 0, 100 ).SetTitle( "juke chance" ).Show( isEnabled ).SetSave( isEnabled );
+		Asset.BeginCategory( "Engagement.Distance" );
+		{
+			Asset.AddEntry_Float( "drone_forwardjukeengagementdistmin", 500, 50, 10000 ).SetTitle( "forward juke min" ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_Float( "drone_forwardjukeengagementdistmax", 1000, 50, 10000 ).SetTitle( "forward juke max" ).Show( isEnabled  ).SetSave( isEnabled );
+		}
+		Asset.BeginCategory( "Engagement.Height" );
+		{
+			Asset.AddEntry_Float( "drone_forwardjukeengagementheightmin", 0, -10000, 10000 ).SetTitle( "forward juke min" ).SetToolTip( "Preferred height relative to enemy when parasite swoops in." ).Show( isEnabled ).SetSave( isEnabled );
+			Asset.AddEntry_Float( "drone_forwardjukeengagementheightmax", 300, -10000, 10000 ).SetTitle( "forward juke max" ).SetToolTip( "Preferred height relative to enemy." ).Show( isEnabled ).SetSave( isEnabled );
+		}
+	}
+}

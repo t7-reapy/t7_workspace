@@ -1,0 +1,142 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{CE6F9AA0-70F5-11F0-9ACD-309C23A208D5}"
+"classname" "worldspawn"
+"fsi" "default"
+"gravity" "800"
+"lightingquality" "1024"
+"lodbias" "default"
+"lutmaterial" "3a_common"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"samplescale" "1"
+"shadowslices" "96"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+"umbraSmallestHole" "16"
+"umbraSmallestOccluder" "96"
+"umbraTileSize" "2"
+"umbra_prime_depth" "1"
+"vbloom" "none"
+"vcolor" "none"
+"wsi" "default_day"
+// brush 0
+{
+ guid "{7DE69F63-704A-11F0-9ACD-309C23A208D5}"
+ ( -146 56 59 ) ( -126 56 59 ) ( -126 -56 59 ) mantle_on 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -146 -56 59 ) ( -126 -56 59 ) ( -126 -56 41 ) mantle_on 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -126 56 59 ) ( -126 56 41 ) ( -126 -56 41 ) mantle_on 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -146 56 41 ) ( -126 56 41 ) ( -126 56 59 ) mantle_on 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -146 -56 59 ) ( -146 -56 41 ) ( -146 56 41 ) mantle_on 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -146 -56 41 ) ( -126 -56 41 ) ( -126 56 41 ) mantle_on 16 16 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 1
+{
+ guid "{BD736C22-7048-11F0-9ACD-309C23A208D5}"
+ ( 21 92 94 ) ( 254 92 94 ) ( 260 96 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 96 117 ) ( 260 96 117 ) ( 254 92 117 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 21 92 94 ) ( 21 92 102 ) ( 72 92 117 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 260 96 94 ) ( 254 92 94 ) ( 254 92 117 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 260 96 94 ) ( 260 96 117 ) ( 72 96 117 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 21 96 102 ) ( 21 92 102 ) ( 21 92 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 92 117 ) ( 21 92 102 ) ( 21 96 102 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 2
+{
+ guid "{F1DB2E1F-7048-11F0-9ACD-309C23A208D5}"
+ ( 254 -92 94 ) ( 260 -96 94 ) ( 260 96 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 254 92 117 ) ( 260 96 117 ) ( 260 -96 117 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 254 -92 94 ) ( 254 -92 117 ) ( 260 -96 117 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 260 96 94 ) ( 260 -96 94 ) ( 260 -96 117 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 260 96 94 ) ( 260 96 117 ) ( 254 92 117 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 254 92 117 ) ( 254 -92 117 ) ( 254 -92 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 3
+{
+ guid "{D717CE48-7048-11F0-9ACD-309C23A208D5}"
+ ( 21 -96 94 ) ( 260 -96 94 ) ( 254 -92 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -92 117 ) ( 254 -92 117 ) ( 260 -96 117 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 21 -96 94 ) ( 21 -96 102 ) ( 72 -96 117 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 260 -96 94 ) ( 260 -96 117 ) ( 254 -92 117 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 254 -92 94 ) ( 254 -92 117 ) ( 72 -92 117 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 21 -92 102 ) ( 21 -96 102 ) ( 21 -96 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 72 -96 117 ) ( 21 -96 102 ) ( 21 -92 102 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 4
+{
+ guid "{7DE69F65-704A-11F0-9ACD-309C23A208D5}"
+ ( 248 -96 94 ) ( 248 96 94 ) ( 260 96 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 260 -109 96 ) ( 260 -109 2 ) ( 248 -109 2 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 248 109 94 ) ( 248 109 0 ) ( 260 109 0 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 248 -96 94 ) ( 248 -96 0 ) ( 248 96 0 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 270 0 94 ) ( 260 96 94 ) ( 260 96 0 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 270 0 94 ) ( 270 0 0 ) ( 260 -96 0 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 260 -96 0 ) ( 270 0 0 ) ( 260 96 0 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 5
+{
+ guid "{C8D38AFD-727E-11F0-9ACD-309C23A208D5}"
+ ( 248 96 0 ) ( -165 96 0 ) ( -165 56 0 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 248 109 93 ) ( -64 109 93 ) ( -94 109 80 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 248 56 0 ) ( -165 56 0 ) ( -165 56 34 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 56 94 ) ( -94 56 81 ) ( -94 96 81 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -165 96 0 ) ( -165 96 34 ) ( -165 56 34 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -94 96 81 ) ( -94 56 81 ) ( -165 56 34 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 248 56 94 ) ( -64 56 94 ) ( -64 96 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 248 56 0 ) ( 248 56 94 ) ( 248 96 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 6
+{
+ guid "{C8D38AF2-727E-11F0-9ACD-309C23A208D5}"
+ ( 248 -56 94 ) ( -64 -56 94 ) ( -64 56 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 248 56 94 ) ( 248 56 0 ) ( 248 -56 0 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 248 56 0 ) ( -64 56 0 ) ( -64 -56 0 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 -56 94 ) ( -64 -56 0 ) ( -64 56 0 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 -56 94 ) ( 248 -56 94 ) ( 248 -56 0 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 56 0 ) ( 248 56 0 ) ( 248 56 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 7
+{
+ guid "{CB62B4E0-70F6-11F0-9ACD-309C23A208D5}"
+ ( -126 -56 52 ) ( -64 -56 94 ) ( -64 -56 0 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -126 56 0 ) ( -64 56 0 ) ( -64 56 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -126 -56 0 ) ( -126 56 0 ) ( -126 56 52 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 -56 0 ) ( -64 56 0 ) ( -126 56 0 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -126 -56 52 ) ( -126 56 52 ) ( -64 56 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 -56 94 ) ( -64 56 94 ) ( -64 56 0 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+// brush 8
+{
+ guid "{6F5C4AF2-7281-11F0-9ACD-309C23A208D5}"
+ ( -94 -96 81 ) ( -94 -56 81 ) ( -64 -56 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 -109 96 ) ( -64 -109 2 ) ( -165 -109 2 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -92 -56 82 ) ( -165 -56 34 ) ( -165 -56 0 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -165 -56 0 ) ( -165 -56 34 ) ( -165 -96 34 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -94 -56 81 ) ( -94 -96 81 ) ( -165 -96 34 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 -96 0 ) ( -64 -56 0 ) ( -165 -56 0 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -64 -56 94 ) ( 248 -56 94 ) ( 248 -96 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 248 -96 0 ) ( 248 -96 94 ) ( 248 -56 94 ) clip_full 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 1
+{
+guid "{7099C81E-7044-11F0-9ACD-309C23A208D5}"
+"classname" "misc_model"
+"model" "veh_t7_dlc_zhd_tank_mkiv"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"static" "1"
+}

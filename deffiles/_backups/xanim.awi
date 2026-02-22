@@ -1,0 +1,530 @@
+string server_script_function_list =			" | flag::set | flag::clear | util::break_glass";
+string server_script_function_on_level_list =	" | flag::set | flag::clear";
+string client_script_function_list =			" | flag::set | flag::clear | postfx::PlayPostFxBundle | postfx::StopPostFxBundle";
+string client_script_function_on_level_list =	" | flag::set | flag::clear";
+
+void ValidateCompression(asset Asset, const string& ID)
+{
+	if (Asset.GetEntryValue("translationError") != "0.025" || Asset.GetEntryValue("angleError") != "0.05")
+	{
+		if (MessageBox("This animation is not using the default compression settings, would you like to reset them to default now?", "YESNO") == "YES")
+		{
+			Asset.GetEntryVariable("translationError").SetFloat(0.025);
+			Asset.GetEntryVariable("angleError").SetFloat(0.05);
+		}
+	}
+}
+
+void PopulateButtonClicked(asset Asset, const string& ID)
+{
+	array<string> File = ReadTextFile("scripts/assetpreviewer_lookuptable.csv");
+	string Name = Asset.GetName();
+
+	for (int LineIdx = 0; LineIdx < File.length(); LineIdx++)
+	{
+		array<string> Filter = File[LineIdx].Split(",");
+
+		if (Filter.length() != 3 || Name.Find(Filter[0], 0) == -1)
+			continue;
+
+		Asset.GetEntryVariable(Filter[1]).SetValue(Filter[2]);
+	}
+}
+
+void GenerateUI( asset Asset )
+{
+	// Source Files
+
+	Asset.BeginCategory( "Source Files" );
+	{
+		Asset.AddEntry_Path( "filename", "" ).SetTitle( "Anim File" ).SetRelativePath( "xanim_export/" ).SetToolTip( "The animation used in conjunction with the model specified below (.XANIM_EXPORT)" ).SetValidateCallback("void ValidateCompression(asset Asset, const string& ID)");
+		Asset.AddEntry_XModel( "model", "" ).SetTitle( "Model File" ).SetRelativePath( "model_export/" ).SetToolTip( "The 'base-pose' model used for the animation. All bone positions/rotations are relative to this (.XMODEL_EXPORT)" ).UpdateOnChange( true );
+		if( IsXModelSiege( Asset.GetEntryValue( "model" ) ) )
+		{
+			Asset.AddEntry_Label("siegeModel","This model is a siege model, you can not use it with xanims, you should use sanims.").SetTitle(" ").SetIcon( "Icon_ImageMismatch.png");
+		}
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// Settings
+	
+	Asset.BeginCategory( "Settings" );
+	{
+		Asset.AddEntry_CheckBox( "useNtExportFile", false ).SetTitle( "Use .NT_EXPORT" ).SetToolTip( "Use externally created .NT_EXPORT (Note-Tracker) files" );
+		Asset.AddEntry_CheckBox( "looping", false ).SetTitle( "Looping" ).SetToolTip( "Enables the animation to continously loop" );
+		Asset.AddEntry_CheckBox( "loopsync", false ).SetTitle( "Loop Sync" ).SetToolTip( "Automatically adds this animation to the loopsync branch in the anim tree" );
+		Asset.AddEntry_CheckBox( "useBones", true ).SetTitle( "Use Bones (Not viewmodel)" ).SetToolTip( "??? Not needed for viewmodels, but is needed for practically everything else" );
+		Asset.AddEntry_Combo( "type", "delta | delta3d | relative | absolute | mp_torso | mp_legs | mp_fullbody | additive" ).SetTitle( "Type" ).SetToolTip( "'delta' - use for AI anims, 'absolute' - puts everything where it is relative to (0, 0, 0) in the Maya file, 'relative' - puts everything where it is relative to the parent node in the hierarchy" );
+		Asset.AddEntry_String( "node", "" ).SetTitle( "Node" ).SetToolTip( "Specifies the name of an object exported from the Maya file that will act as a reference point for the anim. Used to get scripted animations in the right place. The anim has to be 'delta' and must be played as a scripted animation." );
+		Asset.AddEntry_Vector2( "translationError", "angleError", 0.025, 0.05, 0.01, 100 ).SetTitle( "Compression Error" ).SetStep( 0.01 ).SetLabels( "Translation", "Angle", "", "" ).SetToolTip( "Used for Compression, default value works well" );
+		Asset.AddEntry_CheckBox( "leftHandGripIK", false ).SetTitle( "Use Left Hand Grip IK" ).SetToolTip( "Enable this to use varied grip offsets as defined in weapon gdt" );
+		Asset.AddEntry_CheckBox( "ignoreSpineBones", false ).SetTitle( "Ignore spine bones" ).SetToolTip( "Don't animate spine bones in torso anim. Used for swimming mostly." );
+	}	
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
+	// MP Specific
+	
+	Asset.BeginCategory( "MP Specific" );
+	{
+		Asset.AddEntry_Text( "boneStabilizers", "" ).SetTitle( "Bone Stabilizers" );
+	}
+	
+	string noteDropDownList;
+
+	Asset.BeginCategory( "Exported Notetracks" );
+	{
+		string filename = Asset.GetEntryValue( "filename" );
+		string totalFrames = GetXAnimInfo( filename, "totalFrames" );
+		string firstFrame = GetXAnimInfo( filename, "firstFrame" );
+		string frameRate = GetXAnimInfo( filename, "frameRate" );
+		
+		Asset.AddEntry_Label( "totalFrames", totalFrames ).SetTitle( "totalFrames" );
+		Asset.AddEntry_Label( "firstFrame", firstFrame ).SetTitle( "firstFrame" );
+		Asset.AddEntry_Label( "frameRate", frameRate ).SetTitle( "frameRate" );
+		
+		bool parseError = false;
+		
+		if ( totalFrames.ToInt() == -1 )
+		{
+			parseError = true;
+		}
+
+		int numNotes = 64;
+		for( int i = 0; i < numNotes; i++ )
+		{
+			Asset.BeginCategory( "Exported Notetracks.Note " + (i+1) );			
+			
+			string notetrack = GetXAnimNotetrack( filename, i );
+			
+			string id = "note" + i;
+
+			string noteframe = "-1";			
+			string noteframe_relative = "-1";
+			string notename = "";
+			bool show = false;
+			
+			if( notetrack.Length() > 0 )
+			{
+				int split = notetrack.Find( ",", 0 );
+				noteframe = notetrack.Left( split );
+				
+				notename = notetrack.Right( notetrack.Length() - split - 1 );
+				
+				if( !parseError )
+				{
+					noteframe_relative = noteframe.ToInt() - firstFrame.ToInt();
+				}
+				else
+				{
+					noteframe_relative = "-1";
+				}
+				
+				show = true;
+			}
+			
+			Asset.AddEntry_Label( id, noteframe ).SetTitle( "Frame" ).Show( show );
+			Asset.AddEntry_Label( "note" + i + "relative", noteframe_relative ).SetTitle( "Frame Relative to 0" ).Show( show );
+			Asset.AddEntry_Label( "note" + i + "name", notename ).SetTitle( "Name" ).Show( show );
+			
+			if( show )
+			{
+				noteDropDownList += "|" + notename;
+			}
+		}
+	}
+
+	int MAX_GDT_NOTETRACKS = 50;			// Needs to match xanim converter
+	int MAX_GDT_STARTUP_NOTETRACKS = 10;	// Needs to match xanim converter
+	int MAX_GDT_SHUTDOWN_NOTETRACKS = 10;	// Needs to match xanim converter
+
+	int MAX_GDT_FX_NOTETRACKS = 20;			// Needs to match xanim converter
+	int MAX_GDT_FX_STARTUP_NOTETRACKS = 10;	// Needs to match xanim converter
+	int MAX_GDT_FX_SHUTDOWN_NOTETRACKS = 10;	// Needs to match xanim converter
+
+	int MAX_GDT_SOUND_NOTETRACKS = 20;			// Needs to match xanim converter
+	int MAX_GDT_SOUND_STARTUP_NOTETRACKS = 10;	// Needs to match xanim converter
+	int MAX_GDT_SOUND_SHUTDOWN_NOTETRACKS = 10;	// Needs to match xanim converter
+
+	AddNoteTrackCategory( Asset, "Notetracks.", "Note", "customnote", MAX_GDT_NOTETRACKS, noteDropDownList, 0 );
+	AddNoteTrackCategory( Asset, "Notetracks.", "Startup Note", "startupnote", MAX_GDT_STARTUP_NOTETRACKS, "", 1 );
+	AddNoteTrackCategory( Asset, "Notetracks.", "Shutdown Note", "shutdownnote", MAX_GDT_SHUTDOWN_NOTETRACKS, "", 2 );
+
+	AddNoteTrackCategory( Asset, "FX Notetracks.", "FX Note", "fx_customnote", MAX_GDT_FX_NOTETRACKS, noteDropDownList, 0 );
+	AddNoteTrackCategory( Asset, "FX Notetracks.", "FX Startup Note", "fx_startupnote", MAX_GDT_FX_STARTUP_NOTETRACKS, "", 1 );
+	AddNoteTrackCategory( Asset, "FX Notetracks.", "FX Shutdown Note", "fx_shutdownnote", MAX_GDT_FX_SHUTDOWN_NOTETRACKS, "", 2 );
+
+	AddNoteTrackCategory( Asset, "SOUND Notetracks.", "SOUND Note", "sound_customnote", MAX_GDT_SOUND_NOTETRACKS, noteDropDownList, 0 );
+	AddNoteTrackCategory( Asset, "SOUND Notetracks.", "SOUND Startup Note", "sound_startupnote", MAX_GDT_SOUND_STARTUP_NOTETRACKS, "", 1 );
+	AddNoteTrackCategory( Asset, "SOUND Notetracks.", "SOUND Shutdown Note", "sound_shutdownnote", MAX_GDT_SOUND_SHUTDOWN_NOTETRACKS, "", 2 );
+
+	Asset.BeginCategory( "AssetViewer Preview Options" );
+	{
+		Asset.AddEntry_ButtonGroup( "populateButton" ).SetTitle( " " ).AddButton( "Populate", "", "void PopulateButtonClicked( asset Asset, const string& ID )", "" );
+		Asset.AddEntry_AssetCombo( "previewModel", "xmodel" ).SetTitle( "Model" ).SetToolTip( "The XModel to play the XAnim on when it is viewed in AssetViewer.  If this is blank, AssetViewer uses Model File" );
+		Asset.AddEntry_String( "previewAlignParentTag", "" ).SetTitle( "Align Parent Tag" ).SetToolTip( "Tag in Preview model to connec to the attached model's align tag" );
+		Asset.AddEntry_AssetCombo( "previewAttachModel", "xmodel" ).SetTitle( "Attach Model" ).SetToolTip( "The XModel to attach to the Preview Model when this XAnim is viewed in AssetViewer" );
+		Asset.AddEntry_String( "previewAlignChildTag", "" ).SetTitle( "Align Child Tag" ).SetToolTip( "Tag in Attached model to connect to parent's Align tag" );
+	}
+
+	if (Asset.GetEntryValue("previewModel") == "" && Asset.GetEntryValue("previewAlignParentTag") == "" && Asset.GetEntryValue("previewAttachModel") == "" && Asset.GetEntryValue("previewAlignChildTag") == "")
+	{
+		PopulateButtonClicked(Asset, "");
+
+		Asset.GetEntryVariable("previewModel").UpdateSavedValue();
+		Asset.GetEntryVariable("previewAlignParentTag").UpdateSavedValue();
+		Asset.GetEntryVariable("previewAttachModel").UpdateSavedValue();
+		Asset.GetEntryVariable("previewAlignChildTag").UpdateSavedValue();
+	}
+}
+
+void AddNoteTrackCategory( asset Asset, string parentCategory, string category, string prefix, int maxNotes, string dropDownNoteList, int noteType )
+{
+	bool showNext = true;
+
+	bool normalNote = (noteType == 0);
+	bool startupNote = (noteType == 1);
+
+	for( int i = 0; i < maxNotes; i++ )
+	{
+		if( startupNote )
+		{
+			Asset.BeginCategory( parentCategory + category + " " + (i + 1), 0.1, 0.8, 0.1, "" );
+		}
+		else if( normalNote )
+		{
+			Asset.BeginCategory( parentCategory + category + " " + (i + 1), 0.0, 0.0, 1.0, "" );
+		}
+		else	// shutdown
+		{
+			Asset.BeginCategory( parentCategory + category + " " + (i + 1), 0.9, 0.1, 0.1, "" );
+		}
+
+			
+		string id = prefix + i;
+			
+		bool showCur = Asset.GetEntryValue( id + "action" ) != "None";
+
+		if( i > 0 && showCur && !showNext )
+		{
+			/*
+			string yesno = MessageBox( "Move notetracks up due to removed entry for " + Asset.GetName() + "?", "YESNO" );
+			
+			if( yesno == "YES" )
+			{
+				for( int j = i; j < maxNotes; j++ )
+				{
+					string copyFromPrefix = prefix + j;
+					string copyToPrefix = prefix + (j-1);
+					CopyNote( Asset, copyFromPrefix, copyToPrefix );
+				}
+			}*/
+		}
+
+		AddNoteTrackAction( Asset, id, showNext || showCur, normalNote, startupNote, dropDownNoteList );
+			
+		// Set up the 'show' for the next item
+		showNext = Asset.GetEntryValue( id + "action" ) != "None";
+	}
+}
+
+string BuildEntryCombo( string str_prefix, array<string> entries )
+{
+	for ( int i = 0; i < entries.length; i++ )
+	{
+		if ( str_prefix != "" )
+		{
+			str_prefix += " | ";
+		}
+		str_prefix += entries[i];
+	}
+	return str_prefix;
+}
+
+// Will insert into base_array a series of strings in insertion_array.
+// If the "insert after" string is not found, the string will be inserted at the beginning of the array.
+//
+// base_array: the array into which you're inserting entries.
+// insertion_array: an array of strings in pairs -- string 1: the string before your insertion, string 2: the string to insert
+//
+array<string> InsertEntries( array<string> base_array, array<string> insertion_array )
+{
+	for ( int i = 0; i < insertion_array.length - 1; i += 2 )
+	{
+		string insert_after = insertion_array[i];
+		string insert_string = insertion_array[i+1];
+		bool found = false;
+		string next = "";
+		base_array.resize(base_array.length+1);
+		for ( int j = base_array.length-1; j >= 1 && !found; j-- )
+		{
+			if ( base_array[j-1] == insert_after )
+			{
+				found = true;
+				base_array[j] = insert_string;
+			}
+			else
+			{
+				base_array[j] = base_array[j-1];
+			}
+		}
+		
+		if ( !found )
+		{
+			base_array[0] = insert_string;
+		}
+	}
+	
+	return base_array;
+}
+
+void AddNoteTrackAction( asset Asset, string id, bool parentShow, bool normalNote, bool startupNote, string dropDownNoteList )
+{
+	bool show = parentShow;
+	
+	array<string> notes_main = {
+		"None",
+		"Self Notify",
+		"Level Notify",
+		"Play Fx",
+		"Play Unmanaged Fx",
+		"Play Viewmodel Fx",
+		"Stop Fx",
+		"Kill Fx",
+		"Play Entity Impact Fx",
+		"Stop Entity Impact Fx",
+		"Kill Entity Impact Fx",
+		"Play TagFx Set",
+		"Stop TagFx Set",
+		"Kill TagFx Set",
+		"Play Exploder",
+		"Stop Exploder",
+		"Kill Exploder",
+		"Sound",
+		"2D Sound",
+		"Stop Sound",
+		"Spawn Light",
+		"Rumble",
+		"Hide Bone",
+		"Show Bone",
+		"Show Offhand",
+		"Hide Offhand",
+		"Show Weapon",
+		"Hide Weapon",
+		"Clip Drop",
+		"Clip Attach Left",
+		"Clip Detach Left",
+		"Timescale",
+		"FOV",
+		"Focal Length",
+		"Reset Focal Length",
+		"Attach Model Client",
+		"Detach Model Client",
+		"Attach Model Server",
+		"Detach Model Server",
+		"Call Server Script Function",
+		"Call Server Script Function On Level",
+		"Call Client Script Function",
+		"Call Client Script Function On Level",
+		"Show Blackscreen",
+		"Start looping sound",
+		"Stop looping sound",
+		"Start Firing",
+		"Stop Firing",
+		"Graphic Content Over Black Starts",
+		"Graphic Content Over Black Ends",
+		"Graphic Content Blur Starts",
+		"Graphic Content Blur Ends",
+		"Motion Blur"
+	};
+	
+	array<string> normal_only_insertions = {
+		"Kill Exploder",	"Set Shader Constant"	// Insert 'Set Shader Constant' after 'Kill Exploder' notify
+	};
+
+	array<string> weapon_attachment_insertions = {
+		"Stop Firing",	"Attach Weapon",	"Attach Weapon",	"Detach Weapon"		// Insert "Attach Weapon" and "Detach Weapon" after "Stop Firing"
+	};
+
+	
+	array<string> entry_list = notes_main;
+	
+	if ( normalNote )
+	{
+		notes_main = InsertEntries( notes_main, normal_only_insertions );
+	}
+
+	if( normalNote )
+	{
+		notes_main = InsertEntries( notes_main, weapon_attachment_insertions );
+	}
+	
+	string str_combo_list = BuildEntryCombo( "", notes_main );
+	
+	Asset.AddEntry_Combo( id + "action", str_combo_list ).SetTitle( "Action " ).Show( show ).UpdateOnChange( true ).SetSave( show );
+	string actionType = Asset.GetEntryValue( id + "action" );
+	
+	// intentionally don't create these fields for startup and shutdown notes
+	if( normalNote )
+	{
+		string linkNote = Asset.GetEntryValue( id + "useexistingnote" );
+	
+		Asset.AddEntry_Int( id + "frame", 1, 1,10000 ).SetTitle( "Frame" ).Show( show && actionType != "None" ).SetSave( parentShow ).SetStep( 1 ).Enable( linkNote.Length() == 0 );
+	
+		Asset.AddEntry_Combo( id + "useexistingnote", dropDownNoteList, true ).SetTitle( "Use Existing Note" ).Show( show && actionType != "None" ).SetSave( parentShow ).UpdateOnChange( true ).SetToolTip( "Specify the name of an existing notetrack to piggy back off of its frame number." );
+	}
+
+	if( actionType == "Attach Weapon" || actionType == "Detach Weapon" )
+	{
+		Asset.AddEntry_AssetCombo( id+ "actionparam1", "bulletweapon" ).SetTitle( "Weapon" );
+		Asset.AddEntry_BoneCombo( id + "actionparam2", "model" ).SetTitle( "Bone" ).Show( show ).SetSave( show ).SetToolTip( "If specified it will play at the bone position. Otherwise at the entity origin" );
+	}
+	else if( actionType == "Play Fx" || actionType == "Stop Fx" || actionType == "Kill Fx" || actionType == "Play Unmanaged Fx" || actionType == "Play Viewmodel Fx" )
+	{
+		Asset.AddEntry_Path( id + "actionparam1", "" ).SetTitle( "FX" ).Show( show ).SetSave( show ).SetRelativePath( "share/raw/fx/" );
+		Asset.AddEntry_BoneCombo( id + "actionparam2", "model" ).SetTitle( "Bone" ).Show( show ).SetSave( show ).SetToolTip( "If specified it will play at the bone position. Otherwise at the entity origin" );
+	}
+	else if( actionType == "Play Entity Impact Fx" || actionType == "Stop Entity Impact Fx" || actionType == "Kill Entity Impact Fx" )
+	{
+		Asset.AddEntry_AssetCombo( id + "actionparam1", "entityfximpacts" ).SetTitle( "Entity FX Impacts" ).Show( show ).SetSave( show ).SetToolTip( "Use this to specify the surfacefxtable asset for the Entity FX Impacts." );
+		Asset.AddEntry_BoneCombo( id + "actionparam2", "model" ).SetTitle( "Bone" ).Show( show ).SetSave( show ).SetToolTip( "If specified it will play at the bone position. Otherwise at the entity origin" );
+	}
+	else if( actionType == "Play TagFx Set" || actionType == "Stop TagFx Set" || actionType == "Kill TagFx Set" )
+	{
+		Asset.AddEntry_AssetCombo( id + "actionparam1", "tagfx" ).SetTitle( "TagFX Set" ).Show( show ).SetSave( show ).SetToolTip( "Use this to specify the tagfx asset for the Tag FX Set." );
+	}
+	else if( actionType == "Spawn Light" )
+	{
+		Asset.AddEntry_String( id + "actionparam1", "" ).SetTitle( "Light" ).Show( show ).SetSave( show );
+		Asset.AddEntry_BoneCombo( id + "actionparam2", "model" ).SetTitle( "Bone" ).Show( show ).SetSave( show ).SetToolTip( "If specified it will play at the bone position. Otherwise at the entity origin" );
+	}
+	else if( actionType == "Self Notify" )
+	{
+		Asset.AddEntry_String( id + "actionparam1", "" ).SetTitle( "Notify Param1" ).Show( show ).SetSave( show );
+		Asset.AddEntry_String( id + "actionparam2", "" ).SetTitle( "Notify Param2" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Level Notify" )
+	{
+		Asset.AddEntry_String( id + "actionparam1", "" ).SetTitle( "Notify Param1" ).Show( show ).SetSave( show );
+		Asset.AddEntry_String( id + "actionparam2", "" ).SetTitle( "Notify Param2" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Play Exploder" || actionType == "Stop Exploder" || actionType == "Kill Exploder" )
+	{
+		Asset.AddEntry_String( id + "actionparam1", "" ).SetTitle( "Exploder ID" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Sound" || actionType == "Vox" )
+	{
+		Asset.AddEntry_String( id + "actionparam1", "" ).SetTitle( "Sound Alias" ).Show( show ).SetSave( show );
+		Asset.AddEntry_BoneCombo( id + "actionparam2", "model" ).SetTitle( "Bone" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "2D Sound" )
+	{
+		Asset.AddEntry_String( id + "actionparam1", "" ).SetTitle( "Sound Alias" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Stop Sound" )
+	{
+		Asset.AddEntry_String( id + "actionparam1", "" ).SetTitle( "Sound Alias" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Footstep" )
+	{
+		Asset.AddEntry_String( id + "actionparam1", "" ).SetTitle( "ID" ).Show( show ).SetSave( show );
+		Asset.AddEntry_String( id + "actionparam2", "" ).SetTitle( "Param2" ).Show( false ).SetSave( show );
+	}
+	else if( actionType == "Rumble" )
+	{
+		Asset.AddEntry_AssetCombo( id + "actionparam1", "rumble" ).SetTitle( "Rumble" ).Show( show ).SetSave( show );
+		Asset.AddEntry_String( id + "actionparam2", "" ).SetTitle( "Param2" ).Show( false ).SetSave( show );
+	}
+	else if( actionType == "Timescale" )
+	{
+		Asset.AddEntry_Float( id + "actionparam1", 1.0, 0.1, 5.0 ).SetTitle( "Timescale" ).Show( show ).SetSave( show );
+		Asset.AddEntry_Float( id + "actionparam2", 0.0, 0.0, 4.0 ).SetTitle( "Lerp Time" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "FOV" )
+	{
+		Asset.AddEntry_Float( id + "actionparam1", 65, 10, 120 ).SetTitle( "Value" ).Show( show ).SetSave( show );
+		Asset.AddEntry_Float( id + "actionparam2", 0.0, 0.0, 4.0 ).SetTitle( "Lerp Time" ).Show( show ).SetSave( show );
+	}
+	else if ( actionType == "Focal Length")
+	{
+		Asset.AddEntry_Float( id + "actionparam1", 14.64, 0, 600 ).SetTitle( "Value" ).Show( show ).SetSave( show );
+		Asset.AddEntry_Float( id + "actionparam2", 0.0, 0.0, 4.0 ).SetTitle( "Lerp Time" ).Show( show ).SetSave( show );
+	}
+	else if ( actionType == "Reset Focal Length")
+	{
+		Asset.AddEntry_Float( id + "actionparam1", 0.0, 0.0, 4.0 ).SetTitle( "Lerp Time" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Attach Model Server" || actionType == "Detach Model Server" || actionType == "Attach Model Client" || actionType == "Detach Model Client" )
+	{
+		Asset.AddEntry_AssetCombo( id + "actionparam1", "xmodel" ).SetTitle( "Model" ).Show( show ).SetSave( show );
+		Asset.AddEntry_BoneCombo( id + "actionparam2", "model" ).SetTitle( "Bone" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Set Shader Constant" )
+	{
+		Asset.AddEntry_String( id + "actionparam1", "None" ).SetTitle( "Shader Constant" ).Show( show ).SetSave( show );
+		Asset.AddEntry_Float( id + "actionparam2", 1.0, 0.0, 1.0 ).SetTitle( "Value" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Call Server Script Function" )
+	{
+		Asset.AddEntry_Combo( id + "actionparam1", server_script_function_list, true ).SetTitle( "Function Label" ).Show( show ).SetSave( show );
+		Asset.AddEntry_String( id + "actionparam2", "" ).SetTitle( "Parameters" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Call Server Script Function On Level" )
+	{
+		Asset.AddEntry_Combo( id + "actionparam1", server_script_function_on_level_list, true ).SetTitle( "Function Label" ).Show( show ).SetSave( show );
+		Asset.AddEntry_String( id + "actionparam2", "" ).SetTitle( "Parameters" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Call Client Script Function" )
+	{
+		Asset.AddEntry_Combo( id + "actionparam1", client_script_function_list, true ).SetTitle( "Function Label" ).Show( show ).SetSave( show ).UpdateOnChange( true );
+
+		if ( Asset.GetEntryValue( id + "actionparam1") == "postfx::PlayPostFxBundle" )
+		{
+			Asset.AddEntry_AssetCombo( id + "actionparam2", "postfxbundle" ).SetTitle( "Parameters" ).Show( show ).SetSave( show );
+		}
+		else
+		{
+			Asset.AddEntry_String( id + "actionparam2", "" ).SetTitle( "Parameters" ).Show( show ).SetSave( show );
+		}
+	}
+	else if( actionType == "Call Client Script Function On Level" )
+	{
+		Asset.AddEntry_Combo( id + "actionparam1", client_script_function_on_level_list, true ).SetTitle( "Function Label" ).Show( show ).SetSave( show );
+		Asset.AddEntry_String( id + "actionparam2", "" ).SetTitle( "Parameters" ).Show( show ).SetSave( show );
+	}
+	else if( actionType == "Hide Bone" || actionType == "Show Bone" )
+	{
+		Asset.AddEntry_BoneCombo( id + "actionparam1", "model" ).SetTitle( "Bone" ).Show( show ).SetSave( show );
+		Asset.AddEntry_CheckBox( id + "actionparam2", false ).SetTitle( "Apply to Child Bones" ).Show( show ).SetSave( show );
+	}
+	else if ( actionType == "Show Blackscreen" )
+	{
+		Asset.AddEntry_Float( id + "actionparam1", 1.0, 0.05, 10.0 ).SetTitle( "Duration" ).Show( show ).SetSave( show );
+		Asset.AddEntry_Float( id + "actionparam2", 0.0, 0.0, 10.0 ).SetTitle( "Blend Time" ).Show( show ).SetSave( show );
+	}
+	else if ( actionType == "Start looping sound" || actionType == "Stop looping sound" )
+	{
+		Asset.AddEntry_String( id + "actionparam1", "" ).SetTitle( "Sound Alias" ).Show( show ).SetSave( show );
+		Asset.AddEntry_BoneCombo( id + "actionparam2", "model" ).SetTitle( "Bone" ).Show( show ).SetSave( show ).SetToolTip( "If specified it will play at the bone position" );
+	}
+	else if( actionType == "Motion Blur" )
+	{
+		Asset.AddEntry_Float( id + "actionparam1", 1.0, 0.0, 1.0 ).SetTitle( "Strength" ).Show( show ).SetSave( show );
+	}
+	else
+	{
+		Asset.AddEntry_String( id + "actionparam1", "" ).SetTitle( "Param1" ).Show( false ).SetSave( show );
+		Asset.AddEntry_String( id + "actionparam2", "" ).SetTitle( "Param2" ).Show( false ).SetSave( show );
+	}
+
+}
+
+void CopyNote( asset Asset, string fromObjectPrefix, string toObjectPrefix )
+{
+	Asset.GetEntryVariable( toObjectPrefix + "action" ).SetValue( Asset.GetEntryValue( fromObjectPrefix + "action" ) );
+	Asset.GetEntryVariable( toObjectPrefix + "useexistingnote" ).SetValue( Asset.GetEntryValue( fromObjectPrefix + "useexistingnote" ) );
+	Asset.GetEntryVariable( toObjectPrefix + "frame" ).SetValue( Asset.GetEntryValue( fromObjectPrefix + "frame" ) );
+	Asset.GetEntryVariable( toObjectPrefix + "actionparam1" ).SetValue( Asset.GetEntryValue( fromObjectPrefix + "actionparam1" ) );
+	Asset.GetEntryVariable( toObjectPrefix + "actionparam2" ).SetValue( Asset.GetEntryValue( fromObjectPrefix + "actionparam2" ) );
+}

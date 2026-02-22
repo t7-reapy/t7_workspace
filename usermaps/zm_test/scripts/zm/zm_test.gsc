@@ -75,6 +75,9 @@
 // Weather
 #using scripts\zm\weather\zm_weather;
 
+//Fauna
+#using scripts\zm\zm_animated_fauna;
+
 //Hell rounds
 #using scripts\zm\hellround\zm_hellround;
 
@@ -109,6 +112,7 @@ function main()
 {
     configure_weapon_inspection();
     bind_hellround_and_weather();
+    bind_hellround_and_fauna();
     bind_hellround_meteor_to_enter_room_of_thanks();
     bind_room_of_thanks_callbacks();
     
@@ -116,6 +120,7 @@ function main()
     level thread zm_animated_switch::MasterSwitchInit();
     zm_weather::play();
     
+    thread fauna_start();
     thread player_knuckle_crack_on_start();
     thread setup_playable_zones();
     thread remove_players_names();
@@ -351,6 +356,17 @@ function private toggle_weather(b_enable_hellround)
     }
 }
 
+function private bind_hellround_and_fauna()
+{
+    zm_hellround::add_toggle_callback(&toggle_fauna);
+}
+
+function private toggle_fauna(b_enable_hellround)
+{
+    zm_animated_fauna::toggle_rats(!IS_TRUE(b_enable_hellround));
+    zm_animated_fauna::toggle_ravens(!IS_TRUE(b_enable_hellround));
+}
+
 function private bind_hellround_meteor_to_enter_room_of_thanks()
 {
     zm_hellround::add_meteor_trigger_callback(&zm_room_of_thanks::teleport_players_and_start_elevator);
@@ -400,6 +416,7 @@ function private bind_room_of_thanks_callbacks()
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&player_invulnerability);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&change_player_skins);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&type_room_of_thanks_briefing);
+    zm_room_of_thanks::add_enter_room_of_thanks_callback(&fauna_stop);
 
     // Exit room of thanks
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&knuckle_crack_players);
@@ -407,6 +424,7 @@ function private bind_room_of_thanks_callbacks()
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&set_lighting_state_normal);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&restore_ui);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&end_the_game);
+    zm_room_of_thanks::add_exit_room_of_thanks_callback(&fauna_start);
 }
 
 function private set_lighting_state_clear()
@@ -463,6 +481,12 @@ function private type_room_of_thanks_briefing()
         "Secondary Objective: Check the area");
 }
 
+function private fauna_stop()
+{
+    zm_animated_fauna::toggle_rats(false);
+    zm_animated_fauna::toggle_ravens(false);
+}
+
 function private transition_screen()
 {
     screen_flash_fadein = 3.0;
@@ -482,6 +506,12 @@ function private end_the_game()
 {
     wait DELAY_BEFORE_ROT_CALLBACK_APPLY;
     level notify("end_game");
+}
+
+function private fauna_start()
+{
+    zm_animated_fauna::toggle_rats(true);
+    zm_animated_fauna::toggle_ravens(true);
 }
 
 /* endregion */

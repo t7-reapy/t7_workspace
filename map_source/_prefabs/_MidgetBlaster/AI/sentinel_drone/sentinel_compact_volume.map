@@ -1,0 +1,42 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{290FEBFD-6828-11EC-8254-D43D7E278B2C}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{91DEBA03-681A-11EC-8254-D43D7E278B2C}"
+"classname" "info_volume"
+"targetname" "sentinel_compact"
+// brush 0
+{
+ guid "{91DEBA02-681A-11EC-8254-D43D7E278B2C}"
+ ( -24 352 0 ) ( -64 352 0 ) ( -64 312 0 ) volume 64 64 744 8 0 0 lightmap_gray 16384 16384 744 8 0 0
+ ( -64 312 192 ) ( -64 352 192 ) ( -24 352 192 ) volume 64 64 744 8 0 0 lightmap_gray 16384 16384 744 8 0 0
+ ( 16 -352 192 ) ( 56 -352 192 ) ( 56 -352 128 ) volume 64 64 824 64 0 0 lightmap_gray 16384 16384 824 64 0 0
+ ( 64 -352 192 ) ( 64 -312 192 ) ( 64 -312 128 ) volume 64 64 -672 64 0 0 lightmap_gray 16384 16384 -672 64 0 0
+ ( -24 352 192 ) ( -64 352 192 ) ( -64 352 128 ) volume 64 64 744 64 0 0 lightmap_gray 16384 16384 744 64 0 0
+ ( -64 352 192 ) ( -64 312 192 ) ( -64 312 128 ) volume 64 64 -8 64 0 0 lightmap_gray 16384 16384 -8 64 0 0
+}
+}

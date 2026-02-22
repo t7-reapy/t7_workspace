@@ -1,0 +1,10 @@
+const int MAX_NUM_BODY_TYPES = 20;
+const int MAX_NUM_HEADS = 20;
+
+#include "asset_list_helper.h"
+
+void GenerateUI( asset Asset )
+{
+	GenerateItemList( Asset, "playerbodytype", "Body Type", "bodyType", MAX_NUM_BODY_TYPES, "Bodies" );
+	GenerateItemList( Asset, "playerhead", "Head", "head", MAX_NUM_HEADS, "Heads" );
+}

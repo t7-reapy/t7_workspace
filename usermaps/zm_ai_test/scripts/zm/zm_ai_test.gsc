@@ -46,6 +46,9 @@
 //Hell rounds
 #using scripts\zm\hellround\zm_hellround;
 
+//Fauna
+#using scripts\zm\zm_animated_fauna;
+
 //Powerups
 #using scripts\zm\_zm_powerup_double_points;
 #using scripts\zm\_zm_powerup_carpenter;
@@ -79,6 +82,7 @@ function main()
     level._zombie_custom_add_weapons =&custom_add_weapons;
     thread configure_weapon_inspection();
     thread setup_weapons();
+    thread setup_xanims_triggers();
     
     //Setup the levels Zombie Zone Volumes
     level.zones = [];
@@ -239,4 +243,26 @@ function private configure_weapon_inspection()
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927_up"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927_up_up"), 5);
+}
+
+function setup_xanims_triggers()
+{
+    toggle_ravens_trigger = GetEnt("toggle_ravens", "targetname");
+    toggle_ravens_trigger SetHintString("Hold ^3[{+activate}]^7 to toggle raven xanims");
+    toggle_ravens_trigger thread trigger_think(&zm_animated_fauna::toggle_ravens);
+
+    toggle_rats_trigger = GetEnt("toggle_rats", "targetname");
+    toggle_rats_trigger SetHintString("Hold ^3[{+activate}]^7 to toggle rats xanims");
+    toggle_rats_trigger thread trigger_think(&zm_animated_fauna::toggle_rats);
+}
+
+function trigger_think(callback) // self == trigger
+{
+    toggled = false;
+    while(1)
+    {
+        self waittill("trigger");
+        [[ callback ]](toggled);
+        toggled = !toggled;
+    }
 }

@@ -1,0 +1,224 @@
+const int MAX_PARTS = 32;
+const int MAX_BASE_MATERIALS = 6;
+
+const array<string> MASK_COLORS =
+{
+	"red",
+	"green",
+	"blue"
+};
+
+void MoveValue( asset Asset, string from, string to )
+{
+	if ( Asset.GetEntryVariable( from ).GetSpecified() )
+	{
+		Asset.GetEntryVariable( to ).ForceSpecified().SetValue( Asset.GetEntryValue( from ) );
+	}
+	else
+	{
+		Asset.GetEntryVariable( to ).ClearSpecified();
+	}
+}
+
+void MovePart( asset Asset, int from, int to )
+{
+	string fromPrefix = "p" + from + "_";
+	string toPrefix   = "p" + to + "_";
+
+	MoveValue( Asset, fromPrefix + "numBaseMaterials", toPrefix + "numBaseMaterials" );
+
+	for ( int j = 1; j <= MAX_BASE_MATERIALS; j++ )
+	{
+		MoveValue( Asset, fromPrefix + "base_material_" + j, toPrefix + "base_material_" + j );
+		MoveValue( Asset, fromPrefix + "camo_mask_" + j,     toPrefix + "camo_mask_" + j );
+	}
+
+	for ( int channel = 0 ; channel < MASK_COLORS.length() ; channel++ )
+	{
+		MoveValue( Asset, fromPrefix + "mask_" + MASK_COLORS[channel], toPrefix + "mask_" + MASK_COLORS[channel] );
+
+		string fromColorPrefix = fromPrefix + "c" + channel + "_";
+		string toColorPrefix   = toPrefix + "c" + channel + "_";
+
+		MoveValue( Asset, fromColorPrefix + "albedoTint",                 toColorPrefix + "albedoTint" );
+		MoveValue( Asset, fromColorPrefix + "camo_useNormalMap",          toColorPrefix + "camo_useNormalMap" );
+		MoveValue( Asset, fromColorPrefix + "camo_useGlossMap",           toColorPrefix + "camo_useGlossMap" );
+		MoveValue( Asset, fromColorPrefix + "camo_material",              toColorPrefix + "camo_material" );
+		MoveValue( Asset, fromColorPrefix + "camo_trans_x",               toColorPrefix + "camo_trans_x" );
+		MoveValue( Asset, fromColorPrefix + "camo_trans_y",               toColorPrefix + "camo_trans_y" );
+		MoveValue( Asset, fromColorPrefix + "camo_scale_x",               toColorPrefix + "camo_scale_x" );
+		MoveValue( Asset, fromColorPrefix + "camo_scale_y",               toColorPrefix + "camo_scale_y" );
+		MoveValue( Asset, fromColorPrefix + "camo_rotation",              toColorPrefix + "camo_rotation");
+		MoveValue( Asset, fromColorPrefix + "camo_normal_amount",         toColorPrefix + "camo_normal_amount" );
+		MoveValue( Asset, fromColorPrefix + "camo_gloss_blend",           toColorPrefix + "camo_gloss_blend" );
+		MoveValue( Asset, fromColorPrefix + "camo_detail_normal",         toColorPrefix + "camo_detail_normal" );
+		MoveValue( Asset, fromColorPrefix + "camo_detail_normal_height",  toColorPrefix + "camo_detail_normal_height" );
+		MoveValue( Asset, fromColorPrefix + "camo_detail_normal_scale_x", toColorPrefix + "camo_detail_normal_scale_x" );
+		MoveValue( Asset, fromColorPrefix + "camo_detail_normal_scale_y", toColorPrefix + "camo_detail_normal_scale_y" );
+	}
+}
+
+void ClearPart( asset Asset, int which )
+{
+	string prefix = "p" + which + "_";
+
+	Asset.GetEntryVariable( prefix + "numBaseMaterials" ).ClearSpecified().SetInt( 1 );
+
+	for ( int j = 1; j <= MAX_BASE_MATERIALS; j++ )
+	{
+		Asset.GetEntryVariable( prefix + "base_material_" + j ).ClearSpecified().SetValue( "" );
+		Asset.GetEntryVariable( prefix + "camo_mask_" + j     ).ClearSpecified().SetValue( "" );
+	}
+
+	for ( int channel = 0 ; channel < MASK_COLORS.length() ; channel++ )
+	{
+		Asset.GetEntryVariable( prefix + "mask_" + MASK_COLORS[channel] ).ClearSpecified().SetBool( false );
+
+		string colorPrefix = prefix + "c" + channel + "_";
+
+		Asset.GetEntryVariable( colorPrefix + "albedoTint"                 ).ClearSpecified().SetValue( "1 1 1 1" );
+		Asset.GetEntryVariable( colorPrefix + "camo_useNormalMap"          ).ClearSpecified().SetBool( false );
+		Asset.GetEntryVariable( colorPrefix + "camo_useGlossMap"           ).ClearSpecified().SetBool( false );
+		Asset.GetEntryVariable( colorPrefix + "camo_material"              ).ClearSpecified().SetValue( "" );
+		Asset.GetEntryVariable( colorPrefix + "camo_trans_x"               ).ClearSpecified().SetFloat( 0 );
+		Asset.GetEntryVariable( colorPrefix + "camo_trans_y"               ).ClearSpecified().SetFloat( 0 );
+		Asset.GetEntryVariable( colorPrefix + "camo_scale_x"               ).ClearSpecified().SetFloat( 1 );
+		Asset.GetEntryVariable( colorPrefix + "camo_scale_y"               ).ClearSpecified().SetFloat( 1 );
+		Asset.GetEntryVariable( colorPrefix + "camo_rotation"              ).ClearSpecified().SetFloat( 0 );
+		Asset.GetEntryVariable( colorPrefix + "camo_normal_amount"         ).ClearSpecified().SetFloat( 0 );
+		Asset.GetEntryVariable( colorPrefix + "camo_gloss_blend"           ).ClearSpecified().SetFloat( 0 );
+		Asset.GetEntryVariable( colorPrefix + "camo_detail_normal"         ).ClearSpecified().SetValue( "" );
+		Asset.GetEntryVariable( colorPrefix + "camo_detail_normal_height"  ).ClearSpecified().SetFloat( 1 );
+		Asset.GetEntryVariable( colorPrefix + "camo_detail_normal_scale_x" ).ClearSpecified().SetFloat( 8 );
+		Asset.GetEntryVariable( colorPrefix + "camo_detail_normal_scale_y" ).ClearSpecified().SetFloat( 8 );
+	}
+}
+
+void DeletePart( asset Asset, const string& params )
+{
+	for ( int i = params.ToInt() ; i < MAX_PARTS ; i++ )
+	{
+		MovePart( Asset, i+1, i );
+	}
+
+	Asset.GetEntryVariable( "numParts" ).SetInt( Asset.GetEntryInt( "numParts" ) - 1 );
+}
+
+void InsertPart( asset Asset, const string& params )
+{
+	for ( int i = MAX_PARTS ; i > params.ToInt() ; i-- )
+	{
+		MovePart( Asset, i, i-1 );
+	}
+
+	Asset.GetEntryVariable( "numParts" ).SetInt( Asset.GetEntryInt( "numParts" ) + 1 );
+	ClearPart( Asset, params.ToInt() );
+}
+
+void GenerateUI( asset Asset )
+{
+	Asset.BeginCategory( "UI" );
+	{
+		Asset.AddEntry_String( "displayName", "" ).SetTitle( "Display Name" );
+		Asset.AddEntry_Color( "color", 1, 1, 1, 1 ).SetTitle( "Color" );
+		Asset.AddEntry_AssetCombo( "iconImage", "image" ).SetTitle( "Icon" );
+	}
+
+	Asset.AddEntry_Int( "numParts", 1, 1, MAX_PARTS ).SetTitle( "Num customizable parts" ).UpdateOnChange(true);
+	int numParts = Asset.GetEntryInt( "numParts" );
+
+	for ( int part = 1; part <= MAX_PARTS; part++ )
+	{
+		bool partVisible = part <= numParts;
+		string partString = "Part " + part + ".";
+		string partPrefix = "p" + part + "_";
+
+		bool hasMask = false;
+
+		Asset.BeginCategory( "Part " + part );
+		{
+			Asset.AddEntry_ButtonGroup( partPrefix + "partActions" + part ).SetTitle( "Copy:" ).SetSave( false );
+			Asset.GetEntryControl( partPrefix + "partActions" + part ).AddButton( "Insert part", "", "void InsertPart( asset Asset, const string& params )", "" + part ).Show( partVisible ).ForceSpecified();
+			Asset.GetEntryControl( partPrefix + "partActions" + part ).AddButton( "Delete part", "", "void DeletePart( asset Asset, const string& params )", "" + part ).Show( partVisible ).ForceSpecified();
+		}
+
+		Asset.BeginCategory( partString + "Base Materials" );
+		{
+			Asset.AddEntry_Int( partPrefix + "numBaseMaterials", 1, 1, MAX_BASE_MATERIALS ).SetTitle( "Num Base Materials" ).Show( part <= numParts ).UpdateOnChange(true);
+		
+			int numBaseMaterials = Asset.GetEntryInt( partPrefix + "numBaseMaterials" );
+	
+			for ( int j = 1; j <= MAX_BASE_MATERIALS; j++ )
+			{
+				bool baseMaterialVisible = partVisible && ( j <= numBaseMaterials );
+				Asset.BeginCategory( partString + "Base Materials.Material " + j );
+				{
+					Asset.AddEntry_AssetCombo( partPrefix + "base_material_" + j, "material" ).Show( baseMaterialVisible ).SetTitle( "Base Material:" ).UpdateOnChange(true);
+					Asset.AddEntry_AssetCombo( partPrefix + "camo_mask_" + j, "image" ).Show( baseMaterialVisible ).SetTitle( "Camo Mask:" ).UpdateOnChange(true);
+
+					hasMask = hasMask || ( Asset.GetEntryValue( partPrefix + "camo_mask_" + j ).Length() > 0 );
+				}
+			}
+		}
+
+		Asset.BeginCategory( partString + "Used Mask Channels" );
+		{
+			bool maskCheckboxVisible = partVisible && hasMask;
+			for ( int channel = 0 ; channel < MASK_COLORS.length() ; channel++ )
+			{
+				string color = MASK_COLORS[channel];
+				color.MakeUpper();
+				Asset.AddEntry_CheckBox( partPrefix + "mask_" + MASK_COLORS[channel], false ).SetTitle( color + " channel" ).Show( maskCheckboxVisible ).SetToolTip( "" ).UpdateOnChange(true);
+			}
+		}
+
+		for ( int channel = 0 ; channel < MASK_COLORS.length() ; channel++ )
+		{
+			string color = MASK_COLORS[channel];
+			color.MakeUpper();
+
+			string partColorString = hasMask ? ( partString + "Camo mask " + color + " channel." ) : ( partString + "Camo." );
+			string partColorPrefix = partPrefix + "c" + channel + "_";
+
+			bool channelVisible = partVisible && ( Asset.GetEntryBool( partPrefix + "mask_" + MASK_COLORS[channel] ) || ( !hasMask && channel == 0 ) );
+
+			int catRed   = channel == 0 ? 1 : 0;
+			int catGreen = channel == 1 ? 1 : 0;
+			int catBlue  = channel == 2 ? 1 : 0;
+
+			Asset.BeginCategory( partColorString, catRed, catGreen, catBlue, "" );
+			{
+				Asset.BeginCategory( partColorString + "Color Tweaks", catRed, catGreen, catBlue, "" );
+				{
+					bool colorTweakVisible = channelVisible && hasMask;
+					Asset.AddEntry_Color( partColorPrefix + "albedoTint", 1, 1, 1, 1 ).SetTitle( "Albedo Tint" ).Show( colorTweakVisible );
+				}
+
+				Asset.BeginCategory( partColorString + "Material Camo.Use Base Maps:", catRed, catGreen, catBlue, "" );
+				{
+					Asset.AddEntry_CheckBox( partColorPrefix + "camo_useNormalMap", false ).SetTitle( "Normal Map" ).Show( channelVisible ).SetToolTip( "Use the base material's normal map in the camo material." );
+					Asset.AddEntry_CheckBox( partColorPrefix + "camo_useGlossMap", false ).SetTitle( "Gloss Map" ).Show( channelVisible ).SetToolTip( "Use the base material's gloss map in the camo material." );
+				}
+
+				Asset.BeginCategory( partColorString + "Material Camo", catRed, catGreen, catBlue, "" );
+				{
+					Asset.AddEntry_AssetCombo( partColorPrefix + "camo_material", "material" ).SetTitle( "Replace with:" ).Show( channelVisible );
+					Asset.AddEntry_Vector2( partColorPrefix + "camo_trans_x", partColorPrefix + "camo_trans_y", 0, 0, 0, 1 ).SetTitle( "Translate" ).SetStep( 0.01f ).Show( channelVisible );
+					Asset.AddEntry_Vector2( partColorPrefix + "camo_scale_x", partColorPrefix + "camo_scale_y", 1, 1, 0.1, 40 ).SetTitle( "Scale" ).SetStep( 0.01f ).Show( channelVisible );
+					Asset.AddEntry_Float( partColorPrefix + "camo_rotation", 0, 0, 1 ).SetTitle( "Rotate" ).SetStep( 0.001f ).Show( channelVisible ).SetToolTip( "Rotate the camo - a fraction of a circle (1 == 360 degrees)." );
+					Asset.AddEntry_Float( partColorPrefix + "camo_normal_amount", 0, 0, 1 ).SetTitle( "Normal Map blend" ).SetStep( 0.01f ).Show( channelVisible ).SetToolTip( "0: use camo normal map, 1: use weapon normal map" );
+					Asset.AddEntry_Float( partColorPrefix + "camo_gloss_blend", 0, 0, 1 ).SetTitle( "Gloss Map blend" ).SetStep( 0.01f ).Show( channelVisible ).SetToolTip( "0: use camo gloss map, 1: use weapon gloss map" );
+				}
+
+				Asset.BeginCategory( partColorString + "Material Camo.Detail Normal:", catRed, catGreen, catBlue, "" );
+				{
+					Asset.AddEntry_AssetCombo( partColorPrefix + "camo_detail_normal", "image" ).SetTitle( "Detail Normal" ).Show( channelVisible ).SetToolTip( "Optional detail normal injected into the camo material" ).UpdateOnChange(true);
+					bool hasDetailNormal = Asset.GetEntryValue( partColorPrefix + "camo_detail_normal" ) != "";
+
+					Asset.AddEntry_Float( partColorPrefix + "camo_detail_normal_height", 1.0, 0.0, 1.0 ).SetTitle( "Detail Height Scale" ).SetStep( 0.01f ).SetToolTip( "A higher number makes the detail map more bumpy. (1.0 is default)" ).Show( hasDetailNormal );
+					Asset.AddEntry_Vector2( partColorPrefix + "camo_detail_normal_scale_x", partColorPrefix + "camo_detail_normal_scale_y", 8, 8, 0.125, 256 ).SetStep( 0.1f ).SetTitle( "Detail Scale (X, Y)" ).Show( hasDetailNormal );
+				}
+			}
+		}
+	}
+}

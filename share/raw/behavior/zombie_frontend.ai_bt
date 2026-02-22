@@ -1,0 +1,87 @@
+{
+    "id": "zombie",
+    "type": "selector",
+    "children": [
+        {
+            "id": "deathbehavior",
+            "type": "sequence",
+            "children": [
+                {
+                    "id": "waskilled",
+                    "type": "condition_script",
+                    "interruptName": "death"
+                },
+                {
+                    "id": "deathaction",
+                    "type": "action",
+                    "ActionName": "defaultaction",
+                    "ASMStateName": "death@zombie",
+                    "actionNotify": "death",
+                    "TerminateFunction": "startragdoll"
+                }
+            ]
+        },
+        {
+            "id": "painbehavior",
+            "type": "sequence",
+            "children": [
+                {
+                    "id": "shouldshowpain",
+                    "type": "condition_script",
+                    "scriptFunction": "iszombiewalking",
+                    "interruptName": "pain"
+                },
+                {
+                    "id": "painaction",
+                    "type": "action",
+                    "ActionName": "defaultaction",
+                    "ASMStateName": "pain@zombie",
+                    "actionTimeMax": 350
+                }
+            ]
+        },
+        {
+            "id": "movebehavior",
+            "type": "parallel",
+            "children": [
+                {
+                    "id": "shouldmove",
+                    "type": "condition_script",
+                    "scriptFunction": "locomotionbehaviorcondition"
+                },
+                {
+                    "id": "moveaction",
+                    "type": "action",
+                    "ActionName": "defaultaction",
+                    "ASMStateName": "move@zombie",
+                    "loopingAction": 1
+                }
+            ]
+        },
+        {
+            "id": "idlebehavior",
+            "type": "parallel",
+            "children": [
+                {
+                    "id": "shouldmove",
+                    "type": "condition_script_negate",
+                    "scriptFunction": "locomotionbehaviorcondition"
+                },
+                {
+                    "id": "idleaction",
+                    "type": "action",
+                    "ActionName": "defaultaction",
+                    "ASMStateName": "idle@zombie",
+                    "loopingAction": 1
+                }
+            ]
+        },
+        {
+            "id": "idleaction",
+            "type": "action",
+            "ActionName": "defaultaction",
+            "ASMStateName": "idle@zombie",
+            "loopingAction": 1
+        }
+    ]
+}

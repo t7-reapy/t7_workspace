@@ -1,0 +1,94 @@
+void GenerateUI( asset Asset )
+{
+	Asset.AddEntry_String( "type", "fog" ).Show( false );	
+
+	bool worldFog = Asset.AddEntry_CheckBox( "worldfog", true ).SetTitle( "Use World Fog Settings" ).UpdateOnChange( true ).GetBool();
+	bool sunFog = Asset.AddEntry_CheckBox( "sunfog", true ).SetTitle( "Use Sun Fog Settings" ).UpdateOnChange( true ).GetBool();
+	bool litFog = Asset.AddEntry_CheckBox( "litfog", true ).SetTitle( "Use Lit Fog Settings" ).UpdateOnChange( true ).GetBool();
+	bool atmosphereFog = Asset.AddEntry_CheckBox( "atmospherefog", false ).SetTitle( "Use Atmospheric Fog Settings" ).UpdateOnChange( true ).GetBool();
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	Asset.BeginCategory( "Density" );
+	Asset.AddEntry_Float( "basedist", 0.0, 0.0, 1000000.0 ).SetTitle( "Base dist" ).SetToolTip( "Distance at which fog density is 0" );
+	Asset.AddEntry_Float( "halfdist", 0.0, 0.0, 1000000.0 ).SetTitle( "Half dist" ).SetToolTip( "Distance at which fog density is 0.5" );
+	Asset.AddEntry_Float( "baseheight", 0.0, -1000000.0, 1000000.0 ).SetTitle( "Base height" ).SetToolTip( "Controls the base height" );
+	Asset.AddEntry_Float( "halfheight", 0.0, -1000000.0, 1000000.0 ).SetTitle( "Half height" ).SetToolTip( "Controls the half height" );
+	Asset.AddEntry_Float( "skyhalfheightoffset", 0.0, -1000000.0, 1000000.0 ).SetTitle( "Sky half height offset" ).SetToolTip( "Offsets the regular half height control for the fog on the sky" );
+
+	Asset.AddEntry_Float( "probebakeworldfogdensityscaler", 1.0, 0.0, 1.0 ).SetTitle( "Probe bake world fog density scaler" ).SetToolTip( "Scaler to adjust density of world fog in probe bakes" );
+	Asset.AddEntry_Float( "probebakelitfogdensityscaler", 1.0, 0.0, 1.0 ).SetTitle( "Probe bake lit fog density scaler" ).SetToolTip( "Scaler to adjust density of lit fog in probe bakes" );
+
+	Asset.AddEntry_Float( "worldfogskysize", 65000.0, 0.0, 65000.0 ).SetTitle( "World fog sky size" ).SetToolTip( "Controls the distance at which the skybox gets fogged for world fog" );
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	if ( worldFog  )
+	{
+		Asset.BeginCategory( "World Fog" );
+		Asset.AddEntry_Color( "fogcolor", 0, 0, 0, 1.0 ).SetTitle( "Fog color" ).SetToolTip( "the default fog color is (0, 0, 0)." );
+		Asset.AddEntry_Float( "fogopacity", 0.0, 0.0, 1.0 ).SetTitle( "Fog opacity" ).SetToolTip( "Controls the fog opacity" );
+		Asset.AddEntry_Float( "fogintensity", 0.0, 0.0, 8192.0 ).SetTitle( "Fog intensity" ).SetToolTip( "Controls the fog intensity" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	if ( sunFog || atmosphereFog)
+	{
+		Asset.BeginCategory( "Sun Position" );
+		Asset.AddEntry_Float( "sunpitchoffset", 0.0, -90.0, 90.0 ).SetTitle( "Sun Fog pitch offset" ).SetToolTip( "Controls the offset from the active Sun pitch" );
+		Asset.AddEntry_Float( "sunyawoffset", 0.0, -180.0, 180.0 ).SetTitle( "Sun Fog yaw offset" ).SetToolTip( "Controls the offset from the active Sun yaw" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	if ( sunFog )
+	{
+		Asset.BeginCategory( "Sun Fog" );
+
+		Asset.AddEntry_Color( "sunfogcolor", 0, 0, 0, 1.0 ).SetTitle( "Sun Fog color" ).SetToolTip( "the default sun fog color is (0, 0, 0)." ).SetShowAlpha( false );
+		Asset.AddEntry_Float( "sunfogopacity", 0.0, 0.0, 1.0 ).SetTitle( "Sun Fog opacity" ).SetToolTip( "Controls the sun fog opacity" );
+		Asset.AddEntry_Float( "sunfogintensity", 0.0, 0.0, 8192.0 ).SetTitle( "Sun Fog intensity" ).SetToolTip( "Controls the sun fog intensity" );
+	
+		Asset.AddEntry_Float( "sunfoginner", 0.0, 0.0, 100.0 ).SetTitle( "Sun Fog inner" ).SetToolTip( "Controls the sun fog inner" );
+		Asset.AddEntry_Float( "sunfogouter", 0.0, 0.0, 100.0 ).SetTitle( "Sun Fog outer" ).SetToolTip( "Controls the sun fog outer" );
+	}
+	
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	if ( atmosphereFog )
+	{
+		Asset.BeginCategory( "Atmosphere Fog" );
+		
+		bool sunEnabled = Asset.AddEntry_CheckBox( "atmospheresunenabled", true ).SetTitle( "Enable Sun" ).UpdateOnChange( true ).GetBool();
+		
+		Asset.AddEntry_Color( "atmospherefogcolor", 0.11, 0.49, 0.84, 1.0 ).SetTitle( "Fog color (Raleigh)" ).SetToolTip( "the default fog color is (0, 0, 0)." );
+		
+		if(sunEnabled)
+		{
+			Asset.AddEntry_Color( "atmospherehazecolor", 0.87, 0.49, 0.08, 1.0 ).SetTitle( "Sun haze color (Mie)" ).SetToolTip( "the default haze color is (0, 0, 0)." );
+			Asset.AddEntry_Float( "atmospherehazebasedist", 0.0, 0.0, 1000000.0 ).SetTitle( "Sun haze base dist" ).SetToolTip( "Distance at which haze density is 0" );
+			Asset.AddEntry_Float( "atmospherehazefadedist", 0.0, 0.0, 1000000.0 ).SetTitle( "Sun haze fade dist" ).SetToolTip( "Distance over which to fade in the haze density to 1.0" );
+			Asset.AddEntry_Float( "atmospherehazedensity", 0.5, 0.0, 10.0 ).SetTitle( "Sun haze strength" ).SetToolTip( "Haze strength sets the portion of the overall density that is allocated to haze with the remainder assigned to fog" );
+			Asset.AddEntry_Float( "atmospherehazespread", 0.01, 0.0, 1.0 ).SetTitle( "Sun haze spread" ).SetToolTip( "Controls the relationship between the sun direction and haze distribution in the scene" );
+		}
+
+		Asset.AddEntry_Float( "atmospherefogdensity", 1.0, 0.0, 10.0 ).SetTitle( "Fog density" ).SetToolTip( "Controls the fog density" );
+		Asset.AddEntry_Float( "atmosphereinscatterstrength", 17.0, 0.0, 1000.0 ).SetTitle( "Fog brightnesss/In-scatter strength" ).SetToolTip( "In Scatter Intensity allows you to scale up or down the amount of in scatter we apply to the scene" );
+		Asset.AddEntry_Float( "atmosphereextinctionstrength", 0.0, 0.0, 1.0 ).SetTitle( "Fog Opacity/Extinction strength" ).SetToolTip( "Controls the opacity of the fog (ie. how fog gets blended with the background)" );
+		Asset.AddEntry_Float( "atmospherepbramount", 1.0, 0.0, 1.0 ).SetTitle( "PBR amount" ).SetToolTip( "Controls whether the fog is physically based rendered or not" );
+	}
+
+	// -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+	if ( litFog )
+	{
+		Asset.BeginCategory( "Lit Fog" );
+		Asset.AddEntry_Color( "extcolor", 1, 1, 1, 1.0 ).SetTitle( "Extinction Color" ).SetToolTip( "Extinction color at half-distance. Only visible when albedo < 1" ).SetShowAlpha( false );
+		Asset.AddEntry_Float( "distribution", 0.0, -1.0, 1.0 ).SetTitle( "Phase Distribution" ).SetToolTip( "Range( -1, 1 ) where -1 = 100 back-scattering, 0 (default) = isotropic scattering, +1 = 100% forward scattering" ).SetStep(0.1);
+		Asset.AddEntry_Float( "albedo", 1.0, 0.0, 1.0 ).SetTitle( "Scattering Albedo" ).SetToolTip( "Scattering albedo. Range(0,1) where 0 = 100% absorption, 1 = 100% scattering" ).SetStep(0.1);
+		Asset.AddEntry_Float( "densityscaler", 1.0, 0.0, 50.0 ).SetTitle( "Fog Density Scaler" ).SetToolTip( "Fog Density scaler. Range(0,10) where 0 = no fog, 10 = 10x fog" ).SetStep(0.1);
+		Asset.AddEntry_Float( "probecontributionscaler", 1.0, 0.0, 50.0 ).SetTitle( "Probe Light Scatter Intensity" ).SetToolTip( "Scales the amount the probe lights contibutes to the lit fog" ).SetStep(0.1);
+		
+
+		Asset.AddEntry_CheckBox( "suncoloroverridenenabled", false ).SetTitle( "Enable Sun Color Override" ).UpdateOnChange( true ).GetBool();
+		Asset.AddEntry_Color( "suncoloroverride", 1, 1, 1, 1.0 ).SetTitle( "Sun Color Override" ).SetToolTip( "Sun color override" ).SetShowAlpha( false );
+		Asset.AddEntry_Float( "sunintensityscale", 0.0, -14.0, 14.0 ).SetTitle( "Sun Light Scatter Intensity Boost (in stops)" ).SetToolTip( "Boosts the intensity of the sun light scatter (in stops)" ).SetStep(0.25);
+		Asset.AddEntry_Float( "maxlitsunfogdistance", 2000.0, 1.0, 65000.0 ).SetTitle( "Max lit sun fog distance" ).SetToolTip( "Sets the maximum distance at which the lit sun fog will be calculated" ).SetStep(100);
+		Asset.AddEntry_Float( "maxlitomnispotfogdistance", 2000.0, 1.0, 65000.0 ).SetTitle( "Max lit omni and spot fog distance" ).SetToolTip( "Sets the maximum distance at which the omni and spot lit fog will be calculated" ).SetStep(100);
+	}
+}
