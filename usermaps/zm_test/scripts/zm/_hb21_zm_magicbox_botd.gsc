@@ -151,6 +151,7 @@ function botd_treasure_chest_glowfx()
 function botd_magic_box_do_weapon_rise()
 {
 	self endon( "box_hacked_respin" );
+	self thread weapon_selection_sound();
 	wait .5;
 	self setZBarrierPieceState( 3, "closed" );
 	self setZBarrierPieceState( 4, "closed" );
@@ -164,6 +165,13 @@ function botd_magic_box_do_weapon_rise()
 	
 	self hideZBarrierPiece( 3 );
 	self hideZBarrierPiece( 4 );
+}
+
+function weapon_selection_sound()
+{
+    self endon("box_hacked_respin");
+	wait 3.75;
+	self playSound("zmb_motd_magicbox_weapon_select");
 }
 
 function botd_process_magic_box_zbarrier_state( str_state )
