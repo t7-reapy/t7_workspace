@@ -239,7 +239,7 @@ function private mission_briefing()
     level flag::wait_till("initial_blackscreen_passed");
 
     // A bit of delay before typing
-    wait 5;
+    wait 13;
 
     typewriter::type(
         "Date: December 20th, 2025",

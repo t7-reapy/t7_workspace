@@ -104,6 +104,6 @@ function private update_weapon_camo_for_hellround(enable, weapon) // self == pla
 
     if (isdefined(camo_index))
     {
-        zm_xcdylan93_utils::update_weapon_camo(camo_index, weapon, weapon.altWeapon, 0);
+        self zm_xcdylan93_utils::update_weapon_camo(camo_index, weapon, weapon.altWeapon, 0);
     }
 }
