@@ -27,6 +27,9 @@ require( "ui.uieditor.widgets.HUD.H1ScoreWidget.H1ScoreContainer" )
 require( "ui.uieditor.widgets.HUD.H1ScoreboardWidget.H1Scoreboard" )
 require( "ui.uieditor.widgets.HUD.KingslayerPowerupsWidget.KingslayerPowerupsContainer" )
 
+-- Save Data Utility
+require("ui.t7.utility.SavingDataUtility")
+
 CoD.Zombie.CommonHudRequire()
 
 local PreLoadFunc = function ( self, controller )
@@ -474,6 +477,20 @@ LUI.createMenu.T7Hud_zm_factory = function ( controller )
 			controller = controller
 		} )
 	end
+
+    -- JariK Code added for saving data
+    local function CheckForSaveData(ModelRef)
+        if IsParamModelEqualToString(ModelRef, "set_save_data") then
+            local notifyData = CoD.GetScriptNotifyData( ModelRef )
+            CoD.SavingDataUtility.SaveData(controller, notifyData[1], notifyData[2])
+        elseif IsParamModelEqualToString(ModelRef, "get_save_data") then
+            local notifyData = CoD.GetScriptNotifyData( ModelRef )
+            local SaveDataValue = CoD.SavingDataUtility.GetData(controller, notifyData[1])
+            Engine.SendMenuResponse(controller, "restartgamepopup", notifyData[1] .. "," .. SaveDataValue)
+        end
+    end
+    self:subscribeToGlobalModel(controller, "PerController", "scriptNotify", CheckForSaveData)
+    -- End edit JariK
 
 	LUI.OverrideFunction_CallOriginalSecond( self, "close", function ( element )
 		element.DummyFont1:close()

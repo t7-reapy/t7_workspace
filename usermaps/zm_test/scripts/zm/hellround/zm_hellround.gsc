@@ -103,6 +103,11 @@ function add_meteor_trigger_callback(func_ptr)
     zm_hellround_meteor::add_meteor_trigger_callback(func_ptr);
 }
 
+function game_finished_with_success()
+{
+    zm_hellround_reward::game_finished_with_success();
+}
+
 function private enable_good_ending()
 {
     level.hellround.ending = GOOD_ENDING;
@@ -135,7 +140,7 @@ function private bind_callbacks()
     zm_hellround_spawn_manager::add_ai_spawn_callback(&zm_bloodsplatter::watch_actor);
     zm_hellround_spawn_manager::bind_reward_callback(&zm_hellround_reward::give_reward);
     
-    zm_hellround_reward::bind_high_tier_reward_callback(&zm_hellround_mysterybox::permanent_unlock);
+    zm_hellround_reward::add_high_tier_reward_callback(&zm_hellround_mysterybox::permanent_unlock);
 
     // Hellround powerup and collector should never be canceled because bad iteration is no more available after feeding cerberus heads.
     // I'm not fond of that, but we still bind this logic because its part of the hellround overall logic.

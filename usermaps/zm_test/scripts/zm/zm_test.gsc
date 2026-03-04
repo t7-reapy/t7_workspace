@@ -239,7 +239,7 @@ function private mission_briefing()
     level flag::wait_till("initial_blackscreen_passed");
 
     // A bit of delay before typing
-    wait 5;
+    wait 13;
 
     typewriter::type(
         "Date: December 20th, 2025",
@@ -419,6 +419,7 @@ function private bind_room_of_thanks_callbacks()
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&fauna_stop);
 
     // Exit room of thanks
+    zm_room_of_thanks::add_exit_room_of_thanks_callback(&zm_hellround::game_finished_with_success);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&knuckle_crack_players);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&transition_screen);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&set_lighting_state_normal);
@@ -635,6 +636,11 @@ function private configure_weapon_inspection()
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927_up"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927_up_up"), 5);
+    
+    // BO4
+    inspectable::add_inspectable_weapon(GetWeapon("t8_maddox_rfb"), 5);
+    inspectable::add_inspectable_weapon(GetWeapon("t8_maddox_rfb_up"), 5);
+    inspectable::add_inspectable_weapon(GetWeapon("t8_maddox_rfb_up_up"), 5);
 }
 
 /* endregion */

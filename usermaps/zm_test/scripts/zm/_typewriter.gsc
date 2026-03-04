@@ -14,6 +14,10 @@ class TypeWritterSettings
     var typing_frequency_milliseconds;
     var typing_decay_duration_milliseconds;
     var delay_before_decaying_out_milliseconds;
+
+    var typing_frequency_milliseconds_for_client;
+    var typing_decay_duration_milliseconds_for_client;
+    var delay_before_decaying_out_milliseconds_for_client;
 }
 
 function private init()
@@ -22,6 +26,10 @@ function private init()
     level.typewriter.typing_frequency_milliseconds = 75;
     level.typewriter.typing_decay_duration_milliseconds = 3000;
     level.typewriter.delay_before_decaying_out_milliseconds = 3000;
+
+    level.typewriter.typing_frequency_milliseconds_for_client = Int(level.typewriter.typing_frequency_milliseconds / 2);
+    level.typewriter.typing_decay_duration_milliseconds_for_client = Int(level.typewriter.typing_decay_duration_milliseconds / 2);
+    level.typewriter.delay_before_decaying_out_milliseconds_for_client = level.typewriter.delay_before_decaying_out_milliseconds;
 }
 
 function type(...)
@@ -58,6 +66,45 @@ function type(...)
     wait (level.typewriter.delay_before_decaying_out_milliseconds + level.typewriter.typing_decay_duration_milliseconds * str_text.size) / 1000;
 
     foreach (hudelem in intro_hud)
+    {
+		hudelem Destroy();
+    }
+}
+
+function type_for_player(player, messages)
+{
+    hud = [];
+    str_text = messages;
+
+    for (i = 0; i < str_text.size; i++)
+    {
+        hud[i] = NewClientHudElem(player);
+        hud[i].x = 20;
+        hud[i].y = -110 + (10 * i);
+        hud[i].fontscale = (IsSplitScreen() ? 2.00 : 1.00);
+        hud[i].alignx = "LEFT";
+        hud[i].aligny = "BOTTOM";
+        hud[i].horzalign = "LEFT";
+        hud[i].vertalign = "BOTTOM";
+        hud[i].color = (1.0, 1.0, 1.0);
+        hud[i].alpha = 1;
+        hud[i].sort = 0;
+        hud[i].foreground = true;
+        hud[i].hidewheninmenu = true;
+        hud[i].archived = false;
+        hud[i].showplayerteamhudelemtospectator = true;
+        hud[i] SetText(str_text[i]);
+        hud[i] SetTypewriterFX(
+            level.typewriter.typing_frequency_milliseconds_for_client, 
+            (level.typewriter.delay_before_decaying_out_milliseconds_for_client + level.typewriter.typing_decay_duration_milliseconds_for_client * str_text.size) - (level.typewriter.typing_decay_duration_milliseconds_for_client * i), 
+            level.typewriter.typing_decay_duration_milliseconds_for_client);
+
+        wait level.typewriter.typing_decay_duration_milliseconds_for_client / 1000;
+    }
+
+    wait (level.typewriter.delay_before_decaying_out_milliseconds_for_client + level.typewriter.typing_decay_duration_milliseconds_for_client * str_text.size) / 1000;
+
+    foreach (hudelem in hud)
     {
 		hudelem Destroy();
     }
