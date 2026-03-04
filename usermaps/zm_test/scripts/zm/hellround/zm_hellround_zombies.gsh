@@ -1,5 +1,5 @@
-#define ORIGINAL_ZOMBIE_BODY_MODELS array("bf3_helmet01", "bf3_medic02", "bf3_medic03", "bf3_medic04")
-#define ORIGINAL_ZOMBIE_HEAD_MODELS array()
+#define ORIGINAL_ZOMBIE_BODY_MODELS array("c_t7_zm_dlchd_origins_soldiers_body1", "c_t7_zm_dlchd_origins_soldiers_body2", "c_t7_zm_dlchd_origins_soldiers_body2a", "c_t7_zm_dlchd_origins_soldiers_body3", "c_t7_zm_dlchd_origins_soldiers_body3a")
+#define ORIGINAL_ZOMBIE_HEAD_MODELS array("c_t7_zm_dlchd_origins_soldiers_head1", "c_t7_zm_dlchd_origins_soldiers_head2", "c_t7_zm_dlchd_origins_soldiers_head3")
 
 #define HRZM_ZOMBIE_TIME_BEFORE_TOGGLE 0.50
 

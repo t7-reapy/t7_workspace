@@ -195,75 +195,93 @@ function private dlchd_origins_zombie_damage_models_from_body_style(body_style) 
 {
     switch (body_style)
     {
-        case "bf3_helmet01":
-            self bf3_helmet01();
+        case "c_t7_zm_dlchd_origins_soldiers_body1":
+            self dlchd_origins_zombie_damage_model_1();
             break;
-        case "bf3_medic02":
-            self bf3_medic02();
+        case "c_t7_zm_dlchd_origins_soldiers_body2":
+            self dlchd_origins_zombie_damage_model_2();
             break;
-        case "bf3_medic03":
-            self bf3_medic03();
+        case "c_t7_zm_dlchd_origins_soldiers_body2a":
+            self dlchd_origins_zombie_damage_model_2a();
             break;
-        case "bf3_medic04":
-            self bf3_medic04();
-            break;            
+        case "c_t7_zm_dlchd_origins_soldiers_body3":
+            self dlchd_origins_zombie_damage_model_3();
+            break;
+        case "c_t7_zm_dlchd_origins_soldiers_body3a":
+            self dlchd_origins_zombie_damage_model_3a();
+            break;
+            
     }
 }
 
-function private bf3_helmet01() // self == zombie
+function private dlchd_origins_zombie_damage_model_1() // self == zombie
 {
-    self.torsodmg1 = "bf3_helmet01_upperclean";
-    self.torsodmg2 = "bf3_helmet01_upper_arm_ri";
-    self.torsodmg3 = "bf3_helmet01_upper_arm_le";
-    self.torsodmg4 = "bf3_helmet01_upperclean";
-    self.torsodmg5 = undefined;
+    self.torsodmg1 = "c_t7_zm_dlchd_origins_soldiers_body1_upperclean";
+    self.torsodmg2 = "c_t7_zm_dlchd_origins_soldiers_body1_rarmoff";
+    self.torsodmg3 = "c_t7_zm_dlchd_origins_soldiers_body1_larmoff";
+    self.torsodmg4 = "c_t7_zm_dlchd_origins_soldiers_body1_upperclean";
+    self.torsodmg5 = "c_t7_zm_dlchd_origins_soldiers_body1_beheaded";
 
-    self.legdmg1 = "bf3_helmet01_legsclean";
-    self.legdmg2 = "bf3_helmet01_legs_le";
-    self.legdmg3 = "bf3_helmet01_legs_le";
-    self.legdmg4 = "bf3_helmet01_legs_2";
+    self.legdmg1 = "c_t7_zm_dlchd_origins_soldiers_body1_lowclean";
+    self.legdmg2 = "c_t7_zm_dlchd_origins_soldiers_body1_rlegoff";
+    self.legdmg3 = "c_t7_zm_dlchd_origins_soldiers_body1_llegoff";
+    self.legdmg4 = "c_t7_zm_dlchd_origins_soldiers_body1_blegsoff";
 }
 
-function private bf3_medic02() // self == zombie
+function private dlchd_origins_zombie_damage_model_2() // self == zombie
 {
-    self.torsodmg1 = "bf3_medic02_upperclean";
-    self.torsodmg2 = "bf3_medic02_upper_ri";
-    self.torsodmg3 = "bf3_medic02_upper_le";
-    self.torsodmg4 = "bf3_medic02_upperclean";
-    self.torsodmg5 = undefined;
+    self.torsodmg1 = "c_t7_zm_dlchd_origins_soldiers_body2_upperclean";
+    self.torsodmg2 = "c_t7_zm_dlchd_origins_soldiers_body2_rarmoff";
+    self.torsodmg3 = "c_t7_zm_dlchd_origins_soldiers_body2_larmoff";
+    self.torsodmg4 = "c_t7_zm_dlchd_origins_soldiers_body2_upperclean";
+    self.torsodmg5 = "c_t7_zm_dlchd_origins_soldiers_body1_beheaded";
 
-    self.legdmg1 = "bf3_medic02_legsclean";
-    self.legdmg2 = "bf3_medic02_legs_le";
-    self.legdmg3 = "bf3_medic02_legs_le";
-    self.legdmg4 = "bf3_medic02_legs_2";
+    self.legdmg1 = "c_t7_zm_dlchd_origins_soldiers_body2_lowclean";
+    self.legdmg2 = "c_t7_zm_dlchd_origins_soldiers_body2_rlegoff";
+    self.legdmg3 = "c_t7_zm_dlchd_origins_soldiers_body2_llegoff";
+    self.legdmg4 = "c_t7_zm_dlchd_origins_soldiers_body1_blegsoff";
 }
 
-function private bf3_medic03() // self == zombie
+function private dlchd_origins_zombie_damage_model_2a() // self == zombie
 {
-    self.torsodmg1 = "bf3_medic03_upperclean";
-    self.torsodmg2 = "bf3_medic03_upper_ri";
-    self.torsodmg3 = "bf3_medic03_upper_le";
-    self.torsodmg4 = "bf3_medic03_upperclean";
-    self.torsodmg5 = undefined;
+    self.torsodmg1 = "c_t7_zm_dlchd_origins_soldiers_body2a_upperclean";
+    self.torsodmg2 = "c_t7_zm_dlchd_origins_soldiers_body2a_rarmoff";
+    self.torsodmg3 = "c_t7_zm_dlchd_origins_soldiers_body2a_larmoff";
+    self.torsodmg4 = "c_t7_zm_dlchd_origins_soldiers_body2a_upperclean";
+    self.torsodmg5 = "c_t7_zm_dlchd_origins_soldiers_body1_beheaded";
 
-    self.legdmg1 = "bf3_medic03_legsclean";
-    self.legdmg2 = "bf3_medic03_legs_le";
-    self.legdmg3 = "bf3_medic03_legs_le";
-    self.legdmg4 = "bf3_medic03_legs_2";
+    self.legdmg1 = "c_t7_zm_dlchd_origins_soldiers_body2a_lowclean";
+    self.legdmg2 = "c_t7_zm_dlchd_origins_soldiers_body2a_rlegoff";
+    self.legdmg3 = "c_t7_zm_dlchd_origins_soldiers_body2a_llegoff";
+    self.legdmg4 = "c_t7_zm_dlchd_origins_soldiers_body2a_blegsoff";
 }
 
-function private bf3_medic04() // self == zombie
+function private dlchd_origins_zombie_damage_model_3() // self == zombie
 {
-    self.torsodmg1 = "bf3_medic04_upperclean";
-    self.torsodmg2 = "bf3_medic04_upper_ri";
-    self.torsodmg3 = "bf3_medic04_upper_le";
-    self.torsodmg4 = "bf3_medic04_upperclean";
-    self.torsodmg5 = undefined;
+    self.torsodmg1 = "c_t7_zm_dlchd_origins_soldiers_body3_upperclean";
+    self.torsodmg2 = "c_t7_zm_dlchd_origins_soldiers_body3_rarmoff";
+    self.torsodmg3 = "c_t7_zm_dlchd_origins_soldiers_body3_larmoff";
+    self.torsodmg4 = "c_t7_zm_dlchd_origins_soldiers_body3_upperclean";
+    self.torsodmg5 = "c_t7_zm_dlchd_origins_soldiers_body1_beheaded";
 
-    self.legdmg1 = "bf3_medic04_legsclean";
-    self.legdmg2 = "bf3_medic04_legs_le";
-    self.legdmg3 = "bf3_medic04_legs_le";
-    self.legdmg4 = "bf3_medic04_legs_2";
+    self.legdmg1 = "c_t7_zm_dlchd_origins_soldiers_body2_lowclean";
+    self.legdmg2 = "c_t7_zm_dlchd_origins_soldiers_body2_rlegoff";
+    self.legdmg3 = "c_t7_zm_dlchd_origins_soldiers_body2_llegoff";
+    self.legdmg4 = "c_t7_zm_dlchd_origins_soldiers_body1_blegsoff";
+}
+
+function private dlchd_origins_zombie_damage_model_3a() // self == zombie
+{
+    self.torsodmg1 = "c_t7_zm_dlchd_origins_soldiers_body3_upperclean";
+    self.torsodmg2 = "c_t7_zm_dlchd_origins_soldiers_body3_rarmoff";
+    self.torsodmg3 = "c_t7_zm_dlchd_origins_soldiers_body3_larmoff";
+    self.torsodmg4 = "c_t7_zm_dlchd_origins_soldiers_body3_upperclean";
+    self.torsodmg5 = "c_t7_zm_dlchd_origins_soldiers_body1_beheaded";
+
+    self.legdmg1 = "c_t7_zm_dlchd_origins_soldiers_body2a_lowclean";
+    self.legdmg2 = "c_t7_zm_dlchd_origins_soldiers_body2a_rlegoff";
+    self.legdmg3 = "c_t7_zm_dlchd_origins_soldiers_body2a_llegoff";
+    self.legdmg4 = "c_t7_zm_dlchd_origins_soldiers_body2a_blegsoff";
 }
 
 /* endregion */
