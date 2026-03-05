@@ -90,6 +90,7 @@ function disable_hellround_zombies()
             continue;
         }
 
+        zombie.voicePrefix = HRZM_ZOMBIE_VOICEPREFIX_DEFAULT;
         zombie set_back_to_default_eye_glow();
         zombie thread set_back_to_default_zombie();
         zombie thread zm_utility::init_zombie_run_cycle();
@@ -102,6 +103,7 @@ function private apply_hellround_events_to_zombie() // self == zombie actor
     self set_eye_glow_to_hellround();
     self thread set_zombie_model_to_hellround();
     self enable_zombie_bloodbath(true);
+    self.voicePrefix = HRZM_ZOMBIE_VOICEPREFIX;
 
     if (HRZM_ZOMBIE_RUN_STATE_ENABLE)
     {

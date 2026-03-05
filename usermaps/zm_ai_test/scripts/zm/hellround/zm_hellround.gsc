@@ -15,6 +15,7 @@
 #using scripts\zm\_hb21_zm_behavior;
 #using scripts\zm\_zm_bloodsplatter;
 #using scripts\zm\zm_wolf_soul_collectors;
+#using scripts\zm\hellround\zm_hellround_announcer;
 #using scripts\zm\hellround\zm_hellround_collectors;
 #using scripts\zm\hellround\zm_hellround_environment;
 #using scripts\zm\hellround\zm_hellround_mysterybox;
@@ -134,9 +135,11 @@ function private bind_callbacks()
 
     zm_hellround_spawn_manager::bind_toggle_hellround_callback(&call_toggle_callbacks);
     zm_hellround_spawn_manager::add_ai_spawn_callback(&zm_bloodsplatter::watch_actor);
+    zm_hellround_spawn_manager::add_ai_spawn_callback(&zm_hellround_announcer::watch_ai_kill);
     zm_hellround_spawn_manager::bind_reward_callback(&zm_hellround_reward::give_reward);
     
     zm_hellround_reward::add_high_tier_reward_callback(&zm_hellround_mysterybox::permanent_unlock);
+    zm_hellround_reward::add_high_tier_reward_callback(&zm_hellround_announcer::bad_path_survived);
 
     // Hellround powerup and collector should never be canceled because bad iteration is no more available after feeding cerberus heads.
     // I'm not fond of that, but we still bind this logic because its part of the hellround overall logic.
@@ -145,11 +148,13 @@ function private bind_callbacks()
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_powerup::lose_minigun_callback);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&enable_bad_ending);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_music::enable_bad_ending);
+    zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_announcer::bad_path_started);
 
     zm_hellround_collectors::bind_start_collection_callback(&zm_hellround_spawn_manager::iteration_time_management_update);
     zm_hellround_collectors::bind_stop_collection_callback(&zm_hellround_spawn_manager::hellround_stops);
     zm_hellround_collectors::bind_reward_callback(&zm_hellround_reward::give_reward);
-    zm_hellround_collectors::bind_completion_callback(&zm_hellround_meteor::hellround_meteor_logic);
+    zm_hellround_collectors::add_completion_callbacks(&zm_hellround_meteor::hellround_meteor_logic);
+    zm_hellround_collectors::add_completion_callbacks(&zm_hellround_announcer::finished_good_path);
 
     zm_hellround_meteor::add_meteor_trigger_callback(&enable_good_ending);
     zm_hellround_meteor::add_meteor_trigger_callback(&zm_hellround_music::enable_good_ending);
@@ -192,6 +197,7 @@ function private temporary_invulnerability(b_enable)
 
 function private hellround_cerberus_enable(is_one_head_already_active)
 {
+    thread zm_hellround_announcer::cerberus_feeding_started();
     zm_hellround_spawn_manager::iteration_time_management_update();
     if (!is_one_head_already_active)
     {
@@ -206,12 +212,14 @@ function private hellround_cerberus_disable(is_one_head_still_active, location)
         thread zm_hellround_spawn_manager::hellround_stops();
     }
 
+    thread zm_hellround_announcer::iteration_complete();
     thread zm_hellround_reward::give_reward(location);
 }
 
 function private hellround_cerberus_fed()
 {
     thread zm_hellround_spawn_manager::abolish_bad_hellround();
+    thread zm_hellround_announcer::wait_for_hellround_bad_flag_when_abolished();
     thread zm_hellround_spawn_manager::hellround_stops();
     thread zm_hellround_spawn_manager::hellround_progress();
 }
