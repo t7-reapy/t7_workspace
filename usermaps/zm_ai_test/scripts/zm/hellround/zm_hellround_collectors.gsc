@@ -32,7 +32,7 @@ class HellroundCollectors
     var collection_start_callback;
     var collection_stop_callback;
     var reward_callback;
-    var completion_callback;
+    var completion_callbacks;
 }
 
 function private init()
@@ -64,7 +64,7 @@ function private init()
     level.hellround_collectors.souls[2] = 0;
     level.hellround_collectors.collection_start_callback = undefined;
     level.hellround_collectors.collection_stop_callback = undefined;
-    level.hellround_collectors.completion_callback = undefined;
+    level.hellround_collectors.completion_callbacks = [];
 
     callback::on_connect(&sync_hellround_collectors);
     callback::on_ai_spawned(&watch_ai_death_for_collection);
@@ -421,7 +421,7 @@ function private collect_souls(n_iteration) // self == collector skull ent
     if (should_notify_completion())
     {
         wait HRCOLL_DELAY_BEFORE_COMPLETION;
-        notify_completion_callback();
+        notify_completion_callbacks();
     }
 }
 
@@ -526,20 +526,20 @@ function private give_players_iteration_reward(location)
     }
 }
 
-function bind_completion_callback(func_ptr)
+function add_completion_callbacks(func_ptr)
 {
     if (IsFunctionPtr(func_ptr))
     {
-        level.hellround_collectors.completion_callback = func_ptr;
+        level.hellround_collectors.completion_callbacks[level.hellround_collectors.completion_callbacks.size] = func_ptr;
     }
 }
 
-function private notify_completion_callback(func_ptr)
+function private notify_completion_callbacks()
 {
-    if (isdefined(level.hellround_collectors.completion_callback))
+    foreach (callback in level.hellround_collectors.completion_callbacks)
     {
-        PRINT_HR_DEBUG("Calling HR collectors completion callback !");
-        thread [[ level.hellround_collectors.completion_callback ]]();
+        PRINT_HR_DEBUG("Calling HR collectors completion callbacks !");
+        thread [[ callback ]]();
     }
 }
 
