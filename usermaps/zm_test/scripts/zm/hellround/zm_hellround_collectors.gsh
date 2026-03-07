@@ -34,4 +34,4 @@
 #define HRCOLL_SND_COMPLETED "hr_collector_completed"
 
 // Delay applied before notifying the game that collection was completed by players
-#define HRCOLL_DELAY_BEFORE_COMPLETION 10.0
+#define HRCOLL_DELAY_BEFORE_COMPLETION 1.0

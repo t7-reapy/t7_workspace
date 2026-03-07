@@ -359,9 +359,9 @@ function private napalm_should_spawn_fire()
 
 function private hellround_increase_ai_limit()
 {
-    // Based on initial values (24 & 31 respectivelly), no real justification here.
-    level.zombie_ai_limit = 64;
-    level.zombie_actor_limit = 71;
+    // Initial values are 24 & 31, no real justification here.
+    level.zombie_ai_limit = 54;
+    level.zombie_actor_limit = 61;
 }
 
 function private hellround_restore_ai_limit()
@@ -564,7 +564,7 @@ function private spawn_zombies_loop(spawn_flag)
             return;
         }
 
-        if (zombie_utility::get_current_zombie_count() >= level.zombie_ai_limit)
+        if (GetAiSpeciesArray(level.zombie_team, "all").size >= level.zombie_ai_limit)
         {
             continue;
         }
@@ -599,7 +599,7 @@ function private spawn_dogs_loop(spawn_flag)
             return;
         }
 
-        if (zombie_utility::get_current_zombie_count() >= level.zombie_ai_limit)
+        if (GetAiSpeciesArray(level.zombie_team, "all").size >= level.zombie_ai_limit)
         {
             continue;
         }
@@ -634,7 +634,7 @@ function private spawn_apothicon_furies_loop(spawn_flag)
             return;
         }
 
-        if (zombie_utility::get_current_zombie_count() >= level.zombie_ai_limit)
+        if (GetAiSpeciesArray(level.zombie_team, "all").size >= level.zombie_ai_limit)
         {
             continue;
         }
@@ -669,7 +669,7 @@ function private spawn_wasps_loop(spawn_flag)
             return;
         }
 
-        if (zombie_utility::get_current_zombie_count() >= level.zombie_ai_limit)
+        if (GetAiSpeciesArray(level.zombie_team, "all").size >= level.zombie_ai_limit)
         {
             continue;
         }
@@ -704,7 +704,7 @@ function private spawn_napalm_zombies_loop(spawn_flag)
             return;
         }
 
-        if (zombie_utility::get_current_zombie_count() >= level.zombie_ai_limit)
+        if (GetAiSpeciesArray(level.zombie_team, "all").size >= level.zombie_ai_limit)
         {
             continue;
         }
