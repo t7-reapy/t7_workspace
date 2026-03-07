@@ -170,7 +170,7 @@ function botd_magic_box_do_weapon_rise()
 function weapon_selection_sound()
 {
     self endon("box_hacked_respin");
-	wait 3.75;
+	wait 3.5;
 	self playSound("zmb_motd_magicbox_weapon_select");
 }
 

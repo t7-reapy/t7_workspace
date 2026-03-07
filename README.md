@@ -154,6 +154,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - sword powerup can crash the map (if the sword goes out of playable zone ???)
 - After a map restart, the fog can glitch and be thicker unless reset to state 0
 - Hellround finish did not restor camo of gun in the secondary slot
+- hellround box bug: get teddy bear from box, and take the minigun powerup, the box will stick to hellround after this...
 
 # Sphynx commands cheat sheet
 

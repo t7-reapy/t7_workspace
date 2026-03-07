@@ -1,3 +1,4 @@
+#using scripts\shared\laststand_shared; 
 #using scripts\shared\flag_shared; 
 #using scripts\zm\_zm_audio; 
 #using scripts\shared\callbacks_shared; 
@@ -27,15 +28,20 @@ function private init()
     _add_vox(HRANN_VOX_ENJOYMENT);
     _add_vox(HRANN_VOX_BAD_PATH);
     _add_vox(HRANN_VOX_SURVIVED_BAD_PATH);
+    _add_vox(HRANN_VOX_FAILED_BAD_PATH);
     _add_vox(HRANN_VOX_FINISHED_GOOD_PATH);
     _add_vox(HRANN_VOX_COMPLETE_ITERATION);
     _add_vox(HRANN_VOX_START_CERBERUS);
     _add_vox(HRANN_VOX_ENABLE_POWER_GOOD);
+    _add_vox(HRANN_VOX_PLAYER_DEAD);
+
+    callback::on_spawned(&_watch_player_elimination);
 }
 
 function private main()
 {
     level.hellround_announcer thread _check_for_enjoyment();
+    level.hellround_announcer thread _check_for_endgame();
 }
 
 /* region VOX setup and play */
@@ -54,6 +60,16 @@ function private _play_vox(voiceline)
 function private _enjoy_kills()
 {
     _play_vox(HRANN_VOX_ENJOYMENT);
+}
+
+function private _enjoy_player_death()
+{
+    _play_vox(HRANN_VOX_PLAYER_DEAD);
+}
+
+function private _enjoy_game_loss()
+{
+    _play_vox(HRANN_VOX_FAILED_BAD_PATH);
 }
 
 function bad_path_started()
@@ -98,9 +114,9 @@ function watch_ai_kill() // self == ai actor
 {    
     level endon("end_game");
 
-	if(!isdefined(self))
+    if(!isdefined(self))
     {
-		return;
+        return;
     }
 
     self waittill("death");
@@ -124,5 +140,33 @@ function private _check_for_enjoyment() // self == level.hellround_announcer
                 self _enjoy_kills();
             }
         }
+    }
+}
+
+function private _check_for_endgame() // self == level.hellround_announcer
+{
+    level waittill("end_game");
+
+    if (zm_hellround_shared::is_bad_iteration_running())
+    {
+        self _enjoy_game_loss();
+    }
+}
+
+
+function private _watch_player_elimination() // self == player
+{
+    self endon("disconnect");
+	self endon("spawned_player");
+    level endon("end_game");
+
+    while(isdefined(self) && self.sessionstate != "spectator")
+    {
+        wait 0.5;
+    }
+
+    if (zm_hellround_shared::is_bad_iteration_running())
+    {
+        self _enjoy_player_death();
     }
 }

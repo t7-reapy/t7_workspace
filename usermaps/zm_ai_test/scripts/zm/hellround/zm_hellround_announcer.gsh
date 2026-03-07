@@ -3,6 +3,8 @@
 #define HRANN_VOX_ENJOYMENT "hellround_massacre_0"
 #define HRANN_VOX_BAD_PATH "hellround_bad_path_0"
 #define HRANN_VOX_SURVIVED_BAD_PATH "hellround_survived_bad_path_0"
+#define HRANN_VOX_FAILED_BAD_PATH "hellround_bad_path_lost_0"
+#define HRANN_VOX_PLAYER_DEAD "hellround_bad_path_player_down_0"
 #define HRANN_VOX_FINISHED_GOOD_PATH "hellround_finished_good_path_0"
 #define HRANN_VOX_COMPLETE_ITERATION "hellround_complete_iteration_0"
 #define HRANN_VOX_START_CERBERUS "hellround_start_cerberus_0"
