@@ -36,6 +36,12 @@ function toggle_hellround_music(b_enable)
     {
         iteration = zm_hellround_shared::get_current_iteration();
     }
+
+    if (IS_TRUE(level.hellround.progress_stopped))
+    {
+        iteration = HRMUS_DISABLED;
+    }
+
     level clientfield::set(HRMUS_CLIENT_FIELD, iteration);
 }
 
