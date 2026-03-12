@@ -34,6 +34,7 @@
 #using scripts\zm\_zm_ai_wasp;
 #using scripts\zm\_zm_ai_napalm;
 #using scripts\zm\zm_genesis_apothicon_fury;
+#using scripts\zm\zm_cellbreaker;
 
 #insert scripts\zm\hellround\zm_hellround_shared.gsh;
 #insert scripts\zm\hellround\zm_hellround.gsh;
@@ -46,7 +47,7 @@ REGISTER_SYSTEM_EX("zm_hellround", &init, &main, undefined)
 class hellround
 {
     var ending;
-    var abolished;
+    var progress_stopped;
     var toggle_callbacks;
 }
 
@@ -57,7 +58,7 @@ function private init()
 
     level.hellround = new hellround();
     level.hellround.ending = NEUTRAL_ENDING;
-    level.hellround.abolished = false;
+    level.hellround.progress_stopped = false;
     level.hellround.toggle_callbacks = [];
 
     // Init hellround iteration flags

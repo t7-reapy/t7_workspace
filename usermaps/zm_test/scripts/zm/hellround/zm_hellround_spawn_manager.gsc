@@ -1,3 +1,5 @@
+#using scripts\zm\_zm;
+#using scripts\zm\_zm_powerups; 
 #using scripts\shared\array_shared; 
 #using scripts\shared\flag_shared; 
 #using scripts\shared\system_shared;
@@ -8,6 +10,7 @@
 #using scripts\zm\_zm_ai_wasp;
 #using scripts\zm\_zm_ai_napalm;
 #using scripts\zm\zm_genesis_apothicon_fury;
+#using scripts\zm\zm_cellbreaker;
 
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;
@@ -83,6 +86,7 @@ function private main()
 function private hellround_bad_iteration_watcher() 
 {
     level endon(KILL_HELLROUND_BAD_ITERATION_WATCHER_NOTIFICATION);
+    level endon("end_game");
 
     level flag::wait_till(HELLROUND_BAD_FLAG_TRIGGER);
 
@@ -94,12 +98,43 @@ function private hellround_bad_iteration_watcher()
     wait_for_hellround_max_delay();
     abolish_hellrounds();
     give_players_bad_iteration_reward();
+
+    thread cellbreaker_visits();
+}
+
+function private cellbreaker_visits()
+{
+    level endon("end_game");
+
+    interval = HRSPAWN_CELLBREAK_VISIT_ROUND_INTERVAL;
+    round_number = zm::get_round_number();
+    next_round = round_number + interval;
+
+    while (true)
+    {
+        level waittill("between_round_over");
+        round_number = zm::get_round_number();
+
+        if (next_round != round_number)
+        {
+            PRINT_HR_DEBUG("Not yet a round for cellbreakers");
+            continue;
+        }
+
+        PRINT_HR_DEBUG("Cellbreakers are coming");
+        next_round += interval;
+        iteration_time_management_update();
+        hellround_starts();
+        level waittill("cellbreakers_killed");
+        hellround_stops();
+    }
 }
 
 function private hellround_iteration_watcher() 
 {
     level endon(KILL_HELLROUND_WATCHERS_NOTIFICATION);
     level endon(HELLROUND_BAD_FLAG);
+    level endon("end_game");
 
     // Cerberus (iteration 0) is not a real iteration, so we don't wait for it
     // It is managed through callbacks in zm_hellround.gsc
@@ -198,7 +233,7 @@ function abolish_hellrounds()
     // If hellround currently running, end it
     level hellround_stops();
 
-    level.hellround.abolished = true;
+    level.hellround.progress_stopped = true;
 
     // Kill other watchers first
     level notify(KILL_HELLROUND_WATCHERS_NOTIFICATION);
@@ -372,11 +407,6 @@ function private hellround_restore_ai_limit()
 
 function private hellround_stop_spawns()
 {
-    if (level.hellround.abolished) {
-        PRINT_HR_DEBUG("Hellrounds abolished. Not stopping spawns.");
-        return;
-    }
-
     // Clearing the flags stop the next coming spawns
     level flag::clear(HELLROUND_FLAGS[level.hellround_spawn_manager.current_iteration]);
 
@@ -386,8 +416,8 @@ function private hellround_stop_spawns()
 
 function private hellround_update_iteration(is_bad_version = false)
 {
-    if (level.hellround.abolished) {
-        PRINT_HR_DEBUG("Hellrounds abolished. Not progressing.");
+    if (level.hellround.progress_stopped) {
+        PRINT_HR_DEBUG("Hellrounds progress_stopped. Not progressing.");
         return;
     }
 
@@ -439,12 +469,27 @@ function private iteration_3_spawns(spawn_listen_flag)
 function private iteration_bad_spawns(spawn_listen_flag = HELLROUND_BAD_FLAG)
 {
     PRINT_HR_DEBUG("ITERATION BAD SPAWNS");
+
+    if (IS_TRUE(level.hellround.progress_stopped))
+    {
+        // In case bad iteration was already finished, we spawn cellbreakers
+        iteration_post_bad_spawns(spawn_listen_flag);
+        return;
+    }
     
     level thread spawn_zombies_loop(spawn_listen_flag);
     level thread spawn_dogs_loop(spawn_listen_flag);
     level thread spawn_apothicon_furies_loop(spawn_listen_flag);
     level thread spawn_wasps_loop(spawn_listen_flag);
     level thread spawn_napalm_zombies_loop(spawn_listen_flag);
+}
+
+function private iteration_post_bad_spawns(spawn_listen_flag = HELLROUND_BAD_FLAG)
+{
+    PRINT_HR_DEBUG("ITERATION POST BAD SPAWNS");
+
+    level thread spawn_zombies_loop(spawn_listen_flag);
+    level thread spawn_cellbreakers(spawn_listen_flag);
 }
 
 /* endregion */
@@ -716,6 +761,72 @@ function private spawn_napalm_zombies_loop(spawn_flag)
             continue;
         }
         ai ai_spawn_callbacks();
+    }
+}
+
+function private spawn_cellbreakers(spawn_flag)
+{
+    level endon("end_game");
+    level notify("spawn_cellbreakers");
+    level endon("spawn_cellbreakers");
+    
+    level.cellbreakers_killed = 0;
+    level.cellbreakers_spawned = 0;
+    while (level.cellbreakers_spawned < HRSPAWN_CELLBREAK_VISIT_ROUND_QUANTITY)
+    {
+        delay = HRSPAWN_CELLBREAK_SPAWN_INTERVAL;
+
+        PRINT_HR_DEBUG("Spawning cellbreaker in " + delay);
+        wait delay;
+
+        // Don't use endon because it will bug the entities currently spawning
+        if (!flag::get(spawn_flag) || !is_special_spawn_enable())
+        {
+            PRINT_HR_DEBUG("Spawning cellbreaker ... canceled.");
+            return;
+        }
+
+        while (GetAiSpeciesArray(level.zombie_team, "all").size >= level.zombie_ai_limit)
+        {
+            wait 1.0;
+        }
+
+        do
+        {
+            ai = zm_cellbreaker::spawn_brutus();
+
+            if (!isdefined(ai))
+            {
+                PRINT_HR_DEBUG("Ai cellbreaker was created but is undefined");
+                wait 1.0;
+            }
+        } 
+        while (!isdefined(ai));
+        level.cellbreakers_spawned++;
+
+        ai ai_spawn_callbacks();
+        ai thread cellbreaker_death_count();
+    }
+}
+
+function private cellbreaker_death_count() // self == ai actor
+{
+    level endon("end_game");
+
+    self waittill("death");
+    level.cellbreakers_killed++;
+
+    if (level.cellbreakers_killed == HRSPAWN_CELLBREAK_VISIT_ROUND_QUANTITY)
+    {
+        origin = self.origin;
+        if (!isdefined(origin))
+        {
+            PRINT_HR_DEBUG("Ai cellbreaker origin undefined. Spawning bonus nearby white player");
+            origin = GetClosestPointOnNavMesh(level.players[0].origin + (250, 0, 0), 25000, 128);
+        }
+
+        level thread zm_powerups::specific_powerup_drop(HRSPAWN_CELLBREAK_LAST_KILL_BONUS, origin, undefined, undefined, undefined, undefined, false);
+        level notify("cellbreakers_killed");
     }
 }
 

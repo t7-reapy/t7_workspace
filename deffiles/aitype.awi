@@ -88,7 +88,7 @@ void GenerateUI( asset Asset )
 	{
 		Asset.AddEntry_Label( "archetypeInfo", "Archetype level attributes are inherited and cannot be overridden by variants or spawners, \nreserved for high level attributes tied to assets, code, and animation.\n" ).SetTitle( " " );
 	
-		Asset.AddEntry_Combo( "archetype", "none | human_clone | human_riotshield | human_rpg | robot | warlord | zombie | zombie_dog | skeleton | direwolf | civilian | zod_companion | margwa | mechz | mannequin | thrasher | raz | zombie_quad | keeper_companion | apothicon_fury | keeper | monkey | astronaut" ).SetTitle( "Archetype" ).Enable( isArchetypeAssetBool ).SetToolTip( "Available in script as self.archetype" );
+		Asset.AddEntry_Combo( "archetype", "none | chip | zombie_ghost | cellbreaker | zombie_sonic | zombie_napalm | human_clone | human_riotshield | human_rpg | robot | warlord | zombie | zombie_dog | skeleton | direwolf | civilian | zod_companion | margwa | mechz | mannequin | thrasher | raz | zombie_quad | keeper_companion | apothicon_fury | keeper | monkey | astronaut" ).SetTitle( "Archetype" ).Enable( isArchetypeAssetBool ).SetToolTip( "Available in script as self.archetype" );
 
 		Asset.AddEntry_Combo( "type", "human | dog | robot | zombie | zombie_dog" ).SetTitle( "Species" ).Enable( isArchetypeAssetBool );
 		
@@ -352,7 +352,7 @@ void GenerateUI( asset Asset )
 		
 		Asset.BeginCategory( "Variant Attributes" + ".Traversals", VAR_R, VAR_G, VAR_B, "variant.png");
 		{
-			Asset.AddEntry_Combo( "movementtype", "human | bot | civilian | hero | advanced | robot | riotshield | dog | gorilla | vehicle | zombie | zombie_no_legs | zombie_keeper | zombie_dog | zombie_boss | mannequin | monkey | zombie_quad" ).SetTitle( "Movement Type" ).SetToolTip( "Movement type used to filter the traversal nodes while finding a path." ).Enable( isArchetypeAssetBool || isVariantAssetBool );;
+			Asset.AddEntry_Combo( "movementtype", "zombie_ghost | cellbreaker | zombie_sonic | zombie_napalm | chip | human | bot | civilian | hero | advanced | robot | riotshield | dog | gorilla | vehicle | zombie | zombie_no_legs | zombie_keeper | zombie_dog | zombie_boss | mannequin | monkey | zombie_quad" ).SetTitle( "Movement Type" ).SetToolTip( "Movement type used to filter the traversal nodes while finding a path." ).Enable( isArchetypeAssetBool || isVariantAssetBool );;
 			Asset.AddEntry_Float( "favorTraversalFactor", 1.0, 0.1, 10.0 ).SetStep( 0.1 ).SetTitle( "Traversal Favoring" ).SetToolTip( "How much the AI will favor traversals over regular locomotion" ).Enable(  isArchetypeAssetBool || isVariantAssetBool );
 			Asset.AddEntry_Float( "favorSpecialTraversalFactor", 1.0, 0.1, 10.0 ).SetStep( 0.1 ).SetTitle( "Special Traversal Favoring" ).SetToolTip( "How much the AI will favor special traversals that match their movementtype" ).Enable(  isArchetypeAssetBool || isVariantAssetBool );
 		}

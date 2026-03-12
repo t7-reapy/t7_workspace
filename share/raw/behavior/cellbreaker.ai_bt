@@ -1,0 +1,313 @@
+{
+    "id": "cellbreaker",
+    "type": "selector",
+    "children": [
+        {
+            "id": "zombiedeathbehavior",
+            "type": "selector",
+            "children": [
+                {
+                    "id": "defaultdeathbehavior",
+                    "type": "sequence",
+                    "children": [
+                        {
+                            "id": "waskilled",
+                            "type": "condition_script",
+                            "interruptName": "death"
+                        },
+                        {
+                            "id": "deathaction",
+                            "type": "action",
+                            "ActionName": "defaultaction",
+                            "ASMStateName": "death@cellbreaker",
+                            "actionNotify": "death",
+                            "TerminateFunction": "startragdoll"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "playableareaselector",
+            "type": "parallel",
+            "children": [
+                {
+                    "id": "findfleshservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "zombieFindFleshService"
+                },
+                {
+                    "id": "boardsmashservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "brutusBoardService"
+                },
+                {
+                    "id": "teargasservice",
+                    "type": "condition_service_script",
+                    "scriptFunction": "brutusTeargasService"
+                },
+                {
+                    "id": "selector",
+                    "type": "selector",
+                    "children": [
+                        {
+                            "id": "moveawaybehavior",
+                            "type": "parallel",
+                            "children": [
+                                {
+                                    "id": "shouldmoveaway",
+                                    "type": "condition_script",
+                                    "scriptFunction": "zombieshouldmoveaway"
+                                },
+                                {
+                                    "id": "moveawayaction",
+                                    "type": "action",
+                                    "ActionName": "zombiemoveaway",
+                                    "ASMStateName": "move@cellbreaker",
+                                    "loopingAction": 1
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sequence",
+                            "id": "berserkbehavior",
+                            "children": [
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldturnberserk",
+                                    "scriptFunction": "brutusshouldturnberserk"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "playberserkintroanimation",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "berserk@cellbreaker",
+                                    "TerminateFunction": "brutusplayedberserkintro",
+                                    "loopingAction": 0,
+                                    "actionTimeMax": 0
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sequence",
+                            "id": "teargasDropbehavior",
+                            "children": [
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldDropTearGas",
+                                    "scriptFunction": "brutusshouldDoGasAttack"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "playteargasanimation",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "teargas@cellbreaker",
+                                    "TerminateFunction": "brutusplayedGasAttack",
+                                    "loopingAction": 0,
+                                    "actionTimeMax": 0
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sequence",
+                            "id": "teargasThrowbehavior",
+                            "children": [
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldDropTearGas",
+                                    "scriptFunction": "brutusshouldThrowGas"
+                                },
+                                {
+                                    "id": "shouldmeleeattack",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "zombieshouldmelee"
+                                },
+                                {
+                                    "id": "shouldmoveaway",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "zombieshouldmoveaway"
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "playteargasThrowanimation",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "teargas_yeet@cellbreaker",
+                                    "TerminateFunction": "brutusplayedThrowGas",
+                                    "loopingAction": 0,
+                                    "actionTimeMax": 0
+                                }
+                            ]
+                        },
+                        {
+                            "id": "boardsmashbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldsmashboard",
+                                    "scriptFunction": "brutusshouldbreakboard"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldturnberserk",
+                                    "scriptFunction": "brutusshouldturnberserk"
+                                },
+                                {
+                                    "id": "boardsmashaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "boardsmash@cellbreaker",
+                                    "scriptFunction": "brutusboardsmash"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sequence",
+                            "id": "brutustraversebehavior",
+                            "children": [
+                                {
+                                    "type": "condition_script",
+                                    "id": "shouldtraverse",
+                                    "scriptFunction": "locomotionshouldtraverse",
+                                    "interruptName": "traverse",
+                                    "cooldownMin": 0,
+                                    "cooldownMax": 0
+                                },
+                                {
+                                    "type": "action",
+                                    "id": "traverseaction",
+                                    "ActionName": "traverseactionstart",
+                                    "ASMStateName": "traverse@cellbreaker",
+                                    "loopingAction": 0,
+                                    "actionTimeMax": 0
+                                },
+                                {
+                                    "id": "waiting",
+                                    "type": "parallel",
+                                    "children": [
+                                        {
+                                            "id": "shouldwait",
+                                            "type": "condition_script",
+                                            "scriptFunction": "brutusshouldwait"
+                                        },
+                                        {
+                                            "id": "action",
+                                            "type": "action",
+                                            "ActionName": "defaultaction",
+                                            "ASMStateName": "idle@cellbreaker",
+                                            "loopingAction": 1
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "id": "meleeattackbehavior",
+                            "type": "sequence",
+                            "children": [
+                                {
+                                    "id": "shouldmeleeattack",
+                                    "type": "condition_script",
+                                    "scriptFunction": "zombieshouldmelee"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldturnberserk",
+                                    "scriptFunction": "brutusshouldturnberserk"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldDropTearGas",
+                                    "scriptFunction": "brutusshouldDoGasAttack"
+                                },
+                                {
+                                    "id": "shouldmoveaway",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "zombieshouldmoveaway"
+                                },
+                                {
+                                    "id": "meleeattackaction",
+                                    "type": "action",
+                                    "ActionName": "defaultaction",
+                                    "ASMStateName": "melee@cellbreaker",
+                                    "actionNotify": "attack_melee"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "movebehavior",
+                            "type": "parallel",
+                            "children": [
+                                {
+                                    "id": "shouldmeleeattack",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "zombieshouldmelee"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldturnberserk",
+                                    "scriptFunction": "brutusshouldturnberserk"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldDropTearGas",
+                                    "scriptFunction": "brutusshouldDoGasAttack"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldThrowTearGas",
+                                    "scriptFunction": "brutusshouldThrowGas"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldsmashboard",
+                                    "scriptFunction": "brutusshouldbreakboard"
+                                },
+                                {
+                                    "id": "shouldmove",
+                                    "type": "condition_script",
+                                    "scriptFunction": "zombieshouldmove"
+                                },
+                                {
+                                    "id": "moveaction",
+                                    "type": "action",
+                                    "ActionName": "zombiemoveaction",
+                                    "ASMStateName": "move@cellbreaker",
+                                    "loopingAction": 1
+                                }
+                            ]
+                        },
+                        {
+                            "id": "idlebehavior",
+                            "type": "parallel",
+                            "children": [
+                                {
+                                    "id": "shouldmeleeattack",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "zombieshouldmelee"
+                                },
+                                {
+                                    "type": "condition_script_negate",
+                                    "id": "shouldturnberserk",
+                                    "scriptFunction": "brutusshouldturnberserk"
+                                },
+                                {
+                                    "id": "shouldmove",
+                                    "type": "condition_script_negate",
+                                    "scriptFunction": "zombieshouldmove"
+                                },
+                                {
+                                    "id": "idleaction",
+                                    "type": "action",
+                                    "ActionName": "zombieidleaction",
+                                    "ASMStateName": "idle@cellbreaker",
+                                    "loopingAction": 1
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
