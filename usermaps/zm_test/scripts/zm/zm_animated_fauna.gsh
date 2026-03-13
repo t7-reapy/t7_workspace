@@ -10,7 +10,7 @@
 // Rats configuration
 #define RAT_ANIMATION_MAX_TIME 15.0 // Cap rat animation time because of enormous amount of frames.
 #define RAT_ANIMATION_RATE 1.0
-#define MAX_RATS_RUNNING 3
+#define MAX_RATS_RUNNING 2
 #define MIN_DELAY_BETWEEN_RATS_ANIMATIONS 1.0
 #define MAX_DELAY_BETWEEN_RATS_ANIMATIONS 5.0
 #define MIN_DELAY_BETWEEN_RATS_ANIMATION_LOOP 15.0
@@ -22,7 +22,7 @@
 #define SCRIPTMODEL_RAVENS array("raven_0", "raven_1", "raven_2", "raven_3", "raven_4", "raven_5", "raven_6", "raven_7", "raven_8", "raven_9")
 // Ravens configuration
 #define RAVEN_ANIMATION_RATE 1.0
-#define MAX_RAVENS_FLYING 3
+#define MAX_RAVENS_FLYING 1
 #define MIN_DELAY_BETWEEN_RAVENS_ANIMATIONS 1.0
 #define MAX_DELAY_BETWEEN_RAVENS_ANIMATIONS 5.0
 #define MIN_DELAY_BETWEEN_RAVENS_ANIMATION_LOOP 15.0
