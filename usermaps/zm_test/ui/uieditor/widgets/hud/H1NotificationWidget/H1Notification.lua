@@ -79,7 +79,7 @@ local PostLoadFunc = function ( self, controller )
 			if Engine.GetIString( CoD.GetScriptNotifyData( model )[1], "CS_LOCALIZED_STRINGS" ) == "ZOMBIE_POWERUP_MAX_AMMO" then
 				self:appendNotification( {
 					clip = "Powerup",
-					title = "MAX AMMO",
+					title = "",
 					image = "h1_powerup_maxammo"
 				} )
 			end
@@ -92,7 +92,7 @@ local PostLoadFunc = function ( self, controller )
 			if Engine.GetIString( CoD.GetScriptNotifyData( model )[1], "CS_LOCALIZED_STRINGS" ) == "ZOMBIE_POWERUP_NUKE" then
 				self:appendNotification( {
 					clip = "Powerup",
-					title = "KABOOM",
+					title = "",
 					image = "h1_powerup_nuke"
 				} )
 			end
