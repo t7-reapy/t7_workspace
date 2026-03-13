@@ -34,6 +34,8 @@ function private init()
     _add_vox(HRANN_VOX_START_CERBERUS);
     _add_vox(HRANN_VOX_ENABLE_POWER_GOOD);
     _add_vox(HRANN_VOX_PLAYER_DEAD);
+    _add_vox(HRANN_VOX_START_POST_BAD);
+    _add_vox(HRANN_VOX_END_POST_BAD);
 
     callback::on_spawned(&_watch_player_elimination);
 }
@@ -102,7 +104,34 @@ function private _enable_power_good()
     _play_vox(HRANN_VOX_ENABLE_POWER_GOOD);
 }
 
+function private _post_bad_start()
+{
+    _play_vox(HRANN_VOX_START_POST_BAD);
+}
+
+function private _post_bad_end()
+{
+    _play_vox(HRANN_VOX_END_POST_BAD);
+}
+
 /* endregion */
+
+function toggle_hellround_announce(b_enabled)
+{
+    if (!IS_TRUE(level.hellround.progress_stopped))
+    {
+        return;
+    }
+
+    if (IS_TRUE(b_enabled))
+    {
+        _post_bad_start();
+    }
+    else
+    {
+        _post_bad_end();
+    }
+}
 
 function wait_for_hellround_bad_flag_when_abolished()
 {
