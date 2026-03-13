@@ -2,11 +2,10 @@
 #using scripts\zm\_zm_weapons; 
 #using scripts\zm\_zm_perks; 
 #using scripts\zm\_zm_utility; 
-#using scripts\zm\_zm_score; 
-#using scripts\zm\_zm; 
-#using scripts\shared\laststand_shared; 
+#using scripts\zm\_zm_score;
 #using scripts\shared\callbacks_shared; 
 #using scripts\zm\_zm_powerups; 
+#using scripts\zm\_typewriter;
 
 #using scripts\shared\system_shared;
 #using scripts\zm\hellround\zm_hellround_shared;
@@ -70,7 +69,7 @@ function main()
 
     thread modvar_debug_hellround_rewards();
 
-    while (!IS_TRUE(self.hellround_progress_reward.data_restored))
+    while (!isdefined(self.hellround_progress_reward) || !IS_TRUE(self.hellround_progress_reward.data_restored))
     {
         WAIT_SERVER_FRAME;
     }
@@ -145,7 +144,7 @@ function private _give_player_rewards_and_bonuses() // self == player
 {
     self endon("disconnect");
 
-    while (!IS_TRUE(self.hellround_progress_reward.data_restored))
+    while (!isdefined(self.hellround_progress_reward) || !IS_TRUE(self.hellround_progress_reward.data_restored))
     {
         WAIT_SERVER_FRAME;
     }
@@ -158,52 +157,84 @@ function private _give_player_rewards_and_bonuses() // self == player
     self.hellround_progress_reward.initial_rewards_given = true;
 
     // Rewards
-    weapon = self GetCurrentWeapon();
-    if (self.hellround_progress_reward.did_finish_game && self.hellround_progress_reward.did_survive_bad_path)
+    congrats = [];
+    starter_weapon = self GetCurrentWeapon();
+    player_survived_and_finished = self.hellround_progress_reward.did_finish_game && self.hellround_progress_reward.did_survive_bad_path;
+    if (player_survived_and_finished)
     {
-        reward_weapon = GetWeapon(HRRWRD_FINISHED_MAP_AND_SURVIVED_BAD_PATH_WEAPON);
-        reward_weapon = self zm_weapons::weapon_give(reward_weapon, false, false, true, true);
-        self zm_xcdylan93_utils::update_weapon_camo(HRRWRD_FINISHED_MAP_AND_SURVIVED_BAD_PATH_WEAPON_CAMO_INDEX, reward_weapon, reward_weapon.altWeapon, false);
-        waittillframeend;
-        self TakeWeapon(weapon);
+        self thread _give_completed_game_reward();
+        congrats[congrats.size] = "Congratulations for ^5beating the game^7, here is your ^5reward^7.";
         PRINT_HR_DEBUG("Given weapon for overall success.");
     }
     else if (self.hellround_progress_reward.did_finish_game)
     {
-        self zm_xcdylan93_utils::update_weapon_camo(HRRWRD_FINISH_MAP_WEAPON_CAMO_INDEX, weapon, weapon.altWeapon, false);
+        self zm_xcdylan93_utils::update_weapon_camo(HRRWRD_FINISH_MAP_WEAPON_CAMO_INDEX, starter_weapon, starter_weapon.altWeapon, false);
+        congrats[congrats.size] = "Congratulations for ^3completing the map^7.";
         PRINT_HR_DEBUG("Given weapon camo for finish success.");
     }
     else if (self.hellround_progress_reward.did_survive_bad_path)
     {
-        self zm_xcdylan93_utils::update_weapon_camo(HRRWRD_SURVIVE_BAD_PATH_WEAPON_CAMO_INDEX, weapon, weapon.altWeapon, false);
+        self zm_xcdylan93_utils::update_weapon_camo(HRRWRD_SURVIVE_BAD_PATH_WEAPON_CAMO_INDEX, starter_weapon, starter_weapon.altWeapon, false);
+        congrats[congrats.size] = "Congratulations for ^1surviving hellround bad path^7.";
         PRINT_HR_DEBUG("Given weapon camo for survive success.");
     }
 
-    // Helpers        
+    // Helpers
+    infos = array("","" /* in order to give some space */);
     if (self.hellround_progress_reward.consecutive_losses >= HRRWRD_LOSESTREAK_THRESHOLDS[0])
     {
+        infos[infos.size] = "> Following the recent events,"; 
+        infos[infos.size] = "> You were given the following to help you:";
         self zm_score::add_to_player_score(HRRWRD_LOSESTREAK_1_REWARD);
+        infos[infos.size] = ">   - ^31000 points^7";
         zm_utility::play_sound_at_pos("purchase", self.origin);
     }
 
-    if (self.hellround_progress_reward.consecutive_losses >= HRRWRD_LOSESTREAK_THRESHOLDS[1])
+    if (self.hellround_progress_reward.consecutive_losses >= HRRWRD_LOSESTREAK_THRESHOLDS[1]
+        && !player_survived_and_finished /* to avoid giving 2 guns */)
     {
-        helper_weapon = GetWeapon(HRRWRD_LOSESTREAK_2_REWARD);
-        self zm_weapons::weapon_give(helper_weapon, false, false, true, true);
-        // self SwitchToWeapon(helper_weapon);
+        self thread _give_helping_gun();
+        infos[infos.size] = ">   - ^3desert deagle^7";
         PRINT_HR_DEBUG("Given weapon for loss streak.");
     }
 
     if (self.hellround_progress_reward.consecutive_losses >= HRRWRD_LOSESTREAK_THRESHOLDS[2])
     {
         self zm_perks::give_perk(HRRWRD_LOSESTREAK_3_REWARD, false);
+        infos[infos.size] = ">   - ^3fast reload perk^7";
         PRINT_HR_DEBUG("Given perk for loss streak.");
     }
+
+    zm_hellround_shared::wait_for_map_load();
+    thread typewriter::type_for_player(self, congrats);
+    wait 1.0;
+    thread typewriter::type_for_player(self, infos);
+}
+
+function private _give_completed_game_reward() // self == player
+{
+    while(self AreControlsFrozen())
+    {
+        WAIT_SERVER_FRAME;
+    }
+    reward_weapon = GetWeapon(HRRWRD_FINISHED_MAP_AND_SURVIVED_BAD_PATH_WEAPON);
+    reward_weapon = self zm_weapons::weapon_give(reward_weapon, false, false, true, true);
+    self zm_xcdylan93_utils::update_weapon_camo(HRRWRD_FINISHED_MAP_AND_SURVIVED_BAD_PATH_WEAPON_CAMO_INDEX, reward_weapon, reward_weapon.altWeapon, false);
+}
+
+function private _give_helping_gun()
+{
+    while(self AreControlsFrozen())
+    {
+        WAIT_SERVER_FRAME;
+    }
+    helper_weapon = GetWeapon(HRRWRD_LOSESTREAK_2_REWARD);
+    self zm_weapons::weapon_give(helper_weapon, false, false, true, true);
 }
 
 function give_reward(location)
 {
-    if (IS_TRUE(level.hellround.abolished)) {
+    if (IS_TRUE(level.hellround.progress_stopped)) {
         call_high_tier_rewards();
         PRINT_HR_DEBUG("Gave high-tier reward.");
     } else {
@@ -260,8 +291,8 @@ function private _checksum_data_and_set_progress_values() // self == player
     }
 
     self.hellround_progress_reward.consecutive_losses = data & HRRWRD_DATA_LOSESTREAK_MASK;
-    self.hellround_progress_reward.did_finish_game = data & HRRWRD_DATA_HAS_FINISHED_MAP_MASK;
-    self.hellround_progress_reward.did_survive_bad_path = data & HRRWRD_DATA_HAS_SURVIVED_BAD_PATH_MASK;
+    self.hellround_progress_reward.did_finish_game = (data & HRRWRD_DATA_HAS_FINISHED_MAP_MASK) >> HRRWRD_DATA_HAS_FINISHED_MAP_SHIFT;
+    self.hellround_progress_reward.did_survive_bad_path = (data & HRRWRD_DATA_HAS_SURVIVED_BAD_PATH_MASK) >> HRRWRD_DATA_HAS_SURVIVED_BAD_PATH_SHIFT;
 
     self.hellround_progress_reward.data_restored = true;
 

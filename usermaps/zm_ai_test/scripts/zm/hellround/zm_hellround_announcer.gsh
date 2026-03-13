@@ -9,7 +9,9 @@
 #define HRANN_VOX_COMPLETE_ITERATION "hellround_complete_iteration_0"
 #define HRANN_VOX_START_CERBERUS "hellround_start_cerberus_0"
 #define HRANN_VOX_ENABLE_POWER_GOOD "hellround_enable_power_good_0"
+#define HRANN_VOX_START_POST_BAD "hellround_start_post_bad_0"
+#define HRANN_VOX_END_POST_BAD "hellround_end_post_bad_0"
 
 // Enjoyment settings
-#define HRANN_ENJOYMENT_THRESHOLD 14 // Threshold of kill before next trigger
+#define HRANN_ENJOYMENT_THRESHOLD 10 // Threshold of kill before next trigger
 #define HRANN_ENJOYMENT_FREQUENCY 0.25 // Chance of triggering per kill

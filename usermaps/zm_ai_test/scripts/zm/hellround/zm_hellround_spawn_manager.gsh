@@ -4,6 +4,11 @@
 // Mostly for debug purpose, it disables all spawns during hellround.
 #define HRSPAWN_ENABLE_SPAWNS 1
 
+#define HRSPAWN_CELLBREAK_VISIT_ROUND_INTERVAL 5
+#define HRSPAWN_CELLBREAK_VISIT_ROUND_QUANTITY 3
+#define HRSPAWN_CELLBREAK_SPAWN_INTERVAL 15.00
+#define HRSPAWN_CELLBREAK_LAST_KILL_BONUS "full_ammo"
+
 // Scaling delay of spawns of the entities
 #define HRSPAWN_MIN_DELAY_ZOMBIE 0.15
 #define HRSPAWN_MAX_DELAY_ZOMBIE 1.50

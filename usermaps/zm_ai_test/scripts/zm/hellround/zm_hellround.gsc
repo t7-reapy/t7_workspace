@@ -34,6 +34,7 @@
 #using scripts\zm\_zm_ai_wasp;
 #using scripts\zm\_zm_ai_napalm;
 #using scripts\zm\zm_genesis_apothicon_fury;
+#using scripts\zm\zm_cellbreaker;
 
 #insert scripts\zm\hellround\zm_hellround_shared.gsh;
 #insert scripts\zm\hellround\zm_hellround.gsh;
@@ -46,7 +47,7 @@ REGISTER_SYSTEM_EX("zm_hellround", &init, &main, undefined)
 class hellround
 {
     var ending;
-    var abolished;
+    var progress_stopped;
     var toggle_callbacks;
 }
 
@@ -57,7 +58,7 @@ function private init()
 
     level.hellround = new hellround();
     level.hellround.ending = NEUTRAL_ENDING;
-    level.hellround.abolished = false;
+    level.hellround.progress_stopped = false;
     level.hellround.toggle_callbacks = [];
 
     // Init hellround iteration flags
@@ -83,7 +84,6 @@ function is_hellround_running()
     return zm_hellround_shared::is_hellround_running();
 }
 
-
 /* region callbacks */
 
 function add_toggle_callback(func) {
@@ -103,6 +103,11 @@ function private call_toggle_callbacks(b_enabled)
 function add_meteor_trigger_callback(func_ptr)
 {
     zm_hellround_meteor::add_meteor_trigger_callback(func_ptr);
+}
+
+function game_finished_with_success()
+{
+    zm_hellround_reward::game_finished_with_success();
 }
 
 function private enable_good_ending()
@@ -132,6 +137,7 @@ function private bind_callbacks()
     add_toggle_callback(&zm_hellround_mysterybox::toggle_hellround_mysteryboxes);
     add_toggle_callback(&zm_bloodsplatter::toggle_blood_splatter);
     add_toggle_callback(&zm_hellround_music::toggle_hellround_music);
+    add_toggle_callback(&zm_hellround_announcer::toggle_hellround_announce);
 
     zm_hellround_spawn_manager::bind_toggle_hellround_callback(&call_toggle_callbacks);
     zm_hellround_spawn_manager::add_ai_spawn_callback(&zm_bloodsplatter::watch_actor);

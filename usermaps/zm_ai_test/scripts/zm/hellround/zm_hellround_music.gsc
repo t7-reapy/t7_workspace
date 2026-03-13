@@ -36,7 +36,24 @@ function toggle_hellround_music(b_enable)
     {
         iteration = zm_hellround_shared::get_current_iteration();
     }
+
+    if (IS_TRUE(level.hellround.progress_stopped))
+    {
+        iteration = (IS_TRUE(b_enable) ? HRMUS_POST_BAD_LOOP : HRMUS_DISABLED);;
+        sound_alias = (IS_TRUE(b_enable) ? HRMUS_POST_BAD_ROUND_START : HRMUS_POST_BAD_ROUND_END);
+        thread _play_sound(sound_alias);
+    }
+
     level clientfield::set(HRMUS_CLIENT_FIELD, iteration);
+}
+
+function private _play_sound(sound_alias)
+{
+    sound_ent = spawn("script_origin", (0, 0, 0));
+    sound_ent PlaySoundWithNotify(sound_alias, sound_alias + "wait");
+    sound_ent waittill(sound_alias + "wait");
+    WAIT_SERVER_FRAME;
+    sound_ent delete();
 }
 
 // In MOTD the game over music changes depending on what ending you get, we will replicate this here

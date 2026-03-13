@@ -217,7 +217,7 @@ function private func_should_drop_powerup(power_up_name)
 
 function private should_drop_hellround_powerup()
 {
-    if (level.hellround.abolished)
+    if (level.hellround.progress_stopped)
     {
         return false;
     }

@@ -41,6 +41,9 @@ function private hellround_music(n_client_num, _oldVal, n_new_val, _bNewEnt, _bI
         case 3:
             level.hellround_music.soundtrack_id = level.hellround_music.sound_ent PlayLoopSound(level.hellround_music.iteration_musics[n_new_val - 1], 1);
             break;
+        case HRMUS_POST_BAD_LOOP:
+            level.hellround_music.soundtrack_id = level.hellround_music.sound_ent PlayLoopSound(HRMUS_SPECIAL_POST_BAD, 1);
+            break;
         default:
             level.hellround_music.soundtrack_id = level.hellround_music.sound_ent PlayLoopSound(HRMUS_ITERATION_BAD, 1);
             break;

@@ -234,7 +234,7 @@ function private _give_helping_gun()
 
 function give_reward(location)
 {
-    if (IS_TRUE(level.hellround.abolished)) {
+    if (IS_TRUE(level.hellround.progress_stopped)) {
         call_high_tier_rewards();
         PRINT_HR_DEBUG("Gave high-tier reward.");
     } else {

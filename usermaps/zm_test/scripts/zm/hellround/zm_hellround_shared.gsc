@@ -9,8 +9,7 @@
 
 function is_hellround_running()
 {
-    return !IS_TRUE(level.hellround.abolished) 
-        && (level flag::get(HELLROUND_FLAGS[0]) 
+    return (level flag::get(HELLROUND_FLAGS[0]) 
         || level flag::get(HELLROUND_FLAGS[1]) 
         || level flag::get(HELLROUND_FLAGS[2]) 
         || level flag::get(HELLROUND_FLAGS[3])

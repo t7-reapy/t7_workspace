@@ -1,0 +1,51 @@
+{
+    "states": {
+        "debug": {
+            "substates": {
+                "void": {
+                    "animation_selector": "void@debug"
+                }
+            }
+        },
+        "cellbreaker": {
+            "substates": {
+                "death": {
+                    "animation_selector": "death@cellbreaker",
+                    "terminal": true,
+                    "requires_ragdoll_notetrack": true
+                },
+                "idle": {
+                    "animation_selector": "idle@cellbreaker",
+                    "loopsync": true,
+                    "cleanloop": true
+                },
+                "melee": {
+                    "animation_selector": "melee@cellbreaker"
+                },
+                "move": {
+                    "animation_selector": "move@cellbreaker",
+                    "loopsync": true,
+                    "cleanloop": true
+                },
+                "boardsmash": {
+					"animation_selector": "boardsmash@cellbreaker"
+				},
+                "helmetpain": {
+					"animation_selector": "helmetpain@cellbreaker"
+				},
+                "berserk": {
+                    "animation_selector": "berserk@cellbreaker"
+                },
+                "teargas": {
+                    "animation_selector": "teargas@cellbreaker"
+                },
+                "teargas_yeet": {
+                    "animation_selector": "teargas_yeet@cellbreaker"
+                },
+                "traverse": {
+                    "animation_selector": "traverse@cellbreaker"
+                }
+            }
+        }
+    }
+}
