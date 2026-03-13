@@ -13,5 +13,5 @@
 #define HRANN_VOX_END_POST_BAD "hellround_end_post_bad_0"
 
 // Enjoyment settings
-#define HRANN_ENJOYMENT_THRESHOLD 14 // Threshold of kill before next trigger
+#define HRANN_ENJOYMENT_THRESHOLD 10 // Threshold of kill before next trigger
 #define HRANN_ENJOYMENT_FREQUENCY 0.25 // Chance of triggering per kill

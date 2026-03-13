@@ -39,7 +39,7 @@ function toggle_hellround_music(b_enable)
 
     if (IS_TRUE(level.hellround.progress_stopped))
     {
-        iteration = HRMUS_POST_BAD_LOOP;
+        iteration = (IS_TRUE(b_enable) ? HRMUS_POST_BAD_LOOP : HRMUS_DISABLED);;
         sound_alias = (IS_TRUE(b_enable) ? HRMUS_POST_BAD_ROUND_START : HRMUS_POST_BAD_ROUND_END);
         thread _play_sound(sound_alias);
     }

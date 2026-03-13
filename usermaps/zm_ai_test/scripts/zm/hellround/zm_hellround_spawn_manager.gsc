@@ -126,6 +126,7 @@ function private cellbreaker_visits()
         iteration_time_management_update();
         hellround_starts();
         level waittill("cellbreakers_killed");
+        _end_current_round();
         hellround_stops();
     }
 }
@@ -225,6 +226,16 @@ function disable_actor_push_during_hellrounds() // self == ai actor
 
 /* endregion */
 /* region hellrounds round start/stop */
+
+function private _end_current_round()
+{
+    foreach(zombie in zombie_utility::get_round_enemy_array())
+    {
+        zombie Kill();
+    }
+    level.zombie_total = 0;
+    level notify("end_of_round");
+}
 
 function abolish_hellrounds()
 {

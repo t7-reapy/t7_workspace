@@ -593,6 +593,13 @@ function choose_a_spawn(noteworthy) // REQUIRES ATLEAST 2 ZONES or no
         spot = ArrayGetClosest(player.origin,structs);
         zone = zm_zonemgr::get_zone_from_position(spot.origin, 1);
 
+        if (!isdefined(zone))
+        {
+            PRINT_CB_DEBUG("zone is undefined");
+            WAIT_SERVER_FRAME;
+            continue;
+        }
+
         if(level.newzones.size < 2)
         {
             return spot;    

@@ -39,16 +39,17 @@ function toggle_hellround_music(b_enable)
 
     if (IS_TRUE(level.hellround.progress_stopped))
     {
-        iteration = HRMUS_POST_BAD_LOOP;
+        iteration = (IS_TRUE(b_enable) ? HRMUS_POST_BAD_LOOP : HRMUS_DISABLED);;
         sound_alias = (IS_TRUE(b_enable) ? HRMUS_POST_BAD_ROUND_START : HRMUS_POST_BAD_ROUND_END);
-        thread _play_sound(sound_alias);
+        thread _play_sound(sound_alias, 1.5);
     }
 
     level clientfield::set(HRMUS_CLIENT_FIELD, iteration);
 }
 
-function private _play_sound(sound_alias)
+function private _play_sound(sound_alias, delay)
 {
+    wait delay;
     sound_ent = spawn("script_origin", (0, 0, 0));
     sound_ent PlaySoundWithNotify(sound_alias, sound_alias + "wait");
     sound_ent waittill(sound_alias + "wait");
