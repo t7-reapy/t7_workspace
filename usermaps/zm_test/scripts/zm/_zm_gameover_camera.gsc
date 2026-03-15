@@ -13,9 +13,9 @@
 #insert scripts\shared\shared.gsh;
 
 #namespace gameover_camera;
-REGISTER_SYSTEM_EX("gameover_camera", &__init__, &__main__, undefined)
+REGISTER_SYSTEM("gameover_camera", &_init, undefined)
 
-// Start of Settings ---------------------------------------------------------------
+/* region settings */
 
 // I would recommend localizing strings
 #define CUSTOM_GAME_OVER_TEXT "GAME OVER"
@@ -26,17 +26,13 @@ REGISTER_SYSTEM_EX("gameover_camera", &__init__, &__main__, undefined)
 
 #define DEFAULT_INTERMISSION_SPEED 8.0
 #define INTERMISSION_TRANSITIONS 3
+#define LASTSTAND_EXTRA_DURATION 2.5 // in order to give some time for death animations in _zm_t6_deathanim.gsc
 
-// End of Settings -----------------------------------------------------------------
+/* endregion */
 
-function __init__()
+function private _init()
 {
-    level.custom_game_over_hud_elem =&custom_game_over_hud;
-}
-
-function __main__() 
-{
-    
+    level.custom_game_over_hud_elem = &custom_game_over_hud;
 }
 
 function custom_game_over_hud(player, game_over_hud, survived_hud)
@@ -138,7 +134,7 @@ function specific_custom_intermission(intermission, speed)
         player thread end_game_player_setup();
     }
 
-    wait(1.0);
+    wait(1.0 + LASTSTAND_EXTRA_DURATION);
 
     foreach (player in players)
     {
@@ -159,7 +155,7 @@ function specific_custom_intermission(intermission, speed)
 function end_game_player_setup()
 {
     self FreezeControls(true);
-    wait(0.5);
+    wait(0.5 + LASTSTAND_EXTRA_DURATION);
     self thread lui::screen_flash( 0.5, 1.25, 0.5, 1, "black" );
     self setClientUIVisibilityFlag( "hud_visible", 0 );
     wait(0.5);

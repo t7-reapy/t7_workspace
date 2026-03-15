@@ -88,6 +88,7 @@
 
 // End game camera
 #using scripts\zm\_zm_gameover_camera;
+#using scripts\zm\_zm_t6_deathanim;
 
 #using scripts\zm\zm_usermap;
 #using scripts\zm\_zm_animated_switch;
