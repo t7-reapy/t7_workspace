@@ -1,0 +1,63 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{1F33D652-9F47-11EE-97BD-B42E99F584BA}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{788DC4A5-9F46-11EE-97BD-B42E99F584BA}"
+"classname" "trigger_damage"
+"script_sound" "perk_poster_shot"
+"target" "double_tap_poster"
+"targetname" "double_tap_poster_trigger"
+"_color" "1 0.3 0.1"
+"accumulate" "1"
+"threshold" "1"
+// brush 0
+{
+ guid "{788DC4A4-9F46-11EE-97BD-B42E99F584BA}"
+ ( 13.5 13.75 -11 ) ( -18.5 13.75 -11 ) ( -18.5 -18.25 -11 ) trigger 64 64 -977.75 -99.25 0 0 lightmap_gray 16384 16384 -977.75 -99.25 0 0
+ ( -18.5 -18.25 11.25 ) ( -18.5 13.75 11.25 ) ( 13.5 13.75 11.25 ) trigger 64 64 -977.75 -99.25 0 0 lightmap_gray 16384 16384 -977.75 -99.25 0 0
+ ( -18.25 -9.25 11.5 ) ( 13.75 -9.25 11.5 ) ( 13.75 -9.25 -4.5 ) trigger 64 64 -977.5 129.5 0 0 lightmap_gray 16384 16384 -977.5 129.5 0 0
+ ( 0 -16.75 11.5 ) ( 0 15.25 11.5 ) ( 0 15.25 -4.5 ) trigger 64 64 100.75 129.5 0 0 lightmap_gray 16384 16384 100.75 129.5 0 0
+ ( 13.75 9.25 11.5 ) ( -18.25 9.25 11.5 ) ( -18.25 9.25 -4.5 ) trigger 64 64 -977.5 129.5 0 0 lightmap_gray 16384 16384 -977.5 129.5 0 0
+ ( -1.75 14.5 11.5 ) ( -1.75 -17.5 11.5 ) ( -1.75 -17.5 -4.5 ) trigger 64 64 100 129.5 0 0 lightmap_gray 16384 16384 100 129.5 0 0
+}
+}
+// entity 2
+{
+guid "{34B47E9E-9F46-11EE-97BD-B42E99F584BA}"
+"classname" "script_model"
+"angles" "0 180 0"
+"model" "p7_zm_ver_poster_perk_doubletap"
+"targetname" "double_tap_poster"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
