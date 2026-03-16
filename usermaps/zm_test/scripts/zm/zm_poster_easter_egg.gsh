@@ -2,6 +2,7 @@
 #define PRINT_DEBUG_POSTER(__str) if(DEBUG_POSTER) IPrintLnBold(__str) // Note: don't use comas in __str
 
 #define POSTER_TRIGGER_NAME "poster_trigger"
+#define POSTER_REWARD_ENTITY_NAME "poster_reward_entity"
 #define POSTER_TRIGGER_LEVEL_NOTIFICATION "poster_triggered"
 #define POSTER_COMPLETION_LEVEL_NOTIFICATION "poster_completed"
 #define POSTER_TRIGGER_FX "poster_trigger_fx" // TODO
@@ -19,3 +20,5 @@
 #define POSTER_MODEL_10 "keysia_drawing_10"
 #define POSTER_MODEL_11 "keysia_drawing_11"
 #define POSTER_MODEL_OVERRIDES array(POSTER_MODEL_1, POSTER_MODEL_2, POSTER_MODEL_3, POSTER_MODEL_4, POSTER_MODEL_5, POSTER_MODEL_6, POSTER_MODEL_7, POSTER_MODEL_8, POSTER_MODEL_9, POSTER_MODEL_10, POSTER_MODEL_11)
+
+#define POSTER_EVENT_VIDEO_NAME "diapositive"
