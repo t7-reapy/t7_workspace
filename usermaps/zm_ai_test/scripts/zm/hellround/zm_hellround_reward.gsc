@@ -241,7 +241,7 @@ function give_reward(location)
         reward = level.hellround_reward.rewards[level.hellround_reward.index];
         level.hellround_reward.index++;
         PRINT_HR_DEBUG("Spawning: " + reward + " at " + location);
-        level thread zm_powerups::specific_powerup_drop(reward, GetClosestPointOnNavMesh(location, 50));
+        level thread zm_powerups::specific_powerup_drop(reward, GetClosestPointOnNavMesh(location, 50), undefined, undefined, undefined, undefined, true);
     }
 }
 

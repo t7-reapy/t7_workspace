@@ -158,6 +158,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - Hellround finish did not restor camo of gun in the secondary slot
 - Hellround bad path spawns parasite after it's done in last zone.
 - hellround box bug: get teddy bear from box, and take the minigun powerup, the box will stick to hellround after this...
+- Hellround skull is still shootable when hidden.
 
 # Sphynx commands cheat sheet
 
