@@ -24,6 +24,7 @@
 #precache("xmodel", POSTER_MODEL_9);
 #precache("xmodel", POSTER_MODEL_10);
 #precache("xmodel", POSTER_MODEL_11);
+#precache("fx", POSTER_TRIGGER_FX);
 
 #namespace zm_poster_easter_egg;
 
@@ -135,8 +136,8 @@ function private _trigger_think() // self == trigger
         trigger waittill("trigger", player);
     }
 
-    //TODO: play fx on the model/trigger's origin POSTER_TRIGGER_FX
-    //TODO: play sound on the model/trigger's origin POSTER_TRIGGER_SOUND
+    PlayFX(POSTER_TRIGGER_FX, trigger.origin, AnglesToForward(trigger.angles), AnglesToUp(trigger.angles), false);
+    PlaySoundAtPosition(POSTER_TRIGGER_SOUND, trigger.origin);
     
     level notify(POSTER_TRIGGER_LEVEL_NOTIFICATION);
     trigger Delete();

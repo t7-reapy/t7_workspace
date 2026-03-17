@@ -5,8 +5,8 @@
 #define POSTER_REWARD_ENTITY_NAME "poster_reward_entity"
 #define POSTER_TRIGGER_LEVEL_NOTIFICATION "poster_triggered"
 #define POSTER_COMPLETION_LEVEL_NOTIFICATION "poster_completed"
-#define POSTER_TRIGGER_FX "poster_trigger_fx" // TODO
-#define POSTER_TRIGGER_SOUND "poster_trigger_sound" // TODO
+#define POSTER_TRIGGER_FX "dlc1/castle/fx_demon_gate_pick_up"
+#define POSTER_TRIGGER_SOUND "poster_found_sound"
 
 #define POSTER_MODEL_1 "keysia_drawing_01"
 #define POSTER_MODEL_2 "keysia_drawing_02"
