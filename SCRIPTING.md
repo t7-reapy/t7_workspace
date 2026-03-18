@@ -13,12 +13,20 @@ If blackhole script used to teleport player on a tilted entities, the player wor
 - Signed 16-bit PCM
 - Stereo or Mono channel
 
-## Troubleshoot
+## Video format
+
+Note: videos must be in `usermaps\zm_test\zone\video` to be embedded in the map. Full tutorial [here](https://wiki.modme.co/wiki/black_ops_3/intermediate/Setting-Up-Loadscreen-Videos.html)
+
+- The format must be MKV
+- There must be NO audio tracks
+- There must be NO subtitle tracks
+- H.264 encoding
+- Select 720p30fps as a base
 
 If when playing MKV videos, the game crashes, then the version of the software use to make the MKV is too recent:
 - Use handbrake 1.0.3
-- Remove audio tracks
-- Remove subtitle tracks
+
+## Troubleshoot
 
 When booting game after a successful linking of the scripts in the tools, and having error: *`Error linking script: "blabla.gsc"`*, usually it means one script file is missing from zone file. It mostly does this because link step does the linkage with zoned files, not files from the folder AFAIK.
 

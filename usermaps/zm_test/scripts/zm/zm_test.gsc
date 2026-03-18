@@ -81,6 +81,9 @@
 //Hell rounds
 #using scripts\zm\hellround\zm_hellround;
 
+//Easter eggs
+#using scripts\zm\zm_poster_easter_egg;
+
 //Room of thanks
 #using scripts\zm\room_of_thanks\zm_room_of_thanks;
 #using scripts\zm\_auto_closable_door;
@@ -418,6 +421,7 @@ function private bind_room_of_thanks_callbacks()
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&change_player_skins);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&type_room_of_thanks_briefing);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&fauna_stop);
+    zm_room_of_thanks::add_enter_room_of_thanks_callback(&zm_poster_easter_egg::stop_video_and_cameras);
 
     // Exit room of thanks
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&zm_hellround::game_finished_with_success);
