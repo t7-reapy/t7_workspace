@@ -172,9 +172,14 @@ function private _callback_on_completion() // self == reward ent array
     PRINT_DEBUG_POSTER("spawn reward location is: " + spawn_location);
 
     // Rewards & Events
+    wait 0.75;
+	sound_ent = util::spawn_model("tag_origin", spawn_location);
+    sound_ent PlaySound(POSTER_COMPLETED_SOUND);
     level thread zm_powerups::specific_powerup_drop("empty_bottle", spawn_location, undefined, undefined, undefined, undefined, true);
     VideoStart(POSTER_EVENT_VIDEO_NAME, true);
-    // TODO: enable cameras
+
+    wait 4;
+    sound_ent Delete();
 }
 
 function stop_video_and_cameras()
