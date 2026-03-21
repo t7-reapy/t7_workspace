@@ -1,3 +1,4 @@
+#using scripts\shared\laststand_shared; 
 #using scripts\zm\_zm_zonemgr; 
 #using scripts\zm\_zm_powerups; 
 #using scripts\shared\array_shared; 
@@ -189,8 +190,17 @@ function stop_video_and_cameras()
 
 function private _choose_reward_location(ents)
 {
-    players = GetPlayers();
-    player = players[RandomInt(players.size)]; 
+    players = array::randomize(GetPlayers());
+    player = undefined;
+    foreach(player_candidate in players)
+    {
+        if (!player_candidate laststand::player_is_in_laststand() 
+        && (!isdefined(player_candidate.sessionstate) || player_candidate.sessionstate != "spectator"))
+        {
+            player = player_candidate;
+            break;
+        }
+    }
 
     while(ents.size > 0)
     {
@@ -216,6 +226,14 @@ function private _choose_reward_location(ents)
         }
     }
 
-    PRINT_DEBUG_POSTER("Could not find any valid candidate for the reward");
-    return player.origin + (150, 150, 0);
+    if (isdefined(player))
+    {
+        PRINT_DEBUG_POSTER("Could not find any valid candidate for the reward. Spawning next to player.");
+        return player.origin + (150, 150, 0);
+    }
+    else
+    {
+        PRINT_DEBUG_POSTER("Could not find any valid candidate for the reward. Spawning on (0 0 0).");
+        return GetClosestPointOnNavMesh((0, 0, 0), 50000, 100);
+    }
 }

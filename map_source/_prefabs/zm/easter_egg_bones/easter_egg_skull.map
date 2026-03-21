@@ -1,0 +1,153 @@
+iwmap 4
+"script_startingnumber" 0
+"000_Global" flags  active
+"The Map" flags expanded 
+// entity 0
+{
+guid "{CEC05C63-24A4-11F1-B4AF-8DF95798F2E8}"
+"classname" "worldspawn"
+"lightingquality" "1024"
+"samplescale" "1"
+"shadowslices" "96"
+"skyboxmodel" "skybox_default_day"
+"ssi" "default_day"
+"umbraSmallestHole" "16"
+"umbraSmallestOccluder" "96"
+"umbraTileSize" "2"
+"umbra_prime_depth" "1"
+"vbloom" "mp_infection"
+"vcolor" "mp_infection"
+"wsi" "default_day"
+"fsi" "default"
+"gravity" "800"
+"lodbias" "default"
+"lutmaterial" "luts_t7_default"
+"numOmniShadowSlices" "24"
+"numSpotShadowSlices" "64"
+"sky_intensity_factor0" "1"
+"sky_intensity_factor1" "1"
+"state_alias_1" "State 1"
+"state_alias_2" "State 2"
+"state_alias_3" "State 3"
+"state_alias_4" "State 4"
+}
+// entity 1
+{
+guid "{0620E41B-24A4-11F1-B4AF-8DF95798F2E8}"
+"classname" "trigger_damage"
+"EXPLOSION_NO" "1"
+"FIRE_NO" "1"
+"MELEE_NO" "1"
+"MISC_NO" "1"
+"SPLASH_NO" "1"
+"target" "auto1"
+"targetname" "auto2"
+"_color" "1 0.3 0.1"
+"accumulate" "1"
+"threshold" "1"
+"spawnflags" "376"
+// brush 0
+{
+ guid "{B67132F0-24AA-11F1-B4AF-8DF95798F2E8}"
+ ( 12 15 6.5 ) ( 12 5 6.5 ) ( 12 15 38.5 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -20 -4 6.5 ) ( -20 12 6.5 ) ( -20 12 38.5 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 1 -7 6.5 ) ( -17 -7 6.5 ) ( -17 -7 38.5 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -19 7 7.5 ) ( 7 7 7.5 ) ( -19 7 39.5 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( -20 36.75 -2 ) ( 5 36.75 -2 ) ( -20 68.75 -2 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+ ( 4 35.75 11 ) ( -13 35.75 11 ) ( -13 67.75 11 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
+}
+}
+// entity 2
+{
+guid "{6AB6FDF7-24A6-11F1-B4AF-8DF95798F2E8}"
+"classname" "script_model"
+"angles" "270 180 180"
+"model" "p7_skulls_bones_torso"
+"origin" "-4 0 4"
+"targetname" "auto1"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 3
+{
+guid "{743DBC06-24A3-11F1-B4AF-8DF95798F2E8}"
+"classname" "script_model"
+"model" "p7_zm_ctl_wolf_dig_bones_skull"
+"origin" "0 0 3"
+"targetname" "auto1"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 4
+{
+guid "{616EA305-24AA-11F1-B4AF-8DF95798F2E8}"
+"classname" "script_model"
+"angles" "0 240 0"
+"model" "p7_skulls_bones_pile_02"
+"origin" "3.12708 -1.84928 0"
+"targetname" "auto1"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 5
+{
+guid "{70CFFCE2-24AA-11F1-B4AF-8DF95798F2E8}"
+"classname" "script_model"
+"angles" "0 96.7993 0"
+"model" "p7_skulls_bones_hand"
+"origin" "-4.24824 13.7204 0"
+"targetname" "auto1"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 6
+{
+guid "{77605472-24AA-11F1-B4AF-8DF95798F2E8}"
+"classname" "script_model"
+"angles" "0 330 0"
+"model" "p7_skulls_bones_foot"
+"origin" "-8 -12 0"
+"targetname" "auto1"
+"_color" "1 0 0"
+"client_server" "ServerSide"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"modelscale" "1"
+"shadow_casting" "1"
+}
+// entity 7
+{
+guid "{5ECD6E45-2546-11F1-B4B0-DEB54D3D2164}"
+"classname" "script_origin"
+"_color" "1 0.6823 0"
+"client_server" "ServerSide"
+"origin" "-3 0 0"
+"target" "auto2"
+"targetname" "easter_egg_skull_origin"
+}

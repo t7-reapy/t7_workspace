@@ -2,6 +2,7 @@
 #using scripts\zm\_zm_zonemgr;
 #using scripts\zm\_zm_weapons;
 #using scripts\zm\zm_usermap;
+#using scripts\zm\zm_easter_egg_bones;
 
 function main()
 {
@@ -32,7 +33,7 @@ function main()
     init_zones = [];
     level.zone_manager_init_func =&zm_brodes_zone_init;
     init_zones[0] = "start_zone";
-    init_zones[1] = "zone_01";
+    // init_zones[1] = "zone_01";
     level thread zm_zonemgr::manage_zones( init_zones );
 }
 
