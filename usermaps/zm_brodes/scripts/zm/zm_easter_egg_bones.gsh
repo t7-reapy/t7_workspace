@@ -41,7 +41,7 @@
 #define FX_BONES_MERGE "_reapy/fx_portal_bamf_zod_zmb"
 
 #define FX_BONES_START_TIME 1.0
-#define FX_BONES_END_TIME 1.0
+#define FX_BONES_DISAPPEAR_DELAY 1.0
 
 #define SOUND_BONES_SHOT "easter_egg_bones_shot"
 #define SOUND_BONES_POOF "easter_egg_bones_poof"

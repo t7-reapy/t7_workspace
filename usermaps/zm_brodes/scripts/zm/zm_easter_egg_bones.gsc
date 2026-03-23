@@ -157,6 +157,23 @@ function private _play_bones_animation() // self == trigger
     PRINT_DEBUG_SKULL("Pile of bones origin is: " + origin);
     PRINT_DEBUG_SKULL("Pile of bones angle is: " + angles);
 
+    self _make_bones_disappear(origin);
+    thread _loop_bones_fx(origin, angles);
+    thread _float_bones_animation(origin, angles);
+    thread _float_trail_animation(origin, angles);
+    waitrealtime(BONES_FLOAT_TRAVEL_TIME + BONES_FLOAT_ASSEMBLE_TIME);
+    
+    PlayFx(FX_BONES_END, origin, (0, 0, 0), (0, 0, 0));
+
+    skeleton = _spawn_skeleton(origin + (0, 0, BONES_FLOAT_DISTANCE), angles);
+    skeleton thread _float_skeleton_animation();
+    skeleton thread _rotate_skeleton_animation();
+
+    skeleton thread _remove_skeleton_on_completion();
+}
+
+function private _make_bones_disappear(origin) // self == trigger
+{
     PlayFX(FX_BONES_START, origin, (0, 0, 0), (0, 0, 0));
     PlaySoundAtPosition(SOUND_BONES_SHOT, origin);
     waitrealtime(FX_BONES_START_TIME);
@@ -166,18 +183,6 @@ function private _play_bones_animation() // self == trigger
         model Delete();
     }
     PlaySoundAtPosition(SOUND_BONES_POOF, origin);
-
-    thread _loop_bones_fx(origin, angles);
-    thread _float_bones_animation(origin, angles);
-    thread _float_trail_animation(origin, angles);
-    waitrealtime(BONES_FLOAT_TRAVEL_TIME + BONES_FLOAT_ASSEMBLE_TIME);
-    
-    PlayFx(FX_BONES_END, origin, (0, 0, 0), (0, 0, 0));
-    // waitrealtime(FX_BONES_END_TIME);
-
-    skeleton = _spawn_skeleton(origin + (0, 0, BONES_FLOAT_DISTANCE), angles);
-    skeleton thread _float_skeleton_animation();
-    skeleton thread _rotate_skeleton_animation();
 }
 
 function private _loop_bones_fx(origin, angles)
@@ -234,6 +239,7 @@ function private _spawn_skeleton(origin, angles)
 function private _float_skeleton_animation() // self == skeleton model
 {
     level endon("end_game");
+    self endon("deleted");
 
     offset = SKELETON_FLOAT_DISTANCE;
     self PlayLoopSound(SOUND_BONES_FLOAT_LOOP, 1.0);
@@ -248,12 +254,25 @@ function private _float_skeleton_animation() // self == skeleton model
 function private _rotate_skeleton_animation() // self == skeleton model
 {
     level endon("end_game");
+    self endon("deleted");
 
     while(true)
     {
         self RotateYaw(360, SKELETON_ROTATION_TIME);
         self waittill("rotatedone");
     }
+}
+
+function private _remove_skeleton_on_completion() // self == skeleton model
+{
+    level waittill(TRIGGERS_COMPLETE_NOTIFICATION);
+    
+    waitrealtime(FX_BONES_DISAPPEAR_DELAY);
+    PlayFX(FX_BONES_MERGE, self.origin, (0, 0, 0), (0, 0, 0));
+    PlaySoundAtPosition(SOUND_BONES_POOF, self.origin);
+
+    self notify("deleted");
+    self Delete();
 }
 
 /* endregion */
