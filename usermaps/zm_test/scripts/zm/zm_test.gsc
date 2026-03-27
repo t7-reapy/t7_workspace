@@ -83,6 +83,7 @@
 
 //Easter eggs
 #using scripts\zm\zm_poster_easter_egg;
+#using scripts\zm\zm_teddy_easter_egg;
 
 //Room of thanks
 #using scripts\zm\room_of_thanks\zm_room_of_thanks;
