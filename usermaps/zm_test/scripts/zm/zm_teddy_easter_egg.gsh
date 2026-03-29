@@ -8,6 +8,8 @@
 #define TEDDY_TRIGGER_SOUND "teddy_found_sound"
 #define TEDDY_IDLE_SOUND "teddy_idle_sound"
 #define TEDDY_MUSIC_SOUND "teddy_music_sound"
+#define TEDDY_MUSIC_SOUND_INITIAL_DELAY 2.0
+#define TEDDY_MUSIC_SOUND_EXTENDED_DELAY 5.0
 
 #define TEDDY_CLIENTFIELD_MUSIC "teddy_music_clientfield"
 

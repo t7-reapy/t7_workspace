@@ -100,6 +100,11 @@ function private call_toggle_callbacks(b_enabled)
     }
 }
 
+function add_toggle_collector_callback(func) {
+    zm_hellround_collectors::add_start_collection_callback(func);
+    zm_hellround_collectors::add_stop_collection_callback(func);
+}
+
 function add_meteor_trigger_callback(func_ptr)
 {
     zm_hellround_meteor::add_meteor_trigger_callback(func_ptr);
@@ -156,8 +161,8 @@ function private bind_callbacks()
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_music::enable_bad_ending);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_announcer::bad_path_started);
 
-    zm_hellround_collectors::bind_start_collection_callback(&zm_hellround_spawn_manager::iteration_time_management_update);
-    zm_hellround_collectors::bind_stop_collection_callback(&zm_hellround_spawn_manager::hellround_stops);
+    zm_hellround_collectors::add_start_collection_callback(&zm_hellround_spawn_manager::iteration_time_management_update);
+    zm_hellround_collectors::add_stop_collection_callback(&zm_hellround_spawn_manager::hellround_stops);
     zm_hellround_collectors::bind_reward_callback(&zm_hellround_reward::give_reward);
     zm_hellround_collectors::add_completion_callbacks(&zm_hellround_meteor::hellround_meteor_logic);
     zm_hellround_collectors::add_completion_callbacks(&zm_hellround_announcer::finished_good_path);

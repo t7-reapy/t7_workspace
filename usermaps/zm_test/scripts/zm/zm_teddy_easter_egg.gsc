@@ -3,9 +3,9 @@
 #using scripts\zm\_zm_utility;
 
 #using scripts\shared\array_shared;
-#using scripts\shared\flag_shared; 
-#using scripts\shared\callbacks_shared; 
-#using scripts\shared\util_shared; 
+#using scripts\shared\flag_shared;
+#using scripts\shared\callbacks_shared;
+#using scripts\shared\util_shared;
 #using scripts\shared\clientfield_shared;
 #using scripts\shared\system_shared;
 
@@ -22,6 +22,7 @@ REGISTER_SYSTEM_EX("zm_teddy_easter_egg", &_init, &_main, undefined)
 class ShootableTeddyEasterEgg
 {
     var triggers;
+    var music_started;
 }
 
 function private _init()
@@ -30,6 +31,7 @@ function private _init()
 
     level.teddy_easter_egg = new ShootableTeddyEasterEgg();
     level.teddy_easter_egg.triggers = GetEntArray(TEDDY_TRIGGER_NAME, "targetname");
+    level.teddy_easter_egg.music_started = false;
 }
 
 function private _main()
@@ -133,5 +135,19 @@ function private _callback_on_completion() // self == reward ent array
     level waittill(TEDDY_COMPLETION_LEVEL_NOTIFICATION);
     PRINT_DEBUG_TEDDY("Shootable teddys easter egg completed !");
 
-    level clientfield::increment(TEDDY_CLIENTFIELD_MUSIC);
+    level clientfield::set(TEDDY_CLIENTFIELD_MUSIC, true); // TODO: music can start during the hellround collection of souls: bad bad
+    level.teddy_easter_egg.music_started = true;
+}
+
+function toggle_music_easter_egg(b_enable)
+{
+    PRINT_DEBUG_TEDDY("toggle_music_easter_egg called with: " + b_enable);
+    if (IS_TRUE(b_enable) && level.teddy_easter_egg.music_started)
+    {
+        level clientfield::set(TEDDY_CLIENTFIELD_MUSIC, true);
+    }
+    else
+    {
+        level clientfield::set(TEDDY_CLIENTFIELD_MUSIC, false);
+    }
 }
