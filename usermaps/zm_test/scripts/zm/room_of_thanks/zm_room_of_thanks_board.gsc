@@ -241,6 +241,7 @@ function private get_secret_code() // self == player
         secret_code = "0" + secret_code;
     }
     self.secret_code = secret_code;
+    return self.secret_code;
 }
 
 function private fadein_secret_in_hud(secret_code) // self == player
