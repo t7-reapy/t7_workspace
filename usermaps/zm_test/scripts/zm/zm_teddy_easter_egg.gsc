@@ -23,6 +23,7 @@ class ShootableTeddyEasterEgg
 {
     var triggers;
     var music_started;
+    var triggers_paused;
 }
 
 function private _init()
@@ -32,6 +33,7 @@ function private _init()
     level.teddy_easter_egg = new ShootableTeddyEasterEgg();
     level.teddy_easter_egg.triggers = GetEntArray(TEDDY_TRIGGER_NAME, "targetname");
     level.teddy_easter_egg.music_started = false;
+    level.teddy_easter_egg.triggers_paused = false;
 }
 
 function private _main()
@@ -101,7 +103,7 @@ function private _trigger_think() // self == trigger
     
     model PlayLoopSound(TEDDY_IDLE_SOUND);
 
-    while (!IsPlayer(player))
+    while (level.teddy_easter_egg.triggers_paused || !IsPlayer(player))
     {
         trigger waittill("trigger", player);
     }
@@ -135,19 +137,14 @@ function private _callback_on_completion() // self == reward ent array
     level waittill(TEDDY_COMPLETION_LEVEL_NOTIFICATION);
     PRINT_DEBUG_TEDDY("Shootable teddys easter egg completed !");
 
-    level clientfield::set(TEDDY_CLIENTFIELD_MUSIC, true); // TODO: music can start during the hellround collection of souls: bad bad
+    level clientfield::set(TEDDY_CLIENTFIELD_MUSIC, true);
     level.teddy_easter_egg.music_started = true;
 }
 
 function toggle_music_easter_egg(b_enable)
 {
-    PRINT_DEBUG_TEDDY("toggle_music_easter_egg called with: " + b_enable);
-    if (IS_TRUE(b_enable) && level.teddy_easter_egg.music_started)
-    {
-        level clientfield::set(TEDDY_CLIENTFIELD_MUSIC, true);
-    }
-    else
-    {
-        level clientfield::set(TEDDY_CLIENTFIELD_MUSIC, false);
-    }
+    enabled = IS_TRUE(b_enable);
+    PRINT_DEBUG_TEDDY("toggle_music_easter_egg called with: " + enabled);
+    level.teddy_easter_egg.triggers_paused = !enabled;
+    level clientfield::set(TEDDY_CLIENTFIELD_MUSIC, enabled && level.teddy_easter_egg.music_started);
 }
