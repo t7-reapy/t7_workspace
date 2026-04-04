@@ -83,6 +83,7 @@
 
 //Easter eggs
 #using scripts\zm\zm_poster_easter_egg;
+#using scripts\zm\zm_teddy_easter_egg;
 
 //Room of thanks
 #using scripts\zm\room_of_thanks\zm_room_of_thanks;
@@ -117,6 +118,7 @@ function main()
     configure_weapon_inspection();
     bind_hellround_and_weather();
     bind_hellround_and_fauna();
+    bind_hellround_and_teddy();
     bind_hellround_meteor_to_enter_room_of_thanks();
     bind_room_of_thanks_callbacks();
     
@@ -369,6 +371,16 @@ function private toggle_fauna(b_enable_hellround)
 {
     zm_animated_fauna::toggle_rats(!IS_TRUE(b_enable_hellround));
     zm_animated_fauna::toggle_ravens(!IS_TRUE(b_enable_hellround));
+}
+
+function private bind_hellround_and_teddy()
+{
+    zm_hellround::add_toggle_collector_callback(&toggle_teddy_music);
+}
+
+function private toggle_teddy_music(b_collector_enabled)
+{
+    zm_teddy_easter_egg::toggle_music_easter_egg(!IS_TRUE(b_collector_enabled));
 }
 
 function private bind_hellround_meteor_to_enter_room_of_thanks()

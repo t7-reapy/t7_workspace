@@ -36,7 +36,7 @@
 #using scripts\zm\_zm_perk_phdflopper;
 #using scripts\zm\_zm_perk_widows_wine; 
 
-//Powerups
+// Powerups
 #using scripts\zm\_zm_powerup_double_points;
 #using scripts\zm\_zm_powerup_carpenter;
 #using scripts\zm\_zm_powerup_fire_sale;
@@ -45,8 +45,11 @@
 #using scripts\zm\_zm_powerup_insta_kill;
 #using scripts\zm\_zm_powerup_nuke;
 
-//Traps
+// Traps
 #using scripts\zm\_zm_trap_electric;
+
+// Easter Eggs
+#using scripts\zm\zm_teddy_easter_egg;
 
 // Ambient sounds
 #using scripts\zm\_ambient_room;

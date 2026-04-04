@@ -29,8 +29,8 @@ class HellroundCollectors
     var models;
 
     var souls;
-    var collection_start_callback;
-    var collection_stop_callback;
+    var collection_start_callbacks;
+    var collection_stop_callbacks;
     var reward_callback;
     var completion_callbacks;
 }
@@ -62,8 +62,8 @@ function private init()
     level.hellround_collectors.souls[0] = 0;
     level.hellround_collectors.souls[1] = 0;
     level.hellround_collectors.souls[2] = 0;
-    level.hellround_collectors.collection_start_callback = undefined;
-    level.hellround_collectors.collection_stop_callback = undefined;
+    level.hellround_collectors.collection_start_callbacks = [];
+    level.hellround_collectors.collection_stop_callbacks = [];
     level.hellround_collectors.completion_callbacks = [];
 
     callback::on_connect(&sync_hellround_collectors);
@@ -105,7 +105,7 @@ function private sync_hellround_collectors() // self == player
 
 function start_collection_logic()
 {
-    collection_start_callback();
+    collection_start_callbacks();
     wait HRCOLL_SPAWN_DELAY;
     show_hellround_collectors(zm_hellround_shared::get_current_iteration());
     start_hellround_collector_logic();
@@ -415,7 +415,7 @@ function private collect_souls(n_iteration) // self == collector skull ent
     self.is_collecting = false;
 
     wait 1.0; // Wait a second time just for smooth transition
-    notify_stop_collection_callback();
+    collection_stop_callbacks();
     give_players_iteration_reward(self.origin + (0, 0, -60));
     
     if (should_notify_completion())
@@ -480,33 +480,35 @@ function private soul_collected() // self == collector skull ent
 /* endregion */
 /* region callbacks */
 
-
-function bind_start_collection_callback(func_ptr)
+function add_start_collection_callback(func_ptr)
 {
     if (IsFunctionPtr(func_ptr))
     {
-        level.hellround_collectors.collection_start_callback = func_ptr;
+        level.hellround_collectors.collection_start_callbacks[level.hellround_collectors.collection_start_callbacks.size] = func_ptr;
     }
 }
 
-function private collection_start_callback()
+function private collection_start_callbacks()
 {
-    thread [[ level.hellround_collectors.collection_start_callback ]]();
+    foreach (callback in level.hellround_collectors.collection_start_callbacks)
+    {
+        thread [[ callback ]](true);
+    }
 }
 
-function bind_stop_collection_callback(func_ptr)
+function add_stop_collection_callback(func_ptr)
 {
     if (IsFunctionPtr(func_ptr))
     {
-        level.hellround_collectors.collection_stop_callback = func_ptr;
+        level.hellround_collectors.collection_stop_callbacks[level.hellround_collectors.collection_stop_callbacks.size] = func_ptr;
     }
 }
 
-function private notify_stop_collection_callback()
+function private collection_stop_callbacks()
 {
-    if (isdefined(level.hellround_collectors.collection_stop_callback))
+    foreach (callback in level.hellround_collectors.collection_stop_callbacks)
     {
-        thread [[ level.hellround_collectors.collection_stop_callback ]]();
+        thread [[ callback ]](false);
     }
 }
 
