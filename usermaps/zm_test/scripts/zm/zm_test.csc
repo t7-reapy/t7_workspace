@@ -54,6 +54,9 @@
 // Ambient sounds
 #using scripts\zm\_ambient_room;
 
+// Mirrors
+#using scripts\shared\mirror;
+
 // Weather
 #using scripts\zm\weather\zm_weather;
 

@@ -1,81 +1,39 @@
 #using scripts\codescripts\struct;
-#using scripts\shared\audio_shared;
+
 #using scripts\shared\callbacks_shared;
-#using scripts\shared\clientfield_shared;
-#using scripts\shared\exploder_shared;
-#using scripts\shared\scene_shared;
+#using scripts\shared\math_shared; 
 #using scripts\shared\util_shared;
-#using scripts\shared\math_shared;
+#using scripts\shared\system_shared;
+#using scripts\shared\filter_shared;
 
 #insert scripts\shared\shared.gsh;
-#insert scripts\shared\version.gsh;
+#insert scripts\shared\mirror.gsh;
 
-#using scripts\zm\_load;
-#using scripts\zm\_zm_weapons;
+#namespace mirror;
 
-//Perks
-#using scripts\zm\_zm_pack_a_punch;
-#using scripts\zm\_zm_perk_additionalprimaryweapon;
-#using scripts\zm\_zm_perk_doubletap2;
-#using scripts\zm\_zm_perk_deadshot;
-#using scripts\zm\_zm_perk_juggernaut;
-#using scripts\zm\_zm_perk_quick_revive;
-#using scripts\zm\_zm_perk_sleight_of_hand;
-#using scripts\zm\_zm_perk_staminup;
+REGISTER_SYSTEM("mirror", &init, undefined)
 
-//Powerups
-#using scripts\zm\_zm_powerup_double_points;
-#using scripts\zm\_zm_powerup_carpenter;
-#using scripts\zm\_zm_powerup_fire_sale;
-#using scripts\zm\_zm_powerup_free_perk;
-#using scripts\zm\_zm_powerup_full_ammo;
-#using scripts\zm\_zm_powerup_insta_kill;
-#using scripts\zm\_zm_powerup_nuke;
-
-//Traps
-#using scripts\zm\_zm_trap_electric;
-
-// Weather
-#using scripts\zm\weather\zm_weather;
-
-#using scripts\zm\zm_usermap;
-
-function main()
+function init()
 {
-    callback::on_localclient_connect(&_setup_mirror_on_player_connect);
-    zm_usermap::main();
-
-    include_weapons();
-    
-    util::waitforclient(0);
-}
-
-function include_weapons()
-{
-    zm_weapons::load_weapon_spec_from_table("gamedata/weapons/zm/zm_levelcommon_weapons.csv", 1);
+    callback::on_localclient_connect(&_setup_mirror_on_player_connect);    
 }
 
 function private _setup_mirror_on_player_connect(localclientnum)
 {
+    util::waitforclient(localclientnum);
     for (i = 0; i < 4; i++)
     {
-        mirror = GetEnt(localclientnum, "mirror_" + (i + 1), "targetname");
+        mirror = GetEnt(localclientnum, MIRROR_TARGETNAME_PREFIX + (i + 1), "targetname");
         if (!isdefined(mirror))
         {
             continue;
         }
 
-        mirror SetExtraCam(i, 1920, 1080);
+        mirror SetExtraCam(i, MIRROR_HORIZONTAL_RESOLUTION, MIRROR_VERTICAL_RESOLUTION);
 
         mirror thread _track_player_and_update_camera(i, localclientnum);
     }
 }
-
-#define PUSH_DISTANCE 50
-#define MAX_DISTANCE 500
-#define MIN_FOCAL_LENGTH 12.0   // close to mirror = wide
-#define MAX_FOCAL_LENGTH 25.0  // far from mirror = narrow
-#define ENABLE_TRUE_MIRROR true
 
 function private _track_player_and_update_camera(cam_id, localclientnum)
 {
