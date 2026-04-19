@@ -103,6 +103,8 @@
 #define BLEEDOUT_LOOP_SOUND "cw_laststand_loop"
 #define PLAYER_NEAR_DEATH_SOUND "zc_player_near_death"
 
+#define SKYRIM_EASTER_EGG_CHANCE 0.10
+
 // TODO: remove
 // Sphynx's Console Commands
 #using scripts\Sphynx\commands\_zm_commands;
@@ -115,6 +117,7 @@
 
 function main()
 {
+    level lui::prime_movie("skyrim");
     configure_weapon_inspection();
     bind_hellround_and_weather();
     bind_hellround_and_fauna();
@@ -144,8 +147,6 @@ function main()
     callback::on_laststand(&onlaststand);
     
     thread end_game();
-
-    level.player_starting_points = 500000;
 }
 
 function private end_game()
@@ -389,6 +390,7 @@ function private bind_hellround_meteor_to_enter_room_of_thanks()
     zm_hellround::add_meteor_trigger_callback(&pause_game);
     zm_hellround::add_meteor_trigger_callback(&clear_zombies);
     zm_hellround::add_meteor_trigger_callback(&stop_round_sounds);
+    zm_hellround::add_meteor_trigger_callback(&skyrim_easter_egg);
 }
 
 function private pause_game()
@@ -421,6 +423,27 @@ function private stop_round_sounds()
     level.musicSystem.states["round_start_short"].musArray = [];
     level.musicSystem.states["round_start_first"].musArray = [];
     level.musicSystem.states["round_end"].musArray = [];
+}
+
+function private skyrim_easter_egg()
+{
+    foreach(player in GetPlayers())
+    {
+        if (RandomFloat(1.0) <= SKYRIM_EASTER_EGG_CHANCE)
+        {
+            player thread play_skyrim_video();
+        }
+    }
+}
+
+function play_skyrim_video() // self == player
+{
+    screen_fades = 1.5;
+    self thread lui::screen_flash(screen_fades, 11.23, screen_fades, 1, "black");
+    wait screen_fades;
+    self PlaySoundToPlayer("skyrim", self);
+    self thread lui::play_movie("skyrim", "fullscreen", true);
+    wait screen_fades;
 }
 
 function private bind_room_of_thanks_callbacks()
