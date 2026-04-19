@@ -60,11 +60,14 @@
 // Weather
 #using scripts\zm\weather\zm_weather;
 
-//Hell rounds
+// Hell rounds
 #using scripts\zm\hellround\zm_hellround;
 
-//Room of thanks
+// Room of thanks
 #using scripts\zm\room_of_thanks\zm_room_of_thanks;
+
+// Weapon dynamic swing
+#using scripts\zm\weapon_mod;
 
 #using scripts\zm\zm_usermap;
 
