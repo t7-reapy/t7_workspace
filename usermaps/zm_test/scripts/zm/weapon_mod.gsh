@@ -69,7 +69,7 @@
 #define ADS_MOVE_DAMPING   22.0
 #define ADS_SPEED_REF      120.0
 
-#define ADS_STRAFEMAX       0.4
+#define ADS_STRAFEMAX       0.01
 #define ADS_FORWARDBACKMAX -0.65
 #define ADS_BACKMAX        -0.05
 #define ADS_DOWNMAX        -0.15
@@ -79,14 +79,14 @@
 // VIEWMODEL RECOIL (SPRING RETURN)
 // How fast recoil returns after a shot
 
-#define RECOIL_STIFFNESS 65.0   // higher = snaps back faster
-#define RECOIL_DAMPING   15.0    // higher = less bounce
+#define RECOIL_STIFFNESS 85.0 // higher = snaps back faster
+#define RECOIL_DAMPING   40.0 // higher = less bounce
 
 
 // Per-shot recoil impulses
-#define HIP_RECOIL_UP     0.55
-#define HIP_RECOIL_BACK  -0.55
-#define HIP_RECOIL_SIDE   0.35
+#define HIP_RECOIL_UP     0.15
+#define HIP_RECOIL_BACK  -0.05
+#define HIP_RECOIL_SIDE   0.15
 
 #define ADS_RECOIL_UP     0.05
 #define ADS_RECOIL_BACK   0.5
