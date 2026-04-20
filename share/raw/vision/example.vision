@@ -1,0 +1,50 @@
+// Vision
+
+// ------------------------- //
+// [VTWEAK_TINT]
+// This part deals with the colour tint of the visionset
+
+// vkTT - Colour Temp
+vkTT "8249.428711" // Valid range = [1667, 25000]. 6500 is default (below is warmer, above is cooler). FLOAT
+
+// vkTS - Saturation
+vkTS "-0.514874" // Valid range = [-1, 1]. 0 is default (-1 is pure greyscale and 1 is fully increased saturation). FLOAT
+
+// vKTC - Colour Tint
+// Values: (R G B Intensity)
+vkTC "0.370209 0.263554 0.605948 4.989996" // RGB range is [0, 1]. Intensity is in stops (calculated by pow(2, value)). Default is 0. VEC4
+
+// vkTO - Colour Offset
+vkTO "-0.025800 -0.040600 -0.020200" // RGB values are added to create offset. Valid range = [-1, 1]. Default is 0. VEC3
+
+// ------------------------- //
+// [VTWEAK_RAMP]
+// This part deals with the colour ramp of the visionset
+
+// First colour point of the ramp
+vkRGB0 "0.379917 0.288848 0.687813" // RGB values, valid range = [0, 1]. VEC3
+vkL0 "0.041190" // First anchor point position. Valid range = [0, 1]. FLOAT
+vkM0 "0.596110" // First midpoint position (where the 50% blend will occur between colours). Valid range = [0, 1]. FLOAT
+
+// Second colour point of the ramp
+vkRGB1 "0.501925 0.442740 0.738806"
+vkL1 "0.259153" // Second anchor point
+vkM1 "0.495423" // Second midpoint
+
+// Third colour point of the ramp
+vkRGB2 "0.614616 0.574654 0.880071"
+vkL2 "0.506292"
+// Third midpoint left out (takes default value).
+
+// Fourth colour point of the ramp
+vkRGB3 "0.705589 0.714151 0.999783"
+vkL3 "0.786613"
+vkM3 "0.500000"
+
+// Fifth colour point of the ramp
+vkRGB4 "0.886161 0.877782 1.000000"
+vkL4 "1.000000"
+vkM4 "0.684210"
+
+// vkRM - Blend amount for the ramp
+vkRM "0.100687" // Valid range = [0, 1]. 0 is no ramp, 1 is completely ramp. FLOAT
