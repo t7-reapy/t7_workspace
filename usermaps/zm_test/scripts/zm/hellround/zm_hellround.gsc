@@ -136,7 +136,6 @@ function private bind_callbacks()
     add_toggle_callback(&respawn_players);
     add_toggle_callback(&temporary_invulnerability);
     add_toggle_callback(&zm_hellround_powerup::lose_minigun_callback);
-    add_toggle_callback(&zm_hellround_powerup::toggle_powerups);
     add_toggle_callback(&zm_hellround_zombies::toggle_hellround_zombies);
     add_toggle_callback(&zm_hellround_players::toggle_hellround_for_players);
     add_toggle_callback(&zm_hellround_environment::toggle_hellround_environment);

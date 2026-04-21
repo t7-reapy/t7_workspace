@@ -183,18 +183,14 @@ function private func_should_drop_powerup(power_up_name)
     // will always return false, the server will crash... Therefore, do 
     // not remove the below line.
     WAIT_SERVER_FRAME;
+    
+    PRINT_HR_DEBUG("Checking if powerup " + power_up_name + " should drop.");
 
     // No powerups during hellrounds
     if (zm_hellround_shared::is_hellround_running())
     {
-        if (power_up_name == "sword_powerup")
-        {
-            return RandomFloat(1.0) <= HRPWRUP_SWORD_POWERUP_CHANCE_DURING_HR;
-        }
-        return false;
+        return power_up_name == "sword_powerup";
     }
-    
-    PRINT_HR_DEBUG("Checking if powerup " + power_up_name + " should drop.");
 
     // Default behavior for other powerups
     switch (power_up_name)

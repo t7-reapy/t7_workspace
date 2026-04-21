@@ -164,6 +164,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - Hellround box bug (during debug only): open box before cerberus, and finishing the feeding before it closes makes the hellround box stay (no endon during the active waiting).
 - Hellround skull is still shootable when hidden.
 - Hellround collector depart's FX is not visible (exploder issue?)
+- After hellround bad path, taking a firesale chest literally bugged all the chests: they coudl be bought but where not showing, and once powerup was done they didn't fly away. Also music wasn't playing (check encoding of the new sound).
 - The easter egg music plays after the hellround bonus finished (like a resume)
 
 # Sphynx commands cheat sheet
