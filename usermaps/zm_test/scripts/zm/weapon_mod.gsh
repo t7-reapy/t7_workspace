@@ -84,12 +84,12 @@
 
 
 // Per-shot recoil impulses
-#define HIP_RECOIL_UP     0.15
-#define HIP_RECOIL_BACK  -0.05
+#define HIP_RECOIL_UP     0.05
+#define HIP_RECOIL_BACK  -0.01
 #define HIP_RECOIL_SIDE   0.15
 
-#define ADS_RECOIL_UP     0.05
-#define ADS_RECOIL_BACK   0.5
+#define ADS_RECOIL_UP     0.01
+#define ADS_RECOIL_BACK  -0.25
 #define ADS_RECOIL_SIDE   0.08
 
 
