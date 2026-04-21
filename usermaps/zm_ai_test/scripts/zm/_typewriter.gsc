@@ -4,7 +4,6 @@
 #insert scripts\zm\_zm.gsh;
 #insert scripts\shared\shared.gsh;
 
-// #insert scripts\zm\_typewriter.gsh;
 #namespace typewriter;
 
 REGISTER_SYSTEM("typewriter", &init, undefined)

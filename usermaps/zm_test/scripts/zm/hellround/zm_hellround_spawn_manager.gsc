@@ -1,5 +1,6 @@
 #using scripts\zm\_zm;
 #using scripts\zm\_zm_powerups; 
+#using scripts\zm\_typewriter;
 #using scripts\shared\array_shared; 
 #using scripts\shared\flag_shared; 
 #using scripts\shared\system_shared;
@@ -266,6 +267,7 @@ function hellround_starts()
     thread hellround_pause_round_logic();
     thread hellround_increase_ai_limit();
     thread hellround_start_spawns();
+    thread hellround_typewriter();
     thread call_toggle_callbacks(true);
 }
 
@@ -345,6 +347,34 @@ function private hellround_restore_round_logic()
 
 /* endregion */
 /* region iteration management */
+
+function private hellround_typewriter()
+{
+    spawn_flag = HELLROUND_FLAGS[level.hellround_spawn_manager.current_iteration];
+    level flag::set(spawn_flag);
+
+    switch (level.hellround_spawn_manager.current_iteration)
+    {
+        case 0:
+            typewriter::type("New secondary objective:", "> Feed the ^1cerberus^7 head");
+            break;
+        case 1:
+            typewriter::type("New secondary objective:", "> Find the ^1altar^7 and ^1close it^7");
+            break;
+        case 2:
+            typewriter::type("New secondary objective:", "> Find the ^1altar^7 and ^1close it^7 again");
+            break;
+        case 3:
+            typewriter::type("New secondary objective:", "> One last time.");
+            break;
+        case HELLROUND_BAD_ITERATION:
+            typewriter::type("Mission failed", "New Mission: Survive ^1hell");
+            break;
+        default:
+            PRINT_HR_DEBUG("Hellrounds: no typewriter for iteration " + level.hellround_spawn_manager.current_iteration + " defined.");
+            return;
+    }
+}
 
 function private hellround_start_spawns()
 {

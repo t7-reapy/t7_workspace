@@ -19,8 +19,8 @@
 // #precache("client_fx", "player/fx_ai_corvus_leg_left_loop");
 // #precache("client_fx", "player/fx_ai_corvus_leg_right_loop");
 #precache("client_fx", "player/fx_ai_corvus_torso_loop");
-// #precache("client_fx", "player/fx_ai_corvus_waist_loop");
 #precache("client_fx", "zombie/fx_keeper_ambient_torso_zod_zmb");
+// #precache("client_fx", "player/fx_ai_corvus_waist_loop");
 #precache("client_fx", HRZM_ZOMBIE_BLOODBATH_FX);
 #precache("client_fx", HRZM_ZOMBIE_BLOODBATH_DEFAULT_FX);
 

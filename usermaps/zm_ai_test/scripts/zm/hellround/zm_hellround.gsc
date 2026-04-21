@@ -27,6 +27,7 @@
 #using scripts\zm\hellround\zm_hellround_shared;
 #using scripts\zm\hellround\zm_hellround_spawn_manager;
 #using scripts\zm\hellround\zm_hellround_zombies;
+#using scripts\zm\hellround\zm_hellround_vision;
 
 // AIs involved in hell rounds
 #using scripts\shared\ai\zombie_utility;
@@ -135,7 +136,6 @@ function private bind_callbacks()
     add_toggle_callback(&respawn_players);
     add_toggle_callback(&temporary_invulnerability);
     add_toggle_callback(&zm_hellround_powerup::lose_minigun_callback);
-    add_toggle_callback(&zm_hellround_powerup::toggle_powerups);
     add_toggle_callback(&zm_hellround_zombies::toggle_hellround_zombies);
     add_toggle_callback(&zm_hellround_players::toggle_hellround_for_players);
     add_toggle_callback(&zm_hellround_environment::toggle_hellround_environment);
@@ -143,6 +143,7 @@ function private bind_callbacks()
     add_toggle_callback(&zm_bloodsplatter::toggle_blood_splatter);
     add_toggle_callback(&zm_hellround_music::toggle_hellround_music);
     add_toggle_callback(&zm_hellround_announcer::toggle_hellround_announce);
+    add_toggle_callback(&zm_hellround_vision::toggle_hellround_vision);
 
     zm_hellround_spawn_manager::bind_toggle_hellround_callback(&call_toggle_callbacks);
     zm_hellround_spawn_manager::add_ai_spawn_callback(&zm_bloodsplatter::watch_actor);
