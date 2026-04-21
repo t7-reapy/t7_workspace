@@ -13,11 +13,25 @@
 
 REGISTER_SYSTEM("zm_hellround_environment", &init, undefined)
 
+class HellroundEnvironment
+{
+    var volumes_show;
+    var volumes_hide;
+
+    var models_show;
+    var models_hide;
+
+    var sounds;
+}
+
 function init() 
 {
-    level.volumes_show = FindVolumeDecalIndexArray("hellround_volume_show");
-    level.volumes_hide = FindVolumeDecalIndexArray("hellround_volume_hide");
-    level.hellround_environment_sounds = [];
+    level.hellround_environment = new HellroundEnvironment();
+    level.hellround_environment.volumes_show = FindVolumeDecalIndexArray("hellround_volume_show");
+    level.hellround_environment.volumes_hide = FindVolumeDecalIndexArray("hellround_volume_hide");
+    level.hellround_environment.models_show = FindStaticModelIndexArray("hellround_model_show");
+    level.hellround_environment.models_hide = FindStaticModelIndexArray("hellround_model_hide");
+    level.hellround_environment.sounds = [];
 
     clientfield::register("world", HRENV_TOGGLE_CLIENT_FIELD, VERSION_SHIP, 1, "int", &hellround_environment, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
 }
@@ -34,6 +48,7 @@ function hellround_environment(n_client_num, _oldVal, n_new_val, b_new_ent, _bIn
     }
     fog_update(IS_TRUE(n_new_val), b_new_ent);
     show_hellround_volumes(IS_TRUE(n_new_val));
+    show_hellround_models(IS_TRUE(n_new_val));
     play_environment_sounds(n_client_num, IS_TRUE(n_new_val));
 }
 
@@ -83,26 +98,57 @@ function private show_hellround_volumes(b_show)
 {
     if(b_show)
     {
-        foreach(volume in level.volumes_show)
+        foreach(volume in level.hellround_environment.volumes_show)
         {
             UnhideVolumeDecal(volume);
         }
 
-        foreach(volume in level.volumes_hide)
+        foreach(volume in level.hellround_environment.volumes_hide)
         {
             HideVolumeDecal(volume);
         }
     }
     else
     {
-        foreach(volume in level.volumes_show)
+        foreach(volume in level.hellround_environment.volumes_show)
         {
             HideVolumeDecal(volume);
         }
 
-        foreach(volume in level.volumes_hide)
+        foreach(volume in level.hellround_environment.volumes_hide)
         {
             UnhideVolumeDecal(volume);
+        }
+    }
+}
+
+/* endregion */
+/* region models */
+
+function private show_hellround_models(b_show)
+{
+    if(b_show)
+    {
+        foreach(model in level.hellround_environment.models_show)
+        {
+            UnhideStaticModel(model);
+        }
+
+        foreach(model in level.hellround_environment.models_hide)
+        {
+            HideStaticModel(model);
+        }
+    }
+    else
+    {
+        foreach(model in level.hellround_environment.models_show)
+        {
+            HideStaticModel(model);
+        }
+
+        foreach(model in level.hellround_environment.models_hide)
+        {
+            UnhideStaticModel(model);
         }
     }
 }
@@ -128,22 +174,22 @@ function private play_environment_sounds(n_client_num, b_enable)
         player stop_loop_sounds();
         if (b_enable)
         {
-            level.hellround_environment_sounds[HRENV_AMBIANCE_SOUND_1] = player PlayLoopSound(HRENV_AMBIANCE_SOUND_1, 1);
-            level.hellround_environment_sounds[HRENV_AMBIANCE_SOUND_2] = player PlayLoopSound(HRENV_AMBIANCE_SOUND_2, 1);
+            level.hellround_environment.sounds[HRENV_AMBIANCE_SOUND_1] = player PlayLoopSound(HRENV_AMBIANCE_SOUND_1, 1);
+            level.hellround_environment.sounds[HRENV_AMBIANCE_SOUND_2] = player PlayLoopSound(HRENV_AMBIANCE_SOUND_2, 1);
         }
     }
 }
 
 function private stop_loop_sounds() // self == player
 {
-    if (isdefined(level.hellround_environment_sounds[HRENV_AMBIANCE_SOUND_1]))
+    if (isdefined(level.hellround_environment.sounds[HRENV_AMBIANCE_SOUND_1]))
     {
-        self StopLoopSound(level.hellround_environment_sounds[HRENV_AMBIANCE_SOUND_1], 1);
+        self StopLoopSound(level.hellround_environment.sounds[HRENV_AMBIANCE_SOUND_1], 1);
     }
     
-    if (isdefined(level.hellround_environment_sounds[HRENV_AMBIANCE_SOUND_2]))
+    if (isdefined(level.hellround_environment.sounds[HRENV_AMBIANCE_SOUND_2]))
     {
-        self StopLoopSound(level.hellround_environment_sounds[HRENV_AMBIANCE_SOUND_2], 1);
+        self StopLoopSound(level.hellround_environment.sounds[HRENV_AMBIANCE_SOUND_2], 1);
     }
 }
 
