@@ -6,4 +6,6 @@
 #define HRPWRUP_FX "_reapy/fx_hellround_powerup"
 #define HRPWRUP_GRAB_FX "zombie/fx_powerup_grab_red_zmb"
 
+#define HRPWRUP_SWORD_POWERUP_CHANCE_DURING_HR 0.50 // Percentage chance for the sword powerup to spawn during Hell Round
+
 #define HRPWRUP_REVIVING_GIVES_REVIVE_TOOL false

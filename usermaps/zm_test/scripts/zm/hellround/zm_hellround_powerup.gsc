@@ -182,6 +182,10 @@ function private func_should_drop_powerup(power_up_name)
     // No powerups during hellrounds
     if (zm_hellround_shared::is_hellround_running())
     {
+        if (power_up_name == "sword_powerup")
+        {
+            return RandomFloat(1.0) <= HRPWRUP_SWORD_POWERUP_CHANCE_DURING_HR;
+        }
         return false;
     }
     
