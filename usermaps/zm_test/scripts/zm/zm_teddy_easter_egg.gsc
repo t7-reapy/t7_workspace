@@ -116,6 +116,14 @@ function private _trigger_think() // self == trigger
     model Delete();
 }
 
+function private stop_sounds()
+{
+    foreach (trigger in level.teddy_easter_egg.triggers)
+    {
+        trigger.target_model Delete();
+    }
+}
+
 function private _wait_for_all_triggers(count)
 {
     level endon("end_game");
