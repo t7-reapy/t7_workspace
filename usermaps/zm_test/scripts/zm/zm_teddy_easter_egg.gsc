@@ -116,7 +116,7 @@ function private _trigger_think() // self == trigger
     model Delete();
 }
 
-function private stop_sounds()
+function stop_sounds()
 {
     foreach (trigger in level.teddy_easter_egg.triggers)
     {
