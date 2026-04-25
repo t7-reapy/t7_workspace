@@ -117,7 +117,6 @@
 
 function main()
 {
-    level lui::prime_movie("skyrim");
     configure_weapon_inspection();
     bind_hellround_and_weather();
     bind_hellround_and_fauna();
@@ -325,6 +324,7 @@ function private onlaststand() //callback on player laststand
 function private prepare_end_game()
 {
     level.custom_game_over_hud_elem_color_function = &zm_hellround::get_ending_associated_color;
+    level lui::prime_movie("skyrim");
 }
 
 function private play_bleedout_sound()
