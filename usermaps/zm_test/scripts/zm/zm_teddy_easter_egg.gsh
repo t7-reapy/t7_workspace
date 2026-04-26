@@ -1,4 +1,4 @@
-#define DEBUG_TEDDY 1
+#define DEBUG_TEDDY 0
 #define PRINT_DEBUG_TEDDY(__str) if(DEBUG_TEDDY) IPrintLnBold(__str) // Note: don't use comas in __str
 
 #define TEDDY_NUMBER 3
