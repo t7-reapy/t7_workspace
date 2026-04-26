@@ -457,6 +457,7 @@ function private bind_room_of_thanks_callbacks()
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&change_player_skins);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&type_room_of_thanks_briefing);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&fauna_stop);
+    zm_room_of_thanks::add_enter_room_of_thanks_callback(&stop_perk_jingles_sounds);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&zm_poster_easter_egg::stop_video_and_cameras);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&zm_teddy_easter_egg::stop_sounds);
 
@@ -528,6 +529,16 @@ function private fauna_stop()
 {
     zm_animated_fauna::toggle_rats(false);
     zm_animated_fauna::toggle_ravens(false);
+}
+
+function private stop_perk_jingles_sounds()
+{
+    vending_triggers = GetEntArray("zombie_vending", "targetname");
+    foreach (trigger in vending_triggers)
+    {
+        // We don't need perks anymore, simply killing the triggers will stop the jingles from _zm_perks:524 and _zm_audio:1620
+        trigger Delete();
+    }
 }
 
 function private transition_screen()
