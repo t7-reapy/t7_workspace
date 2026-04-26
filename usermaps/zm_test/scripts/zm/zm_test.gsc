@@ -33,6 +33,7 @@
 #using scripts\zm\_zm_zonemgr;
 #using scripts\zm\_zm_equipment;
 
+#using scripts\shared\spawner_shared; 
 #using scripts\shared\ai\zombie_utility;
 
 // Custom UI
@@ -698,6 +699,9 @@ function private setup_playable_zones()
 
     // Must be defined for AI pathing
     level.pathdist_type = PATHDIST_ORIGINAL;
+
+    // Don't drop powerups outside of active zones ...
+    array::run_all(GetSpawnerArray(), &spawner::add_spawn_function, &_no_powerups_drop_outside_of_active_zone);
 }
 
 function private add_adjacent_zones()
@@ -706,6 +710,36 @@ function private add_adjacent_zones()
     zm_zonemgr::add_adjacent_zone("second_zone", "third_zone", "enter_third_zone");
     zm_zonemgr::add_adjacent_zone("third_zone", "fourth_zone", "enter_fourth_zone");
 } 
+
+function private _no_powerups_drop_outside_of_active_zone() // self == actor
+{
+    level endon("end_game");
+    self endon("death");
+
+    if (!self _is_normal_zombie())
+    {
+        return;
+    }
+
+    while(!self zm_zonemgr::entity_in_active_zone())
+    {
+        self.no_powerups = true;
+        wait 0.5;
+    }
+
+    self.no_powerups = false;    
+}
+
+function _is_normal_zombie() // self == actor
+{
+    if (IsDefined(self.animname) && self.animname !== "zombie")
+        return false;
+
+    if (IsDefined(self.archetype) && self.archetype == "zombie")
+        return true;
+
+    return false;
+}
 
 /* endregion */
 /* region tweakings */

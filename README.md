@@ -167,6 +167,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - Hellround skull is still shootable when hidden.
 - Hellround collector depart's FX is not visible (exploder issue?)
 - After hellround bad path, taking a firesale chest literally bugged all the chests: they coudl be bought but where not showing, and once powerup was done they didn't fly away. Also music wasn't playing (check encoding of the new sound).
+- Minigun powerup can drop after last one is taken ... And maybe during hellround as well (to check that second point)
 
 # Sphynx commands cheat sheet
 
