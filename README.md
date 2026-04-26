@@ -148,6 +148,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
   - When AI is killed sometime it gives pathing error, also happens in some areas...
   - umbra bug when jumbing in north exterior corridor
 - Splitscreen bugs:
+  - (maybe just splitscreen) Despite my efforts, it seems like some sounds are playing on BUS MUS... 
   - rain sounds in splitscreen should only be played once if both players are in same enviromnent (make this adaptable so if one change environment, it updates for both using GetLocalPlayers())
     - note: [audio_shared](share/raw/scripts/shared/audio_shared.csc#l73) client script uses localhost to host sounds
   - wind exploder is stuck in animation in splitscreen (sometimes)
@@ -166,7 +167,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - Hellround skull is still shootable when hidden.
 - Hellround collector depart's FX is not visible (exploder issue?)
 - After hellround bad path, taking a firesale chest literally bugged all the chests: they coudl be bought but where not showing, and once powerup was done they didn't fly away. Also music wasn't playing (check encoding of the new sound).
-- The easter egg music plays after the hellround bonus finished (like a resume)
 
 # Sphynx commands cheat sheet
 

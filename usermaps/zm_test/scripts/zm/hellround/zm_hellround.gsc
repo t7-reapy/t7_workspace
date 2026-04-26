@@ -185,10 +185,7 @@ function private respawn_players(b_enable)
 {
     foreach (player in GetPlayers())
     {
-        if (player.sessionstate == "spectator" && isdefined(player.spectator_respawn))
-        {
-            player zm::spectator_respawn_player();
-        }
+        player zm::spectator_respawn_player();
     }
 }
 

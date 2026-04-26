@@ -1,3 +1,4 @@
+#using scripts\zm\_zm; 
 #using scripts\shared\callbacks_shared; 
 #using scripts\shared\array_shared;
 #using scripts\shared\flag_shared;
@@ -155,6 +156,8 @@ function private on_player_spawned()
 
 function private main()
 {
+    add_enter_room_of_thanks_callback(&_respawn_players_on_death);
+    
     thread end_game();
     array::thread_all(level.thanks_elevators, &elevator_think);
 
@@ -171,6 +174,20 @@ function private end_game()
     foreach(elevator in level.thanks_elevators)
     {
         elevator notify("kill_elevator_think");
+    }
+}
+
+function private _respawn_players_on_death()
+{
+    level endon("end_game");
+
+    while(true)
+    {
+        wait 1;
+        foreach (player in GetPlayers())
+        {
+            player zm::spectator_respawn_player();
+        }
     }
 }
 
