@@ -22,6 +22,7 @@
 #define HRMETEOR_SND_RAIN_ON_FIRE "toggle_meteor_rain_on_fire_sound"
 #define HRMETEOR_SND_METEOR_SIREN "amb_meteor_siren"
 #define HRMETEOR_SND_METEOR_SHAKE "meteor_shake_sound"
+#define HRMETEOR_SND_MAX_DISTANCE 500
 
 #define HRMETEOR_TRIGGER_LOCALIZED "METEOR_ACTIVATE"
 #define HRMETEOR_TRIGGER_PRICE_STR "50000"

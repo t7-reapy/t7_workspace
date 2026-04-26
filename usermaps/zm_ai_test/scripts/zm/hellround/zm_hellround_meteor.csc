@@ -96,7 +96,7 @@ function private play_meteor_sounds(n_client_num, skip_meteor_falldown = false)
         timings = HRMETEOR_EXPLODER_IMPACT_TIMINGS;
         foreach(timing in timings)
         {
-            thread play_shaking_sounds(timing);
+            thread play_shaking_sounds(n_client_num, timing);
         }
         waitrealtime(HRMETEOR_EXPLODER_TIME);
     }
@@ -104,11 +104,11 @@ function private play_meteor_sounds(n_client_num, skip_meteor_falldown = false)
     level notify(HRMETEOR_SND_RAIN_ON_FIRE);
 }
 
-function private play_shaking_sounds(delay)
+function private play_shaking_sounds(n_client_num, delay)
 {
     waitrealtime(delay);
     PRINT_HR_DEBUG("Notification sent for shaky sounds");
-    level notify(HRMETEOR_SND_METEOR_SHAKE);
+    level notify(HRMETEOR_SND_METEOR_SHAKE, n_client_num);
 }
 
 // Inspired from audio_shared.csc:startSoundLoops()
@@ -140,13 +140,17 @@ function sound_struct_think() // self == struct
         return;
     }
 
-    notify_name = self.script_string;
+    notify_name = self.script_string; // HRMETEOR_SND_METEOR_SHAKE's value really ...
     if(isdefined(notify_name))
     {
         while(true)
         {
-            level waittill(notify_name);
-            PlaySound(0, self.script_sound, self.origin);
+            level waittill(notify_name, n_client_num);
+            player = GetLocalPlayer(n_client_num);
+            if (Distance(player.origin, self.origin) < HRMETEOR_SND_MAX_DISTANCE)
+            {
+                PlaySound(n_client_num, self.script_sound, self.origin);
+            }
         }
     }
 }
