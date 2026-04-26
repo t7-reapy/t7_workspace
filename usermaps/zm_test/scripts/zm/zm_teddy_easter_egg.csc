@@ -32,7 +32,14 @@ function private _init()
 
 function play_easter_egg_music(n_client_num, _oldVal, n_new_val, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump)
 {
+    if (IsSplitScreen() && !IsSplitScreenHost(n_client_num))
+    {
+        PRINT_DEBUG_TEDDY("Not split-screen host. Not playing music.");
+        return;
+    }
+
     util::waitforclient(n_client_num);
+
     PRINT_DEBUG_TEDDY("Called music reward with: " + n_new_val);
 
     if (n_new_val && level.teddy_bear_music.music_should_start)
