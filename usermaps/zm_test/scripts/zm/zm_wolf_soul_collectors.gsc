@@ -456,7 +456,7 @@ function wolfhead_idle()
 function private rune_glow() // self == level.wolf_runes[index]
 {
     rune_forward = anglesToForward(self.angles);
-    rune_charged_glow_location = self.origin + (3, 3, 3) * rune_forward;
+    rune_charged_glow_location = self.origin + 0 /* no offset for now */ * rune_forward;
     PlayFX(level._effect["soul_charged"], rune_charged_glow_location, rune_forward);
     self PlayLoopSound("evt_runeglow_loop");
 }
