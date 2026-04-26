@@ -115,7 +115,7 @@ function private disable_players_outline(n_local_client_num)
     // We have to keep it in a loop because once player dies and re-spawns, we have to remove its keyline again...
     while(true)
     {
-        wait 5;
+        wait 4;
         
         // Check for player dead or respawning
         if (!isdefined(self))
@@ -132,11 +132,9 @@ function private disable_players_outline(n_local_client_num)
 
         foreach (player in players)
         {
-            player duplicate_render::set_dr_flag("keyline_active", 0);
+            player duplicate_render::update_dr_flag(n_local_client_num, "keyline_active", false);
             WAIT_CLIENT_FRAME;
         }
-
-        self duplicate_render::update_dr_filters(n_local_client_num);
     }
 }
 
