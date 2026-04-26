@@ -4,6 +4,7 @@
 #define HRCOLL_SKULLS array("hellround_skull_01", "hellround_skull_02", "hellround_skull_03")
 #define HRCOLL_SKULLS_FLOAT_DELTA 8.0
 #define HRCOLL_SKULLS_FLOAT_TIME 4.0
+#define HRCOLL_SKULLS_ROTATE_TIME 5.0
 #define HRCOLL_RINGS array("hellround_ring_01", "hellround_ring_02", "hellround_ring_03")
 #define HRCOLL_RING_FLOAT_DELTA 4.0
 #define HRCOLL_RING_FLOAT_TIME 2.0

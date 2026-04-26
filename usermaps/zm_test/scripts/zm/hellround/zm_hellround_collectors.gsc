@@ -320,6 +320,7 @@ function private float_skulls()
     foreach(skull in level.hellround_collectors.skulls)
     {
         skull thread float_skull();
+        skull thread rotate_skull();
     }
 }
 
@@ -333,6 +334,19 @@ function private float_skull() // self == skull ent
         self MoveZ(offset, HRCOLL_SKULLS_FLOAT_TIME, HRCOLL_SKULLS_FLOAT_TIME/2, HRCOLL_SKULLS_FLOAT_TIME/2);
         self waittill("movedone");
         offset *= -1;
+    }
+}
+
+function private rotate_skull() // self == skull ent
+{
+    level endon("end_game");
+
+    angles = self.angles;
+    while(true)
+    {
+        self RotateYaw(360 * 100, HRCOLL_SKULLS_ROTATE_TIME * 100);
+	    self waittill("rotatedone");
+        self.angles = angles;
     }
 }
 
