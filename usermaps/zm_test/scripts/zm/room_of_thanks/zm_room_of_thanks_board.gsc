@@ -330,7 +330,7 @@ function private push_away_subtitle() // self == hud element
 
 function private print_subtitle(subtitle)
 {
-    hud_element = create_hidden_hud_element("center", "bottom", "center", "bottom", 0, -55, 1.25, (1.0, 1.0, 1.0));
+    hud_element = create_hidden_hud_element("center", "bottom", "center", "bottom", 0, -55, 1.00, (1.0, 1.0, 1.0));
     hud_element SetText(subtitle);
     hud_element FadeOverTime(VIDEO_SUBTITLE_FADEIN_TIME);
     hud_element MoveOverTime(VIDEO_SUBTITLE_MOVE_TIME);
