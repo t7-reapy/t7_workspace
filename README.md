@@ -156,7 +156,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - weapon staff utility (csc) and other weapon staff scripts throws on pointer callbacks
 - shredder is too powerful: speed, upgrade too much damage, no self explosion damage
 - shredder climbing sound is triggering the initial pickup sound
-- the minigun inspection resumes the weapon rotation
 - sword powerup can crash the map (if the sword goes out of playable zone ???)
 - After a map restart, the fog can glitch and be thicker unless reset to state 0
 - Hellround finish did not restore camo of gun in the secondary slot (even primary)

@@ -124,6 +124,7 @@ function wait_for_inspect()
             //make sure you're not reloading, using offhands, sprinting OR throwing grenades
             if(self UseButtonPressed() && can_inspect && !self isReloading() && !self isSwitchingWeapons() && !self IsUsingOffHand() && !self IsSprinting() && !self isThrowingGrenade())
             {
+                self.was_weapon_cycling_enabled = self WeaponCyclingEnabled();
                 self DisableWeaponCycling();
                 self thread allow_fire_interrupt();
                 self thread allow_switch_interrupt();
@@ -197,7 +198,10 @@ function clear_inspect()
     
     self.inspecting = false;
     self SetLowReady(false);
-    self EnableWeaponCycling();
+    if (IS_TRUE(self.was_weapon_cycling_enabled))
+    {
+        self EnableWeaponCycling();
+    }
 
     if (level.idisable_hud)
     {
