@@ -35,14 +35,26 @@ CoD.KingslayerPowerupsListItem.new = function ( menu, controller )
 	end )
 	self:addElement( self.image )
 
+	self:linkToElementModel( self, "name", true, function ( model )
+		self.powerupName = Engine.GetModelValue( model )
+		if self.powerupName == "powerup_mini_gun" and self.time then
+			self.time:setText( "" )
+		end
+	end )
+
 	self.time = LUI.UIText.new()
 	self.time:setLeftRight( true, true, 0, 0 )
 	self.time:setTopBottom( true, false, 29, 66 )
 	self.time:setTTF( "fonts/defaultbold.ttf" )
 	self.time:setScale( 0.5 )
 	self.time:linkToElementModel( self, "time", true, function ( model )
+		if self.powerupName == "powerup_mini_gun" then
+			self.time:setText( "" )
+			return
+		end
+
 		local time = Engine.GetModelValue( model )
-		
+
 		if time then
 			if time > 59 then
 				if time == 255 then

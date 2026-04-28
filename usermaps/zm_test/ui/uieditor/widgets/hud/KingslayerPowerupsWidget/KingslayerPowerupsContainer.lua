@@ -71,6 +71,7 @@ DataSources.KingslayerPowerups = DataSourceHelpers.ListSetup( "KingslayerPowerup
 				table.insert( powerups, {
 					models = {
 						image = CoD.PowerUps.ClientFieldNames[index].image,
+						name = CoD.PowerUps.ClientFieldNames[index].clientFieldName,
 						state = powerupState,
 						time = powerupTime
 					}

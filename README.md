@@ -154,7 +154,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
   - wind exploder is stuck in animation in splitscreen (sometimes)
   - perk utility script throws error (need developer 2) <= still the case ?
 - weapon staff utility (csc) and other weapon staff scripts throws on pointer callbacks
-- minigun timer in HUD
 - shredder is too powerful: speed, upgrade too much damage, no self explosion damage
 - shredder climbing sound is triggering the initial pickup sound
 - the minigun inspection resumes the weapon rotation
