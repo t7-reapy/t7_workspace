@@ -2,16 +2,30 @@
 
 This repository contains my config, maps and script files in order to keep track of my progress in my maps in case I have a loss of some of the sources. It also allow me to have some of the features on different branches if I wish to enable/disable them at will.
 
+# Realizations
+
+## RAINY DOOM
+
+Rainy doom is my first map and is planned to be released during June 2026 on the steam workshop.
+
+[Watch the teaser](https://youtu.be/G37yaG4MJuw):
+
+[![Rainy Doom teaser](https://i9.ytimg.com/vi_webp/G37yaG4MJuw/mqdefault.webp?v=69f5ebbf&sqp=CMTr2M8G&rs=AOn4CLArPNAX5LTPogG5QzlK7xQS_hGpPA)](https://youtu.be/G37yaG4MJuw)
+
 # Currents tasks
 
 Check the [kanban board](https://github.com/users/McReaper/projects/1)
 
 # External resources installed
 
-> I didn't work with basics assets provided by Treyarch, but also installed some external of them... Let's hope they never disappear from internet...
+> I didn't work with basics assets provided by Treyarch, but also installed a lot of external ones... Let's hope they never disappear from internet...
 > Which is realisticly not possible. I've saved them on a hard drive in case of someone (like me) needs them in the future.
 
 > The following content is sorted in installation/dependency order. Dependencies are not mentionned, but following the installation order should be enough
+
+<details>
+
+<summary>List of external resources</summary>
 
 | Name                                                 | Author                          | Download Link                                                                                                                                                                                                                      | Alternate Link                                                                                                                                                                  | Alternate Link                                                                                                      |
 | ---------------------------------------------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
@@ -137,18 +151,25 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 | [*Music*] Melodic Metal                              | AudioDollar (Pixabay)           | [Pixabay](https://pixabay.com/music/metal-melodic-metal-186403/)                                                                                                                                                                   | []()                                                                                                                                                                            | []()                                                                                                                |
 | [*Music*] Deathcore                                  | AudioDollar (Pixabay)           | [Pixabay](https://pixabay.com/music/metal-deathcore-182263/)                                                                                                                                                                       | []()                                                                                                                                                                            | []()                                                                                                                |
 | [*Music*] Sinister                                   | BrightestAvenue (Pixabay)       | [Pixabay](https://pixabay.com/music/metal-aggressive-metal-sinister-111839/)                                                                                                                                                       | []()                                                                                                                                                                            | []()                                                                                                                |
+| bo3tool (camera DOF & co' for theater mode)          | Airyz                           | [Airyz's blog](https://airyz.xyz/p/bo3-tool/)                                                                                                                                                                                      | [Airyz](https://airyz.xyz/software/tool/editing/bo3-tool/BO3Tool.zip)                                                                                                           | []()                                                                                                                |
+| boiii client REDACTED                                | ViktorSMI                       | [github](https://github.com/ViktorSMI/boiii-redacted)                                                                                                                                                                              | []()                                                                                                                                                                            | []()                                                                                                                |
 
 <!-- | Name | Author | []() | []() | []() | -->
 
+</details>
+<br/>
+
 # Known bugs spotted on map
 
-## ZM_TEST
+<details>
+
+<summary>ZM_TEST</summary>
 
 - Errors that I can't do much about:
   - When AI is killed sometime it gives pathing error, also happens in some areas...
   - umbra bug when jumbing in north exterior corridor
 - Splitscreen bugs:
-  - (maybe just splitscreen) Despite my efforts, it seems like some sounds are playing on BUS MUS... 
+  - (maybe just splitscreen) Despite my efforts, it seems like some sounds are playing on BUS MUS...
   - rain sounds in splitscreen should only be played once if both players are in same enviromnent (make this adaptable so if one change environment, it updates for both using GetLocalPlayers())
     - note: [audio_shared](share/raw/scripts/shared/audio_shared.csc#l73) client script uses localhost to host sounds
   - wind exploder is stuck in animation in splitscreen (sometimes)
@@ -167,41 +188,13 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - After hellround bad path, taking a firesale chest literally bugged all the chests: they coudl be bought but where not showing, and once powerup was done they didn't fly away. Also music wasn't playing (check encoding of the new sound).
 - Minigun powerup can drop after last one is taken ... And maybe during hellround as well (to check that second point)
 
-# Sphynx commands cheat sheet
+</details>
+<br/>
 
-If Sphynx scripts utilities were installed on a map scripts, here is a recap of the commands possible to be used.
+# Additional information
 
-> usage: `/command parameter`
-
-| Command             | Possible parameters                   | Description                                                                 |
-| ------------------- | ------------------------------------- | --------------------------------------------------------------------------- |
-| `/getxuid`          | `1`                                   | Displays your XUID                                                          |
-| `/spawning`         | `on`/`off`                            |                                                                             |
-| `/spawn_dog`        | `<amount>`                            |                                                                             |
-| `/spawn_zombie`     | `<amount>`                            | Spawn zombies and adds them to the zombies spawn list                       |
-| `/perk`             | `<player_index>`/`all`                | Give perks to players                                                       |
-| `/take_perk`        | `<player_index>`/`all`                | Take perks from players                                                     |
-| `/points`           | `[<player_index>]` `<points>`         | Give points to player,/to self if not specified                             |
-| `/give`             | `[<player_index>]` `<weaponname>`     | Better /give                                                                |
-| `/ignore`           | `<player_index>`/`all`                | Make player ignored by AI                                                   |
-| `/infinite_ammo`    | `<player_index>`/`all`                | Give player infinite ammo (no way of turning off now)                       |
-| `/god`              | `<player_index>`/`all`                | Better godmode                                                              |
-| `/camo`             | `[<player_index>]`/`<index>`          | Change camo of currentweapon                                                |
-| `/revive`           | `<player_index>`/`all`                |                                                                             |
-| `/power`            | `on`/`off`                            | Toggle power state                                                          |
-| `/next_round`       | `<increment>`                         |                                                                             |
-| `/previous_round`   | `<decrement>`                         |                                                                             |
-| `/round`            | `<round_number>`                      | between 1 and 255                                                           |
-| `/powerup`          | `<player_index>` `<powerup name>`     | Spawns powerup where player is looking                                      |
-| `/upgrade_weapon`   | `<player_index>`/`all`                | Upgrades current weapon                                                     |
-| `/downgrade_weapon` | `<player_index>`/`all`                | Downgrades current weapon                                                   |
-| `/open`             | `all`                                 | Opens all doors                                                             |
-| `/difficulty`       | `<difficulty>`                        | From 1 to 4. Changes difficulty (Zombie speed, amount of zombies)           |
-| `/lighting`         | `<lightstate>`                        | From 0 to 3. Changes the lightingstate                                      |
-| `/fog`              | `<fogstate>`                          | From 0 to 3. Changes the fog state                                          |
-| `/get_coords`       | `1`                                   | Gets the coordinates on your exact location (Origin and Angles)             |
-| `/outline`          | `<struct/model targetname>` `<state>` | State is 0 or 1. Add keylines around a specific model to look for it easier |
-| `/show_zombies`     | `<state>`                             | State is 0 or 1. Shows all zombies through walls - 'Gives Death Perception' |
-| `/teleportz`        | `<player_index>`                      | Teleports zombies to player with index                                      |
-| `/bgb`              | `<bgbname>` `<player_index>`          | Gives the player a gobblegum                                                |
-| `/aimbot`           | `on`/`off`                            | Aimbots zombies                                                             |
+- Some tips where accumulated in [KNOWLEDGE.md](KNOWLEDGE.md), useful for my future self or someone curious.
+- A lot of stuff I made is present in the [`zm_test`'s sources](usermaps/zm_test/)
+- I tweaked dupe fixer from devraw to a version that deletes midgetblaster assets first
+  > _I made this in order to save me from regression since I developed a lot from the original assets..._
+- The git history is gold, it contains everything I did since I started scripting. Every steps, iterations, attempts, failures, successes, etc.

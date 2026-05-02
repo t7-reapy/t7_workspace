@@ -1,6 +1,6 @@
-# Script Investigations
+# Investigations
 
-In this document, there will be tips and stuff around my investigations and discoveries around treyarch scripts (... or community scripts). I think this effort is worth it considering me starting from scratch, for a later me or newcomer. I won't cover the very basics of programming of course, but I will cover specific stuff about the scripts I read and what is worth to note (to re-use, to overwrite, or to understand).
+In this document, there will be tips and stuff around my investigations and discoveries around treyarch engine (scripts, audio, image, videos, tools, general knowledge, etc). I think this effort is worth it considering me starting from scratch, for a later me or newcomer.
 
 ## Wtf
 
@@ -25,6 +25,57 @@ Note: videos must be in `usermaps\zm_test\zone\video` to be embedded in the map.
 
 If when playing MKV videos, the game crashes, then the version of the software use to make the MKV is too recent:
 - Use handbrake 1.0.3
+
+## Having theater mode working in custom maps
+
+To have theater mode working in custom zombie maps, there a few pre-requisites, and tricks to have it working...
+- **Disclaimer**: I just did it with my own maps, I never tried with a map from the workshop. Guidelines can be found at https://airyz.xyz/p/boiii-for-editing/
+- **Disclaimer 2**: I did install boiii client from https://github.com/Ezz-lol/boiii-free before switching back to another version, could have an impact on the final result.
+- **Disclaimer 3**: bo3tool from devraw never worked for the demo injection, it always crashed, so same story, I used another version.
+
+**Pre-requisites**:
+- boiii redacted client installed from ViktorSMI (with Theater server): https://github.com/ViktorSMI/boiii-redacted
+- bo3tool v2.0.9 at https://airyz.xyz/p/bo3-tool/ or https://airyz.xyz/software/tool/editing/bo3-tool/BO3Tool.zip
+
+**Tips**:
+- Use a controller in theater mode, it's intuitive and it works even if you don't have the focus on the game.
+- In theater mode, quick forward and backward operations may crash the game, keep a task manager open.
+
+**Steps**:
+- Initial setup:
+  - Launch boiii client
+  - Launch a game
+  - Close the game entirely
+- Record a demo:
+  - Launch boiii client
+  - Load the mod: Mods ➡️ Select the mod associated to the map
+  - Play a game of the associated custom map
+  - Finish the game normally
+  - From there, play a game from an official map
+  - Finish the game normally
+  - Close the game entirely
+- Replay a recorded demo in theater mode:
+  > Inspired from the manual steps at : https://airyz.xyz/p/boiii-for-editing/ (I saved a PDF of the page in case it goes down)
+  - Manual injection (because bo3tool always crashed for me):
+    - Go to `boiii_players\user\demos`
+    - **Delete** these three files from the demo of the custom map:
+      1. `zclassic_zm_YOURMAP_XX_XX_XXXX_XX_XX.demo.summary`
+      1. `zclassic_zm_YOURMAP_XX_XX_XXXX_XX_XX.demo.tags`
+      1. `zclassic_zm_YOURMAP_XX_XX_XXXX_XX_XX.demo.thumbnail`
+    - **Delete** these two files from the demo of the official map (here it's shadow of evil):
+      1. `zclassic_zm_zod_XX_XX_XXXX_XX_XX.demo`
+      1. `zclassic_zm_zod_XX_XX_XXXX_XX_XX.demo.mod` (_can be missing if you unloaded the mod_)
+    - Copy the name of your custom map demo: `zclassic_zm_YOURMAP_XX_XX_XXXX_XX_XX.demo` (including `.demo` yes)
+    - **Rename** these three files from the demo of the official map to the custom map:
+      1. `zclassic_zm_zod_XX_XX_XXXX_XX_XX.demo.summary` ➡️ F2 ➡️ Ctrl+V ➡️ Enter
+      1. `zclassic_zm_zod_XX_XX_XXXX_XX_XX.demo.tags` ➡️ F2 ➡️ Ctrl+V ➡️ Enter
+      1. `zclassic_zm_zod_XX_XX_XXXX_XX_XX.demo.thumbnail` ➡️ F2 ➡️ Ctrl+V ➡️ Enter
+  - Launch boiii client
+  - Load the mod: Mods ➡️ Select the mod associated to the map
+  - Go to Zombie ➡️ Theater mode ➡️ Select ➡️ Select the replay here
+  - Done, replay is playing.
+  - You can use bo3 tool to tweak the camera settings.
+
 
 ## Troubleshoot
 
@@ -126,3 +177,42 @@ CoD mod files extensions: `*.csc,*.gsc,*.gsh,*.szc,*.zpkg,*.zone,*.csv,*.gdt,*.a
 | ^7   | White     |
 | ^8   | Grey      |
 | ^9   | Light red |
+
+# Sphynx commands cheat sheet
+
+If Sphynx scripts utilities were installed on a map scripts, here is a recap of the commands possible to be used.
+
+> usage: `/command parameter`
+
+| Command             | Possible parameters                   | Description                                                                 |
+| ------------------- | ------------------------------------- | --------------------------------------------------------------------------- |
+| `/getxuid`          | `1`                                   | Displays your XUID                                                          |
+| `/spawning`         | `on`/`off`                            |                                                                             |
+| `/spawn_dog`        | `<amount>`                            |                                                                             |
+| `/spawn_zombie`     | `<amount>`                            | Spawn zombies and adds them to the zombies spawn list                       |
+| `/perk`             | `<player_index>`/`all`                | Give perks to players                                                       |
+| `/take_perk`        | `<player_index>`/`all`                | Take perks from players                                                     |
+| `/points`           | `[<player_index>]` `<points>`         | Give points to player,/to self if not specified                             |
+| `/give`             | `[<player_index>]` `<weaponname>`     | Better /give                                                                |
+| `/ignore`           | `<player_index>`/`all`                | Make player ignored by AI                                                   |
+| `/infinite_ammo`    | `<player_index>`/`all`                | Give player infinite ammo (no way of turning off now)                       |
+| `/god`              | `<player_index>`/`all`                | Better godmode                                                              |
+| `/camo`             | `[<player_index>]`/`<index>`          | Change camo of currentweapon                                                |
+| `/revive`           | `<player_index>`/`all`                |                                                                             |
+| `/power`            | `on`/`off`                            | Toggle power state                                                          |
+| `/next_round`       | `<increment>`                         |                                                                             |
+| `/previous_round`   | `<decrement>`                         |                                                                             |
+| `/round`            | `<round_number>`                      | between 1 and 255                                                           |
+| `/powerup`          | `<player_index>` `<powerup name>`     | Spawns powerup where player is looking                                      |
+| `/upgrade_weapon`   | `<player_index>`/`all`                | Upgrades current weapon                                                     |
+| `/downgrade_weapon` | `<player_index>`/`all`                | Downgrades current weapon                                                   |
+| `/open`             | `all`                                 | Opens all doors                                                             |
+| `/difficulty`       | `<difficulty>`                        | From 1 to 4. Changes difficulty (Zombie speed, amount of zombies)           |
+| `/lighting`         | `<lightstate>`                        | From 0 to 3. Changes the lightingstate                                      |
+| `/fog`              | `<fogstate>`                          | From 0 to 3. Changes the fog state                                          |
+| `/get_coords`       | `1`                                   | Gets the coordinates on your exact location (Origin and Angles)             |
+| `/outline`          | `<struct/model targetname>` `<state>` | State is 0 or 1. Add keylines around a specific model to look for it easier |
+| `/show_zombies`     | `<state>`                             | State is 0 or 1. Shows all zombies through walls - 'Gives Death Perception' |
+| `/teleportz`        | `<player_index>`                      | Teleports zombies to player with index                                      |
+| `/bgb`              | `<bgbname>` `<player_index>`          | Gives the player a gobblegum                                                |
+| `/aimbot`           | `on`/`off`                            | Aimbots zombies                                                             |
