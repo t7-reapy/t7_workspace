@@ -136,6 +136,9 @@ function init()
         level.wolf_runes[i] = GetEnt(level.soul_catchers[i].script_noteworthy, "targetname");
         level.wolf_runes_completed[i] = GetEnt(level.soul_catchers[i].script_noteworthy + "_completed", "targetname");
         level.soul_catchers[i].rune = level.wolf_runes[i];
+
+        // Script brush models don't have angle information, we must add it manually for later operations.
+        level.wolf_runes[i].angles = level.soul_catchers[i].angles;
     }
     level flag::wait_till("all_players_connected");
     level.soul_catcher_clip["rune_2"] = GetEnt("wolf_clip_docks", "targetname");
@@ -384,7 +387,7 @@ function wolfhead_arrive(index)
 
     rune.portalFxOrg = Spawn("script_model", rune.origin);
     rune.portalFxOrg SetModel("tag_origin");
-    rune.portalFxOrg.angles = rune.angles + (0, 90, 0);
+    rune.portalFxOrg.angles = rune.angles;
     rune.portalFxOrg.origin += (10, 10, 10) * anglesToForward(rune.portalFxOrg.angles);
 
     PlayFxOnTag(level._effect["hell_portal"], rune.portalFxOrg, "tag_origin");
