@@ -174,10 +174,9 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
     - note: [audio_shared](share/raw/scripts/shared/audio_shared.csc#l73) client script uses localhost to host sounds
   - wind exploder is stuck in animation in splitscreen (sometimes)
   - perk utility script throws error (need developer 2) <= still the case ?
+- Bugs I didn't reproduce:
+  - sword powerup can crash the map (if the sword goes out of playable zone ???)
 - weapon staff utility (csc) and other weapon staff scripts throws on pointer callbacks
-- shredder is too powerful: speed, upgrade too much damage, no self explosion damage
-- shredder climbing sound is triggering the initial pickup sound
-- sword powerup can crash the map (if the sword goes out of playable zone ???)
 - After a map restart, the fog can glitch and be thicker unless reset to state 0
 - Hellround finish did not restore camo of gun in the secondary slot (even primary)
 - Hellround bad path spawns parasite after it's done in last zone.
