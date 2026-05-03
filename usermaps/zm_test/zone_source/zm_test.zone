@@ -105,6 +105,12 @@ fx,impacts/fx_bul_impact_blood_head_nonfatal_zmb
 fx,impacts/fx_bul_impact_blood_head_fatal_zmb
 fx,impacts/fx_bul_impact_blood_head_fatal_meat_trail
 
+// Overridding progress so the map doesn't display intrusive popups about it. Useful when someone plays on boiii client.
+scriptparsetree,scripts/shared/scoreevents_shared.gsc
+scriptparsetree,scripts/shared/persistence_shared.gsc
+scriptparsetree,scripts/shared/rank_shared.gsc
+scriptparsetree,scripts/zm/gametypes/_globallogic_score.gsc
+
 // TODO: remove
 // Sphynx's Console Commands
 scriptparsetree,scripts/Sphynx/commands/_zm_commands.gsc
