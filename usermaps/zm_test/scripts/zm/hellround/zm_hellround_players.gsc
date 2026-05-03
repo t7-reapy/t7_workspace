@@ -94,7 +94,10 @@ function private update_weapon_camo_for_hellround(enable, weapon) // self == pla
     if (enable)
     {
         camo_index = HRPLR_HELLROUND_CAMO_INDEX;
-        weapon.original_hellround_camo[client_number] = (zm_weapons::is_weapon_upgraded(weapon) ? weapon.pap_camo_to_use : 0);
+        if (!isdefined(weapon.original_hellround_camo[client_number]))
+        {
+            weapon.original_hellround_camo[client_number] = (isdefined(weapon.pap_camo_to_use) ? weapon.pap_camo_to_use : (isdefined(weapon.pap_manual_camo_index) ? weapon.pap_manual_camo_index : 0));
+        }
     }
     else
     {

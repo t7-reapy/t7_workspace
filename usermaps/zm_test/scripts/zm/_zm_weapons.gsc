@@ -2538,8 +2538,9 @@ function give_build_kit_weapon( weapon )
 			camo = weapon.pap_camo_to_use;
 		}
 		else
-		{	
+		{
 			camo = get_pack_a_punch_camo_index( undefined );
+			weapon.pap_camo_to_use = camo;
 		}
 		upgraded = true;
 		base_weapon = get_base_weapon( weapon );

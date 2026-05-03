@@ -43,10 +43,8 @@ function update_weapon_camo(camo, weapon, altweapon, aat)
         self UpdateWeaponOptions(weapon, weapon_options);
     }
     
-    if(!isdefined(aat))
-    {
-        self.papcamo_index = camo;
-    }
+    weapon.pap_manual_camo_index = camo;
+    weapon.pap_camo_to_use = camo;
 
     return 1;
 }

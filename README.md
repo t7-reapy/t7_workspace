@@ -178,7 +178,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
   - sword powerup can crash the map (if the sword goes out of playable zone ???)
 - weapon staff utility (csc) and other weapon staff scripts throws on pointer callbacks
 - After a map restart, the fog can glitch and be thicker unless reset to state 0
-- Hellround finish did not restore camo of gun in the secondary slot (even primary)
 - Hellround bad path spawns parasite after it's done in last zone.
 - Hellround box bug: get teddy bear from box, and take the minigun powerup, the box will stick to hellround after this...
 - Hellround box bug (during debug only): open box before cerberus, and finishing the feeding before it closes makes the hellround box stay (no endon during the active waiting).
