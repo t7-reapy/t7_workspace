@@ -17,6 +17,7 @@ REGISTER_SYSTEM_EX("hb21_zm_weap_staff_utility", &__init__, &__main__, undefined
 
 function __init__() 
 {
+    level.weaponNone = GetWeapon("none");
     clientfield::register("clientuimodel", STAFF_ICON_CF, VERSION_SHIP, 1, "int", undefined, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);    
     clientfield::register("toplayer", STAFF_CHARGE_CF, VERSION_SHIP, 3, "int", &staff_charge_sounds, !CF_HOST_ONLY, !CF_CALLBACK_ZERO_ON_NEW_ENT);
     
@@ -188,7 +189,7 @@ function staff_watch_change_weapon(n_local_client_num)
     {
         self waittill("weapon_change", w_weapon, w_old_weapon);
         
-        if (!isDefined(w_weapon) || w_weapon == level.weaponNone)
+        if (!IsWeapon(w_weapon) || w_weapon == level.weaponNone)
             continue;
         
         if (is_staff_weapon(w_weapon))
@@ -196,8 +197,9 @@ function staff_watch_change_weapon(n_local_client_num)
             self notify("staff_weapon_equipped");
             // self staff_watch_charge_level(n_local_client_num);
             if (isDefined(w_weapon.str_weapon_charge_fx))
+            {
                 self thread staff_watch_charge_level(n_local_client_num, w_weapon.str_weapon_charge_fx);
-                
+            }   
         }
     }
 }
