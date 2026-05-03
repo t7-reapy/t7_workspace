@@ -546,6 +546,9 @@ function incPersStat( dataName, increment, record_stats, includeGametype )
 {
 	pixbeginevent( "incPersStat" );
 
+	// Make sure stat is correctly initialized.
+	initPersStat(dataName, record_stats);
+
 	self.pers[dataName] += increment;
 	
 	//if ( isdefined( includeGameType ) && includeGameType )

@@ -114,7 +114,7 @@
 // Custom powerups FX
 #define FX_POWERUP_BLUE "_reapy/fx_powerup_blue"
 #precache("fx", FX_POWERUP_BLUE);
-#precache( "string", "ZOMBIE_POWERUP_NUKE" );
+#precache("string", "ZOMBIE_POWERUP_NUKE");
 
 function main()
 {
@@ -377,12 +377,18 @@ function private toggle_fauna(b_enable_hellround)
 
 function private bind_hellround_and_teddy()
 {
-    zm_hellround::add_toggle_collector_callback(&toggle_teddy_music);
+    zm_hellround::add_start_collector_callback(&start_teddy_music);
+    zm_hellround::add_stop_collector_callback(&stop_teddy_music);
 }
 
-function private toggle_teddy_music(b_collector_enabled)
+function private start_teddy_music()
 {
-    zm_teddy_easter_egg::toggle_music_easter_egg(!IS_TRUE(b_collector_enabled));
+    zm_teddy_easter_egg::toggle_music_easter_egg(true);
+}
+
+function private stop_teddy_music()
+{
+    zm_teddy_easter_egg::toggle_music_easter_egg(false);
 }
 
 function private bind_hellround_meteor_to_enter_room_of_thanks()

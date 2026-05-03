@@ -101,8 +101,13 @@ function private call_toggle_callbacks(b_enabled)
     }
 }
 
-function add_toggle_collector_callback(func) {
+function add_start_collector_callback(func) 
+{
     zm_hellround_collectors::add_start_collection_callback(func);
+}
+
+function add_stop_collector_callback(func)
+{
     zm_hellround_collectors::add_stop_collection_callback(func);
 }
 

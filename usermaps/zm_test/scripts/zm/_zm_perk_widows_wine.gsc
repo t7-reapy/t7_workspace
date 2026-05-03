@@ -159,7 +159,7 @@ function widows_wine_main()
 	
 	zm_utility::register_lethal_grenade_for_level( WIDOWS_WINE_GRENADE );
 	zm_spawner::register_zombie_damage_callback( &widows_wine_zombie_damage_response );
-	zm_spawner::register_zombie_death_event_callback( &widows_wine_zombie_death_watch );
+	// zm_spawner::register_zombie_death_event_callback( &widows_wine_zombie_death_watch );
 	zm::register_vehicle_damage_callback( &widows_wine_vehicle_damage_response );
 	zm_perks::register_perk_damage_override_func( &widows_wine_damage_callback );
 	level.w_widows_wine_grenade = GetWeapon( WIDOWS_WINE_GRENADE );
@@ -322,7 +322,7 @@ function widows_wine_zombie_death_watch( attacker )
 			{
 				self.no_powerups = 1;
 				level._powerup_timeout_override = &powerup_widows_wine_timeout;
-				level thread zm_powerups::specific_powerup_drop( "ww_grenade", self.origin, undefined, undefined, undefined, self.attacker );
+				level thread zm_powerups::specific_powerup_drop( "ww_grenade", self.origin, undefined, undefined, undefined, self.attacker, false );
 				level._powerup_timeout_override = undefined;
 			}
 		}

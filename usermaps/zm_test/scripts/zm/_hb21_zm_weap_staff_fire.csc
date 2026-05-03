@@ -183,10 +183,10 @@ function staff_fire_delete_sound_ent(e_zombie)
     self delete();
 }
 
-function staff_fire_parasite_init_cb()
+function staff_fire_parasite_init_cb(localClientNum)
 {
 }
 
-function staff_fire_dog_init_cb()
+function staff_fire_dog_init_cb(localClientNum)
 {
 }

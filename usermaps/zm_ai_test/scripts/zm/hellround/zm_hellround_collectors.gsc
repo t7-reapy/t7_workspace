@@ -72,11 +72,12 @@ function private init()
 
 function private main()
 {
-    thread float_skulls();
-    thread float_rings();
     zm_hellround_shared::wait_for_map_load();
     show_hellround_collectors(HRCOLL_DISABLED);
     depart_hellround_collector_exploders(HRCOLL_DISABLED);
+    
+    thread float_skulls();
+    thread float_rings();
     
     foreach (skull in level.hellround_collectors.skulls)
     {
@@ -506,7 +507,7 @@ function private collection_start_callbacks()
 {
     foreach (callback in level.hellround_collectors.collection_start_callbacks)
     {
-        thread [[ callback ]](true);
+        thread [[ callback ]]();
     }
 }
 
@@ -522,7 +523,7 @@ function private collection_stop_callbacks()
 {
     foreach (callback in level.hellround_collectors.collection_stop_callbacks)
     {
-        thread [[ callback ]](false);
+        thread [[ callback ]]();
     }
 }
 
