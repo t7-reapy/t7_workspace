@@ -285,6 +285,7 @@ function private update_hellround_collector_skulls(n_iteration)
     foreach(skull in level.hellround_collectors.skulls)
     {
         skull Hide();
+        skull NotSolid();
     }
 
     if (n_iteration == HRCOLL_DISABLED)
@@ -292,7 +293,9 @@ function private update_hellround_collector_skulls(n_iteration)
         return;
     }
 
-    level.hellround_collectors.skulls[n_iteration - 1] Show();
+    skull = level.hellround_collectors.skulls[n_iteration - 1];
+    skull Show();
+    skull Solid();
 }
 
 function private update_hellround_collector_rings(n_iteration)
@@ -302,6 +305,7 @@ function private update_hellround_collector_rings(n_iteration)
         foreach (ring in rings)
         {
             ring Hide();
+            ring NotSolid();
         }
     }
 

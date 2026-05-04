@@ -168,6 +168,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - Errors that I can't do much about:
   - When AI is killed sometime it gives pathing error, also happens in some areas...
   - umbra bug when jumbing in north exterior corridor
+  - Hellround collector depart's FX is not visible (because too many fx playing at the time it goes away, fx limit.)
 - Splitscreen bugs:
   - (maybe just splitscreen) Despite my efforts, it seems like some sounds are playing on BUS MUS...
   - rain sounds in splitscreen should only be played once if both players are in same enviromnent (make this adaptable so if one change environment, it updates for both using GetLocalPlayers())
@@ -176,13 +177,10 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
   - perk utility script throws error (need developer 2) <= still the case ?
 - Bugs I didn't reproduce:
   - sword powerup can crash the map (if the sword goes out of playable zone ???)
-- weapon staff utility (csc) and other weapon staff scripts throws on pointer callbacks
 - After a map restart, the fog can glitch and be thicker unless reset to state 0
 - Hellround bad path spawns parasite after it's done in last zone.
 - Hellround box bug: get teddy bear from box, and take the minigun powerup, the box will stick to hellround after this...
 - Hellround box bug (during debug only): open box before cerberus, and finishing the feeding before it closes makes the hellround box stay (no endon during the active waiting).
-- Hellround skull is still shootable when hidden.
-- Hellround collector depart's FX is not visible (exploder issue?)
 - After hellround bad path, taking a firesale chest literally bugged all the chests: they coudl be bought but where not showing, and once powerup was done they didn't fly away. Also music wasn't playing (check encoding of the new sound).
 - Minigun powerup can drop after last one is taken ... And maybe during hellround as well (to check that second point)
 
