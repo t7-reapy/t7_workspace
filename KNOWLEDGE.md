@@ -2,6 +2,14 @@
 
 In this document, there will be tips and stuff around my investigations and discoveries around treyarch engine (scripts, audio, image, videos, tools, general knowledge, etc). I think this effort is worth it considering me starting from scratch, for a later me or newcomer.
 
+## Umbra
+
+Culling issues can be fixed in narrowed spots with two techniques:
+- For brushes: *Select the brushes* -> *Right click* -> `Make Umbra Target`
+- For entities: *Select the entities* -> Add the user kvp `umbra_target_only`:`1`
+
+But ... I found out this can FUCK THINGS AROUND! Removing these tweaks can save you some weird side effects of texture disappearing when you're close from it.
+
 ## Wtf
 
 If blackhole script used to teleport player on a tilted entities, the player world axis is tilted as well, making it like the world has been tilted upside down lol 

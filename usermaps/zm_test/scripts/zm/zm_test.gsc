@@ -143,6 +143,7 @@ function main()
     
     callback::on_connect(&disable_hitmarkers);
     callback::on_connect(&notify_ui_for_nuke_powerup);
+    callback::on_connect(&apply_current_lighting_state);
     callback::on_spawned(&on_player_spawned);
     callback::on_laststand(&onlaststand);
     
@@ -486,6 +487,14 @@ function private set_lighting_state_normal()
 {
     wait DELAY_BEFORE_ROT_CALLBACK_APPLY;
     util::set_lighting_state(VAL(level.power_on_lightstate, 0));
+}
+
+function private apply_current_lighting_state() // self == player
+{
+    if (isdefined(level.lighting_state))
+    {
+        self util::set_lighting_state(level.lighting_state);
+    }
 }
 
 function private remove_ui()

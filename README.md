@@ -167,7 +167,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 
 - Errors that I can't do much about:
   - When AI is killed sometime it gives pathing error, also happens in some areas...
-  - umbra bug when jumbing in north exterior corridor
   - Hellround collector depart's FX is not visible (because too many fx playing at the time it goes away, fx limit.)
 - Splitscreen bugs:
   - (maybe just splitscreen) Despite my efforts, it seems like some sounds are playing on BUS MUS...
@@ -181,8 +180,9 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - Hellround bad path spawns parasite after it's done in last zone.
 - Hellround box bug: get teddy bear from box, and take the minigun powerup, the box will stick to hellround after this...
 - Hellround box bug (during debug only): open box before cerberus, and finishing the feeding before it closes makes the hellround box stay (no endon during the active waiting).
-- After hellround bad path, taking a firesale chest literally bugged all the chests: they coudl be bought but where not showing, and once powerup was done they didn't fly away. Also music wasn't playing (check encoding of the new sound).
+- After hellround bad path, taking a firesale chest literally bugged all the chests: they coudl be bought but where not showing, and once powerup was done they didn't fly away.
 - Minigun powerup can drop after last one is taken ... And maybe during hellround as well (to check that second point)
+- Minigun can be swapped out if player launches a grenade/monkey bomb
 
 </details>
 <br/>

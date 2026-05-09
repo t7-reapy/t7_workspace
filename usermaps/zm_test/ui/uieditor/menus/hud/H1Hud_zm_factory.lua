@@ -36,7 +36,7 @@ local PreLoadFunc = function ( self, controller )
 	CoD.Zombie.CommonPreLoadHud( self, controller )
 
 	-- Your maps name, this is used on the scoreboard.
-	CoD.UsermapName = "Rainy Mood"
+	CoD.UsermapName = "RAINY DOOM"
 end
 
 local PostLoadFunc = function ( self, controller )
