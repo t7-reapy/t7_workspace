@@ -21,6 +21,8 @@ If blackhole script used to teleport player on a tilted entities, the player wor
 - Signed 16-bit PCM
 - Stereo or Mono channel
 
+> Remark: if audio `Bus` value is on `BUS_FX`, but `IsMusic` value is `yes`, it will play on `BUS_MUSIC` anyway.
+
 ## Video format
 
 Note: videos must be in `usermaps\zm_test\zone\video` to be embedded in the map. Full tutorial [here](https://wiki.modme.co/wiki/black_ops_3/intermediate/Setting-Up-Loadscreen-Videos.html)
@@ -94,6 +96,8 @@ There is also a wallbuy limit around 20 (depends of the guns used on the walls i
 
 You fucking can't use animations prefixed with `%` in CSC. If you do, the game doesn't **FUCKING** boot (even if it exists in other scripts, I just don't know why ...), use raw string instead...
 Oh and yeah... Trible/Quadruple check the model is clearly set to "animated" :)
+
+`waitrealtime` keyword isn't affected by pausing the game.
 
 ## Powerups
 

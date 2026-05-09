@@ -174,17 +174,17 @@ function private _get_xuid_command_response(command_args)
                 print_subtitle(level.players[player_index], "^5Dev: Checked XUID of " + level.players[player_index].playername);
 
                 if(player_index >= 0 && player_index <= 7){
-                    IPrintLnBold("Checked XUID of player " + level.players[player_index].playername + " | XUID: " + level.players[player_index] GetXUID());
+                    IPrintLnBold("Checked XUID of player " + level.players[player_index].playername + " | XUID: " + level.players[player_index] GetXUID(true));
                 }else{
                     foreach(player in GetPlayers()){
-                        IPrintLnBold("Checked XUID of player " + player + " | XUID: " + player GetXUID());
+                        IPrintLnBold("Checked XUID of player " + player + " | XUID: " + player GetXUID(true));
                     }
                 }
             }else{
                 value = Int(tokenized[0]);
 
                 foreach(player in GetPlayers()){
-                    IPrintLnBold("Checked XUID of player " + player.playername + " | XUID: " + player GetXUID());
+                    IPrintLnBold("Checked XUID of player " + player.playername + " | XUID: " + player GetXUID(true));
                 }
 
                 print_subtitle(undefined, "^5Dev: Checked XUID of everyone");

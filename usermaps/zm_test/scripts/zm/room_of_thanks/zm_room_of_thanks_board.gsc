@@ -232,9 +232,18 @@ function private get_secret_code() // self == player
     {
         return self.secret_code;
     }
+
+    xuid = "" + self GetXuid(true);
+    if (!isdefined(xuid) || xuid == "" || xuid.size != 17 /* SteamID64 XUID format */)
+    {
+        // Cracked / Offline version of the game. No code generated.
+        self.secret_code = "<failure: steam not detected>";
+        return self.secret_code;
+    }
+
     secret_key = Int(TableLookup(CODE_LOOKUP_TABLE, 0, "BoardSecretKey", 1));
     total_hour_since_unix = Int(Floor(GetUTC() / 3600));
-    steam_sub_xuid = Int(GetSubStr("" + self GetXuid(true), 11));
+    steam_sub_xuid = Int(GetSubStr("" + xuid, 11));
     secret_code = "" + ((total_hour_since_unix ^ steam_sub_xuid) ^ secret_key);
     while (secret_code.size < 6)
     {
@@ -311,7 +320,7 @@ function private print_video_subtitles()
         }
 
         level.thanks_board.subtitle_hud_element = print_subtitle(subtitle);
-        waitrealtime(duration);
+        wait duration;
     }
 
     level.thanks_board.video_controller_trigger notify(VIDEO_ENDED_NOTIFY);
