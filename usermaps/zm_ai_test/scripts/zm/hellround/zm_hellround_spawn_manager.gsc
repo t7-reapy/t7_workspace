@@ -4,6 +4,7 @@
 #using scripts\shared\array_shared; 
 #using scripts\shared\flag_shared; 
 #using scripts\shared\system_shared;
+#using scripts\shared\util_shared;
 
 // AIs involved in hell rounds
 #using scripts\shared\ai\zombie_utility;
@@ -179,6 +180,7 @@ function private watch_if_ai_persists_outside_of_hellrounds() // self == ai acto
     {
         // TODO: play fx + sfx before kill.
         wait 1.0;
+        self util::stop_magic_bullet_shield();
         self Kill();
     }
 }
