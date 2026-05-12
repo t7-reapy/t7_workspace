@@ -206,9 +206,8 @@ function private _give_player_rewards_and_bonuses() // self == player
     }
 
     zm_hellround_shared::wait_for_map_load();
-    thread typewriter::type_for_player(self, congrats);
-    wait 1.0;
-    thread typewriter::type_for_player(self, infos);
+    typewriter::type_for_player(self, congrats);
+    typewriter::type_for_player(self, infos);
 }
 
 function private _give_completed_game_reward() // self == player

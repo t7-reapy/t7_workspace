@@ -24,7 +24,7 @@ function private init()
     level.typewriter = new TypeWritterSettings();
     level.typewriter.typing_frequency_milliseconds = 75;
     level.typewriter.typing_decay_duration_milliseconds = 3000;
-    level.typewriter.delay_before_decaying_out_milliseconds = 3000;
+    level.typewriter.delay_before_decaying_out_milliseconds = 5000;
 
     level.typewriter.typing_frequency_milliseconds_for_client = Int(level.typewriter.typing_frequency_milliseconds / 2);
     level.typewriter.typing_decay_duration_milliseconds_for_client = Int(level.typewriter.typing_decay_duration_milliseconds / 2);

@@ -228,6 +228,7 @@ function private watch_power_state()
     zm_weather::update_default_lightstate();
     if (!zm_hellround::is_hellround_running())
     {
+        thread typewriter::type("Secondary objective: ^2Completed");
         util::set_lighting_state(level.power_on_lightstate);
     }
 }
@@ -252,8 +253,8 @@ function private mission_briefing()
     typewriter::type(
         "Date: December 20th, 2025",
         "Location: Grenoble - France",
-        "Mission Objective: ^1Survive",
-        "Secondary Objective: Turn on power");
+        "Mission objective: ^1Survive",
+        "Secondary objective: Turn on power");
 }
 
 /* region callbacks */
@@ -471,6 +472,7 @@ function private bind_room_of_thanks_callbacks()
     // Exit room of thanks
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&zm_hellround::game_finished_with_success);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&knuckle_crack_players);
+    zm_room_of_thanks::add_exit_room_of_thanks_callback(&mission_complete_notification);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&transition_screen);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&set_lighting_state_normal);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&restore_ui);
@@ -554,6 +556,11 @@ function private stop_perk_jingles_sounds()
         // We don't need perks anymore, simply killing the triggers will stop the jingles from _zm_perks:524 and _zm_audio:1620
         trigger Delete();
     }
+}
+
+function private mission_complete_notification()
+{
+    typewriter::type("Mission objective: ^2Completed");
 }
 
 function private transition_screen()
