@@ -128,12 +128,11 @@ function staff_lightning_impact_play_fx_cb(n_local_client_num, n_old_value, n_ne
     self endon("entityshutdown");
     
     if (isDefined(self.fx_staff_lightning_impact_torso))
+    {
         stopFx(n_local_client_num, self.fx_staff_lightning_impact_torso);
         self.fx_staff_lightning_impact_torso = undefined;
-    
-    // if (n_new_value > (n_old_value + 1))
-    //     return;
-    
+    }
+
     str_tag = (isDefined(self.str_staff_lightning_impact_fx_tag) ? self.str_staff_lightning_impact_fx_tag : LIGHTNINGSTAFF_IMPACT_FX_TAG);
         
     self.fx_staff_lightning_impact_torso = playFxOnTag(n_local_client_num, LIGHTNINGSTAFF_IMPACT_FX, self, str_tag);
@@ -143,7 +142,9 @@ function staff_lightning_impact_play_fx_cb(n_local_client_num, n_old_value, n_ne
     wait 2;
     
     if (isDefined(self.fx_staff_lightning_impact_torso))
+    {
         stopFx(n_local_client_num, self.fx_staff_lightning_impact_torso);
+    }
     
     self.fx_staff_lightning_impact_torso = undefined;
 }
@@ -160,22 +161,30 @@ function staff_lightning_shock_eyes_fx_cb(n_local_client_num, n_old_value, n_new
     self endon("entityshutdown");
     
     if (isDefined(self.fx_staff_lightning_shock_eyes))
+    {
         stopFx(n_local_client_num, self.fx_staff_lightning_shock_eyes);
         self.fx_staff_lightning_shock_eyes = undefined;
-    /*
-    if (n_new_value > (n_old_value + 1))
-    {
-        iPrintLnBold("CSC CALL TO STOP EYE FX???");
-        return;
     }
-    */
+
+    if(!isdefined(self.lightningstaff_sizzle_sound) || !SoundPlaying(self.lightningstaff_sizzle_sound))
+    {
+        self.lightningstaff_sizzle_sound = self PlaySound(n_local_client_num, LIGHTNINGSTAFF_ZOMBIE_SIZZLE_SOUND);
+    }
+
+    if(!isdefined(self.lightningstaff_fx_sound) || !SoundPlaying(self.lightningstaff_fx_sound))
+    {
+        self.lightningstaff_fx_sound = self PlaySound(n_local_client_num, LIGHTNINGSTAFF_ZOMBIE_FX_SOUND);
+    }
+
     self.fx_staff_lightning_shock_eyes = playFxOnTag(n_local_client_num, LIGHTNINGSTAFF_IMPACT_EYE_FX, self, "j_eyeball_le");
     setFxIgnorePause(n_local_client_num, self.fx_staff_lightning_shock_eyes, 1);
     
     wait 2;
     
     if (isDefined(self.fx_staff_lightning_shock_eyes))
+    {
         stopFx(n_local_client_num, self.fx_staff_lightning_shock_eyes);
+    }
     
     self.fx_staff_lightning_shock_eyes = undefined;
 }

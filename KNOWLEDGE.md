@@ -99,6 +99,8 @@ Oh and yeah... Trible/Quadruple check the model is clearly set to "animated" :)
 
 `waitrealtime` keyword isn't affected by pausing the game.
 
+`PlaySound(...)` on **GSC** spawns a temp struct behind the scene, which, if spammed a lot in a few frames, can make the game crash with a G_Spawn error, about no more space available to spawn more entities. Always prefer playing sound on CSC side, to avoid this issue.
+
 ## Powerups
 
 Enabling logic is at [`_zm_spawner.gsc`](.\share\raw\scripts\zm\_zm_spawner.gsc#L1545). Zombie's actor variable `zombie.no_powerups` can be configured for specific actor. `level.no_powerups` or flag `flag::set("zombie_drop_powerups", 1)` can be set to true for general decision.

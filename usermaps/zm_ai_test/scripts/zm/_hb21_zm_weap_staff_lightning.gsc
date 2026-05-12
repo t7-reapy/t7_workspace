@@ -334,7 +334,7 @@ Notes : None
 function staff_lightning_ball_wait(n_lifetime_after_move)
 {
     self endon("death");
-    self waittill("movedone");
+    self util::waittill_notify_or_timeout("movedone", 5 /* seems like the ball can be stuck for ever */);
     wait n_lifetime_after_move;
     return 1;
 }
@@ -509,9 +509,6 @@ function staff_lightning_zombie_shocked_fx(b_play)
         self clientfield::increment((isVehicle(self) ? LIGHTNINGSTAFF_IMPACT_FX_VEH_CF : LIGHTNINGSTAFF_IMPACT_FX_CF), 2);
         return;
     }
-    
-    self playSound(LIGHTNINGSTAFF_ZOMBIE_SIZZLE_SOUND);
-    self playSound(LIGHTNINGSTAFF_ZOMBIE_FX_SOUND);
     
     self clientfield::increment((isVehicle(self) ? LIGHTNINGSTAFF_SHOCK_EYES_FX_VEH_CF : LIGHTNINGSTAFF_SHOCK_EYES_FX_CF), (IS_TRUE(self.head_gibbed) ? 2 : 1));
     self clientfield::increment((isVehicle(self) ? LIGHTNINGSTAFF_IMPACT_FX_VEH_CF : LIGHTNINGSTAFF_IMPACT_FX_CF), 1);
