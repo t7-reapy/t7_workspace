@@ -166,7 +166,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 <summary>ZM_TEST</summary>
 
 - Errors that I can't do much about:
-  - When AI is killed sometime it gives pathing error, also happens in some areas...
+  - When AI spawns sometime it gives pathing error (mostly during hellround)
   - Hellround collector depart's FX is not visible (because too many fx playing at the time it goes away, fx limit.)
 - Splitscreen bugs:
   - rain sounds in splitscreen should only be played once if both players are in same enviromnent (make this adaptable so if one change environment, it updates for both using GetLocalPlayers())
