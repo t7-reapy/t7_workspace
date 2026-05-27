@@ -623,8 +623,13 @@ function private toggle_firesale(b_enabled)
     else
     {
         level._zombiemode_check_firesale_loc_valid_func = &firesale_disabled;
-        PRINT_HR_DEBUG("Firesale disabled");
-        
+        if (level.hellround_mystery_box.permanent_unlock)
+        {
+            // Don't discard the chests if permanent unlock was enabled.
+            return;
+        }
+
+        PRINT_HR_DEBUG("Firesale disabled. Removing the chests and powerup.");
         foreach (chest in level.chests)
         {
             if(isdefined(chest.sndEnt))
