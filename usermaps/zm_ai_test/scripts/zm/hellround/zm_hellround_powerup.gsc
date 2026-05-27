@@ -101,7 +101,7 @@ function private register_custom_hellround_revive() // self == player
     self.hellround_revive_struct = self zm_laststand::register_revive_override(&player_is_reviving, &player_can_revive, HRPWRUP_REVIVING_GIVES_REVIVE_TOOL);
 }
 
-function private deregister_custom_hellround_revive() // self == player
+function private unregister_custom_hellround_revive() // self == player
 {
     self zm_laststand::deregister_revive_override(self.hellround_revive_struct);
 }
@@ -308,7 +308,7 @@ function private lose_minigun()
     {
         player EnableOffhandWeapons();
         player EnableWeaponCycling();
-        player deregister_custom_hellround_revive();
+        player unregister_custom_hellround_revive();
     }
 }
 
@@ -322,5 +322,12 @@ function lose_minigun_callback(b_enable = false)
 
     level notify("hellround_powerup_ended");
 }
+
+function unregister_minigun_powerup()
+{
+    level._custom_powerups["minigun"].grab_powerup = &_void;
+}
+
+function private _void() { }
 
 /* endregion */

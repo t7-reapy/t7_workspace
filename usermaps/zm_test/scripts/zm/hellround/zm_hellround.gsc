@@ -172,6 +172,7 @@ function private bind_callbacks()
     zm_hellround_collectors::bind_reward_callback(&zm_hellround_reward::give_reward);
     zm_hellround_collectors::add_completion_callbacks(&zm_hellround_meteor::hellround_meteor_logic);
     zm_hellround_collectors::add_completion_callbacks(&zm_hellround_announcer::finished_good_path);
+    zm_hellround_collectors::add_completion_callbacks(&zm_hellround_powerup::unregister_minigun_powerup);
 
     zm_hellround_meteor::add_meteor_trigger_callback(&enable_good_ending);
     zm_hellround_meteor::add_meteor_trigger_callback(&zm_hellround_music::enable_good_ending);
