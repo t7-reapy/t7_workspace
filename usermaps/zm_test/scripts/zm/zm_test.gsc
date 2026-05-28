@@ -226,6 +226,8 @@ function private watch_power_state()
     
     level.power_on_lightstate = 1;
     zm_weather::update_default_lightstate();
+
+    wait 1; // Give a bit of time for hellround to trigger.
     if (!zm_hellround::is_hellround_running())
     {
         thread typewriter::type("Secondary objective: ^2Completed");
