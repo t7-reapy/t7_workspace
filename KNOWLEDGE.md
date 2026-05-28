@@ -92,6 +92,17 @@ To have theater mode working in custom zombie maps, there a few pre-requisites, 
   - Launch boiii client
   - Launch a game
   - Close the game entirely
+  - Change boiii client dvar config at `boiii_players\user\config.cfg` with:
+    ```cfg
+    set demo_enableSvBandwidthLimitThrottle "0"
+    set demo_enableAdvancedCameraControls "1"
+    set demo_recordSystemLinkMatch "1"
+    set demo_recordOfflineMatch "1"
+    set demo_recordStaticEntityPositions "1"
+    set demo_recordingRate "100"
+    set demo_filesizeLimit "200"
+    ```
+    And then put it in readonly via windows properties menu to avoid having it overriden by the game at launch.
 - Record a demo:
   - Launch boiii client
   - Load the mod: Mods ➡️ Select the mod associated to the map
