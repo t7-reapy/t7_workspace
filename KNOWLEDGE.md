@@ -36,6 +36,42 @@ Note: videos must be in `usermaps\zm_test\zone\video` to be embedded in the map.
 If when playing MKV videos, the game crashes, then the version of the software use to make the MKV is too recent:
 - Use handbrake 1.0.3
 
+## Loadscreen audio (cutscene sound binding)
+
+The big mystery: how the loadscreen video gets its sound. **It's a pure engine-side naming convention** - nothing is embedded in the mkv (it must have NO audio track anyway), there is no reference field in the `.szc`/zone, and no GSC/LUA hook is involved. When the engine plays the loadscreen movie `zm_<map>_load.mkv`, it auto-looks-up a *cinematic* sound alias derived from the video filename:
+
+- Alias `Name` = `bik_` + video basename -> **`bik_zm_<map>_load`** (e.g. `bik_zm_test_load`).
+- Template `CIN_C_MOD` (center) is the minimal "just make sound come out" version. For real surround, add channel variants: `bik_zm_<map>_load_lr` (`CIN_LR_MOD`), `..._sur` (`CIN_S_MOD`/`CIN_QUAD_MOD`), `..._c` (`CIN_C_MOD`), `..._lfe` (`CIN_LFE_MOD`).
+- `IsCinematic` = `yes`.
+
+**Gotcha that cost me time:** the names you see *inside* a shipped `.sabs` (e.g. `zod_load_lr.SN100.pc.snd` in `core_post_gfx.all.sabs`) are the **compiled stream filenames**, NOT the alias names. The real alias is `bik_zm_zod_load_lr`; the `.SN100.pc.snd` is just the streamed output. Never put `.SN100.pc.snd` in the alias `Name` column.
+
+### Why it needs a mod (the real 10-year wall)
+
+A map's loadscreen plays **while that map's own `.ff` is still loading**, so nothing inside the map fastfile is available yet - including its sound bank. The audio has to live in a fastfile that is *already resident*:
+
+- Treyarch's loadscreen audio sits in **`core_post_gfx`** (resident from boot - "played from the main menu, not bundled with their maps"). Can't touch it without overwriting core files.
+- Our only equivalent is a `>type,common` fastfile = **a mod** (resident, loaded before the map).
+
+Zone `>type` is the deciding factor (see `share\raw\zone_source\*.class`):
+- `zm_mod.class` -> `>type,common` -> resident (this is a mod).
+- `zm_level.class` / `zm_mod_level.class` -> `>type,level` -> loaded *with* the map.
+
+`zm_mod_level` does NOT make a map resident - it is still `>type,level`. It only lets the map *build standalone* (`ignore_missing_shipped,zm_levelcommon`), which is why even The Giant (`zm_giant.zone`) uses it. A playable level can't be `>type,common`, so "map + resident loadscreen audio" is unavoidably **two fastfiles**, and the resident one is a mod by definition. The `.szc` `IsCommon` flag does not help - it marks the zone as shared across game modes, not resident at boot.
+
+Workshop won't rescue this either: it does not auto-download/auto-activate a required mod (only a "required mod" popup). Load order is always: enable mod -> load map.
+
+### Fade-in gotcha
+
+The loadscreen blackscreen applies a duck (`.duk`) that fades audio in, and cinematic/scripted audio obeys it, so expect a short ramp at the very start. Author the wav with a beat of lead-in, or tweak the sound's occlusion/pan settings.
+
+### Two practical options
+
+1. **Real loadscreen audio** -> ship a small companion **mod** (`>type,common`; copy `rex\templates\Mod\mods\template\zone_source\zm_mod.zone`) whose sound zone defines `bik_zm_<map>_load`. Correct and matches Treyarch, but players must enable the mod before loading the map.
+2. **No mod, fully self-contained** -> scripted pseudo-intro: wait for all players to connect, then `lui::play_movie(..., "fullscreen")` ([`lui_shared.gsc`](.\share\raw\scripts\shared\lui_shared.gsc#L216)) + play the sound on the player. In-game movie playback does NOT auto-pair a sound (`_play_movie_for_player` just opens the LUI menu), so you trigger both yourself. Not a true loadscreen, but needs no mod and has no residency problem.
+
+> Sources: modme "Setting-Up-Loadscreen-Videos" tutorial; bo3modtools Discord loadscreen-sound threads (2020-2024, OG modders confirming "sound is played from the main menu, not bundled with their maps"); engine build classes in `share\raw\zone_source\`.
+
 ## Having theater mode working in custom maps
 
 To have theater mode working in custom zombie maps, there a few pre-requisites, and tricks to have it working...
