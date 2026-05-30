@@ -116,12 +116,6 @@ function private disable_players_outline(n_local_client_num)
     while(true)
     {
         wait 4;
-        
-        // Check for player dead or respawning
-        if (!isdefined(self))
-        {
-            continue;
-        }
 
         players = GetPlayers(n_local_client_num);
 
@@ -132,6 +126,7 @@ function private disable_players_outline(n_local_client_num)
 
         foreach (player in players)
         {
+            // player here is the target, and we update player's keyline for n_local_client_num
             player duplicate_render::update_dr_flag(n_local_client_num, "keyline_active", false);
             WAIT_CLIENT_FRAME;
         }

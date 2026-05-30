@@ -46,7 +46,7 @@ function hellround_environment(n_client_num, _oldVal, n_new_val, b_new_ent, _bIn
         play_transition_fx(n_client_num);
         play_transition_sounds(n_client_num);
     }
-    fog_update(IS_TRUE(n_new_val), b_new_ent);
+    fog_update(IS_TRUE(n_new_val));
     show_hellround_volumes(IS_TRUE(n_new_val));
     show_hellround_models(IS_TRUE(n_new_val));
     play_environment_sounds(n_client_num, IS_TRUE(n_new_val));
@@ -67,14 +67,11 @@ function play_transition_fx(n_client_num)
 /* endregion */
 /* region fog */
 
-function fog_update(b_hellfog, skip_transition)
+function fog_update(b_hellfog)
 {
     fog_index = (b_hellfog ? HRENV_FOG_INDEX_BLOODY : HRENV_FOG_INDEX_NORMAL);
-    if (!skip_transition)
-    {
-        set_fog_index(HRENV_FOG_INDEX_TRANSITION, HRENV_FOG_RADIANT_TIME);
-        waitrealtime(HRENV_FOG_TRANSITION_TIME);
-    }
+    set_fog_index(HRENV_FOG_INDEX_TRANSITION, HRENV_FOG_RADIANT_TIME);
+    wait HRENV_FOG_TRANSITION_TIME;
     set_fog_index(fog_index, HRENV_FOG_RADIANT_TIME);
 }
 
