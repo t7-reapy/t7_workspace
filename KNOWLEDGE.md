@@ -23,6 +23,45 @@ If blackhole script used to teleport player on a tilted entities, the player wor
 
 > Remark: if audio `Bus` value is on `BUS_FX`, but `IsMusic` value is `yes`, it will play on `BUS_MUSIC` anyway.
 
+## ZM character VOX tables (`share\raw\gamedata\audio\zm\*_vox.csv`)
+
+These **headerless** CSVs map gameplay *events* to playable-character voice barks ("vox") — one file per character set (`zm_moon_vox` = Moon/O4 crew, `zm_usmc_vox` = the marines). Parsed row-by-row by `zm_audio::loadplayervoicecategories(table)` in [`_zm_audio.gsc`](.\share\raw\scripts\zm\_zm_audio.gsc) (→ `zmbvoxadd`), and fired in-game by `create_and_play_dialog(category, subcategory)`. The file is registered as a stringtable in the sound zone.
+
+One row = one event line. Columns are **positional** (`row[0..5]`):
+
+| # | Column | Role |
+| - | ------ | ---- |
+| 1 | **category** | Event group the line belongs to: `general`, `kill`, `perk`, `powerup`, `weapon_pickup`, `box_pickup`, `bgb`, `trap`. Lookup is `level.sndplayervox[category][subcategory]`. |
+| 2 | **subcategory** | The exact event key that fired within the category — `headshot`, `melee`, `streak`, `ammo_low`, `intro`, `nuke`, the perk specialty (`specialty_armorvest`…), or the weapon class (`smg`/`shotgun`/`sniper`…). This is the key gameplay code passes to `create_and_play_dialog`. |
+| 3 | **suffix** | The vox line key. The played sound alias = *speaking character's vox prefix* `+ suffix +` random variant (`zmbvoxgetlinevariant`), so the **same suffix resolves to different recordings per character** (e.g. `kill_headshot`, `perk_jugga`, `wpck_smg`, `level_start`). |
+| 4 | **percentage** | Chance (0–100) the line plays when the event fires (rolled in `shouldplayerspeak`). `int(row[3])`; **blank or ≤ 0 → 100** (always). |
+| 5 | **response** | `TRUE`/`FALSE` (blank = false). `TRUE` makes the loader auto-register 4 teammate-callback lines `<subcategory>_resp_0..3 → <suffix>_resp_0..3` at **50%** each (other characters answer the bark). The manual `_hr`/`_riv`/`_s` rows in `zm_moon_vox` are just extra per-character response subcategories on top of this. |
+| 6 | **delaybeforeplayagain** | Per-player cooldown in **seconds** before this same line may repeat (default `0`; enforced via `player.voxtimer`). e.g. `120` on `outofmoney`, raygun kills, `hellhound` = at most once / 2 min. |
+
+> `zm_usmc_vox.csv` has only **5 columns** (omits col 6) → cooldown defaults to `0`. `zm_moon_vox.csv` has all **6** (+ a trailing comma). Empty col 4 = "always"; empty/absent col 5 = "no teammate callbacks".
+
+> Source: decompiled `_zm_audio.gsc` (`loadplayervoicecategories` → `zmbvoxadd` → `create_and_play_dialog` → `shouldplayerspeak`/`zmbvoxgetlinevariant`).
+
+### Suffix → alias naming convention
+
+Col 3 (`suffix`) is a free *label* — but it's only the **middle** of a strict alias name the engine assembles at play time:
+
+```
+vox_plr_<index>_<suffix>_<variant>
+```
+
+- `<index>` = player slot **0–3** (`zm_utility::get_player_index`), or **4** for Samantha (`player.issamantha`). The prefix `vox_plr_<index>_` comes from `shouldplayerspeak`.
+- `<variant>` = 0-based take; the engine counts them with `zm_spawner::get_number_variants("vox_plr_<index>_<suffix>")` and random-picks (drains an "available" pool so a take won't immediately repeat).
+
+Consequences:
+- **One CSV row covers all characters** — the *only* per-character difference is the `vox_plr_<index>_` prefix, so each slot needs its own `vox_plr_<index>_<suffix>_<N>` aliases (variant counts may differ per character). e.g. row `kill,headshot,kill_headshot,…` ⇒ aliases `vox_plr_0_kill_headshot_0`, `vox_plr_0_kill_headshot_1`, … and likewise for `_1_`/`_2_`/`_3_`/`_4_`.
+- `response=TRUE` additionally needs `vox_plr_<index>_<suffix>_resp_0..3_<variant>` aliases for the teammate callbacks.
+- **Silent failure:** if nothing resolves (`get_number_variants(prefix+suffix) <= 0`), `zmbvoxgetlinevariant` returns `undefined` and the bark just **doesn't play — no error**. A typo'd suffix or a missing `_0` variant goes quiet.
+
+### Gotcha: duplicate `(category, subcategory)` → last row wins
+
+The table is keyed **only on cols 1–2** (`level.sndplayervox[category][subcategory]`), and `zmbvoxadd` does an unconditional `vox[category][subcategory] = spawnstruct()`. Two rows sharing the first two columns ⇒ the **later row silently overwrites** the earlier one — its suffix/percentage/response/cooldown are discarded. No merge, no random pick between them, no warning. (Multiple takes of one line are NOT extra rows — they're extra WAVs under the single alias, i.e. the `_<variant>` tail counted by `get_number_variants`.)
+
 ## Video format
 
 Note: videos must be in `usermaps\zm_test\zone\video` to be embedded in the map. Full tutorial [here](https://wiki.modme.co/wiki/black_ops_3/intermediate/Setting-Up-Loadscreen-Videos.html)
