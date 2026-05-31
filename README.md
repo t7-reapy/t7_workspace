@@ -175,8 +175,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 - Bugs I didn't reproduce:
   - sword powerup can crash the map (if the sword goes out of playable zone ???)
 - Hellround bad path spawns parasite after it's done in last zone.
-- Hellround box bug: get teddy bear from box, and take the minigun powerup, the box will stick to hellround after this...
-- Hellround box bug (during debug only): open box before cerberus, and finishing the feeding before it closes makes the hellround box stay (no endon during the active waiting).
 - Minigun can be swapped out if player launches a grenade/monkey bomb
 
 </details>

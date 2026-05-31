@@ -81,6 +81,12 @@ function toggle_hellround_mysteryboxes(b_enabled)
 
     waittill_all_chests_idle();
 
+    // It's possible hellround finishes before chests are idle
+    if (b_enabled && !zm_hellround_shared::is_hellround_running() && !zm_hellround_shared::is_bad_iteration_survived())
+    {
+        return;
+    }
+
     foreach (model in level.hellround_mystery_box.mysterybox_models)
     {
         if (b_enabled)
