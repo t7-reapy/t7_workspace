@@ -165,7 +165,7 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
 
 <summary>ZM_TEST</summary>
 
-- Errors that I can't do much about:
+- Non-blocking bugs:
   - When AI spawns sometime it gives pathing error (mostly during hellround)
   - Hellround collector depart's FX is not visible (because too many fx playing at the time it goes away, fx limit.)
 - Splitscreen bugs:
@@ -174,8 +174,8 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
   - wind exploder is stuck in animation in splitscreen (sometimes)
 - Bugs I didn't reproduce:
   - sword powerup can crash the map (if the sword goes out of playable zone ???)
-- Hellround bad path spawns parasite after it's done in last zone.
-- Minigun can be swapped out if player launches a grenade/monkey bomb
+  - Hellround bad path spawns parasite after it's done in last zone.
+  - Minigun can be swapped out if player launches a grenade/monkey bomb
 
 </details>
 <br/>
