@@ -586,7 +586,7 @@ function private watch_ai_death_for_collection() // self == zm actor
 
 function private close_and_in_los_of(collector) // self == zm actor
 {
-    if(Distance(self.origin, collector.origin) > HRCOLL_SOUL_MAX_DISTANCE)
+    if(!isdefined(self.origin) || Distance(self.origin, collector.origin) > HRCOLL_SOUL_MAX_DISTANCE)
     {
         PRINT_HR_DEBUG("actor too far from collector skull");
         return false;
