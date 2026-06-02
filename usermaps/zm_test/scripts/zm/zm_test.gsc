@@ -116,6 +116,27 @@
 #precache("fx", FX_POWERUP_BLUE);
 #precache("string", "ZOMBIE_POWERUP_NUKE");
 
+// In order to fix power switch lag when toggled ON.
+#precache("triggerstring", "ZOMBIE_NEED_POWER");
+#precache("triggerstring", "ZOMBIE_ELECTRIC_SWITCH");
+#precache("triggerstring", "ZOMBIE_ELECTRIC_SWITCH_OFF");
+#precache("triggerstring", "ZOMBIE_PERK_QUICKREVIVE", "500");
+#precache("triggerstring", "ZOMBIE_PERK_QUICKREVIVE", "1500");
+#precache("triggerstring", "ZOMBIE_PERK_FASTRELOAD", "3000");
+#precache("triggerstring", "ZOMBIE_PERK_DOUBLETAP", "2000");
+#precache("triggerstring", "ZOMBIE_PERK_JUGGERNAUT", "2500");
+#precache("triggerstring", "ZOMBIE_PERK_MARATHON", "2000");
+#precache("triggerstring", "ZOMBIE_PERK_DEADSHOT", "1500");
+#precache("triggerstring", "ZOMBIE_PERK_WIDOWSWINE", "3000");
+#precache("triggerstring", "ZOMBIE_PERK_ADDITIONALPRIMARYWEAPON", "4000");
+#precache("triggerstring", "ZOMBIE_PERK_PACKAPUNCH", "5000");
+#precache("triggerstring", "ZOMBIE_PERK_PACKAPUNCH", "1000");
+#precache("triggerstring", "ZOMBIE_PERK_PACKAPUNCH_AAT", "2500");
+#precache("triggerstring", "ZOMBIE_PERK_PACKAPUNCH_AAT", "500");
+#precache("triggerstring", "ZOMBIE_RANDOM_WEAPON_COST", "950");
+#precache("triggerstring", "ZOMBIE_RANDOM_WEAPON_COST", "10");
+#precache("triggerstring", "ZOMBIE_UNDEFINED");
+
 function main()
 {
     configure_weapon_inspection();
@@ -187,7 +208,7 @@ function private notify_ui_for_nuke_powerup()
     while(true)
     {
         self waittill("nuke_triggered");
-        LUINotifyEvent( &"zombie_notification", 1, &"ZOMBIE_POWERUP_NUKE" );
+        LUINotifyEvent(&"zombie_notification", 1, &"ZOMBIE_POWERUP_NUKE");
     }
 }
 
