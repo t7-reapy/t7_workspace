@@ -1,4 +1,4 @@
-#define HRPWRUP_WEAPON "iw8_minigun"
+#define HRPWRUP_WEAPONS array("<not a valid iteration>", "iw8_minigun_iter1", "iw8_minigun_iter2", "iw8_minigun_iter3")
 #define HRPWRUP_ROUND_THRESHOLDS array(255, 15, 20, 25)
 #define HRPWRUP_DROP_CHANCE_PERCENTAGE 100
 

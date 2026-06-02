@@ -27,9 +27,10 @@ REGISTER_SYSTEM_EX("zm_hellround_powerup", &init, &main, undefined)
 function private init()
 {
     level.hellround_powerup_round_thresholds = HRPWRUP_ROUND_THRESHOLDS;
+    level.hellround_powerup_weapons = HRPWRUP_WEAPONS;
     level.hellround_powerup_minigun_callbacks = [];
     level._grab_minigun = &grab_minigun;
-    
+
     callback::on_spawned(&give_hellround_minigun);
     callback::on_connect(&revive_gives_back_minigun); // Because callback on_laststand doesn't include a "self", we use this instead.
 }
@@ -48,7 +49,6 @@ function private main()
     level.zombie_powerups["sword_powerup"].func_should_drop_with_regular_powerups = &func_should_drop_sword_powerup;
     
     change_powerup_model("minigun", HRPWRUP_MODEL);
-    change_powerup_weapon("minigun", HRPWRUP_WEAPON);
     change_powerup_weapon_timeout_logic("minigun", &lose_minigun);
     change_powerup_solo_fx(HRPWRUP_FX, HRPWRUP_GRAB_FX);
 }
@@ -226,6 +226,7 @@ function private should_drop_hellround_powerup()
     drop_random_percent = RandomInt(100) < HRPWRUP_DROP_CHANCE_PERCENTAGE;
     minimum_round_reached = level.round_number >= level.hellround_powerup_round_thresholds[current_iteration];
 
+    update_minigun_weapon();
     return minimum_round_reached 
         && drop_random_percent 
         && !zm_hellround_shared::is_last_iteration_completed()
@@ -266,6 +267,15 @@ function toggle_powerups(b_enabled)
 
 /* endregion */
 /* region powerup logic */
+
+function private update_minigun_weapon()
+{
+    current_iteration = zm_hellround_shared::get_current_iteration();
+    weapon = level.hellround_powerup_weapons[current_iteration];
+    change_powerup_weapon("minigun", weapon);
+
+    PRINT_HR_DEBUG("minigun weapon was updated to " + weapon);
+}
 
 function private grab_minigun(grabber_player)
 {

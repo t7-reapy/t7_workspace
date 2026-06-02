@@ -220,8 +220,9 @@ function private configure_weapon_inspection()
     inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_up"), 5.13);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_m4a1_up_up"), 5.13);
 
-    inspectable::add_inspectable_weapon(GetWeapon("iw8_minigun"), 5.26);
-    inspectable::add_inspectable_weapon(GetWeapon("iw8_minigun_up"), 5.26);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_minigun_iter1"), 5.26);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_minigun_iter2"), 5.26);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_minigun_iter3"), 5.26);
     
     inspectable::add_inspectable_weapon(GetWeapon("iw8_spr208_irons"), 5.26);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_spr208_irons_up"), 5.26);
