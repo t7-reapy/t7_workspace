@@ -178,7 +178,6 @@ function private watch_if_ai_persists_outside_of_hellrounds() // self == ai acto
 
     if (IsAlive(self))
     {
-        // TODO: play fx + sfx before kill.
         wait 1.0;
         self util::stop_magic_bullet_shield();
         self Kill();

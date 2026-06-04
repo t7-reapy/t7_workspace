@@ -28,6 +28,7 @@ class HellroundReward
 {
     var index;
     var rewards;
+    var high_reward_locations;
     var high_rewards_callbacks;
 }
 
@@ -52,16 +53,24 @@ function init() {
     level.hellround_reward = new HellroundReward();
     level.hellround_reward.index = 0;
     level.hellround_reward.rewards = HELLROUND_REWARDS;
+    level.hellround_reward.high_reward_locations = GetEntArray(HELLROUND_HIGHTIER_LOCATION_TARGETNAME, "targetname");
     level.hellround_reward.high_rewards_callbacks = [];
 
     callback::on_connect(&_restore_player_progress);
     callback::on_spawned(&_give_player_rewards_and_bonuses);
 
     add_high_tier_reward_callback(&bad_path_survived);
+
+    if (HELLROUND_HIGHTIER_REWARD)
+    {
+        add_high_tier_reward_callback(&unlock_hightier);
+    }
 }
 
 function main()
 {
+    thread modvar_hellround_rewards_reset_lose_streaks();
+
     if (!DEBUG_HELLROUNDS)
     {
         return;
@@ -194,14 +203,14 @@ function private _give_player_rewards_and_bonuses() // self == player
         && !player_survived_and_finished /* to avoid giving 2 guns */)
     {
         self thread _give_helping_gun();
-        infos[infos.size] = ">   - ^3desert deagle^7";
+        infos[infos.size] = ">   - ^3Diamatti^7";
         PRINT_HR_DEBUG("Given weapon for loss streak.");
     }
 
     if (self.hellround_progress_reward.consecutive_losses >= HRRWRD_LOSESTREAK_THRESHOLDS[2])
     {
         self zm_perks::give_perk(HRRWRD_LOSESTREAK_3_REWARD, false);
-        infos[infos.size] = ">   - ^3fast reload perk^7";
+        infos[infos.size] = ">   - ^3Electric cherry^7";
         PRINT_HR_DEBUG("Given perk for loss streak.");
     }
 
@@ -229,6 +238,15 @@ function private _give_helping_gun()
     }
     helper_weapon = GetWeapon(HRRWRD_LOSESTREAK_2_REWARD);
     self zm_weapons::weapon_give(helper_weapon, false, false, true, true);
+}
+
+function private unlock_hightier()
+{
+    foreach (reward_location in level.hellround_reward.high_reward_locations)
+    {       
+        level thread zm_powerups::specific_powerup_drop(HELLROUND_HIGHTIER_PERK, reward_location.origin, undefined, undefined, undefined, undefined, true);
+        wait 1;
+    }
 }
 
 function give_reward(location)
@@ -371,6 +389,36 @@ function private modvar_debug_hellround_rewards()
                 PRINT_HR_DEBUG("Unknown command");
                 break;
         }
+    }
+}
+
+function private modvar_hellround_rewards_reset_lose_streaks()
+{
+    ModVar("rd_reset_bonuses", "");
+
+    while(true)
+    {
+        WAIT_SERVER_FRAME;
+
+        dvar_value = GetDvarString("rd_reset_bonuses", "");
+
+        if(!isdefined(dvar_value) || dvar_value == "")
+        {
+            continue;
+        }
+        ModVar("rd_reset_bonuses", "");
+
+        _reset_players_progress();
+        IPrintLnBold("Players lose streak bonus force reset done.");
+    }
+}
+
+function private _reset_players_bonuses()
+{
+    foreach(player in GetPlayers())
+    {
+        player.hellround_progress_reward.consecutive_losses = 0;
+        player _save_progress();
     }
 }
 

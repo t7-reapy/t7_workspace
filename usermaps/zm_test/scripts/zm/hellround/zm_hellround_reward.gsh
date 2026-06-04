@@ -1,4 +1,6 @@
-#define HELLROUND_HIGHTIER_REWARD "TODO: give_all_perks"
+#define HELLROUND_HIGHTIER_REWARD true
+#define HELLROUND_HIGHTIER_PERK "empty_bottle"
+#define HELLROUND_HIGHTIER_LOCATION_TARGETNAME "hellround_hightier_reward"
 #define HELLROUND_REWARDS array("full_ammo", "full_ammo", "full_ammo", "empty_bottle", "empty_bottle", "empty_bottle")
 
 #define HRRWRD_FINISH_MAP_WEAPON_CAMO_INDEX 4
@@ -7,8 +9,8 @@
 #define HRRWRD_FINISHED_MAP_AND_SURVIVED_BAD_PATH_WEAPON_CAMO_INDEX 6
 #define HRRWRD_LOSESTREAK_THRESHOLDS array(3, 5, 7)
 #define HRRWRD_LOSESTREAK_1_REWARD 1000 // Points
-#define HRRWRD_LOSESTREAK_2_REWARD "iw8_50gs" // Weapon 
-#define HRRWRD_LOSESTREAK_3_REWARD "specialty_fastreload" // Perk 
+#define HRRWRD_LOSESTREAK_2_REWARD "t9_diamatti" // Weapon 
+#define HRRWRD_LOSESTREAK_3_REWARD "specialty_electriccherry" // Perk 
 
 #define HRRWRD_DATA_INDEX 402
 #define HRRWRD_DATA_HAS_FINISHED_MAP_SHIFT 4
