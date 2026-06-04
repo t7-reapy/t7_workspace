@@ -65,12 +65,12 @@ function toggle_hellround_environment(b_enable) // self == player or undefined
 
     wait HRENV_FOG_RADIANT_TIME;
     self update_lightstate(b_enable);
+    thread rotate_sky(IS_TRUE(b_enable));
     wait HRENV_FOG_TRANSITION_TIME - HRENV_FOG_RADIANT_TIME;
 
     thread show_hellround_fxs(IS_TRUE(b_enable));
     thread show_hellround_clips(IS_TRUE(b_enable));
     thread show_hellround_models(IS_TRUE(b_enable));
-    thread rotate_sky(IS_TRUE(b_enable));
 }
 
 function private update_lightstate(b_enable) // self == player or undefined
