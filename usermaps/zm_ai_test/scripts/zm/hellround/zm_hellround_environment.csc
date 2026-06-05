@@ -36,7 +36,7 @@ function init()
     clientfield::register("world", HRENV_TOGGLE_CLIENT_FIELD, VERSION_SHIP, 1, "int", &hellround_environment, !CF_HOST_ONLY, CF_CALLBACK_ZERO_ON_NEW_ENT);
 }
 
-function hellround_environment(n_client_num, _oldVal, n_new_val, b_new_ent, _bInitialSnap, _fieldName, _bWasTimeJump)
+function hellround_environment(n_client_num, _oldVal, n_new_val, b_new_ent, b_initial_snap, _fieldName, _bWasTimeJump)
 {
     util::waitforclient(n_client_num);
     PRINT_HR_DEBUG("Called hellround environment update with: " + n_new_val);
@@ -50,6 +50,15 @@ function hellround_environment(n_client_num, _oldVal, n_new_val, b_new_ent, _bIn
     show_hellround_volumes(IS_TRUE(n_new_val));
     show_hellround_models(IS_TRUE(n_new_val));
     play_environment_sounds(n_client_num, IS_TRUE(n_new_val));
+
+    if (b_new_ent || b_initial_snap)
+    {
+        // Force the fog refresh, sometime it glitches in transition fog (random)...
+        wait 5;
+        fog_update(true);
+        wait 5;
+        fog_update(false);
+    }
 }
 
 /* region fx */
