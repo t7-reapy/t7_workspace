@@ -22,50 +22,68 @@
 #insert scripts\zm\_zm_powerups.gsh;
 #insert scripts\zm\_zm_utility.gsh;
 
-#precache( "model", "powerup_money" );
+#precache("model", "powerup_money");
+#precache("string", "ZOMBIE_POWERUP_EMPTY_BOTTLE");
 
-REGISTER_SYSTEM( "zm_powerup_empty_bottle", &__init__, undefined )
+REGISTER_SYSTEM("zm_powerup_empty_bottle", &__init__, undefined)
 
 //-----------------------------------------------------------------------------------
 // setup
 //-----------------------------------------------------------------------------------
 function __init__()
 {
-	level.get_player_perk_purchase_limit = &new_perk_check; 
-	
-	zm_powerups::register_powerup( "empty_bottle", &grab_bottle );
-	if( ToLower( GetDvarString( "g_gametype" ) ) != "zcleansed" )
-	{
-		zm_powerups::add_zombie_powerup( "empty_bottle", "empty_bottle", "", &func_should_drop_empty_bottle, POWERUP_ONLY_AFFECTS_GRABBER, !POWERUP_ANY_TEAM, !POWERUP_ZOMBIE_GRABBABLE );
-	}
+    level.get_player_perk_purchase_limit = &new_perk_check; 
+    
+    zm_powerups::register_powerup("empty_bottle", &grab_bottle);
+    if(ToLower(GetDvarString("g_gametype")) != "zcleansed")
+    {
+        zm_powerups::add_zombie_powerup(
+            "empty_bottle", 
+            "empty_bottle",
+            &"ZOMBIE_POWERUP_EMPTY_BOTTLE",
+            &func_should_drop_empty_bottle,
+            !POWERUP_ONLY_AFFECTS_GRABBER, 
+            !POWERUP_ANY_TEAM,
+            !POWERUP_ZOMBIE_GRABBABLE);
+    }
 
 }
 
-function new_perk_check()
+function new_perk_check() // self == player
 {
-	n_perk_purchase_limit_override = level.perk_purchase_limit; // start with the default value
-	
-	if( isDefined(self.num_of_empty_bottles) )
-		n_perk_purchase_limit_override+=self.num_of_empty_bottles; 
-	return n_perk_purchase_limit_override; 
+    n_perk_purchase_limit_override = level.perk_purchase_limit;
+
+    if(isDefined(self.num_of_empty_bottles))
+    {
+        n_perk_purchase_limit_override += self.num_of_empty_bottles;
+    }
+
+    return n_perk_purchase_limit_override; 
 }
 
 function func_should_drop_empty_bottle()
 {
-	return true;
+    return true;
 }
 
-function grab_bottle( player )
+function grab_bottle()
 {
-	if( !isDefined(player.num_of_empty_bottles) )
-		player.num_of_empty_bottles = 0; 
-	player.num_of_empty_bottles++; 
-	
-	player thread correct_later(); 
+    LUINotifyEvent(&"zombie_notification", 1, &"ZOMBIE_POWERUP_EMPTY_BOTTLE");
+
+    foreach (player in GetPlayers())
+    {
+        if(!isDefined(player.num_of_empty_bottles))
+        {
+            player.num_of_empty_bottles = 0; 
+        }
+        player.num_of_empty_bottles++; 
+        player thread adjust_amount_when_downed(); 
+    }
 }
 
-function correct_later()
+function adjust_amount_when_downed()
 {
-	self util::waittill_any_return( "fake_death", "death", "player_downed" ); 
-	self.num_of_empty_bottles--; 
+    self util::waittill_any_return("fake_death", "death", "player_downed");
+
+    // Nothing happens here, but adaptin self.num_of_empty_bottles could be done here if necessary.
 }

@@ -14,6 +14,6 @@ REGISTER_SYSTEM( "zm_powerup_empty_bottle", &__init__, undefined )
 	
 function __init__()
 {
-	zm_powerups::include_zombie_powerup( "empty_bottle" );
-	zm_powerups::add_zombie_powerup( "empty_bottle" );
+	zm_powerups::include_zombie_powerup("empty_bottle");
+	zm_powerups::add_zombie_powerup("empty_bottle");
 }

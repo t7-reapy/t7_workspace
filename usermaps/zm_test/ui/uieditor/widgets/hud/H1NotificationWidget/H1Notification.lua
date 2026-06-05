@@ -98,6 +98,19 @@ local PostLoadFunc = function ( self, controller )
 			end
 		end
 	end )
+
+	-- Empty Bottle: pickup powerup with no clientfield (like Max Ammo / Nuke) -- icon-only notification, no localized string needed
+	self:subscribeToGlobalModel( controller, "PerController", "scriptNotify", function ( model )
+		if IsParamModelEqualToString( model, "zombie_notification" ) then
+			if Engine.GetIString( CoD.GetScriptNotifyData( model )[1], "CS_LOCALIZED_STRINGS" ) == "ZOMBIE_POWERUP_EMPTY_BOTTLE" then
+				self:appendNotification( {
+					clip = "Powerup",
+					title = "",
+					image = "h1_powerup_emptybottle"
+				} )
+			end
+		end
+	end )
 end
 
 CoD.H1Notification = InheritFrom( LUI.UIElement )

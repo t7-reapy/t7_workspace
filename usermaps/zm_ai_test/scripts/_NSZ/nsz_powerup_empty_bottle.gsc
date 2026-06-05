@@ -23,6 +23,7 @@
 #insert scripts\zm\_zm_utility.gsh;
 
 #precache("model", "powerup_money");
+#precache("string", "ZOMBIE_POWERUP_EMPTY_BOTTLE");
 
 REGISTER_SYSTEM("zm_powerup_empty_bottle", &__init__, undefined)
 
@@ -38,11 +39,11 @@ function __init__()
     {
         zm_powerups::add_zombie_powerup(
             "empty_bottle", 
-            "empty_bottle", 
-            "", 
-            &func_should_drop_empty_bottle, 
+            "empty_bottle",
+            &"ZOMBIE_POWERUP_EMPTY_BOTTLE",
+            &func_should_drop_empty_bottle,
             !POWERUP_ONLY_AFFECTS_GRABBER, 
-            !POWERUP_ANY_TEAM, 
+            !POWERUP_ANY_TEAM,
             !POWERUP_ZOMBIE_GRABBABLE);
     }
 
@@ -67,6 +68,8 @@ function func_should_drop_empty_bottle()
 
 function grab_bottle()
 {
+    LUINotifyEvent(&"zombie_notification", 1, &"ZOMBIE_POWERUP_EMPTY_BOTTLE");
+
     foreach (player in GetPlayers())
     {
         if(!isDefined(player.num_of_empty_bottles))
@@ -80,7 +83,7 @@ function grab_bottle()
 
 function adjust_amount_when_downed()
 {
-    self util::waittill_any_return("fake_death", "death", "player_downed"); 
+    self util::waittill_any_return("fake_death", "death", "player_downed");
 
     // Nothing happens here, but adaptin self.num_of_empty_bottles could be done here if necessary.
 }
