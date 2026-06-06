@@ -2,6 +2,7 @@
 #using scripts\zm\_zm_audio; 
 #using scripts\shared\util_shared;
 #using scripts\shared\system_shared;
+#using scripts\shared\flag_shared;
 
 #insert scripts\shared\version.gsh;
 #insert scripts\shared\shared.gsh;
@@ -11,9 +12,9 @@
 #insert scripts\zm\hellround\zm_hellround_music.gsh;
 #namespace zm_hellround_music;
 
-REGISTER_SYSTEM("zm_hellround_music", &init, undefined)
+REGISTER_SYSTEM_EX("zm_hellround_music", &init, &main, undefined)
 
-function init()
+function private init()
 {
     clientfield::register("world", HRMUS_CLIENT_FIELD, VERSION_SHIP, 3, "int");
     
@@ -29,17 +30,19 @@ function init()
     thread gameover_stop_music();
 }
 
+function private main()
+{
+    level flag::wait_till( "initial_blackscreen_passed" );
+    toggle_hellround_music(false);
+}
+
 function toggle_hellround_music(b_enable)
 {
-    iteration = HRMUS_DISABLED;
-    if (IS_TRUE(b_enable))
-    {
-        iteration = zm_hellround_shared::get_current_iteration();
-    }
+    iteration = (IS_TRUE(b_enable) ? zm_hellround_shared::get_current_iteration() : HRMUS_DISABLED);
 
     if (IS_TRUE(level.hellround.progress_stopped))
     {
-        iteration = (IS_TRUE(b_enable) ? HRMUS_POST_BAD_LOOP : HRMUS_DISABLED);;
+        iteration = (IS_TRUE(b_enable) ? HRMUS_POST_BAD_LOOP : HRMUS_DISABLED);
         sound_alias = (IS_TRUE(b_enable) ? HRMUS_POST_BAD_ROUND_START : HRMUS_POST_BAD_ROUND_END);
         thread _play_sound(sound_alias, 1.5);
     }

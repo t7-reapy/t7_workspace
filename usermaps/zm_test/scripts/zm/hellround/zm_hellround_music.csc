@@ -25,6 +25,7 @@ function init()
 function private hellround_music(n_client_num, _oldVal, n_new_val, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump)
 {
     util::waitforclient(n_client_num);
+    IPrintLnBold("hellround music was called with: " + n_new_val);
 
     if (IsSplitScreen() && !IsSplitScreenHost(n_client_num))
     {
@@ -34,7 +35,13 @@ function private hellround_music(n_client_num, _oldVal, n_new_val, _bNewEnt, _bI
     switch (n_new_val)
     {
         case HRMUS_DISABLED:
-            level.hellround_music.sound_ent StopLoopSound(level.hellround_music.soundtrack_id, 1);
+            if (isdefined(level.hellround_music.soundtrack_id))
+            {
+                level.hellround_music.sound_ent StopLoopSound(level.hellround_music.soundtrack_id, 1);
+            }
+            break;
+        case 0:
+            level.hellround_music.soundtrack_id = level.hellround_music.sound_ent PlayLoopSound(HRMUS_ITERATION_0, 1);
             break;
         case 1:
         case 2:

@@ -6,8 +6,9 @@
 #define HRMUS_POST_BAD_ROUND_START "hr_mus_post_bad_round_start"
 #define HRMUS_POST_BAD_ROUND_END "hr_mus_post_bad_round_end"
 
-#define HRMUS_DISABLED 0
+#define HRMUS_DISABLED 6
 #define HRMUS_POST_BAD_LOOP 5
+#define HRMUS_ITERATION_0 "hr_mus_iter_0"
 #define HRMUS_ITERATION_1 "hr_mus_iter_1"
 #define HRMUS_ITERATION_2 "hr_mus_iter_2"
 #define HRMUS_ITERATION_3 "hr_mus_iter_3"
