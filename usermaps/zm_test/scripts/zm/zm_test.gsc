@@ -729,16 +729,15 @@ function private configure_weapon_inspection()
     inspectable::add_inspectable_weapon(GetWeapon("iw8_model680"), 5.16);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_model680_up"), 5.16);
     inspectable::add_inspectable_weapon(GetWeapon("iw8_model680_up_up"), 5.16);
+    
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_357"), 4.66);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_357_up"), 4.66);
+    inspectable::add_inspectable_weapon(GetWeapon("iw8_357_up_up"), 4.66);
 
     // SW2
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927_up"), 5);
     inspectable::add_inspectable_weapon(GetWeapon("s2_vmg1927_up_up"), 5);
-    
-    // BO4
-    inspectable::add_inspectable_weapon(GetWeapon("t8_maddox_rfb"), 5);
-    inspectable::add_inspectable_weapon(GetWeapon("t8_maddox_rfb_up"), 5);
-    inspectable::add_inspectable_weapon(GetWeapon("t8_maddox_rfb_up_up"), 5);
 }
 
 /* endregion */

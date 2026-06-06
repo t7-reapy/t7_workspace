@@ -58,6 +58,7 @@ function __init__()
 {    
     level.a_staff_fire_weaponfiles = [];
     
+    staff_fire_register_weapon_for_level("iw8_357_up_up", undefined, &staff_fire_upgrade_fired);
     staff_fire_register_weapon_for_level("t9_1911_rdw_up_up", undefined, undefined); // don't use staff_fire_fired if not on a projectile ...
     staff_fire_register_weapon_for_level("iw8_ak47_up_up", undefined, &staff_fire_upgrade_fired);
     

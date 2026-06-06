@@ -25,6 +25,7 @@ function __init__()
 {
     level.a_staff_fire_weaponfiles = [];
     
+    staff_fire_register_weapon_for_level("iw8_357_up_up");
     staff_fire_register_weapon_for_level("t9_1911_rdw_up_up");
     staff_fire_register_weapon_for_level("iw8_ak47_up_up");
     
