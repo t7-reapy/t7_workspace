@@ -4,7 +4,7 @@ iwmap 4
 "The Map" flags expanded 
 // entity 0
 {
-guid "{AB3BED67-41BB-11F1-B4D3-EA4151F1E654}"
+guid "{C86BE0C2-61D1-11F1-B4EA-9890604A9C3B}"
 "classname" "worldspawn"
 "lightingquality" "1024"
 "samplescale" "1"
@@ -2879,6 +2879,25 @@ guid "{AB3BED67-41BB-11F1-B4D3-EA4151F1E654}"
    )
   }
  }
+// brush 172
+ {
+  guid "{C86BE0C7-61D1-11F1-B4EA-9890604A9C3B}"
+  mesh
+  {
+  toolFlags;
+   thx_whisper
+   lightmap_gray
+   2 2 0 8
+   (
+	v 5002.625 1902.3748 263.75 t 0 -0 104.75 -16.6875
+	v 5002.625 1902.3748 286.75 t 0 -1024 104.75 -22
+   )
+   (
+	v 5029.625 1902.3752 263.75 t 1024 -0 119.25 -16.6875
+	v 5029.625 1902.3752 286.75 t 1024 -1024 119.25 -22
+   )
+  }
+ }
 }
 // entity 1
 {
@@ -5683,7 +5702,7 @@ guid "{36E6E387-AEB1-11F0-B42F-ABB990AA3148}"
 "classname" "misc_prefab"
 "angles" "0 270 0"
 "model" "_prefabs/zm/zm_test/house/room_of_thanks_walllights.map"
-"origin" "3224.13 6495.88 0"
+"origin" "3224.13 6495.88 17"
 }
 // entity 181
 {
@@ -5705,7 +5724,7 @@ guid "{F26B0360-AF15-11F0-B42F-ABB990AA3148}"
 "classname" "misc_model"
 "angles" "0 360 0"
 "model" "zbr_cabaret_guitar_01"
-"origin" "5036 1903.63 259.625"
+"origin" "5045 1903.63 259.625"
 "lightingstate1" "1"
 "lightingstate2" "1"
 "lightingstate3" "1"
@@ -5719,7 +5738,7 @@ guid "{F971910B-AF15-11F0-B42F-ABB990AA3148}"
 "classname" "misc_model"
 "angles" "0 360 0"
 "model" "zbr_cabaret_guitar_01"
-"origin" "4996 1903.63 259.625"
+"origin" "4987 1903.63 259.625"
 "lightingstate1" "1"
 "lightingstate2" "1"
 "lightingstate3" "1"
@@ -7501,4 +7520,18 @@ guid "{0D092B63-C0BD-11F0-B44D-A50FD0FCC617}"
  ( 5008 1904 240 ) ( 4976 1904 240 ) ( 4976 1904 224 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
  ( 4960 1896 240 ) ( 4960 1864 240 ) ( 4960 1864 224 ) trigger 64 64 0 0 0 0 lightmap_gray 16384 16384 0 0 0 0
 }
+}
+// entity 277
+{
+guid "{2E5B0AE9-61D1-11F1-B4EA-9890604A9C3B}"
+"classname" "misc_model"
+"angles" "0 270 0"
+"model" "portrait_thx_whisper"
+"modelscale" "0.849999996647239"
+"origin" "5016 1903 289.25"
+"lightingstate1" "1"
+"lightingstate2" "1"
+"lightingstate3" "1"
+"lightingstate4" "1"
+"static" "1"
 }

@@ -13,4 +13,4 @@
 
 #define ROTSND_BOOT_SOUND "room_of_thanks_sound_boot"
 #define ROTSND_SWOOSH_SOUND "room_of_thanks_sound_swoosh"
-#define ROTSND_SOUNDS array("room_of_thanks_sound_music_1", "room_of_thanks_sound_music_2", "room_of_thanks_sound_music_3", "room_of_thanks_sound_music_4", "room_of_thanks_sound_music_5")
+#define ROTSND_SOUNDS array("room_of_thanks_sound_music_1", "room_of_thanks_sound_music_2", "room_of_thanks_sound_music_3", "room_of_thanks_sound_music_4", "room_of_thanks_sound_music_5", "room_of_thanks_sound_music_6")
