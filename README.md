@@ -174,7 +174,6 @@ Check the [kanban board](https://github.com/users/McReaper/projects/1)
   - wind exploder is stuck in animation in splitscreen (sometimes)
 - Bugs I didn't reproduce:
   - sword powerup can crash the map (if the sword goes out of playable zone ???)
-  - Hellround bad path spawns parasite after it's done in last zone.
   - Minigun can be swapped out if player launches a grenade/monkey bomb
 
 </details>

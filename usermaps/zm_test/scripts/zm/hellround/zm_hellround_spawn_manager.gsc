@@ -761,6 +761,14 @@ function private spawn_wasps_loop(spawn_flag)
             continue;
         }
 
+        // No open wasp location (zone closed): special_wasp_spawn() would block forever waiting
+        // for one and park this loop past the hellround. Skip so the flag check above can exit it.
+        if (!isdefined(level.zm_loc_types["wasp_location"]) || level.zm_loc_types["wasp_location"].size == 0)
+        {
+            PRINT_HR_DEBUG("No open wasp location (zone closed). Skipping wasp spawn this cycle.");
+            continue;
+        }
+
         ai = zm_ai_wasp::special_wasp_spawn();
         if (!isdefined(ai))
         {
