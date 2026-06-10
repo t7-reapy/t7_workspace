@@ -381,18 +381,7 @@ function private toggle_fauna(b_enable_hellround)
 
 function private bind_hellround_and_teddy()
 {
-    zm_hellround::add_start_collector_callback(&start_teddy_music);
-    zm_hellround::add_stop_collector_callback(&stop_teddy_music);
-}
-
-function private start_teddy_music()
-{
-    zm_teddy_easter_egg::toggle_music_easter_egg(true);
-}
-
-function private stop_teddy_music()
-{
-    zm_teddy_easter_egg::toggle_music_easter_egg(false);
+    zm_hellround::add_toggle_callback(&zm_teddy_easter_egg::toggle_music_easter_egg);
 }
 
 function private bind_hellround_meteor_to_enter_room_of_thanks()

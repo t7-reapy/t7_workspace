@@ -76,6 +76,7 @@ function private _enjoy_game_loss()
 
 function bad_path_started()
 {
+    wait 3;
     _play_vox(HRANN_VOX_BAD_PATH);
 }
 
@@ -101,6 +102,7 @@ function cerberus_feeding_started()
 
 function private _enable_power_good()
 {
+    wait 2;
     _play_vox(HRANN_VOX_ENABLE_POWER_GOOD);
 }
 

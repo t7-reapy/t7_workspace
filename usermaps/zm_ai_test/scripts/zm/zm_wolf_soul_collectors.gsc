@@ -105,7 +105,6 @@ function init()
     create_anim_references_on_server();
 
     level flag::init("soul_catchers_charged");
-    level flag::init("wolf_encounter_vo_played");
 
     level.wolf_heads = [];
     level.wolf_bodies = [];
@@ -168,7 +167,6 @@ function main()
     }
     level thread soul_catchers_charged();
     level thread get_the_zoms();
-    level thread watch_wolf_volume_discovery();
 }
 
 function abolish_wolf_heads()
@@ -240,7 +238,7 @@ function SortWolfStructs(struct_array)
     return result;
 }
 
-function HeadActiveCallbacks()
+function HeadActiveCallbacks() // self == level.wolf_heads[i]
 {
     level endon(KILL_WOLF_HEAD_WATCHERS_NOTIFICATION);
 
@@ -249,7 +247,7 @@ function HeadActiveCallbacks()
 
     if (IsFunctionPtr(level.wolf_head_become_active_callback)) 
     {
-        level thread [[ level.wolf_head_become_active_callback ]](level.wolf_heads_active > 0);
+        level thread [[ level.wolf_head_become_active_callback ]](level.wolf_heads_active > 0, self.origin);
     }
     level.wolf_heads_active++;
     PRINT_DEBUG_WOLF("wolf head actives: "+level.wolf_heads_active);
@@ -300,7 +298,7 @@ function soul_catcher_state_manager(state_index)
         return;
     }
 
-    thread HeadActiveCallbacks(); 
+    level.wolf_heads[state_index] thread HeadActiveCallbacks(); 
     if (isdefined(level.soul_catcher_clip[self.script_noteworthy]))
     {
         level.soul_catcher_clip[self.script_noteworthy] SetVisibleToAll();
@@ -567,7 +565,7 @@ function body_moveto_wolf(m_wolf, zombie)
     self.m_soul_fx_player = undefined;
 }
 
-function soul_catcher_check()
+function soul_catcher_check() // self == level.soul_catchers[i]
 {
     self endon(KILL_WOLF_HEAD_WATCHERS_NOTIFICATION);
 
@@ -588,13 +586,13 @@ function soul_catcher_check()
         }
     }
 
-    if (level.soul_catchers_charged == 1)
+    if (level.soul_catchers_charged == 1 && isdefined(level.first_wolf_head_charged_callback))
     {
-        self thread first_wolf_complete_vo();
+        thread [[level.first_wolf_head_charged_callback]](self.origin);
     }
-    else if (level.soul_catchers_charged >= level.soul_catchers.size)
+    else if (level.soul_catchers_charged >= level.soul_catchers.size && isdefined(level.final_wolf_head_charged_callback))
     {
-        self thread final_wolf_complete_vo();
+        thread [[level.final_wolf_head_charged_callback]](self.origin);
     }
 }
 
@@ -647,16 +645,6 @@ function watch_for_death()
         if (!self BodyShouldBeEatenByWolf(i)) 
         {
             return;
-        }
-        
-        self.my_soul_catcher = level.soul_catchers[i];
-        if (isdefined(self.my_soul_catcher.souls_received)
-            && self.my_soul_catcher.souls_received == 0
-            && !level flag::get("wolf_encounter_vo_played")
-            && level.soul_catchers_charged == 0)
-        {
-            level flag::set("wolf_encounter_vo_played");
-            self.my_soul_catcher thread first_wolf_encounter_vo();
         }
         
         self Hide();
@@ -894,96 +882,6 @@ function soul_catchers_charged()
         else
         {
             wait 1;
-        }
-    }
-}
-
-function watch_wolf_volume_discovery()
-{
-    level endon("end_game");
-    level endon(KILL_WOLF_HEAD_WATCHERS_NOTIFICATION);
-
-    remaining = level.soul_catchers_vol.size;
-
-    while (remaining > 0)
-    {
-        foreach (player in GetPlayers())
-        {
-            if (isdefined(player.dontspeak) && player.dontspeak)
-            {
-                continue;
-            }
-
-            foreach (vol in level.soul_catchers_vol)
-            {
-                if (isdefined(vol) && !isdefined(vol.wolf_discovered) && player IsTouching(vol))
-                {
-                    vol.wolf_discovered = true;
-                    remaining--;
-                    player thread zm_utility::do_player_general_vox("general", "wolf_discover");
-                }
-            }
-        }
-        wait 0.25;
-    }
-}
-
-function first_wolf_encounter_vo()
-{
-    wait 2;
-    a_players = GetPlayers();
-    a_closest = util::get_array_of_closest(self.origin, a_players);
-    i = 0;
-    while (i < a_closest.size)
-    {
-        if (isdefined(a_closest[i].dontspeak) && !a_closest[i].dontspeak)
-        {
-            a_closest[i] thread zm_utility::do_player_general_vox("general", "wolf_encounter");
-            return;
-        }
-        else
-        {
-            i++;
-        }
-    }
-}
-
-function first_wolf_complete_vo()
-{
-    wait 3.5;
-    a_players = GetPlayers();
-    a_closest = util::get_array_of_closest(self.origin, a_players);
-    i = 0;
-    while (i < a_closest.size)
-    {
-        if (isdefined(a_closest[i].dontspeak) && !a_closest[i].dontspeak)
-        {
-            a_closest[i] thread zm_utility::do_player_general_vox("general", "wolf_first_complete");
-            return;
-        }
-        else
-        {
-            i++;
-        }
-    }
-}
-
-function final_wolf_complete_vo()
-{
-    wait 3.5;
-    a_players = GetPlayers();
-    a_closest = util::get_array_of_closest(self.origin, a_players);
-    i = 0;
-    while (i < a_closest.size)
-    {
-        if (isdefined(a_closest[i].dontspeak) && !a_closest[i].dontspeak)
-        {
-            a_closest[i] thread zm_utility::do_player_general_vox("general", "wolf_complete");
-            return;
-        }
-        else
-        {
-            i++;
         }
     }
 }

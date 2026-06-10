@@ -67,7 +67,6 @@ function private _retrieve_models_and_randomize_teddys(triggers)
     selected_triggers = [];
     PRINT_DEBUG_TEDDY("Teddy models are at the number of: " + triggers.size);
 
-    triggers_selected_number = 0;
     foreach (trigger in triggers)
     {
         trigger.target_model = GetEnt(trigger.target, "targetname");
@@ -79,7 +78,7 @@ function private _retrieve_models_and_randomize_teddys(triggers)
 
         // In case we reach the teddy bear limit, we delete other teddys.
         // This creates even more randomness considering their location.
-        if (triggers_selected_number >= TEDDY_NUMBER)
+        if (selected_triggers.size >= TEDDY_NUMBER)
         {
             trigger.target_model Delete();
             trigger Delete();
@@ -87,7 +86,6 @@ function private _retrieve_models_and_randomize_teddys(triggers)
         }
 
         selected_triggers[selected_triggers.size] = trigger;
-        triggers_selected_number++;
     }
 
     return selected_triggers;
@@ -151,8 +149,8 @@ function private _callback_on_completion() // self == reward ent array
 
 function toggle_music_easter_egg(b_enable)
 {
-    enabled = IS_TRUE(b_enable);
-    PRINT_DEBUG_TEDDY("toggle_music_easter_egg called with: " + enabled);
-    level.teddy_easter_egg.triggers_paused = !enabled;
-    level clientfield::set(TEDDY_CLIENTFIELD_MUSIC, enabled && level.teddy_easter_egg.music_started);
+    hellround_active = IS_TRUE(b_enable);
+    PRINT_DEBUG_TEDDY("toggle_music_easter_egg called with: " + hellround_active);
+    level.teddy_easter_egg.triggers_paused = hellround_active;
+    level clientfield::set(TEDDY_CLIENTFIELD_MUSIC, !hellround_active && level.teddy_easter_egg.music_started);
 }

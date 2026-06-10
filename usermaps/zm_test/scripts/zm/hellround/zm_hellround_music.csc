@@ -25,7 +25,6 @@ function init()
 function private hellround_music(n_client_num, _oldVal, n_new_val, _bNewEnt, _bInitialSnap, _fieldName, _bWasTimeJump)
 {
     util::waitforclient(n_client_num);
-    IPrintLnBold("hellround music was called with: " + n_new_val);
 
     if (IsSplitScreen() && !IsSplitScreenHost(n_client_num))
     {

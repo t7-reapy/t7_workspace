@@ -166,22 +166,30 @@ function private bind_callbacks()
     zm_hellround_spawn_manager::add_bad_iteration_callback(&enable_bad_ending);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_music::enable_bad_ending);
     zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_announcer::bad_path_started);
+    zm_hellround_spawn_manager::add_bad_iteration_callback(&zm_hellround_players::bad_path_vo);
 
     zm_hellround_collectors::add_start_collection_callback(&zm_hellround_spawn_manager::iteration_time_management_update);
+    zm_hellround_collectors::add_start_collection_callback(&zm_hellround_players::collector_challenge_start_vo);
     zm_hellround_collectors::add_stop_collection_callback(&zm_hellround_spawn_manager::hellround_stops);
+    zm_hellround_collectors::add_stop_collection_callback(&zm_hellround_players::collector_first_completion_vo);
+    zm_hellround_collectors::add_stop_collection_callback(&zm_hellround_players::collector_last_completion_vo);
     zm_hellround_collectors::bind_reward_callback(&zm_hellround_reward::give_reward);
     zm_hellround_collectors::add_completion_callbacks(&zm_hellround_meteor::hellround_meteor_logic);
+    zm_hellround_collectors::add_completion_callbacks(&zm_hellround_players::meteor_siren_vo);
     zm_hellround_collectors::add_completion_callbacks(&zm_hellround_announcer::finished_good_path);
     zm_hellround_collectors::add_completion_callbacks(&zm_hellround_powerup::unregister_minigun_powerup);
 
     zm_hellround_meteor::add_meteor_trigger_callback(&enable_good_ending);
     zm_hellround_meteor::add_meteor_trigger_callback(&zm_hellround_music::enable_good_ending);
+    zm_hellround_meteor::add_meteor_trigger_callback(&zm_hellround_players::meteor_bought_vo);
 
     zm_hellround_powerup::add_minigun_callback(&zm_hellround_spawn_manager::hellround_starts);
     zm_hellround_powerup::add_minigun_callback(&zm_hellround_collectors::start_collection_logic);
 
     level.wolf_head_become_active_callback = &hellround_cerberus_enable;
     level.wolf_head_become_inactive_callback = &hellround_cerberus_disable;
+    level.first_wolf_head_charged_callback = &zm_hellround_players::first_wolf_complete_vo;
+    level.final_wolf_head_charged_callback = &zm_hellround_players::final_wolf_complete_vo;
     level.soul_catchers_charged_callback = &hellround_cerberus_fed;
 
     level.hellround_zombie_callback = &zm_hellround_spawn_manager::disable_point_during_hellrounds;
@@ -210,8 +218,9 @@ function private temporary_invulnerability(b_enable)
     }
 }
 
-function private hellround_cerberus_enable(is_one_head_already_active)
+function private hellround_cerberus_enable(is_one_head_already_active, location)
 {
+    thread zm_hellround_players::wolf_feed_start_vo(location);
     thread zm_hellround_announcer::cerberus_feeding_started();
     zm_hellround_spawn_manager::iteration_time_management_update();
     if (!is_one_head_already_active)
