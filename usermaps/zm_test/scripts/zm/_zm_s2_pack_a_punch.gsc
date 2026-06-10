@@ -187,7 +187,7 @@ function weapon_holder_think()
 
 function weapon_holder_player_can_use_trigger() // self == player
 {
-    if(self laststand::player_is_in_laststand() || IS_TRUE(self.intermission) || self IsThrowingGrenade() || self IsSwitchingWeapons())
+    if(self laststand::player_is_in_laststand() || IS_TRUE(self.intermission) || self IsThrowingGrenade() || self IsSwitchingWeapons() || self zm_utility::has_powerup_weapon())
     {
         return false;
     }
