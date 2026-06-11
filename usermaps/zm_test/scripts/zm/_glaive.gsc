@@ -17,6 +17,7 @@
 #using scripts\shared\ai\systems\gib;
 #using scripts\shared\ai\zombie_utility;
 #using scripts\shared\ai\margwa;
+#using scripts\zm\_zm;
 
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\statemachine.gsh;
@@ -38,6 +39,11 @@ function __init__()
 {    
     clientfield::register( "vehicle", GLAIVE_BLOOD_FX, VERSION_DLC3, 1, "int" );
     vehicle::add_main_callback( "glaive", &glaive_initialize );
+
+    // Centralized: the glaive must not damage ignored archetypes by ANY means. One global actor-damage
+    // filter here (the level.callbackActorDamage path) catches the glaive's vehicle MOD_CRUSH on every
+    // victim, so no per-AI damage edits are needed. [zm_test balance]
+    zm::register_actor_damage_callback( &glaive_damage_filter );
     
 }
 
@@ -109,6 +115,47 @@ function defaultRole()
     self.startTime = GetTime();
 }
 
+//archetypes the glaive must never engage nor damage (zm_test balance):
+//brutus/cellbreaker, and napalm zombies (plain zombie archetype, tagged by animname).
+function private glaive_should_ignore( target )
+{
+    if( !IsDefined( target ) )
+    {
+        return false;
+    }
+
+    if( IsDefined( target.archetype ) && target.archetype == "cellbreaker" )
+    {
+        return true;
+    }
+
+    if( IsDefined( target.animname ) && target.animname == "napalm_zombie" )
+    {
+        return true;
+    }
+
+    return false;
+}
+
+// Global actor-damage filter (registered once). Runs on every actor damage event with self == victim.
+// Return -1 to pass through; return a value to override the damage. We negate any glaive-sourced
+// damage (notably the vehicle MOD_CRUSH) dealt to archetypes the glaive must ignore.
+function glaive_damage_filter( inflictor, attacker, damage, flags, meansofdeath, weapon, vpoint, vdir, sHitLoc, psOffsetTime, boneIndex, surfaceType )
+{
+    if( !glaive_should_ignore( self ) )
+    {
+        return -1;
+    }
+
+    if( ( isdefined( attacker ) && isdefined( attacker.archetype ) && attacker.archetype == ARCHETYPE_GLAIVE )
+        || ( isdefined( inflictor ) && isdefined( inflictor.archetype ) && inflictor.archetype == ARCHETYPE_GLAIVE ) )
+    {
+        return 0;
+    }
+
+    return -1;
+}
+
 //function that validates if enemies are appropriate
 function private is_enemy_valid( target )
 {
@@ -141,7 +188,12 @@ function private is_enemy_valid( target )
     {
         return false;
     }
-    
+
+    if( glaive_should_ignore( target ) )
+    {
+        return false;
+    }
+
     if( IsDefined( target.archetype ) && target.archetype == ARCHETYPE_MARGWA )
     {
         if( !target margwaserverutils::margwaCanDamageAnyHead() )
@@ -547,6 +599,10 @@ function state_slash_update( params )
             if( Distance2DSquared( self.origin, target.origin ) < SQR( 128 ) )
             {
                 if( IsDefined( target.archetype ) && target.archetype == ARCHETYPE_MARGWA )
+                {
+                    continue;
+                }
+                if( glaive_should_ignore( target ) )
                 {
                     continue;
                 }

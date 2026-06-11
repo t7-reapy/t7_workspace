@@ -117,14 +117,14 @@ function private cellbreaker_visits()
         level waittill("between_round_over");
         round_number = zm::get_round_number();
 
-        if (next_round != round_number)
+        if (round_number < next_round)
         {
             PRINT_HR_DEBUG("Not yet a round for cellbreakers");
             continue;
         }
 
         PRINT_HR_DEBUG("Cellbreakers are coming");
-        next_round += interval;
+        next_round = round_number + interval;
         iteration_time_management_update();
         hellround_starts();
         level waittill("cellbreakers_killed");

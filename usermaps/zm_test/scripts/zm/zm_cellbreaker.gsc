@@ -494,7 +494,11 @@ function private track_helmet(damage)
 function brutusDeathEvent()
 {
     self waittill("death", attacker, damageType);
+
+    if (isdefined(attacker))
+    {
     attacker zm_score::add_to_player_score(1000);
+    }
 
     if(isdefined(self.helmet))
     {
