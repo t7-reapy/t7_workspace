@@ -17,3 +17,10 @@
 
 #define HRENV_FX_EXPLODER_NAME "hr_environment_fx_exploder"
 #define HRENV_FX_TRANSITION "_reapy/fx_hellround_transition"
+#define HRENV_TORNADO_BLOCKER_NAME "hellround_tornado_blocker"
+#define HRENV_TORNADO_BLOCKER_FX "_reapy/fx_fire_tornado_loop"
+#define HRENV_TORNADO_BLOCKER_SND "hr_environment_tornado_blocker"
+
+#define HRENV_TORNADO_BLOCKER_DAMAGE_FRACTION 0.34    // % of max health per tick (Jugg-independent → ~3 ticks to down)
+#define HRENV_TORNADO_BLOCKER_DAMAGE_INTERVAL 0.25    // seconds between ticks
+#define HRENV_TORNADO_BLOCKER_DAMAGE_MOD      "MOD_BURNED"

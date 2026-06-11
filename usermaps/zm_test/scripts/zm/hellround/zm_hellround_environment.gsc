@@ -1,9 +1,10 @@
 #using scripts\shared\exploder_shared; 
-#using scripts\shared\flag_shared; 
 #using scripts\shared\callbacks_shared; 
 #using scripts\shared\util_shared; 
 #using scripts\shared\clientfield_shared;
 #using scripts\shared\system_shared;
+#using scripts\shared\ai\zombie_utility;
+#using scripts\codescripts\struct;
 
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;
@@ -11,7 +12,10 @@
 #using scripts\zm\hellround\zm_hellround_shared;
 #insert scripts\zm\hellround\zm_hellround_shared.gsh;
 #insert scripts\zm\hellround\zm_hellround_environment.gsh;
+
 #namespace zm_hellround_environment;
+
+#precache("fx", HRENV_TORNADO_BLOCKER_FX);
 
 REGISTER_SYSTEM_EX("zm_hellround_environment", &init, &main, undefined)
 
@@ -24,10 +28,13 @@ class HellroundEnvironment
     var models_hide;
 
     var fx_exploder;
+
+    var tornado_blockers;
 }
 
 function private init()
 {
+    level._effect["hellround_fire_tornado"] = HRENV_TORNADO_BLOCKER_FX;
     clientfield::register("world", HRENV_TOGGLE_CLIENT_FIELD, VERSION_SHIP, 1, "int");
 
     level.hellround_environment = new HellroundEnvironment();
@@ -36,6 +43,7 @@ function private init()
     level.hellround_environment.models_show = GetEntArray("hellround_model_show", "targetname");
     level.hellround_environment.models_hide = GetEntArray("hellround_model_hide", "targetname");
     level.hellround_environment.fx_exploder = HRENV_FX_EXPLODER_NAME;
+    level.hellround_environment.tornado_blockers = struct::get_array(HRENV_TORNADO_BLOCKER_NAME, "targetname");
     
     callback::on_connect(&sync_hellround_environment);
 }
@@ -71,6 +79,7 @@ function toggle_hellround_environment(b_enable) // self == player or undefined
     thread show_hellround_fxs(IS_TRUE(b_enable));
     thread show_hellround_clips(IS_TRUE(b_enable));
     thread show_hellround_models(IS_TRUE(b_enable));
+    thread show_hellround_blockers(IS_TRUE(b_enable));
 }
 
 function private update_lightstate(b_enable) // self == player or undefined
@@ -154,6 +163,78 @@ function private show_hellround_models(b_show)
             model Solid();
         }
     }
+}
+
+/* endregion */
+/* region blockers */
+
+function private show_hellround_blockers(b_show)
+{
+    if (b_show)
+    {
+        foreach(blocker in level.hellround_environment.tornado_blockers)
+        {
+            blocker.damage_trigger = spawn("trigger_radius", blocker.origin, 1, 80, 70);
+            blocker.damage_trigger thread _trigger_damage();
+
+            blocker.fx = util::spawn_model("tag_origin", blocker.origin);
+            playfxontag(level._effect["hellround_fire_tornado"], blocker.fx, "tag_origin");
+            blocker.fx PlayLoopSound(HRENV_TORNADO_BLOCKER_SND);
+            WAIT_SERVER_FRAME;
+        }
+    }
+    else
+    {
+        foreach(blocker in level.hellround_environment.tornado_blockers)
+        {
+            if (isdefined(blocker.damage_trigger))
+            {
+                blocker.damage_trigger notify("end_fire_effect");
+                WAIT_SERVER_FRAME;
+                blocker.damage_trigger Delete();
+                WAIT_SERVER_FRAME;
+                blocker.damage_trigger = undefined;
+            }
+
+            if (isdefined(blocker.fx))
+            {
+                blocker.fx StopLoopSound();
+                WAIT_SERVER_FRAME;
+                blocker.fx Delete();
+                WAIT_SERVER_FRAME;
+                blocker.fx = undefined;
+            }
+        }
+    }
+}
+
+function private _trigger_damage()
+{
+    level endon("end_game");
+    self endon("end_fire_effect");
+    while (true)
+    {
+        self waittill("trigger", who);
+        if (IsPlayer(who) && zombie_utility::is_player_valid(who) && !IS_TRUE(who.hr_in_tornado))
+        {
+            who thread _burn_in_tornado(self); // self == the damage trigger
+        }
+    }
+}
+
+function private _burn_in_tornado(trig) // self == player
+{
+    self endon("disconnect");
+    self.hr_in_tornado = true; // guard: one burn loop per player despite trigger re-fires
+
+    while (isdefined(trig) && IsPlayer(self) && zombie_utility::is_player_valid(self) && self IsTouching(trig))
+    {
+        dmg = int(self.maxhealth * HRENV_TORNADO_BLOCKER_DAMAGE_FRACTION);
+        self DoDamage(dmg, trig.origin, undefined, undefined, "none", HRENV_TORNADO_BLOCKER_DAMAGE_MOD);
+        wait HRENV_TORNADO_BLOCKER_DAMAGE_INTERVAL;
+    }
+
+    self.hr_in_tornado = undefined;
 }
 
 /* endregion */

@@ -26,6 +26,7 @@ class HellroundEnvironment
 
 function init() 
 {
+    level._effect["hellround_fire_tornado"] = HRENV_TORNADO_BLOCKER_FX;
     level.hellround_environment = new HellroundEnvironment();
     level.hellround_environment.volumes_show = FindVolumeDecalIndexArray("hellround_volume_show");
     level.hellround_environment.volumes_hide = FindVolumeDecalIndexArray("hellround_volume_hide");
