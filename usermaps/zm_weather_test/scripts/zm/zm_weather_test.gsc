@@ -60,7 +60,7 @@ function main()
 	zm_usermap::main();
 	map_init();
     level.start_weapon = GetWeapon("lmg_heavy");
-	// zm_weather::play();
+	zm_weather::play();
 
 	// Triggers for testing
 	ent_triggers_greater = GetEntArray("trigger_greater_intensity", "targetname");
