@@ -250,7 +250,7 @@ function private mission_briefing()
     typewriter::type(
         "Date: December 20th, 2025",
         "Location: Grenoble - France",
-        "Mission objective: ^1Survive",
+        "Mission objective: ^5Find a fresh sample of divinium",
         "Secondary objective: Turn on power");
 }
 
