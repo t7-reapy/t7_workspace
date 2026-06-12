@@ -106,11 +106,6 @@
 
 #define SKYRIM_EASTER_EGG_CHANCE 0.10
 
-// TODO: remove
-// Sphynx's Console Commands
-#using scripts\Sphynx\commands\_zm_commands;
-#using scripts\Sphynx\commands\_zm_name_checker;
-
 // Custom powerups FX
 #define FX_POWERUP_BLUE "_reapy/fx_powerup_blue"
 #precache("fx", FX_POWERUP_BLUE);

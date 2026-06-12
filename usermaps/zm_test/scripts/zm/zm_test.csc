@@ -71,10 +71,6 @@
 
 #using scripts\zm\zm_usermap;
 
-// TODO: remove
-// Sphynx's Console Commands
-#using scripts\Sphynx\commands\_zm_commands;
-
 // Custom powerups FX
 #define FX_POWERUP_BLUE "_reapy/fx_powerup_blue"
 #precache("client_fx", FX_POWERUP_BLUE);
