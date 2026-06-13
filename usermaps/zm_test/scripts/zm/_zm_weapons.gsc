@@ -1787,23 +1787,58 @@ function has_weapon_or_attachments( weapon )
 //	self is a player
 function has_upgrade( weapon )
 {
-	weapon = get_nonalternate_weapon( weapon ); 
+	weapon = get_nonalternate_weapon( weapon );
 
 	rootWeapon = weapon.rootWeapon;
 
 	has_upgrade = false;
-	if ( IsDefined( level.zombie_weapons[rootWeapon ] ) && IsDefined( level.zombie_weapons[rootWeapon ].upgrade ) )
+
+	// Walk the WHOLE upgrade chain (base -> _up -> _up_up -> ...) instead of only the first step.
+	w = rootWeapon;
+	safety = 0;
+	while ( IsDefined( level.zombie_weapons[w] ) && IsDefined( level.zombie_weapons[w].upgrade ) && safety < 8 )
 	{
-		has_upgrade = self has_weapon_or_attachments( level.zombie_weapons[rootWeapon].upgrade );
+		w = level.zombie_weapons[w].upgrade;
+		if ( self has_weapon_or_attachments( w ) )
+		{
+			has_upgrade = true;
+			break;
+		}
+		safety++;
 	}
 
-	// double check for the bowie variant on the ballistic knife	
+	// double check for the bowie variant on the ballistic knife
 	if ( !has_upgrade && rootWeapon.isBallisticKnife )
 	{
-		has_weapon = self zm_melee_weapon::has_upgraded_ballistic_knife();
+		has_upgrade = self zm_melee_weapon::has_upgraded_ballistic_knife();
 	}
 
 	return has_upgrade;
+}
+
+function get_owned_chain_weapon( base_weapon ) // self == player
+{
+	base_weapon = get_nonalternate_weapon( base_weapon );
+
+	w = base_weapon.rootWeapon;
+	owned = undefined;
+	if ( self has_weapon_or_attachments( w ) )
+	{
+		owned = w;
+	}
+
+	safety = 0;
+	while ( IsDefined( level.zombie_weapons[w] ) && IsDefined( level.zombie_weapons[w].upgrade ) && safety < 8 )
+	{
+		w = level.zombie_weapons[w].upgrade;
+		if ( self has_weapon_or_attachments( w ) )
+		{
+			owned = w;
+		}
+		safety++;
+	}
+
+	return owned;
 }
 
 
@@ -2263,11 +2298,16 @@ function weapon_spawn_think()
 
 				if ( player has_upgrade( weapon ) )
 				{
-					ammo_given = player ammo_give( level.zombie_weapons[weapon].upgrade );
+					owned_upgrade = player get_owned_chain_weapon( weapon );
+					if ( !IsDefined( owned_upgrade ) )
+					{
+						owned_upgrade = level.zombie_weapons[weapon].upgrade;
+					}
+					ammo_given = player ammo_give( owned_upgrade );
 				}
 				else
 				{
-					ammo_given = player ammo_give( weapon ); 
+					ammo_given = player ammo_give( weapon );
 				}
 				
 				if ( ammo_given )
