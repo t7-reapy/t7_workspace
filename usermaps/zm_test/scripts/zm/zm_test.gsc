@@ -339,7 +339,7 @@ function private play_bleedout_sound()
 
     // We need to a bit for self.laststand to be updated.
     wait 0.5;
-    
+
     //check if bleedout_loop_sound exists to advoid a potential fast loop.
     while(self laststand::player_is_in_laststand() && isdefined(BLEEDOUT_LOOP_SOUND) && SoundExists(BLEEDOUT_LOOP_SOUND))
     {
@@ -424,12 +424,15 @@ function private stop_round_sounds()
 
 function private skyrim_easter_egg()
 {
+    if (RandomFloat(1.0) > SKYRIM_EASTER_EGG_CHANCE)
+    {
+        return;
+    }
+    level.hellround_skip_meteor_interaction_vox = true;
+
     foreach(player in GetPlayers())
     {
-        if (RandomFloat(1.0) <= SKYRIM_EASTER_EGG_CHANCE)
-        {
-            player thread play_skyrim_video();
-        }
+        player thread play_skyrim_video();
     }
 }
 
@@ -454,6 +457,7 @@ function private bind_room_of_thanks_callbacks()
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&type_room_of_thanks_briefing);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&fauna_stop);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&stop_perk_jingles_sounds);
+    zm_room_of_thanks::add_enter_room_of_thanks_callback(&stop_active_powerups);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&zm_poster_easter_egg::stop_video_and_cameras);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&zm_teddy_easter_egg::stop_sounds);
 
@@ -543,6 +547,51 @@ function private stop_perk_jingles_sounds()
     {
         // We don't need perks anymore, simply killing the triggers will stop the jingles from _zm_perks:524 and _zm_audio:1620
         trigger Delete();
+    }
+}
+
+function private stop_active_powerups()
+{
+    foreach (name in array("fire_sale", "bonfire_sale"))
+    {
+        if (IS_TRUE(level.zombie_vars["zombie_powerup_" + name + "_on"]))
+        {
+            level.zombie_vars["zombie_powerup_" + name + "_time"] = 0;
+        }
+    }
+
+    teams = [];
+    foreach (player in GetPlayers())
+    {
+        teams[player.team] = player.team;
+    }
+
+    foreach (team in teams)
+    {
+        if (!IsDefined(level.zombie_vars[team]))
+        {
+            continue;
+        }
+
+        level notify("powerup points scaled_" + team);
+        level notify("powerup instakill_" + team);
+
+        level.zombie_vars[team]["zombie_point_scalar"] = 1;
+        level.zombie_vars[team]["zombie_insta_kill"] = 0;
+
+        foreach (name in array("double_points", "insta_kill"))
+        {
+            if (IS_TRUE(level.zombie_vars[team]["zombie_powerup_" + name + "_on"]))
+            {
+                level.zombie_vars[team]["zombie_powerup_" + name + "_time"] = 0;
+            }
+        }
+    }
+
+    foreach (player in GetPlayers())
+    {
+        player clientfield::set_player_uimodel("hudItems.doublePointsActive", 0);
+        player notify("insta_kill_over");
     }
 }
 
