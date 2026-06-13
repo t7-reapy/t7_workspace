@@ -92,6 +92,8 @@ function include_weapons()
 
 function private on_connect(n_local_client_num)
 {
+    SetDvar("cg_disableplayernames", "1");
+
     self thread disable_players_outline(n_local_client_num);
 }
 

@@ -127,7 +127,6 @@ function main()
     thread fauna_start();
     thread player_knuckle_crack_on_start();
     thread setup_playable_zones();
-    thread remove_players_names();
     thread setup_weapons();
     thread setup_players_vox();
     thread watch_power_state();
@@ -761,11 +760,6 @@ function _is_normal_zombie() // self == actor
 
 /* endregion */
 /* region tweakings */
-
-function private remove_players_names()
-{
-    SetDvar("cg_disableplayernames", "1");
-}
 
 function private disable_hitmarkers() // self == player
 {
