@@ -23,6 +23,9 @@
 // Custom UI
 #using scripts\zm\_zm_h1_hud;
 
+// Game-over intermission menu (restart / leave)
+#using scripts\zm\_zm_intermission_menu;
+
 //Perks
 #using scripts\zm\_zm_pack_a_punch;
 #using scripts\zm\_zm_perk_additionalprimaryweapon;

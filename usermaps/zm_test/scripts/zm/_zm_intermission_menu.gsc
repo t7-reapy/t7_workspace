@@ -1,0 +1,67 @@
+#using scripts\codescripts\struct;
+
+#using scripts\shared\array_shared;
+#using scripts\shared\callbacks_shared;
+#using scripts\shared\clientfield_shared;
+#using scripts\shared\system_shared;
+#using scripts\shared\util_shared;
+
+#using scripts\zm\_zm_audio;
+
+#insert scripts\shared\shared.gsh;
+#insert scripts\shared\version.gsh;
+
+#precache("menu", "Intermission_Main");
+
+// Game-over intermission menu (restart / leave). Based on KingslayerKyle's
+// End-game menu widget; the restart command itself is issued client-side from
+// Intermission_Main.lua (map_restart). This GSC only decides when to show it.
+REGISTER_SYSTEM_EX("zm_intermission_menu", &__init__, &__main__, undefined)
+
+function __init__()
+{
+    callback::on_connect(&on_player_connect);
+}
+
+function __main__()
+{
+    // Inverted gate kept from the original: "true" here means the intermission
+    // WILL be shown. It's cleared only when the host deliberately ended the
+    // match, so a manual End Game / Restart from the pause menu skips this menu.
+    level.disable_intermission = true;
+}
+
+function on_player_connect()
+{
+    self thread intermission_menu_handler();
+}
+
+function intermission_menu_handler()
+{
+    self endon("disconnect");
+
+    level waittill("end_game");
+
+    if (IS_TRUE(level.host_ended_game))
+    {
+        level.disable_intermission = undefined;
+    }
+
+    if (!isdefined(level.disable_intermission))
+    {
+        return;
+    }
+
+    level thread zm_audio::sndMusicSystem_PlayState("game_over");
+
+    array::run_all(level.players, &clientfield::set, "zmbLastStand", 0);
+
+    level clientfield::set("game_end_time", int((GetTime() - level.n_gameplay_start_time + 500) / 1000));
+
+    self closeInGameMenu();
+    self CloseMenu("StartMenu_Main");
+
+    wait 2;
+
+    self OpenMenu("Intermission_Main");
+}

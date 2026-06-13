@@ -95,6 +95,9 @@
 #using scripts\zm\_zm_gameover_camera;
 #using scripts\zm\_zm_t6_deathanim;
 
+// Game-over intermission menu (restart / leave)
+#using scripts\zm\_zm_intermission_menu;
+
 #using scripts\zm\zm_usermap;
 #using scripts\zm\_zm_animated_switch;
 
@@ -566,6 +569,10 @@ function private weather_pause_with_delay()
 function private end_the_game()
 {
     wait DELAY_BEFORE_ROT_CALLBACK_APPLY;
+
+    // Remove this line to have the restart menu after finishing the map.
+    level.disable_intermission = undefined;
+
     level notify("end_game");
 }
 
