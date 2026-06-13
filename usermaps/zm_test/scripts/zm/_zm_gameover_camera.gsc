@@ -48,7 +48,7 @@ function custom_game_over_hud(player, game_over_hud, survived_hud)
     game_over_hud.fontScale = 3;
     game_over_hud.alpha = 0;
     game_over_hud.color = get_game_over_color();
-    game_over_hud.hidewheninmenu = true;
+    game_over_hud.hidewheninmenu = false; // stay visible under the restart/leave overlay
     game_over_hud SetText(CUSTOM_GAME_OVER_TEXT);
 
     game_over_hud FadeOverTime(1);
@@ -68,7 +68,7 @@ function custom_game_over_hud(player, game_over_hud, survived_hud)
     survived_hud.fontScale = 2;
     survived_hud.alpha = 0;
     survived_hud.color = (ROUNDS_SURVIVED_TEXT_COLOR);
-    survived_hud.hidewheninmenu = true;
+    survived_hud.hidewheninmenu = false; // stay visible under the restart/leave overlay
     if (player isSplitScreen())
     {
         survived_hud.fontScale = 1.5;

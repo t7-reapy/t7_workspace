@@ -1,21 +1,16 @@
 #using scripts\codescripts\struct;
 
-#using scripts\shared\array_shared;
 #using scripts\shared\callbacks_shared;
-#using scripts\shared\clientfield_shared;
 #using scripts\shared\system_shared;
 #using scripts\shared\util_shared;
-
-#using scripts\zm\_zm_audio;
 
 #insert scripts\shared\shared.gsh;
 #insert scripts\shared\version.gsh;
 
 #precache("menu", "Intermission_Main");
 
-// Game-over intermission menu (restart / leave). Based on KingslayerKyle's
-// End-game menu widget; the restart command itself is issued client-side from
-// Intermission_Main.lua (map_restart). This GSC only decides when to show it.
+// Restart/leave buttons overlaid on the gameover_camera travels. The buttons live
+// in Intermission_Main.lua; this only decides when to show them.
 REGISTER_SYSTEM_EX("zm_intermission_menu", &__init__, &__main__, undefined)
 
 function __init__()
@@ -25,10 +20,9 @@ function __init__()
 
 function __main__()
 {
-    // Inverted gate kept from the original: "true" here means the intermission
-    // WILL be shown. It's cleared only when the host deliberately ended the
-    // match, so a manual End Game / Restart from the pause menu skips this menu.
-    level.disable_intermission = true;
+    // Our own gate (NOT stock level.disable_intermission, which pauses the whole
+    // end-game sequence). Cleared on the room-of-thanks win to skip the buttons.
+    level.show_intermission_menu = true;
 }
 
 function on_player_connect()
@@ -42,26 +36,15 @@ function intermission_menu_handler()
 
     level waittill("end_game");
 
-    if (IS_TRUE(level.host_ended_game))
-    {
-        level.disable_intermission = undefined;
-    }
-
-    if (!isdefined(level.disable_intermission))
+    if (!IS_TRUE(level.show_intermission_menu))
     {
         return;
     }
 
-    level thread zm_audio::sndMusicSystem_PlayState("game_over");
-
-    array::run_all(level.players, &clientfield::set, "zmbLastStand", 0);
-
-    level clientfield::set("game_end_time", int((GetTime() - level.n_gameplay_start_time + 500) / 1000));
-
-    self closeInGameMenu();
-    self CloseMenu("StartMenu_Main");
-
-    wait 2;
+    // Let the stock intermission play (music/score/camera), then overlay the
+    // buttons once it hands off to the camera travels.
+    level waittill("intermission");
+    wait 1;
 
     self OpenMenu("Intermission_Main");
 }

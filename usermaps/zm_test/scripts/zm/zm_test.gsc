@@ -624,7 +624,7 @@ function private end_the_game()
     wait DELAY_BEFORE_ROT_CALLBACK_APPLY;
 
     // Remove this line to have the restart menu after finishing the map.
-    level.disable_intermission = undefined;
+    level.show_intermission_menu = false;
 
     level notify("end_game");
 }
