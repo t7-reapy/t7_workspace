@@ -335,6 +335,7 @@ function private play_bleedout_sound()
     self endon("death");
     self endon("bled_out");
     self endon("disconnect");
+    self endon("player_revived");
 
     // We need to a bit for self.laststand to be updated.
     wait 0.5;
@@ -342,9 +343,8 @@ function private play_bleedout_sound()
     //check if bleedout_loop_sound exists to advoid a potential fast loop.
     while(self laststand::player_is_in_laststand() && isdefined(BLEEDOUT_LOOP_SOUND) && SoundExists(BLEEDOUT_LOOP_SOUND))
     {
-        self PlaySoundWithNotify(BLEEDOUT_LOOP_SOUND, "bleedout_sound");
-        self waittill("bleedout_sound");
-        WAIT_SERVER_FRAME;                                 
+        self PlaySoundToPlayer(BLEEDOUT_LOOP_SOUND, self);
+        wait SoundGetPlaybackTime(BLEEDOUT_LOOP_SOUND);
     }
 }
 
