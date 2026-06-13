@@ -122,7 +122,11 @@ function main()
     bind_hellround_and_teddy();
     bind_hellround_meteor_to_enter_room_of_thanks();
     bind_room_of_thanks_callbacks();
-    
+
+    // Server-fill wallbuy costs so the refill prompt shows the upgraded ammo
+    // cost, not the client-filled base. Set before zm_weapons::init().
+    level.weapon_cost_client_filled = false;
+
     zm_usermap::main();
     level thread zm_animated_switch::MasterSwitchInit();
     zm_weather::play();
