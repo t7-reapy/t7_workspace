@@ -172,19 +172,19 @@ function private _give_player_rewards_and_bonuses() // self == player
     if (player_survived_and_finished)
     {
         self thread _give_completed_game_reward();
-        congrats[congrats.size] = "Congratulations for ^5beating the game^7!";
+        congrats[congrats.size] = "Congratulations for ^5beating the game^7, here is your ^5reward^7.";
         PRINT_HR_DEBUG("Given weapon for overall success.");
     }
     else if (self.hellround_progress_reward.did_finish_game)
     {
         self zm_xcdylan93_utils::update_weapon_camo(HRRWRD_FINISH_MAP_WEAPON_CAMO_INDEX, starter_weapon, starter_weapon.altWeapon, false);
-        congrats[congrats.size] = "Congratulations for ^3completing the map^7!";
+        congrats[congrats.size] = "Congratulations for ^3completing the map^7.";
         PRINT_HR_DEBUG("Given weapon camo for finish success.");
     }
     else if (self.hellround_progress_reward.did_survive_bad_path)
     {
         self zm_xcdylan93_utils::update_weapon_camo(HRRWRD_SURVIVE_BAD_PATH_WEAPON_CAMO_INDEX, starter_weapon, starter_weapon.altWeapon, false);
-        congrats[congrats.size] = "Congratulations for ^1surviving hellround bad path^7!";
+        congrats[congrats.size] = "Congratulations for ^1surviving hellround bad path^7.";
         PRINT_HR_DEBUG("Given weapon camo for survive success.");
     }
 

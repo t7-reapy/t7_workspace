@@ -117,14 +117,14 @@ function private cellbreaker_visits()
         level waittill("between_round_over");
         round_number = zm::get_round_number();
 
-        if (next_round != round_number)
+        if (round_number < next_round)
         {
             PRINT_HR_DEBUG("Not yet a round for cellbreakers");
             continue;
         }
 
         PRINT_HR_DEBUG("Cellbreakers are coming");
-        next_round += interval;
+        next_round = round_number + interval;
         iteration_time_management_update();
         hellround_starts();
         level waittill("cellbreakers_killed");
@@ -758,6 +758,14 @@ function private spawn_wasps_loop(spawn_flag)
 
         if (GetAiSpeciesArray(level.zombie_team, "all").size >= level.zombie_ai_limit)
         {
+            continue;
+        }
+
+        // No open wasp location (zone closed): special_wasp_spawn() would block forever waiting
+        // for one and park this loop past the hellround. Skip so the flag check above can exit it.
+        if (!isdefined(level.zm_loc_types["wasp_location"]) || level.zm_loc_types["wasp_location"].size == 0)
+        {
+            PRINT_HR_DEBUG("No open wasp location (zone closed). Skipping wasp spawn this cycle.");
             continue;
         }
 

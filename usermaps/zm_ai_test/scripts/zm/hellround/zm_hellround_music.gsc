@@ -2,6 +2,7 @@
 #using scripts\zm\_zm_audio; 
 #using scripts\shared\util_shared;
 #using scripts\shared\system_shared;
+#using scripts\shared\flag_shared;
 
 #insert scripts\shared\version.gsh;
 #insert scripts\shared\shared.gsh;
@@ -11,9 +12,9 @@
 #insert scripts\zm\hellround\zm_hellround_music.gsh;
 #namespace zm_hellround_music;
 
-REGISTER_SYSTEM("zm_hellround_music", &init, undefined)
+REGISTER_SYSTEM_EX("zm_hellround_music", &init, &main, undefined)
 
-function init()
+function private init()
 {
     clientfield::register("world", HRMUS_CLIENT_FIELD, VERSION_SHIP, 3, "int");
     
@@ -27,6 +28,12 @@ function init()
 
     thread gameover_ending_sounds();
     thread gameover_stop_music();
+}
+
+function private main()
+{
+    level flag::wait_till( "initial_blackscreen_passed" );
+    toggle_hellround_music(false);
 }
 
 function toggle_hellround_music(b_enable)

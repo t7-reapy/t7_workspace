@@ -362,6 +362,11 @@ function meteor_bought_vo()
     {
         WAIT_SERVER_FRAME;
 
+        if (IS_TRUE(level.hellround_skip_meteor_interaction_vox))
+        {
+            return;
+        }
+
         foreach (player in players)
         {
             if (!player _can_player_speak("general", "meteor_interaction"))

@@ -26,6 +26,7 @@ class HellroundEnvironment
 
 function init() 
 {
+    level._effect["hellround_fire_tornado"] = HRENV_TORNADO_BLOCKER_FX;
     level.hellround_environment = new HellroundEnvironment();
     level.hellround_environment.volumes_show = FindVolumeDecalIndexArray("hellround_volume_show");
     level.hellround_environment.volumes_hide = FindVolumeDecalIndexArray("hellround_volume_hide");
@@ -54,9 +55,9 @@ function hellround_environment(n_client_num, _oldVal, n_new_val, b_new_ent, b_in
     if (b_new_ent || b_initial_snap)
     {
         // Force the fog refresh, sometime it glitches in transition fog (random)...
-        wait 5;
+        wait 3;
         fog_update(true);
-        wait 5;
+        wait 3;
         fog_update(false);
     }
 }
