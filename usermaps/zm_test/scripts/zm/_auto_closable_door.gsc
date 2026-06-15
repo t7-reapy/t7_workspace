@@ -44,8 +44,9 @@ function private end_game()
 
 function private door_init() // self == door trigger
 {
-    // Radiant's "cursorhint" KVP is overridden here at init, so the icon/string
-    // must be set in script (HINT_ACTIVATE = the hand icon + the bound use key).
+    // Radiant's "cursorhint" KVP is overridden here at init, so the hint must be
+    // set in script. NOTE: HINT_NOICON makes a door-buy trigger_use prompt fully
+    // invisible (icon AND text), so an icon type is required to show the string.
     self SetCursorHint("HINT_ACTIVATE");
     self SetHintString(&DOOR_HINT_LOCALIZED);
     
