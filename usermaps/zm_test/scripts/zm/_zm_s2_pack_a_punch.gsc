@@ -169,8 +169,10 @@ function weapon_holder_think()
         self SetCursorHint("HINT_WEAPON", current_weapon);
         self flag::set("weapon_holder_holding");
 
-        self SetInvisibleToAll();
-        self SetVisibleToPlayer(player);
+        // Shared holder: no per-player visibility restriction, so any player can
+        // withdraw or swap the held weapon (the prompt shows for everyone). The
+        // original SetInvisibleToAll/SetVisibleToPlayer locked it to the depositor
+        // and never reversed, which is why only the host could use it.
         self thread weapon_holder_wait_for_take_or_swap(current_weapon, alt_weapon);
         self waittill("weapon_holder_taken");
 
