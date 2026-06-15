@@ -10,6 +10,8 @@
 #insert scripts\zm\_auto_closable_door.gsh;
 #namespace auto_closable_door;
 
+#precache("triggerstring", DOOR_HINT_LOCALIZED);
+
 REGISTER_SYSTEM_EX("auto_closable_door", &init, &main, undefined)
 
 function private init()
@@ -42,9 +44,10 @@ function private end_game()
 
 function private door_init() // self == door trigger
 {
-    self SetCursorHint("HINT_NOICON");
-    self SetHintString("");
-    self SetHintLowPriority(true);
+    // Radiant's "cursorhint" KVP is overridden here at init, so the icon/string
+    // must be set in script (HINT_ACTIVATE = the hand icon + the bound use key).
+    self SetCursorHint("HINT_ACTIVATE");
+    self SetHintString(&DOOR_HINT_LOCALIZED);
     
     self.targets = GetEntArray(self.target, "targetname");
     array::thread_all(self.targets, &classify, self);
