@@ -123,6 +123,10 @@ function main()
     bind_hellround_meteor_to_enter_room_of_thanks();
     bind_room_of_thanks_callbacks();
 
+    // Black-hole weapons (e.g. the double-upgraded vlkrogue) must not teleport
+    // players out of the pantheon once they reach the room of thanks.
+    level._blackhole_bomb_valid_area_check = &black_hole_valid_area_check;
+
     // Server-fill wallbuy costs so the refill prompt shows the upgraded ammo
     // cost, not the client-filled base. Set before zm_weapons::init().
     level.weapon_cost_client_filled = false;
@@ -464,6 +468,7 @@ function private bind_room_of_thanks_callbacks()
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&stop_active_powerups);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&zm_poster_easter_egg::stop_video_and_cameras);
     zm_room_of_thanks::add_enter_room_of_thanks_callback(&zm_teddy_easter_egg::stop_sounds);
+    zm_room_of_thanks::add_enter_room_of_thanks_callback(&disable_black_hole_weapons);
 
     // Exit room of thanks
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&zm_hellround::game_finished_with_success);
@@ -474,6 +479,35 @@ function private bind_room_of_thanks_callbacks()
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&restore_ui);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&end_the_game);
     zm_room_of_thanks::add_exit_room_of_thanks_callback(&fauna_start);
+}
+
+function private disable_black_hole_weapons()
+{
+    // Players have reached the pantheon's final zone. From now on, black-hole
+    // weapons must not deploy (see black_hole_valid_area_check) so they cannot
+    // teleport out of the room of thanks.
+    level.room_of_thanks_reached = true;
+}
+
+// Hooked as level._blackhole_bomb_valid_area_check. Returning true aborts the
+// black hole. Called on the firing player; e_model/e_projectile are deleted so
+// no portal model or teleport trigger is left behind in the room of thanks.
+function private black_hole_valid_area_check(e_projectile, e_model, player)
+{
+    if (!IS_TRUE(level.room_of_thanks_reached))
+    {
+        return false;
+    }
+
+    if (isdefined(e_model))
+    {
+        e_model delete();
+    }
+    if (isdefined(e_projectile))
+    {
+        e_projectile delete();
+    }
+    return true;
 }
 
 function private set_lighting_state_clear()
