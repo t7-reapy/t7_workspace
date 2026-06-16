@@ -453,8 +453,8 @@ function _napalm_damage_players()
             playFxOnTag(level._effect["player_fire_death_napalm"], players[i], "j_spinelower");
 
         dist = distance(eyeorigin, test_origin);
-        killplayerdamage = 100;
-        killjusgsplayerdamage = 250;
+        killplayerdamage = 60;
+        killjusgsplayerdamage = 120;
         shellshockmintime = 1.5;
         shellshockmaxtime = 3;
         damage = level.napalmexplodedamagemin;
