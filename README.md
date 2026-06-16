@@ -6,11 +6,11 @@ This repository contains my config, maps and script files in order to keep track
 
 ## RAINY DOOM
 
-Rainy doom is my first map and is planned to be released during June 2026 on the steam workshop.
+Rainy doom is my first map and is released on the workshop here: https://steamcommunity.com/sharedfiles/filedetails/?id=3745646848
 
 [Watch the teaser](https://youtu.be/G37yaG4MJuw):
 
-[![Rainy Doom teaser](https://i9.ytimg.com/vi_webp/G37yaG4MJuw/mqdefault.webp?v=69f5ebbf&sqp=CMTr2M8G&rs=AOn4CLArPNAX5LTPogG5QzlK7xQS_hGpPA)](https://youtu.be/G37yaG4MJuw)
+[![Rainy Doom teaser](https://img.youtube.com/vi/G37yaG4MJuw/hqdefault.jpg)](https://youtu.be/G37yaG4MJuw)
 
 # Currents tasks
 
